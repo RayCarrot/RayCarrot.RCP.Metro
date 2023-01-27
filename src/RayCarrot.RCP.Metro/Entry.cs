@@ -41,7 +41,12 @@ public static class Entry
         serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
         serviceCollection.AddTransient<GameBackups_Manager>();
         serviceCollection.AddSingleton<DeployableFilesManager>();
-        serviceCollection.AddSingleton<IMessenger, WeakReferenceMessenger>();
+
+        // Using a WeakReferenceMessenger can be convenient and I was originally doing that,
+        // but for performance reasons it's still better to always unregister (to avoid
+        // dead objects still receiving messages in a sort of zombie state), so I've opted
+        // for using the StrongReferenceMessenger for now. Can always be changed later.
+        serviceCollection.AddSingleton<IMessenger, StrongReferenceMessenger>();
 
         // Add the main window
         serviceCollection.AddSingleton<MainWindow>();

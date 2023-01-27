@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// Interaction logic for GameOptionsDialog.xaml
 /// </summary>
-public partial class GameOptionsDialog : WindowContentControl, IRecipient<RemovedGamesMessage>
+public partial class GameOptionsDialog : WindowContentControl, IInitializable, IRecipient<RemovedGamesMessage>
 {
     #region Constructor
 
@@ -23,9 +23,6 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
         // Create view model
         ViewModel = new GameOptionsDialogViewModel(gameInstallation);
         DataContext = ViewModel;
-
-        // Subscribe to events
-        Loaded += GameOptions_OnLoadedAsync;
     }
 
     #endregion
@@ -96,6 +93,22 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
 
     #region Public Methods
 
+    public void Initialize()
+    {
+        Services.Messenger.RegisterAll(this);
+
+        foreach (var page in ViewModel.Pages)
+            page.Saved += Page_Saved;
+    }
+
+    public void Deinitialize()
+    {
+        Services.Messenger.UnregisterAll(this);
+
+        foreach (var page in ViewModel.Pages)
+            page.Saved -= Page_Saved;
+    }
+
     public void Receive(RemovedGamesMessage message)
     {
         if (message.GameInstallations.Contains(ViewModel.GameInstallation))
@@ -108,29 +121,12 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
     public override void Dispose()
     {
         base.Dispose();
-
-        // We don't have to unregister since it's a weak reference, but it's better to do so anyway when we can
-        Services.Messenger.UnregisterAll(this);
-
-        foreach (var page in ViewModel.Pages)
-            page.Saved -= Page_Saved;
-
         ViewModel?.Dispose();
     }
 
     #endregion
 
     #region Event Handlers
-
-    private void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
-    {
-        Loaded -= GameOptions_OnLoadedAsync;
-
-        Services.Messenger.RegisterAll(this);
-
-        foreach (var page in ViewModel.Pages)
-            page.Saved += Page_Saved;
-    }
 
     private void Page_Saved(object sender, EventArgs e)
     {

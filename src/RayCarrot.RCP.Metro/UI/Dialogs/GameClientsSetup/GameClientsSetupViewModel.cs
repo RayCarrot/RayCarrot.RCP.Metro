@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameClientsSetupViewModel : BaseViewModel, 
+public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
     IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>,
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
 {
@@ -13,8 +13,6 @@ public class GameClientsSetupViewModel : BaseViewModel,
             Services.GameClients.GetGameCientDescriptors().Select(x => new AvailableGameClientViewModel(x)));
 
         Refresh();
-
-        Services.Messenger.RegisterAll(this);
     }
 
     public ObservableCollection<InstalledGameClientViewModel> InstalledGameClients { get; }
@@ -30,6 +28,9 @@ public class GameClientsSetupViewModel : BaseViewModel,
 
     public void Refresh(GameClientInstallation? selectedGameClientInstallation = null)
     {
+        foreach (AvailableGameClientViewModel gameClient in AvailableGameClients)
+            gameClient.Refresh();
+
         InstalledGameClients.Clear();
 
         foreach (GameClientInstallation gameClientInstallation in Services.GameClients.GetInstalledGameClients())
@@ -41,6 +42,9 @@ public class GameClientsSetupViewModel : BaseViewModel,
                 SelectedGameClient = viewModel;
         }
     }
+
+    public void Initialize() => Services.Messenger.RegisterAll(this);
+    public void Deinitialize() => Services.Messenger.UnregisterAll(this);
 
     public void Receive(AddedGameClientsMessage message) => 
         Refresh(message.GameClientInstallations.FirstOrDefault());

@@ -139,6 +139,18 @@ public class Page_Games_ViewModel : BasePageViewModel,
             {
                 try
                 {
+                    // Unload previously loaded games
+                    foreach (InstalledGameCategoryViewModel gameCategory in GameCategories)
+                    {
+                        foreach (InstalledGameGroupViewModel gameGroup in gameCategory.GameGroups)
+                        {
+                            foreach (InstalledGameViewModel game in gameGroup.InstalledGames)
+                            {
+                                game.Unload();
+                            }
+                        }
+                    }
+
                     // Clear the categories
                     GameCategories.Clear();
 

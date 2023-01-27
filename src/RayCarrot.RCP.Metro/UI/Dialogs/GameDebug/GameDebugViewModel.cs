@@ -6,15 +6,13 @@ using RayCarrot.RCP.Metro.Games.Components;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Have a similar way of showing game client installation data?
-public class GameDebugViewModel : BaseViewModel, 
+public class GameDebugViewModel : BaseViewModel, IInitializable,
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
 {
     public GameDebugViewModel(GameInstallation gameInstallation)
     {
         IconSizes = new ObservableCollection<GameIcon.GameIconSize>(EnumHelpers.GetValues<GameIcon.GameIconSize>());
         RefreshGameInstallations(gameInstallation);
-
-        Services.Messenger.RegisterAll(this);
     }
 
     private InstalledGameViewModel? _selectedGameInstallation;
@@ -81,6 +79,9 @@ public class GameDebugViewModel : BaseViewModel,
 
         Refresh();
     }
+
+    public void Initialize() => Services.Messenger.RegisterAll(this);
+    public void Deinitialize() => Services.Messenger.UnregisterAll(this);
 
     public void Receive(AddedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
     public void Receive(RemovedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);

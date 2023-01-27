@@ -7,6 +7,11 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class WindowContentControl : UserControl, IWindowControl
 {
+    protected WindowContentControl()
+    {
+        Loaded += WindowContentControl_Loaded;
+    }
+
     private WindowInstance _windowInstance;
     private bool _isClosing;
     private bool _forceClose;
@@ -35,6 +40,17 @@ public abstract class WindowContentControl : UserControl, IWindowControl
             if (value != null)
                 WindowAttached();
         }
+    }
+
+    private void WindowContentControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Loaded -= WindowContentControl_Loaded;
+
+        if (this is IInitializable initializable)
+            initializable.Initialize();
+
+        if (DataContext is IInitializable initializableViewModel)
+            initializableViewModel.Initialize();
     }
 
     private async void WindowInstance_WindowClosing(object sender, CancelEventArgs e)
@@ -89,5 +105,12 @@ public abstract class WindowContentControl : UserControl, IWindowControl
         _windowInstance.WindowClosed -= WindowInstance_WindowClosed;
     }
 
-    public virtual void Dispose() { }
+    public virtual void Dispose()
+    {
+        if (this is IInitializable initializable)
+            initializable.Deinitialize();
+
+        if (DataContext is IInitializable initializableViewModel)
+            initializableViewModel.Deinitialize();
+    }
 }

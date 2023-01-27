@@ -4,8 +4,8 @@ using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
-public class AvailableGameClientViewModel : BaseViewModel, 
-    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>
+public class AvailableGameClientViewModel : BaseViewModel
+    
 {
     #region Constructor
 
@@ -19,12 +19,8 @@ public class AvailableGameClientViewModel : BaseViewModel,
         else
             Platforms = new ObservableCollection<PlatformViewModel>();
 
-        Refresh();
-
         AddGameClientCommand = new AsyncRelayCommand(AddGameClientAsync);
         FindGameClientCommand = new AsyncRelayCommand(FindGameClientAsync);
-
-        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -53,19 +49,15 @@ public class AvailableGameClientViewModel : BaseViewModel,
 
     #endregion
 
-    #region Private Methods
+    #region Public Methods
 
-    private void Refresh()
+    public void Refresh()
     {
         // Only get the finder item if there are no added game clients with this descriptor
         FinderItem = !Services.GameClients.AnyInstalledGameClients(x => x.GameClientDescriptor == Descriptor)
             ? Descriptor.GetFinderItem()
             : null;
     }
-
-    #endregion
-
-    #region Public Methods
 
     public async Task AddGameClientAsync()
     {
@@ -149,9 +141,6 @@ public class AvailableGameClientViewModel : BaseViewModel,
             await Services.MessageUI.DisplayMessageAsync("The game client/emulator was not found", "Finder result", MessageType.Information);
         }
     }
-
-    public void Receive(AddedGameClientsMessage message) => Refresh();
-    public void Receive(RemovedGameClientsMessage message) => Refresh();
 
     #endregion
 }

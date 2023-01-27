@@ -240,6 +240,30 @@ public class InstalledGameViewModel : BaseViewModel
             })));
     }
 
+    private void InitializeGameOptions()
+    {
+        if (GameOptions == null)
+            return;
+
+        foreach (GameOptionsViewModel gameOptionsViewModel in GameOptions)
+        {
+            if (gameOptionsViewModel is IInitializable initializable)
+                initializable.Initialize();
+        }
+    }
+
+    private void DeinitializeGameOptions()
+    {
+        if (GameOptions == null) 
+            return;
+        
+        foreach (GameOptionsViewModel gameOptionsViewModel in GameOptions)
+        {
+            if (gameOptionsViewModel is IInitializable initializable)
+                initializable.Deinitialize();
+        }
+    }
+
     private async Task ReloadAsync(bool loadOptions)
     {
         // TODO-14: Async lock
@@ -247,8 +271,11 @@ public class InstalledGameViewModel : BaseViewModel
         // Load options
         if (loadOptions)
         {
+            DeinitializeGameOptions();
+
             var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
             GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
+            InitializeGameOptions();
         }
 
         // Load info
@@ -277,6 +304,11 @@ public class InstalledGameViewModel : BaseViewModel
         _loaded = true;
 
         return ReloadAsync(true);
+    }
+
+    public void Unload()
+    {
+        DeinitializeGameOptions();
     }
 
     public Task RefreshAsync(bool rebuiltComponents)

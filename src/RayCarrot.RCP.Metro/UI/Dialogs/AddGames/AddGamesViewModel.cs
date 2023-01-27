@@ -1,6 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-public class AddGamesViewModel : BaseViewModel
+public class AddGamesViewModel : BaseViewModel, IInitializable, 
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
 {
     public AddGamesViewModel()
     {
@@ -30,4 +31,24 @@ public class AddGamesViewModel : BaseViewModel
     }
 
     public ObservableCollection<AddGamesGameCategoryViewModel> GameCategories { get; }
+
+    private void RefreshGames()
+    {
+        foreach (AddGamesGameCategoryViewModel gameCategory in GameCategories)
+        {
+            foreach (AddGamesGameGroupViewModel gameGroup in gameCategory.GameGroups)
+            {
+                foreach (AddGamesGameViewModel game in gameGroup.Games)
+                {
+                    game.Refresh();
+                }
+            }
+        }
+    }
+
+    public void Initialize() => Services.Messenger.RegisterAll(this);
+    public void Deinitialize() => Services.Messenger.UnregisterAll(this);
+
+    public void Receive(AddedGamesMessage message) => RefreshGames();
+    public void Receive(RemovedGamesMessage message) => RefreshGames();
 }

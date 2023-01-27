@@ -3,7 +3,7 @@ using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
-public class AddGamesGameViewModel : BaseViewModel, IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
+public class AddGamesGameViewModel : BaseViewModel
 {
     #region Constructor
 
@@ -27,8 +27,6 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<AddedGamesMessage
 
         AddGameCommand = new AsyncRelayCommand(x => AddGameAsync(((GameAddActionViewModel)x!).AddAction));
         FindGameCommand = new AsyncRelayCommand(FindGameAsync);
-
-        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -80,6 +78,8 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<AddedGamesMessage
     #endregion
 
     #region Public Methods
+
+    public void Refresh() => Refresh(false);
 
     public async Task AddGameAsync(GameAddAction addAction)
     {
@@ -135,9 +135,6 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<AddedGamesMessage
             await Services.MessageUI.DisplayMessageAsync("The game was not found", "Finder result", MessageType.Information);
         }
     }
-
-    public void Receive(AddedGamesMessage message) => Refresh(false);
-    public void Receive(RemovedGamesMessage message) => Refresh(false);
 
     #endregion
 

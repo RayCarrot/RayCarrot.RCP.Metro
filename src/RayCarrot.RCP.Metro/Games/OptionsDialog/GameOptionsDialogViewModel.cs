@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// View model for a game options dialog
 /// </summary>
-public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedGamesMessage>, IDisposable
+public class GameOptionsDialogViewModel : BaseRCPViewModel, IInitializable, IDisposable, IRecipient<ModifiedGamesMessage>
 {
     #region Constructor
 
@@ -23,8 +23,6 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         CachedPages = new Dictionary<string, GameOptionsDialogPageViewModel>();
 
         CreatePages();
-
-        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -120,6 +118,16 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         }
     }
 
+    public void Initialize()
+    {
+        Services.Messenger.RegisterAll(this);
+    }
+
+    public void Deinitialize()
+    {
+        Services.Messenger.UnregisterAll(this);
+    }
+
     public void Receive(ModifiedGamesMessage message)
     {
         // If the components were rebuilt we have to re-create the
@@ -135,8 +143,6 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
     {
         // Dispose
         Pages.DisposeAll();
-
-        Services.Messenger.UnregisterAll(this);
     }
 
     #endregion

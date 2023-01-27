@@ -6,18 +6,12 @@ namespace RayCarrot.RCP.Metro.Games.Options;
 /// <summary>
 /// View model for the client selection game options
 /// </summary>
-public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
+public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel, IInitializable,
     IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>
 {
     #region Constructor
 
-    public GameClientSelectionGameOptionsViewModel(GameInstallation gameInstallation) : base(gameInstallation)
-    {
-        Load();
-
-        // Register for messages
-        Services.Messenger.RegisterAll(this);
-    }
+    public GameClientSelectionGameOptionsViewModel(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     #endregion
 
@@ -81,6 +75,17 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
     #endregion
 
     #region Public Methods
+
+    public void Initialize()
+    {
+        Load();
+        Services.Messenger.RegisterAll(this);
+    }
+
+    public void Deinitialize()
+    {
+        Services.Messenger.UnregisterAll(this);
+    }
 
     public void Receive(AddedGameClientsMessage message)
     {
