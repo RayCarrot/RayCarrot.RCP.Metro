@@ -31,7 +31,7 @@ public class GameClientInstallation : ProgramInstallation, IComparable<GameClien
     public GameClientDescriptor GameClientDescriptor { get; }
 
     public string GameClientId => GameClientDescriptor.GameClientId;
-    public string FullId => $"{GameClientId}|{InstallationId}"; // TODO-14: Use this for some logging
+    public string FullId => $"{GameClientId}|{InstallationId}";
 
     #endregion
 

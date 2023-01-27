@@ -8,7 +8,7 @@
 
     <DataTemplate x:Key="RCP.Templates.Button.IconContent">
         <StackPanel Orientation="Horizontal">
-            <iconpacks:PackIconMaterial Kind="{Binding Path=(local:IconAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+            <iconpacks:PackIconMaterial Kind="{Binding Path=(local:Icon.Kind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                                         VerticalAlignment="Center"/>
 
             <ContentPresenter Margin="10 0"
@@ -32,9 +32,9 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
-        <Setter Property="local:IconAssist.IconKind" Value="None" />
-        <Setter Property="local:IconAssist.IconSize" Value="20" />
-        <Setter Property="local:IconAssist.IconBrush" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="local:Icon.Kind" Value="None" />
+        <Setter Property="local:Icon.Size" Value="20" />
+        <Setter Property="local:Icon.Brush" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Self}}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -58,12 +58,12 @@
 
                                 <iconpacks:PackIconMaterial x:Name="Icon"
                                                         Grid.Column="0" 
-                                                        Kind="{TemplateBinding local:IconAssist.IconKind}"
+                                                        Kind="{TemplateBinding local:Icon.Kind}"
                                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                        Visibility="{TemplateBinding local:IconAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconpacks:PackIconMaterialKind.None}}"
-                                                        Width="{TemplateBinding local:IconAssist.IconSize}"
-                                                        Height="{TemplateBinding local:IconAssist.IconSize}"
-                                                        Foreground="{TemplateBinding local:IconAssist.IconBrush}"
+                                                        Visibility="{TemplateBinding local:Icon.Kind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconpacks:PackIconMaterialKind.None}}"
+                                                        Width="{TemplateBinding local:Icon.Size}"
+                                                        Height="{TemplateBinding local:Icon.Size}"
+                                                        Foreground="{TemplateBinding local:Icon.Brush}"
                                                         Margin="0 0 6 0" />
 
                                 <!-- Enable clear type so text looks good in popups -->
@@ -98,7 +98,7 @@
                         <Trigger Property="Content" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Margin" Value="0" />
                         </Trigger>
-                        <Trigger Property="local:IconAssist.IconBrush" Value="{x:Null}">
+                        <Trigger Property="local:Icon.Brush" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -134,12 +134,12 @@
 
                                 <iconpacks:PackIconMaterial x:Name="Icon"
                                                         Grid.Column="0" 
-                                                        Kind="{TemplateBinding local:IconAssist.IconKind}"
+                                                        Kind="{TemplateBinding local:Icon.Kind}"
                                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                        Visibility="{TemplateBinding local:IconAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconpacks:PackIconMaterialKind.None}}"
-                                                        Width="{TemplateBinding local:IconAssist.IconSize}"
-                                                        Height="{TemplateBinding local:IconAssist.IconSize}"
-                                                        Foreground="{TemplateBinding local:IconAssist.IconBrush}"
+                                                        Visibility="{TemplateBinding local:Icon.Kind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconpacks:PackIconMaterialKind.None}}"
+                                                        Width="{TemplateBinding local:Icon.Size}"
+                                                        Height="{TemplateBinding local:Icon.Size}"
+                                                        Foreground="{TemplateBinding local:Icon.Brush}"
                                                         Margin="0 0 6 0" />
 
                                 <!-- Enable clear type so text looks good in popups -->
@@ -179,7 +179,7 @@
                         <Trigger Property="Content" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Margin" Value="0" />
                         </Trigger>
-                        <Trigger Property="local:IconAssist.IconBrush" Value="{x:Null}">
+                        <Trigger Property="local:Icon.Brush" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -196,7 +196,7 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <iconpacks:PackIconMaterial Kind="{Binding Path=(local:IconAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+                    <iconpacks:PackIconMaterial Kind="{Binding Path=(local:Icon.Kind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                                                 Width="20" Height="20"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center" />
@@ -213,7 +213,7 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <iconpacks:PackIconMaterial Kind="{Binding Path=(local:IconAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+                    <iconpacks:PackIconMaterial Kind="{Binding Path=(local:Icon.Kind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                                                 Width="16" Height="16"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center" />

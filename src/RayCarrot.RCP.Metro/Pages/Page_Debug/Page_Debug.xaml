@@ -20,53 +20,53 @@
             <Button Content="Show applied utilities"
                     ToolTip="Shows a list of every utility which is marked as applied by an installed game"
                     Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="BriefcaseOutline" />
+                    local:Icon.Kind="BriefcaseOutline" />
 
             <Button Content="Show log"
                     ToolTip="Shows the application log, either through the in-app log viewer or as a fallback by opening the log file"
                     Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="Text"/>
+                    local:Icon.Kind="Text"/>
 
             <Button Content="Show welcome window"
                     ToolTip="Shows the initial first launch welcome window"
                     Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="InformationOutline"/>
+                    local:Icon.Kind="InformationOutline"/>
 
             <Separator />
 
             <Button Content="Run load operation"
                     ToolTip="Runs a dummy load operation which can be canceled half way through"
                     Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="CircleOutline"/>
+                    local:Icon.Kind="CircleOutline"/>
 
             <Button Content="Collect garbage"
                     ToolTip="Forces the runtime garbage collector to collect"
                     Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="Memory"/>
+                    local:Icon.Kind="Memory"/>
 
             <Separator />
 
             <Button Content="Throw unhandled exception"
                     ToolTip="Throws an unhandled exception and thus crashing the app"
                     Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="Exclamation"/>
+                    local:Icon.Kind="Exclamation"/>
 
             <Button Content="Throw unhandled exception async"
                     ToolTip="Throws an unhandled exception on a background thread and thus crashing the app"
                     Command="{Binding Path=ThrowUnhandledExceptionAsyncCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="Exclamation"/>
+                    local:Icon.Kind="Exclamation"/>
 
             <Separator />
 
             <Button Content="Restart as administrator"
                     ToolTip="Restarts the app with administrator privileges"
                     Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="Security"/>
+                    local:Icon.Kind="Security"/>
 
             <Button Content="Shutdown app"
                     ToolTip="Closes the app"
                     Command="{Binding Path=ShutdownAppCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="CloseOutline"/>
+                    local:Icon.Kind="CloseOutline"/>
 
         </StackPanel>
     </local:BasePage.PopupMenu>
@@ -87,8 +87,8 @@
             <ScrollViewer>
                 <StackPanel Margin="12 0 12 12">
                     <GroupBox Header="Information"
-                              local:IconAssist.IconKind="{StaticResource RCP.Icons.Info}"
-                              local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}"
+                              local:Icon.Kind="{StaticResource RCP.Icons.Info}"
+                              local:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                               Background="{DynamicResource RCP.Brushes.Card.Background}"
                               Margin="0">
                         <StackPanel>
@@ -292,20 +292,20 @@
                                 ToolTip="Generates a JSON file from the selected patch files. This JSON file is only used locally to generate the actual web files. The array in it allows the patch order and other properties to be modified."
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                local:IconAssist.IconKind="CodeJson"
+                                local:Icon.Kind="CodeJson"
                                 Command="{Binding Path=ExportWebPatchesJSONCommand, Mode=OneTime}"/>
 
                         <Button Content="Generate web files" 
                                 ToolTip="Generates all the files to be hosted for external patches from a JSON file."
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                local:IconAssist.IconKind="DatabaseExportOutline"
+                                local:Icon.Kind="DatabaseExportOutline"
                                 Command="{Binding Path=ExportWebPatchesFilesCommand, Mode=OneTime}"/>
 
                         <Button Content="Extract library (.gpl)" 
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                local:IconAssist.IconKind="FileExportOutline"
+                                local:Icon.Kind="FileExportOutline"
                                 Command="{Binding Path=ExtractPatchLibraryCommand, Mode=OneTime}"/>
 
                     </StackPanel>

@@ -115,7 +115,7 @@
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanUseRecommended, Converter={rcp:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
-                                    rcp:IconAssist.IconKind="AutoFix"
+                                    rcp:Icon.Kind="AutoFix"
                                     Command="{Binding Path=UseRecommendedCommand}"
                                     Margin="0 0 10 0"/>
 
@@ -130,7 +130,7 @@
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanSave, Converter={rcp:BooleanToVisibilityConverter}}"
                                     Content="{Resx Cancel}"
-                                    rcp:IconAssist.IconKind="CloseOutline"
+                                    rcp:Icon.Kind="CloseOutline"
                                     Margin="0 0 10 0"
                                     Click="CancelButton_OnClick" />
 
@@ -138,7 +138,7 @@
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanSave, Converter={rcp:BooleanToVisibilityConverter}}"
                                     Content="{Resx Save}"
-                                    rcp:IconAssist.IconKind="ContentSaveOutline"
+                                    rcp:Icon.Kind="ContentSaveOutline"
                                     IsEnabled="{Binding Path=UnsavedChanges}"
                                     Command="{Binding Path=SaveCommand, Mode=OneTime}" />
 

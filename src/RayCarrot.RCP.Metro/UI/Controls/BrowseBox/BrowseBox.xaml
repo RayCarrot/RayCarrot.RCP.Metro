@@ -87,7 +87,7 @@
                             <Button Grid.Column="1"
                                     x:Name="PART_BrowseButton"
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                    local:IconAssist.IconKind="FolderOutline"
+                                    local:Icon.Kind="FolderOutline"
                                     Content="{Resx BrowseBox_Browse}"
                                     IsEnabled="{TemplateBinding CanBrowse}"
                                     Margin="10 0 0 0"

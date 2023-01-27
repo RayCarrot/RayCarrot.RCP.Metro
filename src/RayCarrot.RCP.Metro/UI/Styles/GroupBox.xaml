@@ -26,9 +26,9 @@
 
                                 <iconPacks:PackIconMaterial x:Name="Icon"
                                                             Grid.Column="0"
-                                                            Kind="{TemplateBinding local:IconAssist.IconKind}"
-                                                            Foreground="{TemplateBinding local:IconAssist.IconBrush}"
-                                                            Visibility="{TemplateBinding local:IconAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconPacks:PackIconMaterialKind.None}}"
+                                                            Kind="{TemplateBinding local:Icon.Kind}"
+                                                            Foreground="{TemplateBinding local:Icon.Brush}"
+                                                            Visibility="{TemplateBinding local:Icon.Kind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconPacks:PackIconMaterialKind.None}}"
                                                             VerticalAlignment="Center"
                                                             Margin="0 0 8 0" />
 
@@ -59,7 +59,7 @@
                     </local:Card>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="local:IconAssist.IconBrush" Value="{x:Null}">
+                        <Trigger Property="local:Icon.Brush" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>

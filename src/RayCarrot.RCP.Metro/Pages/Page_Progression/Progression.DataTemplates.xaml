@@ -186,7 +186,7 @@
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         ToolTip="{Resx Backup_Backup}"
                         Command="{Binding Path=BackupCommand, Mode=OneTime}"
-                        local:IconAssist.IconKind="FolderUploadOutline"
+                        local:Icon.Kind="FolderUploadOutline"
                         Margin="0 0 4 0" />
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         ToolTip="{Resx Backup_Restore}"
@@ -282,28 +282,28 @@
                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Export}"
                         Visibility="{Binding Path=CanExport, Converter={local:BooleanToVisibilityConverter}}"
-                        local:IconAssist.IconKind="FileExportOutline"
+                        local:Icon.Kind="FileExportOutline"
                         Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Import}"
                         Visibility="{Binding Path=CanImport, Converter={local:BooleanToVisibilityConverter}}"
-                        local:IconAssist.IconKind="FileImportOutline"
+                        local:Icon.Kind="FileImportOutline"
                         Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=EditCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_EditSlot}"
                         Visibility="{Binding Path=CanImport, Converter={local:BooleanToVisibilityConverter}}"
-                        local:IconAssist.IconKind="FileDocumentEditOutline"
+                        local:Icon.Kind="FileDocumentEditOutline"
                         Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
                         ToolTip="{Resx GameDisplay_OpenLocation}"
                         Visibility="{Binding Path=CanOpenLocation, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                        local:IconAssist.IconKind="FolderOutline"
+                        local:Icon.Kind="FolderOutline"
                         Margin="0 0 4 0" />
 
             </StackPanel>

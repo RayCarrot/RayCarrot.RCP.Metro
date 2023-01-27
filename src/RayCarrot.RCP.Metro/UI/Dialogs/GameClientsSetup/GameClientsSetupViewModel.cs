@@ -10,7 +10,7 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
     {
         InstalledGameClients = new ObservableCollection<InstalledGameClientViewModel>();
         AvailableGameClients = new ObservableCollection<AvailableGameClientViewModel>(
-            Services.GameClients.GetGameCientDescriptors().Select(x => new AvailableGameClientViewModel(x)));
+            Services.GameClients.GetGameClientDescriptors().Select(x => new AvailableGameClientViewModel(x)));
 
         Refresh();
     }

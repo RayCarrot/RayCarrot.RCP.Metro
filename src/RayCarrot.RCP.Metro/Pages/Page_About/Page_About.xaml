@@ -87,21 +87,21 @@
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="TooltipTextOutline"
+                        local:Icon.Kind="TooltipTextOutline"
                         ToolTip="{Resx About_UpdateHistory}"
                         Command="{Binding Path=ShowVersionHistoryCommand}" />
 
                 <mah:Badged Badge="{Binding Path=UpdateBadge}" Padding="-5" Margin="5">
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                             Margin="3"
-                            local:IconAssist.IconKind="Update"
+                            local:Icon.Kind="Update"
                             ToolTip="{Resx About_UpdateCheck}"
                             Command="{Binding Path=CheckForUpdatesCommand}" />
                 </mah:Badged>
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="DeleteForeverOutline"
+                        local:Icon.Kind="DeleteForeverOutline"
                         ToolTip="{Resx About_Uninstall}"
                         Command="{Binding Path=UninstallCommand}" />
 
@@ -126,21 +126,21 @@
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="Github"
+                        local:Icon.Kind="Github"
                         ToolTip="{Resx About_GitHub}"
                         Command="{Binding Path=OpenUrlCommand}"
                         CommandParameter="{x:Static local:AppURLs.GitHubUrl}" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="Steam"
+                        local:Icon.Kind="Steam"
                         ToolTip="{Resx About_Steam}"
                         Command="{Binding Path=OpenUrlCommand}"
                         CommandParameter="{x:Static local:AppURLs.SteamUrl}" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="Youtube"
+                        local:Icon.Kind="Youtube"
                         ToolTip="{Resx About_YouTube}"
                         Foreground="{StaticResource RCP.Brushes.YouTube}"
                         Command="{Binding Path=OpenUrlCommand}"
@@ -148,7 +148,7 @@
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="Twitter"
+                        local:Icon.Kind="Twitter"
                         ToolTip="{Resx About_Twitter}"
                         Foreground="{StaticResource RCP.Brushes.Twitter}"
                         Command="{Binding Path=OpenUrlCommand}"
@@ -156,7 +156,7 @@
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"
-                        local:IconAssist.IconKind="EmailOutline"
+                        local:Icon.Kind="EmailOutline"
                         ToolTip="{Resx About_Email}"
                         Foreground="{StaticResource RCP.Brushes.Email}"
                         Command="{Binding Path=OpenUrlCommand}"

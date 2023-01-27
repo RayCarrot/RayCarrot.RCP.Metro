@@ -185,7 +185,7 @@ public class GameClientsManager
     /// Gets the available game client descriptors
     /// </summary>
     /// <returns>The game client descriptors</returns>
-    public IReadOnlyList<GameClientDescriptor> GetGameCientDescriptors() => SortedGameClientDescriptors;
+    public IReadOnlyList<GameClientDescriptor> GetGameClientDescriptors() => SortedGameClientDescriptors;
 
     /// <summary>
     /// Gets a game client descriptor from the id
@@ -201,6 +201,22 @@ public class GameClientsManager
             throw new ArgumentException($"No game client descriptor found for the provided game client id {gameClientId}", nameof(gameClientId));
 
         return descriptor;
+    }
+
+    /// <summary>
+    /// Gets a game client descriptor from the type
+    /// </summary>
+    /// <returns>The matching game client descriptor</returns>
+    public T GetGameClientDescriptor<T>()
+        where T : GameClientDescriptor
+    {
+        foreach (GameClientDescriptor clientDescriptor in SortedGameClientDescriptors)
+        {
+            if (clientDescriptor is T c)
+                return c;
+        }
+
+        throw new Exception($"No game client descriptor found for the provided type {typeof(T)}");
     }
 
     #endregion

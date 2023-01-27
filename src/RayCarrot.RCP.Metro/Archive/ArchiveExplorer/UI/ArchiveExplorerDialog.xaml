@@ -141,7 +141,7 @@
                         <Separator local:UserLevelAssist.MinUserLevel="Debug"/>
 
                         <Button Content="Force repack"
-                                local:IconAssist.IconKind="FolderSyncOutline"
+                                local:Icon.Kind="FolderSyncOutline"
                                 local:UserLevelAssist.MinUserLevel="Debug"
                                 Click="ForceRepackMenuItem_OnClick" />
                     </StackPanel>
@@ -274,7 +274,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Margin="15"
-                        local:IconAssist.IconKind="Plus"
+                        local:Icon.Kind="Plus"
                         ToolTip="{Resx Archive_AddFiles}"
                         DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
                         d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"

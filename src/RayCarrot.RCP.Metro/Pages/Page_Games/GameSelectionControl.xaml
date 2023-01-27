@@ -189,7 +189,7 @@
                         Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}"
                         ToolTip="Refresh"
                         Margin="0 0 4 0"
-                        local:IconAssist.IconKind="Refresh" />
+                        local:Icon.Kind="Refresh" />
 
             </StackPanel>
 
@@ -201,7 +201,7 @@
                         Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=ConfigureGameClientsCommand, Mode=OneTime}"
                         ToolTip="Configure game clients and emulators"
-                        local:IconAssist.IconKind="{StaticResource RCP.Icons.GameClientEdit}" />
+                        local:Icon.Kind="{StaticResource RCP.Icons.GameClientEdit}" />
 
                 <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" 
                            Margin="0 0 4 0" />
@@ -212,7 +212,7 @@
                             Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
                             Visibility="{Binding Path=IsGameFinderRunning, Converter={local:InvertedBooleanToVisibilityConverter}}"
                             ToolTip="Find games"
-                            local:IconAssist.IconKind="{StaticResource RCP.Icons.Finder}" />
+                            local:Icon.Kind="{StaticResource RCP.Icons.Finder}" />
 
                     <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
                                         Height="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
@@ -223,7 +223,7 @@
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=AddGamesCommand, Mode=OneTime}"
                         ToolTip="Add game"
-                        local:IconAssist.IconKind="PlusBoxOutline" />
+                        local:Icon.Kind="PlusBoxOutline" />
 
             </StackPanel>
 

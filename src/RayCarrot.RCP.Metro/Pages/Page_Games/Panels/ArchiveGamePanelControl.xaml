@@ -48,7 +48,7 @@
 
             <Button Grid.Column="2"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    local:IconAssist.IconKind="{Binding Path=AdditionalActionIcon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                    local:Icon.Kind="{Binding Path=AdditionalActionIcon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                     ToolTip="{Binding Path=AdditionalActionDescription.Value}"
                     Visibility="{Binding Path=AdditionalAction, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                     Command="{Binding Path=AdditionalActionCommand, Mode=OneTime}" />

@@ -96,7 +96,7 @@
                             <!-- TODO-UPDATE: Localize -->
                             <Button Grid.Column="1"
                                     Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                                    local:IconAssist.IconKind="{StaticResource RCP.Icons.Edit}"
+                                    local:Icon.Kind="{StaticResource RCP.Icons.Edit}"
                                     Command="{Binding Path=EditGameTargetsCommand, Mode=OneTime}"
                                     ToolTip="The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game."
                                     Margin="0 0 4 0"/>
@@ -205,12 +205,12 @@
                     <StackPanel HorizontalAlignment="Center"
                                 Orientation="Horizontal">
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                                local:IconAssist.IconKind="FileImageOutline"
+                                local:Icon.Kind="FileImageOutline"
                                 Command="{Binding Path=BrowseThumbnailCommand, Mode=OneTime}"
                                 ToolTip="{Resx PatchCreator_AddThumbnailInfo}"
                                 Margin="0 0 4 0"/>
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                                local:IconAssist.IconKind="CloseOutline"
+                                local:Icon.Kind="CloseOutline"
                                 Command="{Binding Path=RemoveThumbnailCommand, Mode=OneTime}"
                                 ToolTip="{Resx PatchCreator_RemoveThumbnailInfo}"
                                 IsEnabled="{Binding Path=Thumbnail, Converter={local:IsNotNullConverter}}" />
@@ -345,19 +345,19 @@
                             HorizontalAlignment="Left">
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:IconAssist.IconKind="Plus"
+                            local:Icon.Kind="Plus"
                             Command="{Binding Path=AddFileCommand, Mode=OneTime}"
                             ToolTip="{Resx PatchCreator_AddFile}"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:IconAssist.IconKind="FilePlusOutline"
+                            local:Icon.Kind="FilePlusOutline"
                             Command="{Binding Path=AddFromFilesCommand, Mode=OneTime}"
                             ToolTip="{Resx PatchCreator_AddFromFiles}"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:IconAssist.IconKind="FolderPlusOutline"
+                            local:Icon.Kind="FolderPlusOutline"
                             Command="{Binding Path=AddFromFolderCommand, Mode=OneTime}"
                             ToolTip="{Resx PatchCreator_AddFromFolder}"
                             Margin="0 0 8 0"/>
@@ -385,21 +385,21 @@
                         Content="Import from existing patch"
                         ToolTip="This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch."
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:IconAssist.IconKind="Import"
+                        local:Icon.Kind="Import"
                         Command="{Binding Path=ImportPatchCommand, Mode=OneTime}"
                         Margin="0 0 10 0" />
 
                 <Button Grid.Column="2"
                         Content="{Resx Cancel}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:IconAssist.IconKind="CloseOutline"
+                        local:Icon.Kind="CloseOutline"
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 
                 <Button Grid.Column="3"
                         Content="{Resx PatchCreator_Create}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:IconAssist.IconKind="ContentSaveOutline"
+                        local:Icon.Kind="ContentSaveOutline"
                         Click="CreateButton_OnClick">
                     <Button.IsEnabled>
                         <Binding Path="Files.Count" Converter="{local:InvertedEqualsToConverter}">

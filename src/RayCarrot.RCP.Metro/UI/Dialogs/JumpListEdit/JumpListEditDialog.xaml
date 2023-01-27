@@ -139,14 +139,14 @@
                     Content="{Resx Cancel}"
                     Click="CancelButton_Click" 
                     Style="{StaticResource RCP.Styles.Button.Default}" 
-                    local:IconAssist.IconKind="CloseOutline"
+                    local:Icon.Kind="CloseOutline"
                     Margin="0 0 10 0" />
 
             <Button Grid.Column="3"
                     Content="{Resx Accept}"
                     Click="OKButton_Click" 
                     Style="{StaticResource RCP.Styles.Button.Default}" 
-                    local:IconAssist.IconKind="ContentSaveOutline"
+                    local:Icon.Kind="ContentSaveOutline"
                     IsDefault="True" />
 
         </Grid>

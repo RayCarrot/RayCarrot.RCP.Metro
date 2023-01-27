@@ -128,8 +128,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             await data.UpdateConfigAsync();
 
             // Create an emulator installation
-            // TODO-14: Find better way of doing this
-            GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameCientDescriptors().OfType<DosBoxGameClientDescriptor>().First();
+            GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameClientDescriptor<DosBoxGameClientDescriptor>();
             GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), x =>
             {
                 // Add the TPLS config file to the data

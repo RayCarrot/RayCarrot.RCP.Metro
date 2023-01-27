@@ -148,7 +148,7 @@
                                             Margin="0 0 4 0"
                                             HorizontalAlignment="Right"
                                             Content="Locate"
-                                            local:IconAssist.IconKind="FolderOutline"
+                                            local:Icon.Kind="FolderOutline"
                                             Command="{Binding Path=AddGameClientCommand, Mode=OneTime}"
                                             CommandParameter="{Binding Mode=OneTime}" />
 
@@ -157,7 +157,7 @@
                                             IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
                                             Command="{Binding Path=FindGameClientCommand, Mode=OneTime}"
                                             Style="{StaticResource RCP.Styles.Button.Flat}"
-                                            local:IconAssist.IconKind="{StaticResource RCP.Icons.Finder}"
+                                            local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
                                             ToolTip="Find game client/emulator"
                                             Margin="0 0 4 0" />
 
@@ -223,11 +223,11 @@
                             <StackPanel>
                                 <Button Content="Open location"
                                         Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
-                                        local:IconAssist.IconKind="FolderOutline"
-                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}" />
+                                        local:Icon.Kind="FolderOutline"
+                                        local:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
                                 <Button Command="{Binding Path=RenameCommand, Mode=OneTime}"
-                                        local:IconAssist.IconKind="PencilOutline"
-                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}"
+                                        local:Icon.Kind="PencilOutline"
+                                        local:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                                         HorizontalContentAlignment="Stretch">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -246,14 +246,14 @@
                                 </Button>
                                 <Button Content="{Resx GameOptions_Remove}"
                                         Command="{Binding Path=RemoveGameClientCommand, Mode=OneTime}"
-                                        local:IconAssist.IconKind="DeleteOutline"
-                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
+                                        local:Icon.Kind="DeleteOutline"
+                                        local:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}" />
                                 <Separator local:UserLevelAssist.MinUserLevel="Debug" />
                                 <Button local:UserLevelAssist.MinUserLevel="Debug"
                                         Content="Debug game client"
                                         Command="{Binding Path=OpenGameClientDebugCommand, Mode=OneTime}"
-                                        local:IconAssist.IconKind="{StaticResource RCP.Icons.Debug}"
-                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Debug}" />
+                                        local:Icon.Kind="{StaticResource RCP.Icons.Debug}"
+                                        local:Icon.Brush="{StaticResource RCP.Brushes.Debug}" />
                             </StackPanel>
                         </local:PopupCard>
 

@@ -247,7 +247,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
             List<FinderItem> finderItems = new();
 
             // Get finder items for all game clients which don't have an added game client installation
-            foreach (GameClientDescriptor gameClientDescriptor in GameClientsManager.GetGameCientDescriptors())
+            foreach (GameClientDescriptor gameClientDescriptor in GameClientsManager.GetGameClientDescriptors())
             {
                 // Make sure the game client has not already been added
                 if (installedGameClients.Any(g => g.GameClientDescriptor == gameClientDescriptor))

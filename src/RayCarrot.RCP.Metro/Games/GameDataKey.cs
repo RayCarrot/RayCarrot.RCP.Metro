@@ -18,7 +18,7 @@ public static class GameDataKey
     
     // Games
     public const string R1_TplsData = "R1_TplsData";
-    public const string Ray1_MsDosData = "Ray1_MsDosData"; // TODO-14: Use this for KIT, FAN and 60N as well
+    public const string Ray1_MsDosData = "Ray1_MsDosData";
     public const string RRR2_LaunchMode = "RRR2_LaunchMode";
     public const string RRRAC_ShownLaunchMessage = "RRRAC_ShownLaunchMessage";
     public const string RGH_LaunchData = "RGH_LaunchData";

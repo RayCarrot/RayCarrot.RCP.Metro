@@ -42,13 +42,13 @@
         <StackPanel Orientation="Horizontal">
 
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                    rcp:IconAssist.IconKind="PlusBoxOutline"
+                    rcp:Icon.Kind="PlusBoxOutline"
                     Command="{Binding Path=AddConfigFileCommand, Mode=OneTime}"
                     ToolTip="Add file"
                     Margin="0 0 4 0" />
 
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                    rcp:IconAssist.IconKind="DeleteOutline"
+                    rcp:Icon.Kind="DeleteOutline"
                     ToolTip="Remove selected files"
                     IsEnabled="{Binding Path=SelectedItem, ElementName=ConfigFilesListBox, Converter={rcp:IsNotNullConverter}}"
                     Click="DeleteButton_OnClick"/>

@@ -6,6 +6,6 @@
     <Button Style="{StaticResource RCP.Styles.Button.Flat}"
             ToolTip="{Resx Settings_AdminInfo}"
             Command="{Binding Path=RequestRestartAsAdminCommand, Source={x:Static local:Services.App}}"
-            local:IconAssist.IconKind="Security"
-            local:IconAssist.IconSize="16" />
+            local:Icon.Kind="Security"
+            local:Icon.Size="16" />
 </UserControl>

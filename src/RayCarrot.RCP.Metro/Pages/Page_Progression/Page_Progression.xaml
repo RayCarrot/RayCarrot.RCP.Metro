@@ -25,10 +25,10 @@
             <Separator />
 
             <Button Content="{Resx Backup_BackupAll}"
-                    local:IconAssist.IconKind="FolderUploadOutline"
+                    local:Icon.Kind="FolderUploadOutline"
                     Command="{Binding Path=BackupAllCommand, Mode=OneTime}" />
 
-            <Button local:IconAssist.IconKind="Refresh"
+            <Button local:Icon.Kind="Refresh"
                     Command="{Binding Path=RefreshCommand, Mode=OneTime}" 
                     HorizontalContentAlignment="Stretch">
                 <Grid>
@@ -50,7 +50,7 @@
             <Separator />
 
             <Button Content="{Resx Progression_ChangeEditProgram}"
-                    local:IconAssist.IconKind="ApplicationOutline"
+                    local:Icon.Kind="ApplicationOutline"
                     Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />
 
         </StackPanel>

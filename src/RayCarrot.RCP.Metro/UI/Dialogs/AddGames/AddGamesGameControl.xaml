@@ -46,7 +46,7 @@
                     <Button Margin="4 0 0 0"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             Content="{Binding Path=Header.Value}"
-                            local:IconAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                            local:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                             IsEnabled="{Binding Path=IsAvailable}"
                             Command="{Binding Path=DataContext.AddGameCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Mode=OneTime}"
                             CommandParameter="{Binding Mode=OneTime}" />
@@ -60,7 +60,7 @@
                 IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
                 Command="{Binding Path=FindGameCommand, Mode=OneTime}"
                 Style="{StaticResource RCP.Styles.Button.Flat}"
-                local:IconAssist.IconKind="{StaticResource RCP.Icons.Finder}"
+                local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
                 ToolTip="Find game"
                 Margin="4 0 0 0" />
 
@@ -72,8 +72,8 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding Path=Header.Value}"
-                                local:IconAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                local:IconAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                local:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                local:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
                                 Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
                                 ToolTip="{Binding Path=Path, Mode=OneTime}" />
                     </DataTemplate>

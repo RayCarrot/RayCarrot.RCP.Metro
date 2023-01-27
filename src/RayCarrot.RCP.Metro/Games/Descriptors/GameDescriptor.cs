@@ -174,12 +174,14 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Create the builder
         GameComponentBuilder builder = new();
 
-        // TODO-14: Ideally we'd pass in the game installation here so that which components
-        //          get registered can depend on the game data, for example the progression
-        //          managers for the edutainment games. The problem is this gets called before
-        //          the game installation has been fully initialized if added. To solve that
-        //          we either need to rebuild components twice in those cases or we have the
-        //          OnGameAdded component be a virtual method in the GameDescriptor.
+        // Ideally we'd pass in the game installation to the called methods so that
+        // which components get registered can depend on the game data, for example
+        // the progression managers for the edutainment games. The problem is this
+        // gets called before the game installation has been fully initialized if
+        // added. To solve that we either need to rebuild components twice in those
+        // cases or we have the OnGameAdded component be a virtual method in the
+        // GameDescriptor.
+
         // Register the components from the game descriptor
         RegisterComponents(builder);
 

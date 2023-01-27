@@ -49,8 +49,8 @@
                 <Separator Margin="0 0 0 8" />
 
                 <GroupBox Header="Descriptor" 
-                          local:IconAssist.IconKind="{StaticResource RCP.Icons.Games}"
-                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Games}"
+                          local:Icon.Kind="{StaticResource RCP.Icons.Games}"
+                          local:Icon.Brush="{StaticResource RCP.Brushes.Games}"
                           Margin="{StaticResource RCP.Thicknesses.Card}">
 
                     <local:JsonViewer Source="{Binding Path=GameDescriptorJToken}"
@@ -59,8 +59,8 @@
                 </GroupBox>
 
                 <GroupBox Header="Data" 
-                          local:IconAssist.IconKind="{StaticResource RCP.Icons.Settings}"
-                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Settings}"
+                          local:Icon.Kind="{StaticResource RCP.Icons.Settings}"
+                          local:Icon.Brush="{StaticResource RCP.Brushes.Settings}"
                           Margin="{StaticResource RCP.Thicknesses.Card}">
 
                     <local:JsonViewer Source="{Binding Path=GameInstallationJToken}"
@@ -69,8 +69,8 @@
                 </GroupBox>
 
                 <GroupBox Header="Components" 
-                          local:IconAssist.IconKind="PowerPlugOutline"
-                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Games}"
+                          local:Icon.Kind="PowerPlugOutline"
+                          local:Icon.Brush="{StaticResource RCP.Brushes.Games}"
                           Margin="{StaticResource RCP.Thicknesses.Card}">
 
                     <!-- TODO: Improve component visualization. Show where they get registered from? Show priority? Show overriden components? -->

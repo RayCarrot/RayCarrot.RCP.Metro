@@ -1,7 +1,5 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Finder;
 
-// TODO-14: Find game clients as well
-
 public class Finder
 {
     #region Constructor
