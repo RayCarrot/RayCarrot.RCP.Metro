@@ -248,6 +248,12 @@
                                         Command="{Binding Path=RemoveGameClientCommand, Mode=OneTime}"
                                         local:IconAssist.IconKind="DeleteOutline"
                                         local:IconAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
+                                <Separator local:UserLevelAssist.MinUserLevel="Debug" />
+                                <Button local:UserLevelAssist.MinUserLevel="Debug"
+                                        Content="Debug game client"
+                                        Command="{Binding Path=OpenGameClientDebugCommand, Mode=OneTime}"
+                                        local:IconAssist.IconKind="{StaticResource RCP.Icons.Debug}"
+                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Debug}" />
                             </StackPanel>
                         </local:PopupCard>
 

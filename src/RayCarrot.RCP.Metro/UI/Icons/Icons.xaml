@@ -203,6 +203,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameDebug" 
                        IconKind="{StaticResource RCP.Icons.Debug}"
                        IconColor="{StaticResource RCP.Brushes.Debug}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameClientDebug" 
+                       IconKind="{StaticResource RCP.Icons.Debug}"
+                       IconColor="{StaticResource RCP.Brushes.Debug}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_Rayman1_CompleteSoundtrack" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_CompleteSoundtrack}"

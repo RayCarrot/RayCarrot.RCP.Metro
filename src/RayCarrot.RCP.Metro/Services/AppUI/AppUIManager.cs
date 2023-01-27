@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Patcher;
@@ -263,6 +264,24 @@ public class AppUIManager
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         using GameDebugDialog ui = Application.Current.Dispatcher.Invoke(() => new GameDebugDialog(gameInstallation));
+        await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
+    }
+
+    /// <summary>
+    /// Shows a new instance of the game client debug
+    /// </summary>
+    /// <param name="gameClientInstallation">The game client installation to show the debug for</param>
+    /// <returns>The task</returns>
+    public async Task ShowGameClientDebugAsync(GameClientInstallation gameClientInstallation)
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("A game client debug window was opened");
+
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        using GameClientDebugDialog ui = Application.Current.Dispatcher.Invoke(() => new GameClientDebugDialog(gameClientInstallation));
         await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
     }
 

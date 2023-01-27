@@ -48,7 +48,7 @@
 
                 <Separator Margin="0 0 0 8" />
 
-                <GroupBox Header="Metadata" 
+                <GroupBox Header="Descriptor" 
                           local:IconAssist.IconKind="{StaticResource RCP.Icons.Games}"
                           local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Games}"
                           Margin="{StaticResource RCP.Thicknesses.Card}">

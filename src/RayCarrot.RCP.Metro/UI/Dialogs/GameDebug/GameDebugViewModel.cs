@@ -5,7 +5,6 @@ using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Have a similar way of showing game client installation data?
 public class GameDebugViewModel : BaseViewModel, IInitializable,
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
 {
@@ -42,7 +41,7 @@ public class GameDebugViewModel : BaseViewModel, IInitializable,
     {
         GameDescriptor = SelectedGameInstallation?.GameDescriptor;
         IsDemo = GameDescriptor?.IsDemo ?? false;
-        Icon = GameDescriptor?.Icon ?? GameIconAsset.Rayman1;
+        Icon = GameDescriptor?.Icon ?? default;
 
         if (SelectedGameInstallation != null && GameDescriptor != null)
         {

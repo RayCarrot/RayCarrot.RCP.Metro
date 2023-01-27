@@ -23,6 +23,7 @@ public class InstalledGameClientViewModel : BaseViewModel
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         RenameCommand = new AsyncRelayCommand(RenameAsync);
         RemoveGameClientCommand = new AsyncRelayCommand(RemoveGameClientAsync);
+        OpenGameClientDebugCommand = new AsyncRelayCommand(OpenGameClientDebugAsync);
 
         RefreshSupportedGames();
         RefreshDisplayName();
@@ -33,6 +34,7 @@ public class InstalledGameClientViewModel : BaseViewModel
     public ICommand OpenLocationCommand { get; }
     public ICommand RenameCommand { get; }
     public ICommand RemoveGameClientCommand { get; }
+    public ICommand OpenGameClientDebugCommand { get; }
 
     public GameClientInstallation GameClientInstallation { get; }
     public GameClientDescriptor Descriptor => GameClientInstallation.GameClientDescriptor;
@@ -99,6 +101,8 @@ public class InstalledGameClientViewModel : BaseViewModel
 
         Services.Messenger.Send(new ModifiedGameClientsMessage(GameClientInstallation));
     }
+
+    public Task OpenGameClientDebugAsync() => Services.UI.ShowGameClientDebugAsync(GameClientInstallation);
 
     public Task RemoveGameClientAsync() => Services.GameClients.RemoveGameClientAsync(GameClientInstallation);
 }

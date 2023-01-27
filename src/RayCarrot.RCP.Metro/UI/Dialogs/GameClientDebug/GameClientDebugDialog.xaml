@@ -1,0 +1,86 @@
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.GameClientDebugDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            d:DesignWidth="800" d:DesignHeight="600"
+                            mc:Ignorable="d"
+                            d:DataContext="{d:DesignInstance local:GameClientDebugViewModel}">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ComboBox Grid.Row="0"
+                  Margin="0 0 0 8"
+                  ItemsSource="{Binding Path=GameClientInstallations}"
+                  SelectedItem="{Binding Path=SelectedGameClientInstallation}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock DataContext="{Binding Path=DisplayName, Mode=OneTime}" 
+                               Text="{Binding Path=Value}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ScrollViewer x:Name="ContentScrollViewer" 
+                      Grid.Row="1">
+            <StackPanel>
+
+                <!-- Title -->
+                <Grid Margin="0 0 0 8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Icon -->
+
+                    <Image Grid.Column="0"
+                           Width="64"
+                           Source="{Binding Path=Icon, Converter={local:AssetEnumToImageSourceConverter}}"
+                           d:Source="{x:Static local:DesignData.GameClientIconSource}"
+                           Margin="0 0 8 0" />
+
+                    <!-- Name -->
+                    <TextBlock Grid.Column="1" 
+                               VerticalAlignment="Center"
+                               Text="{Binding Path=SelectedGameClientInstallation.DisplayName.Value}"
+                               d:Text="DOSBox"
+                               TextWrapping="Wrap"
+                               FontSize="22" />
+
+                </Grid>
+
+                <Separator Margin="0 0 0 8" />
+
+                <GroupBox Header="Descriptor" 
+                          local:IconAssist.IconKind="{StaticResource RCP.Icons.GameClient}"
+                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.GameClient}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
+
+                    <local:JsonViewer Source="{Binding Path=GameClientDescriptorJToken}"
+                                      PreviewMouseWheel="JsonViewer_OnPreviewMouseWheel" />
+
+                </GroupBox>
+
+                <GroupBox Header="Data" 
+                          local:IconAssist.IconKind="{StaticResource RCP.Icons.Settings}"
+                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Settings}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
+
+                    <local:JsonViewer Source="{Binding Path=GameClientInstallationJToken}"
+                                      PreviewMouseWheel="JsonViewer_OnPreviewMouseWheel" />
+
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</local:WindowContentControl>

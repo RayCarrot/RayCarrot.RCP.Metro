@@ -48,6 +48,7 @@ public enum GenericIconKind
     Window_AddGames,
     Window_GameClientsSetup,
     Window_GameDebug,
+    Window_GameClientDebug,
 
     Utilities_Rayman1_CompleteSoundtrack,
     Utilities_Rayman1_TPLS,
