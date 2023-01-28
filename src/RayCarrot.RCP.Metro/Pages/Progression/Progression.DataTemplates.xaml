@@ -1,0 +1,481 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression">
+
+    <ItemsPanelTemplate x:Key="ItemsPanelTemplate.Horizontal" x:Shared="False">
+        <StackPanel Orientation="Horizontal" />
+    </ItemsPanelTemplate>
+
+    <!-- Progression Data Item (Horizontal) -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type rcp:GameProgressionDataItem}">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                   VerticalAlignment="Center"
+                   Width="48" Height="48"
+                   Margin="0 0 8 0" />
+
+            <TextBlock Text="{Binding Path=Value}"
+                       DataContext="{Binding Path=Text, Mode=OneTime}"
+                       FontSize="22"
+                       FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 15 0" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Progression Data Item (Vertical) -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Vertical" DataType="{x:Type rcp:GameProgressionDataItem}">
+        <Grid Margin="0 0 0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="DataHeader" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"
+                   Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                   Width="48" Height="48"
+                   VerticalAlignment="Center"
+                   Margin="0 0 8 0" />
+
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                       Text="{Binding Path=Header.Value}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 15 0" />
+
+            <TextBlock Grid.Column="2"
+                       Text="{Binding Path=Value}"
+                       DataContext="{Binding Path=Text, Mode=OneTime}"
+                       FontSize="18"
+                       FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
+                       VerticalAlignment="Center" />
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Slot Percentage -->
+
+    <DataTemplate x:Key="DataTemplate.SlotPercentage" DataType="{x:Type progression:GameSlotViewModel}">
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        TextElement.FontSize="22"
+                        TextElement.FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0 0 0 8">
+
+                <TextBlock Text="{Binding Path=Percentage, StringFormat=0.##, Mode=OneTime}" />
+                <TextBlock Text=" %" />
+
+            </StackPanel>
+
+            <metro:MetroProgressBar Foreground="{Binding Path=ProgressBrush, Mode=OneTime}"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    Width="80"
+                                    HorizontalAlignment="Right"
+                                    Value="{Binding Path=Percentage, Mode=OneTime}" />
+
+
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Progression Game Header -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionGameHeader" DataType="{x:Type progression:GameViewModel}">
+        <Grid Margin="15 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Image -->
+
+            <rcp:GameIcon Grid.Row="0"
+                            IconSize="Medium"
+                            IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
+                            Source="{Binding Path=GameIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                            Margin="0 0 15 0" />
+
+            <!-- Title -->
+
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                       Text="{Binding Path=DisplayName.Value}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       TextWrapping="WrapWithOverflow"
+                       MaxWidth="510"
+                       Margin="0 0 25 0" />
+
+            <!-- Primary Data Items -->
+
+            <ItemsControl Grid.Column="2"
+                          ItemsSource="{Binding Path=PrimarySlot.PrimaryDataItems}"
+                          ItemsPanel="{StaticResource ItemsPanelTemplate.Horizontal}"
+                          ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Horizontal}"
+                          Margin="0 0 10 0">
+                <ItemsControl.Style>
+                    <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <BeginStoryboard.Storyboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                 From="1"
+                                                                 To="0"
+                                                                 Duration="0:0:0.22" />
+                                            </Storyboard>
+                                        </BeginStoryboard.Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <BeginStoryboard.Storyboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                 From="0"
+                                                                 To="1"
+                                                                 Duration="0:0:0.22" />
+                                            </Storyboard>
+                                        </BeginStoryboard.Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ItemsControl.Style>
+            </ItemsControl>
+
+            <!-- Percentage -->
+
+            <Grid Grid.Column="3"
+                  Margin="0 0 25 0" 
+                  Visibility="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
+                <Grid Visibility="{Binding Path=PrimarySlot, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+                    <ContentPresenter Content="{Binding Path=PrimarySlot}" 
+                                      ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
+                </Grid>
+            </Grid>
+
+            <!-- Loading -->
+
+            <Grid Grid.Column="3"
+                  Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}">
+                <metro:ProgressRing />
+            </Grid>
+
+            <!-- Backup Options -->
+
+            <StackPanel Grid.Column="4"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        IsEnabled="{Binding Path=IsPerformingBackupRestore, Converter={rcp:InvertedBooleanConverter}}"
+                        Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rcp:InvertedBooleanToVisibilityHiddenConverter}}">
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        ToolTip="{Resx Backup_Backup}"
+                        Command="{Binding Path=BackupCommand, Mode=OneTime}"
+                        rcp:Icon.Kind="FolderUploadOutline"
+                        Margin="0 0 4 0" />
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        ToolTip="{Resx Backup_Restore}"
+                        Command="{Binding Path=RestoreCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=CanRestoreBackup, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
+                        Margin="0 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FolderDownloadOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
+            </StackPanel>
+
+            <!-- Backup Loading -->
+
+            <Grid Grid.Column="4"
+                  Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
+                  Margin="0 0 10 0">
+                <metro:ProgressRing />
+            </Grid>
+
+            <!-- Backup Status -->
+
+            <Grid Grid.Column="5" 
+                  VerticalAlignment="Center"
+                  Width="20">
+                <iconpacks:PackIconMaterial Kind="CheckboxMarkedCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static progression:GameViewModel+BackupStatus.UpToDate}}"
+                                            ToolTip="{Resx Progression_BackupStatus_UpToDate}"
+                                            Foreground="{StaticResource RCP.Brushes.StatusComplete}"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
+                <iconpacks:PackIconMaterial Kind="CloseCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static progression:GameViewModel+BackupStatus.Outdated}}"
+                                            ToolTip="{Resx Progression_BackupStatus_Outdated}"
+                                            Foreground="{StaticResource RCP.Brushes.StatusIncomplete}"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
+                <iconpacks:PackIconMaterial Kind="SyncCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static progression:GameViewModel+BackupStatus.Syncing}}"
+                                            Foreground="{StaticResource RCP.Brushes.StatusPending}"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
+            </Grid>
+
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Slot Header -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionSlotHeader" DataType="{x:Type progression:GameSlotViewModel}">
+        <Grid Margin="15 4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Title -->
+
+            <TextBlock Grid.Column="0"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                       Text="{Binding Path=Name.Value}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       TextWrapping="WrapWithOverflow"
+                       Margin="0 0 25 0" />
+
+            <!-- Data Items -->
+
+            <ItemsControl Grid.Column="1"
+                          ItemsSource="{Binding Path=PrimaryDataItems}"
+                          ItemsPanel="{StaticResource ItemsPanelTemplate.Horizontal}"
+                          ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Horizontal}"
+                          Margin="0 0 10 0" />
+
+            <!-- Percentage -->
+
+            <Grid Grid.Column="2">
+                <ContentPresenter Content="{Binding}" 
+                                  ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
+            </Grid>
+
+            <!-- Import/Export Options -->
+
+            <StackPanel Grid.Column="3"
+                        rcp:UserLevelAssist.MinUserLevel="Technical"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="25 0 -10 0">
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                        ToolTip="{Resx Progression_Export}"
+                        Visibility="{Binding Path=CanExport, Converter={rcp:BooleanToVisibilityConverter}}"
+                        rcp:Icon.Kind="FileExportOutline"
+                        Margin="0 0 4 0" />
+
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=ImportCommand, Mode=OneTime}"
+                        ToolTip="{Resx Progression_Import}"
+                        Visibility="{Binding Path=CanImport, Converter={rcp:BooleanToVisibilityConverter}}"
+                        rcp:Icon.Kind="FileImportOutline"
+                        Margin="0 0 4 0" />
+
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=EditCommand, Mode=OneTime}"
+                        ToolTip="{Resx Progression_EditSlot}"
+                        Visibility="{Binding Path=CanImport, Converter={rcp:BooleanToVisibilityConverter}}"
+                        rcp:Icon.Kind="FileDocumentEditOutline"
+                        Margin="0 0 4 0" />
+
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
+                        ToolTip="{Resx GameDisplay_OpenLocation}"
+                        Visibility="{Binding Path=CanOpenLocation, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
+                        rcp:Icon.Kind="FolderOutline"
+                        Margin="0 0 4 0" />
+
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Slot -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionSlot" DataType="{x:Type progression:GameSlotViewModel}">
+        <Expander Margin="0 0 0 8"
+                  Header="{Binding}"
+                  HeaderTemplate="{StaticResource DataTemplate.ProgressionSlotHeader}">
+            <StackPanel Margin="0 8 0 0">
+
+                <rcp:DuoGrid Visibility="{Binding Path=HasInfoItems, Converter={rcp:BooleanToVisibilityConverter}}"
+                               Margin="0 0 0 8"
+                               ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
+
+                <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                           Margin="0 0 0 8"
+                           Visibility="{Binding Path=HasInfoItems, Converter={rcp:BooleanToVisibilityConverter}}"/>
+
+                <ItemsControl ItemsSource="{Binding Path=DataItems, Mode=OneTime}"
+                              ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Vertical}"
+                              Grid.IsSharedSizeScope="True"
+                              Margin="0 0 0 -8" />
+            </StackPanel>
+        </Expander>
+    </DataTemplate>
+
+    <!-- Progression Game -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionGame" DataType="{x:Type progression:GameViewModel}">
+        <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}" Padding="0">
+            <Expander Header="{Binding}"
+                      HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
+                      IsExpanded="{Binding Path=IsExpanded}">
+                <StackPanel Margin="0 8 0 0">
+
+                    <!-- Data source -->
+
+                    <StackPanel Visibility="{Binding Path=CanChangeProgramDataSource, Converter={rcp:BooleanToVisibilityConverter}}">
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 8">
+
+                            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                       Text="{Resx Progression_DataSource}"
+                                       VerticalAlignment="Center"/>
+
+                            <rcp:InfoIcon Text="{Resx Progression_DataSourceInfo}" />
+
+                        </StackPanel>
+
+                        <WrapPanel Margin="0 0 0 8">
+                            <rcp:RadioButtonExtended Content="{Resx Progression_DataSource_Auto}"
+                                                       ToolTip="{Resx Progression_DataSource_AutoInfo}"
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:ProgramDataSource.Auto}}"
+                                                       Margin="0 0 8 0">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Checked">
+                                        <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </rcp:RadioButtonExtended>
+                            <rcp:RadioButtonExtended Content="{Resx Progression_DataSource_Default}"
+                                                       ToolTip="{Resx Progression_DataSource_DefaultInfo}"
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:ProgramDataSource.Default}}"
+                                                       Margin="0 0 8 0" >
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Checked">
+                                        <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </rcp:RadioButtonExtended>
+                            <rcp:RadioButtonExtended Content="{Resx Progression_DataSource_VirtualStore}"
+                                                       ToolTip="{Resx Progression_DataSource_VirtualStoreInfo}"
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:ProgramDataSource.VirtualStore}}" >
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Checked">
+                                        <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </rcp:RadioButtonExtended>
+                        </WrapPanel>
+
+                        <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                   Margin="0 0 0 8">
+                            <Separator.Visibility>
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <rcp:BooleanOrToVisibilityMultiConverter />
+                                    </MultiBinding.Converter>
+
+                                    <Binding Path="HasSlots" />
+                                    <Binding Path="HasBackup" />
+                                    
+                                </MultiBinding>
+                            </Separator.Visibility>
+                        </Separator>
+
+                    </StackPanel>
+
+                    <!-- Slots -->
+
+                    <StackPanel Visibility="{Binding Path=HasSlots, Converter={rcp:BooleanToVisibilityConverter}}">
+
+                        <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
+                                      ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}" />
+
+                        <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                   Margin="0 0 0 8">
+                            <Separator.Visibility>
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <rcp:BooleanOrToVisibilityMultiConverter />
+                                    </MultiBinding.Converter>
+
+                                    <Binding Path="HasBackup" />
+
+                                </MultiBinding>
+                            </Separator.Visibility>
+                        </Separator>
+
+                    </StackPanel>
+
+                    <!-- Backup -->
+
+                    <Expander Margin="0 0 0 8"
+                              Visibility="{Binding Path=HasBackup, Converter={rcp:BooleanToVisibilityConverter}}"
+                              IsExpanded="{Binding Path=IsBackupViewExpanded}">
+                        <metro:ExpanderHelper.HeaderDownStyle>
+                            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton.ExpanderHeader.Down}">
+                                <Setter Property="Command" Value="{Binding Path=LoadBackupViewCommand, Mode=OneTime}" />
+                            </Style>
+                        </metro:ExpanderHelper.HeaderDownStyle>
+
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                                       Text="{Resx Progression_BackupSlots}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="15 4" />
+                        </Expander.Header>
+
+                        <StackPanel Margin="0 8 0 0">
+
+                            <!-- Backup info -->
+
+                            <rcp:DuoGrid ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}"
+                                           Visibility="{Binding Path=HasBackupInfoItems, Converter={rcp:BooleanToVisibilityConverter}}"
+                                           Margin="0 0 0 8" />
+
+                            <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                       Visibility="{Binding Path=HasBackupSlots, Converter={rcp:BooleanToVisibilityConverter}}"
+                                       Margin="0 0 0 8"/>
+
+                            <!-- Backup slots -->
+
+                            <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
+                                          ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
+                                          Margin="0 0 0 -8" />
+
+                        </StackPanel>
+
+                    </Expander>
+
+                </StackPanel>
+            </Expander>
+        </rcp:Card>
+    </DataTemplate>
+
+</ResourceDictionary>

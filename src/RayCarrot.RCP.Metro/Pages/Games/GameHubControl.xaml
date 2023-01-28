@@ -1,0 +1,398 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Games.GameHubControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:options="clr-namespace:RayCarrot.RCP.Metro.Games.Options"
+             xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             mc:Ignorable="d" 
+             d:DesignWidth="900" d:DesignHeight="600"
+             d:DataContext="{d:DesignInstance games:InstalledGameViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-UPDATE: Localize -->
+    <Grid x:Name="RootGrid">
+        <!-- Game banner image -->
+        <Image x:Name="GameBannerImage" 
+               Source="{Binding Path=GameBanner, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}" 
+               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameBanners/Rayman 2.png" 
+               Stretch="Uniform" 
+               StretchDirection="UpOnly" 
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Top">
+            <Image.OpacityMask>
+                <!-- Add a fade for the image under the hub border so the bottom edge of the image isn't as apparent -->
+                <LinearGradientBrush StartPoint="0,300" 
+                                     EndPoint="{Binding Path=ActualHeight, ElementName=GameBannerImage, Converter={rcp:DoubleToPointYConverter}}" 
+                                     MappingMode="Absolute">
+                    <GradientStop Offset="0.50" Color="Black" />
+                    <GradientStop Offset="1.00" Color="Transparent" />
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+
+        <!-- A separate border for the background so that it can be transparent (the opacity)
+             and appear behind the scroll viewer thumb -->
+        <Border Margin="0 300 0 -300">
+            <Border x:Name="BackgroundBorder"
+                    Background="{DynamicResource RCP.Brushes.Card.Background}"
+                    Opacity="0.9"
+                    CornerRadius="{StaticResource CornerRadius.Large}" />
+        </Border>
+
+        <!-- Game hub -->
+        <ScrollViewer Padding="0" 
+                      ScrollChanged="RootScrollViewer_OnScrollChanged">
+            <!-- Has an offset of 300 so the banner image is shown and also allows scrolling over it -->
+            <Border Margin="0 300 0 0">
+                <!-- The hub contents, with a minimum height for initial scrolling -->
+                <Grid Margin="25 0"
+                      MinHeight="{Binding ElementName=RootGrid, Path=ActualHeight}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Top bar -->
+                    <Grid Grid.Row="0"
+                          Margin="0 0 0 15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Game icon -->
+                        <Border Grid.Column="0" 
+                                VerticalAlignment="Top"
+                                Margin="0 -64 0 0">
+                            <rcp:GameIcon x:Name="GameIcon"
+                                            Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                            d:Source="{x:Static rcp:DesignData.GameIconSource}"
+                                            IsDemo="{Binding Path=IsDemo, Mode=OneTime}" 
+                                            IconSize="Largest" />
+                        </Border>
+
+                        <Grid x:Name="TopBarActionsGrid"
+                              Grid.Column="1"
+                              Height="64"
+                              Margin="15 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Title -->
+                            <Grid HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                                       Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}" 
+                                       d:Source="{x:Static rcp:DesignData.GamePlatformIconSource}"
+                                       Width="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={rcp:DoubleAdditionConverter}, ConverterParameter=-4}" 
+                                       Height="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={rcp:DoubleAdditionConverter}, ConverterParameter=-4}"
+                                       VerticalAlignment="Center"
+                                       Margin="0 2"
+                                       ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+
+                                <Viewbox Grid.Column="1"
+                                         StretchDirection="DownOnly">
+                                    <TextBlock x:Name="GameTitleTextBlock"
+                                               Margin="8 0 0 0"
+                                               Text="{Binding Path=DisplayName.Value}"
+                                               d:Text="Rayman 2"
+                                               VerticalAlignment="Center" 
+                                               FontSize="18" />
+                                </Viewbox>
+
+                            </Grid>
+
+                            <!-- Actions -->
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Play -->
+                                <games:PlayButtonControl Grid.Column="0"
+                                                         Margin="0 0 4 0"
+                                                         HorizontalAlignment="Left" />
+
+                                <ToggleButton Grid.Column="1"
+                                              IsChecked="{Binding Path=Data.UI_ShowGameInfo}"
+                                              ToolTip="{Resx GameOptions_Info}"
+                                              Margin="0 0 4 0"
+                                              Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
+                                              rcp:Icon.Kind="{StaticResource RCP.Icons.Info}">
+                                    <ToggleButton.Triggers>
+                                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InfoCard" 
+                                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                        <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                                     Storyboard.TargetName="InfoCard" 
+                                                                     From="0" To="1"
+                                                                     Duration="0:0:0.22"/>
+                                                    <DoubleAnimation Storyboard.TargetName="InfoCardScaleTransform" 
+                                                                     Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
+                                                                     From="0" To="1"
+                                                                     Duration="0:0:0.22">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseInOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="InfoCard"
+                                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                     From="1"
+                                                                     To="0"
+                                                                     Duration="0:0:0.22" />
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InfoCard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                        <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                                        <DiscreteObjectKeyFrame KeyTime="0:0:0.22" Value="{x:Static Visibility.Collapsed}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <DoubleAnimation Storyboard.TargetName="InfoCardScaleTransform" 
+                                                                     Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
+                                                                     From="1" To="0"
+                                                                     Duration="0:0:0.22">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseInOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ToggleButton.Triggers>
+                                </ToggleButton>
+
+                                <!-- Options -->
+                                <Button Grid.Column="2"
+                                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                                        rcp:Icon.Kind="{StaticResource RCP.Icons.Settings}"
+                                        IsEnabled="{Binding Path=HasOptionsDialog, Mode=OneTime}"
+                                        Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}"
+                                        ToolTip="{Resx GameDisplay_Options}"
+                                        Margin="0 0 4 0"/>
+
+                                <rcp:PopupCard Grid.Column="3">
+                                    <StackPanel>
+                                        <ItemsControl ItemsSource="{Binding Path=GameOptions}">
+                                            <ItemsControl.Resources>
+                                                <!-- Data templates -->
+                                                <DataTemplate DataType="{x:Type options:Win32GameOptionsViewModel}">
+                                                    <options:Win32GameOptionsControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:Rayman3PrintStudioGameOptionsViewModel}">
+                                                    <options:Rayman3PrintStudioGameOptionsControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:Rayman1MinigamesGameOptionsViewModel}">
+                                                    <options:Rayman1MinigamesGameOptionsControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:RaymanRavingRabbids2GameOptionsViewModel}">
+                                                    <options:RaymanRavingRabbids2GameOptionsControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:Ray1MsDosGameOptionsViewModel}">
+                                                    <options:Ray1MsDosGameOptionsControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:GameClientSelectionGameOptionsViewModel}">
+                                                    <options:GameClientSelectionGameOptionsControl />
+                                                </DataTemplate>
+                                            </ItemsControl.Resources>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <ContentPresenter Content="{Binding}" />
+                                                        <Separator />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <Button Content="{Resx GameOptions_CreateShortcut}"
+                                                Command="{Binding Path=CreateShortcutCommand, Mode=OneTime}"
+                                                rcp:Icon.Kind="Link"
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
+                                        <Separator />
+                                        <Button Command="{Binding Path=RenameCommand, Mode=OneTime}"
+                                                rcp:Icon.Kind="PencilOutline"
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                                                HorizontalContentAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0"
+                                                           Text="Rename" />
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="F2"
+                                                           Margin="0 0 8 0" />
+
+                                            </Grid>
+                                        </Button>
+                                        <Button Content="{Resx GameOptions_Remove}"
+                                                Command="{Binding Path=RemoveCommand, Mode=OneTime}"
+                                                rcp:Icon.Kind="DeleteOutline"
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}" />
+                                        <Button Content="{Resx GameOptions_Uninstall}"
+                                                Visibility="{Binding Path=CanUninstall, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                                Command="{Binding Path=UninstallCommand, Mode=OneTime}"
+                                                rcp:Icon.Kind="DeleteForeverOutline"
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}" />
+                                        <Separator rcp:UserLevelAssist.MinUserLevel="Debug" />
+                                        <Button rcp:UserLevelAssist.MinUserLevel="Debug"
+                                                Content="Debug game"
+                                                Command="{Binding Path=OpenGameDebugCommand, Mode=OneTime}"
+                                                rcp:Icon.Kind="{StaticResource RCP.Icons.Debug}"
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}" />
+                                    </StackPanel>
+                                </rcp:PopupCard>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <GroupBox x:Name="InfoCard"
+                              Grid.Row="1" 
+                              Visibility="{Binding Path=Data.UI_ShowGameInfo, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
+                              d:Visibility="Visible"
+                              MinHeight="80" 
+                              Margin="0 8"
+                              rcp:Icon.Kind="{StaticResource RCP.Icons.Info}"
+                              rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                              Header="{Resx GameOptions_Info}">
+                        <GroupBox.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="InfoCardScaleTransform" />
+                            </TransformGroup>
+                        </GroupBox.LayoutTransform>
+
+                        <!-- Info -->
+                        <rcp:DuoGrid ItemsSource="{Binding Path=GameInfoItems}" />
+
+                    </GroupBox>
+
+                    <!-- Panels -->
+                    <ItemsControl Grid.Row="2" 
+                                  Margin="-8 0"
+                                  ItemsSource="{Binding Path=GamePanels, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=4}">
+                        <!-- Panel templates -->
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type games:PatcherGamePanelViewModel}">
+                                <games:PatcherGamePanelControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type games:ArchiveGamePanelViewModel}">
+                                <games:ArchiveGamePanelControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type games:ProgressionGamePanelViewModel}">
+                                <games:ProgressionGamePanelControl />
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid VerticalAlignment="Top" 
+                                             DataContextChanged="GamePanelsUniformGrid_OnDataContextChanged"
+                                             SizeChanged="GamePanelsUniformGrid_OnSizeChanged" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Panel -->
+                                <GroupBox x:Name="PanelCard"
+                                          Visibility="{Binding Path=IsEmpty, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
+                                          Height="135" 
+                                          Margin="{StaticResource RCP.Thicknesses.Card}"
+                                          rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
+                                          rcp:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToBrushConverter}}">
+                                    <GroupBox.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Path=Header.Value}"
+                                                       d:Text="Archive Explorer"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14" />
+
+                                            <Button x:Name="PanelRefreshButton"
+                                                    Grid.Column="1"
+                                                    Visibility="{Binding Path=CanRefresh, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
+                                                    Opacity="0"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    ToolTip="Refresh"
+                                                    Command="{Binding Path=RefreshCommand, Mode=OneTime}"
+                                                    rcp:Icon.Kind="Refresh"
+                                                    rcp:Icon.Size="12" />
+
+                                        </Grid>
+                                    </GroupBox.Header>
+
+                                    <!-- Removed due to not looking good with most panels loading very fast -->
+                                    <!--<mah:ProgressRing Grid.Row="2"
+                                                          Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />-->
+
+                                    <!-- Content -->
+                                    <ContentPresenter Content="{Binding Mode=OneTime}"
+                                                      Visibility="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanToVisibilityConverter}}"  />
+
+                                    <GroupBox.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="PanelRefreshButton"
+                                                                         Storyboard.TargetProperty="Opacity" 
+                                                                         To="1" Duration="0:0:0.2"   />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="PanelRefreshButton"
+                                                                         Storyboard.TargetProperty="Opacity" 
+                                                                         To="0" Duration="0:0:0.2"   />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </GroupBox.Triggers>
+
+                                </GroupBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </Grid>
+
+            </Border>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

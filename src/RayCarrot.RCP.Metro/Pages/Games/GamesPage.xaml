@@ -1,0 +1,41 @@
+﻿<rcp:BasePage x:Class="RayCarrot.RCP.Metro.Pages.Games.GamesPage"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+              IsTabStop="False"
+              mc:Ignorable="d"
+              d:DesignHeight="600" d:DesignWidth="900"
+              d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
+              KeyDown="Page_Games_OnKeyDown">
+
+    <Control.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />
+        <KeyBinding Key="F2" Command="{Binding Path=SelectedInstalledGame.RenameCommand}" />
+    </Control.InputBindings>
+
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="16" />
+            <ColumnDefinition Width="2.5*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Game selection -->
+        <rcp:Card Grid.Column="0">
+            <games:GameSelectionControl x:Name="GameSelectionControl" />
+        </rcp:Card>
+
+        <!-- Selected game hub -->
+        <rcp:Card Grid.Column="2"
+                    Padding="0">
+            <games:GameHubControl DataContext="{Binding Path=SelectedInstalledGame}" />
+        </rcp:Card>
+
+    </Grid>
+</rcp:BasePage>

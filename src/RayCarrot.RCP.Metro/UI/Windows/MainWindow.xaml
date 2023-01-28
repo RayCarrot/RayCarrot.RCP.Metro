@@ -7,6 +7,13 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
+                  xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+                  xmlns:about="clr-namespace:RayCarrot.RCP.Metro.Pages.About"
+                  xmlns:debug="clr-namespace:RayCarrot.RCP.Metro.Pages.Debug"
+                  xmlns:mods="clr-namespace:RayCarrot.RCP.Metro.Pages.Mods"
+                  xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
+                  xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings"
+                  xmlns:utilities="clr-namespace:RayCarrot.RCP.Metro.Pages.Utilities"
                   mc:Ignorable="d"
                   Language="{UICulture}" 
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -165,7 +172,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Games}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Games}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Games}}">
-                    <local:Page_Games DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
+                    <games:GamesPage DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Progression -->
@@ -175,7 +182,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Progression}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Progression}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Progression}}">
-                    <local:Page_Progression DataContext="{Binding Path=ProgressionPage, Mode=OneTime}" />
+                    <progression:ProgressionPage DataContext="{Binding Path=ProgressionPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Utilities -->
@@ -184,7 +191,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Utilities}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Utilities}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Utilities}}">
-                    <local:Page_Utilities DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
+                    <utilities:UtilitiesPage DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Mods -->
@@ -193,7 +200,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Mods}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Mods}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Mods}}">
-                    <local:Page_Mods DataContext="{Binding Path=ModsPage, Mode=OneTime}" />
+                    <mods:ModsPage DataContext="{Binding Path=ModsPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Settings -->
@@ -202,7 +209,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Settings}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Settings}}">
-                    <local:Page_Settings DataContext="{Binding Path=SettingsPage, Mode=OneTime}" />
+                    <settings:SettingsPage DataContext="{Binding Path=SettingsPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- About -->
@@ -211,7 +218,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Info}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Info}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.About}}">
-                    <local:Page_About DataContext="{Binding Path=AboutPage, Mode=OneTime}" />
+                    <about:AboutPage DataContext="{Binding Path=AboutPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Debug -->
@@ -221,7 +228,7 @@
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Debug}}"
                          local:UserLevelAssist.MinUserLevel="Debug">
-                    <local:Page_Debug DataContext="{Binding Path=DebugPage, Mode=OneTime}" />
+                    <debug:DebugPage DataContext="{Binding Path=DebugPage, Mode=OneTime}" />
                 </TabItem>
 
             </mah:MetroAnimatedTabControl>

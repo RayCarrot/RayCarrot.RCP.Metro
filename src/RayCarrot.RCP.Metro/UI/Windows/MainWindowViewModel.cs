@@ -1,4 +1,11 @@
 ﻿using PropertyChanged;
+using RayCarrot.RCP.Metro.Pages.About;
+using RayCarrot.RCP.Metro.Pages.Debug;
+using RayCarrot.RCP.Metro.Pages.Games;
+using RayCarrot.RCP.Metro.Pages.Mods;
+using RayCarrot.RCP.Metro.Pages.Progression;
+using RayCarrot.RCP.Metro.Pages.Settings;
+using RayCarrot.RCP.Metro.Pages.Utilities;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -6,13 +13,13 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
 {
     public MainWindowViewModel(
         AppViewModel app,
-        Page_Games_ViewModel gamesPage, 
-        Page_Progression_ViewModel progressionPage, 
-        Page_Utilities_ViewModel utilitiesPage, 
-        Page_Mods_ViewModel modsPage, 
-        Page_Settings_ViewModel settingsPage, 
-        Page_About_ViewModel aboutPage, 
-        Page_Debug_ViewModel debugPage)
+        GamesPageViewModel gamesPage, 
+        ProgressionPageViewModel progressionPage, 
+        UtilitiesPageViewModel utilitiesPage, 
+        ModsPageViewModel modsPage, 
+        SettingsPageViewModel settingsPage, 
+        AboutPageViewModel aboutPage, 
+        DebugPageViewModel debugPage)
     {
         App = app ?? throw new ArgumentNullException(nameof(app));
         GamesPage = gamesPage ?? throw new ArgumentNullException(nameof(gamesPage));
@@ -33,13 +40,13 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
     private AppPage _selectedPage = AppPage.None;
 
     public AppViewModel App { get; } // TODO: Remove this from here
-    public Page_Games_ViewModel GamesPage { get; }
-    public Page_Progression_ViewModel ProgressionPage { get; }
-    public Page_Utilities_ViewModel UtilitiesPage { get; }
-    public Page_Mods_ViewModel ModsPage { get; }
-    public Page_Settings_ViewModel SettingsPage { get; }
-    public Page_About_ViewModel AboutPage { get; }
-    public Page_Debug_ViewModel DebugPage { get; }
+    public GamesPageViewModel GamesPage { get; }
+    public ProgressionPageViewModel ProgressionPage { get; }
+    public UtilitiesPageViewModel UtilitiesPage { get; }
+    public ModsPageViewModel ModsPage { get; }
+    public SettingsPageViewModel SettingsPage { get; }
+    public AboutPageViewModel AboutPage { get; }
+    public DebugPageViewModel DebugPage { get; }
 
     /// <summary>
     /// The currently selected page

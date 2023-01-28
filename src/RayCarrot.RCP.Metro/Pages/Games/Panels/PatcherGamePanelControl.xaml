@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Games.PatcherGamePanelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             mc:Ignorable="d" 
+             d:DesignWidth="200" d:DesignHeight="135"
+             d:DataContext="{d:DesignInstance games:PatcherGamePanelViewModel}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-UPDATE: Localize -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Info -->
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Path=InfoText.Value}"
+                   d:Text="X patches applied"
+                   VerticalAlignment="Center" />
+
+        <WrapPanel Grid.Row="1"
+                   Orientation="Horizontal">
+
+            <!-- Open -->
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
+                    Command="{Binding Path=OpenPatcherCommand, Mode=OneTime}"
+                    Background="{DynamicResource RCP.Brushes.FlatButton.Patcher}"
+                    Content="Open patcher"
+                    Margin="0 0 8 0" />
+
+            <!-- Create -->
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
+                    Command="{Binding Path=OpenPatchCreatorCommand, Mode=OneTime}"
+                    Background="{DynamicResource RCP.Brushes.FlatButton.Patcher}"
+                    Content="{Resx PatchCreator_CreateNew}" />
+
+        </WrapPanel>
+
+    </Grid>
+</UserControl>
