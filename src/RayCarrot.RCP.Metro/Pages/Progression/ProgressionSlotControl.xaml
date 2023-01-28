@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Progression.ProgressionSlotControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
+             mc:Ignorable="d" 
+             d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance progression:GameSlotViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <Expander Header="{Binding}">
+        <Expander.HeaderTemplate>
+            <DataTemplate>
+                <progression:ProgressionSlotHeaderControl Margin="15 4" />
+            </DataTemplate>
+        </Expander.HeaderTemplate>
+
+        <StackPanel Margin="0 8 0 0">
+
+            <rcp:DuoGrid Visibility="{Binding Path=HasInfoItems, Converter={rcp:BooleanToVisibilityConverter}}"
+                         Margin="0 0 0 8"
+                         ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
+
+            <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                       Margin="0 0 0 8"
+                       Visibility="{Binding Path=HasInfoItems, Converter={rcp:BooleanToVisibilityConverter}}"/>
+
+            <ItemsControl ItemsSource="{Binding Path=DataItems, Mode=OneTime}"
+                          d:ItemsSource="{d:SampleData ItemCount=3}"
+                          Grid.IsSharedSizeScope="True"
+                          Margin="0 0 0 -8">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <progression:VerticalProgressionDataItemControl Margin="0 0 0 8" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Expander>
+
+</UserControl>

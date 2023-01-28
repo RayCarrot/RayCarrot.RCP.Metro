@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Progression.SlotPercentageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance progression:GameSlotViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <StackPanel VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal"
+                    TextElement.FontSize="22"
+                    TextElement.FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 8">
+
+            <TextBlock Text="{Binding Path=Percentage, StringFormat=0.##, Mode=OneTime}"
+                       d:Text="100"/>
+            <TextBlock Text=" %" />
+
+        </StackPanel>
+
+        <mah:MetroProgressBar Foreground="{Binding Path=ProgressBrush, Mode=OneTime}"
+                              Minimum="0"
+                              Maximum="100"
+                              Width="80"
+                              HorizontalAlignment="Right"
+                              Value="{Binding Path=Percentage, Mode=OneTime}" />
+
+    </StackPanel>
+</UserControl>
