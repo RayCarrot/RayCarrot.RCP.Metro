@@ -15,6 +15,12 @@ public abstract class GamePanelViewModel : BaseViewModel
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Private Fields
 
     private bool _hasLoaded;
@@ -67,7 +73,15 @@ public abstract class GamePanelViewModel : BaseViewModel
             IsLoading = true;
             IsEmpty = false;
 
-            await LoadAsyncImpl();
+            try
+            {
+                await LoadAsyncImpl();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Loading game panel");
+                IsEmpty = true;
+            }
 
             _hasLoaded = true;
         }
