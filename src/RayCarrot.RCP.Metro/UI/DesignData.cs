@@ -25,5 +25,7 @@ public static class DesignData
 
     public static ImageSource GameClientIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(GameClientIconAsset.DosBox.GetAssetPath())!;
 
+    public static ImageSource ProgressionIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(ProgressionIconAsset.R1_Cage.GetAssetPath())!;
+
     public static GameInstallation GameInstallation => new(new GameDescriptor_Rayman2_Win32(), new InstallLocation());
 }

@@ -10,11 +10,13 @@
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <StackPanel Orientation="Horizontal">
         <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+               d:Source="{x:Static rcp:DesignData.ProgressionIconSource}"
                VerticalAlignment="Center"
                Width="48" Height="48"
                Margin="0 0 8 0" />
 
         <TextBlock Text="{Binding Path=Value}"
+                   d:Text="5/5"
                    DataContext="{Binding Path=Text, Mode=OneTime}"
                    FontSize="22"
                    FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
