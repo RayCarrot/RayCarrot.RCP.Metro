@@ -12,7 +12,7 @@
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <StackPanel VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal"
-                    TextElement.FontSize="22"
+                    TextElement.FontSize="18"
                     TextElement.FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"

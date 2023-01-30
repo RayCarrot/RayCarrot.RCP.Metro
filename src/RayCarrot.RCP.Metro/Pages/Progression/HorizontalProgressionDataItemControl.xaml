@@ -18,7 +18,7 @@
         <TextBlock Text="{Binding Path=Value}"
                    d:Text="5/5"
                    DataContext="{Binding Path=Text, Mode=OneTime}"
-                   FontSize="22"
+                   FontSize="18"
                    FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
                    VerticalAlignment="Center"
                    Margin="0 0 15 0" />

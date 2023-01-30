@@ -61,27 +61,60 @@
         <KeyBinding Key="F5" Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
     </Control.InputBindings>
 
-    <Grid Margin="0 12 0 0">
-
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <rcp:Card Margin="12"
+              Padding="0">
+        <ScrollViewer Padding="8">
             <i:Interaction.Behaviors>
                 <rcp:FocusScrollViewerOnLoad />
             </i:Interaction.Behaviors>
 
             <!-- Games -->
 
-            <ItemsControl Margin="12 0 12 12"
-                          d:ItemsSource="{d:SampleData ItemCount=1}"
-                          ItemsSource="{Binding Path=GameItems, Mode=OneTime}">
+            <ItemsControl Grid.IsSharedSizeScope="True"
+                          ItemsSource="{Binding Path=GameGroups}"
+                          d:ItemsSource="{d:SampleData ItemCount=1}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <progression:GameControl />
+                        <StackPanel Margin="0 0 0 4">
+
+                            <!-- Game title -->
+                            <Grid Margin="8 4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <rcp:GameIcon Grid.Column="0"
+                                              IconSize="Small"
+                                              Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                              d:Source="{x:Static rcp:DesignData.GameIconSource}"
+                                              IsDemo="False"
+                                              Margin="0 0 8 0" />
+
+                                <TextBlock Grid.Column="1" 
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           FontSize="18"
+                                           Text="{Binding Path=DisplayName.Value}"
+                                           d:Text="Rayman 2" />
+
+                            </Grid>
+
+                            <!-- Games -->
+                            <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}"
+                                          d:ItemsSource="{d:SampleData ItemCount=2}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <progression:GameControl />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
         </ScrollViewer>
-
-    </Grid>
+    </rcp:Card>
 
 </rcp:BasePage>

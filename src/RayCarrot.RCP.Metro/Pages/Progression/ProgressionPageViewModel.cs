@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Games.Components;
 
@@ -27,16 +25,12 @@ public class ProgressionPageViewModel : BasePageViewModel,
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // Create properties
-        GameItems = new ObservableCollection<GameViewModel>();
         AsyncLock = new AsyncLock();
 
         // Create commands
         RefreshCommand = new AsyncRelayCommand(RefreshAsync);
         BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
         ChangeSaveEditProgramCommand = new AsyncRelayCommand(ChangeSaveEditProgramAsync);
-
-        // Enable collection synchronization
-        BindingOperations.EnableCollectionSynchronization(GameItems, Application.Current);
     }
 
     #endregion
@@ -74,7 +68,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
     #region Public Properties
 
     public override AppPage Page => AppPage.Progression;
-    public ObservableCollection<GameViewModel> GameItems { get; }
+    public ObservableCollection<GameGroupViewModel>? GameGroups { get; set; }
 
     #endregion
 
@@ -96,11 +90,16 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public async void Receive(BackupLocationChangedMessage message) => await Task.Run(async () => await RefreshAsync());
     public async void Receive(ModifiedGamesMessage message)
     {
+        if (GameGroups == null)
+            return;
+
         // As of right now there's no need to do a full refresh when a game
         // is modified, but we might have to change this in the future
         using (await AsyncLock.LockAsync())
         {
-            foreach (GameViewModel gameProgression in GameItems.Where(x => message.GameInstallations.Contains(x.GameInstallation)))
+            foreach (GameViewModel gameProgression in GameGroups.
+                         SelectMany(x => x.Games).
+                         Where(x => message.GameInstallations.Contains(x.GameInstallation)))
             {
                 gameProgression.RefreshGameInfo();
             }
@@ -115,32 +114,36 @@ public class ProgressionPageViewModel : BasePageViewModel,
             {
                 Logger.Info("Refreshing progression game items");
 
-                // Clear current items
-                GameItems.Clear();
+                List<GameGroupViewModel> gameGroups = new();
 
                 // Add the game items
-                foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+                foreach (var gameInstallations in GamesManager.GetInstalledGames().GroupBy(x => x.GameDescriptor.Game))
                 {
-                    foreach (GameProgressionManager progressionManager in gameInstallation.
-                                 GetComponents<ProgressionManagersComponent>().
-                                 CreateManyObjects())
-                    {
-                        GameItems.Add(new GameViewModel(progressionManager));
-                    }
+                    // Get the game info
+                    GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
+
+                    gameGroups.Add(new GameGroupViewModel(
+                        icon: gameInfo.GameIcon,
+                        displayName: gameInfo.DisplayName,
+                        games: gameInstallations.
+                            SelectMany(x => x.GetComponents<ProgressionManagersComponent>().CreateManyObjects()).
+                            Select(x => new GameViewModel(x))));
                 }
+
+                GameGroups = new ObservableCollection<GameGroupViewModel>(gameGroups);
 
                 // TODO: Use Task.WhenAll and run in parallel?
 
                 // Load the game items
-                foreach (GameViewModel game in GameItems)
+                foreach (GameViewModel game in GameGroups.SelectMany(x => x.Games))
                     await game.LoadProgressAsync();
 
                 // Load backups
-                foreach (GameViewModel game in GameItems)
+                foreach (GameViewModel game in GameGroups.SelectMany(x => x.Games))
                     await game.LoadBackupAsync();
 
                 // Load slot infos
-                foreach (GameViewModel game in GameItems)
+                foreach (GameViewModel game in GameGroups.SelectMany(x => x.Games))
                     await game.LoadSlotInfoItemsAsync();
 
                 Logger.Info("Refreshed progression game items");
@@ -148,6 +151,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
             catch (Exception ex)
             {
                 Logger.Fatal(ex, "Refreshing progression");
+                GameGroups = null;
                 throw;
             }
         }
@@ -156,7 +160,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public async Task BackupAllAsync()
     {
         // Make sure no backups are running
-        if (GameItems.Any(x => x.IsPerformingBackupRestore))
+        if (GameGroups == null || GameGroups.SelectMany(x => x.Games).Any(x => x.IsPerformingBackupRestore))
             return;
 
         // Lock
@@ -173,16 +177,18 @@ public class ProgressionPageViewModel : BasePageViewModel,
             int completed = 0;
 
             // Perform each backup
-            foreach (GameViewModel game in GameItems)
+            foreach (GameViewModel game in GameGroups.SelectMany(x => x.Games))
             {
                 if (await game.BackupAsync(true))
                     completed++;
             }
 
-            if (completed == GameItems.Count)
+            int gameItemsCount = GameGroups.Sum(x => x.Games.Count);
+
+            if (completed == gameItemsCount)
                 await MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
             else
-                await MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
+                await MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, gameItemsCount), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
         }
     }
 
@@ -192,11 +198,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
         {
             Title = Resources.Progression_SelectEditProgram,
             ProgramFilePath = Data.Progression_SaveEditorExe,
-            FileExtensions = new FileExtension[]
-            {
-                new FileExtension(".json"),
-                new FileExtension(".txt"),
-            }
+            FileExtensions = new FileExtension[] { new(".json"), new(".txt"), }
         });
 
         if (programResult.CanceledByUser)

@@ -12,12 +12,14 @@
              d:DataContext="{d:DesignInstance progression:GameViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}" Padding="0">
+    <rcp:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+              Margin="{StaticResource RCP.Thicknesses.Card}" 
+              Padding="0">
         <Expander Header="{Binding}"
                   IsExpanded="{Binding Path=IsExpanded}">
             <Expander.HeaderTemplate>
                 <DataTemplate>
-                    <progression:GameHeaderControl Margin="15 8" />
+                    <progression:GameHeaderControl Margin="8 2" />
                 </DataTemplate>
             </Expander.HeaderTemplate>
 

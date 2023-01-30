@@ -21,6 +21,11 @@ public class GameViewModel : BaseRCPViewModel
         Slots = new ObservableCollection<GameSlotViewModel>();
         BackupSlots = new ObservableCollection<GameSlotViewModel>();
 
+        // Get and set platform info
+        GamePlatformInfoAttribute platformInfo = GameDescriptor.Platform.GetInfo();
+        PlatformDisplayName = platformInfo.DisplayName;
+        PlatformIcon = platformInfo.Icon;
+
         RefreshGameInfo();
 
         UpdateProgramDataSourceCommand = new AsyncRelayCommand(UpdateProgramDataSourceAsync);
@@ -63,8 +68,8 @@ public class GameViewModel : BaseRCPViewModel
     public GameProgressionManager ProgressionManager { get; }
     public GameInstallation GameInstallation => ProgressionManager.GameInstallation;
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
-    public GameIconAsset GameIcon => GameDescriptor.Icon;
-    public bool IsDemo => GameDescriptor.IsDemo;
+    public GamePlatformIconAsset PlatformIcon { get; }
+    public LocalizedString PlatformDisplayName { get; }
     public LocalizedString DisplayName { get; set; }
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }

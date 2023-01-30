@@ -15,40 +15,42 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" SharedSizeGroup="GameName" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- Image -->
-        <rcp:GameIcon Grid.Row="0"
-                      IconSize="Medium"
-                      IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
-                      Source="{Binding Path=GameIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                      d:Source="{x:Static rcp:DesignData.GameIconSource}"
-                      Margin="0 0 15 0" />
+        <!-- Platform icon -->
+        <Image Grid.Column="0"
+               Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+               d:Source="{x:Static rcp:DesignData.GamePlatformIconSource}"
+               VerticalAlignment="Center"
+               Width="20"
+               Margin="0 0 8 0"
+               ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
         <!-- Title -->
         <TextBlock Grid.Column="1"
-                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                   FontSize="14"
                    Text="{Binding Path=DisplayName.Value}"
                    d:Text="Rayman 2"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    TextWrapping="WrapWithOverflow"
-                   MaxWidth="510"
+                   MaxWidth="180"
                    Margin="0 0 25 0" />
 
         <!-- Primary Data Items -->
         <ItemsControl Grid.Column="2"
+                      VerticalAlignment="Center"
                       ItemsSource="{Binding Path=PrimarySlot.PrimaryDataItems}"
                       d:ItemsSource="{d:SampleData ItemCount=3}"
                       Margin="0 0 10 0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
+                    <WrapPanel />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
