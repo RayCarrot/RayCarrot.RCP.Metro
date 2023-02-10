@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Compression;
 using System.Windows.Input;
@@ -88,8 +88,8 @@ public class GameViewModel : BaseRCPViewModel
 
     public ProgramDataSource ProgramDataSource
     {
-        get => Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupName, ProgramDataSource.Auto);
-        set => Data.Backup_GameDataSources[ProgressionManager.BackupName] = value;
+        get => Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupId, ProgramDataSource.Auto);
+        set => Data.Backup_GameDataSources[ProgressionManager.BackupId] = value;
     }
 
     public ObservableCollection<GameSlotViewModel> Slots { get; }
@@ -410,14 +410,14 @@ public class GameViewModel : BaseRCPViewModel
             CurrentBackupStatus = BackupStatus.Syncing;
 
             // Create backup info if null
-            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.BackupName, ProgressionManager.BackupDirectories);
+            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.BackupId, ProgressionManager.BackupDirectories);
 
             // Refresh backup info
             await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName));
 
             // Determine if the program data source can be modified
             CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || 
-                                         (Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupName, out ProgramDataSource src) && src != ProgramDataSource.Auto);
+                                         (Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupId, out ProgramDataSource src) && src != ProgramDataSource.Auto);
 
             // Check if GOG cloud sync is in use
             CheckForGOGCloudSync();

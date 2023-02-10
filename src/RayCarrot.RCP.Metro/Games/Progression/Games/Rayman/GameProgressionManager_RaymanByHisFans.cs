@@ -5,8 +5,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanByHisFans : GameProgressionManager_RaymanDesigner
 {
-    public GameProgressionManager_RaymanByHisFans(GameInstallation gameInstallation, string backupName) 
-        : base(gameInstallation, backupName) { }
+    public GameProgressionManager_RaymanByHisFans(GameInstallation gameInstallation, string backupId) 
+        : base(gameInstallation, backupId) { }
 
     protected override int LevelsCount => 40;
     protected override Ray1EngineVersion EngineVersion => Ray1EngineVersion.PC_Fan;

@@ -5,8 +5,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanMArena : GameProgressionManager
 {
-    public GameProgressionManager_RaymanMArena(GameInstallation gameInstallation, string backupName, bool isRaymanMDemo) 
-        : base(gameInstallation, backupName)
+    public GameProgressionManager_RaymanMArena(GameInstallation gameInstallation, string backupId, bool isRaymanMDemo) 
+        : base(gameInstallation, backupId)
     {
         IsRaymanMDemo = isRaymanMDemo;
     }

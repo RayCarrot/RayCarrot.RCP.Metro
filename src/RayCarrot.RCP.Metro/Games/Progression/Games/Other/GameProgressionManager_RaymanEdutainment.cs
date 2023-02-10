@@ -5,8 +5,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanEdutainment : GameProgressionManager
 {
-    public GameProgressionManager_RaymanEdutainment(GameInstallation gameInstallation, string backupName, string primaryName, Ray1MsDosData.Version version) 
-        : base(gameInstallation, backupName)
+    public GameProgressionManager_RaymanEdutainment(GameInstallation gameInstallation, string backupId, string primaryName, Ray1MsDosData.Version version) 
+        : base(gameInstallation, backupId)
     {
         PrimaryName = primaryName;
         Version = version;

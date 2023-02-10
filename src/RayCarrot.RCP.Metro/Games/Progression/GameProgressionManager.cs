@@ -10,10 +10,10 @@ public abstract class GameProgressionManager
 {
     #region Constructor
 
-    protected GameProgressionManager(GameInstallation gameInstallation, string backupName)
+    protected GameProgressionManager(GameInstallation gameInstallation, string backupId)
     {
         GameInstallation = gameInstallation;
-        BackupName = backupName;
+        BackupId = backupId;
     }
 
     #endregion
@@ -28,7 +28,7 @@ public abstract class GameProgressionManager
 
     public GameInstallation GameInstallation { get; }
     public abstract GameBackups_Directory[] BackupDirectories { get; }
-    public string BackupName { get; }
+    public string BackupId { get; }
     
     /// <summary>
     /// An optional name for this progression manager. Should mainly be used when games have multiple

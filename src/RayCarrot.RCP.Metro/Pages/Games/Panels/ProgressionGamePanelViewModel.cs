@@ -22,7 +22,7 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
 
     protected override async Task LoadAsyncImpl()
     {
-        var dataSource = Services.Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupName, ProgramDataSource.Auto);
+        var dataSource = Services.Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupId, ProgramDataSource.Auto);
         var fileSystem = new GameProgressionManager.PhysicalFileSystemWrapper(dataSource);
 
         GameProgressionSlot[] slots = await ProgressionManager.LoadSlotsAsync(fileSystem).ToArrayAsync();

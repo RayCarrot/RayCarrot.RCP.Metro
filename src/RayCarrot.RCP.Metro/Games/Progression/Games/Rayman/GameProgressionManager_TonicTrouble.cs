@@ -4,8 +4,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_TonicTrouble : GameProgressionManager
 {
-    public GameProgressionManager_TonicTrouble(GameInstallation gameInstallation, string backupName) 
-        : base(gameInstallation, backupName) { }
+    public GameProgressionManager_TonicTrouble(GameInstallation gameInstallation, string backupId) 
+        : base(gameInstallation, backupId) { }
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {

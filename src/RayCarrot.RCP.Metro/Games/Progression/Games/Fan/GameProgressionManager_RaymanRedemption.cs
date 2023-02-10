@@ -4,8 +4,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanRedemption : GameProgressionManager
 {
-    public GameProgressionManager_RaymanRedemption(GameInstallation gameInstallation, string backupName) 
-        : base(gameInstallation, backupName) { }
+    public GameProgressionManager_RaymanRedemption(GameInstallation gameInstallation, string backupId) 
+        : base(gameInstallation, backupId) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
