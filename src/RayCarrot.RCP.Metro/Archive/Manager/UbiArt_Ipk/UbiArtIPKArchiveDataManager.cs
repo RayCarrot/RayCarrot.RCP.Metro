@@ -224,7 +224,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
             // Set the base offset
             data.RecalculateSize();
-            data.BootHeader.BaseOffset = (uint)data.Size;
+            data.BootHeader.BaseOffset = (uint)data.SerializedSize;
 
             // Write the files
             WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), progressCallback, cancellationToken);

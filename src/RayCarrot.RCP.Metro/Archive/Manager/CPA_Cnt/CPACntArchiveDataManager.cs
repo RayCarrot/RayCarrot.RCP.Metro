@@ -188,7 +188,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
             // Set the current pointer position to the header size
             data.RecalculateSize();
-            uint pointer = (uint)data.Size;
+            uint pointer = (uint)data.SerializedSize;
 
             // Disable checksum
             data.IsChecksumUsed = false;

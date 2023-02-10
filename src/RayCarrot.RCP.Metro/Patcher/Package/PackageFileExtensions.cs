@@ -30,7 +30,7 @@ public static class PackageFileExtensions
 
         // Calculate the header size to get the start offset for packing the resources
         package.RecalculateSize();
-        long dataOffset = package.Size;
+        long dataOffset = package.SerializedSize;
 
         // Create a temporary file to write to
         using TempFile tempFile = new(true);
