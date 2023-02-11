@@ -130,6 +130,20 @@ public class ProgressionPageViewModel : BasePageViewModel,
                             Select(x => new GameViewModel(x))));
                 }
 
+                // Group games based on the backup id. Games which share the same id also share the same backup and
+                // the ui should specify this to avoid confusion.
+                Dictionary<string, List<GameViewModel>> backupsById = gameGroups.
+                    SelectMany(x => x.Games).
+                    GroupBy(x => x.ProgressionManager.BackupId).
+                    ToDictionary(x => x.Key, x => x.ToList());
+
+                // Set linked games
+                foreach (GameViewModel game in gameGroups.SelectMany(x => x.Games))
+                {
+                    List<GameViewModel> games = backupsById[game.ProgressionManager.BackupId];
+                    game.LinkedGames = new ObservableCollection<GameViewModel>(games.Where(x => x != game));
+                }
+
                 GameGroups = new ObservableCollection<GameGroupViewModel>(gameGroups);
 
                 // TODO: Use Task.WhenAll and run in parallel?
@@ -166,6 +180,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
         // Lock
         using (await AsyncLock.LockAsync())
         {
+            // TODO-UPDATE: Update string to also say "If multiple games share the same backup then a backup will only be performed for the first game".
             // Confirm backup
             if (!await MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
             {
@@ -176,9 +191,15 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
             int completed = 0;
 
-            // Perform each backup
+            // Perform a backup for each id
+            HashSet<string> ids = new();
             foreach (GameViewModel game in GameGroups.SelectMany(x => x.Games))
             {
+                if (ids.Contains(game.ProgressionManager.BackupId))
+                    continue;
+
+                ids.Add(game.ProgressionManager.BackupId);
+
                 if (await game.BackupAsync(true))
                     completed++;
             }

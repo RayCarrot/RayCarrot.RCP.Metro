@@ -7,6 +7,7 @@
              xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="800" d:DesignHeight="450" 
              d:DataContext="{d:DesignInstance progression:GameViewModel}"
@@ -129,11 +130,41 @@
                     </mah:ExpanderHelper.HeaderDownStyle>
 
                     <Expander.Header>
-                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                                   Text="{Resx Progression_BackupSlots}"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   Margin="15 4" />
+                        <Grid Margin="15 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                                       Text="{Resx Progression_BackupSlots}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="0 0 12 0" />
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <iconPacks:PackIconMaterial Grid.Column="1" 
+                                                        Background="Transparent"
+                                                        Kind="InformationOutline"
+                                                        VerticalAlignment="Center"
+                                                        Width="20"
+                                                        Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
+                                                        Visibility="{Binding Path=LinkedGames.Count, Converter={rcp:IntToVisibilityConverter}, FallbackValue=Collapsed}"
+                                                        ToolTipService.ShowDuration="1000000">
+                                <iconPacks:PackIconMaterial.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="This game shares the same backups as the following games. This means creating a backup from one of these games will overwrite any backups created for the other ones as well."
+                                                   TextWrapping="Wrap"
+                                                   Margin="0 0 0 4" />
+                                        <ItemsControl ItemsSource="{Binding Path=LinkedGames}" 
+                                                      DisplayMemberPath="DisplayName.Value"
+                                                      ItemStringFormat="• {0}"/>
+                                    </StackPanel>
+                                </iconPacks:PackIconMaterial.ToolTip>
+                            </iconPacks:PackIconMaterial>
+
+                        </Grid>
                     </Expander.Header>
 
                     <StackPanel Margin="0 8 0 0">

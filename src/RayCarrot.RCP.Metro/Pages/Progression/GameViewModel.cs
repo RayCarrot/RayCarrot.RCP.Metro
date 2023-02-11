@@ -6,9 +6,6 @@ using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro.Pages.Progression;
 
-// TODO-14: The progression system has to be updated to work with multiple game installations. For simplicity they should share the
-//          same backup if the game itself is identical (i.e. Steam and Win32 are the same release, but PS1 is not!).
-
 public class GameViewModel : BaseRCPViewModel
 {
     #region Constructor
@@ -66,6 +63,7 @@ public class GameViewModel : BaseRCPViewModel
     #region Public Properties
 
     public GameProgressionManager ProgressionManager { get; }
+    public ObservableCollection<GameViewModel>? LinkedGames { get; set; } // Games which share the same backup id
     public GameInstallation GameInstallation => ProgressionManager.GameInstallation;
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
     public GamePlatformIconAsset PlatformIcon { get; }
@@ -476,6 +474,7 @@ public class GameViewModel : BaseRCPViewModel
                 // Refresh the backup info
                 await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName);
 
+                // TODO-UPDATE: Update string to also show linked games
                 // Confirm backup if one already exists
                 if (!fromBatchOperation && 
                     BackupInfo.ExistingBackups.Any() && 
@@ -499,6 +498,10 @@ public class GameViewModel : BaseRCPViewModel
             }
 
             await LoadBackupAsync();
+
+            if (LinkedGames != null)
+                foreach (GameViewModel game in LinkedGames)
+                    await game.LoadBackupAsync();
 
             if (success && !fromBatchOperation)
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, DisplayName), Resources.Backup_SuccessHeader);
