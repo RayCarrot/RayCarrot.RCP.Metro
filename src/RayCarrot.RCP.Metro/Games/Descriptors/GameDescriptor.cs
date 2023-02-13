@@ -47,8 +47,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public abstract Game Game { get; }
 
     /// <summary>
-    /// The platform the descriptor is for. This is mainly for categorization and filter purposes. The platform mainly defines
-    /// how the game is handled in RCP and thus there is a separation between a Steam and standard Win32 release.
+    /// The platform the descriptor is for. This is mainly for categorization and filter purposes.
     /// </summary>
     public abstract GamePlatform Platform { get; }
 

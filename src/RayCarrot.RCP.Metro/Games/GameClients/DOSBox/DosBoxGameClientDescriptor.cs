@@ -25,15 +25,11 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 
     #region Private Methods
 
-    /// <summary>
-    /// Gets the DOSBox configuration file path for the auto config file
-    /// </summary>
-    /// <returns>The file path</returns>
-    private static FileSystemPath GetGameConfigFile(GameInstallation gameInstallation) =>
-        AppFilePaths.UserDataBaseDir + "Clients" + "DOSBox" + (gameInstallation.InstallationId + ".ini");
-
-    private static void CreateConfigFile(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
-        new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create(gameInstallation);
+    private static void CreateConfigFile(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
+    {
+        var configFile = gameInstallation.GetRequiredComponent<DosBoxConfigFileComponent, AutoDosBoxConfigFileComponent>().CreateObject();
+        new AutoConfigManager(configFile).Create(gameInstallation);
+    }
 
     #endregion
 
@@ -47,14 +43,14 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
         builder.Register<LaunchGameComponent>(new DosBoxLaunchGameComponent(this));
         
         // Add the RCP config file
-        builder.Register(new DosBoxConfigFileComponent(GetGameConfigFile));
+        builder.Register<DosBoxConfigFileComponent, AutoDosBoxConfigFileComponent>();
 
         // Client config page
         builder.Register(new GameOptionsDialogPageComponent(
             objFactory: x => new DosBoxGameConfigViewModel(
                 gameInstallation: x, 
                 gameClientInstallation: Services.GameClients.GetRequiredAttachedGameClient(x), 
-                configFilePath: GetGameConfigFile(x)),
+                configFilePath: x.GetRequiredComponent<DosBoxConfigFileComponent, AutoDosBoxConfigFileComponent>().CreateObject()),
             isAvailableFunc: _ => true,
             // The id depends on the client as that determines the content
             getInstanceIdFunc: x => $"ClientConfig_{Services.GameClients.GetRequiredAttachedGameClient(x).InstallationId}"));

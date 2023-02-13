@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Public Properties
 
     public override string GameId => "RaymanRavingRabbidsActivityCenter_Win32";
     public override string LegacyGameId => "RaymanRavingRabbidsActivityCenter";

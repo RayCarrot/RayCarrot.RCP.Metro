@@ -40,7 +40,9 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun(this, x, "Rayman Fiesta Run (Win10)", 0)));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun(this, x,
+            // NOTE: This id is also defined in the app data migration code
+            "Rayman Fiesta Run (Win10)", 0)));
         builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));

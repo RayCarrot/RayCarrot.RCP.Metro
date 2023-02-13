@@ -61,6 +61,10 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     public T GetRequiredComponent<T>() 
         where T : GameComponent => 
         ComponentProvider?.GetComponent<T>() ?? throw new InvalidOperationException($"Component of type {typeof(T)} was not found");
+    public U GetRequiredComponent<T, U>() 
+        where T : GameComponent
+        where U : T =>
+        ComponentProvider?.GetComponents<T>().OfType<U>().FirstOrDefault() ?? throw new InvalidOperationException($"Component of type {typeof(U)} and registered as type {typeof(T)} was not found");
     public IEnumerable<T> GetComponents<T>() 
         where T : GameComponent => 
         ComponentProvider?.GetComponents<T>() ?? Enumerable.Empty<T>();

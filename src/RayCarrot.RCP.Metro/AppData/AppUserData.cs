@@ -6,10 +6,6 @@ using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Remove verification and make everything nullable
-// TODO-14: Migrate old Games_Games and Game_InstalledGames (and more) properties to new Game_GameInstallations collection - do this
-//          by serializing as JObject first and then checking the version before parsing as AppuserData
-
 /// <summary>
 /// The application user data
 /// </summary>
@@ -178,7 +174,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// The saved jump list items
     /// </summary>
-    public List<JumpListItem> App_JumpListItems { get; set; } // TODO-14: Might want to reset this during v14 migration
+    public List<JumpListItem> App_JumpListItems { get; set; }
 
     /// <summary>
     /// Indicates if the jump list items should be automatically sorted
