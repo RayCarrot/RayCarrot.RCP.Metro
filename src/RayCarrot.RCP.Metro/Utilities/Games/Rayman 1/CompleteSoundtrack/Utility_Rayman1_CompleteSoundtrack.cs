@@ -17,7 +17,7 @@ public class Utility_Rayman1_CompleteSoundtrack : Utility<Utility_Rayman1_Comple
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman1_CompleteSoundtrack;
     public override string InfoText => Resources.R1U_CompleteOSTInfo;
     public override bool RequiresAdditionalFiles => true;
-    public override bool RequiresAdmin => !Services.File.CheckDirectoryWriteAccess(ViewModel.MusicDir);
+    public override bool RequiresAdmin => ViewModel.MusicDir.DirectoryExists && !Services.File.CheckDirectoryWriteAccess(ViewModel.MusicDir);
     public override bool IsAvailable => ViewModel.CanMusicBeReplaced;
     public override IEnumerable<string> GetAppliedUtilities()
     {
