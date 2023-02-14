@@ -25,11 +25,6 @@ public static class AppFilePaths
     public static FileSystemPath GamesBaseDir => UserDataBaseDir + "Games";
 
     /// <summary>
-    /// The Rayman 1 TPLS directory
-    /// </summary>
-    public static FileSystemPath R1TPLSDir => UtilitiesBaseDir + "TPLS";
-
-    /// <summary>
     /// The <see cref="AppUserData"/> file path
     /// </summary>
     public static FileSystemPath AppUserDataPath => UserDataBaseDir + "appuserdata.json";

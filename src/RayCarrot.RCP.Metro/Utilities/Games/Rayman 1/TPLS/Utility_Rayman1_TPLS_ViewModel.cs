@@ -27,7 +27,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         if (data != null)
         {
             // Make sure it's still installed
-            if (!AppFilePaths.R1TPLSDir.DirectoryExists)
+            if (!data.InstallDir.DirectoryExists)
             {
                 gameInstallation.SetObject<Rayman1TplsData>(GameDataKey.R1_TplsData, null);
                 data = null;
@@ -98,6 +98,41 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
 
     #region Public Methods
 
+    public async Task SetInstallationAsync(FileSystemPath installDir, Utility_Rayman1_TPLS_RaymanVersion version, bool isEnabled)
+    {
+        // Create the TPLS data for the game
+        Rayman1TplsData data = new(installDir) { RaymanVersion = version };
+        GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
+
+        // Perform the initial config update
+        await data.UpdateConfigAsync();
+
+        // Create an emulator installation
+        GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameClientDescriptor<DosBoxGameClientDescriptor>();
+        GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), x =>
+        {
+            // Add the TPLS config file to the data
+            x.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths,
+                y => y.FilePaths.Add(data.ConfigFilePath));
+
+            // Set the game client installation id
+            data.GameClientInstallationId = x.InstallationId;
+            GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
+
+            // Limit to only work on this game installation
+            RequiredGameInstallations requiredGames = new();
+            requiredGames.GameInstallationIds.Add(GameInstallation.InstallationId);
+            x.SetObject(GameClientDataKey.RCP_RequiredGameInstallations, requiredGames);
+
+            // Give the emulator a name so it's apparent what it's for
+            // TODO-UPDATE: Localize
+            x.SetValue(GameClientDataKey.RCP_CustomName, "DOSBox (per-level soundtrack)");
+        });
+
+        if (isEnabled)
+            await Services.GameClients.AttachGameClientAsync(GameInstallation, gameClientInstallation);
+    }
+
     /// <summary>
     /// Installs TPLS
     /// </summary>
@@ -107,50 +142,24 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         {
             Logger.Info("The TPLS utility is downloading...");
 
+            // Use a unique directory for each game to avoid conflicts
+            FileSystemPath tplsDir = AppFilePaths.UtilitiesBaseDir + ("TPLS_" + GameInstallation.InstallationId);
+
             // Check if the directory exists
-            if (AppFilePaths.R1TPLSDir.DirectoryExists)
+            if (tplsDir.DirectoryExists)
                 // Delete the directory
-                Services.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
+                Services.File.DeleteDirectory(tplsDir);
 
             // Download the files
-            if (!await App.DownloadAsync(new[] { new Uri(AppURLs.R1_TPLS_Url), }, true, AppFilePaths.R1TPLSDir))
+            if (!await App.DownloadAsync(new[] { new Uri(AppURLs.R1_TPLS_Url), }, true, tplsDir))
             {
                 // If canceled, delete the directory
-                Services.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
+                Services.File.DeleteDirectory(tplsDir);
                 return;
             }
 
-            // Create the TPLS data for the game
-            Rayman1TplsData data = new(AppFilePaths.R1TPLSDir);
-            GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
-
-            // Perform the initial config update
-            await data.UpdateConfigAsync();
-
-            // Create an emulator installation
-            GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameClientDescriptor<DosBoxGameClientDescriptor>();
-            GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), x =>
-            {
-                // Add the TPLS config file to the data
-                x.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths, 
-                    y => y.FilePaths.Add(data.ConfigFilePath));
-
-                // Set the game client installation id
-                data.GameClientInstallationId = x.InstallationId;
-                GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
-
-                // Limit to only work on this game installation
-                RequiredGameInstallations requiredGames = new();
-                requiredGames.GameInstallationIds.Add(GameInstallation.InstallationId);
-                x.SetObject(GameClientDataKey.RCP_RequiredGameInstallations, requiredGames);
-
-                // Give the emulator a name so it's apparent what it's for
-                // TODO-UPDATE: Localize
-                x.SetValue(GameClientDataKey.RCP_CustomName, "DOSBox (per-level soundtrack)");
-            });
-
-            // Select the client for the game by default
-            await Services.GameClients.AttachGameClientAsync(GameInstallation, gameClientInstallation);
+            // Set the installation
+            await SetInstallationAsync(tplsDir, Utility_Rayman1_TPLS_RaymanVersion.Auto, true);
 
             IsInstalled = true;
 
