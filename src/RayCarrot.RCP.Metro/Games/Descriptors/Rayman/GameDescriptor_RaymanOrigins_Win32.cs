@@ -49,7 +49,6 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
             @"GameData\bundle_PC.ipk",
         }));
 
-        builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_HQVideos(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_Update(x)));
     }

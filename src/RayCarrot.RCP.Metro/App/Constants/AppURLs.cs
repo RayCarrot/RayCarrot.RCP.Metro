@@ -198,16 +198,6 @@ public static class AppURLs
     public const string RD_ALMapperExe_URL = UtilityBaseUrl + "r1/raykit/al/MAPPER.EXE";
 
     /// <summary>
-    /// The Rayman Origins original videos URL
-    /// </summary>
-    public const string RO_OriginalVideos_URL = UtilityBaseUrl + "ro/OriginalVideos.zip";
-
-    /// <summary>
-    /// The Rayman Origins high quality videos URL
-    /// </summary>
-    public const string RO_HQVideos_URL = UtilityBaseUrl + "ro/HQVideos.zip";
-
-    /// <summary>
     /// The Rayman Origins updater URL
     /// </summary>
     public const string RO_Updater_URL = UtilityBaseUrl + "ro/Updater.zip";

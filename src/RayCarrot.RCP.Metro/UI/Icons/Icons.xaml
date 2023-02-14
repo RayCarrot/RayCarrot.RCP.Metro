@@ -60,7 +60,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_UbiRay">AccountOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_HQVideos">VideoOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_Update">Update</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanFiestaRun_SaveFix">AutoFix</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
@@ -230,9 +229,6 @@
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_RaymanOrigins_DebugCommands" 
                        IconKind="{StaticResource RCP.Icons.Utilities_RaymanOrigins_DebugCommands}"
-                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_RaymanOrigins_HQVideos" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_RaymanOrigins_HQVideos}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_RaymanOrigins_Update" 
                        IconKind="{StaticResource RCP.Icons.Utilities_RaymanOrigins_Update}"
