@@ -235,7 +235,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
                 (RayEvts.Run, new ResourceLocString(nameof(Resources.Mod_Mem_R1_RunPower))),
                 (RayEvts.Seed, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SeedPower))),
                 (RayEvts.SuperHelico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SuperHelicoPower))),
-                (RayEvts.SquishedRayman, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SquishedPower))),
+                (RayEvts.DemiRay, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SquishedPower))),
                 (RayEvts.Firefly, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FireflyPower))),
                 (RayEvts.ForceRun, new ResourceLocString(nameof(Resources.Mod_Mem_R1_ForcedRunPower))),
                 (RayEvts.ReverseControls, new ResourceLocString(nameof(Resources.Mod_Mem_R1_ReversePower))),
