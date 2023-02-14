@@ -16,7 +16,7 @@ public class LegacyPre14AppUserData
     public FiestaRunEdition Game_FiestaRunVersion { get; set; }
     public string? Emu_DOSBox_Path { get; set; }
     public string? Emu_DOSBox_ConfigPath { get; set; }
-    public _TPLSData? Utility_TPLSData { get; set; } // TODO: Migrate
+    public _TPLSData? Utility_TPLSData { get; set; }
 
     // There was previously an oversight where this didn't get saved, so no need to migrate
     //RabbidsGoHomeLaunchData Game_RabbidsGoHomeLaunchData, RabbidsGoHomeLaunchData

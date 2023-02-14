@@ -325,10 +325,69 @@ public class AppDataManager
             }
         }
 
-        // Migrate TPLS utility
-        if (legacyData.Utility_TPLSData != null)
+        // Migrate the TPLS utility
+        if (legacyData.Utility_TPLSData is { InstallDir.DirectoryExists: true })
         {
-            // TODO-14: Migrate this by creating emu installation etc.
+            Logger.Info("v14 data migration: Migrating TPLS utility");
+
+            // Find the Rayman 1 game installation
+            var gameInstallation = GamesManager.FindInstalledGame(GameSearch.Create(Game.Rayman1, GamePlatform.MsDos));
+
+            if (gameInstallation != null)
+            {
+                Utility_Rayman1_TPLS_ViewModel vm = new(gameInstallation);
+
+                Utility_Rayman1_TPLS_RaymanVersion version = legacyData.Utility_TPLSData.RaymanVersion switch
+                {
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Auto =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Auto,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_00 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_00,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_10 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_10,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_12_0 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_0,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_12_1 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_1,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_12_2 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_2,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_20 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_20,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_21 =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_21,
+                    LegacyPre14AppUserData.TPLSRaymanVersion.Ray_1_21_Chinese =>
+                        Utility_Rayman1_TPLS_RaymanVersion.Ray_1_21_Chinese,
+                    _ => Utility_Rayman1_TPLS_RaymanVersion.Auto
+                };
+
+                try
+                {
+                    // Set the installation
+                    await vm.SetInstallationAsync(
+                        installDir: legacyData.Utility_TPLSData.InstallDir, 
+                        version: version,
+                        isEnabled: legacyData.Utility_TPLSData.IsEnabled);
+
+                    Logger.Info("v14 data migration: Migrated TPLS utility");
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "v14 data migration: Migrating TPLS utility");
+                }
+            }
+            else
+            {
+                Logger.Error("v14 data migration: Uninstalling TPLS due to no matching game being found");
+
+                try
+                {
+                    FileManager.DeleteDirectory(legacyData.Utility_TPLSData.InstallDir);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "v14 data migration: Uninstalling TPLS");
+                }
+            }
         }
 
         async Task addGameClientAsync(
