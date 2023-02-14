@@ -59,7 +59,7 @@ public partial class GameHubControl : UserControl
 
     private static void UpdateGamePanelsUniformGrid(UniformGrid grid)
     {
-        const int minPanelWidth = 300;
+        const int minPanelWidth = 325;
         int minColumns = grid.ActualWidth < (minPanelWidth * 2) ? 1 : 2;
         grid.Columns = (int)(grid.ActualWidth / minPanelWidth).Clamp(minColumns, Math.Max(minColumns, grid.Children.Count));
     }
