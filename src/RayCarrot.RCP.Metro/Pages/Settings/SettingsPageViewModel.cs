@@ -21,7 +21,8 @@ public class SettingsPageViewModel : BasePageViewModel
         IMessageUIManager messageUi, 
         AppUIManager ui, 
         GamesManager gamesManager, 
-        JumpListManager jumpListManager) : base(app)
+        JumpListManager jumpListManager, 
+        FileManager fileManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
@@ -30,11 +31,15 @@ public class SettingsPageViewModel : BasePageViewModel
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         JumpListManager = jumpListManager ?? throw new ArgumentNullException(nameof(jumpListManager));
+        FileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
 
         // Create commands
         ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
         EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
         RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync(true, true, true)));
+        OpenFileCommand = new AsyncRelayCommand(x => OpenFileAsync((FileSystemPath)x!));
+        OpenDirectoryCommand = new AsyncRelayCommand(x => OpenDirectoryAsync((FileSystemPath)x!));
+        OpenRegistryKeyCommand = new AsyncRelayCommand(x => OpenRegistryKeyAsync((string)x!));
         ResetCommand = new AsyncRelayCommand(ResetAsync);
 
         UpdatePatchFileTypeAssociationCommand = new AsyncRelayCommand(UpdatePatchFileTypeAssociationAsync);
@@ -78,6 +83,9 @@ public class SettingsPageViewModel : BasePageViewModel
 
     public ICommand ContributeLocalizationCommand { get; }
     public ICommand EditJumpListCommand { get; }
+    public ICommand OpenFileCommand { get; }
+    public ICommand OpenDirectoryCommand { get; }
+    public ICommand OpenRegistryKeyCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand ResetCommand { get; }
 
@@ -103,6 +111,7 @@ public class SettingsPageViewModel : BasePageViewModel
     public AppUIManager UI { get; }
     public GamesManager GamesManager { get; }
     private JumpListManager JumpListManager { get; }
+    private FileManager FileManager { get; }
 
     #endregion
 
@@ -226,6 +235,10 @@ public class SettingsPageViewModel : BasePageViewModel
             OnPropertyChanged(nameof(AssociatedPrograms));
         });
     }
+
+    public Task OpenFileAsync(FileSystemPath filePath) => FileManager.LaunchFileAsync(filePath);
+    public Task OpenDirectoryAsync(FileSystemPath dirPath) => FileManager.OpenExplorerLocationAsync(dirPath);
+    public Task OpenRegistryKeyAsync(string registryKey) => FileManager.OpenRegistryKeyAsync(registryKey);
 
     public async Task ResetAsync()
     {
