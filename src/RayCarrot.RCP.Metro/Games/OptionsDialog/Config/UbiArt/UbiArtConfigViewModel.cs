@@ -106,6 +106,8 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
+        AddConfigLocation(LinkItemViewModel.LinkType.RegistryKey, RegistryKey);
+
         using (RegistryKey? key = GetKey(false))
         {
             if (key != null)

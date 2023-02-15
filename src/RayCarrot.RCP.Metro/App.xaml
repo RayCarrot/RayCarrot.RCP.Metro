@@ -35,7 +35,6 @@
                 <ResourceDictionary Source="UI/Styles/Button.xaml" />
                 <ResourceDictionary Source="UI/Styles/NumericUpDown.xaml" />
                 <ResourceDictionary Source="UI/Styles/AutoCompleteTextBox.xaml" />
-                <ResourceDictionary Source="Pages/Settings/LinkItem.List.xaml" />
                 <ResourceDictionary Source="UI/Styles/ChildWindow.xaml" />
                 <ResourceDictionary Source="UI/Styles/Window.xaml" />
                 <ResourceDictionary Source="UI/Styles/Expander.xaml" />

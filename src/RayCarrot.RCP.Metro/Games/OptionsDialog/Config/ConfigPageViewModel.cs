@@ -5,6 +5,8 @@ public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
     protected ConfigPageViewModel() 
     {
         GraphicsMode = new GraphicsModeSelectionViewModel();
+        ConfigLocations = new ObservableCollection<LinkItemViewModel>();
+
         GraphicsMode.GraphicsModeChanged += GraphicsMode_GraphicsModeChanged;
     }
 
@@ -20,6 +22,32 @@ public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
     /// The graphics mode for the game, such as the resolution
     /// </summary>
     public GraphicsModeSelectionViewModel GraphicsMode { get; }
+
+    public ObservableCollection<LinkItemViewModel> ConfigLocations { get; }
+
+    protected void AddConfigLocation(LinkItemViewModel.LinkType type, string linkPath)
+    {
+        LinkItemViewModel link = new(type, linkPath);
+
+        if (link.IsValid)
+            ConfigLocations.Add(link);
+    }
+
+    protected override Task PreLoadAsync()
+    {
+        ConfigLocations.Clear();
+        return Task.CompletedTask;
+    }
+
+    protected override Task PostLoadAsync()
+    {
+        // Load icons
+        return Task.Run(() =>
+        {
+            foreach (LinkItemViewModel link in ConfigLocations)
+                link.LoadIcon();
+        });
+    }
 
     private void GraphicsMode_GraphicsModeChanged(object sender, EventArgs e)
     {

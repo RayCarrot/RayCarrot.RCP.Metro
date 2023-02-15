@@ -24,37 +24,6 @@
                     Command="{Binding Path=EditJumpListCommand}"
                     rcp:Icon.Kind="PencilBoxOutline" />
 
-            <Separator />
-
-            <!-- Link options -->
-            <StackPanel Margin="6">
-                <!-- Link style -->
-                <TextBlock Text="{Resx LinksPage_LinkStyleHeader}"
-                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Margin="0 0 0 4" />
-                <RadioButton Content="{Resx LinksPage_LinkStyle_List}"
-                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_LinkItemStyle.List}}" 
-                             Margin="0 0 0 4" />
-                <RadioButton Content="{Resx LinksPage_LinkStyle_Group}"
-                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_LinkItemStyle.Group}}"
-                             Margin="0 0 0 6" />
-
-                <!-- Link alignment -->
-                <StackPanel IsEnabled="{Binding Path=Data.UI_LinkItemStyle, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_LinkItemStyle.List}}">
-                    <TextBlock Text="{Resx LinksPage_LinkAlignmentStyleHeader}"
-                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Margin="0 0 0 4" />
-                    <RadioButton Content="{Resx LinksPage_LinkAlignmentStyle_Left}"
-                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static HorizontalAlignment.Left}}" 
-                                 Margin="0 0 0 4" />
-                    <RadioButton Content="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
-                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static HorizontalAlignment.Stretch}}" />
-                </StackPanel>
-
-            </StackPanel>
-
-            <Separator rcp:UserLevelAssist.MinUserLevel="Advanced"/>
-
             <Button rcp:Icon.Kind="Refresh"
                     Command="{Binding Path=RefreshCommand}"
                     HorizontalContentAlignment="Stretch"
@@ -558,20 +527,6 @@
                     </StackPanel>
 
                 </StackPanel>
-            </ScrollViewer>
-
-        </TabItem>
-
-        <!-- Links -->
-
-        <TabItem rcp:TabItemAssist.IconKind="Link"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Info}"
-                 Header="{Resx LinksPageHeader}">
-
-            <ScrollViewer>
-                <ItemsControl Margin="12 0 12 12"
-                              Style="{DynamicResource RCP.Styles.ItemsControl.LinkItemsDisplay}"
-                              ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}" />
             </ScrollViewer>
 
         </TabItem>

@@ -37,8 +37,6 @@ public partial class AppUserData : BaseViewModel
         UI_WindowState = null;
         UI_ShowProgressOnTaskBar = true;
         UI_EnableAnimations = true;
-        UI_LinkItemStyle = UserData_LinkItemStyle.List;
-        UI_LinkListHorizontalAlignment = HorizontalAlignment.Left;
         UI_UseChildWindows = true;
         UI_ShowGameInfo = false;
 
@@ -209,16 +207,6 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if animations are enabled
     /// </summary>
     public bool UI_EnableAnimations { get; set; }
-
-    /// <summary>
-    /// The current link item style
-    /// </summary>
-    public UserData_LinkItemStyle UI_LinkItemStyle { get; set; }
-
-    /// <summary>
-    /// The horizontal alignment for link items in list view
-    /// </summary>
-    public HorizontalAlignment UI_LinkListHorizontalAlignment { get; set; }
 
     /// <summary>
     /// Indicates if dialogs should be shown as child windows whenever possible

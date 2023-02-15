@@ -181,6 +181,8 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
+        AddConfigLocation(LinkItemViewModel.LinkType.RegistryKey, RegistryHelpers.CombinePaths(Key_BasePath, GetGUID()));
+
         GraphicsMode.MinGraphicsWidth = 640;
         GraphicsMode.MinGraphicsHeight = 480;
         GraphicsMode.SortMode = GraphicsModeSelectionViewModel.GraphicsSortMode.TotalPixels;

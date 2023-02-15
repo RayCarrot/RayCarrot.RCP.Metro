@@ -91,12 +91,14 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
 
     #region Protected Methods
 
+    protected FileSystemPath GetFilePath(string fileName) => SaveDir + fileName;
+
     /// <summary>
     /// Reads a single byte from the specified file relative to the current save data
     /// </summary>
     /// <param name="fileName">The file name, relative to the current save data</param>
     /// <returns>The byte or null if not found</returns>
-    protected virtual byte? ReadSingleByteFile(FileSystemPath fileName)
+    protected virtual byte? ReadSingleByteFile(string fileName)
     {
         return ReadMultiByteFile(fileName, 1)?.FirstOrDefault();
     }
@@ -107,10 +109,10 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// <param name="fileName">The file name, relative to the current save data</param>
     /// <param name="length">The amount of bytes to read</param>
     /// <returns>The bytes or null if not found</returns>
-    protected virtual byte[]? ReadMultiByteFile(FileSystemPath fileName, int length)
+    protected virtual byte[]? ReadMultiByteFile(string fileName, int length)
     {
         // Get the file path
-        var filePath = SaveDir + fileName;
+        var filePath = GetFilePath(fileName);
 
         // Make sure the file exists
         if (!filePath.FileExists)
@@ -134,7 +136,7 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// </summary>
     /// <param name="fileName">The file name, relative to the current save data</param>
     /// <param name="value">The byte to write</param>
-    protected virtual void WriteSingleByteFile(FileSystemPath fileName, byte value)
+    protected virtual void WriteSingleByteFile(string fileName, byte value)
     {
         WriteMultiByteFile(fileName, new byte[]
         {
@@ -147,10 +149,10 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// </summary>
     /// <param name="fileName">The file name, relative to the current save data</param>
     /// <param name="value">The bytes to write</param>
-    protected virtual void WriteMultiByteFile(FileSystemPath fileName, byte[] value)
+    protected virtual void WriteMultiByteFile(string fileName, byte[] value)
     {
         // Get the file path
-        var filePath = SaveDir + fileName;
+        var filePath = GetFilePath(fileName);
 
         // Create the file stream
         using var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
@@ -181,6 +183,8 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
 
         // Get the save directory
         SaveDir = GameDescriptor.GetLocalAppDataDirectory();
+
+        AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedVolumeFileName));
 
         // Read game specific values
         await SetupGameAsync();

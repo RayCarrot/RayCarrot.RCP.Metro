@@ -21,6 +21,8 @@
                 <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
             </i:Interaction.Behaviors>
 
+            <optionsDialog:ConfigLocationsControl rcp:UnifiedMargin.Ignored="True" />
+
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                            Text="{Resx Config_Resolution}" />

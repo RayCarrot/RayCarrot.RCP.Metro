@@ -69,7 +69,6 @@ public class AppDataManager
     #region Private Properties
 
     private FileSystemPath PreviousBackupLocation { get; set; }
-    private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
 
     #endregion
 
@@ -101,34 +100,6 @@ public class AppDataManager
                     await MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
 
                     PreviousBackupLocation = Data.Backup_BackupLocation;
-
-                    break;
-
-                case nameof(AppUserData.UI_LinkItemStyle):
-                    static string GetStyleSource(UserData_LinkItemStyle linkItemStye) =>
-                        $"{AppViewModel.WPFApplicationBasePath}/Pages/Settings/LinkItem.{linkItemStye}.xaml";
-
-                    // Get previous source
-                    string oldSource = GetStyleSource(PreviousLinkItemStyle);
-
-                    // Remove old source
-                    foreach (ResourceDictionary resourceDictionary in App.Current.Resources.MergedDictionaries)
-                    {
-                        if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource,
-                                StringComparison.OrdinalIgnoreCase))
-                            continue;
-
-                        App.Current.Resources.MergedDictionaries.Remove(resourceDictionary);
-                        break;
-                    }
-
-                    // Add new source
-                    App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
-                    {
-                        Source = new Uri(GetStyleSource(Data.UI_LinkItemStyle))
-                    });
-
-                    PreviousLinkItemStyle = Data.UI_LinkItemStyle;
 
                     break;
             }
@@ -628,7 +599,6 @@ public class AppDataManager
 
         // Track changes to the user data
         Data.PropertyChanged += Data_PropertyChangedAsync;
-        PreviousLinkItemStyle = Data.UI_LinkItemStyle;
         PreviousBackupLocation = Data.Backup_BackupLocation;
     }
 

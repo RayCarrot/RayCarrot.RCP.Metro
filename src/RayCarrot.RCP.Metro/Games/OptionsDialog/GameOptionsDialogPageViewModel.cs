@@ -109,7 +109,9 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
 
     #region Protected Methods
 
+    protected virtual Task PreLoadAsync() => Task.CompletedTask;
     protected virtual Task LoadAsync() => Task.CompletedTask;
+    protected virtual Task PostLoadAsync() => Task.CompletedTask;
     protected virtual Task<bool> SaveAsync() => Task.FromResult(false);
     protected virtual void UseRecommended() { }
 
@@ -133,7 +135,9 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
             try
             {
                 // Load the page
+                await Task.Run(PreLoadAsync);
                 await Task.Run(LoadAsync);
+                await Task.Run(PostLoadAsync);
 
                 Logger.Info("Loaded {0} page", PageName);
             }

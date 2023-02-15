@@ -333,6 +333,8 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         // Get the config path
         ConfigPath = GetUbiIniPath(GameInstallation);
 
+        AddConfigLocation(LinkItemViewModel.LinkType.File, ConfigPath);
+
         Logger.Info("The ubi.ini path has been retrieved as {0}", ConfigPath);
 
         // Get the dinput type

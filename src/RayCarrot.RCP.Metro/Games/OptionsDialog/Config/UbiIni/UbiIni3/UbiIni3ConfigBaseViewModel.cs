@@ -449,6 +449,9 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
             }
         }
 
+        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath1);
+        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath2);
+
         return isAppliedPatchOutdated;
     }
 

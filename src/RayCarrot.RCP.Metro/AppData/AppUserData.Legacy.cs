@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using System.Windows;
 using Newtonsoft.Json;
 using PropertyChanged;
 
@@ -35,8 +34,6 @@ public partial class AppUserData : BaseViewModel
     [JsonProperty] private bool CloseAppOnGameLaunch { set => App_CloseAppOnGameLaunch = value; }
     [JsonProperty] private bool CloseConfigOnSave { set => App_CloseConfigOnSave = value; }
     [JsonProperty] private FileSystemPath BackupLocation { set => Backup_BackupLocation = value; }
-    [JsonProperty] private UserData_LinkItemStyle LinkItemStyle { set => UI_LinkItemStyle = value; }
-    [JsonProperty] private HorizontalAlignment LinkListHorizontalAlignment { set => UI_LinkListHorizontalAlignment = value; }
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }
     [JsonProperty] private bool HandleDownloadsManually { set => App_HandleDownloadsManually = value; }

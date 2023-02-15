@@ -1,17 +1,11 @@
-﻿using Microsoft.Win32;
-using Nito.AsyncEx;
-using System.Collections.Specialized;
-using System.Diagnostics;
+﻿using System.Collections.Specialized;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
+using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Settings;
-
-// TODO-14: Perhaps remove the links page? We could move game-specific links to game hub (like registry key links). The RCP
-//          specific ones could be moved to the page popup for either the Settings or About page.
 
 /// <summary>
 /// View model for the settings page
@@ -48,11 +42,7 @@ public class SettingsPageViewModel : BasePageViewModel
 
         // Create properties
         AsyncLock = new AsyncLock();
-        LocalLinkItems = new LinkItemCollection(Data);
         AssociatedPrograms = new ObservableCollection<AssociatedProgramEntryViewModel>();
-
-        // Enable collection synchronization
-        BindingOperations.EnableCollectionSynchronization(LocalLinkItems, this);
 
         // Refresh when needed
         InstanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false, false));
@@ -145,11 +135,6 @@ public class SettingsPageViewModel : BasePageViewModel
         }
     }
 
-    /// <summary>
-    /// The local link items
-    /// </summary>
-    public LinkItemCollection LocalLinkItems { get; }
-
     public ObservableCollection<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
 
     public bool CanAssociatePatchFileType { get; set; }
@@ -221,115 +206,6 @@ public class SettingsPageViewModel : BasePageViewModel
                 AssociatePatchFileType = isAssociatedWithFileType ?? false;
                 AssociatePatchURIProtocol = isAssociatedWithURIProtocol ?? false;
             }
-
-            try
-            {
-                Stopwatch time = new();
-
-                time.Start();
-
-                Logger.Info("The links are refreshing...");
-
-                LocalLinkItems.Clear();
-
-                GameInstallation? r2GameInstallation = GamesManager.FindInstalledGame(GameSearch.Create(Game.Rayman2, GamePlatform.Win32));
-
-                // Config files
-                LocalLinkItems.Add(new LinkItemViewModel[]
-                {
-                    new(AppFilePaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
-                    new(AppFilePaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni, UserLevel.Advanced),
-                    new(r2GameInstallation != null
-                        ? r2GameInstallation.InstallLocation.Directory + "ubi.ini"
-                        : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
-                    new(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
-                });
-
-                // Steam paths
-                try
-                {
-                    using RegistryKey? key = RegistryHelpers.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default);
-
-                    if (key != null)
-                    {
-                        FileSystemPath steamDir = key.GetValue("SteamPath", null)?.ToString();
-                        string? steamExe = key.GetValue("SteamExe", null)?.ToString();
-
-                        if (steamDir.DirectoryExists)
-                        {
-                            if (steamExe != null)
-                                LocalLinkItems.Add(new LinkItemViewModel(
-                                    steamDir + steamExe, Resources.Links_Local_Steam).YieldToArray());
-
-                            LocalLinkItems.Add(new LinkItemViewModel(
-                                steamDir + @"steamapps\common", Resources.Links_Local_SteamGames, UserLevel.Advanced).YieldToArray());
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn(ex, "Getting Steam Registry key");
-                }
-
-                // GOG paths
-                try
-                {
-                    using RegistryKey? key = RegistryHelpers.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default);
-                    
-                    if (key != null)
-                    {
-                        FileSystemPath gogDir = key.GetValue("client", null)?.ToString();
-
-                        if (gogDir.DirectoryExists)
-                            LocalLinkItems.Add(new LinkItemViewModel[]
-                            {
-                                new(gogDir + "GalaxyClient.exe", Resources.Links_Local_GOGClient),
-                                new(gogDir + @"Games", Resources.Links_Local_GOGGames, UserLevel.Advanced)
-                            });
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn(ex, "Getting GOG Galaxy Registry key");
-                }
-
-                // Registry paths
-                LocalLinkItems.Add(new LinkItemViewModel[]
-                {
-                    new(AppFilePaths.RaymanRavingRabbidsRegistryKey, Resources.Links_Local_RRRRegSettings, UserLevel.Technical),
-                    new(AppFilePaths.RaymanRavingRabbids2RegistryKey, Resources.Links_Local_RRR2RegSettings, UserLevel.Technical),
-                    new(AppFilePaths.RaymanOriginsRegistryKey, Resources.Links_Local_RORegSettings, UserLevel.Technical),
-                    new(AppFilePaths.RaymanLegendsRegistryKey, Resources.Links_Local_RLRegSettings, UserLevel.Technical),
-                    new(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide", Resources.Links_Local_nGlideRegSettings, UserLevel.Technical),
-                    new(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2", Resources.Links_Local_nGlide2RegSettings, UserLevel.Technical)
-                });
-
-                // Debug paths
-                LocalLinkItems.Add(new LinkItemViewModel[]
-                {
-                    new(AppFilePaths.UserDataBaseDir, Resources.Links_Local_AppData, UserLevel.Technical),
-                    new(AppFilePaths.LogFile, Resources.Links_Local_LogFile, UserLevel.Debug),
-                    new(AppFilePaths.UtilitiesBaseDir, Resources.Links_Local_Utilities, UserLevel.Debug),
-                    new(AppFilePaths.TempPath, Resources.Links_Local_Temp, UserLevel.Debug),
-                    new(AppFilePaths.RegistryBaseKey, Resources.Links_Local_RegAppData, UserLevel.Technical)
-                });
-
-                // Load icons
-                await Task.Run(() =>
-                {
-                    foreach (LinkItemViewModel link in LocalLinkItems.SelectMany(x => x))
-                        link.LoadIcon();
-                });
-
-                time.Stop();
-
-                Logger.Info("The links have refreshed");
-                Logger.Debug("The link refresh time was {0} ms", time.ElapsedMilliseconds);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Refreshing links");
-            }
         }
     }
 
@@ -393,33 +269,6 @@ public class SettingsPageViewModel : BasePageViewModel
     #endregion
 
     #region Classes
-
-    /// <summary>
-    /// A collection of link item groups
-    /// </summary>
-    public class LinkItemCollection : ObservableCollection<LinkItemViewModel[]>
-    {
-        public LinkItemCollection(AppUserData data)
-        {
-            Data = data ?? throw new ArgumentNullException(nameof(data));
-        }
-
-        public AppUserData Data { get; }
-
-        /// <summary>
-        /// Adds a new group to the collection
-        /// </summary>
-        /// <param name="group">The group to add</param>
-        public new void Add(LinkItemViewModel[] group)
-        {
-            // Get the valid items
-            var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= Data.App_UserLevel).ToArray();
-
-            // If there are valid items, add them
-            if (validItems.Any())
-                base.Add(validItems);
-        }
-    }
 
     public class AssociatedProgramEntryViewModel : BaseRCPViewModel
     {

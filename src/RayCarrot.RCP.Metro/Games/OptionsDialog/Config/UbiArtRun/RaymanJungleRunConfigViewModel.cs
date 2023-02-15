@@ -67,6 +67,9 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
     /// <returns>The task</returns>
     protected override Task SetupGameAsync()
     {
+        AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedHeroFileName));
+        AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedSlotFileName));
+
         // Read selected hero and save slot data
         SelectedHero = (JungleRunHero)(ReadSingleByteFile(SelectedHeroFileName) ?? 0);
         SelectedSlot = ReadSingleByteFile(SelectedSlotFileName) ?? 0;
