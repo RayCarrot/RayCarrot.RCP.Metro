@@ -7,8 +7,6 @@ namespace RayCarrot.RCP.Metro;
 [SuppressPropertyChangedWarnings] // Suppress warnings since we use the legacy private setter properties
 public partial class AppUserData : BaseViewModel
 {
-    #region Legacy
-
     // In version 12.0 the property names were changed. In order to still deserialize the properties using their old names we
     // provide legacy set-only properties for them
 
@@ -39,6 +37,4 @@ public partial class AppUserData : BaseViewModel
     [JsonProperty] private bool HandleDownloadsManually { set => App_HandleDownloadsManually = value; }
     [JsonProperty] private UserData_Archive_Sort ArchiveExplorerSortOption { set => Archive_ExplorerSortOption = value; }
 #pragma warning restore IDE0051 // Remove unused private members
-
-    #endregion
 }
