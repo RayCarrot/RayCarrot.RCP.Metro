@@ -262,7 +262,10 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         }
     }
 
-    public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths)
+    public double GetOnRepackedArchivesProgressLength() => 
+        GameInstallation == null || CPATextureSyncItems == null || !Services.Data.Archive_CNT_SyncOnRepack ? 0 : 0.2;
+
+    public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null)
     {
         // Make sure the texture sync can be performed
         if (GameInstallation == null || CPATextureSyncItems == null)
@@ -290,8 +293,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         CPATextureSyncManager textureSyncManager = new(GameInstallation, Settings, CPATextureSyncItems);
 
-        // TODO-14: Add progress callback?
-        await textureSyncManager.SyncTextureInfoAsync(archiveFilePaths);
+        await textureSyncManager.SyncTextureInfoAsync(archiveFilePaths, progressCallback);
     }
 
     /// <summary>

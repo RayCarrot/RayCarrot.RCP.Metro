@@ -265,6 +265,11 @@ public class ArchiveViewModel : DirectoryViewModel
                         // Get a temporary file path to write to
                         using TempFile tempOutputFile = new(false);
 
+                        const double repackProgress = 1.0;
+                        double onRepackedProgress = Manager.GetOnRepackedArchivesProgressLength();
+
+                        Progress currentProgress = new(0, repackProgress + onRepackedProgress);
+
                         // Create the file and get the stream
                         using (ArchiveFileStream outputStream = new(File.Create(tempOutputFile.TempPath),
                                    tempOutputFile.TempPath.Name, true))
@@ -277,9 +282,11 @@ public class ArchiveViewModel : DirectoryViewModel
                                 files: this.GetAllChildren<DirectoryViewModel>(true).SelectMany(x => x.Files)
                                     .Select(x => x.FileData),
                                 // ReSharper disable once AccessToDisposedClosure
-                                progressCallback: x => state.SetProgress(x),
+                                progressCallback: x => state.SetProgress(currentProgress.Add(x, repackProgress)),
                                 cancellationToken: state.CancellationToken);
                         }
+
+                        currentProgress += repackProgress;
 
                         state.SetCanCancel(false);
 
@@ -292,7 +299,10 @@ public class ArchiveViewModel : DirectoryViewModel
                         Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
                         // On repack
-                        await Manager.OnRepackedArchivesAsync(new[] { FilePath });
+                        await Manager.OnRepackedArchivesAsync(new[] { FilePath }, 
+                            x => state.SetProgress(currentProgress.Add(x, onRepackedProgress)));
+
+                        currentProgress += onRepackedProgress;
 
                         // Re-open the file stream
                         OpenFile();

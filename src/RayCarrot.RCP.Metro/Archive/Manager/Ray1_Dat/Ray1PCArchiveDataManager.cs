@@ -249,7 +249,9 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         }
     }
 
-    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths) => Task.CompletedTask;
+    public double GetOnRepackedArchivesProgressLength() => 0;
+
+    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null) => Task.CompletedTask;
 
     /// <summary>
     /// Loads the archive data

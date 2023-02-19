@@ -421,7 +421,12 @@ public class Patcher
 
         int totalFilesCount = locationModifications.Values.Sum(x => x.FileModifications.Count);
         int libraryRepackProgressLength = totalFilesCount / 3;
-        Progress currentProgress = new(0, totalFilesCount + libraryRepackProgressLength);
+        double onRepackedProgressLength = locationModifications.
+            Where(x => x.Key != String.Empty && x.Value.ArchiveDataManager != null).
+            Select(x => x.Value.ArchiveDataManager!).
+            Distinct().
+            Select(x => x.GetOnRepackedArchivesProgressLength()).Sum() * totalFilesCount;
+        Progress currentProgress = new(0, totalFilesCount + libraryRepackProgressLength + onRepackedProgressLength);
 
         progressCallback?.Invoke(currentProgress);
 
@@ -474,7 +479,9 @@ public class Patcher
                      Where(x => x.Key != String.Empty && x.Value.ArchiveDataManager != null).
                      GroupBy(x => x.Value.ArchiveDataManager))
         {
-            await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDirectory + x.Value.Location).ToArray());
+            double progressLength = archivedLocations.Key!.GetOnRepackedArchivesProgressLength() * totalFilesCount;
+            await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDirectory + x.Value.Location).ToArray(), getOperationProgressCallback(progressLength));
+            currentProgress += progressLength;
         }
 
         progressCallback?.Invoke(currentProgress);

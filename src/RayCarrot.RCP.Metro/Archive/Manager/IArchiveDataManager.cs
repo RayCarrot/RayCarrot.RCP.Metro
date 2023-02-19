@@ -80,11 +80,18 @@ public interface IArchiveDataManager : IDisposable
         CancellationToken cancellationToken);
 
     /// <summary>
+    /// Gets the progress length for the progress callback when calling <see cref="OnRepackedArchivesAsync"/>
+    /// </summary>
+    /// <returns>A value between 0 and 1</returns>
+    double GetOnRepackedArchivesProgressLength();
+
+    /// <summary>
     /// Optional operations to perform after repacking archives
     /// </summary>
     /// <param name="archiveFilePaths">The file paths of the repacked archives</param>
+    /// <param name="progressCallback">An optional progress callback action</param>
     /// <returns>The task</returns>
-    Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths);
+    Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null);
 
     /// <summary>
     /// Loads the archive data

@@ -242,7 +242,9 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
     }
 
-    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths) => Task.CompletedTask;
+    public double GetOnRepackedArchivesProgressLength() => 0;
+
+    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null) => Task.CompletedTask;
 
     private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {
