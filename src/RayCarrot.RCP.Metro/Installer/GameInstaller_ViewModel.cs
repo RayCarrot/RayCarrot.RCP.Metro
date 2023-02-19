@@ -325,7 +325,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 InstalledGame = await Services.Games.AddGameAsync(GameDescriptor, new InstallLocation(output), x =>
                 {
                     // Set the install info
-                    RCPGameInstallData installData = new(output, RCPGameInstallData.RCPInstallMode.DiscInstall);
+                    RCPGameInstallData installData = new(output, RCPGameInstallData.RCPInstallMode.DiscInstall, DateTime.Now);
                     x.SetObject(GameDataKey.RCP_GameInstallData, installData);
                 });
 

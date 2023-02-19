@@ -169,7 +169,6 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         if (!launchPath.FileExists)
             return Enumerable.Empty<JumpListItemViewModel>();
 
-        // TODO-14: One for each game mode for edu games?
         return new[]
         {
             new JumpListItemViewModel(

@@ -461,7 +461,7 @@ public class AppDataManager
                                 .DiscInstall,
                             _ => RCPGameInstallData.RCPInstallMode.Download
                         };
-                        RCPGameInstallData installData = new(installDir, installMode);
+                        RCPGameInstallData installData = new(installDir, installMode, DateTime.Now);
                         x.SetObject(GameDataKey.RCP_GameInstallData, installData);
                         Logger.Info("v14 data migration: Set the install data with mode {0}", installMode);
                     }

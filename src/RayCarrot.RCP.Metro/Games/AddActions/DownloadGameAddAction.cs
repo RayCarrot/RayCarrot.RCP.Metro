@@ -41,7 +41,7 @@ public class DownloadGameAddAction : GameAddAction
         GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, new InstallLocation(gameDir), x =>
         {
             // Set the install info
-            RCPGameInstallData installData = new(gameDir, RCPGameInstallData.RCPInstallMode.Download);
+            RCPGameInstallData installData = new(gameDir, RCPGameInstallData.RCPInstallMode.Download, DateTime.Now);
             x.SetObject(GameDataKey.RCP_GameInstallData, installData);
         });
 

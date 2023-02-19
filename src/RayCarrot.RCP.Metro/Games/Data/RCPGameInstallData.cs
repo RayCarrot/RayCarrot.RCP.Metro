@@ -8,13 +8,12 @@ namespace RayCarrot.RCP.Metro.Games.Data;
 /// </summary>
 public class RCPGameInstallData
 {
-    public RCPGameInstallData(FileSystemPath installDir, RCPInstallMode installMode)
+    public RCPGameInstallData(FileSystemPath installDir, RCPInstallMode installMode, DateTime installDate)
     {
         InstallDir = installDir;
         InstallMode = installMode;
+        InstallDate = installDate;
     }
-
-    // TODO-14: Add more properties like Registry key (if we add that eventually), install date, size etc.?
 
     /// <summary>
     /// The directory the game was installed to. In most cases this matches the install location.
@@ -26,6 +25,11 @@ public class RCPGameInstallData
     /// The was in which the game was installed
     /// </summary>
     public RCPInstallMode InstallMode { get; }
+
+    /// <summary>
+    /// The time and date the game was installed
+    /// </summary>
+    public DateTime InstallDate { get; }
 
     [JsonConverter(typeof(StringEnumConverter))]
     public enum RCPInstallMode
