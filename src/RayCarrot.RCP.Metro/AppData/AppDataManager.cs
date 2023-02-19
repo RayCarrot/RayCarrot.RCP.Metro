@@ -361,6 +361,37 @@ public class AppDataManager
             }
         }
 
+        // Migrate progression data sources
+        if (legacyData.Backup_GameDataSources != null)
+        {
+            foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+            {
+                var progressionManagers = gameInstallation.GetComponent<ProgressionManagersComponent>()?.CreateObject();
+
+                if (progressionManagers == null) 
+                    continue;
+                
+                foreach (GameProgressionManager progressionManager in progressionManagers)
+                {
+                    if (legacyData.Backup_GameDataSources.TryGetValue(progressionManager.BackupId,
+                            out LegacyPre14AppUserData.ProgramDataSource src) &&
+                        src != LegacyPre14AppUserData.ProgramDataSource.Auto)
+                    {
+                        gameInstallation.ModifyObject<ProgressionDataSources>(GameDataKey.Progression_DataSources,
+                            y => y.DataSources[progressionManager.BackupId] = src switch
+                            {
+                                LegacyPre14AppUserData.ProgramDataSource.Auto => ProgramDataSource.Auto,
+                                LegacyPre14AppUserData.ProgramDataSource.Default => ProgramDataSource.Default,
+                                LegacyPre14AppUserData.ProgramDataSource.VirtualStore => ProgramDataSource.VirtualStore,
+                                _ => ProgramDataSource.Auto
+                            });
+                    }
+                }
+            }
+
+            Logger.Info("v14 data migration: Set progression data sources");
+        }
+
         async Task addGameClientAsync(
             GameClientDescriptor descriptor,
             InstallLocation location,

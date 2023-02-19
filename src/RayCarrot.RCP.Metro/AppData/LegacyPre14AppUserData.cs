@@ -17,6 +17,7 @@ public class LegacyPre14AppUserData
     public string? Emu_DOSBox_Path { get; set; }
     public string? Emu_DOSBox_ConfigPath { get; set; }
     public _TPLSData? Utility_TPLSData { get; set; }
+    public Dictionary<string, ProgramDataSource>? Backup_GameDataSources { get; set; }
 
     // There was previously an oversight where this didn't get saved, so no need to migrate
     //RabbidsGoHomeLaunchData Game_RabbidsGoHomeLaunchData, RabbidsGoHomeLaunchData
@@ -73,4 +74,5 @@ public class LegacyPre14AppUserData
     public enum RaymanRavingRabbids2LaunchMode { AllGames, Orange, Red, Green, Blue }
     public enum FiestaRunEdition { Default, Preload, Win10 }
     public enum TPLSRaymanVersion { Auto, Ray_1_00, Ray_1_10, Ray_1_12_0, Ray_1_12_1, Ray_1_12_2, Ray_1_20, Ray_1_21, Ray_1_21_Chinese }
+    public enum ProgramDataSource { Auto, Default, VirtualStore }
 }

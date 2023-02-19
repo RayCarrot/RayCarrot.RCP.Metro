@@ -15,7 +15,10 @@ public static class GameDataKey
     // Game clients
     public const string Client_AttachedClient = "Client_AttachedClient";
     public const string Client_DosBox_MountPath = "Client_DosBox_MountPath";
-    
+
+    // Progression
+    public const string Progression_DataSources = "Progression_DataSources";
+
     // Games
     public const string R1_TplsData = "R1_TplsData";
     public const string Ray1_MsDosData = "Ray1_MsDosData";

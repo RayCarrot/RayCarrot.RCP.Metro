@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -22,7 +23,10 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
 
     protected override async Task LoadAsyncImpl()
     {
-        var dataSource = Services.Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupId, ProgramDataSource.Auto);
+        ProgressionDataSources? dataSources = GameInstallation.GetObject<ProgressionDataSources>(GameDataKey.Progression_DataSources);
+        var dataSource = dataSources?.DataSources.TryGetValue(ProgressionManager.BackupId, out ProgramDataSource src) == true
+            ? src
+            : ProgramDataSource.Auto;
         var fileSystem = new GameProgressionManager.PhysicalFileSystemWrapper(dataSource);
 
         GameProgressionSlot[] slots = await ProgressionManager.LoadSlotsAsync(fileSystem).ToArrayAsync();

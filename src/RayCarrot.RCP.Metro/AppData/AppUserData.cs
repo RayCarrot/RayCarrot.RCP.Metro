@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System.Reflection;
-using System.Windows;
 using System.Windows.Input;
 using RayCarrot.RCP.Metro.Games.Clients;
 
@@ -63,7 +62,6 @@ public partial class AppUserData : BaseViewModel
         // Backup
         Backup_BackupLocation = Environment.SpecialFolder.MyDocuments.GetFolderPath();
         Backup_CompressBackups = true;
-        Backup_GameDataSources = new Dictionary<string, ProgramDataSource>();
 
         // Progression
         Progression_SaveEditorExe = FileSystemPath.EmptyPath;
@@ -104,9 +102,6 @@ public partial class AppUserData : BaseViewModel
         // Mod
         Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping ??= new Dictionary<int, Key>();
-
-        // Backup
-        Backup_GameDataSources ??= new Dictionary<string, ProgramDataSource>();
 
         // Archive
         Archive_AssociatedPrograms ??= new Dictionary<string, FileSystemPath>();
@@ -307,11 +302,6 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if backups should be compressed
     /// </summary>
     public bool Backup_CompressBackups { get; set; }
-
-    /// <summary>
-    /// The data sources to use for game backups and progression
-    /// </summary>
-    public Dictionary<string, ProgramDataSource> Backup_GameDataSources { get; set; } // TODO-14: Handle per installation?
 
     #endregion
 

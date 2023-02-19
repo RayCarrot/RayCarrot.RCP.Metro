@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Windows.Input;
 using Nito.AsyncEx;
+using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Pages.Progression;
 
@@ -86,8 +87,18 @@ public class GameViewModel : BaseRCPViewModel
 
     public ProgramDataSource ProgramDataSource
     {
-        get => Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupId, ProgramDataSource.Auto);
-        set => Data.Backup_GameDataSources[ProgressionManager.BackupId] = value;
+        get
+        {
+            var dataSources = GameInstallation.GetObject<ProgressionDataSources>(GameDataKey.Progression_DataSources);
+            return dataSources?.DataSources.TryGetValue(ProgressionManager.BackupId, out ProgramDataSource src) == true
+                ? src
+                : ProgramDataSource.Auto;
+        }
+        set
+        {
+            GameInstallation.ModifyObject<ProgressionDataSources>(GameDataKey.Progression_DataSources, 
+                x => x.DataSources[ProgressionManager.BackupId] = value);
+        }
     }
 
     public ObservableCollection<GameSlotViewModel> Slots { get; }
@@ -414,8 +425,7 @@ public class GameViewModel : BaseRCPViewModel
             await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName));
 
             // Determine if the program data source can be modified
-            CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || 
-                                         (Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupId, out ProgramDataSource src) && src != ProgramDataSource.Auto);
+            CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || ProgramDataSource != ProgramDataSource.Auto;
 
             // Check if GOG cloud sync is in use
             CheckForGOGCloudSync();
