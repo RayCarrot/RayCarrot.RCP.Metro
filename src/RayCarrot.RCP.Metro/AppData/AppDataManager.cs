@@ -588,46 +588,6 @@ public class AppDataManager
         foreach (GameInstallation gameInstallation in Data.Game_GameInstallations)
             gameInstallation.RebuildComponents();
 
-        string? assemblyPath = Assembly.GetEntryAssembly()?.Location;
-
-        // Log some debug information
-        Logger.Debug("Entry assembly path: {0}", assemblyPath);
-
-        // Update the application path
-        if (assemblyPath != Data.App_ApplicationPath)
-        {
-            Data.App_ApplicationPath = assemblyPath;
-            Logger.Info("The application path has been updated");
-
-            if (File.Exists(assemblyPath))
-            {
-                // If the file type association is set for patch files we need to update them
-                if (PatchFile.IsAssociatedWithFileType() == true)
-                {
-                    try
-                    {
-                        PatchFile.AssociateWithFileType(assemblyPath, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Setting patch file type association");
-                    }
-                }
-
-                if (PatchFile.IsAssociatedWithURIProtocol() == true)
-                {
-                    try
-                    {
-                        PatchFile.AssociateWithURIProtocol(assemblyPath, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Setting patch URI protocol association");
-                    }
-                }
-            }
-        }
-
         // Track changes to the user data
         Data.PropertyChanged += Data_PropertyChangedAsync;
         PreviousBackupLocation = Data.Backup_BackupLocation;

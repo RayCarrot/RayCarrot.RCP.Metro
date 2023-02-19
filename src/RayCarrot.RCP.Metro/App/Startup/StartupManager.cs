@@ -7,6 +7,7 @@ using System.Windows;
 using MahApps.Metro.Controls;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -203,6 +204,52 @@ public class StartupManager
         }
     }
 
+    private void UpdateAppLocation() // NOTE: This has to run before the post-update
+    {
+        string? assemblyPath = Assembly.GetEntryAssembly()?.Location;
+
+        // Log some debug information
+        Logger.Debug("Entry assembly path: {0}", assemblyPath);
+
+        // Update the application path
+        if (assemblyPath == Data.App_ApplicationPath) 
+            return;
+        
+        Data.App_ApplicationPath = assemblyPath;
+        Logger.Info("The application path has been updated");
+
+        // Refresh the jump-list
+        JumpListManager.Refresh();
+
+        if (!File.Exists(assemblyPath)) 
+            return;
+        
+        // If the file type association is set for patch files we need to update them
+        if (PatchFile.IsAssociatedWithFileType() == true)
+        {
+            try
+            {
+                PatchFile.AssociateWithFileType(assemblyPath, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting patch file type association");
+            }
+        }
+
+        if (PatchFile.IsAssociatedWithURIProtocol() == true)
+        {
+            try
+            {
+                PatchFile.AssociateWithURIProtocol(assemblyPath, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting patch URI protocol association");
+            }
+        }
+    }
+
     private void CheckFirstLaunch()
     {
         // Show first launch info
@@ -288,7 +335,6 @@ public class StartupManager
         {
             await AppDataManager.PostUpdateAsync(Data.App_LastVersion);
 
-            // TODO-14: Probably remove this. But we should refresh whenever the app exe file path is changed.
             // Refresh the jump list
             JumpListManager.Refresh();
 
@@ -431,6 +477,9 @@ public class StartupManager
             URILaunchHandler? uriLaunchHandler = CheckURILaunch();
             InitWebProtocol();
             Logger.Debug("Startup {0} ms: Checked launch arguments and initialized web protocol", sw.ElapsedMilliseconds);
+
+            UpdateAppLocation();
+            Logger.Debug("Startup {0} ms: Updated app location", sw.ElapsedMilliseconds);
 
             // The file or URI launch can optionally disable the full startup
             if (fileLaunchHandler?.DisableFullStartup == true ||
