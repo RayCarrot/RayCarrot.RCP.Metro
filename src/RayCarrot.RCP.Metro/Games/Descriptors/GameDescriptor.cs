@@ -7,8 +7,6 @@ using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Move descriptors to folders based on platform?
-
 // It may be temping to have the games which inherit from GameDescriptor to be built up in a sort of hierarchy where they
 // inherit from base classes, such as the 3 Fiesta Run game editions inheriting from a base Fiesta Run class, but we
 // specifically do NOT want to do this. There are several reasons behind this which I won't go into here, but essentially

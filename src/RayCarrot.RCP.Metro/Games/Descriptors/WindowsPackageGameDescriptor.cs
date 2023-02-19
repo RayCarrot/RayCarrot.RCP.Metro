@@ -4,8 +4,6 @@ using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: We might need to disable inlining some places here so that this doesn't crash on Windows 7 where WinRT isn't supported
-
 /// <summary>
 /// A game descriptor for a Windows package
 /// </summary>

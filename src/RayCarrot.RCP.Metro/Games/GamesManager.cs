@@ -11,10 +11,9 @@ public class GamesManager
         Data = data ?? throw new ArgumentNullException(nameof(data));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
-        // TODO-14: Remove Windows Package apps if OS is older than 8?
-        // TODO-14: Reorder these here since demo category is removed. Order here shouldn't matter in the app though.
         GameDescriptors = new GameDescriptor[]
         {
+            // Rayman
             new GameDescriptor_Rayman1_MsDos(),
             new GameDescriptor_RaymanDesigner_MsDos(),
             new GameDescriptor_RaymanByHisFans_MsDos(),
@@ -30,12 +29,14 @@ public class GamesManager
             new GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage(),
             new GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPackage(),
 
+            // Rabbids
             new GameDescriptor_RaymanRavingRabbids_Win32(),
             new GameDescriptor_RaymanRavingRabbids2_Win32(),
             new GameDescriptor_RabbidsGoHome_Win32(),
             new GameDescriptor_RabbidsBigBang_WindowsPackage(),
             new GameDescriptor_RabbidsCoding_Win32(),
 
+            // Demos (no longer a category in the app)
             new GameDescriptor_Rayman1_Demo_19951207_MsDos(),
             new GameDescriptor_Rayman1_Demo_19960215_MsDos(),
             new GameDescriptor_Rayman1_Demo_19951204_MsDos(),
@@ -50,6 +51,7 @@ public class GamesManager
             new GameDescriptor_Rayman3_Demo_20030108_Win32(),
             new GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32(),
 
+            // Other
             new GameDescriptor_Rayman1Minigames_Win32(),
             new GameDescriptor_RaymanEdutainmentEdu_MsDos(),
             new GameDescriptor_RaymanEdutainmentQuiz_MsDos(),
@@ -61,6 +63,7 @@ public class GamesManager
             new GameDescriptor_RaymanActivityCenter_Win32(),
             new GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32(),
 
+            // Fan
             new GameDescriptor_TheDarkMagiciansReignofTerror_Win32(),
             new GameDescriptor_RaymanRedemption_Win32(),
             new GameDescriptor_RaymanRedesigner_Win32(),
