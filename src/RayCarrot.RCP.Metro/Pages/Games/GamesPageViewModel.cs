@@ -21,7 +21,8 @@ public class GamesPageViewModel : BasePageViewModel,
         GameClientsManager gameClientsManager, 
         AppUIManager ui,
         IMessageUIManager messageUi,
-        IMessenger messenger) : base(app)
+        IMessenger messenger, 
+        AppUserData data) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
@@ -29,6 +30,7 @@ public class GamesPageViewModel : BasePageViewModel,
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
+        Data = data ?? throw new ArgumentNullException(nameof(data));
 
         // Set properties
         AsyncLock = new AsyncLock();
@@ -36,9 +38,10 @@ public class GamesPageViewModel : BasePageViewModel,
         // Set up the games collection
         Games = new ObservableCollection<InstalledGameViewModel>();
         var source = CollectionViewSource.GetDefaultView(Games);
-        source.GroupDescriptions.Add(new PropertyGroupDescription(nameof(InstalledGameViewModel.GameGroup)));
         source.Filter = p => MatchesFilter((InstalledGameViewModel)p);
         GamesView = source;
+
+        RefreshGrouping(GroupGames);
 
         // Create commands
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
@@ -86,6 +89,7 @@ public class GamesPageViewModel : BasePageViewModel,
     private AppUIManager UI { get; }
     private IMessageUIManager MessageUI { get; }
     private IMessenger Messenger { get; }
+    private AppUserData Data { get; }
 
     #endregion
 
@@ -137,6 +141,16 @@ public class GamesPageViewModel : BasePageViewModel,
 
     public bool IsGameFinderRunning { get; private set; }
 
+    public bool GroupGames
+    {
+        get => Data.UI_GroupInstalledGames;
+        set
+        {
+            Data.UI_GroupInstalledGames = value;
+            RefreshGrouping(value);
+        }
+    }
+
     #endregion
 
     #region Private Methods
@@ -175,6 +189,14 @@ public class GamesPageViewModel : BasePageViewModel,
             if (SelectedInstalledGame?.GameGroup != group)
                 SetSelectedGame(Games.FirstOrDefault(x => x.GameGroup == group));
         }
+    }
+
+    private void RefreshGrouping(bool group)
+    {
+        if (group && GamesView.GroupDescriptions.Count == 0)
+            GamesView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(InstalledGameViewModel.GameGroup)));
+        else
+            GamesView.GroupDescriptions.Clear();
     }
 
     #endregion

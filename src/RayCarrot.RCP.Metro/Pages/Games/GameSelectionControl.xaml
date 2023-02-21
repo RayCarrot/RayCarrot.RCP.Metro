@@ -59,24 +59,66 @@
         </Grid.RowDefinitions>
 
         <!-- Search -->
-        <TextBox x:Name="SearchTextBox"
-                 Grid.Row="0"
-                 metro:TextBoxHelper.Watermark="Search"
-                 BorderThickness="0" 
-                 Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged}"
-                 Margin="0 0 0 8"
-                 KeyDown="SearchTextBox_OnKeyDown">
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
-                    <Style.Triggers>
-                        <!-- Show the clear button if there is text -->
-                        <Trigger Property="metro:TextBoxHelper.HasText" Value="True">
-                            <Setter Property="metro:TextBoxHelper.ClearTextButton" Value="True" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
+        <Grid Grid.Row="0"
+              Margin="0 0 0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="SearchTextBox"
+                     Grid.Column="0"
+                     metro:TextBoxHelper.Watermark="Search"
+                     BorderThickness="0" 
+                     Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0 0 4 0"
+                     KeyDown="SearchTextBox_OnKeyDown">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Style.Triggers>
+                            <!-- Show the clear button if there is text -->
+                            <Trigger Property="metro:TextBoxHelper.HasText" Value="True">
+                                <Setter Property="metro:TextBoxHelper.ClearTextButton" Value="True" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <rcp:PopupCard Grid.Column="1"
+                           Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+                <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+
+                    <metro:ToggleSwitch Content="Group games"
+                                        IsOn="{Binding Path=GroupGames}"
+                                        Margin="6"
+                                        Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
+
+                    <Separator />
+
+                    <Button rcp:Icon.Kind="Refresh"
+                            Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}"
+                            HorizontalContentAlignment="Stretch">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="{Resx Page_Refresh}" />
+
+                            <TextBlock Grid.Column="1"
+                                       Text="F5"
+                                       Margin="0 0 8 0" />
+
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
+            </rcp:PopupCard>
+
+        </Grid>
 
         <!-- Games -->
         <ScrollViewer x:Name="GamesPanelScrollViewer"
@@ -154,91 +196,92 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                <ListBox.Style>
+                    <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=GroupGames}" Value="True">
+                                <Setter Property="ItemTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0"
-                                   Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                                   VerticalAlignment="Center"
-                                   Width="20"
-                                   Margin="0 2"
-                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+                                                <Image Grid.Column="0"
+                                                       Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                                       VerticalAlignment="Center"
+                                                       Width="20"
+                                                       Margin="0 2"
+                                                       ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
-                            <TextBlock Grid.Column="1"
-                                       Text="{Binding Path=DisplayName.Value}"
-                                       d:Text="Rayman 2"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"
-                                       Margin="8 0 0 0"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding Path=DisplayName.Value}"
+                                                           d:Text="Rayman 2"
+                                                           VerticalAlignment="Center"
+                                                           TextWrapping="Wrap"
+                                                           Margin="8 0 0 0"/>
 
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=GroupGames}" Value="False">
+                                <Setter Property="ItemTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
+                                            <rcp:GameTitle GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
+                                                           GameIconSize="Small"
+                                                           Margin="0 4" />
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Style>
 
             </ListBox>
 
         </ScrollViewer>
 
         <!-- Actions -->
-        <Grid x:Name="ActionsGrid" Grid.Row="2" Margin="2 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <StackPanel x:Name="ActionsPanel" 
+                    Grid.Row="2" 
+                    Margin="2 0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
 
-            <!-- Left actions -->
-            <StackPanel Grid.Column="0"
-                        Orientation="Horizontal">
-
+            <Grid Margin="0 0 4 0">
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}"
-                        ToolTip="Refresh"
-                        Margin="0 0 4 0"
-                        rcp:Icon.Kind="Refresh" />
+                        Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
+                        ToolTip="Find games"
+                        rcp:Icon.Kind="{StaticResource RCP.Icons.Finder}" />
 
-            </StackPanel>
+                <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
+                                    Height="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
+                                    Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}" />
 
-            <!-- Right actions -->
-            <StackPanel Grid.Column="2"
-                        Orientation="Horizontal">
+            </Grid>
 
-                <Button Margin="0 0 4 0"
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=ConfigureGameClientsCommand, Mode=OneTime}"
-                        ToolTip="Configure game clients and emulators"
-                        rcp:Icon.Kind="{StaticResource RCP.Icons.GameClientEdit}" />
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" 
+                       Margin="0 0 4 0" />
 
-                <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" 
-                           Margin="0 0 4 0" />
+            <Button Margin="0 0 4 0"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Command="{Binding Path=ConfigureGameClientsCommand, Mode=OneTime}"
+                    ToolTip="Configure game clients and emulators"
+                    rcp:Icon.Kind="{StaticResource RCP.Icons.GameClientEdit}" />
 
-                <!-- TODO-UPDATE: Implement -->
-                <Grid Margin="0 0 4 0">
-                    <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                            Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
-                            Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
-                            ToolTip="Find games"
-                            rcp:Icon.Kind="{StaticResource RCP.Icons.Finder}" />
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Command="{Binding Path=AddGamesCommand, Mode=OneTime}"
+                    ToolTip="Add game"
+                    rcp:Icon.Kind="PlusBoxOutline" />
 
-                    <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
-                                        Height="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
-                                        Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}" />
-
-                </Grid>
-
-                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=AddGamesCommand, Mode=OneTime}"
-                        ToolTip="Add game"
-                        rcp:Icon.Kind="PlusBoxOutline" />
-
-            </StackPanel>
-
-        </Grid>
+        </StackPanel>
 
     </Grid>
 </UserControl>

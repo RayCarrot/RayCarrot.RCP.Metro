@@ -38,6 +38,7 @@ public partial class AppUserData : BaseViewModel
         UI_EnableAnimations = true;
         UI_UseChildWindows = true;
         UI_ShowGameInfo = false;
+        UI_GroupInstalledGames = true;
 
         // Theme
         Theme_DarkMode = true;
@@ -212,6 +213,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the game info should show in the game hub
     /// </summary>
     public bool UI_ShowGameInfo { get; set; }
+
+    /// <summary>
+    /// Indicates if the games should be grouped in the Games page
+    /// </summary>
+    public bool UI_GroupInstalledGames { get; set; }
 
     #endregion
 
