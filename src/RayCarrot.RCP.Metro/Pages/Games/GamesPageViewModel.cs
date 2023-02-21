@@ -33,10 +33,12 @@ public class GamesPageViewModel : BasePageViewModel,
         // Set properties
         AsyncLock = new AsyncLock();
 
-        GameCategories = new ObservableCollection<InstalledGameCategoryViewModel>();
-        var source = CollectionViewSource.GetDefaultView(GameCategories);
-        source.Filter = p => !((InstalledGameCategoryViewModel)p).FilteredGameGroups.IsEmpty;
-        FilteredGameCategories = source;
+        // Set up the games collection
+        Games = new ObservableCollection<InstalledGameViewModel>();
+        var source = CollectionViewSource.GetDefaultView(Games);
+        source.GroupDescriptions.Add(new PropertyGroupDescription(nameof(InstalledGameViewModel.GameGroup)));
+        source.Filter = p => MatchesFilter((InstalledGameViewModel)p);
+        GamesView = source;
 
         // Create commands
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
@@ -65,6 +67,9 @@ public class GamesPageViewModel : BasePageViewModel,
     #region Private Fields
 
     private string _gameFilter = String.Empty;
+    private InstalledGameViewModel? _selectedInstalledGame;
+    private bool _isSettingGroupSelection;
+    private readonly List<GameGroupViewModel> _gamegroups = new();
 
     #endregion
 
@@ -94,16 +99,83 @@ public class GamesPageViewModel : BasePageViewModel,
         set
         {
             _gameFilter = value;
-            UpdateFilteredCollections();
+            GamesView.Refresh();
         }
     }
 
-    public ObservableCollection<InstalledGameCategoryViewModel> GameCategories { get; }
-    public ICollectionView FilteredGameCategories { get; }
+    public ObservableCollection<InstalledGameViewModel> Games { get; }
+    public ICollectionView GamesView { get; }
 
-    public InstalledGameViewModel? SelectedInstalledGame { get; set; }
+    public InstalledGameViewModel? SelectedInstalledGame
+    {
+        get => _selectedInstalledGame;
+        set
+        {
+            _isSettingGroupSelection = true;
+
+            try
+            {
+                if (value != null)
+                {
+                    foreach (GameGroupViewModel group in _gamegroups)
+                        group.IsSelected = value.GameGroup == group;
+                }
+                else
+                {
+                    foreach (GameGroupViewModel group in _gamegroups)
+                        group.IsSelected = false;
+                }
+            }
+            finally
+            {
+                _isSettingGroupSelection = false;
+            }
+
+            SetSelectedGame(value);
+        }
+    }
 
     public bool IsGameFinderRunning { get; private set; }
+
+    #endregion
+
+    #region Private Methods
+
+    private bool MatchesFilter(InstalledGameViewModel game)
+    {
+        bool matchesString(string str) => str.IndexOf(GameFilter, StringComparison.CurrentCultureIgnoreCase) != -1;
+
+        return matchesString(game.DisplayName) ||
+               game.GameDescriptor.SearchKeywords.Any(matchesString);
+    }
+
+    private async void SetSelectedGame(InstalledGameViewModel? game)
+    {
+        _selectedInstalledGame = game;
+        OnPropertyChanged(nameof(SelectedInstalledGame));
+
+        if (game != null)
+            await game.LoadAsync();
+    }
+
+    private void GameGroup_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (_isSettingGroupSelection)
+            return;
+
+        // Handle selecting the group
+        if (e.PropertyName == nameof(GameGroupViewModel.IsSelected) &&
+            sender is GameGroupViewModel { IsSelected: true } group)
+        {
+            // Deselect all other groups
+            foreach (GameGroupViewModel g in _gamegroups.Where(x => x != group))
+                g.IsSelected = false;
+
+            // Select first game in group
+            if (SelectedInstalledGame?.GameGroup != group)
+                SetSelectedGame(Games.FirstOrDefault(x => x.GameGroup == group));
+        }
+    }
 
     #endregion
 
@@ -121,14 +193,6 @@ public class GamesPageViewModel : BasePageViewModel,
 
     #region Public Methods
 
-    public void UpdateFilteredCollections()
-    {
-        foreach (InstalledGameCategoryViewModel gameCategory in GameCategories)
-            gameCategory.UpdateFilteredCollections();
-
-        FilteredGameCategories.Refresh();
-    }
-
     public Task RefreshAsync() => RefreshAsync(null);
 
     public async Task RefreshAsync(GameInstallation? selectedGameInstallation)
@@ -140,59 +204,39 @@ public class GamesPageViewModel : BasePageViewModel,
                 try
                 {
                     // Unload previously loaded games
-                    foreach (InstalledGameCategoryViewModel gameCategory in GameCategories)
-                    {
-                        foreach (InstalledGameGroupViewModel gameGroup in gameCategory.GameGroups)
-                        {
-                            foreach (InstalledGameViewModel game in gameGroup.InstalledGames)
-                            {
-                                game.Unload();
-                            }
-                        }
-                    }
+                    foreach (InstalledGameViewModel game in Games)
+                        game.Unload();
 
-                    // Clear the categories
-                    GameCategories.Clear();
+                    foreach (GameGroupViewModel group in _gamegroups)
+                        group.PropertyChanged -= GameGroup_OnPropertyChanged;
+
+                    // Clear the games
+                    Games.Clear();
+                    _gamegroups.Clear();
 
                     SelectedInstalledGame = null;
 
-                    // Enumerate every category of installed games
-                    foreach (var categorizedGames in GamesManager.GetInstalledGames().
-                                 GroupBy(x => x.GameDescriptor.Category))
+                    // Enumerate every group of installed games
+                    foreach (var gameInstallations in GamesManager.GetInstalledGames().GroupBy(x => x.GameDescriptor.Game))
                     {
-                        // Create a view model
-                        GameCategoryInfoAttribute categoryInfo = categorizedGames.Key.GetInfo();
-                        InstalledGameCategoryViewModel category = new(categoryInfo.DisplayName, () => GameFilter);
-                        GameCategories.Add(category);
+                        // Get the game info
+                        GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
 
-                        // Enumerate every group of installed games
-                        foreach (var gameInstallations in categorizedGames.GroupBy(x => x.GameDescriptor.Game))
-                        {
-                            // Get the game info
-                            GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
+                        // Create a view model for the group
+                        GameGroupViewModel group = new(
+                            icon: gameInfo.GameIcon,
+                            displayName: gameInfo.DisplayName);
 
-                            InstalledGameGroupViewModel group = new(
-                                icon: gameInfo.GameIcon,
-                                displayName: gameInfo.DisplayName,
-                                gameInstallations: gameInstallations);
+                        group.PropertyChanged += GameGroup_OnPropertyChanged;
+                        _gamegroups.Add(group);
 
-                            // Add the group of game installations
-                            category.GameGroups.Add(group);
-
-                            if (selectedGameInstallation != null)
-                            {
-                                InstalledGameViewModel? selectedInstalledGame = group.InstalledGames.
-                                    // ReSharper disable once AccessToModifiedClosure
-                                    FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
-
-                                if (selectedInstalledGame != null)
-                                {
-                                    group.SelectedInstalledGame = selectedInstalledGame;
-                                    selectedGameInstallation = null;
-                                }
-                            }
-                        }
+                        // Add the games
+                        foreach (GameInstallation gameInstallation in gameInstallations)
+                            Games.Add(new InstalledGameViewModel(gameInstallation, group));
                     }
+
+                    if (selectedGameInstallation != null)
+                        SelectedInstalledGame = Games.FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
                 }
                 catch (Exception ex)
                 {
@@ -202,7 +246,7 @@ public class GamesPageViewModel : BasePageViewModel,
                 }
                 finally
                 {
-                    UpdateFilteredCollections();
+                    GamesView.Refresh();
                 }
             });
         }
@@ -212,17 +256,11 @@ public class GamesPageViewModel : BasePageViewModel,
     {
         using (await AsyncLock.LockAsync())
         {
-            foreach (InstalledGameCategoryViewModel gameCategory in GameCategories)
+            foreach (InstalledGameViewModel installedGame in Games)
             {
-                foreach (InstalledGameGroupViewModel gameGroup in gameCategory.GameGroups)
+                if (gameInstallations.Contains(installedGame.GameInstallation))
                 {
-                    foreach (InstalledGameViewModel installedGame in gameGroup.InstalledGames)
-                    {
-                        if (gameInstallations.Contains(installedGame.GameInstallation))
-                        {
-                            await installedGame.RefreshAsync(rebuiltComponents);
-                        }
-                    }
+                    await installedGame.RefreshAsync(rebuiltComponents);
                 }
             }
         }

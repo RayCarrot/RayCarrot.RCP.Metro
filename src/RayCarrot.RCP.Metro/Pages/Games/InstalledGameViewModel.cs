@@ -13,10 +13,11 @@ public class InstalledGameViewModel : BaseViewModel
 {
     #region Constructor
 
-    public InstalledGameViewModel(GameInstallation gameInstallation)
+    public InstalledGameViewModel(GameInstallation gameInstallation, GameGroupViewModel gameGroup)
     {
         // Set properties
         GameInstallation = gameInstallation;
+        GameGroup = gameGroup;
         DisplayName = gameInstallation.GetDisplayName();
 
         // Get and set platform info
@@ -74,6 +75,7 @@ public class InstalledGameViewModel : BaseViewModel
     public AppUserData Data => Services.Data;
 
     public GameInstallation GameInstallation { get; }
+    public GameGroupViewModel GameGroup { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
     public LocalizedString DisplayName { get; set; }
 

@@ -11,6 +11,42 @@
              d:DesignHeight="400" d:DesignWidth="300" 
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:DataContext="{d:DesignInstance games:GamesPageViewModel}">
+
+    <UserControl.Resources>
+        <Style x:Key="RCP.Styles.RadioButton.GameGroup" TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource RCP.Brushes.ListBoxItem.FlatHover}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource RCP.Brushes.ListBoxItem.FlatSelected}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <metro:ClipBorder CornerRadius="{StaticResource CornerRadius.Large}"
+                                          Background="{TemplateBinding Background}">
+                            <metro:ContentControlEx x:Name="PART_ContentPresenter"
+                                                    Content="{TemplateBinding Content}"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(metro:ControlsHelper.ContentCharacterCasing)}"
+                                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                    RecognizesAccessKey="{TemplateBinding metro:ControlsHelper.RecognizesAccessKey}" />
+
+                        </metro:ClipBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <!-- TODO-UPDATE: Localize -->
     <Grid Margin="0 4">
         <Grid.RowDefinitions>
@@ -51,127 +87,101 @@
                 <rcp:FocusElementOnLoad />
             </b:Interaction.Behaviors>
 
-            <!-- Game categories -->
-            <ItemsControl ItemsSource="{Binding Path=FilteredGameCategories, Mode=OneTime}"
-                          d:ItemsSource="{d:SampleData ItemCount=2}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type games:InstalledGameCategoryViewModel}">
-                        <Expander metro:HeaderedControlHelper.HeaderMargin="0"
-                                  Padding="2 4"
-                                  Margin="0 4"
-                                  IsExpanded="{Binding Path=IsExpanded}">
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ItemsSource="{Binding Path=GamesView}"
+                     d:ItemsSource="{d:SampleData ItemCount=5}"
+                     SelectedItem="{Binding Path=SelectedInstalledGame}"
+                     PreviewMouseWheel="GamesListBox_OnPreviewMouseWheel"  
+                     Background="Transparent" 
+                     Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
 
-                            <!-- Category header -->
-                            <Expander.Header>
-                                <Grid>
+                <ListBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                                <Grid Margin="4 8" 
+                                      DataContext="{Binding Path=Name}"
+                                      d:DataContext="{d:DesignInstance games:GameGroupViewModel}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" MinWidth="25" />
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Separator Grid.Column="0"
-                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                               Margin="0 0 4 0" />
+                                    <rcp:GameIcon Grid.Column="0"
+                                                  IconSize="Small"
+                                                  Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                                  IsDemo="False"
+                                                  Margin="0 0 8 0" />
 
                                     <TextBlock Grid.Column="1" 
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
                                                FontSize="14"
-                                               Text="{Binding Path=DisplayName.Value}" 
-                                               Margin="0 0 4 0" />
-
-                                    <Separator Grid.Column="2"
-                                               Style="{StaticResource RCP.Styles.Separator.Bold}" />
+                                               Text="{Binding Path=DisplayName.Value}" />
 
                                 </Grid>
-                            </Expander.Header>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <RadioButton Style="{StaticResource RCP.Styles.RadioButton.GameGroup}"
+                                                         IsChecked="{Binding Path=Name.IsSelected}">
+                                                <HeaderedContentControl>
+                                                    <HeaderedContentControl.Header>
+                                                        <ContentPresenter />
+                                                    </HeaderedContentControl.Header>
+                                                    <ItemsPresenter Margin="0 0 0 8" />
+                                                </HeaderedContentControl>
+                                            </RadioButton>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListBox.GroupStyle>
 
-                            <!-- Game groups -->
-                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                     ItemsSource="{Binding Path=FilteredGameGroups, Mode=OneTime}"
-                                     PreviewMouseWheel="GamesListBox_OnPreviewMouseWheel"  
-                                     Background="Transparent">
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Flat}">
-                                        <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
-                                        <Setter Property="Padding" Value="0" />
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type games:InstalledGameGroupViewModel}">
-                                        <StackPanel>
-                                            <!-- Game title -->
-                                            <Grid Margin="4 8">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <EventSetter Event="Selected" Handler="GamesListBoxItem_OnSelected" />
+                        <Setter Property="Background" 
+                                Value="Transparent" />
+                        <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
+                                Value="{DynamicResource MahApps.Brushes.Accent}" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
 
-                                                <rcp:GameIcon Grid.Column="0"
-                                                                IconSize="Small"
-                                                                Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                                                                IsDemo="False"
-                                                                Margin="0 0 8 0" />
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                                                <TextBlock Grid.Column="1" 
-                                                           TextWrapping="Wrap"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="14"
-                                                           Text="{Binding Path=DisplayName.Value}" />
+                            <Image Grid.Column="0"
+                                   Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                   VerticalAlignment="Center"
+                                   Width="20"
+                                   Margin="0 2"
+                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
-                                            </Grid>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Path=DisplayName.Value}"
+                                       d:Text="Rayman 2"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Margin="8 0 0 0"/>
 
-                                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                     Background="Transparent" 
-                                                     PreviewMouseWheel="GamesListBox_OnPreviewMouseWheel"  
-                                                     SelectedItem="{Binding Path=SelectedInstalledGame}"
-                                                     ItemsSource="{Binding Path=InstalledGames}"
-                                                     Margin="0 0 0 8">
-                                                <ListBox.ItemContainerStyle>
-                                                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                                                        <EventSetter Event="Selected" Handler="GameGroupListBoxItem_OnSelected" />
-                                                        <Setter Property="Background" 
-                                                                Value="Transparent" />
-                                                        <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
-                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                    </Style>
-                                                </ListBox.ItemContainerStyle>
-
-                                                <ListBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="Auto" />
-                                                                <ColumnDefinition Width="*" />
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <Image Grid.Column="0"
-                                                                   Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                                                                   VerticalAlignment="Center"
-                                                                   Width="20"
-                                                                   Margin="0 2"
-                                                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
-
-                                                            <TextBlock Grid.Column="1"
-                                                                       Text="{Binding Path=DisplayName.Value}"
-                                                                       d:Text="Rayman 2"
-                                                                       VerticalAlignment="Center"
-                                                                       TextWrapping="Wrap"
-                                                                       Margin="8 0 0 0"/>
-
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-
-                        </Expander>
+                        </Grid>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                </ListBox.ItemTemplate>
 
-            </ItemsControl>
+            </ListBox>
+
         </ScrollViewer>
 
         <!-- Actions -->

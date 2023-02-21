@@ -29,13 +29,9 @@ public partial class GameSelectionControl : UserControl
         e.Handled = true;
     }
 
-    private void GameGroupListBoxItem_OnSelected(object sender, RoutedEventArgs e)
+    private void GamesListBoxItem_OnSelected(object sender, RoutedEventArgs e)
     {
-        if (sender is not ListBoxItem { DataContext: InstalledGameViewModel vm } item)
-            return;
-
-        // Ignore if already selected
-        if (ViewModel.SelectedInstalledGame == vm)
+        if (sender is not ListBoxItem item)
             return;
 
         // Scroll the item into view
@@ -43,33 +39,18 @@ public partial class GameSelectionControl : UserControl
 
         // Focus on the item
         item.Focus();
-
-        // Select the item in the main view model
-        ViewModel.SelectedInstalledGame = vm;
-
-        // Deselect other games
-        foreach (InstalledGameCategoryViewModel gameCategoryViewModel in ViewModel.GameCategories)
-        {
-            foreach (InstalledGameGroupViewModel gameGroupViewModel in gameCategoryViewModel.GameGroups)
-            {
-                if (gameGroupViewModel.SelectedInstalledGame != vm)
-                    gameGroupViewModel.SelectedInstalledGame = null;
-            }
-        }
     }
 
     private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Enter)
         {
-            InstalledGameGroupViewModel? firstGameGroup = ViewModel.FilteredGameCategories.
-                Cast<InstalledGameCategoryViewModel>().
-                FirstOrDefault()?.FilteredGameGroups.
-                Cast<InstalledGameGroupViewModel>().
+            InstalledGameViewModel? firstGameInstallation = ViewModel.GamesView.
+                Cast<InstalledGameViewModel>().
                 FirstOrDefault();
 
-            if (firstGameGroup != null)
-                firstGameGroup.IsSelected = true;
+            if (firstGameInstallation != null)
+                ViewModel.SelectedInstalledGame = firstGameInstallation;
 
             e.Handled = true;
         }
