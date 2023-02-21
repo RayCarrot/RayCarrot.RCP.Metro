@@ -2,14 +2,12 @@
 
 public class GameGroupViewModel : BaseViewModel
 {
-    public GameGroupViewModel(GameIconAsset icon, LocalizedString displayName, IEnumerable<GameViewModel> games)
+    public GameGroupViewModel(GameIconAsset icon, LocalizedString displayName)
     {
         Icon = icon;
         DisplayName = displayName;
-        Games = new ObservableCollection<GameViewModel>(games);
     }
 
     public GameIconAsset Icon { get; }
     public LocalizedString DisplayName { get; }
-    public ObservableCollection<GameViewModel> Games { get; }
 }

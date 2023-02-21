@@ -11,9 +11,10 @@ public class GameViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    public GameViewModel(GameProgressionManager progressionManager)
+    public GameViewModel(GameProgressionManager progressionManager, GameGroupViewModel gameGroup)
     {
         ProgressionManager = progressionManager;
+        GameGroup = gameGroup;
         BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
         AsyncLock = new AsyncLock();
         Slots = new ObservableCollection<GameSlotViewModel>();
@@ -64,6 +65,7 @@ public class GameViewModel : BaseRCPViewModel
     #region Public Properties
 
     public GameProgressionManager ProgressionManager { get; }
+    public GameGroupViewModel GameGroup { get; }
     public ObservableCollection<GameViewModel>? LinkedGames { get; set; } // Games which share the same backup id
     public GameInstallation GameInstallation => ProgressionManager.GameInstallation;
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
