@@ -39,6 +39,7 @@ public partial class AppUserData : BaseViewModel
         UI_UseChildWindows = true;
         UI_ShowGameInfo = false;
         UI_GroupInstalledGames = true;
+        UI_GroupProgressionGames = true;
 
         // Theme
         Theme_DarkMode = true;
@@ -218,6 +219,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the games should be grouped in the Games page
     /// </summary>
     public bool UI_GroupInstalledGames { get; set; }
+
+    /// <summary>
+    /// Indicates if the games should be grouped in the Progression page
+    /// </summary>
+    public bool UI_GroupProgressionGames { get; set; }
 
     #endregion
 

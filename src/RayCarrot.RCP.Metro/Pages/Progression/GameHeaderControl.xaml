@@ -14,33 +14,71 @@
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="GameName" />
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Title" />
+            <ColumnDefinition Width="Auto" SharedSizeGroup="ProgName" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- Platform icon -->
-        <Image Grid.Column="0"
-               Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-               d:Source="{x:Static rcp:DesignData.GamePlatformIconSource}"
-               VerticalAlignment="Center"
-               Width="20"
-               Margin="0 0 8 0"
-               ToolTip="{Binding Path=PlatformDisplayName.Value}" />
-
         <!-- Title -->
+        <ContentPresenter Grid.Column="0"
+                          Content="{Binding}"
+                          Margin="0 0 4 0">
+            <ContentPresenter.Style>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsGameGrouped}" Value="True">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate DataType="{x:Type progression:GameViewModel}">
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <!-- Platform Icon -->
+                                            <Image Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                                   d:Source="{x:Static rcp:DesignData.GamePlatformIconSource}"
+                                                   VerticalAlignment="Center"
+                                                   Width="20"
+                                                   Margin="0 0 8 0"
+                                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+
+                                            <!-- Title -->
+                                            <TextBlock FontSize="14"
+                                                       Text="{Binding Path=DisplayName.Value}"
+                                                       d:Text="Rayman 2"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       MaxWidth="180" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsGameGrouped}" Value="False">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate DataType="{x:Type progression:GameViewModel}">
+                                        <rcp:GameTitle GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
+                                                       GameIconSize="Small"
+                                                       TextBlock.FontSize="14" 
+                                                       MaxWidth="300" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentPresenter.Style>
+        </ContentPresenter>
+
         <TextBlock Grid.Column="1"
+                   Margin="0 0 25 0"
                    FontSize="14"
-                   Text="{Binding Path=DisplayName.Value}"
-                   d:Text="Rayman 2"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   TextWrapping="WrapWithOverflow"
-                   MaxWidth="180"
-                   Margin="0 0 25 0" />
+                   FontStyle="Italic"
+                   Text="{Binding Path=ProgressionName, Mode=OneTime}"
+                   VerticalAlignment="Center" />
 
         <!-- Primary Data Items -->
         <ItemsControl Grid.Column="2"

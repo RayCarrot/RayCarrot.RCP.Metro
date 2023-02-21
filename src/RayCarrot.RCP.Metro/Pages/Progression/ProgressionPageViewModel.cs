@@ -73,6 +73,34 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public ObservableCollection<GameViewModel>? Games { get; set; }
     public ICollectionView? GamesView { get; set; }
 
+    public bool GroupGames
+    {
+        get => Data.UI_GroupProgressionGames;
+        set
+        {
+            Data.UI_GroupProgressionGames = value;
+            RefreshGrouping(value);
+        }
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void RefreshGrouping(bool group)
+    {
+        if (Games == null || GamesView == null)
+            return;
+
+        if (group && GamesView.GroupDescriptions.Count == 0)
+            GamesView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(GameViewModel.GameGroup)));
+        else
+            GamesView.GroupDescriptions.Clear();
+
+        foreach (GameViewModel game in Games)
+            game.IsGameGrouped = group;
+    }
+
     #endregion
 
     #region Protected Methods
@@ -150,7 +178,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
                 Games = new ObservableCollection<GameViewModel>(games);
                 GamesView = CollectionViewSource.GetDefaultView(Games);
-                GamesView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(GameViewModel.GameGroup)));
+                RefreshGrouping(GroupGames);
 
                 // TODO: Use Task.WhenAll and run in parallel?
 

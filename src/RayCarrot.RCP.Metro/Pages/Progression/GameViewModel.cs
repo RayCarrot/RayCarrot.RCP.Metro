@@ -15,6 +15,7 @@ public class GameViewModel : BaseRCPViewModel
     {
         ProgressionManager = progressionManager;
         GameGroup = gameGroup;
+        ProgressionName = progressionManager.Name;
         BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
         AsyncLock = new AsyncLock();
         Slots = new ObservableCollection<GameSlotViewModel>();
@@ -72,6 +73,7 @@ public class GameViewModel : BaseRCPViewModel
     public GamePlatformIconAsset PlatformIcon { get; }
     public LocalizedString PlatformDisplayName { get; }
     public LocalizedString DisplayName { get; set; }
+    public string? ProgressionName { get; }
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
@@ -108,6 +110,8 @@ public class GameViewModel : BaseRCPViewModel
     public bool HasSlots { get; set; }
     public bool HasBackupSlots { get; set; }
     public GameSlotViewModel? PrimarySlot { get; private set; }
+
+    public bool IsGameGrouped { get; set; }
 
     #endregion
 
@@ -343,13 +347,7 @@ public class GameViewModel : BaseRCPViewModel
     #region Public Methods
 
     [MemberNotNull(nameof(DisplayName))]
-    public void RefreshGameInfo()
-    {
-        DisplayName = ProgressionManager.Name == null
-            ? GameInstallation.GetDisplayName()
-            // TODO-UPDATE: Localize
-            : new GeneratedLocString(() => $"{GameInstallation.GetDisplayName()} ({ProgressionManager.Name})");
-    }
+    public void RefreshGameInfo() => DisplayName = GameInstallation.GetDisplayName();
 
     public async Task UpdateProgramDataSourceAsync()
     {

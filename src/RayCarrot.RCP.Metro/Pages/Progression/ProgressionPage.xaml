@@ -17,6 +17,14 @@
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
+            <!-- TODO-UPDATE: Localize -->
+            <mah:ToggleSwitch Content="Group games"
+                              IsOn="{Binding Path=GroupGames}"
+                              Margin="6"
+                              Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
+
+            <Separator />
+
             <mah:ToggleSwitch Content="{Resx Backup_Compress}"
                               ToolTip="{Resx Backup_CompressInfo}"
                               IsOn="{Binding Path=Data.Backup_CompressBackups}"
@@ -72,7 +80,7 @@
 
             <ItemsControl Grid.IsSharedSizeScope="True"
                           ItemsSource="{Binding Path=GamesView}"
-                          d:ItemsSource="{d:SampleData ItemCount=3}">
+                          d:ItemsSource="{d:SampleData ItemCount=2}">
 
                 <ItemsControl.GroupStyle>
                     <GroupStyle>
