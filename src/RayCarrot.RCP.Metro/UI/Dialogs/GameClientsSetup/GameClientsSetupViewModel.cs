@@ -4,7 +4,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
     IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>,
-    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>,
+    IRecipient<SortedGamesMessage>
 {
     public GameClientsSetupViewModel()
     {
@@ -60,5 +61,7 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
     public void Receive(AddedGamesMessage message) =>
         RefreshSupportedGames();
     public void Receive(RemovedGamesMessage message) =>
+        RefreshSupportedGames();
+    public void Receive(SortedGamesMessage message) =>
         RefreshSupportedGames();
 }

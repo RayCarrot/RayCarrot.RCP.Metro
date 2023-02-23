@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -15,6 +16,11 @@ public partial class GameSelectionControl : UserControl
     }
 
     public GamesPageViewModel ViewModel => (GamesPageViewModel)DataContext;
+
+    private void GamesListBox_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        DragDrop.SetDropHandler(GamesListBox, new GameSelectionDropHandler(ViewModel));
+    }
 
     private void GamesListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
     {

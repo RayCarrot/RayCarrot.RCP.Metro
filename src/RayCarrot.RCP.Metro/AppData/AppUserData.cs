@@ -174,7 +174,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// Indicates if the jump list items should be automatically sorted
     /// </summary>
-    public bool App_AutoSortJumpList { get; set; } // TODO-14: Re-sort if game sort is changed if we allow custom game sort
+    public bool App_AutoSortJumpList { get; set; }
 
     /// <summary>
     /// Indicates if downloads should be handled manually. This does not apply to application updates.

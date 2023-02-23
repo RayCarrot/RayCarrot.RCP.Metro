@@ -2,6 +2,8 @@
 
 namespace RayCarrot.RCP.Metro;
 
+// NOTE: Currently the jump-list sorting uses the default games sorting rather than the user-defined one
+
 /// <summary>
 /// Manager for the application jump-list
 /// </summary>

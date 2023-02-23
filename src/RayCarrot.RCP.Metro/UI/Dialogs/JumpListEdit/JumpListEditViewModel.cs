@@ -39,7 +39,9 @@ public class JumpListEditViewModel : UserInputViewModel
         }
 
         // Order the included games
-        Included = included.OrderBy(x => Services.Data.App_JumpListItems.FindIndex(j => j.ItemId == x.Id)).ToObservableCollection();
+        Included = included.
+            OrderBy(x => Services.Data.App_JumpListItems.FindIndex(j => j.ItemId == x.Id)).
+            ToObservableCollection();
     }
 
     #endregion

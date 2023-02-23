@@ -261,6 +261,24 @@ public class GamesManager
         Messenger.Send(new RemovedGamesMessage(gameInstallations));
     }
 
+    public void SortGames(Comparison<GameInstallation> comparison)
+    {
+        Data.Game_GameInstallations.Sort(comparison);
+        Messenger.Send(new SortedGamesMessage(Data.Game_GameInstallations.ToList()));
+    }
+
+    public void MoveGame(GameInstallation game, int newIndex) =>
+        MoveGame(Data.Game_GameInstallations.IndexOf(game), newIndex);
+
+    public void MoveGame(int srcIndex, int newIndex)
+    {
+        GameInstallation game = Data.Game_GameInstallations[srcIndex];
+        Data.Game_GameInstallations.RemoveAt(srcIndex);
+        Data.Game_GameInstallations.Insert(newIndex, game);
+
+        Messenger.Send(new SortedGamesMessage(Data.Game_GameInstallations.ToList()));
+    }
+
     /// <summary>
     /// Gets a collection of the currently installed games
     /// </summary>
@@ -289,10 +307,7 @@ public class GamesManager
     /// <param name="gameSearchPredicate">The predicate to use when finding the game installation</param>
     /// <returns>The first matching game installation or null if none was found</returns>
     public GameInstallation? FindInstalledGame(GameSearch.Predicate gameSearchPredicate) =>
-        Data.Game_GameInstallations.
-            Where(x => gameSearchPredicate(x.GameDescriptor)).
-            OrderBy(x => x).
-            FirstOrDefault();
+        Data.Game_GameInstallations.FirstOrDefault(x => gameSearchPredicate(x.GameDescriptor));
 
     /// <summary>
     /// Finds a game installation based on the provided search predicates

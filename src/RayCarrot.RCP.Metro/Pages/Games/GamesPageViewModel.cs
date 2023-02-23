@@ -11,7 +11,8 @@ namespace RayCarrot.RCP.Metro.Pages.Games;
 /// View model for the games page
 /// </summary>
 public class GamesPageViewModel : BasePageViewModel, 
-    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>,
+    IRecipient<SortedGamesMessage>
 {
     #region Constructor
 
@@ -36,7 +37,7 @@ public class GamesPageViewModel : BasePageViewModel,
         AsyncLock = new AsyncLock();
 
         // Set up the games collection
-        Games = new ObservableCollection<InstalledGameViewModel>();
+        Games = new ObservableCollectionEx<InstalledGameViewModel>();
         var source = CollectionViewSource.GetDefaultView(Games);
         source.Filter = p => MatchesFilter((InstalledGameViewModel)p);
         GamesView = source;
@@ -72,7 +73,7 @@ public class GamesPageViewModel : BasePageViewModel,
     private string _gameFilter = String.Empty;
     private InstalledGameViewModel? _selectedInstalledGame;
     private bool _isSettingGroupSelection;
-    private readonly List<GameGroupViewModel> _gamegroups = new();
+    private readonly Dictionary<Game, GameGroupViewModel> _gamegroups = new();
 
     #endregion
 
@@ -107,7 +108,7 @@ public class GamesPageViewModel : BasePageViewModel,
         }
     }
 
-    public ObservableCollection<InstalledGameViewModel> Games { get; }
+    public ObservableCollectionEx<InstalledGameViewModel> Games { get; }
     public ICollectionView GamesView { get; }
 
     public InstalledGameViewModel? SelectedInstalledGame
@@ -121,12 +122,12 @@ public class GamesPageViewModel : BasePageViewModel,
             {
                 if (value != null)
                 {
-                    foreach (GameGroupViewModel group in _gamegroups)
+                    foreach (GameGroupViewModel group in _gamegroups.Values)
                         group.IsSelected = value.GameGroup == group;
                 }
                 else
                 {
-                    foreach (GameGroupViewModel group in _gamegroups)
+                    foreach (GameGroupViewModel group in _gamegroups.Values)
                         group.IsSelected = false;
                 }
             }
@@ -147,6 +148,12 @@ public class GamesPageViewModel : BasePageViewModel,
         set
         {
             Data.UI_GroupInstalledGames = value;
+
+            // Sort the games to match the grouping. Otherwise the order
+            // in the ui doesn't match the actual order and moving the
+            // games around won't work as expected
+            GamesManager.SortGames((x, y) => x.GameDescriptor.Game.CompareTo(y.GameDescriptor.Game));
+            
             RefreshGrouping(value);
         }
     }
@@ -182,7 +189,7 @@ public class GamesPageViewModel : BasePageViewModel,
             sender is GameGroupViewModel { IsSelected: true } group)
         {
             // Deselect all other groups
-            foreach (GameGroupViewModel g in _gamegroups.Where(x => x != group))
+            foreach (GameGroupViewModel g in _gamegroups.Values.Where(x => x != group))
                 g.IsSelected = false;
 
             // Select first game in group
@@ -229,33 +236,35 @@ public class GamesPageViewModel : BasePageViewModel,
                     foreach (InstalledGameViewModel game in Games)
                         game.Unload();
 
-                    foreach (GameGroupViewModel group in _gamegroups)
+                    foreach (GameGroupViewModel group in _gamegroups.Values)
                         group.PropertyChanged -= GameGroup_OnPropertyChanged;
-
-                    // Clear the games
-                    Games.Clear();
-                    _gamegroups.Clear();
 
                     SelectedInstalledGame = null;
 
-                    // Enumerate every group of installed games
-                    foreach (var gameInstallations in GamesManager.GetInstalledGames().GroupBy(x => x.GameDescriptor.Game))
+                    Games.ModifyCollection(x =>
                     {
-                        // Get the game info
-                        GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
+                        // Clear the games
+                        x.Clear();
+                        _gamegroups.Clear();
 
-                        // Create a view model for the group
-                        GameGroupViewModel group = new(
-                            icon: gameInfo.GameIcon,
-                            displayName: gameInfo.DisplayName);
+                        // Enumerate every group of installed games
+                        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+                        {
+                            Game game = gameInstallation.GameDescriptor.Game;
 
-                        group.PropertyChanged += GameGroup_OnPropertyChanged;
-                        _gamegroups.Add(group);
+                            if (!_gamegroups.TryGetValue(game, out GameGroupViewModel group))
+                            {
+                                // Create a view model for the group
+                                GameInfoAttribute gameInfo = game.GetInfo();
+                                group = new GameGroupViewModel(gameInfo.GameIcon, gameInfo.DisplayName);
+                                group.PropertyChanged += GameGroup_OnPropertyChanged;
 
-                        // Add the games
-                        foreach (GameInstallation gameInstallation in gameInstallations)
-                            Games.Add(new InstalledGameViewModel(gameInstallation, group));
-                    }
+                                _gamegroups[game] = group;
+                            }
+
+                            x.Add(new InstalledGameViewModel(gameInstallation, group));
+                        }
+                    });
 
                     if (selectedGameInstallation != null)
                         SelectedInstalledGame = Games.FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
@@ -413,6 +422,14 @@ public class GamesPageViewModel : BasePageViewModel,
         await RefreshAsync(SelectedInstalledGame?.GameInstallation);
     public async void Receive(ModifiedGamesMessage message) =>
         await RefreshInstallations(message.GameInstallations, message.RebuiltComponents);
+    public void Receive(SortedGamesMessage message)
+    {
+        Games.ModifyCollection(x => 
+            x.Sort((x1, x2) => message.SortedCollection.
+                IndexOf(x1.GameInstallation).
+                CompareTo(message.SortedCollection.
+                    IndexOf(x2.GameInstallation))));
+    }
 
     #endregion
 }

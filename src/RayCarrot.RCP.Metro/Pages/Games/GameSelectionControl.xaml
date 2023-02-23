@@ -7,6 +7,7 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="300" 
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
@@ -129,13 +130,18 @@
                 <rcp:FocusElementOnLoad />
             </b:Interaction.Behaviors>
 
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            <ListBox x:Name="GamesListBox"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemsSource="{Binding Path=GamesView}"
                      d:ItemsSource="{d:SampleData ItemCount=5}"
                      SelectedItem="{Binding Path=SelectedInstalledGame}"
+                     Loaded="GamesListBox_OnLoaded"
                      PreviewMouseWheel="GamesListBox_OnPreviewMouseWheel"  
                      Background="Transparent" 
-                     Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
+                     Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                     dd:DragDrop.IsDragSource="True"
+                     dd:DragDrop.IsDropTarget="True"
+                     dd:DragDrop.UseDefaultDragAdorner="True">
 
                 <ListBox.GroupStyle>
                     <GroupStyle>

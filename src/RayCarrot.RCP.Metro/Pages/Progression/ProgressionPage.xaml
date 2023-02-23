@@ -79,7 +79,7 @@
             <!-- Games -->
 
             <ItemsControl Grid.IsSharedSizeScope="True"
-                          ItemsSource="{Binding Path=GamesView}"
+                          ItemsSource="{Binding Path=GamesView, Mode=OneTime}"
                           d:ItemsSource="{d:SampleData ItemCount=2}">
 
                 <ItemsControl.GroupStyle>

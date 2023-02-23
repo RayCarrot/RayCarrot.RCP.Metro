@@ -83,10 +83,6 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
         if (other == null) 
             return 1;
 
-        // TODO-14: How do we handle sorting if user has added two of the same game? Display name? Add date? Custom?
-        //          Problem with custom sorting then is that if we ever update the sorting we can't really do it
-        //          without breaking the custom sort. Which might be fine if it auto-sorts after update?
-
         return GameDescriptor.CompareTo(other.GameDescriptor);
     }
 

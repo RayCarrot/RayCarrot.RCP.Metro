@@ -7,7 +7,8 @@ using RayCarrot.RCP.Metro.Games.Components;
 namespace RayCarrot.RCP.Metro.Pages.Progression;
 
 public class ProgressionPageViewModel : BasePageViewModel, 
-    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<BackupLocationChangedMessage>, IRecipient<ModifiedGamesMessage>
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>, 
+    IRecipient<SortedGamesMessage>, IRecipient<BackupLocationChangedMessage>
 {
     #region Constructor
 
@@ -28,6 +29,10 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
         // Create properties
         AsyncLock = new AsyncLock();
+        Games = new ObservableCollectionEx<GameViewModel>();
+        GamesView = CollectionViewSource.GetDefaultView(Games);
+
+        RefreshGrouping(GroupGames);
 
         // Create commands
         RefreshCommand = new AsyncRelayCommand(RefreshAsync);
@@ -70,8 +75,8 @@ public class ProgressionPageViewModel : BasePageViewModel,
     #region Public Properties
 
     public override AppPage Page => AppPage.Progression;
-    public ObservableCollection<GameViewModel>? Games { get; set; }
-    public ICollectionView? GamesView { get; set; }
+    public ObservableCollectionEx<GameViewModel> Games { get; }
+    public ICollectionView GamesView { get; }
 
     public bool GroupGames
     {
@@ -89,9 +94,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
     private void RefreshGrouping(bool group)
     {
-        if (Games == null || GamesView == null)
-            return;
-
         if (group && GamesView.GroupDescriptions.Count == 0)
             GamesView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(GameViewModel.GameGroup)));
         else
@@ -121,9 +123,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public async void Receive(BackupLocationChangedMessage message) => await Task.Run(RefreshAsync);
     public async void Receive(ModifiedGamesMessage message)
     {
-        if (Games == null)
-            return;
-
         // As of right now there's no need to do a full refresh when a game
         // is modified, but we might have to change this in the future
         using (await AsyncLock.LockAsync())
@@ -135,6 +134,19 @@ public class ProgressionPageViewModel : BasePageViewModel,
             }
         }
     }
+    public void Receive(SortedGamesMessage message)
+    {
+        Games.ModifyCollection(x =>
+            x.Sort((x1, x2) => message.SortedCollection.
+                IndexOf(x1.GameInstallation).
+                CompareTo(message.SortedCollection.
+                    IndexOf(x2.GameInstallation))));
+
+        // Need to refresh the view if the games are
+        // grouped or else the order won't update
+        if (GroupGames)
+            GamesView.Refresh();
+    }
 
     public async Task RefreshAsync()
     {
@@ -144,41 +156,45 @@ public class ProgressionPageViewModel : BasePageViewModel,
             {
                 Logger.Info("Refreshing progression game items");
 
-                List<GameViewModel> games = new();
-
-                // Add the game items
-                foreach (var gameInstallations in GamesManager.GetInstalledGames().GroupBy(x => x.GameDescriptor.Game))
+                Games.ModifyCollection(x =>
                 {
-                    // Get the game info
-                    GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
+                    x.Clear();
 
-                    // Create a view model for the group
-                    GameGroupViewModel group = new(
-                        icon: gameInfo.GameIcon,
-                        displayName: gameInfo.DisplayName);
+                    Dictionary<Game, GameGroupViewModel> groups = new();
 
-                    // Add the games
-                    games.AddRange(gameInstallations.
-                        SelectMany(x => x.GetComponents<ProgressionManagersComponent>().CreateManyObjects()).
-                        Select(x => new GameViewModel(x, group)));
-                }
+                    // Add the game items
+                    foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+                    {
+                        Game game = gameInstallation.GameDescriptor.Game;
+
+                        if (!groups.TryGetValue(game, out GameGroupViewModel group))
+                        {
+                            // Create a view model for the group
+                            GameInfoAttribute gameInfo = game.GetInfo();
+                            group = new GameGroupViewModel(gameInfo.GameIcon, gameInfo.DisplayName);
+
+                            groups[game] = group;
+                        }
+
+                        x.AddRange(gameInstallation.
+                            GetComponents<ProgressionManagersComponent>().
+                            CreateManyObjects().
+                            Select(progressionManager => new GameViewModel(progressionManager, group)));
+                    }
+                });
 
                 // Group games based on the backup id. Games which share the same id also share the same backup and
                 // the ui should specify this to avoid confusion.
-                Dictionary<string, List<GameViewModel>> backupsById = games.
+                Dictionary<string, List<GameViewModel>> backupsById = Games.
                     GroupBy(x => x.ProgressionManager.BackupId).
                     ToDictionary(x => x.Key, x => x.ToList());
 
                 // Set linked games
-                foreach (GameViewModel game in games)
+                foreach (GameViewModel game in Games)
                 {
                     List<GameViewModel> linkedGames = backupsById[game.ProgressionManager.BackupId];
                     game.LinkedGames = new ObservableCollection<GameViewModel>(linkedGames.Where(x => x != game));
                 }
-
-                Games = new ObservableCollection<GameViewModel>(games);
-                GamesView = CollectionViewSource.GetDefaultView(Games);
-                RefreshGrouping(GroupGames);
 
                 // TODO: Use Task.WhenAll and run in parallel?
 
@@ -199,8 +215,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
             catch (Exception ex)
             {
                 Logger.Fatal(ex, "Refreshing progression");
-                Games = null;
-                GamesView = null;
                 throw;
             }
         }
@@ -209,7 +223,7 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public async Task BackupAllAsync()
     {
         // Make sure no backups are running
-        if (Games == null || Games.Any(x => x.IsPerformingBackupRestore))
+        if (Games.Any(x => x.IsPerformingBackupRestore))
             return;
 
         // Lock
