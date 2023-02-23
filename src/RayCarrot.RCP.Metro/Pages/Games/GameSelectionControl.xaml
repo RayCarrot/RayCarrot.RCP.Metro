@@ -97,6 +97,10 @@
 
                     <Separator />
 
+                    <Button Content="Reset custom sort"
+                            rcp:Icon.Kind="Sort"
+                            Command="{Binding Path=ResetSortCommand, Mode=OneTime}" />
+
                     <Button rcp:Icon.Kind="Refresh"
                             Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}"
                             HorizontalContentAlignment="Stretch">

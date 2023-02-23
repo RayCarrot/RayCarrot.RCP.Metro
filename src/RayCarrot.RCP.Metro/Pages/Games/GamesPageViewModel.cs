@@ -45,6 +45,7 @@ public class GamesPageViewModel : BasePageViewModel,
         RefreshGrouping(GroupGames);
 
         // Create commands
+        ResetSortCommand = new RelayCommand(ResetSort);
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
         FindGamesCommand = new AsyncRelayCommand(() => FindGamesAsync(false));
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
@@ -61,6 +62,7 @@ public class GamesPageViewModel : BasePageViewModel,
 
     #region Commands
 
+    public ICommand ResetSortCommand { get; }
     public ICommand RefreshGamesCommand { get; }
     public ICommand FindGamesCommand { get; }
     public ICommand AddGamesCommand { get; }
@@ -221,6 +223,8 @@ public class GamesPageViewModel : BasePageViewModel,
     #endregion
 
     #region Public Methods
+
+    public void ResetSort() => GamesManager.SortGames((x, y) => x.CompareTo(y));
 
     public Task RefreshAsync() => RefreshAsync(null);
 
