@@ -131,6 +131,7 @@
             </b:Interaction.Behaviors>
 
             <ListBox x:Name="GamesListBox"
+                     Margin="2 0"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemsSource="{Binding Path=GamesView}"
                      d:ItemsSource="{d:SampleData ItemCount=5}"
