@@ -394,11 +394,11 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         {
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_XPos)), m => m.Ray?.XPosition);
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_YPos)), m => m.Ray?.YPosition);
-            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.Ray?.MainEtat}-{m.Ray?.SubEtat}");
         }
 
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoTime)), m => m.HelicoTime);
-        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistCharge)), m => m.Poing?.FistChargedLevel);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistCharge)), m => m.Poing?.Charge);
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_ActiveObjs)), m => m.ActiveObjects?.ActiveObjectsCount);
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_MapTime)), m => m.MapTime);
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_RandIndex)), m => m.RandomIndex);
@@ -418,7 +418,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
                     m.FinBoss = true;
                     m.ModifiedValue(nameof(m.FinBoss));
                 })),
-                isEnabledFunc: () => AccessMemory(m => m.Ray is { Etat: 0, SpeedX: 0, SpeedY: 0, Short_4A: -1 }));
+                isEnabledFunc: () => AccessMemory(m => m.Ray is { MainEtat: 0, SpeedX: 0, SpeedY: 0, Short_4A: -1 }));
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.WorldInfo))))
         {
@@ -432,8 +432,8 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
                     foreach (WorldInfo w in m.WorldInfo)
                     {
-                        if ((w.Runtime_State & 1) == 0)
-                            w.Runtime_State |= 4;
+                        if (!w.IsUnlocked)
+                            w.IsUnlocking = true;
                     }
 
                     m.ModifiedValue(nameof(m.WorldInfo));
@@ -450,10 +450,10 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
                     foreach (WorldInfo w in m.WorldInfo)
                     {
-                        w.Runtime_Cages = 6;
+                        w.CollectedCages = 6;
 
-                        if ((w.Runtime_State & 1) == 0)
-                            w.Runtime_State |= 4;
+                        if (!w.IsUnlocked)
+                            w.IsUnlocking = true;
                     }
 
                     m.ModifiedValue(nameof(m.WorldInfo));
