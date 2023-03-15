@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System.Globalization;
+
+namespace RayCarrot.RCP.Metro;
 
 public class DefaultGameInfoComponent : GameInfoComponent
 {
@@ -14,6 +16,9 @@ public class DefaultGameInfoComponent : GameInfoComponent
             header: "Installation id:",
             text: gameInstallation.InstallationId,
             minUserLevel: UserLevel.Debug),
+        new DuoGridItemViewModel(
+            header: "Added:", // TODO-UPDATE: Localize
+            text: gameInstallation.GetValue<DateTime>(GameDataKey.RCP_GameAddedDate).ToString(CultureInfo.CurrentCulture)),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
             text: gameInstallation.InstallLocation.ToString()),

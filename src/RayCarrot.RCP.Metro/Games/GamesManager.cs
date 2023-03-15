@@ -114,6 +114,9 @@ public class GamesManager
 
         try
         {
+            // Set the date it's being added
+            gameInstallation.SetValue(GameDataKey.RCP_GameAddedDate, DateTime.Now);
+
             // Configure
             configureInstallation?.Invoke(gameInstallation);
 

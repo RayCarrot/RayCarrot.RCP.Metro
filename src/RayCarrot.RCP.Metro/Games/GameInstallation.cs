@@ -3,8 +3,6 @@ using Newtonsoft.Json;
 using RayCarrot.RCP.Metro.Games.Components;
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Add properties like install size, add date etc.
-
 [JsonObject(MemberSerialization.OptIn)]
 public class GameInstallation : ProgramInstallation, IComparable<GameInstallation>
 {
