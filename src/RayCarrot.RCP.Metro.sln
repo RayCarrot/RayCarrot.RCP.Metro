@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.OpenSpace"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.UbiArt", "..\submodules\BinarySerializer.UbiArt\src\BinarySerializer.UbiArt.csproj", "{015EB29F-C337-4862-BAA6-5066396FB9B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro.Tests", "RayCarrot.RCP.Metro.Tests\RayCarrot.RCP.Metro.Tests.csproj", "{9104392E-C9B5-4260-A3C7-D504835D5B6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,14 @@ Global
 		{015EB29F-C337-4862-BAA6-5066396FB9B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{015EB29F-C337-4862-BAA6-5066396FB9B1}.Release|x86.ActiveCfg = Release|Any CPU
 		{015EB29F-C337-4862-BAA6-5066396FB9B1}.Release|x86.Build.0 = Release|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Debug|x86.Build.0 = Debug|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|x86.ActiveCfg = Release|Any CPU
+		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,9 +130,9 @@ Global
 		{015EB29F-C337-4862-BAA6-5066396FB9B1} = {7467979D-E630-4407-97D2-8EBAE531D746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ExcelExportMode = MultipleSheets
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
 		RESX_TaskErrorCategory = Message
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		RESX_ExcelExportMode = MultipleSheets
 	EndGlobalSection
 EndGlobal
