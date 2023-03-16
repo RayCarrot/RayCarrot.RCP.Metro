@@ -7,6 +7,7 @@ public static class GameDataKey
     public const string RCP_GameInstallData = "RCP_GameInstallData";
     public const string RCP_AddedFiles = "RCP_AddedFiles";
     public const string RCP_CustomName = "RCP_CustomName";
+    public const string RCP_LastPlayed = "RCP_LastPlayed";
 
     // Win32
     public const string Win32_RunAsAdmin = "Win32_RunAsAdmin";

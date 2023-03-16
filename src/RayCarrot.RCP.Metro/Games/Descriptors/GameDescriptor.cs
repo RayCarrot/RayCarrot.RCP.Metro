@@ -126,6 +126,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
         // Give this low priority so that it runs last
         builder.Register<OnGameLaunchedComponent, OptionallyCloseAppOnGameLaunchedComponent>(ComponentPriority.Low);
+        builder.Register<OnGameLaunchedComponent, SetLastPlayedOnGameLaunchedComponent>(ComponentPriority.High);
 
         // For now we always show the game clients selection. Ideally it'd only show for some games, but that
         // in of itself would cause some inconsistencies. And only showing it when there are clients available
