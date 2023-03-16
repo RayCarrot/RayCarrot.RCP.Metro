@@ -2,17 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:controlzex="urn:controlzex"
-                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+                    xmlns:controlzex="urn:controlzex">
 
     <Style TargetType="{x:Type local:PopupCard}">
         <Style.Resources>
             <!-- Define default button and separator styles within the popup -->
-            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
-                <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
-                <Setter Property="local:Icon.Size" Value="16" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-            </Style>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.FlatMenuItem}" />
             <Style TargetType="{x:Type Separator}" BasedOn="{StaticResource RCP.Styles.Separator.Bold}">
                 <Setter Property="Margin" Value="2" />
             </Style>

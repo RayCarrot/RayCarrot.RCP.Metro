@@ -111,6 +111,12 @@
         <Setter Property="Background" Value="Transparent" />
     </Style>
 
+    <Style x:Key="RCP.Styles.Button.FlatMenuItem" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource RCP.Styles.Button.Default}">
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
+        <Setter Property="local:Icon.Size" Value="16" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+
     <Style x:Key="RCP.Styles.ToggleButton.Flat" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
         <Setter Property="Template">
             <Setter.Value>

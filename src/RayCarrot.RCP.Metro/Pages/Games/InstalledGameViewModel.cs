@@ -32,6 +32,7 @@ public class InstalledGameViewModel : BaseViewModel
         // Set other properties
         CanUninstall = gameInstallation.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
         HasOptionsDialog = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().Any(x => x.IsAvailable());
+        IsFavorite = GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite);
 
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);
@@ -40,6 +41,7 @@ public class InstalledGameViewModel : BaseViewModel
         RemoveCommand = new AsyncRelayCommand(RemoveAsync);
         UninstallCommand = new AsyncRelayCommand(UninstallAsync);
         CreateShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
+        ToggleFavoriteCommand = new RelayCommand(ToggleFavorite);
         OpenGameDebugCommand = new AsyncRelayCommand(OpenGameDebugAsync);
     }
 
@@ -65,6 +67,7 @@ public class InstalledGameViewModel : BaseViewModel
     public ICommand RemoveCommand { get; }
     public ICommand UninstallCommand { get; }
     public ICommand CreateShortcutCommand { get; }
+    public ICommand ToggleFavoriteCommand { get; }
     public ICommand OpenGameDebugCommand { get; }
 
     #endregion
@@ -102,6 +105,8 @@ public class InstalledGameViewModel : BaseViewModel
     public ObservableCollection<DuoGridItemViewModel>? GameInfoItems { get; set; }
 
     public ObservableCollection<GameOptionsViewModel>? GameOptions { get; set; }
+
+    public bool IsFavorite { get; private set; }
 
     #endregion
 
@@ -488,6 +493,12 @@ public class InstalledGameViewModel : BaseViewModel
             Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
         }
+    }
+
+    public void ToggleFavorite()
+    {
+        IsFavorite = !GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite);
+        GameInstallation.SetValue(GameDataKey.RCP_IsFavorite, IsFavorite);
     }
 
     public Task OpenGameDebugAsync() => Services.UI.ShowGameDebugAsync(GameInstallation);

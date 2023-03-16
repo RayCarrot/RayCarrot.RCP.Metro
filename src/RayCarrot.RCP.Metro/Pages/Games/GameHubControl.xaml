@@ -227,6 +227,23 @@
                                                 rcp:Icon.Kind="Link"
                                                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
                                         <Separator />
+                                        <Button Command="{Binding Path=ToggleFavoriteCommand, Mode=OneTime}"
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.Favorites}">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.FlatMenuItem}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=IsFavorite}" Value="True">
+                                                            <Setter Property="Content" Value="Unfavorite" />
+                                                            <Setter Property="rcp:Icon.Kind" Value="Star" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=IsFavorite}" Value="False">
+                                                            <Setter Property="Content" Value="Favorite" />
+                                                            <Setter Property="rcp:Icon.Kind" Value="StarOutline" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
                                         <Button Command="{Binding Path=RenameCommand, Mode=OneTime}"
                                                 rcp:Icon.Kind="PencilOutline"
                                                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
