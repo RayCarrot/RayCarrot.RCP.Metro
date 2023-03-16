@@ -28,6 +28,8 @@ public abstract class ProgramInstallation
     [JsonProperty(PropertyName = "Data")]
     private readonly Dictionary<string, object?> _data;
 
+    private readonly List<DataChangedCallback> _dataChangedCallbacks = new();
+
     #endregion
 
     #region Public Properties
@@ -44,6 +46,19 @@ public abstract class ProgramInstallation
     /// </summary>
     [JsonProperty(PropertyName = "InstallationId")]
     public string InstallationId { get; }
+
+    #endregion
+
+    #region Private Methods
+
+    private void OnDataChanged(string key)
+    {
+        foreach (DataChangedCallback dataChangedCallback in _dataChangedCallbacks)
+        {
+            if (dataChangedCallback.Key == key)
+                dataChangedCallback.Callback();
+        }
+    }
 
     #endregion
 
@@ -102,20 +117,6 @@ public abstract class ProgramInstallation
         return parsedObj;
     }
 
-    public T GetOrCreateObject<T>(string key)
-        where T : class, new()
-    {
-        T? obj = GetObject<T>(key);
-
-        if (obj is null)
-        {
-            obj = new T();
-            _data[key] = obj;
-        }
-
-        return obj;
-    }
-
     public T? GetValue<T>(string key) => GetValue<T>(key, default);
 
     public T? GetValue<T>(string key, T? defaultValue)
@@ -157,12 +158,21 @@ public abstract class ProgramInstallation
             _data.Remove(key);
         else
             _data[key] = obj;
+
+        OnDataChanged(key);
     }
 
     public void ModifyObject<T>(string key, Action<T> modifyObjectAction)
         where T : class, new()
     {
-        T obj = GetOrCreateObject<T>(key);
+        T? obj = GetObject<T>(key);
+
+        if (obj is null)
+        {
+            obj = new T();
+            _data[key] = obj;
+        }
+
         modifyObjectAction(obj);
         SetObject(key, obj); // Don't really need to do this step anymore, but let's keep it anyway
     }
@@ -173,7 +183,25 @@ public abstract class ProgramInstallation
             _data.Remove(key);
         else
             _data[key] = obj;
+
+        OnDataChanged(key);
     }
+
+    public void AddDataChangedCallback(string key, Action callback)
+    {
+        _dataChangedCallbacks.Add(new DataChangedCallback(key, callback));
+    }
+
+    public void RemoveDataChangedCallback(string key, Action callback)
+    {
+        _dataChangedCallbacks.RemoveAll(x => x.Key == key && x.Callback == callback);
+    }
+
+    #endregion
+
+    #region Records
+
+    private readonly record struct DataChangedCallback(string Key, Action Callback);
 
     #endregion
 }
