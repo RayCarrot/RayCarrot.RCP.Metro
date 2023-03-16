@@ -38,18 +38,20 @@ public class GamesPageViewModel : BasePageViewModel,
 
         // Set up the games collection
         Games = new ObservableCollectionEx<InstalledGameViewModel>();
-        var source = CollectionViewSource.GetDefaultView(Games);
-        source.Filter = p => MatchesFilter((InstalledGameViewModel)p);
-        GamesView = source;
+        GamesView = CollectionViewSource.GetDefaultView(Games);
+        GamesView.Filter = x => MatchesFilter((InstalledGameViewModel)x);
 
         RefreshGrouping(GroupGames);
 
         // Create commands
+        DeselectGameCommand = new RelayCommand(DeselectGame);
+        SelectGameCommand = new RelayCommand(x => SelectGame((InstalledGameViewModel)x!));
         ResetSortCommand = new RelayCommand(ResetSort);
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
         FindGamesCommand = new AsyncRelayCommand(() => FindGamesAsync(false));
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
         ConfigureGameClientsCommand = new AsyncRelayCommand(ConfigureGameClientsAsync);
+        ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
     }
 
     #endregion
@@ -62,11 +64,14 @@ public class GamesPageViewModel : BasePageViewModel,
 
     #region Commands
 
+    public ICommand DeselectGameCommand { get; }
+    public ICommand SelectGameCommand { get; }
     public ICommand ResetSortCommand { get; }
     public ICommand RefreshGamesCommand { get; }
     public ICommand FindGamesCommand { get; }
     public ICommand AddGamesCommand { get; }
     public ICommand ConfigureGameClientsCommand { get; }
+    public ICommand ShowVersionHistoryCommand { get; }
 
     #endregion
 
@@ -112,6 +117,8 @@ public class GamesPageViewModel : BasePageViewModel,
 
     public ObservableCollectionEx<InstalledGameViewModel> Games { get; }
     public ICollectionView GamesView { get; }
+    public ObservableCollectionEx<InstalledGameViewModel>? RecentGames { get; set; }
+    public ObservableCollectionEx<InstalledGameViewModel>? FavoriteGames { get; set; }
 
     public InstalledGameViewModel? SelectedInstalledGame
     {
@@ -208,6 +215,29 @@ public class GamesPageViewModel : BasePageViewModel,
             GamesView.GroupDescriptions.Clear();
     }
 
+    private void RefreshRecentGames()
+    {
+        RecentGames = new ObservableCollectionEx<InstalledGameViewModel>(Games.
+            OrderByDescending(x =>
+            {
+                DateTime lastPlayed = x.GameInstallation.GetValue<DateTime>(GameDataKey.RCP_LastPlayed);
+                DateTime gameAdded = x.GameInstallation.GetValue<DateTime>(GameDataKey.RCP_GameAddedDate);
+
+                // Use the latest date of the two
+                return lastPlayed > gameAdded ? lastPlayed : gameAdded;
+            }).
+            Take(5));
+    }
+
+    private void RefreshFavoriteGames()
+    {
+        FavoriteGames = new ObservableCollectionEx<InstalledGameViewModel>(Games.
+            Where(x => x.GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite)));
+    }
+
+    private void Game_OnLastPlayedChanged() => RefreshRecentGames();
+    private void Game_OnIsFavoriteChanged() => RefreshFavoriteGames();
+
     #endregion
 
     #region Protected Methods
@@ -224,6 +254,8 @@ public class GamesPageViewModel : BasePageViewModel,
 
     #region Public Methods
 
+    public void DeselectGame() => SelectedInstalledGame = null;
+    public void SelectGame(InstalledGameViewModel game) => SelectedInstalledGame = game;
     public void ResetSort() => GamesManager.SortGames((x, y) => x.CompareTo(y));
 
     public Task RefreshAsync() => RefreshAsync(null);
@@ -238,7 +270,11 @@ public class GamesPageViewModel : BasePageViewModel,
                 {
                     // Unload previously loaded games
                     foreach (InstalledGameViewModel game in Games)
+                    {
+                        game.GameInstallation.RemoveDataChangedCallback(GameDataKey.RCP_LastPlayed, Game_OnLastPlayedChanged);
+                        game.GameInstallation.RemoveDataChangedCallback(GameDataKey.RCP_IsFavorite, Game_OnIsFavoriteChanged);
                         game.Unload();
+                    }
 
                     foreach (GameGroupViewModel group in _gamegroups.Values)
                         group.PropertyChanged -= GameGroup_OnPropertyChanged;
@@ -269,6 +305,15 @@ public class GamesPageViewModel : BasePageViewModel,
                             x.Add(new InstalledGameViewModel(gameInstallation, group));
                         }
                     });
+
+                    RefreshRecentGames();
+                    RefreshFavoriteGames();
+
+                    foreach (InstalledGameViewModel game in Games)
+                    {
+                        game.GameInstallation.AddDataChangedCallback(GameDataKey.RCP_LastPlayed, Game_OnLastPlayedChanged);
+                        game.GameInstallation.AddDataChangedCallback(GameDataKey.RCP_IsFavorite, Game_OnIsFavoriteChanged);
+                    }
 
                     if (selectedGameInstallation != null)
                         SelectedInstalledGame = Games.FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
@@ -410,15 +455,9 @@ public class GamesPageViewModel : BasePageViewModel,
                 MessageType.Information);
     }
 
-    public Task AddGamesAsync()
-    {
-        return UI.ShowAddGamesAsync();
-    }
-
-    public Task ConfigureGameClientsAsync()
-    {
-        return UI.ShowGameClientsSetupAsync();
-    }
+    public Task AddGamesAsync() => UI.ShowAddGamesAsync();
+    public Task ConfigureGameClientsAsync() => UI.ShowGameClientsSetupAsync();
+    public Task ShowVersionHistoryAsync() => UI.ShowAppNewsAsync();
 
     public async void Receive(AddedGamesMessage message) =>
         await RefreshAsync(message.GameInstallations.FirstOrDefault());
@@ -429,6 +468,11 @@ public class GamesPageViewModel : BasePageViewModel,
     public void Receive(SortedGamesMessage message)
     {
         Games.ModifyCollection(x => 
+            x.Sort((x1, x2) => message.SortedCollection.
+                IndexOf(x1.GameInstallation).
+                CompareTo(message.SortedCollection.
+                    IndexOf(x2.GameInstallation))));
+        FavoriteGames?.ModifyCollection(x => 
             x.Sort((x1, x2) => message.SortedCollection.
                 IndexOf(x1.GameInstallation).
                 CompareTo(message.SortedCollection.

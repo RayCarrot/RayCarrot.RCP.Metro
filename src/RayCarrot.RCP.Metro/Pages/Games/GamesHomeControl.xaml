@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Games.GamesHomeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             mc:Ignorable="d" 
+             d:DesignWidth="900" d:DesignHeight="600"
+             d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-UPDATE: Localize -->
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="GameItemTemplate" DataType="games:InstalledGameViewModel">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.(games:GamesPageViewModel.SelectGameCommand), Mode=OneTime}"
+                        CommandParameter="{Binding}"
+                        HorizontalContentAlignment="Left"
+                        Padding="4"
+                        Margin="0 0 4 0">
+                    <rcp:GameTitle GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}" />
+                </Button>
+
+                <Button Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=LaunchCommand, Mode=OneTime}"
+                        ToolTip="Play game"
+                        rcp:Icon.Kind="PlayOutline"
+                        Margin="0 0 4 0" />
+
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
+               Height="128" Width="128" />
+
+        <GroupBox Grid.Row="1" FontSize="14"
+                  rcp:Icon.Kind="TextBoxOutline"
+                  rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                  Margin="{StaticResource RCP.Thicknesses.Card}">
+            <GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="News"
+                               VerticalAlignment="Center"
+                               FontSize="14" />
+
+                    <Button Grid.Column="1"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            ToolTip="{Resx About_UpdateHistory}"
+                            Command="{Binding Path=ShowVersionHistoryCommand, Mode=OneTime}"
+                            rcp:Icon.Kind="TooltipTextOutline"
+                            rcp:Icon.Size="16" />
+
+                </Grid>
+            </GroupBox.Header>
+
+            <ScrollViewer>
+                <!-- TODO-14: Replace this dummy text with text from web server -->
+                <TextBlock TextWrapping="Wrap">
+                    <Bold>May ??, 2023</Bold><LineBreak/>
+                    • Released the anniversary update (14.0.0)<LineBreak/>
+                    <LineBreak/>
+                    <Bold>April ??, 2023</Bold><LineBreak/>
+                    • Released the anniversary update (14.0.0) for public testing<LineBreak/>
+                    <LineBreak/>
+                    <Bold>March ??, 2023</Bold><LineBreak/>
+                    • Updated Ray2Fix patch for Rayman 2 to version 1.3.0, now with support for controller remapping<LineBreak/>
+                    <LineBreak/>
+                    <Bold>February 23, 2023</Bold><LineBreak/>
+                    • Started testing this new home page<LineBreak/>
+                    <LineBreak/>
+                    <Bold>December 11, 2022</Bold><LineBreak/>
+                    • Teased the anniversary update in the Rayman Alive event
+                </TextBlock>
+            </ScrollViewer>
+        </GroupBox>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Column="0"
+                      Header="Recent"
+                      rcp:Icon.Kind="ClockOutline"
+                      rcp:Icon.Brush="{StaticResource RCP.Brushes.Games}"
+                      Margin="{StaticResource RCP.Thicknesses.Card}">
+                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
+                              ItemsSource="{Binding Path=RecentGames}"
+                              VirtualizingPanel.ScrollUnit="Pixel"
+                              ItemTemplate="{StaticResource GameItemTemplate}"/>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1"
+                      Header="Favorites"
+                      rcp:Icon.Kind="StarOutline"
+                      rcp:Icon.Brush="{StaticResource RCP.Brushes.Favorites}"
+                      Margin="{StaticResource RCP.Thicknesses.Card}">
+                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
+                              ItemsSource="{Binding Path=FavoriteGames}"
+                              VirtualizingPanel.ScrollUnit="Pixel"
+                              ItemTemplate="{StaticResource GameItemTemplate}"/>
+            </GroupBox>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -9,6 +9,10 @@ namespace RayCarrot.RCP.Metro;
 /// <typeparam name="T">The item type</typeparam>
 public class ObservableCollectionEx<T> : ObservableCollection<T>
 {
+    public ObservableCollectionEx() { }
+    public ObservableCollectionEx(List<T> list) : base(list) { }
+    public ObservableCollectionEx(IEnumerable<T> collection) : base(collection) { }
+
     private bool _notificationSupressed;
     private bool _supressNotification;
 
