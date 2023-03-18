@@ -1,4 +1,60 @@
-﻿-----   Version 13.4.5 - January 23, 2023   -----
+﻿-----   Version 14.0.0 - May ??, 2023   -----
+• Major changes to how games are handled
+	• Multiple installations of the same game can be added
+	• Games can be renamed and reordered
+	• The game options have been moved from the options dialog to the game hub
+	• The Rayman Edutainment games are now split up between Edu and Quiz
+• The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
+• Added a home page for news and recent/favorite games
+• The game finder has been reworked to be faster and to be able to find game clients
+• The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
+• The jumplist now sorts games by default and no longer automatically adds every game
+
+Other changes:
+• UI changes
+	• Redesigned the games page, now split between a selection and the game hub
+	• Decreased large corner radiuses
+	• Card backgrounds are now darker
+	• Updated the flat button style
+	• Redesigned the overflow/popup menus
+	• Redesigned the edit jumplist dialog
+• Patcher changes
+	• Patches can now be created to target multiple games
+	• Patches can now be created for the Rayman Edutainment games
+	• Patches can no longer be created for games where the patcher is not available
+	• The patch creator is now accessed from the game hub with the option to update a patch being moved into the creator
+	• When saving a created patch the file name now defaults to the patch name
+• Archive changes
+	• The CPA texture sync is now available for the Rayman M and 3 demos
+	• The CPA texture sync has been moved from a utility to an archive action in the game hub
+	• Progress is now shown when synchronizing CPA game textures
+	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
+	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
+• Updated the progression page layout and added support for multiple games sharing the same backup
+• A DOSBox installation can now have multiple config files
+• The option to run a game as admin is now always visible in the drop-down
+• The option to run a game as admin is no longer available for emulated games, such as MS-DOS games
+• The MS-DOS games now launch directly using the exe rather than the bat file
+• Uninstalling previously installable fan games no longer removes their save data
+• Validating a game location now includes more file checks
+• Removed the demo games category
+• Renamed Rayman 1 to always say Rayman for consistency
+• Removed purchase links for Microsoft Store games due to them being delisted
+• Removed the Rayman Origins High Quality videos utility as it has been replaced by a patch
+• Debug changes
+	• Removed debug options to refresh the app
+	• Added debug dialogs for game and game client installations
+	• The debug page has several added and removed options and improvements to existing ones
+• Bug fixes
+	• Concurrent serializer log writes are now handled by creating multiple files
+	• The app jumplist is now refreshed when the app exe is moved
+	• Fixed a bug with finding Rayman Forever installations through the game finder
+	• Fixed a bug with creating backups for the Rayman Edutainment (Quiz) games
+	• Fixed a bug where the Rabbis Go Home config wouldn't get saved when restarting the app
+	• Fixed a bug where closing the manual download dialog might show an error
+
+
+-----   Version 13.4.5 - January 23, 2023   -----
 • Added support for patching the Ubisoft Connect version for the Rayman Raving Rabbids Prototype Restoration mod
 
 
