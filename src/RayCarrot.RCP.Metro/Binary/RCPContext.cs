@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Text;
 using BinarySerializer;
 using LogLevel = BinarySerializer.LogLevel;
 
@@ -11,48 +10,30 @@ public class RCPContext : Context
         : base(
             basePath: basePath, 
             settings: settings ?? new RCPSerializerSettings(), 
-            serializerLogger: noLog ? null : logger ?? LogInstance, 
+            serializerLogger: noLog ? null : logger ?? new RCPSerializerLogger(), 
             fileManager: new RCPFileManager(), 
             systemLogger: new RCPLogger())
     { }
 
-    // TODO-14: This is not thread-safe! While testing I got an I/O race condition exception. Although rare it should be resolved.
-    //          The bug can be reproduced pretty consistently by quickly changing Run as admin in game hub since that refreshes
-    //          the patches in a quick succession in a task.
-    // Use a static log instance so that multiple contexts can be open and log at the same time without conflicts
-    private static readonly RCPSerializerLogger LogInstance = new();
-
     public class RCPSerializerLogger : ISerializerLogger
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private static bool _hasBeenCreated;
+        private static readonly SerializerLogWriterProvider _provider = new();
 
         private bool _isInvalid;
-
-        public bool IsEnabled => !_isInvalid && Services.Data.Binary_IsSerializationLogEnabled;
-
         private StreamWriter? _logWriter;
 
         protected StreamWriter? LogWriter => _logWriter ??= GetFile();
-
-        public string LogFile => Services.Data.Binary_BinarySerializationFileLogPath;
+        
+        public bool IsEnabled => !_isInvalid && Services.Data.Binary_IsSerializationLogEnabled;
 
         public StreamWriter? GetFile()
         {
-            var mode = _hasBeenCreated ? FileMode.Append : FileMode.Create;
+            StreamWriter? writer = _provider.GetWriter();
 
-            try
-            {
-                StreamWriter w = new(File.Open(LogFile, mode, FileAccess.Write, FileShare.ReadWrite), Encoding.UTF8);
-                _hasBeenCreated = true;
-                return w;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Opening serializer log file with mode {0}", mode);
+            if (writer == null)
                 _isInvalid = true;
-                return null;
-            }
+
+            return writer;
         }
 
         public void Log(object? obj)
