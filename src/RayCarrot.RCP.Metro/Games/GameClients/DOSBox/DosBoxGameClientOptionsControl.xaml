@@ -19,7 +19,6 @@
                    Text="Configuration file paths"
                    Margin="0 0 0 4" />
 
-        <!-- TODO-14: Apply changes on reorder -->
         <ListBox x:Name="ConfigFilesListBox"
                  Margin="0 0 4 0"
                  ItemsSource="{Binding Path=ConfigFiles, Mode=OneTime}"

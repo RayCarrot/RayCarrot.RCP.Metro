@@ -145,7 +145,9 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
             {
                 Logger.Error(ex, "Loading page {0}", PageName);
 
-                // TODO-14: Show an error message to the user
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the page");
+                
                 HasError = true;
             }
         }
