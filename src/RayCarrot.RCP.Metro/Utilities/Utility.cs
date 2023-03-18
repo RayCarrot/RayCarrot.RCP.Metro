@@ -63,12 +63,6 @@ public abstract class Utility
     /// </summary>
     public virtual LocalizedString? NotAvailableInfo => null;
 
-    /// <summary>
-    /// Retrieves a list of applied utilities from this utility
-    /// </summary>
-    /// <returns>The applied utilities</returns>
-    public virtual IEnumerable<string> GetAppliedUtilities() => Enumerable.Empty<string>();
-
     public event EventHandler? IsLoadingChanged;
 
     protected virtual void OnIsLoadingChanged() => IsLoadingChanged?.Invoke(this, EventArgs.Empty);

@@ -51,7 +51,6 @@ public class DebugPageViewModel : BasePageViewModel
         ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
         ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
         ShowWelcomeWindowCommand = new RelayCommand(ShowWelcomeWindow);
-        ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
         RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
         GCCollectCommand = new RelayCommand(GCCollect);
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
@@ -78,7 +77,6 @@ public class DebugPageViewModel : BasePageViewModel
     public ICommand ShowDialogCommand { get; }
     public ICommand ShowLogCommand { get; }
     public ICommand ShowWelcomeWindowCommand { get; }
-    public ICommand ShowInstalledUtilitiesCommand { get; }
     public ICommand RefreshDataOutputCommand { get; }
     public ICommand GCCollectCommand { get; }
     public ICommand ThrowUnhandledExceptionCommand { get; }
@@ -310,23 +308,6 @@ public class DebugPageViewModel : BasePageViewModel
     public void ShowWelcomeWindow()
     {
         new FirstLaunchInfoDialog().ShowDialog();
-    }
-
-    /// <summary>
-    /// Shows the installed utilities for each game to the user
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task ShowInstalledUtilitiesAsync()
-    {
-        var lines = new List<string>();
-
-        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
-        {
-            lines.AddRange((await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation)).
-                Select(utility => $"{utility} ({gameInstallation.GetDisplayName()})"));
-        }
-
-        await MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
     }
 
     /// <summary>

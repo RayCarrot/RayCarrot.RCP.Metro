@@ -18,11 +18,6 @@
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-            <Button Content="Show applied utilities"
-                    ToolTip="Shows a list of every utility which is marked as applied by an installed game"
-                    Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
-                    rcp:Icon.Kind="BriefcaseOutline" />
-
             <Button Content="Show log"
                     ToolTip="Shows the application log, either through the in-app log viewer or as a fallback by opening the log file"
                     Command="{Binding Path=ShowLogCommand, Mode=OneTime}"

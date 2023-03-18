@@ -379,16 +379,6 @@ public class InstalledGameViewModel : BaseViewModel
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(CanUninstall ? Resources.RemoveInstalledGameQuestion : Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader, MessageType.Question, true))
             return;
 
-        // Get applied utilities
-        IList<string> appliedUtilities = await GameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(GameInstallation);
-
-        // Warn about applied utilities, if any
-        if (appliedUtilities.Any() && !await Services.MessageUI.DisplayMessageAsync(
-                $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +
-                $"{appliedUtilities.JoinItems(Environment.NewLine)}",
-                Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
-            return;
-
         // TODO-14: Only check this if the game can have patches. Shouldn't be allowed for single-file games for example
         // Get applied patches
         using Context context = new RCPContext(String.Empty);

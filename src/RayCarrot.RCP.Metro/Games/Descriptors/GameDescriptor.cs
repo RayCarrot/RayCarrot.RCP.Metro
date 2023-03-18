@@ -194,20 +194,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
     public virtual IEnumerable<GameAddAction> GetAddActions() => Enumerable.Empty<GameAddAction>();
 
-    // TODO-14: Remove or change this. If kept it should be a component.
-    /// <summary>
-    /// Gets the applied utilities for the specified game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the utilities for</param>
-    /// <returns>The applied utilities</returns>
-    public virtual Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
-    {
-        return Task.FromResult<IList<string>>(gameInstallation.GetComponents<UtilityComponent>().
-            CreateObjects().
-            SelectMany(x => x.GetAppliedUtilities()).
-            ToArray());
-    }
-
     /// <summary>
     /// Gets the purchase links for the game
     /// </summary>

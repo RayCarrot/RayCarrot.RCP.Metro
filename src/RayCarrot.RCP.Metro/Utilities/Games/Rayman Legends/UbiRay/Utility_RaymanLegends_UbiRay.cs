@@ -18,10 +18,4 @@ public class Utility_RaymanLegends_UbiRay : Utility<Utility_RaymanLegends_UbiRay
     public override string InfoText => Resources.RLU_UbiRayInfo;
     public override bool RequiresAdmin => !Services.File.CheckFileWriteAccess(ViewModel.IPKFilePath);
     public override bool IsAvailable => ViewModel.IPKFilePath.FileExists;
-
-    public override IEnumerable<string> GetAppliedUtilities()
-    {
-        if (ViewModel.IsApplied)
-            yield return Resources.RLU_UbiRayHeader;
-    }
 }

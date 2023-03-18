@@ -114,30 +114,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
     };
 
-    public override async Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
-    {
-        // TODO-14: These are not utilities - these are game modifications caused by the config
-
-        // Create the output
-        var output = new List<string>();
-
-        if (await Rayman2ConfigViewModel.GetIsWidescreenHackAppliedAsync(gameInstallation) == true)
-            output.Add(Resources.Config_WidescreenSupport);
-
-        var dinput = Rayman2ConfigViewModel.GetCurrentDinput(gameInstallation);
-
-        if (dinput == Rayman2ConfigViewModel.R2Dinput.Controller)
-            output.Add(Resources.Config_UseController);
-
-        if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
-            output.Add(Resources.Config_ButtonMapping);
-
-        // Get other utilities
-        output.AddRange(await base.GetAppliedUtilitiesAsync(gameInstallation));
-
-        return output;
-    }
-
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
         new UbiIniFinderQuery(UbiIniData_Rayman2.SectionName),

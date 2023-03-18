@@ -19,9 +19,4 @@ public class Utility_Rayman1_TPLS : Utility<Utility_Rayman1_TPLS_Control, Utilit
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman1_TPLS;
     public override string InfoText => Resources.R1U_TPLSInfo;
     public override bool RequiresAdditionalFiles => true;
-    public override IEnumerable<string> GetAppliedUtilities()
-    {
-        if (GameInstallation.GetObject<Rayman1TplsData>(GameDataKey.R1_TplsData) != null)
-            yield return Resources.R1U_TPLSHeader;
-    }
 }

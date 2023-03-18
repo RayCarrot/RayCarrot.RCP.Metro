@@ -688,16 +688,12 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         return FileSystemPath.EmptyPath;
     }
 
-    #endregion
-
-    #region Public Static Methods
-
     /// <summary>
     /// Gets the current dinput file used for Rayman 2
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the file for</param>
     /// <returns>The current dinput file used</returns>
-    public static R2Dinput GetCurrentDinput(GameInstallation gameInstallation)
+    private static R2Dinput GetCurrentDinput(GameInstallation gameInstallation)
     {
         var path = GetDinputPath(gameInstallation);
 
@@ -728,7 +724,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     /// </summary>
     /// <param name="gameInstallation">The game installation to check</param>
     /// <returns>True if a widescreen patch has been applied, false if it has not. Null if an error occurred while checking.</returns>
-    public static async Task<bool?> GetIsWidescreenHackAppliedAsync(GameInstallation gameInstallation)
+    private static async Task<bool?> GetIsWidescreenHackAppliedAsync(GameInstallation gameInstallation)
     {
         try
         {

@@ -39,6 +39,7 @@ Other changes:
 • Validating a game location now includes more file checks
 • Removed the demo games category
 • Renamed Rayman 1 to always say Rayman for consistency
+• Removing a game will no longer prompt about applied utilities
 • Removed purchase links for Microsoft Store games due to them being delisted
 • Removed the Rayman Origins High Quality videos utility as it has been replaced by a patch
 • Debug changes
