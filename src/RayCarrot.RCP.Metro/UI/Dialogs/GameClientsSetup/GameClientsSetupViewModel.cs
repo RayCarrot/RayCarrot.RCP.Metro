@@ -5,18 +5,18 @@ namespace RayCarrot.RCP.Metro;
 public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
     IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>,
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>,
-    IRecipient<SortedGamesMessage>
+    IRecipient<SortedGamesMessage>, IRecipient<SortedGameClientsMessage>
 {
     public GameClientsSetupViewModel()
     {
-        InstalledGameClients = new ObservableCollection<InstalledGameClientViewModel>();
+        InstalledGameClients = new ObservableCollectionEx<InstalledGameClientViewModel>();
         AvailableGameClients = new ObservableCollection<AvailableGameClientViewModel>(
             Services.GameClients.GetGameClientDescriptors().Select(x => new AvailableGameClientViewModel(x)));
 
         Refresh();
     }
 
-    public ObservableCollection<InstalledGameClientViewModel> InstalledGameClients { get; }
+    public ObservableCollectionEx<InstalledGameClientViewModel> InstalledGameClients { get; }
     public ObservableCollection<AvailableGameClientViewModel> AvailableGameClients { get; }
 
     public InstalledGameClientViewModel? SelectedGameClient { get; set; }
@@ -32,16 +32,19 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
         foreach (AvailableGameClientViewModel gameClient in AvailableGameClients)
             gameClient.Refresh();
 
-        InstalledGameClients.Clear();
-
-        foreach (GameClientInstallation gameClientInstallation in Services.GameClients.GetInstalledGameClients())
+        InstalledGameClients.ModifyCollection(x =>
         {
-            InstalledGameClientViewModel viewModel = new(gameClientInstallation);
-            InstalledGameClients.Add(viewModel);
+            x.Clear();
 
-            if (selectedGameClientInstallation == gameClientInstallation)
-                SelectedGameClient = viewModel;
-        }
+            foreach (GameClientInstallation gameClientInstallation in Services.GameClients.GetInstalledGameClients())
+            {
+                InstalledGameClientViewModel viewModel = new(gameClientInstallation);
+                x.Add(viewModel);
+
+                if (selectedGameClientInstallation == gameClientInstallation)
+                    SelectedGameClient = viewModel;
+            }
+        });
     }
 
     public void Initialize() => Services.Messenger.RegisterAll(this);
@@ -64,4 +67,12 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
         RefreshSupportedGames();
     public void Receive(SortedGamesMessage message) =>
         RefreshSupportedGames();
+    public void Receive(SortedGameClientsMessage message)
+    {
+        InstalledGameClients.ModifyCollection(x =>
+            x.Sort((x1, x2) => message.SortedCollection.
+                IndexOf(x1.GameClientInstallation).
+                CompareTo(message.SortedCollection.
+                    IndexOf(x2.GameClientInstallation))));
+    }
 }

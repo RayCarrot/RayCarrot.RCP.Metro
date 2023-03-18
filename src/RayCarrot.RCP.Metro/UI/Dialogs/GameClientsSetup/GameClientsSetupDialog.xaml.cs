@@ -1,4 +1,7 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System.Windows;
+using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Interaction logic for GameClientsSetupDialog.xaml
@@ -21,6 +24,17 @@ public partial class GameClientsSetupDialog : WindowContentControl
     #region Public Properties
 
     public override bool IsResizable => true;
+
+    public GameClientsSetupViewModel ViewModel => (GameClientsSetupViewModel)DataContext;
+
+    #endregion
+
+    #region Event Handlers
+
+    private void InstalledGameClientsListBox_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        DragDrop.SetDropHandler(InstalledGameClientsListBox, new GameClientsSetupDropHandler(ViewModel));
+    }
 
     #endregion
 

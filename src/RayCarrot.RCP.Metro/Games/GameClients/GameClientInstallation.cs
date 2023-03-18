@@ -44,8 +44,6 @@ public class GameClientInstallation : ProgramInstallation, IComparable<GameClien
         if (other == null)
             return 1;
 
-        // TODO-14: Also allow custom sorting? Same as with GameInstallation.
-
         return GameClientDescriptor.CompareTo(other.GameClientDescriptor);
     }
 

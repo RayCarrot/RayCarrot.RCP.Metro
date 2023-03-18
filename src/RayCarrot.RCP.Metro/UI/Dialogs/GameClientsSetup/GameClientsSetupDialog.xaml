@@ -6,6 +6,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:dosBox="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.DosBox"
+                            xmlns:dd="urn:gong-wpf-dragdrop"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -45,13 +46,17 @@
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                Margin="0 0 0 4" />
 
-                    <!-- TODO-14: Allow reorder -->
-                    <ListBox Grid.Row="1"
+                    <ListBox x:Name="InstalledGameClientsListBox" 
+                             Grid.Row="1"
                              Background="Transparent"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ItemsSource="{Binding Path=InstalledGameClients, Mode=OneTime}"
                              d:ItemsSource="{d:SampleData ItemCount=3}"
-                             SelectedItem="{Binding Path=SelectedGameClient}">
+                             SelectedItem="{Binding Path=SelectedGameClient}"
+                             Loaded="InstalledGameClientsListBox_OnLoaded"
+                             dd:DragDrop.IsDragSource="True"
+                             dd:DragDrop.IsDropTarget="True"
+                             dd:DragDrop.UseDefaultDragAdorner="True">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItemV3}">
                                 <Setter Property="Background" Value="Transparent" />

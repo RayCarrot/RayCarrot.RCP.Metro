@@ -7,7 +7,8 @@ namespace RayCarrot.RCP.Metro.Games.Options;
 /// View model for the client selection game options
 /// </summary>
 public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel, IInitializable,
-    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>
+    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>,
+    IRecipient<SortedGameClientsMessage>
 {
     #region Constructor
 
@@ -113,6 +114,7 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel, IIn
             }
         }
     }
+    public void Receive(SortedGameClientsMessage message) => Load();
 
     #endregion
 

@@ -285,6 +285,24 @@ public class GameClientsManager
         Messenger.Send(new RemovedGameClientsMessage(gameClientInstallations));
     }
 
+    public void SortGameClients(Comparison<GameClientInstallation> comparison)
+    {
+        Data.Game_GameClientInstallations.Sort(comparison);
+        Messenger.Send(new SortedGameClientsMessage(Data.Game_GameClientInstallations.ToList()));
+    }
+
+    public void MoveGameClient(GameClientInstallation gameClient, int newIndex) =>
+        MoveGameClient(Data.Game_GameClientInstallations.IndexOf(gameClient), newIndex);
+
+    public void MoveGameClient(int srcIndex, int newIndex)
+    {
+        GameClientInstallation gameClient = Data.Game_GameClientInstallations[srcIndex];
+        Data.Game_GameClientInstallations.RemoveAt(srcIndex);
+        Data.Game_GameClientInstallations.Insert(newIndex, gameClient);
+
+        Messenger.Send(new SortedGameClientsMessage(Data.Game_GameClientInstallations.ToList()));
+    }
+
     /// <summary>
     /// Gets a collection of the currently installed game clients
     /// </summary>
