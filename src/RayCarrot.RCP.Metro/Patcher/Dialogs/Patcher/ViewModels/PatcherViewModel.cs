@@ -12,8 +12,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     private PatcherViewModel(GameInstallation gameInstallation, Context context)
     {
-        // TODO-14: Should probably check and throw an exception if the game install location has a file, or doesn't
-        //          support patching in general to avoid issues and confusion
+        if (!gameInstallation.GameDescriptor.AllowPatching)
+            throw new InvalidOperationException("The game installation doesn't allow patching");
 
         GameInstallation = gameInstallation;
         GameDirectory = gameInstallation.InstallLocation.Directory;
