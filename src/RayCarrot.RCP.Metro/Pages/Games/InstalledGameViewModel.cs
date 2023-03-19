@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Input;
 using BinarySerializer;
+using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
@@ -55,7 +56,10 @@ public class InstalledGameViewModel : BaseViewModel
 
     #region Private Fields
 
+    private readonly AsyncLock LoadLock = new();
+    
     private bool _loaded;
+    
 
     #endregion
 
@@ -273,30 +277,31 @@ public class InstalledGameViewModel : BaseViewModel
 
     private async Task ReloadAsync(bool loadOptions)
     {
-        // TODO-14: Async lock
-
-        // Load options
-        if (loadOptions)
+        using (await LoadLock.LockAsync())
         {
-            DeinitializeGameOptions();
+            // Load options
+            if (loadOptions)
+            {
+                DeinitializeGameOptions();
 
-            var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
-            GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
-            InitializeGameOptions();
+                var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
+                GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
+                InitializeGameOptions();
+            }
+
+            // Load info
+            GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GetComponents<GameInfoComponent>().CreateManyObjects());
+
+            // Load additional launch actions
+            AddAdditionalLaunchActions();
+
+            // Load panels
+            AddGamePanels();
+
+            await Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
+
+            Logger.Info("Loaded game {0}", GameInstallation.FullId);
         }
-
-        // Load info
-        GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GetComponents<GameInfoComponent>().CreateManyObjects());
-
-        // Load additional launch actions
-        AddAdditionalLaunchActions();
-
-        // Load panels
-        AddGamePanels();
-        
-        await Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
-
-        Logger.Info("Loaded game {0}", GameInstallation.FullId);
     }
 
     #endregion
