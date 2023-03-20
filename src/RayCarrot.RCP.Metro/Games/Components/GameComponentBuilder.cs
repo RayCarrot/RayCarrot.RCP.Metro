@@ -36,10 +36,18 @@ public class GameComponentBuilder : IGameComponentBuilder
 
         _hasBuilt = true;
 
-        // TODO-14: This should probably be recursive - but how?
         // Register components from components
-        foreach (Component component in _components.ToArray())
-            component.GetInstance().RegisterComponents(this);
+        do
+        {
+            foreach (Component component in _components.ToArray())
+            {
+                if (!component.HasRegisteredComponents)
+                {
+                    component.GetInstance().RegisterComponents(this);
+                    component.HasRegisteredComponents = true;
+                }
+            }
+        } while (_components.Any(x => !x.HasRegisteredComponents));
 
 #if DEBUG
         // Verify all required components are there. This code is not
@@ -61,6 +69,7 @@ public class GameComponentBuilder : IGameComponentBuilder
     public record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority)
     {
         private GameComponent? Instance { get; set; } = Instance;
+        public bool HasRegisteredComponents { get; set; }
         public GameComponent GetInstance() => Instance ??= (GameComponent)Activator.CreateInstance(InstanceType);
     }
 }
