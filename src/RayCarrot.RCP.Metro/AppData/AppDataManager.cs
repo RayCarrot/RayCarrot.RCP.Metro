@@ -434,9 +434,9 @@ public class AppDataManager
             {
                 InstallLocation location = new(installDir);
 
-                bool isValid = descriptor.IsValid(location);
+                GameLocationValidationResult validationResult = descriptor.ValidateLocation(location);
 
-                if (!isValid)
+                if (!validationResult.IsValid)
                 {
                     Logger.Warn("v14 data migration: Could not add game due to the location not being valid");
                     return;

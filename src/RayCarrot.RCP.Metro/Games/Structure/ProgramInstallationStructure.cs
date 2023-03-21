@@ -32,9 +32,10 @@ public class ProgramInstallationStructure
     public IEnumerable<(FileSystemPath FullPath, GameInstallationPath Path)> EnumeratePaths(FileSystemPath basePath) =>
         EnumeratePaths(basePath, GamePaths);
 
-    public bool IsLocationValid(InstallLocation location)
+    public GameLocationValidationResult IsLocationValid(InstallLocation location)
     {
         // TODO-14: Validate the location if it's a file instead
+        List<string>? invalidPaths = null;
 
         foreach ((FileSystemPath FullPath, GameInstallationPath Path) in EnumeratePaths(location.Directory))
         {
@@ -43,12 +44,22 @@ public class ProgramInstallationStructure
 
             if (!Path.IsValid(FullPath))
             {
-                Logger.Info("The validation for the location {0} failed due to the path {1} not being valid", location, FullPath);
-                return false;
+                invalidPaths ??= new List<string>();
+                invalidPaths.Add(Path.Path);
             }
         }
 
-        return true;
+        if (invalidPaths == null)
+        {
+            return new GameLocationValidationResult(true);
+        }
+        else
+        {
+            Logger.Info("The validation for the location {0} failed due to {1} paths not being valid", location, invalidPaths.Count);
+
+            // TODO-UPDATE: Localize
+            return new GameLocationValidationResult(false, $"The following required paths were not found:{Environment.NewLine}{invalidPaths.Take(10).JoinItems(Environment.NewLine, x => $"- {x}")}");
+        }
     }
 
     public IEnumerable<FileSystemPath> GetAbsolutePaths(GameInstallation gameInstallation, GameInstallationPathType type) =>

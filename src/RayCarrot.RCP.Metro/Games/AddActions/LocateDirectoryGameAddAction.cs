@@ -41,11 +41,14 @@ public class LocateDirectoryGameAddAction : GameAddAction
         InstallLocation location = new(result.SelectedDirectory);
 
         // Make sure the directory is valid
-        if (!GameDescriptor.IsValid(location))
+        GameLocationValidationResult validationResult = GameDescriptor.ValidateLocation(location);
+
+        if (!validationResult.IsValid)
         {
             Logger.Info("The selected install directory for {0} is not valid", GameDescriptor.GameId);
 
-            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation,
+            await Services.MessageUI.DisplayMessageAsync(
+                $"{Resources.LocateGame_InvalidLocation}{Environment.NewLine}{Environment.NewLine}{validationResult.ErrorMessage}",
                 Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
 
             return null;

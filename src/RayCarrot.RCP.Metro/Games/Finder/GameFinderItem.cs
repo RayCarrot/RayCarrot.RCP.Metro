@@ -10,5 +10,6 @@ public class GameFinderItem : FinderItem
     public override string ItemId => GameDescriptor.GameId;
     public GameDescriptor GameDescriptor { get; }
 
-    protected override bool ValidateLocation(InstallLocation installLocation) => GameDescriptor.IsValid(installLocation);
+    protected override bool ValidateLocation(InstallLocation installLocation) => 
+        GameDescriptor.ValidateLocation(installLocation).IsValid;
 }

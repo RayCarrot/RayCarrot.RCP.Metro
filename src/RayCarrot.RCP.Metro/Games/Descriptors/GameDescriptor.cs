@@ -220,17 +220,16 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     }
 
     /// <summary>
-    /// Indicates if the game is valid
+    /// Gets a result indicating if the game location is valid
     /// </summary>
-    /// <param name="installLocation">The game install location</param>
-    /// <returns>True if the game is valid, otherwise false</returns>
-    public bool IsValid(InstallLocation installLocation)
+    /// <param name="installLocation">The game install location to check for</param>
+    /// <returns>The validation result</returns>
+    public GameLocationValidationResult ValidateLocation(InstallLocation installLocation)
     {
         // Always return true if game validation is disabled
         if (Services.Data.App_DisableGameValidation)
-            return true;
+            return new GameLocationValidationResult(true);
 
-        // TODO-14: Return reason why it's not valid so we can tell user (like which file is missing)
         // Verify the game structure
         return Structure.IsLocationValid(installLocation);
     }

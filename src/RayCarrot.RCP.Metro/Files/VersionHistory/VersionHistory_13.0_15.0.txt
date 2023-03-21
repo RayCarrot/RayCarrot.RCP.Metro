@@ -36,7 +36,7 @@ Other changes:
 • The option to run a game as admin is no longer available for emulated games, such as MS-DOS games
 • The MS-DOS games now launch directly using the exe rather than the bat file
 • Uninstalling previously installable fan games no longer removes their save data
-• Validating a game location now includes more file checks
+• Validating a game location now includes more path checks and shows which paths were missing when validation fails
 • Removed the demo games category
 • Renamed Rayman 1 to always say Rayman for consistency
 • Removing a game will no longer prompt about applied utilities
