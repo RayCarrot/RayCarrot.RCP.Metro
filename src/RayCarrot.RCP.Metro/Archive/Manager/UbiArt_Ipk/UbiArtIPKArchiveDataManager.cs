@@ -213,7 +213,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, leaveOpen: true);
+        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, mode: VirtualFileMode.DoNotClose);
 
         try
         {
@@ -374,7 +374,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        BundleFile data = Context.ReadStreamData<BundleFile>(archiveFileStream, name: name, leaveOpen: true);
+        BundleFile data = Context.ReadStreamData<BundleFile>(archiveFileStream, name: name, mode: VirtualFileMode.DoNotClose);
 
         Logger.Info("Read IPK file ({0}) with {1} files", data.BootHeader.Version, data.FilePack.Files.Length);
 

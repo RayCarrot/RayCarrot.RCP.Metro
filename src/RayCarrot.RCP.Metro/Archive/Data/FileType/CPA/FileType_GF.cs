@@ -3,6 +3,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using ImageMagick;
 using MahApps.Metro.IconPacks;
@@ -228,7 +229,7 @@ public class FileType_GF : IFileType
         Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
         // Serialize the data to get the bytes
-        manager.Context.WriteStreamData(outputStream.Stream, gf, name: outputStream.Name, leaveOpen: true);
+        manager.Context.WriteStreamData(outputStream.Stream, gf, name: outputStream.Name, mode: VirtualFileMode.DoNotClose);
     }
 
     #endregion
@@ -243,7 +244,7 @@ public class FileType_GF : IFileType
     /// <returns>The deserialized file</returns>
     public GF GetFileContent(ArchiveFileStream fileStream, IArchiveDataManager manager)
     {
-        return manager.Context!.ReadStreamData<GF>(fileStream.Stream, name: fileStream.Name, leaveOpen: true);
+        return manager.Context!.ReadStreamData<GF>(fileStream.Stream, name: fileStream.Name, mode: VirtualFileMode.DoNotClose);
     }
 
     #endregion

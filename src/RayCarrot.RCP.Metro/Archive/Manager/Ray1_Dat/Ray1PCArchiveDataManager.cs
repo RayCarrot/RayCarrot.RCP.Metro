@@ -172,7 +172,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, leaveOpen: true);
+        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, mode: VirtualFileMode.DoNotClose);
 
         try
         {
@@ -282,7 +282,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        PC_FileArchive data = Context.ReadStreamData<PC_FileArchive>(archiveFileStream, name: name, leaveOpen: true);
+        PC_FileArchive data = Context.ReadStreamData<PC_FileArchive>(archiveFileStream, name: name, mode: VirtualFileMode.DoNotClose);
 
         Logger.Info("Read R1 PC archive file with {0} files", data.Entries.Length);
 

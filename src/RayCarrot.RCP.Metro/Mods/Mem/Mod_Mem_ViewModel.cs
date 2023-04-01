@@ -214,7 +214,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
                     baseAddress: memRegion.GameOffset,
                     memoryRegionLength: memRegion.Length,
                     stream: new BufferedStream(stream), 
-                    leaveOpen: true));
+                    mode: VirtualFileMode.DoNotClose));
 
                 // Initialize the memory stream
                 s.Goto(file.StartPointer);

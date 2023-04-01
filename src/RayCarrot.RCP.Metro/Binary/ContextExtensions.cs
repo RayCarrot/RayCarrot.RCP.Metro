@@ -42,10 +42,10 @@ public static class ContextExtensions
                ?? throw new FileNotFoundException($"The requested file {fileName} was not found");
     }
 
-    public static T ReadStreamData<T>(this Context context, Stream stream, string name = "Stream", Endian? endian = null, bool leaveOpen = false, Action<T>? onPreSerialize = null)
+    public static T ReadStreamData<T>(this Context context, Stream stream, string name = "Stream", Endian? endian = null, VirtualFileMode mode = VirtualFileMode.Close, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
-        BinaryFile file = new StreamFile(context, name, stream, endian, leaveOpen: leaveOpen);
+        BinaryFile file = new StreamFile(context, name, stream, endian, mode: mode);
 
         context.AddFile(file);
 
@@ -84,10 +84,10 @@ public static class ContextExtensions
         }
     }
 
-    public static void WriteStreamData<T>(this Context context, Stream stream, T obj, string name = "Stream", Endian? endian = null, bool leaveOpen = false)
+    public static void WriteStreamData<T>(this Context context, Stream stream, T obj, string name = "Stream", Endian? endian = null, VirtualFileMode mode = VirtualFileMode.Close)
         where T : BinarySerializable, new()
     {
-        BinaryFile file = new StreamFile(context, name, stream, endian, leaveOpen: leaveOpen);
+        BinaryFile file = new StreamFile(context, name, stream, endian, mode: mode);
 
         context.AddFile(file);
 

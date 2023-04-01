@@ -15,8 +15,8 @@ public class ProcessMemoryStreamFile : MemoryMappedStreamFile
         Endian? endianness = null, 
         long memoryMappedPriority = -1, 
         Pointer parentPointer = null, 
-        bool leaveOpen = false) 
-        : base(context, name, baseAddress, stream, endianness, memoryMappedPriority, parentPointer, leaveOpen)
+        VirtualFileMode mode = VirtualFileMode.Close) 
+        : base(context, name, baseAddress, stream, endianness, memoryMappedPriority, parentPointer, mode)
     {
         MemoryRegionLength = memoryRegionLength;
     }

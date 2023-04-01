@@ -1,4 +1,5 @@
-﻿using BinarySerializer.UbiArt;
+﻿using BinarySerializer;
+using BinarySerializer.UbiArt;
 using ImageMagick;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
@@ -41,7 +42,7 @@ public class FileType_Xbox360UbiArtTex : FileType_BaseUbiArtTex
     protected override MagickImage GetImage(ArchiveFileStream inputStream, FileExtension format, IArchiveDataManager manager)
     {
         // Serialize data
-        TextureCooked tex = manager.Context!.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, leaveOpen: true, onPreSerialize: x =>
+        TextureCooked tex = manager.Context!.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, mode: VirtualFileMode.DoNotClose, onPreSerialize: x =>
         {
             x.Pre_SerializeImageData = true;
             x.Pre_FileSize = inputStream.Stream.Length;

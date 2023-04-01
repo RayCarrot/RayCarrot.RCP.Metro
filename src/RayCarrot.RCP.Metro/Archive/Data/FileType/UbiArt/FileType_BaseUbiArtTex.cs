@@ -174,7 +174,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
             tex.Pre_SerializeImageData = true;
 
             // Write the TEX file
-            manager.Context!.WriteStreamData(outputStream.Stream, tex, name: outputStream.Name, leaveOpen: true);
+            manager.Context!.WriteStreamData(outputStream.Stream, tex, name: outputStream.Name, mode: VirtualFileMode.DoNotClose);
         }
     }
 
@@ -223,7 +223,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
         if (usesTexWrapper)
         {
             // Serialize the header
-            return manager.Context.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, leaveOpen: true, onPreSerialize: x => x.Pre_SerializeImageData = false);
+            return manager.Context.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, mode: VirtualFileMode.DoNotClose, onPreSerialize: x => x.Pre_SerializeImageData = false);
         }
 
         return null;

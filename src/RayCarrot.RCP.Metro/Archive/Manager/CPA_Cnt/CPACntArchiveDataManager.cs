@@ -177,7 +177,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, leaveOpen: true);
+        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, mode: VirtualFileMode.DoNotClose);
 
         try
         {
@@ -340,7 +340,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        CNT data = Context.ReadStreamData<CNT>(archiveFileStream, name: name, leaveOpen: true);
+        CNT data = Context.ReadStreamData<CNT>(archiveFileStream, name: name, mode: VirtualFileMode.DoNotClose);
 
         Logger.Info("Read CNT file with {0} files and {1} directories", data.Files.Length, data.Directories.Length);
 
