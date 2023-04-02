@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Contains information regarding the state of a Window
 /// </summary>
-public class UserData_WindowSessionState
+public class WindowSessionState
 {
     #region Public Properties
 
@@ -44,6 +44,8 @@ public class UserData_WindowSessionState
     /// <param name="window">The window to apply the state to</param>
     public void ApplyToWindow(Window window)
     {
+        // TODO: Verify window is visible on screen
+
         window.Height = WindowHeight;
         window.Width = WindowWidth;
         window.Left = WindowLeft;
@@ -60,9 +62,9 @@ public class UserData_WindowSessionState
     /// </summary>
     /// <param name="window">The window to get the state from</param>
     /// <returns>The state</returns>
-    public static UserData_WindowSessionState GetWindowState(Window window)
+    public static WindowSessionState GetWindowState(Window window)
     {
-        return new UserData_WindowSessionState()
+        return new WindowSessionState()
         {
             WindowHeight = window.Height,
             WindowWidth = window.Width,

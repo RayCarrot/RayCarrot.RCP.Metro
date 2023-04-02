@@ -199,13 +199,13 @@ public class FileType_GF : IFileType
                 gf.PixelFormat = gf.PixelFormat.SupportsTransparency() ? GF_Format.Format_32bpp_BGRA_8888 : GF_Format.Format_24bpp_BGR_888;
 
             // Check if the format should be updated for transparency
-            if (Services.Data.Archive_GF_UpdateTransparency != UserData_Archive_GF_TransparencyMode.PreserveFormat)
+            if (Services.Data.Archive_GF_UpdateTransparency != GFTransparencyMode.PreserveFormat)
             {
                 // NOTE: Only 24 and 32 bpp bitmaps are supported
                 // Check if the imported file is transparent
                 bool? isTransparent = bmp.PixelFormat switch
                 {
-                    PixelFormat.Format32bppArgb => (Services.Data.Archive_GF_UpdateTransparency == UserData_Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
+                    PixelFormat.Format32bppArgb => (Services.Data.Archive_GF_UpdateTransparency == GFTransparencyMode.UpdateBasedOnPixelFormat ||
                                                     bmpLock.UtilizesAlpha()),
                     PixelFormat.Format24bppRgb => false,
                     _ => null

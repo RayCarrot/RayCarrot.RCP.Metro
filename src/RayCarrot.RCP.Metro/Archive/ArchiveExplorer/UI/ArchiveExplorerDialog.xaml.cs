@@ -92,12 +92,12 @@ public partial class ArchiveExplorerDialog : WindowContentControl
 
         switch (Services.Data.Archive_ExplorerSortOption)
         {
-            case UserData_Archive_Sort.AlphabeticalAscending:
+            case ArchiveItemsSort.AlphabeticalAscending:
                 FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(FileViewModel.FileName), ListSortDirection.Ascending));
                 DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(DirectoryViewModel.DisplayName), ListSortDirection.Ascending));
                 break;
 
-            case UserData_Archive_Sort.AlphabeticalDescending:
+            case ArchiveItemsSort.AlphabeticalDescending:
                 FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(FileViewModel.FileName), ListSortDirection.Descending));
                 DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(DirectoryViewModel.DisplayName), ListSortDirection.Descending));
                 break;

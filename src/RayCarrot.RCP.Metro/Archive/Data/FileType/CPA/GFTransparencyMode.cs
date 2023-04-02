@@ -1,9 +1,9 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Archive.CPA;
 
 /// <summary>
 /// The available transparency format modes when importing .gf files
 /// </summary>
-public enum UserData_Archive_GF_TransparencyMode
+public enum GFTransparencyMode
 {
     /// <summary>
     /// Indicates that the format of the .gf file should always be preserved

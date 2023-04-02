@@ -49,7 +49,7 @@ public class Mod_RRR_MemoryModToggleViewModel : BaseRCPViewModel, IDisposable
         if (ID == null)
             return;
 
-        Data.Mod_RRR_ToggleStates[ID] = new UserData_Mod_RRR_ToggleState(IsToggled, SelectedSelectionIndex);
+        Data.Mod_RRR_ToggleStates[ID] = new Mod_RRR_ToggleState(IsToggled, SelectedSelectionIndex);
     }
 
     public void Init(string id)

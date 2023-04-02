@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Newtonsoft.Json;
 using PropertyChanged;
+using RayCarrot.RCP.Metro.Archive;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -13,7 +14,7 @@ public partial class AppUserData : BaseViewModel
 #pragma warning disable IDE0051 // Remove unused private members
     [JsonProperty] private UserLevel UserLevel { set => App_UserLevel = value; }
     [JsonProperty] private Version LastVersion { set => App_LastVersion = value; }
-    [JsonProperty] private UserData_WindowSessionState WindowState { set => UI_WindowState = value; }
+    [JsonProperty] private WindowSessionState WindowState { set => UI_WindowState = value; }
     [JsonProperty] private bool DarkMode { set => Theme_DarkMode = value; }
     [JsonProperty] private bool SyncTheme { set => Theme_SyncTheme = value; }
     [JsonProperty] private bool ShowActionComplete { set => App_ShowActionComplete = value; }
@@ -35,6 +36,6 @@ public partial class AppUserData : BaseViewModel
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }
     [JsonProperty] private bool HandleDownloadsManually { set => App_HandleDownloadsManually = value; }
-    [JsonProperty] private UserData_Archive_Sort ArchiveExplorerSortOption { set => Archive_ExplorerSortOption = value; }
+    [JsonProperty] private ArchiveItemsSort ArchiveExplorerSortOption { set => Archive_ExplorerSortOption = value; }
 #pragma warning restore IDE0051 // Remove unused private members
 }

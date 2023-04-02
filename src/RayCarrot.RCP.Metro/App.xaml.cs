@@ -358,7 +358,7 @@ public partial class App : Application
 
                 // Save window state
                 if (MainWindow != null)
-                    Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(MainWindow);
+                    Data.UI_WindowState = WindowSessionState.GetWindowState(MainWindow);
 
                 Logger.Info("The application is exiting...");
 

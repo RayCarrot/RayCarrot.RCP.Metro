@@ -1,6 +1,8 @@
 ﻿#nullable disable
 using System.Reflection;
 using System.Windows.Input;
+using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro;
@@ -51,7 +53,7 @@ public partial class AppUserData : BaseViewModel
         Game_AutoLocateGames = true;
 
         // Mod
-        Mod_RRR_ToggleStates = new Dictionary<string, UserData_Mod_RRR_ToggleState>();
+        Mod_RRR_ToggleStates = new Dictionary<string, Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
 
         // Update
@@ -71,9 +73,9 @@ public partial class AppUserData : BaseViewModel
 
         // Archive
         Archive_GF_GenerateMipmaps = true;
-        Archive_GF_UpdateTransparency = UserData_Archive_GF_TransparencyMode.PreserveFormat;
+        Archive_GF_UpdateTransparency = GFTransparencyMode.PreserveFormat;
         Archive_GF_ForceGF8888Import = false;
-        Archive_ExplorerSortOption = UserData_Archive_Sort.Default;
+        Archive_ExplorerSortOption = ArchiveItemsSort.Default;
         Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
         Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
         Archive_CNT_SyncOnRepack = false;
@@ -102,7 +104,7 @@ public partial class AppUserData : BaseViewModel
         Game_GameClientInstallations ??= new List<GameClientInstallation>();
 
         // Mod
-        Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
+        Mod_RRR_ToggleStates ??= new Dictionary<string, Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping ??= new Dictionary<int, Key>();
 
         // Archive
@@ -193,7 +195,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// The previous Window session state
     /// </summary>
-    public UserData_WindowSessionState UI_WindowState { get; set; }
+    public WindowSessionState UI_WindowState { get; set; }
 
     /// <summary>
     /// Indicates if progress should be shown on the task bar
@@ -265,7 +267,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// The saves toggle states for the Rayman Raving Rabbids memory mod
     /// </summary>
-    public Dictionary<string, UserData_Mod_RRR_ToggleState> Mod_RRR_ToggleStates { get; set; }
+    public Dictionary<string, Mod_RRR_ToggleState> Mod_RRR_ToggleStates { get; set; }
 
     /// <summary>
     /// The saved button mapping for the Rayman Raving Rabbids memory mod
@@ -341,7 +343,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// Indicates if the image format should be updated depending on if the imported file supports transparency for .gf files 
     /// </summary>
-    public UserData_Archive_GF_TransparencyMode Archive_GF_UpdateTransparency { get; set; }
+    public GFTransparencyMode Archive_GF_UpdateTransparency { get; set; }
 
     /// <summary>
     /// Indicates if an imported .gf file should be forced to 888 (no transparency) or 8888 (with transparency)
@@ -351,7 +353,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// The sort option for the Archive Explorer
     /// </summary>
-    public UserData_Archive_Sort Archive_ExplorerSortOption { get; set; }
+    public ArchiveItemsSort Archive_ExplorerSortOption { get; set; }
 
     /// <summary>
     /// The executable to use when opening a binary file for editing

@@ -1,9 +1,9 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// The available Archive Explorer sort options
 /// </summary>
-public enum UserData_Archive_Sort
+public enum ArchiveItemsSort
 {
     Default,
     AlphabeticalAscending,
