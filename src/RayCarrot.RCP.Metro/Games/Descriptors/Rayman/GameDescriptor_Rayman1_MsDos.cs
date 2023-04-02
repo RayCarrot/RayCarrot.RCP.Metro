@@ -36,6 +36,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
+        builder.Register<OnGameRemovedComponent, UninstallTplsOnGameRemovedComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
