@@ -6,6 +6,7 @@
 public enum ComponentPriority
 {
     Low = -1,
-    Normal = 0,
-    High = 1,
+    Default = 0,
+    Normal = 1,
+    High = 2,
 }

@@ -22,6 +22,11 @@ public class GameComponentBuilder : IGameComponentBuilder
         if (instanceType.GetCustomAttribute<SingleInstanceGameComponentAttribute>() != null)
             _components.RemoveAll(x => x.BaseType == baseType);
 
+        // Handle default priority
+        if (priority == ComponentPriority.Default)
+            priority = instanceType.GetCustomAttribute<DefaultGameComponentPriorityAttribute>()?.DefaultPriority ??
+                       ComponentPriority.Normal;
+
         _components.Add(new Component(baseType, instanceType, instance, priority));
     }
 
