@@ -420,10 +420,18 @@ public class GamesPageViewModel : BasePageViewModel,
 
         bool foundItems = false;
 
+        // Get the game clients to add
+        List<GameClientsManager.GameClientToAdd> gameClientsToAdd = new();
+        foreach (GameClientFinderItem finderItem in runFinderItems.OfType<GameClientFinderItem>())
+        {
+            if (!finderItem.HasBeenFound)
+                continue;
+
+            gameClientsToAdd.Add(new GameClientsManager.GameClientToAdd(finderItem.GameClientDescriptor, finderItem.FoundLocation.Value, finderItem.FoundQuery.ConfigureInstallation));
+        }
+
         // Add the found game clients
-        IList<GameClientInstallation> addedGameClients = await GameClientsManager.AddGameClientsAsync(runFinderItems.OfType<GameClientFinderItem>().
-            Where(x => x.HasBeenFound).
-            Select(x => (x.GameClientDescriptor, x.FoundLocation!.Value)));
+        IList<GameClientInstallation> addedGameClients = await GameClientsManager.AddGameClientsAsync(gameClientsToAdd);
 
         if (addedGameClients.Any())
         {
@@ -435,10 +443,18 @@ public class GamesPageViewModel : BasePageViewModel,
             await MessageUI.DisplayMessageAsync($"The following new game clients/emulators were found:{Environment.NewLine}{Environment.NewLine}• {addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", "Installed game clients/emulators found", MessageType.Success);
         }
 
+        // Get the games to add
+        List<GamesManager.GameToAdd> gamesToAdd = new();
+        foreach (GameFinderItem finderItem in runFinderItems.OfType<GameFinderItem>())
+        {
+            if (!finderItem.HasBeenFound)
+                continue;
+
+            gamesToAdd.Add(new GamesManager.GameToAdd(finderItem.GameDescriptor, finderItem.FoundLocation.Value, finderItem.FoundQuery.ConfigureInstallation));
+        }
+
         // Add the found games
-        IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(runFinderItems.OfType<GameFinderItem>().
-            Where(x => x.HasBeenFound).
-            Select(x => (x.GameDescriptor, x.FoundLocation!.Value)));
+        IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(gamesToAdd);
 
         if (addedGames.Any())
         {

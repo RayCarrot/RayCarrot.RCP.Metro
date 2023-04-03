@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -54,6 +55,11 @@ public sealed class GameDescriptor_Rayman2_Demo_19990818_Win32 : Win32GameDescri
             new(AppURLs.Games_R2Demo1_Url),
         })
     });
+
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
+    {
+        new PreviouslyDownloadedGameFinderQuery(GameId, LegacyGameId),
+    };
 
     #endregion
 }

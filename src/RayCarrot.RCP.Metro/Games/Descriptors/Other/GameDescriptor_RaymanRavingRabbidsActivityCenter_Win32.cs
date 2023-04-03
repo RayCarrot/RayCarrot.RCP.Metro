@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -65,6 +66,11 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
         {
             new(AppURLs.Games_RavingRabbidsActivityCenter_Url),
         })
+    };
+
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
+    {
+        new PreviouslyDownloadedGameFinderQuery(GameId, LegacyGameId),
     };
 
     #endregion

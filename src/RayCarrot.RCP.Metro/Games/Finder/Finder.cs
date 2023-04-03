@@ -22,6 +22,7 @@ public class Finder
 
     public static FinderOperation[] DefaultOperations => new FinderOperation[]
     {
+        new PreviouslyDownloadedGameFinderOperation(),
         new UbiIniFinderOperation(),
         new SteamFinderOperation(),
         new UninstallProgramFinderOperation(),

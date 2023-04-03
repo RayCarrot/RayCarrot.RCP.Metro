@@ -130,7 +130,7 @@ public class AvailableGameClientViewModel : BaseViewModel
             InstallLocation foundLocation = FinderItem.FoundLocation.Value;
 
             // Add the found game client
-            await Services.GameClients.AddGameClientAsync(FinderItem.GameClientDescriptor, foundLocation);
+            await Services.GameClients.AddGameClientAsync(FinderItem.GameClientDescriptor, foundLocation, FinderItem.FoundQuery.ConfigureInstallation);
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync($"The game client/emulator was found at {foundLocation}", "Finder result", MessageType.Success);

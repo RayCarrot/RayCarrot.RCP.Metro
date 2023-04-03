@@ -237,15 +237,13 @@ public class GameClientsManager
         return gameClientInstallation;
     }
 
-    public async Task<IList<GameClientInstallation>> AddGameClientsAsync(
-        IEnumerable<(GameClientDescriptor descriptor, InstallLocation installLocation)> games,
-        Action<GameClientInstallation>? configureInstallation = null)
+    public async Task<IList<GameClientInstallation>> AddGameClientsAsync(IEnumerable<GameClientToAdd> gameClients)
     {
         List<GameClientInstallation> gameClientInstallations = new();
 
         // Add each game client
-        foreach ((GameClientDescriptor? descriptor, InstallLocation installLocation) in games)
-            gameClientInstallations.Add(await AddGameClientImplAsync(descriptor, installLocation, configureInstallation));
+        foreach (GameClientToAdd gameClient in gameClients)
+            gameClientInstallations.Add(await AddGameClientImplAsync(gameClient.GameClientDescriptor, gameClient.InstallLocation, gameClient.ConfigureInstallation));
 
         if (gameClientInstallations.Any())
             Messenger.Send(new AddedGameClientsMessage(gameClientInstallations));
@@ -404,6 +402,15 @@ public class GameClientsManager
         // Refresh the game
         Messenger.Send(new ModifiedGamesMessage(gameInstallation, rebuiltComponents: true));
     }
+
+    #endregion
+
+    #region Records
+
+    public record GameClientToAdd(
+        GameClientDescriptor GameClientDescriptor,
+        InstallLocation InstallLocation,
+        Action<GameClientInstallation>? ConfigureInstallation = null);
 
     #endregion
 }

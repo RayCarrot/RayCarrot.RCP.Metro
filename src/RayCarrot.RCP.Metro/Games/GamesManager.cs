@@ -215,17 +215,14 @@ public class GamesManager
     /// Adds multiple new games to the app
     /// </summary>
     /// <param name="games">The games to add</param>
-    /// <param name="configureInstallation">An optional action callback for configuring the added game installation</param>
     /// <returns>The game installations</returns>
-    public async Task<IList<GameInstallation>> AddGamesAsync(
-        IEnumerable<(GameDescriptor gameDescriptor, InstallLocation installLocation)> games,
-        Action<GameInstallation>? configureInstallation = null)
+    public async Task<IList<GameInstallation>> AddGamesAsync(IEnumerable<GameToAdd> games)
     {
         List<GameInstallation> gameInstallations = new();
 
         // Add each game
-        foreach ((GameDescriptor? gameDescriptor, InstallLocation installLocation) in games)
-            gameInstallations.Add(await AddGameImplAsync(gameDescriptor, installLocation, configureInstallation));
+        foreach (GameToAdd game in games)
+            gameInstallations.Add(await AddGameImplAsync(game.GameDescriptor, game.InstallLocation, game.ConfigureInstallation));
 
         if (gameInstallations.Any())
             Messenger.Send(new AddedGamesMessage(gameInstallations));
@@ -332,6 +329,15 @@ public class GamesManager
 
         return Data.Game_GameInstallations.FirstOrDefault(x => x.InstallationId == installationId);
     }
+
+    #endregion
+
+    #region Records
+
+    public record GameToAdd(
+        GameDescriptor GameDescriptor, 
+        InstallLocation InstallLocation,
+        Action<GameInstallation>? ConfigureInstallation = null);
 
     #endregion
 }

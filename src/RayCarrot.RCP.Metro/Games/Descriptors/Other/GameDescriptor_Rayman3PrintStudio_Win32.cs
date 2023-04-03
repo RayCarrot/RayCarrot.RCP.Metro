@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -51,6 +52,11 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
             new(AppURLs.Games_PrintStudio1_Url),
             new(AppURLs.Games_PrintStudio2_Url),
         })
+    };
+
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
+    {
+        new PreviouslyDownloadedGameFinderQuery(GameId, LegacyGameId),
     };
 
     #endregion
