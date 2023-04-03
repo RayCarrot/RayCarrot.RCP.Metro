@@ -70,119 +70,132 @@ public abstract class ProgramInstallation
 
     #region Public Methods
 
-    // TODO-14: These should probably be made thread-safe
-
     public T GetRequiredObject<T>(string key) where T : class =>
         GetObject<T>(key) ?? throw new Exception($"The object with key {key} and type {typeof(T)} could not be found");
 
     public T? GetObject<T>(string key)
         where T : class
     {
-        // Try and get the object. If not found then return null.
-        if (!_data.TryGetValue(key, out object? obj))
-            return null;
-
-        // Always return null if the object is null
-        if (obj is null)
-            return null;
-
-        // If the object has already been parsed we can return that
-        if (obj is T cachedObj)
-            return cachedObj;
-
-        // If the object has not been parsed we expect it to be a JObject,
-        // otherwise we're trying to access the object with different types.
-        if (obj is not JObject jObj)
+        lock (_data)
         {
-            Logger.Warn("The data object {0} type {1} does not match the requested type {2}", key, obj.GetType(), typeof(T));
-            return null;
+            // Try and get the object. If not found then return null.
+            if (!_data.TryGetValue(key, out object? obj))
+                return null;
+
+            // Always return null if the object is null
+            if (obj is null)
+                return null;
+
+            // If the object has already been parsed we can return that
+            if (obj is T cachedObj)
+                return cachedObj;
+
+            // If the object has not been parsed we expect it to be a JObject,
+            // otherwise we're trying to access the object with different types.
+            if (obj is not JObject jObj)
+            {
+                Logger.Warn("The data object {0} type {1} does not match the requested type {2}", key, obj.GetType(), typeof(T));
+                return null;
+            }
+
+            T? parsedObj;
+
+            try
+            {
+                // Parse the JObject
+                parsedObj = jObj.ToObject<T>();
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "The data object {0} could not be parsed as {1}", ex, typeof(T));
+                parsedObj = null;
+            }
+
+            // Cache the parsed object
+            _data[key] = parsedObj;
+
+            return parsedObj;
         }
-
-        T? parsedObj;
-
-        try
-        {
-            // Parse the JObject
-            parsedObj = jObj.ToObject<T>();
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "The data object {0} could not be parsed as {1}", ex, typeof(T));
-            parsedObj = null;
-        }
-
-        // Cache the parsed object
-        _data[key] = parsedObj;
-
-        return parsedObj;
     }
 
     public T? GetValue<T>(string key) => GetValue<T>(key, default);
 
     public T? GetValue<T>(string key, T? defaultValue)
     {
-        if (!_data.TryGetValue(key, out object? obj))
-            return defaultValue;
-
-        if (obj is T value)
-            return value;
-
-        T? convertedValue;
-
-        try
+        lock (_data)
         {
-            // TODO: Potentially improve this converting code to handle more cases in a better way. For example, what if
-            //       the enum is serialized as a string?
-            if (typeof(T).IsEnum)
-                convertedValue = (T)Convert.ChangeType(obj, Enum.GetUnderlyingType(typeof(T)));
-            else if (typeof(T) == typeof(FileSystemPath)) // Ugly hack - perhaps we should make FileSystemPath convertible?
-                convertedValue = (T)(object)new FileSystemPath((string?)obj);
-            else
-                convertedValue = (T)Convert.ChangeType(obj, typeof(T));
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "The data value {0} could not be converted to {1}", ex, typeof(T));
-            convertedValue = defaultValue;
-        }
+            if (!_data.TryGetValue(key, out object? obj))
+                return defaultValue;
 
-        _data[key] = convertedValue;
+            if (obj is T value)
+                return value;
 
-        return convertedValue;
+            T? convertedValue;
+
+            try
+            {
+                // TODO: Potentially improve this converting code to handle more cases in a better way. For example, what if
+                //       the enum is serialized as a string?
+                if (typeof(T).IsEnum)
+                    convertedValue = (T)Convert.ChangeType(obj, Enum.GetUnderlyingType(typeof(T)));
+                else if (typeof(T) == typeof(FileSystemPath)) // Ugly hack - perhaps we should make FileSystemPath convertible?
+                    convertedValue = (T)(object)new FileSystemPath((string?)obj);
+                else
+                    convertedValue = (T)Convert.ChangeType(obj, typeof(T));
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "The data value {0} could not be converted to {1}", ex, typeof(T));
+                convertedValue = defaultValue;
+            }
+
+            _data[key] = convertedValue;
+
+            return convertedValue;
+        }
     }
 
     public void SetObject<T>(string key, T? obj)
         where T : class
     {
-        if (obj is null)
-            _data.Remove(key);
-        else
-            _data[key] = obj;
-
+        lock (_data)
+        {
+            if (obj is null)
+                _data.Remove(key);
+            else
+                _data[key] = obj;
+        }
+        
         OnDataChanged(key);
     }
 
     public void ModifyObject<T>(string key, Action<T> modifyObjectAction)
         where T : class, new()
     {
-        T? obj = GetObject<T>(key);
-
-        if (obj is null)
+        lock (_data)
         {
-            obj = new T();
-            _data[key] = obj;
-        }
+            T? obj = GetObject<T>(key);
 
-        modifyObjectAction(obj);
-        SetObject(key, obj); // Don't really need to do this step anymore, but let's keep it anyway
+            if (obj is null)
+            {
+                obj = new T();
+                _data[key] = obj;
+            }
+
+            modifyObjectAction(obj);
+            SetObject(key, obj); // Don't really need to do this step anymore, but let's keep it anyway
+        }
     }
 
     public void SetValue<T>(string key, T obj)
     {
-        if (obj is null)
-            _data.Remove(key);
-        else
-            _data[key] = obj;
+        lock (_data)
+        {
+            if (obj is null)
+                _data.Remove(key);
+            else
+                _data[key] = obj;
+        }
 
         OnDataChanged(key);
     }

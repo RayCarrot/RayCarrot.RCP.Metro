@@ -115,8 +115,10 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
         if (other == null)
             return 1;
 
-        // TODO-14: Add proper sorting based on platforms
+        // TODO: Ideally we'd add some proper sorting like for game descriptors, but it's harder here since a client
+        //       can support multiple types of platforms at once, so what do we sort on?
 
+        // Id
         return String.Compare(GameClientId, other.GameClientId, StringComparison.Ordinal);
     }
 }
