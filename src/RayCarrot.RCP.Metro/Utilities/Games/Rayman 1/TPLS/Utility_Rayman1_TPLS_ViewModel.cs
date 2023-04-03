@@ -109,7 +109,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
 
         // Create an emulator installation
         GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameClientDescriptor<DosBoxGameClientDescriptor>();
-        GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), x =>
+        GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), new ConfigureGameClientInstallation(x =>
         {
             // Add the TPLS config file to the data
             x.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths,
@@ -127,7 +127,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             // Give the emulator a name so it's apparent what it's for
             // TODO-UPDATE: Localize
             x.SetValue(GameClientDataKey.RCP_CustomName, "DOSBox (per-level soundtrack)");
-        });
+        }));
 
         if (isEnabled)
             await Services.GameClients.AttachGameClientAsync(GameInstallation, gameClientInstallation);

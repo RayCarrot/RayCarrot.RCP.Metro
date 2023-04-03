@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -185,7 +184,7 @@ public class AppDataManager
         {
             var dosBoxDescriptor = GameClientsManager.GetGameClientDescriptor<DosBoxGameClientDescriptor>();
             var location = InstallLocation.FromFilePath(legacyData.Emu_DOSBox_Path);
-            await addGameClientAsync(dosBoxDescriptor, location, x =>
+            await addGameClientAsync(dosBoxDescriptor, location, new ConfigureGameClientInstallation(x =>
             {
                 // Set the config path if previously specified
                 if (File.Exists(legacyData.Emu_DOSBox_ConfigPath))
@@ -194,7 +193,7 @@ public class AppDataManager
                         y => y.FilePaths.Add(legacyData.Emu_DOSBox_Path));
                     Logger.Info("v14 data migration: Added config file path '{0}'", legacyData.Emu_DOSBox_Path);
                 }
-            });
+            }));
         }
 
         if (legacyData.Game_Games == null)
@@ -395,7 +394,7 @@ public class AppDataManager
         async Task addGameClientAsync(
             GameClientDescriptor descriptor,
             InstallLocation location,
-            Action<GameClientInstallation>? configureInstallation = null)
+            ConfigureGameClientInstallation? configureInstallation = null)
         {
             Logger.Info("v14 data migration: Adding legacy game client as {0} with path '{1}'", descriptor.GameClientId, location.FilePath);
 
@@ -442,7 +441,7 @@ public class AppDataManager
                     return;
                 }
 
-                gameInstallation = await GamesManager.AddGameAsync(descriptor, location, x =>
+                gameInstallation = await GamesManager.AddGameAsync(descriptor, location, new ConfigureGameInstallation(x =>
                 {
                     // Maintain option to run as admin for Win32 games
                     if (descriptor.Platform == GamePlatform.Win32 &&
@@ -503,7 +502,7 @@ public class AppDataManager
                     }
 
                     configureInstallation?.Invoke(x);
-                });
+                }));
 
                 Logger.Info("v14 data migration: Added game installation with id {gameInstallation.InstallationId}");
             }

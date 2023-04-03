@@ -123,8 +123,13 @@ public class AddGamesGameViewModel : BaseViewModel
             // Have to get the location here since FinderItem is null after the game gets added
             InstallLocation foundLocation = FinderItem.FoundLocation.Value;
 
+            ConfigureGameInstallation? configureGameInstallation = null;
+
+            if (FinderItem.FoundQuery.ConfigureInstallation != null)
+                configureGameInstallation = new ConfigureGameInstallation(FinderItem.FoundQuery.ConfigureInstallation);
+
             // Add the found games
-            await Services.Games.AddGameAsync(FinderItem.GameDescriptor, foundLocation, FinderItem.FoundQuery.ConfigureInstallation);
+            await Services.Games.AddGameAsync(FinderItem.GameDescriptor, foundLocation, configureGameInstallation);
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync($"The game was found at {foundLocation}", "Finder result", MessageType.Success);

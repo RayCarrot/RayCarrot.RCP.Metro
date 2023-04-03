@@ -101,7 +101,7 @@ public class GamesManager
     private async Task<GameInstallation> AddGameImplAsync(
         GameDescriptor gameDescriptor,
         InstallLocation installLocation,
-        Action<GameInstallation>? configureInstallation = null)
+        ConfigureGameInstallation? configureInstallation = null)
     {
         // Create an installation
         GameInstallation gameInstallation = new(gameDescriptor, installLocation);
@@ -118,7 +118,8 @@ public class GamesManager
             gameInstallation.SetValue(GameDataKey.RCP_GameAddedDate, DateTime.Now);
 
             // Configure
-            configureInstallation?.Invoke(gameInstallation);
+            if (configureInstallation != null)
+                await configureInstallation.Invoke(gameInstallation);
 
             Logger.Info("The game {0} has been added", gameInstallation.FullId);
 
@@ -199,8 +200,8 @@ public class GamesManager
     /// <returns>The game installation</returns>
     public async Task<GameInstallation> AddGameAsync(
         GameDescriptor gameDescriptor, 
-        InstallLocation installLocation, 
-        Action<GameInstallation>? configureInstallation = null)
+        InstallLocation installLocation,
+        ConfigureGameInstallation? configureInstallation = null)
     {
         // Add the game
         GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installLocation, configureInstallation);
@@ -337,7 +338,7 @@ public class GamesManager
     public record GameToAdd(
         GameDescriptor GameDescriptor, 
         InstallLocation InstallLocation,
-        Action<GameInstallation>? ConfigureInstallation = null);
+        ConfigureGameInstallation? ConfigureInstallation = null);
 
     #endregion
 }

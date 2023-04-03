@@ -14,6 +14,8 @@ public class PreviouslyDownloadedGameFinderQuery : FinderQuery
             // Set the install info so that it can be uninstalled
             RCPGameInstallData installData = new(x.InstallLocation.Directory, RCPGameInstallData.RCPInstallMode.Download, DateTime.Now);
             x.SetObject(GameDataKey.RCP_GameInstallData, installData);
+
+            return Task.CompletedTask;
         };
     }
 

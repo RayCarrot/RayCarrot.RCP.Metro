@@ -427,7 +427,12 @@ public class GamesPageViewModel : BasePageViewModel,
             if (!finderItem.HasBeenFound)
                 continue;
 
-            gameClientsToAdd.Add(new GameClientsManager.GameClientToAdd(finderItem.GameClientDescriptor, finderItem.FoundLocation.Value, finderItem.FoundQuery.ConfigureInstallation));
+            ConfigureGameClientInstallation? configureGameClientInstallation = null;
+
+            if (finderItem.FoundQuery.ConfigureInstallation != null)
+                configureGameClientInstallation = new ConfigureGameClientInstallation(finderItem.FoundQuery.ConfigureInstallation);
+
+            gameClientsToAdd.Add(new GameClientsManager.GameClientToAdd(finderItem.GameClientDescriptor, finderItem.FoundLocation.Value, configureGameClientInstallation));
         }
 
         // Add the found game clients
@@ -450,7 +455,12 @@ public class GamesPageViewModel : BasePageViewModel,
             if (!finderItem.HasBeenFound)
                 continue;
 
-            gamesToAdd.Add(new GamesManager.GameToAdd(finderItem.GameDescriptor, finderItem.FoundLocation.Value, finderItem.FoundQuery.ConfigureInstallation));
+            ConfigureGameInstallation? configureGameInstallation = null;
+
+            if (finderItem.FoundQuery.ConfigureInstallation != null)
+                configureGameInstallation = new ConfigureGameInstallation(finderItem.FoundQuery.ConfigureInstallation);
+
+            gamesToAdd.Add(new GamesManager.GameToAdd(finderItem.GameDescriptor, finderItem.FoundLocation.Value, configureGameInstallation));
         }
 
         // Add the found games

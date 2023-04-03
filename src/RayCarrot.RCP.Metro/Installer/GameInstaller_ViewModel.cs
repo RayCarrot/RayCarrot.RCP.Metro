@@ -322,12 +322,12 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                InstalledGame = await Services.Games.AddGameAsync(GameDescriptor, new InstallLocation(output), x =>
+                InstalledGame = await Services.Games.AddGameAsync(GameDescriptor, new InstallLocation(output), new ConfigureGameInstallation(x =>
                 {
                     // Set the install info
                     RCPGameInstallData installData = new(output, RCPGameInstallData.RCPInstallMode.DiscInstall, DateTime.Now);
                     x.SetObject(GameDataKey.RCP_GameInstallData, installData);
-                });
+                }));
 
                 if (CreateDesktopShortcut)
                     await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, GameDescriptor.DisplayName));

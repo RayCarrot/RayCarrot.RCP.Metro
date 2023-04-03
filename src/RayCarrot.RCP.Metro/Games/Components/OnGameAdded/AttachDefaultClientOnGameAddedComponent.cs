@@ -10,6 +10,10 @@ public class AttachDefaultClientOnGameAddedComponent : OnGameAddedComponent
 
     private static async Task AttachDefaultClientAsync(GameInstallation gameInstallation)
     {
+        // Don't attach if there already is one attached
+        if (Services.GameClients.GetAttachedGameClient(gameInstallation) != null)
+            return;
+
         // Get the first available game client
         GameClientInstallation? gameClientInstallation = Services.GameClients.GetFirstAvailableGameClient(gameInstallation);
 

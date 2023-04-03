@@ -53,14 +53,15 @@ public class GameClientsManager
     private async Task<GameClientInstallation> AddGameClientImplAsync(
         GameClientDescriptor descriptor,
         InstallLocation installLocation,
-        Action<GameClientInstallation>? configureInstallation = null)
+        ConfigureGameClientInstallation? configureInstallation = null)
     {
         GameClientInstallation installation = new(descriptor, installLocation);
 
         Data.Game_GameClientInstallations.AddSorted(installation);
 
         // Configure
-        configureInstallation?.Invoke(installation);
+        if (configureInstallation != null) 
+            await configureInstallation.Invoke(installation);
 
         Logger.Info("The game client {0} has been added", installation.FullId);
 
@@ -225,8 +226,8 @@ public class GameClientsManager
 
     public async Task<GameClientInstallation> AddGameClientAsync(
         GameClientDescriptor descriptor,
-        InstallLocation installLocation, 
-        Action<GameClientInstallation>? configureInstallation = null)
+        InstallLocation installLocation,
+        ConfigureGameClientInstallation? configureInstallation = null)
     {
         // Add the game client
         GameClientInstallation gameClientInstallation = await AddGameClientImplAsync(descriptor, installLocation, configureInstallation);
@@ -410,7 +411,7 @@ public class GameClientsManager
     public record GameClientToAdd(
         GameClientDescriptor GameClientDescriptor,
         InstallLocation InstallLocation,
-        Action<GameClientInstallation>? ConfigureInstallation = null);
+        ConfigureGameClientInstallation? ConfigureInstallation = null);
 
     #endregion
 }
