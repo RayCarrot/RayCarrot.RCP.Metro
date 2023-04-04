@@ -51,7 +51,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
         builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids_PC));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Jade_enr.exe", GameInstallationPathType.PrimaryExe, required: true),
@@ -61,13 +61,14 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
+        new LocateDirectoryGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_RRRDemo_Url),
         })
-    });
+    };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

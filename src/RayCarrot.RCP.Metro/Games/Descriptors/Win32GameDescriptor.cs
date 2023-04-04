@@ -1,5 +1,4 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,17 +22,8 @@ public abstract class Win32GameDescriptor : GameDescriptor
         builder.Register<LaunchGameComponent, Win32LaunchGameComponent>();
 
         // Default to launch the primary exe file (games may override this by registering another component)
-        builder.Register(new Win32LaunchPathComponent(x => Structure.GetAbsolutePath(x, GameInstallationPathType.PrimaryExe)));
+        builder.Register<Win32LaunchPathComponent, DefaultWin32LaunchPathComponent>();
     }
-
-    #endregion
-
-    #region Public Methods
-
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateDirectoryGameAddAction(this),
-    };
 
     #endregion
 }

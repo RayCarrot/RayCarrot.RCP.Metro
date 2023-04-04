@@ -44,7 +44,7 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYPLUS.EXE", GameInstallationPathType.PrimaryExe, required: true),
@@ -52,6 +52,15 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
         // Directories
         new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
     });
+
+    #endregion
+
+    #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateDirectoryGameAddAction(this),
+    };
 
     #endregion
 }

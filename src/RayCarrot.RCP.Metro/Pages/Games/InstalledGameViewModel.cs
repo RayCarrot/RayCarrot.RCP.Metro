@@ -121,7 +121,7 @@ public class InstalledGameViewModel : BaseViewModel
         GamePanels.Clear();
 
         // Patcher
-        if (GameDescriptor.AllowPatching) // TODO-14: Do not allow for single-file games
+        if (GameDescriptor.AllowPatching)
             GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
 
         // Archive Explorer
@@ -238,10 +238,13 @@ public class InstalledGameViewModel : BaseViewModel
                     pathToOpen = GameInstallation.InstallLocation.Directory;
 
                     // Select the exe file in Explorer if it exists
-                    ProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.Structure;
-                    FileSystemPath exeFilePath = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
-                    if (exeFilePath.FileExists && exeFilePath.Parent == pathToOpen)
-                        pathToOpen = exeFilePath;
+                    if (GameInstallation.GameDescriptor.Structure is DirectoryProgramInstallationStructure structure)
+                    {
+                        FileSystemPath exeFilePath = structure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+
+                        if (exeFilePath.FileExists && exeFilePath.Parent == pathToOpen)
+                            pathToOpen = exeFilePath;
+                    }
                 }
 
                 // Open the location
@@ -341,7 +344,8 @@ public class InstalledGameViewModel : BaseViewModel
 
         if (launchComponent == null)
         {
-            // TODO-14: Show error message to user. They probably need to select an emulator to use.
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync("This game can't be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game.", "No launch component found", MessageType.Error);
             return;
         }
 
@@ -384,24 +388,27 @@ public class InstalledGameViewModel : BaseViewModel
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(CanUninstall ? Resources.RemoveInstalledGameQuestion : Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader, MessageType.Question, true))
             return;
 
-        // TODO-14: Only check this if the game can have patches. Shouldn't be allowed for single-file games for example
-        // Get applied patches
-        using Context context = new RCPContext(String.Empty);
-        PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
-        PatchLibraryFile? libraryFile = null;
-
-        try
+        // Check if there are applied patches
+        if (GameDescriptor.AllowPatching)
         {
-            libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "Reading patch library");
-        }
+            // Get applied patches
+            using Context context = new RCPContext(String.Empty);
+            PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
+            PatchLibraryFile? libraryFile = null;
 
-        // Warn about applied patches, if any
-        if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
-            return;
+            try
+            {
+                libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "Reading patch library");
+            }
+
+            // Warn about applied patches, if any
+            if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
+                return;
+        }
 
         // Remove the game
         await Services.Games.RemoveGameAsync(GameInstallation);

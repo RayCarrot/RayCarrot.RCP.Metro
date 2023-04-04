@@ -44,7 +44,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20030129_Win32 : Win32GameDescri
         builder.Register<CPATextureSyncComponent, Rayman3CPATextureSyncComponent>();
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("MainP5Pvf.exe", GameInstallationPathType.PrimaryExe, required: true),
@@ -54,13 +54,14 @@ public sealed class GameDescriptor_Rayman3_Demo_20030129_Win32 : Win32GameDescri
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
+        new LocateDirectoryGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_R3Demo4_Url),
         })
-    });
+    };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

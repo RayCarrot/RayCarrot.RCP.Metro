@@ -80,7 +80,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
                 Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman2.exe", GameInstallationPathType.PrimaryExe, required: true),
@@ -99,14 +99,15 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
+        new LocateDirectoryGameAddAction(this),
         new DiscInstallGameAddAction(this, new GameInstallerInfo(
             discFilesListFileName: "Rayman2",
             gameLogo: GameLogoAsset.Rayman2,
             gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", },
             installFolderName: "Rayman 2"))
-    });
+    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

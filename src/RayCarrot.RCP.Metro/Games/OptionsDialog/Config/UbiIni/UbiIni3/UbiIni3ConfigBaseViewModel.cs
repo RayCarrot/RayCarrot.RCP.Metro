@@ -362,7 +362,7 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
 
         if (CanRemoveDiscCheck)
         {
-            ProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.Structure;
+            var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
             FileSystemPath gameFile = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Check if it exists
@@ -523,7 +523,7 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
             {
                 try
                 {
-                    ProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.Structure;
+                    var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
                     FileSystemPath exeFile = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
 
                     Patcher = new FilePatcher(exeFile, Patches);

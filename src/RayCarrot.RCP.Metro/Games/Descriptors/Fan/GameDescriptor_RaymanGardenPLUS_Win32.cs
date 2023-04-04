@@ -34,18 +34,21 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register<Win32LaunchPathComponent, SingleExeWin32LaunchPathComponent>();
+
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
-    {
-        // Files
-        new GameInstallationFilePath("rayman-garden-plus.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+    protected override ProgramInstallationStructure GetStructure() => new ExeProgramInstallationStructure();
 
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateFileGameAddAction(this),
+    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

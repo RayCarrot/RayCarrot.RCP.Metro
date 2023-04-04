@@ -51,7 +51,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("LyN_f.exe", GameInstallationPathType.PrimaryExe, required: true),
@@ -61,6 +61,11 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateDirectoryGameAddAction(this),
+    };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

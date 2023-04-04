@@ -462,7 +462,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
             Logger.Info("The Rayman 2 aspect ratio is being set...");
 
             // Get the exe file path
-            ProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.Structure;
+            var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
             FileSystemPath path = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Make sure the file exists
@@ -617,6 +617,8 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
 
     #endregion
 
+    // TODO-UPDATE: These no longer need to be static
+
     #region Private Static Methods
 
     /// <summary>
@@ -729,7 +731,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         try
         {
             // Get the exe file path
-            ProgramInstallationStructure programStructure = gameInstallation.GameDescriptor.Structure;
+            var programStructure = gameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
             FileSystemPath path = programStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Get the location

@@ -57,7 +57,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
     {
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
-        string exeFileName = GameDescriptor.Structure.GetLocalPath(GameInstallationPathType.PrimaryExe);
+        string exeFileName = GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>().GetLocalPath(GameInstallationPathType.PrimaryExe);
         string? gameArgs = gameLaunchArgs ?? GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
         string launchName = gameArgs == null ? exeFileName : $"{exeFileName} {gameArgs}";
 

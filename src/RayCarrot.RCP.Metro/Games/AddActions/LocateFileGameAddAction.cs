@@ -1,8 +1,10 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Structure;
 
-public class LocateDirectoryGameAddAction : GameAddAction
+namespace RayCarrot.RCP.Metro;
+
+public class LocateFileGameAddAction : GameAddAction
 {
-    public LocateDirectoryGameAddAction(GameDescriptor gameDescriptor, bool singleInstallationOnly = false)
+    public LocateFileGameAddAction(GameDescriptor gameDescriptor, bool singleInstallationOnly = false)
     {
         GameDescriptor = gameDescriptor;
         _singleInstallationOnly = singleInstallationOnly;
@@ -20,13 +22,19 @@ public class LocateDirectoryGameAddAction : GameAddAction
     
     public override async Task<GameInstallation?> AddGameAsync()
     {
-        Logger.Trace("Adding the game {0} through locating directory", GameDescriptor.GameId);
+        Logger.Trace("Adding the game {0} through locating file", GameDescriptor.GameId);
 
-        // Have user browse for directory
-        DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+        FileExtension[] fileExtensions = GameDescriptor.GetStructure<SingleFileProgramInstallationStructure>().SupportedFileExtensions;
+
+        // Have user browse for file
+        FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
-            Title = Resources.LocateGame_BrowserHeader,
+            // TODO-UPDATE: Localize
+            Title = "Select the game file",
             DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
+            ExtensionFilter = new FileFilterItemCollection(fileExtensions).
+                // TODO-UPDATE: Localize
+                CombineAll("Game file").ToString(),
             MultiSelection = false
         });
 
@@ -34,21 +42,22 @@ public class LocateDirectoryGameAddAction : GameAddAction
         if (result.CanceledByUser)
             return null;
 
-        // Make sure the selected directory exists
-        if (!result.SelectedDirectory.DirectoryExists)
+        // Make sure the selected file exists
+        if (!result.SelectedFile.FileExists)
             return null;
 
-        InstallLocation location = new(result.SelectedDirectory);
+        InstallLocation location = InstallLocation.FromFilePath(result.SelectedFile);
 
         // Make sure the location is valid
         GameLocationValidationResult validationResult = GameDescriptor.ValidateLocation(location);
 
         if (!validationResult.IsValid)
         {
-            Logger.Info("The selected install directory for {0} is not valid", GameDescriptor.GameId);
+            Logger.Info("The selected file for {0} is not valid", GameDescriptor.GameId);
 
+            // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync(
-                $"{Resources.LocateGame_InvalidLocation}{Environment.NewLine}{Environment.NewLine}{validationResult.ErrorMessage}",
+                $"The selected file is not valid for this game{Environment.NewLine}{Environment.NewLine}{validationResult.ErrorMessage}",
                 Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
 
             return null;

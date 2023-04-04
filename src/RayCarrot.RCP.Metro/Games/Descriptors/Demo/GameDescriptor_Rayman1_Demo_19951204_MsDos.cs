@@ -34,7 +34,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19951204_MsDos : MsDosGameDescri
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYMAN.EXE", GameInstallationPathType.PrimaryExe, required: true),
@@ -47,13 +47,14 @@ public sealed class GameDescriptor_Rayman1_Demo_19951204_MsDos : MsDosGameDescri
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
+        new LocateDirectoryGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_R1Demo3_Url),
         })
-    });
+    };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

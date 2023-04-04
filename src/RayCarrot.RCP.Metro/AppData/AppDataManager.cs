@@ -431,7 +431,13 @@ public class AppDataManager
             GameInstallation gameInstallation;
             try
             {
-                InstallLocation location = new(installDir);
+                InstallLocation location;
+
+                // Rayman Garden PLUS was changed to a single-file game, so we need the file name
+                if (legacyId == "RaymanGardenPLUS")
+                    location = new InstallLocation(installDir, "rayman-garden-plus.exe");
+                else
+                    location = new InstallLocation(installDir);
 
                 GameLocationValidationResult validationResult = descriptor.ValidateLocation(location);
 

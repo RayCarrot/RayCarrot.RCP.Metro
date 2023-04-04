@@ -91,7 +91,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <summary>
     /// Indicates if the game supports the game patcher
     /// </summary>
-    public virtual bool AllowPatching => true;
+    public virtual bool AllowPatching => Structure.AllowPatching;
 
     /// <summary>
     /// Indicates if the game should default to use an available game client. This is mainly
@@ -232,6 +232,15 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
         // Verify the game structure
         return Structure.IsLocationValid(installLocation);
+    }
+
+    public T GetStructure<T>()
+        where T : ProgramInstallationStructure
+    {
+        if (Structure is not T structure)
+            throw new InvalidOperationException($"The structure type {Structure.GetType()} for {GameId} does not match the requested type of {typeof(T)}");
+
+        return structure;
     }
 
     public int CompareTo(GameDescriptor? other)

@@ -18,6 +18,13 @@ public class FileFilterItemCollection : List<FileFilterItem>, IEqualityComparer<
     /// <param name="items">The items to add to the collection</param>
     public FileFilterItemCollection(IEnumerable<FileFilterItem> items) : base(items) { }
 
+    /// <summary>
+    /// Constructor for using a collection of file extensions
+    /// </summary>
+    /// <param name="fileExtensions">The file extensions to add to the collection</param>
+    public FileFilterItemCollection(IEnumerable<FileExtension> fileExtensions) 
+        : this(fileExtensions.Select(x => x.GetFileFilterItem)) { }
+
     #endregion
 
     #region Public Methods

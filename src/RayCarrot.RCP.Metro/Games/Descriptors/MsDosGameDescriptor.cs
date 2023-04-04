@@ -11,13 +11,4 @@ public abstract class MsDosGameDescriptor : GameDescriptor
     public override bool DefaultToUseGameClient => true;
 
     #endregion
-
-    #region Public Methods
-
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateDirectoryGameAddAction(this),
-    };
-
-    #endregion
 }

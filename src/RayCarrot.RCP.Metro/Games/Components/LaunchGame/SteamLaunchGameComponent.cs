@@ -51,7 +51,7 @@ public class SteamLaunchGameComponent : LaunchGameComponent
         new JumpListItemViewModel(
             gameInstallation: GameInstallation,
             name: GameInstallation.GetDisplayName(),
-            iconSource: GameDescriptor.Structure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe),
+            iconSource: GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>().GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe),
             launchPath: SteamHelpers.GetGameLaunchURI(GetSteamId()),
             workingDirectory: null,
             launchArguments: null,
