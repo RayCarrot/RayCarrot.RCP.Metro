@@ -110,6 +110,28 @@ public enum Game
 
     #endregion
 
+    #region Handheld
+
+    /// <summary>
+    /// Rayman 3 (GBA)
+    /// </summary>
+    [GameInfo("Rayman 3 (Game Boy Advance)", GameIconAsset.Rayman3_Gba)]
+    Rayman3_Gba,
+
+    /// <summary>
+    /// Rayman Hoodlums' Revenge
+    /// </summary>
+    [GameInfo("Rayman Hoodlums' Revenge", GameIconAsset.RaymanHoodlumsRevenge)]
+    RaymanHoodlumsRevenge,
+
+    /// <summary>
+    /// Rayman Raving Rabbids (GBA)
+    /// </summary>
+    [GameInfo("Rayman Raving Rabbids (Game Boy Advance)", GameIconAsset.RaymanRavingRabbids)]
+    RaymanRavingRabbids_Gba,
+
+    #endregion
+
     #region Other
 
     /// <summary>

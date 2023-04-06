@@ -15,7 +15,7 @@ public sealed class GameDescriptor_Rayman1_Gba : GbaGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
 
     public override LocalizedString DisplayName => "Rayman Advance";
-    public override string[] SearchKeywords => new[] { "r1", "ray1", "ra" };
+    public override string[] SearchKeywords => new[] { "r1", "ray1", "ra", "gba" };
     public override DateTime ReleaseDate => new(2001, 06, 11);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanAdvance;

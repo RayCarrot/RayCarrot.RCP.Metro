@@ -37,6 +37,11 @@ public class GamesManager
             new GameDescriptor_RabbidsBigBang_WindowsPackage(),
             new GameDescriptor_RabbidsCoding_Win32(),
 
+            // Handheld
+            new GameDescriptor_Rayman3_Gba(),
+            new GameDescriptor_RaymanHoodlumsRevenge_Gba(),
+            new GameDescriptor_RaymanRavingRabbids_Gba(),
+
             // Demos (no longer a category in the app)
             new GameDescriptor_Rayman1_Demo_19951207_MsDos(),
             new GameDescriptor_Rayman1_Demo_19960215_MsDos(),

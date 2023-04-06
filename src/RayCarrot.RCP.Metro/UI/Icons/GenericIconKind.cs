@@ -6,7 +6,7 @@ public enum GenericIconKind
 
     Games_Rayman,
     Games_Rabbids,
-    Games_Demos,
+    Games_Handheld,
     Games_Other,
     Games_FanGames,
 

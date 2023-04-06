@@ -17,6 +17,13 @@ public enum GameCategory
     [GameCategoryInfo(nameof(Resources.GamesPage_Category_Rabbids), GenericIconKind.Games_Rabbids)]
     Rabbids,
 
+    // TODO-UPDATE: Localize
+    /// <summary>
+    /// The handheld game category
+    /// </summary>
+    [GameCategoryInfo("Handheld", GenericIconKind.Games_Handheld)]
+    Handheld,
+
     /// <summary>
     /// The fan-game category
     /// </summary>

@@ -86,9 +86,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Games_Rabbids" 
                        IconKind="{StaticResource RCP.Icons.Games}" 
                        IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games_Demos" 
+    <local:GenericIcon x:Key="RCP.GenericIcons.Games_Handheld" 
                        IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.OtherGames}" />
+                       IconColor="{StaticResource RCP.Brushes.Games}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Games_Other" 
                        IconKind="{StaticResource RCP.Icons.Games}" 
                        IconColor="{StaticResource RCP.Brushes.OtherGames}" />
