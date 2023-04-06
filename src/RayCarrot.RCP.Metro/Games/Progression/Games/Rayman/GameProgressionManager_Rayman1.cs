@@ -33,7 +33,7 @@ public class GameProgressionManager_Rayman1 : GameProgressionManager
 
             Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveIndex);
 
-            PC_SaveFile? saveData = await context.ReadFileDataAsync<PC_SaveFile>(fileName, new PC_SaveEncoder(), removeFileWhenComplete: false);
+            SaveSlot? saveData = await context.ReadFileDataAsync<SaveSlot>(fileName, new PC_SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
@@ -44,7 +44,7 @@ public class GameProgressionManager_Rayman1 : GameProgressionManager
             Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
             // Get total amount of cages
-            int cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
+            int cages = saveData.WorldInfoSaveZone.Sum(x => x.Cages);
 
             GameProgressionDataItem[] dataItems =
             {
@@ -66,7 +66,7 @@ public class GameProgressionManager_Rayman1 : GameProgressionManager
                     value: saveData.StatusBar.LivesCount),
             };
 
-            yield return new SerializableGameProgressionSlot<PC_SaveFile>(
+            yield return new SerializableGameProgressionSlot<SaveSlot>(
                 name: saveData.SaveName.ToUpper(), 
                 index: saveIndex, 
                 collectiblesCount: cages, 

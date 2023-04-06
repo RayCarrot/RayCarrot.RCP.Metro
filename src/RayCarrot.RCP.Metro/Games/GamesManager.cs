@@ -15,6 +15,7 @@ public class GamesManager
         {
             // Rayman
             new GameDescriptor_Rayman1_MsDos(),
+            new GameDescriptor_Rayman1_Gba(),
             new GameDescriptor_RaymanDesigner_MsDos(),
             new GameDescriptor_RaymanByHisFans_MsDos(),
             new GameDescriptor_Rayman60Levels_MsDos(),

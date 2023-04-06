@@ -13,3 +13,6 @@
 [submodule "submodules/BinarySerializer.UbiArt"]
 	path = submodules/BinarySerializer.UbiArt
 	url = https://github.com/BinarySerializer/BinarySerializer.UbiArt
+[submodule "submodules/BinarySerializer.Nintendo"]
+	path = submodules/BinarySerializer.Nintendo
+	url = https://github.com/BinarySerializer/BinarySerializer.Nintendo

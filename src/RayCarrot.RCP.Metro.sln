@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.OpenSpace"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.UbiArt", "..\submodules\BinarySerializer.UbiArt\src\BinarySerializer.UbiArt.csproj", "{015EB29F-C337-4862-BAA6-5066396FB9B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro.Tests", "RayCarrot.RCP.Metro.Tests\RayCarrot.RCP.Metro.Tests.csproj", "{9104392E-C9B5-4260-A3C7-D504835D5B6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.RCP.Metro.Tests", "RayCarrot.RCP.Metro.Tests\RayCarrot.RCP.Metro.Tests.csproj", "{9104392E-C9B5-4260-A3C7-D504835D5B6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Nintendo", "..\submodules\BinarySerializer.Nintendo\src\BinarySerializer.Nintendo.csproj", "{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Ray1.GBA", "..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1.GBA\BinarySerializer.Ray1.GBA.csproj", "{5DEEF582-D20F-4178-819B-47D9D41D9BC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +119,22 @@ Global
 		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|x86.ActiveCfg = Release|Any CPU
 		{9104392E-C9B5-4260-A3C7-D504835D5B6C}.Release|x86.Build.0 = Release|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Debug|x86.Build.0 = Debug|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Release|x86.ActiveCfg = Release|Any CPU
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C}.Release|x86.Build.0 = Release|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Debug|x86.Build.0 = Debug|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +148,8 @@ Global
 		{B896FFE5-025E-4688-9E68-6AD2F282F534} = {7467979D-E630-4407-97D2-8EBAE531D746}
 		{83FF180E-5463-4A03-9345-AE86E8E73462} = {7467979D-E630-4407-97D2-8EBAE531D746}
 		{015EB29F-C337-4862-BAA6-5066396FB9B1} = {7467979D-E630-4407-97D2-8EBAE531D746}
+		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C} = {7467979D-E630-4407-97D2-8EBAE531D746}
+		{5DEEF582-D20F-4178-819B-47D9D41D9BC4} = {7467979D-E630-4407-97D2-8EBAE531D746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_TaskErrorCategory = Message

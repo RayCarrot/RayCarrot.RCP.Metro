@@ -15,7 +15,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
     {
         Types = new ObservableCollection<Utility_Serializers_TypeViewModel>()
         {
-            new Serializers_TypeViewModel<PC_SaveFile>(
+            new Serializers_TypeViewModel<SaveSlot>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => Endian.Little,

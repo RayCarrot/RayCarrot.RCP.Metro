@@ -4,7 +4,7 @@
 public sealed class GamePlatformInfoAttribute : Attribute
 {
     // TODO-UPDATE: Localize
-    public GamePlatformInfoAttribute(string displayName, GamePlatformIconAsset icon, bool requiresEmulator)
+    public GamePlatformInfoAttribute(string displayName, GamePlatformIconAsset icon)
     {
         Icon = icon;
         DisplayName = new ConstLocString(displayName);
