@@ -74,12 +74,12 @@ public class Win32ShortcutFinderOperation : FinderOperation
                     if (fileName.IndexOf(query.Name, StringComparison.InvariantCultureIgnoreCase) == -1)
                         continue;
 
-                    FileSystemPath targetDir;
+                    FileSystemPath targetFile;
 
                     try
                     {
                         // Attempt to get the shortcut target path
-                        targetDir = ((FileSystemPath)WindowsHelpers.GetShortCutTarget(shortcutFile)).Parent;
+                        targetFile = WindowsHelpers.GetShortCutTarget(shortcutFile);
                     }
                     catch (Exception ex)
                     {
@@ -88,7 +88,7 @@ public class Win32ShortcutFinderOperation : FinderOperation
                     }
 
                     // Validate the location
-                    finderItem.Validate(query, new InstallLocation(targetDir));
+                    finderItem.Validate(query, InstallLocation.FromFilePath(targetFile));
                 }
             }
         }
