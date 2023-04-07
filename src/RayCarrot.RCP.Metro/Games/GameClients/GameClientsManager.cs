@@ -18,6 +18,7 @@ public class GameClientsManager
         {
             // Emulators
             new DosBoxGameClientDescriptor(),
+            new MGbaGameClientDescriptor(),
             
             // Clients
             new SteamGameClientDescriptor(),

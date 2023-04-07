@@ -190,7 +190,8 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         // Make sure the DOSBox exe exists
         if (!launchPath.FileExists)
         {
-            await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync("The game client/emulator could not be found", MessageType.Error);
             return false;
         }
 
