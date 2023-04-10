@@ -107,10 +107,13 @@ public abstract class WindowContentControl : UserControl, IWindowControl
 
     public virtual void Dispose()
     {
-        if (this is IInitializable initializable)
-            initializable.Deinitialize();
+        Dispatcher.Invoke(() =>
+        {
+            if (this is IInitializable initializable)
+                initializable.Deinitialize();
 
-        if (DataContext is IInitializable initializableViewModel)
-            initializableViewModel.Deinitialize();
+            if (DataContext is IInitializable initializableViewModel)
+                initializableViewModel.Deinitialize();
+        });
     }
 }
