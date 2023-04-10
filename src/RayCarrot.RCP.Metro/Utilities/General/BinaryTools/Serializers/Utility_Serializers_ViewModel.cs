@@ -254,7 +254,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             {
                 Title = Resources.Utilities_Serializers_FileSelectionHeader,
                 DefaultDirectory = defaultDir,
-                ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
+                ExtensionFilter = SelectedType.FileExtension?.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });
 
@@ -312,7 +312,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             {
                 Title = Resources.Utilities_Serializers_FileSelectionHeader,
                 DefaultDirectory = defaultDir,
-                ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
+                ExtensionFilter = SelectedType.FileExtension?.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });
 
@@ -415,7 +415,10 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                         FileSystemPath destinationFile = destinationResult.SelectedDirectory + file.Name;
 
                         // Set the file extension
-                        destinationFile = destinationFile.ChangeFileExtension(SelectedType.FileExtension).GetNonExistingFileName();
+                        if (SelectedType.FileExtension != null)
+                            destinationFile = destinationFile.ChangeFileExtension(SelectedType.FileExtension);
+                        
+                        destinationFile = destinationFile.GetNonExistingFileName();
 
                         // Deserialize the file JSON
                         object data = JsonHelpers.DeserializeFromFile(file, SelectedType.Type);

@@ -4,7 +4,7 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
+    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension? fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
     {
         Type = type;
         Name = name;
@@ -20,7 +20,7 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
 
     public Type Type { get; }
     public LocalizedString Name { get; }
-    public FileExtension FileExtension { get; }
+    public FileExtension? FileExtension { get; }
 
     public Func<Context, Endian> GetEndianFunc { get; }
 
@@ -39,7 +39,7 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
 public class Serializers_TypeViewModel<T> : Utility_Serializers_TypeViewModel
     where T : BinarySerializable, new()
 {
-    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, getEndianFunc, modes)
+    public Serializers_TypeViewModel(LocalizedString name, FileExtension? fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, getEndianFunc, modes)
     { }
 
     public override object? Deserialize(Context context, string fileName)
