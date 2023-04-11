@@ -1,7 +1,9 @@
 ﻿using System.Windows.Input;
 using BinarySerializer;
+using BinarySerializer.Nintendo.GBA;
 using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.GBA;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -147,6 +149,45 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                                 return FileSystemPath.EmptyPath;
                         }
                     },
+                }),
+
+            new Serializers_TypeViewModel<SaveData>(
+                name: "Rayman Advance Save Data", // TODO-UPDATE: Localize
+                fileExtension: null,
+                getEndianFunc: _ => Endian.Little,
+                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                {
+                    new(Ray1GameMode.Rayman1_GBA) { Encoder = new EEPROMEncoder(0x200) },
+                }),
+
+            new Serializers_TypeViewModel<R3GBA_SaveData>(
+                name: "Rayman 3 (GBA) Save Data", // TODO-UPDATE: Localize
+                fileExtension: null,
+                getEndianFunc: _ => Endian.Little,
+                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                {
+                    // TODO-UPDATE: Localize
+                    new("Rayman 3 (GBA)") { Encoder = new EEPROMEncoder(0x200) },
+                }),
+
+            new Serializers_TypeViewModel<RHR_SaveData>(
+                name: "Rayman Hoodlums' Revenge Save Data", // TODO-UPDATE: Localize
+                fileExtension: null,
+                getEndianFunc: _ => Endian.Little,
+                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                {
+                    // TODO-UPDATE: Localize
+                    new("Rayman Hoodlums' Revenge") { Encoder = new EEPROMEncoder(0x200) },
+                }),
+
+            new Serializers_TypeViewModel<RRRGBA_SaveData>(
+                name: "Rayman Raving Rabbids (GBA) Save Data", // TODO-UPDATE: Localize
+                fileExtension: null,
+                getEndianFunc: _ => Endian.Little,
+                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                {
+                    // TODO-UPDATE: Localize
+                    new("Rayman Raving Rabbids (GBA)") { Encoder = new EEPROMEncoder(0x200) },
                 }),
 
             new Serializers_TypeViewModel<Unity_PlayerPrefs>(

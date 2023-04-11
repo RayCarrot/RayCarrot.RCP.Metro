@@ -9,6 +9,7 @@
 • The game finder has been reworked to be faster and to be able to find game clients
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
 • The jumplist now sorts games by default and no longer automatically adds every game
+• Added serializers for Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA) save data
 
 Other changes:
 • UI changes

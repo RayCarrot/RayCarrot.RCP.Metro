@@ -30,6 +30,7 @@ public sealed class GameDescriptor_Rayman1_Gba : GbaGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanAdvanceGBAEU", "r1/gba"));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_GBA));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new GbaRomProgramInstallationStructure(new[]
