@@ -50,5 +50,13 @@ public readonly struct InstallLocation
 
     public static InstallLocation FromFilePath(FileSystemPath filePath) => new(filePath.Parent, filePath.Name);
 
+    public string GetRequiredFileName()
+    {
+        if (FileName == null)
+            throw new InvalidOperationException("The location has no file name");
+
+        return FileName;
+    }
+
     public override string ToString() => HasFile ? Directory + FileName : Directory;
 }

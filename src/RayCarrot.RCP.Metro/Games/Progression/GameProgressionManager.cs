@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.IO.Compression;
 
 namespace RayCarrot.RCP.Metro;
@@ -27,8 +28,11 @@ public abstract class GameProgressionManager
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
-    public abstract GameBackups_Directory[] BackupDirectories { get; }
-    public string BackupId { get; }
+    public abstract GameBackups_Directory[]? BackupDirectories { get; }
+    public string BackupId { get; } // TODO-14: Rename to ProgressionId
+
+    [MemberNotNullWhen(true, nameof(BackupDirectories))]
+    public bool SupportsBackups => BackupDirectories != null;
     
     /// <summary>
     /// An optional name for this progression manager. Should mainly be used when games have multiple

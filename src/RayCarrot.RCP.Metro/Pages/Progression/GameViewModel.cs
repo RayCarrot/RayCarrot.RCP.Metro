@@ -85,6 +85,7 @@ public class GameViewModel : BaseRCPViewModel
     public bool HasBackupInfoItems { get; set; }
     public bool IsPerformingBackupRestore { get; set; }
     public bool ShowBackupRestoreIndicator { get; set; }
+    public bool CanPerformBackup { get; set; }
     public bool CanRestoreBackup { get; set; }
     public bool CanChangeProgramDataSource { get; set; }
     public bool HasBackup { get; set; }
@@ -411,6 +412,16 @@ public class GameViewModel : BaseRCPViewModel
 
     public async Task LoadBackupAsync()
     {
+        if (!ProgressionManager.SupportsBackups)
+        {
+            Logger.Trace($"{GameInstallation.FullId} does not support backups");
+
+            CanPerformBackup = false;
+            CanRestoreBackup = false;
+            CurrentBackupStatus = BackupStatus.None;
+            return;
+        }
+
         using (await AsyncLock.LockAsync())
         {
             Logger.Trace($"Loading backup for {GameInstallation.FullId}");
@@ -465,6 +476,9 @@ public class GameViewModel : BaseRCPViewModel
             return false;
 
         if (BackupInfo == null)
+            return false;
+
+        if (!CanPerformBackup)
             return false;
 
         bool success;

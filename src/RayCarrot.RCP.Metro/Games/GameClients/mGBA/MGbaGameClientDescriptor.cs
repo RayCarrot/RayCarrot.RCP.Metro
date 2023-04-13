@@ -22,6 +22,7 @@ public sealed class MGbaGameClientDescriptor : EmulatorGameClientDescriptor
         base.RegisterComponents(builder);
 
         builder.Register<LaunchGameComponent, DefaultGameClientLaunchGameComponent>();
+        builder.Register<EmulatedSaveFilesComponent, MGbaEmulatedSaveFilesComponent>();
     }
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

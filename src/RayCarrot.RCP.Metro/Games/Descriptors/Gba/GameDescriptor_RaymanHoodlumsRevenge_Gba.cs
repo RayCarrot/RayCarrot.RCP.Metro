@@ -29,6 +29,7 @@ public sealed class GameDescriptor_RaymanHoodlumsRevenge_Gba : GbaGameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanHoodlumsRevenge(x, "Rayman Hoodlums Revenge")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanHoodlumsRevengeEU", "gba_isometric/rhr_eu"));
     }
 

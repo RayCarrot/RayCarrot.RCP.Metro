@@ -156,6 +156,7 @@
                     ToolTip="{Resx Backup_Backup}"
                     Command="{Binding Path=BackupCommand, Mode=OneTime}"
                     rcp:Icon.Kind="FolderUploadOutline"
+                    Visibility="{Binding Path=CanPerformBackup, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
                     Margin="0 0 4 0" />
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                     ToolTip="{Resx Backup_Restore}"

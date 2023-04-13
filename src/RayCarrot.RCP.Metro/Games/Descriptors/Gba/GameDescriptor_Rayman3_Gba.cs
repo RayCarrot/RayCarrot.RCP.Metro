@@ -29,6 +29,7 @@ public sealed class GameDescriptor_Rayman3_Gba : GbaGameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3_Gba(x, "Rayman 3 - GBA")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "Rayman3GBAEU", "gba/r3_eu"));
     }
 

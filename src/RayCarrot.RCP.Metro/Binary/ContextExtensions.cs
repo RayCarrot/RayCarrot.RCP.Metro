@@ -65,6 +65,13 @@ public static class ContextExtensions
         return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian, onPreSerialize, removeFileWhenComplete));
     }
 
+    public static Task<T> ReadRequiredFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null,
+        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
+        where T : BinarySerializable, new()
+    {
+        return Task.Run(() => context.ReadRequiredFileData(fileName, encoder, endian, onPreSerialize, removeFileWhenComplete));
+    }
+
     public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian? endian = null)
         where T : BinarySerializable, new()
     {

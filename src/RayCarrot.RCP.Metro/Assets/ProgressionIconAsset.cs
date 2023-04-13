@@ -117,6 +117,23 @@ public enum ProgressionIconAsset
     // Rabbids Big Bang
     RabbidsBigBang_Score,
 
+    // Rayman 3 (GBA)
+    R3_GBA_Lum,
+    R3_GBA_Cage,
+    R3_GBA_Life,
+
+    // Rayman Hoodlums' Revenge
+    RHR_Lum,
+    RHR_Teensy,
+    RHR_MapComplete,
+    RHR_Stamp,
+    RHR_Score,
+
+    // Rayman Raving Rabbids (GBA)
+    RRR_GBA_Lum,
+    RRR_GBA_Cage,
+    RRR_GBA_Time,
+
     // Rayman Redemption
     Redemption_Token,
     Redemption_Present,

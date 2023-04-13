@@ -29,6 +29,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Gba : GbaGameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids_Gba(x, "Rayman Raving Rabbids - GBA")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanRavingRabbidsGBAEU", "gba_rrr/rrr_eu"));
     }
 
