@@ -40,7 +40,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun(this, x, "Rayman Jungle Run")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun_WindowsPackage(this, x, "Rayman Jungle Run")));
         builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));

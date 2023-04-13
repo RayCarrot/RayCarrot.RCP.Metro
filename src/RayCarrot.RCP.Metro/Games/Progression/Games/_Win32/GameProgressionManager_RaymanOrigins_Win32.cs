@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanOrigins : GameProgressionManager
+public class GameProgressionManager_RaymanOrigins_Win32 : GameProgressionManager
 {
-    public GameProgressionManager_RaymanOrigins(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_RaymanOrigins_Win32(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

@@ -34,7 +34,7 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanBowling2(x, "Rayman Bowling 2")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanBowling2_Win32(x, "Rayman Bowling 2")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 

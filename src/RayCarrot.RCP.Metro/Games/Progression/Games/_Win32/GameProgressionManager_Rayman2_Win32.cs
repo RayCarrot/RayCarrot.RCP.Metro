@@ -4,9 +4,9 @@ using BinarySerializer.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_Rayman2 : GameProgressionManager
+public class GameProgressionManager_Rayman2_Win32 : GameProgressionManager
 {
-    public GameProgressionManager_Rayman2(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_Rayman2_Win32(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

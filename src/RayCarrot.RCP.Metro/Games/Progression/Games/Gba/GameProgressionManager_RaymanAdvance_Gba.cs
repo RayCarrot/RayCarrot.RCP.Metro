@@ -3,9 +3,9 @@ using BinarySerializer.Ray1.GBA;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanAdvance : EmulatedGameProgressionManager
+public class GameProgressionManager_RaymanAdvance_Gba : EmulatedGameProgressionManager
 {
-    public GameProgressionManager_RaymanAdvance(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_RaymanAdvance_Gba(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) 
     { }
 

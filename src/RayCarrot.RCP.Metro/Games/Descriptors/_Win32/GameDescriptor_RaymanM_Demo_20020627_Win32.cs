@@ -32,7 +32,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena(x, "Rayman M Demo", true)));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena_Win32(x, "Rayman M Demo", true)));
         builder.Register(new GameConfigComponent(x => new RaymanMDemoConfigViewModel(x)));
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
         builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.RaymanM_PC));

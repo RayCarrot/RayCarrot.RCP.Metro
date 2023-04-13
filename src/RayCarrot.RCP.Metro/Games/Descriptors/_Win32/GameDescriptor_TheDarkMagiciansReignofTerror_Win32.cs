@@ -34,7 +34,7 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TheDarkMagiciansReignofTerror(x, "Rayman The Dark Magicians Reign of Terror")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TheDarkMagiciansReignofTerror_Win32(x, "Rayman The Dark Magicians Reign of Terror")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 

@@ -2,9 +2,9 @@
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_GloboxMoment : GameProgressionManager
+public class GameProgressionManager_GloboxMoment_Win32 : GameProgressionManager
 {
-    public GameProgressionManager_GloboxMoment(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_GloboxMoment_Win32(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) { }
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]

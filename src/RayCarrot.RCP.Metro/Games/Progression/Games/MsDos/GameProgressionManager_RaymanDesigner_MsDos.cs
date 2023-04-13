@@ -3,9 +3,9 @@ using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanDesigner : GameProgressionManager
+public class GameProgressionManager_RaymanDesigner_MsDos : GameProgressionManager
 {
-    public GameProgressionManager_RaymanDesigner(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_RaymanDesigner_MsDos(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

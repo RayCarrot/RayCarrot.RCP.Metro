@@ -38,7 +38,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MsDos : MsDosGameDescrip
     private static IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
     {
         Ray1MsDosData data = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
-        return data.AvailableVersions.Select(x => new GameProgressionManager_RaymanEdutainment(
+        return data.AvailableVersions.Select(x => new GameProgressionManager_RaymanEdutainment_MsDos(
             gameInstallation: gameInstallation,
             backupId: $"Educational Games - {x.Id}",
             primaryName: PrimaryName,

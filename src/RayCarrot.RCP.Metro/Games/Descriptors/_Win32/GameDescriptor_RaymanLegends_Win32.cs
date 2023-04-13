@@ -40,7 +40,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 
         builder.Register(new SteamGameClientComponent(SteamId));
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends(x, "Rayman Legends")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends_Win32(x, "Rayman Legends")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanLegends_PC));

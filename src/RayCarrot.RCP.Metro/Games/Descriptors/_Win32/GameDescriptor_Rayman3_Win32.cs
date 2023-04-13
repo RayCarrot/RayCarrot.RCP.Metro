@@ -33,7 +33,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3(x, "Rayman 3")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3_Win32(x, "Rayman 3")));
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LocalGameLinksComponent>(new Rayman3SetupLocalGameLinksComponent(false));

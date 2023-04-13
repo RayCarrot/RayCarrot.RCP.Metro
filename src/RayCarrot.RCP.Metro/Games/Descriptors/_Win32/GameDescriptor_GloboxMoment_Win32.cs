@@ -34,7 +34,7 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_GloboxMoment(x, "Globox Moment")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_GloboxMoment_Win32(x, "Globox Moment")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 

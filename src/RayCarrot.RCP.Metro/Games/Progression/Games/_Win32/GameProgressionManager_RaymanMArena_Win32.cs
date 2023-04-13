@@ -3,9 +3,9 @@ using BinarySerializer.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanMArena : GameProgressionManager
+public class GameProgressionManager_RaymanMArena_Win32 : GameProgressionManager
 {
-    public GameProgressionManager_RaymanMArena(GameInstallation gameInstallation, string backupId, bool isRaymanMDemo) 
+    public GameProgressionManager_RaymanMArena_Win32(GameInstallation gameInstallation, string backupId, bool isRaymanMDemo) 
         : base(gameInstallation, backupId)
     {
         IsRaymanMDemo = isRaymanMDemo;

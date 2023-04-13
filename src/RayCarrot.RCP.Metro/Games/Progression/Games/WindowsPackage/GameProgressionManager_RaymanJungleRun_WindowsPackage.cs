@@ -4,9 +4,9 @@ using BinarySerializer.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
+public class GameProgressionManager_RaymanJungleRun_WindowsPackage : GameProgressionManager
 {
-    public GameProgressionManager_RaymanJungleRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_RaymanJungleRun_WindowsPackage(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId)
     {
         GameDescriptor = gameDescriptor;

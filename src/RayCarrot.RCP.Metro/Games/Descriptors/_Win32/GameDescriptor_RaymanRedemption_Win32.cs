@@ -34,7 +34,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRedemption(x, "Rayman Redemption")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRedemption_Win32(x, "Rayman Redemption")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
     

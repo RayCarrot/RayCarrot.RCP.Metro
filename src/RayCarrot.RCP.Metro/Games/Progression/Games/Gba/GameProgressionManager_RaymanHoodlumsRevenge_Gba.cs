@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanHoodlumsRevenge : EmulatedGameProgressionManager
+public class GameProgressionManager_RaymanHoodlumsRevenge_Gba : EmulatedGameProgressionManager
 {
-    public GameProgressionManager_RaymanHoodlumsRevenge(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_RaymanHoodlumsRevenge_Gba(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) 
     { }
 

@@ -45,7 +45,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TonicTrouble(x, "Tonic Trouble")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TonicTrouble_Win32(x, "Tonic Trouble")));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));

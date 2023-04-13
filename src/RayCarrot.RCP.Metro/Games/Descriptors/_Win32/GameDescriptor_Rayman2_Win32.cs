@@ -62,7 +62,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
         builder.Register(new SteamGameClientComponent(SteamId));
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2(x, "Rayman 2")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Win32(x, "Rayman 2")));
         builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));

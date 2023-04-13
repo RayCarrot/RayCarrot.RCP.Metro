@@ -3,9 +3,9 @@ using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_Rayman60Levels : GameProgressionManager_RaymanDesigner
+public class GameProgressionManager_Rayman60Levels_MsDos : GameProgressionManager_RaymanDesigner_MsDos
 {
-    public GameProgressionManager_Rayman60Levels(GameInstallation gameInstallation, string backupId) 
+    public GameProgressionManager_Rayman60Levels_MsDos(GameInstallation gameInstallation, string backupId) 
         : base(gameInstallation, backupId) { }
 
     protected override int LevelsCount => 60;

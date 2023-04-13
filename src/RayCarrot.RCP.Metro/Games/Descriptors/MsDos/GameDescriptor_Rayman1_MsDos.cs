@@ -32,7 +32,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1(x, "Rayman 1")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1_MsDos(x, "Rayman 1")));
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();

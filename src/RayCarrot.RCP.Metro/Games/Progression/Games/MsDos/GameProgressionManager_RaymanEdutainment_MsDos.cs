@@ -3,9 +3,9 @@ using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameProgressionManager_RaymanEdutainment : GameProgressionManager
+public class GameProgressionManager_RaymanEdutainment_MsDos : GameProgressionManager
 {
-    public GameProgressionManager_RaymanEdutainment(GameInstallation gameInstallation, string backupId, string primaryName, Ray1MsDosData.Version version) 
+    public GameProgressionManager_RaymanEdutainment_MsDos(GameInstallation gameInstallation, string backupId, string primaryName, Ray1MsDosData.Version version) 
         : base(gameInstallation, backupId)
     {
         PrimaryName = primaryName;
