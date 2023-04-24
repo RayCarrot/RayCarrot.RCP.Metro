@@ -161,13 +161,21 @@ public class GameProgressionManager_RaymanHoodlumsRevenge_Gba : EmulatedGameProg
                     value: saveSlot.Levels[19].Score),
             };
 
-            yield return new EmulatedGameProgressionSlot(
+            int slotIndex = saveIndex;
+
+            yield return new SerializabeEmulatedGameProgressionSlot<RHR_SaveData>(
                 name: saveSlot.Name,
                 index: saveIndex,
                 collectiblesCount: lums + teensies + stamps + completedLevels,
                 totalCollectiblesCount: totalLums + totalTeensies + totalStamps + totalLevels,
                 emulatedSave: emulatedSave,
-                dataItems: dataItems);
+                dataItems: dataItems,
+                serializable: saveData)
+            {
+                GetExportObject = x => x.Slots[slotIndex],
+                SetImportObject = (x, o) => x.Slots[slotIndex] = (RHR_SaveSlot)o,
+                ExportedType = typeof(RHR_SaveSlot)
+            };
         }
 
         Logger.Info("{0} save has been loaded", GameInstallation.FullId);

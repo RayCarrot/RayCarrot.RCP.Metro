@@ -9,7 +9,7 @@ public class R3GBA_SaveSlot : BinarySerializable
     public byte[] Cages { get; set; }
 
     public byte LastPlayedLevel { get; set; }
-    public byte LastUnlockedLevel { get; set; }
+    public byte LastCompletedLevel { get; set; }
     public byte Lives { get; set; }
 
     public bool FinishedLyChallenge1 { get; set; }
@@ -47,7 +47,7 @@ public class R3GBA_SaveSlot : BinarySerializable
             Lums = s.SerializeArray<byte>(Lums, 125, name: nameof(Lums));
             Cages = s.SerializeArray<byte>(Cages, 7, name: nameof(Cages));
             LastPlayedLevel = s.Serialize<byte>(LastPlayedLevel, name: nameof(LastPlayedLevel));
-            LastUnlockedLevel = s.Serialize<byte>(LastUnlockedLevel, name: nameof(LastUnlockedLevel));
+            LastCompletedLevel = s.Serialize<byte>(LastCompletedLevel, name: nameof(LastCompletedLevel));
             Lives = s.Serialize<byte>(Lives, name: nameof(Lives));
             s.DoBits<byte>(b =>
             {

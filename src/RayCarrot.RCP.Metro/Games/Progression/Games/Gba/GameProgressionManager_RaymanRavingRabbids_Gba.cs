@@ -53,13 +53,21 @@ public class GameProgressionManager_RaymanRavingRabbids_Gba : EmulatedGameProgre
                     max: totalCages),
             };
 
-            yield return new EmulatedGameProgressionSlot(
+            int slotIndex = saveIndex;
+
+            yield return new SerializabeEmulatedGameProgressionSlot<RRRGBA_SaveData>(
                 name: saveSlot.Name,
                 index: saveIndex,
                 collectiblesCount: lums + cages,
                 totalCollectiblesCount: totalLums + totalCages,
                 emulatedSave: emulatedSave,
-                dataItems: dataItems);
+                dataItems: dataItems,
+                serializable: saveData)
+            {
+                GetExportObject = x => x.Slots[slotIndex],
+                SetImportObject = (x, o) => x.Slots[slotIndex] = (RRRGBA_SaveSlot)o,
+                ExportedType = typeof(RRRGBA_SaveSlot)
+            };
 
             Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
         }
@@ -91,15 +99,19 @@ public class GameProgressionManager_RaymanRavingRabbids_Gba : EmulatedGameProgre
             value: completedTimeAttackLevels,
             max: maxTimeAttackLevels));
 
-        yield return new EmulatedGameProgressionSlot(
+        yield return new SerializabeEmulatedGameProgressionSlot<RRRGBA_SaveData>(
             name: "Time attack", // TODO-UPDATE: Localize
             index: 3,
             collectiblesCount: completedTimeAttackLevels,
             totalCollectiblesCount: maxTimeAttackLevels,
             emulatedSave: emulatedSave,
-            dataItems: items)
+            dataItems: items,
+            serializable: saveData)
         {
             SlotGroup = 1,
+            GetExportObject = x => x.LevelTimes,
+            SetImportObject = (x, o) => x.LevelTimes = (ushort[])o,
+            ExportedType = typeof(ushort[])
         };
 
         Logger.Info("{0} save has been loaded", GameInstallation.FullId);

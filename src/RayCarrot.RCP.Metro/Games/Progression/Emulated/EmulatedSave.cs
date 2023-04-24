@@ -15,4 +15,6 @@ public abstract class EmulatedSave
 
     public abstract Task<T> ReadAsync<T>()
         where T : BinarySerializable, new();
+    public abstract Task WriteAsync<T>(T obj)
+        where T : BinarySerializable, new();
 }

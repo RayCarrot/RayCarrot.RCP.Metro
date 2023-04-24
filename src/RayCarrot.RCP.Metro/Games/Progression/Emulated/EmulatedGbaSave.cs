@@ -19,4 +19,12 @@ public class EmulatedGbaSave : EmulatedSave
 
         return Context.ReadRequiredFileDataAsync<T>(FileName, encoder, removeFileWhenComplete: false);
     }
+
+    public override Task WriteAsync<T>(T obj)
+    {
+        using (Context)
+            FileFactory.Write<T>(Context, FileName, obj);
+
+        return Task.CompletedTask;
+    }
 }

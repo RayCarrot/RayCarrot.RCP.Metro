@@ -45,13 +45,21 @@ public class GameProgressionManager_RaymanAdvance_Gba : EmulatedGameProgressionM
                     value: saveSlot.StatusBar.LivesCount),
             };
 
-            yield return new EmulatedGameProgressionSlot(
+            int slotIndex = saveIndex;
+
+            yield return new SerializabeEmulatedGameProgressionSlot<SaveData>(
                 name: saveSlot.SaveName.ToUpper(),
                 index: saveIndex,
                 collectiblesCount: cages,
                 totalCollectiblesCount: 102,
                 emulatedSave: emulatedSave,
-                dataItems: dataItems);
+                dataItems: dataItems,
+                serializable: saveData)
+            {
+                GetExportObject = x => x.SaveSlots[slotIndex],
+                SetImportObject = (x, o) => x.SaveSlots[slotIndex] = (SaveSlot)o,
+                ExportedType = typeof(SaveSlot)
+            };
         }
 
         Logger.Info("{0} save has been loaded", GameInstallation.FullId);

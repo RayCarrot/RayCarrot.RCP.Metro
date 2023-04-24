@@ -26,6 +26,4 @@ public class EmulatedGameProgressionSlot : GameProgressionSlot
     }
 
     public EmulatedSave EmulatedSave { get; }
-
-    // TODO-14: Allow serializing the save
 }
