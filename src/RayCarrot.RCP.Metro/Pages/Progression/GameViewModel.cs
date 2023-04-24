@@ -422,6 +422,8 @@ public class GameViewModel : BaseRCPViewModel
             return;
         }
 
+        CanPerformBackup = true;
+
         using (await AsyncLock.LockAsync())
         {
             Logger.Trace($"Loading backup for {GameInstallation.FullId}");
