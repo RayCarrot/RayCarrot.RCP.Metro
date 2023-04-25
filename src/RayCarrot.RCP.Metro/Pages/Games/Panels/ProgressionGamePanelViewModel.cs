@@ -24,7 +24,7 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
     protected override async Task LoadAsyncImpl()
     {
         ProgressionDataSources? dataSources = GameInstallation.GetObject<ProgressionDataSources>(GameDataKey.Progression_DataSources);
-        var dataSource = dataSources?.DataSources.TryGetValue(ProgressionManager.BackupId, out ProgramDataSource src) == true
+        var dataSource = dataSources?.DataSources.TryGetValue(ProgressionManager.ProgressionId, out ProgramDataSource src) == true
             ? src
             : ProgramDataSource.Auto;
         var fileSystem = new GameProgressionManager.PhysicalFileSystemWrapper(dataSource);

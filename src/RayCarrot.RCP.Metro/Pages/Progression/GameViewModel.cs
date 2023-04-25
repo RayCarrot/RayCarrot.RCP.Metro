@@ -95,14 +95,14 @@ public class GameViewModel : BaseRCPViewModel
         get
         {
             var dataSources = GameInstallation.GetObject<ProgressionDataSources>(GameDataKey.Progression_DataSources);
-            return dataSources?.DataSources.TryGetValue(ProgressionManager.BackupId, out ProgramDataSource src) == true
+            return dataSources?.DataSources.TryGetValue(ProgressionManager.ProgressionId, out ProgramDataSource src) == true
                 ? src
                 : ProgramDataSource.Auto;
         }
         set
         {
             GameInstallation.ModifyObject<ProgressionDataSources>(GameDataKey.Progression_DataSources, 
-                x => x.DataSources[ProgressionManager.BackupId] = value);
+                x => x.DataSources[ProgressionManager.ProgressionId] = value);
         }
     }
 
@@ -432,7 +432,7 @@ public class GameViewModel : BaseRCPViewModel
             CurrentBackupStatus = BackupStatus.Syncing;
 
             // Create backup info if null
-            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.BackupId, ProgressionManager.BackupDirectories);
+            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.ProgressionId, ProgressionManager.BackupDirectories);
 
             // Refresh backup info
             await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName));

@@ -2,8 +2,8 @@
 
 public class GameProgressionManager_RaymanRavingRabbids_Gba : EmulatedGameProgressionManager
 {
-    public GameProgressionManager_RaymanRavingRabbids_Gba(GameInstallation gameInstallation, string backupId) 
-        : base(gameInstallation, backupId) 
+    public GameProgressionManager_RaymanRavingRabbids_Gba(GameInstallation gameInstallation, string progressionId) 
+        : base(gameInstallation, progressionId) 
     { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

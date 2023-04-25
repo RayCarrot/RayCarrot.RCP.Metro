@@ -2,8 +2,8 @@
 
 public class GameProgressionManager_RaymanHoodlumsRevenge_Gba : EmulatedGameProgressionManager
 {
-    public GameProgressionManager_RaymanHoodlumsRevenge_Gba(GameInstallation gameInstallation, string backupId) 
-        : base(gameInstallation, backupId) 
+    public GameProgressionManager_RaymanHoodlumsRevenge_Gba(GameInstallation gameInstallation, string progressionId) 
+        : base(gameInstallation, progressionId) 
     { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

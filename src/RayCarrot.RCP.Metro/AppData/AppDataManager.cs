@@ -372,12 +372,12 @@ public class AppDataManager
                 
                 foreach (GameProgressionManager progressionManager in progressionManagers)
                 {
-                    if (legacyData.Backup_GameDataSources.TryGetValue(progressionManager.BackupId,
+                    if (legacyData.Backup_GameDataSources.TryGetValue(progressionManager.ProgressionId,
                             out LegacyPre14AppUserData.ProgramDataSource src) &&
                         src != LegacyPre14AppUserData.ProgramDataSource.Auto)
                     {
                         gameInstallation.ModifyObject<ProgressionDataSources>(GameDataKey.Progression_DataSources,
-                            y => y.DataSources[progressionManager.BackupId] = src switch
+                            y => y.DataSources[progressionManager.ProgressionId] = src switch
                             {
                                 LegacyPre14AppUserData.ProgramDataSource.Auto => ProgramDataSource.Auto,
                                 LegacyPre14AppUserData.ProgramDataSource.Default => ProgramDataSource.Default,

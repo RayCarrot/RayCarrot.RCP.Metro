@@ -186,13 +186,13 @@ public class ProgressionPageViewModel : BasePageViewModel,
                 // Group games based on the backup id. Games which share the same id also share the same backup and
                 // the ui should specify this to avoid confusion.
                 Dictionary<string, List<GameViewModel>> backupsById = Games.
-                    GroupBy(x => x.ProgressionManager.BackupId).
+                    GroupBy(x => x.ProgressionManager.ProgressionId).
                     ToDictionary(x => x.Key, x => x.ToList());
 
                 // Set linked games
                 foreach (GameViewModel game in Games)
                 {
-                    List<GameViewModel> linkedGames = backupsById[game.ProgressionManager.BackupId];
+                    List<GameViewModel> linkedGames = backupsById[game.ProgressionManager.ProgressionId];
                     game.LinkedGames = new ObservableCollection<GameViewModel>(linkedGames.Where(x => x != game));
                 }
 
@@ -244,10 +244,10 @@ public class ProgressionPageViewModel : BasePageViewModel,
             HashSet<string> ids = new();
             foreach (GameViewModel game in Games)
             {
-                if (ids.Contains(game.ProgressionManager.BackupId))
+                if (ids.Contains(game.ProgressionManager.ProgressionId))
                     continue;
 
-                ids.Add(game.ProgressionManager.BackupId);
+                ids.Add(game.ProgressionManager.ProgressionId);
 
                 if (await game.BackupAsync(true))
                     completed++;

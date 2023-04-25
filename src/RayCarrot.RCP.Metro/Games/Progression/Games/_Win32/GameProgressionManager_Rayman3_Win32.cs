@@ -5,8 +5,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_Rayman3_Win32 : GameProgressionManager
 {
-    public GameProgressionManager_Rayman3_Win32(GameInstallation gameInstallation, string backupId) 
-        : base(gameInstallation, backupId) { }
+    public GameProgressionManager_Rayman3_Win32(GameInstallation gameInstallation, string progressionId) 
+        : base(gameInstallation, progressionId) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 

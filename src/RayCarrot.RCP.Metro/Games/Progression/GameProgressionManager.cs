@@ -11,10 +11,10 @@ public abstract class GameProgressionManager
 {
     #region Constructor
 
-    protected GameProgressionManager(GameInstallation gameInstallation, string backupId)
+    protected GameProgressionManager(GameInstallation gameInstallation, string progressionId)
     {
         GameInstallation = gameInstallation;
-        BackupId = backupId;
+        ProgressionId = progressionId;
     }
 
     #endregion
@@ -29,7 +29,7 @@ public abstract class GameProgressionManager
 
     public GameInstallation GameInstallation { get; }
     public abstract GameBackups_Directory[]? BackupDirectories { get; }
-    public string BackupId { get; } // TODO-14: Rename to ProgressionId
+    public string ProgressionId { get; }
 
     [MemberNotNullWhen(true, nameof(BackupDirectories))]
     public bool SupportsBackups => BackupDirectories != null;

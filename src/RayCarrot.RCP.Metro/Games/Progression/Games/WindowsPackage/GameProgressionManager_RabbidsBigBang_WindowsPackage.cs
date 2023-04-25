@@ -2,8 +2,8 @@
 
 public class GameProgressionManager_RabbidsBigBang_WindowsPackage : GameProgressionManager
 {
-    public GameProgressionManager_RabbidsBigBang_WindowsPackage(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string backupId) 
-        : base(gameInstallation, backupId)
+    public GameProgressionManager_RabbidsBigBang_WindowsPackage(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string progressionId) 
+        : base(gameInstallation, progressionId)
     {
         GameDescriptor = gameDescriptor;
     }

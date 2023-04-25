@@ -6,8 +6,8 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class EmulatedGameProgressionManager : GameProgressionManager
 {
-    protected EmulatedGameProgressionManager(GameInstallation gameInstallation, string backupId) 
-        : base(gameInstallation, backupId) 
+    protected EmulatedGameProgressionManager(GameInstallation gameInstallation, string progressionId) 
+        : base(gameInstallation, progressionId) 
     { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

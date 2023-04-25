@@ -6,8 +6,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanFiestaRun_WindowsPackage : GameProgressionManager
 {
-    public GameProgressionManager_RaymanFiestaRun_WindowsPackage(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string backupId, int slotIndex) 
-        : base(gameInstallation, backupId)
+    public GameProgressionManager_RaymanFiestaRun_WindowsPackage(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string progressionId, int slotIndex) 
+        : base(gameInstallation, progressionId)
     {
         GameDescriptor = gameDescriptor;
         SlotIndex = slotIndex;
