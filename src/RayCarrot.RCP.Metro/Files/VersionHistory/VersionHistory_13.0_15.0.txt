@@ -32,6 +32,7 @@ Other changes:
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
 • Updated the progression page layout and added support for multiple games sharing the same backup
+• Progression backups no longer warn if GOG Galaxy cloud syncing is detected
 • A DOSBox installation can now have multiple config files
 • The option to run a game as admin is now always visible in the drop-down
 • The option to run a game as admin is no longer available for emulated games, such as MS-DOS games

@@ -7,6 +7,7 @@ using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Pages.Progression;
 
+// TODO: Handle or show warning if cloud sync is detected for the game, such as through GOG Galaxy (which redirects files)
 public class GameViewModel : BaseRCPViewModel
 {
     #region Constructor
@@ -79,7 +80,6 @@ public class GameViewModel : BaseRCPViewModel
     public bool IsBackupViewExpanded { get; set; }
 
     public BackupStatus CurrentBackupStatus { get; set; }
-    public bool IsGOGCloudSyncUsed { get; set; }
     public GameBackups_BackupInfo? BackupInfo { get; set; }
     public ObservableCollection<DuoGridItemViewModel> BackupInfoItems { get; }
     public bool HasBackupInfoItems { get; set; }
@@ -117,29 +117,6 @@ public class GameViewModel : BaseRCPViewModel
     #endregion
 
     #region Private Methods
-
-    private void CheckForGOGCloudSync()
-    {
-        // TODO-14: This should not be handled here and definitely not by checking if the platform is MSDOS
-        // If the type is DOSBox, check if GOG cloud sync is being used
-        if (GameDescriptor.Platform == GamePlatform.MsDos)
-        {
-            try
-            {
-                FileSystemPath cloudSyncDir = GameInstallation.InstallLocation.Directory.Parent + "cloud_saves";
-                IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.EnumerateFileSystemEntries(cloudSyncDir).Any();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Getting if DOSBox game is using GOG cloud sync");
-                IsGOGCloudSyncUsed = false;
-            }
-        }
-        else
-        {
-            IsGOGCloudSyncUsed = false;
-        }
-    }
 
     private async Task LoadBackupInfoAsync(GameBackups_ExistingBackup? backup)
     {
@@ -440,9 +417,6 @@ public class GameViewModel : BaseRCPViewModel
             // Determine if the program data source can be modified
             CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || ProgramDataSource != ProgramDataSource.Auto;
 
-            // Check if GOG cloud sync is in use
-            CheckForGOGCloudSync();
-
             // Get the primary backup
             GameBackups_ExistingBackup? backup = BackupInfo.GetPrimaryBackup;
 
@@ -492,10 +466,6 @@ public class GameViewModel : BaseRCPViewModel
                 IsPerformingBackupRestore = true;
 
                 Logger.Trace($"Performing backup on {GameInstallation.FullId}");
-
-                // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
-                if (IsGOGCloudSyncUsed && !fromBatchOperation)
-                    await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
                 await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName);
@@ -560,10 +530,6 @@ public class GameViewModel : BaseRCPViewModel
                 IsPerformingBackupRestore = true;
 
                 Logger.Trace($"Performing restore on {GameInstallation.FullId}");
-
-                // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
-                if (IsGOGCloudSyncUsed)
-                    await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
                 await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName);
