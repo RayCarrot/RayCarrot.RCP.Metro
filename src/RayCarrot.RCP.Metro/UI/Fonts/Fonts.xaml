@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <FontFamily x:Key="RCP.Fonts.RaymanOrigins">#Rayman Origins</FontFamily>
+    <FontFamily x:Key="RCP.Fonts.RaymanOrigins">pack://application:,,,/RayCarrot.RCP.Metro;component/UI/Fonts/#Rayman Origins</FontFamily>
     <FontFamily x:Key="RCP.Fonts.Consolas">Consolas</FontFamily>
 
 </ResourceDictionary>

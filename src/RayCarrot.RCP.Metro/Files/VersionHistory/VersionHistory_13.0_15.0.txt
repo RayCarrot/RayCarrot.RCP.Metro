@@ -51,6 +51,7 @@ Other changes:
 • Bug fixes
 	• Concurrent serializer log writes are now handled by creating multiple files
 	• The app jumplist is now refreshed when the app exe is moved
+	• Fixed a bug where the Rayman Origins font wouldn't load in the progression page unless it was installed on the computer
 	• Fixed a bug with finding Rayman Forever installations through the game finder
 	• Fixed a bug with creating backups for the Rayman Edutainment (Quiz) games
 	• Fixed a bug where the Rabbis Go Home config wouldn't get saved when restarting the app
