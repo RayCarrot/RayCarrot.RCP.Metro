@@ -112,6 +112,8 @@ public class InstalledGameViewModel : BaseViewModel
 
     public bool IsFavorite { get; private set; }
 
+    public bool CanCreateShortcut { get; set; }
+
     #endregion
 
     #region Private Methods
@@ -290,6 +292,8 @@ public class InstalledGameViewModel : BaseViewModel
                 var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
                 GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
                 InitializeGameOptions();
+
+                CanCreateShortcut = GameInstallation.HasComponent<LaunchGameComponent>();
             }
 
             // Load info
@@ -467,13 +471,7 @@ public class InstalledGameViewModel : BaseViewModel
     {
         try
         {
-            LaunchGameComponent? component = GameInstallation.GetComponent<LaunchGameComponent>();
-
-            if (component == null)
-            {
-                // TODO-14: What do we do? Maybe best don't show the option in the UI if this can't be done. Or just error message like with launching the game.
-                return;
-            }
+            LaunchGameComponent component = GameInstallation.GetRequiredComponent<LaunchGameComponent>();
 
             var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {

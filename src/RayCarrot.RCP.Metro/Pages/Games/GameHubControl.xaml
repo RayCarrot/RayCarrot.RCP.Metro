@@ -225,8 +225,9 @@
                                         <Button Content="{Resx GameOptions_CreateShortcut}"
                                                 Command="{Binding Path=CreateShortcutCommand, Mode=OneTime}"
                                                 rcp:Icon.Kind="Link"
-                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
-                                        <Separator />
+                                                rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                                                Visibility="{Binding Path=CanCreateShortcut, Converter={rcp:BooleanToVisibilityConverter}}" />
+                                        <Separator Visibility="{Binding Path=CanCreateShortcut, Converter={rcp:BooleanToVisibilityConverter}}"/>
                                         <Button Command="{Binding Path=ToggleFavoriteCommand, Mode=OneTime}"
                                                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Favorites}">
                                             <Button.Style>
