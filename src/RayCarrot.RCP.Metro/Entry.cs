@@ -31,7 +31,6 @@ public static class Entry
 
     private static void ConfigureServices(IServiceCollection serviceCollection, string[] args)
     {
-        // TODO-UPDATE: Have most (all?) of these be singletons?
         // Add app related services
         serviceCollection.AddSingleton(new LaunchArguments(args));
         serviceCollection.AddSingleton<JumpListManager>();
@@ -44,9 +43,9 @@ public static class Entry
         serviceCollection.AddSingleton<AppViewModel>();
         serviceCollection.AddSingleton<AppUserData>();
         serviceCollection.AddSingleton<IAppInstanceData, AppInstanceData>();
-        serviceCollection.AddTransient<FileManager>();
-        serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
-        serviceCollection.AddTransient<GameBackups_Manager>();
+        serviceCollection.AddSingleton<FileManager>();
+        serviceCollection.AddSingleton<IUpdaterManager, RCPUpdaterManager>();
+        serviceCollection.AddSingleton<GameBackups_Manager>();
         serviceCollection.AddSingleton<DeployableFilesManager>();
 
         // Using a WeakReferenceMessenger can be convenient and I was originally doing that,
@@ -70,8 +69,8 @@ public static class Entry
 
         // Add UI managers
         serviceCollection.AddSingleton<IDialogBaseManager, RCPWindowDialogBaseManager>();
-        serviceCollection.AddTransient<IMessageUIManager, RCPMessageUIManager>();
-        serviceCollection.AddTransient<IBrowseUIManager, RCPBrowseUIManager>();
-        serviceCollection.AddTransient<AppUIManager>();
+        serviceCollection.AddSingleton<IMessageUIManager, RCPMessageUIManager>();
+        serviceCollection.AddSingleton<IBrowseUIManager, RCPBrowseUIManager>();
+        serviceCollection.AddSingleton<AppUIManager>();
     }
 }
