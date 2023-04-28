@@ -40,6 +40,8 @@ public abstract class GameProgressionManager
     /// </summary>
     public virtual string? Name => null;
 
+    public virtual bool RefreshOnRebuiltComponents => false;
+
     #endregion
 
     #region Public Static Methods

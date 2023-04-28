@@ -2,8 +2,6 @@
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Refresh emulated games when attached game client changes
-
 public abstract class EmulatedGameProgressionManager : GameProgressionManager
 {
     protected EmulatedGameProgressionManager(GameInstallation gameInstallation, string progressionId) 
@@ -14,6 +12,8 @@ public abstract class EmulatedGameProgressionManager : GameProgressionManager
 
     // For now we don't allow backups for emulated games as it doesn't work very well with the current backup system
     public override GameBackups_Directory[]? BackupDirectories => null;
+
+    public override bool RefreshOnRebuiltComponents => true;
 
     public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {

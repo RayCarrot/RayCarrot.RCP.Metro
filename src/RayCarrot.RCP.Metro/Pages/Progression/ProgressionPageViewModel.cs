@@ -123,13 +123,19 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public async void Receive(BackupLocationChangedMessage message) => await Task.Run(RefreshAsync);
     public async void Receive(ModifiedGamesMessage message)
     {
-        // As of right now there's no need to do a full refresh when a game
-        // is modified, but we might have to change this in the future
         using (await AsyncLock.LockAsync())
         {
             foreach (GameViewModel gameProgression in Games.
                          Where(x => message.GameInstallations.Contains(x.GameInstallation)))
             {
+                // Only fully refresh if requested to do so when components have been rebuilt
+                if (message.RebuiltComponents && gameProgression.ProgressionManager.RefreshOnRebuiltComponents)
+                {
+                    await gameProgression.LoadProgressAsync();
+                    await gameProgression.LoadBackupAsync();
+                    await gameProgression.LoadSlotInfoItemsAsync();
+                }
+
                 gameProgression.RefreshGameInfo();
             }
         }
