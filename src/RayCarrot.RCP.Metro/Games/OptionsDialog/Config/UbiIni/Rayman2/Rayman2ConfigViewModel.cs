@@ -265,10 +265,10 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
             return;
 
         // Check if the aspect ratio has been modified
-        if (await GetIsWidescreenHackAppliedAsync(GameInstallation) == true)
+        if (await GetIsWidescreenHackAppliedAsync() == true)
             WidescreenSupport = true;
 
-        if (GetCurrentDinput(GameInstallation) == R2Dinput.Mapping)
+        if (GetCurrentDinput() == R2Dinput.Mapping)
         {
             HashSet<Rayman2ConfigButtonMappingItem> result;
 
@@ -277,7 +277,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
             try
             {
                 // Load current mapping
-                result = await Rayman2ConfigButtonMappingManager.LoadCurrentMappingAsync(GetDinputPath(GameInstallation));
+                result = await Rayman2ConfigButtonMappingManager.LoadCurrentMappingAsync(GetDinputPath());
             }
             catch (Exception ex)
             {
@@ -331,14 +331,14 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     protected override async Task<bool> OnSetupAsync()
     {
         // Get the config path
-        ConfigPath = GetUbiIniPath(GameInstallation);
+        ConfigPath = GetUbiIniPath();
 
         AddConfigLocation(LinkItemViewModel.LinkType.File, ConfigPath);
 
         Logger.Info("The ubi.ini path has been retrieved as {0}", ConfigPath);
 
         // Get the dinput type
-        var dt = CanModifyGame ? GetCurrentDinput(GameInstallation) : R2Dinput.Unknown;
+        var dt = CanModifyGame ? GetCurrentDinput() : R2Dinput.Unknown;
 
         Logger.Info("The dinput type has been retrieved as {0}", dt);
 
@@ -388,8 +388,8 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         try
         {
             // Get the current dinput type
-            var dt = GetCurrentDinput(GameInstallation);
-            var path = GetDinputPath(GameInstallation);
+            var dt = GetCurrentDinput();
+            var path = GetDinputPath();
 
             Logger.Info("The dinput type has been retrieved as {0}", dt);
 
@@ -450,6 +450,153 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     #endregion
 
     #region Private Methods
+
+    /// <summary>
+    /// Gets a value indicating if the aspect ratio for the Rayman 2 executable file
+    /// has been modified
+    /// </summary>
+    /// <param name="ratio">The aspect ratio bytes</param>
+    /// <returns>True if the aspect ratio is modified, false if it's the original value</returns>
+    private static bool CheckAspectRatio(IReadOnlyList<byte> ratio)
+    {
+        // Check if the data has been modified
+        if (ratio[0] != 0 || ratio[1] != 0 || ratio[2] != 128 || ratio[3] != 63)
+            return true;
+
+        return false;
+    }
+
+    /// <summary>
+    /// Gets the aspect ratio location for a Rayman 2 executable file
+    /// </summary>
+    /// <param name="path">The file path</param>
+    /// <returns>The location or -1 if not found</returns>
+    private static int GetAspectRatioLocation(FileSystemPath path)
+    {
+        // Get the size to determine the version
+        var length = path.GetSize();
+
+        // Get the byte location
+        int location = -1;
+
+        // Check if it's the disc version
+        if ((int)length.Bytes == 676352)
+            location = 633496;
+
+        // Check if it's the GOG version
+        else if ((int)length.Bytes == 1468928)
+            location = 640152;
+
+        return location;
+    }
+
+    /// <summary>
+    /// Gets the current dinput.dll path for Rayman 2
+    /// </summary>
+    /// <returns>The path</returns>
+    private FileSystemPath GetDinputPath()
+    {
+        return GameInstallation.InstallLocation.Directory + "dinput.dll";
+    }
+
+    /// <summary>
+    /// Gets the current config path for the ubi.ini file
+    /// </summary>
+    /// <returns>The path</returns>
+    private FileSystemPath GetUbiIniPath()
+    {
+        var path1 = GameInstallation.InstallLocation.Directory + "ubi.ini";
+
+        if (path1.FileExists)
+            return path1;
+
+        var path2 = AppFilePaths.UbiIniPath1;
+
+        if (path2.FileExists)
+            return path2;
+
+        return FileSystemPath.EmptyPath;
+    }
+
+    /// <summary>
+    /// Gets the current dinput file used for Rayman 2
+    /// </summary>
+    /// <returns>The current dinput file used</returns>
+    private R2Dinput GetCurrentDinput()
+    {
+        var path = GetDinputPath();
+
+        if (!path.FileExists)
+            return R2Dinput.None;
+
+        try
+        {
+            var size = path.GetSize();
+
+            if (size == ByteSize.FromBytes(136704))
+                return R2Dinput.Mapping;
+
+            if (size == ByteSize.FromBytes(66560))
+                return R2Dinput.Controller;
+
+            return R2Dinput.Unknown;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Getting R2 dinput file size");
+            return R2Dinput.Unknown;
+        }
+    }
+
+    /// <summary>
+    /// Gets a value indicating if a widescreen patch has been applied
+    /// </summary>
+    /// <returns>True if a widescreen patch has been applied, false if it has not. Null if an error occurred while checking.</returns>
+    private async Task<bool?> GetIsWidescreenHackAppliedAsync()
+    {
+        try
+        {
+            // Get the exe file path
+            var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
+            FileSystemPath path = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+
+            // Get the location
+            var location = GetAspectRatioLocation(path);
+
+            if (location == -1)
+                return null;
+
+            // Open the file
+            using Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
+            // Set the position
+            stream.Position = location;
+
+            // Create the buffer
+            var buffer = new byte[4];
+
+            // Read the bytes
+            await stream.ReadAsync(buffer, 0, 4);
+
+            // Check if the data has been modified
+            if (CheckAspectRatio(buffer))
+            {
+                Logger.Info("The Rayman 2 aspect ratio has been detected as modified");
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Checking if R2 aspect ratio has been modified");
+
+            return null;
+        }
+    }
 
     /// <summary>
     /// Sets the aspect ratio for the Rayman 2 executable file
@@ -613,163 +760,6 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         base.Dispose();
 
         KeyItems?.DisposeAll();
-    }
-
-    #endregion
-
-    // TODO-UPDATE: These no longer need to be static
-
-    #region Private Static Methods
-
-    /// <summary>
-    /// Gets a value indicating if the aspect ratio for the Rayman 2 executable file
-    /// has been modified
-    /// </summary>
-    /// <param name="ratio">The aspect ratio bytes</param>
-    /// <returns>True if the aspect ratio is modified, false if it's the original value</returns>
-    private static bool CheckAspectRatio(IReadOnlyList<byte> ratio)
-    {
-        // Check if the data has been modified
-        if (ratio[0] != 0 || ratio[1] != 0 || ratio[2] != 128 || ratio[3] != 63)
-            return true;
-
-        return false;
-    }
-
-    /// <summary>
-    /// Gets the aspect ratio location for a Rayman 2 executable file
-    /// </summary>
-    /// <param name="path">The file path</param>
-    /// <returns>The location or -1 if not found</returns>
-    private static int GetAspectRatioLocation(FileSystemPath path)
-    {
-        // Get the size to determine the version
-        var length = path.GetSize();
-
-        // Get the byte location
-        int location = -1;
-
-        // Check if it's the disc version
-        if ((int)length.Bytes == 676352)
-            location = 633496;
-
-        // Check if it's the GOG version
-        else if ((int)length.Bytes == 1468928)
-            location = 640152;
-
-        return location;
-    }
-
-    /// <summary>
-    /// Gets the current dinput.dll path for Rayman 2
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the path for</param>
-    /// <returns>The path</returns>
-    private static FileSystemPath GetDinputPath(GameInstallation gameInstallation)
-    {
-        return gameInstallation.InstallLocation.Directory + "dinput.dll";
-    }
-
-    /// <summary>
-    /// Gets the current config path for the ubi.ini file
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the path for</param>
-    /// <returns>The path</returns>
-    private static FileSystemPath GetUbiIniPath(GameInstallation gameInstallation)
-    {
-        var path1 = gameInstallation.InstallLocation.Directory + "ubi.ini";
-
-        if (path1.FileExists)
-            return path1;
-
-        var path2 = AppFilePaths.UbiIniPath1;
-
-        if (path2.FileExists)
-            return path2;
-
-        return FileSystemPath.EmptyPath;
-    }
-
-    /// <summary>
-    /// Gets the current dinput file used for Rayman 2
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the file for</param>
-    /// <returns>The current dinput file used</returns>
-    private static R2Dinput GetCurrentDinput(GameInstallation gameInstallation)
-    {
-        var path = GetDinputPath(gameInstallation);
-
-        if (!path.FileExists)
-            return R2Dinput.None;
-
-        try
-        {
-            var size = path.GetSize();
-
-            if (size == ByteSize.FromBytes(136704))
-                return R2Dinput.Mapping;
-
-            if (size == ByteSize.FromBytes(66560))
-                return R2Dinput.Controller;
-
-            return R2Dinput.Unknown;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting R2 dinput file size");
-            return R2Dinput.Unknown;
-        }
-    }
-
-    /// <summary>
-    /// Gets a value indicating if a widescreen patch has been applied
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to check</param>
-    /// <returns>True if a widescreen patch has been applied, false if it has not. Null if an error occurred while checking.</returns>
-    private static async Task<bool?> GetIsWidescreenHackAppliedAsync(GameInstallation gameInstallation)
-    {
-        try
-        {
-            // Get the exe file path
-            var programStructure = gameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-            FileSystemPath path = programStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
-
-            // Get the location
-            var location = GetAspectRatioLocation(path);
-
-            if (location == -1)
-                return null;
-
-            // Open the file
-            using Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-
-            // Set the position
-            stream.Position = location;
-
-            // Create the buffer
-            var buffer = new byte[4];
-
-            // Read the bytes
-            await stream.ReadAsync(buffer, 0, 4);
-
-            // Check if the data has been modified
-            if (CheckAspectRatio(buffer))
-            {
-                Logger.Info("The Rayman 2 aspect ratio has been detected as modified");
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Checking if R2 aspect ratio has been modified");
-
-            return null;
-        }
     }
 
     #endregion
