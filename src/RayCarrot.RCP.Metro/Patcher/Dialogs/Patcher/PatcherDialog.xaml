@@ -508,11 +508,24 @@
                                                TextWrapping="Wrap"
                                                Margin="0 0 15 0" />
 
-                                    <TextBlock Grid.Column="2"
-                                               Text="{Binding Path=LocationDisplayName.Value}"
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"
-                                               Margin="0 0 15 0" />
+                                    <StackPanel Grid.Column="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal"
+                                                Margin="0 0 15 0">
+
+                                        <!-- TODO-UPDATE: Localize -->
+                                        <iconPacks:PackIconMaterial Visibility="{Binding Path=HasInvalidLocation, Converter={local:BooleanToVisibilityConverter}}"
+                                                                    Width="16" Height="16"
+                                                                    ToolTip="This file will be ignored due to the location not being found"
+                                                                    Kind="{StaticResource RCP.Icons.Info}"
+                                                                    Background="Transparent"
+                                                                    Foreground="{StaticResource RCP.Brushes.Warning}"
+                                                                    Margin="0 0 5 0" />
+
+                                        <TextBlock Text="{Binding Path=LocationDisplayName.Value}"
+                                                   TextWrapping="Wrap" />
+
+                                    </StackPanel>
 
                                     <TextBlock Grid.Column="3"
                                                Text="{Binding Path=PatchMetadata.Name, Mode=OneTime}"

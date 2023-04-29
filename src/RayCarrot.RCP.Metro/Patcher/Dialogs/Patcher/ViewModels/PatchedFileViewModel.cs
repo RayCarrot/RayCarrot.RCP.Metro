@@ -4,12 +4,13 @@
 //       symbol if not. Keep hash set of not okay files for when refreshing. Always ok for new modifications.
 public class PatchedFileViewModel : BaseViewModel
 {
-    public PatchedFileViewModel(PatchFilePath filePath, PatchedFileModification modification, PatchMetadata patchMetadata)
+    public PatchedFileViewModel(PatchFilePath filePath, PatchedFileModification modification, PatchMetadata patchMetadata, bool hasInvalidLocation)
     {
         FilePath = filePath;
         LocationDisplayName = filePath.Location == String.Empty ? Resources.Patcher_PhysicalGameLocation : filePath.Location;
         Modification = modification;
         PatchMetadata = patchMetadata ?? throw new ArgumentNullException(nameof(patchMetadata));
+        HasInvalidLocation = hasInvalidLocation;
         OverridenPatches = new ObservableCollection<PatchMetadata>();
     }
 
@@ -18,6 +19,7 @@ public class PatchedFileViewModel : BaseViewModel
     public PatchedFileModification Modification { get; }
     public PatchMetadata PatchMetadata { get; }
     public ObservableCollection<PatchMetadata> OverridenPatches { get; }
+    public bool HasInvalidLocation { get; }
 
     public enum PatchedFileModification
     {

@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Input;
 using BinarySerializer;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -405,11 +406,12 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     public void RefreshPatchedFiles()
     {
         Dictionary<string, PatchedFileViewModel> files = new();
+        Dictionary<string, bool> invalidLocations = new()
+        {
+            // The game location is always valid
+            [String.Empty] = false,
+        };
 
-        // TODO-14: We should indicate if a file will be ignored. Right now two cases causes files to be ignored:
-        //          - No archive component with the location id exists for this game
-        //          - The archive location file doesn't exist
-        //          Both of these will silently ignore the files while logging a warning.
         foreach (LocalPatchViewModel patchViewModel in LocalPatches.Where(x => x.IsEnabled))
         {
             PatchFile patch = patchViewModel.PatchFile;
@@ -426,10 +428,28 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 key = key.ToLowerInvariant().Replace('\\', '/');
                 
+                // If the file has already been added we mark it as being overriden
                 if (files.ContainsKey(key))
+                {
                     files[key].OverridenPatches.Add(patch.Metadata);
+                }
                 else
-                    files.Add(key, new PatchedFileViewModel(fileName, modification, patch.Metadata));
+                {
+                    // Make sure the location exists for the file. Right now two cases causes files to be ignored:
+                    // - No archive component with the location id exists for this game
+                    // - The archive location file doesn't exist
+                    // Both of these will have the patcher silently ignore the files while logging a warning
+                    if (!invalidLocations.ContainsKey(fileName.Location))
+                    {
+                        ArchiveComponent? archiveComponent = GameInstallation.GetComponents<ArchiveComponent>().
+                            FirstOrDefault(x => x.Id == fileName.LocationID);
+                        FileSystemPath archivePath = GameDirectory + fileName.Location;
+
+                        invalidLocations.Add(fileName.Location, archiveComponent == null || !archivePath.FileExists);
+                    }
+
+                    files.Add(key, new PatchedFileViewModel(fileName, modification, patch.Metadata, invalidLocations[fileName.Location]));
+                }
             }
         }
 

@@ -223,7 +223,6 @@ public class Patcher
         IArchiveDataManager manager, 
         Action<Progress>? progressCallback)
     {
-        // TODO: Instead of ignoring maybe we should create a new archive?
         if (!archiveFilePath.FileExists)
         {
             Logger.Warn("Archive {0} does not exist and its file modifications will be ignored", archiveFilePath);

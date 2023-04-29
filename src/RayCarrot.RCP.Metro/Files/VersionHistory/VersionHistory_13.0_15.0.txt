@@ -20,6 +20,7 @@ Other changes:
 	• Redesigned the overflow/popup menus
 	• Redesigned the edit jumplist dialog
 • Patcher changes
+	• The patcher now shows if a file will be ignored due to the location not existing
 	• Patches can now be created to target multiple games
 	• Patches can now be created for the Rayman Edutainment games
 	• Patches can no longer be created for games where the patcher is not available
