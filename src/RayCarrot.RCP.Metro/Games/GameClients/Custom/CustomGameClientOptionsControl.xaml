@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Clients.Custom.CustomGameClientOptionsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:custom="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.Custom"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance custom:CustomGameClientOptionsViewModel}">
+    <!-- TODO-UPDATE: Localize -->
+    <StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Margin="0 0 0 4">
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="Launch arguments" />
+
+            <rcp:InfoIcon Text="Here you can specify which launch arguments are passed in to the program. For the game path, type %game%. It is recommended to surround it with quotes to avoid the path being cut off on spaces." />
+
+        </StackPanel>
+
+        <TextBox Text="{Binding Path=LaunchArgs}"
+                 TextWrapping="Wrap" />
+
+    </StackPanel>
+</UserControl>

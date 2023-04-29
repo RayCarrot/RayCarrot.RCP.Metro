@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Clients.DosBox.Data;
+﻿namespace RayCarrot.RCP.Metro.Games.Clients.Data;
 
 public class RequiredGameInstallations
 {

@@ -3,6 +3,9 @@
 [AssetDirectory($"{Assets.AssetsPath}/GameClientIcons")]
 public enum GameClientIconAsset
 {
+    [AssetFileName("Custom.png")]
+    Custom,
+
     [AssetFileName("DOSBox.png")]
     DosBox,
 

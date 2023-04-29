@@ -7,6 +7,7 @@
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:dosBox="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.DosBox"
                             xmlns:dd="urn:gong-wpf-dragdrop"
+                            xmlns:custom="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.Custom"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -271,6 +272,9 @@
                         <ContentPresenter.Resources>
                             <DataTemplate DataType="{x:Type dosBox:DosBoxGameClientOptionsViewModel}">
                                 <dosBox:DosBoxGameClientOptionsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type custom:CustomGameClientOptionsViewModel}">
+                                <custom:CustomGameClientOptionsControl />
                             </DataTemplate>
                         </ContentPresenter.Resources>
                     </ContentPresenter>

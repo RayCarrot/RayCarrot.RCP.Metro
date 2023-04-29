@@ -1,4 +1,6 @@
-﻿using RayCarrot.RCP.Metro.Games.Clients.DosBox;
+﻿using RayCarrot.RCP.Metro.Games.Clients.Custom;
+using RayCarrot.RCP.Metro.Games.Clients.DosBox;
+using RayCarrot.RCP.Metro.Games.Clients.MGba;
 using RayCarrot.RCP.Metro.Games.Clients.Steam;
 using RayCarrot.RCP.Metro.Games.Components;
 
@@ -17,6 +19,7 @@ public class GameClientsManager
         GameClientDescriptors = new GameClientDescriptor[]
         {
             // Emulators
+            new CustomGameClientDescriptor(),
             new DosBoxGameClientDescriptor(),
             new MGbaGameClientDescriptor(),
             

@@ -1,7 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
-namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
+namespace RayCarrot.RCP.Metro.Games.Clients.MGba;
 
 public sealed class MGbaGameClientDescriptor : EmulatorGameClientDescriptor
 {

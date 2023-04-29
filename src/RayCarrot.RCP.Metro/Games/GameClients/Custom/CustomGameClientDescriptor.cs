@@ -1,0 +1,37 @@
+﻿using RayCarrot.RCP.Metro.Games.Components;
+
+namespace RayCarrot.RCP.Metro.Games.Clients.Custom;
+
+public sealed class CustomGameClientDescriptor : EmulatorGameClientDescriptor
+{
+    #region Public Properties
+
+    public override string GameClientId => "Custom";
+    public override bool InstallationRequiresFile => true;
+    public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos, GamePlatform.Gba };
+    public override LocalizedString DisplayName => "Custom"; // TODO-UPDATE: Localize
+    public override GameClientIconAsset Icon => GameClientIconAsset.Custom;
+
+    #endregion
+
+    #region Public Methods
+
+    public override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register<LaunchGameComponent, CustomGameClientLaunchGameComponent>();
+    }
+
+    public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
+        new CustomGameClientOptionsViewModel(gameClientInstallation);
+
+    public override async Task OnGameClientAddedAsync(GameClientInstallation gameClientInstallation)
+    {
+        await base.OnGameClientAddedAsync(gameClientInstallation);
+
+        gameClientInstallation.SetValue(GameClientDataKey.Custom_LaunchArgs, "\"%game%\"");
+    }
+
+    #endregion
+}

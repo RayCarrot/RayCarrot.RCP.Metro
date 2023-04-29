@@ -2,7 +2,6 @@
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
-using RayCarrot.RCP.Metro.Games.Clients.DosBox.Data;
 using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro;
