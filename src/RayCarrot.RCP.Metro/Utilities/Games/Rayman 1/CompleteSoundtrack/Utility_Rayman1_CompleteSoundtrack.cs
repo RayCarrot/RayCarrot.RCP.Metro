@@ -13,9 +13,9 @@ public class Utility_Rayman1_CompleteSoundtrack : Utility<Utility_Rayman1_Comple
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.R1U_CompleteOSTHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.R1U_CompleteOSTHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman1_CompleteSoundtrack;
-    public override string InfoText => Resources.R1U_CompleteOSTInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.R1U_CompleteOSTInfo));
     public override bool RequiresAdditionalFiles => true;
     public override bool RequiresAdmin => ViewModel.MusicDir.DirectoryExists && !Services.File.CheckDirectoryWriteAccess(ViewModel.MusicDir);
     public override bool IsAvailable => ViewModel.CanMusicBeReplaced;

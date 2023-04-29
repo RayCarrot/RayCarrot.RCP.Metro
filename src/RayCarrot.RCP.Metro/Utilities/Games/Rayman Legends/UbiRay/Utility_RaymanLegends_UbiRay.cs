@@ -13,9 +13,9 @@ public class Utility_RaymanLegends_UbiRay : Utility<Utility_RaymanLegends_UbiRay
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.RLU_UbiRayHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.RLU_UbiRayHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanLegends_UbiRay;
-    public override string InfoText => Resources.RLU_UbiRayInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.RLU_UbiRayInfo));
     public override bool RequiresAdmin => !Services.File.CheckFileWriteAccess(ViewModel.IPKFilePath);
     public override bool IsAvailable => ViewModel.IPKFilePath.FileExists;
 }

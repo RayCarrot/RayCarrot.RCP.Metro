@@ -13,9 +13,9 @@ public class Utility_RaymanDesigner_CreateConfig : Utility<Utility_RaymanDesigne
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.RDU_CreateConfigHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.RDU_CreateConfigHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanDesigner_CreateConfig;
-    public override string InfoText => Resources.RDU_CreateConfigInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.RDU_CreateConfigInfo));
     public override bool RequiresAdmin => ViewModel.ConfigPath.FileExists && !Services.File.CheckFileWriteAccess(ViewModel.ConfigPath);
     public override bool IsAvailable => GameInstallation.InstallLocation.Directory.DirectoryExists;
 }

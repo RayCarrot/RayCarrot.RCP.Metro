@@ -14,7 +14,7 @@ public class Utility_Converters : Utility<Utility_Converters_Control, Utility_Co
         };
     }
 
-    public override string DisplayHeader => Resources.Utilities_Converter_Header;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_Converter_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Converters;
 
     public override bool IsLoading => ViewModel.IsLoading;

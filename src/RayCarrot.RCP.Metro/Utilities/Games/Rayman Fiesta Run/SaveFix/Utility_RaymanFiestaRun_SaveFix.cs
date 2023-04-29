@@ -13,8 +13,8 @@ public class Utility_RaymanFiestaRun_SaveFix : Utility<Utility_RaymanFiestaRun_S
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.RFRU_SaveFixHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.RFRU_SaveFixHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanFiestaRun_SaveFix;
-    public override string InfoText => Resources.RFRU_SaveFixInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.RFRU_SaveFixInfo));
     public override bool IsAvailable => ViewModel.SaveFilePath.FileExists;
 }

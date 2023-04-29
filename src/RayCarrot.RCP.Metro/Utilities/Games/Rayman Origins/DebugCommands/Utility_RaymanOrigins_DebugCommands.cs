@@ -13,10 +13,10 @@ public class Utility_RaymanOrigins_DebugCommands : Utility<Utility_RaymanOrigins
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.ROU_DebugCommandsHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.ROU_DebugCommandsHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanOrigins_DebugCommands;
-    public override string InfoText => Resources.ROU_DebugCommandsInfo;
-    public override string WarningText => Resources.ROU_DebugCommandsWarning;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.ROU_DebugCommandsInfo));
+    public override LocalizedString WarningText => new ResourceLocString(nameof(Resources.ROU_DebugCommandsWarning));
     public override bool RequiresAdmin => ViewModel.DebugCommandFilePath.FileExists && !Services.File.CheckFileWriteAccess(ViewModel.DebugCommandFilePath);
     public override bool IsAvailable => GameInstallation.InstallLocation.Directory.DirectoryExists;
 }

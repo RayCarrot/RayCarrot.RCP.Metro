@@ -11,7 +11,7 @@ public abstract class Utility
     /// <summary>
     /// The header for the utility. This property is retrieved again when the current culture is changed.
     /// </summary>
-    public abstract string DisplayHeader { get; } // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
+    public abstract LocalizedString DisplayHeader { get; }
 
     /// <summary>
     /// The utility icon
@@ -21,12 +21,12 @@ public abstract class Utility
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
-    public virtual string? InfoText => null; // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
+    public virtual LocalizedString? InfoText => null;
 
     /// <summary>
     /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
-    public virtual string? WarningText => null; // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
+    public virtual LocalizedString? WarningText => null;
 
     /// <summary>
     /// Indicates if the utility requires additional files to be downloaded remotely

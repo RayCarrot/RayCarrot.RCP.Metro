@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for a utility
@@ -15,10 +14,10 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     public UtilityViewModel(Utility utility)
     {
         Utility = utility;
-        DisplayHeader = new GeneratedLocString(() => Utility.DisplayHeader);
+        DisplayHeader = Utility.DisplayHeader;
         IconKind = utility.Icon;
-        InfoText = new GeneratedLocString(() => Utility.InfoText);
-        WarningText = new GeneratedLocString(() => Utility.WarningText);
+        InfoText = Utility.InfoText;
+        WarningText = Utility.WarningText;
         IsAvailable = utility.IsAvailable;
         IsLoading = utility.IsLoading;
 
@@ -48,12 +47,12 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     /// <summary>
     /// The utility info
     /// </summary>
-    public LocalizedString InfoText { get; }
+    public LocalizedString? InfoText { get; }
 
     /// <summary>
     /// The utility warning
     /// </summary>
-    public LocalizedString WarningText { get; }
+    public LocalizedString? WarningText { get; }
 
     /// <summary>
     /// The utility
@@ -69,7 +68,7 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     /// </summary>
     public void Dispose()
     {
-        DisplayHeader?.Dispose();
+        DisplayHeader.Dispose();
         InfoText?.Dispose();
         WarningText?.Dispose();
     }

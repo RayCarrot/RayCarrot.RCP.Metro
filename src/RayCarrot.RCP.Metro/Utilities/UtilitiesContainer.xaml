@@ -38,7 +38,7 @@
                                         Visibility="{Binding Path=Utility.RequiresAdditionalFiles, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon Text="{Binding Path=InfoText.Value}"
-                                        Visibility="{Binding Path=InfoText.Value, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
+                                        Visibility="{Binding Path=InfoText, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon Style="{StaticResource RCP.Styles.InfoIcon.Notice}"
                                         Text="{Resx Utility_WIP}"
@@ -46,7 +46,7 @@
 
                         <local:InfoIcon Style="{StaticResource RCP.Styles.InfoIcon.Warning}"
                                         Text="{Binding Path=WarningText.Value}"
-                                        Visibility="{Binding Path=WarningText.Value, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
+                                        Visibility="{Binding Path=WarningText, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
 
                     </StackPanel>
 

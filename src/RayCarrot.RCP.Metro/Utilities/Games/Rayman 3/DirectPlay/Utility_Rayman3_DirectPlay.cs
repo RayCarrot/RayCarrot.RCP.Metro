@@ -18,9 +18,9 @@ public class Utility_Rayman3_DirectPlay : Utility<Utility_Rayman3_DirectPlay_Con
     
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.R3U_DirectPlayHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.R3U_DirectPlayHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman3_DirectPlay;
-    public override string InfoText => Resources.R3U_DirectPlayInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.R3U_DirectPlayInfo));
     public override bool RequiresAdmin => true;
 
     public override bool IsLoading => ViewModel.IsLoadingDirectPlay;

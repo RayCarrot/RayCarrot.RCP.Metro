@@ -12,8 +12,8 @@ public class Utility_RaymanOrigins_Update : Utility<Utility_RaymanOrigins_Update
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.ROU_UpdateHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.ROU_UpdateHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanOrigins_Update;
-    public override string InfoText => Resources.ROU_UpdateInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.ROU_UpdateInfo));
     public override bool RequiresAdditionalFiles => true;
 }

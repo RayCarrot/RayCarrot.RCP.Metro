@@ -1,5 +1,3 @@
-using RayCarrot.RCP.Metro.Games.Data;
-
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
@@ -15,8 +13,8 @@ public class Utility_Rayman1_TPLS : Utility<Utility_Rayman1_TPLS_Control, Utilit
 
     public GameInstallation GameInstallation { get; }
 
-    public override string DisplayHeader => Resources.R1U_TPLSHeader;
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.R1U_TPLSHeader));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman1_TPLS;
-    public override string InfoText => Resources.R1U_TPLSInfo;
+    public override LocalizedString InfoText => new ResourceLocString(nameof(Resources.R1U_TPLSInfo));
     public override bool RequiresAdditionalFiles => true;
 }
