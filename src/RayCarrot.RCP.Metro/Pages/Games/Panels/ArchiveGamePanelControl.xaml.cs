@@ -26,8 +26,14 @@ public partial class ArchiveGamePanelControl : UserControl
         Loaded -= ArchiveGamePanelControl_OnLoaded;
     }
 
-    private void TrimmedPathsItemsControl_OnMouseEnter(object sender, MouseEventArgs e)
+    private async void TrimmedPathsItemsControl_OnMouseEnter(object sender, MouseEventArgs e)
     {
+        // Add a delay so that the popup doesn't open if we just move the mouse over the control very quickly
+        await Task.Delay(100);
+
+        if (!((UIElement)sender).IsMouseOver)
+            return;
+
         // Hacky fix for not opening popup while the control is transitioning or
         // else the popup will open in the wrong place and stay there
         TransitioningContentControl? transitionControl = this.TryFindParent<TransitioningContentControl>();
