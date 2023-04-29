@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Archive.CPA;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -46,7 +47,10 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
             @"Gamedatabin\vignette.cnt",
         }));
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
-        builder.Register<CPATextureSyncComponent, Rayman3CPATextureSyncComponent>();
+        builder.Register(new CPATextureSyncComponent(
+            new CPATextureSyncDataItem(
+                Name: "Gamedatabin",
+                Archives: new[] { "tex32_1.cnt", "tex32_2.cnt", "vignette.cnt" })));
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
