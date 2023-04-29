@@ -54,7 +54,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids_Win32(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
-        // TODO-14: Launch game exe directly and allow custom args like for RGH?
+        // TODO: Launch game exe directly and allow custom args like for RGH?
         builder.Register(new Win32LaunchPathComponent(x => x.InstallLocation.Directory + "CheckApplication.exe"));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids_PC));

@@ -26,7 +26,7 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 
         PageSelection.Clear();
 
-        // TODO-14: Maybe better having a separate page for each rather than an in-page selection?
+        // TODO: Maybe better having a separate page for each rather than an in-page selection?
         PageSelection.AddRange(data.AvailableVersions.Select(x => x.DisplayName));
 
         ResetSelectedPageSelectionIndex();

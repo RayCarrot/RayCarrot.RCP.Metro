@@ -1,4 +1,7 @@
-﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿using System.Windows;
+using System.Windows.Data;
+
+namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
 {
@@ -6,6 +9,8 @@ public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
     {
         GraphicsMode = new GraphicsModeSelectionViewModel();
         ConfigLocations = new ObservableCollection<LinkItemViewModel>();
+
+        BindingOperations.EnableCollectionSynchronization(ConfigLocations, RCP.Metro.App.Current);
 
         GraphicsMode.GraphicsModeChanged += GraphicsMode_GraphicsModeChanged;
     }
@@ -59,5 +64,7 @@ public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
         base.Dispose();
 
         GraphicsMode.GraphicsModeChanged -= GraphicsMode_GraphicsModeChanged;
+
+        BindingOperations.DisableCollectionSynchronization(ConfigLocations);
     }
 }
