@@ -31,11 +31,6 @@ public class Rayman3ConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
     #region Public Override Properties
 
     /// <summary>
-    /// Indicates if <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.DynamicShadows"/> and <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.StaticShadows"/> are available
-    /// </summary>
-    public override bool HasShadowConfig => true;
-
-    /// <summary>
     /// Indicates if <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.HorizontalAxis"/> and <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.VerticalAxis"/> are available
     /// </summary>
     public override bool HasControllerConfig => true;
@@ -87,8 +82,6 @@ public class Rayman3ConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
         AutoVideoQuality = ConfigData.FormattedVideo_AutoAdjustQuality;
         IsVideo32Bpp = ConfigData.FormattedVideo_BPP != 16;
         CurrentLanguage = ConfigData.FormattedLanguage ?? R3Languages.English;
-        DynamicShadows = ConfigData.FormattedDynamicShadows;
-        StaticShadows = ConfigData.FormattedStaticShadows;
         VerticalAxis = ConfigData.FormattedCamera_VerticalAxis ?? 5;
         HorizontalAxis = ConfigData.FormattedCamera_HorizontalAxis ?? 2;
 
@@ -116,8 +109,6 @@ public class Rayman3ConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
         ConfigData.FormattedVideo_AutoAdjustQuality = AutoVideoQuality;
         ConfigData.Video_BPP = IsVideo32Bpp ? "32" : "16";
         ConfigData.Language = CurrentLanguage.ToString();
-        ConfigData.FormattedDynamicShadows = DynamicShadows;
-        ConfigData.FormattedStaticShadows = StaticShadows;
         ConfigData.Camera_VerticalAxis = VerticalAxis.ToString();
         ConfigData.Camera_HorizontalAxis = HorizontalAxis.ToString();
         ConfigData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";

@@ -65,10 +65,6 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
 
     private bool _isDiscCheckRemoved;
 
-    private bool _dynamicShadows;
-
-    private bool _staticShadows;
-
     private int _verticalAxis;
 
     private int _horizontalAxis;
@@ -96,11 +92,6 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
     #endregion
 
     #region Public Abstract Properties
-
-    /// <summary>
-    /// Indicates if <see cref="DynamicShadows"/> and <see cref="StaticShadows"/> are available
-    /// </summary>
-    public abstract bool HasShadowConfig { get; }
 
     /// <summary>
     /// Indicates if <see cref="HorizontalAxis"/> and <see cref="VerticalAxis"/> are available
@@ -265,32 +256,6 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
     }
 
     public bool IsDiscPatchOutdated { get; set; }
-
-    /// <summary>
-    /// Indicates if dynamic shadows are enabled
-    /// </summary>
-    public bool DynamicShadows
-    {
-        get => _dynamicShadows;
-        set
-        {
-            _dynamicShadows = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// Indicates if static shadows are enabled
-    /// </summary>
-    public bool StaticShadows
-    {
-        get => _staticShadows;
-        set
-        {
-            _staticShadows = value;
-            UnsavedChanges = true;
-        }
-    }
 
     /// <summary>
     /// The vertical controller axis value

@@ -71,11 +71,6 @@ public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
     #region Public Override Properties
 
     /// <summary>
-    /// Indicates if <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.DynamicShadows"/> and <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.StaticShadows"/> are available
-    /// </summary>
-    public override bool HasShadowConfig => false;
-
-    /// <summary>
     /// Indicates if <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.HorizontalAxis"/> and <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.VerticalAxis"/> are available
     /// </summary>
     public override bool HasControllerConfig => false;

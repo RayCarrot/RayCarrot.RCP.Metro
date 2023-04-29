@@ -43,22 +43,6 @@
                       ToolTip="{Resx Config_TnLInfo}"
                       IsChecked="{Binding Path=TnL}" />
 
-            <Grid rcp:UserLevelAssist.MinUserLevel="Advanced"
-                  rcp:UnifiedMargin.Ignored="True">
-                <CheckBox Content="{Resx Config_DynamicShadows}"
-                          IsChecked="{Binding Path=DynamicShadows}"
-                          Visibility="{Binding Path=HasShadowConfig, Converter={rcp:BooleanToVisibilityConverter}}"
-                          Margin="0 8" />
-            </Grid>
-
-            <Grid rcp:UserLevelAssist.MinUserLevel="Advanced"
-                  rcp:UnifiedMargin.Ignored="True">
-                <CheckBox Content="{Resx Config_StaticShadows}"
-                          IsChecked="{Binding Path=StaticShadows}"
-                          Visibility="{Binding Path=HasShadowConfig, Converter={rcp:BooleanToVisibilityConverter}}"
-                          Margin="0 8" />
-            </Grid>
-
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Textures}" />
 
