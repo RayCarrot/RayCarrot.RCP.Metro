@@ -4,8 +4,18 @@ using static RayCarrot.RCP.Metro.GameIcon;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameTitle : Control
+public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
 {
+    #region Constructor
+
+    public GameTitle()
+    {
+        Loaded += GameTitle_OnLoaded;
+        Unloaded += GameTitle_OnUnloaded;
+    }
+
+    #endregion
+
     #region GameInstallation
 
     public GameInstallation? GameInstallation
@@ -29,7 +39,6 @@ public class GameTitle : Control
 
             gameTitle.GameIcon = gameDescriptor.Icon;
             gameTitle.IsDemo = gameDescriptor.IsDemo;
-            // TODO-14: Subscribe to game name changing and update it?
             gameTitle.GameDisplayName = gameInstallation.GetDisplayName();
             gameTitle.PlatformIcon = platformInfo.Icon;
             gameTitle.PlatformDisplayName = platformInfo.DisplayName;
@@ -131,6 +140,35 @@ public class GameTitle : Control
         DependencyProperty.RegisterReadOnly(nameof(PlatformDisplayName), typeof(LocalizedString), typeof(GameTitle), new FrameworkPropertyMetadata());
 
     public static readonly DependencyProperty PlatformDisplayNameProperty = PlatformDisplayNamePropertyKey.DependencyProperty;
+
+    #endregion
+
+    #region Event Handlers
+
+    private void GameTitle_OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        Services.Messenger.UnregisterAll(this);
+    }
+
+    private void GameTitle_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (Services.Messenger.IsRegistered<ModifiedGamesMessage>(this))
+            return;
+
+        Services.Messenger.RegisterAll(this);
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void Receive(ModifiedGamesMessage message)
+    {
+        GameInstallation? gameInstallation = GameInstallation;
+
+        if (gameInstallation != null)
+            GameDisplayName = gameInstallation.GetDisplayName();
+    }
 
     #endregion
 }
