@@ -6,6 +6,7 @@
 	• The Rayman Edutainment games are now split up between Edu and Quiz
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
 • Added a home page for news and recent/favorite games
+• Added support for Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA)
 • The game finder has been reworked to be faster and to be able to find game clients
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
 • The jumplist now sorts games by default and no longer automatically adds every game
