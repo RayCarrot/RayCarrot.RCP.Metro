@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Clients.DosBox.Data;
+﻿using RayCarrot.RCP.Metro.Games.Clients.Custom;
+using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
@@ -115,8 +116,27 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
         if (other == null)
             return 1;
 
-        // TODO: Ideally we'd add some proper sorting like for game descriptors, but it's harder here since a client
-        //       can support multiple types of platforms at once, so what do we sort on?
+        // Hacky sorting code
+
+        // Custom is always first
+        if (this is CustomGameClientDescriptor && other is not CustomGameClientDescriptor)
+            return -1;
+        else if (other is CustomGameClientDescriptor && this is not CustomGameClientDescriptor)
+            return 1;
+
+        // After custom we have emulators
+        if (this is EmulatorGameClientDescriptor && other is not EmulatorGameClientDescriptor)
+            return -1;
+        else if (other is EmulatorGameClientDescriptor && this is not EmulatorGameClientDescriptor)
+            return 1;
+
+        // Emulated clients should be sorted based on platforms (we only check first one for now)
+        if (this is EmulatorGameClientDescriptor thisEmu && other is EmulatorGameClientDescriptor otherEmu)
+        {
+            int platformComparison = thisEmu.SupportedPlatforms[0].CompareTo(otherEmu.SupportedPlatforms[0]);
+            if (platformComparison != 0)
+                return platformComparison;
+        }
 
         // Id
         return String.Compare(GameClientId, other.GameClientId, StringComparison.Ordinal);
