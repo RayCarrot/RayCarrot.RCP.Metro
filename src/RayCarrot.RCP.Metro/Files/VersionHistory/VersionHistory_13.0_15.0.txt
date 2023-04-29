@@ -28,6 +28,7 @@ Other changes:
 • Archive changes
 	• The CPA texture sync is now available for the Rayman M and 3 demos
 	• The CPA texture sync has been moved from a utility to an archive action in the game hub
+	• The CPA texture sync now syncs the individual Rayman M/Arena game folders separately
 	• Progress is now shown when synchronizing CPA game textures
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive

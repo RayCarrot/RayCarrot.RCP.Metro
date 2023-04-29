@@ -209,7 +209,10 @@ public class CPATextureSyncManager
                 // A hacky solution to an issue in Tonic Trouble where the texture names appear in some different structs which we
                 // don't want to accidentally modify. This will filter those out (at least in the version I tested this on).
                 if (!validateSize(snaWidth) || !validateSize(snaHeight))
+                {
+                    total--;
                     continue;
+                }
 
                 bool validateSize(uint size) => size is not (0 or >= 32767);
 
@@ -300,11 +303,11 @@ public class CPATextureSyncManager
     /// <summary>
     /// Synchronizes the texture info for the selected game data directory
     /// </summary>
-    /// <param name="cntFiles">The .cnt file paths, or null if they should be automatically found</param>
+    /// <param name="specificCntFiles">The .cnt file paths, or null if they should be automatically found</param>
     /// <param name="progressCallback">An optional progress callback</param>
     /// <returns>The task</returns>
     public async Task SyncTextureInfoAsync(
-        IEnumerable<FileSystemPath>? cntFiles = null,
+        IReadOnlyList<FileSystemPath>? specificCntFiles = null,
         Action<Progress>? progressCallback = null)
     {
         try
@@ -323,31 +326,38 @@ public class CPATextureSyncManager
                     _ => throw new ArgumentOutOfRangeException(nameof(GameSettings.EngineVersion), GameSettings.EngineVersion, null)
                 };
 
-                // Get the level data files
-                List<FileSystemPath> dataFiles = TextureSyncItems.Select(x => x.Name).
-                    Select(x => Directory.GetFiles(installDir + x, $"*{fileExt}", SearchOption.AllDirectories).
-                        Select(y => new FileSystemPath(y))).
-                    SelectMany(x => x).
-                    ToList();
+                int total = 0;
+                int edited = 0;
 
-                if (cntFiles == null)
+                for (int i = 0; i < TextureSyncItems.Length; i++)
                 {
-                    // Get the full paths and only keep the ones which exist
-                    cntFiles = TextureSyncItems.
-                        Select(dataItem => dataItem.Archives.
-                            Select(cnt => installDir + dataItem.Name + cnt).
-                            Where(cntPath => cntPath.FileExists)).
-                        SelectMany(x => x);
-                }
-                else
-                {
-                    // TODO: Should we verify that the provided file paths are part of what's defined in the data?
+                    CPATextureSyncDataItem syncItem = TextureSyncItems[i];
+                    // Get the level data files
+                    List<FileSystemPath> dataFiles =
+                        Directory.GetFiles(installDir + syncItem.Name, $"*{fileExt}", SearchOption.AllDirectories)
+                            .Select(x => new FileSystemPath(x)).ToList();
+
+                    // Get all of the cnt files which exist for this item. If no files are provided we use all of the available ones.
+                    List<FileSystemPath> cntFiles = syncItem.Archives.Select(cnt => installDir + syncItem.Name + cnt)
+                        .Where(cntPath => cntPath.FileExists).ToList();
+
+                    // If files are provided we only use the ones which are available for this item
+                    if (specificCntFiles != null)
+                        cntFiles.RemoveAll(x => !specificCntFiles.Contains(x));
+
+                    // Sync the texture info
+                    int syncItemIndex = i;
+                    TextureInfoEditResult result = EditTextureInfo(dataFiles, cntFiles,
+                        progressCallback == null ? null : x =>
+                        {
+                            progressCallback(new Progress(syncItemIndex + x.Percentage, TextureSyncItems.Length));
+                        });
+
+                    total += result.TotalTextures;
+                    edited += result.EditedTextures;
                 }
 
-                // TODO-14: We probably need to do this per "item" since they don't share the same textures. For example
-                //          in M/Arena it's split into 3 games each with their own levels and .cnt files.
-                // Sync the texture info
-                return EditTextureInfo(dataFiles, cntFiles, progressCallback);
+                return new TextureInfoEditResult(total, edited);
             });
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
