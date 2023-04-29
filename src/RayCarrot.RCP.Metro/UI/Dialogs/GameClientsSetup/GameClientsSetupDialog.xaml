@@ -126,8 +126,8 @@
                                 <Grid Margin="0 0 0 4">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
@@ -144,25 +144,7 @@
                                                d:Text="DOSBox"
                                                VerticalAlignment="Center" />
 
-                                    <Button Grid.Column="2"
-                                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                                            Margin="0 0 4 0"
-                                            HorizontalAlignment="Right"
-                                            Content="Locate"
-                                            local:Icon.Kind="FolderOutline"
-                                            Command="{Binding Path=AddGameClientCommand, Mode=OneTime}"
-                                            CommandParameter="{Binding Mode=OneTime}" />
-
-                                    <!-- Finder action -->
-                                    <Button Grid.Column="3"
-                                            IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
-                                            Command="{Binding Path=FindGameClientCommand, Mode=OneTime}"
-                                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                                            local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                                            ToolTip="Find game client/emulator"
-                                            Margin="0 0 4 0" />
-
-                                    <ItemsControl Grid.Column="4"
+                                    <ItemsControl Grid.Column="2"
                                                   ItemsSource="{Binding Path=Platforms, Mode=OneTime}"
                                                   VerticalAlignment="Center">
                                         <ItemsControl.ItemsPanel>
@@ -183,6 +165,24 @@
                                         </ItemsControl.ItemTemplate>
 
                                     </ItemsControl>
+
+                                    <Button Grid.Column="3"
+                                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                                            Margin="0 0 4 0"
+                                            HorizontalAlignment="Right"
+                                            Content="Locate"
+                                            local:Icon.Kind="FolderOutline"
+                                            Command="{Binding Path=AddGameClientCommand, Mode=OneTime}"
+                                            CommandParameter="{Binding Mode=OneTime}" />
+
+                                    <!-- Finder action -->
+                                    <Button Grid.Column="4"
+                                            IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
+                                            Command="{Binding Path=FindGameClientCommand, Mode=OneTime}"
+                                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                                            local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
+                                            ToolTip="Find game client/emulator"
+                                            Margin="0 0 4 0" />
 
                                 </Grid>
                             </DataTemplate>
