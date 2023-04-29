@@ -210,8 +210,6 @@
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="Selected" Handler="GamesListBoxItem_OnSelected" />
-                        <Setter Property="Background" 
-                                Value="Transparent" />
                         <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
                                 Value="{DynamicResource MahApps.Brushes.Accent}" />
                     </Style>

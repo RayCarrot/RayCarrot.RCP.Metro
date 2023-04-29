@@ -49,6 +49,7 @@
                     <ListBox x:Name="InstalledGameClientsListBox" 
                              Grid.Row="1"
                              Background="Transparent"
+                             ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Rounded}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ItemsSource="{Binding Path=InstalledGameClients, Mode=OneTime}"
                              d:ItemsSource="{d:SampleData ItemCount=3}"
@@ -57,12 +58,6 @@
                              dd:DragDrop.IsDragSource="True"
                              dd:DragDrop.IsDropTarget="True"
                              dd:DragDrop.UseDefaultDragAdorner="True">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItemV3}">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
-                            </Style>
-                        </ListBox.ItemContainerStyle>
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>

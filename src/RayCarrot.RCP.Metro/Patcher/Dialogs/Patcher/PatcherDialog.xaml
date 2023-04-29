@@ -104,6 +104,7 @@
                             <ListBox SelectedItem="{Binding Path=SelectedLocalPatch}"
                                      ItemsSource="{Binding Path=LocalPatches, Mode=OneTime}"
                                      d:ItemsSource="{d:SampleData ItemCount=2}"
+                                     ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                      dd:DragDrop.IsDragSource="True"
                                      dd:DragDrop.IsDropTarget="True"
@@ -232,6 +233,7 @@
                             <ListBox SelectedItem="{Binding Path=SelectedExternalPatch}"
                                      ItemsSource="{Binding Path=DisplayedExternalPatches, Mode=OneTime}"
                                      d:ItemsSource="{d:SampleData ItemCount=2}"
+                                     ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                      Margin="0 0 0 5"
                                      PreviewMouseWheel="PatchesListBox_OnPreviewMouseWheel">

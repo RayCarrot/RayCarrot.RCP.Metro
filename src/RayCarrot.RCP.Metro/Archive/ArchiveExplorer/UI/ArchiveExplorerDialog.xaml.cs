@@ -59,7 +59,7 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         WindowInstance.Icon = GenericIconKind.Window_ArchiveExplorer;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
-        WindowInstance.Width = 900;
+        WindowInstance.Width = 925;
         WindowInstance.Height = 600;
     }
 

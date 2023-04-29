@@ -232,10 +232,9 @@
                     <!-- File container -->
 
                     <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Flat}">
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="IsEnabled" Value="{Binding Path=IsInitialized}" />
-                            <Setter Property="Margin" Value="0" />
                             <Setter Property="ToolTip">
                                 <Setter.Value>
                                     <local:DuoGrid ItemsSource="{Binding Path=FileDisplayInfo, Mode=OneTime}" />

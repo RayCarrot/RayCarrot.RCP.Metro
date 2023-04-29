@@ -2,10 +2,33 @@
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="RCP.Styles.ListBoxItem.Flat" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItemV3}">
+    <Style x:Key="RCP.Styles.ListBoxItem.Default" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItemV3}">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Default}" />
+
+    <Style x:Key="RCP.Styles.ListBoxItem.RadioButton" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Margin" Value="0 0 0 4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <RadioButton IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ContentPresenter />
+                    </RadioButton>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RCP.Styles.ListBoxItem.Rounded" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Default}">
         <Setter Property="mah:ControlsHelper.CornerRadius" 
                 Value="{StaticResource CornerRadius.Large}" />
 
+        <Setter Property="Margin" Value="2" />
+    </Style>
+
+    <Style x:Key="RCP.Styles.ListBoxItem.Flat" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Rounded}">
         <Setter Property="mah:ItemHelper.SelectedForegroundBrush" 
                 Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
         <Setter Property="mah:ItemHelper.ActiveSelectionForegroundBrush" 

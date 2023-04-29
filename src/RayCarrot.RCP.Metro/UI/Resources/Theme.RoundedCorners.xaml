@@ -479,7 +479,6 @@
     </Style>
 
     <!-- TODO: Remove once we update to v3 -->
-    <!-- TODO: Be transparent by default? -->
     <Style x:Key="MahApps.Styles.ListBoxItemV3" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
         <Setter Property="BorderThickness" Value="0" />

@@ -31,8 +31,6 @@
         <ListBox Grid.Row="0"
                  Grid.IsSharedSizeScope="True"
                  Margin="0 0 0 8"
-                 BorderThickness="{StaticResource Thickness.Border.Default}"
-                 metro:ControlsHelper.CornerRadius="{StaticResource CornerRadius.Default}"
                  ItemsSource="{Binding Path=Drives}"
                  SelectedItem="{Binding Path=SelectedItem}"
                  SelectionMode="{Binding Path=BrowseVM.MultiSelection, Converter={local:BooleanToDataGridSelectionModeConverter}}">
@@ -41,7 +39,7 @@
             </i:Interaction.Behaviors>
 
             <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Flat}">
                     <Setter Property="IsEnabled" Value="{Binding Path=IsReady, Mode=OneTime}" />
                     <EventSetter Event="MouseDoubleClick" Handler="DriveItem_MouseDoubleClick" />
                 </Style>

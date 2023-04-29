@@ -41,10 +41,7 @@
                     <Setter Property="dd:DragDrop.IsDropTarget" Value="True" />
                     <Setter Property="ItemContainerStyle">
                         <Setter.Value>
-                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItemV3}">
-                                <Setter Property="Margin" Value="0 0 0 2" />
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Rounded}">
                                 <EventSetter Event="Selected" Handler="ListBoxItem_OnSelected" />
                                 <EventSetter Event="LostFocus" Handler="ListBoxItem_OnLostFocus" />
                             </Style>

@@ -17,6 +17,7 @@ Other changes:
 	• Decreased large corner radiuses
 	• Card backgrounds are now darker
 	• Updated the flat button style
+	• Updated list box styles
 	• Redesigned the overflow/popup menus
 	• Redesigned the edit jumplist dialog
 • Patcher changes
