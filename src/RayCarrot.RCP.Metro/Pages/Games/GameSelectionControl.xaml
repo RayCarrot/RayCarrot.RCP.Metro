@@ -158,6 +158,14 @@
                      dd:DragDrop.IsDropTarget="True"
                      dd:DragDrop.UseDefaultDragAdorner="True">
 
+                <ListBox.Resources>
+                    <Style x:Key="GroupedListBoxItemStyle" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <EventSetter Event="Selected" Handler="GamesListBoxItem_OnSelected" />
+                        <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
+                                Value="{DynamicResource MahApps.Brushes.Accent}" />
+                    </Style>
+                </ListBox.Resources>
+
                 <ListBox.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
@@ -211,15 +219,7 @@
                     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Path=GroupGames}" Value="True">
-                                <Setter Property="ItemContainerStyle">
-                                    <Setter.Value>
-                                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                                            <EventSetter Event="Selected" Handler="GamesListBoxItem_OnSelected" />
-                                            <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
-                                                    Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                        </Style>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="ItemContainerStyle" Value="{StaticResource GroupedListBoxItemStyle}" />
                                 <Setter Property="ItemTemplate">
                                     <Setter.Value>
                                         <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
