@@ -54,5 +54,10 @@
 
         </Grid>
 
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Text="Enable or disable this utility by selecting or deselecting the per-level soundtrack game client for this game"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding Path=IsInstalled, Converter={local:BooleanToVisibilityConverter}}" />
+
     </StackPanel>
 </UserControl>
