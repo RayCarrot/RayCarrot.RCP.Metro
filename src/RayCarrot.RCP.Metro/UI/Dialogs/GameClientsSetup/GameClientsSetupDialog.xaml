@@ -197,7 +197,8 @@
                     Margin="{StaticResource RCP.Thicknesses.Card}"
                     DataContext="{Binding Path=SelectedGameClient}">
 
-            <ScrollViewer>
+            <ScrollViewer Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                          d:Visibility="Visible">
                 <StackPanel>
                     <Grid Margin="0 0 0 8">
                         <Grid.ColumnDefinitions>
