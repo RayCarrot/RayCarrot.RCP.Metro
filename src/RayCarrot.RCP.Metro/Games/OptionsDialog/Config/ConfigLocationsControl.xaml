@@ -11,11 +11,10 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance optionsDialog:ConfigPageViewModel}">
 
-    <!-- TODO-UPDATE: Localize -->
     <StackPanel rcp:UserLevelAssist.MinUserLevel="Technical">
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Visibility="{Binding Path=ConfigLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
-                   Text="Config locations"
+                   Text="{Resx Config_LocationsHeader}"
                    Margin="0 0 0 8" />
 
         <ItemsControl ItemsSource="{Binding Path=ConfigLocations, Mode=OneTime}"

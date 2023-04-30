@@ -118,9 +118,7 @@ public class AvailableGameClientViewModel : BaseViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Running finder for a game client");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex,
-                // TODO-UPDATE: Update localization
-                Resources.GameFinder_Error);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Finder_Error);
             return;
         }
 

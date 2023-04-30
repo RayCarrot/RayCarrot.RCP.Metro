@@ -261,8 +261,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 LibraryInfo = new ObservableCollection<DuoGridItemViewModel>()
                 {
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), GameInstallation.GameDescriptor.DisplayName),
-                    // TODO-UPDATE: Localize
-                    new("Platform", GameInstallation.GameDescriptor.Platform.GetInfo().DisplayName),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Platform)), GameInstallation.GameDescriptor.Platform.GetInfo().DisplayName),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Patches)), libraryFile.Patches.Length.ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AppliedPatches)), libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
@@ -291,8 +290,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn("Failed to load library due to the game {0} not being valid", GameInstallation.FullId);
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The game patch library was made for a different game and can not be read", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadLibraryInvalidGameError, MessageType.Error);
 
             return false;
         }
@@ -361,8 +359,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             // Make sure there is an installed game which can be patched
             if (!gameInstallations.Any())
             {
-                // TODO-UPDATE: Localize as Patcher_ReadPatchGamesNotAddedError
-                await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the patch {0} due to none of the following games having been added:\n\n{1}",
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGamesNotAddedError,
                         patch.Metadata.Name, String.Join(Environment.NewLine, patch.Metadata.GameIds.Select(x => Services.Games.GetGameDescriptor(x).DisplayName))), MessageType.Error);
                 return null;
             }
@@ -374,8 +371,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
                 {
-                    // TODO-UPDATE: Localize
-                    Title = "Select game to patch"
+                    Title = Resources.Patcher_PatchSelectGame
                 });
 
                 if (result.CanceledByUser)
@@ -500,8 +496,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Warn("Failed to add patch due to the current game {0} not being supported", GameInstallation.FullId);
 
-                    // TODO-UPDATE: Localize as Patcher_ReadPatchGamesNotAddedError
-                    await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the patch {0} due to none of the following games having been added:\n\n{1}",
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchInvalidGameError,
                         patch.Metadata.Name, String.Join(Environment.NewLine, patch.Metadata.GameIds.Select(x => Services.Games.GetGameDescriptor(x).DisplayName))), MessageType.Error);
 
                     _context.RemoveFile(patchFilePath);

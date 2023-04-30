@@ -12,14 +12,13 @@
              d:DataContext="{d:DesignInstance options:GameClientSelectionGameOptionsViewModel}">
     <StackPanel Margin="6">
 
-        <!-- TODO-UPDATE: Localize -->
         <StackPanel Orientation="Horizontal"
                     Margin="0 0 0 4">
 
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="Client/emulator" />
+                       Text="{Resx GameClients_SelectionHeader}" />
 
-            <rcp:InfoIcon Text="Here a client or emulator can be selected to be used with the game. The selected client will be responsible for launching the game. For emulated games this is required as they can't launch on their own." />
+            <rcp:InfoIcon Text="{Resx GameClients_SelectionInfo}" />
 
         </StackPanel>
 

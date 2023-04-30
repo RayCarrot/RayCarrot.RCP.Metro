@@ -12,7 +12,7 @@ public class DownloadGameAddAction : GameAddAction
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public override LocalizedString Header => "Download"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameAdd_Download));
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Download;
 
     // Can only be downloaded once

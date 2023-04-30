@@ -473,9 +473,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Inicio</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Buscar juegos instalados</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Buscar actualizaciones del programa</value>
   </data>
@@ -1306,5 +1303,15 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
+  </data>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

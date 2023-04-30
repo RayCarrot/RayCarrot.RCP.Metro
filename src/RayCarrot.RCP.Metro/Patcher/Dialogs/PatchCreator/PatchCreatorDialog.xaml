@@ -48,12 +48,11 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Grid.Column="0"
                                    Grid.Row="0"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
-                                   Text="Game targets"
+                                   Text="{Resx PatchCreator_GameTargets}"
                                    Margin="0 0 0 10" />
                         <Grid Grid.Column="2"
                               Grid.Row="0" 
@@ -93,12 +92,11 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <!-- TODO-UPDATE: Localize -->
                             <Button Grid.Column="1"
                                     Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                                     local:Icon.Kind="{StaticResource RCP.Icons.Edit}"
                                     Command="{Binding Path=EditGameTargetsCommand, Mode=OneTime}"
-                                    ToolTip="The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game."
+                                    ToolTip="{Resx PatchCreator_GameTargetsInfo}"
                                     Margin="0 0 4 0"/>
 
                         </Grid>
@@ -380,10 +378,9 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- TODO-UPDATE: Localize -->
                 <Button Grid.Column="0"
-                        Content="Import from existing patch"
-                        ToolTip="This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch."
+                        Content="{Resx PatchCreator_ImportPatch}"
+                        ToolTip="{Resx PatchCreator_ImportPatchInfo}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:Icon.Kind="Import"
                         Command="{Binding Path=ImportPatchCommand, Mode=OneTime}"

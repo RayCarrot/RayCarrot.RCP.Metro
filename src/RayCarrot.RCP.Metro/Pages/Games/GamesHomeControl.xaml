@@ -10,8 +10,6 @@
              d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: Localize -->
-
     <UserControl.Resources>
         <DataTemplate x:Key="GameItemTemplate" DataType="games:InstalledGameViewModel">
             <Grid>
@@ -33,7 +31,7 @@
                         VerticalAlignment="Center"
                         Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=LaunchCommand, Mode=OneTime}"
-                        ToolTip="Play game"
+                        ToolTip="{Resx Home_PlayGame}"
                         rcp:Icon.Kind="PlayOutline"
                         Margin="0 0 4 0" />
 
@@ -64,7 +62,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               Text="News"
+                               Text="{Resx Home_News}"
                                VerticalAlignment="Center"
                                FontSize="14" />
 
@@ -106,7 +104,7 @@
             </Grid.ColumnDefinitions>
 
             <GroupBox Grid.Column="0"
-                      Header="Recent"
+                      Header="{Resx Home_RecentGames}"
                       rcp:Icon.Kind="ClockOutline"
                       rcp:Icon.Brush="{StaticResource RCP.Brushes.Games}"
                       Margin="{StaticResource RCP.Thicknesses.Card}">
@@ -117,7 +115,7 @@
             </GroupBox>
 
             <GroupBox Grid.Column="1"
-                      Header="Favorites"
+                      Header="{Resx Home_FavoriteGames}"
                       rcp:Icon.Kind="StarOutline"
                       rcp:Icon.Brush="{StaticResource RCP.Brushes.Favorites}"
                       Margin="{StaticResource RCP.Thicknesses.Card}">

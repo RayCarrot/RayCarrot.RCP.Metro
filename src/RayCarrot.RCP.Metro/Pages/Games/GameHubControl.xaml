@@ -11,7 +11,6 @@
              d:DataContext="{d:DesignInstance games:InstalledGameViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: Localize -->
     <Grid x:Name="RootGrid">
         <!-- Game banner image -->
         <Image x:Name="GameBannerImage" 
@@ -234,11 +233,11 @@
                                                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.FlatMenuItem}">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Path=IsFavorite}" Value="True">
-                                                            <Setter Property="Content" Value="Unfavorite" />
+                                                            <Setter Property="Content" Value="{Resx GameHub_FavoriteOff, ResxName={x:Static rcp:LocalizationManager.ResourcePath}}" />
                                                             <Setter Property="rcp:Icon.Kind" Value="Star" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Path=IsFavorite}" Value="False">
-                                                            <Setter Property="Content" Value="Favorite" />
+                                                            <Setter Property="Content" Value="{Resx GameHub_FavoriteOn, ResxName={x:Static rcp:LocalizationManager.ResourcePath}}" />
                                                             <Setter Property="rcp:Icon.Kind" Value="StarOutline" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -256,7 +255,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock Grid.Column="0"
-                                                           Text="Rename" />
+                                                           Text="{Resx GameHub_Rename}" />
 
                                                 <TextBlock Grid.Column="1"
                                                            Text="F2"
@@ -361,7 +360,7 @@
                                                     Visibility="{Binding Path=CanRefresh, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
                                                     Opacity="0"
                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                    ToolTip="Refresh"
+                                                    ToolTip="{Resx GameHub_RefreshPanel}"
                                                     Command="{Binding Path=RefreshCommand, Mode=OneTime}"
                                                     rcp:Icon.Kind="Refresh"
                                                     rcp:Icon.Size="12" />

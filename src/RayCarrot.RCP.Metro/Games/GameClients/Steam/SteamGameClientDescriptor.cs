@@ -8,7 +8,7 @@ public class SteamGameClientDescriptor : GameClientDescriptor
     #region Public Properties
 
     public override string GameClientId => "Steam";
-    public override LocalizedString DisplayName => "Steam"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_Steam));
     public override GameClientIconAsset Icon => GameClientIconAsset.Steam;
 
     #endregion

@@ -348,8 +348,7 @@ public class InstalledGameViewModel : BaseViewModel
 
         if (launchComponent == null)
         {
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("This game can't be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game.", "No launch component found", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Games_MissingLaunchComponent, MessageType.Error);
             return;
         }
 
@@ -362,8 +361,8 @@ public class InstalledGameViewModel : BaseViewModel
     {
         StringInputResult result = await Services.UI.GetStringInputAsync(new StringInputViewModel
         {
-            Title = "Rename game", // TODO-UPDATE: Localize
-            HeaderText = $"Rename {GameDescriptor.DisplayName}. Keep the name empty to use the default one.", // TODO-UPDATE: Localize
+            Title = Resources.Games_RenameHeader,
+            HeaderText = String.Format(Resources.Games_RenameInfo, GameDescriptor.DisplayName),
             StringInput = GameInstallation.GetValue<string>(GameDataKey.RCP_CustomName),
         });
 

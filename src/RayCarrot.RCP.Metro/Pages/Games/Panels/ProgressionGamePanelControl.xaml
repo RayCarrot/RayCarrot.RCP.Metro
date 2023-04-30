@@ -7,11 +7,11 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
              mc:Ignorable="d" 
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:DesignWidth="200" d:DesignHeight="135"
              d:DataContext="{d:DesignInstance games:ProgressionGamePanelViewModel}"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
-    <!-- TODO-UPDATE: Localize -->
     <Grid DataContext="{Binding Path=PrimarySlot}" 
           Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
           VerticalAlignment="Center">

@@ -160,8 +160,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         var availableGameInstallations = Services.Games.GetInstalledGames().Where(x => x.GameDescriptor.AllowPatching);
         GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(availableGameInstallations, GameTargets)
         {
-            // TODO-UPDATE: Localize
-            Title = "Select game targets",
+            Title = Resources.PatchCreator_GameTargetsSelectionHeader,
             MultiSelection = true,
         });
 

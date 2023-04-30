@@ -7,12 +7,12 @@
              xmlns:controlzex="urn:controlzex"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
              mc:Ignorable="d" 
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:DesignWidth="200" d:DesignHeight="135"
              d:DataContext="{d:DesignInstance games:ArchiveGamePanelViewModel}"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              Loaded="ArchiveGamePanelControl_OnLoaded">
-    <!-- TODO-UPDATE: Localize -->
     <Grid>
         <!-- Center paths (row 1) -->
         <Grid.RowDefinitions>
@@ -44,7 +44,7 @@
             <Button Grid.Column="0"
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Background="{DynamicResource RCP.Brushes.FlatButton.ArchiveExplorer}"
-                    Content="Open"
+                    Content="{Resx GameHub_ArchivePanel_Open}"
                     Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}" />
 
             <Button Grid.Column="2"

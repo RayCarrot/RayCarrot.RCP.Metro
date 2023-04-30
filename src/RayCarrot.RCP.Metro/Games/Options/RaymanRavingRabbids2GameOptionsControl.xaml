@@ -15,7 +15,6 @@
         <StackPanel Orientation="Horizontal"
                     Margin="0 0 0 4">
 
-            <!-- TODO-UPDATE: Update localization - lowercase 'mode' or rename to 'Version' for consistency -->
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx RR2Options_GameModeHeader}" />
 

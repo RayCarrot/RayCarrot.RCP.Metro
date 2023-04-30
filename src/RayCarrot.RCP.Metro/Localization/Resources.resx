@@ -469,9 +469,6 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Startup</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Search for installed games</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Check for program updates</value>
   </data>
@@ -783,9 +780,6 @@ gameDisplayName</comment>
     <value>No files were found to backup for {0}</value>
     <comment>Arguments:
 gameDisplayName</comment>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>An error occurred during the game finder operation</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>No files were found to download</value>
@@ -1589,12 +1583,6 @@ exceptionMessage</comment>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Custom</value>
   </data>
-  <data name="RR2Options_GameModeHeader" xml:space="preserve">
-    <value>Game Mode</value>
-  </data>
-  <data name="RR2Options_GameModeInfo" xml:space="preserve">
-    <value>The game mode determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game mode, while others support all of them. If an error occurs when launching the game, try changing the game mode.</value>
-  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>All games</value>
   </data>
@@ -1659,12 +1647,6 @@ outputDir</comment>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Open in Microsoft Store</value>
   </data>
-  <data name="GameFinder_NoResults" xml:space="preserve">
-    <value>No new games were found</value>
-  </data>
-  <data name="GameFinder_ResultHeader" xml:space="preserve">
-    <value>Game finder result</value>
-  </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Information</value>
   </data>
@@ -1699,10 +1681,10 @@ gameDisplayName</comment>
     <value>Changing the version will change the available options in the game. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the 'goodies' section.</value>
   </data>
   <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 Version</value>
+    <value>2003 version</value>
   </data>
   <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 Version</value>
+    <value>2005 version</value>
   </data>
   <data name="DownloadGame_ConfirmSize" xml:space="preserve">
     <value>This game requires its files to be downloaded. The total size of the download is {0}. Continue?</value>
@@ -4688,7 +4670,281 @@ patchName</comment>
     <comment>Arguments:
 patchCount</comment>
   </data>
-  <data name="PatchCreator_CreateNew" xml:space="preserve">
-    <value>Create new patch</value>
+  <data name="AppData_MigrateError" xml:space="preserve">
+    <value>An error occurred when migrating the app data to the new version</value>
+  </data>
+  <data name="Games_RemovedInvalidGames" xml:space="preserve">
+    <value>The following games are no longer valid and were removed:
+
+{0}</value>
+    <comment>Arguments:
+games</comment>
+  </data>
+  <data name="Games_RemovedInvalidGamesHeader" xml:space="preserve">
+    <value>Removed invalid games</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClients" xml:space="preserve">
+    <value>The following game clients/emulators are no longer valid and were removed:
+
+{0}</value>
+    <comment>Arguments:
+gameClients</comment>
+  </data>
+  <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
+    <value>Removed invalid game clients/emulators</value>
+  </data>
+  <data name="GameAdd_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
+    <value>Select the game file</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseFileTypes" xml:space="preserve">
+    <value>Game file</value>
+  </data>
+  <data name="GameAdd_LocateFileInvalidFile" xml:space="preserve">
+    <value>The selected file is not valid for this game
+
+{0}</value>
+    <comment>Arguments:
+errorMessage</comment>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SyncStatus" xml:space="preserve">
+    <value>Synchronizing textures</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Synchronize textures. This updates the texture sizes in the game files to match the texture files. This is required to do if the resolution of a texture has been increased or else the game might crash.</value>
+  </data>
+  <data name="GameInfo_AddedDate" xml:space="preserve">
+    <value>Added:</value>
+  </data>
+  <data name="GameClients_Launch_ClientNotFound" xml:space="preserve">
+    <value>The game client/emulator could not be found</value>
+  </data>
+  <data name="GamesPage_Category_Handheld" xml:space="preserve">
+    <value>Handheld</value>
+  </data>
+  <data name="GameClients_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="GameClients_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameClients_MGba" xml:space="preserve">
+    <value>mGBA</value>
+  </data>
+  <data name="GameClients_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
+    <value>Launch arguments</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgsInfo" xml:space="preserve">
+    <value>Here you can specify which launch arguments are passed in to the program. For the game path, type %game%. It is recommended to surround it with quotes to avoid the path being cut off on spaces.</value>
+  </data>
+  <data name="GameClients_DOSBox_ConfigPaths" xml:space="preserve">
+    <value>Configuration file paths</value>
+  </data>
+  <data name="GameClients_DOSBox_AddConfigPath" xml:space="preserve">
+    <value>Add file</value>
+  </data>
+  <data name="GameClients_DOSBox_RemoveConfigPaths" xml:space="preserve">
+    <value>Remove selected files</value>
+  </data>
+  <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
+    <value>Select a config file</value>
+  </data>
+  <data name="Config_LocationsHeader" xml:space="preserve">
+    <value>Config locations</value>
+  </data>
+  <data name="Page_LoadError" xml:space="preserve">
+    <value>An error occurred when loading the page</value>
+  </data>
+  <data name="GameClients_SelectionHeader" xml:space="preserve">
+    <value>Client/emulator</value>
+  </data>
+  <data name="GameClients_SelectionInfo" xml:space="preserve">
+    <value>Here a client or emulator can be selected to be used with the game. The selected client will be responsible for launching the game. For emulated games this is required as they can't launch on their own.</value>
+  </data>
+  <data name="GameClients_SelectionNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Ray1_VersionSelectionHeader" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Game version</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>The game version determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game version, while others support all of them. If an error occurs when launching the game, try changing the game version.</value>
+  </data>
+  <data name="Games_ValidationMissingPaths" xml:space="preserve">
+    <value>The following required paths were not found:
+{0}</value>
+    <comment>Arguments:
+paths</comment>
+  </data>
+  <data name="Games_ValidationFileMissing" xml:space="preserve">
+    <value>The file does not exist</value>
+  </data>
+  <data name="Games_ValidationRomInvalid" xml:space="preserve">
+    <value>The ROM is not valid for this game</value>
+  </data>
+  <data name="GameHub_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="GameHub_FavoriteOn" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="GameHub_FavoriteOff" xml:space="preserve">
+    <value>Unfavorite</value>
+  </data>
+  <data name="GameHub_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="GameHub_RefreshPanel" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="GameSelection_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="GameSelection_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="GameSelection_GroupGames" xml:space="preserve">
+    <value>Group games</value>
+  </data>
+  <data name="GameSelection_ResetSort" xml:space="preserve">
+    <value>Reset custom sort</value>
+  </data>
+  <data name="GameSelection_FindInstallations" xml:space="preserve">
+    <value>Find installed games and game clients/emulators</value>
+  </data>
+  <data name="GameSelection_ConfigureClients" xml:space="preserve">
+    <value>Configure game clients/emulators</value>
+  </data>
+  <data name="GameSelection_AddGame" xml:space="preserve">
+    <value>Add game</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Search for installed games and game clients/emulators</value>
+  </data>
+  <data name="Home_PlayGame" xml:space="preserve">
+    <value>Play game</value>
+  </data>
+  <data name="Home_News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Home_RecentGames" xml:space="preserve">
+    <value>Recent</value>
+  </data>
+  <data name="Home_FavoriteGames" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="Finder_NoResults" xml:space="preserve">
+    <value>No new installed games or game clients/emulators were found</value>
+  </data>
+  <data name="Finder_ResultHeader" xml:space="preserve">
+    <value>Finder result</value>
+  </data>
+  <data name="Finder_Error" xml:space="preserve">
+    <value>An error occurred during the finder operation</value>
+  </data>
+  <data name="Finder_FoundClients" xml:space="preserve">
+    <value>The following new game clients/emulators were found:
+
+• {0}</value>
+    <comment>Arguments:
+foundClients</comment>
+  </data>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Finder_FoundClientsHeader" xml:space="preserve">
+    <value>Installed game clients/emulators found</value>
+  </data>
+  <data name="Games_MissingLaunchComponent" xml:space="preserve">
+    <value>This game can't be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game.</value>
+  </data>
+  <data name="Games_RenameHeader" xml:space="preserve">
+    <value>Rename game</value>
+  </data>
+  <data name="Games_RenameInfo" xml:space="preserve">
+    <value>Rename {0}. Keep the name empty to use the default one.</value>
+    <comment>Arguments:
+gameName</comment>
+  </data>
+  <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
+    <value>Open patcher</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
+    <value>Create patch</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Info" xml:space="preserve">
+    <value>{0} patches applied</value>
+    <comment>Arguments:
+patchesCount</comment>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+    <comment>Arguments:
+primaryName
+secondaryName</comment>
+  </data>
+  <data name="Progression_SharedBackupsInfo" xml:space="preserve">
+    <value>This game shares the same backups as the following games. This means creating a backup from one of these games will overwrite any backups created for the other ones as well.</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
+  </data>
+  <data name="Progression_GroupGames" xml:space="preserve">
+    <value>Group games</value>
+  </data>
+  <data name="PatchCreator_GameTargets" xml:space="preserve">
+    <value>Game targets</value>
+  </data>
+  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
+    <value>The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game.</value>
+  </data>
+  <data name="PatchCreator_ImportPatch" xml:space="preserve">
+    <value>Import from existing patch</value>
+  </data>
+  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
+    <value>This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch.</value>
+  </data>
+  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
+    <value>Select game targets</value>
+  </data>
+  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
+    <value>This file will be ignored due to the location not being found</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
+    <value>The game patch library was made for a different game and can not be read</value>
+  </data>
+  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
+    <value>Can't open the patch {0} due to none of the following targeted games having been added:
+
+{1}</value>
+    <comment>Arguments:
+patchName
+gameTargets</comment>
+  </data>
+  <data name="Patcher_PatchSelectGame" xml:space="preserve">
+    <value>Select game to patch</value>
+  </data>
+  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
+    <value>Can't open the patch {0} due to the current game not being one of the game targets:
+
+{1}</value>
+    <comment>Arguments:
+patchName
+gameTargets</comment>
   </data>
 </root>

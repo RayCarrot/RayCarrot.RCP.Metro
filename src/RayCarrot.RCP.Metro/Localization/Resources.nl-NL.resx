@@ -468,9 +468,6 @@
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Opstart</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Zoek naar geïnstalleerde spellen</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Controleer op software-updates</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Geen spelbestanden van {0} gevonden om te back-uppen</value>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens een uitvoering van de Game Finder</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Geen bestanden gevonden om te downloaden</value>
@@ -1497,12 +1491,6 @@ Foutmelding: {1}</value>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Aangepast</value>
   </data>
-  <data name="RR2Options_GameModeHeader" xml:space="preserve">
-    <value>Game-Modus</value>
-  </data>
-  <data name="RR2Options_GameModeInfo" xml:space="preserve">
-    <value>De game modus bepaalt welke sets van minigames er beschikbaar zijn in het spel. Bepaalde edities van het spel zijn beperkt tot een specifieke game modus, terwijl andere alle gamemodi ondersteunen. Als er een fout plaatsvindt tijdens het starten van het spel, probeer dan de game-modus te veranderen.</value>
-  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Alle spellen</value>
   </data>
@@ -1563,12 +1551,6 @@ Foutmelding: {1}</value>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Open in de Microsoft Store</value>
   </data>
-  <data name="GameFinder_NoResults" xml:space="preserve">
-    <value>Geen nieuwe spellen gevonden</value>
-  </data>
-  <data name="GameFinder_ResultHeader" xml:space="preserve">
-    <value>Resultaat Game Finder</value>
-  </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Informatie</value>
   </data>
@@ -1597,10 +1579,10 @@ Foutmelding: {1}</value>
     <value>Het veranderen van de versie heeft invloed op de beschikbare opties in het spel. De 2003 versie heeft kalenders voor 2003 &amp; 2004, de 2005 versie heeft kalenders voor de jaren 2006 &amp; 2007, alsook een 'Goodies' sectie.</value>
   </data>
   <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 Versie</value>
+    <value>2003 versie</value>
   </data>
   <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 Versie</value>
+    <value>2005 versie</value>
   </data>
   <data name="DownloadGame_ConfirmSize" xml:space="preserve">
     <value>Het spel vereist dat de volgende bestanden worden gedownload. De totale grootte van de download is {0}. Doorgaan?</value>
@@ -4520,7 +4502,14 @@ Conflicten:
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Er zijn {0} patches toegepast op dit spel. Wil je verdergaan met het deïnstalleren van het spel en de toegepaste patches behouden?</value>
   </data>
-  <data name="PatchCreator_CreateNew" xml:space="preserve">
-    <value>Creëer nieuwe patch</value>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

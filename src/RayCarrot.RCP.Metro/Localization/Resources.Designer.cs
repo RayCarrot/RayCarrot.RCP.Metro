@@ -417,6 +417,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when migrating the app data to the new version.
+        /// </summary>
+        public static string AppData_MigrateError {
+            get {
+                return ResourceManager.GetString("AppData_MigrateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -2103,6 +2112,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Config locations.
+        /// </summary>
+        public static string Config_LocationsHeader {
+            get {
+                return ResourceManager.GetString("Config_LocationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mono.
         /// </summary>
         public static string Config_Mono {
@@ -3394,6 +3412,63 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred during the finder operation.
+        /// </summary>
+        public static string Finder_Error {
+            get {
+                return ResourceManager.GetString("Finder_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following new game clients/emulators were found:
+        ///
+        ///• {0}.
+        /// </summary>
+        public static string Finder_FoundClients {
+            get {
+                return ResourceManager.GetString("Finder_FoundClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed game clients/emulators found.
+        /// </summary>
+        public static string Finder_FoundClientsHeader {
+            get {
+                return ResourceManager.GetString("Finder_FoundClientsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///• .
+        /// </summary>
+        public static string Finder_FoundClientsSeparator {
+            get {
+                return ResourceManager.GetString("Finder_FoundClientsSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No new installed games or game clients/emulators were found.
+        /// </summary>
+        public static string Finder_NoResults {
+            get {
+                return ResourceManager.GetString("Finder_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finder result.
+        /// </summary>
+        public static string Finder_ResultHeader {
+            get {
+                return ResourceManager.GetString("Finder_ResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
         /// </summary>
         public static string FirstLaunchInfo_Header {
@@ -3419,6 +3494,190 @@ namespace RayCarrot.RCP.Metro {
         public static string FirstLaunchInfo_Title {
             get {
                 return ResourceManager.GetString("FirstLaunchInfo_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string GameAdd_Download {
+            get {
+                return ResourceManager.GetString("GameAdd_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game file.
+        /// </summary>
+        public static string GameAdd_LocateFileBrowseFileTypes {
+            get {
+                return ResourceManager.GetString("GameAdd_LocateFileBrowseFileTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the game file.
+        /// </summary>
+        public static string GameAdd_LocateFileBrowseHeader {
+            get {
+                return ResourceManager.GetString("GameAdd_LocateFileBrowseHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected file is not valid for this game
+        ///
+        ///{0}.
+        /// </summary>
+        public static string GameAdd_LocateFileInvalidFile {
+            get {
+                return ResourceManager.GetString("GameAdd_LocateFileInvalidFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string GameClients_Custom {
+            get {
+                return ResourceManager.GetString("GameClients_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch arguments.
+        /// </summary>
+        public static string GameClients_Custom_LaunchArgs {
+            get {
+                return ResourceManager.GetString("GameClients_Custom_LaunchArgs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can specify which launch arguments are passed in to the program. For the game path, type %game%. It is recommended to surround it with quotes to avoid the path being cut off on spaces..
+        /// </summary>
+        public static string GameClients_Custom_LaunchArgsInfo {
+            get {
+                return ResourceManager.GetString("GameClients_Custom_LaunchArgsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox.
+        /// </summary>
+        public static string GameClients_DOSBox {
+            get {
+                return ResourceManager.GetString("GameClients_DOSBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add file.
+        /// </summary>
+        public static string GameClients_DOSBox_AddConfigPath {
+            get {
+                return ResourceManager.GetString("GameClients_DOSBox_AddConfigPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a config file.
+        /// </summary>
+        public static string GameClients_DOSBox_BrowseConfigPathHeader {
+            get {
+                return ResourceManager.GetString("GameClients_DOSBox_BrowseConfigPathHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration file paths.
+        /// </summary>
+        public static string GameClients_DOSBox_ConfigPaths {
+            get {
+                return ResourceManager.GetString("GameClients_DOSBox_ConfigPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected files.
+        /// </summary>
+        public static string GameClients_DOSBox_RemoveConfigPaths {
+            get {
+                return ResourceManager.GetString("GameClients_DOSBox_RemoveConfigPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game client/emulator could not be found.
+        /// </summary>
+        public static string GameClients_Launch_ClientNotFound {
+            get {
+                return ResourceManager.GetString("GameClients_Launch_ClientNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mGBA.
+        /// </summary>
+        public static string GameClients_MGba {
+            get {
+                return ResourceManager.GetString("GameClients_MGba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following game clients/emulators are no longer valid and were removed:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string GameClients_RemovedInvalidClients {
+            get {
+                return ResourceManager.GetString("GameClients_RemovedInvalidClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed invalid game clients/emulators.
+        /// </summary>
+        public static string GameClients_RemovedInvalidClientsHeader {
+            get {
+                return ResourceManager.GetString("GameClients_RemovedInvalidClientsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client/emulator.
+        /// </summary>
+        public static string GameClients_SelectionHeader {
+            get {
+                return ResourceManager.GetString("GameClients_SelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here a client or emulator can be selected to be used with the game. The selected client will be responsible for launching the game. For emulated games this is required as they can&apos;t launch on their own..
+        /// </summary>
+        public static string GameClients_SelectionInfo {
+            get {
+                return ResourceManager.GetString("GameClients_SelectionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string GameClients_SelectionNone {
+            get {
+                return ResourceManager.GetString("GameClients_SelectionNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam.
+        /// </summary>
+        public static string GameClients_Steam {
+            get {
+                return ResourceManager.GetString("GameClients_Steam", resourceCulture);
             }
         }
         
@@ -3558,15 +3817,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred during the game finder operation.
-        /// </summary>
-        public static string GameFinder_Error {
-            get {
-                return ResourceManager.GetString("GameFinder_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The following new games were found:.
         /// </summary>
         public static string GameFinder_GamesFound {
@@ -3585,20 +3835,92 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No new games were found.
+        ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string GameFinder_NoResults {
+        public static string GameHub_ArchivePanel_Open {
             get {
-                return ResourceManager.GetString("GameFinder_NoResults", resourceCulture);
+                return ResourceManager.GetString("GameHub_ArchivePanel_Open", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game finder result.
+        ///   Looks up a localized string similar to Unfavorite.
         /// </summary>
-        public static string GameFinder_ResultHeader {
+        public static string GameHub_FavoriteOff {
             get {
-                return ResourceManager.GetString("GameFinder_ResultHeader", resourceCulture);
+                return ResourceManager.GetString("GameHub_FavoriteOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorite.
+        /// </summary>
+        public static string GameHub_FavoriteOn {
+            get {
+                return ResourceManager.GetString("GameHub_FavoriteOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create patch.
+        /// </summary>
+        public static string GameHub_PatcherPanel_Create {
+            get {
+                return ResourceManager.GetString("GameHub_PatcherPanel_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} patches applied.
+        /// </summary>
+        public static string GameHub_PatcherPanel_Info {
+            get {
+                return ResourceManager.GetString("GameHub_PatcherPanel_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open patcher.
+        /// </summary>
+        public static string GameHub_PatcherPanel_Open {
+            get {
+                return ResourceManager.GetString("GameHub_PatcherPanel_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play.
+        /// </summary>
+        public static string GameHub_Play {
+            get {
+                return ResourceManager.GetString("GameHub_Play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string GameHub_RefreshPanel {
+            get {
+                return ResourceManager.GetString("GameHub_RefreshPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string GameHub_Rename {
+            get {
+                return ResourceManager.GetString("GameHub_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added:.
+        /// </summary>
+        public static string GameInfo_AddedDate {
+            get {
+                return ResourceManager.GetString("GameInfo_AddedDate", resourceCulture);
             }
         }
         
@@ -3801,6 +4123,144 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This game can&apos;t be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game..
+        /// </summary>
+        public static string Games_MissingLaunchComponent {
+            get {
+                return ResourceManager.GetString("Games_MissingLaunchComponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following games are no longer valid and were removed:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string Games_RemovedInvalidGames {
+            get {
+                return ResourceManager.GetString("Games_RemovedInvalidGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed invalid games.
+        /// </summary>
+        public static string Games_RemovedInvalidGamesHeader {
+            get {
+                return ResourceManager.GetString("Games_RemovedInvalidGamesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename game.
+        /// </summary>
+        public static string Games_RenameHeader {
+            get {
+                return ResourceManager.GetString("Games_RenameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename {0}. Keep the name empty to use the default one..
+        /// </summary>
+        public static string Games_RenameInfo {
+            get {
+                return ResourceManager.GetString("Games_RenameInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file does not exist.
+        /// </summary>
+        public static string Games_ValidationFileMissing {
+            get {
+                return ResourceManager.GetString("Games_ValidationFileMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following required paths were not found:
+        ///{0}.
+        /// </summary>
+        public static string Games_ValidationMissingPaths {
+            get {
+                return ResourceManager.GetString("Games_ValidationMissingPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ROM is not valid for this game.
+        /// </summary>
+        public static string Games_ValidationRomInvalid {
+            get {
+                return ResourceManager.GetString("Games_ValidationRomInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add game.
+        /// </summary>
+        public static string GameSelection_AddGame {
+            get {
+                return ResourceManager.GetString("GameSelection_AddGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure game clients/emulators.
+        /// </summary>
+        public static string GameSelection_ConfigureClients {
+            get {
+                return ResourceManager.GetString("GameSelection_ConfigureClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find installed games and game clients/emulators.
+        /// </summary>
+        public static string GameSelection_FindInstallations {
+            get {
+                return ResourceManager.GetString("GameSelection_FindInstallations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group games.
+        /// </summary>
+        public static string GameSelection_GroupGames {
+            get {
+                return ResourceManager.GetString("GameSelection_GroupGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string GameSelection_Home {
+            get {
+                return ResourceManager.GetString("GameSelection_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset custom sort.
+        /// </summary>
+        public static string GameSelection_ResetSort {
+            get {
+                return ResourceManager.GetString("GameSelection_ResetSort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string GameSelection_Search {
+            get {
+                return ResourceManager.GetString("GameSelection_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select shortcut destination.
         /// </summary>
         public static string GameShortcut_BrowseHeader {
@@ -3851,6 +4311,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GamesPage_Category_Fan {
             get {
                 return ResourceManager.GetString("GamesPage_Category_Fan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handheld.
+        /// </summary>
+        public static string GamesPage_Category_Handheld {
+            get {
+                return ResourceManager.GetString("GamesPage_Category_Handheld", resourceCulture);
             }
         }
         
@@ -3941,6 +4410,42 @@ namespace RayCarrot.RCP.Metro {
         public static string GoHomeConfig_VersionIndex {
             get {
                 return ResourceManager.GetString("GoHomeConfig_VersionIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorites.
+        /// </summary>
+        public static string Home_FavoriteGames {
+            get {
+                return ResourceManager.GetString("Home_FavoriteGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        public static string Home_News {
+            get {
+                return ResourceManager.GetString("Home_News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play game.
+        /// </summary>
+        public static string Home_PlayGame {
+            get {
+                return ResourceManager.GetString("Home_PlayGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent.
+        /// </summary>
+        public static string Home_RecentGames {
+            get {
+                return ResourceManager.GetString("Home_RecentGames", resourceCulture);
             }
         }
         
@@ -6649,6 +7154,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the page.
+        /// </summary>
+        public static string Page_LoadError {
+            get {
+                return ResourceManager.GetString("Page_LoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Page_Refresh {
@@ -6766,15 +7280,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new patch.
-        /// </summary>
-        public static string PatchCreator_CreateNew {
-            get {
-                return ResourceManager.GetString("PatchCreator_CreateNew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Save patch file.
         /// </summary>
         public static string PatchCreator_CreateSaveFileHeader {
@@ -6802,11 +7307,56 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game targets.
+        /// </summary>
+        public static string PatchCreator_GameTargets {
+            get {
+                return ResourceManager.GetString("PatchCreator_GameTargets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game..
+        /// </summary>
+        public static string PatchCreator_GameTargetsInfo {
+            get {
+                return ResourceManager.GetString("PatchCreator_GameTargetsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select game targets.
+        /// </summary>
+        public static string PatchCreator_GameTargetsSelectionHeader {
+            get {
+                return ResourceManager.GetString("PatchCreator_GameTargetsSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Importing from existing patch.
         /// </summary>
         public static string PatchCreator_ImportingPatch_Status {
             get {
                 return ResourceManager.GetString("PatchCreator_ImportingPatch_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import from existing patch.
+        /// </summary>
+        public static string PatchCreator_ImportPatch {
+            get {
+                return ResourceManager.GetString("PatchCreator_ImportPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch..
+        /// </summary>
+        public static string PatchCreator_ImportPatchInfo {
+            get {
+                return ResourceManager.GetString("PatchCreator_ImportPatchInfo", resourceCulture);
             }
         }
         
@@ -7180,6 +7730,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Platform.
+        /// </summary>
+        public static string Patcher_LibraryInfo_Platform {
+            get {
+                return ResourceManager.GetString("Patcher_LibraryInfo_Platform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Removed files:.
         /// </summary>
         public static string Patcher_LibraryInfo_RemovedFiles {
@@ -7221,6 +7780,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Patcher_Modifications_FileColumn {
             get {
                 return ResourceManager.GetString("Patcher_Modifications_FileColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file will be ignored due to the location not being found.
+        /// </summary>
+        public static string Patcher_Modifications_InvalidLocationInfo {
+            get {
+                return ResourceManager.GetString("Patcher_Modifications_InvalidLocationInfo", resourceCulture);
             }
         }
         
@@ -7369,6 +7937,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select game to patch.
+        /// </summary>
+        public static string Patcher_PatchSelectGame {
+            get {
+                return ResourceManager.GetString("Patcher_PatchSelectGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Website.
         /// </summary>
         public static string Patcher_PatchWebsiteLink {
@@ -7387,6 +7964,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The game patch library was made for a different game and can not be read.
+        /// </summary>
+        public static string Patcher_ReadLibraryInvalidGameError {
+            get {
+                return ResourceManager.GetString("Patcher_ReadLibraryInvalidGameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The game patch library was made with a newer version of the Rayman Control Panel and can not be read.
         /// </summary>
         public static string Patcher_ReadLibraryNewerVersionError {
@@ -7396,11 +7982,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t open the patch {0} due to none of the following targeted games having been added:
+        ///
+        ///{1}.
+        /// </summary>
+        public static string Patcher_ReadPatchGamesNotAddedError {
+            get {
+                return ResourceManager.GetString("Patcher_ReadPatchGamesNotAddedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The selected patch could not be read.
         /// </summary>
         public static string Patcher_ReadPatchGenericError {
             get {
                 return ResourceManager.GetString("Patcher_ReadPatchGenericError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t open the patch {0} due to the current game not being one of the game targets:
+        ///
+        ///{1}.
+        /// </summary>
+        public static string Patcher_ReadPatchInvalidGameError {
+            get {
+                return ResourceManager.GetString("Patcher_ReadPatchInvalidGameError", resourceCulture);
             }
         }
         
@@ -7459,7 +8067,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2003 Version.
+        ///   Looks up a localized string similar to 2003 version.
         /// </summary>
         public static string PrintStudioOptions_Version03 {
             get {
@@ -7468,7 +8076,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2005 Version.
+        ///   Looks up a localized string similar to 2005 version.
         /// </summary>
         public static string PrintStudioOptions_Version05 {
             get {
@@ -7703,11 +8311,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group games.
+        /// </summary>
+        public static string Progression_GroupGames {
+            get {
+                return ResourceManager.GetString("Progression_GroupGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progression.
         /// </summary>
         public static string Progression_Header {
             get {
                 return ResourceManager.GetString("Progression_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1}).
+        /// </summary>
+        public static string Progression_HeaderWithSecondary {
+            get {
+                return ResourceManager.GetString("Progression_HeaderWithSecondary", resourceCulture);
             }
         }
         
@@ -8176,6 +8802,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_SelectEditProgram {
             get {
                 return ResourceManager.GetString("Progression_SelectEditProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This game shares the same backups as the following games. This means creating a backup from one of these games will overwrite any backups created for the other ones as well..
+        /// </summary>
+        public static string Progression_SharedBackupsInfo {
+            get {
+                return ResourceManager.GetString("Progression_SharedBackupsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • {0}.
+        /// </summary>
+        public static string Progression_SharedBackupsSeparator {
+            get {
+                return ResourceManager.GetString("Progression_SharedBackupsSeparator", resourceCulture);
             }
         }
         
@@ -9296,6 +9940,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string Ray1_VersionSelectionHeader {
+            get {
+                return ResourceManager.GetString("Ray1_VersionSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when updating the language.
         /// </summary>
         public static string Ray1MinigamesOptions_LanguageUpdateError {
@@ -10331,7 +10984,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game Mode.
+        ///   Looks up a localized string similar to Game version.
         /// </summary>
         public static string RR2Options_GameModeHeader {
             get {
@@ -10340,7 +10993,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The game mode determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game mode, while others support all of them. If an error occurs when launching the game, try changing the game mode..
+        ///   Looks up a localized string similar to The game version determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game version, while others support all of them. If an error occurs when launching the game, try changing the game version..
         /// </summary>
         public static string RR2Options_GameModeInfo {
             get {
@@ -12131,7 +12784,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search for installed games.
+        ///   Looks up a localized string similar to Search for installed games and game clients/emulators.
         /// </summary>
         public static string Settings_StartupGameFinder {
             get {
@@ -13143,11 +13796,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Synchronize textures. This updates the texture sizes in the game files to match the texture files. This is required to do if the resolution of a texture has been increased or else the game might crash..
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_Info {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}/{1} texture infos have been synchronized.
         /// </summary>
         public static string Utilities_SyncTextureInfo_Success {
             get {
                 return ResourceManager.GetString("Utilities_SyncTextureInfo_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronizing textures.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_SyncStatus {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_SyncStatus", resourceCulture);
             }
         }
         

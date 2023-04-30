@@ -469,9 +469,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Uppstart</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Sök efter installerade spel</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Sök efter programuppdateringar</value>
   </data>
@@ -759,9 +756,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Inga filer hittades att säkerhetskopiera för {0}</value>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>Ett fel inträffade när installerade spel skulle hittas</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Inga filer hittades att ladda ner</value>
@@ -1895,5 +1889,15 @@ Nyheter:
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
+  </data>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

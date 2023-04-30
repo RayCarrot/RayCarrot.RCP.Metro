@@ -10,7 +10,7 @@ public sealed class MGbaGameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "mGBA";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Gba };
-    public override LocalizedString DisplayName => "mGBA"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_MGba));
     public override GameClientIconAsset Icon => GameClientIconAsset.MGBA;
 
     #endregion

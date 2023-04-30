@@ -469,9 +469,6 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Avvio</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Cerca giochi installati</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Cerca aggiornamenti del programma</value>
   </data>
@@ -759,9 +756,6 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Nessun file trovato di cui eseguire il backup di {0}</value>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>Si è verificato un errore durante l'operazione di ricerca del gioco</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Non sono stati trovati file da scaricare</value>
@@ -1500,12 +1494,6 @@ Messaggio di errore: {1} </value>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Personalizzato</value>
   </data>
-  <data name="RR2Options_GameModeHeader" xml:space="preserve">
-    <value>Modalità di Gioco</value>
-  </data>
-  <data name="RR2Options_GameModeInfo" xml:space="preserve">
-    <value>Le modalità di gioco determina quali serie di minigiochi sono disponibili nel gioco. Alcune edizioni del gioco sono limitate a una modalità di gioco specifica, mentre altre le supportano tutte. Se si verifica un errore all'avvio del gioco, prova a cambiare la modalità di gioco.</value>
-  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Tutti i giochi</value>
   </data>
@@ -1565,12 +1553,6 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Open nel Microsoft Store</value>
-  </data>
-  <data name="GameFinder_NoResults" xml:space="preserve">
-    <value>Non sono stati trovati nuovi giochi</value>
-  </data>
-  <data name="GameFinder_ResultHeader" xml:space="preserve">
-    <value>Risultato della ricerca dei giochi</value>
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Informazioni</value>
@@ -4527,7 +4509,14 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Ci sono {0} patch che sono state applicate a questo gioco. Vuoi continuare a rimuovere il gioco e mantenere le patch applicate?</value>
   </data>
-  <data name="PatchCreator_CreateNew" xml:space="preserve">
-    <value>Crea una nuova patch</value>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

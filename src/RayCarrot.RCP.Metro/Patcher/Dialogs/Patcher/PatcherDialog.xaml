@@ -515,10 +515,9 @@
                                                 Orientation="Horizontal"
                                                 Margin="0 0 15 0">
 
-                                        <!-- TODO-UPDATE: Localize -->
                                         <iconPacks:PackIconMaterial Visibility="{Binding Path=HasInvalidLocation, Converter={local:BooleanToVisibilityConverter}}"
                                                                     Width="16" Height="16"
-                                                                    ToolTip="This file will be ignored due to the location not being found"
+                                                                    ToolTip="{Resx Patcher_Modifications_InvalidLocationInfo}"
                                                                     Kind="{StaticResource RCP.Icons.Info}"
                                                                     Background="Transparent"
                                                                     Foreground="{StaticResource RCP.Brushes.Warning}"

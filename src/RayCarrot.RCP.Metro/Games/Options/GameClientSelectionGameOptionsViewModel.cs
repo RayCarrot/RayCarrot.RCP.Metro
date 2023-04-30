@@ -134,8 +134,7 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel, IIn
 
         [MemberNotNull(nameof(DisplayName))]
         public void Refresh() => DisplayName = GameClientInstallation?.GetDisplayName() ??
-                                               // TODO-UPDATE: Localize
-                                               "None";
+                                               new ResourceLocString(nameof(Resources.GameClients_SelectionNone));
     }
 
     #endregion

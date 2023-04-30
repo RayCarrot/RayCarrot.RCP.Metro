@@ -38,8 +38,7 @@ public class CPAArchiveComponent : ArchiveComponent
 
         CPATextureSyncManager textureSyncManager = new(gameInstallation, GetSettings(gameInstallation), textureSyncItems);
 
-        // TODO-UPDATE: Localize
-        using (LoadState state = await Services.App.LoaderViewModel.RunAsync("Synchronizing textures"))
+        using (LoadState state = await Services.App.LoaderViewModel.RunAsync(Resources.Utilities_SyncTextureInfo_SyncStatus))
         {
             await textureSyncManager.SyncTextureInfoAsync(progressCallback: state.SetProgress);
         }
@@ -52,8 +51,7 @@ public class CPAArchiveComponent : ArchiveComponent
 
         return new AdditionalArchiveAction(
             GenericIconKind.ArchiveAdditionalAction_CPATextureSync,
-            // TODO-UPDATE: Localize
-            "Synchronize textures. This updates the texture sizes in the game files to match the textures themselves. This is required to do if the resolution of a texture has been increased or else the game will crash.",
+            Resources.Utilities_SyncTextureInfo_Info,
             SynchronizeTexturesAsync);
     }
 }

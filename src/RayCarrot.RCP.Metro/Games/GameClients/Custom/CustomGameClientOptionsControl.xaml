@@ -12,14 +12,13 @@
              mc:Ignorable="d"
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance custom:CustomGameClientOptionsViewModel}">
-    <!-- TODO-UPDATE: Localize -->
     <StackPanel>
         <StackPanel Orientation="Horizontal"
                     Margin="0 0 0 4">
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="Launch arguments" />
+                       Text="{Resx GameClients_Custom_LaunchArgs}" />
 
-            <rcp:InfoIcon Text="Here you can specify which launch arguments are passed in to the program. For the game path, type %game%. It is recommended to surround it with quotes to avoid the path being cut off on spaces." />
+            <rcp:InfoIcon Text="{Resx GameClients_Custom_LaunchArgsInfo}" />
 
         </StackPanel>
 

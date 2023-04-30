@@ -293,8 +293,8 @@ public class StartupManager
         // Remove the games
         await GamesManager.RemoveGamesAsync(removed);
 
-        // TODO-UPDATE: Localize
-        await MessageUI.DisplayMessageAsync(String.Format("The following games are no longer valid and were removed:\n\n{0}", String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), "Removed invalid games", MessageType.Error);
+        await MessageUI.DisplayMessageAsync(String.Format(Resources.Games_RemovedInvalidGames, 
+            String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), Resources.Games_RemovedInvalidGamesHeader, MessageType.Error);
     }
 
     private async Task ValidateGameClientsAsync()
@@ -322,8 +322,8 @@ public class StartupManager
         // Remove the game clients
         await GameClientsManager.RemoveGameClientsAsync(removed);
 
-        // TODO-UPDATE: Localize
-        await MessageUI.DisplayMessageAsync(String.Format("The following game clients/emulators are no longer valid and were removed:\n\n{0}", String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), "Removed invalid game clients/emulators", MessageType.Error);
+        await MessageUI.DisplayMessageAsync(String.Format(Resources.GameClients_RemovedInvalidClients, 
+            String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), Resources.GameClients_RemovedInvalidClientsHeader, MessageType.Error);
     }
 
     private async Task PostUpdateAsync()

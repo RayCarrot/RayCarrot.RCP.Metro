@@ -13,10 +13,9 @@
              mc:Ignorable="d"
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance dosBox:DosBoxGameClientOptionsViewModel}">
-    <!-- TODO-UPDATE: Localize -->
     <StackPanel>
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="Configuration file paths"
+                   Text="{Resx GameClients_DOSBox_ConfigPaths}"
                    Margin="0 0 0 4" />
 
         <ListBox x:Name="ConfigFilesListBox"
@@ -43,12 +42,12 @@
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Kind="PlusBoxOutline"
                     Command="{Binding Path=AddConfigFileCommand, Mode=OneTime}"
-                    ToolTip="Add file"
+                    ToolTip="{Resx GameClients_DOSBox_AddConfigPath}"
                     Margin="0 0 4 0" />
 
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Kind="DeleteOutline"
-                    ToolTip="Remove selected files"
+                    ToolTip="{Resx GameClients_DOSBox_RemoveConfigPaths}"
                     IsEnabled="{Binding Path=SelectedItem, ElementName=ConfigFilesListBox, Converter={rcp:IsNotNullConverter}}"
                     Click="DeleteButton_OnClick"/>
 

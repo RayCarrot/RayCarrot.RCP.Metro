@@ -10,7 +10,6 @@ public abstract class SingleFileProgramInstallationStructure : ProgramInstallati
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
     {
-        // TODO-UPDATE: Localize
-        return new GameLocationValidationResult(location.FilePath.FileExists, "The file does not exist");
+        return new GameLocationValidationResult(location.FilePath.FileExists, Resources.Games_ValidationFileMissing);
     }
 }

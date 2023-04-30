@@ -29,12 +29,11 @@ public class LocateFileGameAddAction : GameAddAction
         // Have user browse for file
         FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
-            // TODO-UPDATE: Localize
-            Title = "Select the game file",
+            Title = Resources.GameAdd_LocateFileBrowseHeader,
             DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
             ExtensionFilter = new FileFilterItemCollection(fileExtensions).
-                // TODO-UPDATE: Localize
-                CombineAll("Game file").ToString(),
+                CombineAll(Resources.GameAdd_LocateFileBrowseFileTypes).
+                ToString(),
             MultiSelection = false
         });
 
@@ -55,9 +54,9 @@ public class LocateFileGameAddAction : GameAddAction
         {
             Logger.Info("The selected file for {0} is not valid", GameDescriptor.GameId);
 
-            // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync(
-                $"The selected file is not valid for this game{Environment.NewLine}{Environment.NewLine}{validationResult.ErrorMessage}",
+                String.Format(Resources.GameAdd_LocateFileInvalidFile, Environment.NewLine,
+                    Environment.NewLine, validationResult.ErrorMessage),
                 Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
 
             return null;

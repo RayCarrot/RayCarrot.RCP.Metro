@@ -468,9 +468,6 @@
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Arranque</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Procurar por jogos instalados</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Verificar por actualizações do programa</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Nenhum ficheiro foi encontrado para fazer a cópia de segurança do {0}</value>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>Ocorreu um erro durante a operação de procura de jogo</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Nenhum ficheiro foi encontrado para descarregar</value>
@@ -1495,12 +1489,6 @@ Error message: {1}</value>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Personalizado</value>
   </data>
-  <data name="RR2Options_GameModeHeader" xml:space="preserve">
-    <value>Modo de jogo</value>
-  </data>
-  <data name="RR2Options_GameModeInfo" xml:space="preserve">
-    <value>O modo de jogo determina que grupos de mini-jogos estão disponíveis no jogo. Certas edições do jogo estão limitadas a um modo de jogo específico, enquanto outros suportam-nos a todos. Se ocorrer um erro ao executar um jogo, tenta alterar o modo de jogo.</value>
-  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Todos os jogos</value>
   </data>
@@ -1560,12 +1548,6 @@ Error message: {1}</value>
   </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Abrir na Microsoft Store</value>
-  </data>
-  <data name="GameFinder_NoResults" xml:space="preserve">
-    <value>Não foi encontrado nenhum jogo novo</value>
-  </data>
-  <data name="GameFinder_ResultHeader" xml:space="preserve">
-    <value>Resultado do Localizador de Jogo</value>
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Informação</value>
@@ -4532,7 +4514,14 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Há {0} correcção(ões) em que foi/foram aplicada(s) neste jogo. Queres continuar a remover o jogo e manter as correcções aplicadas? </value>
   </data>
-  <data name="PatchCreator_CreateNew" xml:space="preserve">
-    <value>Criar correcção nova</value>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

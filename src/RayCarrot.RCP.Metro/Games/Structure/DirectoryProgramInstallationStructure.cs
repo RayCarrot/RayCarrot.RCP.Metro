@@ -57,8 +57,9 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
         {
             Logger.Info("The validation for the location {0} failed due to {1} paths not being valid", location, invalidPaths.Count);
 
-            // TODO-UPDATE: Localize
-            return new GameLocationValidationResult(false, $"The following required paths were not found:{Environment.NewLine}{invalidPaths.Take(10).JoinItems(Environment.NewLine, x => $"- {x}")}");
+            return new GameLocationValidationResult(false,
+                String.Format(Resources.Games_ValidationMissingPaths,
+                    invalidPaths.Take(10).JoinItems(Environment.NewLine, x => $"- {x}")));
         }
     }
 

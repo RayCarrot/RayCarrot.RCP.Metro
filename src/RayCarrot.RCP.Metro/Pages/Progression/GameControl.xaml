@@ -143,7 +143,6 @@
                                        HorizontalAlignment="Left"
                                        Margin="0 0 12 0" />
 
-                            <!-- TODO-UPDATE: Localize -->
                             <iconPacks:PackIconMaterial Grid.Column="1" 
                                                         Background="Transparent"
                                                         Kind="InformationOutline"
@@ -154,12 +153,12 @@
                                                         ToolTipService.ShowDuration="1000000">
                                 <iconPacks:PackIconMaterial.ToolTip>
                                     <StackPanel>
-                                        <TextBlock Text="This game shares the same backups as the following games. This means creating a backup from one of these games will overwrite any backups created for the other ones as well."
+                                        <TextBlock Text="{Resx Progression_SharedBackupsInfo}"
                                                    TextWrapping="Wrap"
                                                    Margin="0 0 0 4" />
                                         <ItemsControl ItemsSource="{Binding Path=LinkedGames}" 
                                                       DisplayMemberPath="DisplayName.Value"
-                                                      ItemStringFormat="• {0}"/>
+                                                      ItemStringFormat="{Resx Progression_SharedBackupsSeparator}"/>
                                     </StackPanel>
                                 </iconPacks:PackIconMaterial.ToolTip>
                             </iconPacks:PackIconMaterial>

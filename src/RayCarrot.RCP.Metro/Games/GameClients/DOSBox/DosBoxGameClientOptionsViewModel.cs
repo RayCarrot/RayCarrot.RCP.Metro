@@ -30,8 +30,7 @@ public class DosBoxGameClientOptionsViewModel : GameClientOptionsViewModel
     {
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-UPDATE: Localize
-            Title = "Select a config file",
+            Title = Resources.GameClients_DOSBox_BrowseConfigPathHeader,
             ExtensionFilter = "Conf (*.conf)|*.conf",
         });
 

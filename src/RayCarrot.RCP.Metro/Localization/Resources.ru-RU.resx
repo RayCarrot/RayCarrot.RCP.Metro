@@ -469,9 +469,6 @@
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Запуск</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Сканировать установленные игры</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Проверять наличие обновлений</value>
   </data>
@@ -759,9 +756,6 @@
   </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Файлы для резервного копирования {0} не были найдены</value>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>Произошла ошибка во время поиска игр</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Файлы для загрузки не были найдены</value>
@@ -1500,12 +1494,6 @@
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Пользовательские</value>
   </data>
-  <data name="RR2Options_GameModeHeader" xml:space="preserve">
-    <value>Режим игры</value>
-  </data>
-  <data name="RR2Options_GameModeInfo" xml:space="preserve">
-    <value>Режим игры определяет, какие наборы мини-игр доступны в игре. Некоторые версии игры ограничены определенным игровым режимом, в то время как другие поддерживают их все. Если при запуске игры возникает ошибка, попробуйте изменить режим игры.</value>
-  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Все игры</value>
   </data>
@@ -1565,12 +1553,6 @@
   </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Открыть в Microsoft Store</value>
-  </data>
-  <data name="GameFinder_NoResults" xml:space="preserve">
-    <value>Новые игры не были найдены</value>
-  </data>
-  <data name="GameFinder_ResultHeader" xml:space="preserve">
-    <value>Результат поиска игр</value>
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Информация</value>
@@ -4524,7 +4506,14 @@ Start: Пауза</value>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>{0} патчей были применены к этой игре. Вы хотите продолжить удаление игры и сохранить применённые патчи?</value>
   </data>
-  <data name="PatchCreator_CreateNew" xml:space="preserve">
-    <value>Создать новый патч</value>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

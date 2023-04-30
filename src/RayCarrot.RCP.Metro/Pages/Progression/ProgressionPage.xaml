@@ -17,8 +17,7 @@
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-            <!-- TODO-UPDATE: Localize -->
-            <mah:ToggleSwitch Content="Group games"
+            <mah:ToggleSwitch Content="{Resx Progression_GroupGames}"
                               IsOn="{Binding Path=GroupGames}"
                               Margin="6"
                               Background="{DynamicResource RCP.Brushes.Card.Popup}"/>

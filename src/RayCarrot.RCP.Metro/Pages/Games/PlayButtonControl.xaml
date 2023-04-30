@@ -7,9 +7,9 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
              mc:Ignorable="d" 
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:DataContext="{d:DesignInstance games:InstalledGameViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
-    <!-- TODO-UPDATE: Localize -->
     <mah:ClipBorder x:Name="PlayButtonBorder"
                     CornerRadius="{StaticResource CornerRadius.Default}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.Play}">
@@ -25,14 +25,14 @@
                     mah:ControlsHelper.CornerRadius="0"
                     rcp:Icon.Kind="Play"
                     FontSize="14"
-                    Content="Play"
+                    Content="{Resx GameHub_Play}"
                     Command="{Binding Path=LaunchCommand, Mode=OneTime}"
                     Padding="6 6 12 6" />
 
             <!-- Drop-down -->
             <rcp:PopupCard Grid.Column="1"
-                             PopupParentElement="{Binding ElementName=PlayButtonBorder, Mode=OneTime}"
-                             OpenDirection="Right">
+                           PopupParentElement="{Binding ElementName=PlayButtonBorder, Mode=OneTime}"
+                           OpenDirection="Right">
                 <rcp:PopupCard.PopupButtonStyle>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
                         <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />

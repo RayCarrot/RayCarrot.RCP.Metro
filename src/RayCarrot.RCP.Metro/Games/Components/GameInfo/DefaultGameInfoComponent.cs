@@ -17,7 +17,7 @@ public class DefaultGameInfoComponent : GameInfoComponent
             text: gameInstallation.InstallationId,
             minUserLevel: UserLevel.Debug),
         new DuoGridItemViewModel(
-            header: "Added:", // TODO-UPDATE: Localize
+            header: new ResourceLocString(nameof(Resources.GameInfo_AddedDate)), 
             text: gameInstallation.GetValue<DateTime>(GameDataKey.RCP_GameAddedDate).ToString(CultureInfo.CurrentCulture)),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),

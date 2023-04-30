@@ -18,7 +18,7 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "DOSBox";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos };
-    public override LocalizedString DisplayName => "DOSBox"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_DOSBox));
     public override GameClientIconAsset Icon => GameClientIconAsset.DosBox;
 
     #endregion

@@ -468,9 +468,6 @@
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Uruchamianie</value>
   </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Wyszukaj zainstalowane gry</value>
-  </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Sprawdź dostępność aktualizacji programu
 </value>
@@ -762,9 +759,6 @@
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Nie znaleziono plików do utworzenia kopii zapasowej dla {0}
 </value>
-  </data>
-  <data name="GameFinder_Error" xml:space="preserve">
-    <value>Wystąpił błąd podczas operacji wyszukiwania gier</value>
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Nie znaleziono plików do pobrania</value>
@@ -1511,12 +1505,6 @@ Komunikat o błędzie: {1}</value>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Własne</value>
   </data>
-  <data name="RR2Options_GameModeHeader" xml:space="preserve">
-    <value>Tryb gry</value>
-  </data>
-  <data name="RR2Options_GameModeInfo" xml:space="preserve">
-    <value>Tryb gry określa, które zestawy minigier są dostępne w grze. Niektóre edycje gry są ograniczone do określonego trybu gry, podczas gdy inne obsługują wszystkie z nich. Jeśli podczas uruchamiania gry wystąpi błąd, spróbuj zmienić tryb gry.</value>
-  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Wszystkie gry</value>
   </data>
@@ -1576,12 +1564,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Otwórz w Microsoft Store</value>
-  </data>
-  <data name="GameFinder_NoResults" xml:space="preserve">
-    <value>Nie znaleziono nowych gier</value>
-  </data>
-  <data name="GameFinder_ResultHeader" xml:space="preserve">
-    <value>Wynik wyszukiwania gry</value>
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Informacje</value>
@@ -4553,7 +4535,14 @@ Konflikty:
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Istnieje {0} łatek, które zostały zastosowane do tej gry. Czy chcesz kontynuować usuwanie gry i zachować zastosowane łatki?</value>
   </data>
-  <data name="PatchCreator_CreateNew" xml:space="preserve">
-    <value>Utwórz nową łatkę</value>
+  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
+    <value>
+• </value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
 </root>

@@ -58,8 +58,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
             // TODO-UPDATE: Enter some sort of error state if this fails?
         }
 
-        // TODO-UPDATE: Localize
-        InfoText = $"{libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0} patches applied";
+        InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_Info), libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0);
     }
 
     #endregion

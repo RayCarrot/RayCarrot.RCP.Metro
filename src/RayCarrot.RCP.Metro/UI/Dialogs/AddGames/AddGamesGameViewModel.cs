@@ -112,9 +112,7 @@ public class AddGamesGameViewModel : BaseViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Running finder for a game");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex,
-                // TODO-UPDATE: Update localization
-                Resources.GameFinder_Error);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Finder_Error);
             return;
         }
 

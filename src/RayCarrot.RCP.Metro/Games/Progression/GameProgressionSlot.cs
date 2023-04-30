@@ -29,7 +29,7 @@ public class GameProgressionSlot
         FileSystemPath filePath,
         IReadOnlyList<GameProgressionDataItem> dataItems)
     {
-        Name = name ?? new ResourceLocString(Resources.Progression_GenericSlot, index + 1);
+        Name = name ?? new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
         Index = index;
         CollectiblesCount = null;
         TotalCollectiblesCount = null;

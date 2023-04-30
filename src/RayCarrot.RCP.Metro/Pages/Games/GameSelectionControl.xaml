@@ -9,6 +9,7 @@
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
              xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:DesignHeight="400" d:DesignWidth="300" 
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:DataContext="{d:DesignInstance games:GamesPageViewModel}">
@@ -48,7 +49,6 @@
         </Style>
     </UserControl.Resources>
 
-    <!-- TODO-UPDATE: Localize -->
     <Grid Margin="0 4">
         <Grid.RowDefinitions>
             <!-- Search -->
@@ -71,7 +71,7 @@
             <Button Grid.Column="0"
                     Command="{Binding Path=DeselectGameCommand, Mode=OneTime}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    ToolTip="Home"
+                    ToolTip="{Resx GameSelection_Home}"
                     rcp:Icon.Kind="HomeOutline"
                     IsEnabled="{Binding Path=SelectedInstalledGame, Converter={rcp:IsNotNullConverter}}"
                     Margin="0 0 4 0" />
@@ -79,7 +79,7 @@
             <TextBox x:Name="SearchTextBox"
                      Grid.Column="1"
                      VerticalAlignment="Center"
-                     metro:TextBoxHelper.Watermark="Search"
+                     metro:TextBoxHelper.Watermark="{Resx GameSelection_Search}"
                      BorderThickness="0" 
                      Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged}"
                      Margin="0 0 4 0"
@@ -100,14 +100,14 @@
                            Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
                 <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-                    <metro:ToggleSwitch Content="Group games"
+                    <metro:ToggleSwitch Content="{Resx GameSelection_GroupGames}"
                                         IsOn="{Binding Path=GroupGames}"
                                         Margin="6"
                                         Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
 
                     <Separator />
 
-                    <Button Content="Reset custom sort"
+                    <Button Content="{Resx GameSelection_ResetSort}"
                             rcp:Icon.Kind="Sort"
                             Command="{Binding Path=ResetSortCommand, Mode=OneTime}" />
 
@@ -279,7 +279,7 @@
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
-                        ToolTip="Find games"
+                        ToolTip="{Resx GameSelection_FindInstallations}"
                         rcp:Icon.Kind="{StaticResource RCP.Icons.Finder}" />
 
                 <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
@@ -294,12 +294,12 @@
             <Button Margin="0 0 4 0"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     Command="{Binding Path=ConfigureGameClientsCommand, Mode=OneTime}"
-                    ToolTip="Configure game clients and emulators"
+                    ToolTip="{Resx GameSelection_ConfigureClients}"
                     rcp:Icon.Kind="{StaticResource RCP.Icons.GameClientEdit}" />
 
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                     Command="{Binding Path=AddGamesCommand, Mode=OneTime}"
-                    ToolTip="Add game"
+                    ToolTip="{Resx GameSelection_AddGame}"
                     rcp:Icon.Kind="PlusBoxOutline" />
 
         </StackPanel>

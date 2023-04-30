@@ -173,9 +173,7 @@ public class AppDataManager
         if (legacyData == null)
         {
             Logger.Error("v14 data migration: Failed to deserialize legacy app data");
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayMessageAsync("An error occurred when migrating the app data to the new version",
-                MessageType.Error);
+            await MessageUI.DisplayMessageAsync(Resources.AppData_MigrateError, MessageType.Error);
             return;
         }
 
@@ -734,8 +732,7 @@ public class AppDataManager
             {
                 Logger.Error(ex, "Migrating old data to 14.0");
 
-                // TODO-UPDATE: Localize
-                await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when migrating the app data to the new version");
+                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.AppData_MigrateError);
             }
         }
     }

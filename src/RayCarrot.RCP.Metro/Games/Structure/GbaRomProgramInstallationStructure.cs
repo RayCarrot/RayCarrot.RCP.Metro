@@ -46,12 +46,10 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
     {
         if (!location.HasFile ||!location.FilePath.FileExists)
-            // TODO-UPDATE: Localize
-            return new GameLocationValidationResult(false, "The file does not exist");
+            return new GameLocationValidationResult(false, Resources.Games_ValidationFileMissing);
 
         bool isValid = GetLayout(location) != null;
 
-        // TODO-UPDATE: Localize
-        return new GameLocationValidationResult(isValid, "The ROM is not valid for this game");
+        return new GameLocationValidationResult(isValid, Resources.Games_ValidationRomInvalid);
     }
 }

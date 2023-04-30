@@ -14,8 +14,7 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
     public override GenericIconKind Icon => GenericIconKind.GamePanel_Progression;
     public override LocalizedString Header => ProgressionManager.Name == null 
         ? new ResourceLocString(nameof(Resources.Progression_Header))
-        // TODO-UPDATE: Localize
-        : new GeneratedLocString(() => $"{Resources.Progression_Header} ({ProgressionManager.Name})");
+        : new GeneratedLocString(() => String.Format(Resources.Progression_HeaderWithSecondary, Resources.Progression_Header, ProgressionManager.Name));
     public override bool CanRefresh => true;
 
     public GameProgressionManager ProgressionManager { get; }

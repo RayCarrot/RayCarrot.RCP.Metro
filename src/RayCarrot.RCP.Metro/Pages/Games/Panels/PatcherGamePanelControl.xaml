@@ -12,7 +12,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              Language="{UICulture}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: Localize -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -32,14 +31,14 @@
             <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=OpenPatcherCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.Patcher}"
-                    Content="Open patcher"
+                    Content="{Resx GameHub_PatcherPanel_Open}"
                     Margin="0 0 8 0" />
 
             <!-- Create -->
             <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=OpenPatchCreatorCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.Patcher}"
-                    Content="{Resx PatchCreator_CreateNew}" />
+                    Content="{Resx GameHub_PatcherPanel_Create}" />
 
         </WrapPanel>
 

@@ -408,9 +408,7 @@ public class GamesPageViewModel : BasePageViewModel,
         catch (Exception ex)
         {
             Logger.Error(ex, "Running finder");
-            await MessageUI.DisplayExceptionMessageAsync(ex, 
-                // TODO-UPDATE: Update localization (and other occurrences of "Game finder" or "Find games")
-                Resources.GameFinder_Error);
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Finder_Error);
             return;
         }
         finally
@@ -444,8 +442,9 @@ public class GamesPageViewModel : BasePageViewModel,
 
             Logger.Info("The finder found {0} game clients", addedGameClients.Count);
 
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayMessageAsync($"The following new game clients/emulators were found:{Environment.NewLine}{Environment.NewLine}• {addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", "Installed game clients/emulators found", MessageType.Success);
+            await MessageUI.DisplayMessageAsync(
+                String.Format(Resources.Finder_FoundClients,
+                    addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Resources.Finder_FoundClientsSeparator)), Resources.Finder_FoundClientsHeader, MessageType.Success);
         }
 
         // Get the games to add
@@ -476,8 +475,7 @@ public class GamesPageViewModel : BasePageViewModel,
         }
 
         if (!foundItems && !runInBackground)
-            // TODO-UPDATE: Update localization to say games or game clients?
-            await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader,
+            await MessageUI.DisplayMessageAsync(Resources.Finder_NoResults, Resources.Finder_ResultHeader,
                 MessageType.Information);
     }
 
