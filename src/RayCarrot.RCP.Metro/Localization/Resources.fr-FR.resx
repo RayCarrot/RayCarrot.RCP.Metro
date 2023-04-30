@@ -382,7 +382,7 @@
     <value>Les options du mode écran vont se comporter différemment en fonction de la résolution choisie. En général, garder le mode 4:3 activé permettra au jeu de ne pas être étiré contrairement aux autres ratios d'aspect. </value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel est un projet communautaire open source créé par RayCarrot. Ce logiciel est un unique éxécutable gratuit d'accès avec l'intention de rendre facile d'accès différentes options et améliorations pour les différents jeux Rayman sortis sur Windows. C'est un projet en expansion avec plusieures fonctionnalités prévus pour de futures mise à jour. Les utilitaires et les outils de configuration ont été créés avec l'aide de divers membres de la communauté Rayman, tous crédités ci-dessous.</value>
+    <value>Rayman Control Panel est un projet communautaire open source créé par RayCarrot. Ce logiciel est un unique fichier éxécutable libre d'accès avec l'intention de faciliter l'accès à différentes options et améliorations pour les différents jeux Rayman sortis sur Windows. Il s'agit d'un projet en pleine expansion avec plusieures fonctionnalités prévues pour de futures mise à jour. Les utilitaires et les outils de configuration ont été créés avec l'aide de divers membres de la communauté Rayman, tous crédités ci-dessous.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Crédits</value>
