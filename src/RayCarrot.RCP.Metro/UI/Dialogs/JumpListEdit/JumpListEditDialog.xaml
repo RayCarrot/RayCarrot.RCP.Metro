@@ -127,9 +127,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-UPDATE: Localize -->
             <CheckBox Grid.Column="0"
-                      Content="Automatically sort games"
+                      Content="{Resx JumpListEditor_AutoSort}"
                       IsChecked="{Binding Path=AutoSort}" />
 
             <Button Grid.Column="2"

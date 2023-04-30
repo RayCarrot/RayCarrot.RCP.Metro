@@ -67,8 +67,7 @@ public class AvailableGameClientViewModel : BaseViewModel
         {
             FileBrowserResult broweResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
             {
-                // TODO-UPDATE: Localize
-                Title = "Select the game client executable",
+                Title = Resources.GameClients_BrowseFileHeader,
                 ExtensionFilter = new FileExtension(".exe").GetFileFilterItem.StringRepresentation,
             });
 
@@ -81,8 +80,7 @@ public class AvailableGameClientViewModel : BaseViewModel
         {
             DirectoryBrowserResult broweResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
             {
-                // TODO-UPDATE: Localize
-                Title = "Select the game client installation",
+                Title = Resources.GameClients_BrowseDirHeader,
             });
 
             if (broweResult.CanceledByUser)
@@ -94,8 +92,7 @@ public class AvailableGameClientViewModel : BaseViewModel
         // Make sure it's valid
         if (!Descriptor.IsValid(location))
         {
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The selected location is not valid", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.GameClients_InvalidLocation, MessageType.Error);
             return;
         }
 
@@ -135,13 +132,12 @@ public class AvailableGameClientViewModel : BaseViewModel
             // Add the found game client
             await Services.GameClients.AddGameClientAsync(FinderItem.GameClientDescriptor, foundLocation, configureGameClientInstallation);
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync($"The game client/emulator was found at {foundLocation}", "Finder result", MessageType.Success);
+            await Services.MessageUI.DisplayMessageAsync(
+                String.Format(Resources.GameClients_FindSuccessResult, foundLocation), Resources.GameClients_FindResultHeader, MessageType.Success);
         }
         else
         {
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The game client/emulator was not found", "Finder result", MessageType.Information);
+            await Services.MessageUI.DisplayMessageAsync(Resources.GameClients_FindFailedResult, Resources.GameClients_FindResultHeader, MessageType.Information);
         }
     }
 

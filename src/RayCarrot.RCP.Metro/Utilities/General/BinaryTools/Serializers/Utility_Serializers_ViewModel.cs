@@ -152,7 +152,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<SaveData>(
-                name: "Rayman Advance Save Data", // TODO-UPDATE: Localize
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1GbaSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -161,7 +161,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<R3GBA_SaveData>(
-                name: "Rayman 3 (GBA) Save Data", // TODO-UPDATE: Localize
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_R3GbaSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -171,7 +171,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<RHR_SaveData>(
-                name: "Rayman Hoodlums' Revenge Save Data", // TODO-UPDATE: Localize
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_RHRSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -181,7 +181,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<RRRGBA_SaveData>(
-                name: "Rayman Raving Rabbids (GBA) Save Data", // TODO-UPDATE: Localize
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_RRRGbaSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()

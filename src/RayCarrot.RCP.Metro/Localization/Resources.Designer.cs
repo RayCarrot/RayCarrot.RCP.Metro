@@ -370,6 +370,69 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when adding the game.
+        /// </summary>
+        public static string AddGames_AddError {
+            get {
+                return ResourceManager.GetString("AddGames_AddError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding game.
+        /// </summary>
+        public static string AddGames_AddErrorHeader {
+            get {
+                return ResourceManager.GetString("AddGames_AddErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find game.
+        /// </summary>
+        public static string AddGames_Find {
+            get {
+                return ResourceManager.GetString("AddGames_Find", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game was not found.
+        /// </summary>
+        public static string AddGames_FindFailedResult {
+            get {
+                return ResourceManager.GetString("AddGames_FindFailedResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finder result.
+        /// </summary>
+        public static string AddGames_FindResultHeader {
+            get {
+                return ResourceManager.GetString("AddGames_FindResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game was found at {0}.
+        /// </summary>
+        public static string AddGames_FindSuccessResult {
+            get {
+                return ResourceManager.GetString("AddGames_FindSuccessResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Games.
+        /// </summary>
+        public static string AddGames_Title {
+            get {
+                return ResourceManager.GetString("AddGames_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}
         ///
         ///Error message: {1}.
@@ -3536,6 +3599,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Added game clients/emulators.
+        /// </summary>
+        public static string GameClients_AddedClientsHeader {
+            get {
+                return ResourceManager.GetString("GameClients_AddedClientsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available game clients and emulators.
+        /// </summary>
+        public static string GameClients_AvailableClientsHeader {
+            get {
+                return ResourceManager.GetString("GameClients_AvailableClientsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the game client installation.
+        /// </summary>
+        public static string GameClients_BrowseDirHeader {
+            get {
+                return ResourceManager.GetString("GameClients_BrowseDirHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the game client executable.
+        /// </summary>
+        public static string GameClients_BrowseFileHeader {
+            get {
+                return ResourceManager.GetString("GameClients_BrowseFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure game clients/emulators.
+        /// </summary>
+        public static string GameClients_ConfigTitle {
+            get {
+                return ResourceManager.GetString("GameClients_ConfigTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
         public static string GameClients_Custom {
@@ -3608,6 +3716,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find game client/emulator.
+        /// </summary>
+        public static string GameClients_FindClient {
+            get {
+                return ResourceManager.GetString("GameClients_FindClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game client/emulator was not found.
+        /// </summary>
+        public static string GameClients_FindFailedResult {
+            get {
+                return ResourceManager.GetString("GameClients_FindFailedResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finder result.
+        /// </summary>
+        public static string GameClients_FindResultHeader {
+            get {
+                return ResourceManager.GetString("GameClients_FindResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game client/emulator was found at {0}.
+        /// </summary>
+        public static string GameClients_FindSuccessResult {
+            get {
+                return ResourceManager.GetString("GameClients_FindSuccessResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected location is not valid.
+        /// </summary>
+        public static string GameClients_InvalidLocation {
+            get {
+                return ResourceManager.GetString("GameClients_InvalidLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The game client/emulator could not be found.
         /// </summary>
         public static string GameClients_Launch_ClientNotFound {
@@ -3617,11 +3770,38 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locate.
+        /// </summary>
+        public static string GameClients_LocateClient {
+            get {
+                return ResourceManager.GetString("GameClients_LocateClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to mGBA.
         /// </summary>
         public static string GameClients_MGba {
             get {
                 return ResourceManager.GetString("GameClients_MGba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open location.
+        /// </summary>
+        public static string GameClients_OpenLocation {
+            get {
+                return ResourceManager.GetString("GameClients_OpenLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string GameClients_Remove {
+            get {
+                return ResourceManager.GetString("GameClients_Remove", resourceCulture);
             }
         }
         
@@ -3642,6 +3822,33 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_RemovedInvalidClientsHeader {
             get {
                 return ResourceManager.GetString("GameClients_RemovedInvalidClientsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string GameClients_Rename {
+            get {
+                return ResourceManager.GetString("GameClients_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename game client/emulator.
+        /// </summary>
+        public static string GameClients_RenameHeader {
+            get {
+                return ResourceManager.GetString("GameClients_RenameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename {0}. Keep the name empty to use the default one..
+        /// </summary>
+        public static string GameClients_RenameHeaderInfo {
+            get {
+                return ResourceManager.GetString("GameClients_RenameHeaderInfo", resourceCulture);
             }
         }
         
@@ -3678,6 +3885,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_Steam {
             get {
                 return ResourceManager.GetString("GameClients_Steam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported games.
+        /// </summary>
+        public static string GameClients_SupportedGamesHeader {
+            get {
+                return ResourceManager.GetString("GameClients_SupportedGamesHeader", resourceCulture);
             }
         }
         
@@ -4794,6 +5010,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically sort games.
+        /// </summary>
+        public static string JumpListEditor_AutoSort {
+            get {
+                return ResourceManager.GetString("JumpListEditor_AutoSort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit jump list items.
         /// </summary>
         public static string JumpListEditor_Header {
@@ -4979,24 +5204,6 @@ namespace RayCarrot.RCP.Metro {
         public static string LocateGame_BrowserHeader {
             get {
                 return ResourceManager.GetString("LocateGame_BrowserHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when locating the game.
-        /// </summary>
-        public static string LocateGame_Error {
-            get {
-                return ResourceManager.GetString("LocateGame_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error locating game.
-        /// </summary>
-        public static string LocateGame_ErrorHeader {
-            get {
-                return ResourceManager.GetString("LocateGame_ErrorHeader", resourceCulture);
             }
         }
         
@@ -9301,6 +9508,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DOSBox (per-level soundtrack).
+        /// </summary>
+        public static string R1U_TPLSGameClientName {
+            get {
+                return ResourceManager.GetString("R1U_TPLSGameClientName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Per-Level Soundtrack.
         /// </summary>
         public static string R1U_TPLSHeader {
@@ -9396,6 +9612,15 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLSUninstallSuccessHeader {
             get {
                 return ResourceManager.GetString("R1U_TPLSUninstallSuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable or disable this utility by selecting or deselecting the per-level soundtrack game client for this game.
+        /// </summary>
+        public static string R1U_TPLSUsageInfo {
+            get {
+                return ResourceManager.GetString("R1U_TPLSUsageInfo", resourceCulture);
             }
         }
         
@@ -13373,6 +13598,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Advance Save Data.
+        /// </summary>
+        public static string Utilities_Converter_R1GbaSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R1GbaSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 1 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R1SaveHeader {
@@ -13400,11 +13634,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 (GBA) Save Data.
+        /// </summary>
+        public static string Utilities_Converter_R3GbaSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R3GbaSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 3 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R3SaveHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_R3SaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Hoodlums&apos; Revenge Save Data.
+        /// </summary>
+        public static string Utilities_Converter_RHRSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_RHRSaveHeader", resourceCulture);
             }
         }
         
@@ -13441,6 +13693,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_ROSaveHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_ROSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids (GBA) Save Data.
+        /// </summary>
+        public static string Utilities_Converter_RRRGbaSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_RRRGbaSaveHeader", resourceCulture);
             }
         }
         

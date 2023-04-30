@@ -124,8 +124,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             x.SetObject(GameClientDataKey.RCP_RequiredGameInstallations, requiredGames);
 
             // Give the emulator a name so it's apparent what it's for
-            // TODO-UPDATE: Localize
-            x.SetValue(GameClientDataKey.RCP_CustomName, "DOSBox (per-level soundtrack)");
+            x.SetValue(GameClientDataKey.RCP_CustomName, Resources.R1U_TPLSGameClientName);
         }));
 
         if (isEnabled)

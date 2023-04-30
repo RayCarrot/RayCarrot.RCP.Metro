@@ -19,8 +19,6 @@
         <KeyBinding Key="F2" Command="{Binding Path=SelectedGameClient.RenameCommand}" />
     </Control.InputBindings>
 
-    <!-- TODO-UPDATE: Localize -->
-    <!-- TODO-UPDATE: Improve ui when no selection and no game clients added -->
     <Grid Margin="8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -35,7 +33,7 @@
 
             <local:Card Grid.Row="0"
                         Margin="{StaticResource RCP.Thicknesses.Card}">
-                <!-- TODO: Allow click outside listbox to deselect -->
+                <!-- TODO-14: Allow click outside listbox to deselect -->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -43,7 +41,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0"
-                               Text="Added game clients and emulators"
+                               Text="{Resx GameClients_AddedClientsHeader}"
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                Margin="0 0 0 4" />
 
@@ -115,7 +113,7 @@
             <local:Card Grid.Row="1"
                         Margin="{StaticResource RCP.Thicknesses.Card}">
                 <StackPanel>
-                    <TextBlock Text="Available game clients and emulators"
+                    <TextBlock Text="{Resx GameClients_AvailableClientsHeader}"
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                Margin="0 0 0 4" />
 
@@ -170,7 +168,7 @@
                                             Style="{StaticResource RCP.Styles.Button.Flat}"
                                             Margin="0 0 4 0"
                                             HorizontalAlignment="Right"
-                                            Content="Locate"
+                                            Content="{Resx GameClients_LocateClient}"
                                             local:Icon.Kind="FolderOutline"
                                             Command="{Binding Path=AddGameClientCommand, Mode=OneTime}"
                                             CommandParameter="{Binding Mode=OneTime}" />
@@ -181,7 +179,7 @@
                                             Command="{Binding Path=FindGameClientCommand, Mode=OneTime}"
                                             Style="{StaticResource RCP.Styles.Button.Flat}"
                                             local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                                            ToolTip="Find game client/emulator"
+                                            ToolTip="{Resx GameClients_FindClient}"
                                             Margin="0 0 4 0" />
 
                                 </Grid>
@@ -223,7 +221,7 @@
                         <local:PopupCard Grid.Column="2" 
                                          VerticalAlignment="Center">
                             <StackPanel>
-                                <Button Content="Open location"
+                                <Button Content="{Resx GameClients_OpenLocation}"
                                         Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
                                         local:Icon.Kind="FolderOutline"
                                         local:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
@@ -238,7 +236,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <TextBlock Grid.Column="0"
-                                                   Text="Rename" />
+                                                   Text="{Resx GameClients_Rename}" />
 
                                         <TextBlock Grid.Column="1"
                                                    Text="F2"
@@ -246,7 +244,7 @@
 
                                     </Grid>
                                 </Button>
-                                <Button Content="{Resx GameOptions_Remove}"
+                                <Button Content="{Resx GameClients_Remove}"
                                         Command="{Binding Path=RemoveGameClientCommand, Mode=OneTime}"
                                         local:Icon.Kind="DeleteOutline"
                                         local:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}" />
@@ -284,7 +282,7 @@
                                Margin="0 0 0 8" />
 
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Text="Supported games"
+                               Text="{Resx GameClients_SupportedGamesHeader}"
                                Margin="0 0 0 4" />
 
                     <ItemsControl ItemsSource="{Binding Path=SupportedGames}"
@@ -304,6 +302,5 @@
         </local:Card>
 
     </Grid>
-    
 
 </local:WindowContentControl>

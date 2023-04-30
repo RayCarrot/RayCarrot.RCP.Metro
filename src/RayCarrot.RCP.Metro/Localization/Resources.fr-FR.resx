@@ -687,12 +687,6 @@
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Emplacement Invalide</value>
   </data>
-  <data name="LocateGame_Error" xml:space="preserve">
-    <value>Une erreur est survenue en essayant de localiser le jeu</value>
-  </data>
-  <data name="LocateGame_ErrorHeader" xml:space="preserve">
-    <value>Erreur de localisation de fichier</value>
-  </data>
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>Une erreur est survenue en essayant d'éxécuter {0}</value>
   </data>

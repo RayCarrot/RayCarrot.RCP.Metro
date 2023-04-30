@@ -687,12 +687,6 @@
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Ongeldige Locatie</value>
   </data>
-  <data name="LocateGame_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het lokaliseren van het spel</value>
-  </data>
-  <data name="LocateGame_ErrorHeader" xml:space="preserve">
-    <value>Fout tijdens het lokaliseren van het spel</value>
-  </data>
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
   </data>

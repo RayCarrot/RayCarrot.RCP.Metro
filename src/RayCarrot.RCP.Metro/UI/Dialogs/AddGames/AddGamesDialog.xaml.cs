@@ -30,7 +30,7 @@ public partial class AddGamesDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Add Games"; // TODO-UPDATE: Localize
+        WindowInstance.Title = Metro.Resources.AddGames_Title;
         WindowInstance.Icon = GenericIconKind.Window_AddGames;
         WindowInstance.MinWidth = 500;
         WindowInstance.MinHeight = 400;

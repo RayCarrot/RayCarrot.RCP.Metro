@@ -44,7 +44,7 @@ public partial class GameClientsSetupDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Configure game clients and emulators"; // TODO-UPDATE: Localize
+        WindowInstance.Title = Metro.Resources.GameClients_ConfigTitle;
         WindowInstance.Icon = GenericIconKind.Window_GameClientsSetup;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

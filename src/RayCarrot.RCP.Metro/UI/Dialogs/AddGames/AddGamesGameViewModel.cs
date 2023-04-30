@@ -91,8 +91,7 @@ public class AddGamesGameViewModel : BaseViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Adding game from add action");
-            // TODO-UPDATE: Rewrite this?
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.AddGames_AddError, Resources.AddGames_AddErrorHeader);
         }
     }
 
@@ -129,13 +128,13 @@ public class AddGamesGameViewModel : BaseViewModel
             // Add the found games
             await Services.Games.AddGameAsync(FinderItem.GameDescriptor, foundLocation, configureGameInstallation);
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync($"The game was found at {foundLocation}", "Finder result", MessageType.Success);
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGames_FindSuccessResult, foundLocation), 
+                Resources.AddGames_FindResultHeader, MessageType.Success);
         }
         else
         {
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The game was not found", "Finder result", MessageType.Information);
+            await Services.MessageUI.DisplayMessageAsync(Resources.AddGames_FindFailedResult, 
+                Resources.AddGames_FindResultHeader, MessageType.Information);
         }
     }
 

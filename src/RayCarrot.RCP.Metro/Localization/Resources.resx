@@ -692,12 +692,6 @@ filePath</comment>
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Invalid Location</value>
   </data>
-  <data name="LocateGame_Error" xml:space="preserve">
-    <value>An error occurred when locating the game</value>
-  </data>
-  <data name="LocateGame_ErrorHeader" xml:space="preserve">
-    <value>Error locating game</value>
-  </data>
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>An error occurred when attempting to run {0}</value>
     <comment>Arguments:
@@ -4946,5 +4940,102 @@ gameTargets</comment>
     <comment>Arguments:
 patchName
 gameTargets</comment>
+  </data>
+  <data name="AddGames_Title" xml:space="preserve">
+    <value>Add Games</value>
+  </data>
+  <data name="AddGames_Find" xml:space="preserve">
+    <value>Find game</value>
+  </data>
+  <data name="AddGames_AddError" xml:space="preserve">
+    <value>An error occurred when adding the game</value>
+  </data>
+  <data name="AddGames_AddErrorHeader" xml:space="preserve">
+    <value>Error adding game</value>
+  </data>
+  <data name="AddGames_FindSuccessResult" xml:space="preserve">
+    <value>The game was found at {0}</value>
+    <comment>Arguments:
+foundLocation</comment>
+  </data>
+  <data name="AddGames_FindResultHeader" xml:space="preserve">
+    <value>Finder result</value>
+  </data>
+  <data name="AddGames_FindFailedResult" xml:space="preserve">
+    <value>The game was not found</value>
+  </data>
+  <data name="GameClients_BrowseFileHeader" xml:space="preserve">
+    <value>Select the game client executable</value>
+  </data>
+  <data name="GameClients_BrowseDirHeader" xml:space="preserve">
+    <value>Select the game client installation</value>
+  </data>
+  <data name="GameClients_InvalidLocation" xml:space="preserve">
+    <value>The selected location is not valid</value>
+  </data>
+  <data name="GameClients_FindSuccessResult" xml:space="preserve">
+    <value>The game client/emulator was found at {0}</value>
+  </data>
+  <data name="GameClients_FindResultHeader" xml:space="preserve">
+    <value>Finder result</value>
+  </data>
+  <data name="GameClients_FindFailedResult" xml:space="preserve">
+    <value>The game client/emulator was not found</value>
+  </data>
+  <data name="GameClients_AddedClientsHeader" xml:space="preserve">
+    <value>Added game clients/emulators</value>
+  </data>
+  <data name="GameClients_AvailableClientsHeader" xml:space="preserve">
+    <value>Available game clients and emulators</value>
+  </data>
+  <data name="GameClients_LocateClient" xml:space="preserve">
+    <value>Locate</value>
+  </data>
+  <data name="GameClients_FindClient" xml:space="preserve">
+    <value>Find game client/emulator</value>
+  </data>
+  <data name="GameClients_OpenLocation" xml:space="preserve">
+    <value>Open location</value>
+  </data>
+  <data name="GameClients_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="GameClients_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="GameClients_SupportedGamesHeader" xml:space="preserve">
+    <value>Supported games</value>
+  </data>
+  <data name="GameClients_ConfigTitle" xml:space="preserve">
+    <value>Configure game clients/emulators</value>
+  </data>
+  <data name="GameClients_RenameHeader" xml:space="preserve">
+    <value>Rename game client/emulator</value>
+  </data>
+  <data name="GameClients_RenameHeaderInfo" xml:space="preserve">
+    <value>Rename {0}. Keep the name empty to use the default one.</value>
+    <comment>Arguments:
+gameClientName</comment>
+  </data>
+  <data name="JumpListEditor_AutoSort" xml:space="preserve">
+    <value>Automatically sort games</value>
+  </data>
+  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
+    <value>Enable or disable this utility by selecting or deselecting the per-level soundtrack game client for this game</value>
+  </data>
+  <data name="R1U_TPLSGameClientName" xml:space="preserve">
+    <value>DOSBox (per-level soundtrack)</value>
+  </data>
+  <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
+    <value>Rayman Advance Save Data</value>
+  </data>
+  <data name="Utilities_Converter_R3GbaSaveHeader" xml:space="preserve">
+    <value>Rayman 3 (GBA) Save Data</value>
+  </data>
+  <data name="Utilities_Converter_RHRSaveHeader" xml:space="preserve">
+    <value>Rayman Hoodlums' Revenge Save Data</value>
+  </data>
+  <data name="Utilities_Converter_RRRGbaSaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids (GBA) Save Data</value>
   </data>
 </root>

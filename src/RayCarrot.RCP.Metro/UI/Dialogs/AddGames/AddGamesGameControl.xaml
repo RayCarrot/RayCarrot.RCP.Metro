@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              mc:Ignorable="d" 
              d:DesignWidth="400" 
-             d:DataContext="{d:DesignInstance local:AddGamesGameViewModel}">
+             d:DataContext="{d:DesignInstance local:AddGamesGameViewModel}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
     <Grid x:Name="RootGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -54,14 +55,13 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <!-- TODO-UPDATE: Localize -->
         <!-- Finder action -->
         <Button Grid.Column="3"
                 IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
                 Command="{Binding Path=FindGameCommand, Mode=OneTime}"
                 Style="{StaticResource RCP.Styles.Button.Flat}"
                 local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                ToolTip="Find game"
+                ToolTip="{Resx AddGames_Find}"
                 Margin="4 0 0 0" />
 
         <!-- Purchase links -->

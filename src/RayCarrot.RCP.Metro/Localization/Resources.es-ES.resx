@@ -644,13 +644,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>
 </value>
   </data>
-  <data name="LocateGame_Error" xml:space="preserve">
-    <value>Ha ocurrido un error al localizar el juego</value>
-  </data>
-  <data name="LocateGame_ErrorHeader" xml:space="preserve">
-    <value>Error localizando el juego
-</value>
-  </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar la Descarga</value>
   </data>

@@ -82,8 +82,8 @@ public class InstalledGameClientViewModel : BaseViewModel
     {
         StringInputResult result = await Services.UI.GetStringInputAsync(new StringInputViewModel
         {
-            Title = "Rename game client/emulator", // TODO-UPDATE: Localize
-            HeaderText = $"Rename {Descriptor.DisplayName}. Keep the name empty to use the default one.", // TODO-UPDATE: Localize
+            Title = Resources.GameClients_RenameHeader,
+            HeaderText = String.Format(Resources.GameClients_RenameHeaderInfo, Descriptor.DisplayName),
             StringInput = GameClientInstallation.GetValue<string>(GameClientDataKey.RCP_CustomName),
         });
 

@@ -54,8 +54,7 @@
 
         </Grid>
 
-        <!-- TODO-UPDATE: Localize -->
-        <TextBlock Text="Enable or disable this utility by selecting or deselecting the per-level soundtrack game client for this game"
+        <TextBlock Text="{Resx R1U_TPLSUsageInfo}"
                    TextWrapping="Wrap"
                    Visibility="{Binding Path=IsInstalled, Converter={local:BooleanToVisibilityConverter}}" />
 

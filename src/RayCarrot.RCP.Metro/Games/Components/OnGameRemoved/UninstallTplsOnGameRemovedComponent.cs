@@ -30,7 +30,6 @@ public class UninstallTplsOnGameRemovedComponent : OnGameRemovedComponent
         {
             Logger.Error(ex, "Uninstalling TPLS");
 
-            // TODO-UPDATE: Update string to clarify what is being uninstalled
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
         }
     }

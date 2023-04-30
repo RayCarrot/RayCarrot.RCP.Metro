@@ -688,12 +688,6 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Directory non valida</value>
   </data>
-  <data name="LocateGame_Error" xml:space="preserve">
-    <value>Si è verificato un errore durante la localizzazione del gioco</value>
-  </data>
-  <data name="LocateGame_ErrorHeader" xml:space="preserve">
-    <value>Errore nella localizzazione del gioco</value>
-  </data>
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>Si è verificato un errore durante il tentativo di avviare {0}</value>
   </data>

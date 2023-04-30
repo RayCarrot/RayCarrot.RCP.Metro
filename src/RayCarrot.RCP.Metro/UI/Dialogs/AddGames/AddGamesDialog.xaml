@@ -12,8 +12,6 @@
                             mc:Ignorable="d"
                             d:DataContext="{d:DesignInstance local:AddGamesViewModel}">
 
-    <!-- TODO-UPDATE: Localize -->
-
     <!-- Game categories -->
     <mah:MetroAnimatedTabControl FocusVisualStyle="{x:Null}"
                                  Margin="10"
@@ -46,7 +44,6 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- TODO-UPDATE: This should be demo for demo category -->
                                         <local:GameIcon Grid.Column="0"
                                                         IconSize="Small"
                                                         Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
