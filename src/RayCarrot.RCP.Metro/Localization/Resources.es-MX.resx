@@ -141,18 +141,6 @@
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
   </data>
-  <data name="GameType_Desktop" xml:space="preserve">
-    <value>Aplicación de Escritorio</value>
-  </data>
-  <data name="GameType_DosBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="GameType_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="GameType_WinStore" xml:space="preserve">
-    <value>Microsoft Store</value>
-  </data>
   <data name="MountPathHeader" xml:space="preserve">
     <value>Ruta de montaje</value>
   </data>
@@ -233,12 +221,6 @@
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Desmarca esto si hay fallas gráficas en el juego.</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>Sombras dinámicas</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>Sombras estáticas</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>Texturas</value>
@@ -336,12 +318,6 @@
   <data name="Backup_Restore" xml:space="preserve">
     <value>Restaurar</value>
   </data>
-  <data name="Games_Installed" xml:space="preserve">
-    <value>Instalado</value>
-  </data>
-  <data name="Games_NotInstalled" xml:space="preserve">
-    <value>No instalado</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Nível de usuario</value>
   </data>
@@ -377,9 +353,6 @@
   </data>
   <data name="Settings_DesignSuccessMessages" xml:space="preserve">
     <value>Mostrar mensajes de éxito</value>
-  </data>
-  <data name="Settings_DosBoxHeader" xml:space="preserve">
-    <value>DOSBox</value>
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Depurar</value>
@@ -444,9 +417,6 @@
   <data name="RDU_CreateConfigCreate" xml:space="preserve">
     <value>Crear</value>
   </data>
-  <data name="ROU_HQVideosHeader" xml:space="preserve">
-    <value>Vídeos de mejor calidad</value>
-  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>Comandos de depurar</value>
   </data>
@@ -483,9 +453,6 @@
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Opciones</value>
   </data>
-  <data name="GameDisplay_Launch" xml:space="preserve">
-    <value>Iniciar</value>
-  </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Instalar por el disco</value>
   </data>
@@ -500,9 +467,6 @@
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Comprar por Steam</value>
-  </data>
-  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Comprar por Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -551,15 +515,6 @@
   </data>
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Localización inválida</value>
-  </data>
-  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
-    <value>El juego no se pudo encontrar. Intenta elegir alternativamente la aplicación del escritorio como el tipo.</value>
-  </data>
-  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
-    <value>Juego no encontrado</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
-    <value>Juego no encontrado</value>
   </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar descarga</value>
@@ -672,9 +627,6 @@ Notícias:
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>ID de Steam:</value>
   </data>
-  <data name="GameInfo_GameType" xml:space="preserve">
-    <value>Tipo de juego:</value>
-  </data>
   <data name="GameInfo_InstallDir" xml:space="preserve">
     <value>Localización de la instalación:</value>
   </data>
@@ -701,9 +653,6 @@ Notícias:
   </data>
   <data name="GameShortcut_ShortcutName" xml:space="preserve">
     <value>Iniciar {0}</value>
-  </data>
-  <data name="GameNotFoundHeader" xml:space="preserve">
-    <value>No se pudo encontrar el juego</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>¡Un agradecimiento especial a AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski y todos los demás fanáticos de Rayman!</value>
@@ -767,9 +716,6 @@ Notícias:
   </data>
   <data name="GameOptions_Utilities" xml:space="preserve">
     <value>Utilidades</value>
-  </data>
-  <data name="GameOptions_Options" xml:space="preserve">
-    <value>Opciones</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Crear acceso directo</value>
@@ -855,35 +801,11 @@ Notícias:
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Algunos juegos no realizaron copias de seguridad</value>
   </data>
-  <data name="GameOptions_LaunchMode" xml:space="preserve">
-    <value>Modo de lanzamiento</value>
-  </data>
-  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
-    <value>Esto determinara cómo el juego va a ser iniciado. Si el juego es ejecutado dentro de un emulador, como DOSBox, entonces el modo de ejecución se aplicará al emulador.</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
-    <value>Defecto</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
-    <value>Como administrador (opcional)</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
-    <value>Como administrador</value>
-  </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>Configuración</value>
   </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Las animaciones incluyen transiciones de página y animaciones cambiadas de tamaño para la página de Juegos</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Ejecuta siempre el juego con las mismas permisiones que el Panel de control Rayman fue ejecutado</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
-    <value>Lo mismo que el defecto, pero con la opción de ejecutar el juego como administrador</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
-    <value>Intenta siempre ejecutar el juego como administrador.</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Grupo de Steam</value>
@@ -902,15 +824,6 @@ Notícias:
   </data>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Edición 3)</value>
-  </data>
-  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
-    <value>Estilo de vínculos</value>
-  </data>
-  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
-    <value>Lista</value>
-  </data>
-  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
-    <value>Grupo</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Refrescar</value>
@@ -939,68 +852,14 @@ Notícias:
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Error al abriendo la llave</value>
   </data>
-  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
-    <value>Archivo ubi.ini Primário</value>
-  </data>
-  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
-    <value>Archivo ubi.ini Secundário</value>
-  </data>
-  <data name="Links_Local_R2UbiIni" xml:space="preserve">
-    <value>Archivo ubi.ini de Rayman 2</value>
-  </data>
-  <data name="Links_Local_DOSBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
-    <value>Archivo de configuración de DOSBox</value>
-  </data>
-  <data name="Links_Local_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="Links_Local_SteamGames" xml:space="preserve">
-    <value>Juegos de Steam</value>
-  </data>
-  <data name="Links_Local_GOGClient" xml:space="preserve">
-    <value>GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_GOGGames" xml:space="preserve">
-    <value>Juegos de GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
-    <value>Ajustes de Rayman Raving Rabbids</value>
-  </data>
-  <data name="Links_Local_RORegSettings" xml:space="preserve">
-    <value>Ajustes de Rayman Origins</value>
-  </data>
-  <data name="Links_Local_RLRegSettings" xml:space="preserve">
-    <value>Ajustes de Rayman Legends</value>
-  </data>
-  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
-    <value>Ajustes de nGlide</value>
-  </data>
-  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
-    <value>Ajustes de nGlide 2.0</value>
-  </data>
   <data name="Links_Local_AppData" xml:space="preserve">
     <value>Datos de usuario de la aplicación</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Archivo de diário</value>
   </data>
-  <data name="Links_Local_Utilities" xml:space="preserve">
-    <value>Directorio de utilidades</value>
-  </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Datos de registro de la aplicación </value>
-  </data>
-  <data name="Links_OpenErrorNotFound" xml:space="preserve">
-    <value>El articulo de enlace no pudo ser abierto debido a no ser encontrado</value>
-  </data>
-  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
-    <value>Dirección de enlace inválido</value>
-  </data>
-  <data name="LinksPageHeader" xml:space="preserve">
-    <value>Hipervínculos de encabezado de página</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>Está disponible una nueva actualización beta para descargar. ¿Descargar ahora?
@@ -1026,26 +885,11 @@ Notícias:
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Prueba de programa</value>
   </data>
-  <data name="Backup_GOGSyncWarning" xml:space="preserve">
-    <value>Este juego podría tener sus archivos guardados sincronizados a través de GOG Galaxy. Si es así, la utilidad de copia de seguridad/restauración podría no afectar este juego a pesar de que la operación sea exitosa.</value>
-  </data>
-  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
-    <value>Advertencia de Copia de Seguridad/Restauración</value>
-  </data>
   <data name="About_BetaTag" xml:space="preserve">
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Administrador)</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
-    <value>Izquierda</value>
-  </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 Edition</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>

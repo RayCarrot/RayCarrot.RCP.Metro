@@ -141,18 +141,6 @@
   <data name="Save" xml:space="preserve">
     <value>שמור</value>
   </data>
-  <data name="GameType_Desktop" xml:space="preserve">
-    <value>אפליקציית שולחן עבודה</value>
-  </data>
-  <data name="GameType_DosBox" xml:space="preserve">
-    <value>DOSox</value>
-  </data>
-  <data name="GameType_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="GameType_WinStore" xml:space="preserve">
-    <value>Microsoft Store</value>
-  </data>
   <data name="MountPathHeader" xml:space="preserve">
     <value>נתיב ההצבה</value>
   </data>
@@ -272,12 +260,6 @@
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>בטל סימון זה אם יש תקלות גרפיות במשחק</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>צלליות דינמיות</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>צללים סטטיים</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>טקסטורות</value>
@@ -418,12 +400,6 @@
   <data name="Backup_Restore" xml:space="preserve">
     <value>שחזור</value>
   </data>
-  <data name="Games_Installed" xml:space="preserve">
-    <value>מותקן</value>
-  </data>
-  <data name="Games_NotInstalled" xml:space="preserve">
-    <value>לא מותקן</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>רמת משתמש</value>
   </data>
@@ -478,32 +454,11 @@
   <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
     <value>הצג הודעה כאשר פעולה הצליחה</value>
   </data>
-  <data name="Settings_DesignShowAllGames" xml:space="preserve">
-    <value>הצג משחקים שאינם מותקנים</value>
-  </data>
-  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
-    <value>הצג את כל המשחקים בדף המשחקים, גם אם הם אינם מותקנים</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>הצג התקדמות בסמל שורת המשימות</value>
   </data>
   <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
     <value>הצג את התקדמות ההורדה בסמל שורת המשימות</value>
-  </data>
-  <data name="Settings_DosBoxHeader" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Settings_DosBoxPath" xml:space="preserve">
-    <value>נתיב קובץ DOSBox</value>
-  </data>
-  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
-    <value>נתיב הקובץ ההפעלה של DOSBox</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
-    <value>נתיב קובץ תצורה של DOSBox (אופציונלי)</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
-    <value>נתיב קובץ התצורה של DOSBox</value>
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>איתור באגים</value>
@@ -598,18 +553,6 @@
   <data name="RLU_UbiRayInfo" xml:space="preserve">
     <value>כלי שירות זה משנה את תצורת המשחק כך ש- UbiRay יופיע כתלבושת רגילה בגלריית הגיבורים</value>
   </data>
-  <data name="ROU_HQVideosHeader" xml:space="preserve">
-    <value>סרטונים באיכות גבוהה יותר</value>
-  </data>
-  <data name="ROU_HQVideosInfo" xml:space="preserve">
-    <value>קטעי הווידאו בגרסת ה- PC דחוסים ובאיכות נמוכה יותר מאשר בגרסאות הקונסולה. כלי שירות זה מחליף את הסרטונים האלה עם הסרטונים האיכותיים יותר מגרסאות הקונסולה.</value>
-  </data>
-  <data name="ROU_HQVideosReplace" xml:space="preserve">
-    <value>החלף את הסרטונים באיכות גבוהה</value>
-  </data>
-  <data name="ROU_HQVideosRevert" xml:space="preserve">
-    <value>חזור לסרטונים המקוריים</value>
-  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>פקודות איתור באגים</value>
   </data>
@@ -676,9 +619,6 @@
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>אפשרויות</value>
   </data>
-  <data name="GameDisplay_Launch" xml:space="preserve">
-    <value>הפעל</value>
-  </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>התקן מהתקליטור</value>
   </data>
@@ -693,9 +633,6 @@
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>רכישה מ- Steam</value>
-  </data>
-  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>רכישה מחנות Microsoft</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>מיפוי</value>
@@ -754,18 +691,6 @@
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>מיקום לא חוקי</value>
   </data>
-  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
-    <value>לא ניתן היה למצוא את המשחק. נסה לבחור במקום זאת יישום שולחן עבודה כסוג.</value>
-  </data>
-  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
-    <value>המשחק לא נמצא</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>לא ניתן היה למצוא את המשחק תחת אפליקציות מותקנות של חנות Microsoft</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
-    <value>המשחק לא נמצא</value>
-  </data>
   <data name="LocateGame_Error" xml:space="preserve">
     <value>אירעה שגיאה בעת איתור המשחק</value>
   </data>
@@ -774,9 +699,6 @@
   </data>
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>אירעה שגיאה בעת ניסיון להריץ את {0}</value>
-  </data>
-  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
-    <value>לא ניתן היה למצוא DOSBox. ציין נתיב חוקי בהגדרות להפעלת המשחק הזה.</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>לא ניתן היה למצוא את נתיב הקובץ. ציין נתיב חוקי תחת אפשרויות המשחק להפעלת המשחק הזה.</value>
@@ -793,9 +715,6 @@
   <data name="Backup_MissingDirectoriesError" xml:space="preserve">
     <value>לא ניתן היה לסיים את הגיבוי של {0} מכיוון שלא נמצאו כל הספריות שצוין</value>
   </data>
-  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
-    <value>אזהרת שירות</value>
-  </data>
   <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
     <value>נמצאו משחקים מותקנים</value>
   </data>
@@ -807,15 +726,6 @@
   </data>
   <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
     <value>על מנת שיהיה ניתן להגדיר את משחקי Rayman מבלי להפעיל תוכנית זו כמנהל, יהיה עליך לאשר את הודעת הניהול הבאה</value>
-  </data>
-  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
-    <value>השירותים הבאים הוחלו על משחק זה ולא יוסרו בעת הסרת המשחק. כדי להסיר את כלי השירות, עבור אל תיבת הדו -שיח של כלי עזר והשבת/הסר אותם או חזור לאופציה המקורית אם זמין.</value>
-  </data>
-  <data name="AddGame_DuplicateHeader" xml:space="preserve">
-    <value>שגיאה בהוספת משחק חדש</value>
-  </data>
-  <data name="AddGame_Duplicate" xml:space="preserve">
-    <value>המשחק {0} כבר נוסף</value>
   </data>
   <data name="Restore_Failed" xml:space="preserve">
     <value>השחזור נכשל עבור {0}</value>
@@ -1117,9 +1027,6 @@
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>מזהה Steam:</value>
   </data>
-  <data name="GameInfo_GameType" xml:space="preserve">
-    <value>סוג משחק:</value>
-  </data>
   <data name="GameInfo_InstallDir" xml:space="preserve">
     <value>מיקום התקנה:</value>
   </data>
@@ -1159,12 +1066,6 @@
   <data name="GameShortcut_ErrorHeader" xml:space="preserve">
     <value>יצירת קיצור הדרך נכשלה</value>
   </data>
-  <data name="GameNotFound" xml:space="preserve">
-    <value>המשחק {0} לא נמצא</value>
-  </data>
-  <data name="GameNotFoundHeader" xml:space="preserve">
-    <value>לא ניתן היה למצא את המשחק</value>
-  </data>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>תודה מיוחדת ל- AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski וכל שאר מעריצי Rayman!</value>
   </data>
@@ -1185,9 +1086,6 @@
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>תרגום התוכנה לפורטוגזית (פורטוגל)</value>
-  </data>
-  <data name="ROU_HQVideosFailed" xml:space="preserve">
-    <value>החלפת הסרטון נכשלה</value>
   </data>
   <data name="ROU_UpdateFailed" xml:space="preserve">
     <value>הורדת אשף העדכון של Rayman Origins נכשלה</value>
@@ -1332,9 +1230,6 @@
   <data name="GameOptions_Utilities" xml:space="preserve">
     <value>כלי עזר</value>
   </data>
-  <data name="GameOptions_Options" xml:space="preserve">
-    <value>אפשרויות</value>
-  </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>צור קיצור דרך</value>
   </data>
@@ -1422,35 +1317,11 @@
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>חלק מהמשחקים לא גובו</value>
   </data>
-  <data name="GameOptions_LaunchMode" xml:space="preserve">
-    <value>מצב הפעלה</value>
-  </data>
-  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
-    <value>זה קובע כיצד יופעל המשחק. אם המשחק פועל בתוך אמולטור, כגון DOSBox, מצב ההשקה יחול על האמולטור.</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
-    <value>ברירת מחדל</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
-    <value>כמנהל מערכת(לא חובה)</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
-    <value>כמנהל מערכת</value>
-  </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>תצורה</value>
   </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>אנימציות כוללות מעברי דפים ושינוי גודל אנימציות לדף המשחקים</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>תמיד מפעיל את המשחק עם אותן הרשאות שבהן הופעל Rayman Control Panel</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
-    <value>כמו ברירת המחדל, אבל גם עם אפשרות להפעיל את המשחק עם הרשאות מנהל מערכת</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
-    <value>המשחק תמיד ינסה להפעיל את עצמו עם הרשאות מנהל מערכת</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>קבוצת סטים</value>
@@ -1469,15 +1340,6 @@
   </data>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (גרסא 3)</value>
-  </data>
-  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
-    <value>סוג קישור</value>
-  </data>
-  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
-    <value>רשימה</value>
-  </data>
-  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
-    <value>קבוצה</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>רענן</value>
@@ -1506,68 +1368,14 @@
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>שגיאה בפתיחת מפתח</value>
   </data>
-  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
-    <value>קובץ ubi.ini ראשי</value>
-  </data>
-  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
-    <value>קובץ ubi.ini משני</value>
-  </data>
-  <data name="Links_Local_R2UbiIni" xml:space="preserve">
-    <value>קובץ Rayman 2 ubi.ini </value>
-  </data>
-  <data name="Links_Local_DOSBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
-    <value>קובץ תצורה של DOSBox</value>
-  </data>
-  <data name="Links_Local_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="Links_Local_SteamGames" xml:space="preserve">
-    <value>משחקי Steam</value>
-  </data>
-  <data name="Links_Local_GOGClient" xml:space="preserve">
-    <value>GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_GOGGames" xml:space="preserve">
-    <value>משחקי GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
-    <value>Rayman Raving Rabbids הגדרות</value>
-  </data>
-  <data name="Links_Local_RORegSettings" xml:space="preserve">
-    <value>Rayman Origins הגדרות</value>
-  </data>
-  <data name="Links_Local_RLRegSettings" xml:space="preserve">
-    <value>Rayman Legends הגדרות</value>
-  </data>
-  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
-    <value>nGlide הגדרות</value>
-  </data>
-  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
-    <value>nGlide 2.0 הגדרות</value>
-  </data>
   <data name="Links_Local_AppData" xml:space="preserve">
     <value>נתוני משתמש באפליקציה</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>קובץ לוג</value>
   </data>
-  <data name="Links_Local_Utilities" xml:space="preserve">
-    <value>ספריית כלי עזר</value>
-  </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>נתוני אפליקציית הרישום</value>
-  </data>
-  <data name="Links_OpenErrorNotFound" xml:space="preserve">
-    <value>לא ניתן היה לפתוח את פריט הקישור בגלל שלא נמצא</value>
-  </data>
-  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
-    <value>כתובת קישור לא חוקית</value>
-  </data>
-  <data name="LinksPageHeader" xml:space="preserve">
-    <value>קישורים</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>עדכון ביטא חדש זמין להורדה. להוריד עכשיו?
@@ -1598,26 +1406,11 @@
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>בדיקת תוכנה</value>
   </data>
-  <data name="Backup_GOGSyncWarning" xml:space="preserve">
-    <value>יתכן שקבצי השמירה של המשחק הזה מסונכרנים דרך GOG Galaxy. אם כן, ייתכן שכלי גיבוי/שחזור של Rayman Control Panel לא ישפיע על המשחק גם אם הפעולה .תבוצע בהצלחה</value>
-  </data>
-  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
-    <value>אזהרת גיבוי/שחזור</value>
-  </data>
   <data name="About_BetaTag" xml:space="preserve">
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (מנהל מערכת)</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
-    <value>יישור כפתורים</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
-    <value>שמאל</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
-    <value>למתוח</value>
   </data>
   <data name="Installer_DirMissingWritePermission" xml:space="preserve">
     <value>הגישה למיקום ההתקנה שנבחר נדחתה. בחר מיקום אחר או הפעל את התוכנית כמנהל.</value>
@@ -1631,32 +1424,11 @@
   <data name="Backup_CompressInfo" xml:space="preserve">
     <value>גיבויים דחוסים ייקחו פחות מקום ויהיה קל יותר לנהל אותם בגלל היותם בקובץ בודד עבור כל משחק. השינוי ייכנס לתוקף בפעם הבאה שיבוצע גיבוי.</value>
   </data>
-  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
-    <value>לא ניתן היה לעדכן את השפה</value>
-  </data>
-  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
-    <value>שגיאה בעדכון השפה</value>
-  </data>
   <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
     <value>השפות הזמינות עשויות להשתנות בהתאם לגרסאת שחרור של המשחק</value>
   </data>
   <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
     <value>השבת אזהרת שנמוך</value>
-  </data>
-  <data name="FiestaRunVersion_Default" xml:space="preserve">
-    <value>ברירת מחדל</value>
-  </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 גרסאת</value>
-  </data>
-  <data name="Config_FiestaRunVersion" xml:space="preserve">
-    <value>Rayman Fiesta Run גרסאת</value>
-  </data>
-  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
-    <value>אם יש לך גרסאות מרובות של Rayman Fiesta Run, ניתן לשנות את גרסת ברירת המחדל להפעלה כאן</value>
   </data>
   <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
     <value>אירעה שגיאה בעת העברת הגיבוי הקיים של Rayman Fiesta Run לתקן הגיבוי החדש 5.0.0. בשל כך הגיבוי שלך יהפוך לבלתי זמין, אך יישאר בתיקיית הגיבוי שלך וניתן לשחזרו באופן ידני.</value>
@@ -1684,42 +1456,6 @@
   </data>
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>לאפליקציה אין את ההרשאות הנדרשות לפעולה זו. להפעיל מחדש את האפליקציה כמנהל?</value>
-  </data>
-  <data name="GameType_EducationalDosBox" xml:space="preserve">
-    <value>DOSBox חינוכי</value>
-  </data>
-  <data name="EducationalConfig_Name" xml:space="preserve">
-    <value>שם המשחק</value>
-  </data>
-  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
-    <value>מצב הפעלה</value>
-  </data>
-  <data name="EducationalOptions_Header" xml:space="preserve">
-    <value>משחקים חינוכיים</value>
-  </data>
-  <data name="EducationalOptions_Info" xml:space="preserve">
-    <value>ניתן להוסיף מספר משחקים חינוכיים להפעלה, או אותו משחק עם מצבי הפעלה שונים. המשחק הראשון ברשימה יהיה תמיד ברירת המחדל. ניתן לסדר מחדש את הרשימה על ידי גרירה/שחרור של הפריטים.</value>
-  </data>
-  <data name="EducationalOptions_Edit" xml:space="preserve">
-    <value>עריכה</value>
-  </data>
-  <data name="EducationalOptions_Remove" xml:space="preserve">
-    <value>הסרה</value>
-  </data>
-  <data name="EducationalOptions_AddNew" xml:space="preserve">
-    <value>הוסף משחק חדש</value>
-  </data>
-  <data name="EducationalOptions_EditHeader" xml:space="preserve">
-    <value>ערוך משחק</value>
-  </data>
-  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
-    <value>צריך להיות לפחות משחק אחד זמין להפעלה</value>
-  </data>
-  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
-    <value>לא ניתן להסיר את המשחק</value>
-  </data>
-  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
-    <value>עריכת המשחק עברה בהצלחה</value>
   </data>
   <data name="App_ExceptionMessage" xml:space="preserve">
     <value>{0}
@@ -1783,18 +1519,6 @@
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>כחול</value>
   </data>
-  <data name="LaunchModeConflict" xml:space="preserve">
-    <value>שניים או יותר מהמשחקים החינוכיים חולקים את אותו שם מצב הפעלה ובכך ישתמשו באותו גיבוי. שנה את שמות מצבי ההשקה כך שיהיו שונים כדי להימנע מכך.</value>
-  </data>
-  <data name="LaunchModeConflictHeader" xml:space="preserve">
-    <value>התנגשות במצב הפעלה</value>
-  </data>
-  <data name="Links_Local_RGHConfig" xml:space="preserve">
-    <value>Rabbids Go Home הגדרת</value>
-  </data>
-  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
-    <value>Rayman Raving Rabbids 2 הגדרות</value>
-  </data>
   <data name="Settings_EditJumpList" xml:space="preserve">
     <value>ערוך רשימת קפיצות</value>
   </data>
@@ -1809,9 +1533,6 @@
   </data>
   <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
     <value>לא כלול</value>
-  </data>
-  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
-    <value>אפליקציות Microsoft Store אינן נתמכות בגרסה הנוכחית של Windows</value>
   </data>
   <data name="GetExistingBackupsError" xml:space="preserve">
     <value>לא ניתן היה להשיג את הגיבויים הקיימים עבור {0}</value>
@@ -1840,17 +1561,8 @@
   <data name="Config_DiscCheckInfo" xml:space="preserve">
     <value>ביטול בדיקת הדיסק מאפשר לשחק את המשחק ללא צורך בהכנסת דיסק המשחק</value>
   </data>
-  <data name="App_SelectGameTypeHeader" xml:space="preserve">
-    <value>בחר סוג משחק</value>
-  </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>לפתוח ב Microsoft Store</value>
-  </data>
-  <data name="GamesPage_FindGames" xml:space="preserve">
-    <value>מצא משחקים</value>
-  </data>
-  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
-    <value>מחפש משחקים מותקנים ומוסיף אותם לתוכנה</value>
   </data>
   <data name="GameFinder_NoResults" xml:space="preserve">
     <value>לא נמצאו משחקים חדשים</value>
@@ -1860,15 +1572,6 @@
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>מידע</value>
-  </data>
-  <data name="GameDisplay_CloudInstall" xml:space="preserve">
-    <value>להתקין</value>
-  </data>
-  <data name="GameInstall_Error" xml:space="preserve">
-    <value>אירעה שגיאה בעת התקנת {0}</value>
-  </data>
-  <data name="GameInstall_ErrorHeader" xml:space="preserve">
-    <value>התקנת המשחק נכשלה</value>
   </data>
   <data name="GameOptions_Uninstall" xml:space="preserve">
     <value>הסר את ההתקנה</value>
@@ -1921,9 +1624,6 @@
   <data name="GamesPage_Category_Rabbids" xml:space="preserve">
     <value>Rabbids</value>
   </data>
-  <data name="GamesPage_Category_Demos" xml:space="preserve">
-    <value>דמו</value>
-  </data>
   <data name="GamesPage_Category_Other" xml:space="preserve">
     <value>אחר</value>
   </data>
@@ -1962,12 +1662,6 @@
   </data>
   <data name="UninstallGameSuccessHeader" xml:space="preserve">
     <value>הסרת ההתקנה הושלמה</value>
-  </data>
-  <data name="GameInstall_Success" xml:space="preserve">
-    <value>{0} הותקן בהצלחה</value>
-  </data>
-  <data name="GameInstall_SuccessHeader" xml:space="preserve">
-    <value>ההתקנה הושלמה</value>
   </data>
   <data name="Progression_ExportSuccess" xml:space="preserve">
     <value>קובץ השמירה יוצא בהצלחה</value>
@@ -2010,9 +1704,6 @@
   </data>
   <data name="Update_Error" xml:space="preserve">
     <value>אירעה שגיאה בעת עדכון האפליקציה</value>
-  </data>
-  <data name="CategorizeGames" xml:space="preserve">
-    <value>לקטלג משחקים</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>הפעלת המשחק עשויה להימשך מספר שניות. אם מופיע מסך שחור, לחץ על מקש ESC במקלדת כדי לשחק במשחק. הודעה זו לא תופיע שוב.</value>
@@ -2151,9 +1842,6 @@ BinarySerializer</value>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>מגדל הלפטיס</value>
   </data>
-  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>כלי עזר לפסקול לפי רמה עודכן. עבור אל כלי העזר של Rayman 1 והתקן אותו מחדש כדי להמשיך להשתמש בו.</value>
-  </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>לא ניתן היה לעדכן את גרסת Rayman</value>
   </data>
@@ -2163,23 +1851,11 @@ BinarySerializer</value>
   <data name="Utility_WIP" xml:space="preserve">
     <value>כלי השירות הזה נמצא כעת בשלבי בניה וייתכן שהוא לא יציב או יחסר בתכונות</value>
   </data>
-  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
-    <value>בחר את ספריית נתוני המשחק</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} פרטי טקסטורות סונכרנו</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
     <value>אירעה שגיאה בעת סנכרון פרטי הטקסטורה</value>
-  </data>
-  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
-    <value>סנכרן</value>
-  </data>
-  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
-    <value>סנכרן מידע טקסטורות</value>
-  </data>
-  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
-    <value>סנכרון פרטי טקסטורות יערוך את קובצי המשחק כך שהטקסטורות יוצגו באותה רזולוציה כפי שצוינה בקובצי ה-.cnt</value>
   </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
     <value>אחר</value>
@@ -2661,9 +2337,6 @@ BinarySerializer</value>
   </data>
   <data name="GameDisplay_Raymap" xml:space="preserve">
     <value>צפה במפות</value>
-  </data>
-  <data name="GameDisplay_Archives" xml:space="preserve">
-    <value>פתח ארכיון</value>
   </data>
   <data name="R1Passwords_Invalid" xml:space="preserve">
     <value>סיסמה שגויה</value>
@@ -4559,9 +4232,6 @@ Start: הפסק</value>
   <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
     <value>האם ברצונך לסנכרן אוטומטית את טקסטורות המשחק כאשר ארכיון טקסטורות נארז מחדש? סנכרון נדרש ניתן לשנות זאת בכל עת בדף ההגדרות.</value>
   </data>
-  <data name="GameDisplay_Patcher" xml:space="preserve">
-    <value>טלאים</value>
-  </data>
   <data name="About_Credits_Marteaufou" xml:space="preserve">
     <value>תרגום תוכנה בצרפתית (צרפת).</value>
   </data>
@@ -4609,9 +4279,6 @@ Start: הפסק</value>
   </data>
   <data name="Patcher_ID" xml:space="preserve">
     <value>ID</value>
-  </data>
-  <data name="Patcher_Game" xml:space="preserve">
-    <value>משחק</value>
   </data>
   <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
     <value>בחר תמונה ממוזערת. הגודל המומלץ הוא 128x128.</value>
@@ -4766,20 +4433,11 @@ Start: הפסק</value>
   <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
     <value>ספריית ykth המשחק נוצרה עם גרסה חדשה יותר של Rayman Control Panel ואינה ניתנת לקריאה</value>
   </data>
-  <data name="Patcher_ReadLibraryGameMismatchError" xml:space="preserve">
-    <value>ספריית טלאי המשחק נוצרה עבור {0}</value>
-  </data>
   <data name="Patcher_SecurityWarning" xml:space="preserve">
     <value>טלאי {0} מוסיף או מחליף קבצים רגישים, כגון קבצי הפעלה, במשחק. הוסף את התיקון הזה רק אם אתה סומך על יוצר הטלאי. האם להמשיך?</value>
   </data>
-  <data name="Patcher_ReadPatchGameNotAddedError" xml:space="preserve">
-    <value>לא ניתן לפתוח את הטלאי {0} עבור {1} בגלל שהמשחק לא התווסף בRayman Control Panel</value>
-  </data>
   <data name="Patcher_AddPatchHeader" xml:space="preserve">
     <value>בחר טלאים להוספה</value>
-  </data>
-  <data name="Patcher_ReadPatchGameMismatchError" xml:space="preserve">
-    <value>ניתן להחיל את הטלאי שנבחר רק על {0}</value>
   </data>
   <data name="Patcher_ExtractContents_Status" xml:space="preserve">
     <value>חילוץ תוכן הטלאי</value>
@@ -4801,9 +4459,6 @@ Start: הפסק</value>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>אירעה שגיאה בעת טעינת הטלאים</value>
-  </data>
-  <data name="Patcher_LoadExternalNewerVersionError" xml:space="preserve">
-    <value>לא ניתן היה לטעון טלאים חיצוניים עקב שימוש בפורמט חדש יותר. אנא עדכן את Rayman Control Panel כדי להמשיך להיות מסוגל להוריד תיקונים חיצוניים.</value>
   </data>
   <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
     <value>אירעה שגיאה בעת טעינת טלאים חיצוניים</value>
@@ -4847,9 +4502,6 @@ Start: הפסק</value>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>קבצים שהוסרו:</value>
   </data>
-  <data name="PatchCreator_GameNotAddedError" xml:space="preserve">
-    <value>ניתן ליצור טלאי רק למשחק שהוספת לRayman Control Panel</value>
-  </data>
   <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
     <value>בחר טלאי לייבא ממנו</value>
   </data>
@@ -4876,8 +4528,5 @@ Start: הפסק</value>
   </data>
   <data name="PatchCreator_CreateNew" xml:space="preserve">
     <value>צור תלאי חדש</value>
-  </data>
-  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
-    <value>עדכן תלאי קיים</value>
   </data>
 </root>

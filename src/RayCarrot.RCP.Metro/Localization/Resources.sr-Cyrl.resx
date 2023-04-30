@@ -141,18 +141,6 @@
   <data name="Save" xml:space="preserve">
     <value>Сачувај</value>
   </data>
-  <data name="GameType_Desktop" xml:space="preserve">
-    <value>Апликација на радној површини</value>
-  </data>
-  <data name="GameType_DosBox" xml:space="preserve">
-    <value>ДОСБокс</value>
-  </data>
-  <data name="GameType_Steam" xml:space="preserve">
-    <value>Стим</value>
-  </data>
-  <data name="GameType_WinStore" xml:space="preserve">
-    <value>Мајкрософт продавница</value>
-  </data>
   <data name="MountPathHeader" xml:space="preserve">
     <value>Путања за монтирање</value>
   </data>
@@ -272,12 +260,6 @@
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Поништи ово ако у игри постоје графички кварови</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>Динамичке сенке</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>Статичке сенке</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>Текстуре</value>
@@ -417,12 +399,6 @@
   <data name="Backup_Restore" xml:space="preserve">
     <value>Поврати</value>
   </data>
-  <data name="Games_Installed" xml:space="preserve">
-    <value>Инсталирано</value>
-  </data>
-  <data name="Games_NotInstalled" xml:space="preserve">
-    <value>Није инсталирано</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Кориснички ниво</value>
   </data>
@@ -437,12 +413,6 @@
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
-  </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 Edition</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>

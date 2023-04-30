@@ -141,18 +141,6 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="GameType_Desktop" xml:space="preserve">
-    <value>Desktop Application</value>
-  </data>
-  <data name="GameType_DosBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="GameType_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="GameType_WinStore" xml:space="preserve">
-    <value>Microsoft Store</value>
-  </data>
   <data name="MountPathHeader" xml:space="preserve">
     <value>Mount Path</value>
   </data>
@@ -272,12 +260,6 @@
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Uncheck this if there are graphical glitches in the game</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>Dynamic Shadows</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>Static Shadows</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>Textures</value>
@@ -418,12 +400,6 @@ This is a growing project with more features planned on being added with future 
   <data name="Backup_Restore" xml:space="preserve">
     <value>Restore</value>
   </data>
-  <data name="Games_Installed" xml:space="preserve">
-    <value>Installed</value>
-  </data>
-  <data name="Games_NotInstalled" xml:space="preserve">
-    <value>Not Installed</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>User Level</value>
   </data>
@@ -478,32 +454,11 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
     <value>Show a message when an operation has succeeded</value>
   </data>
-  <data name="Settings_DesignShowAllGames" xml:space="preserve">
-    <value>Show games which are not installed</value>
-  </data>
-  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
-    <value>Show all games on the games page, even if they are not installed</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Show progress on task bar icon</value>
   </data>
   <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
     <value>Show download progress on the taskbar icon</value>
-  </data>
-  <data name="Settings_DosBoxHeader" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Settings_DosBoxPath" xml:space="preserve">
-    <value>DOSBox file path</value>
-  </data>
-  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
-    <value>The DOSBox executable file path</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
-    <value>DOSBox configuration file path (optional)</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
-    <value>The DOSBox configuration file path</value>
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Debug</value>
@@ -598,18 +553,6 @@ This is a growing project with more features planned on being added with future 
   <data name="RLU_UbiRayInfo" xml:space="preserve">
     <value>This utility modifies the game configuration to make UbiRay appear as a normal costume in the Heroes Gallery</value>
   </data>
-  <data name="ROU_HQVideosHeader" xml:space="preserve">
-    <value>Higher Quality Videos</value>
-  </data>
-  <data name="ROU_HQVideosInfo" xml:space="preserve">
-    <value>The video cutscenes in the PC version are compressed and in lower quality than in the console versions. This utility replaces those videos with the higher quality ones from the console versions.</value>
-  </data>
-  <data name="ROU_HQVideosReplace" xml:space="preserve">
-    <value>Replace with the high quality videos</value>
-  </data>
-  <data name="ROU_HQVideosRevert" xml:space="preserve">
-    <value>Revert back to the original videos</value>
-  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>Debug Commands</value>
   </data>
@@ -676,9 +619,6 @@ This is a growing project with more features planned on being added with future 
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Options</value>
   </data>
-  <data name="GameDisplay_Launch" xml:space="preserve">
-    <value>Launch</value>
-  </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Install from disc</value>
   </data>
@@ -693,9 +633,6 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Purchase from Steam</value>
-  </data>
-  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Purchase from Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -758,18 +695,6 @@ filePath</comment>
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Invalid Location</value>
   </data>
-  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
-    <value>The game could not be found. Try choosing desktop app as the type instead.</value>
-  </data>
-  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
-    <value>Game not found</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>The game could not be found under installed Microsoft Store apps</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
-    <value>Game not found</value>
-  </data>
   <data name="LocateGame_Error" xml:space="preserve">
     <value>An error occurred when locating the game</value>
   </data>
@@ -780,9 +705,6 @@ filePath</comment>
     <value>An error occurred when attempting to run {0}</value>
     <comment>Arguments:
 gameDisplayName</comment>
-  </data>
-  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
-    <value>DOSBox could not be found. Specify a valid path under settings to run this game.</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>The mount path could not be found. Specify a valid path under the game options to run this game.</value>
@@ -803,9 +725,6 @@ gameDisplayName</comment>
     <comment>Arguments:
 gameDisplayName</comment>
   </data>
-  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
-    <value>Utility warning</value>
-  </data>
   <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
     <value>Installed games found</value>
   </data>
@@ -817,17 +736,6 @@ gameDisplayName</comment>
   </data>
   <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
     <value>To be able to configure the Rayman games without running this program as administrator you will need to accept the following admin prompt</value>
-  </data>
-  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
-    <value>The following utilities have been applied to this game and will not be removed when removing the game. To remove the utilities, go to the utilities dialog and disable/uninstall them or revert back to the original option if available.</value>
-  </data>
-  <data name="AddGame_DuplicateHeader" xml:space="preserve">
-    <value>Error adding new game</value>
-  </data>
-  <data name="AddGame_Duplicate" xml:space="preserve">
-    <value>The game {0} has already been added</value>
-    <comment>Arguments:
-gameDisplayName</comment>
   </data>
   <data name="Restore_Failed" xml:space="preserve">
     <value>Restore failed for {0}</value>
@@ -1179,9 +1087,6 @@ gameDisplayName</comment>
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>Steam ID:</value>
   </data>
-  <data name="GameInfo_GameType" xml:space="preserve">
-    <value>Game type:</value>
-  </data>
   <data name="GameInfo_InstallDir" xml:space="preserve">
     <value>Install location:</value>
   </data>
@@ -1225,14 +1130,6 @@ gameDisplayName</comment>
   <data name="GameShortcut_ErrorHeader" xml:space="preserve">
     <value>Shortcut creation failed</value>
   </data>
-  <data name="GameNotFound" xml:space="preserve">
-    <value>The game {0} was not found</value>
-    <comment>Arguments:
-gameDisplayName</comment>
-  </data>
-  <data name="GameNotFoundHeader" xml:space="preserve">
-    <value>Unable to find game</value>
-  </data>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!</value>
   </data>
@@ -1253,9 +1150,6 @@ gameDisplayName</comment>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portuguese (Portugal) program translation</value>
-  </data>
-  <data name="ROU_HQVideosFailed" xml:space="preserve">
-    <value>Video replacement failed</value>
   </data>
   <data name="ROU_UpdateFailed" xml:space="preserve">
     <value>Downloading the Rayman Origins updater failed</value>
@@ -1408,9 +1302,6 @@ To get started, change the settings you want below and press 'Continue'. The set
   <data name="GameOptions_Utilities" xml:space="preserve">
     <value>Utilities</value>
   </data>
-  <data name="GameOptions_Options" xml:space="preserve">
-    <value>Options</value>
-  </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Create shortcut</value>
   </data>
@@ -1506,35 +1397,11 @@ totalGames</comment>
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Some games were not backed up</value>
   </data>
-  <data name="GameOptions_LaunchMode" xml:space="preserve">
-    <value>Launch Mode</value>
-  </data>
-  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
-    <value>This determines how the game will be launched. If the game is running inside of an emulator, such as DOSBox, then the launch mode will apply to the emulator.</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
-    <value>As administrator (optional)</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
-    <value>As administrator</value>
-  </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>Configuration</value>
   </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Animations include page transitions and resizing animations for the Games page</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Always runs the game with the same permissions as the Rayman Control Panel was launched with</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
-    <value>Same as Default, but with the option to run the game as administrator</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
-    <value>Always attempts to run the game as administrator</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steam group</value>
@@ -1553,15 +1420,6 @@ totalGames</comment>
   </data>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Edition 3)</value>
-  </data>
-  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
-    <value>Link style</value>
-  </data>
-  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
-    <value>List</value>
-  </data>
-  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
-    <value>Group</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Refresh</value>
@@ -1592,68 +1450,14 @@ downloadURL</comment>
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Error opening key</value>
   </data>
-  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
-    <value>Primary ubi.ini file</value>
-  </data>
-  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
-    <value>Secondary ubi.ini file</value>
-  </data>
-  <data name="Links_Local_R2UbiIni" xml:space="preserve">
-    <value>Rayman 2 ubi.ini file</value>
-  </data>
-  <data name="Links_Local_DOSBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
-    <value>DOSBox configuration file</value>
-  </data>
-  <data name="Links_Local_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="Links_Local_SteamGames" xml:space="preserve">
-    <value>Steam games</value>
-  </data>
-  <data name="Links_Local_GOGClient" xml:space="preserve">
-    <value>GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_GOGGames" xml:space="preserve">
-    <value>GOG Galaxy games</value>
-  </data>
-  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
-    <value>Rayman Raving Rabbids settings</value>
-  </data>
-  <data name="Links_Local_RORegSettings" xml:space="preserve">
-    <value>Rayman Origins settings</value>
-  </data>
-  <data name="Links_Local_RLRegSettings" xml:space="preserve">
-    <value>Rayman Legends settings</value>
-  </data>
-  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
-    <value>nGlide settings</value>
-  </data>
-  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
-    <value>nGlide 2.0 settings</value>
-  </data>
   <data name="Links_Local_AppData" xml:space="preserve">
     <value>App user data</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Log file</value>
   </data>
-  <data name="Links_Local_Utilities" xml:space="preserve">
-    <value>Utilities directory</value>
-  </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Registry app data</value>
-  </data>
-  <data name="Links_OpenErrorNotFound" xml:space="preserve">
-    <value>The link item could not be opened due to not being found</value>
-  </data>
-  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
-    <value>Invalid link address</value>
-  </data>
-  <data name="LinksPageHeader" xml:space="preserve">
-    <value>Links</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>A new beta update is available to download. Download now?
@@ -1690,26 +1494,11 @@ appDataLocations</comment>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Program testing</value>
   </data>
-  <data name="Backup_GOGSyncWarning" xml:space="preserve">
-    <value>This game might have its save files synced through GOG Galaxy. If so the backup/restore utility might not effect this game even though the operation succeeds.</value>
-  </data>
-  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
-    <value>Backup/Restore warning</value>
-  </data>
   <data name="About_BetaTag" xml:space="preserve">
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Administrator)</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
-    <value>Button alignment</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
-    <value>Left</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
-    <value>Stretch</value>
   </data>
   <data name="Installer_DirMissingWritePermission" xml:space="preserve">
     <value>Access was denied to the selected install location. Select another location or run the program as administrator.</value>
@@ -1723,32 +1512,11 @@ appDataLocations</comment>
   <data name="Backup_CompressInfo" xml:space="preserve">
     <value>Compressed backups will take less space and be easier to manage due to being in a single file for each game. The change will go into effect the next time a backup is performed.</value>
   </data>
-  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
-    <value>The language could not be updated</value>
-  </data>
-  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
-    <value>Error updating language</value>
-  </data>
   <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
     <value>The available languages may vary between releases</value>
   </data>
   <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
     <value>Disable downgrade warning</value>
-  </data>
-  <data name="FiestaRunVersion_Default" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 Edition</value>
-  </data>
-  <data name="Config_FiestaRunVersion" xml:space="preserve">
-    <value>Rayman Fiesta Run version</value>
-  </data>
-  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
-    <value>If you have multiple versions of Rayman Fiesta Run you can change the default version to launch here</value>
   </data>
   <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
     <value>An error occurred when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually.</value>
@@ -1776,42 +1544,6 @@ appDataLocations</comment>
   </data>
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>The application does not have the required permissions for this operation. Restart the app as administrator?</value>
-  </data>
-  <data name="GameType_EducationalDosBox" xml:space="preserve">
-    <value>Educational DOSBox</value>
-  </data>
-  <data name="EducationalConfig_Name" xml:space="preserve">
-    <value>Game Name</value>
-  </data>
-  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
-    <value>Launch mode</value>
-  </data>
-  <data name="EducationalOptions_Header" xml:space="preserve">
-    <value>Educational Games</value>
-  </data>
-  <data name="EducationalOptions_Info" xml:space="preserve">
-    <value>Multiple educational games can be added to launch, or the same game with different launch modes. The first game in the list is always the default one. The list can be reordered by dragging/dropping the items.</value>
-  </data>
-  <data name="EducationalOptions_Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="EducationalOptions_Remove" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="EducationalOptions_AddNew" xml:space="preserve">
-    <value>Add new game</value>
-  </data>
-  <data name="EducationalOptions_EditHeader" xml:space="preserve">
-    <value>Edit game</value>
-  </data>
-  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
-    <value>There has to be at least one game available to launch</value>
-  </data>
-  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
-    <value>Can't remove game</value>
-  </data>
-  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
-    <value>The game has been edited successfully</value>
   </data>
   <data name="App_ExceptionMessage" xml:space="preserve">
     <value>{0}
@@ -1878,18 +1610,6 @@ exceptionMessage</comment>
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>Blue</value>
   </data>
-  <data name="LaunchModeConflict" xml:space="preserve">
-    <value>Two or more of the educational games share the same launch mode name and will thus use the same backup. Change the launch mode names to be different to avoid this.</value>
-  </data>
-  <data name="LaunchModeConflictHeader" xml:space="preserve">
-    <value>Launch mode conflict</value>
-  </data>
-  <data name="Links_Local_RGHConfig" xml:space="preserve">
-    <value>Rabbids Go Home config</value>
-  </data>
-  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
-    <value>Rayman Raving Rabbids 2 settings</value>
-  </data>
   <data name="Settings_EditJumpList" xml:space="preserve">
     <value>Edit jump list</value>
   </data>
@@ -1904,9 +1624,6 @@ exceptionMessage</comment>
   </data>
   <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
     <value>Not Included</value>
-  </data>
-  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
-    <value>Microsoft Store apps are not supported on the current version of Windows</value>
   </data>
   <data name="GetExistingBackupsError" xml:space="preserve">
     <value>The existing backups for {0} could not be obtained</value>
@@ -1939,17 +1656,8 @@ outputDir</comment>
   <data name="Config_DiscCheckInfo" xml:space="preserve">
     <value>Disabling the disc checking allows the game to be played without having to insert the game disc</value>
   </data>
-  <data name="App_SelectGameTypeHeader" xml:space="preserve">
-    <value>Select Game Type</value>
-  </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Open in Microsoft Store</value>
-  </data>
-  <data name="GamesPage_FindGames" xml:space="preserve">
-    <value>Find Games</value>
-  </data>
-  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
-    <value>Searches for installed games and adds them to the program</value>
   </data>
   <data name="GameFinder_NoResults" xml:space="preserve">
     <value>No new games were found</value>
@@ -1959,17 +1667,6 @@ outputDir</comment>
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Information</value>
-  </data>
-  <data name="GameDisplay_CloudInstall" xml:space="preserve">
-    <value>Install</value>
-  </data>
-  <data name="GameInstall_Error" xml:space="preserve">
-    <value>An error occurred when installing {0}</value>
-    <comment>Arguments:
-gameDisplayName</comment>
-  </data>
-  <data name="GameInstall_ErrorHeader" xml:space="preserve">
-    <value>Game Installation Failed</value>
   </data>
   <data name="GameOptions_Uninstall" xml:space="preserve">
     <value>Uninstall</value>
@@ -2030,9 +1727,6 @@ downloadSize</comment>
   <data name="GamesPage_Category_Rabbids" xml:space="preserve">
     <value>Rabbids</value>
   </data>
-  <data name="GamesPage_Category_Demos" xml:space="preserve">
-    <value>Demos</value>
-  </data>
   <data name="GamesPage_Category_Other" xml:space="preserve">
     <value>Other</value>
   </data>
@@ -2075,14 +1769,6 @@ gameDisplayName</comment>
   </data>
   <data name="UninstallGameSuccessHeader" xml:space="preserve">
     <value>Uninstallation complete</value>
-  </data>
-  <data name="GameInstall_Success" xml:space="preserve">
-    <value>{0} was successfully installed</value>
-    <comment>Arguments:
-gameDisplayName</comment>
-  </data>
-  <data name="GameInstall_SuccessHeader" xml:space="preserve">
-    <value>Installation complete</value>
   </data>
   <data name="Progression_ExportSuccess" xml:space="preserve">
     <value>The save file has been successfully exported</value>
@@ -2131,9 +1817,6 @@ gameDisplayName</comment>
   </data>
   <data name="Update_Error" xml:space="preserve">
     <value>An error occurred when updating the application</value>
-  </data>
-  <data name="CategorizeGames" xml:space="preserve">
-    <value>Categorize games</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>The game may take a few seconds to launch. If a black screen appears, then press the ESC key on your keyboard to play the game. This message will not show again.</value>
@@ -2278,9 +1961,6 @@ fileFormat</comment>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>The Tower of the Leptys</value>
   </data>
-  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>The Per-Level Soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it.</value>
-  </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>The Rayman version could not be updated</value>
   </data>
@@ -2290,9 +1970,6 @@ fileFormat</comment>
   <data name="Utility_WIP" xml:space="preserve">
     <value>This utility is currently work in process and might be unstable or missing features</value>
   </data>
-  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
-    <value>Select game data directory</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} texture infos have been synchronized</value>
     <comment>Arguments:
@@ -2301,15 +1978,6 @@ totalTextures</comment>
   </data>
   <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
     <value>An error occurred when synchronizing the texture info</value>
-  </data>
-  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
-    <value>Synchronize</value>
-  </data>
-  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
-    <value>Synchronize Texture Info</value>
-  </data>
-  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
-    <value>Syncing the texture info will edit the game files to have the textures displayed at the same resolution as specified in the .cnt files</value>
   </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
     <value>Other</value>
@@ -2799,9 +2467,6 @@ file</comment>
   </data>
   <data name="GameDisplay_Raymap" xml:space="preserve">
     <value>View maps</value>
-  </data>
-  <data name="GameDisplay_Archives" xml:space="preserve">
-    <value>Open archives</value>
   </data>
   <data name="R1Passwords_Invalid" xml:space="preserve">
     <value>Invalid password</value>
@@ -4721,9 +4386,6 @@ partNumber</comment>
   <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
     <value>Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page.</value>
   </data>
-  <data name="GameDisplay_Patcher" xml:space="preserve">
-    <value>Patches</value>
-  </data>
   <data name="About_Credits_Marteaufou" xml:space="preserve">
     <value>French (France) program translation</value>
   </data>
@@ -4771,9 +4433,6 @@ partNumber</comment>
   </data>
   <data name="Patcher_ID" xml:space="preserve">
     <value>ID</value>
-  </data>
-  <data name="Patcher_Game" xml:space="preserve">
-    <value>Game</value>
   </data>
   <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
     <value>Select a thumbnail. The recommended size is 128x128.</value>
@@ -4932,29 +4591,13 @@ game</comment>
   <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
     <value>The game patch library was made with a newer version of the Rayman Control Panel and can not be read</value>
   </data>
-  <data name="Patcher_ReadLibraryGameMismatchError" xml:space="preserve">
-    <value>The game patch library was made with for {0}</value>
-    <comment>Arguments:
-game</comment>
-  </data>
   <data name="Patcher_SecurityWarning" xml:space="preserve">
     <value>The patch {0} adds or replaces sensitive files, such as executable files, in the game. Only add this patch if you trust the author. Continue?</value>
     <comment>Arguments:
 patchName</comment>
   </data>
-  <data name="Patcher_ReadPatchGameNotAddedError" xml:space="preserve">
-    <value>Can't open the patch {0} for {1} due to the game not having been added in the Rayman Control Panel</value>
-    <comment>Arguments:
-patchName
-game</comment>
-  </data>
   <data name="Patcher_AddPatchHeader" xml:space="preserve">
     <value>Select patches to add</value>
-  </data>
-  <data name="Patcher_ReadPatchGameMismatchError" xml:space="preserve">
-    <value>The selected patch can only be applied to {0}</value>
-    <comment>Arguments:
-game</comment>
   </data>
   <data name="Patcher_ExtractContents_Status" xml:space="preserve">
     <value>Extracting patch contents</value>
@@ -4976,9 +4619,6 @@ game</comment>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>An error occurred when loading the patches</value>
-  </data>
-  <data name="Patcher_LoadExternalNewerVersionError" xml:space="preserve">
-    <value>External patches could not be loaded due to using a newer format. Please update the Rayman Control Panel to continue to be able to download external patches.</value>
   </data>
   <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
     <value>An error occurred when loading external patches</value>
@@ -5022,9 +4662,6 @@ game</comment>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Removed files:</value>
   </data>
-  <data name="PatchCreator_GameNotAddedError" xml:space="preserve">
-    <value>You can only create a patch for a game that you have added to the Rayman Control Panel</value>
-  </data>
   <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
     <value>Select a patch to import from</value>
   </data>
@@ -5053,8 +4690,5 @@ patchCount</comment>
   </data>
   <data name="PatchCreator_CreateNew" xml:space="preserve">
     <value>Create new patch</value>
-  </data>
-  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
-    <value>Update existing patch</value>
   </data>
 </root>

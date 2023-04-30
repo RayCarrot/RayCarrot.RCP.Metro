@@ -141,18 +141,6 @@
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
   </data>
-  <data name="GameType_Desktop" xml:space="preserve">
-    <value>Aplicación de Escritorio</value>
-  </data>
-  <data name="GameType_DosBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="GameType_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="GameType_WinStore" xml:space="preserve">
-    <value>Store de Microsoft</value>
-  </data>
   <data name="MountPathHeader" xml:space="preserve">
     <value>Ruta de Montaje</value>
   </data>
@@ -274,12 +262,6 @@ hacer mas grande/mejorar los modos de baja resolución</value>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Desmarca esta opcion si hay errores gráficos en el juego.</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>Sombras dinámicas</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>Sombras estáticas</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>Texturas</value>
@@ -422,12 +404,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Backup_Restore" xml:space="preserve">
     <value>Restaurar</value>
   </data>
-  <data name="Games_Installed" xml:space="preserve">
-    <value>Instalado</value>
-  </data>
-  <data name="Games_NotInstalled" xml:space="preserve">
-    <value>No instalado</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Nível de usuario</value>
   </data>
@@ -482,32 +458,11 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
     <value>Mostrar un mensaje cuando una operación haya sido exitosa.</value>
   </data>
-  <data name="Settings_DesignShowAllGames" xml:space="preserve">
-    <value>Mostrar juegos no instalados.</value>
-  </data>
-  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
-    <value>Muestra todos los juegos en esta pagina, incluso si no han sido instalados</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Muestra la barra de progreso en la icona de la barraa de tareas</value>
   </data>
   <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
     <value>Mostrar el progreso de las descargas en el icono de la barra de tareas</value>
-  </data>
-  <data name="Settings_DosBoxHeader" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Settings_DosBoxPath" xml:space="preserve">
-    <value>Ruta del archivo de DOSBox </value>
-  </data>
-  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
-    <value>La dirección del ejecutable de DOSBox</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
-    <value>Dirección de los archivos de configuración de DOSBox (opcional)</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
-    <value>La dirección de los archivos de configuración de DOSBox</value>
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Depurar</value>
@@ -590,9 +545,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="RDU_CreateConfigHeader" xml:space="preserve">
     <value>Crear archivo de configuracion faltante</value>
   </data>
-  <data name="ROU_HQVideosHeader" xml:space="preserve">
-    <value>Videos de Alta Calidad</value>
-  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>Comandos de depurar</value>
   </data>
@@ -629,9 +581,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Opciones</value>
   </data>
-  <data name="GameDisplay_Launch" xml:space="preserve">
-    <value>Iniciar</value>
-  </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Instalar por el disco</value>
   </data>
@@ -646,9 +595,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Comprar en Steam</value>
-  </data>
-  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Comprar en Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mappeador</value>
@@ -701,16 +647,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>
 </value>
   </data>
-  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
-    <value>No se ha encontrado el juego</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>
-</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
-    <value>No se ha encontrado el juego</value>
-  </data>
   <data name="LocateGame_Error" xml:space="preserve">
     <value>Ha ocurrido un error al localizar el juego</value>
   </data>
@@ -739,20 +675,8 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel</value>
   </data>
-  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
-    <value>Ejecutar como administrador (Opcional)</value>
-  </data>
-  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
-    <value>Ejecutar como administrador</value>
-  </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>Configuración</value>
-  </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 Edition</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>

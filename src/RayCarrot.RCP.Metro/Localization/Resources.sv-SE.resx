@@ -141,18 +141,6 @@
   <data name="Save" xml:space="preserve">
     <value>Spara</value>
   </data>
-  <data name="GameType_Desktop" xml:space="preserve">
-    <value>Skrivbordsapp</value>
-  </data>
-  <data name="GameType_DosBox" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="GameType_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="GameType_WinStore" xml:space="preserve">
-    <value>Microsoft Store</value>
-  </data>
   <data name="MountPathHeader" xml:space="preserve">
     <value>Monterings-sökväg</value>
   </data>
@@ -272,12 +260,6 @@
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Kryssa inte i om det är grafikproblem i spelet</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>Dynamic shadows</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>Static shadows</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>Textures</value>
@@ -418,12 +400,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Backup_Restore" xml:space="preserve">
     <value>Återställ</value>
   </data>
-  <data name="Games_Installed" xml:space="preserve">
-    <value>Installerade</value>
-  </data>
-  <data name="Games_NotInstalled" xml:space="preserve">
-    <value>Inte installerade</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Användarnivå</value>
   </data>
@@ -478,32 +454,11 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
     <value>Visa ett meddelande när en operation har lyckats</value>
   </data>
-  <data name="Settings_DesignShowAllGames" xml:space="preserve">
-    <value>Visa spel som inte är installerade</value>
-  </data>
-  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
-    <value>Visa alla spel på spel-sidan, även om de inte är installerade</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Visa framsteg på ikonen i aktivitetsfältet</value>
   </data>
   <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
     <value>Visa nedladdnings-framsteg på ikonen i aktivitetsfältet</value>
-  </data>
-  <data name="Settings_DosBoxHeader" xml:space="preserve">
-    <value>DOSBox</value>
-  </data>
-  <data name="Settings_DosBoxPath" xml:space="preserve">
-    <value>DOSBox filsökväg</value>
-  </data>
-  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
-    <value>DOSBox filens sökväg</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
-    <value>DOSBox konfigurationsfil sökväg (valfri)</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
-    <value>DOSBox konfigurationsfil sökväg</value>
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Debug</value>
@@ -598,18 +553,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="RLU_UbiRayInfo" xml:space="preserve">
     <value>UbiRay är en karaktär som inte är tillgängligt i spelet att spela som, men fortfarande finns i spelfilerna. Det här verktyget ändrar din spelfil så att UbiRay är den valda karaktären så att du kan spela som honom.</value>
   </data>
-  <data name="ROU_HQVideosHeader" xml:space="preserve">
-    <value>Högre kvalitet videor</value>
-  </data>
-  <data name="ROU_HQVideosInfo" xml:space="preserve">
-    <value>Videorna i PC-versionen är i lägre kvalitet än i konsolversionerna. Det här verktyget ersätter de videoklippen med de som har högre kvalitet från konsolversionerna.</value>
-  </data>
-  <data name="ROU_HQVideosReplace" xml:space="preserve">
-    <value>Ersätt med videorna med högre kvalitet</value>
-  </data>
-  <data name="ROU_HQVideosRevert" xml:space="preserve">
-    <value>Återställ de ursprungliga videorna</value>
-  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>Debugkommandon</value>
   </data>
@@ -676,9 +619,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Alternativ</value>
   </data>
-  <data name="GameDisplay_Launch" xml:space="preserve">
-    <value>Starta</value>
-  </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Installera från skiva</value>
   </data>
@@ -693,9 +633,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Köp från Steam</value>
-  </data>
-  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Köp från Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -754,18 +691,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Ogiltig mapp</value>
   </data>
-  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
-    <value>Spelet kunde inte hittas. Försök att välja skrivbordsapp som typen istället.</value>
-  </data>
-  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
-    <value>Spelet kunde inte hittas</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>Spelet kunde inte hittas under installerade Microsoft Store appar</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
-    <value>Spelet kunde inte hittas</value>
-  </data>
   <data name="LocateGame_Error" xml:space="preserve">
     <value>Ett fel inträffade när spelet skulle hittas</value>
   </data>
@@ -774,9 +699,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>Ett fel inträffade när {0} skulle starta</value>
-  </data>
-  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
-    <value>DOSBox kunde inte hittas. Ange en giltig sökväg under inställningarna för att starta spelet.</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>Monterings-sökvägen kunde inte hittas. Specificera en giltig sökväg under spel-alternativen.</value>
@@ -793,9 +715,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Backup_MissingDirectoriesError" xml:space="preserve">
     <value>Säkerhetskopiering för {0} kunde inte slutföras på grund av att inte alla angivna mappar hittades</value>
   </data>
-  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
-    <value>Verktygs-varning</value>
-  </data>
   <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
     <value>Installerade spel hittades</value>
   </data>
@@ -807,15 +726,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
     <value>För att ändra inställningar för många av Rayman spelen utan att behöva köra det här programmet som administratör måste du acceptera den följande admin prompten</value>
-  </data>
-  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
-    <value>Följande verktyg har lagts till för det här spelet och kommer inte att tas bort när du tar bort spelet. För att ta bort verktygen, gå till verktyg-dialogen och avaktivera/avinstallera dem eller återgå till originalalternativet om tillgängligt.</value>
-  </data>
-  <data name="AddGame_DuplicateHeader" xml:space="preserve">
-    <value>Det gick inte att lägga till spelet</value>
-  </data>
-  <data name="AddGame_Duplicate" xml:space="preserve">
-    <value>Spelet {0} har redan lagts till</value>
   </data>
   <data name="Restore_Failed" xml:space="preserve">
     <value>Återställningen misslyckades för {0}</value>
@@ -1116,9 +1026,6 @@ Försök igen?"</value>
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>Steam ID:</value>
   </data>
-  <data name="GameInfo_GameType" xml:space="preserve">
-    <value>Speltyp:</value>
-  </data>
   <data name="GameInfo_InstallDir" xml:space="preserve">
     <value>Spel-sökväg:</value>
   </data>
@@ -1158,12 +1065,6 @@ Försök igen?"</value>
   <data name="GameShortcut_ErrorHeader" xml:space="preserve">
     <value>Skapandet av genvägen misslyckades</value>
   </data>
-  <data name="GameNotFound" xml:space="preserve">
-    <value>Spelet {0} kunde inte hittas</value>
-  </data>
-  <data name="GameNotFoundHeader" xml:space="preserve">
-    <value>Kunde inte hitta spel</value>
-  </data>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>Ett särskilt tack till AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski och alla andra Rayman fans!</value>
   </data>
@@ -1184,9 +1085,6 @@ Försök igen?"</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 översättningar, Portuguese (Portugal) programöversättning</value>
-  </data>
-  <data name="ROU_HQVideosFailed" xml:space="preserve">
-    <value>Videoersättningen misslyckades</value>
   </data>
   <data name="ROU_UpdateFailed" xml:space="preserve">
     <value>Nedladdning av Rayman Origins-uppdateraren misslyckades</value>
@@ -1347,27 +1245,6 @@ Försök igen?"</value>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Upplaga 3)</value>
   </data>
-  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
-    <value>Lista</value>
-  </data>
-  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
-    <value>Grupp</value>
-  </data>
-  <data name="Links_Local_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="Links_Local_SteamGames" xml:space="preserve">
-    <value>Steam spel</value>
-  </data>
-  <data name="Links_Local_GOGClient" xml:space="preserve">
-    <value>GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_GOGGames" xml:space="preserve">
-    <value> GOG Galaxy spel</value>
-  </data>
-  <data name="LinksPageHeader" xml:space="preserve">
-    <value>Länkar</value>
-  </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
 
@@ -1380,41 +1257,14 @@ Nyheter:
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Få beta uppdateringar</value>
   </data>
-  <data name="Backup_GOGSyncWarning" xml:space="preserve">
-    <value>Det här spelet kan ha sina spelfiler synkroniserade via GOG Galaxy. Om så är fallet kommer säkerhetskopieringen/återställningen via det här verktyget eventuellt inte att påverka spelet trots att operationen lyckas.</value>
-  </data>
-  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
-    <value>Säkerhetskopieringsvarning</value>
-  </data>
   <data name="About_BetaTag" xml:space="preserve">
     <value>(BETA)</value>
-  </data>
-  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
-    <value>Vänster</value>
   </data>
   <data name="Backup_Compress" xml:space="preserve">
     <value>Komprimera säkerhetskopior</value>
   </data>
   <data name="Backup_CompressInfo" xml:space="preserve">
     <value>Komprimerade säkerhetskopior tar mindre plats och gör dem enklare att hantera på grund av att de är i en enda fil för varje spel. Ändringen träder i kraft vid nästa säkerhetskopiering.</value>
-  </data>
-  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
-    <value>Språket kunde inte uppdateras</value>
-  </data>
-  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
-    <value>Fel vid uppdatering av språk</value>
-  </data>
-  <data name="FiestaRunVersion_Default" xml:space="preserve">
-    <value>Standard</value>
-  </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 Edition</value>
-  </data>
-  <data name="Config_FiestaRunVersion" xml:space="preserve">
-    <value>Rayman Fiesta Run version</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
