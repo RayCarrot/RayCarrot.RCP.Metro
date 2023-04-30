@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using static RayCarrot.RCP.Metro.GameIcon;
 
@@ -147,11 +148,17 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
 
     private void GameTitle_OnUnloaded(object sender, RoutedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(this))
+            return;
+
         Services.Messenger.UnregisterAll(this);
     }
 
     private void GameTitle_OnLoaded(object sender, RoutedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(this))
+            return;
+
         if (Services.Messenger.IsRegistered<ModifiedGamesMessage>(this))
             return;
 
