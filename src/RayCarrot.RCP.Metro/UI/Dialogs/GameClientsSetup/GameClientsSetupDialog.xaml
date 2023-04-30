@@ -33,7 +33,7 @@
 
             <local:Card Grid.Row="0"
                         Margin="{StaticResource RCP.Thicknesses.Card}">
-                <!-- TODO-14: Allow click outside listbox to deselect -->
+                <!-- TODO-UPDATE: Allow click outside listbox to deselect -->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

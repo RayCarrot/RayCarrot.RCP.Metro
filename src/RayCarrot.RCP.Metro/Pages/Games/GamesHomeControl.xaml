@@ -77,7 +77,7 @@
             </GroupBox.Header>
 
             <ScrollViewer>
-                <!-- TODO-14: Replace this dummy text with text from web server -->
+                <!-- TODO-UPDATE: Replace this dummy text with text from web server -->
                 <TextBlock TextWrapping="Wrap">
                     <Bold>May ??, 2023</Bold><LineBreak/>
                     • Released the anniversary update (14.0.0)<LineBreak/>
