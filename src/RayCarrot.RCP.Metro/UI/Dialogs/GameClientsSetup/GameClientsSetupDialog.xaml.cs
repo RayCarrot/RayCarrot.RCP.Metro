@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
 namespace RayCarrot.RCP.Metro;
@@ -30,6 +31,11 @@ public partial class GameClientsSetupDialog : WindowContentControl
     #endregion
 
     #region Event Handlers
+
+    private void InstalledGameClientsCard_OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        ViewModel.SelectedGameClient = null;
+    }
 
     private void InstalledGameClientsListBox_OnLoaded(object sender, RoutedEventArgs e)
     {

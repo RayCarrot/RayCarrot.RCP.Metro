@@ -32,8 +32,8 @@
             </Grid.RowDefinitions>
 
             <local:Card Grid.Row="0"
-                        Margin="{StaticResource RCP.Thicknesses.Card}">
-                <!-- TODO-UPDATE: Allow click outside listbox to deselect -->
+                        Margin="{StaticResource RCP.Thicknesses.Card}"
+                        MouseDown="InstalledGameClientsCard_OnMouseDown">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
