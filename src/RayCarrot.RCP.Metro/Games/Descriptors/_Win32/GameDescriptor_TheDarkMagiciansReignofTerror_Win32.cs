@@ -25,6 +25,7 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override DateTime ReleaseDate => new(2015, 07, 13); // A bit unclear what the actual date is
 
     public override GameIconAsset Icon => GameIconAsset.TheDarkMagiciansReignofTerror;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanTheDarkMagiciansReignofTerror;
 
     #endregion
 

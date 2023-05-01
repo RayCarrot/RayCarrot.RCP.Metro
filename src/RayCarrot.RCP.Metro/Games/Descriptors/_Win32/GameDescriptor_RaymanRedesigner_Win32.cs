@@ -25,6 +25,7 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2021, 02, 04);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedesigner;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanReDesigner;
 
     #endregion
 

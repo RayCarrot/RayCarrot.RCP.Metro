@@ -25,6 +25,7 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2020, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanBowling2;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanBowling2;
 
     #endregion
 

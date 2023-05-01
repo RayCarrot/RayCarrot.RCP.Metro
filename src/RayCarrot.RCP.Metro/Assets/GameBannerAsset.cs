@@ -59,4 +59,16 @@ public enum GameBannerAsset
 
     [AssetFileName("Rayman Premiers Clics.png")]
     RaymanPremiersClics,
+
+    [AssetFileName("Rayman The Dark Magicians Reign of Terror.png")]
+    RaymanTheDarkMagiciansReignofTerror,
+
+    [AssetFileName("Rayman Redemption.png")]
+    RaymanRedemption,
+
+    [AssetFileName("Rayman ReDesigner.png")]
+    RaymanReDesigner,
+
+    [AssetFileName("Rayman Bowling 2.png")]
+    RaymanBowling2,
 }
