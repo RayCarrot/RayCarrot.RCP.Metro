@@ -162,31 +162,34 @@ public class ProgressionPageViewModel : BasePageViewModel,
             {
                 Logger.Info("Refreshing progression game items");
 
-                Games.ModifyCollection(x =>
+                Metro.App.Current.Dispatcher.Invoke(() =>
                 {
-                    x.Clear();
-
-                    Dictionary<Game, GameGroupViewModel> groups = new();
-
-                    // Add the game items
-                    foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+                    Games.ModifyCollection(x =>
                     {
-                        Game game = gameInstallation.GameDescriptor.Game;
+                        x.Clear();
 
-                        if (!groups.TryGetValue(game, out GameGroupViewModel group))
+                        Dictionary<Game, GameGroupViewModel> groups = new();
+
+                        // Add the game items
+                        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
                         {
-                            // Create a view model for the group
-                            GameInfoAttribute gameInfo = game.GetInfo();
-                            group = new GameGroupViewModel(gameInfo.GameIcon, gameInfo.DisplayName);
+                            Game game = gameInstallation.GameDescriptor.Game;
 
-                            groups[game] = group;
+                            if (!groups.TryGetValue(game, out GameGroupViewModel group))
+                            {
+                                // Create a view model for the group
+                                GameInfoAttribute gameInfo = game.GetInfo();
+                                group = new GameGroupViewModel(gameInfo.GameIcon, gameInfo.DisplayName);
+
+                                groups[game] = group;
+                            }
+
+                            x.AddRange(gameInstallation.
+                                GetComponents<ProgressionManagersComponent>().
+                                CreateManyObjects().
+                                Select(progressionManager => new GameViewModel(progressionManager, group)));
                         }
-
-                        x.AddRange(gameInstallation.
-                            GetComponents<ProgressionManagersComponent>().
-                            CreateManyObjects().
-                            Select(progressionManager => new GameViewModel(progressionManager, group)));
-                    }
+                    });
                 });
 
                 // Group games based on the backup id. Games which share the same id also share the same backup and
