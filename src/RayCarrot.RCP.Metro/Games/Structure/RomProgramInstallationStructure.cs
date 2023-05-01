@@ -7,5 +7,7 @@ public abstract class RomProgramInstallationStructure : SingleFileProgramInstall
         RomLayouts = romLayouts;
     }
 
+    public override bool SupportGameFileFinder => true;
+
     public IReadOnlyCollection<RomLayout> RomLayouts { get; }
 }

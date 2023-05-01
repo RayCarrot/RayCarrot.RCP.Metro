@@ -42,6 +42,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Link">Link</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.RomFinder">FolderSearchOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.EditJumpList">PencilBoxOutline</iconPacks:PackIconMaterialKind>
     

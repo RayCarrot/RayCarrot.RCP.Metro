@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel;
+using System.IO;
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Finder;
+using RayCarrot.RCP.Metro.Games.GameFileFinder;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -23,7 +26,8 @@ public class GamesPageViewModel : BasePageViewModel,
         AppUIManager ui,
         IMessageUIManager messageUi,
         IMessenger messenger, 
-        AppUserData data) : base(app)
+        AppUserData data, 
+        IBrowseUIManager browseUi) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
@@ -32,6 +36,7 @@ public class GamesPageViewModel : BasePageViewModel,
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         Data = data ?? throw new ArgumentNullException(nameof(data));
+        BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
 
         // Set properties
         AsyncLock = new AsyncLock();
@@ -49,6 +54,7 @@ public class GamesPageViewModel : BasePageViewModel,
         ResetSortCommand = new RelayCommand(ResetSort);
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
         FindGamesCommand = new AsyncRelayCommand(() => FindGamesAsync(false));
+        FindGameFilesCommand = new AsyncRelayCommand(FindGameFilesAsync);
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
         ConfigureGameClientsCommand = new AsyncRelayCommand(ConfigureGameClientsAsync);
         ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
@@ -69,6 +75,7 @@ public class GamesPageViewModel : BasePageViewModel,
     public ICommand ResetSortCommand { get; }
     public ICommand RefreshGamesCommand { get; }
     public ICommand FindGamesCommand { get; }
+    public ICommand FindGameFilesCommand { get; }
     public ICommand AddGamesCommand { get; }
     public ICommand ConfigureGameClientsCommand { get; }
     public ICommand ShowVersionHistoryCommand { get; }
@@ -98,6 +105,7 @@ public class GamesPageViewModel : BasePageViewModel,
     private IMessageUIManager MessageUI { get; }
     private IMessenger Messenger { get; }
     private AppUserData Data { get; }
+    private IBrowseUIManager BrowseUI { get; }
 
     #endregion
 
@@ -150,6 +158,7 @@ public class GamesPageViewModel : BasePageViewModel,
     }
 
     public bool IsGameFinderRunning { get; private set; }
+    public bool IsGameFileFinderRunning { get; private set; }
 
     public bool GroupGames
     {
@@ -477,6 +486,89 @@ public class GamesPageViewModel : BasePageViewModel,
         if (!foundItems && !runInBackground)
             await MessageUI.DisplayMessageAsync(Resources.Finder_NoResults, Resources.Finder_ResultHeader,
                 MessageType.Information);
+    }
+
+    public async Task FindGameFilesAsync()
+    {
+        if (IsGameFileFinderRunning)
+            return;
+
+        DirectoryBrowserResult browseResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
+        {
+            // TODO-UPDATE: Localize
+            Title = "Select folder to search for game ROMs and discs in",
+        });
+
+        if (browseResult.CanceledByUser)
+            return;
+
+        IsGameFileFinderRunning = true;
+
+        // Don't find games from the same paths. But we still allow the same game to be found multiple times.
+        List<FileSystemPath> excludedPaths = GamesManager.GetInstalledGames().
+            Where(x => x.GameDescriptor.Structure is SingleFileProgramInstallationStructure { SupportGameFileFinder: true }).
+            Select(x => x.InstallLocation.FilePath).
+            ToList();
+
+        // Search for every game which is a single file
+        List<GameFileFinderItem> finderItems = GamesManager.GetGameDescriptors().
+            Where(x => x.Structure is SingleFileProgramInstallationStructure { SupportGameFileFinder: true }).
+            Select(x => new GameFileFinderItem(x, (RomProgramInstallationStructure)x.Structure)).
+            ToList();
+
+        try
+        {
+            GameFileFinder finder = new(browseResult.SelectedDirectory, SearchOption.AllDirectories, excludedPaths, finderItems);
+
+            // Run the finder
+            await Task.Run(finder.Run);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Running game file finder");
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred during the game file finder operation");
+            return;
+        }
+        finally
+        {
+            IsGameFileFinderRunning = false;
+        }
+
+        // Get the games to add
+        List<GamesManager.GameToAdd> gamesToAdd = new();
+        foreach (GameFileFinderItem finderItem in finderItems)
+        {
+            if (!finderItem.HasBeenFound)
+                continue;
+
+            gamesToAdd.Add(new GamesManager.GameToAdd(
+                GameDescriptor: finderItem.GameDescriptor, 
+                InstallLocation: finderItem.FoundLocation.Value, 
+                ConfigureInstallation: new ConfigureGameInstallation(
+                    x =>
+                    {
+                        // Default the name to the filename
+                        x.SetValue(GameDataKey.RCP_CustomName, x.InstallLocation.FilePath.RemoveFileExtension().Name);
+                    })));
+        }
+
+        // Add the found games
+        IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(gamesToAdd);
+
+        if (addedGames.Any())
+        {
+            Logger.Info("The game file finder found {0} games", addedGames.Count);
+
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayMessageAsync($"The following new games were found:{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", "Game ROMs and discs found", MessageType.Success);
+        }
+        else
+        {
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayMessageAsync("No new games ROMs or discs were found", "Game file finder result",
+                MessageType.Information);
+        }
     }
 
     public Task AddGamesAsync() => UI.ShowAddGamesAsync();

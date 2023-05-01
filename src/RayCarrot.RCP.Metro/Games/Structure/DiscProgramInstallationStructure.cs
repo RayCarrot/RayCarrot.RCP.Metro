@@ -2,6 +2,8 @@
 
 public class DiscProgramInstallationStructure : SingleFileProgramInstallationStructure
 {
+    public override bool SupportGameFileFinder => true;
+
     public override FileExtension[] SupportedFileExtensions => new[]
     {
         new FileExtension(".bin"),
