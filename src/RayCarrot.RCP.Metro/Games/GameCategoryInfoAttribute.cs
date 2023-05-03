@@ -3,12 +3,12 @@
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class GameCategoryInfoAttribute : Attribute
 {
-    public GameCategoryInfoAttribute(string displayNameResourceKey, GenericIconKind icon)
+    public GameCategoryInfoAttribute(string displayNameResourceKey, GameCategoryIconAsset icon)
     {
         DisplayName = new ResourceLocString(displayNameResourceKey);
         Icon = icon;
     }
 
     public LocalizedString DisplayName { get; }
-    public GenericIconKind Icon { get; }
+    public GameCategoryIconAsset Icon { get; }
 }

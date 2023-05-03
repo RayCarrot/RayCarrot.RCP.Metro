@@ -2,7 +2,7 @@
 
 public class AddGamesGameCategoryViewModel : BaseViewModel
 {
-    public AddGamesGameCategoryViewModel(LocalizedString displayName, GenericIconKind icon)
+    public AddGamesGameCategoryViewModel(LocalizedString displayName, GameCategoryIconAsset icon)
     {
         DisplayName = displayName;
         Icon = icon;
@@ -10,6 +10,6 @@ public class AddGamesGameCategoryViewModel : BaseViewModel
     }
 
     public LocalizedString DisplayName { get; }
-    public GenericIconKind Icon { get; }
+    public GameCategoryIconAsset Icon { get; }
     public ObservableCollection<AddGamesGameGroupViewModel> GameGroups { get; }
 }

@@ -4,12 +4,6 @@ public enum GenericIconKind
 {
     None,
 
-    Games_Rayman,
-    Games_Rabbids,
-    Games_Handheld,
-    Games_Other,
-    Games_FanGames,
-
     GameAction_Play,
     GameAction_RunAsAdmin,
     GameAction_Location,

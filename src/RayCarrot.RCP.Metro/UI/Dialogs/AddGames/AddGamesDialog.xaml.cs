@@ -34,7 +34,7 @@ public partial class AddGamesDialog : WindowContentControl
         WindowInstance.Icon = GenericIconKind.Window_AddGames;
         WindowInstance.MinWidth = 500;
         WindowInstance.MinHeight = 400;
-        WindowInstance.Width = 600;
+        WindowInstance.Width = 650;
         WindowInstance.Height = 600;
     }
 

@@ -8,30 +8,30 @@ public enum GameCategory
     /// <summary>
     /// The Rayman game category
     /// </summary>
-    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Rayman), GenericIconKind.Games_Rayman)]
+    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Rayman), GameCategoryIconAsset.Rayman)]
     Rayman,
 
     /// <summary>
     /// The Rabbids game category
     /// </summary>
-    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Rabbids), GenericIconKind.Games_Rabbids)]
+    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Rabbids), GameCategoryIconAsset.Rabbids)]
     Rabbids,
 
     /// <summary>
     /// The handheld game category
     /// </summary>
-    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Handheld), GenericIconKind.Games_Handheld)]
+    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Handheld), GameCategoryIconAsset.Handheld)]
     Handheld,
 
     /// <summary>
     /// The fan-game category
     /// </summary>
-    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Fan), GenericIconKind.Games_FanGames)]
+    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Fan), GameCategoryIconAsset.Fan)]
     Fan,
 
     /// <summary>
     /// The other category
     /// </summary>
-    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Other), GenericIconKind.Games_Other)]
+    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Other), GameCategoryIconAsset.Other)]
     Other
 }

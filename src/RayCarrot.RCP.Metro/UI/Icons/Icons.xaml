@@ -81,22 +81,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.None" 
                        IconKind="{x:Static iconPacks:PackIconMaterialKind.None}" />
 
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games_Rayman" 
-                       IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games_Rabbids" 
-                       IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games_Handheld" 
-                       IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games_Other" 
-                       IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.OtherGames}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games_FanGames" 
-                       IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.OtherGames}" />
-
     <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Play" 
                        IconKind="{StaticResource RCP.Icons.Play}" 
                        IconColor="{x:Null}" />
