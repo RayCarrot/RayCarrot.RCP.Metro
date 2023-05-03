@@ -233,11 +233,21 @@
                                                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.FlatMenuItem}">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Path=IsFavorite}" Value="True">
-                                                            <Setter Property="Content" Value="{Resx GameHub_FavoriteOff, ResxName={x:Static rcp:LocalizationManager.ResourcePath}}" />
+                                                            <Setter Property="Content">
+                                                                <Setter.Value>
+                                                                    <TextBlock Text="{Resx GameHub_FavoriteOff}"
+                                                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="rcp:Icon.Kind" Value="Star" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Path=IsFavorite}" Value="False">
-                                                            <Setter Property="Content" Value="{Resx GameHub_FavoriteOn, ResxName={x:Static rcp:LocalizationManager.ResourcePath}}" />
+                                                            <Setter Property="Content">
+                                                                <Setter.Value>
+                                                                    <TextBlock Text="{Resx GameHub_FavoriteOn}"
+                                                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="rcp:Icon.Kind" Value="StarOutline" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
