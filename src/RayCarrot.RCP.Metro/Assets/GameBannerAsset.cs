@@ -71,4 +71,10 @@ public enum GameBannerAsset
 
     [AssetFileName("Rayman Bowling 2.png")]
     RaymanBowling2,
+
+    [AssetFileName("Rayman Garden PLUS.png")]
+    RaymanGardenPLUS,
+
+    [AssetFileName("Globox Moment.png")]
+    GloboxMoment,
 }

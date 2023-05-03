@@ -25,6 +25,7 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2021, 06, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanGardenPLUS;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanGardenPLUS;
 
     #endregion
 

@@ -25,6 +25,7 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2019, 07, 26); // Unsure if this is correct
 
     public override GameIconAsset Icon => GameIconAsset.GloboxMoment;
+    public override GameBannerAsset Banner => GameBannerAsset.GloboxMoment;
 
     #endregion
 
