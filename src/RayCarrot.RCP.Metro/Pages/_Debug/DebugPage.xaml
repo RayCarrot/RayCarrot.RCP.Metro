@@ -76,8 +76,8 @@
 
         <!-- Information -->
 
-        <TabItem rcp:TabItemAssist.IconKind="InformationOutline"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+        <TabItem rcp:Icon.Kind="InformationOutline"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
                  Header="Information">
 
             <ScrollViewer>
@@ -134,8 +134,8 @@
 
         <!-- Services -->
 
-        <TabItem rcp:TabItemAssist.IconKind="DatabaseOutline"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+        <TabItem rcp:Icon.Kind="DatabaseOutline"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
                  Header="Services">
 
             <ScrollViewer>
@@ -217,8 +217,8 @@
 
         <!-- Output -->
 
-        <TabItem rcp:TabItemAssist.IconKind="TextBoxMultipleOutline"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+        <TabItem rcp:Icon.Kind="TextBoxMultipleOutline"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
                  Header="Output">
 
             <ScrollViewer>
@@ -266,8 +266,8 @@
 
         <!-- Tools -->
 
-        <TabItem rcp:TabItemAssist.IconKind="Tools"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+        <TabItem rcp:Icon.Kind="Tools"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
                  Header="Tools">
 
             <ScrollViewer>
@@ -313,8 +313,8 @@
 
         <!-- User Interface -->
 
-        <TabItem rcp:TabItemAssist.IconKind="PaletteOutline"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+        <TabItem rcp:Icon.Kind="PaletteOutline"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
                  Header="User Interface">
 
             <ScrollViewer>

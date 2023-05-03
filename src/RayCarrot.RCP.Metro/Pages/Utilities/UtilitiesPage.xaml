@@ -24,8 +24,8 @@
 
         <!-- Binary Tools -->
 
-        <TabItem rcp:TabItemAssist.IconKind="{StaticResource RCP.Icons.Utilities_BinaryTools}"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_BinaryTools}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.ArchiveExplorer}"
                  Header="{Resx Utilities_BinaryTools_Header}">
 
             <ScrollViewer>
@@ -37,8 +37,8 @@
 
         <!-- Other -->
 
-        <TabItem rcp:TabItemAssist.IconKind="{StaticResource RCP.Icons.Utilities_Other}"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Utilities}"
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_Other}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Utilities}"
                  Header="{Resx Utilities_Other_Header}">
 
             <ScrollViewer>
@@ -50,8 +50,8 @@
 
         <!-- External Tools -->
 
-        <TabItem rcp:TabItemAssist.IconKind="{StaticResource RCP.Icons.Utilities_ExternalTools}"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Info}"
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_ExternalTools}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>

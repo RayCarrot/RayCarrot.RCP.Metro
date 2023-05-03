@@ -15,73 +15,108 @@
 
     <!-- Default Tab Item -->
 
-    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="local:TabItemAssist.HeaderFontSize" Value="16" />
-        <Setter Property="local:TabItemAssist.IconForeground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
-        <Setter Property="metro:TabControlHelper.UnderlineSelectedBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-        <Setter Property="metro:TabControlHelper.UnderlineBrush" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
-        <Setter Property="metro:TabControlHelper.UnderlineMouseOverBrush" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
-        <Setter Property="metro:TabControlHelper.UnderlineMouseOverSelectedBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
-        <Setter Property="HeaderTemplate">
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=Background, Mode=OneWay, FallbackValue=Transparent}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="8 2" />
+        <Setter Property="MinHeight" Value="5" />
+        <Setter Property="MinWidth" Value="5" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderFontSize" Value="16" />
+        <Setter Property="local:Icon.Brush" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderFontFamily" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(metro:HeaderedControlHelper.HeaderFontFamily), Mode=OneWay}" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderFontStretch" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(metro:HeaderedControlHelper.HeaderFontStretch), Mode=OneWay}" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderFontWeight" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(metro:HeaderedControlHelper.HeaderFontWeight), Mode=OneWay}" />
+        <Setter Property="Template">
             <Setter.Value>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="8 2"
-                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}">
+                <ControlTemplate TargetType="TabItem">
+                    <Border x:Name="Border"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid UseLayoutRounding="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=(local:TabItemAssist.IconKind)}"
-                                                    Foreground="{Binding Path=(local:TabItemAssist.IconForeground)}"
-                                                    Margin="0 0 7 0"
-                                                    VerticalAlignment="Center"
-                                                    Visibility="{Binding Path=(local:TabItemAssist.IconVisibility)}" />
+                            <StackPanel Margin="{TemplateBinding Padding}"
+                                        Grid.Row="0"
+                                        Orientation="Horizontal">
 
-                        <ContentControl x:Name="TabItemHeaderContent" 
-                                        ContentStringFormat="{Binding Path=HeaderStringFormat}" 
-                                        FontSize="{Binding Path=(local:TabItemAssist.HeaderFontSize)}"
-                                        Content="{Binding Path=Header}"
-                                        TextBlock.TextAlignment="Center"
-                                        VerticalAlignment="Center">
+                                <iconPacks:PackIconMaterial Kind="{TemplateBinding local:Icon.Kind}"
+                                                            Foreground="{TemplateBinding local:Icon.Brush}"
+                                                            Margin="0 0 8 0"
+                                                            VerticalAlignment="Center"
+                                                            Visibility="{TemplateBinding local:Icon.Kind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconPacks:PackIconMaterialKind.None}}" />
 
-                            <ContentControl.Style>
-                                <Style TargetType="{x:Type ContentControl}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
-                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
-                                        </DataTrigger>
+                                <metro:ContentControlEx x:Name="ContentSite"
+                                                        Content="{TemplateBinding Header}"
+                                                        ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(metro:ControlsHelper.ContentCharacterCasing)}"
+                                                        ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                        ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                                        FontFamily="{TemplateBinding metro:HeaderedControlHelper.HeaderFontFamily}"
+                                                        FontSize="{TemplateBinding metro:HeaderedControlHelper.HeaderFontSize}"
+                                                        FontStretch="{TemplateBinding metro:HeaderedControlHelper.HeaderFontStretch}"
+                                                        FontStyle="{TemplateBinding FontStyle}"
+                                                        FontWeight="{TemplateBinding metro:HeaderedControlHelper.HeaderFontWeight}"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        RecognizesAccessKey="{TemplateBinding metro:ControlsHelper.RecognizesAccessKey}"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                        UseLayoutRounding="False"
+                                                        TextBlock.TextAlignment="Center"
+                                                        VerticalAlignment="Center" />
 
-                                        <!-- Need to find ancestor for the mouse over to get the border containing the tab header 
-                                             and underline: https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/Controls.TabControl.xaml#L119 -->
-                                        <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
-                                        </DataTrigger>
+                            </StackPanel>
 
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}" Value="True" />
-                                                <Condition Binding="{Binding Path=IsSelected}" Value="True" />
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
-                                        </MultiDataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ContentControl.Style>
+                            <metro:Underline x:Name="Underline"
+                                           Grid.Row="1"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Bottom"
+                                           Background="{TemplateBinding Background}"
+                                           BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(metro:TabControlHelper.UnderlineBrush), Mode=OneWay}"
+                                           LineExtent="3"
+                                           LineThickness="2"
+                                           Placement="Bottom"
+                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Grid>
+                    </Border>
 
-                        </ContentControl>
-
-                    </StackPanel>
-
-                    <DataTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="TabItemHeaderContent" 
-                                    Property="Foreground" 
-                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
                         </Trigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
+                        <Trigger Property="IsSelected" Value="false">
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+                        </Trigger>
+
+                        <Trigger SourceName="Border" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
+                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="Border" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
@@ -89,7 +124,7 @@
     <!-- Large Tab Item -->
 
     <Style x:Key="RCP.Styles.TabItem.Large" TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-        <Setter Property="local:TabItemAssist.HeaderFontSize" Value="24" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderFontSize" Value="24" />
     </Style>
 
     <!-- Default Tab Panel -->

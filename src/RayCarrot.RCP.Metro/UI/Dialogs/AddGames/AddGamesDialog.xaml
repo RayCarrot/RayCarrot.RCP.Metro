@@ -20,8 +20,8 @@
         <mah:MetroAnimatedTabControl.ItemContainerStyle>
             <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                 <Setter Property="Header" Value="{Binding Path=DisplayName.Value}" />
-                <Setter Property="local:TabItemAssist.IconKind" Value="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}" />
-                <Setter Property="local:TabItemAssist.IconForeground" Value="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}" />
+                <Setter Property="local:Icon.Kind" Value="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}" />
+                <Setter Property="local:Icon.Brush" Value="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}" />
             </Style>
         </mah:MetroAnimatedTabControl.ItemContainerStyle>
 

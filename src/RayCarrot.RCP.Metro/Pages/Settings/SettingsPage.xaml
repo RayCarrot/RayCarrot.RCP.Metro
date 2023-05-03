@@ -99,8 +99,8 @@
 
         <!-- General -->
 
-        <TabItem rcp:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings}"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Settings}"
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Settings}"
                  Header="{Resx Settings_GeneralHeader}">
 
             <ScrollViewer>
@@ -366,8 +366,8 @@
 
         <!-- Archive Explorer -->
 
-        <TabItem rcp:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.ArchiveExplorer}"
                  Header="{Resx Archive_Title}">
 
             <ScrollViewer>
@@ -495,8 +495,8 @@
 
         <!-- Patcher -->
 
-        <TabItem rcp:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_Patcher}"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Patcher}"
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings_Patcher}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Patcher}"
                  Header="{Resx Patcher_Title}">
 
             <ScrollViewer>
@@ -565,8 +565,8 @@
 
         <!-- Debug -->
 
-        <TabItem rcp:TabItemAssist.IconKind="CodeBraces"
-                 rcp:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+        <TabItem rcp:Icon.Kind="CodeBraces"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
                  Header="{Resx DebugPageHeader}"
                  rcp:UserLevelAssist.MinUserLevel="Debug">
 

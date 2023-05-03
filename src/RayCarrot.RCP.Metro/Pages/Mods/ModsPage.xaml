@@ -26,8 +26,8 @@
         <mah:MetroAnimatedTabControl.ItemContainerStyle>
             <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                 <Setter Property="Header" Value="{Binding Path=Header, Mode=OneTime}" />
-                <Setter Property="rcp:TabItemAssist.IconKind" Value="{Binding Path=Icon, Converter={rcp:GenericIconToIconKindConverter}, Mode=OneTime}" />
-                <Setter Property="rcp:TabItemAssist.IconForeground" Value="{Binding Path=Icon, Converter={rcp:GenericIconToBrushConverter}, Mode=OneTime}" />
+                <Setter Property="rcp:Icon.Kind" Value="{Binding Path=Icon, Converter={rcp:GenericIconToIconKindConverter}, Mode=OneTime}" />
+                <Setter Property="rcp:Icon.Brush" Value="{Binding Path=Icon, Converter={rcp:GenericIconToBrushConverter}, Mode=OneTime}" />
             </Style>
         </mah:MetroAnimatedTabControl.ItemContainerStyle>
 
