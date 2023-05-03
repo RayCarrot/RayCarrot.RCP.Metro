@@ -132,6 +132,46 @@ public enum Game
 
     #endregion
 
+    #region Fan-games
+
+    /// <summary>
+    /// Rayman The Dark Magician's Reign of Terror
+    /// </summary>
+    [GameInfo("Rayman: The Dark Magician's Reign of Terror", GameIconAsset.TheDarkMagiciansReignofTerror)]
+    TheDarkMagiciansReignofTerror,
+
+    /// <summary>
+    /// Rayman Redemption
+    /// </summary>
+    [GameInfo("Rayman Redemption", GameIconAsset.RaymanRedemption)]
+    RaymanRedemption,
+
+    /// <summary>
+    /// Rayman ReDesigner
+    /// </summary>
+    [GameInfo("Rayman ReDesigner", GameIconAsset.RaymanRedesigner)]
+    RaymanRedesigner,
+
+    /// <summary>
+    /// Rayman Bowling 2
+    /// </summary>
+    [GameInfo("Rayman Bowling 2", GameIconAsset.RaymanBowling2)]
+    RaymanBowling2,
+
+    /// <summary>
+    /// Rayman Garden PLUS
+    /// </summary>
+    [GameInfo("Rayman Garden PLUS", GameIconAsset.RaymanGardenPLUS)]
+    RaymanGardenPLUS,
+
+    /// <summary>
+    /// Globox Moment
+    /// </summary>
+    [GameInfo("Globox Moment", GameIconAsset.GloboxMoment)]
+    GloboxMoment,
+
+    #endregion
+
     #region Other
 
     /// <summary>
@@ -181,46 +221,6 @@ public enum Game
     /// </summary>
     [GameInfo("Rayman Raving Rabbids Activity Center", GameIconAsset.RaymanRavingRabbidsActivityCenter)]
     RaymanRavingRabbidsActivityCenter,
-
-    #endregion
-
-    #region Fan-games
-
-    /// <summary>
-    /// Rayman The Dark Magician's Reign of Terror
-    /// </summary>
-    [GameInfo("Rayman: The Dark Magician's Reign of Terror", GameIconAsset.TheDarkMagiciansReignofTerror)]
-    TheDarkMagiciansReignofTerror,
-
-    /// <summary>
-    /// Rayman Redemption
-    /// </summary>
-    [GameInfo("Rayman Redemption", GameIconAsset.RaymanRedemption)]
-    RaymanRedemption,
-
-    /// <summary>
-    /// Rayman ReDesigner
-    /// </summary>
-    [GameInfo("Rayman ReDesigner", GameIconAsset.RaymanRedesigner)]
-    RaymanRedesigner,
-
-    /// <summary>
-    /// Rayman Bowling 2
-    /// </summary>
-    [GameInfo("Rayman Bowling 2", GameIconAsset.RaymanBowling2)]
-    RaymanBowling2,
-
-    /// <summary>
-    /// Rayman Garden PLUS
-    /// </summary>
-    [GameInfo("Rayman Garden PLUS", GameIconAsset.RaymanGardenPLUS)]
-    RaymanGardenPLUS,
-
-    /// <summary>
-    /// Globox Moment
-    /// </summary>
-    [GameInfo("Globox Moment", GameIconAsset.GloboxMoment)]
-    GloboxMoment,
 
     #endregion
 }
