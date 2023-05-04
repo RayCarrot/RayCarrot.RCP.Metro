@@ -82,6 +82,11 @@
                         </Border>
                     </mah:ClipBorder>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="local:ButtonAssist.IsSelected" Value="True">
+                            <Setter TargetName="OpacityBorder" 
+                                    Property="Background" 
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.32}" />
+                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="OpacityBorder" 
                                     Property="Background" 

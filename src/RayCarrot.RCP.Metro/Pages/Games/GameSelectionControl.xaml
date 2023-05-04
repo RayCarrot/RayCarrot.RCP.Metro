@@ -53,6 +53,8 @@
         <Grid.RowDefinitions>
             <!-- Search -->
             <RowDefinition Height="Auto" />
+            <!-- Categories -->
+            <RowDefinition Height="Auto" />
             <!-- Games -->
             <RowDefinition Height="*" />
             <!-- Actions -->
@@ -135,142 +137,164 @@
 
         </Grid>
 
+        <ItemsControl Grid.Row="1" 
+                      Visibility="{Binding Path=ShowGameCategories, Converter={rcp:BooleanToVisibilityConverter}}"
+                      ItemsSource="{Binding Path=GamesCategories, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=5}"
+                      Margin="0 0 0 4">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding Path=GamesCategories.Count}"
+                                 d:Columns="5" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                            ToolTip="{Binding Path=DisplayName.Value}"
+                            rcp:ButtonAssist.IsSelected="{Binding Path=IsSelected}"
+                            IsEnabled="{Binding Path=IsEnabled}"
+                            Click="GameCategoryButton_OnClick">
+                        <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                               Width="24"
+                               Height="24" />
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
         <!-- Games -->
-        <ScrollViewer x:Name="GamesPanelScrollViewer"
-                      Grid.Row="1"
-                      Margin="0 0 0 8">
+        <ListBox x:Name="GamesListBox"
+                 Grid.Row="2"
+                 VirtualizingPanel.ScrollUnit="Pixel"
+                 Margin="2 0 2 8"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.ScrollChanged="GamesListBox_OnScrollChanged"
+                 ItemsSource="{Binding Path=GamesView}"
+                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                 SelectedItem="{Binding Path=SelectedInstalledGame}"
+                 Loaded="GamesListBox_OnLoaded"
+                 Background="Transparent" 
+                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                 dd:DragDrop.IsDragSource="True"
+                 dd:DragDrop.IsDropTarget="True"
+                 dd:DragDrop.UseDefaultDragAdorner="True">
 
             <b:Interaction.Behaviors>
                 <rcp:FocusElementOnLoad />
             </b:Interaction.Behaviors>
 
-            <ListBox x:Name="GamesListBox"
-                     Margin="2 0"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     ItemsSource="{Binding Path=GamesView}"
-                     d:ItemsSource="{d:SampleData ItemCount=5}"
-                     SelectedItem="{Binding Path=SelectedInstalledGame}"
-                     Loaded="GamesListBox_OnLoaded"
-                     PreviewMouseWheel="GamesListBox_OnPreviewMouseWheel"  
-                     Background="Transparent" 
-                     Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                     dd:DragDrop.IsDragSource="True"
-                     dd:DragDrop.IsDropTarget="True"
-                     dd:DragDrop.UseDefaultDragAdorner="True">
+            <ListBox.Resources>
+                <Style x:Key="GroupedListBoxItemStyle" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <EventSetter Event="Selected" Handler="GamesListBoxItem_OnSelected" />
+                    <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
+                            Value="{DynamicResource MahApps.Brushes.Accent}" />
+                </Style>
+            </ListBox.Resources>
 
-                <ListBox.Resources>
-                    <Style x:Key="GroupedListBoxItemStyle" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                        <EventSetter Event="Selected" Handler="GamesListBoxItem_OnSelected" />
-                        <Setter Property="metro:ItemHelper.SelectedBackgroundBrush" 
-                                Value="{DynamicResource MahApps.Brushes.Accent}" />
-                    </Style>
-                </ListBox.Resources>
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                            <Grid Margin="4 8" 
+                                  DataContext="{Binding Path=Name}"
+                                  d:DataContext="{d:DesignInstance games:GameGroupViewModel}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                <ListBox.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate DataType="{x:Type CollectionViewGroup}">
-                                <Grid Margin="4 8" 
-                                      DataContext="{Binding Path=Name}"
-                                      d:DataContext="{d:DesignInstance games:GameGroupViewModel}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                                <rcp:GameIcon Grid.Column="0"
+                                              IconSize="Small"
+                                              Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                              IsDemo="False"
+                                              Margin="0 0 8 0" />
 
-                                    <rcp:GameIcon Grid.Column="0"
-                                                  IconSize="Small"
-                                                  Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                                                  IsDemo="False"
-                                                  Margin="0 0 8 0" />
+                                <TextBlock Grid.Column="1" 
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           FontSize="14"
+                                           Text="{Binding Path=DisplayName.Value}" />
 
-                                    <TextBlock Grid.Column="1" 
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"
-                                               FontSize="14"
-                                               Text="{Binding Path=DisplayName.Value}" />
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <RadioButton Style="{StaticResource RCP.Styles.RadioButton.GameGroup}"
+                                                     IsChecked="{Binding Path=Name.IsSelected}">
+                                            <HeaderedContentControl>
+                                                <HeaderedContentControl.Header>
+                                                    <ContentPresenter />
+                                                </HeaderedContentControl.Header>
+                                                <ItemsPresenter Margin="0 0 0 8" />
+                                            </HeaderedContentControl>
+                                        </RadioButton>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListBox.GroupStyle>
 
-                                </Grid>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                        <GroupStyle.ContainerStyle>
-                            <Style TargetType="{x:Type GroupItem}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <RadioButton Style="{StaticResource RCP.Styles.RadioButton.GameGroup}"
-                                                         IsChecked="{Binding Path=Name.IsSelected}">
-                                                <HeaderedContentControl>
-                                                    <HeaderedContentControl.Header>
-                                                        <ContentPresenter />
-                                                    </HeaderedContentControl.Header>
-                                                    <ItemsPresenter Margin="0 0 0 8" />
-                                                </HeaderedContentControl>
-                                            </RadioButton>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </GroupStyle.ContainerStyle>
-                    </GroupStyle>
-                </ListBox.GroupStyle>
+            <ListBox.Style>
+                <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=GroupGames}" Value="True">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource GroupedListBoxItemStyle}" />
+                            <Setter Property="ItemTemplate">
+                                <Setter.Value>
+                                    <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
 
-                <ListBox.Style>
-                    <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=GroupGames}" Value="True">
-                                <Setter Property="ItemContainerStyle" Value="{StaticResource GroupedListBoxItemStyle}" />
-                                <Setter Property="ItemTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="0"
+                                                   Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                                   VerticalAlignment="Center"
+                                                   Width="20"
+                                                   Margin="0 2"
+                                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
-                                                <Image Grid.Column="0"
-                                                       Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Path=DisplayName.Value}"
+                                                       d:Text="Rayman 2"
                                                        VerticalAlignment="Center"
-                                                       Width="20"
-                                                       Margin="0 2"
-                                                       ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+                                                       TextWrapping="Wrap"
+                                                       Margin="8 0 0 0"/>
 
-                                                <TextBlock Grid.Column="1"
-                                                           Text="{Binding Path=DisplayName.Value}"
-                                                           d:Text="Rayman 2"
-                                                           VerticalAlignment="Center"
-                                                           TextWrapping="Wrap"
-                                                           Margin="8 0 0 0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=GroupGames}" Value="False">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource RCP.Styles.ListBoxItem.Rounded}" />
+                            <Setter Property="ItemTemplate">
+                                <Setter.Value>
+                                    <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
+                                        <rcp:GameTitle GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
+                                                       GameIconSize="Small"
+                                                       Margin="0 4" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
 
-                                            </Grid>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=GroupGames}" Value="False">
-                                <Setter Property="ItemContainerStyle" Value="{StaticResource RCP.Styles.ListBoxItem.Rounded}" />
-                                <Setter Property="ItemTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate DataType="{x:Type games:InstalledGameViewModel}">
-                                            <rcp:GameTitle GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
-                                                           GameIconSize="Small"
-                                                           Margin="0 4" />
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListBox.Style>
-
-            </ListBox>
-
-        </ScrollViewer>
+        </ListBox>
 
         <!-- Actions -->
         <StackPanel x:Name="ActionsPanel" 
-                    Grid.Row="2" 
+                    Grid.Row="3" 
                     Margin="2 0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
@@ -284,7 +308,8 @@
 
                 <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
                                     Height="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
-                                    Visibility="{Binding Path=IsGameFileFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}" />
+                                    Visibility="{Binding Path=IsGameFileFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}"
+                                    d:Visibility="Collapsed"  />
 
             </Grid>
 
@@ -297,7 +322,8 @@
 
                 <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
                                     Height="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
-                                    Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}" />
+                                    Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}"
+                                    d:Visibility="Collapsed" />
 
             </Grid>
 

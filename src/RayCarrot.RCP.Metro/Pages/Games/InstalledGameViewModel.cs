@@ -14,10 +14,11 @@ public class InstalledGameViewModel : BaseViewModel
 {
     #region Constructor
 
-    public InstalledGameViewModel(GameInstallation gameInstallation, GameGroupViewModel gameGroup)
+    public InstalledGameViewModel(GameInstallation gameInstallation, GameCategoryViewModel gameCategory, GameGroupViewModel gameGroup)
     {
         // Set properties
         GameInstallation = gameInstallation;
+        GameCategory = gameCategory;
         GameGroup = gameGroup;
         DisplayName = gameInstallation.GetDisplayName();
 
@@ -82,6 +83,7 @@ public class InstalledGameViewModel : BaseViewModel
     public AppUserData Data => Services.Data;
 
     public GameInstallation GameInstallation { get; }
+    public GameCategoryViewModel GameCategory { get; }
     public GameGroupViewModel GameGroup { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
     public LocalizedString DisplayName { get; set; }

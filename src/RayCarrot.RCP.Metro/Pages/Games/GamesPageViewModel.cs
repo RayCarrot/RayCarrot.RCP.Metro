@@ -40,6 +40,9 @@ public class GamesPageViewModel : BasePageViewModel,
 
         // Set properties
         AsyncLock = new AsyncLock();
+        GamesCategories = new ObservableCollection<GameCategoryViewModel>(
+            EnumHelpers.GetValues<GameCategory>().
+            Select(x => new GameCategoryViewModel(x)));
 
         // Set up the games collection
         Games = new ObservableCollectionEx<InstalledGameViewModel>();
@@ -123,6 +126,7 @@ public class GamesPageViewModel : BasePageViewModel,
         }
     }
 
+    public ObservableCollection<GameCategoryViewModel> GamesCategories { get; }
     public ObservableCollectionEx<InstalledGameViewModel> Games { get; }
     public ICollectionView GamesView { get; }
     public ObservableCollectionEx<InstalledGameViewModel>? RecentGames { get; set; }
@@ -170,11 +174,20 @@ public class GamesPageViewModel : BasePageViewModel,
             // Sort the games to match the grouping. Otherwise the order
             // in the ui doesn't match the actual order and moving the
             // games around won't work as expected
-            GamesManager.SortGames((x, y) => x.GameDescriptor.Game.CompareTo(y.GameDescriptor.Game));
+            GamesManager.SortGames((x, y) =>
+            {
+                int categoryComparison = x.GameDescriptor.Category.CompareTo(y.GameDescriptor.Category);
+                if (categoryComparison != 0)
+                    return categoryComparison;
+
+                return x.GameDescriptor.Game.CompareTo(y.GameDescriptor.Game);
+            });
             
             RefreshGrouping(value);
         }
     }
+
+    public bool ShowGameCategories => GroupGames && _gamegroups.Count > 5;
 
     #endregion
 
@@ -288,6 +301,9 @@ public class GamesPageViewModel : BasePageViewModel,
                     foreach (GameGroupViewModel group in _gamegroups.Values)
                         group.PropertyChanged -= GameGroup_OnPropertyChanged;
 
+                    foreach (GameCategoryViewModel category in GamesCategories)
+                        category.IsEnabled = false;
+
                     SelectedInstalledGame = null;
 
                     Games.ModifyCollection(x =>
@@ -311,9 +327,16 @@ public class GamesPageViewModel : BasePageViewModel,
                                 _gamegroups[game] = group;
                             }
 
-                            x.Add(new InstalledGameViewModel(gameInstallation, group));
+                            GameCategoryViewModel category = GamesCategories.First(y => y.Category == gameInstallation.GameDescriptor.Category);
+
+                            category.IsEnabled = true;
+
+                            x.Add(new InstalledGameViewModel(gameInstallation, category, group));
                         }
                     });
+
+                    // Game groups dictionary has been modified
+                    OnPropertyChanged(nameof(ShowGameCategories));
 
                     RefreshRecentGames();
                     RefreshFavoriteGames();
