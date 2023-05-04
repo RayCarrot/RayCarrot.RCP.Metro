@@ -165,4 +165,8 @@ public enum ProgressionIconAsset
     Redemption_Magician21,
     Redemption_Magician22,
     Redemption_Magician23,
+
+    // Rayman: The Dreamer's Boundary
+    RTDB_LevelComplete,
+    RTDB_Cage,
 }
