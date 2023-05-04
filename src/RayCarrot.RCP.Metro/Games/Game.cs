@@ -170,6 +170,12 @@ public enum Game
     [GameInfo("Globox Moment", GameIconAsset.GloboxMoment)]
     GloboxMoment,
 
+    /// <summary>
+    /// Rayman: The Dreamer's Boundary
+    /// </summary>
+    [GameInfo("Rayman: The Dreamer's Boundary", GameIconAsset.RaymanTheDreamersBoundary)]
+    RaymanTheDreamersBoundary,
+
     #endregion
 
     #region Other

@@ -128,4 +128,7 @@ public enum GameIconAsset
 
     [AssetFileName("GloboxMoment.png")]
     GloboxMoment,
+
+    [AssetFileName("RaymanTheDreamersBoundary.png")]
+    RaymanTheDreamersBoundary,
 }

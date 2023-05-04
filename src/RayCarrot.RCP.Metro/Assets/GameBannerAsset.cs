@@ -77,4 +77,7 @@ public enum GameBannerAsset
 
     [AssetFileName("Globox Moment.png")]
     GloboxMoment,
+
+    [AssetFileName("Rayman The Dreamers Boundary.png")]
+    RaymanTheDreamersBoundary,
 }

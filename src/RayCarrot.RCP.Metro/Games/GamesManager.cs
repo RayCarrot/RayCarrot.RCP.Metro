@@ -76,6 +76,7 @@ public class GamesManager
             new GameDescriptor_RaymanBowling2_Win32(),
             new GameDescriptor_RaymanGardenPLUS_Win32(),
             new GameDescriptor_GloboxMoment_Win32(),
+            new GameDescriptor_RaymanTheDreamersBoundary_Win32(),
         }.ToDictionary(x => x.GameId);
         SortedGameDescriptors = GameDescriptors.Values.OrderBy(x => x).ToArray();
     }
