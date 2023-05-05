@@ -9121,6 +9121,186 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fairy Council.
+        /// </summary>
+        public static string Progression_RHR_Level0Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level0Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menhirs of Power.
+        /// </summary>
+        public static string Progression_RHR_Level10Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level10Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pit of Endless Fire.
+        /// </summary>
+        public static string Progression_RHR_Level11Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level11Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clouds of Peril.
+        /// </summary>
+        public static string Progression_RHR_Level12Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level12Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heart of the World.
+        /// </summary>
+        public static string Progression_RHR_Level13Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level13Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reflux&apos;s Lair.
+        /// </summary>
+        public static string Progression_RHR_Level14Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level14Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertiginous Riddle.
+        /// </summary>
+        public static string Progression_RHR_Level15Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level15Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloudy Cache.
+        /// </summary>
+        public static string Progression_RHR_Level16Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level16Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mélée Mayhem.
+        /// </summary>
+        public static string Progression_RHR_Level17Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level17Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scalding Cascade.
+        /// </summary>
+        public static string Progression_RHR_Level18Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level18Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sulphurous Sea.
+        /// </summary>
+        public static string Progression_RHR_Level19Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level19Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clearleaf Forest.
+        /// </summary>
+        public static string Progression_RHR_Level1Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level1Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clearleaf Falls.
+        /// </summary>
+        public static string Progression_RHR_Level2Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level2Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infernal Machine.
+        /// </summary>
+        public static string Progression_RHR_Level3Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level3Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dungeon of Murk.
+        /// </summary>
+        public static string Progression_RHR_Level4Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level4Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bog of Murk.
+        /// </summary>
+        public static string Progression_RHR_Level5Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level5Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begoniax Bayou.
+        /// </summary>
+        public static string Progression_RHR_Level6Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level6Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rivers of Murk.
+        /// </summary>
+        public static string Progression_RHR_Level7Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level7Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoodlum Moor.
+        /// </summary>
+        public static string Progression_RHR_Level8Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level8Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land of the Livid Dead.
+        /// </summary>
+        public static string Progression_RHR_Level9Header {
+            get {
+                return ResourceManager.GetString("Progression_RHR_Level9Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bronze cups.
         /// </summary>
         public static string Progression_RLBronzeCups {

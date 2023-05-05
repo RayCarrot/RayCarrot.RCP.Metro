@@ -46,7 +46,7 @@ public class GameProgressionManager_RaymanHoodlumsRevenge_Gba : EmulatedGameProg
                     stamps += 1;
             }
 
-            GameProgressionDataItem[] dataItems =
+            List<GameProgressionDataItem> dataItems = new()
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true,
@@ -77,89 +77,15 @@ public class GameProgressionManager_RaymanHoodlumsRevenge_Gba : EmulatedGameProg
                     icon: ProgressionIconAsset.RHR_Score,
                     header: new ResourceLocString(nameof(Resources.Progression_TotalScore)),
                     value: saveSlot.Score),
-
-                // TODO-UPDATE: Localize
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Fairy Council",
-                    value: saveSlot.Levels[0].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Clearleaf Forest",
-                    value: saveSlot.Levels[1].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Clearleaf Falls",
-                    value: saveSlot.Levels[2].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Dungeon of Murk",
-                    value: saveSlot.Levels[4].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Bog of Murk",
-                    value: saveSlot.Levels[5].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Rivers of Murk",
-                    value: saveSlot.Levels[7].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Hoodlum Moor",
-                    value: saveSlot.Levels[8].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Land of the Livid Dead",
-                    value: saveSlot.Levels[9].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Menhirs of Power",
-                    value: saveSlot.Levels[10].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Clouds of Peril",
-                    value: saveSlot.Levels[12].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Heart of the World",
-                    value: saveSlot.Levels[13].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Vertiginous Riddle",
-                    value: saveSlot.Levels[15].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Cloudy Cache",
-                    value: saveSlot.Levels[16].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Mélée Mayhem",
-                    value: saveSlot.Levels[17].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Scalding Cascade",
-                    value: saveSlot.Levels[18].Score),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.RHR_Score,
-                    header: "Sulphurous Sea",
-                    value: saveSlot.Levels[19].Score),
             };
+
+            dataItems.AddRange(Enumerable.Range(0, 20).
+                Where(x => LevelInfos[x].HasScore).
+                Select(x => new GameProgressionDataItem(
+                    isPrimaryItem: false,
+                    icon: ProgressionIconAsset.RHR_Score,
+                    header: new ResourceLocString($"Progression_RHR_Level{x}Header"),
+                    value: saveSlot.Levels[x].Score)));
 
             int slotIndex = saveIndex;
 
