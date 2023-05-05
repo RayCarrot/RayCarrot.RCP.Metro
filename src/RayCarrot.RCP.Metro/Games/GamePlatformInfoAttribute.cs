@@ -3,11 +3,10 @@
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class GamePlatformInfoAttribute : Attribute
 {
-    // TODO-UPDATE: Localize
-    public GamePlatformInfoAttribute(string displayName, GamePlatformIconAsset icon)
+    public GamePlatformInfoAttribute(string resourceKey, GamePlatformIconAsset icon)
     {
         Icon = icon;
-        DisplayName = new ConstLocString(displayName);
+        DisplayName = new ResourceLocString(resourceKey);
     }
 
     public LocalizedString DisplayName { get; }

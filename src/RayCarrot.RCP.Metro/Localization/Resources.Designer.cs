@@ -8571,6 +8571,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Boy Advance.
+        /// </summary>
+        public static string Platform_Gba {
+            get {
+                return ResourceManager.GetString("Platform_Gba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MS-DOS.
+        /// </summary>
+        public static string Platform_MsDos {
+            get {
+                return ResourceManager.GetString("Platform_MsDos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop (Win32).
+        /// </summary>
+        public static string Platform_Win32 {
+            get {
+                return ResourceManager.GetString("Platform_Win32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows package (.appx/.msix).
+        /// </summary>
+        public static string Platform_WindowsPackage {
+            get {
+                return ResourceManager.GetString("Platform_WindowsPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup migration error.
         /// </summary>
         public static string PostUpdate_MigrateBackupErrorHeader {

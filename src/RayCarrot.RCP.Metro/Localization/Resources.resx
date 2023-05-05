@@ -5299,4 +5299,16 @@ gameClientName</comment>
   <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
     <value>Rayman Raving Rabbids Activity Center</value>
   </data>
+  <data name="Platform_MsDos" xml:space="preserve">
+    <value>MS-DOS</value>
+  </data>
+  <data name="Platform_Win32" xml:space="preserve">
+    <value>Desktop (Win32)</value>
+  </data>
+  <data name="Platform_WindowsPackage" xml:space="preserve">
+    <value>Windows package (.appx/.msix)</value>
+  </data>
+  <data name="Platform_Gba" xml:space="preserve">
+    <value>Game Boy Advance</value>
+  </data>
 </root>
