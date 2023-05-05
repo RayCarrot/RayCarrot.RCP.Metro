@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
     public override Game Game => Game.RaymanDesigner;
     public override GameCategory Category => GameCategory.Rayman;
     
-    public override LocalizedString DisplayName => "Rayman Designer";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanDesigner_MsDos_Title));
     public override string[] SearchKeywords => new[] { "rd" };
     public override DateTime ReleaseDate => new(1997, 01, 01); // Not exact
 

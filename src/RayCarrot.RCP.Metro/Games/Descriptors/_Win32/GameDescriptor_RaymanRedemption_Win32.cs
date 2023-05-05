@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     public override Game Game => Game.RaymanRedemption;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman Redemption";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRedemption_Win32_Title));
     public override DateTime ReleaseDate => new(2020, 06, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedemption;

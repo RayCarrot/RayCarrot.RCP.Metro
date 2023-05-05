@@ -22,7 +22,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman Fiesta Run";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanFiestaRun_WindowsPackage_Title));
     public override string[] SearchKeywords => new[] { "rfr" };
     public override DateTime ReleaseDate => new(2014, 02, 12);
 

@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     public override GameCategory Category => GameCategory.Rabbids;
     public override bool IsDemo => true;
 
-    public override LocalizedString DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRavingRabbids_Demo_20061106_Win32_Title));
     public override DateTime ReleaseDate => new(2006, 11, 06);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;

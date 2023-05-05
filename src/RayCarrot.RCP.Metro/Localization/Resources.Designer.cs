@@ -4585,6 +4585,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Globox Moment.
+        /// </summary>
+        public static string GloboxMoment_Win32_Title {
+            get {
+                return ResourceManager.GetString("GloboxMoment_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Big file.
         /// </summary>
         public static string GoHomeConfig_BigFile {
@@ -10165,6 +10174,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rabbids Big Bang.
+        /// </summary>
+        public static string RabbidsBigBang_WindowsPackage_Title {
+            get {
+                return ResourceManager.GetString("RabbidsBigBang_WindowsPackage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids Coding.
+        /// </summary>
+        public static string RabbidsCoding_Win32_Title {
+            get {
+                return ResourceManager.GetString("RabbidsCoding_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids Go Home.
+        /// </summary>
+        public static string RabbidsGoHome_Win32_Title {
+            get {
+                return ResourceManager.GetString("RabbidsGoHome_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string Ray1_VersionSelectionHeader {
@@ -10179,6 +10215,420 @@ namespace RayCarrot.RCP.Metro {
         public static string Ray1MinigamesOptions_LanguageUpdateError {
             get {
                 return ResourceManager.GetString("Ray1MinigamesOptions_LanguageUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Demo (1995/12/04).
+        /// </summary>
+        public static string Rayman1_Demo_19951204_MsDos_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Demo_19951204_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Demo (1995/12/07).
+        /// </summary>
+        public static string Rayman1_Demo_19951207_MsDos_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Demo_19951207_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Demo (1996/02/15).
+        /// </summary>
+        public static string Rayman1_Demo_19960215_MsDos_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Demo_19960215_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Advance.
+        /// </summary>
+        public static string Rayman1_Gba_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string Rayman1_MsDos_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Minigames.
+        /// </summary>
+        public static string Rayman1Minigames_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman1Minigames_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Demo (1999/08/18).
+        /// </summary>
+        public static string Rayman2_Demo_19990818_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Demo_19990818_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Demo (1999/09/04).
+        /// </summary>
+        public static string Rayman2_Demo_19990904_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Demo_19990904_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2.
+        /// </summary>
+        public static string Rayman2_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Demo (2002/10/04).
+        /// </summary>
+        public static string Rayman3_Demo_20021004_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Demo_20021004_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Demo (2002/10/21).
+        /// </summary>
+        public static string Rayman3_Demo_20021021_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Demo_20021021_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Demo (2002/12/10).
+        /// </summary>
+        public static string Rayman3_Demo_20021210_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Demo_20021210_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Demo (2003/01/08).
+        /// </summary>
+        public static string Rayman3_Demo_20030108_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Demo_20030108_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Demo (2003/01/29).
+        /// </summary>
+        public static string Rayman3_Demo_20030129_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Demo_20030129_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
+        public static string Rayman3_Gba_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
+        public static string Rayman3_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Print Studio.
+        /// </summary>
+        public static string Rayman3PrintStudio_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3PrintStudio_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 60 Levels.
+        /// </summary>
+        public static string Rayman60Levels_MsDos_Title {
+            get {
+                return ResourceManager.GetString("Rayman60Levels_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Activity Center.
+        /// </summary>
+        public static string RaymanActivityCenter_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanActivityCenter_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Arena.
+        /// </summary>
+        public static string RaymanArena_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanArena_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Bowling 2.
+        /// </summary>
+        public static string RaymanBowling2_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanBowling2_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman by his Fans.
+        /// </summary>
+        public static string RaymanByHisFans_MsDos_Title {
+            get {
+                return ResourceManager.GetString("RaymanByHisFans_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Designer.
+        /// </summary>
+        public static string RaymanDesigner_MsDos_Title {
+            get {
+                return ResourceManager.GetString("RaymanDesigner_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Dictées.
+        /// </summary>
+        public static string RaymanDictées_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanDictées_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Edutainment (Edu).
+        /// </summary>
+        public static string RaymanEdutainmentEdu_MsDos_Title {
+            get {
+                return ResourceManager.GetString("RaymanEdutainmentEdu_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Edutainment (Quiz).
+        /// </summary>
+        public static string RaymanEdutainmentQui_MsDos_Title {
+            get {
+                return ResourceManager.GetString("RaymanEdutainmentQui_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run.
+        /// </summary>
+        public static string RaymanFiestaRun_WindowsPackage_Title {
+            get {
+                return ResourceManager.GetString("RaymanFiestaRun_WindowsPackage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run Preload Edition.
+        /// </summary>
+        public static string RaymanFiestaRunPreloadEdition_WindowsPackage_Title {
+            get {
+                return ResourceManager.GetString("RaymanFiestaRunPreloadEdition_WindowsPackage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run Windows 10 Edition.
+        /// </summary>
+        public static string RaymanFiestaRunWindows10Edition_WindowsPackage_Title {
+            get {
+                return ResourceManager.GetString("RaymanFiestaRunWindows10Edition_WindowsPackage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Garden PLUS.
+        /// </summary>
+        public static string RaymanGardenPLUS_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanGardenPLUS_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Gold Demo (1997/09/30).
+        /// </summary>
+        public static string RaymanGold_Demo_19970930_MsDos_Title {
+            get {
+                return ResourceManager.GetString("RaymanGold_Demo_19970930_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Hoodlums&apos; Revenge.
+        /// </summary>
+        public static string RaymanHoodlumsRevenge_Gba_Title {
+            get {
+                return ResourceManager.GetString("RaymanHoodlumsRevenge_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Jungle Run.
+        /// </summary>
+        public static string RaymanJungleRun_WindowsPackage_Title {
+            get {
+                return ResourceManager.GetString("RaymanJungleRun_WindowsPackage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Legends.
+        /// </summary>
+        public static string RaymanLegends_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanLegends_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M Demo (2002/06/27).
+        /// </summary>
+        public static string RaymanM_Demo_20020627_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanM_Demo_20020627_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M.
+        /// </summary>
+        public static string RaymanM_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanM_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Origins.
+        /// </summary>
+        public static string RaymanOrigins_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanOrigins_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Premiers Clics.
+        /// </summary>
+        public static string RaymanPremiersClics_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanPremiersClics_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids Demo (2006/11/06).
+        /// </summary>
+        public static string RaymanRavingRabbids_Demo_20061106_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbids_Demo_20061106_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string RaymanRavingRabbids_Gba_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbids_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string RaymanRavingRabbids_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbids_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids 2.
+        /// </summary>
+        public static string RaymanRavingRabbids2_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbids2_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids Activity Center.
+        /// </summary>
+        public static string RaymanRavingRabbidsActivityCenter_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbidsActivityCenter_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Redemption.
+        /// </summary>
+        public static string RaymanRedemption_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanRedemption_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman ReDesigner.
+        /// </summary>
+        public static string RaymanRedesigner_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanRedesigner_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman: The Dreamer&apos;s Boundary.
+        /// </summary>
+        public static string RaymanTheDreamersBoundary_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanTheDreamersBoundary_Win32_Title", resourceCulture);
             }
         }
         
@@ -13167,6 +13617,33 @@ namespace RayCarrot.RCP.Metro {
         public static string SettingsPageHeader {
             get {
                 return ResourceManager.GetString("SettingsPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman: The Dark Magician&apos;s Reign of Terror.
+        /// </summary>
+        public static string TheDarkMagiciansReignofTerror_Win32_Title {
+            get {
+                return ResourceManager.GetString("TheDarkMagiciansReignofTerror_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble.
+        /// </summary>
+        public static string TonicTrouble_Win32_Title {
+            get {
+                return ResourceManager.GetString("TonicTrouble_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble Special Edition.
+        /// </summary>
+        public static string TonicTroubleSpecialEdition_Win32_Title {
+            get {
+                return ResourceManager.GetString("TonicTroubleSpecialEdition_Win32_Title", resourceCulture);
             }
         }
         

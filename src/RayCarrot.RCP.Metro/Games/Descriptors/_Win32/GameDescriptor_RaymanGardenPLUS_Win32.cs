@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     public override Game Game => Game.RaymanGardenPLUS;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman Garden PLUS";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanGardenPLUS_Win32_Title));
     public override DateTime ReleaseDate => new(2021, 06, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanGardenPLUS;

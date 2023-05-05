@@ -17,7 +17,7 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
     public override Game Game => Game.Rayman3PrintStudio;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman 3 Print Studio";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman3PrintStudio_Win32_Title));
     public override DateTime ReleaseDate => new(2003, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3PrintStudio;

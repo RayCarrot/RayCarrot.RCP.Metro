@@ -19,7 +19,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
     public override Game Game => Game.RaymanByHisFans;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman by his Fans";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanByHisFans_MsDos_Title));
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanByHisFans;

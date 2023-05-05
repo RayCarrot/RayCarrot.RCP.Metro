@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanHoodlumsRevenge_Gba : GbaGameDescriptor
     public override Game Game => Game.RaymanHoodlumsRevenge;
     public override GameCategory Category => GameCategory.Handheld;
 
-    public override LocalizedString DisplayName => "Rayman Hoodlums' Revenge";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanHoodlumsRevenge_Gba_Title));
     public override string[] SearchKeywords => new[] { "rhr", "gba" };
     public override DateTime ReleaseDate => new(2005, 03, 17);
 

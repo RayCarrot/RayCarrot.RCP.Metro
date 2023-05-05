@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanDictées_Win32 : Win32GameDescriptor
     public override Game Game => Game.RaymanDictées;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman Dictées";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanDictées_Win32_Title));
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDictées;

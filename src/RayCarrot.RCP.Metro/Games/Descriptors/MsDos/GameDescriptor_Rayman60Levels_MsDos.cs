@@ -17,7 +17,7 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
     public override Game Game => Game.Rayman60Levels;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman 60 Levels";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman60Levels_MsDos_Title));
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.Rayman60Levels;

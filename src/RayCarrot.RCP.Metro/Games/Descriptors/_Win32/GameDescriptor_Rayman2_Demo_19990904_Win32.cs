@@ -17,7 +17,7 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
 
-    public override LocalizedString DisplayName => "Rayman 2 Demo (1999/09/04)";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman2_Demo_19990904_Win32_Title));
     public override DateTime ReleaseDate => new(1999, 09, 04);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman2_Demo;

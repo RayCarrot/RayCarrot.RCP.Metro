@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
     public override Game Game => Game.RabbidsCoding;
     public override GameCategory Category => GameCategory.Rabbids;
 
-    public override LocalizedString DisplayName => "Rabbids Coding";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RabbidsCoding_Win32_Title));
     public override DateTime ReleaseDate => new(2019, 10, 08);
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsCoding;

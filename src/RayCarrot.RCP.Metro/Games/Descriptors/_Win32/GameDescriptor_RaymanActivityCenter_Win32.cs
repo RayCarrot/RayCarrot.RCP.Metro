@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanActivityCenter_Win32 : Win32GameDescrip
     public override Game Game => Game.RaymanActivityCenter;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman Activity Center";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanActivityCenter_Win32_Title));
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanActivityCenter;

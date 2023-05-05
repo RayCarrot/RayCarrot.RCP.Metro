@@ -20,7 +20,7 @@ public sealed class GameDescriptor_RaymanTheDreamersBoundary_Win32 : Win32GameDe
     public override Game Game => Game.RaymanTheDreamersBoundary;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman: The Dreamer's Boundary";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanTheDreamersBoundary_Win32_Title));
     public override DateTime ReleaseDate => new(2022, 09, 15);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanTheDreamersBoundary;

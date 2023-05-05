@@ -64,7 +64,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// For games with a short and long name then this will usually be the short one. For
     /// example "Rayman 2" is used instead of "Rayman 2: The Great Escape".
     /// </summary>
-    public abstract LocalizedString DisplayName { get; } // TODO-UPDATE: Localize this for all games
+    public abstract LocalizedString DisplayName { get; }
 
     /// <summary>
     /// Optional keywords to use when searching/filtering games. This should not include

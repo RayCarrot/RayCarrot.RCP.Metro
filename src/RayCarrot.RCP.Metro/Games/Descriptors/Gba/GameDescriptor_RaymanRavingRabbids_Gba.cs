@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Gba : GbaGameDescriptor
     public override Game Game => Game.RaymanRavingRabbids_Gba;
     public override GameCategory Category => GameCategory.Handheld;
 
-    public override LocalizedString DisplayName => "Rayman Raving Rabbids (Game Boy Advance)";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRavingRabbids_Gba_Title));
     public override string[] SearchKeywords => new[] { "rrr", "gba" };
     public override DateTime ReleaseDate => new(2006, 11, 14);
 

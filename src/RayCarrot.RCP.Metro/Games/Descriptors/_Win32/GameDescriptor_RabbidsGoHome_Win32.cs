@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override Game Game => Game.RabbidsGoHome;
     public override GameCategory Category => GameCategory.Rabbids;
 
-    public override LocalizedString DisplayName => "Rabbids Go Home";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RabbidsGoHome_Win32_Title));
     public override string[] SearchKeywords => new[] { "rgh" };
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 

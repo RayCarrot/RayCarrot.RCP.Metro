@@ -22,7 +22,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman Fiesta Run Windows 10 Edition";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanFiestaRunWindows10Edition_WindowsPackage_Title));
     public override string[] SearchKeywords => new[] { "rfr" };
     public override DateTime ReleaseDate => new(2016, 04, 05);
 

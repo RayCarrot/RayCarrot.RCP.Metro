@@ -17,7 +17,7 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
     public override Game Game => Game.Rayman1Minigames;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman Minigames";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman1Minigames_Win32_Title));
     public override DateTime ReleaseDate => new(1999, 07, 20);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1Minigames;

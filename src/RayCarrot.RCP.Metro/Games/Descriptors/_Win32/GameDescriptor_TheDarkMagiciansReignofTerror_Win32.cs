@@ -21,7 +21,7 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override Game Game => Game.TheDarkMagiciansReignofTerror;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman: The Dark Magician's Reign of Terror";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.TheDarkMagiciansReignofTerror_Win32_Title));
     public override DateTime ReleaseDate => new(2015, 07, 13); // A bit unclear what the actual date is
 
     public override GameIconAsset Icon => GameIconAsset.TheDarkMagiciansReignofTerror;

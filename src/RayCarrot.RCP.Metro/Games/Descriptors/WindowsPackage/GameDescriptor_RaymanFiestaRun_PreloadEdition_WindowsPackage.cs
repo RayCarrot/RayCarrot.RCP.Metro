@@ -22,7 +22,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman Fiesta Run Preload Edition";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanFiestaRunPreloadEdition_WindowsPackage_Title));
     public override string[] SearchKeywords => new[] { "rfr" };
     public override DateTime ReleaseDate => new(2014, 06, 04);
 

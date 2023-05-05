@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
     public override Game Game => Game.RaymanRedesigner;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman ReDesigner";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRedesigner_Win32_Title));
     public override DateTime ReleaseDate => new(2021, 02, 04);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedesigner;

@@ -17,7 +17,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override Game Game => Game.TonicTrouble;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Tonic Trouble Special Edition";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.TonicTroubleSpecialEdition_Win32_Title));
     public override string[] SearchKeywords => new[] { "ttse" };
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 

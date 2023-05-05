@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
     public override Game Game => Game.RaymanRavingRabbidsActivityCenter;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman Raving Rabbids Activity Center";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRavingRabbidsActivityCenter_Win32_Title));
     public override DateTime ReleaseDate => new(2006, 10, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbidsActivityCenter;
