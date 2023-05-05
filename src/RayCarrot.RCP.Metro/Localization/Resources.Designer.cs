@@ -1428,7 +1428,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This will replace any previous backups for {0}.
+        ///   Looks up a localized string similar to This will replace any previous backups for:.
         /// </summary>
         public static string Backup_Confirm {
             get {
@@ -1437,7 +1437,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to back up all games? This will replace any previous backups. Continue?.
+        ///   Looks up a localized string similar to Do you want to back up all games? This will replace any previous backups. If multiple games share the same backup then a backup will only be performed for the first game. Continue?.
         /// </summary>
         public static string Backup_ConfirmBackupAll {
             get {
@@ -3484,9 +3484,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following new game clients/emulators were found:
-        ///
-        ///• {0}.
+        ///   Looks up a localized string similar to The following new game clients/emulators were found:.
         /// </summary>
         public static string Finder_FoundClients {
             get {
@@ -4339,6 +4337,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select folder to search for game ROMs and discs in.
+        /// </summary>
+        public static string GameFileFinder_BrowseDirectoryHeader {
+            get {
+                return ResourceManager.GetString("GameFileFinder_BrowseDirectoryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred during the game file finder operation.
+        /// </summary>
+        public static string GameFileFinder_Error {
+            get {
+                return ResourceManager.GetString("GameFileFinder_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following new games were found:.
+        /// </summary>
+        public static string GameFileFinder_GamesFound {
+            get {
+                return ResourceManager.GetString("GameFileFinder_GamesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game ROMs and discs found.
+        /// </summary>
+        public static string GameFileFinder_GamesFoundHeader {
+            get {
+                return ResourceManager.GetString("GameFileFinder_GamesFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No new games ROMs or discs were found.
+        /// </summary>
+        public static string GameFileFinder_NoResults {
+            get {
+                return ResourceManager.GetString("GameFileFinder_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game file finder result.
+        /// </summary>
+        public static string GameFileFinder_ResultHeader {
+            get {
+                return ResourceManager.GetString("GameFileFinder_ResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following new games were found:.
         /// </summary>
         public static string GameFinder_GamesFound {
@@ -4734,6 +4786,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameSelection_ConfigureClients {
             get {
                 return ResourceManager.GetString("GameSelection_ConfigureClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find game ROMs and discs from folder.
+        /// </summary>
+        public static string GameSelection_FindGameFiles {
+            get {
+                return ResourceManager.GetString("GameSelection_FindGameFiles", resourceCulture);
             }
         }
         

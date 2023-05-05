@@ -166,7 +166,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    // TODO-UPDATE: Localize
                     new("Rayman 3 (GBA)") { Encoder = new EEPROMEncoder(0x200) },
                 }),
 
@@ -176,7 +175,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    // TODO-UPDATE: Localize
                     new("Rayman Hoodlums' Revenge") { Encoder = new EEPROMEncoder(0x200) },
                 }),
 
@@ -186,7 +184,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    // TODO-UPDATE: Localize
                     new("Rayman Raving Rabbids (GBA)") { Encoder = new EEPROMEncoder(0x200) },
                 }),
 

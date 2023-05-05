@@ -470,14 +470,21 @@ public class GameViewModel : BaseRCPViewModel
                 // Refresh the backup info
                 await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName);
 
-                // TODO-UPDATE: Update string to also show linked games
                 // Confirm backup if one already exists
                 if (!fromBatchOperation && 
-                    BackupInfo.ExistingBackups.Any() && 
-                    !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, DisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                    BackupInfo.ExistingBackups.Any())
                 {
-                    Logger.Info("Backup canceled");
-                    return false;
+                    List<string> gameNames = new();
+                    gameNames.Add(DisplayName);
+
+                    if (LinkedGames != null)
+                        gameNames.AddRange(LinkedGames.Select(x => x.DisplayName.Value));
+
+                    if (!await Services.MessageUI.DisplayMessageAsync($"{Resources.Backup_Confirm}{Environment.NewLine}{Environment.NewLine}• {gameNames.JoinItems(Environment.NewLine + "• ")}", Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                    {
+                        Logger.Info("Backup canceled");
+                        return false;
+                    }
                 }
 
                 ShowBackupRestoreIndicator = true;

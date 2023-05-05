@@ -238,7 +238,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
         // Lock
         using (await AsyncLock.LockAsync())
         {
-            // TODO-UPDATE: Update string to also say "If multiple games share the same backup then a backup will only be performed for the first game".
             // Confirm backup
             if (!await MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
             {

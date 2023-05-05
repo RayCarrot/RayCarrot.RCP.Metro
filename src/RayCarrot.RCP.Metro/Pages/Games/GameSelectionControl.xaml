@@ -300,10 +300,9 @@
                     Orientation="Horizontal">
 
             <Grid Margin="0 0 4 0">
-                <!-- TODO-UPDATE: Localize -->
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=FindGameFilesCommand, Mode=OneTime}"
-                        ToolTip="Find game ROMs and discs from folder"
+                        ToolTip="{Resx GameSelection_FindGameFiles}"
                         rcp:Icon.Kind="{StaticResource RCP.Icons.RomFinder}" />
 
                 <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"

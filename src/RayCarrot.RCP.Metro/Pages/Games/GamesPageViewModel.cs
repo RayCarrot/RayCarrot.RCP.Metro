@@ -474,9 +474,7 @@ public class GamesPageViewModel : BasePageViewModel,
 
             Logger.Info("The finder found {0} game clients", addedGameClients.Count);
 
-            await MessageUI.DisplayMessageAsync(
-                String.Format(Resources.Finder_FoundClients,
-                    addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Resources.Finder_FoundClientsSeparator)), Resources.Finder_FoundClientsHeader, MessageType.Success);
+            await MessageUI.DisplayMessageAsync($"{Resources.Finder_FoundClients}{Environment.NewLine}{Environment.NewLine}• {addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.Finder_FoundClientsHeader, MessageType.Success);
         }
 
         // Get the games to add
@@ -518,8 +516,7 @@ public class GamesPageViewModel : BasePageViewModel,
 
         DirectoryBrowserResult browseResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
         {
-            // TODO-UPDATE: Localize
-            Title = "Select folder to search for game ROMs and discs in",
+            Title = Resources.GameFileFinder_BrowseDirectoryHeader,
         });
 
         if (browseResult.CanceledByUser)
@@ -549,8 +546,7 @@ public class GamesPageViewModel : BasePageViewModel,
         catch (Exception ex)
         {
             Logger.Error(ex, "Running game file finder");
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred during the game file finder operation");
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFileFinder_Error);
             return;
         }
         finally
@@ -583,14 +579,11 @@ public class GamesPageViewModel : BasePageViewModel,
         {
             Logger.Info("The game file finder found {0} games", addedGames.Count);
 
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayMessageAsync($"The following new games were found:{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", "Game ROMs and discs found", MessageType.Success);
+            await MessageUI.DisplayMessageAsync($"{Resources.GameFileFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.GameFileFinder_GamesFoundHeader, MessageType.Success);
         }
         else
         {
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayMessageAsync("No new games ROMs or discs were found", "Game file finder result",
-                MessageType.Information);
+            await MessageUI.DisplayMessageAsync(Resources.GameFileFinder_NoResults, Resources.GameFileFinder_ResultHeader, MessageType.Information);
         }
     }
 

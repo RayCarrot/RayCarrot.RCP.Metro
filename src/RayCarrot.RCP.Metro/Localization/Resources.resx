@@ -701,7 +701,7 @@ gameDisplayName</comment>
     <value>The mount path could not be found. Specify a valid path under the game options to run this game.</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
-    <value>This will replace any previous backups for {0}</value>
+    <value>This will replace any previous backups for:</value>
     <comment>Arguments:
 gameDisplayName</comment>
   </data>
@@ -1368,7 +1368,7 @@ gameDisplayName</comment>
     <value>Run as Admin</value>
   </data>
   <data name="Backup_ConfirmBackupAll" xml:space="preserve">
-    <value>Do you want to back up all games? This will replace any previous backups. Continue?</value>
+    <value>Do you want to back up all games? This will replace any previous backups. If multiple games share the same backup then a backup will only be performed for the first game. Continue?</value>
   </data>
   <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
     <value>Confirm Backups</value>
@@ -4845,9 +4845,7 @@ paths</comment>
     <value>An error occurred during the finder operation</value>
   </data>
   <data name="Finder_FoundClients" xml:space="preserve">
-    <value>The following new game clients/emulators were found:
-
-• {0}</value>
+    <value>The following new game clients/emulators were found:</value>
     <comment>Arguments:
 foundClients</comment>
   </data>
@@ -5451,5 +5449,26 @@ gameClientName</comment>
   </data>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Find game ROMs and discs from folder</value>
+  </data>
+  <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
+    <value>Select folder to search for game ROMs and discs in</value>
+  </data>
+  <data name="GameFileFinder_Error" xml:space="preserve">
+    <value>An error occurred during the game file finder operation</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>The following new games were found:</value>
+  </data>
+  <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Game ROMs and discs found</value>
+  </data>
+  <data name="GameFileFinder_NoResults" xml:space="preserve">
+    <value>No new games ROMs or discs were found</value>
+  </data>
+  <data name="GameFileFinder_ResultHeader" xml:space="preserve">
+    <value>Game file finder result</value>
   </data>
 </root>
