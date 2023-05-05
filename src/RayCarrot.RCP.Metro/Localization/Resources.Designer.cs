@@ -3561,6 +3561,312 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Globox Moment.
+        /// </summary>
+        public static string Game_GloboxMoment_Title {
+            get {
+                return ResourceManager.GetString("Game_GloboxMoment_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids Big Bang.
+        /// </summary>
+        public static string Game_RabbidsBigBang_Title {
+            get {
+                return ResourceManager.GetString("Game_RabbidsBigBang_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids Coding.
+        /// </summary>
+        public static string Game_RabbidsCoding_Title {
+            get {
+                return ResourceManager.GetString("Game_RabbidsCoding_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids Go Home.
+        /// </summary>
+        public static string Game_RabbidsGoHome_Title {
+            get {
+                return ResourceManager.GetString("Game_RabbidsGoHome_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string Game_Rayman1_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman1_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Minigames.
+        /// </summary>
+        public static string Game_Rayman1Minigames_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman1Minigames_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2.
+        /// </summary>
+        public static string Game_Rayman2_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 (Game Boy Advance).
+        /// </summary>
+        public static string Game_Rayman3_Gba_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman3_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
+        public static string Game_Rayman3_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman3_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Print Studio.
+        /// </summary>
+        public static string Game_Rayman3PrintStudio_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman3PrintStudio_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 60 Levels.
+        /// </summary>
+        public static string Game_Rayman60Levels_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman60Levels_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Activity Center.
+        /// </summary>
+        public static string Game_RaymanActivityCenter_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanActivityCenter_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Bowling 2.
+        /// </summary>
+        public static string Game_RaymanBowling2_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanBowling2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman by his Fans.
+        /// </summary>
+        public static string Game_RaymanByHisFans_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanByHisFans_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Designer.
+        /// </summary>
+        public static string Game_RaymanDesigner_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanDesigner_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Dictées.
+        /// </summary>
+        public static string Game_RaymanDictées_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanDictées_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Edutainment.
+        /// </summary>
+        public static string Game_RaymanEdutainment_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanEdutainment_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run.
+        /// </summary>
+        public static string Game_RaymanFiestaRun_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanFiestaRun_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Garden PLUS.
+        /// </summary>
+        public static string Game_RaymanGardenPLUS_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanGardenPLUS_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Hoodlums&apos; Revenge.
+        /// </summary>
+        public static string Game_RaymanHoodlumsRevenge_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanHoodlumsRevenge_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Jungle Run.
+        /// </summary>
+        public static string Game_RaymanJungleRun_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanJungleRun_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Legends.
+        /// </summary>
+        public static string Game_RaymanLegends_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanLegends_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M/Arena.
+        /// </summary>
+        public static string Game_RaymanMArena_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanMArena_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Origins.
+        /// </summary>
+        public static string Game_RaymanOrigins_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanOrigins_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Premiers Clics.
+        /// </summary>
+        public static string Game_RaymanPremiersClics_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanPremiersClics_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids (Game Boy Advance).
+        /// </summary>
+        public static string Game_RaymanRavingRabbids_Gba_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanRavingRabbids_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string Game_RaymanRavingRabbids_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanRavingRabbids_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids 2.
+        /// </summary>
+        public static string Game_RaymanRavingRabbids2_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanRavingRabbids2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids Activity Center.
+        /// </summary>
+        public static string Game_RaymanRavingRabbidsActivityCenter_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanRavingRabbidsActivityCenter_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Redemption.
+        /// </summary>
+        public static string Game_RaymanRedemption_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanRedemption_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman ReDesigner.
+        /// </summary>
+        public static string Game_RaymanRedesigner_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanRedesigner_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman: The Dreamer&apos;s Boundary.
+        /// </summary>
+        public static string Game_RaymanTheDreamersBoundary_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanTheDreamersBoundary_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman: The Dark Magician&apos;s Reign of Terror.
+        /// </summary>
+        public static string Game_TheDarkMagiciansReignofTerror_Title {
+            get {
+                return ResourceManager.GetString("Game_TheDarkMagiciansReignofTerror_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble.
+        /// </summary>
+        public static string Game_TonicTrouble_Title {
+            get {
+                return ResourceManager.GetString("Game_TonicTrouble_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
         public static string GameAdd_Download {

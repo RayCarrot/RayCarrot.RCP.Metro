@@ -11,67 +11,67 @@ public enum Game
     /// <summary>
     /// Rayman 1
     /// </summary>
-    [GameInfo("Rayman", GameIconAsset.Rayman1)]
+    [GameInfo(nameof(Resources.Game_Rayman1_Title), GameIconAsset.Rayman1)]
     Rayman1,
 
     /// <summary>
     /// Rayman Designer
     /// </summary>
-    [GameInfo("Rayman Designer", GameIconAsset.RaymanDesigner)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanDesigner_Title), GameIconAsset.RaymanDesigner)]
     RaymanDesigner,
 
     /// <summary>
     /// Rayman by his Fans
     /// </summary>
-    [GameInfo("Rayman by his Fans", GameIconAsset.RaymanByHisFans)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanByHisFans_Title), GameIconAsset.RaymanByHisFans)]
     RaymanByHisFans,
 
     /// <summary>
     /// Rayman 60 Levels
     /// </summary>
-    [GameInfo("Rayman 60 Levels", GameIconAsset.Rayman60Levels)]
+    [GameInfo(nameof(Resources.Game_﻿Rayman60Levels_Title), GameIconAsset.Rayman60Levels)]
     Rayman60Levels,
 
     /// <summary>
     /// Rayman 2
     /// </summary>
-    [GameInfo("Rayman 2", GameIconAsset.Rayman2)]
+    [GameInfo(nameof(Resources.Game_﻿Rayman2_Title), GameIconAsset.Rayman2)]
     Rayman2,
 
     /// <summary>
     /// Rayman M/Arena
     /// </summary>
-    [GameInfo("Rayman M/Arena", GameIconAsset.RaymanM)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanMArena_Title), GameIconAsset.RaymanM)]
     RaymanMArena,
 
     /// <summary>
     /// Rayman 3
     /// </summary>
-    [GameInfo("Rayman 3", GameIconAsset.Rayman3)]
+    [GameInfo(nameof(Resources.Game_Rayman3_Title), GameIconAsset.Rayman3)]
     Rayman3,
 
     /// <summary>
     /// Rayman Origins
     /// </summary>
-    [GameInfo("Rayman Origins", GameIconAsset.RaymanOrigins)]
+    [GameInfo(nameof(Resources.Game_RaymanOrigins_Title), GameIconAsset.RaymanOrigins)]
     RaymanOrigins,
 
     /// <summary>
     /// Rayman Legends
     /// </summary>
-    [GameInfo("Rayman Legends", GameIconAsset.RaymanLegends)]
+    [GameInfo(nameof(Resources.Game_RaymanLegends_Title), GameIconAsset.RaymanLegends)]
     RaymanLegends,
 
     /// <summary>
     /// Rayman Jungle Run
     /// </summary>
-    [GameInfo("Rayman Jungle Run", GameIconAsset.RaymanJungleRun)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanJungleRun_Title), GameIconAsset.RaymanJungleRun)]
     RaymanJungleRun,
 
     /// <summary>
     /// Rayman Fiesta Run
     /// </summary>
-    [GameInfo("Rayman Fiesta Run", GameIconAsset.RaymanFiestaRun)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanFiestaRun_Title), GameIconAsset.RaymanFiestaRun)]
     RaymanFiestaRun,
 
     #endregion
@@ -81,31 +81,31 @@ public enum Game
     /// <summary>
     /// Rayman Raving Rabbids
     /// </summary>
-    [GameInfo("Rayman Raving Rabbids", GameIconAsset.RaymanRavingRabbids)]
+    [GameInfo(nameof(Resources.Game_RaymanRavingRabbids_Title), GameIconAsset.RaymanRavingRabbids)]
     RaymanRavingRabbids,
 
     /// <summary>
     /// Rayman Raving Rabbids 2
     /// </summary>
-    [GameInfo("Rayman Raving Rabbids 2", GameIconAsset.RaymanRavingRabbids2)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanRavingRabbids2_Title), GameIconAsset.RaymanRavingRabbids2)]
     RaymanRavingRabbids2,
 
     /// <summary>
     /// Rabbids Go Home
     /// </summary>
-    [GameInfo("Rabbids Go Home", GameIconAsset.RabbidsGoHome)]
+    [GameInfo(nameof(Resources.Game_﻿RabbidsGoHome_Title), GameIconAsset.RabbidsGoHome)]
     RabbidsGoHome,
 
     /// <summary>
     /// Rabbids Big Bang
     /// </summary>
-    [GameInfo("Rayman Big Bang", GameIconAsset.RabbidsBigBang)]
+    [GameInfo(nameof(Resources.Game_﻿RabbidsBigBang_Title), GameIconAsset.RabbidsBigBang)]
     RabbidsBigBang,
 
     /// <summary>
     /// Rabbids Coding
     /// </summary>
-    [GameInfo("Rayman Coding", GameIconAsset.RabbidsCoding)]
+    [GameInfo(nameof(Resources.Game_﻿RabbidsCoding_Title), GameIconAsset.RabbidsCoding)]
     RabbidsCoding,
 
     #endregion
@@ -115,19 +115,19 @@ public enum Game
     /// <summary>
     /// Rayman 3 (GBA)
     /// </summary>
-    [GameInfo("Rayman 3 (Game Boy Advance)", GameIconAsset.Rayman3_Gba)]
+    [GameInfo(nameof(Resources.Game_﻿Rayman3_Gba_Title), GameIconAsset.Rayman3_Gba)]
     Rayman3_Gba,
 
     /// <summary>
     /// Rayman Hoodlums' Revenge
     /// </summary>
-    [GameInfo("Rayman Hoodlums' Revenge", GameIconAsset.RaymanHoodlumsRevenge)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanHoodlumsRevenge_Title), GameIconAsset.RaymanHoodlumsRevenge)]
     RaymanHoodlumsRevenge,
 
     /// <summary>
     /// Rayman Raving Rabbids (GBA)
     /// </summary>
-    [GameInfo("Rayman Raving Rabbids (Game Boy Advance)", GameIconAsset.RaymanRavingRabbids)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanRavingRabbids_Gba_Title), GameIconAsset.RaymanRavingRabbids)]
     RaymanRavingRabbids_Gba,
 
     #endregion
@@ -137,43 +137,43 @@ public enum Game
     /// <summary>
     /// Rayman The Dark Magician's Reign of Terror
     /// </summary>
-    [GameInfo("Rayman: The Dark Magician's Reign of Terror", GameIconAsset.TheDarkMagiciansReignofTerror)]
+    [GameInfo(nameof(Resources.Game_TheDarkMagiciansReignofTerror_Title), GameIconAsset.TheDarkMagiciansReignofTerror)]
     TheDarkMagiciansReignofTerror,
 
     /// <summary>
     /// Rayman Redemption
     /// </summary>
-    [GameInfo("Rayman Redemption", GameIconAsset.RaymanRedemption)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanRedemption_Title), GameIconAsset.RaymanRedemption)]
     RaymanRedemption,
 
     /// <summary>
     /// Rayman ReDesigner
     /// </summary>
-    [GameInfo("Rayman ReDesigner", GameIconAsset.RaymanRedesigner)]
+    [GameInfo(nameof(Resources.Game_RaymanRedesigner_Title), GameIconAsset.RaymanRedesigner)]
     RaymanRedesigner,
 
     /// <summary>
     /// Rayman Bowling 2
     /// </summary>
-    [GameInfo("Rayman Bowling 2", GameIconAsset.RaymanBowling2)]
+    [GameInfo(nameof(Resources.Game_RaymanBowling2_Title), GameIconAsset.RaymanBowling2)]
     RaymanBowling2,
 
     /// <summary>
     /// Rayman Garden PLUS
     /// </summary>
-    [GameInfo("Rayman Garden PLUS", GameIconAsset.RaymanGardenPLUS)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanGardenPLUS_Title), GameIconAsset.RaymanGardenPLUS)]
     RaymanGardenPLUS,
 
     /// <summary>
     /// Globox Moment
     /// </summary>
-    [GameInfo("Globox Moment", GameIconAsset.GloboxMoment)]
+    [GameInfo(nameof(Resources.Game_﻿GloboxMoment_Title), GameIconAsset.GloboxMoment)]
     GloboxMoment,
 
     /// <summary>
     /// Rayman: The Dreamer's Boundary
     /// </summary>
-    [GameInfo("Rayman: The Dreamer's Boundary", GameIconAsset.RaymanTheDreamersBoundary)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanTheDreamersBoundary_Title), GameIconAsset.RaymanTheDreamersBoundary)]
     RaymanTheDreamersBoundary,
 
     #endregion
@@ -183,49 +183,49 @@ public enum Game
     /// <summary>
     /// Rayman minigames
     /// </summary>
-    [GameInfo("Rayman Minigames", GameIconAsset.Rayman1Minigames)]
+    [GameInfo(nameof(Resources.Game_Rayman1Minigames_Title), GameIconAsset.Rayman1Minigames)]
     Rayman1Minigames,
 
     /// <summary>
     /// Rayman Edutainment (Edu/Quiz)
     /// </summary>
-    [GameInfo("Rayman Edutainment", GameIconAsset.RaymanEdutainment)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanEdutainment_Title), GameIconAsset.RaymanEdutainment)]
     RaymanEdutainment,
 
     /// <summary>
     /// Tonic Trouble
     /// </summary>
-    [GameInfo("Tonic Trouble", GameIconAsset.TonicTrouble)]
+    [GameInfo(nameof(Resources.Game_﻿TonicTrouble_Title), GameIconAsset.TonicTrouble)]
     TonicTrouble,
 
     /// <summary>
     /// Rayman Dictées
     /// </summary>
-    [GameInfo("Rayman Dictées", GameIconAsset.RaymanDictées)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanDictées_Title), GameIconAsset.RaymanDictées)]
     RaymanDictées,
 
     /// <summary>
     /// Rayman Premiers Clics
     /// </summary>
-    [GameInfo("Rayman Premiers Clics", GameIconAsset.RaymanPremiersClics)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanPremiersClics_Title), GameIconAsset.RaymanPremiersClics)]
     RaymanPremiersClics,
 
     /// <summary>
     /// Rayman 3 Print Studio
     /// </summary>
-    [GameInfo("Rayman 3 Print Studio", GameIconAsset.Rayman3PrintStudio)]
+    [GameInfo(nameof(Resources.Game_﻿Rayman3PrintStudio_Title), GameIconAsset.Rayman3PrintStudio)]
     Rayman3PrintStudio,
 
     /// <summary>
     /// Rayman Activity Center
     /// </summary>
-    [GameInfo("Rayman Activity Center", GameIconAsset.RaymanActivityCenter)]
+    [GameInfo(nameof(Resources.Game_RaymanActivityCenter_Title), GameIconAsset.RaymanActivityCenter)]
     RaymanActivityCenter,
 
     /// <summary>
     /// Rayman Raving Rabbids Activity Center
     /// </summary>
-    [GameInfo("Rayman Raving Rabbids Activity Center", GameIconAsset.RaymanRavingRabbidsActivityCenter)]
+    [GameInfo(nameof(Resources.Game_﻿RaymanRavingRabbidsActivityCenter_Title), GameIconAsset.RaymanRavingRabbidsActivityCenter)]
     RaymanRavingRabbidsActivityCenter,
 
     #endregion

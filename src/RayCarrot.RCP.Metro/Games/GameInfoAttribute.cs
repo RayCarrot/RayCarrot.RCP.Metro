@@ -3,10 +3,9 @@
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class GameInfoAttribute : Attribute
 {
-    // TODO-UPDATE: Localize
-    public GameInfoAttribute(string displayName, GameIconAsset gameIcon)
+    public GameInfoAttribute(string resourceKey, GameIconAsset gameIcon)
     {
-        DisplayName = new ConstLocString(displayName);
+        DisplayName = new ResourceLocString(resourceKey);
         GameIcon = gameIcon;
     }
 
