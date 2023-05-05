@@ -87,7 +87,7 @@ public class GameProgressionManager_RaymanRavingRabbids_Gba : EmulatedGameProgre
             items.Add(new GameProgressionDataItem(
                 isPrimaryItem: false,
                 icon: ProgressionIconAsset.RRR_GBA_Time,
-                header: $"Level {i}", // TODO-UPDATE: Localize with level names
+                header: new ResourceLocString($"Progression_RRR_GBA_Level{i}Header"),
                 text: $"{new TimeSpan(0, 0, 0, seconds):mm\\:ss}"));
             completedTimeAttackLevels++;
         }
@@ -100,7 +100,7 @@ public class GameProgressionManager_RaymanRavingRabbids_Gba : EmulatedGameProgre
             max: maxTimeAttackLevels));
 
         yield return new SerializabeEmulatedGameProgressionSlot<RRRGBA_SaveData>(
-            name: "Time attack", // TODO-UPDATE: Localize
+            name: new ResourceLocString(nameof(Resources.Progression_RRR_GBA_TimeAttack)),
             index: 3,
             collectiblesCount: completedTimeAttackLevels,
             totalCollectiblesCount: maxTimeAttackLevels,

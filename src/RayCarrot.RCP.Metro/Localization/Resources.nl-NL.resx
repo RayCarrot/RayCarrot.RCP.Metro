@@ -4566,4 +4566,82 @@ Conflicten:
   <data name="Progression_RHR_Level19Header" xml:space="preserve">
     <value>Zwavelzee</value>
   </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Kinderspel</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>Het kindergehucht</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>De speelgoedjacht</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>De speelgoedkist</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Het hemelse huis</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Het droombos</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>De bladervallei</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Koloniale jungle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>De groene bergtoppen</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Het verborgen hol</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>De grote buikloop</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Darmkanalen</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>De levende grot</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Doorgeslikte schatten</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>Het kleverige hol</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>Het lekkerste toetje</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Taartrace</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>De zoete eilanden</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Da's geen koekie!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Taarttunnels</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Peper-konijnen-koek</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Gore gangen</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Kwelcellen</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Een helse ontsnapping</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Scherp en eng!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>Het konijnenhol</value>
+  </data>
 </root>

@@ -9454,6 +9454,249 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The lush mountaintops.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level10Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level10Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden burrow.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level11Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level11Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stomach circuit.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level12Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level12Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gastric rivers.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level13Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level13Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Living cavern.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level14Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level14Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swallowed treasures.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level15Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level15Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sticky lair.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level16Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level16Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The desert of desserts.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level17Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level17Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cake race.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level18Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level18Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sweet islands.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level19Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level19Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a piece of cake!.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level20Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level20Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tart tunnels.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level21Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level21Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ginger-bunny-bread.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level22Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level22Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filthy corridors.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level23Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level23Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agony jails.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level24Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level24Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infernal escape.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level25Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level25Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spikes and yikes!.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level26Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level26Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rabbids&apos; lair.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level27Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level27Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Child&apos;s play.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level2Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level2Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The kids&apos; hamlet.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level3Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level3Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The toy chase.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level4Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level4Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toy box.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level5Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level5Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Celestial castle.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level6Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level6Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dream forest.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level7Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level7Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The leafy valley.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level8Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level8Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colonial jungle.
+        /// </summary>
+        public static string Progression_RRR_GBA_Level9Header {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_Level9Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time attack.
+        /// </summary>
+        public static string Progression_RRR_GBA_TimeAttack {
+            get {
+                return ResourceManager.GetString("Progression_RRR_GBA_TimeAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Days.
         /// </summary>
         public static string Progression_RRRDays {

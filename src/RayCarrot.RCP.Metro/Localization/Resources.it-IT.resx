@@ -4573,4 +4573,82 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Progression_RHR_Level19Header" xml:space="preserve">
     <value>Mare sulfureo</value>
   </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Gioco da bambini</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>Villaggio delle marmotte</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>Scatola dei giochi</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Caccia ai giochi</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Castello celeste</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Foresta dei sogni</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>La valle delle foglie</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Giungla coloniale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>Le cime lussureggianti</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Buca nascosta</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Giro di pancia</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Fiumi gastrici</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Caverne organiche</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Tesori inghiottiti</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>La tana appiccicosa</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>Deserto di dessert</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Corsa di torte</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>Le isole dolci</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Non è una dolcezza?</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Tunnel farciti</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Coniglio pasquale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Sordidi corridoi</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Prigione dell'agonia</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Fuga infernale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Corse e spine</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>La tana dei conigli</value>
+  </data>
 </root>

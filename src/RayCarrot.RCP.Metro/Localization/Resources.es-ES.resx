@@ -1367,4 +1367,82 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Progression_RHR_Level19Header" xml:space="preserve">
     <value>Mar de Azufre</value>
   </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Un juego de niños</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>La aldea de los niños</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>A la caza del juguete</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Caja de juguetes</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Castillo celestial</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Bosque de los sueños</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>El valle frondoso</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>La selva colonial</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>Cumbres exuberantes</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Una madriguera oculta</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Corre que te corre</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Ríos de tinta</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>La cueva viva</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Un tesoro interior</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>La guarida pegajosa</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>Ensalada de postres</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>A tortas con la tarta</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>Islas de dulzura</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>¡Menudo pastel!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>El hoyo y el bollo</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Una especie de conejo</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Pasillos tenebrosos</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Jaulas de desperación</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Una huida infernal</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Mil y picos..</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>Madriguerra de conejos</value>
+  </data>
 </root>

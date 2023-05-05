@@ -4570,4 +4570,82 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Progression_RHR_Level19Header" xml:space="preserve">
     <value>Mer Sulfureuse</value>
   </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Jeux d'enfants</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>Le hameau des marmots</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>La course aux jouets</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Coffre à jouets</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Château céleste</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Forêt des songes</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>Le vallon boisé</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Jungle coloniale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>Les cîmes luxuriantes</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Terrier caché</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Le tour de panse</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Rivières gastriques</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Caverne organique</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Trésors engloutis</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>La tanière gluante</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>Le désert des desserts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Pari quatre-quarts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>L'archipel Friandise</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>C'est pas du gâteau !</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Galeries clafoutis</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Lapin d'épice</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Couloirs sordides</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Geôles de l'agonie</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Echappée infernale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Parcours épique</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>L'antre des lapins</value>
+  </data>
 </root>
