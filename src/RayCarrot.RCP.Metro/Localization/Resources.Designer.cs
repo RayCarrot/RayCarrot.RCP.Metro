@@ -4826,6 +4826,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the games.
+        /// </summary>
+        public static string GameSelection_RefreshError {
+            get {
+                return ResourceManager.GetString("GameSelection_RefreshError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset custom sort.
         /// </summary>
         public static string GameSelection_ResetSort {

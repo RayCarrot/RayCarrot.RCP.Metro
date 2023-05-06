@@ -286,7 +286,7 @@ public class GamesPageViewModel : BasePageViewModel,
     {
         using (await AsyncLock.LockAsync())
         {
-            Metro.App.Current.Dispatcher.Invoke(() =>
+            await Metro.App.Current.Dispatcher.Invoke(async () =>
             {
                 try
                 {
@@ -352,9 +352,14 @@ public class GamesPageViewModel : BasePageViewModel,
                 }
                 catch (Exception ex)
                 {
-                    // TODO-UPDATE: Handle exception
                     Logger.Fatal(ex, "Refreshing games");
-                    throw;
+
+                    Games.Clear();
+                    SelectedInstalledGame = null;
+                    RecentGames = new ObservableCollectionEx<InstalledGameViewModel>();
+                    FavoriteGames = new ObservableCollectionEx<InstalledGameViewModel>();
+
+                    await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameSelection_RefreshError);
                 }
                 finally
                 {

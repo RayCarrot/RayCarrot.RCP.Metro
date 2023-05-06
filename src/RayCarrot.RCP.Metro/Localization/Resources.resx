@@ -5471,4 +5471,7 @@ gameClientName</comment>
   <data name="GameFileFinder_ResultHeader" xml:space="preserve">
     <value>Game file finder result</value>
   </data>
+  <data name="GameSelection_RefreshError" xml:space="preserve">
+    <value>An error occurred when loading the games</value>
+  </data>
 </root>
