@@ -37,7 +37,12 @@
             <Grid>
                 <games:GameHubControl DataContext="{Binding Path=SelectedInstalledGame}"
                                       Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}" />
-                <games:GamesHomeControl Visibility="{Binding Path=SelectedInstalledGame, Converter={rcp:ObjectNullToVisibilityConverter}}" />
+                <games:GamesHomeControl Visibility="{Binding Path=SelectedInstalledGame, Converter={rcp:ObjectNullToVisibilityConverter}}">
+                    <games:GamesHomeControl.Background>
+                        <ImageBrush ImageSource="HomeBackground.png" 
+                                    Stretch="UniformToFill" />
+                    </games:GamesHomeControl.Background>
+                </games:GamesHomeControl>
             </Grid>
         </rcp:Card>
 
