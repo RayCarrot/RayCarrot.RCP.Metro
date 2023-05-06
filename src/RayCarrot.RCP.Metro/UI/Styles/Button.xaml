@@ -26,7 +26,7 @@
 
     <!-- Flat Button -->
 
-    <!-- TODO-UPDATE: Update other button styles to use icons like this one -->
+    <!-- TODO: Update other button styles to use icons like this one -->
     <Style x:Key="RCP.Styles.Button.Default" TargetType="{x:Type ButtonBase}">
         <Setter Property="Background" Value="{DynamicResource RCP.Brushes.Button.Background}" />
         <Setter Property="BorderThickness" Value="0" />
