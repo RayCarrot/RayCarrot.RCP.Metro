@@ -120,8 +120,11 @@ public class InstalledGameViewModel : BaseViewModel
 
     #region Private Methods
 
-    private void AddGamePanels()
+    private async Task AddGamePanelsAsync()
     {
+        foreach (GamePanelViewModel gamePanel in GamePanels)
+            await gamePanel.UnloadAsync();
+
         GamePanels.Clear();
 
         // Patcher
@@ -305,7 +308,7 @@ public class InstalledGameViewModel : BaseViewModel
             AddAdditionalLaunchActions();
 
             // Load panels
-            AddGamePanels();
+            await AddGamePanelsAsync();
 
             await Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
 

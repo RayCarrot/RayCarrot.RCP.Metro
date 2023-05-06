@@ -91,5 +91,7 @@ public abstract class GamePanelViewModel : BaseViewModel
         }
     }
 
+    public virtual Task UnloadAsync() => Task.CompletedTask;
+
     #endregion
 }

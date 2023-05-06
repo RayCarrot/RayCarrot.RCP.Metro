@@ -982,6 +982,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         patches: patches,
                         progressCallback: state.SetProgress);
 
+                    Services.Messenger.Send(new ModifiedGamePatchesMessage(GameInstallation));
+
                     Logger.Info("Applied patches");
 
                     if (success)

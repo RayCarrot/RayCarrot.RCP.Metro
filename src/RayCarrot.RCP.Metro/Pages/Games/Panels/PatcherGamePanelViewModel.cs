@@ -4,7 +4,7 @@ using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
-public class PatcherGamePanelViewModel : GamePanelViewModel
+public class PatcherGamePanelViewModel : GamePanelViewModel, IRecipient<ModifiedGamePatchesMessage>
 {
     #region Constructor
 
@@ -12,6 +12,8 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
     {
         OpenPatcherCommand = new AsyncRelayCommand(OpenPatcherAsync);
         OpenPatchCreatorCommand = new AsyncRelayCommand(OpenPatchCreatorAsync);
+
+        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -42,7 +44,6 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
 
     protected override async Task LoadAsyncImpl()
     {
-        // TODO-UPDATE: Need to update this once the user has modified the patches
         // Get applied patches
         using Context context = new RCPContext(String.Empty);
         PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
@@ -55,10 +56,12 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
         catch (Exception ex)
         {
             Logger.Warn(ex, "Reading patch library");
-            // TODO-UPDATE: Enter some sort of error state if this fails?
         }
 
-        InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_Info), libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0);
+        if (libraryFile != null)
+            InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_Info), libraryFile.Patches.Count(x => x.IsEnabled));
+        else
+            InfoText = String.Empty;
     }
 
     #endregion
@@ -67,6 +70,18 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
 
     public Task OpenPatcherAsync() => Services.UI.ShowPatcherAsync(GameInstallation);
     public Task OpenPatchCreatorAsync() => Services.UI.ShowPatchCreatorAsync(GameInstallation);
+
+    public async void Receive(ModifiedGamePatchesMessage message)
+    {
+        if (message.GameInstallation == GameInstallation)
+            await RefreshAsync();
+    }
+
+    public override Task UnloadAsync()
+    {
+        Services.Messenger.UnregisterAll(this);
+        return Task.CompletedTask;
+    }
 
     #endregion
 }
