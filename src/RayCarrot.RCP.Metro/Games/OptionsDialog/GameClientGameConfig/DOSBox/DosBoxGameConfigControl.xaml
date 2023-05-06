@@ -27,8 +27,7 @@
 
             <!-- Mount path -->
 
-            <StackPanel Orientation="Horizontal"
-                        Visibility="{Binding Path=RequiredDisc, Converter={rcp:BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                            Text="{Resx MountPathHeader}" />
 
@@ -37,8 +36,7 @@
             </StackPanel>
 
             <rcp:BrowseBox x:Name="MountPathBrowseBox"
-                           SelectedPath="{Binding Path=MountPath, Converter={rcp:FileSystemPathToStringConverter}}"
-                           Visibility="{Binding Path=RequiredDisc, Converter={rcp:BooleanToVisibilityConverter}}">
+                           SelectedPath="{Binding Path=MountPath, Converter={rcp:FileSystemPathToStringConverter}}">
                 <rcp:BrowseBox.Style>
                     <Style TargetType="{x:Type rcp:BrowseBox}" BasedOn="{StaticResource {x:Type rcp:BrowseBox}}">
                         <Style.Triggers>
@@ -54,7 +52,7 @@
                 </rcp:BrowseBox.Style>
             </rcp:BrowseBox>
 
-            <WrapPanel Visibility="{Binding Path=RequiredDisc, Converter={rcp:BooleanToVisibilityConverter}}">
+            <WrapPanel>
                 <RadioButton Content="{Resx MountOption_File}"
                              ToolTip="{Resx MountOption_FileInfo}"
                              Margin="0 0 8 0"

@@ -2,7 +2,6 @@
 using System.Windows;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -143,8 +142,6 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
     public GameInstallation GameInstallation { get; }
 
     public FileSystemPath ConfigFilePath { get; }
-
-    public bool RequiredDisc => GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>();
 
     /// <summary>
     /// The file or directory to mount

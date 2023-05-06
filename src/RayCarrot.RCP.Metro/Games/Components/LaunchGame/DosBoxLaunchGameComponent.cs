@@ -75,7 +75,6 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
         return GetDOSBoxLaunchArgs(
             mountPath: mountPath,
-            requiresMounting: GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>(),
             launchName: launchName,
             installDir: GameInstallation.InstallLocation.Directory,
             dosBoxConfigFiles: configFilePaths);
@@ -83,7 +82,6 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     private static string GetDOSBoxLaunchArgs(
         FileSystemPath mountPath,
-        bool requiresMounting,
         string launchName,
         FileSystemPath installDir,
         IEnumerable<FileSystemPath> dosBoxConfigFiles)
@@ -104,8 +102,8 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
                 AddArg($"-conf \"{configFile.FullPath}\"");
         }
 
-        // Mount the disc if required
-        if (requiresMounting)
+        // Mount the disc if the path exists
+        if (mountPath.Exists)
         {
             // The mounting differs if it's a physical disc vs. a disc image
             if (mountPath.IsDirectoryRoot)
