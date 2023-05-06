@@ -4,8 +4,6 @@ using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: This was recently fully dumped and the .bin files include the music. We should include that here as well.
-
 /// <summary>
 /// The Rayman 1 Demo 1995/12/07 (MS-DOS) game descriptor
 /// </summary>
@@ -27,12 +25,28 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MsDos : MsDosGameDescri
 
     #endregion
 
+    #region Private Methods
+
+    private static Task TryFindMountPath(GameInstallation gameInstallation)
+    {
+        // Set the default mount path if available
+        FileSystemPath mountPath = gameInstallation.InstallLocation.Directory + "Disc" + "RAYMAN_PC_DEMO.cue";
+
+        if (mountPath.FileExists)
+            gameInstallation.SetValue(GameDataKey.Client_DosBox_MountPath, mountPath);
+
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new OnGameAddedComponent(TryFindMountPath));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
     }
 
