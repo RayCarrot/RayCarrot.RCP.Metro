@@ -19,7 +19,13 @@ public class GameProgressionSlot
         Percentage = collectiblesCount / (double)totalCollectiblesCount * 100;
         FilePath = filePath;
         DataItems = dataItems;
-        Is100Percent = CollectiblesCount == TotalCollectiblesCount;
+
+        if (CollectiblesCount >= TotalCollectiblesCount)
+            State = ProgressionState.FullyComplete;
+        else if (Percentage >= 50)
+            State = ProgressionState.HalfWayComplete;
+        else
+            State = ProgressionState.NotComplete;
     }
 
     public GameProgressionSlot(
@@ -36,7 +42,13 @@ public class GameProgressionSlot
         Percentage = percentage;
         FilePath = filePath;
         DataItems = dataItems;
-        Is100Percent = percentage >= 100;
+
+        if (percentage >= 100)
+            State = ProgressionState.FullyComplete;
+        else if (Percentage >= 50)
+            State = ProgressionState.HalfWayComplete;
+        else
+            State = ProgressionState.NotComplete;
     }
 
     #endregion
@@ -48,7 +60,7 @@ public class GameProgressionSlot
     public int? CollectiblesCount { get; }
     public int? TotalCollectiblesCount { get; }
     public double Percentage { get; }
-    public bool Is100Percent { get; }
+    public ProgressionState State { get; }
     public FileSystemPath FilePath { get; }
 
     public int SlotGroup { get; init; }
@@ -66,6 +78,17 @@ public class GameProgressionSlot
         throw new NotSupportedException("This slot does not support exporting slots");
     public virtual void ImportSlot(FileSystemPath filePath) => 
         throw new NotSupportedException("This slot does not support importing slots");
+
+    #endregion
+
+    #region Enums
+
+    public enum ProgressionState
+    {
+        FullyComplete,
+        HalfWayComplete,
+        NotComplete,
+    }
 
     #endregion
 }

@@ -56,23 +56,10 @@ public class GameSlotViewModel : BaseRCPViewModel
     public GameViewModel Game { get; }
     public LocalizedString Name => Slot.Name;
     public double Percentage => Slot.Percentage;
-    
+    public GameProgressionSlot.ProgressionState State => Slot.State;
+
     public FileSystemPath FilePath { get; }
     public bool CanOpenLocation { get; }
-
-    public Brush ProgressBrush
-    {
-        get
-        {
-            // TODO-UPDATE: Move to resource dictionary and do in xaml instead (same for progression panel)
-            if (Slot.Is100Percent)
-                return new SolidColorBrush(Color.FromRgb(76, 175, 80));
-            else if (Percentage >= 50)
-                return new SolidColorBrush(Color.FromRgb(255, 238, 88));
-            else
-                return new SolidColorBrush(Color.FromRgb(239, 83, 80));
-        }
-    }
 
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; } = new();
     public bool HasInfoItems { get; set; }

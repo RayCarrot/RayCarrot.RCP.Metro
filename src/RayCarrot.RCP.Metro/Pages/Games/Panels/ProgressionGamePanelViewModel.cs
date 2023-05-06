@@ -1,5 +1,4 @@
-﻿using System.Windows.Media;
-using RayCarrot.RCP.Metro.Games.Data;
+﻿using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -47,19 +46,7 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
 
         public GameProgressionSlot Slot { get; }
         public double Percentage => Slot.Percentage;
-        public Brush ProgressBrush
-        {
-            get
-            {
-                // TODO-UPDATE: Move to resource dictionary and do in xaml instead (same for progression page)
-                if (Slot.Is100Percent)
-                    return new SolidColorBrush(Color.FromRgb(76, 175, 80));
-                else if (Percentage >= 50)
-                    return new SolidColorBrush(Color.FromRgb(255, 238, 88));
-                else
-                    return new SolidColorBrush(Color.FromRgb(239, 83, 80));
-            }
-        }
+        public GameProgressionSlot.ProgressionState State => Slot.State;
         public ObservableCollection<GameProgressionDataItem> PrimaryDataItems { get; }
     }
 }

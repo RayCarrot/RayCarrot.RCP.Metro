@@ -56,7 +56,6 @@
 
         </Grid>
 
-        <!-- TODO-UPDATE: Fix closing popup on loose focus and scroll -->
         <controlzex:PopupEx x:Name="FullPathsPopup" 
                             Grid.Row="0"
                             Placement="Relative" 

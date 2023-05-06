@@ -24,12 +24,27 @@
 
         </StackPanel>
 
-        <mah:MetroProgressBar Foreground="{Binding Path=ProgressBrush, Mode=OneTime}"
-                              Minimum="0"
+        <mah:MetroProgressBar Minimum="0"
                               Maximum="100"
                               Width="80"
                               HorizontalAlignment="Right"
-                              Value="{Binding Path=Percentage, Mode=OneTime}" />
+                              Value="{Binding Path=Percentage, Mode=OneTime}">
+            <mah:MetroProgressBar.Style>
+                <Style TargetType="{x:Type mah:MetroProgressBar}" BasedOn="{StaticResource {x:Type mah:MetroProgressBar}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static rcp:GameProgressionSlot+ProgressionState.FullyComplete}">
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Progression.FullyComplete}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static rcp:GameProgressionSlot+ProgressionState.HalfWayComplete}">
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Progression.HalfWayComplete}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static rcp:GameProgressionSlot+ProgressionState.NotComplete}">
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Progression.NotComplete}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </mah:MetroProgressBar.Style>
+        </mah:MetroProgressBar>
 
     </StackPanel>
 </UserControl>
