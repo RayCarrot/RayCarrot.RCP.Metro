@@ -50,7 +50,8 @@
                Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
                Height="128" Width="128" />
 
-        <GroupBox Grid.Row="1" 
+        <GroupBox Grid.Row="1"
+                  Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
                   rcp:Icon.Kind="TextBoxOutline"
                   rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                   Margin="{StaticResource RCP.Thicknesses.Card}"
@@ -103,6 +104,7 @@
             </Grid.ColumnDefinitions>
 
             <GroupBox Grid.Column="0"
+                      Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
                       Header="{Resx Home_RecentGames}"
                       rcp:Icon.Kind="ClockOutline"
                       rcp:Icon.Brush="{StaticResource RCP.Brushes.Games}"
@@ -114,6 +116,7 @@
             </GroupBox>
 
             <GroupBox Grid.Column="1"
+                      Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
                       Header="{Resx Home_FavoriteGames}"
                       rcp:Icon.Kind="StarOutline"
                       rcp:Icon.Brush="{StaticResource RCP.Brushes.Favorites}"

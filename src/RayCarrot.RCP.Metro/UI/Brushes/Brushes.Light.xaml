@@ -12,6 +12,8 @@
     <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover" po:Freeze="True">#E0E0E0</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatSelected" po:Freeze="True">#D8D8D8</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground" po:Freeze="True">#D8D8D8</SolidColorBrush>
+    <!-- Not sure why, but freezing this brush causes it not to update even with a dynamic resource... -->
+    <SolidColorBrush x:Key="RCP.Brushes.Card.TransparentSecondaryBackground">#B0D8D8D8</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Button.Background" po:Freeze="True">#D8D8D8</SolidColorBrush>
 
     <!-- Flat button -->
