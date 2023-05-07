@@ -31,11 +31,11 @@ public partial class GameSelectionControl : UserControl
         if (sender is not ListBoxItem item)
             return;
 
-        // Scroll the item into view
-        item.BringIntoView();
-
-        // Focus on the item
-        item.Focus();
+        // Scroll all the way down and then up. This places the item we scroll to on the top rather than the bottom.
+        _gamesScrollViewer?.ScrollToBottom();
+        GroupItem group = item.GetVisualAncestor<GroupItem>();
+        group.BringIntoView();
+        group.Focus();
     }
 
     private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
@@ -107,10 +107,6 @@ public partial class GameSelectionControl : UserControl
         if (game == null)
             return;
 
-        // Scroll all the way down and then up. This places the item we scroll to on the top rather than the bottom.
-        _gamesScrollViewer.ScrollToBottom();
-        ListBoxItem container = (ListBoxItem)GamesListBox.ItemContainerGenerator.ContainerFromItem(game);
-        GroupItem group = container.GetVisualAncestor<GroupItem>();
-        group.BringIntoView();
+        ViewModel.SelectedInstalledGame = game;
     }
 }
