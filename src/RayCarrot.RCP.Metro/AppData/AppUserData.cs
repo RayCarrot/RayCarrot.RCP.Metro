@@ -4,6 +4,7 @@ using System.Windows.Input;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -33,6 +34,7 @@ public partial class AppUserData : BaseViewModel
         App_AutoSortJumpList = true;
         App_HandleDownloadsManually = false;
         App_DisableGameValidation = false;
+        App_CachedNews = new List<AppNewsEntry>();
 
         // UI
         UI_WindowState = null;
@@ -98,7 +100,8 @@ public partial class AppUserData : BaseViewModel
         App_LastVersion ??= new Version(0, 0, 0, 0);
         App_CurrentCulture ??= LocalizationManager.DefaultCulture.Name;
         App_JumpListItems ??= new List<JumpListItem>();
-            
+        App_CachedNews ??= new List<AppNewsEntry>();
+
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
         Game_GameClientInstallations ??= new List<GameClientInstallation>();
@@ -187,6 +190,11 @@ public partial class AppUserData : BaseViewModel
     /// Disables validating the game install location. This allow a game with any install location to be added.
     /// </summary>
     public bool App_DisableGameValidation { get; set; }
+
+    /// <summary>
+    /// Cached news entries for the app news
+    /// </summary>
+    public List<AppNewsEntry> App_CachedNews { get; set; }
 
     #endregion
 

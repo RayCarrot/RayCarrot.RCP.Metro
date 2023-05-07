@@ -50,10 +50,11 @@
                Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
                Height="128" Width="128" />
 
-        <GroupBox Grid.Row="1" FontSize="14"
+        <GroupBox Grid.Row="1" 
                   rcp:Icon.Kind="TextBoxOutline"
                   rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
-                  Margin="{StaticResource RCP.Thicknesses.Card}">
+                  Margin="{StaticResource RCP.Thicknesses.Card}"
+                  DataContext="{Binding Path=AppNewsViewModel, Mode=OneTime}">
             <GroupBox.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -77,23 +78,21 @@
             </GroupBox.Header>
 
             <ScrollViewer>
-                <!-- TODO-UPDATE: Replace this dummy text with text from web server -->
-                <TextBlock TextWrapping="Wrap">
-                    <Bold>May ??, 2023</Bold><LineBreak/>
-                    • Released the anniversary update (14.0.0)<LineBreak/>
-                    <LineBreak/>
-                    <Bold>April ??, 2023</Bold><LineBreak/>
-                    • Released the anniversary update (14.0.0) for public testing<LineBreak/>
-                    <LineBreak/>
-                    <Bold>March ??, 2023</Bold><LineBreak/>
-                    • Updated Ray2Fix patch for Rayman 2 to version 1.3.0, now with support for controller remapping<LineBreak/>
-                    <LineBreak/>
-                    <Bold>February 23, 2023</Bold><LineBreak/>
-                    • Started testing this new home page<LineBreak/>
-                    <LineBreak/>
-                    <Bold>December 11, 2022</Bold><LineBreak/>
-                    • Teased the anniversary update in the Rayman Alive event
-                </TextBlock>
+                <ItemsControl ItemsSource="{Binding Path=NewsEntries}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0 0 0 8">
+                                <TextBlock Text="{Binding Path=Header, Mode=OneTime}" 
+                                           FontWeight="Bold" 
+                                           TextWrapping="Wrap"
+                                           FontSize="14" />
+                                <TextBlock Text="{Binding Path=Text, Mode=OneTime}"
+                                           TextWrapping="Wrap"
+                                           FontSize="14" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
         </GroupBox>
 

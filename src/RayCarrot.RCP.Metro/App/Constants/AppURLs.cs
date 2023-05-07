@@ -31,6 +31,11 @@ public static class AppURLs
     public const string PatchesManifestUrl = RCPBaseUrl + "game_patches.json";
 
     /// <summary>
+    /// The app news URL
+    /// </summary>
+    public const string AppNewsUrl = RCPBaseUrl + "news.json";
+
+    /// <summary>
     /// The base resource URL
     /// </summary>
     public const string BaseResourceUrl = RCPBaseUrl + "resources/12.0.0/";

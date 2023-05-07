@@ -27,7 +27,8 @@ public class GamesPageViewModel : BasePageViewModel,
         IMessageUIManager messageUi,
         IMessenger messenger, 
         AppUserData data, 
-        IBrowseUIManager browseUi) : base(app)
+        IBrowseUIManager browseUi, 
+        AppNewsViewModel appNewsViewModel) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
@@ -37,6 +38,7 @@ public class GamesPageViewModel : BasePageViewModel,
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         Data = data ?? throw new ArgumentNullException(nameof(data));
         BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
+        AppNewsViewModel = appNewsViewModel ?? throw new ArgumentNullException(nameof(appNewsViewModel));
 
         // Set properties
         AsyncLock = new AsyncLock();
@@ -60,7 +62,6 @@ public class GamesPageViewModel : BasePageViewModel,
         FindGameFilesCommand = new AsyncRelayCommand(FindGameFilesAsync);
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
         ConfigureGameClientsCommand = new AsyncRelayCommand(ConfigureGameClientsAsync);
-        ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
     }
 
     #endregion
@@ -81,7 +82,6 @@ public class GamesPageViewModel : BasePageViewModel,
     public ICommand FindGameFilesCommand { get; }
     public ICommand AddGamesCommand { get; }
     public ICommand ConfigureGameClientsCommand { get; }
-    public ICommand ShowVersionHistoryCommand { get; }
 
     #endregion
 
@@ -115,6 +115,8 @@ public class GamesPageViewModel : BasePageViewModel,
     #region Public Properties
 
     public override AppPage Page => AppPage.Games;
+
+    public AppNewsViewModel AppNewsViewModel { get; }
 
     public string GameFilter
     {
@@ -266,10 +268,14 @@ public class GamesPageViewModel : BasePageViewModel,
 
     protected override async Task InitializeAsync()
     {
+        // Refresh the games
         await RefreshAsync();
 
         // Register for messages
         Messenger.RegisterAll(this);
+
+        // Load app news
+        await AppNewsViewModel.LoadAsync();
     }
 
     #endregion
@@ -594,7 +600,6 @@ public class GamesPageViewModel : BasePageViewModel,
 
     public Task AddGamesAsync() => UI.ShowAddGamesAsync();
     public Task ConfigureGameClientsAsync() => UI.ShowGameClientsSetupAsync();
-    public Task ShowVersionHistoryAsync() => UI.ShowVersionHistoryAsync();
 
     public async void Receive(AddedGamesMessage message) =>
         await RefreshAsync(message.GameInstallations.FirstOrDefault());
