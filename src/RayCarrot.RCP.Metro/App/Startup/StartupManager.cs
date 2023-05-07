@@ -341,8 +341,8 @@ public class StartupManager
             // Close the splash screen
             CloseSplashScreen();
 
-            // Show app news
-            await UI.ShowAppNewsAsync();
+            // Show the version history
+            await UI.ShowVersionHistoryAsync();
 
             // Update the last version
             Data.App_LastVersion = AppViewModel.CurrentAppVersion;

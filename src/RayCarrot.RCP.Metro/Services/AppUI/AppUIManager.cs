@@ -207,19 +207,19 @@ public class AppUIManager
 #nullable enable
 
     /// <summary>
-    /// Shows a new instance of the app news
+    /// Shows a new instance of the version history
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowAppNewsAsync()
+    public async Task ShowVersionHistoryAsync()
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        Logger.Trace("An app news window was opened");
+        Logger.Trace("A version history window was opened");
 
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
-        using AppNewsDialog ui = Application.Current.Dispatcher.Invoke(() => new AppNewsDialog());
+        using VersionHistoryDialog ui = Application.Current.Dispatcher.Invoke(() => new VersionHistoryDialog());
         await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
     }
 

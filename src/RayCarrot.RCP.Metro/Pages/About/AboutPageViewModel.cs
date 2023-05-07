@@ -112,10 +112,7 @@ public class AboutPageViewModel : BasePageViewModel
     /// <summary>
     /// Shows the application version history
     /// </summary>
-    public async Task ShowVersionHistoryAsync()
-    {
-        await UI.ShowAppNewsAsync();
-    }
+    public Task ShowVersionHistoryAsync() => UI.ShowVersionHistoryAsync();
 
     /// <summary>
     /// Runs the uninstaller

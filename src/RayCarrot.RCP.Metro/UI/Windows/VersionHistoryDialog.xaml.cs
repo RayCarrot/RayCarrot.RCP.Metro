@@ -1,14 +1,13 @@
-﻿#nullable disable
-using System.Windows;
+﻿using System.Windows;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Interaction logic for AppNewsDialog.xaml
+/// Interaction logic for VersionHistoryDialog.xaml
 /// </summary>
-public partial class AppNewsDialog : WindowContentControl
+public partial class VersionHistoryDialog : WindowContentControl
 {
-    public AppNewsDialog()
+    public VersionHistoryDialog()
     {
         InitializeComponent();
     }
@@ -19,7 +18,7 @@ public partial class AppNewsDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = Metro.Resources.AppNews_Title;
+        WindowInstance.Title = Metro.Resources.AppNews_Header;
         WindowInstance.Icon = GenericIconKind.Window_AppNews;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

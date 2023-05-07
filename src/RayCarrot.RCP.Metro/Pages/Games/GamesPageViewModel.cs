@@ -594,7 +594,7 @@ public class GamesPageViewModel : BasePageViewModel,
 
     public Task AddGamesAsync() => UI.ShowAddGamesAsync();
     public Task ConfigureGameClientsAsync() => UI.ShowGameClientsSetupAsync();
-    public Task ShowVersionHistoryAsync() => UI.ShowAppNewsAsync();
+    public Task ShowVersionHistoryAsync() => UI.ShowVersionHistoryAsync();
 
     public async void Receive(AddedGamesMessage message) =>
         await RefreshAsync(message.GameInstallations.FirstOrDefault());
