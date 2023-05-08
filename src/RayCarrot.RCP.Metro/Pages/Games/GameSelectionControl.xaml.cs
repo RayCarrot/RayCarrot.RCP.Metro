@@ -31,8 +31,6 @@ public partial class GameSelectionControl : UserControl
         if (sender is not ListBoxItem item)
             return;
 
-        // Scroll all the way down and then up. This places the item we scroll to on the top rather than the bottom.
-        _gamesScrollViewer?.ScrollToBottom();
         GroupItem group = item.GetVisualAncestor<GroupItem>();
         group.BringIntoView();
         group.Focus();
@@ -106,6 +104,9 @@ public partial class GameSelectionControl : UserControl
 
         if (game == null)
             return;
+
+        // Scroll all the way down and then up. This places the item we scroll to on the top rather than the bottom.
+        _gamesScrollViewer?.ScrollToBottom();
 
         ViewModel.SelectedInstalledGame = game;
     }
