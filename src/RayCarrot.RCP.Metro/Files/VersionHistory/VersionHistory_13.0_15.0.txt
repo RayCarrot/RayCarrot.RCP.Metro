@@ -27,6 +27,7 @@ Other changes:
 	• Redesigned the overflow/popup menus
 	• Redesigned the edit jumplist dialog
 • Patcher changes
+	• Game patch files (.gp) now use a custom file icon
 	• The patcher now shows if a file will be ignored due to the location not existing
 	• Patches can now be created to target multiple games
 	• Patches can now be created for the Rayman Edutainment games

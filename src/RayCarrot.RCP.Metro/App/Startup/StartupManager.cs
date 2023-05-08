@@ -229,7 +229,7 @@ public class StartupManager
         {
             try
             {
-                PatchFile.AssociateWithFileType(assemblyPath, true);
+                PatchFile.AssociateWithFileType(assemblyPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
             }
             catch (Exception ex)
             {

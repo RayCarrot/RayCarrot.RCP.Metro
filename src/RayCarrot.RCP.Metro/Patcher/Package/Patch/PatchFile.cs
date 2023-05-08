@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using System.IO;
 using System.Text;
 using BinarySerializer;
 
@@ -110,9 +111,20 @@ public class PatchFile : BinarySerializable, IPackageFile
         }
     }
 
-    public static void AssociateWithFileType(FileSystemPath programFilePath, bool enable)
+    public static void AssociateWithFileType(FileSystemPath programFilePath, System.Drawing.Icon icon, FileSystemPath iconFilePath, bool enable)
     {
-        WindowsHelpers.SetFileTypeAssociation(programFilePath, FileExtension, "Rayman Control Panel Game Patch", FileTypeID, enable);
+        if (enable)
+        {
+            Directory.CreateDirectory(iconFilePath.Parent);
+            using Stream fileStream = System.IO.File.Create(iconFilePath);
+            icon.Save(fileStream);
+        }
+        else
+        {
+            Services.File.DeleteFile(iconFilePath);
+        }
+
+        WindowsHelpers.SetFileTypeAssociation(programFilePath, FileExtension, "Rayman Control Panel Game Patch", FileTypeID, iconFilePath, enable);
         
         if (enable)
             Logger.Info("Set the file type association for patch files");

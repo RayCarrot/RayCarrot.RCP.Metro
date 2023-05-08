@@ -60,6 +60,11 @@ public static class AppFilePaths
     public static FileSystemPath AdminWorkerPath => UserDataBaseDir + "Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
 
     /// <summary>
+    /// The game patch icon file path
+    /// </summary>
+    public static FileSystemPath GamePatchIconPath => UserDataBaseDir + "Icons\\GamePatch.ico";
+
+    /// <summary>
     /// The temporary files path
     /// </summary>
     public static FileSystemPath TempPath => Path.Combine(Path.GetTempPath(), "RCP_Metro");

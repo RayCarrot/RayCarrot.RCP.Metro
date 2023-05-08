@@ -688,7 +688,7 @@ public class AppDataManager
             try
             {
                 // Default to the file type association being enabled
-                PatchFile.AssociateWithFileType(Data.App_ApplicationPath, true);
+                PatchFile.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
             }
             catch (Exception ex)
             {
@@ -733,6 +733,17 @@ public class AppDataManager
                 Logger.Error(ex, "Migrating old data to 14.0");
 
                 await MessageUI.DisplayExceptionMessageAsync(ex, Resources.AppData_MigrateError);
+            }
+
+            try
+            {
+                // Update the patch file association now that we have a custom icon for it
+                if (PatchFile.IsAssociatedWithFileType() == true)
+                    PatchFile.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting patch file type association");
             }
         }
     }

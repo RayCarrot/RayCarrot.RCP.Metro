@@ -258,14 +258,18 @@ public static class WindowsHelpers
     /// <param name="fileExtension">The file extension, including the period</param>
     /// <param name="description">The file type description</param>
     /// <param name="id">The ID</param>
+    /// <param name="iconFilePath">An optional icon file path</param>
     /// <param name="enable">Indicates if the file type association should be set. If false it is removed.</param>
-    public static void SetFileTypeAssociation(FileSystemPath programFilePath, string fileExtension, string description, string id, bool enable)
+    public static void SetFileTypeAssociation(FileSystemPath programFilePath, string fileExtension, string description, string id, FileSystemPath iconFilePath, bool enable)
     {
         if (enable)
         {
             Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{fileExtension}", null, id);
             Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{id}", null, description);
             Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{id}\shell\open\command", null, $"\"{programFilePath.FullPath}\" \"%1\"");
+
+            if (iconFilePath != FileSystemPath.EmptyPath)
+                Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{id}\DefaultIcon", null, $"\"{iconFilePath.FullPath}\"");
         }
         else
         {

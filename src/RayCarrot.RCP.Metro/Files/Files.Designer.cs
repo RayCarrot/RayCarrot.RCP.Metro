@@ -101,6 +101,16 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon GamePatch {
+            get {
+                object obj = ResourceManager.GetObject("GamePatch", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copyright (c) 2021 RayCarrot
         ///
         ///Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -289,15 +299,14 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 13.4.1 - October 28, 2022   -----
-        ///• Fixed a bug where changing the links style in the settings page would cause the app to crash
-        ///• Fixed a bug where there would be graphical artifacts in the progression page for certain graphics cards
-        ///
-        ///
-        ///-----   Version 13.4.0 - October 17, 2022   -----
-        ///• Replaced several utilities with downloadable patches and modified the credits to match
-        ///• Added an optional website field to patches
-        ///• Updated the standard loading indicator and added support for canc [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to -----   Version 14.0.0 - June ??, 2023   -----
+        ///• Major changes to how games are handled
+        ///	• Multiple installations of the same game can be added
+        ///	• Games can be renamed and reordered
+        ///	• The game options have been moved from the options dialog to the game hub
+        ///	• The Rayman Edutainment games are now split up between Edu and Quiz
+        ///• The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
+        ///• Added a home page for news and recent/favo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_13_0_15_0 {
             get {

@@ -255,7 +255,7 @@ public class SettingsPageViewModel : BasePageViewModel
     {
         try
         {
-            PatchFile.AssociateWithFileType(Data.App_ApplicationPath, AssociatePatchFileType);
+            PatchFile.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, AssociatePatchFileType);
         }
         catch (Exception ex)
         {
