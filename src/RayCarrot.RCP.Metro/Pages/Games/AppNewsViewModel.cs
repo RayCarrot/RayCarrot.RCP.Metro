@@ -13,9 +13,10 @@ public class AppNewsViewModel : BaseViewModel
         AppUserData = appUserData ?? throw new ArgumentNullException(nameof(appUserData));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
 
-        NewsEntries = new ObservableCollection<AppNewsEntry>(AppUserData.App_CachedNews);
+        ShowMore(true);
 
         ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
+        ShowMoreCommand = new RelayCommand(() => ShowMore(false));
     }
 
     #endregion
@@ -29,6 +30,7 @@ public class AppNewsViewModel : BaseViewModel
     #region Commands
 
     public ICommand ShowVersionHistoryCommand { get; }
+    public ICommand ShowMoreCommand { get; }
 
     #endregion
 
@@ -41,7 +43,8 @@ public class AppNewsViewModel : BaseViewModel
 
     #region Public Properties
 
-    public ObservableCollection<AppNewsEntry> NewsEntries { get; set; }
+    public ObservableCollection<AppNewsEntry>? NewsEntries { get; set; }
+    public bool CanShowMore { get; set; }
 
     #endregion
 
@@ -49,10 +52,19 @@ public class AppNewsViewModel : BaseViewModel
 
     public Task ShowVersionHistoryAsync() => UI.ShowVersionHistoryAsync();
 
+    public void ShowMore(bool reset)
+    {
+        int prevCount = reset ? 0 : NewsEntries?.Count ?? 0;
+        NewsEntries = new ObservableCollection<AppNewsEntry>(AppUserData.App_CachedNews.Take(prevCount + 8));
+        CanShowMore = AppUserData.App_CachedNews.Count > NewsEntries.Count;
+    }
+
     public async Task LoadAsync()
     {
         try
         {
+            Logger.Trace("Downloading latest app news");
+
             // Do Task.Run since if it has trouble establishing a connection, like if you
             // have airplane mode on, then this takes a long time and blocks the thread
             List<AppNewsEntry> entries = await Task.Run(() => JsonHelpers.DeserializeFromURLAsync<List<AppNewsEntry>>(AppURLs.AppNewsUrl));
@@ -60,8 +72,10 @@ public class AppNewsViewModel : BaseViewModel
             entries.RemoveAll(x => (x.MinAppVersion != null && AppViewModel.AppVersion < x.MinAppVersion) ||
                                    (x.MaxAppVersion != null && AppViewModel.AppVersion >= x.MaxAppVersion));
 
-            NewsEntries = new ObservableCollection<AppNewsEntry>(entries);
+            Logger.Info("Downloaded latest app news");
+
             AppUserData.App_CachedNews = entries;
+            ShowMore(true);
         }
         catch (Exception ex)
         {

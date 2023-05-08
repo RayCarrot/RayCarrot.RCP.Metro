@@ -79,21 +79,49 @@
             </GroupBox.Header>
 
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Path=NewsEntries}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0 0 0 8">
-                                <TextBlock Text="{Binding Path=Header, Mode=OneTime}" 
-                                           FontWeight="Bold" 
-                                           TextWrapping="Wrap"
-                                           FontSize="14" />
-                                <TextBlock Text="{Binding Path=Text, Mode=OneTime}"
-                                           TextWrapping="Wrap"
-                                           FontSize="14" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Path=NewsEntries}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0 0 0 12">
+                                    <Grid Margin="0 0 0 4"
+                                          VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                               Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AppNewsIconToImageSourceConverter}}" 
+                                               Width="32"
+                                               Height="32"
+                                               Margin="0 0 4 0" />
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Path=Header, Mode=OneTime}" 
+                                                       TextWrapping="Wrap"
+                                                       FontWeight="Bold" 
+                                                       FontSize="16"
+                                                       Margin="0 0 0 2" />
+                                            <TextBlock Text="{Binding Path=Date, Mode=OneTime}"
+                                                       FontStyle="Italic" 
+                                                       FontSize="12" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Path=Text, Mode=OneTime}"
+                                               TextWrapping="Wrap"
+                                               FontSize="14" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock Visibility="{Binding Path=CanShowMore, Converter={rcp:BooleanToVisibilityConverter}}">
+                        <Hyperlink Command="{Binding Path=ShowMoreCommand, Mode=OneTime}">
+                            <Run Text="Show more" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                </StackPanel>
             </ScrollViewer>
         </GroupBox>
 
