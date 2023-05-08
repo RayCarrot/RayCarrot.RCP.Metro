@@ -5,7 +5,7 @@
 	• The game options have been moved from the options dialog to the game hub
 	• The Rayman Edutainment games are now split up between Edu and Quiz
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
-• Added a home page for news and recent/favorite games
+• Added a home page for news and recent/favorite games. Added and updated patches are now shown there instead of the app changelog.
 • Added support for new games:
 	• Rayman Advance
 	• Rayman 3 (GBA)
@@ -88,10 +88,6 @@ Other changes:
 • Fixed a bug where removing a game would fail if the folder could not be written to due to the check for patches attempting to create the patches library folder (this now only gets created when patches are applied)
 • Fixed a bug where the game finder wouldn't correctly save the DOSBox path if found, resulting in it showing it as found each time
 
-Updated patches since last update:
-• Tonic Trouble (Retail) HD Texture Pack (for Tonic Trouble by Garo)
-• Tonic Trouble Special Edition HD Texture Pack (for Tonic Trouble Special Edition by Garo)
-
 
 -----   Version 13.4.1 - October 28, 2022   -----
 • Fixed a bug where changing the links style in the settings page would cause the app to crash
@@ -102,16 +98,6 @@ Updated patches since last update:
 • Replaced several utilities with downloadable patches and modified the credits to match
 • Added an optional website field to patches
 • Updated the standard loading indicator and added support for canceling the current operation
-
-Added patches since last update:
-• Ray2Fix (for Rayman 2 by spitfirex86)
-• Remove Pirate Head DRM (for Rayman 2 by Robin, RayCarrot)
-• AI Upscaled Texture Pack (for Rayman 2 by Granvillimus)
-• Irish (Gaeilge) Fan Translation (for Rayman 2 by PluMGMK)
-• Portuguese (Português) Fan Translation (for Rayman 2 by Haruka Tavares)
-• Swedish (Svenska) Fan Translation (for Rayman 2 by RayCarrot)
-• Arena Multiplayer Patch (for Rayman Arena by zZeck)
-• High Quality Videos (for Rayman Origins by RayCarrot)
 
 Other changes:
 • Multiple windows of the same type can now be open at the same time
