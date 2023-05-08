@@ -117,7 +117,7 @@
 
                     <TextBlock Visibility="{Binding Path=CanShowMore, Converter={rcp:BooleanToVisibilityConverter}}">
                         <Hyperlink Command="{Binding Path=ShowMoreCommand, Mode=OneTime}">
-                            <Run Text="Show more" />
+                            <Run Text="{Resx Home_ShowMoreNews}" />
                         </Hyperlink>
                     </TextBlock>
 

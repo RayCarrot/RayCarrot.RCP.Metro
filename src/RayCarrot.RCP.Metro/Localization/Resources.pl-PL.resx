@@ -1192,9 +1192,6 @@ Spróbować ponownie?</value>
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Operacja pobierania zakończona</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>Wiadomości z aplikacji</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Historia wersji</value>
   </data>
@@ -4528,10 +4525,6 @@ Konflikty:
   </data>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Istnieje {0} łatek, które zostały zastosowane do tej gry. Czy chcesz kontynuować usuwanie gry i zachować zastosowane łatki?</value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>

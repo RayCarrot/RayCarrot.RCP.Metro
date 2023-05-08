@@ -223,7 +223,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hebrew program translation.
+        ///   Looks up a localized string similar to Hebrew program translation, game patch file icon.
         /// </summary>
         public static string About_Credits_XanderNT {
             get {
@@ -512,15 +512,6 @@ namespace RayCarrot.RCP.Metro {
         public static string AppNews_Header {
             get {
                 return ResourceManager.GetString("AppNews_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to App News.
-        /// </summary>
-        public static string AppNews_Title {
-            get {
-                return ResourceManager.GetString("AppNews_Title", resourceCulture);
             }
         }
         
@@ -3502,16 +3493,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
-        ///• .
-        /// </summary>
-        public static string Finder_FoundClientsSeparator {
-            get {
-                return ResourceManager.GetString("Finder_FoundClientsSeparator", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No new installed games or game clients/emulators were found.
         /// </summary>
         public static string Finder_NoResults {
@@ -5047,6 +5028,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Home_RecentGames {
             get {
                 return ResourceManager.GetString("Home_RecentGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show more.
+        /// </summary>
+        public static string Home_ShowMoreNews {
+            get {
+                return ResourceManager.GetString("Home_ShowMoreNews", resourceCulture);
             }
         }
         

@@ -1023,10 +1023,6 @@
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
   </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>

@@ -1181,9 +1181,6 @@ Opnieuw proberen?</value>
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Downloaden voltooid</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>App Nieuws</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Versiehistorie</value>
   </data>
@@ -4495,10 +4492,6 @@ Conflicten:
   </data>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Er zijn {0} patches toegepast op dit spel. Wil je verdergaan met het deïnstalleren van het spel en de toegepaste patches behouden?</value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>

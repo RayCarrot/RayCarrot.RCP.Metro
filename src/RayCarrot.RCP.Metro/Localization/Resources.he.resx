@@ -1180,9 +1180,6 @@
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>פעולת ההורדה הסתיימה</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>חדשות אפליקציה</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>היסטוריית הגירסאות</value>
   </data>
@@ -4501,10 +4498,6 @@ Start: הפסק</value>
   </data>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>ישנם {0} תלאים שהוחלו על המשחק הזה. האם ברצונך להמשיך ולהסיר את המשחק ולהשאיר את התלאים מוחלים?</value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>

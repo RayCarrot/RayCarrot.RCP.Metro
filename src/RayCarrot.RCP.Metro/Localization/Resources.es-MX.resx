@@ -684,9 +684,6 @@ Notícias:
   <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
     <value>Reemplazar archivo</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>Noticias de aplicación</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Historial de versiones</value>
   </data>
@@ -1499,10 +1496,6 @@ Notícias:
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>

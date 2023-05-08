@@ -1182,9 +1182,6 @@
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Загрузка завершена</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>Новости приложения</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Список версий</value>
   </data>
@@ -4499,10 +4496,6 @@ Start: Пауза</value>
   </data>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>{0} патчей были применены к этой игре. Вы хотите продолжить удаление игры и сохранить применённые патчи?</value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>

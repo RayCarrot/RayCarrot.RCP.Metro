@@ -1181,9 +1181,6 @@ Voulez vous réessayer ?</value>
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Téléchargement terminé</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>Nouvelles de l'application</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Historique des versions</value>
   </data>
@@ -4499,10 +4496,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>{0} patchs ont été appliqués à ce jeu. Confirmez-vous le retrait du jeu tout en gardant les patchs qui y ont été appliqués ?</value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>

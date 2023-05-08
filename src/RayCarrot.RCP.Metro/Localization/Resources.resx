@@ -702,8 +702,6 @@ gameDisplayName</comment>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
     <value>This will replace any previous backups for:</value>
-    <comment>Arguments:
-gameDisplayName</comment>
   </data>
   <data name="Backup_ConfirmHeader" xml:space="preserve">
     <value>Confirm backup</value>
@@ -1251,9 +1249,6 @@ tempDir2</comment>
   </data>
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Download operation complete</value>
-  </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>App News</value>
   </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Version History</value>
@@ -3935,7 +3930,7 @@ By changing the data source here you can choose which location is used for backu
     <value>The utility is not available</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
-    <value>Hebrew program translation</value>
+    <value>Hebrew program translation, game patch file icon</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
     <value>Automatically synchronize textures on repack (.cnt)</value>
@@ -4846,12 +4841,6 @@ paths</comment>
   </data>
   <data name="Finder_FoundClients" xml:space="preserve">
     <value>The following new game clients/emulators were found:</value>
-    <comment>Arguments:
-foundClients</comment>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Finder_FoundClientsHeader" xml:space="preserve">
     <value>Installed game clients/emulators found</value>
@@ -5473,5 +5462,8 @@ gameClientName</comment>
   </data>
   <data name="GameSelection_RefreshError" xml:space="preserve">
     <value>An error occurred when loading the games</value>
+  </data>
+  <data name="Home_ShowMoreNews" xml:space="preserve">
+    <value>Show more</value>
   </data>
 </root>

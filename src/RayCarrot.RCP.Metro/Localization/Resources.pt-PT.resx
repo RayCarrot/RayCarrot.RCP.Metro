@@ -1181,9 +1181,6 @@ Tentar novamente?</value>
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Operação de descarga completa</value>
   </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>Notícias da aplicação</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Histórico de versões</value>
   </data>
@@ -4507,10 +4504,6 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   </data>
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Há {0} correcção(ões) em que foi/foram aplicada(s) neste jogo. Queres continuar a remover o jogo e manter as correcções aplicadas? </value>
-  </data>
-  <data name="Finder_FoundClientsSeparator" xml:space="preserve">
-    <value>
-• </value>
   </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
