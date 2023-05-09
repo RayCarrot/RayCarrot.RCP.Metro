@@ -81,11 +81,6 @@ public partial class PatchCreatorDialog : WindowContentControl
             WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;
     }
 
-    private void FilesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
-    {
-        ViewModel.SelectedFile = null;
-    }
-
     private void CancelButton_OnClick(object sender, RoutedEventArgs e)
     {
         WindowInstance.Close();

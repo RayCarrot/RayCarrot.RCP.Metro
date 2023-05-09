@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Patcher.PatchCreatorFileModificationsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" d:DesignHeight="600"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DataContext="{d:DesignInstance patcher:PatchCreatorViewModel}"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+    <Grid Background="Transparent" 
+          MouseDown="FilesGrid_OnMouseDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Files -->
+        <DataGrid Grid.Row="0"
+                  ItemsSource="{Binding Path=Files}"
+                  d:ItemsSource="{d:SampleData}"
+                  SelectedItem="{Binding Path=SelectedFile}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="True"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  SelectionMode="Extended"
+                  Margin="0 0 0 10">
+
+            <DataGrid.Resources>
+                <local:BindingProxy x:Key="BindingProxy" Data="{Binding}" />
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+
+                <!-- Icon -->
+
+                <DataGridTemplateColumn Width="32" CanUserResize="False" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type patcher:PatchCreatorViewModel+FileViewModel}">
+                            <Grid>
+                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Visibility="{Binding Path=IsFileAdded, Converter={local:BooleanToVisibilityConverter}}"
+                                                            HorizontalAlignment="Center"
+                                                            Width="16" Height="16"
+                                                            Kind="Plus"
+                                                            Foreground="{StaticResource RCP.Brushes.AddItem}" />
+
+                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Visibility="{Binding Path=IsFileAdded, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                                                            HorizontalAlignment="Center"
+                                                            Width="16" Height="16"
+                                                            Kind="DeleteOutline"
+                                                            Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Source -->
+
+                <DataGridTextColumn Width="*" MinWidth="100">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal"
+                                    Language="{UICulture}"
+                                    ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+                            <TextBlock Text="Source" />
+                            <local:InfoIcon Text="{Resx PatchCreator_SourcePathInfo}" />
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="SourceFilePath" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:FileExistsValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                            <Setter Property="ToolTip" Value="{Binding Path=SourceFilePath}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <!-- Location -->
+
+                <DataGridTextColumn Header="Location" Width="Auto" MinWidth="100" Binding="{Binding Path=LocationDisplayName.Value}" IsReadOnly="True">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                            <Setter Property="ToolTip" Value="{Binding Path=LocationDisplayName.Value}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <!-- Destination -->
+
+                <DataGridTextColumn Header="Destination" Width="*" MinWidth="100">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <patcher:PatchCreatorFilePathValidationRule>
+                                    <patcher:PatchCreatorFilePathValidationRule.AvailableFileLocations>
+                                        <patcher:AvailableFileLocationsWrapper Value="{Binding Path=Data.AvailableLocations, Source={StaticResource BindingProxy}}" />
+                                    </patcher:PatchCreatorFilePathValidationRule.AvailableFileLocations>
+                                </patcher:PatchCreatorFilePathValidationRule>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                            <Setter Property="ToolTip" Value="{Binding Path=FilePath}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+
+            <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
+                    local:Icon.Kind="Plus"
+                    Command="{Binding Path=AddFileCommand, Mode=OneTime}"
+                    ToolTip="{Resx PatchCreator_AddFile}"
+                    Margin="0 0 4 0"/>
+
+            <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
+                    local:Icon.Kind="FilePlusOutline"
+                    Command="{Binding Path=AddFromFilesCommand, Mode=OneTime}"
+                    ToolTip="{Resx PatchCreator_AddFromFiles}"
+                    Margin="0 0 4 0"/>
+
+            <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
+                    local:Icon.Kind="FolderPlusOutline"
+                    Command="{Binding Path=AddFromFolderCommand, Mode=OneTime}"
+                    ToolTip="{Resx PatchCreator_AddFromFolder}"
+                    Margin="0 0 8 0"/>
+
+            <ComboBox MinWidth="250"
+                      ItemsSource="{Binding Path=AvailableLocations, Mode=OneTime}"
+                      SelectedItem="{Binding Path=SelectedLocation}"
+                      DisplayMemberPath="DisplayName.Value"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>
