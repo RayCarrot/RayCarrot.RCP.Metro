@@ -274,8 +274,8 @@ public class GamesPageViewModel : BasePageViewModel,
         // Register for messages
         Messenger.RegisterAll(this);
 
-        // Load app news
-        await AppNewsViewModel.LoadAsync();
+        // Initialize the app news
+        await AppNewsViewModel.InitializeAsync();
     }
 
     #endregion

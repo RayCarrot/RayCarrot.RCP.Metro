@@ -10,7 +10,7 @@ public class AppNewsViewModel : BaseViewModel
         AppUserData appUserData, 
         AppUIManager ui)
     {
-        AppUserData = appUserData ?? throw new ArgumentNullException(nameof(appUserData));
+        Data = appUserData ?? throw new ArgumentNullException(nameof(appUserData));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
 
         ShowMore(true);
@@ -36,7 +36,7 @@ public class AppNewsViewModel : BaseViewModel
 
     #region Services
 
-    private AppUserData AppUserData { get; }
+    private AppUserData Data { get; }
     private AppUIManager UI { get; }
 
     #endregion
@@ -48,6 +48,26 @@ public class AppNewsViewModel : BaseViewModel
 
     #endregion
 
+    #region Private Methods
+
+    private async Task LoadAppNews()
+    {
+        Logger.Trace("Downloading latest app news");
+
+        // Do Task.Run since if it has trouble establishing a connection, like if you
+        // have airplane mode on, then this takes a long time and blocks the thread
+        List<AppNewsEntry> entries = await Task.Run(() => JsonHelpers.DeserializeFromURLAsync<List<AppNewsEntry>>(AppURLs.AppNewsUrl));
+
+        entries.RemoveAll(x => (x.MinAppVersion != null && AppViewModel.AppVersion < x.MinAppVersion) ||
+                               (x.MaxAppVersion != null && AppViewModel.AppVersion >= x.MaxAppVersion));
+
+        Logger.Info("Downloaded latest app news");
+
+        Data.App_CachedNews = entries;
+    }
+
+    #endregion
+
     #region Public Methods
 
     public Task ShowVersionHistoryAsync() => UI.ShowVersionHistoryAsync();
@@ -55,26 +75,17 @@ public class AppNewsViewModel : BaseViewModel
     public void ShowMore(bool reset)
     {
         int prevCount = reset ? 0 : NewsEntries?.Count ?? 0;
-        NewsEntries = new ObservableCollection<AppNewsEntry>(AppUserData.App_CachedNews.Take(prevCount + 8));
-        CanShowMore = AppUserData.App_CachedNews.Count > NewsEntries.Count;
+        NewsEntries = new ObservableCollection<AppNewsEntry>(Data.App_CachedNews.Take(prevCount + 8));
+        CanShowMore = Data.App_CachedNews.Count > NewsEntries.Count;
     }
 
-    public async Task LoadAsync()
+    public async Task InitializeAsync()
     {
         try
         {
-            Logger.Trace("Downloading latest app news");
+            if (Data.App_LoadNews)
+                await LoadAppNews();
 
-            // Do Task.Run since if it has trouble establishing a connection, like if you
-            // have airplane mode on, then this takes a long time and blocks the thread
-            List<AppNewsEntry> entries = await Task.Run(() => JsonHelpers.DeserializeFromURLAsync<List<AppNewsEntry>>(AppURLs.AppNewsUrl));
-
-            entries.RemoveAll(x => (x.MinAppVersion != null && AppViewModel.AppVersion < x.MinAppVersion) ||
-                                   (x.MaxAppVersion != null && AppViewModel.AppVersion >= x.MaxAppVersion));
-
-            Logger.Info("Downloaded latest app news");
-
-            AppUserData.App_CachedNews = entries;
             ShowMore(true);
         }
         catch (Exception ex)

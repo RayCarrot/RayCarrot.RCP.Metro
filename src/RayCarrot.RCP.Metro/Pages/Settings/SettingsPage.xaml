@@ -355,6 +355,9 @@
                             <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
                                       IsChecked="{Binding Path=Update_AutoUpdate}" />
 
+                            <CheckBox Content="{Resx Settings_LoadAppNews}"
+                                      IsChecked="{Binding Path=App_LoadNews}" />
+
                         </StackPanel>
 
                     </StackPanel>

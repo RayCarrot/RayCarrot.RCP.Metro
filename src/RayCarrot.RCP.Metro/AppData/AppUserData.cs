@@ -35,6 +35,7 @@ public partial class AppUserData : BaseViewModel
         App_HandleDownloadsManually = false;
         App_DisableGameValidation = false;
         App_CachedNews = new List<AppNewsEntry>();
+        App_LoadNews = true;
 
         // UI
         UI_WindowState = null;
@@ -195,6 +196,11 @@ public partial class AppUserData : BaseViewModel
     /// Cached news entries for the app news
     /// </summary>
     public List<AppNewsEntry> App_CachedNews { get; set; }
+
+    /// <summary>
+    /// Indicates if the app news should be loaded
+    /// </summary>
+    public bool App_LoadNews { get; set; }
 
     #endregion
 

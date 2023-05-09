@@ -14185,6 +14185,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load app news in the home page.
+        /// </summary>
+        public static string Settings_LoadAppNews {
+            get {
+                return ResourceManager.GetString("Settings_LoadAppNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Handle downloads manually.
         /// </summary>
         public static string Settings_ManualDownloads {

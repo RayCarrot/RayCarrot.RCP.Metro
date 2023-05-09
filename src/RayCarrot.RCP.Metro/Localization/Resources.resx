@@ -5466,4 +5466,7 @@ gameClientName</comment>
   <data name="Home_ShowMoreNews" xml:space="preserve">
     <value>Show more</value>
   </data>
+  <data name="Settings_LoadAppNews" xml:space="preserve">
+    <value>Load app news in the home page</value>
+  </data>
 </root>
