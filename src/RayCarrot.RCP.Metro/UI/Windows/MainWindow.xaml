@@ -40,6 +40,14 @@
             </mah:WindowCommands.ItemTemplate>
         </mah:WindowCommands>
     </local:BaseWindow.RightWindowCommands>
+    <local:BaseWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <!-- TODO-UPDATE: Remove this when the beta is finished --> 
+            <Button Content="{iconPacks:Material Kind=NewspaperVariant}"
+                    ToolTip="14.0 beta survey"
+                    Command="{Binding Path=OpenBetaSurveyCommand, Mode=OneTime}" />
+        </mah:WindowCommands>
+    </local:BaseWindow.LeftWindowCommands>
     <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=App.LoaderViewModel, Mode=OneTime}">
         <Grid>
             <mah:MetroAnimatedTabControl x:Name="PageTabControl"
