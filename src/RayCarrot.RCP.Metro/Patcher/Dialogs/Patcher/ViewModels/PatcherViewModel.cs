@@ -924,6 +924,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             return;
         }
 
+        int updates = 0;
+
         foreach (ExternalPatchViewModel externalPatch in _externalPatches)
         {
             string id = externalPatch.ID;
@@ -934,8 +936,21 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (version != null && LocalPatches.Any(x => x.ID == id && x.Metadata.Version >= version))
                 continue;
 
+            // Mark the patch as an update if it's already been added
+            bool isUpdate = LocalPatches.Any(x => x.ID == id);;
+
             // Add view model
-            DisplayedExternalPatches.Add(externalPatch);
+            if (isUpdate)
+            {
+                DisplayedExternalPatches.Insert(updates, externalPatch);
+                updates++;
+                externalPatch.IsUpdate = true;
+            }
+            else
+            {
+                DisplayedExternalPatches.Add(externalPatch);
+                externalPatch.IsUpdate = false;
+            }
 
             // Load the thumbnail
             _ = externalPatch.LoadThumbnailAsync();

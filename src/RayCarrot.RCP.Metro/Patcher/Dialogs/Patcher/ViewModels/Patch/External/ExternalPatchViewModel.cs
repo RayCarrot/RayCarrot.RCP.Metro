@@ -66,6 +66,7 @@ public class ExternalPatchViewModel : PatchViewModel
 
     public ExternalPatchMetaData ExternalPatchMetaData { get; }
     public Uri BaseUri { get; }
+    public bool IsUpdate { get; set; }
 
     public async Task LoadThumbnailAsync()
     {

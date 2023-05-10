@@ -250,14 +250,37 @@
                                             <!-- Download -->
 
                                             <Button Grid.Column="0"
-                                                    ToolTip="{Resx Patcher_DownloadPatch}"
-                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
                                                     Command="{Binding Path=DownloadCommand, Mode=OneTime}"
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Center"
-                                                    local:Icon.Kind="DownloadOutline"
                                                     local:Icon.Size="16"
-                                                    Margin="-4 0 0 0" />
+                                                    Margin="-4 0 0 0">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=IsUpdate}" Value="True">
+                                                                <Setter Property="local:Icon.Kind" Value="Update" />
+                                                                <!-- TODO-UPDATE: Localize -->
+                                                                <Setter Property="ToolTip">
+                                                                    <Setter.Value>
+                                                                        <TextBlock ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}" 
+                                                                                   Text="Download update" />
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=IsUpdate}" Value="False">
+                                                                <Setter Property="local:Icon.Kind" Value="DownloadOutline" />
+                                                                <Setter Property="ToolTip">
+                                                                    <Setter.Value>
+                                                                        <TextBlock ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                                                   Text="{Resx Patcher_DownloadPatch}" />
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
 
                                             <!-- Thumbnail -->
 

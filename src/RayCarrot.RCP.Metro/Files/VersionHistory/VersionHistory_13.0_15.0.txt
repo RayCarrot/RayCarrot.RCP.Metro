@@ -30,6 +30,7 @@ Other changes:
 	• Game patch files (.gp) now use a custom file icon
 	• Patches can now include a changelog
 	• The patcher now shows if a file will be ignored due to the location not existing
+	• The patcher now shows updates using a different download icon and always at the top
 	• Patches can now be created to target multiple games
 	• Patches can now be created for the Rayman Edutainment games
 	• Patches can no longer be created for games where the patcher is not available
