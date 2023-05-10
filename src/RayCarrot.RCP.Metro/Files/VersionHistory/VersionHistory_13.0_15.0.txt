@@ -72,6 +72,7 @@ Other changes:
 	• Fixed a bug where the Rabbis Go Home config wouldn't get saved when restarting the app
 	• Fixed a bug where closing the manual download dialog might show an error
 	• Fixed a bug where progress would sometimes be shown on the taskbar even though the setting for it was unchecked
+	• Fixed a bug where certain parts of the app wouldn't use the specified language
 
 
 -----   Version 13.4.5 - January 23, 2023   -----

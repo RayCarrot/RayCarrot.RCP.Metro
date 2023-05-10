@@ -119,9 +119,11 @@ public class StartupManager
 
     private void InitLocalization()
     {
-        // Apply the current culture if defaulted
-        if (Data.App_CurrentCulture == LocalizationManager.DefaultCulture.Name)
-            LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
+        LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
+
+        // Set it again once we leave the async context
+        // https://stackoverflow.com/questions/70198716/setting-culture-in-net5-wpf-application/70201743#70201743
+        App.Current.Dispatcher.InvokeAsync(() => LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name));
     }
 
     private void InitJumpList()
