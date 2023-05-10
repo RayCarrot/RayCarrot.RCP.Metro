@@ -101,6 +101,7 @@
                          Grid.Row="1"
                          Margin="0 0 0 10"
                          Text="{Binding Path=Name}"
+                         SpellCheck.IsEnabled="True"
                          MaxLength="80" />
 
                 <TextBlock Grid.Column="0"
@@ -140,6 +141,7 @@
                          TextWrapping="Wrap"
                          Margin="0 0 0 10"
                          Text="{Binding Path=Description}"
+                         SpellCheck.IsEnabled="True"
                          MaxLength="700"
                          MaxLines="10"/>
 

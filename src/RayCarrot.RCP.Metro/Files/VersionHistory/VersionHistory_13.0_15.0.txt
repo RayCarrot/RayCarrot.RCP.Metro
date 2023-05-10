@@ -35,6 +35,7 @@ Other changes:
 	• Patches can no longer be created for games where the patcher is not available
 	• The patch creator is now accessed from the game hub with the option to update a patch being moved into the creator
 	• The patch creator is now categorized into pages
+	• Enabled spell checking for certain fields in the patch creator
 	• When saving a created patch the file name now defaults to the patch name
 • Archive changes
 	• The CPA texture sync is now available for the Rayman M and 3 demos
