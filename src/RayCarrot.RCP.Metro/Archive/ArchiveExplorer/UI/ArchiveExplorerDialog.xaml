@@ -232,7 +232,7 @@
                     <!-- File container -->
 
                     <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Flat}">
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Rounded}">
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="IsEnabled" Value="{Binding Path=IsInitialized}" />
                             <Setter Property="ToolTip">

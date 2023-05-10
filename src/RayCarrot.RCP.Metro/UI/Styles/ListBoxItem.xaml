@@ -23,7 +23,7 @@
 
     <Style x:Key="RCP.Styles.ListBoxItem.Rounded" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Default}">
         <Setter Property="mah:ControlsHelper.CornerRadius" 
-                Value="{StaticResource CornerRadius.Large}" />
+                Value="{StaticResource CornerRadius.Default}" />
 
         <Setter Property="Margin" Value="2" />
     </Style>
@@ -38,8 +38,6 @@
         <Setter Property="mah:ItemHelper.HoverSelectedForegroundBrush" 
                 Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
 
-        <Setter Property="Background" 
-                Value="Transparent" />
         <Setter Property="mah:ItemHelper.HoverBackgroundBrush" 
                 Value="{DynamicResource RCP.Brushes.ListBoxItem.FlatHover}" />
         <Setter Property="mah:ItemHelper.SelectedBackgroundBrush" 

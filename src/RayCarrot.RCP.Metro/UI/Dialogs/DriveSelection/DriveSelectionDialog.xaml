@@ -39,7 +39,7 @@
             </i:Interaction.Behaviors>
 
             <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Flat}">
+                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Rounded}">
                     <Setter Property="IsEnabled" Value="{Binding Path=IsReady, Mode=OneTime}" />
                     <EventSetter Event="MouseDoubleClick" Handler="DriveItem_MouseDoubleClick" />
                 </Style>
