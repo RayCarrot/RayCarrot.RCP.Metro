@@ -32,6 +32,13 @@
                 </TabItem>
 
                 <!-- TODO-UPDATE: Localize -->
+                <TabItem Header="Changelog"
+                         local:Icon.Kind="TextBoxMultipleOutline"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Info}">
+                    <patcher:PatchCreatorChangelogPage />
+                </TabItem>
+
+                <!-- TODO-UPDATE: Localize -->
                 <TabItem Header="File modifications"
                          local:Icon.Kind="FileMultipleOutline"
                          local:Icon.Brush="{StaticResource RCP.Brushes.File}">

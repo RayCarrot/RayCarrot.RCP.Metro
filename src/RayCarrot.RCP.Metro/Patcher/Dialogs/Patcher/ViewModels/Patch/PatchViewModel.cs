@@ -29,6 +29,7 @@ public abstract class PatchViewModel : BaseViewModel, IDisposable
     public abstract string Name { get; }
     public abstract string Description { get; }
     public abstract string Website { get; }
+    public abstract ObservableCollection<PatchChangelogEntry> ChangelogEntries { get; }
     public bool HasWebsite => Uri.TryCreate(Website, UriKind.Absolute, out _);
     public bool HasDescripton => !Description.IsNullOrWhiteSpace();
     public abstract ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }

@@ -16,6 +16,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     {
         // Set properties
         ID = PatchMetadata.GenerateID();
+        ChangelogEntries = new ObservableCollection<ChangelogEntryViewModel>();
         AvailableLocations = new ObservableCollection<AvailableFileLocation>();
         LoaderViewModel = new LoaderViewModel();
 
@@ -27,6 +28,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         ImportPatchCommand = new AsyncRelayCommand(ImportPatchAsync);
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
+        AddChangelogEntryCommand = new RelayCommand(AddChangelogEntry);
+        RemoveChangelogEntryCommand = new RelayCommand(x => RemoveChangelogEntry((ChangelogEntryViewModel)x!));
         AddFileCommand = new RelayCommand(AddFile);
         AddFromFilesCommand = new AsyncRelayCommand(AddFromFilesAsync);
         AddFromFolderCommand = new AsyncRelayCommand(AddFromFolderAsync);
@@ -53,6 +56,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public ICommand ImportPatchCommand { get; }
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
+    public ICommand AddChangelogEntryCommand { get; }
+    public ICommand RemoveChangelogEntryCommand { get; }
     public ICommand AddFileCommand { get; }
     public ICommand AddFromFilesCommand { get; }
     public ICommand AddFromFolderCommand { get; }
@@ -73,6 +78,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public GameInstallation[] GameTargets { get; private set; }
     public ObservableCollection<GameTargetViewModel> GameTargetViewModels { get; private set; }
     public BitmapSource? Thumbnail { get; set; }
+
+    // Changelog
+    public ObservableCollection<ChangelogEntryViewModel> ChangelogEntries { get; }
 
     // Files
     public ObservableCollection<FileViewModel> Files { get; } = new();
@@ -218,6 +226,22 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 Version_Major = metadata.Version.Major;
                 Version_Minor = metadata.Version.Minor;
                 Version_Revision = metadata.Version.Revision;
+                
+                ChangelogEntries.Clear();
+                for (int i = 0; i < metadata.ChangelogEntries.Length; i++)
+                {
+                    PatchChangelogEntry changelogEntry = metadata.ChangelogEntries[i];
+                    ChangelogEntries.Add(new ChangelogEntryViewModel
+                    {
+                        HasPreviousEntry = i != 0,
+                        Version_Major = changelogEntry.Version.Major,
+                        Version_Minor = changelogEntry.Version.Minor,
+                        Version_Revision = changelogEntry.Version.Revision,
+                        Date = changelogEntry.Date,
+                        Description = changelogEntry.Description
+                    });
+                }
+
                 ID = metadata.ID;
 
                 // Extract thumbnail
@@ -333,6 +357,23 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         Logger.Info("Removed the thumbnail");
     }
 
+    public void AddChangelogEntry()
+    {
+        ChangelogEntries.Insert(0, new ChangelogEntryViewModel());
+
+        if (ChangelogEntries.Count > 1)
+            ChangelogEntries[1].HasPreviousEntry = true;
+    }
+
+    public void RemoveChangelogEntry(ChangelogEntryViewModel entry)
+    {
+        int index = ChangelogEntries.IndexOf(entry);
+        ChangelogEntries.RemoveAt(index);
+
+        if (index == 0 && ChangelogEntries.Count > 0)
+            ChangelogEntries[0].HasPreviousEntry = false;
+    }
+
     public void AddFile()
     {
         FileViewModel vm = new(FileSystemPath.EmptyPath, String.Empty, SelectedLocation.Location,
@@ -440,6 +481,12 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                             Author = Author,
                             Website = Website,
                             Version = version,
+                            ChangelogEntries = ChangelogEntries.OrderByDescending(x => x.Version).Select(x => new PatchChangelogEntry
+                            {
+                                Version = x.Version,
+                                Date = x.Date ?? DateTime.Today,
+                                Description = x.Description
+                            }).ToArray(),
                             ModifiedDate = DateTime.Now
                         },
                     };
@@ -594,6 +641,17 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public LocalizedString GameDisplayName { get; }
         public LocalizedString PlatformDisplayName { get; }
         public GamePlatformIconAsset PlatformIcon { get; }
+    }
+
+    public class ChangelogEntryViewModel : BaseViewModel
+    {
+        public bool HasPreviousEntry { get; set; }
+        public int Version_Major { get; set; }
+        public int Version_Minor { get; set; }
+        public int Version_Revision { get; set; }
+        public PatchVersion Version => new(Version_Major, Version_Minor, Version_Revision);
+        public DateTime? Date { get; set; }
+        public string Description { get; set; } = String.Empty;
     }
 
     public class FileViewModel : BaseViewModel

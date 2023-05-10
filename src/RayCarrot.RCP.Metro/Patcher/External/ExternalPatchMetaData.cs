@@ -18,7 +18,7 @@ public record ExternalPatchMetaData(
     [property: JsonProperty("modifiedDate")] DateTime? ModifiedDate,
 
     [property: JsonProperty("version")] PatchVersion? Version,
-    [property: JsonProperty("changeLog")] ExternalPatchChangeLogEntry?[]? ChangeLog,
+    [property: JsonProperty("changelogEntries")] ExternalPatchChangeLogEntry?[]? ChangelogEntries,
 
     [property: JsonProperty("addedFilesCount")] int? AddedFilesCount,
     [property: JsonProperty("removedFilesCount")] int? RemovedFilesCount,

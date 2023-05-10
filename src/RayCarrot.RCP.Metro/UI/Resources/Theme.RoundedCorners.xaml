@@ -23,6 +23,11 @@
         <Setter Property="BorderThickness" Value="{StaticResource Thickness.Border.Default}" />
     </Style>
 
+    <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource {x:Type DatePicker}}">
+        <Setter Property="metro:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
+        <Setter Property="BorderThickness" Value="{StaticResource Thickness.Border.Default}" />
+    </Style>
+
     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
         <Setter Property="metro:CheckBoxHelper.CheckCornerRadius" Value="{StaticResource CornerRadius.Default}" />
         <Setter Property="metro:CheckBoxHelper.CheckStrokeThickness" Value="{StaticResource StrokeThickness.Shape.Default}" />

@@ -333,7 +333,8 @@
                                                    Margin="0 0 0 10"/>
 
                                     <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Path=HasWebsite, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}">
+                                                Visibility="{Binding Path=HasWebsite, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                                Margin="0 0 0 5">
 
                                         <iconPacks:Material Kind="Link" />
 
@@ -345,6 +346,29 @@
                                         </TextBlock>
 
                                     </StackPanel>
+
+                                    <Separator Margin="0 0 0 5"
+                                               Visibility="{Binding Path=ChangelogEntries.Count, Converter={local:IntToVisibilityConverter}, Mode=OneTime}"/>
+
+                                    <ItemsControl ItemsSource="{Binding Path=ChangelogEntries, Mode=OneTime}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="0 0 0 8">
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="0 0 0 4">
+                                                        <TextBlock Text="{Binding Path=Version, Mode=OneTime}"
+                                                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                                   Margin="0 0 8 0" />
+                                                        <TextBlock Text="{Binding Path=Date, StringFormat=D, Mode=OneTime}"
+                                                                   FontStyle="Italic" />
+                                                    </StackPanel>
+
+                                                    <TextBlock Text="{Binding Path=Description, Mode=OneTime}" />
+
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
 
                                 </StackPanel>
 

@@ -20,6 +20,14 @@ public class ExternalPatchViewModel : PatchViewModel
         if (ExternalPatchMetaData.PatchUrl == null)
             throw new ArgumentException("The patch metadata has no patch url", nameof(externalPatchMetaData));
 
+        ChangelogEntries = new ObservableCollection<PatchChangelogEntry>(ExternalPatchMetaData.ChangelogEntries?.Select(
+            x => new PatchChangelogEntry
+            {
+                Version = x?.Version ?? new PatchVersion(0, 0, 0),
+                Date = x?.Date ?? DateTime.MinValue,
+                Description = x?.Description ?? String.Empty
+            }) ?? Array.Empty<PatchChangelogEntry>());
+
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
             new("Author:", externalPatchMetaData.Author),
@@ -53,6 +61,7 @@ public class ExternalPatchViewModel : PatchViewModel
     public override string Name => ExternalPatchMetaData.Name ?? String.Empty;
     public override string Description => ExternalPatchMetaData.Description ?? String.Empty;
     public override string Website => ExternalPatchMetaData.Website ?? String.Empty;
+    public override ObservableCollection<PatchChangelogEntry> ChangelogEntries { get; }
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
     public ExternalPatchMetaData ExternalPatchMetaData { get; }

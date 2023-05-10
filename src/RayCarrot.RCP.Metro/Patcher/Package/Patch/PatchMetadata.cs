@@ -30,6 +30,7 @@ public class PatchMetadata : BinarySerializable
             Version_Revision = value.Revision;
         }
     }
+    public PatchChangelogEntry[] ChangelogEntries { get; set; }
 
     public long TotalSize { get; set; }
     private long ModifiedDateValue { get; set; }
@@ -91,6 +92,16 @@ public class PatchMetadata : BinarySerializable
         Version_Major = s.Serialize<int>(Version_Major, name: nameof(Version_Major));
         Version_Minor = s.Serialize<int>(Version_Minor, name: nameof(Version_Minor));
         Version_Revision = s.Serialize<int>(Version_Revision, name: nameof(Version_Revision));
+
+        if (Pre_FormatVersion >= 3)
+        {
+            ChangelogEntries = s.SerializeArraySize<PatchChangelogEntry, int>(ChangelogEntries, name: nameof(ChangelogEntries));
+            ChangelogEntries = s.SerializeObjectArray<PatchChangelogEntry>(ChangelogEntries, ChangelogEntries.Length, name: nameof(ChangelogEntries));
+        }
+        else
+        {
+            ChangelogEntries = Array.Empty<PatchChangelogEntry>();
+        }
 
         TotalSize = s.Serialize<long>(TotalSize, name: nameof(TotalSize));
 

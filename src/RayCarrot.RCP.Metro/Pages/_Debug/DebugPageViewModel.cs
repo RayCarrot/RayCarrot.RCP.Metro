@@ -519,12 +519,8 @@ public class DebugPageViewModel : BasePageViewModel
             var files = Directory.EnumerateFiles(browseResult.SelectedDirectory, $"*{PatchFile.FileExtension}", SearchOption.AllDirectories);
             foreach (FileSystemPath patchFilePath in files)
             {
-                await writer.WriteLineAsync($"    {{ " +
-                                       $"\"patchFile\": \"{patchFilePath - browseResult.SelectedDirectory}\", " +
-                                       $"\"rcp_minAppVersion\": \"{App.CurrentAppVersion.ToString(4)}\", " +
-                                       $"\"rcp_maxAppVersion\": null," +
-                                       $"\"changelog\": null" +
-                                       $" }},");
+                await writer.WriteLineAsync(
+                    $$"""    { "patchFile": "{{patchFilePath - browseResult.SelectedDirectory}}", "rcp_minAppVersion": "{{App.CurrentAppVersion.ToString(4)}}", "rcp_maxAppVersion": null },""");
             }
 
             await writer.WriteLineAsync("]");
@@ -610,7 +606,9 @@ public class DebugPageViewModel : BasePageViewModel
                         FileSize: (int)localPatchFilePath.GetSize().Bytes,
                         ModifiedDate: patch.Metadata.ModifiedDate,
                         Version: patch.Metadata.Version,
-                        ChangeLog: patchEntry.ChangeLog,
+                        ChangelogEntries: patch.Metadata.ChangelogEntries?.
+                            Select(x => new ExternalPatchChangeLogEntry(x.Version, x.Date, x.Description)).
+                            ToArray(),
                         AddedFilesCount: patch.AddedFiles?.Length ?? 0,
                         RemovedFilesCount: patch.RemovedFiles?.Length ?? 0,
                         PatchUrl: patchURL,
@@ -734,11 +732,8 @@ public class DebugPageViewModel : BasePageViewModel
 
     private record WebPatchEntry(
         [property: JsonProperty("patchFile")] string PatchFilePath,
-
         [property: JsonProperty("rcp_minAppVersion")] Version? MinAppVersion,
-        [property: JsonProperty("rcp_maxAppVersion")] Version? MaxAppVersion,
-
-        [property: JsonProperty("changeLog")] ExternalPatchChangeLogEntry?[]? ChangeLog);
+        [property: JsonProperty("rcp_maxAppVersion")] Version? MaxAppVersion);
 
     #endregion
 
