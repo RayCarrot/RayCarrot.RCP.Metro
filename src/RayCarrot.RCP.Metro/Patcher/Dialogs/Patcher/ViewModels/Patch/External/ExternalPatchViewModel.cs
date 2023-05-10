@@ -37,7 +37,7 @@ public class ExternalPatchViewModel : PatchViewModel
             new("Download size:", externalPatchMetaData.FileSize == null
                 ? null
                 : ByteSize.FromBytes(externalPatchMetaData.FileSize.Value).ToString()),
-            new("Last modified:", externalPatchMetaData.ModifiedDate?.ToString(CultureInfo.CurrentCulture)),
+            new("Last modified:", externalPatchMetaData.ModifiedDate?.ToString("D", CultureInfo.CurrentCulture)),
             new("Revision:", externalPatchMetaData.Version?.ToString()),
             new("ID:", externalPatchMetaData.Id, UserLevel.Debug),
             new("Added files:", externalPatchMetaData.AddedFilesCount?.ToString()),

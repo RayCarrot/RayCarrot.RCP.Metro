@@ -264,7 +264,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Platform)), GameInstallation.GameDescriptor.Platform.GetInfo().DisplayName),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Patches)), libraryFile.Patches.Length.ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AppliedPatches)), libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
-                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString("D", CultureInfo.CurrentCulture)),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_FormatVersion)), libraryFile.FormatVersion.ToString(), UserLevel.Debug),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Location)), Library.DirectoryPath.FullPath, UserLevel.Debug),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AddedFiles)), libraryFile.History.AddedFiles.Length.ToString()),

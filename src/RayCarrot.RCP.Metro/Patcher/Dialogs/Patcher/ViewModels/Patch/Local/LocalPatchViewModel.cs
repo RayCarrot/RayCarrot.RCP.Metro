@@ -23,7 +23,7 @@ public abstract class LocalPatchViewModel : PatchViewModel
         {
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Author)), patchFile.Metadata.Author),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Size)), ByteSize.FromBytes(patchFile.Metadata.TotalSize).ToString()),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ModifiedDate)), patchFile.Metadata.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ModifiedDate)), patchFile.Metadata.ModifiedDate.ToString("D", CultureInfo.CurrentCulture)),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Version)), patchFile.Metadata.Version.ToString()),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ID)), patchFile.Metadata.ID, UserLevel.Debug),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), patchFile.FormatVersion.ToString(), UserLevel.Debug),
