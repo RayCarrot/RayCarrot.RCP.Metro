@@ -28,6 +28,11 @@
                     Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
                     rcp:Icon.Kind="InformationOutline"/>
 
+            <Button Content="Show anniversary update window"
+                    ToolTip="Shows the anniversary update window"
+                    Command="{Binding Path=ShowAnniversaryUpdatWindowCommand, Mode=OneTime}"
+                    rcp:Icon.Kind="InformationOutline"/>
+
             <Separator />
 
             <Button Content="Run load operation"

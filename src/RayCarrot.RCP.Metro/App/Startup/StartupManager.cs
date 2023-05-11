@@ -121,6 +121,7 @@ public class StartupManager
     {
         LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
 
+        // TODO: This doesn't seem to work if another window shows before the main one?
         // Set it again once we leave the async context
         // https://stackoverflow.com/questions/70198716/setting-culture-in-net5-wpf-application/70201743#70201743
         App.Current.Dispatcher.InvokeAsync(() => LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name));

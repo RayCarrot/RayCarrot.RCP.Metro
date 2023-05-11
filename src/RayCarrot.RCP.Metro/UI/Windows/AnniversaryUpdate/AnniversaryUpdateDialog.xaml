@@ -1,0 +1,169 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.AnniversaryUpdateDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  mc:Ignorable="d"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                  Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                  Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                  Title="Welcome to the Anniversary Update"
+                  Width="900" Height="600">
+
+    <!-- TODO-UPDATE: Localize -->
+    <Window.Resources>
+        <Style x:Key="AnniversaryDialog.Styles.TextBlock.Default" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="AnniversaryDialog.Styles.TextBlock.Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource RCP.Styles.TextBlock.Header}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <local:Card Grid.Row="0"
+                    Margin="{StaticResource RCP.Thicknesses.Card}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           FontSize="26"
+                           TextWrapping="Wrap"
+                           Text="Welcome to the Anniversary Update!" 
+                           Margin="0 0 0 8" />
+
+                <ScrollViewer Grid.Row="1"
+                              Padding="8">
+                    <StackPanel>
+
+                        <Grid Margin="0 0 0 25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="8" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" 
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Redesigned games page"
+                                           Foreground="{StaticResource RCP.Brushes.Games}"
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                           Margin="0 0 0 4" />
+
+                                <TextBlock Text="The games page has been redesigned to support new features such as allowing for multiple installations of the same game to be added and emulated console games to be played. Each game now has a hub area to the right side where you can see common actions such as the Patcher and Archive Explorer panels."
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                            </StackPanel>
+
+                            <Image Grid.Column="2"
+                                   Source="GamesPage.png"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+
+                        </Grid>
+
+                        <Grid Margin="0 0 0 25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="8" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   Source="Clients.png"
+                                   RenderOptions.BitmapScalingMode="HighQuality"  />
+
+                            <StackPanel Grid.Column="2"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Game clients/emulators"
+                                           Foreground="{StaticResource RCP.Brushes.GameClient}"
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                           Margin="0 0 0 4" />
+
+                                <TextBlock Text="New to this update is support for game clients/emulators. These can be added in a separate dialog and set to be used on added games. Game clients such as Steam are optional while console games require an emulator in order to run. If an emulator is not in the supported list you can add it as a custom emulator. Be aware that this does not allow for any game progression to be shown then."
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <Grid Margin="0 0 0 25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="8" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="More utilities are now patches"
+                                           Foreground="{StaticResource RCP.Brushes.Patcher}"
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                           Margin="0 0 0 4" />
+
+                                <TextBlock Text="Can't find a utility you're looking for? It has most likely been reworked as a patch."
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                            </StackPanel>
+
+                            <Image Grid.Column="2"
+                                   Source="Patcher.png"
+                                   RenderOptions.BitmapScalingMode="HighQuality"  />
+
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="8" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   Source="TextureSync.png"
+                                   RenderOptions.BitmapScalingMode="HighQuality"  />
+
+                            <StackPanel Grid.Column="2"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Texture sync has moved"
+                                           Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                           Margin="0 0 0 4" />
+
+                                <TextBlock Text="The texture sync utility has been replaced by a button in the Archive Explorer game panel for easier access. Like before you can also enable textures to automatically sync when an archive has been repacked."
+                                           Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+        </local:Card>
+
+        <Button Grid.Row="1"
+                Margin="{StaticResource RCP.Thicknesses.Card}"
+                Style="{StaticResource RCP.Styles.Button.Default}"
+                Content="{Resx Continue}"
+                IsDefault="True"
+                Click="ButtonBase_OnClick"/>
+
+    </Grid>
+</local:BaseWindow>

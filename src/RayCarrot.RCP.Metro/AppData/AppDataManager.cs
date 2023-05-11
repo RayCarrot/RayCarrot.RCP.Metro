@@ -746,6 +746,9 @@ public class AppDataManager
                 Logger.Error(ex, "Setting patch file type association");
             }
 
+            // Show the anniversary update dialog
+            new AnniversaryUpdateDialog().ShowDialog();
+
             // TODO-UPDATE: Remove this when the beta is finished
             await Services.MessageUI.DisplayMessageAsync("""
                 Welcome to the Rayman Control Panel Anniversary Update (14.0) beta and thank you for helping out with testing it!
