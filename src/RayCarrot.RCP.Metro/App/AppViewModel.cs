@@ -120,7 +120,7 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
-    public bool IsBeta => false;
+    public bool IsBeta => true;
 
     /// <summary>
     /// A flag indicating if an update check is in progress
