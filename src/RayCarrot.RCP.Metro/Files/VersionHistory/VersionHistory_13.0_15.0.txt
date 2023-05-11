@@ -45,6 +45,7 @@ Other changes:
 	• Progress is now shown when synchronizing CPA game textures
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
+• Updated the per-level soundtrack utility for Rayman 1 to support the unprotected 1.12 version of the game
 • More text is now localized, including game titles
 • Updated the progression page layout and added support for multiple games sharing the same backup
 • Progression backups no longer warn if GOG Galaxy cloud syncing is detected

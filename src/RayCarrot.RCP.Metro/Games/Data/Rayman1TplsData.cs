@@ -72,6 +72,7 @@ public class Rayman1TplsData
             Utility_Rayman1_TPLS_RaymanVersion.Ray_1_00 => "1.00",
             Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_1 => "1.12.1",
             Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_2 => "1.12.2",
+            Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_Unprotected => "1.12_Unprotected",
             Utility_Rayman1_TPLS_RaymanVersion.Ray_1_10 => "1.10",
             Utility_Rayman1_TPLS_RaymanVersion.Ray_1_21_Chinese => "1.21_Chinese",
             _ => throw new ArgumentOutOfRangeException(nameof(version), version, null)

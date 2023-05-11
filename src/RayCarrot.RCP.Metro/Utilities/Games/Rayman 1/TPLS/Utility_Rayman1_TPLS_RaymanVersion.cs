@@ -37,6 +37,11 @@ public enum Utility_Rayman1_TPLS_RaymanVersion
     Ray_1_12_2,
 
     /// <summary>
+    /// Version 1.12 - Unprotected
+    /// </summary>
+    Ray_1_12_Unprotected,
+
+    /// <summary>
     /// Version 1.20
     /// </summary>
     Ray_1_20,

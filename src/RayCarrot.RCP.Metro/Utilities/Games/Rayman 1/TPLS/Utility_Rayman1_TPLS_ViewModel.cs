@@ -38,6 +38,23 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         }
 
         IsInstalled = data != null;
+
+        if (data != null)
+        {
+            try
+            {
+                long dosboxSize = data.DosBoxFilePath.GetFileInfo().Length;
+                IsOutdated = dosboxSize == 0x5CDE00;
+            }
+            catch (Exception ex)
+            {
+                IsOutdated = false;
+            }
+        }
+        else
+        {
+            IsOutdated = false;
+        }
     }
 
     #endregion
@@ -92,6 +109,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
     }
 
     public bool IsInstalled { get; set; }
+    public bool IsOutdated { get; set; }
 
     #endregion
 
@@ -160,6 +178,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             await SetInstallationAsync(tplsDir, Utility_Rayman1_TPLS_RaymanVersion.Auto, true);
 
             IsInstalled = true;
+            IsOutdated = false;
 
             Logger.Info("The TPLS utility has been downloaded");
         }
@@ -197,6 +216,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             }
 
             IsInstalled = false;
+            IsOutdated = false;
 
             await Services.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
