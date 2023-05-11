@@ -24,22 +24,19 @@
             <mah:MetroAnimatedTabControl Grid.Row="0"
                                          Margin="0 0 0 8">
 
-                <!-- TODO-UPDATE: Localize -->
-                <TabItem Header="Metadata"
+                <TabItem Header="{Resx PatchCreator_MetadataHeader}"
                          local:Icon.Kind="TextBoxOutline"
                          local:Icon.Brush="{StaticResource RCP.Brushes.Info}">
                     <patcher:PatchCreatorMetadataPage />
                 </TabItem>
 
-                <!-- TODO-UPDATE: Localize -->
-                <TabItem Header="Changelog"
+                <TabItem Header="{Resx PatchCreator_ChangelogHeader}"
                          local:Icon.Kind="TextBoxMultipleOutline"
                          local:Icon.Brush="{StaticResource RCP.Brushes.Info}">
                     <patcher:PatchCreatorChangelogPage />
                 </TabItem>
 
-                <!-- TODO-UPDATE: Localize -->
-                <TabItem Header="File modifications"
+                <TabItem Header="{Resx PatchCreator_FileModificationsHeader}"
                          local:Icon.Kind="FileMultipleOutline"
                          local:Icon.Brush="{StaticResource RCP.Brushes.File}">
                     <patcher:PatchCreatorFileModificationsPage />

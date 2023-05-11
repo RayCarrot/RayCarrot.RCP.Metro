@@ -46,8 +46,7 @@
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_1}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_2}" />
-                <!-- TODO-UPDATE: Localize -->
-                <TextBlock Text="1.12 (Unprotected)" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_Unprotected}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_20}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21_Chinese}" />
@@ -60,8 +59,7 @@
                    TextWrapping="Wrap"
                    Visibility="{Binding Path=IsInstalled, Converter={local:BooleanToVisibilityConverter}}" />
 
-        <!-- TODO-UPDATE: Localize -->
-        <TextBlock Text="There is a newer version available. Uninstall the current version to install it."
+        <TextBlock Text="{Resx R1U_TPLS_UpdateAvailable}"
                    Foreground="{StaticResource RCP.Brushes.Info}"
                    TextWrapping="Wrap"
                    Visibility="{Binding Path=IsOutdated, Converter={local:BooleanToVisibilityConverter}}" />

@@ -5469,4 +5469,70 @@ gameClientName</comment>
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Load app news in the home page</value>
   </data>
+  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
+    <value>Select a date</value>
+  </data>
+  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
+    <value>Remove changelog entry</value>
+  </data>
+  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
+    <value>Add changelog entry</value>
+  </data>
+  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
+    <value>File modifications</value>
+  </data>
+  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
+    <value>Download update</value>
+  </data>
+  <data name="AnniversaryUpdate_Title" xml:space="preserve">
+    <value>Welcome to the Anniversary Update</value>
+  </data>
+  <data name="AnniversaryUpdate_Header" xml:space="preserve">
+    <value>Welcome to the Anniversary Update!</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
+    <value>Redesigned games page</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
+    <value>The games page has been redesigned to support new features such as allowing for multiple installations of the same game and emulated console games. Each game now has a hub area to the right side where you can see common actions such as the Patcher and Archive Explorer panels.</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
+    <value>Game clients/emulators</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
+    <value>New to this update is support for game clients/emulators. These can be added in a separate dialog and set to be used on added games. Game clients such as Steam are optional while console games require an emulator in order to be played. If an emulator is not in the supported list you can add it as a custom emulator. Be aware that doing so does not allow for any game progression to be shown.</value>
+  </data>
+  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
+    <value>More utilities are now patches</value>
+  </data>
+  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
+    <value>Can't find a utility you're looking for? It has most likely been reworked as a patch.</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
+    <value>Texture sync has moved</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
+    <value>The texture sync utility has been replaced by a button in the Archive Explorer game panel for easier access. Like before you can also enable textures to automatically sync when an archive has been repacked.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
+    <value>1.12 (Unprotected)</value>
+  </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>There is a newer version available. Uninstall the current version to install it.</value>
+  </data>
 </root>

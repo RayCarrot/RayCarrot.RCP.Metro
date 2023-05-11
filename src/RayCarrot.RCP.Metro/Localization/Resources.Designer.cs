@@ -433,6 +433,96 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New to this update is support for game clients/emulators. These can be added in a separate dialog and set to be used on added games. Game clients such as Steam are optional while console games require an emulator in order to be played. If an emulator is not in the supported list you can add it as a custom emulator. Be aware that doing so does not allow for any game progression to be shown..
+        /// </summary>
+        public static string AnniversaryUpdate_ClientsDescription {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_ClientsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game clients/emulators.
+        /// </summary>
+        public static string AnniversaryUpdate_ClientsHeader {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_ClientsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The games page has been redesigned to support new features such as allowing for multiple installations of the same game and emulated console games. Each game now has a hub area to the right side where you can see common actions such as the Patcher and Archive Explorer panels..
+        /// </summary>
+        public static string AnniversaryUpdate_GamesDescription {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_GamesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redesigned games page.
+        /// </summary>
+        public static string AnniversaryUpdate_GamesHeader {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_GamesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to the Anniversary Update!.
+        /// </summary>
+        public static string AnniversaryUpdate_Header {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t find a utility you&apos;re looking for? It has most likely been reworked as a patch..
+        /// </summary>
+        public static string AnniversaryUpdate_PatcherDescription {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_PatcherDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More utilities are now patches.
+        /// </summary>
+        public static string AnniversaryUpdate_PatcherHeader {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_PatcherHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The texture sync utility has been replaced by a button in the Archive Explorer game panel for easier access. Like before you can also enable textures to automatically sync when an archive has been repacked..
+        /// </summary>
+        public static string AnniversaryUpdate_TextureSyncDescription {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_TextureSyncDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Texture sync has moved.
+        /// </summary>
+        public static string AnniversaryUpdate_TextureSyncHeader {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_TextureSyncHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to the Anniversary Update.
+        /// </summary>
+        public static string AnniversaryUpdate_Title {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}
         ///
         ///Error message: {1}.
@@ -7835,6 +7925,69 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add changelog entry.
+        /// </summary>
+        public static string PatchCreator_ChangelogAdd {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string PatchCreator_ChangelogDateField {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogDateField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a date.
+        /// </summary>
+        public static string PatchCreator_ChangelogDateWatermark {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogDateWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string PatchCreator_ChangelogDescriptionField {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogDescriptionField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changelog.
+        /// </summary>
+        public static string PatchCreator_ChangelogHeader {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove changelog entry.
+        /// </summary>
+        public static string PatchCreator_ChangelogRemove {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string PatchCreator_ChangelogVersionField {
+            get {
+                return ResourceManager.GetString("PatchCreator_ChangelogVersionField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string PatchCreator_Create {
@@ -7889,6 +8042,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File modifications.
+        /// </summary>
+        public static string PatchCreator_FileModificationsHeader {
+            get {
+                return ResourceManager.GetString("PatchCreator_FileModificationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game targets.
         /// </summary>
         public static string PatchCreator_GameTargets {
@@ -7939,6 +8101,15 @@ namespace RayCarrot.RCP.Metro {
         public static string PatchCreator_ImportPatchInfo {
             get {
                 return ResourceManager.GetString("PatchCreator_ImportPatchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metadata.
+        /// </summary>
+        public static string PatchCreator_MetadataHeader {
+            get {
+                return ResourceManager.GetString("PatchCreator_MetadataHeader", resourceCulture);
             }
         }
         
@@ -8146,6 +8317,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Patcher_DownloadPatch {
             get {
                 return ResourceManager.GetString("Patcher_DownloadPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download update.
+        /// </summary>
+        public static string Patcher_DownloadPatchUpdate {
+            get {
+                return ResourceManager.GetString("Patcher_DownloadPatchUpdate", resourceCulture);
             }
         }
         
@@ -10288,6 +10468,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.12 (Unprotected).
+        /// </summary>
+        public static string R1U_TPLS_RayVersions_1_12_Unprotected {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12_Unprotected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1.20.
         /// </summary>
         public static string R1U_TPLS_RayVersions_1_20 {
@@ -10320,6 +10509,15 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLS_RayVersions_Auto {
             get {
                 return ResourceManager.GetString("R1U_TPLS_RayVersions_Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a newer version available. Uninstall the current version to install it..
+        /// </summary>
+        public static string R1U_TPLS_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_UpdateAvailable", resourceCulture);
             }
         }
         

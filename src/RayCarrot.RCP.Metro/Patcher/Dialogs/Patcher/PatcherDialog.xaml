@@ -260,11 +260,10 @@
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding Path=IsUpdate}" Value="True">
                                                                 <Setter Property="local:Icon.Kind" Value="Update" />
-                                                                <!-- TODO-UPDATE: Localize -->
                                                                 <Setter Property="ToolTip">
                                                                     <Setter.Value>
                                                                         <TextBlock ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}" 
-                                                                                   Text="Download update" />
+                                                                                   Text="{Resx Patcher_DownloadPatchUpdate}" />
                                                                     </Setter.Value>
                                                                 </Setter>
                                                             </DataTrigger>
