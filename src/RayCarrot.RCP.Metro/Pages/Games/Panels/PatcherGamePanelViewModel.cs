@@ -47,21 +47,17 @@ public class PatcherGamePanelViewModel : GamePanelViewModel, IRecipient<Modified
         // Get applied patches
         using Context context = new RCPContext(String.Empty);
         PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
-        PatchLibraryFile? libraryFile = null;
 
         try
         {
-            libraryFile = await Task.Run(() => context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath));
+            PatchLibraryFile? libraryFile = await Task.Run(() => context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath));
+            InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_Info), libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0);
         }
         catch (Exception ex)
         {
             Logger.Warn(ex, "Reading patch library");
-        }
-
-        if (libraryFile != null)
-            InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_Info), libraryFile.Patches.Count(x => x.IsEnabled));
-        else
             InfoText = String.Empty;
+        }
     }
 
     #endregion
