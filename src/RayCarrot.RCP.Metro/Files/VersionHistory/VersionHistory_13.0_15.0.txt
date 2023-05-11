@@ -1,11 +1,8 @@
 ﻿-----   Version 14.0.0 - June ??, 2023   -----
-• Major changes to how games are handled
-	• Multiple installations of the same game can be added
-	• Games can be renamed and reordered
-	• The game options have been moved from the options dialog to the game hub
-	• The Rayman Edutainment games are now split up between Edu and Quiz
+• Multiple installations of the same game can now be added
+• Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
-• Added a home page for news and recent/favorite games. Added and updated patches are now shown there instead of the app changelog.
+• Added a home page for news and recent/favorite games. Newly added and updated patches are now shown there instead of the app changelog.
 • Added support for new games:
 	• Rayman Advance
 	• Rayman 3 (GBA)
@@ -14,45 +11,46 @@
 	• Rayman: The Dreamer's Boundary
 • The game finder has been reworked to be faster and to be able to find game clients/emulators
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
-• The jumplist now sorts games by default and no longer automatically adds every game
+• The jumplist now sorts games by default and only automatically adds certain games to it
 • Added serializers for Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA) save data
 
 Other changes:
+• Game changes
+	• The game options have been moved from the options dialog to the new game hub
+	• The Rayman Edutainment games are now split up between Edu and Quiz
 • UI changes
 	• Redesigned the games page, now split between a selection and the game hub
 	• Decreased large corner radiuses
 	• Card backgrounds are now darker
-	• Updated the flat button style
-	• Updated list box styles
+	• Updated button and list box styles
 	• Redesigned the overflow/popup menus
 	• Redesigned the edit jumplist dialog
 • Patcher changes
 	• Game patch files (.gp) now use a custom file icon
 	• Patches can now include a changelog
 	• The patcher now shows if a file will be ignored due to the location not existing
-	• The patcher now shows updates using a different download icon and always at the top
+	• The patcher now shows updates using a download icon and always at the top of the list
 	• Patches can now be created to target multiple games
 	• Patches can now be created for the Rayman Edutainment games
-	• Patches can no longer be created for games where the patcher is not available
 	• The patch creator is now accessed from the game hub with the option to update a patch being moved into the creator
 	• The patch creator is now categorized into pages
 	• Enabled spell checking for certain fields in the patch creator
 	• When saving a created patch the file name now defaults to the patch name
 • Archive changes
-	• The CPA texture sync is now available for the Rayman M and 3 demos
+	• The CPA texture sync is now available for the Rayman M and Rayman 3 demos
 	• The CPA texture sync has been moved from a utility to an archive action in the game hub
 	• The CPA texture sync now syncs the individual Rayman M/Arena game folders separately
 	• Progress is now shown when synchronizing CPA game textures
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
 • Updated the per-level soundtrack utility for Rayman 1 to support the unprotected 1.12 version of the game
-• More text is now localized, including game titles
+• More text is now localized, including game names
 • Updated the progression page layout and added support for multiple games sharing the same backup
 • Progression backups no longer warn if GOG Galaxy cloud syncing is detected
 • A DOSBox installation can now have multiple config files
 • The option to run a game as admin is now always visible in the drop-down
 • The option to run a game as admin is no longer available for emulated games, such as MS-DOS games
-• The MS-DOS games now launch directly using the exe rather than the bat file
+• The MS-DOS games now launch using the exe rather than a separate bat file
 • Downloading Rayman Demo (1995/12/07) now includes the music
 • Uninstalling previously installable fan games no longer removes their save data
 • Validating a game location now includes more path checks and shows which paths were missing when validation fails
@@ -67,7 +65,7 @@ Other changes:
 	• Added debug dialogs for game and game client installations
 	• The debug page has several added and removed options and improvements to existing ones
 • Bug fixes
-	• Concurrent serializer log writes are now handled by creating multiple files
+	• Concurrent serializer log writes are now handled by creating multiple log files
 	• The app jumplist is now refreshed when the app exe is moved
 	• Fixed a bug where the Rayman Origins font wouldn't load in the progression page unless it was installed on the computer
 	• Fixed a bug with finding Rayman Forever installations through the game finder
