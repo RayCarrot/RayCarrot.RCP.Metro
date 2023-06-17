@@ -39,6 +39,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
+        builder.Register(new UbisoftConnectGameClientComponent("80"));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanOrigins_Win32(x, "Rayman Origins")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));

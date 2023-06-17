@@ -50,6 +50,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
+        builder.Register(new UbisoftConnectGameClientComponent("362"));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids_Win32(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));

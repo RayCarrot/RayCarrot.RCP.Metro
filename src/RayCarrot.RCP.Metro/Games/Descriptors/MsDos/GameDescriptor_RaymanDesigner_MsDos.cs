@@ -44,6 +44,8 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new UbisoftConnectGameClientComponent("2968")); // NOTE: Same id as all Rayman Forever games
+
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanDesigner_MsDos(x, "Rayman Designer")));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));

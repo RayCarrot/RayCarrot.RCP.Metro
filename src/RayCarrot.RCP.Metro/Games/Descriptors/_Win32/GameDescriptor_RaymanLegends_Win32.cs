@@ -39,6 +39,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
+        builder.Register(new UbisoftConnectGameClientComponent("410")); // NOTE: The demo has id 411
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends_Win32(x, "Rayman Legends")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));

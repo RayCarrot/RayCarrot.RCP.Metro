@@ -61,6 +61,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
+        builder.Register(new UbisoftConnectGameClientComponent("361"));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Win32(x, "Rayman 2")));
         builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
