@@ -1,7 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 /// <summary>
-/// This component is to be used on games which can use <see cref="SteamGameClientComponent"/>
+/// This component is to be used on games which can use <see cref="Clients.Steam.SteamGameClientDescriptor"/>
 /// </summary>
 [BaseGameComponent]
 [SingleInstanceGameComponent]

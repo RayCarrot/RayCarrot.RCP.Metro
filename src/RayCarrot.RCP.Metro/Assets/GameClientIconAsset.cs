@@ -14,4 +14,7 @@ public enum GameClientIconAsset
 
     [AssetFileName("Steam.png")]
     Steam,
+
+    [AssetFileName("Ubisoft Connect.png")]
+    UbisoftConnect,
 }

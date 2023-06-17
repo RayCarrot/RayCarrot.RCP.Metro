@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Clients.MGba;
 using RayCarrot.RCP.Metro.Games.Clients.Steam;
+using RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
@@ -25,6 +26,7 @@ public class GameClientsManager
             
             // Clients
             new SteamGameClientDescriptor(),
+            new UbisoftConnectGameClientDescriptor(),
         }.ToDictionary(x => x.GameClientId);
         SortedGameClientDescriptors = GameClientDescriptors.Values.OrderBy(x => x).ToArray();
     }
