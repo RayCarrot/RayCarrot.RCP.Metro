@@ -191,8 +191,8 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
 
         // Read volume
         var ROvolume = ReadMultiByteFile(SelectedVolumeFileName, 2);
-        MusicVolume = ROvolume?[0] ?? 100;
-        SoundVolume = ROvolume?[1] ?? 100;
+        MusicVolume = ROvolume?[0] ?? 99;
+        SoundVolume = ROvolume?[1] ?? 99;
 
         UnsavedChanges = false;
 
