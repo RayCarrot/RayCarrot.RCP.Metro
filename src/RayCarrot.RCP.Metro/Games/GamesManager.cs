@@ -30,6 +30,7 @@ public class GamesManager
             new GameDescriptor_RaymanFiestaRun_WindowsPackage(),
             new GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage(),
             new GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPackage(),
+            new GameDescriptor_RaymanFiestaRun_Win32(),
 
             // Rabbids
             new GameDescriptor_RaymanRavingRabbids_Win32(),
