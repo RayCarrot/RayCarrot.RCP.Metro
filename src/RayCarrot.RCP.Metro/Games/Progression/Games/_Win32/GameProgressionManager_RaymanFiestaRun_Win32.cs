@@ -42,12 +42,10 @@ public class GameProgressionManager_RaymanFiestaRun_Win32 : GameProgressionManag
             yield break;
         }
 
-        FiestaRun_SaveData saveData = storageFile.Content;
-
         Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
         List<GameProgressionDataItem> progressItems = RaymanFiestaRunProgression.CreateProgressionItems(
-            saveData, out int collectiblesCount, out int maxCollectiblesCount);
+            storageFile.Content, out int collectiblesCount, out int maxCollectiblesCount);
 
         yield return new SerializableGameProgressionSlot<UPC_StorageFile<FiestaRun_SaveData>>(null, 0, collectiblesCount, maxCollectiblesCount, progressItems, context, storageFile, fileName);
 
