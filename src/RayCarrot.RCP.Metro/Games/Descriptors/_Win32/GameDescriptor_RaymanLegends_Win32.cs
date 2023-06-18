@@ -10,9 +10,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 {
-    #region Constant Fields
+    #region Private Constant Fields
 
     private const string SteamId = "242550";
+
+    private const string UbisoftConnectGameId = "410"; // NOTE: The demo has id 411
+    private const string UbisoftConnectProductId = "56c4948888a7e300458b47da";
 
     #endregion
 
@@ -39,7 +42,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
-        builder.Register(new UbisoftConnectGameClientComponent("410")); // NOTE: The demo has id 411
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends_Win32(x, "Rayman Legends")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
@@ -74,8 +77,9 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html"),
         new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId)),
+
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

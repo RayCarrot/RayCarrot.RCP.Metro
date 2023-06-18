@@ -12,9 +12,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 {
-    #region Constant Fields
+    #region Private Constant Fields
 
     private const string SteamId = "15060";
+
+    private const string UbisoftConnectGameId = "361";
+    private const string UbisoftConnectProductId = "56c4947e88a7e300458b465c";
 
     #endregion
 
@@ -61,7 +64,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
-        builder.Register(new UbisoftConnectGameClientComponent("361"));
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Win32(x, "Rayman 2")));
         builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
@@ -113,7 +116,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_2_the_great_escape"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId))
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

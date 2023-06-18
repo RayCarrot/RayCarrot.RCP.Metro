@@ -7,10 +7,12 @@
 [SingleInstanceGameComponent]
 public class UbisoftConnectGameClientComponent : GameComponent
 {
-    public UbisoftConnectGameClientComponent(string gameId)
+    public UbisoftConnectGameClientComponent(string gameId, string productId)
     {
         GameId = gameId;
+        ProductId = productId;
     }
 
     public string GameId { get; }
+    public string ProductId { get; }
 }

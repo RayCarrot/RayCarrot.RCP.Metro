@@ -10,9 +10,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescriptor
 {
-    #region Constant Fields
+    #region Private Constant Fields
 
     private const string SteamId = "15080";
+
+    private const string UbisoftConnectGameId = "362";
+    private const string UbisoftConnectProductId = "56c4948888a7e300458b47de";
 
     #endregion
 
@@ -50,7 +53,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
-        builder.Register(new UbisoftConnectGameClientComponent("362"));
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids_Win32(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
@@ -80,8 +83,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_raving_rabbids"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html"),
         new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId)),
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

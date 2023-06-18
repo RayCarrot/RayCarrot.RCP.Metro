@@ -23,6 +23,19 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
             minUserLevel: UserLevel.Advanced)
     };
 
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation)
+    {
+        string productId = gameInstallation.GetRequiredComponent<UbisoftConnectGameClientComponent>().ProductId;
+
+        return new[]
+        {
+            new GameLinksComponent.GameUriLink(
+                Header: "Open in Ubisoft Store", // TODO-UPDATE: Localize
+                Uri: UbisoftConnectHelpers.GetStorePageURL(productId),
+                Icon: GenericIconKind.GameAction_Web)
+        };
+    }
+
     #endregion
 
     #region Public Methods
@@ -33,6 +46,7 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
 
         builder.Register(new GameInfoComponent(GetGameInfoItems));
         builder.Register<LaunchGameComponent, UbisoftConnectLaunchGameComponent>();
+        builder.Register(new ExternalGameLinksComponent(GetExternalUriLinks));
     }
 
     public override bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>

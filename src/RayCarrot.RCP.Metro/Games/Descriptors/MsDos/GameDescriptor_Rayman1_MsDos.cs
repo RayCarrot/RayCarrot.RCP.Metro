@@ -10,6 +10,14 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
 {
+    #region Private Constant Fields
+
+    // NOTE: Same id as all Rayman Forever games
+    private const string UbisoftConnectGameId = "2968";
+    private const string UbisoftConnectProductId = "5800d3fc4e016524248b4567";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "Rayman1_MsDos";
@@ -32,7 +40,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new UbisoftConnectGameClientComponent("2968")); // NOTE: Same id as all Rayman Forever games
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1_MsDos(x, "Rayman 1")));
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
@@ -68,7 +76,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_forever"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId))
     };
 
     public override FinderQuery[] GetFinderQueries()

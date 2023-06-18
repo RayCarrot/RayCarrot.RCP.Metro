@@ -12,6 +12,13 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
 {
+    #region Private Constant Fields
+
+    private const string UbisoftConnectGameId = "360";
+    private const string UbisoftConnectProductId = "5800b15eef3aa5ab3e8b4567";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "Rayman3_Win32";
@@ -34,7 +41,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new UbisoftConnectGameClientComponent("360"));
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3_Win32(x, "Rayman 3")));
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
@@ -79,7 +86,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId)),
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

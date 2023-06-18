@@ -10,9 +10,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
 {
-    #region Constant Fields
+    #region Private Constant Fields
 
     private const string SteamId = "207490";
+
+    private const string UbisoftConnectGameId = "80";
+    private const string UbisoftConnectProductId = "56c4948888a7e300458b47dc";
 
     #endregion
 
@@ -39,7 +42,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new SteamGameClientComponent(SteamId));
-        builder.Register(new UbisoftConnectGameClientComponent("80"));
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanOrigins_Win32(x, "Rayman Origins")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));
@@ -75,8 +78,8 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_origins"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html"),
         new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId)),
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

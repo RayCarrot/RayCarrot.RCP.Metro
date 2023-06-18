@@ -9,6 +9,13 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 {
+    #region Private Constant Fields
+
+    private const string UbisoftConnectGameId = "5408";
+    private const string UbisoftConnectProductId = "5d96f9b05cdf9a2eacdf68cb";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "RabbidsCoding_Win32";
@@ -29,7 +36,7 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new UbisoftConnectGameClientComponent("5408"));
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
@@ -49,7 +56,7 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_DownloadUplay)), "https://register.ubisoft.com/rabbids-coding/")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_DownloadUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId))
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
