@@ -43,34 +43,14 @@ public class GameProgressionManager_Rayman1_MsDos : GameProgressionManager
 
             Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
-            // Get total amount of cages
-            int cages = saveData.WorldInfoSaveZone.Sum(x => x.Cages);
-
-            GameProgressionDataItem[] dataItems =
-            {
-                new GameProgressionDataItem(
-                    isPrimaryItem: true, 
-                    icon: ProgressionIconAsset.R1_Cage, 
-                    header: new ResourceLocString(nameof(Resources.Progression_Cages)),
-                    value: cages, 
-                    max: 102),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false, 
-                    icon: ProgressionIconAsset.R1_Continue, 
-                    header: new ResourceLocString(nameof(Resources.Progression_Continues)),
-                    value: saveData.ContinuesCount),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false, 
-                    icon: ProgressionIconAsset.R1_Life, 
-                    header: new ResourceLocString(nameof(Resources.Progression_Lives)),
-                    value: saveData.StatusBar.LivesCount),
-            };
+            IReadOnlyList<GameProgressionDataItem> dataItems = Rayman1Progression.CreateProgressionItems(
+                saveData, out int collectiblesCount, out int maxCollectiblesCount);
 
             yield return new SerializableGameProgressionSlot<SaveSlot>(
                 name: saveData.SaveName.ToUpper(), 
                 index: saveIndex, 
-                collectiblesCount: cages, 
-                totalCollectiblesCount: 102, 
+                collectiblesCount: collectiblesCount, 
+                totalCollectiblesCount: maxCollectiblesCount, 
                 dataItems: dataItems, 
                 context: context, 
                 serializable: saveData, 

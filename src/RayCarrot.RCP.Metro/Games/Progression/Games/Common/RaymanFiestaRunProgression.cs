@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             return v2;
         }
 
-        public static List<GameProgressionDataItem> CreateProgressionItems(
+        public static IReadOnlyList<GameProgressionDataItem> CreateProgressionItems(
             FiestaRun_SaveData saveData, 
             out int collectiblesCount, 
             out int maxCollectiblesCount)

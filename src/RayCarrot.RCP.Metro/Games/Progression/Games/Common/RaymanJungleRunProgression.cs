@@ -4,7 +4,7 @@ namespace RayCarrot.RCP.Metro
 {
     public static class RaymanJungleRunProgression
     {
-        public static List<GameProgressionDataItem> CreateProgressionItems(
+        public static IReadOnlyList<GameProgressionDataItem> CreateProgressionItems(
             JungleRun_SaveData saveData, 
             out int collectiblesCount, 
             out int maxCollectiblesCount)

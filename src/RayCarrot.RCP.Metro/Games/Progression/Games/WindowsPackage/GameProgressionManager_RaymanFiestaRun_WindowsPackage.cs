@@ -48,7 +48,7 @@ public class GameProgressionManager_RaymanFiestaRun_WindowsPackage : GameProgres
 
         Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
-        List<GameProgressionDataItem> progressItems = RaymanFiestaRunProgression.CreateProgressionItems(
+        IReadOnlyList<GameProgressionDataItem> progressItems = RaymanFiestaRunProgression.CreateProgressionItems(
             saveData, out int collectiblesCount, out int maxCollectiblesCount);
 
         yield return new SerializableGameProgressionSlot<FiestaRun_SaveData>(null, 0, collectiblesCount, maxCollectiblesCount, progressItems, context, saveData, fileName);

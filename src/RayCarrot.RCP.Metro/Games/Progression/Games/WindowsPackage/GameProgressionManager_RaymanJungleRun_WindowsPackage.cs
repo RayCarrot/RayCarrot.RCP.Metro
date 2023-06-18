@@ -48,7 +48,7 @@ public class GameProgressionManager_RaymanJungleRun_WindowsPackage : GameProgres
             Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
             // Create the collection with items for each time trial level + general information
-            List<GameProgressionDataItem> progressItems = RaymanJungleRunProgression.CreateProgressionItems(
+            IReadOnlyList<GameProgressionDataItem> progressItems = RaymanJungleRunProgression.CreateProgressionItems(
                 saveData, out int collectiblesCount, out int maxCollectiblesCount);
 
             yield return new SerializableGameProgressionSlot<JungleRun_SaveData>(null, saveIndex, collectiblesCount, maxCollectiblesCount, progressItems, context, saveData, fileName);
