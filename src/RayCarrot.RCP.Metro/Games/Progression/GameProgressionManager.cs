@@ -106,6 +106,9 @@ public abstract class GameProgressionManager
 
         public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
         {
+            if (searchPattern.DirPath == FileSystemPath.EmptyPath)
+                return null;
+
             // Convert the search pattern using the current data source
             searchPattern = new ProgressionDirectory(searchPattern).
                 GetReadSearchPattern(DataSource);
@@ -175,7 +178,7 @@ public abstract class GameProgressionManager
 
         public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
         {
-            if (Backup == null)
+            if (Backup == null || searchPattern.DirPath == FileSystemPath.EmptyPath)
                 return null;
 
             FileSystemPath backupDir = FileSystemPath.EmptyPath;

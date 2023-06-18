@@ -26,6 +26,7 @@ public class GamesManager
             new GameDescriptor_RaymanOrigins_Win32(),
             new GameDescriptor_RaymanLegends_Win32(),
             new GameDescriptor_RaymanJungleRun_WindowsPackage(),
+            new GameDescriptor_RaymanJungleRun_Win32(),
             new GameDescriptor_RaymanFiestaRun_WindowsPackage(),
             new GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage(),
             new GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPackage(),
