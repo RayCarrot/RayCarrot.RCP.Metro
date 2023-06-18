@@ -11,4 +11,7 @@ public static class GameClientDataKey
 
     // DOSBox
     public const string DosBox_ConfigFilePaths = "DosBox_ConfigFilePaths";
+
+    // Ubisoft Connect
+    public const string UbisoftConnect_UserId = "UbisoftConnect_UserId";
 }

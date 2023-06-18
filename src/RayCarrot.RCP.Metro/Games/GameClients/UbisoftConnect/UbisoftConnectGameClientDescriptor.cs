@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using System.IO;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect;
@@ -49,8 +50,30 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
         builder.Register(new ExternalGameLinksComponent(GetExternalUriLinks));
     }
 
+    public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
+        new UbisoftConnectGameClientOptionsViewModel(gameClientInstallation);
+
     public override bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>
         base.SupportsGame(gameInstallation, gameClientInstallation) && gameInstallation.HasComponent<UbisoftConnectGameClientComponent>();
+
+    public override async Task OnGameClientAddedAsync(GameClientInstallation gameClientInstallation)
+    {
+        await base.OnGameClientAddedAsync(gameClientInstallation);
+
+        // Set a default user id
+        FileSystemPath saveGamesDir = gameClientInstallation.InstallLocation.Directory + "savegames";
+
+        if (saveGamesDir.DirectoryExists)
+        {
+            string[] subDirs = Directory.GetDirectories(saveGamesDir);
+
+            if (subDirs.Length > 0)
+            {
+                string userId = new FileSystemPath(subDirs[0]).Name;
+                gameClientInstallation.SetValue<string>(GameClientDataKey.UbisoftConnect_UserId, userId);
+            }
+        }
+    }
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

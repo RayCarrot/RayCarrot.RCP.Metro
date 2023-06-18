@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect.UbisoftConnectGameClientOptionsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:ubisoftConnect="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance ubisoftConnect:UbisoftConnectGameClientOptionsViewModel}">
+    <StackPanel>
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="User id"
+                   Margin="0 0 0 4" />
+
+        <ComboBox ItemsSource="{Binding Path=UserIds, Mode=OneTime}"
+                  d:ItemsSource="{d:SampleData ItemCount=3}"
+                  SelectedItem="{Binding Path=SelectedUserId}"
+                  HorizontalAlignment="Left" />
+
+    </StackPanel>
+</UserControl>
