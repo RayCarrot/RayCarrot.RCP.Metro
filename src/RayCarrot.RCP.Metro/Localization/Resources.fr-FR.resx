@@ -694,7 +694,7 @@
     <value>Le chemin de montage n'a pas été trouvé. Veuillez renseigner un chemin valide dans les paramètres pour lancer ce jeu</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
-    <value>Les backups de {0} seront tous remplacés</value>
+    <value>Cela remplacera tous les backups existants de :</value>
   </data>
   <data name="Backup_ConfirmHeader" xml:space="preserve">
     <value>Confirmer backup</value>
@@ -1287,7 +1287,7 @@ Voulez vous réessayer ?</value>
     <value>Exécuter en tant qu'administrateur</value>
   </data>
   <data name="Backup_ConfirmBackupAll" xml:space="preserve">
-    <value>Voulez-vous faire un backup de tous vos jeux ? Cela remplacera les précédents backups. Voulez-vous continuer ?</value>
+    <value>Voulez-vous faire un backup de tous vos jeux ? Cela remplacera les précédents backups. Si plusieurs jeux partagent le même backup, un backup ne sera réalisé que pour le premier jeu. Voulez-vous continuer ?</value>
   </data>
   <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
     <value>Confirmer les backups</value>
@@ -3785,7 +3785,7 @@ Cela peut rendre certains niveaux inaccessibles. Cet outil tentera de corriger c
     <value>L'utilitaire n'est pas disponible</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
-    <value>Traduction du programme en hébreux</value>
+    <value>Traduction du programme en hébreux, fichier icône du patch de jeu</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
     <value>Syncroniser automatiquement les texture à la recompilation</value>
@@ -4640,5 +4640,11 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
     <value>L'antre des lapins</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>Les nouveaux jeux suivants ont été trouvés :</value>
+  </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>Une version plus récente est disponible. Désinstallez la version actuelle pour l'installer.</value>
   </data>
 </root>

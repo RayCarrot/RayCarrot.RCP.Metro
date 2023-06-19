@@ -4484,7 +4484,7 @@ partNumber</comment>
     <value>Patches</value>
   </data>
   <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won't go into effect until it's enabled and applied, allowing patches to be easily toggled on and off. It is not recommended manually changing game files which a patch modifies as it might result in some changes being lost.</value>
+    <value>Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won't go into effect until it's enabled and applied, allowing patches to be easily toggled on and off. It is not recommended to manually change game files which a patch modifies as it might result in some changes being lost.</value>
   </data>
   <data name="Patcher_AddPatch" xml:space="preserve">
     <value>Add patch</value>
@@ -5455,7 +5455,7 @@ gameClientName</comment>
     <value>Game ROMs and discs found</value>
   </data>
   <data name="GameFileFinder_NoResults" xml:space="preserve">
-    <value>No new games ROMs or discs were found</value>
+    <value>No new game ROMs or discs were found</value>
   </data>
   <data name="GameFileFinder_ResultHeader" xml:space="preserve">
     <value>Game file finder result</value>
@@ -5509,7 +5509,7 @@ gameClientName</comment>
     <value>Redesigned games page</value>
   </data>
   <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
-    <value>The games page has been redesigned to support new features such as allowing for multiple installations of the same game and emulated console games. Each game now has a hub area to the right side where you can see common actions such as the Patcher and Archive Explorer panels.</value>
+    <value>The games page has been redesigned to support new features such as allowing for multiple installations of the same game and emulated console games. Each game now has a hub area to the right side where you can see common actions such as from the Patcher and Archive Explorer panels.</value>
   </data>
   <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
     <value>Game clients/emulators</value>

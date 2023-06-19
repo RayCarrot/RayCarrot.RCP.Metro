@@ -4641,4 +4641,67 @@ Start: Пауза</value>
   <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
     <value>The rabbids' lair</value>
   </data>
+  <data name="AppData_MigrateError" xml:space="preserve">
+    <value>Произошла ошибка при переносе данных приложения в новую версию</value>
+  </data>
+  <data name="Games_RemovedInvalidGames" xml:space="preserve">
+    <value>Следующие игры более недействительны, в связи с чем удалены:
+
+{0}</value>
+  </data>
+  <data name="Games_RemovedInvalidGamesHeader" xml:space="preserve">
+    <value>Удалённые недействительные игры</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClients" xml:space="preserve">
+    <value>Следующие игровые клиенты/эмуляторы более недействительны, в связи с чем удалены:
+
+{0}</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
+    <value>Удалённые недействительные игровые клиенты/эмуляторы</value>
+  </data>
+  <data name="GameAdd_Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
+    <value>Выбор файла игры</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseFileTypes" xml:space="preserve">
+    <value>Файл игры</value>
+  </data>
+  <data name="GameAdd_LocateFileInvalidFile" xml:space="preserve">
+    <value>Выбранный файл недействителен для этой игры
+
+{0}</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SyncStatus" xml:space="preserve">
+    <value>Синхронизация текстур</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Обновление размеров текстур в файлах игры так, чтобы они соответствовали файлам текстур. Это необходимо сделать, если разрешение текстуры было увеличено, в противном случае при запуске игры может произойти сбой.</value>
+  </data>
+  <data name="GameInfo_AddedDate" xml:space="preserve">
+    <value>Добавлено:</value>
+  </data>
+  <data name="GameClients_Launch_ClientNotFound" xml:space="preserve">
+    <value>Игровой клиент/эмулятор не был найден</value>
+  </data>
+  <data name="GamesPage_Category_Handheld" xml:space="preserve">
+    <value>Портативные</value>
+  </data>
+  <data name="GameClients_Custom" xml:space="preserve">
+    <value>Пользовательские</value>
+  </data>
+  <data name="GameClients_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameClients_MGba" xml:space="preserve">
+    <value>mGBA</value>
+  </data>
+  <data name="GameClients_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
+    <value>Аргументы запуска</value>
+  </data>
 </root>

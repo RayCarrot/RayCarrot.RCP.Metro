@@ -451,7 +451,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The games page has been redesigned to support new features such as allowing for multiple installations of the same game and emulated console games. Each game now has a hub area to the right side where you can see common actions such as the Patcher and Archive Explorer panels..
+        ///   Looks up a localized string similar to The games page has been redesigned to support new features such as allowing for multiple installations of the same game and emulated console games. Each game now has a hub area to the right side where you can see common actions such as from the Patcher and Archive Explorer panels..
         /// </summary>
         public static string AnniversaryUpdate_GamesDescription {
             get {
@@ -4444,7 +4444,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No new games ROMs or discs were found.
+        ///   Looks up a localized string similar to No new game ROMs or discs were found.
         /// </summary>
         public static string GameFileFinder_NoResults {
             get {
@@ -8609,7 +8609,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won&apos;t go into effect until it&apos;s enabled and applied, allowing patches to be easily toggled on and off. It is not recommended manually changing game files which a patch modifies as it might result in some changes being lost..
+        ///   Looks up a localized string similar to Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won&apos;t go into effect until it&apos;s enabled and applied, allowing patches to be easily toggled on and off. It is not recommended to manually change game files which a patch modifies as it might result in some changes being lost..
         /// </summary>
         public static string Patcher_PatchesInfo {
             get {

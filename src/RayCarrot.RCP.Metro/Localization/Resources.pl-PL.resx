@@ -696,8 +696,7 @@
     <value>Nie udało się znaleźć ścieżki montowania. Podaj poprawną ścieżkę w opcjach gry, aby uruchomić tę grę.</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
-    <value>Zastąpi to wszelkie poprzednie kopie zapasowe dla {0}
-</value>
+    <value>Zastąpi to wszelkie poprzednie kopie zapasowe dla:</value>
   </data>
   <data name="Backup_ConfirmHeader" xml:space="preserve">
     <value>Potwierdź kopię zapasową</value>
@@ -1298,7 +1297,7 @@ Spróbować ponownie?</value>
     <value>Uruchom jako Administrator</value>
   </data>
   <data name="Backup_ConfirmBackupAll" xml:space="preserve">
-    <value>Czy chcesz wykonać kopię zapasową wszystkich gier? Zastąpi to wszystkie poprzednie kopie zapasowe. Kontynuować?</value>
+    <value>Czy chcesz wykonać kopię zapasową wszystkich gier? Zastąpi to wszystkie poprzednie kopie zapasowe. Jeśli wiele gier korzysta z tej samej kopii zapasowej, to kopia zostanie utworzona tylko dla pierwszej gry. Kontynuować?</value>
   </data>
   <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
     <value>Potwierdź kopie zapasowe</value>
@@ -2761,7 +2760,7 @@ Komunikat o błędzie: {1}</value>
     <value>Lina</value>
   </data>
   <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
-    <value>Nic</value>
+    <value>Brak</value>
   </data>
   <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
     <value>Ulepszone moce</value>
@@ -3816,7 +3815,7 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
     <value>Narzędzie jest niedostępne</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
-    <value>Tłumaczenie hebrajskie programu</value>
+    <value>Tłumaczenie hebrajskie programu, ikona pliku łatki do gry</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
     <value>Synchronizuj tekstury automatycznie po przepakowaniu (.cnt)</value>
@@ -4669,5 +4668,712 @@ Konflikty:
   </data>
   <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
     <value>The rabbids' lair</value>
+  </data>
+  <data name="AppData_MigrateError" xml:space="preserve">
+    <value>Wystąpił błąd podczas migracji danych aplikacji do nowej wersji</value>
+  </data>
+  <data name="Games_RemovedInvalidGames" xml:space="preserve">
+    <value>Następujące gry są już nieważne i zostały usunięte:
+
+{0}</value>
+  </data>
+  <data name="Games_RemovedInvalidGamesHeader" xml:space="preserve">
+    <value>Usunięto nieprawidłowe gry</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClients" xml:space="preserve">
+    <value>Następujące klienty/emulatory gier są już nieaktualne i zostały usunięte:
+
+{0}</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
+    <value>Usunięto nieprawidłowe klienty gry/emulatory</value>
+  </data>
+  <data name="GameAdd_Download" xml:space="preserve">
+    <value>Pobierz</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
+    <value>Wybierz plik gry</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseFileTypes" xml:space="preserve">
+    <value>Plik gry</value>
+  </data>
+  <data name="GameAdd_LocateFileInvalidFile" xml:space="preserve">
+    <value>Wybrany plik jest nieprawidłowy dla tej gry
+
+{0}</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SyncStatus" xml:space="preserve">
+    <value>Synchronizowanie tekstur</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Synchronizuj tekstur. Spowoduje to zaktualizowanie rozmiarów tekstur w plikach gry, aby pasowały do plików tekstur. Jest to wymagane do wykonania, jeśli rozdzielczość tekstury została zwiększona, w przeciwnym razie gra może się zawiesić.</value>
+  </data>
+  <data name="GameInfo_AddedDate" xml:space="preserve">
+    <value>Dodano:</value>
+  </data>
+  <data name="GameClients_Launch_ClientNotFound" xml:space="preserve">
+    <value>Nie udało się znaleźć klienta/emulatora gry</value>
+  </data>
+  <data name="GamesPage_Category_Handheld" xml:space="preserve">
+    <value>Handheld</value>
+  </data>
+  <data name="GameClients_Custom" xml:space="preserve">
+    <value>Własne</value>
+  </data>
+  <data name="GameClients_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameClients_MGba" xml:space="preserve">
+    <value>mGBA</value>
+  </data>
+  <data name="GameClients_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
+    <value>Argumenty uruchomieniowe</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgsInfo" xml:space="preserve">
+    <value>Tutaj możesz określić, które argumenty uruchamiania są przekazywane do programu. Jako ścieżkę do gry wpisz %game%. Zaleca się otoczenie jej cudzysłowem, aby uniknąć ucięcia ścieżki po spacji.</value>
+  </data>
+  <data name="GameClients_DOSBox_ConfigPaths" xml:space="preserve">
+    <value>Ścieżki plików konfiguracyjnych</value>
+  </data>
+  <data name="GameClients_DOSBox_AddConfigPath" xml:space="preserve">
+    <value>Dodaj plik</value>
+  </data>
+  <data name="GameClients_DOSBox_RemoveConfigPaths" xml:space="preserve">
+    <value>Usuń wybrane pliki</value>
+  </data>
+  <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
+    <value>Wybierz plik konfiguracyjny</value>
+  </data>
+  <data name="Config_LocationsHeader" xml:space="preserve">
+    <value>Lokalizacja pliku konfiguracyjnego</value>
+  </data>
+  <data name="Page_LoadError" xml:space="preserve">
+    <value>Podczas ładowania strony wystąpił błąd</value>
+  </data>
+  <data name="GameClients_SelectionHeader" xml:space="preserve">
+    <value>Klient gry/emulator</value>
+  </data>
+  <data name="GameClients_SelectionInfo" xml:space="preserve">
+    <value>Tutaj można wybrać klienta lub emulator, który będzie używany z grą. Wybrany klient będzie odpowiedzialny za uruchomienie gry. W przypadku emulowanych gier jest to wymagane, ponieważ nie mogą one zostać uruchomione samodzielnie. </value>
+  </data>
+  <data name="GameClients_SelectionNone" xml:space="preserve">
+    <value>Brak</value>
+  </data>
+  <data name="Ray1_VersionSelectionHeader" xml:space="preserve">
+    <value>Wersja</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Wersja gry</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>Wersja gry określa, które zestawy minigier są dostępne w grze. Niektóre edycje gry są ograniczone do określonej wersji gry, podczas gdy inne obsługują je wszystkie. Jeśli podczas uruchamiania gry wystąpi błąd, spróbuj zmienić wersję gry. </value>
+  </data>
+  <data name="Games_ValidationMissingPaths" xml:space="preserve">
+    <value>Nie znaleziono następujących wymaganych ścieżek:
+{0}</value>
+  </data>
+  <data name="Games_ValidationFileMissing" xml:space="preserve">
+    <value>Plik nie istnieje</value>
+  </data>
+  <data name="Games_ValidationRomInvalid" xml:space="preserve">
+    <value>ROM nie jest poprawny dla tej gry</value>
+  </data>
+  <data name="GameHub_Play" xml:space="preserve">
+    <value>Graj</value>
+  </data>
+  <data name="GameHub_FavoriteOn" xml:space="preserve">
+    <value>Ulubione</value>
+  </data>
+  <data name="GameHub_FavoriteOff" xml:space="preserve">
+    <value>Nieulubione</value>
+  </data>
+  <data name="GameHub_Rename" xml:space="preserve">
+    <value>Zmień nazwę</value>
+  </data>
+  <data name="GameHub_RefreshPanel" xml:space="preserve">
+    <value>Odśwież</value>
+  </data>
+  <data name="GameSelection_Home" xml:space="preserve">
+    <value>Strona główna</value>
+  </data>
+  <data name="GameSelection_Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="GameSelection_GroupGames" xml:space="preserve">
+    <value>Pogrupowane gry</value>
+  </data>
+  <data name="GameSelection_ResetSort" xml:space="preserve">
+    <value>Zresetuj sortowanie niestandardowe</value>
+  </data>
+  <data name="GameSelection_FindInstallations" xml:space="preserve">
+    <value>Znajdź zainstalowane gry i klientów/emulatory gier</value>
+  </data>
+  <data name="GameSelection_ConfigureClients" xml:space="preserve">
+    <value>Konfiguracja klientów gier/emulatorów</value>
+  </data>
+  <data name="GameSelection_AddGame" xml:space="preserve">
+    <value>Dodaj grę</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Wyszukaj zainstalowane gry i klientów/emulatory gier</value>
+  </data>
+  <data name="Home_PlayGame" xml:space="preserve">
+    <value>Zagraj w grę</value>
+  </data>
+  <data name="Home_News" xml:space="preserve">
+    <value>Aktualności</value>
+  </data>
+  <data name="Home_RecentGames" xml:space="preserve">
+    <value>Ostatnie</value>
+  </data>
+  <data name="Home_FavoriteGames" xml:space="preserve">
+    <value>Ulubione</value>
+  </data>
+  <data name="Finder_NoResults" xml:space="preserve">
+    <value>Nie znaleziono żadnych nowych zainstalowanych gier ani klientów/emulatorów gier</value>
+  </data>
+  <data name="Finder_ResultHeader" xml:space="preserve">
+    <value>Wynik wyszukiwania</value>
+  </data>
+  <data name="Finder_Error" xml:space="preserve">
+    <value>Wystąpił błąd podczas operacji wyszukiwania</value>
+  </data>
+  <data name="Finder_FoundClients" xml:space="preserve">
+    <value>Znaleziono następujące nowe klienty/emulatory gier:</value>
+  </data>
+  <data name="Finder_FoundClientsHeader" xml:space="preserve">
+    <value>Znaleziono zainstalowane klienty/emulatory gier</value>
+  </data>
+  <data name="Games_MissingLaunchComponent" xml:space="preserve">
+    <value>Tej gry nie można uruchomić bez klienta gry/emulatora. Upewnij się, że najpierw dodasz obsługiwanego klienta/emulatora gier, a następnie wybierzesz go do użytku z tą grą.</value>
+  </data>
+  <data name="Games_RenameHeader" xml:space="preserve">
+    <value>Zmień nazwę gry</value>
+  </data>
+  <data name="Games_RenameInfo" xml:space="preserve">
+    <value>Zmień nazwę {0}. Pozostaw nazwę pustą, aby użyć nazwy domyślnej.</value>
+  </data>
+  <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
+    <value>Otwórz</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
+    <value>Otwórz patcher</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
+    <value>Utwórz łatkę</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Info" xml:space="preserve">
+    <value>{0} zastosowanych łatek</value>
+  </data>
+  <data name="Progression_SharedBackupsInfo" xml:space="preserve">
+    <value>Ta gra współdzieli te same kopie zapasowe, co poniższe gry. Oznacza to, że utworzenie kopii zapasowej jednej z tych gier spowoduje nadpisanie kopii zapasowych utworzonych również dla innych gier.</value>
+  </data>
+  <data name="Progression_GroupGames" xml:space="preserve">
+    <value>Pogrupowane gry</value>
+  </data>
+  <data name="PatchCreator_GameTargets" xml:space="preserve">
+    <value>Wybrana gra</value>
+  </data>
+  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
+    <value>Gry, których dotyczy łatka, określają, do których gier można ją zastosować. Łatka może dotyczyć wielu gier, ale jeśli doda pliki do archiwum, którego brakuje w grze, zostaną one zignorowane dla tej gry.</value>
+  </data>
+  <data name="PatchCreator_ImportPatch" xml:space="preserve">
+    <value>Importuj z istniejącej łatki</value>
+  </data>
+  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
+    <value>Umożliwi to zaimportowanie zawartości z już utworzonej łatki. Można to wykorzystać do stworzenia zaktualizowanej wersji łatki.</value>
+  </data>
+  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
+    <value>Wybierz grę</value>
+  </data>
+  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
+    <value>Ten plik zostanie zignorowany, ponieważ nie znaleziono jego lokalizacji</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
+    <value>Platforma</value>
+  </data>
+  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
+    <value>Biblioteka poprawek do gry została stworzona dla innej gry i nie można jej odczytać</value>
+  </data>
+  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
+    <value>Nie można otworzyć łatki {0}, ponieważ żadna z poniższych gier nie została dodana:
+
+{1}</value>
+  </data>
+  <data name="Patcher_PatchSelectGame" xml:space="preserve">
+    <value>Wybierz grę do łatania</value>
+  </data>
+  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
+    <value>Nie można otworzyć łatki {0}, ponieważ bieżąca gra nie jest jednym z celów gry:
+
+{1}</value>
+  </data>
+  <data name="AddGames_Title" xml:space="preserve">
+    <value>Dodaj gry</value>
+  </data>
+  <data name="AddGames_Find" xml:space="preserve">
+    <value>Znajdź grę</value>
+  </data>
+  <data name="AddGames_AddError" xml:space="preserve">
+    <value>Wystąpił błąd podczas dodawania gry</value>
+  </data>
+  <data name="AddGames_AddErrorHeader" xml:space="preserve">
+    <value>Błąd podczas dodawania gry</value>
+  </data>
+  <data name="AddGames_FindSuccessResult" xml:space="preserve">
+    <value>Gra została odnaleziona w {0}</value>
+  </data>
+  <data name="AddGames_FindResultHeader" xml:space="preserve">
+    <value>Wynik wyszukiwania</value>
+  </data>
+  <data name="AddGames_FindFailedResult" xml:space="preserve">
+    <value>Nie znaleziono gry</value>
+  </data>
+  <data name="GameClients_BrowseFileHeader" xml:space="preserve">
+    <value>Wybierz plik wykonywalny klienta gry</value>
+  </data>
+  <data name="GameClients_BrowseDirHeader" xml:space="preserve">
+    <value>Wybierz instalację klienta gry</value>
+  </data>
+  <data name="GameClients_InvalidLocation" xml:space="preserve">
+    <value>Wybrana lokalizacja jest nieprawidłowa</value>
+  </data>
+  <data name="GameClients_FindSuccessResult" xml:space="preserve">
+    <value>Klient gry/emulator został znaleziony pod adresem {0}</value>
+  </data>
+  <data name="GameClients_FindResultHeader" xml:space="preserve">
+    <value>Wynik wyszukiwania</value>
+  </data>
+  <data name="GameClients_FindFailedResult" xml:space="preserve">
+    <value>Nie znaleziono klienta/emulatora gry</value>
+  </data>
+  <data name="GameClients_AddedClientsHeader" xml:space="preserve">
+    <value>Dodano klientów gry/emulatory</value>
+  </data>
+  <data name="GameClients_AvailableClientsHeader" xml:space="preserve">
+    <value>Dostępne klienty gier i emulatory</value>
+  </data>
+  <data name="GameClients_LocateClient" xml:space="preserve">
+    <value>Zlokalizuj</value>
+  </data>
+  <data name="GameClients_FindClient" xml:space="preserve">
+    <value>Znajdź klienta gry/emulator</value>
+  </data>
+  <data name="GameClients_OpenLocation" xml:space="preserve">
+    <value>Otwórz folder zawierający</value>
+  </data>
+  <data name="GameClients_Rename" xml:space="preserve">
+    <value>Zmień nazwę</value>
+  </data>
+  <data name="GameClients_Remove" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="GameClients_SupportedGamesHeader" xml:space="preserve">
+    <value>Obsługiwane gry</value>
+  </data>
+  <data name="GameClients_ConfigTitle" xml:space="preserve">
+    <value>Konfiguracja klientów gier/emulatorów</value>
+  </data>
+  <data name="GameClients_RenameHeader" xml:space="preserve">
+    <value>Zmień nazwę klienta/emulatora gry</value>
+  </data>
+  <data name="GameClients_RenameHeaderInfo" xml:space="preserve">
+    <value>Zmień nazwę {0}. Pozostaw nazwę pustą, aby użyć nazwy domyślnej.</value>
+  </data>
+  <data name="JumpListEditor_AutoSort" xml:space="preserve">
+    <value>Automatyczne sortowanie gier</value>
+  </data>
+  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
+    <value>Włącz lub wyłącz to narzędzie, zaznaczając lub odznaczając klienta ścieżki dźwiękowej dla danego poziomu gry</value>
+  </data>
+  <data name="R1U_TPLSGameClientName" xml:space="preserve">
+    <value>DOSBox (ścieżka dźwiękowa dla każdego poziomu)</value>
+  </data>
+  <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
+    <value>Dane zapisu gry Rayman Advance</value>
+  </data>
+  <data name="Utilities_Converter_R3GbaSaveHeader" xml:space="preserve">
+    <value>Dane zapisu gry Rayman 3 (GBA)</value>
+  </data>
+  <data name="Utilities_Converter_RHRSaveHeader" xml:space="preserve">
+    <value>Dane zapisu gry Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="Utilities_Converter_RRRGbaSaveHeader" xml:space="preserve">
+    <value>Dane zapisu gry Rayman Szalone Kórliki (GBA)</value>
+  </data>
+  <data name="Rayman1_MsDos_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman1_Gba_Title" xml:space="preserve">
+    <value>Rayman Advance</value>
+  </data>
+  <data name="RaymanDesigner_MsDos_Title" xml:space="preserve">
+    <value>Rayman Designer</value>
+  </data>
+  <data name="RaymanByHisFans_MsDos_Title" xml:space="preserve">
+    <value>Rayman by his Fans</value>
+  </data>
+  <data name="Rayman60Levels_MsDos_Title" xml:space="preserve">
+    <value>Rayman 60 Levels</value>
+  </data>
+  <data name="Rayman2_Win32_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanM_Win32_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanArena_Win32_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="Rayman3_Win32_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanOrigins_Win32_Title" xml:space="preserve">
+    <value>Rayman Origins</value>
+  </data>
+  <data name="RaymanLegends_Win32_Title" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="RaymanJungleRun_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="RaymanFiestaRunPreloadEdition_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run Preload Edition</value>
+  </data>
+  <data name="RaymanFiestaRunWindows10Edition_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run Windows 10 Edition</value>
+  </data>
+  <data name="RaymanRavingRabbids_Win32_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki</value>
+  </data>
+  <data name="RaymanRavingRabbids2_Win32_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki 2</value>
+  </data>
+  <data name="RabbidsGoHome_Win32_Title" xml:space="preserve">
+    <value>Rabbids Go Home</value>
+  </data>
+  <data name="RabbidsBigBang_WindowsPackage_Title" xml:space="preserve">
+    <value>Rabbids Big Bang</value>
+  </data>
+  <data name="RabbidsCoding_Win32_Title" xml:space="preserve">
+    <value>Rabbids Coding</value>
+  </data>
+  <data name="Rayman3_Gba_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanHoodlumsRevenge_Gba_Title" xml:space="preserve">
+    <value>Rayman Hoddlums' Revenge</value>
+  </data>
+  <data name="RaymanRavingRabbids_Gba_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki</value>
+  </data>
+  <data name="Rayman1_Demo_19951207_MsDos_Title" xml:space="preserve">
+    <value>Rayman Demo (1995/12/07)</value>
+  </data>
+  <data name="Rayman1_Demo_19960215_MsDos_Title" xml:space="preserve">
+    <value>Rayman Demo (1996/02/15)</value>
+  </data>
+  <data name="Rayman1_Demo_19951204_MsDos_Title" xml:space="preserve">
+    <value>Rayman Demo (1995/12/04)</value>
+  </data>
+  <data name="RaymanGold_Demo_19970930_MsDos_Title" xml:space="preserve">
+    <value>Rayman Gold Demo (1997/09/30)</value>
+  </data>
+  <data name="Rayman2_Demo_19990818_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Demo (1999/08/18)</value>
+  </data>
+  <data name="Rayman2_Demo_19990904_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Demo (1999/09/04)</value>
+  </data>
+  <data name="RaymanM_Demo_20020627_Win32_Title" xml:space="preserve">
+    <value>Rayman M Demo (2002/06/27)</value>
+  </data>
+  <data name="Rayman3_Demo_20021004_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2002/10/04)</value>
+  </data>
+  <data name="Rayman3_Demo_20021021_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2002/10/21)</value>
+  </data>
+  <data name="Rayman3_Demo_20021210_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2002/12/10)</value>
+  </data>
+  <data name="Rayman3_Demo_20030129_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2003/01/29)</value>
+  </data>
+  <data name="Rayman3_Demo_20030108_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2003/01/08)</value>
+  </data>
+  <data name="RaymanRavingRabbids_Demo_20061106_Win32_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki Demo (2006/11/06)</value>
+  </data>
+  <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
+    <value>Rayman Minigames</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Quiz)</value>
+  </data>
+  <data name="TonicTrouble_Win32_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="TonicTroubleSpecialEdition_Win32_Title" xml:space="preserve">
+    <value>Tonic Trouble Special Edition</value>
+  </data>
+  <data name="RaymanDictées_Win32_Title" xml:space="preserve">
+    <value>Rayman Dictées</value>
+  </data>
+  <data name="RaymanPremiersClics_Win32_Title" xml:space="preserve">
+    <value>Rayman Premiers Clics</value>
+  </data>
+  <data name="Rayman3PrintStudio_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Print Studio</value>
+  </data>
+  <data name="RaymanActivityCenter_Win32_Title" xml:space="preserve">
+    <value>Rayman Activity Center</value>
+  </data>
+  <data name="RaymanRavingRabbidsActivityCenter_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Activity Center</value>
+  </data>
+  <data name="TheDarkMagiciansReignofTerror_Win32_Title" xml:space="preserve">
+    <value>Rayman: The Dark Magician's Reign of Terror</value>
+  </data>
+  <data name="RaymanRedemption_Win32_Title" xml:space="preserve">
+    <value>Rayman Redemption</value>
+  </data>
+  <data name="RaymanRedesigner_Win32_Title" xml:space="preserve">
+    <value>Rayman ReDesigner</value>
+  </data>
+  <data name="RaymanBowling2_Win32_Title" xml:space="preserve">
+    <value>Rayman Bowling 2</value>
+  </data>
+  <data name="RaymanGardenPLUS_Win32_Title" xml:space="preserve">
+    <value>Rayman Garden PLUS</value>
+  </data>
+  <data name="GloboxMoment_Win32_Title" xml:space="preserve">
+    <value>Globox Moment</value>
+  </data>
+  <data name="RaymanTheDreamersBoundary_Win32_Title" xml:space="preserve">
+    <value>Rayman: The Dreamer's Boundary</value>
+  </data>
+  <data name="Game_Rayman1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Game_RaymanDesigner_Title" xml:space="preserve">
+    <value>Rayman Designer</value>
+  </data>
+  <data name="Game_RaymanByHisFans_Title" xml:space="preserve">
+    <value>Rayman by his Fans</value>
+  </data>
+  <data name="Game_Rayman60Levels_Title" xml:space="preserve">
+    <value>Rayman 60 Levels</value>
+  </data>
+  <data name="Game_Rayman2_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Game_RaymanMArena_Title" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Game_Rayman3_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Game_RaymanOrigins_Title" xml:space="preserve">
+    <value>Rayman Origins</value>
+  </data>
+  <data name="Game_RaymanLegends_Title" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Game_RaymanJungleRun_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="Game_RaymanFiestaRun_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids2_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki 2</value>
+  </data>
+  <data name="Game_RabbidsGoHome_Title" xml:space="preserve">
+    <value>Rabbids Go Home</value>
+  </data>
+  <data name="Game_RabbidsBigBang_Title" xml:space="preserve">
+    <value>Rabbids Big Bang</value>
+  </data>
+  <data name="Game_RabbidsCoding_Title" xml:space="preserve">
+    <value>Rabbids Coding</value>
+  </data>
+  <data name="Game_Rayman3_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 (Game Boy Advance)</value>
+  </data>
+  <data name="Game_RaymanHoodlumsRevenge_Title" xml:space="preserve">
+    <value>Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids_Gba_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki (Game Boy Advance)</value>
+  </data>
+  <data name="Game_TheDarkMagiciansReignofTerror_Title" xml:space="preserve">
+    <value>Rayman: The Dark Magician's Reign of Terror</value>
+  </data>
+  <data name="Game_RaymanRedemption_Title" xml:space="preserve">
+    <value>Rayman Redemption</value>
+  </data>
+  <data name="Game_RaymanRedesigner_Title" xml:space="preserve">
+    <value>Rayman ReDesigner</value>
+  </data>
+  <data name="Game_RaymanBowling2_Title" xml:space="preserve">
+    <value>Rayman Bowling 2</value>
+  </data>
+  <data name="Game_RaymanGardenPLUS_Title" xml:space="preserve">
+    <value>Rayman Garden PLUS</value>
+  </data>
+  <data name="Game_GloboxMoment_Title" xml:space="preserve">
+    <value>Globox Moment</value>
+  </data>
+  <data name="Game_RaymanTheDreamersBoundary_Title" xml:space="preserve">
+    <value>Rayman: The Dreamer's Boundary</value>
+  </data>
+  <data name="Game_Rayman1Minigames_Title" xml:space="preserve">
+    <value>Rayman Minigames</value>
+  </data>
+  <data name="Game_RaymanEdutainment_Title" xml:space="preserve">
+    <value>Rayman Edutainment</value>
+  </data>
+  <data name="Game_TonicTrouble_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_RaymanDictées_Title" xml:space="preserve">
+    <value>Rayman Dictées</value>
+  </data>
+  <data name="Game_RaymanPremiersClics_Title" xml:space="preserve">
+    <value>Rayman Premiers Clics</value>
+  </data>
+  <data name="Game_Rayman3PrintStudio_Title" xml:space="preserve">
+    <value>Rayman 3 Print Studio</value>
+  </data>
+  <data name="Game_RaymanActivityCenter_Title" xml:space="preserve">
+    <value>Rayman Activity Center</value>
+  </data>
+  <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Activity Center</value>
+  </data>
+  <data name="Platform_MsDos" xml:space="preserve">
+    <value>MS-DOS</value>
+  </data>
+  <data name="Platform_Win32" xml:space="preserve">
+    <value>Desktop (Win32)</value>
+  </data>
+  <data name="Platform_WindowsPackage" xml:space="preserve">
+    <value>Pakiet Windows (.appx/.msix)</value>
+  </data>
+  <data name="Platform_Gba" xml:space="preserve">
+    <value>Game Boy Advance</value>
+  </data>
+  <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
+    <value>Time attack</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Znajdź ROM-y i stacje dysków z grą z folderu</value>
+  </data>
+  <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
+    <value>Wybierz folder, w którym mają być wyszukiwane ROM-y i stacje dysków z grami</value>
+  </data>
+  <data name="GameFileFinder_Error" xml:space="preserve">
+    <value>Wystąpił błąd podczas operacji wyszukiwania plików gry</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>Znaleziono nowe gry:</value>
+  </data>
+  <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Znalezione ROM-y i stacje dysków z grą</value>
+  </data>
+  <data name="GameFileFinder_NoResults" xml:space="preserve">
+    <value>Nie znaleziono nowych ROM-ów ani stacji dysków z grami</value>
+  </data>
+  <data name="GameFileFinder_ResultHeader" xml:space="preserve">
+    <value>Wynik wyszukiwania plików gry</value>
+  </data>
+  <data name="GameSelection_RefreshError" xml:space="preserve">
+    <value>Wystąpił błąd podczas ładowania gier</value>
+  </data>
+  <data name="Home_ShowMoreNews" xml:space="preserve">
+    <value>Pokaż więcej</value>
+  </data>
+  <data name="Settings_LoadAppNews" xml:space="preserve">
+    <value>Załaduj wiadomości o aplikacji na stronie głównej</value>
+  </data>
+  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
+    <value>Wersja</value>
+  </data>
+  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
+    <value>Wybierz datę</value>
+  </data>
+  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
+    <value>Usuń wpis w dzienniku zmian</value>
+  </data>
+  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
+    <value>Dodaj wpis w dzienniku zmian</value>
+  </data>
+  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
+    <value>Metadane</value>
+  </data>
+  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
+    <value>Dziennik zmian</value>
+  </data>
+  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
+    <value>Zmiany w plikach</value>
+  </data>
+  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
+    <value>Pobierz aktualizację</value>
+  </data>
+  <data name="AnniversaryUpdate_Title" xml:space="preserve">
+    <value>Witamy w aktualizacji Anniversary</value>
+  </data>
+  <data name="AnniversaryUpdate_Header" xml:space="preserve">
+    <value>Witamy w aktualizacji Anniversary!</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
+    <value>Przeprojektowana strona z grami</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
+    <value>Strona gier została przeprojektowana, aby obsługiwać nowe funkcje, takie jak umożliwienie wielokrotnych instalacji tej samej gry i emulowanych gier konsolowych. Każda gra ma teraz obszar hubu po prawej stronie, gdzie można zobaczyć wspólne działania, takie jak panel Patcher i Archive Explorer.</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
+    <value>Klienty gry/emulatory</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
+    <value>Nowością w tej aktualizacji jest obsługa klientów/emulatorów gier. Można je dodać w osobnym oknie dialogowym i ustawić, aby były używane w dodanych grach. Klienci gier, tacy jak Steam, są opcjonalni, podczas gdy gry konsolowe wymagają emulatora, aby można było w nie grać. Jeśli emulatora nie ma na liście obsługiwanych, możesz dodać go jako emulator niestandardowy. Należy pamiętać, że nie pozwoli to na wyświetlanie postępów w grze.</value>
+  </data>
+  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
+    <value>Więcej narzędzi stało się łatkami</value>
+  </data>
+  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
+    <value>Nie można znaleźć narzędzia, którego szukasz? To najprawdopodobniej dlatego, że zostało ono przerobione jako łatka.</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
+    <value>Synchronizacja tekstur została przeniesiona</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
+    <value>Narzędzie do synchronizacji tekstur zostało zastąpione przyciskiem w panelu gry Archive Explorera, aby ułatwić do niego dostęp. Tak jak wcześniej, można również włączyć automatyczną synchronizację tekstur po przepakowaniu archiwum.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
+    <value>1.12 (Niechronione)</value>
+  </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>Dostępna jest nowsza wersja. Odinstaluj bieżącą wersję, aby ją zainstalować.</value>
   </data>
 </root>

@@ -71,6 +71,9 @@ public static class LocalizationManager
 
             // Russian (Russia)
             new CultureInfo("ru-RU"),
+
+            // Spanish (Spain)
+            new CultureInfo("es-ES"),
         });
 
         if (includeIncomplete)
@@ -80,9 +83,6 @@ public static class LocalizationManager
             {
                 // Danish (Denmark)
                 new CultureInfo("da-DK"),
-
-                // Spanish (Spain)
-                new CultureInfo("es-ES"),
 
                 // Hungarian (Hungary)
                 new CultureInfo("hu-HU"),

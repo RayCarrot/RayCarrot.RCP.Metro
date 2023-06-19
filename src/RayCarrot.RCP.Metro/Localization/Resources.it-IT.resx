@@ -695,7 +695,7 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
     <value>Impossibile trovare il percorso di montaggio. Specifica un percorso valido nelle opzioni di gioco per eseguire questo gioco.</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
-    <value>Questo sostituirà qualsiasi backup precedente per {0}</value>
+    <value>Questo sostituirà qualsiasi backup precedente per:</value>
   </data>
   <data name="Backup_ConfirmHeader" xml:space="preserve">
     <value>Conferma backup</value>
@@ -1290,7 +1290,7 @@ Per iniziare, modifica le impostazioni che desideri di seguito e premi 'Continua
     <value>Esegui come Amministratore</value>
   </data>
   <data name="Backup_ConfirmBackupAll" xml:space="preserve">
-    <value>Vuoi eseguire il backup di tutti i giochi? Questo sostituirà tutti i backup precedenti. Continuare?</value>
+    <value>Vuoi eseguire il backup di tutti i giochi? Questo sostituirà eventuali backup precedenti. Se più giochi condividono lo stesso backup, verrà eseguito un backup solo per il primo gioco. Continuare?</value>
   </data>
   <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
     <value>Conferma backup</value>
@@ -3788,7 +3788,7 @@ Modificando l'origine dati qui puoi scegliere quale posizione viene utilizzata p
     <value>L'utilità non è disponibile</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
-    <value>Traduzione del programma in Ebraico</value>
+    <value>Traduzione del programma in Ebraico, icona dei file patch di gioco</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
     <value>Sincronizza automaticamente le texture alla ricostruzione (.cnt)</value>
