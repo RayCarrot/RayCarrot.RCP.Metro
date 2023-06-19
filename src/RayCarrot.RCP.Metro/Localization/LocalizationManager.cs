@@ -81,9 +81,6 @@ public static class LocalizationManager
                 // Serbian (Cyrillic)
                 new CultureInfo("sr-Cyrl"), 
 
-                // Spanish (Mexico)
-                new CultureInfo("es-MX"), 
-
                 // Spanish (Spain)
                 new CultureInfo("es-ES"),
 
