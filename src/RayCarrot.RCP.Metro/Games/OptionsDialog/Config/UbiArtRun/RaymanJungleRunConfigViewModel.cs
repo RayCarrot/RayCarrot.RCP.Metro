@@ -7,16 +7,24 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
 {
     #region Constructor
 
-    public RaymanJungleRunConfigViewModel(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
-        : base(gameDescriptor, gameInstallation)
-    { }
+    public RaymanJungleRunConfigViewModel(
+        GameDescriptor gameDescriptor, 
+        GameInstallation gameInstallation,
+        FileSystemPath saveDir,
+        bool hasPlayableTeensies,
+        bool hasMultipleSaveSlots,
+        bool isUpc) 
+        : base(gameDescriptor, gameInstallation, saveDir, isUpc)
+    {
+        HasPlayableTeensies = hasPlayableTeensies;
+        HasMultipleSaveSlots = hasMultipleSaveSlots;
+    }
 
     #endregion
 
     #region Private Constants
 
     private const string SelectedHeroFileName = "ROHeroe";
-
     private const string SelectedSlotFileName = "ROselectedSlot";
 
     #endregion
@@ -24,12 +32,16 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
     #region Private Fields
 
     private JungleRunHero _selectedHero;
-
     private byte _selectedSlot;
 
     #endregion
 
     #region Public Properties
+
+    public bool HasPlayableTeensies { get; }
+    public bool HasMultipleSaveSlots { get; }
+
+    public bool IsHeroSettingsAvailable => !IsUpc || UpcStorageHeaders.ContainsKey(SelectedHeroFileName);
 
     /// <summary>
     /// The selected hero
@@ -68,11 +80,14 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
     protected override Task SetupGameAsync()
     {
         AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedHeroFileName));
-        AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedSlotFileName));
-
-        // Read selected hero and save slot data
+        OnPropertyChanged(nameof(IsHeroSettingsAvailable));
         SelectedHero = (JungleRunHero)(ReadSingleByteFile(SelectedHeroFileName) ?? 0);
-        SelectedSlot = ReadSingleByteFile(SelectedSlotFileName) ?? 0;
+
+        if (HasMultipleSaveSlots)
+        {
+            AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedSlotFileName));
+            SelectedSlot = ReadSingleByteFile(SelectedSlotFileName) ?? 0;
+        }
 
         return Task.CompletedTask;
     }
@@ -83,9 +98,11 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
     /// <returns>The task</returns>
     protected override Task SaveGameAsync()
     {
-        // Save selected hero and save slot data
-        WriteSingleByteFile(SelectedHeroFileName, (byte)SelectedHero);
-        WriteSingleByteFile(SelectedSlotFileName, SelectedSlot);
+        if (IsHeroSettingsAvailable)
+            WriteSingleByteFile(SelectedHeroFileName, (byte)SelectedHero);
+        
+        if (HasMultipleSaveSlots)
+            WriteSingleByteFile(SelectedSlotFileName, SelectedSlot);
 
         return Task.CompletedTask;
     }
@@ -103,6 +120,8 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
         Globox,
         DarkRayman,
         GloboxOutfit,
+
+        // Microsoft Store only
         GreenTeensy,
         GothTeensy
     }

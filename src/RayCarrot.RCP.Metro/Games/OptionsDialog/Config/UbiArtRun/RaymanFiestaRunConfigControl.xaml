@@ -27,6 +27,7 @@
                        Text="{Resx Config_MusicVolumeHeader}" />
 
             <Slider Value="{Binding Path=MusicVolume}"
+                    IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
                     Minimum="0"
                     Maximum="99"
                     TickPlacement="BottomRight"
@@ -39,6 +40,7 @@
                        Text="{Resx Config_SoundVolumeHeader}" />
 
             <Slider Value="{Binding Path=SoundVolume}"
+                    IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
                     Minimum="0"
                     Maximum="99"
                     TickPlacement="BottomRight"

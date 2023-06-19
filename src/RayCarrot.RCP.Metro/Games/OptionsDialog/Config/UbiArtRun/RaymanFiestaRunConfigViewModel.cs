@@ -5,6 +5,9 @@
 /// </summary>
 public class RaymanFiestaRunConfigViewModel : UbiArtRunBaseConfigViewModel
 {
-    public RaymanFiestaRunConfigViewModel(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
-        : base(gameDescriptor, gameInstallation) { }
+    public RaymanFiestaRunConfigViewModel(GameDescriptor gameDescriptor,
+        GameInstallation gameInstallation,
+        FileSystemPath saveDir,
+        bool isUpc) 
+        : base(gameDescriptor, gameInstallation, saveDir, isUpc) { }
 }

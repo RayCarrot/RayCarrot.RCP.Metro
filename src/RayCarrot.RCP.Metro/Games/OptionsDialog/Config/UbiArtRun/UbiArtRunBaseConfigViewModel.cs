@@ -1,6 +1,9 @@
 ﻿using System.IO;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+
+// TODO: Rewrite this to use BinarySerializer instead?
 
 /// <summary>
 /// Base for Rayman Jungle/Fiesta Run config view model
@@ -9,16 +12,19 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    /// <param name="gameDescriptor">The game descriptor</param>
-    /// <param name="gameInstallation">The game installation</param>
-    protected UbiArtRunBaseConfigViewModel(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation)
+    protected UbiArtRunBaseConfigViewModel(
+        GameDescriptor gameDescriptor, 
+        GameInstallation gameInstallation,
+        FileSystemPath saveDir,
+        bool isUpc)
     {
         // Set properties
         GameDescriptor = gameDescriptor;
         GameInstallation = gameInstallation;
+        SaveDir = saveDir;
+        IsUpc = isUpc;
+
+        UpcStorageHeaders = new Dictionary<string, byte[]>();
     }
 
     #endregion
@@ -38,28 +44,32 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     #region Private Fields
 
     private byte _musicVolume;
-
     private byte _soundVolume;
 
     #endregion
 
     #region Private Properties
 
-    /// <summary>
-    /// The save directory
-    /// </summary>
-    private FileSystemPath SaveDir { get; set; }
-
     private GameInstallation GameInstallation { get; }
+    private GameDescriptor GameDescriptor { get; }
+    private FileSystemPath SaveDir { get; }
 
-    /// <summary>
-    /// The game descriptor
-    /// </summary>
-    private WindowsPackageGameDescriptor GameDescriptor { get; }
+    #endregion
+
+    #region Protected Properties
+
+    protected Dictionary<string, byte[]> UpcStorageHeaders { get; }
 
     #endregion
 
     #region Public Properties
+
+    /// <summary>
+    /// Indicates if the game uses UPC (Ubisoft/Uplay PC?) storage files. This is used in the Ubisoft Connect releases.
+    /// </summary>
+    public bool IsUpc { get; }
+
+    public bool IsVolumeSettingsAvailable => !IsUpc || UpcStorageHeaders.ContainsKey(SelectedVolumeFileName);
 
     /// <summary>
     /// The music volume, a value between 0 and 99
@@ -91,7 +101,14 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
 
     #region Protected Methods
 
-    protected FileSystemPath GetFilePath(string fileName) => SaveDir + fileName;
+    protected FileSystemPath GetFilePath(string fileName)
+    {
+        // UPC files always use the .save file extension
+        if (IsUpc)
+            return SaveDir + $"{fileName}.save";
+        else    
+            return SaveDir + fileName;
+    }
 
     /// <summary>
     /// Reads a single byte from the specified file relative to the current save data
@@ -112,23 +129,28 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     protected virtual byte[]? ReadMultiByteFile(string fileName, int length)
     {
         // Get the file path
-        var filePath = GetFilePath(fileName);
+        FileSystemPath filePath = GetFilePath(fileName);
 
         // Make sure the file exists
         if (!filePath.FileExists)
             return null;
 
         // Create the file stream
-        using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using FileStream stream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
-        // Create the byte buffer
-        var buffer = new byte[length];
+        // Use a reader
+        using Reader reader = new(stream, isLittleEndian: true);
 
-        // Read the bytes
-        stream.Read(buffer, 0, length);
+        // Read and save UPC header
+        if (IsUpc)
+        {
+            int headerSize = reader.ReadInt32();
+            byte[] header = reader.ReadBytes(headerSize);
+            UpcStorageHeaders[fileName] = header;
+        }
 
-        // Return the buffer
-        return buffer;
+        // Read and return the bytes
+        return reader.ReadBytes(length);
     }
 
     /// <summary>
@@ -152,13 +174,24 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     protected virtual void WriteMultiByteFile(string fileName, byte[] value)
     {
         // Get the file path
-        var filePath = GetFilePath(fileName);
+        FileSystemPath filePath = GetFilePath(fileName);
 
         // Create the file stream
-        using var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+        using FileStream stream = new(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+
+        // Use a writer
+        using Writer writer = new(stream, isLittleEndian: true);
+
+        // Write the UPC header
+        if (IsUpc)
+        {
+            byte[] header = UpcStorageHeaders[fileName];
+            writer.Write((int)header.Length);
+            writer.Write(header);
+        }
 
         // Write the bytes
-        stream.Write(value, 0, value.Length);
+        writer.Write(value);
     }
 
     /// <summary>
@@ -181,16 +214,14 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     {
         Logger.Info("{0} config is being set up", GameDescriptor.GameId);
 
-        // Get the save directory
-        SaveDir = GameDescriptor.GetLocalAppDataDirectory();
-
         AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedVolumeFileName));
 
         // Read game specific values
         await SetupGameAsync();
 
         // Read volume
-        var ROvolume = ReadMultiByteFile(SelectedVolumeFileName, 2);
+        byte[]? ROvolume = ReadMultiByteFile(SelectedVolumeFileName, 2);
+        OnPropertyChanged(nameof(IsVolumeSettingsAvailable));
         MusicVolume = ROvolume?[0] ?? 99;
         SoundVolume = ROvolume?[1] ?? 99;
 
@@ -216,11 +247,14 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
             await SaveGameAsync();
 
             // Save the volume
-            WriteMultiByteFile(SelectedVolumeFileName, new byte[]
+            if (IsVolumeSettingsAvailable)
             {
-                MusicVolume,
-                SoundVolume
-            });
+                WriteMultiByteFile(SelectedVolumeFileName, new byte[]
+                {
+                    MusicVolume,
+                    SoundVolume
+                });
+            }
 
             Logger.Info("{0} configuration has been saved", GameDescriptor.GameId);
 

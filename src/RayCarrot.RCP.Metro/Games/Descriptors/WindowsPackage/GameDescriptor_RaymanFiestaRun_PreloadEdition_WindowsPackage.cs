@@ -41,7 +41,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun_WindowsPackage(this, x, "Rayman Fiesta Run (Preload)", 1)));
-        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x)));
+        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x, GetLocalAppDataDirectory(), false)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanFiestaRun_PC));

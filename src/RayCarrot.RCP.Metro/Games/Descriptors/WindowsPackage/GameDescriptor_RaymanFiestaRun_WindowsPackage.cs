@@ -43,7 +43,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun_WindowsPackage(this, x, 
             // NOTE: This id is also defined in the app data migration code
             "Rayman Fiesta Run (Default)", 1)));
-        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x)));
+        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x, GetLocalAppDataDirectory(), false)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanFiestaRun_PC));

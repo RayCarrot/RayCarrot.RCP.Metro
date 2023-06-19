@@ -28,23 +28,36 @@
                            Text="{Resx Config_CharacterHeader}" />
 
                 <rcp:InfoIcon Text="{Resx Config_CharacterHeaderRJRInfo}" />
-
             </StackPanel>
 
             <ComboBox SelectedIndex="{Binding Path=SelectedHero, Converter={rcp:EnumToIntConverter}}"
+                      IsEnabled="{Binding Path=IsHeroSettingsAvailable}"
                       HorizontalAlignment="Left">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                        <Setter Property="Visibility"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+
                 <TextBlock Text="{Resx Config_RJRHeroes_Rayman}" />
                 <TextBlock Text="{Resx Config_RJRHeroes_Globox}" />
                 <TextBlock Text="{Resx Config_RJRHeroes_DarkRayman}" />
                 <TextBlock Text="{Resx Config_RJRHeroes_GloboxOutfit}" />
-                <TextBlock Text="{Resx Config_RJRHeroes_GreenTeensy}" />
-                <TextBlock Text="{Resx Config_RJRHeroes_GothTeensy}" />
+
+                <TextBlock Text="{Resx Config_RJRHeroes_GreenTeensy}"
+                           Visibility="{Binding Path=HasPlayableTeensies, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}" />
+                <TextBlock Text="{Resx Config_RJRHeroes_GothTeensy}"
+                           Visibility="{Binding Path=HasPlayableTeensies, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}" />
             </ComboBox>
 
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Visibility="{Binding Path=HasMultipleSaveSlots, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
                        Text="{Resx Config_SelectedSlotHeader}" />
 
             <ComboBox SelectedIndex="{Binding Path=SelectedSlot}"
+                      Visibility="{Binding Path=HasMultipleSaveSlots, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
                       HorizontalAlignment="Left">
                 <TextBlock Text="1" />
                 <TextBlock Text="2" />
@@ -55,6 +68,7 @@
                        Text="{Resx Config_MusicVolumeHeader}" />
 
             <Slider Value="{Binding Path=MusicVolume}"
+                    IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
                     Minimum="0"
                     Maximum="99"
                     TickPlacement="BottomRight"
@@ -67,6 +81,7 @@
                        Text="{Resx Config_SoundVolumeHeader}" />
 
             <Slider Value="{Binding Path=SoundVolume}"
+                    IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
                     Minimum="0"
                     Maximum="99"
                     TickPlacement="BottomRight"
