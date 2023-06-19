@@ -13,6 +13,8 @@ public class UbisoftConnectGameClientOptionsViewModel : GameClientOptionsViewMod
             SelectedUserId = UserIds.First();
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public ObservableCollection<string> UserIds { get; }
 
     public string SelectedUserId
@@ -30,7 +32,7 @@ public class UbisoftConnectGameClientOptionsViewModel : GameClientOptionsViewMod
         }
         catch (Exception ex)
         {
-            // TODO-UPDATE: Log
+            Logger.Warn("Getting available Ubisoft Connect user ids");
             return Enumerable.Empty<string>();
         }
     }
