@@ -78,9 +78,6 @@ public static class LocalizationManager
             // Add incomplete languages
             Languages.AddRange(new CultureInfo[]
             {
-                // Serbian (Cyrillic)
-                new CultureInfo("sr-Cyrl"), 
-
                 // Spanish (Spain)
                 new CultureInfo("es-ES"),
 
