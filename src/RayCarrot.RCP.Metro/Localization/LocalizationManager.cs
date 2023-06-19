@@ -80,9 +80,6 @@ public static class LocalizationManager
             {
                 // Spanish (Spain)
                 new CultureInfo("es-ES"),
-
-                // Swedish (Sweden)
-                new CultureInfo("sv-SE"),
             });
         }
     }
