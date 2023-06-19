@@ -1,0 +1,1748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Játékok</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>Névjegy</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Elfogadás</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Mount útvonal</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>A mount útvonal lehet egy fájl vagy egy meghajtó. Ha a GOG verziót használod, akkor egy 'game.inst' fájl lesz. Ha a CD verziót használod, akkor általában egy .cue fájl. Egyebként használd a meghajtó betűjelét amin a játék CD van.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Fájl</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Meghajtó</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>A mount útvonal valószínűleg egy fájl</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>A mount útvonal valószínűleg egy meghajtó vagy egy lemez</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>DOSBox Beállítások</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Az alábbi opciók kikapcsolása vagy üresen hagyása a  megadott eredeti értékeket fogja használni a DOSBox konfigurációs fájlból. Ha egy kifejezett konfigurációs fájl már meg lett határozva a beállításokban, az felülírhatja ezen beállítások egyikét.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Teljes képernyős üzemmód</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>DOSBox indítása teljes képernyős módban</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Dupla-buffering teljes képernyőben</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Dupla-buffering használata teljes képernyős üzemmódban</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Képarány korrekció</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Képarány igazítása. Ha a kimeneti módod nem támogatja ennek a méretezését, akkor megterhelő lehet, lassulást okozhat!</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Memória mérete</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>A DOSBox memóriájának mérete megabájtokban</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Frameskip</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>A DOSBox ennyi képkockát kihagy minden képkocka frissülés után. Ez a szám + 1-gyel osztódni fog az FPS, teljesítményt javíthat.</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Kimenet</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>A DOSBox mit használjon kimeneti eszköznek</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Teljes képernyős felbontás</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Milyen felbontás legyen teljes képernyős üzemmódban: original (játék eredeti felbontása), desktop (az asztal felbontása), fix méret (pl. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Ablakos mód felbontása</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>A program ablakjának méretezése az alábbi felbontásra. Csak akkor, ha a kimeneti eszköz támogatja a hardveres átméretezést.</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Scaler</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Az átméretező amit használva nagyítani/fejavítani lehet az alacsonyabb felbontású módokat</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Core</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>CPU mag használata az emulációban. Automatán átvált normálról dinamikusra, ha szükség van rá.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Cycles</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Az utasítások mennyisége, amit a DOSBox egyszerre megpróbálhat emulálni minden miliszekundumban. Ennek az értéknek túl magasra állítása hang kihagyásokhoz és lag-hoz vezethet. Maxra állítva a DOSBox automatikusan beállítja a megfelelő értéket. Az alap beállítás (auto) átvált maxra, ha szükséges.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>DOSBox command-ok</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Opcionális)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Ajánlott beállítások használata</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Felbontás</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Teljes képernyős üzemmód</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Teljes képernyőben indítja el a játékot, egyébként ablakban fut.</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Grafika</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>TriLinear</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Transform and Lighting</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Kapcsold ki, ha grafikus hibák észlelhetők a játékban</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Textúrák</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 bit</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 bit</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Tömörített</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Videó</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Jó minőség</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Rossz minőség</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Minőség automatikus beállítása</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bit pixelenként</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bit pixelenként</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Kontroller</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Csatlakoztatott kontroller használata</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Ha a kontroller nem felismerhető, itt be lehet kapcsolni a kontrolleres támogatást</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Natív kontroller támogatás engedélyezése</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Függőleges tengely</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Vízszintes tengely</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Hálózat</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Ha a szélesvásznú támogatás nincs engedélyezve, és a játék más felbontáson fut mint 4:3, akkor ki fog nyúlni megfelelő méretre.</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Szélesvásznú támogatás</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>A szélesvásznú támogatás biztosítja, hogy a játék te nyúljon ki, ha a felbontás más mint 4:3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Vízszintes szélesvászon</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>A szélesvásznot vízszintesen nagyobbra kiterjeszti</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Függőleges szélesvászon</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>A szélesvásznot függőlegesen nagyobbra kiterjeszti</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Beállítja az alap nyelvet, amivel elindul a program. A nyelv ettől megváltoztatható a játékmenüből</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Ha a kontroller nem felismerhető, itt be lehet kapcsolni a kontrolleres támogatást. Ennek használata eltávolít minden személyre szabott gomb konfiurációt.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Gomb konfiguráció (billentyűzet)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Mivel a játék nem engedi a natív gomb konfigurációt, itt kell beállítani. Ez nem működik kontrollerekkel.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Művelet</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Gomb</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Képernyő mód</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>A képernyő mód opciók máshogy fognak viselkedni a különböző felbontásokhoz képest. Általában 4:3-ban a játék nem tud kinyúlni más méretekbe</value>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>A Rayman Control Panel egy nyílt forráskódú közösségi projekt RayCarrot által. Ez a szoftver ingyenesen használható egy egyedüli exe fájlban, aminek a célja, hogy könnyen elérhetőek legyenek a beállítások, kompatibiltási módok és fixek különböző Rayman játékokhoz Windows-on. A projekt folyamatosan nő és frissülni tervezett funkciókkal a jövőben. A segédprogramok és különböző konfigurációs eszközök a Rayman közösség segítségével jöttek létre, lásd alul.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Stáblista</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Frissítési előzmények</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Új frissítések keresése</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>Youtube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Utolsó biztonsági mentés</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Biztonsági mentés mérete</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Biztonsági mentés</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Bizonsági mentésre visszaállítás</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Felhasználói szint</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>A felhasználói szint meghatározza milyen opciók elérhetőek az applikáción belül. Minél magasabb a felhasználói szint, annál bonyolultabb opciók és információk elérhetők.</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Normál</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Normál felhasználói szint - azon felhasználók számára, akik az alap beállításokat szeretnék használni bármilyen összezavaró opciók és technikai részletek nélkül</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Haladó</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Haladó felhasználói szint - azon felhasználók számára, akiknek több funkcióra van szükségük az alapoknál, a technikai részletek nélkül</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Technikai</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Műszaki felhasználói szint - azon felhasználók számára, akiknek több funkcióra van szükségük az alapoknál, a technikai részletekkel együtt</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Debug felhasználói szint - szoftverfejlesztőknek és tesztelőknek, akik haladó debug opciókhoz és informaciókhoz akarnak hozzáférni</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Segíts fordítani</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Világos</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Sötét</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Animációk engedélyezése</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Sikeres műveletek mutatása</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Sikeres műveletek mutatása felugró ablakban</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Tálca ikonon megjelenő letöltési állapot</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Tálca ikonon megjelenő letöltési állapot (loading bar)</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Biztonsági mentés helye</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Indítási lehetőségek</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Frissítések automatikus keresése</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Általános</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Program bezárása amikor egy játék elindul</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Konfigurációs panel automatikus bezárása mentés után</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>Pályánkénti zene
+(Per-Level Soundtrack)</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>A PC-s verzió alapból csak egy zenét játszik le minden világhoz. Ez a patch minden pályának saját zenét ad, mint a Playstation verzióban.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Telepítés</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Eltávolítás</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Engedélyezve</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Kikapcsolva</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Rayman verzió</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Teljes zenecsomag
+(Complete Soundtrack)</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>A Rayman Forever (a GOG-os verziót is beszámítva), nem tartalmazza a teljes zenecsomagot a régi kis lemez hely méretek miatt. Ez a patch kicseréli a hiányos zenepakkot a teljesre, vagy visszaállítja azt.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Teljes zenecsomag használata</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Visszaállítás a hiányos zenecsomagra</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Alkalmazás</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>A DirectPlay-nek be kell legyen kapcsolva, hogy futtasd a Rayman 3-at. Alapból általában ki van kapcsolva Windows 10-en.</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Fertőzött fájlok lecserélése</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>A Rayman Designer néhány verziójában (a Rayman Forever-t beleértve), pár RayKit fájl vírussal megfertőződött. Bár nem viszonyul veszélyesnek, vagy egyáltalán aktívnak, és a GOG is biztosította, hogy nem ártalmas, de attól ki lehet biztonságosan cserélni őket ezzel a patch-csel. </value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Kicserélés</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Hiányzó konfigurációs fájl készítése</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Pár Rayman Designer installációban a konfigurációs fájl nem generálódik le, amitől a Mapper error-t dob indításkor. 
+Ez a segédprogram kijavítja ezt a hibát a konfig fájl legenerálásával, ha nem létezik.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Készítés</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>UbiRay engedélyezése</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Ez a segédeszköz módosítja a játék konfigot, hogy az UbiRay normál kinézetként jelenjen meg a Heroes Gallery-ben</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Debug Commands</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Az alábbi debug kommandok használatával el lehet indítani a játékot egy debug környezetben, ahol az utasítások megváltoztatják ahogyan fut a játék.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>FIGYELEM: Ezen debug kommandok használata korrupttá teheti a mentési fájlokat (megsérülhetnek). Biztonsági mentés készítése minden használat előtt erősen ajánlott.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Sérthetetlenség</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>A játékos nem tud meghalni</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Egérmutató elrejtése</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Elrejti az kurzort a játék menükben</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Max kamera zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>A legnagyobbra veszi a kamera közelítését</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Framerate</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Az FPS beállítása amivel a játék futni fog (képkocka/másodperc)</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Lehetővé teszi, hogy egy specifikus pályát tölts be a játék indításakor a főmenü helyett</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Kicseréli a játék nyelvét</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Frissítés az 1.02-es verzióra (CD verzió)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Abban az esetben, ha a Rayman Origins nem frissített le automatikusan a legújabb 1.02-es verzióra, ez a segédeszköz tudja frissíteni.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Frissítés</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Áruház megnyitása</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Közösség oldalának megnyitása</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Fájl helyének megnyitása</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Telepítés CD-ről</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Fájl megkeresése</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Vásárlás GOG-ról</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Vásárlás Ubisoft Connect-ről</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Vásárlás Steam-en</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Telepítő</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>nGlide konfig</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>A folyamat sikeresen végrehajtódott</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Átlagos üzenet</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Információs üzenet</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Hiba üzenet</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Figyelmeztető üzenet</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Sikeres folyamat üzenet</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Kérdés üzenet</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>A megadott fájl nem található: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>A fájl nem található</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Hiba merült fel a futtatás során {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Fájl helye nem található</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Meghajtó nem található</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>A meghajtót nem lehetett megnyitni</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Telepítési meghajtó kiválasztása</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>A választott meghajtó nem használható a játék számára</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Érvénytelen útvonal</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>Hiba merült fel a futtatás során {0}</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>A mount útvonal nem található. Adj meg egy érvényes utat a játék beállítások alatt, hogy futtatni lehessen ezt a játékot.</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Ez ki fog cserélni minden előző biztonsági mentést ennek: {0}</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Backup megerősítése</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Biztonsági mentés sikertelen</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>A biztonsági mentése ennek: {0} nem ment végbe, mivel egy vagy több megaott meghajtó nem található</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Megtalált telepített játékok</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>A következő játékok lettek újonnan találva:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>Hiba lépett fel a Rayman konfigurációs fájl írási engedélyének bekapcsolásakor</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>Ahhoz, hogy tudd konfigurálni a Rayman játékokat anélkül, hogy rendszergazdai joggal nyitod meg az alkalmazást, el kell fogadnod a következő felugró ablakot:</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Visszaállítás sikertelen volt a következőnek: {0}</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Visszaállítás sikeresen befejeződött</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>A mentési fájlok sikeresen vissza lettek állítva a következőnek: {0}</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Visszaállítás elfogadása</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>A következő folyamat ki fogja cserélni a meglévő {0} mentési fájlokat a biztonsági mentéskor levőkre.</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Visszaállítás sikertelen</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Nem található biztonsági mentés a következőnek: {0}</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Biztonsági mentés sikertelen volt ennek: {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Biztonsági mentés sikeresen befejeződött</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>A {0} mentési fájlok sikeresen el lettek tárolva</value>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Nem találhatók visszaállítható fájlok ehhez: {0}</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Nem találhatók letölthető fájlok</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>A patch-nek szüksége van a hozzátartozó fájlok letöltésére. A letöltés teljes mérete {0}. Folytatod?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Letöltés megerősítése</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>A patch-nek szüksége van a hozzátartozó fájlok letöltésére. Folytatod?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>A fájlok letöltése során hiba merült fel</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Ismeretlen hiba</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>A szerverrel nem lehetett kapcsolat létesíteni</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>A szervertől kapott információ érvénytelen volt</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Ismeretlen hiba történt a szerverrel való kapcsolódás során</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Frissítések keresése sikertelen volt</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>A legújabb ({0}) verzió már telepítve van</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Nem találhatóak újabb verziók</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>A szerver jegyzéke nem olvasható
+</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>A hírek betöltése során hiba lépett fel</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Egy új frissítés letöltése elérhető. Le akarod tölteni most?
+
+Jelenlegi verzió: {0}
+Legújabb verzió: {1}
+
+Hírek:
+{2}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Új verzió megtalálva</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>A frissítőt nem lehetett létrehozni. Az új verziót manuálisan itt lehet letölteni: {0}</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Frissítői hiba</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Át akarod helyezni a létező biztonsági mentéseket máshova?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Régi biztonsági mentések áthelyezése</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Nem találhatók biztonsági mentések itt: {0}</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>A biztonsági mentések áthelyezése sikertelen volt</value>
+  </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>A biztonsági mentések nem lettek áthelyezve. Egy biztonsági mentés már létezik itt: {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>A biztonsági mentések sikeresen át lettek helyezve</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Biztonsági mentés áthelyezési hiba</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Parancsikon készítése</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Start menü parancsikon készítése</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Telepítés az összes felhasználónak</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Teljes töltési folyamat</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Jelenlegi fájl töltési folyamata</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Telepítés</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Telepítő CD kiválasztása</value>
+  </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>A kiválasztott lemeznek a neve és gyökér útja ugyan az, mint az előzőleg behelyezettnek. Ez a telepítő nem tudja megkülönböztetni a kettőt. Kérlek nevezd át az egyik lemezt és próbáld újra, vagy csatold őket más gyökér könyvtárba.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Lemez konfiktus</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} újta nem található a megadott lemezen. Ha a játékhoz több telepítő CD tartozik, helyezd be a következőt.</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Hiányzó útvonalak</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Kérlek helyezd be ezt: "{0}" a következő portba: {1} és folytasd a telepítést, vagy nyomd meg a "mégse" gombot a kilépéshez.</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Helyezd be a lemezt</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>A {0} fájl nem tudott átmásolódni ezzel a hiba üzenettel: {1}</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>A fájl másolása a megadott helyre sikertelen volt</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Néhány fájl nem volt feldolgozva a telepítés során. Újra akarod próbálni ezek feldolgozását?</value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Feldolgozatlan fájlok</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Az installáció egy részét nem lehetett feltakarítani {0} alatt</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Meg akarod szakítani a telepítést?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Jelenlegi telepítés megszakítása</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>A megadott meghajtó nem létezik</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>A meghajtó nem található</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>{0} Indítása</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>A telepítés befejeződött. Futtasd a {0} konfigurációs eszközt, hogy beállítsd a játékot.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Telepítés kész</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Művelet sikertelen</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Telepítés sikertelen</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Telepítés megszakítva</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Az eszköz használatához további fájlokat kell letölteni</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Érvénytelen formátum</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Csak egy darab billentyűt lehet használni</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>A gomb érvénytelen</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>A ciklus értéke nem jó formátumban van megadva</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>A ciklus értéke nem lehet üres</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Specifikus értékeknél csak számjegyek használhatók</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>A felbontás értéke nem lehet üres</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Érvénytelen formátum</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>A karakter '{0}' érvénytelen</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>A felbontás szeparátor 'x' csak egyszer használható</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Az 'x' felbontás szeparátort muszáj használni</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>Egy érvényes magaságot muszáj megadni</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Nincs érvényes ubi.ini fájl és nem sikerült generálni egy újat. Próbáld meg az alkalmazást rendszergazdai joggal elindítani, vagy változtasd meg a mappa hozzáférési beállításait ezen az útvonalon: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Hiba lépett fel a {0} konfiguráció mentésekor</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Mentési hiba</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Hiba lépett fel a DOSBox konfiguráció mentésekor</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>A változtatásaid mentésre kerültek</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>A képarányt nem lehetett beállítani, mivel a játék exe nem található</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>A képarányt nem lehetett beállítani, mivel a játék exe nem érvényes</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>A Rayman 2 képarányának beállítása közben hiba lépett fel</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Hiba lépett fel a Rayman Raving Rabbids konfiguráció mentésekor</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Konami kód észlelve! Piros pont.
+A piros téma elérhetővé vált.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami kód</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>RayCarrot kód észlelve! Répa?!?
+A narancs téma elérhetővé vált.
+</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>RayCarrot kód</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Lime kód észlelve! Gratulálok. Ez egy zöld citrom.
+A zöld téma elérhetővé vált.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime kód</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Secret kód észlelve! Misztikus, viszont az ég adta világon semmit nem csinál. :(</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Titkosmikkentyű</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Indítási útvonal:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Indítási argumentum:</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Telepítési hely:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Függőségek</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Teljes név</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Architektúra</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Verzió</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Telepített</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Biztos el akarod távolítani ezt: {0} a Rayman Control Panel-ról. A játék nem fog törlődni a számítógépről, csak ebből a programból. A biztonsági mentéseid is megmaradnak.</value>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Eltávolítás megerősítése</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Parancsikon helyének választása</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>{0} Indítása</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>A parancsikon létrehozása sikeres volt</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>A parancsikont nem lehet létrehozni</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Parancsikon létrehozása sikertelen</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Különleges köszönet nekik:
+AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski és minden más Rayman rajongónak.</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Rayman Control Panel, segédeszközök, pályánkénti zenék, Archive Explorer, BinarySerializer</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Kontroller patch-ek</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Rayman 2 billenytű konfiguráció</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Általános segítség különböző segédeszközökkel</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Pályánkénti zene (Per-Level Soundtrack) segédeszköz</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Portugál (Portugál) program fordítás</value>
+  </data>
+  <data name="ROU_UpdateFailed" xml:space="preserve">
+    <value>A Rayman Origins frissítő letöltése sikertelen volt</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>A Rayman Origins installáció nem található</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>Hiba lépett fel a debug command-ok alkalmazásakor</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Automatikus</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (1. Kiadás)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.2</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Telepítés sikertelen</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Telepítés sikertelen</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Biztosan el akarod távolítani a pályánkénti zene segédeszközt?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Eltávolítás megerőítése</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>A segédeszköz sikeresen el lett távolítva</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Az eltávolítás sikeresen befejeződött</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Az eltávolítás során hiba lépett fel</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Eltávolítás sikertelen</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Zenecsomag kicserélése sikertelen volt</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>Ennyi fájl fog kicserélésre kerülni: {0}/{1}. Több letöltésre is lehet szükség a fájlok tárolási helyétől függően.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Fájlcsere sikeresen befejeződött</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Fájlcsere sikertelen volt</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Ez a konfiguráció már létezik. Hibás fájlok miatt újra akarod generálni?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Fájlcsere sikertelen volt</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>A fájl sikeresen elkészült.</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>A fájlt nem lehetett létrehozni</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>Hiba lépett fel a {0} biztonsági mentés olvasásakor.</value>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Néhány fájlt nem  lehet visszaállítani. Keresd és állítsd vissza a {0} és {1} -ben az elveszett fájlokat</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>A művelet megszakítás alatt van</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>A megszakítási kérelem már végbement</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Biztosan meg akarod szakítani a letöltést?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Folyamatban lévő letöltés megszakítása</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>A letöltés megszakítása sikerült</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Művelet megszakítva</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>A letöltés sikertelen volt</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Művelet sikertelen</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>A fájlok sikeresen letöltésre kerültek</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Letöltés kész</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Verzió előzmények</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Folytatás</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Letöltés</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Teljes töltési folyamat</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Jelenlegi fájl töltési folyamata</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Üldözöllek a Rayman Control Panel-ban</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Üldözöllek a Rayman Control Panel-ban</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Ez a program egy nem hivatalos, nyílt forráskódú közösségi projekt RayCarrot által.
+A program lehetővé teszi a meglévő összes Rayman PC játék felismerését és hozzáférését, valamint plusz funkciókat nyújt, például kibővített konfigurációs beállításokat, segédeszközöket, mentések backup-ját, mentési fájlok kezelését, textúrák modifikációját és még sok mást. 
+Minden támogatott játékot lehetséges telepíteni CD-vel itt a programon keresztül is. 
+Kezdésként állítsd be a tulajdonságokat a Beállításokban és nyomj a 'Folytatás' gombra. A beállítások bármikor megváltoztathatók a Beállítások fülön.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>A konfigurációs beállítások nem kerültek mentésre. Biztosan ki akarsz lépni és elvetni ezeket?</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Kilépés megerősítése</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Segédeszközök</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Parancsikon létrehozása</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Eltávolítás a programból</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Egy régebbi verziót használsz ({0}), mint a jelenlegi app data ({1}). A későbbiekben ez kompatibilitási problémákhoz vezethet és nem ajánllott. Ez a probléma megoldható a program app datájának visszaállításával.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Régi verzió észlelve</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>{0} Indítása</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Angol</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Német</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Francia</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spanyol</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Olasz</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Dán</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finn</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norvég</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Svéd</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 keretei</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Pályánkénti zene segédeszköz, Rayman M/Arena CD kérés eltüntető</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Német (Hollandia) program fordítás, ptrogram tesztelése</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Hiányos fordítások megjelenítése</value>
+  </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Összes biztonsági mentése</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Futtatás rendszergazdaként</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Biztosan mentést akarsz csinálni az összes játékról? Minden előző mentés ki lesz cserélve az újra. Folytatod?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Backup Elfogadása</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>Az összes játék sikeresen mentésre került</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>{0} / {1} játékok biztonsági mentésre kerültek</value>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Néhány játék nem került mentésre</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Konfiguráció</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Az animációkba beletartoznak az oldal áttünései és az Játékok oldal átméretezési animációi</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Steam csoport</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>A mentés során hiba lépett fel. Nem minden változtatás került mentésre.</value>
+  </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (2. Kiadás)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (3. Kiadás)</value>
+  </data>
+  <data name="Page_Refresh" xml:space="preserve">
+    <value>Újratöltés</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Ehhez a funkcióhoz rendszergazdai jogosultság szükséges</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Manuális frissítések kényszerítése</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>A frissítő nem tudott elindulni. A verzió manuális letöltéséhez kattints ide: {0}</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Fissítő futási hiba</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>A registry kulcs nem található</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Registry kulcs nem található</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>Kulcs nyitási hiba</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>A kulcsot nem lehetett megnyitni</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>App user data</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Log fájl</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Registry app data</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Egy új BÉTA frissítés letöltése elérhető. Le akarod tölteni most?
+
+Jelenlegi verzió: {0}
+Legújabb verzió: {1}
+
+Hírek:
+{2}</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Eltávolítás</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Biztos el akarod távolítani a Rayman Control Panelt? A program .exe fájlja és minden hozzá tartozó adat el lesz távolítva. A telepítet játékaid, mentési fájljaid és biztonsági mentéseid NEM fognak eltűnni. Néhány alkalmazott segédeszköz ezután is elérhető lehet.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Eltávolítás elfogadása</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Hiba lépett fel az eltávolító futtatásakor. Manuálisan is le lehet törölni az alkalmazás adatait a következő helyen:
+
+{0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Béta verziókra fissítés</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Program tesztelés</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BÉTA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel 
+(Rendszergazda)</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>Hozzáférés megtagadva a telepítés helyén. Válassz másik telepítési helyet vagy futtasd a programot rendszergazdai jogosultsággal.</value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Hozzáférés megtagadva</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Biztonsági mentések tömörítése</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>A tömörített biztonsági mentések sokkal kevesebb helyet foglalnak és kezelésük egyszerűbb, mivel minden egyes játékhoz egy fájl fog tartozni.</value>
+  </data>
+  <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
+    <value>Az elérhető nyelvek változhatnak a verziók között</value>
+  </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Előző verzióra visszafrissítés figyelmeztetésének kikapcsolása</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>Hiba lépett fel egy létező Rayman Fiesta Run biztonsági mentés átmozgatása közben az új 5.0.0 backup standardra. A biztonsági mentés ezután nem lesz használható, de a mappájában megmarad és manuálisan visszaállítható.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Backup átmozgatási hiba</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>A programnak rendszergazdai jogosultságra van szüksége ahhoz, hogy minden felhasználónak lehessen telepíteni</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Hiányzó jogosultságok</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>Hiba lépett fel az szükséges fájlok beállításakor.  Néhány funckió nem biztos úgy fog működni, ahogy kellene. A program újraindítása ajánlott.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>Ehhez a segédeszközhöz a programnak rendszergazdai jogosultság szükséges</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Újraindítás rendszergazdaként</value>
+  </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>A programnak nincs jogosultsága a következő művelethez. Újraindítod rendszergazdaként?</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Hiba üzenet: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Hiba</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Hiba lépett fel.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Német</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Személyre szabott indítási lehetőségek</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Bekapcsolt állapotban az alábbi beállítások lesznek alkalmazva a játékon, ha a Rayman Control Panel-ból van indítva</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-Sync</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Verzió index</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Nagy fájl</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Személyre szabott utasítások</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Személyre szabás</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Összes játék</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Narancs</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Piros</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Zöld</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Kék</value>
+  </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Ugrás lista szerkesztése</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>A ugrás lista azon parancsikonok listája, amik a tálcán lévő játék jobb klikkelésével jönnek elő.</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Ugrás lista elemeinek szerkesztése</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Hozzátartozó</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Nem hozzátartozó</value>
+  </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>A {0} létező biztonsági mentéseit nem lehetett megszerezni</value>
+  </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>A {0} meghajtó már létezik. Felül akarod írni?</value>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Meghajtó felülírása</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Mentési fájlok betöltés/mentés kikapcsolása</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>Ez a fuckció megakadályozza, hogy a játék egy létező mentési fájlra töltsön vagy mentsen rá</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21 (Kinai)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Lemez észlelés</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Lemez észlelésének kikapcsolása</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>A lemez észlelés kikapcsolásával játszható lesz a játék a CD behelyezése nélkül is.</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Microsoft Áruház megnyitása</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Információ</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Eltávolítás</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>A {0} eredetileg a Rayman Control Panel-lel lett telepítve. A játék eltávolítása a programból nem fogja eltávolítani a számítógépről. Ajánlott a játék külön eltávolítása.</value>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Biztosan el akarod távolítani ezt: {0}? Ez a játékot és minden hozzá tartozó mentési fájlt törölni fog. A biztonsági mentések megmaradnak.</value>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Eltávolítás megerősítése</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>Hiba lépett fel a {0} eltávoítása során</value>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Eltávolítás siketelen</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Print Studio verzió</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>A verzió megváltoztatása a program funkcióit is megváltoztatja. A 2003-as verzió naptárai a 2003-2004-es évekre vannak. A 2005-ös verzióban 2006 és 2007-re is, valamint létezik egy plusz 'goodies' szekció</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>2003 verzió</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>2005 verzió</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Letöltés Gamejolt-ról</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Gamejolt oldal megnyitása</value>
+  </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Egyéb</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Fan-game-ek</value>
+  </data>
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
+    <value>JSON fájlok</value>
+  </data>
+  <data name="Progression_RHR_Level0Header" xml:space="preserve">
+    <value>Fairy Council</value>
+  </data>
+  <data name="Progression_RHR_Level1Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_RHR_Level2Header" xml:space="preserve">
+    <value>Clearleaf Falls</value>
+  </data>
+  <data name="Progression_RHR_Level3Header" xml:space="preserve">
+    <value>Infernal Machine</value>
+  </data>
+  <data name="Progression_RHR_Level4Header" xml:space="preserve">
+    <value>Dungeon of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level5Header" xml:space="preserve">
+    <value>Bog of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level6Header" xml:space="preserve">
+    <value>Begoniax Bayou</value>
+  </data>
+  <data name="Progression_RHR_Level7Header" xml:space="preserve">
+    <value>Rivers of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level8Header" xml:space="preserve">
+    <value>Hoodlum Moor</value>
+  </data>
+  <data name="Progression_RHR_Level9Header" xml:space="preserve">
+    <value>Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_RHR_Level10Header" xml:space="preserve">
+    <value>Menhirs of Power</value>
+  </data>
+  <data name="Progression_RHR_Level11Header" xml:space="preserve">
+    <value>Pit of Endless Fire</value>
+  </data>
+  <data name="Progression_RHR_Level12Header" xml:space="preserve">
+    <value>Clouds of Peril</value>
+  </data>
+  <data name="Progression_RHR_Level13Header" xml:space="preserve">
+    <value>Heart of the World</value>
+  </data>
+  <data name="Progression_RHR_Level14Header" xml:space="preserve">
+    <value>Reflux's Lair</value>
+  </data>
+  <data name="Progression_RHR_Level15Header" xml:space="preserve">
+    <value>Vertiginous Riddle</value>
+  </data>
+  <data name="Progression_RHR_Level16Header" xml:space="preserve">
+    <value>Cloudy Cache</value>
+  </data>
+  <data name="Progression_RHR_Level17Header" xml:space="preserve">
+    <value>Mélée Mayhem</value>
+  </data>
+  <data name="Progression_RHR_Level18Header" xml:space="preserve">
+    <value>Scalding Cascade</value>
+  </data>
+  <data name="Progression_RHR_Level19Header" xml:space="preserve">
+    <value>Sulphurous Sea</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Child's play</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>The kids' hamlet</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>The toy chase</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Toy box</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Celestial castle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Dream forest</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>The leafy valley</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Colonial jungle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>The lush mountaintops</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Hidden burrow</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Stomach circuit</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Gastric rivers</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Living cavern</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Swallowed treasures</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>The sticky lair</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>The desert of desserts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Cake race</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>The sweet islands</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Not a piece of cake!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Tart tunnels</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Ginger-bunny-bread</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Filthy corridors</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Agony jails</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Infernal escape</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Spikes and yikes!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>The rabbids' lair</value>
+  </data>
+</root>

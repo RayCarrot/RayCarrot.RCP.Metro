@@ -78,8 +78,17 @@ public static class LocalizationManager
             // Add incomplete languages
             Languages.AddRange(new CultureInfo[]
             {
+                // Danish (Denmark)
+                new CultureInfo("da-DK"),
+
                 // Spanish (Spain)
                 new CultureInfo("es-ES"),
+
+                // Hungarian (Hungary)
+                new CultureInfo("hu-HU"),
+
+                // Turkish (Turkey)
+                new CultureInfo("tr-TR"),
             });
         }
     }

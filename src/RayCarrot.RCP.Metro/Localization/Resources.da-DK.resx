@@ -1,0 +1,2777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Spil</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annullér</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Acceptér</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Monteringssti</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>Monteringsstien kan enten være en fil eller et drev. Bruger du GOG-versionen, er det 'game.inst'-filen. Har du et diskbillede, er det som regelt .cue-filen. Brug ellers spildiskens drevbogstav.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Drev</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Indikér at monteringsstien er en fil</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Indikér at monteringsstien er et drev eller en disk</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>Indstillinger for DOSBox</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Er en af de nedenstående indstillinger sat til deaktiveret eller tom, bruges standardværdien specificeret i konfigurationsfilen til DOSBox. Hvis en bestemt konfigurationsfil er blevet specificeret i indstillingerne, overskriver den muligvis nogle af de nedenstående indstillinger. </value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Fuldskærm</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Start DOSBox direkte i fuldskærm</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Fuldskærmsdobbeltbuffering</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Brug dobbeltbuffering i fuldskærm</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Rettelse af billedformat</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Ret billedformatet. Hvis din output-metode ikke understøtter skalering, kan dette muligvis gøre ting langsommere!</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Hukommelsesstørrelse</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Mængden af hukommelse, som DOSBox har i megabytes</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Frameskip</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Hvor mange frames DOSBox springer over, før at én tegnes</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Hvad der skal bruges til output</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Fuldskærmsopløsning</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Hvilken opløsning der skal bruges til fuldskærm: original, desktop, eller fast størrelse (f.eks 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Vindueopløsning</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Skalér vinduet til denne størrelse, HVIS outputenheden understøtter hardwareskalering</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Skaleringsværktøj</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Skaleringsværktøj brugt til at opskalere/øge lave opløsningstilstande</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Kerne</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>CPU-kerne brugt til emulation. Autoskifter fra normal til dynamisk hvis muligt.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Cyklusser</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Mængden af instruktioner, som DOSBox forsøger at emulere hvert millisekund. Er denne værdi sat for højt, kan lydproblemer og lag medføre. DOSBox kan også forsøge at gætte den rette værdi, hvis den er indstilt til maks. Standardindstillingen (auto) skifter til maks hvis muligt.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>DOSBox-kommandoer</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Valgfrit)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Brug anbefalede indstillinger</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Opløsning</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Fuldskærm</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Får spillet til at køre i fuldskærm, ellers kører det i vinduetilstand</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>TriLinear</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Transformering og lys</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Afmarkér dette, hvis der er grafikproblemer i spillet</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Overflader</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16-bit</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32-bit</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Komprimeret</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>God kvalitet</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Dårlig kvalitet</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Autojustér kvalitet</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bits per pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bits per pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Brug forbundet controller</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Genkendes din controller ikke, kan du aktivere controllerunderstøttelse her</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Aktivér nativ controllerunderstøttelse</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Lodret axis</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Vandret axis</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Netværk</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Er bredskærmsunderstøttelse ikke aktiveret, strækkes spillet hvis indstilt til et billedformat andet end 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Bredskærmsunderstøttelse</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Bredskærmsunderstøttelse sikrer, at spillet ikke strækkes, hvis det kører i et billedformat andet end 4:3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Vandret bredskærm</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Udvid bredskærmen vandret</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Lodret bredskærm</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Formindsk bredskærmen lodret</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Dette indstiller standardsproget, som er valgt når spillet startes. Sproget kan stadig ændres i spilmenuen.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Er din controller ikke genkendt, kan controllerunderstøttelse aktiveres her. Dette fjerner brugerdefinerede mapping.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Mapping af knapper (tastatur)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Som i følge med at spillet ikke tillader nativ remapping, kan det indstilles her. Dette virker ikke med controllere.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Knap</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Nulstil</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Skærmtilstand</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Skærmtilstandsindstillingerne vil opføre sig anderledes, afhængig af den valgte opløsning. Normalt forhindres spillet i at blive strukket til andre billedformater, hvis 4:3-tilstanden er aktiveret.</value>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel er et open-source fællesskabsprojekt skabt af RayCarrot. Dette software er én enkel gratis eksekverbar fil, med hensigt på at nemt kunne tilgå indstillinger og rettelser til de mange Rayman-titler udgivet til Windows. Dette er et voksende projekt, og flere funktioner planlægges at blive tilføjet i fremtidige opdateringer. Hjælpeværktøjerne og de mange konfigurationsindstillinger er blevet skabt med hjælp fra adskillige medlemmer af Rayman-fællesskabet, som alle er krediteret nedenfor.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Kredit</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Opdateringshistorik</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Søg efter nye opdateringer</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Sidste backup</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Backupstørrelse</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Gendan</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Brugerniveau</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Brugerniveauet bestemmer, hvilke indstillinger og informationer er tilgængelige i applikationen. Jo højere brugerniveauet er, jo flere avancerede indstillinger og informationer vil der blive vist.</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Almindelig</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Almindeligt brugerniveau - til brugere som ønsker alle standardfunktionerne uden nogen af de mere avancerede indstillinger eller tekniske detaljer</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Avanceret</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Avanceret brugerniveau - til brugere som ønsker flere avancerede funktioner udover de standarde, men uden de tekniske detaljer</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Teknisk</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Teknisk brugerniveau - til brugere som ønsker flere avancerede funktioner udover de standarde, samt tekniske detaljer</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Debug brugerniveau - til appudviklere og testere som ønsker avancerede debug-indstillinger og information</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Bidrag med oversættelser</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Lys</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Mørk</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Aktivér animationer</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Vis succesmeddelelser</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Vis en meddelelse, når en operation er lykkedes</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Vis fremskridt på proceslinjeikon</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Vis download på proceslinjeikonet</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Backupplacering</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Opstart</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Søg efter programopdateringer</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Luk applikationen, når et spil startes</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Luk konfigurationsdialog, når der gemmes</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>Lydspor per bane</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>Som standard, har PC-versionen kun ét enkelt lydspor til hver verden. Denne patch giver hver bane sit eget lydspor, på samme måde som på PlayStation.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Installér</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Afinstallér</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Aktiveret</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Deaktiveret</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Rayman-version</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Komplet lydspor</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, inklusiv GOG-versionen, indeholder ikke det fulde lydspor, grundet at der oprindeligt ikke har været tilstrækkelig diskplads. Dette værktøj kan erstatte det eksisterende ufuldstændige lydspor med det fulde, eller alternativt gendanne det gamle.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Erstat med fuldt lydspor</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Gendan ufuldstændigt lydspor</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Anvend</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay skal aktiveres for at kunne køre Rayman 3. Det er som regel deaktiveret på Windows 10.</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Erstat inficerede filer</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Nogle versioner af Rayman Designer, inklusiv Rayman Forever, indeholder malware i nogle af RayKit-filerne. Selvom det ikke virker til at være skadeligt, eller overhovedet aktivt, og GOG har bekræftet, at der ingen fare er, kan du stadig erstatte filerne med deres uinficerede versioner ved hjælp af dette værktøj.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Erstat</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Opret manglende konfigurationsfil</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Under nogle installationer af Rayman Designer oprettes konfigurationsfilen ikke, og dermed giver Mapperen en fejl, når applikationen startes. Dette værktøj fikser problemet ved at oprette en konfigurationsfil, hvis der ikke er én i forvejen.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>Aktivér UbiRay</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Dette værktøj modificerer spilkonfigurationerne og får UbiRay til at fremstå som et almindeligt kostume i Heltegalleriet</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Debug-kommandoer</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Ved brug af de nedenstående debug-kommandoer startes spillet i en debug-tilstand, og spillet kører anderledes afhængigt af kommandoerne.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>ADVARSEL: Brug af disse debug-kommandoer kan muligvis forårsage, at din spildata bliver korrupt. Opret altid en backup før du anvender dem.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Uovervindelighed</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Dette tillader, at spilleren ikke dør, når der bliver taget skade</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Skjul musemarkør</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Dette skjuler musemarkøren i spilmenuerne</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Maks kamera-zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Dette maksimerer kamera-zoomet</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Framerate</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Dette bestemmer, hvilken framerate spillet kører i</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Dette tillader, at en bestemt map indlæses i stedet for hovedmenuen, når spillet startes</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Dette ændrer hvilket sprog spillet kører i</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Opdatér til 1.02 (Disk-version)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>I tilfælde af, at Rayman Origins ikke er blevet automatisk opdateret til den seneste version, 1.02, kan dette værktøj opdatere det.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Opdatér</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Åbn butiksside</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Åbn fællesskabsside</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Åbn placering</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Installér fra disk</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Lokalisér</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Køb fra GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Køb fra Ubisoft Connect</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Køb fra Steam</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Opsætning</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>Konfigurér nGlide</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Handling fuldført</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Generisk meddelelse</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informationsmeddelelse</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Fejlmeddelelse</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Advarselsmeddelelse</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Succesmeddelelse</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Spørgsmålsmeddelelse</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Den valgte fil blev ikke fundet: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Filen blev ikke fundet</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>En fejl opstod i forsøget på at køre {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Placering blev ikke fundet</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Mappefejl</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Mappen kunne ikke åbnes</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Vælg installationsmappe</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>Den valgte mappe er ikke gyldig til dette spil</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Ugyldig placering</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>En fejl opstod i forsøget på at køre {0}</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>Monteringsstien blev ikke fundet. Specificér en gyldig sti under spilindstillingerne, for at kunne køre dette spil.</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Dette vil erstatte alle tidligere backups af:</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Bekræft backup</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Backupfejl</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>{0} kunne ikke backes up, da ikke alle valgte mapper blev fundet</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Installerede spil fundet</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>De følgende nye spil blev fundet:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøget på at aktivere skrivetilladelse til Rayman-konfigurationsfilen</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>For at kunne konfigurere Rayman-spillene uden at køre dette program som administrator, skal følgende administratorprompt accepteres</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Gendannelsesfejl for {0}</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Gendannelse fuldført</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Dine spildata til {0} blev gendannet med succes</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Bekræft gendannelse</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>Dette erstatter de nuværende spildata til {0} med backupdata</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Gendannelsesfejl</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Der blev ikke fundet en backup til {0}</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Backupfejl for {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Backup fuldført</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Dine spildata til {0} blev backet up med succes</value>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Ingen filer blev fundet, der kunne backes up, til {0}</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Ingen filer blev fundet, der kunne downloades</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>Denne patch kræver, at dens filer skal downloades. Downloadens samlede størrelse er {0}. Fortsæt?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Bekræft download</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>Denne patch kræver, at dens filer skal downloades. Fortsæt?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>Filerne kunne ikke downloades</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Ukendt fejl</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>Forbindelse til serveren kunne ikke oprettes</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>Ugyldig serverinformation</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>En ukendt fejl opstod i forsøg på at forbinde til serveren</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Opdateringssøgningsfejl</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>Den seneste version {{0}} er allerede installeret</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ingen nye versioner blev fundet</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Servermanifesten kunne ikke læses</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Fejl i forsøg på at hente nyheder</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>En ny opdatering er tilgængelig. Download nu?
+
+Nuværende version: {0}
+Seneste version: {0}
+
+Nyheder: {2}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Ny version fundet</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Opdatereren kunne ikke oprettes. Den nye version kan downloades manuelt fra {0}</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Fejl i forsøg på at oprette opdaterer</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Ønsker du at flytte eksisterende backups til den nye placering?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Flyt gamle backups</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Ingen backups blev fundet i {0}</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Fejl i forsøg på at flytte backups</value>
+  </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Backups kunne ikke flyttes. En backup eksisterer allerede i {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>Backups blev flyttet med succes</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Backupflytningsfejl</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Opret skrivebordsgenvej</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Opret startmenugenvej</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Installér til alle brugere</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Samlede fremskridt</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Nuværende filfremskridt</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Installér</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Vælg installationsdisk</value>
+  </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>Den valgte disk har samme mærke og rodmappe som én, der tidligere har været indsat. Grundet dette kan installatøren ikke skelne mellem dem. Omdøb venligst én af diskene og prøv igen, eller montér dem som forskellige rodmapper.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Diskkonflikt</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} stier blev ikke fundet i den valgte disk. Hvis spillet kræver mere end én disk til installation, bedes du venligst at indsætte den næste.</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Manglende stier</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Indsæt venligst "{0}" til port {1} og fortæt, eller annullér for at annullere installationen</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Indsæt disk</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>Kopiering af filen {0} mislykkedes med fejlmeddelelse: {1}
+
+Prøv igen?</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Genstanden kunne ikke kopieres til destinationen</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Nogle genstande kunne ikke behandles i løbet af installationen. Ønsker du at prøve på at behandle dem igen?</value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Ubehandlede genstande</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>En del af installationen kunne ikke ryddes op under {0}</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Ønsker du at annullere installationen?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Annullér igangværende installation</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>Den valgte mappe findes ikke</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Mappen kunne ikke findes</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Start {0}</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Installationen blev fuldført. Kør konfigurationsværktøjet til {0} for at opsætte spillet.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Installation fuldført</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Handling mislykkedes</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Installationsfejl</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Installation annulleret</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Dette værktøj kræver, at yderlige filer skal downloades</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Ugyldigt format</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Én enkelt tast skal bruges</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>Tasten er ugyldig</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>Cyklusværdien er ikke i et gyldigt format</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>Cyklusværdien kan ikke være tom</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Kun cifre er tilladt, når en bestemt værdi skal bruges</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>Opløsningsværdien kan ikke være tom</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Ugyldigt format</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Tegnet '{0}' er ikke gyldigt</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Opløsningsopdeleren 'x' kan kun bruges én gang</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Opløsningsopdeleren 'x' skal bruges</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>En gyldig højde skal vælges</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Der blev ikke fundet en gyldig ubi.ini fil, og forsøg på at oprette en ny mislykkedes. Prøv at køre programmet som administrator, eller ændr mappetilladelserne for følgende sti: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at gemme dine konfigurationer til {0}</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Gemningsfejl</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at gemme din DOSBox-konfiguration</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Dine ændringer er gemt</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>Billedformatet kunne ikke indstilles, da den eksekverbare spilfil ikke kunne findes</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>Billedformatet kunne ikke indstilles, da den eksekverbare spilfil ikke er gyldig</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indstille Rayman 2-billedformatet</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at gemme dine konfigurationer til Rayman Raving Rabbids</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Du har lige indtastet Konami-koden! Nyd dette nye røde tema.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami-kode</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Du har lige indtastet RayCarrot-koden! Nyd dette orange gulerodstema.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>Raycarrot-kode</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Du har lige indtastet lime-koden! Nyd dette limetema.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime-kode</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Du har lige indtastet den hemmelige kode! Desværre gør den ikke noget.</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Hemmelig kode</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Startsti:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Startargumenter:</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Installationsplacering:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Afhængigheder</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Fulde navn</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Arkitektur</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Installeret</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Er du sikker på, at du ønsker at fjerne {0} fra Rayman Control Panel? Dette fjerner ikke spillet fra din computer, eller nogle af dets filer, inklusiv de backups der blev oprettet ved hjælp af dette program.</value>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Bekræft fjernelse</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Vælg genvejsdestination</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Start {0}</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Genvej oprettet med succes</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>Genvejen kunne ikke oprettes</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Fejl i forsøg på at oprette genvej</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Særligt tak til AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski og alle andre Rayman-fans!</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Rayman Control Panel, hjælpeværktøjer, lydspor per bane, Archive Explorer, BinarySerializer</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Patches til controller</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Remapping af knapper til Rayman 2</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Generel hjælp til hjælpeværktøjerne</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Lydspor per bane-værktøj</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Portugesisk (Portugal) programoversættelse</value>
+  </data>
+  <data name="ROU_UpdateFailed" xml:space="preserve">
+    <value>Fejl i forsøg på at downloade Rayman Origins-opdatereren</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>Rayman Origins-installationen kunne ikke findes</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at anvende debug-kommadoerne</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (1. udgave)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.2</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installationsfejl</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installationsfejl</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Er du sikker på, at du vil afinstallere Lydspor per bane-værktøjet?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Bekræft afinstallering</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Værktøjet blev afinstalleret med succes</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Afinstallering fuldført</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>En fejl opstod under afinstallering</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Afinstalleringsfejl</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Lydsporserstatning mislykkedes.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} filer til erstatning blev fundet. Dette kan muligivis kræve flere downloads alt efter deres placering.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Erstatning fuldført</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Filerstatning mislykkedes</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Konfigurationsfilen findes allerede. Du kan stadig genoprette den, hvis den er korrupt. Fortsæt?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Erstat fil</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Filen blev oprettet med succes.</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Filen kunne ikke oprettes</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at læse backup-filen til {0}</value>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Nogle filer kunne ikke gendannes. Tjek {0} og {1} for at gendanne mistede filer.</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>Operationen annulleres</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>Annulleringsanmodning er allerede modtaget</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Ønsker du at annullere downloaden?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Annullér igangværende download</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>Downloadoperationen blev annulleret</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Operation annulleret</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>Downloadoperationen mislykkedes</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Operation mislykkedes</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>Filerne blev downloadet med succes</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Downloadoperation fuldført</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Versionshistorik</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Fortsæt</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Samlede fremskridt</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Nuværende filfremskridt</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Velkommen til Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Velkommen til Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Dette program er et uofficielt open-source fællesskabsprojekt skabt af RayCarrot. Det giver hurtig and nem adgang til alle installerede Rayman-spil på din computer, med øvrige funktioner så som yderligere konfigurationssupport, hjælpeværktøjer, backup af spildata, administration af spildata, overflademofikationer og meget mere. Understøttede spil kan installeres direkte fra deres disk gennem programmet.
+Ændr nedenstående indstillinger som du ønsker og tryk 'Fortsæt' for at komme i gang. Indstillingerne kan til en hver tid ændres under 'Indstillinger'.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>Dine konfigurationsændringer er ikke blevet gemt. Ønsker du at afslutte og kassere dem?</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Bekræft kassering</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Hjælpeværktøjer</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Opret genvej</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Fjern fra program</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Du kører i øjeblikket en ældre version af programmet {{0}} i forhold til versionen af den nuværende appdata {{1}}. Dette anbefales ikke, da det kan medføre kompatibilitetsproblemer. Det kan muligvis fikses ved at nulstille appdataen for dette program.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Nedgradering opdaget</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Start {0}</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Engelsk</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Tysk</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Fransk</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spansk</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italiensk</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Dansk</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finsk</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norsk</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Svensk</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3-rander</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Lydspor per bane-værktøj, fjernelse af Rayman M/Arena diskkontrol</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Hollandsk (Holland) programoversættelse, programtestning</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Gennemse</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Vis sprog med ufuldente oversættelser</value>
+  </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Back alle up</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Kør som administrator</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Ønsker du at backe alle spillene op? Dette vil erstatte alle tidligere backups. Hvis mere en ét spil deler den samme backup, så kan en backup kun udføres for det første spil. Fortsæt?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Bekræft backups</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>Alle spil blev backet op med succes</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>{0}/{1} spil blev backet op</value>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Nogle spil blev ikke backet op</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Konfiguration</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Animationer inkluderer f.eks sideovergange og størrelsesændringsanimationer for Spil-siden</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Steamgruppe</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at gemme. Ikke alle ændringer blev gemt.</value>
+  </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (2. udgave)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (3. udgave)</value>
+  </data>
+  <data name="Page_Refresh" xml:space="preserve">
+    <value>Genindlæs</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Denne indstilling kræver, at programmet køres som administrator</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Tving manuelle opdateringer</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>Opdatereren kunne ikke startes. Du kan hente den nye version manuelt ved at gå til {0} og downloade den derfra.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Fejl i forsøg på at køre opdatererem</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>Registreringsnøglen blev ikke fundet</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Registreringsnøgle ikke fundet</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>Nøglen kunne ikke åbnes</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Fejl i forsøg på at åbne nøglen</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>App-brugerdata</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Logfil</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Appdata-register</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>En ny betaopdatering er tilgængelig. Download nu?
+
+Nuværende version: {0}
+Seneste version: {1}
+
+Nyheder:
+{2}</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Afinstallér</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Er du sikker på, at du vil afinstallere Rayman Control Panel? Dette fjerner den eksekverbare fil og alt af programmets appdata. Dette fjerner IKKE installerede spil, spildata, eller backups. Nogle anvendte hjælpeværktøjer er muligvis stadig tilgængelige.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Bekræft afinstallering</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at køre afinstallatøren. Du kan selv manuelt fjerne appdataen, hvilket kan findes ved følgende placering:
+
+{0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Få betaopdateringer</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Programtestning</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel (Administrator)</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>Adgang til den valgte installationsplacering blev nægtet. Vælg en anden placering eller kør programmet som administrator.</value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Adgang nægtet</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Komprimér backups</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Komprimerede backups optager mindre plads og er nemmere at administrere, da de er i én enkelt fil for hvert spil. Ændringen vil tage effekt næste gang en backup udføres.</value>
+  </data>
+  <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
+    <value>De tilgængelige sprog varierer muligvis mellem udgivelser</value>
+  </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Deaktivér nedgraderingsadvarsel</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at migrere den eksisterende Rayman Fiesta Run-backup til den nye 5.0.0 backupstandard. På grund af dette bliver din backup utilgængelig, men den forbliver i din backupmappe og kan gendannes manuelt.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Backup migrationsfejl</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>Programmet skal køres som administrator for at kunne installere til alle brugere</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Manglende tilladelser</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opsætte de supplerende nødvendige filer. Nogle af programmets funktioner virker muligvis ikke som tilsigtet. Det anbefales, at prøve at genstarte programmet.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>Denne hjælpefunktion kræver, at applikationen køres som administrator</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Genstart som administrator</value>
+  </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>Applikationen har ikke de nødvendige tilladelser til denne operation. Genstart applikationen som administrator?</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Fejlmeddelelse: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>En fejl er opstået.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Hollandsk</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Brugerdefinerede startindstillinger</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Hvis aktiveret, vil de nedestående indstillinger bruges, når spillet startes fra Rayman Control Panel</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-Sync</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Versionindeks</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Stor fil</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Brugerdefinerede kommandoer</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Brugerdefineret</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Alle spil</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Rød</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Grøn</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Blå</value>
+  </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Redigér jumplist</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>Jumplisten er listen af spilgenveje, som vises, når applikationen højreklikkes på proceslinjen eller i startmenuen</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Redigér jumplistindhold</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Inkluderet</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Ikke inkluderet</value>
+  </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>De eksisterende backups for {0} kunne ikke hentes</value>
+  </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>Mappen {0} eksisterer allerede. Ønsker du at overskrive den?</value>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Overskriv mappe</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Deaktivér indlæsning/gemmelse af spildata</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>Dette forhindrer spillet i at indlæse eller gemme på eksisterende spildata</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21 (Kinesisk)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Diskkontrol</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Deaktivér diskkontrol</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>Deaktivation af diskkontrol gør det muligt for spillet at kunne spilles, uden brug for at indsætte spildisken</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Åben i Microsoft Store</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Afinstallér</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>{0} blev oprindeligt installeret ved brug af Rayman Control Panel. Fjernelse af spillet fra programmet fjerner hverken spillet eller dets filer fra din computer, inklusiv de backups der er blevet oprettet med dette program. Det anbefales i stedet at afinstallere spillet.</value>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Ønsker du at afinstallere {0}? Dette fjerner spillet fra din computer, inklusiv spildata. Backups fjernes ikke.</value>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Bekræft afinstallering</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at afinstallere {0}</value>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Afinstalleringsfejl</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Print Studio-version</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>Ændring af versionen påvirker de tilgængelige indstillinger i spillet. 2003-versionen har kalendere for årene 2003 og 2004. 2005-versionen har kalendere for årene 2006 og 2007, samt 'goodies'-sektionen.</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>2003-version</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>2005-version</value>
+  </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>Dette spil kræver, at dets filer bliver downloadet. Downloadens samlede størrelse er {0}. Fortsæt?</value>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>Dette spil kræver, at dets filer bliver downloadet. Fortsæt?</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Download fra GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Åben GameJolt-side</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opdatere Print Studio-versionen</value>
+  </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Andet</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Fanspil</value>
+  </data>
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Vælg en fildestination til eksportering</value>
+  </data>
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
+    <value>JSON-filer</value>
+  </data>
+  <data name="ImportSelectionHeader" xml:space="preserve">
+    <value>Vælg en konverteret JSON-fil, der skal importeres fra</value>
+  </data>
+  <data name="Progression_Header" xml:space="preserve">
+    <value>Fremskridt</value>
+  </data>
+  <data name="Progression_GenericSlot" xml:space="preserve">
+    <value>Plads {0}</value>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Eksportér</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Importér</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at eksportere spildataen. Sørg for at filen understøttes.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at importere spildataen. Sørg for at formatet af .JSON-filen er korrekt og at spildataen understøttes.</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>{0} blev afinstalleret</value>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Afinstallering fuldført</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>Spildataen blev eksporteret med succes</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>Spildataen blev importeret med succes</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Karakter</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Valg af karakter her vil ændre den nuværende valgte karakter i spillet. De to sidste Teensy-karakterer kan kun indstilles herfra, da der ikke er mulighed for at gøre det i spillet.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Dark Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Globox Outfit</value>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Green Teensy</value>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Goth Teensy</value>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Valgt gemmeplads</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Musikvolumen</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Lydvolumen</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opdatere applikationen</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>Spillet tager muligvis et par sekunder om at starte. Hvis der vises en sort skærm, så tryk på ESC-tasten på dit tastatur for at spille spillet. Denne besked vises ikke igen.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Download fra Ubisoft Connect</value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Vælg fil at importere</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Understøttede filer</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Vælg destination at eksportere til</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Eksporterer {0}</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Vælg mappe at importere</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Ingen filer blev fundet, der kunne importeres</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Filerne blev eksporteret</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Filen blev eksporteret</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} kunne ikke eksporteres</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Ompakker arkiv {0}</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Valg af filtype</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Vælg filtypen som filerne {0} skal eksporteres som</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>En fejl opstod i Archive Explorer, og den skulle lukkes</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Reverse engineering af Rayman, Rayman Raving Rabbids mod, BinarySerializer</value>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Hjælpeværktøjer</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>CPA-arkiver (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>UbiArt-arkiver (.ipk)</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>CPA-overfladefiler (.gf)</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>Konvertér</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Konvertér tilbage</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>UbiArt-lokaliseringsfiler (.loc/.loc8)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Konverterere</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Åben</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman 3 (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Jungle Run (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Vælg arkivfiler</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Vælg filer, der skal konverteres</value>
+  </data>
+  <data name="Browse_DestinationHeader" xml:space="preserve">
+    <value>Vælg destination</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>Filen/filerne kunne ikke konverteres</value>
+  </data>
+  <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
+    <value>Vælg filtype, der skal eksporteres som</value>
+  </data>
+  <data name="Utilities_Converter_Success" xml:space="preserve">
+    <value>Filerne blev konverteret med succes</value>
+  </data>
+  <data name="Archive_RepackError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at ompakke arkivet</value>
+  </data>
+  <data name="Progression_R3_Level1Header" xml:space="preserve">
+    <value>The Fairy Council</value>
+  </data>
+  <data name="Progression_R3_Level2Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_R3_Level3Header" xml:space="preserve">
+    <value>The Bog of Murk</value>
+  </data>
+  <data name="Progression_R3_Level4Header" xml:space="preserve">
+    <value>The Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_R3_Level5Header" xml:space="preserve">
+    <value>The Desert of the Knaaren</value>
+  </data>
+  <data name="Progression_R3_Level6Header" xml:space="preserve">
+    <value>The Longest Shortcut</value>
+  </data>
+  <data name="Progression_R3_Level7Header" xml:space="preserve">
+    <value>The Summit Beyond the Clouds</value>
+  </data>
+  <data name="Progression_R3_Level8Header" xml:space="preserve">
+    <value>Hoodlum Headquarters</value>
+  </data>
+  <data name="Progression_R3_Level9Header" xml:space="preserve">
+    <value>The Tower of the Leptys</value>
+  </data>
+  <data name="TPLS_UpdateVersionError" xml:space="preserve">
+    <value>Rayman-versionen kunne ikke opdateres</value>
+  </data>
+  <data name="Utility_Revert" xml:space="preserve">
+    <value>Vend tilbage</value>
+  </data>
+  <data name="Utility_WIP" xml:space="preserve">
+    <value>Dette hjælpeværktøj er i øjeblikket ufuldendt og kan muligvis være ustabilt eller mangle nogle funktioner</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>{0}/{1} overfladeinformationer blev synkroniseret</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at synkronisere overfladeinformation</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Andet</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>Denne funktion er endnu ikke blevet implementeret</value>
+  </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Afkodere</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Afkod</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Indkod</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Indkodede Rayman 2-filer (.sna/.dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Vælg filer, der skal afkodes</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Vælg filer, der skal indkodes</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>Filerne blev afkodet med succes</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>Filerne blev indkodet med succes</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at afkode filerne</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indkode filerne</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman 3 (.sav)</value>
+  </data>
+  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
+    <value>UbiRay-patchen er blevet anvendt med succes</value>
+  </data>
+  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
+    <value>UbiRay-patchen er blevet tilbagevendt</value>
+  </data>
+  <data name="RL_LevelName_1_1" xml:space="preserve">
+    <value>Engang for længe siden</value>
+  </data>
+  <data name="RL_LevelName_1_2" xml:space="preserve">
+    <value>Det uhyggelige slot</value>
+  </data>
+  <data name="RL_LevelName_1_3" xml:space="preserve">
+    <value>Den fortryllede skov</value>
+  </data>
+  <data name="RL_LevelName_1_4" xml:space="preserve">
+    <value>Tovbanen</value>
+  </data>
+  <data name="RL_LevelName_1_5" xml:space="preserve">
+    <value>Kviksand</value>
+  </data>
+  <data name="RL_LevelName_1_6" xml:space="preserve">
+    <value>Sådan skyder du din drage</value>
+  </data>
+  <data name="RL_LevelName_2_1" xml:space="preserve">
+    <value>Ray og bønnestagen</value>
+  </data>
+  <data name="RL_LevelName_2_2" xml:space="preserve">
+    <value>De sære vinde</value>
+  </data>
+  <data name="RL_LevelName_2_3" xml:space="preserve">
+    <value>Slottet i skyen</value>
+  </data>
+  <data name="RL_LevelName_2_4" xml:space="preserve">
+    <value>Hastige højder</value>
+  </data>
+  <data name="RL_LevelName_2_5" xml:space="preserve">
+    <value>Når tudserne flyver</value>
+  </data>
+  <data name="RL_LevelName_3_1" xml:space="preserve">
+    <value>Hvad anden?</value>
+  </data>
+  <data name="RL_LevelName_3_2" xml:space="preserve">
+    <value>En rådden affære</value>
+  </data>
+  <data name="RL_LevelName_3_3" xml:space="preserve">
+    <value>En bid for meget</value>
+  </data>
+  <data name="RL_LevelName_3_4" xml:space="preserve">
+    <value>Slanger på kagen</value>
+  </data>
+  <data name="RL_LevelName_3_5" xml:space="preserve">
+    <value>Lucha Libres store flugt</value>
+  </data>
+  <data name="RL_LevelName_4_1" xml:space="preserve">
+    <value>Den mystiske, oppustelige ø</value>
+  </data>
+  <data name="RL_LevelName_4_2" xml:space="preserve">
+    <value>Dødbringende lys</value>
+  </data>
+  <data name="RL_LevelName_4_3" xml:space="preserve">
+    <value>Palæet i dybet</value>
+  </data>
+  <data name="RL_LevelName_4_4" xml:space="preserve">
+    <value>Infiltrationsstation</value>
+  </data>
+  <data name="RL_LevelName_4_5" xml:space="preserve">
+    <value>Bagholdsangreb i elevatoren</value>
+  </data>
+  <data name="RL_LevelName_4_6" xml:space="preserve">
+    <value>Der kommer altid en større fisk</value>
+  </data>
+  <data name="RL_LevelName_5_1" xml:space="preserve">
+    <value>Op og ned med skjoldet</value>
+  </data>
+  <data name="RL_LevelName_5_2" xml:space="preserve">
+    <value>De mørke uhyrer rejser sig</value>
+  </data>
+  <data name="RL_LevelName_5_3" xml:space="preserve">
+    <value>Den fantastiske labyrint</value>
+  </data>
+  <data name="RL_LevelName_5_4" xml:space="preserve">
+    <value>Den store lavajagt</value>
+  </data>
+  <data name="RL_LevelName_5_5" xml:space="preserve">
+    <value>Besværmet og farlig</value>
+  </data>
+  <data name="RL_LevelName_5_6" xml:space="preserve">
+    <value>Helvede bryder løs</value>
+  </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Legends</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Origins</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Udpak</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Generér automatisk mipmaps (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Generér automatisk mimaps til understøttede spil, når der importeres til .gf-filer</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Opdatér automatisk format (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Aldrig (bevar originalformat)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>Originalformatet bevares. Hvis et ARGB-billede importeres til en .gf-fil, som ikke understøtter gennemsigtighed, vil det resultere i, at alfakanalen bliver tabt.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Match importeret format</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>Formatet opdateres til at matche den importerede fils. Dette kan muligvis resultere i, at .gf-filerne optager mere plads, end egentligt er nødvendigt.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Match importeret format, hvis nødvendigt</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>Formatet opdateres til at matche den importerede fils, hvis det nuværende format ikke understøtter dataen. For eksempel, hvis et ARGB-billede importeres til en .gf fil, som ikke understøtter gennemsigtighed, opdateres formatet kun til understøttelse, hvis det importerede billede tager brug af alfakanalen. Denne indstilling anbefales, for at undgå at ændre formater når det ikke er nødvendigt, men dette vil gøre filimport langsommere.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>Arkivet tilhørende {0} filer blev oprettet med succes</value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>Den valgte inputmappe findes ikke</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at oprette arkivet</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Opret arkiv</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Inputmappe</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Outputfil</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Komprimér hele blok</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Filtyper, der skal komprimeres</value>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Konfigurationsfiler til Rayman 1 (.cfg)</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman 1 (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Konfigurationsfiler til Rayman 2 (.cfg)</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman 2 (.sav)</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Spildata til Rayman 1/2 (.sav/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Synkronisér tema</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>Hvis aktiveret, synkroniseres applikationstemaet (accentfarve og mørkt/lyst tema) med systemindstillingerne på Windows 10/11</value>
+  </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opdatere sproget</value>
+  </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+  </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Download filer:
+
+1. Tryk på downloadknappen for at downloade filerne manuelt.
+2. Flyt filerne til destinationsmappen. Udpak dem hvis de er komprimeret.
+3. Tryk 'Ok' for at fortsætte.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Manuel download</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Download filer</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Åben destinationsmappe</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Håndtér downloads manuelt</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Brug kun denne indstilling, hvis downloads ikke fungerer</value>
+  </data>
+  <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
+    <value>Inkodede filer til Tonic Trouble (.sna/.dsb)</value>
+  </data>
+  <data name="About_Credits_Fabiosek" xml:space="preserve">
+    <value>Polsk (Polen) programoversættelse</value>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman M/Arena (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Konvertér til 32-bit ved import (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Indikerer, om .gf-filen skal konverteres til 24/32-bit ved import, for bedst mulige kvalitet</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Bedste runde - Træning</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Bedste runde - Ræs</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Bedste runde - Mål</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Bedste runde - Lums</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Bedste tid - Ræs</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Bedste tid - Mål</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Bedste tid - Lums</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Mål</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>First Ruins</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Nebulous Tower</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Dark Sewer</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Dawn Sand</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Water Canyon</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Thousand Waterfalls</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forest Jump</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Zenith Harbour</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Treasure Ship</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Pipe Maze</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Lava Factory</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Electric Final</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Future</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Speed Stress</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Born To Slide</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Vælg fil</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Gem fil</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Vælg mappe</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Vælg drev</value>
+  </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Russisk (Rusland) programoversættelse</value>
+  </data>
+  <data name="About_Credits_ItzalDrake" xml:space="preserve">
+    <value>Italiensk (Italien) programoversættelse</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Sortér</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>Alfabetisk (stigende)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>Alfabetisk (faldende)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Udpakker alle filer i denne mappe, inklusiv undermapper</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Tilføj filer</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>Tilføjer de valgte filer til mappen</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Eksportér og konvertér</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Udpakker alle filer i denne mappe, inklusiv undermapper, og gør det muligt for filerne at konverteres</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Importér og konvertér</value>
+  </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>Importerer alle filer med matchende filnavne fra den valgte mappe, og konverterer dem når muligt, for at matche originalformatet</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Opret mappe</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Opretter en ny, tom mappe</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Sletter mappen og alt dens indhold, inklusiv filer og undermapper</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Eksportér</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Importér</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Gem arkiv</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>Den valgte mappe indeholder en fil med samme navn som {0}</value>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at importere filerne</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Vælg mappenavn</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Vælg filer, der skal tilføjes</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>Filen '{0}' har samme navn, som en fil, der allerede eksisterer. Ønsker du at erstatte den?</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>Filnavnskonflikt</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Mappe:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Filstørrelse:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Komprimeret filstørrelse:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointer:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Komprimeret:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Krypteret:</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Størrelse:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Gennemsigtig:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmaps:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Format:</value>
+  </data>
+  <data name="Archive_AddFiles_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at tilføje {0}</value>
+  </data>
+  <data name="Archive_Format_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Archive_Format_Default" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="Archive_Format_GF" xml:space="preserve">
+    <value>GF (Grafisk fil)</value>
+  </data>
+  <data name="Archive_Format_Img" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="GameDisplay_Raymap" xml:space="preserve">
+    <value>Se maps</value>
+  </data>
+  <data name="R1Passwords_Invalid" xml:space="preserve">
+    <value>Ugyldigt kodeord</value>
+  </data>
+  <data name="R1_LevelName_0" xml:space="preserve">
+    <value>Pink Plant Woods</value>
+  </data>
+  <data name="R1_LevelName_1" xml:space="preserve">
+    <value>Anguish Lagoon</value>
+  </data>
+  <data name="R1_LevelName_2" xml:space="preserve">
+    <value>The Swamps of Forgetfulness</value>
+  </data>
+  <data name="R1_LevelName_3" xml:space="preserve">
+    <value>Moskito's Nest</value>
+  </data>
+  <data name="R1_LevelName_4" xml:space="preserve">
+    <value>Bongo Hills</value>
+  </data>
+  <data name="R1_LevelName_5" xml:space="preserve">
+    <value>Allegro Presto</value>
+  </data>
+  <data name="R1_LevelName_6" xml:space="preserve">
+    <value>Gong Heights</value>
+  </data>
+  <data name="R1_LevelName_7" xml:space="preserve">
+    <value>Mr Sax's Hullaballoo</value>
+  </data>
+  <data name="R1_LevelName_8" xml:space="preserve">
+    <value>Twilight Gulch</value>
+  </data>
+  <data name="R1_LevelName_9" xml:space="preserve">
+    <value>The Hard Rocks</value>
+  </data>
+  <data name="R1_LevelName_10" xml:space="preserve">
+    <value>Mr Stone's Peaks</value>
+  </data>
+  <data name="R1_LevelName_11" xml:space="preserve">
+    <value>Eraser Plains</value>
+  </data>
+  <data name="R1_LevelName_12" xml:space="preserve">
+    <value>Pencil Pentathlon</value>
+  </data>
+  <data name="R1_LevelName_13" xml:space="preserve">
+    <value>Space Mama's Crater</value>
+  </data>
+  <data name="R1_LevelName_14" xml:space="preserve">
+    <value>Crystal Palace</value>
+  </data>
+  <data name="R1_LevelName_15" xml:space="preserve">
+    <value>Eat at Joe's</value>
+  </data>
+  <data name="R1_LevelName_16" xml:space="preserve">
+    <value>Mr Skops' Stalactites</value>
+  </data>
+  <data name="R1_LevelName_17" xml:space="preserve">
+    <value>Mr Dark's Dare</value>
+  </data>
+  <data name="R1Passwords_Generate" xml:space="preserve">
+    <value>Generér</value>
+  </data>
+  <data name="R1Passwords_Load" xml:space="preserve">
+    <value>Indlæs</value>
+  </data>
+  <data name="R1Passwords_LevUnlocked" xml:space="preserve">
+    <value>Låst op</value>
+  </data>
+  <data name="R1Passwords_LevAllCages" xml:space="preserve">
+    <value>Alle bure</value>
+  </data>
+  <data name="R1Passwords_FinBoss" xml:space="preserve">
+    <value>Overvundet boss</value>
+  </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>Har hjulpet The Musician</value>
+  </data>
+  <data name="R1Passwords_Lives" xml:space="preserve">
+    <value>Liv</value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Fortsættelser</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
+    <value>PC-arkiver til Rayman 1 (.dat)</value>
+  </data>
+  <data name="Utilities_R1Passwords_Header" xml:space="preserve">
+    <value>Kodeordsgenerator til Rayman 1 PS1</value>
+  </data>
+  <data name="Archive_ImportFile_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at importere filen</value>
+  </data>
+  <data name="R1Passwords_InvalidLength" xml:space="preserve">
+    <value>Kodeordet skal indeholde 10 tegn</value>
+  </data>
+  <data name="R1Passwords_InvalidChar" xml:space="preserve">
+    <value>Ugyldigt kodeordstegn {0}</value>
+  </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>Kodeordsdataen er ugyldig</value>
+  </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Primær version</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Sekundær version</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Se/Redigér</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Binær</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Vælg en eksekverbar fil, der skal bruges til {0}</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at åbne filen til redigering</value>
+  </data>
+  <data name="Archive_BinaryEditor" xml:space="preserve">
+    <value>Redigering af binærfiler</value>
+  </data>
+  <data name="Archive_FileEditors" xml:space="preserve">
+    <value>Redigeringer af filer</value>
+  </data>
+  <data name="Archive_FileEditorsExt" xml:space="preserve">
+    <value>Filtype</value>
+  </data>
+  <data name="Archive_FileEditorsExe" xml:space="preserve">
+    <value>Tilhørende program</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Lyd</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Stereo</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Stemmevolumen</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Vis baggrund</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Vis parallaksebaggrund</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>Vis HUD</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>Billedfrekvens</value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Spilrand</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Styring</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Hop</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Næve</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Handling</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Enhed</value>
+  </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>Irq</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>Dma</value>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Param</value>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>Enheds-ID</value>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Kort</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Op</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Højre</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Ned</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Hop / Svøm op</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Svøm ned</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Skyd</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Gå langsomt</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Sigt</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Kamera til højre</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Kamera til venstre</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Centrér kamera</value>
+  </data>
+  <data name="Config_Action_Look" xml:space="preserve">
+    <value>Kiggetilstand</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Skærmbillede</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>Vis HUD</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>The Knowledge of the World</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Bekræft</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Annullér</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Kun læsning</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Vælg et filnavn</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>En fil med det valgte navn eksisterer allerede</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Omdøb</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} filer</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} filer valgt</value>
+  </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at søge efter opdateringer. {0}
+For at opdatere applikationen manuelt, kan den seneste version hentes fra {1}.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Lyd</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Eksterne værktøjer</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Baneredigeringsværktøj til Rayman 1</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Mere information</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
+    <value>Hukommelsemods</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
+    <value>Aktivér de fjernede prototype-funktioner i spillet, ved at vælge de mods du ønsker, og derefter anvende dem. Dette kræver, at spillet kører, og virker kun med GOG- eller Steam-versionerne. Anvendte mods tager kun effekt, når spillet køres, og bliver nulstillet, når spillet lukkes.</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingHeader" xml:space="preserve">
+    <value>Mapping af knapper til tastatur</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingToggle" xml:space="preserve">
+    <value>Anvend brugerdefineret tastaturmapping</value>
+  </data>
+  <data name="Mod_RRR_ApplyMemoryMod" xml:space="preserve">
+    <value>Anvend på kørende spil</value>
+  </data>
+  <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
+    <value>BF-mods</value>
+  </data>
+  <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
+    <value>Modificerede .bf-filer. Disse bliver kun brugt, når spillet køres fra nedenstående indstilling.</value>
+  </data>
+  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
+    <value>Spilmappe</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
+    <value>Anvend eksekverbar patch</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatchInfo" xml:space="preserve">
+    <value>Den eksekverbare patch er nødvendig til patchede BF-filer på grund af begrænset hukommelse</value>
+  </data>
+  <data name="Mod_RRR_RevertExePatch" xml:space="preserve">
+    <value>Vend tilbage fra eksekverbar patch</value>
+  </data>
+  <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
+    <value>Download patchet BF</value>
+  </data>
+  <data name="Mod_RRR_RemoveBFPatch" xml:space="preserve">
+    <value>Fjern patchet BF</value>
+  </data>
+  <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
+    <value>Opdatér patchet BF</value>
+  </data>
+  <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
+    <value>Start med patchet BF</value>
+  </data>
+  <data name="ModsPageHeader" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeatures" xml:space="preserve">
+    <value>Aktivér prototypefunktioner</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
+    <value>Raymans prototypeadfærd er aktiveret i alle baner</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
+    <value>Tilføj kamerastyring</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
+    <value>Kamerastyring er mappet til højre joystick</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuel" xml:space="preserve">
+    <value>Tilføj Duel, det tabte minispil</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
+    <value>"Bunnies are shooting all over the place" erstatter "Bunnies don't milk cows part 2". Spil det i multiplayer!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
+    <value>Aktivér playtest-menu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenuInfo" xml:space="preserve">
+    <value>Anbefales ikke. Playtest-menuen erstatter valget af spiltype, men spillet kan ikke pauses og indlæste baner kan ikke forlades.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>For Xbox 360-controllere, er styringen mappet som følgende:
+A: Hop / Hold nede i luften for at bruge helikopteren
+X: Angrib
+Y: Brug gribekrog
+LB: Ændr lys / Hold nede for at styre dansetempo, hvis aktiveret
+LT: Kiggetilstand, hvis aktiveret
+RB: Angrib / Tryk eller hold nede for at bruge 'finishers', hvis aktiveret
+RT: Undvigelsesrul / Stamp / Rul og hop flere gange for at booste, hvis aktiveret
+D-Pad op: Aktivér eller deaktivér dansetilstand. I dansetilstand kan du trykke ABXY eller bruge venstre joystick for at danse
+Venstre joystick: Bevæg Rayman
+Højre joystick: Kamerastyring, hvis aktiveret
+Tilbage: Noclip-tilstand
+Start: Pause</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Tilføj kiggetilstand</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>En førstepersonskiggetilstand tilføjes og mappes til LT</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButton" xml:space="preserve">
+    <value>Tilføj boost-knap</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButtonInfo" xml:space="preserve">
+    <value>Normalt forbeholdt en genstand der ikke findes i spillet, hvis der trykkes på RT, løber Rayman meget hurtigt, og fartangreb aktiveres</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
+    <value>Tilføj 'finishers'</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishersInfo" xml:space="preserve">
+    <value>Tryk eller hold RB nede for at tilføje 'finishers' til dine komboer</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
+    <value>Klatring af vægge</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
+    <value>Tillader, at Rayman kan holde fast i vægge, ved hjælp af hans krog</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpots" xml:space="preserve">
+    <value>Hæng fra gribeområder</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
+    <value>Ødelægger krogopførsel, men aktiverer et ødelagt system, der gør at krogen kan bruges som et reb til at hænge og hoppe fra</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
+    <value>Ændr kroggrafik</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFXInfo" xml:space="preserve">
+    <value>Aktiverer endnu tidligere udgaver af Raymans krog</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Linje</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Lyn</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
+    <value>Gnister</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Reb</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
+    <value>Opgraderede krafter</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
+    <value>Tillader, at Rayman kan bruge helikopteren i længere tid, og hvis Klatring af vægge er aktiveret, kan han holde fast i vægge for evigt</value>
+  </data>
+  <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
+    <value>Udødelig</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ImmortalInfo" xml:space="preserve">
+    <value>En udviklersnydekode - Rayman dør ikke</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempo" xml:space="preserve">
+    <value>Dans: styr tempo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempoInfo" xml:space="preserve">
+    <value>I dansetilstand kan LB holdes nede for at starte et beat, som Rayman kan danse til</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMoveset" xml:space="preserve">
+    <value>Dans: groovy dansetrin</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMovesetInfo" xml:space="preserve">
+    <value>Rayman danser anderledes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostume" xml:space="preserve">
+    <value>Brug valgt forklædning</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostumeInfo" xml:space="preserve">
+    <value>Raymans kostume baseres altid på spillerens kostumevalg i menuen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntros" xml:space="preserve">
+    <value>Deaktivér minispil-introer</value>
+  </data>
+</root>
