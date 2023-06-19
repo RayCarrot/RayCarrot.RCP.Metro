@@ -748,17 +748,19 @@ public class AppDataManager
 
             // Show the anniversary update dialog
             new AnniversaryUpdateDialog().ShowDialog();
+        }
 
+        if (lastVersion < new Version(14, 0, 0, 1))
+        {
             // TODO-UPDATE: Remove this when the beta is finished
             await Services.MessageUI.DisplayMessageAsync("""
                 Welcome to the Rayman Control Panel Anniversary Update (14.0) beta and thank you for helping out with testing it!
                 
-                This is the biggest update since the 4.0 rewrite and thus has a lot of changes. I'm expecting to keep this update in beta for a while as I gather feedback and keep making refinements. I would very much appreciate any feedback you can give and I have made a survey you can find a link to in the title bar during the beta.
+                Due to the scope of this update I'm expecting to keep this in beta for a while as I gather feedback and keep making refinements. I would very much appreciate any feedback you can give and I have made a survey you can find a link to in the title bar during the beta.
                 
                 During the beta period there will be several pre-release updates. Because of this several planned features have not yet been implemented. There is no guarantee all of these will make it into the final release, but these are the ones which are planned:
                 - Support for more console games. I'd like to start with older platforms such as GBC and PS1 for the 14.0 update, but the long-term goal is to eventually include every console game which can be emulated.
                 - Support for more emulators. Although you can manually add any emulator using the "Custom" option doing so has the drawback of not including support for game progression. I'd like for most commonly used emulators to be supported.
-                - Adding support for the new Jungle/Fiesta Run releases on Ubisoft Connect.
                 - Adding support for Donald Duck: Goin' Quackers. Not a Rayman game, but it benefits from direct support for the Archive Explorer and texture syncing.
                 
                 If you come across any bugs, or something which is unclear or looks wrong, then please let me know no matter how small or insignificant it might seem! You can contact me through the survey or contact links in the about page.
