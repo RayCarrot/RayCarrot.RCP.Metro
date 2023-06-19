@@ -4525,150 +4525,6 @@ Konflikty:
   <data name="RemoveGame_PatchWarning" xml:space="preserve">
     <value>Istnieje {0} łatek, które zostały zastosowane do tej gry. Czy chcesz kontynuować usuwanie gry i zachować zastosowane łatki?</value>
   </data>
-  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
-    <value>• {0}</value>
-  </data>
-  <data name="Progression_RHR_Level0Header" xml:space="preserve">
-    <value>Fairy Council</value>
-  </data>
-  <data name="Progression_RHR_Level1Header" xml:space="preserve">
-    <value>Clearleaf Forest</value>
-  </data>
-  <data name="Progression_RHR_Level2Header" xml:space="preserve">
-    <value>Clearleaf Falls</value>
-  </data>
-  <data name="Progression_RHR_Level3Header" xml:space="preserve">
-    <value>Infernal Machine</value>
-  </data>
-  <data name="Progression_RHR_Level4Header" xml:space="preserve">
-    <value>Dungeon of Murk</value>
-  </data>
-  <data name="Progression_RHR_Level5Header" xml:space="preserve">
-    <value>Bog of Murk</value>
-  </data>
-  <data name="Progression_RHR_Level6Header" xml:space="preserve">
-    <value>Begoniax Bayou</value>
-  </data>
-  <data name="Progression_RHR_Level7Header" xml:space="preserve">
-    <value>Rivers of Murk</value>
-  </data>
-  <data name="Progression_RHR_Level8Header" xml:space="preserve">
-    <value>Hoodlum Moor</value>
-  </data>
-  <data name="Progression_RHR_Level9Header" xml:space="preserve">
-    <value>Land of the Livid Dead</value>
-  </data>
-  <data name="Progression_RHR_Level10Header" xml:space="preserve">
-    <value>Menhirs of Power</value>
-  </data>
-  <data name="Progression_RHR_Level11Header" xml:space="preserve">
-    <value>Pit of Endless Fire</value>
-  </data>
-  <data name="Progression_RHR_Level12Header" xml:space="preserve">
-    <value>Clouds of Peril</value>
-  </data>
-  <data name="Progression_RHR_Level13Header" xml:space="preserve">
-    <value>Heart of the World</value>
-  </data>
-  <data name="Progression_RHR_Level14Header" xml:space="preserve">
-    <value>Reflux's Lair</value>
-  </data>
-  <data name="Progression_RHR_Level15Header" xml:space="preserve">
-    <value>Vertiginous Riddle</value>
-  </data>
-  <data name="Progression_RHR_Level16Header" xml:space="preserve">
-    <value>Cloudy Cache</value>
-  </data>
-  <data name="Progression_RHR_Level17Header" xml:space="preserve">
-    <value>Mélée Mayhem</value>
-  </data>
-  <data name="Progression_RHR_Level18Header" xml:space="preserve">
-    <value>Scalding Cascade</value>
-  </data>
-  <data name="Progression_RHR_Level19Header" xml:space="preserve">
-    <value>Sulphurous Sea</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
-    <value>Child's play</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
-    <value>The kids' hamlet</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
-    <value>The toy chase</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
-    <value>Toy box</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
-    <value>Celestial castle</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
-    <value>Dream forest</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
-    <value>The leafy valley</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
-    <value>Colonial jungle</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
-    <value>The lush mountaintops</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
-    <value>Hidden burrow</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
-    <value>Stomach circuit</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
-    <value>Gastric rivers</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
-    <value>Living cavern</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
-    <value>Swallowed treasures</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
-    <value>The sticky lair</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
-    <value>The desert of desserts</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
-    <value>Cake race</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
-    <value>The sweet islands</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
-    <value>Not a piece of cake!</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
-    <value>Tart tunnels</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
-    <value>Ginger-bunny-bread</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
-    <value>Filthy corridors</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
-    <value>Agony jails</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
-    <value>Infernal escape</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
-    <value>Spikes and yikes!</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
-    <value>The rabbids' lair</value>
-  </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Wystąpił błąd podczas migracji danych aplikacji do nowej wersji</value>
   </data>
@@ -4865,11 +4721,14 @@ Konflikty:
   <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
     <value>Utwórz łatkę</value>
   </data>
-  <data name="GameHub_PatcherPanel_Info" xml:space="preserve">
-    <value>{0} zastosowanych łatek</value>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Progression_SharedBackupsInfo" xml:space="preserve">
     <value>Ta gra współdzieli te same kopie zapasowe, co poniższe gry. Oznacza to, że utworzenie kopii zapasowej jednej z tych gier spowoduje nadpisanie kopii zapasowych utworzonych również dla innych gier.</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Pogrupowane gry</value>
@@ -5276,6 +5135,144 @@ Konflikty:
   </data>
   <data name="Platform_Gba" xml:space="preserve">
     <value>Game Boy Advance</value>
+  </data>
+  <data name="Progression_RHR_Level0Header" xml:space="preserve">
+    <value>Fairy Council</value>
+  </data>
+  <data name="Progression_RHR_Level1Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_RHR_Level2Header" xml:space="preserve">
+    <value>Clearleaf Falls</value>
+  </data>
+  <data name="Progression_RHR_Level3Header" xml:space="preserve">
+    <value>Infernal Machine</value>
+  </data>
+  <data name="Progression_RHR_Level4Header" xml:space="preserve">
+    <value>Dungeon of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level5Header" xml:space="preserve">
+    <value>Bog of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level6Header" xml:space="preserve">
+    <value>Begoniax Bayou</value>
+  </data>
+  <data name="Progression_RHR_Level7Header" xml:space="preserve">
+    <value>Rivers of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level8Header" xml:space="preserve">
+    <value>Hoodlum Moor</value>
+  </data>
+  <data name="Progression_RHR_Level9Header" xml:space="preserve">
+    <value>Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_RHR_Level10Header" xml:space="preserve">
+    <value>Menhirs of Power</value>
+  </data>
+  <data name="Progression_RHR_Level11Header" xml:space="preserve">
+    <value>Pit of Endless Fire</value>
+  </data>
+  <data name="Progression_RHR_Level12Header" xml:space="preserve">
+    <value>Clouds of Peril</value>
+  </data>
+  <data name="Progression_RHR_Level13Header" xml:space="preserve">
+    <value>Heart of the World</value>
+  </data>
+  <data name="Progression_RHR_Level14Header" xml:space="preserve">
+    <value>Reflux's Lair</value>
+  </data>
+  <data name="Progression_RHR_Level15Header" xml:space="preserve">
+    <value>Vertiginous Riddle</value>
+  </data>
+  <data name="Progression_RHR_Level16Header" xml:space="preserve">
+    <value>Cloudy Cache</value>
+  </data>
+  <data name="Progression_RHR_Level17Header" xml:space="preserve">
+    <value>Mélée Mayhem</value>
+  </data>
+  <data name="Progression_RHR_Level18Header" xml:space="preserve">
+    <value>Scalding Cascade</value>
+  </data>
+  <data name="Progression_RHR_Level19Header" xml:space="preserve">
+    <value>Sulphurous Sea</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Child's play</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>The kids' hamlet</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>The toy chase</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Toy box</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Celestial castle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Dream forest</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>The leafy valley</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Colonial jungle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>The lush mountaintops</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Hidden burrow</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Stomach circuit</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Gastric rivers</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Living cavern</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Swallowed treasures</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>The sticky lair</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>The desert of desserts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Cake race</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>The sweet islands</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Not a piece of cake!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Tart tunnels</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Ginger-bunny-bread</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Filthy corridors</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Agony jails</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Infernal escape</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Spikes and yikes!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>The rabbids' lair</value>
   </data>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>

@@ -51,7 +51,12 @@ public class PatcherGamePanelViewModel : GamePanelViewModel, IRecipient<Modified
         try
         {
             PatchLibraryFile? libraryFile = await Task.Run(() => context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath));
-            InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_Info), libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0);
+            int count = libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0;
+
+            if (count == 1)
+                InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_InfoSingle), count);
+            else
+                InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_InfoMultiple), count);
         }
         catch (Exception ex)
         {

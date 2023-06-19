@@ -4865,11 +4865,6 @@ gameName</comment>
   <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
     <value>Create patch</value>
   </data>
-  <data name="GameHub_PatcherPanel_Info" xml:space="preserve">
-    <value>{0} patches applied</value>
-    <comment>Arguments:
-patchesCount</comment>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
     <comment>Arguments:
@@ -5534,5 +5529,36 @@ gameClientName</comment>
   </data>
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>There is a newer version available. Uninstall the current version to install it.</value>
+  </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Game ID:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Open in Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>User id</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Spanish (Spain) program translation</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
+    <value>{0} patch applied</value>
+    <comment>Arguments:
+patchesCount</comment>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} patches applied</value>
+    <comment>Arguments:
+patchesCount</comment>
   </data>
 </root>

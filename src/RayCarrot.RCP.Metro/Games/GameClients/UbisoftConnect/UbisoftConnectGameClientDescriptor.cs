@@ -9,7 +9,7 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
     #region Public Properties
 
     public override string GameClientId => "UbisoftConnect";
-    public override LocalizedString DisplayName => "Ubisoft Connect"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_UbisoftConnect));
     public override GameClientIconAsset Icon => GameClientIconAsset.UbisoftConnect;
 
     #endregion
@@ -19,7 +19,7 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
     private static IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) => new[]
     {
         new DuoGridItemViewModel(
-            header: "Game ID:", // TODO-UPDATE: Localize
+            header: new ResourceLocString(nameof(Resources.GameInfo_UbisoftGameId)),
             text: gameInstallation.GetRequiredComponent<UbisoftConnectGameClientComponent>().GameId,
             minUserLevel: UserLevel.Advanced)
     };
@@ -31,7 +31,7 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
         return new[]
         {
             new GameLinksComponent.GameUriLink(
-                Header: "Open in Ubisoft Store", // TODO-UPDATE: Localize
+                Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInUbisoftStore)),
                 Uri: UbisoftConnectHelpers.GetStorePageURL(productId),
                 Icon: GenericIconKind.GameAction_Web)
         };

@@ -151,6 +151,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spanish (Spain) program translation.
+        /// </summary>
+        public static string About_Credits_Marcos03BR {
+            get {
+                return ResourceManager.GetString("About_Credits_Marcos03BR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to French (France) program translation.
         /// </summary>
         public static string About_Credits_Marteaufou {
@@ -4273,6 +4282,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ubisoft Connect.
+        /// </summary>
+        public static string GameClients_UbisoftConnect {
+            get {
+                return ResourceManager.GetString("GameClients_UbisoftConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User id.
+        /// </summary>
+        public static string GameClients_UbisoftConnect_UserIdHeader {
+            get {
+                return ResourceManager.GetString("GameClients_UbisoftConnect_UserIdHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Install from disc.
         /// </summary>
         public static string GameDisplay_DiscInstall {
@@ -4314,6 +4341,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameDisplay_OpenGameJoltPage {
             get {
                 return ResourceManager.GetString("GameDisplay_OpenGameJoltPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in Ubisoft Store.
+        /// </summary>
+        public static string GameDisplay_OpenInUbisoftStore {
+            get {
+                return ResourceManager.GetString("GameDisplay_OpenInUbisoftStore", resourceCulture);
             }
         }
         
@@ -4518,9 +4554,18 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to {0} patches applied.
         /// </summary>
-        public static string GameHub_PatcherPanel_Info {
+        public static string GameHub_PatcherPanel_InfoMultiple {
             get {
-                return ResourceManager.GetString("GameHub_PatcherPanel_Info", resourceCulture);
+                return ResourceManager.GetString("GameHub_PatcherPanel_InfoMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} patch applied.
+        /// </summary>
+        public static string GameHub_PatcherPanel_InfoSingle {
+            get {
+                return ResourceManager.GetString("GameHub_PatcherPanel_InfoSingle", resourceCulture);
             }
         }
         
@@ -4602,6 +4647,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameInfo_SteamID {
             get {
                 return ResourceManager.GetString("GameInfo_SteamID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game ID:.
+        /// </summary>
+        public static string GameInfo_UbisoftGameId {
+            get {
+                return ResourceManager.GetString("GameInfo_UbisoftGameId", resourceCulture);
             }
         }
         
@@ -11478,6 +11532,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman Fiesta Run.
         /// </summary>
+        public static string RaymanFiestaRun_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanFiestaRun_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run.
+        /// </summary>
         public static string RaymanFiestaRun_WindowsPackage_Title {
             get {
                 return ResourceManager.GetString("RaymanFiestaRun_WindowsPackage_Title", resourceCulture);
@@ -11526,6 +11589,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanHoodlumsRevenge_Gba_Title {
             get {
                 return ResourceManager.GetString("RaymanHoodlumsRevenge_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Jungle Run.
+        /// </summary>
+        public static string RaymanJungleRun_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanJungleRun_Win32_Title", resourceCulture);
             }
         }
         

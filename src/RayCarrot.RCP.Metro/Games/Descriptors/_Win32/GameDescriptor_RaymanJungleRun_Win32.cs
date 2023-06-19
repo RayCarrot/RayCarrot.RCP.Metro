@@ -23,9 +23,7 @@ public sealed class GameDescriptor_RaymanJungleRun_Win32 : Win32GameDescriptor
     public override Game Game => Game.RaymanJungleRun;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => 
-        // TODO-UPDATE: Localize with separate key
-        new ResourceLocString(nameof(Resources.RaymanJungleRun_WindowsPackage_Title));
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanJungleRun_Win32_Title));
     public override string[] SearchKeywords => new[] { "rjr" };
     public override DateTime ReleaseDate => new(2022, 12, 22);
 

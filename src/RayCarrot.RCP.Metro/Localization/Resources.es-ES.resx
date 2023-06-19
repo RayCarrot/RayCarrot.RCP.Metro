@@ -539,8 +539,50 @@ Este es un proyecto en crecimiento con la planificación de agregar más caracte
   <data name="RDU_CreateConfigHeader" xml:space="preserve">
     <value>Crear archivo de configuración faltante</value>
   </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Durante algunas instalaciones de Rayman Designer, es posible que no se cree el archivo de configuración, lo que provoca un error en el Mapper al iniciar el juego. Esta utilidad solucionará ese problema creando el archivo de configuración en caso de que no esté presente.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>Habilitar UbiRay</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Esta utilidad modifica la configuración del juego para que UbiRay aparezca como un disfraz normal en la Galería de Héroes.</value>
+  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>Comandos de depuración</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>El uso de cualquiera de los siguientes comandos de depuración permite que el juego se inicie en un entorno de depuración, cambiando la forma en que se ejecuta el juego.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>ADVERTENCIA: El uso de estos comandos de depuración puede corromper tu archivo de guardado. Siempre haz una copia de seguridad antes de usarlos.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Invulnerabilidad</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Esto permite al jugador no morir al recibir daño</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Ocultar puntero del mouse</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Esto ocultará el puntero del mouse en los menús del juego</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Zoom máximo de la cámara</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Esto maximizará el zoom de la cámara</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Fotogramas por segundo</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Esto establecerá los fotogramas por segundo a los que se ejecuta el juego</value>
   </data>
   <data name="ROU_DebugCommandsMap" xml:space="preserve">
     <value>Mapa</value>
@@ -638,843 +680,6 @@ Este es un proyecto en crecimiento con la planificación de agregar más caracte
   <data name="File_OpenLocationError" xml:space="preserve">
     <value>No se pudo abrir el directorio</value>
   </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Confirmar descarga</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Error desconocido</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Se encontró una nueva versión</value>
-  </data>
-  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
-    <value>4:3 con bordes</value>
-  </data>
-  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel</value>
-  </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Configuración</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="GoHomeConfig_BigFile" xml:space="preserve">
-    <value>Archivo grande</value>
-  </data>
-  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
-    <value>DirectX</value>
-  </data>
-  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
-    <value>Glide</value>
-  </data>
-  <data name="GamesPage_Category_Rayman" xml:space="preserve">
-    <value>Rayman</value>
-  </data>
-  <data name="Archive_ImportNoFilesError" xml:space="preserve">
-    <value>No se encontraron archivos para importar</value>
-  </data>
-  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
-    <value>Los archivos se han exportado</value>
-  </data>
-  <data name="Archive_ExportFileSuccess" xml:space="preserve">
-    <value>El archivo se ha exportado</value>
-  </data>
-  <data name="Archive_ExportError" xml:space="preserve">
-    <value>{0} no se ha podido exportar</value>
-  </data>
-  <data name="Archive_RepackingStatus" xml:space="preserve">
-    <value>Reempaquetando archivo</value>
-  </data>
-  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
-    <value>Selecciona la extensión de archivo para exportar como archivos {0}</value>
-  </data>
-  <data name="Archive_Title" xml:space="preserve">
-    <value>Explorador de Archivos</value>
-  </data>
-  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Explorador de archivos</value>
-  </data>
-  <data name="RL_LevelName_1_1" xml:space="preserve">
-    <value>Once upon a Time - Érase una vez</value>
-  </data>
-  <data name="RL_LevelName_1_2" xml:space="preserve">
-    <value>Creepy Castle - Castillo Espeluznante</value>
-  </data>
-  <data name="RL_LevelName_1_3" xml:space="preserve">
-    <value>Enchanted Forest - Bosque Encantado</value>
-  </data>
-  <data name="RL_LevelName_1_4" xml:space="preserve">
-    <value>Ropes Course - Curso de Cuerdas</value>
-  </data>
-  <data name="RL_LevelName_1_5" xml:space="preserve">
-    <value>Quick Sand - Arena Movediza</value>
-  </data>
-  <data name="RL_LevelName_1_6" xml:space="preserve">
-    <value>How to Shoot your Dragon - Cómo Disparar a tu Dragón</value>
-  </data>
-  <data name="RL_LevelName_2_1" xml:space="preserve">
-    <value>Ray and the Beanstalk - Ray y el Tallo de Judías</value>
-  </data>
-  <data name="RL_LevelName_2_2" xml:space="preserve">
-    <value>The Winds of Strange - Los Vientos de lo Extraño</value>
-  </data>
-  <data name="RL_LevelName_2_3" xml:space="preserve">
-    <value>Castle in the Clouds - Castillo en las Nubes</value>
-  </data>
-  <data name="RL_LevelName_2_4" xml:space="preserve">
-    <value>Altitude Quickness - Rapidez en la Altitud</value>
-  </data>
-  <data name="RL_LevelName_2_5" xml:space="preserve">
-    <value>When Toads Fly - Cuando las Ranas Vuelan</value>
-  </data>
-  <data name="RL_LevelName_3_1" xml:space="preserve">
-    <value>What the Duck? - ¿Qué Pasa con el Pato?</value>
-  </data>
-  <data name="RL_LevelName_3_2" xml:space="preserve">
-    <value>Spoiled Rotten - Malcriado a Más No Poder</value>
-  </data>
-  <data name="RL_LevelName_3_3" xml:space="preserve">
-    <value>I've Got a Filling - Me Siento Lleno</value>
-  </data>
-  <data name="RL_LevelName_3_4" xml:space="preserve">
-    <value>Snakes on a Cake - Serpientes en un Pastel</value>
-  </data>
-  <data name="RL_LevelName_3_5" xml:space="preserve">
-    <value>Lucha Libre Get Away - Escapada de Lucha Libre</value>
-  </data>
-  <data name="RL_LevelName_4_1" xml:space="preserve">
-    <value>The Mysterious Inflatable Island - La Misteriosa Isla Inflable</value>
-  </data>
-  <data name="RL_LevelName_4_2" xml:space="preserve">
-    <value>The Deadly Lights - Las Luces Mortales</value>
-  </data>
-  <data name="RL_LevelName_4_3" xml:space="preserve">
-    <value>Mansion of the Deep - Mansión de las Profundidades</value>
-  </data>
-  <data name="RL_LevelName_4_4" xml:space="preserve">
-    <value>Infiltration Station - Estación de Infiltración</value>
-  </data>
-  <data name="RL_LevelName_4_5" xml:space="preserve">
-    <value>Elevator Ambush - Emboscada en el Ascensor</value>
-  </data>
-  <data name="RL_LevelName_4_6" xml:space="preserve">
-    <value>There's Always a Bigger Fish - Siempre hay un Pez más Grande</value>
-  </data>
-  <data name="RL_LevelName_5_1" xml:space="preserve">
-    <value>Shields Up... and Down - Escudos Arriba... y Abajo</value>
-  </data>
-  <data name="RL_LevelName_5_2" xml:space="preserve">
-    <value>The Dark Creatures Rise - El Ascenso de las Criaturas Oscuras</value>
-  </data>
-  <data name="RL_LevelName_5_3" xml:space="preserve">
-    <value>The Amazing Maze - El Laberinto Asombroso</value>
-  </data>
-  <data name="RL_LevelName_5_4" xml:space="preserve">
-    <value>The Great Lava Pursuit - La Gran Persecución de Lava</value>
-  </data>
-  <data name="RL_LevelName_5_5" xml:space="preserve">
-    <value>Swarmed and Dangerous - Rodeado y Peligroso</value>
-  </data>
-  <data name="RL_LevelName_5_6" xml:space="preserve">
-    <value>Hell Breaks Loose - El Infierno se Desata</value>
-  </data>
-  <data name="R2_BonusLevelName_1" xml:space="preserve">
-    <value>The Walk of Life - El Camino de la Vida</value>
-  </data>
-  <data name="R2_BonusLevelName_2" xml:space="preserve">
-    <value>The Walk of Power - El Camino del Poder</value>
-  </data>
-  <data name="RM_RaceName_0" xml:space="preserve">
-    <value>First Ruins - Primeras Ruinas</value>
-  </data>
-  <data name="RM_RaceName_1" xml:space="preserve">
-    <value>Nebulous Tower - Torre Nebulosa</value>
-  </data>
-  <data name="RM_RaceName_2" xml:space="preserve">
-    <value>Dark Sewer - Alcantarilla Oscura</value>
-  </data>
-  <data name="RM_RaceName_3" xml:space="preserve">
-    <value>Dawn Sand - Arena del Amanecer</value>
-  </data>
-  <data name="RM_RaceName_4" xml:space="preserve">
-    <value>Water Canyon - Cañón de Agua</value>
-  </data>
-  <data name="RM_RaceName_5" xml:space="preserve">
-    <value>Thousand Waterfalls - Mil Cataratas</value>
-  </data>
-  <data name="RM_RaceName_6" xml:space="preserve">
-    <value>Forest Jump - Salto en el Bosque</value>
-  </data>
-  <data name="RM_RaceName_7" xml:space="preserve">
-    <value>Zenith Harbour - Puerto del Zenit</value>
-  </data>
-  <data name="RM_RaceName_8" xml:space="preserve">
-    <value>Treasure Ship - Barco del Tesoro</value>
-  </data>
-  <data name="RM_RaceName_9" xml:space="preserve">
-    <value>Pipe Maze - Laberinto de Tuberías</value>
-  </data>
-  <data name="RM_RaceName_10" xml:space="preserve">
-    <value>Lava Factory - Fábrica de Lava</value>
-  </data>
-  <data name="RM_RaceName_11" xml:space="preserve">
-    <value>Electric Final - Final Eléctrico</value>
-  </data>
-  <data name="RM_RaceName_12" xml:space="preserve">
-    <value>Future - Futuro</value>
-  </data>
-  <data name="RM_RaceName_13" xml:space="preserve">
-    <value>Big Bang - Gran Explosión</value>
-  </data>
-  <data name="RM_RaceName_14" xml:space="preserve">
-    <value>Speed Stress - Estrés de Velocidad</value>
-  </data>
-  <data name="RM_RaceName_15" xml:space="preserve">
-    <value>Born To Slide - Nacido para Deslizarse</value>
-  </data>
-  <data name="GameLink_R2Fix" xml:space="preserve">
-    <value>Ray2Fix</value>
-  </data>
-  <data name="Config_Device_Port" xml:space="preserve">
-    <value>Puerto</value>
-  </data>
-  <data name="Config_Device_Irq" xml:space="preserve">
-    <value>IRQ</value>
-  </data>
-  <data name="Config_Device_Dma" xml:space="preserve">
-    <value>DMA</value>
-  </data>
-  <data name="Config_Device_Param" xml:space="preserve">
-    <value>Parámetro</value>
-  </data>
-  <data name="Config_Device_ID" xml:space="preserve">
-    <value>ID del dispositivo</value>
-  </data>
-  <data name="Config_Device_Cards" xml:space="preserve">
-    <value>Tarjetas</value>
-  </data>
-  <data name="RRR_LevelName_0" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
-  </data>
-  <data name="RRR_LevelName_1" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
-  </data>
-  <data name="RRR_LevelName_2" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
-  </data>
-  <data name="RRR_LevelName_3" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
-  </data>
-  <data name="RRR_LevelName_4" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
-  </data>
-  <data name="RRR_LevelName_5" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
-  </data>
-  <data name="RRR_LevelName_6" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
-  </data>
-  <data name="RRR_LevelName_7" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
-  </data>
-  <data name="RRR_LevelName_8" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
-  </data>
-  <data name="RRR_LevelName_9" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
-  </data>
-  <data name="RRR_LevelName_10" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
-  </data>
-  <data name="RRR_LevelName_11" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
-  </data>
-  <data name="RRR_LevelName_12" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
-  </data>
-  <data name="RRR_LevelName_13" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
-  </data>
-  <data name="RRR_LevelName_14" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
-  </data>
-  <data name="RRR_LevelName_15" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
-  </data>
-  <data name="RRR_LevelName_16" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
-  </data>
-  <data name="RRR_LevelName_17" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
-  </data>
-  <data name="RRR_LevelName_18" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
-  </data>
-  <data name="RRR_LevelName_19" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
-  </data>
-  <data name="RRR_LevelName_20" xml:space="preserve">
-    <value>Bunnies can't jump</value>
-  </data>
-  <data name="RRR_LevelName_21" xml:space="preserve">
-    <value>Bunnies don't give gifts</value>
-  </data>
-  <data name="RRR_LevelName_22" xml:space="preserve">
-    <value>Bunnies don't know what to do with cows</value>
-  </data>
-  <data name="RRR_LevelName_23" xml:space="preserve">
-    <value>Bunnies never close doors</value>
-  </data>
-  <data name="RRR_LevelName_24" xml:space="preserve">
-    <value>Bunnies don't milk cows</value>
-  </data>
-  <data name="RRR_LevelName_25" xml:space="preserve">
-    <value>Bunnies are addicted to carrot juice</value>
-  </data>
-  <data name="RRR_LevelName_26" xml:space="preserve">
-    <value>Bunnies can't slide Part 2</value>
-  </data>
-  <data name="RRR_LevelName_27" xml:space="preserve">
-    <value>Bunnies are heartless with pigs</value>
-  </data>
-  <data name="RRR_LevelName_28" xml:space="preserve">
-    <value>Bunnies don't like bats</value>
-  </data>
-  <data name="RRR_LevelName_29" xml:space="preserve">
-    <value>Bunnies don't use toothpaste</value>
-  </data>
-  <data name="RRR_LevelName_30" xml:space="preserve">
-    <value>Bunnies can't fly</value>
-  </data>
-  <data name="RRR_LevelName_31" xml:space="preserve">
-    <value>Bunnies can only fly downwards</value>
-  </data>
-  <data name="RRR_LevelName_32" xml:space="preserve">
-    <value>Bunnies can't play soccer</value>
-  </data>
-  <data name="RRR_LevelName_33" xml:space="preserve">
-    <value>Bunnies don't understand bowling</value>
-  </data>
-  <data name="RRR_LevelName_34" xml:space="preserve">
-    <value>Animal Farm</value>
-  </data>
-  <data name="RRR_LevelName_35" xml:space="preserve">
-    <value>Bunnies have a great ear for music</value>
-  </data>
-  <data name="RRR_LevelName_36" xml:space="preserve">
-    <value>Bunnies are slow to react</value>
-  </data>
-  <data name="RRR_LevelName_37" xml:space="preserve">
-    <value>Bunnies are fantastic dancers Part 3</value>
-  </data>
-  <data name="RRR_LevelName_38" xml:space="preserve">
-    <value>Bunnies like to stuff themselves</value>
-  </data>
-  <data name="RRR_LevelName_39" xml:space="preserve">
-    <value>Bunnies are raving mad Part 2</value>
-  </data>
-  <data name="RRR_LevelName_40" xml:space="preserve">
-    <value>Bunnies like a good race</value>
-  </data>
-  <data name="RRR_LevelName_41" xml:space="preserve">
-    <value>Race good a like Bunnies</value>
-  </data>
-  <data name="RRR_LevelName_42" xml:space="preserve">
-    <value>Bunnies like a good race on the beach</value>
-  </data>
-  <data name="RRR_LevelName_43" xml:space="preserve">
-    <value>Bunnies only fly downwards</value>
-  </data>
-  <data name="RRR_LevelName_44" xml:space="preserve">
-    <value>Bunnies are fantastic dancers</value>
-  </data>
-  <data name="RRR_LevelName_45" xml:space="preserve">
-    <value>Bunnies don't sleep well</value>
-  </data>
-  <data name="RRR_LevelName_46" xml:space="preserve">
-    <value>Bunnies have no memory</value>
-  </data>
-  <data name="RRR_LevelName_47" xml:space="preserve">
-    <value>Bunnies rarely leave their burrows</value>
-  </data>
-  <data name="RRR_LevelName_48" xml:space="preserve">
-    <value>Bunnies can't jump Part 2</value>
-  </data>
-  <data name="RRR_LevelName_49" xml:space="preserve">
-    <value>Bunnies never close doors Part 2</value>
-  </data>
-  <data name="RRR_LevelName_50" xml:space="preserve">
-    <value>Bunnies don't milk cows Part 2</value>
-  </data>
-  <data name="RRR_LevelName_51" xml:space="preserve">
-    <value>Bunnies like a good cowboy race</value>
-  </data>
-  <data name="RRR_LevelName_52" xml:space="preserve">
-    <value>Bunnies are heartless with pigs Part 2</value>
-  </data>
-  <data name="RRR_LevelName_53" xml:space="preserve">
-    <value>Bunnies Psychology. Volume 1</value>
-  </data>
-  <data name="RRR_LevelName_54" xml:space="preserve">
-    <value>Bunnies don't like bats Part 2</value>
-  </data>
-  <data name="RRR_LevelName_55" xml:space="preserve">
-    <value>Bunnies don't use toothpaste Part 2</value>
-  </data>
-  <data name="RRR_LevelName_56" xml:space="preserve">
-    <value>Bunnies can't fly Part 2</value>
-  </data>
-  <data name="RRR_LevelName_57" xml:space="preserve">
-    <value>Bunnies Psychology. Volume 2</value>
-  </data>
-  <data name="RRR_LevelName_58" xml:space="preserve">
-    <value>Bunnies can't shear sheep</value>
-  </data>
-  <data name="RRR_LevelName_59" xml:space="preserve">
-    <value>Bunnies are slow to react Part 2</value>
-  </data>
-  <data name="RRR_LevelName_60" xml:space="preserve">
-    <value>Bunnies are slow to react Part 3</value>
-  </data>
-  <data name="RRR_LevelName_61" xml:space="preserve">
-    <value>Bunnies like to stuff themselves Part 2</value>
-  </data>
-  <data name="RRR_LevelName_62" xml:space="preserve">
-    <value>Bunnies have no memory Part 2</value>
-  </data>
-  <data name="RRR_LevelName_63" xml:space="preserve">
-    <value>Bunnies rarely leave their burrows Part 2</value>
-  </data>
-  <data name="RRR_LevelName_64" xml:space="preserve">
-    <value>Bunnies like surprises</value>
-  </data>
-  <data name="RRR_LevelName_65" xml:space="preserve">
-    <value>Bunnies don't like being shot at</value>
-  </data>
-  <data name="RRR_LevelName_66" xml:space="preserve">
-    <value>Bunnies have natural rhythm</value>
-  </data>
-  <data name="RRR_LevelName_67" xml:space="preserve">
-    <value>Bunnies are a-mazing</value>
-  </data>
-  <data name="RRR_LevelName_68" xml:space="preserve">
-    <value>The Dark Side</value>
-  </data>
-  <data name="RRR_LevelName_69" xml:space="preserve">
-    <value>Bunnies have natural rhythm Part 2</value>
-  </data>
-  <data name="RRR_LevelName_70" xml:space="preserve">
-    <value>Bunnies are ticklish</value>
-  </data>
-  <data name="RRR_LevelName_71" xml:space="preserve">
-    <value>Bunnies Psychology. Volume 3</value>
-  </data>
-  <data name="RRR_LevelName_72" xml:space="preserve">
-    <value>Bunnies are bad at peek-a-boo</value>
-  </data>
-  <data name="RRR_LevelName_73" xml:space="preserve">
-    <value>Bunnies are oversensitive</value>
-  </data>
-  <data name="RRR_LevelName_74" xml:space="preserve">
-    <value>Bunnies have a poor grasp of anatomy</value>
-  </data>
-  <data name="RRR_LevelName_75" xml:space="preserve">
-    <value>Bunnies can't slide</value>
-  </data>
-  <data name="RRR_LevelName_76" xml:space="preserve">
-    <value>Bunnies can't herd</value>
-  </data>
-  <data name="RRR_LevelName_77" xml:space="preserve">
-    <value>Bunnies are not ostriches</value>
-  </data>
-  <data name="RRR_LevelName_78" xml:space="preserve">
-    <value>Bunnies just wanna have fun</value>
-  </data>
-  <data name="RRR_LevelName_79" xml:space="preserve">
-    <value>Bunnies love disco dancing</value>
-  </data>
-  <data name="RRR_LevelName_80" xml:space="preserve">
-    <value>Bunnies get a kick out of Hip-Hop</value>
-  </data>
-  <data name="RRR_LevelName_81" xml:space="preserve">
-    <value>Bunninos dansa la Bamba</value>
-  </data>
-  <data name="RRR_LevelName_82" xml:space="preserve">
-    <value>Deep down, Bunnies are rockers</value>
-  </data>
-  <data name="RRR_LevelName_83" xml:space="preserve">
-    <value>Bunnies are raving mad</value>
-  </data>
-  <data name="RRR_LevelName_84" xml:space="preserve">
-    <value>Bunnies are fantastic dancers Part 2</value>
-  </data>
-  <data name="RRR_LevelName_85" xml:space="preserve">
-    <value>Bunnies love disco dancing Part 2</value>
-  </data>
-  <data name="RRR_LevelName_86" xml:space="preserve">
-    <value>Bunnies just wanna have fun Part 2</value>
-  </data>
-  <data name="RRR_LevelName_87" xml:space="preserve">
-    <value>Bunnies get a kick out of Hip-Hop Part 2</value>
-  </data>
-  <data name="RRR_LevelName_88" xml:space="preserve">
-    <value>Bunninos dansa la Bamba Part 2</value>
-  </data>
-  <data name="RRR_LevelName_89" xml:space="preserve">
-    <value>Deep down, Bunnies are rockers Part 2</value>
-  </data>
-  <data name="RRR_LevelName_90" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
-  </data>
-  <data name="RRR_LevelName_91" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
-  </data>
-  <data name="RRR_LevelName_92" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
-  </data>
-  <data name="RRR_LevelName_93" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
-  </data>
-  <data name="RRR_LevelName_94" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
-  </data>
-  <data name="RRR_LevelName_95" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
-  </data>
-  <data name="RRR_LevelName_96" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
-  </data>
-  <data name="RRR_LevelName_97" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
-  </data>
-  <data name="RRR_LevelName_98" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
-  </data>
-  <data name="RRR_LevelName_99" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
-  </data>
-  <data name="RRR_LevelName_100" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
-  </data>
-  <data name="RRR_LevelName_101" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
-  </data>
-  <data name="RRR_LevelName_102" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
-  </data>
-  <data name="RRR_LevelName_103" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
-  </data>
-  <data name="RRR_LevelName_104" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
-  </data>
-  <data name="RRR_LevelName_105" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
-  </data>
-  <data name="RRR_LevelName_106" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
-  </data>
-  <data name="RRR_LevelName_107" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
-  </data>
-  <data name="RRR_LevelName_108" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
-  </data>
-  <data name="RRR_LevelName_109" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
-  </data>
-  <data name="RRR_LevelName_110" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
-  </data>
-  <data name="RRR_LevelName_111" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
-  </data>
-  <data name="RRR_LevelName_112" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
-  </data>
-  <data name="RRR_LevelName_113" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
-  </data>
-  <data name="RRR_LevelName_114" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
-  </data>
-  <data name="RRR_LevelName_115" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
-  </data>
-  <data name="RRR_LevelName_116" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
-  </data>
-  <data name="RRR_LevelName_117" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
-  </data>
-  <data name="RRR_LevelName_118" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
-  </data>
-  <data name="RRR_LevelName_119" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
-  </data>
-  <data name="RRR_LevelName_120" xml:space="preserve">
-    <value>Extreme experiences</value>
-  </data>
-  <data name="RRR_LevelName_121" xml:space="preserve">
-    <value>The jogging Pants-tathlon</value>
-  </data>
-  <data name="RRR_LevelName_122" xml:space="preserve">
-    <value>The Pants-tathlon in socks</value>
-  </data>
-  <data name="RRR_LevelName_123" xml:space="preserve">
-    <value>The Pants-tathlon tracksuit</value>
-  </data>
-  <data name="RRR_LevelName_124" xml:space="preserve">
-    <value>Pain-tathlon</value>
-  </data>
-  <data name="RRR_LevelName_125" xml:space="preserve">
-    <value>Bunny Fair</value>
-  </data>
-  <data name="RRR_LevelName_126" xml:space="preserve">
-    <value>Rayman</value>
-  </data>
-  <data name="RRR_LevelName_127" xml:space="preserve">
-    <value>World Eclecticism Championship</value>
-  </data>
-  <data name="RRR_LevelName_130" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
-  </data>
-  <data name="RRR_LevelName_131" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
-  </data>
-  <data name="RRR_LevelName_132" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
-  </data>
-  <data name="RRR_LevelName_133" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
-  </data>
-  <data name="RRR_LevelName_134" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
-  </data>
-  <data name="RRR_LevelName_135" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
-  </data>
-  <data name="RRR_LevelName_136" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
-  </data>
-  <data name="RRR_LevelName_137" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
-  </data>
-  <data name="RRR_LevelName_138" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
-  </data>
-  <data name="RRR_LevelName_139" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
-  </data>
-  <data name="RRR_LevelName_140" xml:space="preserve">
-    <value>Bunnies are shooting all over the place</value>
-  </data>
-  <data name="RFR_LevelName_1_10" xml:space="preserve">
-    <value>Back to the Roots</value>
-  </data>
-  <data name="RFR_LevelName_2_10" xml:space="preserve">
-    <value>Leap of Faith</value>
-  </data>
-  <data name="RFR_LevelName_3_10" xml:space="preserve">
-    <value>Watch the snakes</value>
-  </data>
-  <data name="RFR_LevelName_4_10" xml:space="preserve">
-    <value>Breath of Death</value>
-  </data>
-  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
-    <value>• {0}</value>
-  </data>
-  <data name="Progression_RHR_Level0Header" xml:space="preserve">
-    <value>Fairy Council</value>
-  </data>
-  <data name="Progression_RHR_Level1Header" xml:space="preserve">
-    <value>Clearleaf Forest</value>
-  </data>
-  <data name="Progression_RHR_Level2Header" xml:space="preserve">
-    <value>Clearleaf Falls</value>
-  </data>
-  <data name="Progression_RHR_Level3Header" xml:space="preserve">
-    <value>Infernal Machine</value>
-  </data>
-  <data name="Progression_RHR_Level4Header" xml:space="preserve">
-    <value>Dungeon of Murk</value>
-  </data>
-  <data name="Progression_RHR_Level5Header" xml:space="preserve">
-    <value>Bog of Murk</value>
-  </data>
-  <data name="Progression_RHR_Level6Header" xml:space="preserve">
-    <value>Begoniax Bayou</value>
-  </data>
-  <data name="Progression_RHR_Level7Header" xml:space="preserve">
-    <value>Rivers of Murk</value>
-  </data>
-  <data name="Progression_RHR_Level8Header" xml:space="preserve">
-    <value>Hoodlum Moor</value>
-  </data>
-  <data name="Progression_RHR_Level9Header" xml:space="preserve">
-    <value>Land of the Livid Dead</value>
-  </data>
-  <data name="Progression_RHR_Level10Header" xml:space="preserve">
-    <value>Menhirs of Power</value>
-  </data>
-  <data name="Progression_RHR_Level11Header" xml:space="preserve">
-    <value>Pit of Endless Fire</value>
-  </data>
-  <data name="Progression_RHR_Level12Header" xml:space="preserve">
-    <value>Clouds of Peril</value>
-  </data>
-  <data name="Progression_RHR_Level13Header" xml:space="preserve">
-    <value>Heart of the World</value>
-  </data>
-  <data name="Progression_RHR_Level14Header" xml:space="preserve">
-    <value>Reflux's Lair</value>
-  </data>
-  <data name="Progression_RHR_Level15Header" xml:space="preserve">
-    <value>Vertiginous Riddle</value>
-  </data>
-  <data name="Progression_RHR_Level16Header" xml:space="preserve">
-    <value>Cloudy Cache</value>
-  </data>
-  <data name="Progression_RHR_Level17Header" xml:space="preserve">
-    <value>Mélée Mayhem</value>
-  </data>
-  <data name="Progression_RHR_Level18Header" xml:space="preserve">
-    <value>Scalding Cascade</value>
-  </data>
-  <data name="Progression_RHR_Level19Header" xml:space="preserve">
-    <value>Sulphurous Sea</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
-    <value>Child's play</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
-    <value>The kids' hamlet</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
-    <value>The toy chase</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
-    <value>Toy box</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
-    <value>Celestial castle</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
-    <value>Dream forest</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
-    <value>The leafy valley</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
-    <value>Colonial jungle</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
-    <value>The lush mountaintops</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
-    <value>Hidden burrow</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
-    <value>Stomach circuit</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
-    <value>Gastric rivers</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
-    <value>Living cavern</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
-    <value>Swallowed treasures</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
-    <value>The sticky lair</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
-    <value>The desert of desserts</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
-    <value>Cake race</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
-    <value>The sweet islands</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
-    <value>Not a piece of cake!</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
-    <value>Tart tunnels</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
-    <value>Ginger-bunny-bread</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
-    <value>Filthy corridors</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
-    <value>Agony jails</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
-    <value>Infernal escape</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
-    <value>Spikes and yikes!</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
-    <value>The rabbids' lair</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>Durante algunas instalaciones de Rayman Designer, es posible que no se cree el archivo de configuración, lo que provoca un error en el Mapper al iniciar el juego. Esta utilidad solucionará ese problema creando el archivo de configuración en caso de que no esté presente.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Crear</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Habilitar UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>Esta utilidad modifica la configuración del juego para que UbiRay aparezca como un disfraz normal en la Galería de Héroes.</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>El uso de cualquiera de los siguientes comandos de depuración permite que el juego se inicie en un entorno de depuración, cambiando la forma en que se ejecuta el juego.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>ADVERTENCIA: El uso de estos comandos de depuración puede corromper tu archivo de guardado. Siempre haz una copia de seguridad antes de usarlos.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Invulnerabilidad</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>Esto permite al jugador no morir al recibir daño</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Ocultar puntero del mouse</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>Esto ocultará el puntero del mouse en los menús del juego</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Zoom máximo de la cámara</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>Esto maximizará el zoom de la cámara</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Fotogramas por segundo</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>Esto establecerá los fotogramas por segundo a los que se ejecuta el juego</value>
-  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Seleccionar directorio de instalación
 </value>
@@ -1556,11 +761,17 @@ Este es un proyecto en crecimiento con la planificación de agregar más caracte
   <data name="Download_ConfirmSize" xml:space="preserve">
     <value>Este parche requiere que sus archivos se descarguen. El tamaño total de la descarga es {0}. ¿Continuar?</value>
   </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Confirmar descarga</value>
+  </data>
   <data name="Download_Confirm" xml:space="preserve">
     <value>Este parche requiere que se descarguen sus archivos. ¿Continuar?</value>
   </data>
   <data name="Download_Error" xml:space="preserve">
     <value>No se pudieron descargar los archivos</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Error desconocido</value>
   </data>
   <data name="Update_WebError" xml:space="preserve">
     <value>No se pudo establecer una conexión con el servidor</value>
@@ -1594,6 +805,9 @@ Versión actual: {0}
 
 Noticias:
 {2}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Se encontró una nueva versión</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>No se pudo crear el programa de actualización. Para descargar manualmente la nueva versión, ve a {0} y descarga la última versión desde allí.</value>
@@ -2049,6 +1263,18 @@ Para empezar, cambia las configuraciones que desees a continuación y presiona '
   <data name="Lang_Swedish" xml:space="preserve">
     <value>Sueco</value>
   </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 con bordes</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilidad de banda sonora por nivel, eliminación de verificación de disco de Rayman M/Arena</value>
   </data>
@@ -2083,6 +1309,9 @@ Para empezar, cambia las configuraciones que desees a continuación y presiona '
   </data>
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Algunos juegos no se respaldaron</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Configuración</value>
   </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Las animaciones incluyen transiciones de página y animaciones de cambio de tamaño para la página de Juegos</value>
@@ -2209,6 +1438,9 @@ Noticias:
   <data name="DeployFilesError" xml:space="preserve">
     <value>Se produjo un error al configurar los archivos adicionales requeridos. Es posible que algunas funciones del programa no funcionen como se esperaba. Se recomienda intentar reiniciar el programa.</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
   <data name="Utilities_RequiresAdmin" xml:space="preserve">
     <value>Esta utilidad requiere que la aplicación se ejecute como administrador</value>
   </data>
@@ -2244,8 +1476,17 @@ Mensaje de error: {1}</value>
   <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
     <value>Índice de versión</value>
   </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Archivo grande</value>
+  </data>
   <data name="GoHomeConfig_Commands" xml:space="preserve">
     <value>Comandos personalizados</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
   </data>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Personalizado</value>
@@ -2358,6 +1599,9 @@ Mensaje de error: {1}</value>
   <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
     <value>Se produjo un error al actualizar la versión de Print Studio</value>
   </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
   <data name="GamesPage_Category_Rabbids" xml:space="preserve">
     <value>Rabbids</value>
   </data>
@@ -2463,8 +1707,29 @@ Mensaje de error: {1}</value>
   <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
     <value>Seleccionar directorio para importar</value>
   </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>No se encontraron archivos para importar</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Los archivos se han exportado</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>El archivo se ha exportado</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} no se ha podido exportar</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Reempaquetando archivo</value>
+  </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Selección de extensión de archivo</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Selecciona la extensión de archivo para exportar como archivos {0}</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Explorador de Archivos</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Se produjo un error en el explorador de archivos y tuvo que cerrarse</value>
@@ -2492,6 +1757,9 @@ Mensaje de error: {1}</value>
   </data>
   <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
     <value>Archivos de Localización UbiArt (.loc/.loc8)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Explorador de archivos</value>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Conversores</value>
@@ -2613,6 +1881,90 @@ Mensaje de error: {1}</value>
   <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
     <value>El parche UbiRay se revirtió correctamente</value>
   </data>
+  <data name="RL_LevelName_1_1" xml:space="preserve">
+    <value>Once upon a Time - Érase una vez</value>
+  </data>
+  <data name="RL_LevelName_1_2" xml:space="preserve">
+    <value>Creepy Castle - Castillo Espeluznante</value>
+  </data>
+  <data name="RL_LevelName_1_3" xml:space="preserve">
+    <value>Enchanted Forest - Bosque Encantado</value>
+  </data>
+  <data name="RL_LevelName_1_4" xml:space="preserve">
+    <value>Ropes Course - Curso de Cuerdas</value>
+  </data>
+  <data name="RL_LevelName_1_5" xml:space="preserve">
+    <value>Quick Sand - Arena Movediza</value>
+  </data>
+  <data name="RL_LevelName_1_6" xml:space="preserve">
+    <value>How to Shoot your Dragon - Cómo Disparar a tu Dragón</value>
+  </data>
+  <data name="RL_LevelName_2_1" xml:space="preserve">
+    <value>Ray and the Beanstalk - Ray y el Tallo de Judías</value>
+  </data>
+  <data name="RL_LevelName_2_2" xml:space="preserve">
+    <value>The Winds of Strange - Los Vientos de lo Extraño</value>
+  </data>
+  <data name="RL_LevelName_2_3" xml:space="preserve">
+    <value>Castle in the Clouds - Castillo en las Nubes</value>
+  </data>
+  <data name="RL_LevelName_2_4" xml:space="preserve">
+    <value>Altitude Quickness - Rapidez en la Altitud</value>
+  </data>
+  <data name="RL_LevelName_2_5" xml:space="preserve">
+    <value>When Toads Fly - Cuando las Ranas Vuelan</value>
+  </data>
+  <data name="RL_LevelName_3_1" xml:space="preserve">
+    <value>What the Duck? - ¿Qué Pasa con el Pato?</value>
+  </data>
+  <data name="RL_LevelName_3_2" xml:space="preserve">
+    <value>Spoiled Rotten - Malcriado a Más No Poder</value>
+  </data>
+  <data name="RL_LevelName_3_3" xml:space="preserve">
+    <value>I've Got a Filling - Me Siento Lleno</value>
+  </data>
+  <data name="RL_LevelName_3_4" xml:space="preserve">
+    <value>Snakes on a Cake - Serpientes en un Pastel</value>
+  </data>
+  <data name="RL_LevelName_3_5" xml:space="preserve">
+    <value>Lucha Libre Get Away - Escapada de Lucha Libre</value>
+  </data>
+  <data name="RL_LevelName_4_1" xml:space="preserve">
+    <value>The Mysterious Inflatable Island - La Misteriosa Isla Inflable</value>
+  </data>
+  <data name="RL_LevelName_4_2" xml:space="preserve">
+    <value>The Deadly Lights - Las Luces Mortales</value>
+  </data>
+  <data name="RL_LevelName_4_3" xml:space="preserve">
+    <value>Mansion of the Deep - Mansión de las Profundidades</value>
+  </data>
+  <data name="RL_LevelName_4_4" xml:space="preserve">
+    <value>Infiltration Station - Estación de Infiltración</value>
+  </data>
+  <data name="RL_LevelName_4_5" xml:space="preserve">
+    <value>Elevator Ambush - Emboscada en el Ascensor</value>
+  </data>
+  <data name="RL_LevelName_4_6" xml:space="preserve">
+    <value>There's Always a Bigger Fish - Siempre hay un Pez más Grande</value>
+  </data>
+  <data name="RL_LevelName_5_1" xml:space="preserve">
+    <value>Shields Up... and Down - Escudos Arriba... y Abajo</value>
+  </data>
+  <data name="RL_LevelName_5_2" xml:space="preserve">
+    <value>The Dark Creatures Rise - El Ascenso de las Criaturas Oscuras</value>
+  </data>
+  <data name="RL_LevelName_5_3" xml:space="preserve">
+    <value>The Amazing Maze - El Laberinto Asombroso</value>
+  </data>
+  <data name="RL_LevelName_5_4" xml:space="preserve">
+    <value>The Great Lava Pursuit - La Gran Persecución de Lava</value>
+  </data>
+  <data name="RL_LevelName_5_5" xml:space="preserve">
+    <value>Swarmed and Dangerous - Rodeado y Peligroso</value>
+  </data>
+  <data name="RL_LevelName_5_6" xml:space="preserve">
+    <value>Hell Breaks Loose - El Infierno se Desata</value>
+  </data>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
     <value>Archivos de guardado de Rayman Legends</value>
   </data>
@@ -2700,6 +2052,12 @@ Mensaje de error: {1}</value>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>Se produjo un error al actualizar el idioma</value>
   </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life - El Camino de la Vida</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power - El Camino del Poder</value>
+  </data>
   <data name="Download_ManualInstructions" xml:space="preserve">
     <value>Descargar archivos:
 
@@ -2763,6 +2121,54 @@ Mensaje de error: {1}</value>
   </data>
   <data name="Progression_RM_Lums" xml:space="preserve">
     <value>Lums</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>First Ruins - Primeras Ruinas</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Nebulous Tower - Torre Nebulosa</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Dark Sewer - Alcantarilla Oscura</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Dawn Sand - Arena del Amanecer</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Water Canyon - Cañón de Agua</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Thousand Waterfalls - Mil Cataratas</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forest Jump - Salto en el Bosque</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Zenith Harbour - Puerto del Zenit</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Treasure Ship - Barco del Tesoro</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Pipe Maze - Laberinto de Tuberías</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Lava Factory - Fábrica de Lava</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Electric Final - Final Eléctrico</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Future - Futuro</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang - Gran Explosión</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Speed Stress - Estrés de Velocidad</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Born To Slide - Nacido para Deslizarse</value>
   </data>
   <data name="Browse_SelectFile" xml:space="preserve">
     <value>Seleccionar un archivo</value>
@@ -3016,6 +2422,9 @@ Mensaje de error: {1}</value>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Versión secundaria</value>
   </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
   <data name="Archive_ViewEditFile" xml:space="preserve">
     <value>Ver/Editar</value>
   </data>
@@ -3087,6 +2496,24 @@ Mensaje de error: {1}</value>
   </data>
   <data name="Config_Device" xml:space="preserve">
     <value>Dispositivo</value>
+  </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>IRQ</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>DMA</value>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Parámetro</value>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>ID del dispositivo</value>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Tarjetas</value>
   </data>
   <data name="Config_Action_Left" xml:space="preserve">
     <value>Izquierda</value>
@@ -3664,6 +3091,435 @@ Botón Start: Pausa</value>
   </data>
   <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
     <value>Al habilitar esto, las ventanas, como la ventana de opciones del juego o los cuadros de diálogo de mensajes, se mostrarán como ventanas emergentes dentro de la ventana principal. Al deshabilitarlo, se mostrarán como ventanas separadas.</value>
+  </data>
+  <data name="RRR_LevelName_0" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_1" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_2" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_3" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_4" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_5" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_6" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_7" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_8" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_9" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_10" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_11" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_12" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_13" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_14" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_15" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_16" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_17" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_18" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_19" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_20" xml:space="preserve">
+    <value>Bunnies can't jump</value>
+  </data>
+  <data name="RRR_LevelName_21" xml:space="preserve">
+    <value>Bunnies don't give gifts</value>
+  </data>
+  <data name="RRR_LevelName_22" xml:space="preserve">
+    <value>Bunnies don't know what to do with cows</value>
+  </data>
+  <data name="RRR_LevelName_23" xml:space="preserve">
+    <value>Bunnies never close doors</value>
+  </data>
+  <data name="RRR_LevelName_24" xml:space="preserve">
+    <value>Bunnies don't milk cows</value>
+  </data>
+  <data name="RRR_LevelName_25" xml:space="preserve">
+    <value>Bunnies are addicted to carrot juice</value>
+  </data>
+  <data name="RRR_LevelName_26" xml:space="preserve">
+    <value>Bunnies can't slide Part 2</value>
+  </data>
+  <data name="RRR_LevelName_27" xml:space="preserve">
+    <value>Bunnies are heartless with pigs</value>
+  </data>
+  <data name="RRR_LevelName_28" xml:space="preserve">
+    <value>Bunnies don't like bats</value>
+  </data>
+  <data name="RRR_LevelName_29" xml:space="preserve">
+    <value>Bunnies don't use toothpaste</value>
+  </data>
+  <data name="RRR_LevelName_30" xml:space="preserve">
+    <value>Bunnies can't fly</value>
+  </data>
+  <data name="RRR_LevelName_31" xml:space="preserve">
+    <value>Bunnies can only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_32" xml:space="preserve">
+    <value>Bunnies can't play soccer</value>
+  </data>
+  <data name="RRR_LevelName_33" xml:space="preserve">
+    <value>Bunnies don't understand bowling</value>
+  </data>
+  <data name="RRR_LevelName_34" xml:space="preserve">
+    <value>Animal Farm</value>
+  </data>
+  <data name="RRR_LevelName_35" xml:space="preserve">
+    <value>Bunnies have a great ear for music</value>
+  </data>
+  <data name="RRR_LevelName_36" xml:space="preserve">
+    <value>Bunnies are slow to react</value>
+  </data>
+  <data name="RRR_LevelName_37" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 3</value>
+  </data>
+  <data name="RRR_LevelName_38" xml:space="preserve">
+    <value>Bunnies like to stuff themselves</value>
+  </data>
+  <data name="RRR_LevelName_39" xml:space="preserve">
+    <value>Bunnies are raving mad Part 2</value>
+  </data>
+  <data name="RRR_LevelName_40" xml:space="preserve">
+    <value>Bunnies like a good race</value>
+  </data>
+  <data name="RRR_LevelName_41" xml:space="preserve">
+    <value>Race good a like Bunnies</value>
+  </data>
+  <data name="RRR_LevelName_42" xml:space="preserve">
+    <value>Bunnies like a good race on the beach</value>
+  </data>
+  <data name="RRR_LevelName_43" xml:space="preserve">
+    <value>Bunnies only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_44" xml:space="preserve">
+    <value>Bunnies are fantastic dancers</value>
+  </data>
+  <data name="RRR_LevelName_45" xml:space="preserve">
+    <value>Bunnies don't sleep well</value>
+  </data>
+  <data name="RRR_LevelName_46" xml:space="preserve">
+    <value>Bunnies have no memory</value>
+  </data>
+  <data name="RRR_LevelName_47" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows</value>
+  </data>
+  <data name="RRR_LevelName_48" xml:space="preserve">
+    <value>Bunnies can't jump Part 2</value>
+  </data>
+  <data name="RRR_LevelName_49" xml:space="preserve">
+    <value>Bunnies never close doors Part 2</value>
+  </data>
+  <data name="RRR_LevelName_50" xml:space="preserve">
+    <value>Bunnies don't milk cows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_51" xml:space="preserve">
+    <value>Bunnies like a good cowboy race</value>
+  </data>
+  <data name="RRR_LevelName_52" xml:space="preserve">
+    <value>Bunnies are heartless with pigs Part 2</value>
+  </data>
+  <data name="RRR_LevelName_53" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 1</value>
+  </data>
+  <data name="RRR_LevelName_54" xml:space="preserve">
+    <value>Bunnies don't like bats Part 2</value>
+  </data>
+  <data name="RRR_LevelName_55" xml:space="preserve">
+    <value>Bunnies don't use toothpaste Part 2</value>
+  </data>
+  <data name="RRR_LevelName_56" xml:space="preserve">
+    <value>Bunnies can't fly Part 2</value>
+  </data>
+  <data name="RRR_LevelName_57" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 2</value>
+  </data>
+  <data name="RRR_LevelName_58" xml:space="preserve">
+    <value>Bunnies can't shear sheep</value>
+  </data>
+  <data name="RRR_LevelName_59" xml:space="preserve">
+    <value>Bunnies are slow to react Part 2</value>
+  </data>
+  <data name="RRR_LevelName_60" xml:space="preserve">
+    <value>Bunnies are slow to react Part 3</value>
+  </data>
+  <data name="RRR_LevelName_61" xml:space="preserve">
+    <value>Bunnies like to stuff themselves Part 2</value>
+  </data>
+  <data name="RRR_LevelName_62" xml:space="preserve">
+    <value>Bunnies have no memory Part 2</value>
+  </data>
+  <data name="RRR_LevelName_63" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_64" xml:space="preserve">
+    <value>Bunnies like surprises</value>
+  </data>
+  <data name="RRR_LevelName_65" xml:space="preserve">
+    <value>Bunnies don't like being shot at</value>
+  </data>
+  <data name="RRR_LevelName_66" xml:space="preserve">
+    <value>Bunnies have natural rhythm</value>
+  </data>
+  <data name="RRR_LevelName_67" xml:space="preserve">
+    <value>Bunnies are a-mazing</value>
+  </data>
+  <data name="RRR_LevelName_68" xml:space="preserve">
+    <value>The Dark Side</value>
+  </data>
+  <data name="RRR_LevelName_69" xml:space="preserve">
+    <value>Bunnies have natural rhythm Part 2</value>
+  </data>
+  <data name="RRR_LevelName_70" xml:space="preserve">
+    <value>Bunnies are ticklish</value>
+  </data>
+  <data name="RRR_LevelName_71" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 3</value>
+  </data>
+  <data name="RRR_LevelName_72" xml:space="preserve">
+    <value>Bunnies are bad at peek-a-boo</value>
+  </data>
+  <data name="RRR_LevelName_73" xml:space="preserve">
+    <value>Bunnies are oversensitive</value>
+  </data>
+  <data name="RRR_LevelName_74" xml:space="preserve">
+    <value>Bunnies have a poor grasp of anatomy</value>
+  </data>
+  <data name="RRR_LevelName_75" xml:space="preserve">
+    <value>Bunnies can't slide</value>
+  </data>
+  <data name="RRR_LevelName_76" xml:space="preserve">
+    <value>Bunnies can't herd</value>
+  </data>
+  <data name="RRR_LevelName_77" xml:space="preserve">
+    <value>Bunnies are not ostriches</value>
+  </data>
+  <data name="RRR_LevelName_78" xml:space="preserve">
+    <value>Bunnies just wanna have fun</value>
+  </data>
+  <data name="RRR_LevelName_79" xml:space="preserve">
+    <value>Bunnies love disco dancing</value>
+  </data>
+  <data name="RRR_LevelName_80" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop</value>
+  </data>
+  <data name="RRR_LevelName_81" xml:space="preserve">
+    <value>Bunninos dansa la Bamba</value>
+  </data>
+  <data name="RRR_LevelName_82" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers</value>
+  </data>
+  <data name="RRR_LevelName_83" xml:space="preserve">
+    <value>Bunnies are raving mad</value>
+  </data>
+  <data name="RRR_LevelName_84" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_85" xml:space="preserve">
+    <value>Bunnies love disco dancing Part 2</value>
+  </data>
+  <data name="RRR_LevelName_86" xml:space="preserve">
+    <value>Bunnies just wanna have fun Part 2</value>
+  </data>
+  <data name="RRR_LevelName_87" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop Part 2</value>
+  </data>
+  <data name="RRR_LevelName_88" xml:space="preserve">
+    <value>Bunninos dansa la Bamba Part 2</value>
+  </data>
+  <data name="RRR_LevelName_89" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_90" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_91" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_92" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_93" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_94" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_95" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_96" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_97" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_98" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_99" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_100" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_101" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_102" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_103" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_104" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_105" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_106" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_107" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_108" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_109" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_110" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_111" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_112" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_113" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_114" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_115" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_116" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_117" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_118" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_119" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_120" xml:space="preserve">
+    <value>Extreme experiences</value>
+  </data>
+  <data name="RRR_LevelName_121" xml:space="preserve">
+    <value>The jogging Pants-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_122" xml:space="preserve">
+    <value>The Pants-tathlon in socks</value>
+  </data>
+  <data name="RRR_LevelName_123" xml:space="preserve">
+    <value>The Pants-tathlon tracksuit</value>
+  </data>
+  <data name="RRR_LevelName_124" xml:space="preserve">
+    <value>Pain-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_125" xml:space="preserve">
+    <value>Bunny Fair</value>
+  </data>
+  <data name="RRR_LevelName_126" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RRR_LevelName_127" xml:space="preserve">
+    <value>World Eclecticism Championship</value>
+  </data>
+  <data name="RRR_LevelName_130" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_131" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_132" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_133" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_134" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_135" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_136" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_137" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_138" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_139" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_140" xml:space="preserve">
+    <value>Bunnies are shooting all over the place</value>
+  </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Back to the Roots</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Leap of Faith</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Watch the snakes</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Breath of Death</value>
   </data>
   <data name="Archive_ReplaceFile" xml:space="preserve">
     <value>Reemplazar</value>
@@ -4844,11 +4700,14 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
     <value>Crear parche</value>
   </data>
-  <data name="GameHub_PatcherPanel_Info" xml:space="preserve">
-    <value>Se aplicaron {0} parches.</value>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Progression_SharedBackupsInfo" xml:space="preserve">
     <value>Este juego comparte las mismas copias de seguridad que los siguientes juegos. Esto significa que crear una copia de seguridad desde uno de estos juegos sobrescribirá cualquier copia de seguridad creada para los otros juegos también.</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Agrupar juegos</value>
@@ -5255,6 +5114,144 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="Platform_Gba" xml:space="preserve">
     <value>Game Boy Advance</value>
+  </data>
+  <data name="Progression_RHR_Level0Header" xml:space="preserve">
+    <value>Fairy Council</value>
+  </data>
+  <data name="Progression_RHR_Level1Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_RHR_Level2Header" xml:space="preserve">
+    <value>Clearleaf Falls</value>
+  </data>
+  <data name="Progression_RHR_Level3Header" xml:space="preserve">
+    <value>Infernal Machine</value>
+  </data>
+  <data name="Progression_RHR_Level4Header" xml:space="preserve">
+    <value>Dungeon of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level5Header" xml:space="preserve">
+    <value>Bog of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level6Header" xml:space="preserve">
+    <value>Begoniax Bayou</value>
+  </data>
+  <data name="Progression_RHR_Level7Header" xml:space="preserve">
+    <value>Rivers of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level8Header" xml:space="preserve">
+    <value>Hoodlum Moor</value>
+  </data>
+  <data name="Progression_RHR_Level9Header" xml:space="preserve">
+    <value>Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_RHR_Level10Header" xml:space="preserve">
+    <value>Menhirs of Power</value>
+  </data>
+  <data name="Progression_RHR_Level11Header" xml:space="preserve">
+    <value>Pit of Endless Fire</value>
+  </data>
+  <data name="Progression_RHR_Level12Header" xml:space="preserve">
+    <value>Clouds of Peril</value>
+  </data>
+  <data name="Progression_RHR_Level13Header" xml:space="preserve">
+    <value>Heart of the World</value>
+  </data>
+  <data name="Progression_RHR_Level14Header" xml:space="preserve">
+    <value>Reflux's Lair</value>
+  </data>
+  <data name="Progression_RHR_Level15Header" xml:space="preserve">
+    <value>Vertiginous Riddle</value>
+  </data>
+  <data name="Progression_RHR_Level16Header" xml:space="preserve">
+    <value>Cloudy Cache</value>
+  </data>
+  <data name="Progression_RHR_Level17Header" xml:space="preserve">
+    <value>Mélée Mayhem</value>
+  </data>
+  <data name="Progression_RHR_Level18Header" xml:space="preserve">
+    <value>Scalding Cascade</value>
+  </data>
+  <data name="Progression_RHR_Level19Header" xml:space="preserve">
+    <value>Sulphurous Sea</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Child's play</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>The kids' hamlet</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>The toy chase</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Toy box</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Celestial castle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Dream forest</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>The leafy valley</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Colonial jungle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>The lush mountaintops</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Hidden burrow</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Stomach circuit</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Gastric rivers</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Living cavern</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Swallowed treasures</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>The sticky lair</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>The desert of desserts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Cake race</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>The sweet islands</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Not a piece of cake!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Tart tunnels</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Ginger-bunny-bread</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Filthy corridors</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Agony jails</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Infernal escape</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Spikes and yikes!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>The rabbids' lair</value>
   </data>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
