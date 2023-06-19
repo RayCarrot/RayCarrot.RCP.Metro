@@ -1,14 +1,17 @@
-﻿-----   Version 14.0.0 - June ??, 2023   -----
+﻿-----   Version 14.0.0 - July ??, 2023   -----
 • Multiple installations of the same game can now be added
 • Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
 • Added a home page for news and recent/favorite games. Newly added and updated patches are now shown there instead of the app changelog.
 • Added support for new games:
+	• Rayman Jungle Run (Ubisoft Connect)
+	• Rayman Fiesta Run (Ubisoft Connect)
 	• Rayman Advance
 	• Rayman 3 (GBA)
 	• Rayman Hoodlums' Revenge
 	• Rayman Raving Rabbids (GBA)
 	• Rayman: The Dreamer's Boundary
+• The program has now been translated to Spanish (thanks Marcos03BR!)
 • The game finder has been reworked to be faster and to be able to find game clients/emulators
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
 • The jumplist now sorts games by default and only automatically adds certain games to it
@@ -43,10 +46,14 @@ Other changes:
 	• Progress is now shown when synchronizing CPA game textures
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
+• Added incomplete Danish (Denmark), Hungarian (Hungary) and Turkish (Turkey) translations
+• Removed incomplete Serbian (Cyrillic), Spanish (Mexico) and Swedish (Sweden) translations
+• Added Marcos03BR to the credits
 • Updated the per-level soundtrack utility for Rayman 1 to support the unprotected 1.12 version of the game
 • More text is now localized, including game names
 • Updated the progression page layout and added support for multiple games sharing the same backup
 • Progression backups no longer warn if GOG Galaxy cloud syncing is detected
+• The Rayman Jungle Run progression now always assumes all 7 worlds are available
 • A DOSBox installation can now have multiple config files
 • The option to run a game as admin is now always visible in the drop-down
 • The option to run a game as admin is no longer available for emulated games, such as MS-DOS games
