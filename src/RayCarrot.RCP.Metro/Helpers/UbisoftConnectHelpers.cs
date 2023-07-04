@@ -26,6 +26,18 @@ public static class UbisoftConnectHelpers
                 return gameClientInstallation.InstallLocation.Directory + "savegames" + userId + gameId;
         }
 
+        // Fallback to first added Ubisoft Connect game client installation
+        gameClientInstallation = Services.GameClients.GetInstalledGameClients().
+            FirstOrDefault(x => x.GameClientDescriptor is UbisoftConnectGameClientDescriptor);
+
+        if (gameClientInstallation != null)
+        {
+            string? userId = gameClientInstallation.GetValue<string>(GameClientDataKey.UbisoftConnect_UserId);
+
+            if (userId != null)
+                return gameClientInstallation.InstallLocation.Directory + "savegames" + userId + gameId;
+        }
+
         // Fallback to the default location
         FileSystemPath saveGamesDir = @"C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher\savegames";
 
