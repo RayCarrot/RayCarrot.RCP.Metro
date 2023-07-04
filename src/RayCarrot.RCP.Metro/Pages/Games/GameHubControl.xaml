@@ -360,7 +360,8 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0"
-                                                       Text="{Binding Path=Header.Value}"
+                                                       DataContext="{Binding Path=Header, Mode=OneTime}"
+                                                       Text="{Binding Path=Value}"
                                                        d:Text="Archive Explorer"
                                                        VerticalAlignment="Center"
                                                        FontSize="14" />
