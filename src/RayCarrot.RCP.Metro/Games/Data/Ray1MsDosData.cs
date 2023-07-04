@@ -1,5 +1,5 @@
 ﻿using BinarySerializer;
-using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Data;
@@ -42,8 +42,8 @@ public class Ray1MsDosData
         await gameInstallation.GetComponents<InitializeContextComponent>().InvokeAllAsync(context);
         LinearFile commonFile = context.AddFile(new LinearFile(context, "PCMAP/COMMON.DAT"));
 
-        PC_FileArchive commonArchive = FileFactory.Read<PC_FileArchive>(context, commonFile.FilePath);
-        PC_VersionFile versionFile = commonArchive.ReadFile<PC_VersionFile>(context, "VERSION");
+        FileArchive commonArchive = FileFactory.Read<FileArchive>(context, commonFile.FilePath);
+        VersionScript versionFile = commonArchive.ReadFile<VersionScript>(context, "VERSION");
 
         List<Version> availableVersions = new();
 

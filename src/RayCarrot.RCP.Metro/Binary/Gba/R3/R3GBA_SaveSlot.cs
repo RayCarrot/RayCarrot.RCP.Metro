@@ -38,12 +38,14 @@ public class R3GBA_SaveSlot : BinarySerializable
     {
         s.SerializeMagic<uint>(0x224455);
 
-        s.DoChecksum(new Checksum16Calculator(invertBits: true, initialChecksumValue: 0x4455), ChecksumPlacement.Before, () =>
-        {
-            IChecksumCalculator c = s.PauseCalculateChecksum();
-            s.SerializePadding(2); // Always 0x100, but seems unused?
-            s.BeginCalculateChecksum(c);
+        Checksum16Processor checksumProcessor = new(invertBits: true) { CalculatedValue = 0x4455 };
+        checksumProcessor.Serialize<ushort>(s, name: "SaveSlotChecksum");
 
+        s.SerializePadding(2); // Always 0x100, but seems unused? Not part of the checksum calculation.
+
+        // All remaining data is part of the checksum calculation
+        s.DoProcessed(checksumProcessor, p =>
+        {
             Lums = s.SerializeArray<byte>(Lums, 125, name: nameof(Lums));
             Cages = s.SerializeArray<byte>(Cages, 7, name: nameof(Cages));
             LastPlayedLevel = s.Serialize<byte>(LastPlayedLevel, name: nameof(LastPlayedLevel));

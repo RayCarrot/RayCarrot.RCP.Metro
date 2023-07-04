@@ -121,7 +121,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             int maxXORLength = (int)(entry.FileSize - entry.FileSize % entry.FileXORKey.Length);
 
             // Decrypt the bytes
-            new XOREncoder(new XORArrayCalculator(entry.FileXORKey, maxLength: maxXORLength), inputStream.Length - inputStream.Position).
+            new ProcessorEncoder(new XorArrayProcessor(entry.FileXORKey, maxLength: maxXORLength), inputStream.Length - inputStream.Position).
                 DecodeStream(inputStream, outputStream);
         }
     }

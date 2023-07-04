@@ -17,9 +17,11 @@ public class RHR_SaveData : BinarySerializable
 
     public override void SerializeImpl(SerializerObject s)
     {
-        s.DoChecksum(new Checksum16Calculator(), ChecksumPlacement.Before, () =>
+        s.DoProcessed(new Checksum16Processor(), p =>
         {
+            p?.Serialize<ushort>(s, name: "SaveDataChecksum");
             s.SerializeMagic<byte>(0x47);
+
             Flags = s.Serialize<RHR_SaveFlags>(Flags, name: nameof(Flags));
             Language = s.Serialize<RHR_Language>(Language, name: nameof(Language));
             SfxVolume = s.Serialize<byte>(SfxVolume, name: nameof(SfxVolume));

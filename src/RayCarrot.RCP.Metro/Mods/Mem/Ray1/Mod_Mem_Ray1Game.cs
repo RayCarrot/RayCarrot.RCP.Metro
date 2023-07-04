@@ -195,63 +195,206 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers()
     {
+        // Fist
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.Fist ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.Fist = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
         if (Version == Ray1EngineVersion.R2_PS1)
         {
-            return new (R2_RayEvts Evts, LocalizedString Header)[]
-            {
-                (R2_RayEvts.Fist, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower))),
-                (R2_RayEvts.Flag_1, new ResourceLocString(nameof(Resources.Mod_Mem_Unk), 1)),
-                (R2_RayEvts.Flag_2, new ResourceLocString(nameof(Resources.Mod_Mem_Unk), 2)),
-                (R2_RayEvts.FistPlatform, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPlatform))),
-                (R2_RayEvts.Hang, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HangPower))),
-                (R2_RayEvts.Helico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoPower))),
-                (R2_RayEvts.SuperHelico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SuperHelicoPower))),
-                (R2_RayEvts.Seed, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SeedPower))),
-                (R2_RayEvts.Flag_8, new ResourceLocString(nameof(Resources.Mod_Mem_Unk), 8)),
-                (R2_RayEvts.Grab, new ResourceLocString(nameof(Resources.Mod_Mem_R1_GrabPower))),
-                (R2_RayEvts.Run, new ResourceLocString(nameof(Resources.Mod_Mem_R1_RunPower))),
-            }.Select(ev => new EditorBoolFieldViewModel(
-                header: ev.Header,
+            // Fist down-slam
+            yield return new EditorBoolFieldViewModel(
+                header: "Fist down-slam", // TODO-UPDATE: Localize
                 info: null,
-                getValueAction: () => AccessMemory(m => (m.R2_RayEvts & ev.Evts) != 0),
+                getValueAction: () => AccessMemory(m => m.RayEvts?.FistDownSlam ?? false),
                 setValueAction: x => AccessMemory(m =>
                 {
-                    if (x)
-                        m.R2_RayEvts |= ev.Evts;
-                    else
-                        m.R2_RayEvts &= ~ev.Evts;
+                    if (m.RayEvts == null)
+                        return;
 
-                    m.ModifiedValue(nameof(m.R2_RayEvts));
-                })));
-        }
-        else
-        {
-            return new (RayEvts Evts, LocalizedString Header)[]
-            {
-                (RayEvts.Fist, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower))),
-                (RayEvts.Hang, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HangPower))),
-                (RayEvts.Helico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoPower))),
-                (RayEvts.Grab, new ResourceLocString(nameof(Resources.Mod_Mem_R1_GrabPower))),
-                (RayEvts.Run, new ResourceLocString(nameof(Resources.Mod_Mem_R1_RunPower))),
-                (RayEvts.Seed, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SeedPower))),
-                (RayEvts.SuperHelico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SuperHelicoPower))),
-                (RayEvts.DemiRay, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SquishedPower))),
-                (RayEvts.Firefly, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FireflyPower))),
-                (RayEvts.ForceRun, new ResourceLocString(nameof(Resources.Mod_Mem_R1_ForcedRunPower))),
-                (RayEvts.ReverseControls, new ResourceLocString(nameof(Resources.Mod_Mem_R1_ReversePower))),
-            }.Select(ev => new EditorBoolFieldViewModel(
-                header: ev.Header,
-                info: null,
-                getValueAction: () => AccessMemory(m => (m.RayEvts & ev.Evts) != 0),
-                setValueAction: x => AccessMemory(m =>
-                {
-                    if (x)
-                        m.RayEvts |= ev.Evts;
-                    else
-                        m.RayEvts &= ~ev.Evts;
-
+                    m.RayEvts.FistDownSlam = x;
                     m.ModifiedValue(nameof(m.RayEvts));
-                })));
+                }));
+
+            // Fist control
+            yield return new EditorBoolFieldViewModel(
+                header: "Fist control", // TODO-UPDATE: Localize
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.FistControl ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.FistControl = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
+
+            // Fist platform
+            yield return new EditorBoolFieldViewModel(
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPlatform)),
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.FistPlatform ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.FistPlatform = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
+        }
+
+        // Hang
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_HangPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.Hang ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.Hang = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
+        // Helico
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.Helico ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.Helico = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
+        // Super-helico
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_SuperHelicoPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.SuperHelico ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.SuperHelico = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
+        // Grab
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_GrabPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.Grab ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.Grab = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
+        // Run
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_RunPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.Run ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.Run = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
+        // Seed
+        yield return new EditorBoolFieldViewModel(
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_SeedPower)),
+            info: null,
+            getValueAction: () => AccessMemory(m => m.RayEvts?.Seed ?? false),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.RayEvts == null)
+                    return;
+
+                m.RayEvts.Seed = x;
+                m.ModifiedValue(nameof(m.RayEvts));
+            }));
+
+        if (Version != Ray1EngineVersion.R2_PS1)
+        {
+            // Small Rayman
+            yield return new EditorBoolFieldViewModel(
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_SquishedPower)),
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.SmallRayman ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.SmallRayman = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
+
+            // Firefly
+            yield return new EditorBoolFieldViewModel(
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FireflyPower)),
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.Firefly ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.Firefly = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
+
+            // Force run
+            yield return new EditorBoolFieldViewModel(
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ForcedRunPower)),
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.ForceRun ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.ForceRun = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
+
+            // Reverse controls
+            yield return new EditorBoolFieldViewModel(
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ReversePower)),
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.ReverseControls ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.ReverseControls = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
         }
     }
 
@@ -355,7 +498,11 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
     
     public override void InitializeContext(Context context)
     {
-        context.AddSettings(new Ray1Settings(Version));
+        context.AddSettings(new Ray1Settings(Version)
+        {
+            // We're loading from memory, so the data is never packed
+            IsLoadingPackedPCData = false
+        });
     }
 
     public override IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups()
@@ -388,7 +535,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         {
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_XPos)), m => m.R2_Ray?.XPosition);
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_YPos)), m => m.R2_Ray?.YPosition);
-            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.R2_Ray?.Etat}-{m.R2_Ray?.SubEtat}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.R2_Ray?.MainEtat}-{m.R2_Ray?.SubEtat}");
         }
         else
         {

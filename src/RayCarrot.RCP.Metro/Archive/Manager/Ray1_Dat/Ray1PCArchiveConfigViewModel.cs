@@ -1,4 +1,5 @@
 ﻿using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 
 namespace RayCarrot.RCP.Metro.Archive.Ray1;
 
@@ -55,11 +56,14 @@ public class Ray1PCArchiveConfigViewModel : BaseViewModel
     /// Configures the archive data with the default settings for the current settings
     /// </summary>
     /// <param name="data">The archive data to configure</param>
-    public void ConfigureArchiveData(PC_FileArchive data)
+    public void ConfigureArchiveData(FileArchive data)
     {
-        data.PrimaryKitHeader = PrimaryVersion;
-        data.SecondaryKitHeader = SecondaryVersion;
-        data.Ushort_0A = 256;
+        data.GameVersion = new GameVersion
+        {
+            PrimaryVersion = PrimaryVersion,
+            SecondaryVersion = SecondaryVersion,
+            Ushort_0A = 256
+        };
     }
 
     #endregion

@@ -14,9 +14,11 @@ public class RHR_SaveSlot : BinarySerializable
 
     public override void SerializeImpl(SerializerObject s)
     {
-        s.DoChecksum(new Checksum16Calculator(), ChecksumPlacement.Before, () =>
+        s.DoProcessed(new Checksum16Processor(), p =>
         {
+            p?.Serialize<ushort>(s, name: "SaveSlotChecksum");
             s.SerializeMagic<byte>(0x47);
+
             Flags = s.Serialize<RHR_SaveSlotFlags>(Flags, name: nameof(Flags));
             Score = s.Serialize<int>(Score, name: nameof(Score));
             Lums = s.Serialize<short>(Lums, name: nameof(Lums));

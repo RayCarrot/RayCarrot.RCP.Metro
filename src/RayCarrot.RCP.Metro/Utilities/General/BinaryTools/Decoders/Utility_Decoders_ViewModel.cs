@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
-using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -16,7 +16,7 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
         {
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R12SavHeader)), 
-                encoder: new PC_SaveEncoder(), 
+                encoder: new SaveEncoder(), 
                 getFileFilter: () => new FileFilterItemCollection()
                 {
                     new("*.sav", "SAV"),

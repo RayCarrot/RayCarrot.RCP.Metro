@@ -10,16 +10,13 @@ public class Unity_PlayerPrefs : BinarySerializable
 
     public override void SerializeImpl(SerializerObject s)
     {
-        s.DoChecksum<uint>(
-            c: new ChecksumCRC32Calculator(),
-            value: default,
-            placement: ChecksumPlacement.Before, 
-            name: "Checksum", 
-            action: () =>
-            {
-                FileSize = s.Serialize<int>(FileSize, name: nameof(FileSize));
+        s.DoProcessed(new ChecksumCRC32Processor(), p =>
+        {
+            p?.Serialize<uint>(s, name: "Checksum");
 
-                Entries = s.SerializeObjectArrayUntil<Unity_PlayerPrefsEntry>(Entries, _ => s.CurrentFileOffset >= s.CurrentLength, name: nameof(Entries));
-            });
+            FileSize = s.Serialize<int>(FileSize, name: nameof(FileSize));
+
+            Entries = s.SerializeObjectArrayUntil<Unity_PlayerPrefsEntry>(Entries, _ => s.CurrentFileOffset >= s.CurrentLength, name: nameof(Entries));
+        });
     }
 }

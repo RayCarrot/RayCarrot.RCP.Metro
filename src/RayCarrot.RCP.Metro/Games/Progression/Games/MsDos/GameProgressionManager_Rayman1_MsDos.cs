@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -33,7 +34,7 @@ public class GameProgressionManager_Rayman1_MsDos : GameProgressionManager
 
             Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveIndex);
 
-            SaveSlot? saveData = await context.ReadFileDataAsync<SaveSlot>(fileName, new PC_SaveEncoder(), removeFileWhenComplete: false);
+            SaveSlot? saveData = await context.ReadFileDataAsync<SaveSlot>(fileName, new SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {

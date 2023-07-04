@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -23,14 +24,14 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         IsGameLanguageAvailable = EngineVersion is Ray1EngineVersion.PC;
         IsVoicesVolumeAvailable = EngineVersion is Ray1EngineVersion.PC_Edu or Ray1EngineVersion.PC_Kit or Ray1EngineVersion.PC_Fan;
 
-        FrameRateOptions_Values = new PC_Freq[]
+        FrameRateOptions_Values = new Freq[]
         {
-            PC_Freq.Freq_50,
-            PC_Freq.Freq_60,
-            PC_Freq.Freq_70,
-            PC_Freq.Freq_80,
-            PC_Freq.Freq_100,
-            PC_Freq.Freq_Max
+            Freq.Freq_50,
+            Freq.Freq_60,
+            Freq.Freq_70,
+            Freq.Freq_80,
+            Freq.Freq_100,
+            Freq.Freq_Max
         };
         FrameRateOptions_Names = new string[]
         {
@@ -66,7 +67,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
 
     #region Private Fields
 
-    private PC_Language _gameLanguage;
+    private Language _gameLanguage;
     private bool _isMusicEnabled;
     private bool _isStero;
     private int _soundVolume;
@@ -119,7 +120,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
     /// <summary>
     /// The game configuration
     /// </summary>
-    public PC_ConfigFile? Config { get; set; }
+    public ConfigFile? Config { get; set; }
 
     /// <summary>
     /// The file name for the config file
@@ -141,7 +142,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
     /// <summary>
     /// The selected game language, if any
     /// </summary>
-    public PC_Language GameLanguage
+    public Language GameLanguage
     {
         get => _gameLanguage;
         set
@@ -227,7 +228,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         }
     }
 
-    public PC_Freq[] FrameRateOptions_Values { get; }
+    public Freq[] FrameRateOptions_Values { get; }
     public string[] FrameRateOptions_Names { get; }
 
     public int SelectedFrameRateOption
@@ -240,7 +241,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         }
     }
 
-    public PC_Freq FrameRate
+    public Freq FrameRate
     {
         get => FrameRateOptions_Values[SelectedFrameRateOption];
         set => SelectedFrameRateOption = FrameRateOptions_Values.FindItemIndex(x => x == value);
@@ -441,7 +442,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         if (File.Exists(Context.GetAbsoluteFilePath(ConfigFileName)))
         {
             using (Context)
-                Config = FileFactory.Read<PC_ConfigFile>(Context, ConfigFileName);
+                Config = FileFactory.Read<ConfigFile>(Context, ConfigFileName);
         }
         else
         {
@@ -575,7 +576,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         IsStero = true;
         ShowBackground = true;
         ShowParallaxBackground = true;
-        FrameRate = PC_Freq.Freq_60;
+        FrameRate = Freq.Freq_60;
         ZoneOfPlay = 0;
         Port = 544;
         IRQ = 5;
@@ -607,11 +608,11 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
     /// Creates a new instance of <see cref="PC_ConfigFile"/> with default values for the specific game
     /// </summary>
     /// <returns>The config instance</returns>
-    protected PC_ConfigFile CreateDefaultConfig()
+    protected ConfigFile CreateDefaultConfig()
     {
-        return new PC_ConfigFile
+        return new ConfigFile
         {
-            Language = PC_Language.English,
+            Language = Language.English,
             Port = 544,
             Irq = 5,
             Dma = 5,

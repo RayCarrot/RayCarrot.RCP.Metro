@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 using ByteSizeLib;
 
 namespace RayCarrot.RCP.Metro.Archive.Ray1;
@@ -92,7 +93,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var file = (PC_FileArchiveEntry)fileEntry;
+        var file = (FileArchiveEntry)fileEntry;
 
         // Update the size
         file.FileSize = (uint)inputStream.Length;
@@ -102,11 +103,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
         // TODO: Calculate the checksum when writing instead as we're accessing the bytes then
         // Calculate the checksum
-        Checksum8Calculator c = new();
+        Checksum8Processor p = new();
         var buffer = new byte[inputStream.Length - inputStream.Position];
         inputStream.Read(buffer, 0, buffer.Length);
-        c.AddBytes(buffer, 0, buffer.Length);
-        file.Checksum = c.ChecksumValue;
+        p.ProcessBytes(buffer, 0, buffer.Length);
+        file.Checksum = (byte)p.CalculatedValue;
 
         inputStream.Position = 0;
     }
@@ -119,11 +120,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="fileEntry">The file entry for the file to decode</param>
     public void DecodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
-        var entry = (PC_FileArchiveEntry)fileEntry;
+        var entry = (FileArchiveEntry)fileEntry;
 
         if (entry.XORKey != 0)
             // Decrypt the bytes
-            new XOREncoder(new XOR8Calculator(entry.XORKey), inputStream.Length - inputStream.Position).
+            new ProcessorEncoder(new Xor8Processor(entry.XORKey), inputStream.Length - inputStream.Position).
                 DecodeStream(inputStream, outputStream);
     }
 
@@ -133,7 +134,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<PC_FileArchiveEntry>>().GetFileStream((PC_FileArchiveEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<FileArchiveEntry>>().GetFileStream((FileArchiveEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -155,15 +156,15 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         Logger.Info("An R1 PC archive is being repacked...");
 
         // Get the archive data
-        var data = (PC_FileArchive)archive;
+        var data = (FileArchive)archive;
 
         // Create the file generator
-        using FileGenerator<PC_FileArchiveEntry> fileGenerator = new();
+        using FileGenerator<FileArchiveEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
         {
-            Entry = (PC_FileArchiveEntry)x.ArchiveEntry,
+            Entry = (FileArchiveEntry)x.ArchiveEntry,
             FileItem = x
         }).ToArray();
 
@@ -192,7 +193,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
                 file.Entry.FileName = ProcessFileName(file.Entry.FileName);
 
                 // Get the file entry
-                PC_FileArchiveEntry entry = file.Entry;
+                FileArchiveEntry entry = file.Entry;
 
                 // Add to the generator
                 fileGenerator.Add(entry, () =>
@@ -217,7 +218,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             int fileIndex = 0;
 
             // Write the file contents
-            foreach (PC_FileArchiveEntry file in data.Entries)
+            foreach (FileArchiveEntry file in data.Entries)
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
@@ -263,7 +264,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = (PC_FileArchive)archive;
+        var data = (FileArchive)archive;
 
         Logger.Info("The files are being retrieved for an R1 PC archive");
 
@@ -282,7 +283,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        PC_FileArchive data = Context.ReadStreamData<PC_FileArchive>(archiveFileStream, name: name, mode: VirtualFileMode.DoNotClose);
+        FileArchive data = Context.ReadStreamData<FileArchive>(archiveFileStream, name: name, mode: VirtualFileMode.DoNotClose);
 
         Logger.Info("Read R1 PC archive file with {0} files", data.Entries.Length);
 
@@ -296,7 +297,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public object CreateArchive()
     {
         // Create the archive data
-        PC_FileArchive archive = new();
+        FileArchive archive = new();
 
         Config.ConfigureArchiveData(archive);
 
@@ -311,8 +312,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The info items to display</returns>
     public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
     {
-        var entry = (PC_FileArchiveEntry)fileEntry;
-        var archiveData = (PC_FileArchive)archive;
+        var entry = (FileArchiveEntry)fileEntry;
+        var archiveData = (FileArchive)archive;
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
@@ -339,7 +340,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The file entry object</returns>
     public object GetNewFileEntry(object archive, string directory, string fileName)
     {
-        return new PC_FileArchiveEntry()
+        return new FileArchiveEntry()
         {
             FileName = ProcessFileName(fileName)
         };
@@ -360,7 +361,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = (PC_FileArchiveEntry)fileEntry;
+        var entry = (FileArchiveEntry)fileEntry;
 
         return entry.FileSize;
     }
@@ -377,7 +378,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The archive file generator for .cnt files
     /// </summary>
-    private class Rayman1PCGenerator : IFileGenerator<PC_FileArchiveEntry>
+    private class Rayman1PCGenerator : IFileGenerator<FileArchiveEntry>
     {
         /// <summary>
         /// Default constructor
@@ -404,7 +405,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         /// </summary>
         /// <param name="fileEntry">The file entry to get the stream for</param>
         /// <returns>The stream</returns>
-        public Stream GetFileStream(PC_FileArchiveEntry fileEntry)
+        public Stream GetFileStream(FileArchiveEntry fileEntry)
         {
             // Set the position
             Stream.Position = fileEntry.FileOffset;

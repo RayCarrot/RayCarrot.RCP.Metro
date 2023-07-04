@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer.Ray1;
+using BinarySerializer.Ray1.PC;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -80,7 +81,7 @@ public class GameProgressionManager_RaymanDesigner_MsDos : GameProgressionManage
             settings.World = (World)save!.World;
             settings.Level = save.Level;
 
-            PC_LevelTime? saveData = await context.ReadFileDataAsync<PC_LevelTime>(save.FilePath.Name, removeFileWhenComplete: false);
+            LevelTime? saveData = await context.ReadFileDataAsync<LevelTime>(save.FilePath.Name, removeFileWhenComplete: false);
 
             if (saveData == null)
             {

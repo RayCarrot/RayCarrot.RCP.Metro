@@ -4,6 +4,7 @@ using BinarySerializer.Nintendo.GBA;
 using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
 using BinarySerializer.Ray1.GBA;
+using BinarySerializer.Ray1.PC;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -23,10 +24,10 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new(Ray1GameMode.Rayman1_PC) { Encoder = new PC_SaveEncoder() },
+                    new(Ray1GameMode.Rayman1_PC) { Encoder = new SaveEncoder() },
                 }),
 
-            new Serializers_TypeViewModel<PC_ConfigFile>(
+            new Serializers_TypeViewModel<ConfigFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1ConfigHeader)),
                 fileExtension: new FileExtension(".cfg"),
                 getEndianFunc: c => Endian.Little,
@@ -45,7 +46,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
+                    new(CPAGameMode.Rayman2_PC) { Encoder = new R2SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<R2ConfigFile>(
@@ -54,7 +55,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
+                    new(CPAGameMode.Rayman2_PC) { Encoder = new R2SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RMSaveFile>(

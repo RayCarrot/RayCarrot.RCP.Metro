@@ -15,8 +15,7 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
 
     public RayMode RayMode { get; set; }
     public byte RayModeSpeed { get; set; } // IDEA: Add? This is for place ray.
-    public RayEvts RayEvts { get; set; }
-    public R2_RayEvts R2_RayEvts { get; set; }
+    public RayEvts? RayEvts { get; set; }
 
     public int MapTime { get; set; }
     public ActiveTable? ActiveObjects { get; set; }
@@ -124,7 +123,7 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
 
         [nameof(RayMode)] = 0x80145b20,
         [nameof(RayModeSpeed)] = 0x801459b2,
-        [nameof(R2_RayEvts)] = 0x80145bd0,
+        [nameof(RayEvts)] = 0x80145bd0,
 
         [nameof(MapTime)] = 0x80145b1c,
         [nameof(ActiveObjects)] = 0x80175740,
@@ -193,8 +192,8 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
     {
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
-        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(Ray));
-        R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(R2_Ray));
+        Ray = SerializeObject<ObjData>(Ray, name: nameof(Ray));
+        R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, name: nameof(R2_Ray));
         HelicoTime = Serialize<short>(HelicoTime, name: nameof(HelicoTime));
 
         WorldInfo = SerializeObjectArray<WorldInfo>(WorldInfo, 24, name: nameof(WorldInfo));
@@ -202,8 +201,7 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
 
         RayMode = Serialize<RayMode>(RayMode, name: nameof(RayMode));
         RayModeSpeed = Serialize<byte>(RayModeSpeed, name: nameof(RayModeSpeed));
-        RayEvts = Serialize<RayEvts>(RayEvts, name: nameof(RayEvts));
-        R2_RayEvts = Serialize<R2_RayEvts>(R2_RayEvts, name: nameof(R2_RayEvts));
+        RayEvts = SerializeObject<RayEvts>(RayEvts, name: nameof(RayEvts));
 
         MapTime = Serialize<int>(MapTime, name: nameof(MapTime));
         ActiveObjects = SerializeObject<ActiveTable>(ActiveObjects, name: nameof(ActiveObjects));
