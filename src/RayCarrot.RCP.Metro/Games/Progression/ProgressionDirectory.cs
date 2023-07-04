@@ -17,7 +17,10 @@ public class ProgressionDirectory
         DirPath = dirPath;
         SearchOption = searchOption;
         SearchPattern = searchPattern ?? "*";
-        VirtualStoreDirPath = GetVirtualStoreFilePath() + DirPath.RemoveRoot();
+        
+        if (dirPath != FileSystemPath.EmptyPath)
+            VirtualStoreDirPath = GetVirtualStoreFilePath() + DirPath.RemoveRoot();
+        
         HasVirtualStoreVersion = VirtualStoreDirPath.DirectoryExists;
     }
 
