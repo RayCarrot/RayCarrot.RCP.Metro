@@ -569,18 +569,18 @@ public class GamesPageViewModel : BasePageViewModel,
         List<GamesManager.GameToAdd> gamesToAdd = new();
         foreach (GameFileFinderItem finderItem in finderItems)
         {
-            if (!finderItem.HasBeenFound)
-                continue;
-
-            gamesToAdd.Add(new GamesManager.GameToAdd(
-                GameDescriptor: finderItem.GameDescriptor, 
-                InstallLocation: finderItem.FoundLocation.Value, 
-                ConfigureInstallation: new ConfigureGameInstallation(
-                    x =>
-                    {
-                        // Default the name to the filename
-                        x.SetValue(GameDataKey.RCP_CustomName, x.InstallLocation.FilePath.RemoveFileExtension().Name);
-                    })));
+            foreach (InstallLocation installLocation in finderItem.GetFoundLocations())
+            {
+                gamesToAdd.Add(new GamesManager.GameToAdd(
+                    GameDescriptor: finderItem.GameDescriptor,
+                    InstallLocation: installLocation,
+                    ConfigureInstallation: new ConfigureGameInstallation(
+                        x =>
+                        {
+                            // Default the name to the filename
+                            x.SetValue(GameDataKey.RCP_CustomName, x.InstallLocation.FilePath.RemoveFileExtension().Name);
+                        })));
+            }
         }
 
         // Add the found games

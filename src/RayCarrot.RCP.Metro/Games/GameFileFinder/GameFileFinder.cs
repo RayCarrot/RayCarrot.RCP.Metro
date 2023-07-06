@@ -46,10 +46,7 @@ public class GameFileFinder
                 GameLocationValidationResult result = finderItem.RomStructure.IsLocationValid(location);
 
                 if (result.IsValid)
-                {
-                    finderItem.SetLocation(location);
-                    break;
-                }
+                    finderItem.AddLocation(location);
             }
         }
 

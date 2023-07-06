@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using RayCarrot.RCP.Metro.Games.Structure;
+﻿using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Games.GameFileFinder;
 
@@ -9,21 +8,16 @@ public class GameFileFinderItem
     {
         GameDescriptor = gameDescriptor;
         RomStructure = romStructure;
+
+        _foundLocations = new List<InstallLocation>();
     }
+
+    private readonly List<InstallLocation> _foundLocations;
 
     public GameDescriptor GameDescriptor { get; }
     public RomProgramInstallationStructure RomStructure { get; }
+    public bool HasBeenFound => _foundLocations.Any();
 
-    /// <summary>
-    /// The location. This is set if it has been found.
-    /// </summary>
-    public InstallLocation? FoundLocation { get; private set; }
-
-    /// <summary>
-    /// Indicates if this item has been found
-    /// </summary>
-    [MemberNotNullWhen(true, nameof(FoundLocation))]
-    public bool HasBeenFound => FoundLocation != null;
-
-    public void SetLocation(InstallLocation location) => FoundLocation = location;
+    public IReadOnlyList<InstallLocation> GetFoundLocations() => _foundLocations.AsReadOnly();
+    public void AddLocation(InstallLocation location) => _foundLocations.Add(location);
 }
