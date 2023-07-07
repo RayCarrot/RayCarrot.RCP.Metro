@@ -17,12 +17,22 @@ public class MGbaEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
         try
         {
             GameClientInstallation gameClientInstallation = Services.GameClients.GetRequiredAttachedGameClient(gameInstallation);
-            FileSystemPath configFile = gameClientInstallation.InstallLocation.Directory + "config.ini";
 
-            if (configFile.FileExists)
+            // First check the install directory, then roaming app data
+            FileSystemPath[] configFilePaths = 
             {
-                IniData configData = new FileIniDataParser().ReadFile(configFile);
-                saveDir = configData["ports.qt"]["savegamePath"];
+                gameClientInstallation.InstallLocation.Directory + "config.ini",
+                Environment.SpecialFolder.ApplicationData.GetFolderPath() + "mGBA" + "config.ini",
+            };
+
+            foreach (FileSystemPath configFile in configFilePaths)
+            {
+                if (configFile.FileExists)
+                {
+                    IniData configData = new FileIniDataParser().ReadFile(configFile);
+                    saveDir = configData["ports.qt"]["savegamePath"];
+                    break;
+                }
             }
         }
         catch (Exception ex)
