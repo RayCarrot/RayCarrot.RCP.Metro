@@ -12,6 +12,9 @@ public enum GameClientIconAsset
     [AssetFileName("mGBA.png")]
     MGBA,
 
+    [AssetFileName("Visual Boy Advance - M.png")]
+    VisualBoyAdvanceM,
+
     [AssetFileName("Steam.png")]
     Steam,
 

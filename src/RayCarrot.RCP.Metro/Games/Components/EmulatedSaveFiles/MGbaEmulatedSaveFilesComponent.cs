@@ -18,7 +18,7 @@ public class MGbaEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
         {
             GameClientInstallation gameClientInstallation = Services.GameClients.GetRequiredAttachedGameClient(gameInstallation);
 
-            // First check the install directory, then roaming app data
+            // First check the install directory (if the installation is portable), then roaming app data (if not portable)
             FileSystemPath[] configFilePaths = 
             {
                 gameClientInstallation.InstallLocation.Directory + "config.ini",

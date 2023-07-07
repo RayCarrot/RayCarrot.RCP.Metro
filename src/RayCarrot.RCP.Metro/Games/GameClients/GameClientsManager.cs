@@ -23,6 +23,7 @@ public class GameClientsManager
             new CustomGameClientDescriptor(),
             new DosBoxGameClientDescriptor(),
             new MGbaGameClientDescriptor(),
+            new VisualBoyAdvanceMGameClientDescriptor(),
             
             // Clients
             new SteamGameClientDescriptor(),
