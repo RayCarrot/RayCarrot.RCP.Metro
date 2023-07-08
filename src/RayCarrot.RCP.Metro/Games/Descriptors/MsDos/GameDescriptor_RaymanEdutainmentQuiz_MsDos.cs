@@ -26,6 +26,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MsDos : MsDosGameDescri
     public override GameCategory Category => GameCategory.Other;
 
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanEdutainmentQui_MsDos_Title));
+    public override string[] SearchKeywords => new[] { "qui" };
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
