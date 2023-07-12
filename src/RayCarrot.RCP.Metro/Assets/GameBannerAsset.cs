@@ -39,6 +39,12 @@ public enum GameBannerAsset
     [AssetFileName("Rabbids Big Bang.png")]
     RabbidsBigBang,
 
+    [AssetFileName("Rayman 1 (GBC).png")]
+    Rayman1_Gbc,
+
+    [AssetFileName("Rayman 2 (GBC).png")]
+    Rayman2_Gbc,
+
     [AssetFileName("Rayman 3 (GBA).png")]
     Rayman3_Gba,
 

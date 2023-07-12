@@ -60,6 +60,12 @@ public enum GameIconAsset
     [AssetFileName("RabbidsCoding.png")]
     RabbidsCoding,
 
+    [AssetFileName("Rayman1_Gbc.png")]
+    Rayman1_Gbc,
+
+    [AssetFileName("Rayman2_Gbc.png")]
+    Rayman2_Gbc,
+
     [AssetFileName("Rayman3_Gba.png")]
     Rayman3_Gba,
 

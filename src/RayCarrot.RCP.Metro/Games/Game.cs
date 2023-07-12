@@ -113,6 +113,20 @@ public enum Game
     #region Handheld
 
     /// <summary>
+    /// Rayman 1 (GBC)
+    /// </summary>
+    [GameInfo("Rayman (Game Boy Color)" // TODO-UPDATE: Localize
+        , GameIconAsset.Rayman1_Gbc)]
+    Rayman1_Gbc,
+
+    /// <summary>
+    /// Rayman 2 (GBC)
+    /// </summary>
+    [GameInfo("Rayman 2 (Game Boy Color)" // TODO-UPDATE: Localize
+        , GameIconAsset.Rayman2_Gbc)]
+    Rayman2_Gbc,
+
+    /// <summary>
     /// Rayman 3 (GBA)
     /// </summary>
     [GameInfo(nameof(Resources.Game_﻿Rayman3_Gba_Title), GameIconAsset.Rayman3_Gba)]

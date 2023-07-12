@@ -40,6 +40,8 @@ public class GamesManager
             new GameDescriptor_RabbidsCoding_Win32(),
 
             // Handheld
+            new GameDescriptor_Rayman1_Gbc(),
+            new GameDescriptor_Rayman2_Gbc(),
             new GameDescriptor_Rayman3_Gba(),
             new GameDescriptor_RaymanHoodlumsRevenge_Gba(),
             new GameDescriptor_RaymanRavingRabbids_Gba(),
