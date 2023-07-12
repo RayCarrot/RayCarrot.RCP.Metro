@@ -30,11 +30,11 @@ public class ResourceLocString : LocalizedString
 
     protected override string GetValue()
     {
-        var v = Resources.ResourceManager.GetString(ResourceKey, Services.InstanceData.CurrentCulture);
+        string v = Resources.ResourceManager.GetString(ResourceKey, Services.InstanceData.CurrentCulture);
 
         if (FormatArgs.Any() && v != null)
             v = String.Format(v, FormatArgs);
 
-        return v;
+        return v ?? $"#{ResourceKey}";
     }
 }
