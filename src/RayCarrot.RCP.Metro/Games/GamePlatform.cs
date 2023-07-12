@@ -24,6 +24,13 @@ public enum GamePlatform
     WindowsPackage,
 
     /// <summary>
+    /// Game Boy Color
+    /// </summary>
+    [GamePlatformInfo("Game Boy Color" // TODO-UPDATE: Localize
+        , GamePlatformIconAsset.Gbc)]
+    Gbc,
+
+    /// <summary>
     /// Game Boy Advance
     /// </summary>
     [GamePlatformInfo(nameof(Resources.Platform_Gba), GamePlatformIconAsset.Gba)]

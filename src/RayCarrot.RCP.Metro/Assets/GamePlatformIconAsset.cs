@@ -12,6 +12,9 @@ public enum GamePlatformIconAsset
     [AssetFileName("WindowsPackage.png")]
     WindowsPackage,
 
+    [AssetFileName("Gbc.png")]
+    Gbc,
+
     [AssetFileName("Gba.png")]
     Gba,
 }
