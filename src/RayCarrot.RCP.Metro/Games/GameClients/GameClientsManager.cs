@@ -22,6 +22,7 @@ public class GameClientsManager
             // Emulators
             new CustomGameClientDescriptor(),
             new DosBoxGameClientDescriptor(),
+            new SameBoyGameClientDescriptor(),
             new MGbaGameClientDescriptor(),
             new VisualBoyAdvanceMGameClientDescriptor(),
             
