@@ -8,7 +8,7 @@ public sealed class CustomGameClientDescriptor : EmulatorGameClientDescriptor
 
     public override string GameClientId => "Custom";
     public override bool InstallationRequiresFile => true;
-    public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos, GamePlatform.Gba };
+    public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos, GamePlatform.Gbc, GamePlatform.Gba };
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_Custom));
     public override GameClientIconAsset Icon => GameClientIconAsset.Custom;
 
