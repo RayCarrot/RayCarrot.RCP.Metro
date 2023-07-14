@@ -102,6 +102,9 @@ public enum GameIconAsset
     [AssetFileName("TonicTroubleSpecialEdition.png")]
     TonicTroubleSpecialEdition,
 
+    [AssetFileName("TonicTrouble_Gbc.png")]
+    TonicTrouble_Gbc,
+
     [AssetFileName("RaymanDictées.png")]
     RaymanDictées,
 

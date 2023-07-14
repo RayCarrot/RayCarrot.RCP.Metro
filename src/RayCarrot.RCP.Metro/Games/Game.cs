@@ -213,6 +213,13 @@ public enum Game
     TonicTrouble,
 
     /// <summary>
+    /// Tonic Trouble (GBC)
+    /// </summary>
+    [GameInfo("Tonic Trouble (Game Boy Color)" // TODO-UPDATE: Localize
+        , GameIconAsset.TonicTrouble_Gbc)]
+    TonicTrouble_Gbc,
+
+    /// <summary>
     /// Rayman Dictées
     /// </summary>
     [GameInfo(nameof(Resources.Game_﻿RaymanDictées_Title), GameIconAsset.RaymanDictées)]
