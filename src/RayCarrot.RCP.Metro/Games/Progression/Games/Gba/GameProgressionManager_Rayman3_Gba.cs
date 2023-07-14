@@ -37,6 +37,10 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
                     cages++;
             }
 
+            // Get total amount of completedGCN bonus levels
+            const int totalGCNBonusLevels = 10;
+            int completedGCNBonusLevels = saveSlot.LastCompletedGCNBonus;
+
             GameProgressionDataItem[] dataItems =
             {
                 new GameProgressionDataItem(
@@ -52,6 +56,12 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
                     value: cages,
                     max: totalCages),
                 new GameProgressionDataItem(
+                    isPrimaryItem: true,
+                    icon: ProgressionIconAsset.R3_GBA_GcnCheck,
+                    header: "Completed GameCube bonus levels", // TODO-UPDATE: Localize
+                    value: completedGCNBonusLevels,
+                    max: totalGCNBonusLevels),
+                new GameProgressionDataItem(
                     isPrimaryItem: false,
                     icon: ProgressionIconAsset.R3_GBA_Life,
                     header: new ResourceLocString(nameof(Resources.Progression_Lives)),
@@ -63,8 +73,8 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
             yield return new SerializabeEmulatedGameProgressionSlot<R3GBA_SaveData>(
                 name: null,
                 index: saveIndex,
-                collectiblesCount: lums + cages,
-                totalCollectiblesCount: totalLums + totalCages,
+                collectiblesCount: lums + cages + completedGCNBonusLevels,
+                totalCollectiblesCount: totalLums + totalCages + totalGCNBonusLevels,
                 emulatedSave: emulatedSave,
                 dataItems: dataItems,
                 serializable: saveData)

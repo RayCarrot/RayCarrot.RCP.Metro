@@ -120,6 +120,7 @@ public enum ProgressionIconAsset
     // Rayman 3 (GBA)
     R3_GBA_Lum,
     R3_GBA_Cage,
+    R3_GBA_GcnCheck,
     R3_GBA_Life,
 
     // Rayman Hoodlums' Revenge
