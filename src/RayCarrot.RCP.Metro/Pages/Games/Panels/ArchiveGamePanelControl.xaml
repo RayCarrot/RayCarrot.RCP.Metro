@@ -67,7 +67,7 @@
                             PopupAnimation="Fade"
                             StaysOpen="True">
             <rcp:Card x:Name="PopupCard"
-                        Width="{Binding Path=ActualWidth, ElementName=PopupPositionGrid, Converter={rcp:DoubleAdditionConverter}, ConverterParameter=8}"
+                        Width="{Binding Path=ActualWidth, ElementName=PopupPositionGrid, Converter={rcp:PositiveDoubleAdditionConverter}, ConverterParameter=8}"
                         Margin="5"
                         Padding="4"
                         Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"

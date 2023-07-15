@@ -4,9 +4,9 @@ using System.Globalization;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Converts a <see cref="double"/> to its value plus that defined by the parameter
+/// Converts a <see cref="double"/> to its value plus that defined by the parameter and forces it to be a positive value
 /// </summary>
-public class DoubleAdditionConverter : BaseValueConverter<DoubleAdditionConverter, double, double>
+public class PositiveDoubleAdditionConverter : BaseValueConverter<PositiveDoubleAdditionConverter, double, double>
 {
     public override double ConvertValue(double value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -17,7 +17,12 @@ public class DoubleAdditionConverter : BaseValueConverter<DoubleAdditionConverte
             _ => Double.Parse(parameter.ToString())
         };
 
-        return value + add;
+        double calculatedValue = value + add;
+
+        if (calculatedValue < 0)
+            return 0;
+
+        return calculatedValue;
     }
 
     public override double ConvertValueBack(double value, Type targetType, object parameter, CultureInfo culture)

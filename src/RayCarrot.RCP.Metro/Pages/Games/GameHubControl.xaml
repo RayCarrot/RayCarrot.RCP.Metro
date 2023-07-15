@@ -92,8 +92,8 @@
                                 <Image Grid.Column="0"
                                        Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}" 
                                        d:Source="{x:Static rcp:DesignData.GamePlatformIconSource}"
-                                       Width="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={rcp:DoubleAdditionConverter}, ConverterParameter=-4}" 
-                                       Height="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={rcp:DoubleAdditionConverter}, ConverterParameter=-4}"
+                                       Width="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={rcp:PositiveDoubleAdditionConverter}, ConverterParameter=-4}" 
+                                       Height="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={rcp:PositiveDoubleAdditionConverter}, ConverterParameter=-4}"
                                        VerticalAlignment="Center"
                                        Margin="0 2"
                                        ToolTip="{Binding Path=PlatformDisplayName.Value}" />
