@@ -8,7 +8,7 @@ public class EmulatedGbaSaveFile : EmulatedSaveFile
 
     public override async Task<EmulatedSave[]> GetSavesAsync(GameInstallation gameInstallation)
     {
-        using RCPContext context = new(FilePath.Parent);
+        RCPContext context = new(FilePath.Parent);
         await gameInstallation.GetComponents<InitializeContextComponent>().InvokeAllAsync(context);
 
         return new EmulatedSave[]
