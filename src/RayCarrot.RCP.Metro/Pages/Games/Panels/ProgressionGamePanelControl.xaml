@@ -32,6 +32,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="0 4">
                         <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                               ToolTip="{Binding Path=Header.Value, Mode=OneTime}"
                                VerticalAlignment="Center"
                                Width="24" Height="24"
                                Margin="0 0 8 0" />
