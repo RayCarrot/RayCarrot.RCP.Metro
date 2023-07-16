@@ -38,7 +38,7 @@ public class R3GBA_SaveSlot : BinarySerializable
     {
         s.SerializeMagic<uint>(0x224455);
 
-        Checksum16Processor checksumProcessor = new(invertBits: true) { CalculatedValue = 0x4455 };
+        Checksum16Processor checksumProcessor = new(invertBits: true) { CalculatedValue = ~0x4455 };
         checksumProcessor.Serialize<ushort>(s, name: "SaveSlotChecksum");
 
         s.SerializePadding(2); // Always 0x100, but seems unused? Not part of the checksum calculation.
