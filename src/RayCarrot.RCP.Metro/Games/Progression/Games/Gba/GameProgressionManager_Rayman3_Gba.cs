@@ -12,6 +12,8 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
     {
         R3GBA_SaveData saveData = await emulatedSave.ReadAsync<R3GBA_SaveData>();
 
+        bool isPrototype = emulatedSave.Context.GetRequiredSettings<R3GBA_Settings>().IsPrototype;
+
         for (int saveIndex = 0; saveIndex < saveData.Slots.Length; saveIndex++)
         {
             R3GBA_SaveSlot saveSlot = saveData.Slots[saveIndex];
@@ -38,10 +40,10 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
             }
 
             // Get total amount of completedGCN bonus levels
-            const int totalGCNBonusLevels = 10;
-            int completedGCNBonusLevels = saveSlot.LastCompletedGCNBonus;
+            int totalGCNBonusLevels = isPrototype ? 0 : 10;
+            int completedGCNBonusLevels = isPrototype ? 0 : saveSlot.LastCompletedGCNBonus;
 
-            GameProgressionDataItem[] dataItems =
+            List<GameProgressionDataItem> dataItems = new()
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true,
@@ -55,18 +57,24 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages,
                     max: totalCages),
-                new GameProgressionDataItem(
+            };
+
+            if (!isPrototype)
+            {
+                dataItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: true,
                     icon: ProgressionIconAsset.R3_GBA_GcnCheck,
                     header: "Completed GameCube bonus levels", // TODO-UPDATE: Localize
                     value: completedGCNBonusLevels,
-                    max: totalGCNBonusLevels),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false,
-                    icon: ProgressionIconAsset.R3_GBA_Life,
-                    header: new ResourceLocString(nameof(Resources.Progression_Lives)),
-                    value: saveSlot.Lives),
-            };
+                    max: totalGCNBonusLevels));
+            }
+
+            dataItems.Add(new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R3_GBA_Life,
+                header: new ResourceLocString(nameof(Resources.Progression_Lives)),
+                value: saveSlot.Lives));
+
 
             int slotIndex = saveIndex;
 
