@@ -115,6 +115,12 @@
                             <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
                             <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
                         </MultiTrigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Control.Disabled}" />
+                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Control.Disabled}" />
+                        </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
