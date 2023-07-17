@@ -44,7 +44,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
     public bool IsTrimmed { get; set; }
 
     public ArchiveComponent.AdditionalArchiveAction? AdditionalAction { get; }
-    public GenericIconKind AdditionalActionIcon => AdditionalAction?.Icon ?? GenericIconKind.None;
+    public LocalizedString? AdditionalActionHeader => AdditionalAction?.Header;
     public LocalizedString? AdditionalActionDescription => AdditionalAction?.Description;
 
     #endregion

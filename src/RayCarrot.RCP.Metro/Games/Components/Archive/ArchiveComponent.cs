@@ -26,5 +26,5 @@ public class ArchiveComponent : FactoryGameComponent<IArchiveDataManager>
 
     public virtual AdditionalArchiveAction? GetAdditionalAction() => null;
 
-    public record AdditionalArchiveAction(GenericIconKind Icon, LocalizedString Description, Func<GameInstallation, Task> Action);
+    public record AdditionalArchiveAction(LocalizedString Header, LocalizedString Description, Func<GameInstallation, Task> Action);
 }

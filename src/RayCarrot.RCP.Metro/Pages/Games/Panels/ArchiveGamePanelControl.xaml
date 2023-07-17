@@ -34,27 +34,25 @@
                       ItemsSource="{Binding Path=TrimmedArchiveFilePaths}" />
 
         <!-- Open -->
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <WrapPanel Grid.Row="3"
+                   Orientation="Horizontal">
 
-            <Button Grid.Column="0"
-                    Style="{StaticResource RCP.Styles.Button.Flat}" 
+            <!-- Open -->
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Background="{DynamicResource RCP.Brushes.FlatButton.ArchiveExplorer}"
                     Content="{Resx GameHub_ArchivePanel_Open}"
-                    Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}" />
+                    Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}"
+                    Margin="0 0 8 0" />
 
-            <Button Grid.Column="2"
-                    Style="{StaticResource RCP.Styles.Button.Flat}"
-                    rcp:Icon.Kind="{Binding Path=AdditionalActionIcon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
+            <!-- Action -->
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Background="{DynamicResource RCP.Brushes.FlatButton.ArchiveExplorer}"
+                    Content="{Binding Path=AdditionalActionHeader.Value}"
                     ToolTip="{Binding Path=AdditionalActionDescription.Value}"
                     Visibility="{Binding Path=AdditionalAction, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                     Command="{Binding Path=AdditionalActionCommand, Mode=OneTime}" />
 
-        </Grid>
+        </WrapPanel>
 
         <controlzex:PopupEx x:Name="FullPathsPopup" 
                             Grid.Row="0"

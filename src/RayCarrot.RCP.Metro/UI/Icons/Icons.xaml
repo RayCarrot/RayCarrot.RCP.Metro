@@ -74,8 +74,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_Mem">Memory</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_RRR">MapOutline</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ArchiveAdditionalAction_CPATextureSync">FileSyncOutline</iconPacks:PackIconMaterialKind>
-
     <!-- Generic Icons (used from C# code) -->
 
     <local:GenericIcon x:Key="RCP.GenericIcons.None" 

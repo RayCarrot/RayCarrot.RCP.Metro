@@ -63,6 +63,4 @@ public enum GenericIconKind
 
     Mods_Mem,
     Mods_RRR,
-
-    ArchiveAdditionalAction_CPATextureSync,
 }

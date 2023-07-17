@@ -50,7 +50,7 @@ public class CPAArchiveComponent : ArchiveComponent
             return null;
 
         return new AdditionalArchiveAction(
-            GenericIconKind.ArchiveAdditionalAction_CPATextureSync,
+            "Synchronize textures", // TODO-UPDATE: Localize
             Resources.Utilities_SyncTextureInfo_Info,
             SynchronizeTexturesAsync);
     }
