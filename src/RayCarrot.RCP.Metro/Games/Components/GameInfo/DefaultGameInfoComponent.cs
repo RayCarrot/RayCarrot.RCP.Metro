@@ -18,7 +18,7 @@ public class DefaultGameInfoComponent : GameInfoComponent
             minUserLevel: UserLevel.Debug),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_AddedDate)), 
-            text: gameInstallation.GetValue<DateTime>(GameDataKey.RCP_GameAddedDate).ToString(CultureInfo.CurrentCulture)),
+            text: gameInstallation.GetValue<DateTime>(GameDataKey.RCP_GameAddedDate).ToLongDateString()),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
             text: gameInstallation.InstallLocation.ToString()),
