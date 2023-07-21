@@ -113,25 +113,6 @@
                             rcp:Icon.Kind="Sort"
                             Command="{Binding Path=ResetSortCommand, Mode=OneTime}" />
 
-                    <Button rcp:Icon.Kind="Refresh"
-                            Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}"
-                            HorizontalContentAlignment="Stretch">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0"
-                                       Text="{Resx Page_Refresh}" />
-
-                            <TextBlock Grid.Column="1"
-                                       Text="F5"
-                                       Margin="0 0 8 0" />
-
-                        </Grid>
-                    </Button>
-
                 </StackPanel>
             </rcp:PopupCard>
 
