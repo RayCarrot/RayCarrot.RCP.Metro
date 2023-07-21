@@ -134,6 +134,19 @@ public class GamesPageViewModel : BasePageViewModel,
     public ObservableCollectionEx<InstalledGameViewModel>? RecentGames { get; set; }
     public ObservableCollectionEx<InstalledGameViewModel>? FavoriteGames { get; set; }
 
+    public bool ShowRecentGames { get; set; }
+    public bool ShowRecentSetting
+    {
+        get => Data.UI_ShowRecentGames;
+        set
+        {
+            Data.UI_ShowRecentGames = value;
+            RefreshShowRecentGames();
+        }
+    }
+    public bool ShowFavoriteGames { get; set; }
+    public bool ShowAnyGames => ShowRecentGames || ShowFavoriteGames;
+
     public InstalledGameViewModel? SelectedInstalledGame
     {
         get => _selectedInstalledGame;
@@ -242,21 +255,37 @@ public class GamesPageViewModel : BasePageViewModel,
     private void RefreshRecentGames()
     {
         RecentGames = new ObservableCollectionEx<InstalledGameViewModel>(Games.
-            OrderByDescending(x =>
+            // Get the latest date (either last played or when the game was added)
+            Select(x =>
             {
                 DateTime lastPlayed = x.GameInstallation.GetValue<DateTime>(GameDataKey.RCP_LastPlayed);
                 DateTime gameAdded = x.GameInstallation.GetValue<DateTime>(GameDataKey.RCP_GameAddedDate);
 
-                // Use the latest date of the two
-                return lastPlayed > gameAdded ? lastPlayed : gameAdded;
+                return new { Game = x, Date = lastPlayed > gameAdded ? lastPlayed : gameAdded };
             }).
-            Take(5));
+            // Only keep games from the last 25 days
+            Where(x => DateTime.Now - x.Date <= TimeSpan.FromDays(25)).
+            // Sort...
+            OrderByDescending(x => x.Date).
+            // Get the games
+            Select(x => x.Game).
+            // Keep max 10
+            Take(10));
+
+        RefreshShowRecentGames();
+    }
+
+    public void RefreshShowRecentGames()
+    {
+        ShowRecentGames = Data.UI_ShowRecentGames && RecentGames.Any();
     }
 
     private void RefreshFavoriteGames()
     {
         FavoriteGames = new ObservableCollectionEx<InstalledGameViewModel>(Games.
             Where(x => x.GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite)));
+
+        ShowFavoriteGames = FavoriteGames.Any();
     }
 
     private void Game_OnLastPlayedChanged() => RefreshRecentGames();

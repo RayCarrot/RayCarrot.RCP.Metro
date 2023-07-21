@@ -45,6 +45,7 @@ public partial class AppUserData : BaseViewModel
         UI_ShowGameInfo = false;
         UI_GroupInstalledGames = true;
         UI_GroupProgressionGames = true;
+        UI_ShowRecentGames = true;
 
         // Theme
         Theme_DarkMode = true;
@@ -240,6 +241,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the games should be grouped in the Progression page
     /// </summary>
     public bool UI_GroupProgressionGames { get; set; }
+
+    /// <summary>
+    /// Indicates if the recent games should show in the home page
+    /// </summary>
+    public bool UI_ShowRecentGames { get; set; }
 
     #endregion
 

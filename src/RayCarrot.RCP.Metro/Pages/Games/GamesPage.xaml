@@ -5,6 +5,7 @@
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
               xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
               Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
               Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -13,6 +14,18 @@
               d:DesignHeight="600" d:DesignWidth="900"
               d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
               KeyDown="Page_Games_OnKeyDown">
+
+    <rcp:BasePage.PopupMenu>
+        <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+
+            <!-- TODO-UPDATE: Localize -->
+            <mah:ToggleSwitch Content="Show recent games"
+                              Margin="6"
+                              Background="{DynamicResource RCP.Brushes.Card.Popup}"
+                              IsOn="{Binding Path=ShowRecentSetting}"/>
+
+        </StackPanel>
+    </rcp:BasePage.PopupMenu>
 
     <Control.InputBindings>
         <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />

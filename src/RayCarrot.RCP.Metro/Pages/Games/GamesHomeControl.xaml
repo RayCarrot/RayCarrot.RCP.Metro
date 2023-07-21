@@ -5,37 +5,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="900" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="GameItemsPanel">
+            <WrapPanel />
+        </ItemsPanelTemplate>
         <DataTemplate x:Key="GameItemTemplate" DataType="games:InstalledGameViewModel">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <Button Margin="4" 
+                    Padding="2"
+                    Height="100"
+                    Width="100"
+                    Style="{StaticResource RCP.Styles.Button.Flat}" 
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.(games:GamesPageViewModel.SelectGameCommand), Mode=OneTime}"
+                    CommandParameter="{Binding}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.(games:GamesPageViewModel.SelectGameCommand), Mode=OneTime}"
-                        CommandParameter="{Binding}"
-                        HorizontalContentAlignment="Left"
-                        Padding="4"
-                        Margin="0 0 4 0">
-                    <rcp:GameTitle GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}" />
-                </Button>
+                    <!-- Game icon -->
+                    <rcp:GameIcon Grid.Row="0" 
+                                  IconSize="Medium" 
+                                  Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"/>
 
-                <Button Grid.Column="1"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=LaunchCommand, Mode=OneTime}"
-                        ToolTip="{Resx Home_PlayGame}"
-                        rcp:Icon.Kind="PlayOutline"
-                        Margin="0 0 4 0" />
+                    <Grid Grid.Row="1" 
+                          HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-            </Grid>
+                        <!-- Platform icon -->
+                        <Image Grid.Column="0"
+                               Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}" 
+                               Width="20" 
+                               Height="20"
+                               VerticalAlignment="Center"
+                               Margin="0 0 4 0" />
+
+                        <!-- Game name -->
+                        <TextBlock Grid.Column="1" 
+                                   TextWrapping="Wrap"
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center" 
+                                   FontSize="11"
+                                   Text="{Binding Path=DisplayName.Value}" />
+
+                    </Grid>
+                </Grid>
+            </Button>
         </DataTemplate>
     </UserControl.Resources>
 
@@ -43,19 +67,31 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
 
+        <!-- Icon -->
         <Image Grid.Row="0"
                Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
                Height="128" Width="128" />
 
+        <!-- News -->
         <GroupBox Grid.Row="1"
                   Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
                   rcp:Icon.Kind="TextBoxOutline"
                   rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
-                  Margin="{StaticResource RCP.Thicknesses.Card}"
-                  DataContext="{Binding Path=AppNewsViewModel, Mode=OneTime}">
+                  Margin="{StaticResource RCP.Thicknesses.Card}">
+
+            <GroupBox.Style>
+                <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=ShowAnyGames}" Value="False">
+                            <Setter Property="Grid.RowSpan" Value="2" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
+
             <GroupBox.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -78,7 +114,7 @@
                 </Grid>
             </GroupBox.Header>
 
-            <ScrollViewer>
+            <ScrollViewer DataContext="{Binding Path=AppNewsViewModel, Mode=OneTime}">
                 <StackPanel>
                     <ItemsControl ItemsSource="{Binding Path=NewsEntries}">
                         <ItemsControl.ItemTemplate>
@@ -100,7 +136,7 @@
                                             <TextBlock Text="{Binding Path=Header, Mode=OneTime}" 
                                                        TextWrapping="Wrap"
                                                        FontWeight="Bold" 
-                                                       FontSize="16"
+                                                       FontSize="14"
                                                        Margin="0 0 0 2" />
                                             <TextBlock Text="{Binding Path=Date, Mode=OneTime}"
                                                        FontStyle="Italic" 
@@ -109,7 +145,7 @@
                                     </Grid>
                                     <TextBlock Text="{Binding Path=Text, Mode=OneTime}"
                                                TextWrapping="Wrap"
-                                               FontSize="14" />
+                                               FontSize="12" />
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -125,37 +161,78 @@
             </ScrollViewer>
         </GroupBox>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <!-- Games -->
+        <rcp:Card Grid.Row="2"
+                  Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
+                  Margin="{StaticResource RCP.Thicknesses.Card}"
+                  Visibility="{Binding Path=ShowAnyGames, Converter={rcp:BooleanToVisibilityConverter}}">
+            <ScrollViewer>
+                <StackPanel>
 
-            <GroupBox Grid.Column="0"
-                      Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
-                      Header="{Resx Home_RecentGames}"
-                      rcp:Icon.Kind="ClockOutline"
-                      rcp:Icon.Brush="{StaticResource RCP.Brushes.Games}"
-                      Margin="{StaticResource RCP.Thicknesses.Card}">
-                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
-                              ItemsSource="{Binding Path=RecentGames}"
-                              VirtualizingPanel.ScrollUnit="Pixel"
-                              ItemTemplate="{StaticResource GameItemTemplate}"/>
-            </GroupBox>
+                    <!-- Recent games -->
+                    <StackPanel Visibility="{Binding Path=ShowRecentGames, Converter={rcp:BooleanToVisibilityConverter}}"
+                                SizeChanged="RecentGamesStackPanel_OnSizeChanged">
+                        <Grid Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-            <GroupBox Grid.Column="1"
-                      Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
-                      Header="{Resx Home_FavoriteGames}"
-                      rcp:Icon.Kind="StarOutline"
-                      rcp:Icon.Brush="{StaticResource RCP.Brushes.Favorites}"
-                      Margin="{StaticResource RCP.Thicknesses.Card}">
-                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
-                              ItemsSource="{Binding Path=FavoriteGames}"
-                              VirtualizingPanel.ScrollUnit="Pixel"
-                              ItemTemplate="{StaticResource GameItemTemplate}"/>
-            </GroupBox>
+                            <iconPacks:PackIconMaterial Grid.Column="0"
+                                                        Kind="ClockOutline"
+                                                        Foreground="{StaticResource RCP.Brushes.Games}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 8 0" />
 
-        </Grid>
+                            <TextBlock Grid.Column="1"
+                                       FontSize="14" 
+                                       VerticalAlignment="Center"
+                                       Text="{Resx Home_RecentGames}" />
+                        </Grid>
+
+                        <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                   Margin="0 0 0 4" />
+
+                        <ItemsControl x:Name="RecentGamesItemsControl"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding Path=RecentGames}"
+                                      ItemsPanel="{StaticResource GameItemsPanel}"
+                                      ItemTemplate="{StaticResource GameItemTemplate}"
+                                      Margin="0 0 0 8" />
+
+                    </StackPanel>
+
+                    <!-- Favorite games -->
+                    <StackPanel Visibility="{Binding Path=ShowFavoriteGames, Converter={rcp:BooleanToVisibilityConverter}}">
+                        <Grid Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <iconPacks:PackIconMaterial Grid.Column="0"
+                                                        Kind="StarOutline"
+                                                        Foreground="{StaticResource RCP.Brushes.Favorites}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 8 0" />
+
+                            <TextBlock Grid.Column="1"
+                                       FontSize="14" 
+                                       VerticalAlignment="Center"
+                                       Text="{Resx Home_FavoriteGames}" />
+                        </Grid>
+
+                        <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                   Margin="0 0 0 4" />
+
+                        <ItemsControl ItemsSource="{Binding Path=FavoriteGames}"
+                                      ItemsPanel="{StaticResource GameItemsPanel}"
+                                      ItemTemplate="{StaticResource GameItemTemplate}" />
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </rcp:Card>
 
     </Grid>
 </UserControl>
