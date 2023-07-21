@@ -13,10 +13,10 @@ public class GameSelectionDropHandler : DefaultDropHandler
 
     public override void DragOver(IDropInfo dropInfo)
     {
-        if (dropInfo.Data is not InstalledGameViewModel game || dropInfo.TargetGroup == null)
+        if (dropInfo.Data is not InstalledGameViewModel game)
             return;
 
-        if (ViewModel.GroupGames && dropInfo.TargetGroup.Name != game.GameGroup)
+        if (ViewModel.GroupGames && dropInfo.TargetGroup?.Name != game.GameGroup)
             return;
 
         base.DragOver(dropInfo);
