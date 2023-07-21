@@ -454,11 +454,11 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     {
         Logger.Trace("An archive file is being exported as {0}", format);
 
-        // Create the output file and open it
-        using FileStream fileStream = File.Create(filePath);
-
         try
         {
+            // Create the output file and open it
+            using FileStream fileStream = File.Create(filePath);
+
             // Write the bytes directly to the stream if no format is specified
             if (format == null)
             {
@@ -476,11 +476,21 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         catch
         {
             // If writing to the file failed after it was created we delete the file
-            fileStream.Close();
             Services.File.DeleteFile(filePath);
 
             // Throw the exception
             throw;
+        }
+
+        // Try setting file metadata
+        try
+        {
+            FileMetadata fileMetadata = Manager.GetFileMetadata(FileData.ArchiveEntry);
+            fileMetadata.ApplyToFile(filePath);
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Setting file metadata after export");
         }
     }
 
@@ -582,10 +592,10 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         using ArchiveFileStream importFile = new(File.OpenRead(file), file.Name, true);
 
         // Import the file
-        ImportFile(importFile, file.FileExtensions, convert);
+        ImportFile(importFile, file.FileExtensions, convert, new FileMetadata(file));
     }
 
-    public void ImportFile(ArchiveFileStream importFile, FileExtension fileExtension, bool convert)
+    public void ImportFile(ArchiveFileStream importFile, FileExtension fileExtension, bool convert, FileMetadata fileMetadata)
     {
         // Memory stream for converted data
         using MemoryStream memStream = new MemoryStream();
@@ -600,7 +610,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         }
 
         // Replace the file with the import data
-        if (ReplaceFile(convert ? memStream : importFile.Stream))
+        if (ReplaceFile(convert ? memStream : importFile.Stream, fileMetadata))
             Archive.AddModifiedFiles();
     }
 
@@ -608,9 +618,10 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// Replaces the current file with the data from the stream
     /// </summary>
     /// <param name="inputStream">The decoded data stream</param>
+    /// <param name="fileMetadata">The metadata for the new file</param>
     /// <param name="forceLoadThumbnail">Forces the thumbnail to be loaded</param>
     /// <returns>True if the file should be added as a new modified file, otherwise false</returns>
-    public bool ReplaceFile(Stream inputStream, bool forceLoadThumbnail = false)
+    public bool ReplaceFile(Stream inputStream, FileMetadata fileMetadata, bool forceLoadThumbnail = false)
     {
         bool wasModified = HasPendingImport;
 
@@ -620,7 +631,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         FileData.SetPendingImport();
 
         // Encode the data to the pending import stream
-        Manager.EncodeFile(inputStream, FileData.PendingImport, FileData.ArchiveEntry);
+        Manager.EncodeFile(inputStream, FileData.PendingImport, FileData.ArchiveEntry, fileMetadata);
 
         // If no data was encoded we copy over the original data
         if (FileData.PendingImport.Length == 0)
@@ -846,7 +857,10 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                         Logger.Trace("The file was modified");
 
                         // Import the modified file
-                        ImportFile(tempFileStream, ext, convert);
+                        ImportFile(tempFileStream, ext, convert, new FileMetadata()
+                        {
+                            LastModified = DateTimeOffset.Now
+                        });
                     }
                     else
                     {
@@ -894,6 +908,9 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                     return;
                 }
 
+                // Get the file metadata
+                FileMetadata fileMetadata = Manager.GetFileMetadata(FileData.ArchiveEntry);
+
                 // Create a new file
                 FileViewModel newFile = new(new FileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir.FullPath, newName)), dir);
 
@@ -901,7 +918,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 newFile.SetFileType(FileType);
 
                 // Copy the file contents
-                newFile.ReplaceFile(GetDecodedFileStream().Stream);
+                newFile.ReplaceFile(GetDecodedFileStream().Stream, fileMetadata);
 
                 // Add the new file
                 dir.Files.Insert(dir.Files.IndexOf(this), newFile);

@@ -127,7 +127,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                             fileItem.SetPendingImport();
 
                             // Encode the data to the pending import stream
-                            Manager.EncodeFile(inputStream, fileItem.PendingImport, archiveEntry);
+                            Manager.EncodeFile(inputStream, fileItem.PendingImport, archiveEntry, new FileMetadata(inputFile));
 
                             // If no data was encoded we copy over the decoded data
                             if (fileItem.PendingImport.Length == 0)

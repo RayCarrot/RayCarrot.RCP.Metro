@@ -44,7 +44,8 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="inputStream">The input data stream to encode</param>
     /// <param name="outputStream">The output data stream for the encoded data</param>
     /// <param name="fileEntry">The file entry for the file to encode</param>
-    void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry);
+    /// <param name="fileMetadata">The metadata for the file to be encoded</param>
+    void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry, FileMetadata fileMetadata);
 
     /// <summary>
     /// Decodes the file data from the input stream, or nothing if the data is not encoded
@@ -53,6 +54,13 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="outputStream">The output data stream for the decoded data</param>
     /// <param name="fileEntry">The file entry for the file to decode</param>
     void DecodeFile(Stream inputStream, Stream outputStream, object fileEntry);
+
+    /// <summary>
+    /// Gets the file metadata from a file entry
+    /// </summary>
+    /// <param name="fileEntry">The file entry to get the file metadata for</param>
+    /// <returns>The file metadata</returns>
+    FileMetadata GetFileMetadata(object fileEntry);
 
     /// <summary>
     /// Gets the file data from the archive using a generator

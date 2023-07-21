@@ -84,13 +84,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
     #region Public Methods
 
-    /// <summary>
-    /// Encodes the file data from the input stream, or nothing if the data does not need to be encoded
-    /// </summary>
-    /// <param name="inputStream">The input data stream to encode</param>
-    /// <param name="outputStream">The output data stream for the encoded data</param>
-    /// <param name="fileEntry">The file entry for the file to encode</param>
-    public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
+    public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry, FileMetadata fileMetadata)
     {
         // Get the file entry
         var file = (FileArchiveEntry)fileEntry;
@@ -127,6 +121,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             new ProcessorEncoder(new Xor8Processor(entry.XORKey), inputStream.Length - inputStream.Position).
                 DecodeStream(inputStream, outputStream);
     }
+
+    public FileMetadata GetFileMetadata(object fileEntry) => new();
 
     /// <summary>
     /// Gets the file data from the archive using a generator

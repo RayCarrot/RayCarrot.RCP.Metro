@@ -82,19 +82,17 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
     #region Public Methods
 
-    /// <summary>
-    /// Encodes the file data from the input stream, or nothing if the data does not need to be encoded
-    /// </summary>
-    /// <param name="inputStream">The input data stream to encode</param>
-    /// <param name="outputStream">The output data stream for the encoded data</param>
-    /// <param name="fileEntry">The file entry for the file to encode</param>
-    public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
+    public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry, FileMetadata fileMetadata)
     {
         // Get the file entry
         var entry = (BundleFile_FileEntry)fileEntry;
 
         // Set the file size
         entry.FileSize = (uint)inputStream.Length;
+
+        // Set the time stamp
+        if (fileMetadata.LastModified != null)
+            entry.TimeStampDateTimeOffset = fileMetadata.LastModified.Value;
 
         // Return the data as is if the file should not be compressed
         if (!Config.ShouldCompress(entry))
@@ -122,6 +120,17 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         // Decompress the data if compressed
         if (entry.IsCompressed)
             BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.FileSize).DecodeStream(inputStream, outputStream);
+    }
+
+    public FileMetadata GetFileMetadata(object fileEntry)
+    {
+        // Get the file entry
+        var entry = (BundleFile_FileEntry)fileEntry;
+
+        return new FileMetadata
+        {
+            LastModified = entry.TimeStampDateTimeOffset
+        };
     }
 
     /// <summary>
@@ -410,6 +419,12 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     {
         var entry = (BundleFile_FileEntry)fileEntry;
         var ipk = (BundleFile)archive;
+
+        if (entry.TimeStamp != 0)
+            yield return new DuoGridItemViewModel(
+                // TODO-UPDATE: Localize
+                header: "Last write time:",
+                text: $"{entry.TimeStampDateTimeOffset.DateTime.ToLongDateString()}");
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 

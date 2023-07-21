@@ -375,9 +375,12 @@ public class Patcher
 
         // Get the temp stream to store the pending import data
         file.SetPendingImport();
-
+        
         // Encode the data to the pending import stream
-        manager.EncodeFile(resource, file.PendingImport, file.ArchiveEntry);
+        manager.EncodeFile(resource, file.PendingImport, file.ArchiveEntry, 
+            // TODO: It would be good to set the file metadata here. But at the moment it's not possible since
+            //       there is no metadata saved in .gp patch files. We only have access to the resource stream.
+            new FileMetadata());
 
         // If no data was encoded we copy over the decoded data
         if (file.PendingImport.Length == 0)
