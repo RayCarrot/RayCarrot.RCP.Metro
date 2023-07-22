@@ -25,282 +25,95 @@
             <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <local:Card Grid.Column="0"
+                    Margin="{StaticResource RCP.Thicknesses.Card}"
+                    MouseDown="InstalledGameClientsCard_OnMouseDown">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <local:Card Grid.Row="0"
-                        Margin="{StaticResource RCP.Thicknesses.Card}"
-                        MouseDown="InstalledGameClientsCard_OnMouseDown">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Text="{Resx GameClients_AddedClientsHeader}"
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Margin="0 0 0 4" />
 
-                    <TextBlock Grid.Row="0"
-                               Text="{Resx GameClients_AddedClientsHeader}"
-                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Margin="0 0 0 4" />
+                <ListBox x:Name="InstalledGameClientsListBox" 
+                         Grid.Row="1"
+                         Background="Transparent"
+                         ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Rounded}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ItemsSource="{Binding Path=InstalledGameClients, Mode=OneTime}"
+                         d:ItemsSource="{d:SampleData ItemCount=3}"
+                         SelectedItem="{Binding Path=SelectedGameClient}"
+                         Loaded="InstalledGameClientsListBox_OnLoaded"
+                         dd:DragDrop.IsDragSource="True"
+                         dd:DragDrop.IsDropTarget="True"
+                         dd:DragDrop.UseDefaultDragAdorner="True">
 
-                    <ListBox x:Name="InstalledGameClientsListBox" 
-                             Grid.Row="1"
-                             Background="Transparent"
-                             ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Rounded}"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             ItemsSource="{Binding Path=InstalledGameClients, Mode=OneTime}"
-                             d:ItemsSource="{d:SampleData ItemCount=3}"
-                             SelectedItem="{Binding Path=SelectedGameClient}"
-                             Loaded="InstalledGameClientsListBox_OnLoaded"
-                             dd:DragDrop.IsDragSource="True"
-                             dd:DragDrop.IsDropTarget="True"
-                             dd:DragDrop.UseDefaultDragAdorner="True">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0 4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0 4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"
+                                       Width="32"
+                                       Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                                       d:Source="{x:Static local:DesignData.GameClientIconSource}"
+                                       Margin="0 0 4 0" />
 
-                                    <Image Grid.Column="0"
-                                           Width="32"
-                                           Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                           d:Source="{x:Static local:DesignData.GameClientIconSource}"
-                                           Margin="0 0 4 0" />
-                                    
-                                    <TextBlock Grid.Column="1"
-                                               Text="{Binding Path=DisplayName.Value}"
-                                               d:Text="DOSBox"
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Path=DisplayName.Value}"
+                                           d:Text="DOSBox"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center" />
 
-                                    <ItemsControl Grid.Column="2"
-                                                  ItemsSource="{Binding Path=Platforms, Mode=OneTime}"
-                                                  VerticalAlignment="Center">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
+                                <ItemsControl Grid.Column="2"
+                                              ItemsSource="{Binding Path=Platforms, Mode=OneTime}"
+                                              VerticalAlignment="Center">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
 
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                                       d:Source="{local:AssetImageSource Asset={x:Static local:GamePlatformIconAsset.MsDos}}"
-                                                       ToolTip="{Binding Path=DisplayName.Value}"
-                                                       Width="20" 
-                                                       Height="20"
-                                                       Margin="0 0 4 0" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                                                   d:Source="{local:AssetImageSource Asset={x:Static local:GamePlatformIconAsset.MsDos}}"
+                                                   ToolTip="{Binding Path=DisplayName.Value}"
+                                                   Width="20" 
+                                                   Height="20"
+                                                   Margin="0 0 4 0" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
 
-                                    </ItemsControl>
+                                </ItemsControl>
 
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-                </Grid>
+            </Grid>
 
-            </local:Card>
-
-            <local:Card Grid.Row="1"
-                        Margin="{StaticResource RCP.Thicknesses.Card}">
-                <StackPanel>
-                    <TextBlock Text="{Resx GameClients_AvailableClientsHeader}"
-                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Margin="0 0 0 4" />
-
-                    <ItemsControl ItemsSource="{Binding Path=AvailableGameClients, Mode=OneTime}"
-                                  d:ItemsSource="{d:SampleData ItemCount=3}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0 0 0 4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image Grid.Column="0"
-                                           Margin="0 0 4 0"
-                                           Width="32"
-                                           Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                           d:Source="{x:Static local:DesignData.GameClientIconSource}"/>
-
-                                    <TextBlock Grid.Column="1"
-                                               Margin="0 0 4 0"
-                                               Text="{Binding Path=DisplayName.Value}" 
-                                               d:Text="DOSBox"
-                                               VerticalAlignment="Center" />
-
-                                    <ItemsControl Grid.Column="2"
-                                                  ItemsSource="{Binding Path=Platforms, Mode=OneTime}"
-                                                  VerticalAlignment="Center">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                                       d:Source="{local:AssetImageSource Asset={x:Static local:GamePlatformIconAsset.MsDos}}"
-                                                       ToolTip="{Binding Path=DisplayName.Value}"
-                                                       Width="20" 
-                                                       Height="20"
-                                                       Margin="0 0 4 0" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-
-                                    </ItemsControl>
-
-                                    <Button Grid.Column="3"
-                                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                                            Margin="0 0 4 0"
-                                            HorizontalAlignment="Right"
-                                            Content="{Resx GameClients_LocateClient}"
-                                            local:Icon.Kind="FolderOutline"
-                                            Command="{Binding Path=AddGameClientCommand, Mode=OneTime}"
-                                            CommandParameter="{Binding Mode=OneTime}" />
-
-                                    <!-- Finder action -->
-                                    <Button Grid.Column="4"
-                                            IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
-                                            Command="{Binding Path=FindGameClientCommand, Mode=OneTime}"
-                                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                                            local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                                            ToolTip="{Resx GameClients_FindClient}"
-                                            Margin="0 0 4 0" />
-
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                </StackPanel>
-            </local:Card>
-        </Grid>
+        </local:Card>
 
         <local:Card Grid.Column="1"
-                    Margin="{StaticResource RCP.Thicknesses.Card}"
-                    DataContext="{Binding Path=SelectedGameClient}">
+                    Margin="{StaticResource RCP.Thicknesses.Card}">
 
-            <ScrollViewer Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}"
-                          d:Visibility="Visible">
-                <StackPanel>
-                    <Grid Margin="0 0 0 8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+            <Grid>
+                <local:GameClientHubControl DataContext="{Binding Path=SelectedGameClient}"
+                                            Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                                            d:Visibility="Visible" />
 
-                        <Image Grid.Column="0"
-                               Width="64"
-                               Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                               d:Source="{x:Static local:DesignData.GameClientIconSource}"
-                               Margin="0 0 8 0" />
-
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                                   Text="{Binding Path=DisplayName.Value}"
-                                   d:Text="DOSBox"
-                                   TextWrapping="Wrap"
-                                   VerticalAlignment="Center" />
-
-                        <local:PopupCard Grid.Column="2" 
-                                         VerticalAlignment="Center">
-                            <StackPanel>
-                                <Button Content="{Resx GameClients_OpenLocation}"
-                                        Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
-                                        local:Icon.Kind="FolderOutline"
-                                        local:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
-                                <Button Command="{Binding Path=RenameCommand, Mode=OneTime}"
-                                        local:Icon.Kind="PencilOutline"
-                                        local:Icon.Brush="{StaticResource RCP.Brushes.Info}"
-                                        HorizontalContentAlignment="Stretch">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock Grid.Column="0"
-                                                   Text="{Resx GameClients_Rename}" />
-
-                                        <TextBlock Grid.Column="1"
-                                                   Text="F2"
-                                                   Margin="0 0 8 0" />
-
-                                    </Grid>
-                                </Button>
-                                <Button Content="{Resx GameClients_Remove}"
-                                        Command="{Binding Path=RemoveGameClientCommand, Mode=OneTime}"
-                                        local:Icon.Kind="DeleteOutline"
-                                        local:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}" />
-                                <Separator local:UserLevelAssist.MinUserLevel="Debug" />
-                                <Button local:UserLevelAssist.MinUserLevel="Debug"
-                                        Content="Debug game client"
-                                        Command="{Binding Path=OpenGameClientDebugCommand, Mode=OneTime}"
-                                        local:Icon.Kind="{StaticResource RCP.Icons.Debug}"
-                                        local:Icon.Brush="{StaticResource RCP.Brushes.Debug}" />
-                            </StackPanel>
-                        </local:PopupCard>
-
-                    </Grid>
-
-                    <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
-                                   Margin="0 0 0 8" />
-
-                    <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
-                               Visibility="{Binding Path=OptionsViewModel, Converter={local:InvertedObjectNullToVisibilityConverter}}"
-                               Margin="0 0 0 8" />
-
-                    <ContentPresenter Content="{Binding Path=OptionsViewModel, Mode=OneTime}"
-                                      Margin="0 0 0 8">
-                        <ContentPresenter.Resources>
-                            <DataTemplate DataType="{x:Type dosBox:DosBoxGameClientOptionsViewModel}">
-                                <dosBox:DosBoxGameClientOptionsControl />
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type ubisoftConnect:UbisoftConnectGameClientOptionsViewModel}">
-                                <ubisoftConnect:UbisoftConnectGameClientOptionsControl />
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type custom:CustomGameClientOptionsViewModel}">
-                                <custom:CustomGameClientOptionsControl />
-                            </DataTemplate>
-                        </ContentPresenter.Resources>
-                    </ContentPresenter>
-
-                    <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
-                               Margin="0 0 0 8" />
-
-                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Text="{Resx GameClients_SupportedGamesHeader}"
-                               Margin="0 0 0 4" />
-
-                    <ItemsControl ItemsSource="{Binding Path=SupportedGames}"
-                                  d:ItemsSource="{d:SampleData ItemCount=3}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <local:GameTitle Margin="0 0 0 8"
-                                                 GameInstallation="{Binding}"
-                                                 d:GameInstallation="{x:Static local:DesignData.GameInstallation}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                </StackPanel>
-            </ScrollViewer>
+                <local:AddGameClientsControl Visibility="{Binding Path=SelectedGameClient, Converter={local:ObjectNullToVisibilityConverter}}" />
+            </Grid>
 
         </local:Card>
 

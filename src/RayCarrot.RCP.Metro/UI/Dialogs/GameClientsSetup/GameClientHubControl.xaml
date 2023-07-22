@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameClientHubControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:ubisoftConnect="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect"
+             xmlns:custom="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.Custom"
+             xmlns:dosBox="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.DosBox"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             mc:Ignorable="d" 
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DesignHeight="450" d:DesignWidth="400" 
+             d:DataContext="{d:DesignInstance local:InstalledGameClientViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0 0 0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"
+                   Width="64"
+                   Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                   d:Source="{x:Static local:DesignData.GameClientIconSource}"
+                   Margin="0 0 8 0" />
+
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                       Text="{Binding Path=DisplayName.Value}"
+                       d:Text="DOSBox"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center" />
+
+            <local:PopupCard Grid.Column="2" 
+                             VerticalAlignment="Center">
+                <StackPanel>
+                    <Button Content="{Resx GameClients_OpenLocation}"
+                            Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
+                            local:Icon.Kind="FolderOutline"
+                            local:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
+                    <Button Command="{Binding Path=RenameCommand, Mode=OneTime}"
+                            local:Icon.Kind="PencilOutline"
+                            local:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                            HorizontalContentAlignment="Stretch">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="{Resx GameClients_Rename}" />
+
+                            <TextBlock Grid.Column="1"
+                                       Text="F2"
+                                       Margin="0 0 8 0" />
+
+                        </Grid>
+                    </Button>
+                    <Button Content="{Resx GameClients_Remove}"
+                            Command="{Binding Path=RemoveGameClientCommand, Mode=OneTime}"
+                            local:Icon.Kind="DeleteOutline"
+                            local:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}" />
+                    <Separator local:UserLevelAssist.MinUserLevel="Debug" />
+                    <Button local:UserLevelAssist.MinUserLevel="Debug"
+                            Content="Debug game client"
+                            Command="{Binding Path=OpenGameClientDebugCommand, Mode=OneTime}"
+                            local:Icon.Kind="{StaticResource RCP.Icons.Debug}"
+                            local:Icon.Brush="{StaticResource RCP.Brushes.Debug}" />
+                </StackPanel>
+            </local:PopupCard>
+
+        </Grid>
+
+        <local:DuoGrid Grid.Row="1" 
+                       ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
+                       Margin="0 0 0 8" />
+
+        <Separator Grid.Row="2" 
+                   Style="{StaticResource RCP.Styles.Separator.Bold}"
+                   Visibility="{Binding Path=OptionsViewModel, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                   Margin="0 0 0 8" />
+
+        <ContentPresenter Grid.Row="3" 
+                          Content="{Binding Path=OptionsViewModel, Mode=OneTime}"
+                          Margin="0 0 0 8">
+            <ContentPresenter.Resources>
+                <DataTemplate DataType="{x:Type dosBox:DosBoxGameClientOptionsViewModel}">
+                    <dosBox:DosBoxGameClientOptionsControl />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ubisoftConnect:UbisoftConnectGameClientOptionsViewModel}">
+                    <ubisoftConnect:UbisoftConnectGameClientOptionsControl />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type custom:CustomGameClientOptionsViewModel}">
+                    <custom:CustomGameClientOptionsControl />
+                </DataTemplate>
+            </ContentPresenter.Resources>
+        </ContentPresenter>
+
+        <Separator Grid.Row="4" 
+                   Style="{StaticResource RCP.Styles.Separator.Bold}"
+                   Margin="0 0 0 8" />
+
+        <TextBlock Grid.Row="5" 
+                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx GameClients_SupportedGamesHeader}"
+                   Margin="0 0 0 4" />
+
+        <ItemsControl Grid.Row="6" 
+                      Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}" 
+                      VirtualizingStackPanel.ScrollUnit="Pixel"
+                      ItemsSource="{Binding Path=SupportedGames}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:GameTitle Margin="0 0 0 8"
+                                     GameInstallation="{Binding}"
+                                     d:GameInstallation="{x:Static local:DesignData.GameInstallation}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
+</UserControl>
