@@ -126,9 +126,13 @@
                       d:ItemsSource="{d:SampleData ItemCount=3}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:GameTitle Margin="0 0 0 8"
-                                     GameInstallation="{Binding}"
-                                     d:GameInstallation="{x:Static local:DesignData.GameInstallation}" />
+                    <CheckBox HorizontalAlignment="Stretch"
+                              IsChecked="{Binding Path=UsesGameClient}">
+                        <local:GameTitle Margin="0 0 0 8" 
+                                         GameIconSize="Smallest"
+                                         GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
+                                         d:GameInstallation="{x:Static local:DesignData.GameInstallation}" />
+                    </CheckBox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

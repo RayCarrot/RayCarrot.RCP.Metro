@@ -46,13 +46,14 @@ public class InstalledGameClientViewModel : BaseViewModel
 
     public GameClientOptionsViewModel? OptionsViewModel { get; }
 
-    public ObservableCollection<GameInstallation> SupportedGames { get; set; }
+    public ObservableCollection<SupportedGameViewModel> SupportedGames { get; set; }
 
     [MemberNotNull(nameof(SupportedGames))]
     public void RefreshSupportedGames()
     {
         SupportedGames = Services.Games.GetInstalledGames().
             Where(x => Descriptor.SupportsGame(x, GameClientInstallation)).
+            Select(x => new SupportedGameViewModel(x, GameClientInstallation)).
             ToObservableCollection();
     }
 
