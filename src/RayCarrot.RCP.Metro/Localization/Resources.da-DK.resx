@@ -1305,7 +1305,7 @@ Prøv igen?</value>
     <value>Konfiguration</value>
   </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
-    <value>Animationer inkluderer f.eks sideovergange og størrelsesændringsanimationer for Spil-siden</value>
+    <value>Animationer inkluderer f.eks sideovergange og størrelsesændringsanimationer for spilsiden</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steamgruppe</value>
@@ -1816,7 +1816,7 @@ Fejlmeddelelse: {1}</value>
     <value>Rayman-versionen kunne ikke opdateres</value>
   </data>
   <data name="Utility_Revert" xml:space="preserve">
-    <value>Vend tilbage</value>
+    <value>Nulstil</value>
   </data>
   <data name="Utility_WIP" xml:space="preserve">
     <value>Dette hjælpeværktøj er i øjeblikket ufuldendt og kan muligvis være ustabilt eller mangle nogle funktioner</value>
@@ -1870,7 +1870,7 @@ Fejlmeddelelse: {1}</value>
     <value>UbiRay-patchen er blevet anvendt med succes</value>
   </data>
   <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>UbiRay-patchen er blevet tilbagevendt</value>
+    <value>UbiRay-patchen er blevet nulstillet</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Engang for længe siden</value>
@@ -2423,7 +2423,7 @@ Fejlmeddelelse: {1}</value>
     <value>Binær</value>
   </data>
   <data name="Archive_SelectEditExe" xml:space="preserve">
-    <value>Vælg en eksekverbar fil, der skal bruges til {0}</value>
+    <value>Vælg eksekverbar, der skal bruges til {0}</value>
   </data>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at åbne filen til redigering</value>
@@ -2625,7 +2625,7 @@ For at opdatere applikationen manuelt, kan den seneste version hentes fra {1}.</
     <value>Den eksekverbare patch er nødvendig til patchede BF-filer på grund af begrænset hukommelse</value>
   </data>
   <data name="Mod_RRR_RevertExePatch" xml:space="preserve">
-    <value>Vend tilbage fra eksekverbar patch</value>
+    <value>Nulstil eksekverbar patch</value>
   </data>
   <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
     <value>Download patchet BF</value>
@@ -2680,11 +2680,11 @@ For at opdatere applikationen manuelt, kan den seneste version hentes fra {1}.</
 A: Hop / Hold nede i luften for at bruge helikopteren
 X: Angrib
 Y: Brug gribekrog
-LB: Ændr lys / Hold nede for at styre dansetempo, hvis aktiveret
+LB: Lys til/fra / Hold nede for at styre dansetempo, hvis aktiveret
 LT: Kiggetilstand, hvis aktiveret
 RB: Angrib / Tryk eller hold nede for at bruge 'finishers', hvis aktiveret
-RT: Undvigelsesrul / Stamp / Rul og hop flere gange for at booste, hvis aktiveret
-D-Pad op: Aktivér eller deaktivér dansetilstand. I dansetilstand kan du trykke ABXY eller bruge venstre joystick for at danse
+RT: Undvigelsesrul / Kraftangreb / Rul og hop flere gange for at booste, hvis aktiveret
+D-Pad op: Dansetilstand til/fra. I dansetilstand kan du trykke ABXY eller bruge venstre joystick for at danse
 Venstre joystick: Bevæg Rayman
 Højre joystick: Kamerastyring, hvis aktiveret
 Tilbage: Noclip-tilstand
@@ -2773,5 +2773,2601 @@ Start: Pause</value>
   </data>
   <data name="Mod_RRR_MemMod_DisableIntros" xml:space="preserve">
     <value>Deaktivér minispil-introer</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntrosInfo" xml:space="preserve">
+    <value>Minispilintrosekvenser ændrer verdens tilstand og deaktiverer nogle gange Rayman (f.eks. Bunnies don't give gifts)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSound" xml:space="preserve">
+    <value>Deaktivér fodsporlyd</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSoundInfo" xml:space="preserve">
+    <value>Hvis BF-mods ikke er aktiveret, kan Raymans fodspor lyde irriterende mange steder - brug denne indstilling for at slå det fra</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlippery" xml:space="preserve">
+    <value>Gør Rayman mindre glat</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlipperyInfo" xml:space="preserve">
+    <value>Rayman føles normalt meget glat, dette forbedrer det en smule</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthMana" xml:space="preserve">
+    <value>Aktivér helbreds- og mana-debugvisning</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthManaInfo" xml:space="preserve">
+    <value>Når Rayman udfører et specielt angreb eller bliver ramt, vises hans HP og Mana</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsHeader" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItems" xml:space="preserve">
+    <value>Rabbids efterlader genstande</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItemsInfo" xml:space="preserve">
+    <value>Rabbids efterlader genstande, som Rayman kan bruge</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHP" xml:space="preserve">
+    <value>Forøget fjende-HP</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHPInfo" xml:space="preserve">
+    <value>Hver Rabbid har 100 HP</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowers" xml:space="preserve">
+    <value>Rabbids modtager tilfældige prototypekrafter</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowersInfo" xml:space="preserve">
+    <value>Nogle Rabbids får én af 4 prototypekrafter. Opdag dem, mens du spiller!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MountsHeader" xml:space="preserve">
+    <value>Monteringer</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMounts" xml:space="preserve">
+    <value>Tæm monteringer</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMountsInfo" xml:space="preserve">
+    <value>Monteringer bliver kontrollerbare, når du først rider på dem</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEagles" xml:space="preserve">
+    <value>Flagermuse opfører sig som ørne</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEaglesInfo" xml:space="preserve">
+    <value>Flagermuse bliver kæmpe og opfører sig som ørnen med andre animationer</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlums" xml:space="preserve">
+    <value>Grise opfører sig som blommer</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlumsInfo" xml:space="preserve">
+    <value>Grise opfører sig som blommer og hopper meget. Prøv at kaste dem på Rabbids hoveder!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinos" xml:space="preserve">
+    <value>Næsehorn bliver aggressive</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinosInfo" xml:space="preserve">
+    <value>Næsehornene fra kapløbene angriber dig. Gør dig klar på at dø (eller brug udødelighedssnydekoden!)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJump" xml:space="preserve">
+    <value>Edderkopperobotter kan hoppe</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJumpInfo" xml:space="preserve">
+    <value>Når du ridder på de edderkoppelige robotter, kan du hoppe som edderkopper kunne i prototypen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShoot" xml:space="preserve">
+    <value>Flagermuse kan skyde</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShootInfo" xml:space="preserve">
+    <value>Flagermuse kan skyde projektiler med angribsknappen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlying" xml:space="preserve">
+    <value>Flyvende tallerkner begynder med at flyve</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
+    <value>Flyvende tallerkner flyver rundt omkring, men dette gør, at de er sværere at montere</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Kaninjagter</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
+    <value>Missilkastere sigter efter Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTargetInfo" xml:space="preserve">
+    <value>Missiler sigter efter Rayman, men Rayman dør efter at blive ramt 1 gang!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipods" xml:space="preserve">
+    <value>Ødelæg ikke bipode</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
+    <value>De fleste bipode kollapser, når FPS-stand ikke er aktiv. Dette forhindrer dem i at blive ødelagt.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Aktivér alle aktiveringsudløsere</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Tvinger alle aktiveringsudløsere til at være aktive. Forårsager kaos i mange baner og spawner mange flere fjender (og Globox-babyer)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Aktivér alle afgrænsningsvolumenudløsere</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Nogle Rabbid-spawnudløsere er svære at nå. Dette udløser dem, men pas på, det kan også forårsage crashes i mange baner!</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_0" xml:space="preserve">
+    <value>Hop</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_4" xml:space="preserve">
+    <value>Angrib</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_6" xml:space="preserve">
+    <value>Gribekrog</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_8" xml:space="preserve">
+    <value>Lys/Tempo</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_10" xml:space="preserve">
+    <value>Angrib (finisher)</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_12" xml:space="preserve">
+    <value>Kiggetilstand</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_14" xml:space="preserve">
+    <value>Rul/Kraftangreb</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_16" xml:space="preserve">
+    <value>No-clip</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_18" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_24" xml:space="preserve">
+    <value>Dans til/fra</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_28" xml:space="preserve">
+    <value>Gå</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FixSounds" xml:space="preserve">
+    <value>Reparér lydeffekter</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer" xml:space="preserve">
+    <value>Ændr spilbar karakter</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_BabyGlobox" xml:space="preserve">
+    <value>Baby Globox</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Serguei" xml:space="preserve">
+    <value>Serguei</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Rabbid" xml:space="preserve">
+    <value>Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid" xml:space="preserve">
+    <value>Grey Leader Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid" xml:space="preserve">
+    <value>Superman Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid" xml:space="preserve">
+    <value>Terminator Rabbid (Lyserød)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid" xml:space="preserve">
+    <value>Sam Fisher Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Nurgle Demon</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_BatSoundLikeEagle" xml:space="preserve">
+    <value>Gør, så flagermusen lyder som en ørn</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider" xml:space="preserve">
+    <value>Gør, så edderkopperobotten lyder som en edderkop</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
+    <value>Tilføj brugerdefineret helikopteroverflade</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
+    <value>Tilføj pels på Rabbids</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Aktivér lommelygte (slå til/fra med LB)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Tilføj lommelygte til Bunnies Love Digging Tunnels</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Tilføj ubrugte Rabbids-genstande til Bunnies Aren't Scared Of The Dark</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplySuccess" xml:space="preserve">
+    <value>Hukommelsespatchen blev anvendt med succes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
+    <value>Hukommelsespatchen kunne ikke anvendes</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
+    <value>Spilinstallationsmappen er ugyldig</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
+    <value>Kunne ikke bestemme spilversion</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UnsupportedGameExe" xml:space="preserve">
+    <value>Spilversionen understøttes ikke</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchSuccess" xml:space="preserve">
+    <value>Den eksekverbare fil blev patchet med succes</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RevertExePatchSuccess" xml:space="preserve">
+    <value>Den eksekverbare patch blev nulstillet med succes</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at patche den eksekverbare fil</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFSuccess" xml:space="preserve">
+    <value>Den patchede BF-fil er blevet fjernet</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFError" xml:space="preserve">
+    <value>Kunne ikke fjerne patchet BF-fil</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFSuccess" xml:space="preserve">
+    <value>Den patchede BF-fil blev opdateret med succes</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opdatere den patchede BF-fil</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKill" xml:space="preserve">
+    <value>Reducér skade</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKillInfo" xml:space="preserve">
+    <value>I stedet for at dø med det samme, dør Rayman nu først efter 4 slag</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigames" xml:space="preserve">
+    <value>Lås op for alt</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
+    <value>En udviklersnydekode. Alt i scoretilstand og i bonussektionen er låst op, uanset hvor langt du er nået i spillet.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Indstil snydeside</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
+    <value>Viser debug-information</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
+    <value>Dansetilstand: drej</value>
+  </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Er du sikker på, at du ønsker at nulstille appindstillingerne? Dette kan ikke fortrydes.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Bekræft nulstilling</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Nulstil</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Ugyldig opløsning. Skal være i formatet 'Bredde x Højde'.</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Deaktivér spilvalidering</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Feltet skal udfyldes</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>Filen eksisterer ikke</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>Mappen eksisterer ikke</value>
+  </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Klip</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Kopiér</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Sæt ind</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Fortryd</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Annullér fortryd</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Åbn placering</value>
+  </data>
+  <data name="Installer_Title" xml:space="preserve">
+    <value>Installér {0}</value>
+  </data>
+  <data name="DriveSelection_RefreshError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at finde tilgængelige drev</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Vis vinduer som pop op-vinduer</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Hvis dette aktiveres, vises vinduer, så som f.eks. spilindstillingsvinduet eller meddelelsesdialoger, som pop op-vinduer inde i hovedvinduet. Hvis dette deaktiveres, vises de som separate vinduer.</value>
+  </data>
+  <data name="RRR_LevelName_0" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_1" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_2" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_3" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_4" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_5" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_6" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_7" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_8" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_9" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_10" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_11" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_12" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_13" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_14" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_15" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_16" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_17" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_18" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_19" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_20" xml:space="preserve">
+    <value>Bunnies can't jump</value>
+  </data>
+  <data name="RRR_LevelName_21" xml:space="preserve">
+    <value>Bunnies don't give gifts</value>
+  </data>
+  <data name="RRR_LevelName_22" xml:space="preserve">
+    <value>Bunnies don't know what to do with cows</value>
+  </data>
+  <data name="RRR_LevelName_23" xml:space="preserve">
+    <value>Bunnies never close doors</value>
+  </data>
+  <data name="RRR_LevelName_24" xml:space="preserve">
+    <value>Bunnies don't milk cows</value>
+  </data>
+  <data name="RRR_LevelName_25" xml:space="preserve">
+    <value>Bunnies are addicted to carrot juice</value>
+  </data>
+  <data name="RRR_LevelName_26" xml:space="preserve">
+    <value>Bunnies can't slide Part 2</value>
+  </data>
+  <data name="RRR_LevelName_27" xml:space="preserve">
+    <value>Bunnies are heartless with pigs</value>
+  </data>
+  <data name="RRR_LevelName_28" xml:space="preserve">
+    <value>Bunnies don't like bats</value>
+  </data>
+  <data name="RRR_LevelName_29" xml:space="preserve">
+    <value>Bunnies don't use toothpaste</value>
+  </data>
+  <data name="RRR_LevelName_30" xml:space="preserve">
+    <value>Bunnies can't fly</value>
+  </data>
+  <data name="RRR_LevelName_31" xml:space="preserve">
+    <value>Bunnies can only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_32" xml:space="preserve">
+    <value>Bunnies can't play soccer</value>
+  </data>
+  <data name="RRR_LevelName_33" xml:space="preserve">
+    <value>Bunnies don't understand bowling</value>
+  </data>
+  <data name="RRR_LevelName_34" xml:space="preserve">
+    <value>Animal Farm</value>
+  </data>
+  <data name="RRR_LevelName_35" xml:space="preserve">
+    <value>Bunnies have a great ear for music</value>
+  </data>
+  <data name="RRR_LevelName_36" xml:space="preserve">
+    <value>Bunnies are slow to react</value>
+  </data>
+  <data name="RRR_LevelName_37" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 3</value>
+  </data>
+  <data name="RRR_LevelName_38" xml:space="preserve">
+    <value>Bunnies like to stuff themselves</value>
+  </data>
+  <data name="RRR_LevelName_39" xml:space="preserve">
+    <value>Bunnies are raving mad Part 2</value>
+  </data>
+  <data name="RRR_LevelName_40" xml:space="preserve">
+    <value>Bunnies like a good race</value>
+  </data>
+  <data name="RRR_LevelName_41" xml:space="preserve">
+    <value>Race good a like Bunnies</value>
+  </data>
+  <data name="RRR_LevelName_42" xml:space="preserve">
+    <value>Bunnies like a good race on the beach</value>
+  </data>
+  <data name="RRR_LevelName_43" xml:space="preserve">
+    <value>Bunnies only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_44" xml:space="preserve">
+    <value>Bunnies are fantastic dancers</value>
+  </data>
+  <data name="RRR_LevelName_45" xml:space="preserve">
+    <value>Bunnies don't sleep well</value>
+  </data>
+  <data name="RRR_LevelName_46" xml:space="preserve">
+    <value>Bunnies have no memory</value>
+  </data>
+  <data name="RRR_LevelName_47" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows</value>
+  </data>
+  <data name="RRR_LevelName_48" xml:space="preserve">
+    <value>Bunnies can't jump Part 2</value>
+  </data>
+  <data name="RRR_LevelName_49" xml:space="preserve">
+    <value>Bunnies never close doors Part 2</value>
+  </data>
+  <data name="RRR_LevelName_50" xml:space="preserve">
+    <value>Bunnies don't milk cows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_51" xml:space="preserve">
+    <value>Bunnies like a good cowboy race</value>
+  </data>
+  <data name="RRR_LevelName_52" xml:space="preserve">
+    <value>Bunnies are heartless with pigs Part 2</value>
+  </data>
+  <data name="RRR_LevelName_53" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 1</value>
+  </data>
+  <data name="RRR_LevelName_54" xml:space="preserve">
+    <value>Bunnies don't like bats Part 2</value>
+  </data>
+  <data name="RRR_LevelName_55" xml:space="preserve">
+    <value>Bunnies don't use toothpaste Part 2</value>
+  </data>
+  <data name="RRR_LevelName_56" xml:space="preserve">
+    <value>Bunnies can't fly Part 2</value>
+  </data>
+  <data name="RRR_LevelName_57" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 2</value>
+  </data>
+  <data name="RRR_LevelName_58" xml:space="preserve">
+    <value>Bunnies can't shear sheep</value>
+  </data>
+  <data name="RRR_LevelName_59" xml:space="preserve">
+    <value>Bunnies are slow to react Part 2</value>
+  </data>
+  <data name="RRR_LevelName_60" xml:space="preserve">
+    <value>Bunnies are slow to react Part 3</value>
+  </data>
+  <data name="RRR_LevelName_61" xml:space="preserve">
+    <value>Bunnies like to stuff themselves Part 2</value>
+  </data>
+  <data name="RRR_LevelName_62" xml:space="preserve">
+    <value>Bunnies have no memory Part 2</value>
+  </data>
+  <data name="RRR_LevelName_63" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_64" xml:space="preserve">
+    <value>Bunnies like surprises</value>
+  </data>
+  <data name="RRR_LevelName_65" xml:space="preserve">
+    <value>Bunnies don't like being shot at</value>
+  </data>
+  <data name="RRR_LevelName_66" xml:space="preserve">
+    <value>Bunnies have natural rhythm</value>
+  </data>
+  <data name="RRR_LevelName_67" xml:space="preserve">
+    <value>Bunnies are a-mazing</value>
+  </data>
+  <data name="RRR_LevelName_68" xml:space="preserve">
+    <value>The Dark Side</value>
+  </data>
+  <data name="RRR_LevelName_69" xml:space="preserve">
+    <value>Bunnies have natural rhythm Part 2</value>
+  </data>
+  <data name="RRR_LevelName_70" xml:space="preserve">
+    <value>Bunnies are ticklish</value>
+  </data>
+  <data name="RRR_LevelName_71" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 3</value>
+  </data>
+  <data name="RRR_LevelName_72" xml:space="preserve">
+    <value>Bunnies are bad at peek-a-boo</value>
+  </data>
+  <data name="RRR_LevelName_73" xml:space="preserve">
+    <value>Bunnies are oversensitive</value>
+  </data>
+  <data name="RRR_LevelName_74" xml:space="preserve">
+    <value>Bunnies have a poor grasp of anatomy</value>
+  </data>
+  <data name="RRR_LevelName_75" xml:space="preserve">
+    <value>Bunnies can't slide</value>
+  </data>
+  <data name="RRR_LevelName_76" xml:space="preserve">
+    <value>Bunnies can't herd</value>
+  </data>
+  <data name="RRR_LevelName_77" xml:space="preserve">
+    <value>Bunnies are not ostriches</value>
+  </data>
+  <data name="RRR_LevelName_78" xml:space="preserve">
+    <value>Bunnies just wanna have fun</value>
+  </data>
+  <data name="RRR_LevelName_79" xml:space="preserve">
+    <value>Bunnies love disco dancing</value>
+  </data>
+  <data name="RRR_LevelName_80" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop</value>
+  </data>
+  <data name="RRR_LevelName_81" xml:space="preserve">
+    <value>Bunninos dansa la Bamba</value>
+  </data>
+  <data name="RRR_LevelName_82" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers</value>
+  </data>
+  <data name="RRR_LevelName_83" xml:space="preserve">
+    <value>Bunnies are raving mad</value>
+  </data>
+  <data name="RRR_LevelName_84" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_85" xml:space="preserve">
+    <value>Bunnies love disco dancing Part 2</value>
+  </data>
+  <data name="RRR_LevelName_86" xml:space="preserve">
+    <value>Bunnies just wanna have fun Part 2</value>
+  </data>
+  <data name="RRR_LevelName_87" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop Part 2</value>
+  </data>
+  <data name="RRR_LevelName_88" xml:space="preserve">
+    <value>Bunninos dansa la Bamba Part 2</value>
+  </data>
+  <data name="RRR_LevelName_89" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_90" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_91" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_92" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_93" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_94" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_95" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_96" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_97" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_98" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_99" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_100" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_101" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_102" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_103" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_104" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_105" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_106" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_107" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_108" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_109" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_110" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_111" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_112" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_113" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_114" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_115" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_116" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_117" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_118" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_119" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_120" xml:space="preserve">
+    <value>Extreme experiences</value>
+  </data>
+  <data name="RRR_LevelName_121" xml:space="preserve">
+    <value>The jogging Pants-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_122" xml:space="preserve">
+    <value>The Pants-tathlon in socks</value>
+  </data>
+  <data name="RRR_LevelName_123" xml:space="preserve">
+    <value>The Pants-tathlon tracksuit</value>
+  </data>
+  <data name="RRR_LevelName_124" xml:space="preserve">
+    <value>Pain-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_125" xml:space="preserve">
+    <value>Bunny Fair</value>
+  </data>
+  <data name="RRR_LevelName_126" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RRR_LevelName_127" xml:space="preserve">
+    <value>World Eclecticism Championship</value>
+  </data>
+  <data name="RRR_LevelName_130" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_131" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_132" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_133" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_134" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_135" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_136" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_137" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_138" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_139" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_140" xml:space="preserve">
+    <value>Bunnies are shooting all over the place</value>
+  </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Back to the Roots</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Leap of Faith</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Watch the snakes</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Breath of Death</value>
+  </data>
+  <data name="Archive_ReplaceFile" xml:space="preserve">
+    <value>Erstat</value>
+  </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Vælg fil, der skal erstattes</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at erstatte filen</value>
+  </data>
+  <data name="Config_Cheats" xml:space="preserve">
+    <value>Snydekoder</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Spejlvendt kamera</value>
+  </data>
+  <data name="Config_RRROldMovie" xml:space="preserve">
+    <value>Gammel film</value>
+  </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>Den valgte patch er forældet. Lad patchen være aktiveret og gem for at opdatere den til den nyeste version.</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Færdiggjorte baner</value>
+  </data>
+  <data name="Progression_Cages" xml:space="preserve">
+    <value>Bure</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Mønter</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Gaver</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Skins til Rayman</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Skins til Bzzit</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Skins til kontrolpunkter</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Tings</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Liv</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Stjerner</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Dage</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Færdiggjorte minispil</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Point)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Score)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Samlede point</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Fortsættelser</value>
+  </data>
+  <data name="Progression_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Mærker</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Samlet score</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Kroner</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>Mareridtstilstand</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Tænder</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Teensies</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Rang</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Bronzepokaler</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Sølvpokaler</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Guldpokaler</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Diamantpokaler</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Færdiggjorte kapløb</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Færdiggjorte kampe</value>
+  </data>
+  <data name="Progression_Electoons" xml:space="preserve">
+    <value>Electoons</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum-medaljer</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Farttrofæer</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Hvis gjort forkert, kan redigering af spildata muligvis gøre dem korrupte. Det anbefales stærkt at have en backup, før du fortsætter. Fortsæt?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Bekræft redigering af spildata</value>
+  </data>
+  <data name="Progression_SlotInfo_File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="Progression_SlotInfo_Size" xml:space="preserve">
+    <value>Størrelse</value>
+  </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Sidst ændret</value>
+  </data>
+  <data name="Progression_SelectEditProgram" xml:space="preserve">
+    <value>Vælg eksekverbaren, der skal bruges til at redigere .ISON spildata</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>Spildataen er blevet modificeret med succes</value>
+  </data>
+  <data name="Progression_ChangeEditProgram" xml:space="preserve">
+    <value>Ændr redigeringsprogram til spildata</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Backet op</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>Nye ændringer er ikke backet op</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Redigér</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Datakilde</value>
+  </data>
+  <data name="Progression_DataSourceInfo" xml:space="preserve">
+    <value>Windows vil i nogle tilfælde omdirigere spildata/konfigurationsfiler til VirtualStore på ældre applikationer, hvis applikationen ikke køres som administrator. Bivirkningen af dette er, at du kommer til at have andre spildata/konfigurationsfiler, som bliver brugt til spillet, alt afhængig af om du kører det som administrator eller ej.
+Ved at ændre datakilden her kan du vælge, hvilken placering der skal bruges til backups og fremskridtsvisningen.</value>
+  </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>Når en ny backup oprettes, eller spildata bruges til fremskridtsvisningen, vælges placeringen med de seneste filer. Når en backup gendannes, gendannes den til begge placeringer.</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
+    <value>Standardplaceringen bruges altid. Dette er tilsvarende placeringen spillet bruger, når det køres som administrator.</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
+    <value>VirtualStore-placeringen bruges altid. Dette er tilsvarende placeringen spillet bruger, når det ikke køres som administrator.</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Serialiseringslog</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Aktiveres loggen, bliver enhver binær serialiseringshandling, som f.eks. brug af Archive Explorer eller visning af spilfremskridt, logget til den valgte logfil. Dette bruges primært til debugging, men kan også være nyttigt til at se datastrukturen af bestemte formater.</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Er aktiveret</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Binære værktøjer</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Vælg format, der skal konverteres tilbage til</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Raving Rabbids (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serialiseringsværktøjer</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Output som log</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Deserialisér til JSON</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Serialisér fra JSON</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Fiesta Run (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Unity spillerpræferencer / Spildata til Rabbids Big Bang (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS Map / Spildata til Rayman Redemption (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Vælg filer, der skal serialiseres</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>Filerne kunne ikke logges</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>Filerne blev deserialiseret med succes</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>Filerne kunne ikke deserialiseres</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>Filerne blev serialiseret med succes</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>Filerne kunne ikke serialiseres</value>
+  </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>Snydekoderne tager effekt, når en map først indlæses. Nogle gange er det også påkrævet at vende tilbage til menuen bagefter, for at alting kan opdatere.</value>
+  </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>DirectPlay kan kun slås til/fra på Windows 8 eller senere</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Reparér spildatafremskridt</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>Grundet en bug i tidligere versioner af spillet, kan spildatafremskridtet falde ud af sync, hvilket forårsager, at du har mindre Teensies end du egentlig har vundet. Dette kan gøre bestemte baner utilgængelige. Dette værktøj forsøger at fikse dette.</value>
+  </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Reparér spildata</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>Ingen problemer blev fundet</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>Spildataen blev repareret med succes</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>En fejl opstod i reparation af spildataen</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>Debug-kommandoer er ikke tilgængelige til Steam-versionen</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>Utiliteten er ikke tilgængelig</value>
+  </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Hebraisk programoversættelse, filikon til spilpatch</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Synkronisér automatisk overflader ved ompakning (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>Hvis aktiveret, bliver overfladerne til dette spil automatisk synkroniseret når et .cnt arkiv ompakkes. Dette er nyttigt til spil hvor synkronisering er påkrævet for at importere overflader med højere opløsning.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Indpakker arkiv</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>Tilføjer filer</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Importerer filer</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>{0} filer har det samme navn som filer, der allerede eksisterer. Ønsker du at erstatte dem?
+
+Konflikter:
+{1}</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>Venter på, at {0} lukkes</value>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>Spilproces</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>Ved at tilknytte en kørende spilproces kan du modificere og se spilværdier i realtid. For bestemte spil kan dette give dig mulighed for at aktivere ubrugte funktioner.</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>Spil</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Emulator</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>Egenskaber</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>Handlinger</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Raving Rabbids prototypegendannelse</value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>Hukommelsesmods</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at tilknytte til processen</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opdatere spilværdierne</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Midlertidige filer</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>Montér</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>Afmontér</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>Hit-point</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Max hit-point</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Placér Ray</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Tillader, at Rayman kan placeres frit i banen</value>
+  </data>
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
+    <value>Nuværende map</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Valg af map</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>Slår valg af map inde i spillet til/fra på verdenskortet</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Næve</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Hæng</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Helikopter</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Grib</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Løb</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Frø</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Superhelikopter</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>Mast</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>Ildflue</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Tving løb</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Omvendt styring</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Næveplatform</value>
+  </data>
+  <data name="Mod_Mem_Unk" xml:space="preserve">
+    <value>Ukendt {0}</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Vis motorinformation</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Vis objektinformation</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Debug-tilstand</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Start i demotilstand</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>Hvis aktiveret, starter spillet med at spille de to ubrugte optagede demoer, når banen indlæses. Dette kan udløses ved at miste alle liv, og derefter vælge at prøve igen.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Indlæs multiplayermenuer</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>Når dette er aktiveret, indlæser spillet de ubrugte multiplayermenuer ved opstart. Hvis spillet allerede er startet, kan dette tilgås ved at vælge at lukke spillet i pausemenuen. 
+Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev implementeret fuldstændigt. Den første menu er spillerselektion, og den anden er baneselektion. Da disse ikke fungerer ordentligt, er den eneste måde at ændre dem ved at bruge nedenstående felter.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Banetimeout</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>Er spiller 2</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>Valgt map</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>Multiplayer</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>Krafter</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>Kamera X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>Kamera Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>X-position</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>Y-position</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>Raymans tilstand</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>Helikoptertid</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>Næveopladning</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>Aktive objekter</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Maptid</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Tilfældigt indeks</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>Færdiggør bane</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>Lås op for alle baner</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>Alle burer</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>Vend tilbage til verdenskort</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>Hovedmenu</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>The Hall of Doors</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>Scoreskærm</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>Bonusbane</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>Filmsekvenser</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>Intro, del 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>Intro, del 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Council Chamber of the Teensies</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Meanwhile in the Prison ship, del 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship, del 2</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Intro til Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Iron Mountains ballonfilmsekvens</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Slutning</value>
+  </data>
+  <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
+    <value>Kredit</value>
+  </data>
+  <data name="R2_LevelName_poloc_10" xml:space="preserve">
+    <value>Polokus Mask, del 1</value>
+  </data>
+  <data name="R2_LevelName_poloc_20" xml:space="preserve">
+    <value>Polokus Mask, del 2</value>
+  </data>
+  <data name="R2_LevelName_poloc_30" xml:space="preserve">
+    <value>Polokus Mask, del 3</value>
+  </data>
+  <data name="R2_LevelName_poloc_40" xml:space="preserve">
+    <value>Polokus Mask, del 4</value>
+  </data>
+  <data name="PartX" xml:space="preserve">
+    <value>Del {0}</value>
+  </data>
+  <data name="R2_LevelName_learn_10" xml:space="preserve">
+    <value>The Woods of Light</value>
+  </data>
+  <data name="R2_LevelName_bast" xml:space="preserve">
+    <value>The Fairy Glade</value>
+  </data>
+  <data name="R2_LevelName_ski" xml:space="preserve">
+    <value>The Marshes of Awakening</value>
+  </data>
+  <data name="R2_LevelName_chase" xml:space="preserve">
+    <value>The Bayou</value>
+  </data>
+  <data name="R2_LevelName_water" xml:space="preserve">
+    <value>The Sanctuary of Water and Ice</value>
+  </data>
+  <data name="R2_LevelName_rodeo" xml:space="preserve">
+    <value>The Menhir Hills</value>
+  </data>
+  <data name="R2_LevelName_vulca" xml:space="preserve">
+    <value>The Cave of Bad Dreams</value>
+  </data>
+  <data name="R2_LevelName_glob" xml:space="preserve">
+    <value>The Canopy</value>
+  </data>
+  <data name="R2_LevelName_whale" xml:space="preserve">
+    <value>Whale Bay</value>
+  </data>
+  <data name="R2_LevelName_plum" xml:space="preserve">
+    <value>The Sanctuary of Stone and Fire</value>
+  </data>
+  <data name="R2_LevelName_cask" xml:space="preserve">
+    <value>The Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_nave" xml:space="preserve">
+    <value>The Precipice</value>
+  </data>
+  <data name="R2_LevelName_seat" xml:space="preserve">
+    <value>The Top of the World</value>
+  </data>
+  <data name="R2_LevelName_earth" xml:space="preserve">
+    <value>The Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_helic" xml:space="preserve">
+    <value>Beneath the Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_morb" xml:space="preserve">
+    <value>Tomb of the Ancients</value>
+  </data>
+  <data name="R2_LevelName_ile" xml:space="preserve">
+    <value>The Iron Mountains</value>
+  </data>
+  <data name="R2_LevelName_astro" xml:space="preserve">
+    <value>The Prison Ship</value>
+  </data>
+  <data name="R2_LevelName_rhop" xml:space="preserve">
+    <value>The Crow's Nest</value>
+  </data>
+  <data name="R3_LevelName_BonusTXT" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>Endgame</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>2D Madness</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>Racket Jump</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>Crush</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>Razoff Circus</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>Sentinel</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>Missile Command</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>Balloons</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>Special Invaders</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>Commando</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="EmuSelection_None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Prototype)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
+  </data>
+  <data name="Patcher_CriticalError" xml:space="preserve">
+    <value>En fejl opstod i patcheren, og den måtte lukke</value>
+  </data>
+  <data name="UnsavedChangesQuestion" xml:space="preserve">
+    <value>Der er ændringer, der ikke er blevet gemt. Ønsker du at fortsætte og kassere dem?</value>
+  </data>
+  <data name="UnsavedChangesQuestionHeader" xml:space="preserve">
+    <value>Bekræft kassering af ændringer</value>
+  </data>
+  <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
+    <value>Ønsker du at synkronisere spiloverflader automatisk, når et overfladearkiv ompakkes? Synkronisering er påkrævet for, at overflader med højere opløsning kan fungere i nogle baner. Dette kan ændres til en hver tid i indstillingssiden.</value>
+  </data>
+  <data name="About_Credits_Marteaufou" xml:space="preserve">
+    <value>Fransk (Frankrig) programoversættelse</value>
+  </data>
+  <data name="About_Credits_ZetaXO" xml:space="preserve">
+    <value>Fransk (Frankrig) programoversættelse</value>
+  </data>
+  <data name="Patcher_Title" xml:space="preserve">
+    <value>Patcher</value>
+  </data>
+  <data name="Settings_PatcherShowExternal" xml:space="preserve">
+    <value>Vis eksterne patches</value>
+  </data>
+  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
+    <value>Hvis aktiveret, vil patcheren indlæse og vise en liste af eksterne patches, der er tilgængelige til download</value>
+  </data>
+  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
+    <value>Filassociationer</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
+    <value>Åbn spilpatchfiler (.gp) i Rayman Control Panel fra Stilfinderen</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
+    <value>Åbn spilpatchfiler (.gp) i Rayman Control Panel fra URI-protokol</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
+    <value>Når dette er aktiveret, giver det mulighed for 1-klik installationsunderstøttelse fra GameBanana</value>
+  </data>
+  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indstille filtypeassociationen til patchfiler. Prøv at køre Rayman Control Panel som administrator, og prøv igen.</value>
+  </data>
+  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indstille URI-protokolassociationen til patchfiler. Prøv at køre Rayman Control Panel som administrator, og prøv igen.</value>
+  </data>
+  <data name="PatchCreator_NameField" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PatchCreator_AuthorField" xml:space="preserve">
+    <value>Forfatter</value>
+  </data>
+  <data name="PatchCreator_DescriptionField" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="PatchCreator_VersionField" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Patcher_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
+    <value>Vælg et miniaturebillede. Den anbefalede størrelse er 128x128.</value>
+  </data>
+  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
+    <value>Fjern miniaturebillede</value>
+  </data>
+  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
+    <value>Stilen tilhørende filen der skal tilføjes til den valgte destination. Hvis dette er tomt, fjernes enhver eksisterende fil ved destinationen i stedet.</value>
+  </data>
+  <data name="PatchCreator_AddFile" xml:space="preserve">
+    <value>Tilføj</value>
+  </data>
+  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
+    <value>Tilføj fra filer</value>
+  </data>
+  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
+    <value>Tilføj fra mappe</value>
+  </data>
+  <data name="PatchCreator_Create" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="PatchCreator_Title" xml:space="preserve">
+    <value>Patchopretter</value>
+  </data>
+  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
+    <value>Spil</value>
+  </data>
+  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
+    <value>Importerer fra eksisterende patch</value>
+  </data>
+  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
+    <value>Den valgte patch blev skabt med en nyere version af Rayman Control Panel og kan ikke læses</value>
+  </data>
+  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
+    <value>Den valgte patch kunne ikke læses</value>
+  </data>
+  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
+    <value>Vælg et miniaturebillede</value>
+  </data>
+  <data name="FileSelection_ImageFormat" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
+    <value>Vælg filer, der skal tilføjes</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
+    <value>Vælg mappe, der skal tilføjes</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at tilføje de valgte filer</value>
+  </data>
+  <data name="PatchCreator_Create_Status" xml:space="preserve">
+    <value>Opretter patch</value>
+  </data>
+  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
+    <value>Gem patchfil</value>
+  </data>
+  <data name="Patcher_FileType" xml:space="preserve">
+    <value>Spilpatch</value>
+  </data>
+  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
+    <value>Patchen blev gemt med succes</value>
+  </data>
+  <data name="PatchCreator_CreateError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at oprette patchen</value>
+  </data>
+  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
+    <value>Stien må ikke være tom</value>
+  </data>
+  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
+    <value>Stien må ikke indholde ugyldige tegn</value>
+  </data>
+  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
+    <value>Stien må ikke være det samme som en arkivfil</value>
+  </data>
+  <data name="Patcher_PatchesHeader" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Patcher_PatchesInfo" xml:space="preserve">
+    <value>Patches er modifikationer til spilfilerne, som kan anvendes for at ændre eller forbedre spillet på mange forskellige måder. Patchen tager ikke effekt indtil den er aktiveret og anvendt, hvilket tillader at patches nemt kan slås til eller fra. Det anbefales ikke at ændre de spilfiler som en patch modificerer manuelt, da det muligvis kan resultere i, at nogle ændringer bliver tabt.</value>
+  </data>
+  <data name="Patcher_AddPatch" xml:space="preserve">
+    <value>Tilføj patch</value>
+  </data>
+  <data name="Patcher_ExtractPatch" xml:space="preserve">
+    <value>Udpak indhold</value>
+  </data>
+  <data name="Patcher_ExportPatch" xml:space="preserve">
+    <value>Eksportér patch</value>
+  </data>
+  <data name="Patcher_RemovePatch" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="Patcher_DownloadPatch" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Patcher_LibraryHeader" xml:space="preserve">
+    <value>Patchbibliotek</value>
+  </data>
+  <data name="Patcher_ModificationsHeader" xml:space="preserve">
+    <value>Modificerede filer</value>
+  </data>
+  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
+    <value>Tilføj og aktivér patch for at modificere spilfiler</value>
+  </data>
+  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
+    <value>Placering</value>
+  </data>
+  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
+    <value>Patch</value>
+  </data>
+  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
+    <value>Anvend</value>
+  </data>
+  <data name="Patcher_Apply" xml:space="preserve">
+    <value>Anvend</value>
+  </data>
+  <data name="Patcher_DialogTitle" xml:space="preserve">
+    <value>Patcher - {0}</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
+    <value>Spil:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
+    <value>Patches:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
+    <value>Anvendte patches:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
+    <value>Sidst ændret:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
+    <value>Formatversion:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
+    <value>Mappe:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
+    <value>Tilføjede filer:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
+    <value>Erstattede filer:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
+    <value>Fjernede filer:</value>
+  </data>
+  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
+    <value>Spilpatchbiblioteket blev skabt med en nyere version af Rayman Control Panel og kan derfor ikke læses</value>
+  </data>
+  <data name="Patcher_SecurityWarning" xml:space="preserve">
+    <value>Patchen {0} tilføjer eller erstatter følsomme filer, som f.eks. eksekverbare filer, i spillet. Anvend kun denne patch hvis du stoler på forfatteren. Fortsæt?</value>
+  </data>
+  <data name="Patcher_AddPatchHeader" xml:space="preserve">
+    <value>Vælg patches, der skal tilføjes</value>
+  </data>
+  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
+    <value>Udpakker indhold til patch</value>
+  </data>
+  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
+    <value>Indholdet til patchen blev udpakket med sucees</value>
+  </data>
+  <data name="Patcher_ExtractContentsError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at udpakke inholdet til patchen</value>
+  </data>
+  <data name="Patcher_Export_Status" xml:space="preserve">
+    <value>Eksporterer patch</value>
+  </data>
+  <data name="Patcher_ExportSuccess" xml:space="preserve">
+    <value>Patchen blev eksporteret med succes</value>
+  </data>
+  <data name="Patcher_ExportError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at eksportere patchen</value>
+  </data>
+  <data name="Patcher_LoadError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indlæse patches</value>
+  </data>
+  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indlæse eksterne patches</value>
+  </data>
+  <data name="Patcher_Apply_Status" xml:space="preserve">
+    <value>Anvender patches</value>
+  </data>
+  <data name="Patcher_ApplySuccess" xml:space="preserve">
+    <value>Alle patches blev anvendt med succes</value>
+  </data>
+  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
+    <value>Patches blev anvendt. Nogle filer kunne ikke modificeres.</value>
+  </data>
+  <data name="Patcher_ApplyError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at anvende patches. Ikke alle ændringer blev anvendt, og noget af dataen er muligvis blevet tabt. Sikr dig, at du ikke har spilfiler åbne, mens at du anvender patches.</value>
+  </data>
+  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+    <value>Forfatter:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+    <value>Størrelse:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
+    <value>Sidst ændret:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+    <value>Formatversion:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
+    <value>Filsti:</value>
+  </data>
+  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+    <value>Tilføjede filer:</value>
+  </data>
+  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+    <value>Fjernede filer:</value>
+  </data>
+  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
+    <value>Vælg en patch, der skal importeres fra</value>
+  </data>
+  <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
+    <value>Spilpatch (.gp)</value>
+  </data>
+  <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
+    <value>Spilpatchbibliotek (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Kopiér filsti</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Kopiér mappesti</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Hjemmeside</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Hjemmeside</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>Der er {0} patches, som er blevet anvendt til dette spil. Ønsker du at fortsætte med at fjerne spillet og beholde de anvendte patches?</value>
+  </data>
+  <data name="AppData_MigrateError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at migrere appdataen til den nye version</value>
+  </data>
+  <data name="Games_RemovedInvalidGames" xml:space="preserve">
+    <value>De følgende spil er ikke længere gyldige og er derfor blevet fjernet:
+
+{0}</value>
+  </data>
+  <data name="Games_RemovedInvalidGamesHeader" xml:space="preserve">
+    <value>Ugyldige spil blev fjernet</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClients" xml:space="preserve">
+    <value>De følgende spilklinter/emulatorer er ikke længere gyldige og er derfor blevet fjernet:
+
+{0}</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
+    <value>Ugyldige spilklienter/emulatorer blev fjernet</value>
+  </data>
+  <data name="GameAdd_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
+    <value>Vælg spilfilen</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseFileTypes" xml:space="preserve">
+    <value>Spilfil</value>
+  </data>
+  <data name="GameAdd_LocateFileInvalidFile" xml:space="preserve">
+    <value>Den valgte fil er ikke gyldig for dette spil
+
+{0}</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SyncStatus" xml:space="preserve">
+    <value>Synkronisering af overflader</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Synkronisér overflader. Dette opdaterer overfladestørrelserne i spilfilerne til at matche overfladefilerne. Dette er påkrævet, hvis opløsningen af en overflade er blevet forøget, da spillet ellers kan crashe.</value>
+  </data>
+  <data name="GameInfo_AddedDate" xml:space="preserve">
+    <value>Tilføjet:</value>
+  </data>
+  <data name="GameClients_Launch_ClientNotFound" xml:space="preserve">
+    <value>Spilklienten/emulatoren kunne ikke findes</value>
+  </data>
+  <data name="GamesPage_Category_Handheld" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="GameClients_Custom" xml:space="preserve">
+    <value>Brugerdefineret</value>
+  </data>
+  <data name="GameClients_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameClients_MGba" xml:space="preserve">
+    <value>mGBA</value>
+  </data>
+  <data name="GameClients_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
+    <value>Startparametre</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgsInfo" xml:space="preserve">
+    <value>Her kan du angive, hvilke startparametre bliver sat ind i programmet. Skriv %game% for spilstien. Det anbefales at omgive det med anførselstegn for at undgå at stien bliver cuttet af ved mellemrum.</value>
+  </data>
+  <data name="GameClients_DOSBox_ConfigPaths" xml:space="preserve">
+    <value>Konfigurationsfilstier</value>
+  </data>
+  <data name="GameClients_DOSBox_AddConfigPath" xml:space="preserve">
+    <value>Tilføj fil</value>
+  </data>
+  <data name="GameClients_DOSBox_RemoveConfigPaths" xml:space="preserve">
+    <value>Fjern valgte filer</value>
+  </data>
+  <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
+    <value>Vælg en konfigurationsfil</value>
+  </data>
+  <data name="Config_LocationsHeader" xml:space="preserve">
+    <value>Konfigurationsplaceringer</value>
+  </data>
+  <data name="Page_LoadError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indlæse siden</value>
+  </data>
+  <data name="GameClients_SelectionHeader" xml:space="preserve">
+    <value>Klient/emulator</value>
+  </data>
+  <data name="GameClients_SelectionInfo" xml:space="preserve">
+    <value>Her kan en klient eller emulator vælges til brug med spillet. Den valgte klient bliver ansvarlig for at starte spillet. Ved emulerede spil, er dette påkrævet, da de ikke kan startes alene.</value>
+  </data>
+  <data name="GameClients_SelectionNone" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="Ray1_VersionSelectionHeader" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Spilversion</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>Spilversionen bestemmer, hvilket sæt minispil er tilængelige i spillet. Bestemte udgaver af spillet er begrænset til kun en specifik spilversion, mens at andre understøtter dem alle. Hvis en fejl opstår ved opstart, kan du prøve at ændre spilversionen.</value>
+  </data>
+  <data name="Games_ValidationMissingPaths" xml:space="preserve">
+    <value>De følgende påkrævede stier blev ikke fundet:
+{0}</value>
+  </data>
+  <data name="Games_ValidationFileMissing" xml:space="preserve">
+    <value>Filen eksisterer ikke</value>
+  </data>
+  <data name="Games_ValidationRomInvalid" xml:space="preserve">
+    <value>ROMen er ikke gyldig for dette spil</value>
+  </data>
+  <data name="GameHub_Play" xml:space="preserve">
+    <value>Spil</value>
+  </data>
+  <data name="GameHub_FavoriteOn" xml:space="preserve">
+    <value>Gør til favorit</value>
+  </data>
+  <data name="GameHub_FavoriteOff" xml:space="preserve">
+    <value>Fjern favorit</value>
+  </data>
+  <data name="GameHub_Rename" xml:space="preserve">
+    <value>Omdøb</value>
+  </data>
+  <data name="GameHub_RefreshPanel" xml:space="preserve">
+    <value>Genindlæs</value>
+  </data>
+  <data name="GameSelection_Home" xml:space="preserve">
+    <value>Hjem</value>
+  </data>
+  <data name="GameSelection_Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="GameSelection_GroupGames" xml:space="preserve">
+    <value>Gruppér spil</value>
+  </data>
+  <data name="GameSelection_ResetSort" xml:space="preserve">
+    <value>Nulstil brugerdefineret sortering</value>
+  </data>
+  <data name="GameSelection_FindInstallations" xml:space="preserve">
+    <value>Find installerede spil og spilklienter/emulatorer</value>
+  </data>
+  <data name="GameSelection_ConfigureClients" xml:space="preserve">
+    <value>Konfigurér spilklienter/emulatorer</value>
+  </data>
+  <data name="GameSelection_AddGame" xml:space="preserve">
+    <value>Tilføj spil</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Søg efter installerede spil og spilklienter/emulatorer</value>
+  </data>
+  <data name="Home_PlayGame" xml:space="preserve">
+    <value>Spil spil</value>
+  </data>
+  <data name="Home_News" xml:space="preserve">
+    <value>Nyheder</value>
+  </data>
+  <data name="Home_RecentGames" xml:space="preserve">
+    <value>Seneste</value>
+  </data>
+  <data name="Home_FavoriteGames" xml:space="preserve">
+    <value>Favoritter</value>
+  </data>
+  <data name="Finder_NoResults" xml:space="preserve">
+    <value>Ingen nye spil eller spilklienter/emulatorer blev fundet</value>
+  </data>
+  <data name="Finder_ResultHeader" xml:space="preserve">
+    <value>Søgeresultat</value>
+  </data>
+  <data name="Finder_Error" xml:space="preserve">
+    <value>En fejl opstod i søgeoperationen</value>
+  </data>
+  <data name="Finder_FoundClients" xml:space="preserve">
+    <value>De følgende nye spilklienter/emulatorer blev fundet:</value>
+  </data>
+  <data name="Finder_FoundClientsHeader" xml:space="preserve">
+    <value>Installerede spilklienter/emulatorer fundet</value>
+  </data>
+  <data name="Games_MissingLaunchComponent" xml:space="preserve">
+    <value>Spillet kan ikke startes uden en spilklient/emulator. Vær sikker på, at du først tilføjer en understøttet spilklient/emulator, og derefter vælger den til brug for dette spil.</value>
+  </data>
+  <data name="Games_RenameHeader" xml:space="preserve">
+    <value>Omdøb spil</value>
+  </data>
+  <data name="Games_RenameInfo" xml:space="preserve">
+    <value>Omdøb {0}. Lad navnet være tomt for at bruge det standarde.</value>
+  </data>
+  <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
+    <value>Åbn</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
+    <value>Åbn patcher</value>
+  </data>
+  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
+    <value>Opret patch</value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>[0} {{1}}</value>
+  </data>
+  <data name="Progression_SharedBackupsInfo" xml:space="preserve">
+    <value>Dette spil deler samme backups som de følgende spil. Dette betyder, at hvis en backup oprettes fra et af disse spil, overskrives backups også ved de andre.</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
+  </data>
+  <data name="Progression_GroupGames" xml:space="preserve">
+    <value>Gruppér spil</value>
+  </data>
+  <data name="PatchCreator_GameTargets" xml:space="preserve">
+    <value>Målrettede spil</value>
+  </data>
+  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
+    <value>Spillene, som patchen er rettet mod, bestemmer hvilke spil den kan anvendes på. En patch kan rette sig mod flere spil, men hvis den tilføjer filer til et arkiv, som et spil mangler, ignoreres de for det spil.</value>
+  </data>
+  <data name="PatchCreator_ImportPatch" xml:space="preserve">
+    <value>Importér fra eksisterende patch</value>
+  </data>
+  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
+    <value>Dette tillader, at indhold kan importeres fra en patch, der allerede er oprettet. Dette kan bruges til at oprette an opdateret version af en patch.</value>
+  </data>
+  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
+    <value>Vælg målrettede spil</value>
+  </data>
+  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
+    <value>Denne fil ignoreres, da placeringen ikke kan findes</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
+    <value>Spilpatch-biblioteket blev lavet til et andet spil og kan ikke læses</value>
+  </data>
+  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
+    <value>Patchen {0} kan ikke åbnes, da ingen af de følgende målrettede spil er blevet tilføjet:
+
+{1}</value>
+  </data>
+  <data name="Patcher_PatchSelectGame" xml:space="preserve">
+    <value>Vælg spil, der skal patches</value>
+  </data>
+  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
+    <value>Patchen {0} kan ikke åbnes, da det nuværende spil ikke er én af de målrettede spil:
+
+{1}</value>
+  </data>
+  <data name="AddGames_Title" xml:space="preserve">
+    <value>Tilføj spil</value>
+  </data>
+  <data name="AddGames_Find" xml:space="preserve">
+    <value>Find spil</value>
+  </data>
+  <data name="AddGames_AddError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at tilføje spillet</value>
+  </data>
+  <data name="AddGames_AddErrorHeader" xml:space="preserve">
+    <value>Fejl ved spiltilføjelse</value>
+  </data>
+  <data name="AddGames_FindSuccessResult" xml:space="preserve">
+    <value>Spillet blev fundet ved {0}</value>
+  </data>
+  <data name="AddGames_FindResultHeader" xml:space="preserve">
+    <value>Søgeresultat</value>
+  </data>
+  <data name="AddGames_FindFailedResult" xml:space="preserve">
+    <value>Spillet blev ikke fundet</value>
+  </data>
+  <data name="GameClients_BrowseFileHeader" xml:space="preserve">
+    <value>Vælg den eksekverbare spilklientfil</value>
+  </data>
+  <data name="GameClients_BrowseDirHeader" xml:space="preserve">
+    <value>Vælg installation til spilklient</value>
+  </data>
+  <data name="GameClients_InvalidLocation" xml:space="preserve">
+    <value>Den valgte placering er ikke gyldig</value>
+  </data>
+  <data name="GameClients_FindSuccessResult" xml:space="preserve">
+    <value>Spilklienten/emulatoren blev fundet ved {0}</value>
+  </data>
+  <data name="GameClients_FindResultHeader" xml:space="preserve">
+    <value>Søgeresultat</value>
+  </data>
+  <data name="GameClients_FindFailedResult" xml:space="preserve">
+    <value>Spilklienten/emulatoren blev ikke fundet</value>
+  </data>
+  <data name="GameClients_AddedClientsHeader" xml:space="preserve">
+    <value>Tilføjede spilklienter/emulatorer</value>
+  </data>
+  <data name="GameClients_AvailableClientsHeader" xml:space="preserve">
+    <value>Tilgængelige spilklienter og emulatorer</value>
+  </data>
+  <data name="GameClients_LocateClient" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="GameClients_FindClient" xml:space="preserve">
+    <value>Find spilklient/emulator</value>
+  </data>
+  <data name="GameClients_OpenLocation" xml:space="preserve">
+    <value>Åbn placering</value>
+  </data>
+  <data name="GameClients_Rename" xml:space="preserve">
+    <value>Omdøb</value>
+  </data>
+  <data name="GameClients_Remove" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="GameClients_SupportedGamesHeader" xml:space="preserve">
+    <value>Understøttede spil</value>
+  </data>
+  <data name="GameClients_ConfigTitle" xml:space="preserve">
+    <value>Konfigurér spilklienter/emulatorer</value>
+  </data>
+  <data name="GameClients_RenameHeader" xml:space="preserve">
+    <value>Omdøb spilklient/emulator</value>
+  </data>
+  <data name="GameClients_RenameHeaderInfo" xml:space="preserve">
+    <value>Omdøb {0}. Lad navnet være tomt for at bruge det standarde.</value>
+  </data>
+  <data name="JumpListEditor_AutoSort" xml:space="preserve">
+    <value>Sortér spil automatisk</value>
+  </data>
+  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
+    <value>Aktivér eller deaktivér dette værktøj, ved at vælge eller fravælge lydspor per bane-spilklienten til dette spil</value>
+  </data>
+  <data name="R1U_TPLSGameClientName" xml:space="preserve">
+    <value>DOSBox (Lydspor per bane)</value>
+  </data>
+  <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Advance</value>
+  </data>
+  <data name="Utilities_Converter_R3GbaSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman 3 (GBA)</value>
+  </data>
+  <data name="Utilities_Converter_RHRSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="Utilities_Converter_RRRGbaSaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Raving Rabbids (GBA)</value>
+  </data>
+  <data name="Rayman1_MsDos_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman1_Gba_Title" xml:space="preserve">
+    <value>Rayman Advance</value>
+  </data>
+  <data name="RaymanDesigner_MsDos_Title" xml:space="preserve">
+    <value>Rayman Designer</value>
+  </data>
+  <data name="RaymanByHisFans_MsDos_Title" xml:space="preserve">
+    <value>Rayman by his Fans</value>
+  </data>
+  <data name="Rayman60Levels_MsDos_Title" xml:space="preserve">
+    <value>Rayman 60 Levels</value>
+  </data>
+  <data name="Rayman2_Win32_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanM_Win32_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanArena_Win32_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="Rayman3_Win32_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanOrigins_Win32_Title" xml:space="preserve">
+    <value>Rayman Origins</value>
+  </data>
+  <data name="RaymanLegends_Win32_Title" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="RaymanJungleRun_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="RaymanFiestaRunPreloadEdition_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run, Preload-udgave</value>
+  </data>
+  <data name="RaymanFiestaRunWindows10Edition_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run, Windows 10-udgave</value>
+  </data>
+  <data name="RaymanRavingRabbids_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="RaymanRavingRabbids2_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2</value>
+  </data>
+  <data name="RabbidsGoHome_Win32_Title" xml:space="preserve">
+    <value>Rabbids Go Home</value>
+  </data>
+  <data name="RabbidsBigBang_WindowsPackage_Title" xml:space="preserve">
+    <value>Rabbids Big Bang</value>
+  </data>
+  <data name="RabbidsCoding_Win32_Title" xml:space="preserve">
+    <value>Rabbids Coding</value>
+  </data>
+  <data name="Rayman3_Gba_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanHoodlumsRevenge_Gba_Title" xml:space="preserve">
+    <value>Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="RaymanRavingRabbids_Gba_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Rayman1_Demo_19951207_MsDos_Title" xml:space="preserve">
+    <value>Rayman Demo (1995/12/07)</value>
+  </data>
+  <data name="Rayman1_Demo_19960215_MsDos_Title" xml:space="preserve">
+    <value>Rayman Demo (1996/02/15)</value>
+  </data>
+  <data name="Rayman1_Demo_19951204_MsDos_Title" xml:space="preserve">
+    <value>Rayman Demo (1995/12/04)</value>
+  </data>
+  <data name="RaymanGold_Demo_19970930_MsDos_Title" xml:space="preserve">
+    <value>Rayman Gold Demo (1997/09/30)</value>
+  </data>
+  <data name="Rayman2_Demo_19990818_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Demo (1999/08/18)</value>
+  </data>
+  <data name="Rayman2_Demo_19990904_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Demo (1999/09/04)</value>
+  </data>
+  <data name="RaymanM_Demo_20020627_Win32_Title" xml:space="preserve">
+    <value>Rayman M Demo (2002/06/27)</value>
+  </data>
+  <data name="Rayman3_Demo_20021004_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2002/10/04)</value>
+  </data>
+  <data name="Rayman3_Demo_20021021_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2002/10/21)</value>
+  </data>
+  <data name="Rayman3_Demo_20021210_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2002/12/10)</value>
+  </data>
+  <data name="Rayman3_Demo_20030129_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2003/01/29)</value>
+  </data>
+  <data name="Rayman3_Demo_20030108_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Demo (2003/01/08)</value>
+  </data>
+  <data name="RaymanRavingRabbids_Demo_20061106_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Demo (2006/11/06)</value>
+  </data>
+  <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
+    <value>Rayman Minigames</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Quiz)</value>
+  </data>
+  <data name="TonicTrouble_Win32_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="TonicTroubleSpecialEdition_Win32_Title" xml:space="preserve">
+    <value>Tonic Trouble Special Edition</value>
+  </data>
+  <data name="RaymanDictées_Win32_Title" xml:space="preserve">
+    <value>Rayman Dictées</value>
+  </data>
+  <data name="RaymanPremiersClics_Win32_Title" xml:space="preserve">
+    <value>Rayman Premiers Clics</value>
+  </data>
+  <data name="Rayman3PrintStudio_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Print Studio</value>
+  </data>
+  <data name="RaymanActivityCenter_Win32_Title" xml:space="preserve">
+    <value>Rayman Activity Center</value>
+  </data>
+  <data name="RaymanRavingRabbidsActivityCenter_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Activity Center</value>
+  </data>
+  <data name="TheDarkMagiciansReignofTerror_Win32_Title" xml:space="preserve">
+    <value>Rayman: The Dark Magician's Reign of Terror</value>
+  </data>
+  <data name="RaymanRedemption_Win32_Title" xml:space="preserve">
+    <value>Rayman Redemption</value>
+  </data>
+  <data name="RaymanRedesigner_Win32_Title" xml:space="preserve">
+    <value>Rayman ReDesigner</value>
+  </data>
+  <data name="RaymanBowling2_Win32_Title" xml:space="preserve">
+    <value>Rayman Bowling 2</value>
+  </data>
+  <data name="RaymanGardenPLUS_Win32_Title" xml:space="preserve">
+    <value>Rayman Garden PLUS</value>
+  </data>
+  <data name="GloboxMoment_Win32_Title" xml:space="preserve">
+    <value>Globox Moment</value>
+  </data>
+  <data name="RaymanTheDreamersBoundary_Win32_Title" xml:space="preserve">
+    <value>Rayman: The Dreamer's Boundary</value>
+  </data>
+  <data name="Game_Rayman1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Game_RaymanDesigner_Title" xml:space="preserve">
+    <value>Rayman Designer</value>
+  </data>
+  <data name="Game_RaymanByHisFans_Title" xml:space="preserve">
+    <value>Rayman by his Fans</value>
+  </data>
+  <data name="Game_Rayman60Levels_Title" xml:space="preserve">
+    <value>Rayman 60 Levels</value>
+  </data>
+  <data name="Game_Rayman2_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Game_RaymanMArena_Title" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Game_Rayman3_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Game_RaymanOrigins_Title" xml:space="preserve">
+    <value>Rayman Origins</value>
+  </data>
+  <data name="Game_RaymanLegends_Title" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Game_RaymanJungleRun_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="Game_RaymanFiestaRun_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids2_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2</value>
+  </data>
+  <data name="Game_RabbidsGoHome_Title" xml:space="preserve">
+    <value>Rabbids Go Home</value>
+  </data>
+  <data name="Game_RabbidsBigBang_Title" xml:space="preserve">
+    <value>Rabbids Big Bang</value>
+  </data>
+  <data name="Game_RabbidsCoding_Title" xml:space="preserve">
+    <value>Rabbids Coding</value>
+  </data>
+  <data name="Game_Rayman3_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 (Game Boy Advance)</value>
+  </data>
+  <data name="Game_RaymanHoodlumsRevenge_Title" xml:space="preserve">
+    <value>Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids_Gba_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids (Game Boy Advance)</value>
+  </data>
+  <data name="Game_TheDarkMagiciansReignofTerror_Title" xml:space="preserve">
+    <value>Rayman: The Dark Magician's Reign of Terror</value>
+  </data>
+  <data name="Game_RaymanRedemption_Title" xml:space="preserve">
+    <value>Rayman Redemption</value>
+  </data>
+  <data name="Game_RaymanRedesigner_Title" xml:space="preserve">
+    <value>Rayman ReDesigner</value>
+  </data>
+  <data name="Game_RaymanBowling2_Title" xml:space="preserve">
+    <value>Rayman Bowling 2</value>
+  </data>
+  <data name="Game_RaymanGardenPLUS_Title" xml:space="preserve">
+    <value>Rayman Garden PLUS</value>
+  </data>
+  <data name="Game_GloboxMoment_Title" xml:space="preserve">
+    <value>Globox Moment</value>
+  </data>
+  <data name="Game_RaymanTheDreamersBoundary_Title" xml:space="preserve">
+    <value>Rayman: The Dreamer's Boundary</value>
+  </data>
+  <data name="Game_Rayman1Minigames_Title" xml:space="preserve">
+    <value>Rayman Minigames</value>
+  </data>
+  <data name="Game_RaymanEdutainment_Title" xml:space="preserve">
+    <value>Rayman Edutainment</value>
+  </data>
+  <data name="Game_TonicTrouble_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_RaymanDictées_Title" xml:space="preserve">
+    <value>Rayman Dictées</value>
+  </data>
+  <data name="Game_RaymanPremiersClics_Title" xml:space="preserve">
+    <value>Rayman Premiers Clics</value>
+  </data>
+  <data name="Game_Rayman3PrintStudio_Title" xml:space="preserve">
+    <value>Rayman 3 Print Studio</value>
+  </data>
+  <data name="Game_RaymanActivityCenter_Title" xml:space="preserve">
+    <value>Rayman Activity Center</value>
+  </data>
+  <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Activity Center</value>
+  </data>
+  <data name="Platform_MsDos" xml:space="preserve">
+    <value>MS-DOS</value>
+  </data>
+  <data name="Platform_Win32" xml:space="preserve">
+    <value>Desktop (Win32)</value>
+  </data>
+  <data name="Platform_WindowsPackage" xml:space="preserve">
+    <value>Windows-pakke (.appx/.msix)</value>
+  </data>
+  <data name="Platform_Gba" xml:space="preserve">
+    <value>Game Boy Advance</value>
+  </data>
+  <data name="Progression_RHR_Level0Header" xml:space="preserve">
+    <value>Fairy Council</value>
+  </data>
+  <data name="Progression_RHR_Level1Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_RHR_Level2Header" xml:space="preserve">
+    <value>Clearleaf Falls</value>
+  </data>
+  <data name="Progression_RHR_Level3Header" xml:space="preserve">
+    <value>Infernal Machine</value>
+  </data>
+  <data name="Progression_RHR_Level4Header" xml:space="preserve">
+    <value>Dungeon of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level5Header" xml:space="preserve">
+    <value>Bog of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level6Header" xml:space="preserve">
+    <value>Begoniax Bayou</value>
+  </data>
+  <data name="Progression_RHR_Level7Header" xml:space="preserve">
+    <value>Rivers of Murk</value>
+  </data>
+  <data name="Progression_RHR_Level8Header" xml:space="preserve">
+    <value>Hoodlum Moor</value>
+  </data>
+  <data name="Progression_RHR_Level9Header" xml:space="preserve">
+    <value>Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_RHR_Level10Header" xml:space="preserve">
+    <value>Menhirs of Power</value>
+  </data>
+  <data name="Progression_RHR_Level11Header" xml:space="preserve">
+    <value>Pit of Endless Fire</value>
+  </data>
+  <data name="Progression_RHR_Level12Header" xml:space="preserve">
+    <value>Clouds of Peril</value>
+  </data>
+  <data name="Progression_RHR_Level13Header" xml:space="preserve">
+    <value>Heart of the World</value>
+  </data>
+  <data name="Progression_RHR_Level14Header" xml:space="preserve">
+    <value>Reflux's Lair</value>
+  </data>
+  <data name="Progression_RHR_Level15Header" xml:space="preserve">
+    <value>Vertiginous Riddle</value>
+  </data>
+  <data name="Progression_RHR_Level16Header" xml:space="preserve">
+    <value>Cloudy Cache</value>
+  </data>
+  <data name="Progression_RHR_Level17Header" xml:space="preserve">
+    <value>Mélée Mayhem</value>
+  </data>
+  <data name="Progression_RHR_Level18Header" xml:space="preserve">
+    <value>Scalding Cascade</value>
+  </data>
+  <data name="Progression_RHR_Level19Header" xml:space="preserve">
+    <value>Sulphurous Sea</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Child's play</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>The kids' hamlet</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>The toy chase</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Toy box</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Celestial castle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Dream forest</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>The leafy valley</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Colonial jungle</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>The lush mountaintops</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Hidden burrow</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Stomach circuit</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Gastric rivers</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Living cavern</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Swallowed treasures</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>The sticky lair</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>The desert of desserts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Cake race</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>The sweet islands</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Not a piece of cake!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Tart tunnels</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Ginger-bunny-bread</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Filthy corridors</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Agony jails</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Infernal escape</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Spikes and yikes!</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>The rabbids' lair</value>
+  </data>
+  <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
+    <value>Tidsangreb</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Find spil-ROMs og diske fra mappe</value>
+  </data>
+  <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
+    <value>Vælg hvilken mappe der skal søges efter spil-ROMs og diske i</value>
+  </data>
+  <data name="GameFileFinder_Error" xml:space="preserve">
+    <value>En fejl opstod i spilfilfinderoperationen</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>De følgende nye spil blev fundet:</value>
+  </data>
+  <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Spil-ROMs og diske blev fundet</value>
+  </data>
+  <data name="GameFileFinder_NoResults" xml:space="preserve">
+    <value>Ingen nye spil-ROMs eller diske blev fundet</value>
+  </data>
+  <data name="GameFileFinder_ResultHeader" xml:space="preserve">
+    <value>Spilfilfinderresultat</value>
+  </data>
+  <data name="GameSelection_RefreshError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indlæse spillene</value>
+  </data>
+  <data name="Home_ShowMoreNews" xml:space="preserve">
+    <value>Vis mere</value>
+  </data>
+  <data name="Settings_LoadAppNews" xml:space="preserve">
+    <value>Indlæs appnyheder på siden 'hjem'</value>
+  </data>
+  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
+    <value>Vælg en dato</value>
+  </data>
+  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
+    <value>Fjern ændringslogpost</value>
+  </data>
+  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
+    <value>Tilføj ændringslogpost</value>
+  </data>
+  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
+    <value>Ændringslog</value>
+  </data>
+  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
+    <value>Filmodifikationer</value>
+  </data>
+  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
+    <value>Download opdatering</value>
+  </data>
+  <data name="AnniversaryUpdate_Title" xml:space="preserve">
+    <value>Velkommen til jubilæumsopdateringen</value>
+  </data>
+  <data name="AnniversaryUpdate_Header" xml:space="preserve">
+    <value>Velkommen til jubilæumsopdateringen!</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
+    <value>Ny spilside</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
+    <value>Spilsiden er blevet lavet om, for at understøtte nye funktioner, som f.eks. at kunne tillade flere installationer af det samme spil, samt emulerede konsolspil. Hvert spil har nu et hub-område til højre, hvor du kan se handlinger fra Patcher- og Archive Explorer-panelerne.</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
+    <value>Spilklienter/emulatorer</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
+    <value>En ny funktion i denne opdatering er understøttelse af spilklienter/emulatorer. Disse kan tilføjes i en separat dialog, og kan vælges til at blive brugt på tilføjede spil. Spilklienter som f.eks. Steam er valgfrie, mens at konsolspil kræver en emulator for at kunne spilles. Hvis en emulator ikke er i den understøttede liste, kan du tilføje den som en brugerdefineret emulator. Vær opmærksom på, at hvis du gør det, kan spilfremskridt ikke vises.</value>
+  </data>
+  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
+    <value>Flere hjælpeværktøjer er nu patches</value>
+  </data>
+  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
+    <value>Kan du ikke finde det hjælpeværktøj, du leder efter? Det er højst sandsynligt blevet lavet om til en patch.</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
+    <value>Synkronisering af overflader er flyttet</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
+    <value>Hjælpeværktøjet til at synkronisere overflader er nu blevet erstattet af en knap i Archive Explorer-panelet til nemmere brug. Ligesom før kan du også aktivere automatisk synkronisering af overflader, når et arkiv er blevet ompakket.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
+    <value>1.12 (Ubeskyttet)</value>
+  </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>En nyere version er tilgængelig. Afinstallér den nuværende version for at installere den.</value>
+  </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Spil-ID:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Åbn i Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>Bruger-ID</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Spansk (Spanien) programoversættelse</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
+    <value>{0} patch blev anvendt</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} patches blev anvendt</value>
   </data>
 </root>

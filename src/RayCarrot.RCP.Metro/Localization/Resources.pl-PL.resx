@@ -5373,4 +5373,31 @@ Konflikty:
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>Dostępna jest nowsza wersja. Odinstaluj bieżącą wersję, aby ją zainstalować.</value>
   </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID gry:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Otwórz w Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>ID użytkownika</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Tłumaczenie hiszpańskie (Hiszpania) programu</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
+    <value>Zastosowano {0} łatkę</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
+    <value>Zastosowano {0} łatek</value>
+  </data>
 </root>

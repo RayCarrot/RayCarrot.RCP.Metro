@@ -4705,7 +4705,7 @@ Conflicten:
     <value>Spel doelen</value>
   </data>
   <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>De spellen waar de patch zich op richt, zijn de spellen waar de patch op van toepassing is. Een patch kan toegepast worden op meerdere spellen, maar als het ontbrekende bestanden toevoegt aan een archief, dan worden deze genegeerd voor dat spel.</value>
+    <value>De spellen waar de patch zich op richt, zijn de spellen waar de patch op van toepassing is. Een patch kan toegepast worden op meerdere spellen, maar als het bestanden toevoegt aan een ontbrekend archief voor een bepaald spel, dan worden deze genegeerd voor dat spel.</value>
   </data>
   <data name="PatchCreator_ImportPatch" xml:space="preserve">
     <value>Importeren vanaf bestaande patch</value>
@@ -4874,7 +4874,7 @@ Conflicten:
     <value>Rayman Fiesta Run Preload Editie</value>
   </data>
   <data name="RaymanFiestaRunWindows10Edition_WindowsPackage_Title" xml:space="preserve">
-    <value>Rayman Fiesta Run Windows 10 Editie</value>
+    <value>Rayman Fiesta Run Windows 10 Edition</value>
   </data>
   <data name="RaymanRavingRabbids_Win32_Title" xml:space="preserve">
     <value>Rayman Raving Rabbids</value>
@@ -5340,5 +5340,32 @@ Conflicten:
   </data>
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>Er is een nieuwere versie beschikbaar. Deïnstalleer de huidige versie om deze te installeren.</value>
+  </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Game ID:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Open in Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>Gebruikers-id</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Spaanse (Spanje) programmavertaling</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
+    <value>{0} patch toegepast</value>
+  </data>
+  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} patches toegepast</value>
   </data>
 </root>
