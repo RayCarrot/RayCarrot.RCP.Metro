@@ -232,7 +232,8 @@
                     <!-- File container -->
 
                     <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource RCP.Styles.ListBoxItem.Rounded}">
+                        <!-- TODO-UPDATE: Use rounded style here. Currently it doesn't work though as it causes rendering issues. -->
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItem}">
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="IsEnabled" Value="{Binding Path=IsInitialized}" />
                             <Setter Property="ToolTip">
