@@ -8,7 +8,7 @@
 	• Rayman (Game Boy Color), Rayman 2 (Game Boy Color) and Tonic Trouble (Game Boy Color)
 	• Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA)
 	• Rayman: The Dreamer's Boundary
-• The program has now been translated to Spanish (thanks Marcos03BR!)
+• The program has now been translated to Danish (thanks Lex!) and Spanish (thanks Marcos03BR!)
 • The game finder has been reworked to be faster and to be able to find game clients/emulators
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
 • The jumplist now sorts games by default and only automatically adds certain games to it

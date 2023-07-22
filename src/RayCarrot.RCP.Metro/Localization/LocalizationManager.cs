@@ -51,6 +51,9 @@ public static class LocalizationManager
         {
             DefaultCulture,
 
+            // Danish (Denmark)
+            new CultureInfo("da-DK"),
+
             // Dutch (Netherlands)
             new CultureInfo("nl-NL"),
 
@@ -81,9 +84,6 @@ public static class LocalizationManager
             // Add incomplete languages
             Languages.AddRange(new CultureInfo[]
             {
-                // Danish (Denmark)
-                new CultureInfo("da-DK"),
-
                 // Hungarian (Hungary)
                 new CultureInfo("hu-HU"),
 

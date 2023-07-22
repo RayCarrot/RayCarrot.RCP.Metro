@@ -37,6 +37,7 @@ public class AboutPageViewModel : BasePageViewModel
             new("Haruka Tavares", new ResourceLocString(nameof(Resources.About_Credits_HarukaTavares))),
             new("ItzalDrake", new ResourceLocString(nameof(Resources.About_Credits_ItzalDrake))),
             new("Juanmv94", new ResourceLocString(nameof(Resources.About_Credits_Janmv94))),
+            new("Lex", "Danish (Denmark) program translation"), // TODO-UPDATE: Localize
             new("Mark", new ResourceLocString(nameof(Resources.About_Credits_432Hz))),
             new("Marcos03BR", new ResourceLocString(nameof(Resources.About_Credits_Marcos03BR))),
             new("Marteaufou", new ResourceLocString(nameof(Resources.About_Credits_Marteaufou))),
