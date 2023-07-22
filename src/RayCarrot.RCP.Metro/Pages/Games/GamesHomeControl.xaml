@@ -107,6 +107,7 @@
                     <Button Grid.Column="1"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             ToolTip="{Resx About_UpdateHistory}"
+                            DataContext="{Binding Path=AppNewsViewModel, Mode=OneTime}"
                             Command="{Binding Path=ShowVersionHistoryCommand, Mode=OneTime}"
                             rcp:Icon.Kind="TooltipTextOutline"
                             rcp:Icon.Size="16" />
