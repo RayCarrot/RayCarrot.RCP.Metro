@@ -33,7 +33,16 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
         GameTitle gameTitle = (GameTitle)d;
         GameInstallation? gameInstallation = (GameInstallation?)e.NewValue;
 
-        if (gameInstallation != null)
+        // If in design mode then App.Current is null and some things won't work. So we manually set some dummy data.
+        if (DesignerProperties.GetIsInDesignMode(gameTitle))
+        {
+            gameTitle.GameIcon = GameIconAsset.Rayman2;
+            gameTitle.IsDemo = false;
+            gameTitle.GameDisplayName = "Rayman 2";
+            gameTitle.PlatformIcon = GamePlatformIconAsset.Win32;
+            gameTitle.PlatformDisplayName = Metro.Resources.Platform_Win32;
+        }
+        else if (gameInstallation != null)
         {
             GameDescriptor gameDescriptor = gameInstallation.GameDescriptor;
             GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
