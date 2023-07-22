@@ -1,15 +1,12 @@
-﻿-----   Version 14.0.0 - July ??, 2023   -----
+﻿-----   Version 14.0.0 - August ??, 2023   -----
 • Multiple installations of the same game can now be added
 • Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
 • Added a home page for news and recent/favorite games. Newly added and updated patches are now shown there instead of the app changelog.
 • Added support for new games:
-	• Rayman Jungle Run (Ubisoft Connect)
-	• Rayman Fiesta Run (Ubisoft Connect)
-	• Rayman Advance
-	• Rayman 3 (GBA)
-	• Rayman Hoodlums' Revenge
-	• Rayman Raving Rabbids (GBA)
+	• Rayman Jungle Run (Ubisoft Connect) and Rayman Fiesta Run (Ubisoft Connect)
+	• Rayman (Game Boy Color), Rayman 2 (Game Boy Color) and Tonic Trouble (Game Boy Color)
+	• Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA)
 	• Rayman: The Dreamer's Boundary
 • The program has now been translated to Spanish (thanks Marcos03BR!)
 • The game finder has been reworked to be faster and to be able to find game clients/emulators
@@ -44,6 +41,7 @@ Other changes:
 	• The CPA texture sync has been moved from a utility to an archive action in the game hub
 	• The CPA texture sync now syncs the individual Rayman M/Arena game folders separately
 	• Progress is now shown when synchronizing CPA game textures
+	• Exporting/importing files in an IPK archive now preserves the file dates
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
 • Added incomplete Danish (Denmark), Hungarian (Hungary) and Turkish (Turkey) translations
