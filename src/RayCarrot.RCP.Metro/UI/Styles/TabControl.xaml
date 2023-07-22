@@ -117,8 +117,8 @@
                         </MultiTrigger>
 
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Control.Disabled}" />
-                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Control.Disabled}" />
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.IdealForegroundDisabled}" />
+                            <Setter TargetName="Underline" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.IdealForegroundDisabled}" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>
