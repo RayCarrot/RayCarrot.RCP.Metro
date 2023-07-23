@@ -22,7 +22,8 @@
                     Width="100"
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.(games:GamesPageViewModel.SelectGameCommand), Mode=OneTime}"
-                    CommandParameter="{Binding}">
+                    CommandParameter="{Binding}"
+                    ToolTip="{Binding Path=DisplayName.Value}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
