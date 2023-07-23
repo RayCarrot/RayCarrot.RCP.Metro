@@ -10,7 +10,7 @@ public sealed class VisualBoyAdvanceMGameClientDescriptor : EmulatorGameClientDe
     public override string GameClientId => "VisualBoyAdvanceM";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Gbc, GamePlatform.Gba };
-    public override LocalizedString DisplayName => "Visual Boy Advance - M"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_VisualBoyAdvanceM));
     public override GameClientIconAsset Icon => GameClientIconAsset.VisualBoyAdvanceM;
 
     #endregion

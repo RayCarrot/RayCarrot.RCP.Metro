@@ -115,15 +115,13 @@ public enum Game
     /// <summary>
     /// Rayman 1 (GBC)
     /// </summary>
-    [GameInfo("Rayman (Game Boy Color)" // TODO-UPDATE: Localize
-        , GameIconAsset.Rayman1_Gbc)]
+    [GameInfo(nameof(Resources.Game_Rayman1_Gbc_Title), GameIconAsset.Rayman1_Gbc)]
     Rayman1_Gbc,
 
     /// <summary>
     /// Rayman 2 (GBC)
     /// </summary>
-    [GameInfo("Rayman 2 (Game Boy Color)" // TODO-UPDATE: Localize
-        , GameIconAsset.Rayman2_Gbc)]
+    [GameInfo(nameof(Resources.Game_Rayman2_Gbc_Title), GameIconAsset.Rayman2_Gbc)]
     Rayman2_Gbc,
 
     /// <summary>
@@ -215,8 +213,7 @@ public enum Game
     /// <summary>
     /// Tonic Trouble (GBC)
     /// </summary>
-    [GameInfo("Tonic Trouble (Game Boy Color)" // TODO-UPDATE: Localize
-        , GameIconAsset.TonicTrouble_Gbc)]
+    [GameInfo(nameof(Resources.Game_TonicTrouble_Gbc_Title), GameIconAsset.TonicTrouble_Gbc)]
     TonicTrouble_Gbc,
 
     /// <summary>

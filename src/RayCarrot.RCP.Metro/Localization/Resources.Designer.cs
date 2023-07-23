@@ -151,6 +151,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Danish (Denmark) program translation.
+        /// </summary>
+        public static string About_Credits_Lex {
+            get {
+                return ResourceManager.GetString("About_Credits_Lex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spanish (Spain) program translation.
         /// </summary>
         public static string About_Credits_Marcos03BR {
@@ -1100,6 +1109,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_FileInfo_Type {
             get {
                 return ResourceManager.GetString("Archive_FileInfo_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified:.
+        /// </summary>
+        public static string Archive_FileInfo_WriteTime {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_WriteTime", resourceCulture);
             }
         }
         
@@ -3675,6 +3693,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman (Game Boy Color).
+        /// </summary>
+        public static string Game_Rayman1_Gbc_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman1_Gbc_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman.
         /// </summary>
         public static string Game_Rayman1_Title {
@@ -3689,6 +3716,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Game_Rayman1Minigames_Title {
             get {
                 return ResourceManager.GetString("Game_Rayman1Minigames_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 (Game Boy Color).
+        /// </summary>
+        public static string Game_Rayman2_Gbc_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman2_Gbc_Title", resourceCulture);
             }
         }
         
@@ -3932,6 +3968,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Game_TheDarkMagiciansReignofTerror_Title {
             get {
                 return ResourceManager.GetString("Game_TheDarkMagiciansReignofTerror_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble (Game Boy Color).
+        /// </summary>
+        public static string Game_TonicTrouble_Gbc_Title {
+            get {
+                return ResourceManager.GetString("Game_TonicTrouble_Gbc_Title", resourceCulture);
             }
         }
         
@@ -4237,6 +4282,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SameBoy.
+        /// </summary>
+        public static string GameClients_SameBoy {
+            get {
+                return ResourceManager.GetString("GameClients_SameBoy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client/emulator.
         /// </summary>
         public static string GameClients_SelectionHeader {
@@ -4296,6 +4350,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_UbisoftConnect_UserIdHeader {
             get {
                 return ResourceManager.GetString("GameClients_UbisoftConnect_UserIdHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visual Boy Advance - M.
+        /// </summary>
+        public static string GameClients_VisualBoyAdvanceM {
+            get {
+                return ResourceManager.GetString("GameClients_VisualBoyAdvanceM", resourceCulture);
             }
         }
         
@@ -5181,6 +5244,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Home_ShowMoreNews {
             get {
                 return ResourceManager.GetString("Home_ShowMoreNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show recent games.
+        /// </summary>
+        public static string Home_ShowRecentGames {
+            get {
+                return ResourceManager.GetString("Home_ShowRecentGames", resourceCulture);
             }
         }
         
@@ -6173,6 +6245,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_R1_FistCharge {
             get {
                 return ResourceManager.GetString("Mod_Mem_R1_FistCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fist control.
+        /// </summary>
+        public static string Mod_Mem_R1_FistControl {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_FistControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fist down-slam.
+        /// </summary>
+        public static string Mod_Mem_R1_FistDownSlam {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_FistDownSlam", resourceCulture);
             }
         }
         
@@ -8874,6 +8964,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Boy Color.
+        /// </summary>
+        public static string Platform_Gbc {
+            get {
+                return ResourceManager.GetString("Platform_Gbc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MS-DOS.
         /// </summary>
         public static string Platform_MsDos {
@@ -9240,6 +9339,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_Lums {
             get {
                 return ResourceManager.GetString("Progression_Lums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed GameCube bonus levels.
+        /// </summary>
+        public static string Progression_R3_GBA_CompletedGCNBonus {
+            get {
+                return ResourceManager.GetString("Progression_R3_GBA_CompletedGCNBonus", resourceCulture);
             }
         }
         
@@ -11334,6 +11442,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman.
         /// </summary>
+        public static string Rayman1_Gbc_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Gbc_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
         public static string Rayman1_MsDos_Title {
             get {
                 return ResourceManager.GetString("Rayman1_MsDos_Title", resourceCulture);
@@ -11364,6 +11481,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Rayman2_Demo_19990904_Win32_Title {
             get {
                 return ResourceManager.GetString("Rayman2_Demo_19990904_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2.
+        /// </summary>
+        public static string Rayman2_Gbc_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Gbc_Title", resourceCulture);
             }
         }
         
@@ -11427,6 +11553,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Rayman3_Gba_Title {
             get {
                 return ResourceManager.GetString("Rayman3_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Prototype.
+        /// </summary>
+        public static string Rayman3_Prototype_Gba_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Prototype_Gba_Title", resourceCulture);
             }
         }
         
@@ -14736,6 +14871,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Tonic Trouble.
         /// </summary>
+        public static string TonicTrouble_Gbc_Title {
+            get {
+                return ResourceManager.GetString("TonicTrouble_Gbc_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble.
+        /// </summary>
         public static string TonicTrouble_Win32_Title {
             get {
                 return ResourceManager.GetString("TonicTrouble_Win32_Title", resourceCulture);
@@ -15625,6 +15769,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Serializers_SerializeSuccess {
             get {
                 return ResourceManager.GetString("Utilities_Serializers_SerializeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronize textures.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo", resourceCulture);
             }
         }
         

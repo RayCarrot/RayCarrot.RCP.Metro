@@ -18,8 +18,7 @@
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-            <!-- TODO-UPDATE: Localize -->
-            <mah:ToggleSwitch Content="Show recent games"
+            <mah:ToggleSwitch Content="{Resx Home_ShowRecentGames}"
                               Margin="6"
                               Background="{DynamicResource RCP.Brushes.Card.Popup}"
                               IsOn="{Binding Path=ShowRecentSetting}"/>

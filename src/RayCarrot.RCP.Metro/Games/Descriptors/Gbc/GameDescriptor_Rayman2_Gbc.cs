@@ -14,7 +14,7 @@ public sealed class GameDescriptor_Rayman2_Gbc : GbcGameDescriptor
     public override Game Game => Game.Rayman2_Gbc;
     public override GameCategory Category => GameCategory.Handheld;
 
-    public override LocalizedString DisplayName => "Rayman 2"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman2_Gbc_Title));
     public override string[] SearchKeywords => new[] { "r2", "gbc", "forever" };
     public override DateTime ReleaseDate => new(2001, 01, 01); // Not exact
 

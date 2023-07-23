@@ -4377,4 +4377,10 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>Daha yeni bir sürüm mevcut. Yüklemek için geçerli sürümü kaldırın.</value>
   </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
+  </data>
 </root>

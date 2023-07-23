@@ -213,7 +213,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         {
             // Fist down-slam
             yield return new EditorBoolFieldViewModel(
-                header: "Fist down-slam", // TODO-UPDATE: Localize
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistDownSlam)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.RayEvts?.FistDownSlam ?? false),
                 setValueAction: x => AccessMemory(m =>
@@ -227,7 +227,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
             // Fist control
             yield return new EditorBoolFieldViewModel(
-                header: "Fist control", // TODO-UPDATE: Localize
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistControl)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.RayEvts?.FistControl ?? false),
                 setValueAction: x => AccessMemory(m =>

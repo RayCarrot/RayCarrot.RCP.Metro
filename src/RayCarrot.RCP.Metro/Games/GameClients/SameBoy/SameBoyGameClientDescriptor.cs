@@ -10,7 +10,7 @@ public sealed class SameBoyGameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "SameBoy";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Gbc };
-    public override LocalizedString DisplayName => "SameBoy"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_SameBoy));
     public override GameClientIconAsset Icon => GameClientIconAsset.SameBoy;
 
     #endregion

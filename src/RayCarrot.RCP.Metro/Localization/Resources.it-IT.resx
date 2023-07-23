@@ -5375,4 +5375,10 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
     <value>{0} patch applicate</value>
   </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
+  </data>
 </root>

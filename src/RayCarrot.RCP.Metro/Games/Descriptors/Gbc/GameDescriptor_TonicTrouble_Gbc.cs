@@ -13,7 +13,7 @@ public sealed class GameDescriptor_TonicTrouble_Gbc : GbcGameDescriptor
     public override Game Game => Game.TonicTrouble_Gbc;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Tonic Trouble"; // TODO-UPDATE: Localize
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.TonicTrouble_Gbc_Title));
     public override string[] SearchKeywords => new[] { "tt", "gbc" };
     public override DateTime ReleaseDate => new(2000, 01, 01); // Not exact
 

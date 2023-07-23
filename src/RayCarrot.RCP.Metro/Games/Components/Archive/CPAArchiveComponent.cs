@@ -50,8 +50,8 @@ public class CPAArchiveComponent : ArchiveComponent
             return null;
 
         return new AdditionalArchiveAction(
-            "Synchronize textures", // TODO-UPDATE: Localize
-            Resources.Utilities_SyncTextureInfo_Info,
+            new ResourceLocString(nameof(Resources.Utilities_SyncTextureInfo)),
+            new ResourceLocString(nameof(Resources.Utilities_SyncTextureInfo_Info)),
             SynchronizeTexturesAsync);
     }
 }

@@ -5368,4 +5368,10 @@ Conflicten:
   <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
     <value>{0} patches toegepast</value>
   </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
+  </data>
 </root>

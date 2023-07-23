@@ -26,8 +26,7 @@ public enum GamePlatform
     /// <summary>
     /// Game Boy Color
     /// </summary>
-    [GamePlatformInfo("Game Boy Color" // TODO-UPDATE: Localize
-        , GamePlatformIconAsset.Gbc)]
+    [GamePlatformInfo(nameof(Resources.Platform_Gbc), GamePlatformIconAsset.Gbc)]
     Gbc,
 
     /// <summary>

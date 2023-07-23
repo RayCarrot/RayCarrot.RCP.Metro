@@ -64,7 +64,7 @@ public class GameProgressionManager_Rayman3_Gba : EmulatedGameProgressionManager
                 dataItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: true,
                     icon: ProgressionIconAsset.R3_GBA_GcnCheck,
-                    header: "Completed GameCube bonus levels", // TODO-UPDATE: Localize
+                    header: new ResourceLocString(nameof(Resources.Progression_R3_GBA_CompletedGCNBonus)),
                     value: completedGCNBonusLevels,
                     max: totalGCNBonusLevels));
             }

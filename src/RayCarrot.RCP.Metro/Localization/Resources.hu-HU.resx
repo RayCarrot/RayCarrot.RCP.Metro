@@ -1745,4 +1745,10 @@ Hiba üzenet: {1}</value>
   <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
     <value>The rabbids' lair</value>
   </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
+  </data>
 </root>

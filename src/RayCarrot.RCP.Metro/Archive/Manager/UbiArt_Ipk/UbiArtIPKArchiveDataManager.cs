@@ -422,8 +422,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         if (entry.TimeStamp != 0)
             yield return new DuoGridItemViewModel(
-                // TODO-UPDATE: Localize
-                header: "Last write time:",
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_WriteTime)),
                 text: $"{entry.TimeStampDateTimeOffset.DateTime.ToLongDateString()}");
 
         yield return new DuoGridItemViewModel(

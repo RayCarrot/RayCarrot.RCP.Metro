@@ -4647,4 +4647,10 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>Une version plus récente est disponible. Désinstallez la version actuelle pour l'installer.</value>
   </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
+  </data>
 </root>
