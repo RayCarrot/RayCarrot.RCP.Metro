@@ -151,7 +151,7 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     public static WindowsVersion WindowsVersion { get; } // TODO: Why is this static?
 
-    public static Version AppVersion => new(14, 0, 0, 1);
+    public static Version AppVersion => new(14, 0, 0, 2);
 
     #endregion
 
