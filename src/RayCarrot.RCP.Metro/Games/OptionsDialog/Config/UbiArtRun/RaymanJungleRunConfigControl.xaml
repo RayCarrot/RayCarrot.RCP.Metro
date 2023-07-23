@@ -27,7 +27,8 @@
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                            Text="{Resx Config_CharacterHeader}" />
 
-                <rcp:InfoIcon Text="{Resx Config_CharacterHeaderRJRInfo}" />
+                <rcp:InfoIcon Text="{Resx Config_CharacterHeaderRJRInfo}"
+                              Visibility="{Binding Path=HasPlayableTeensies, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}" />
             </StackPanel>
 
             <ComboBox SelectedIndex="{Binding Path=SelectedHero, Converter={rcp:EnumToIntConverter}}"
