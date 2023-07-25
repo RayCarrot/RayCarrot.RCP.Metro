@@ -43,13 +43,13 @@ public class RCPWindowDialogBaseManager : WindowDialogBaseManager
         window.CanMaximize = windowContent.IsResizable;
     }
 
-    protected override Task ShowAsync(IWindowControl windowContent, bool isModal, string title)
+    protected override Task ShowAsync(IWindowControl windowContent, bool isModal, string? title)
     {
         // Show as a child window
         if (Data.UI_UseChildWindows && App.Current?.ChildWindowsParent is MetroWindow metroWindow)
         {
             // Create the child window
-            var childWin = new RCPChildWindow();
+            RCPChildWindow childWin = new();
 
             // Configure the window
             ConfigureChildWindow(childWin, windowContent, isModal);

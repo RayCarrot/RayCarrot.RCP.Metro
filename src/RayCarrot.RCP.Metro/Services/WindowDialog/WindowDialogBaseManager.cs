@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
 
 namespace RayCarrot.RCP.Metro;
@@ -17,7 +16,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     #region Protected Properties
 
-    protected HashSet<OpenWindowInstance> OpenWindows { get; } = new HashSet<OpenWindowInstance>();
+    protected HashSet<OpenWindowInstance> OpenWindows { get; } = new();
 
     #endregion
 
@@ -45,19 +44,10 @@ public class WindowDialogBaseManager : IDialogBaseManager
         window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
     }
 
-    protected Task ShowWindowAsync(IWindowControl windowContent, bool isModal, string title)
-    {
-        // Get the dispatcher
-        Dispatcher dispatcher = GetDispatcher();
-
-        // Run on UI thread
-        return dispatcher.Invoke(() => ShowAsync(windowContent, isModal, title));
-    }
-
-    protected virtual async Task ShowAsync(IWindowControl windowContent, bool isModal, string title)
+    protected virtual async Task ShowAsync(IWindowControl windowContent, bool isModal, string? title)
     {
         // Create the window
-        var window = new BaseIconWindow();
+        BaseIconWindow window = new();
 
         // Configure the window
         ConfigureWindow(window, windowContent);
@@ -76,7 +66,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
         }
         else
         {
-            var tcs = new TaskCompletionSource<object>();
+            TaskCompletionSource<object?> tcs = new();
 
             void Window_Closed(object sender, EventArgs e)
             {
@@ -98,78 +88,72 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     #region Public Methods
 
-    public async Task<Result> ShowDialogWindowAsync<UserInput, Result>(IDialogWindowControl<UserInput, Result> windowContent)
-        where UserInput : UserInputViewModel
-        where Result : UserInputResult
-    {
-        using (windowContent)
-        {
-            // Show as a modal with the user input title
-            await ShowWindowAsync(windowContent, true, windowContent.ViewModel.Title);
-
-            // Get the dispatcher
-            Dispatcher dispatcher = GetDispatcher();
-
-            // Return the result
-            return dispatcher.Invoke(windowContent.GetResult);
-        }
-    }
-
     public async Task ShowWindowAsync(
         IWindowControl windowContent, 
         ShowWindowFlags flags = ShowWindowFlags.None, 
-        string[] typeGroupNames = null, 
-        string[] globalGroupNames = null)
+        string[]? typeGroupNames = null, 
+        string[]? globalGroupNames = null,
+        string? title = null)
     {
-
         using (windowContent)
         {
             OpenWindowInstance openWindowInstance = new(windowContent, typeGroupNames, globalGroupNames);
 
             try
             {
-                Type contentType = windowContent.UIContent.GetType();
-
-                // Get first potentially blocking window
-                IWindowControl blockingWindow = OpenWindows.
-                    FirstOrDefault(x =>
-                    {
-                        // Check for duplicate types
-                        if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) && x.Window.UIContent.GetType() == contentType)
-                            return true;
-
-                        // Check for duplicate global group names
-                        if (globalGroupNames != null &&
-                            globalGroupNames.Any() &&
-                            x.GlobalGroupNames.Any(globalGroupNames.Contains))
-                            return true;
-
-                        // Check for duplicate type group names
-                        if (typeGroupNames != null &&
-                            typeGroupNames.Any() &&
-                            x.Window.UIContent.GetType() == contentType &&
-                            x.TypeGroupNames.Any(typeGroupNames.Contains))
-                            return true;
-
-                        return false;
-                    })?.Window;
-
-                // If there is a window blocking this one from showing we return
-                if (blockingWindow != null)
+                // Check for blocking window
+                if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) ||
+                    (globalGroupNames != null && globalGroupNames.Any()) ||
+                    (typeGroupNames != null && typeGroupNames.Any()))
                 {
-                    Logger.Info("The window is not being shown due to a window of the same type or ID being available");
+                    Type contentType = windowContent.UIContent.GetType();
 
-                    // Focus the blocking window
-                    if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
-                        blockingWindow.WindowInstance?.Focus();
+                    // Get first potentially blocking window
+                    IWindowControl? blockingWindow = OpenWindows.
+                        FirstOrDefault(x =>
+                        {
+                            // Check for duplicate types
+                            if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) && x.Window.UIContent.GetType() == contentType)
+                                return true;
 
-                    return;
+                            // Check for duplicate global group names
+                            if (globalGroupNames != null &&
+                                globalGroupNames.Any() &&
+                                x.GlobalGroupNames != null &&
+                                x.GlobalGroupNames.Any(globalGroupNames.Contains))
+                                return true;
+
+                            // Check for duplicate type group names
+                            if (typeGroupNames != null &&
+                                typeGroupNames.Any() &&
+                                x.Window.UIContent.GetType() == contentType &&
+                                x.TypeGroupNames != null &&
+                                x.TypeGroupNames.Any(typeGroupNames.Contains))
+                                return true;
+
+                            return false;
+                        })?.Window;
+
+                    // If there is a window blocking this one from showing we return
+                    if (blockingWindow != null)
+                    {
+                        Logger.Info("The window is not being shown due to a window of the same type or ID being available");
+
+                        // Focus the blocking window
+                        if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
+                            blockingWindow.WindowInstance?.Focus();
+
+                        return;
+                    }
                 }
 
                 OpenWindows.Add(openWindowInstance);
 
+                // Get the dispatcher
+                Dispatcher dispatcher = GetDispatcher();
+
                 // Show the window and wait for it to close
-                await ShowWindowAsync(windowContent, false, null);
+                await dispatcher.Invoke(() => ShowAsync(windowContent, flags.HasFlag(ShowWindowFlags.Modal), title));
             }
             finally
             {
@@ -183,7 +167,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     #region Records
 
-    protected record OpenWindowInstance(IWindowControl Window, string[] TypeGroupNames, string[] GlobalGroupNames);
+    protected record OpenWindowInstance(IWindowControl Window, string[]? TypeGroupNames, string[]? GlobalGroupNames);
 
     #endregion
 }

@@ -21,4 +21,9 @@ public enum ShowWindowFlags
     /// Indicates that the blocking window preventing the current one from being shown should not be focused
     /// </summary>
     DoNotFocusBlockingWindow = 1 << 1,
+
+    /// <summary>
+    /// Indicates if the window should be shown as a modal window and thus block other windows
+    /// </summary>
+    Modal = 1 << 2,
 }

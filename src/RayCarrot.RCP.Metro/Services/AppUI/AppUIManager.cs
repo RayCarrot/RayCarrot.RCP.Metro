@@ -57,8 +57,11 @@ public class AppUIManager
 
         Logger.Trace("A dialog of type {0} was opened", dialogTypeName);
 
-        // Show the dialog and get the result
-        Result result = await Dialog.ShowDialogWindowAsync(dialog);
+        // Show the dialog
+        await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.Modal, title: dialog.ViewModel.Title);
+
+        // Get the result
+        Result result = dispatcher.Invoke(dialog.GetResult);
 
         if (result == null)
             Logger.Warn("The dialog of type {0} returned null", dialogTypeName);
@@ -217,8 +220,11 @@ public class AppUIManager
             // Create the message box
             var dialog = new DialogMessageBox(vm);
 
-            // Show the dialog and get the result
-            UserInputResult result = await Dialog.ShowDialogWindowAsync(dialog);
+            // Show the dialog
+            await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.Modal, title: vm.Title);
+
+            // Get the result
+            UserInputResult result = dialog.GetResult();
 
             // Return the result
             return !result.CanceledByUser;
