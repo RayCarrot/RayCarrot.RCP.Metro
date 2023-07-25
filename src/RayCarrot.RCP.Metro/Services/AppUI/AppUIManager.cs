@@ -1,6 +1,8 @@
 ﻿#nullable disable
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -35,17 +37,22 @@ public class AppUIManager
 
     #endregion
 
-    #region Dialogs
+    #region Private Methods
 
-    public async Task<Result> ShowDialogAsync<UserInput, Result>(Func<IDialogWindowControl<UserInput, Result>> createDialogFunc)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private Dispatcher GetDispatcher()
+    {
+        return Application.Current.Dispatcher ?? throw new Exception("The application does not have a valid dispatcher");
+    }
+
+    private async Task<Result> ShowDialogAsync<UserInput, Result>(Func<IDialogWindowControl<UserInput, Result>> createDialogFunc)
         where UserInput : UserInputViewModel
         where Result : UserInputResult
     {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
+        Dispatcher dispatcher = GetDispatcher();
 
         // Create the dialog on the UI thread
-        IDialogWindowControl<UserInput, Result> dialog = Application.Current.Dispatcher.Invoke(createDialogFunc);
+        IDialogWindowControl<UserInput, Result> dialog = dispatcher.Invoke(createDialogFunc);
         string dialogTypeName = dialog.GetType().Name;
 
         Logger.Trace("A dialog of type {0} was opened", dialogTypeName);
@@ -61,6 +68,26 @@ public class AppUIManager
         // Return the result
         return result;
     }
+
+    private async Task ShowWindowAsync(
+        Func<IWindowControl> createWindowFunc, 
+        ShowWindowFlags flags = ShowWindowFlags.None,
+        string[] typeGroupNames = null,
+        string[] globalGroupNames = null)
+    {
+        Dispatcher dispatcher = GetDispatcher();
+
+        IWindowControl window = dispatcher.Invoke(createWindowFunc);
+        string windowTypeName = window.GetType().Name;
+
+        Logger.Trace("A window of type {0} was opened", windowTypeName);
+
+        await Dialog.ShowWindowAsync(window, flags, typeGroupNames, globalGroupNames);
+    }
+
+    #endregion
+
+    #region Dialogs
 
     public Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel) => ShowDialogAsync(() => new JumpListEditDialog(viewModel));
 
@@ -109,9 +136,7 @@ public class AppUIManager
     /// <returns>True if the user accepted the message, otherwise false</returns>
     public async Task<bool> DisplayMessageAsync(string message, string header, MessageType messageType, bool allowCancel, IList<DialogMessageActionViewModel> additionalActions)
     {
-        // Make sure the application has been set up
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("A message box can not be shown when the application dispatcher is null");
+        GetDispatcher();
 
         Logger.Trace("A message of type {0} was displayed with the content of: '{1}'", messageType, message);
 
@@ -210,18 +235,8 @@ public class AppUIManager
     /// Shows a new instance of the version history
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowVersionHistoryAsync()
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        Logger.Trace("A version history window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using VersionHistoryDialog ui = Application.Current.Dispatcher.Invoke(() => new VersionHistoryDialog());
-        await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
-    }
+    public async Task ShowVersionHistoryAsync() =>
+        await ShowWindowAsync(() => new VersionHistoryDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     /// <summary>
     /// Shows a new instance of the game options
@@ -230,11 +245,6 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowGameOptionsAsync(GameInstallation gameInstallation)
     {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        Logger.Trace("A game options window was opened");
-
         // Get group names from components
         List<string> groupNames = gameInstallation.GetComponents<GameOptionsDialogGroupNameComponent>().
             Select(x => x.GroupName).
@@ -243,10 +253,7 @@ public class AppUIManager
         // Only allow once per installation
         groupNames.Add(gameInstallation.InstallationId);
 
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(gameInstallation));
-        await Dialog.ShowWindowAsync(ui, typeGroupNames: groupNames.ToArray());
+        await ShowWindowAsync(() => new GameOptionsDialog(gameInstallation), typeGroupNames: groupNames.ToArray());
     }
 
     /// <summary>
@@ -254,36 +261,16 @@ public class AppUIManager
     /// </summary>
     /// <param name="gameInstallation">The game installation to show the debug for</param>
     /// <returns>The task</returns>
-    public async Task ShowGameDebugAsync(GameInstallation gameInstallation)
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        Logger.Trace("A game debug window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using GameDebugDialog ui = Application.Current.Dispatcher.Invoke(() => new GameDebugDialog(gameInstallation));
-        await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
-    }
+    public async Task ShowGameDebugAsync(GameInstallation gameInstallation) =>
+        await ShowWindowAsync(() => new GameDebugDialog(gameInstallation), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     /// <summary>
     /// Shows a new instance of the game client debug
     /// </summary>
     /// <param name="gameClientInstallation">The game client installation to show the debug for</param>
     /// <returns>The task</returns>
-    public async Task ShowGameClientDebugAsync(GameClientInstallation gameClientInstallation)
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        Logger.Trace("A game client debug window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using GameClientDebugDialog ui = Application.Current.Dispatcher.Invoke(() => new GameClientDebugDialog(gameClientInstallation));
-        await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
-    }
+    public async Task ShowGameClientDebugAsync(GameClientInstallation gameClientInstallation) =>
+        await ShowWindowAsync(() => new GameClientDebugDialog(gameClientInstallation), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     /// <summary>
     /// Shows a new instance of the Archive Explorer
@@ -291,61 +278,26 @@ public class AppUIManager
     /// <param name="manager">The archive data manager</param>
     /// <param name="filePaths">The archive file paths</param>
     /// <returns>The task</returns>
-    public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths)
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        using ArchiveExplorerDialogViewModel vm = new(manager, filePaths);
-
-        Logger.Trace("An Archive Explorer window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using ArchiveExplorerDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerDialog(vm));
-        await Dialog.ShowWindowAsync(ui);
-    }
+    public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths) =>
+        await ShowWindowAsync(() => new ArchiveExplorerDialog(new ArchiveExplorerDialogViewModel(manager, filePaths)));
 
     /// <summary>
     /// Shows a new instance of the Archive Creator
     /// </summary>
     /// <param name="manager">The archive data manager</param>
     /// <returns>The task</returns>
-    public async Task ShowArchiveCreatorAsync(IArchiveDataManager manager)
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        ArchiveCreatorDialogViewModel vm = new(manager);
-
-        Logger.Trace("An Archive Creator window was opened");
-
-        // Run on UI thread
-        using ArchiveCreatorDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorDialog(vm));
-        await Dialog.ShowWindowAsync(ui);
-    }
+    public async Task ShowArchiveCreatorAsync(IArchiveDataManager manager) =>
+        await ShowWindowAsync(() => new ArchiveCreatorDialog(new ArchiveCreatorDialogViewModel(manager)));
 
     /// <summary>
     /// Shows a new instance of the Patcher from a game installation
     /// </summary>
     /// <param name="gameInstallation">The game installation</param>
     /// <returns>The task</returns>
-    public async Task ShowPatcherAsync(GameInstallation gameInstallation)
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        using PatcherViewModel vm = new(gameInstallation);
-        
-        Logger.Trace("A Patcher window was opened");
-        
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
-        await Dialog.ShowWindowAsync(dialog, 
+    public async Task ShowPatcherAsync(GameInstallation gameInstallation) =>
+        await ShowWindowAsync(() => new PatcherDialog(new PatcherViewModel(gameInstallation)),
             // Only allow one patcher window per installation
             typeGroupNames: new[] { gameInstallation.InstallationId });
-    }
 
     /// <summary>
     /// Shows a new instance of the Patcher from patch file paths
@@ -354,20 +306,12 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowPatcherAsync(FileSystemPath[] patchFilePaths)
     {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        using PatcherViewModel? vm = await PatcherViewModel.FromFilesAsync(patchFilePaths);
+        PatcherViewModel? vm = await PatcherViewModel.FromFilesAsync(patchFilePaths);
 
         if (vm == null)
             return;
 
-        Logger.Trace("A Patcher window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
-        await Dialog.ShowWindowAsync(dialog,
+        await ShowWindowAsync(() => new PatcherDialog(vm),
             // Only allow one patcher window per installation
             typeGroupNames: new[] { vm.GameInstallation.InstallationId });
     }
@@ -377,54 +321,22 @@ public class AppUIManager
     /// </summary>
     /// <param name="gameTargets">The game installations the patch should be made for</param>
     /// <returns>The task</returns>
-    public async Task ShowPatchCreatorAsync(params GameInstallation[] gameTargets)
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        using PatchCreatorViewModel vm = new(gameTargets);
-
-        Logger.Trace("A Patch Creator window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using PatchCreatorDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatchCreatorDialog(vm));
-        await Dialog.ShowWindowAsync(dialog);
-    }
+    public async Task ShowPatchCreatorAsync(params GameInstallation[] gameTargets) => 
+        await ShowWindowAsync(() => new PatchCreatorDialog(new PatchCreatorViewModel(gameTargets)));
 
     /// <summary>
     /// Shows a new instance of the add games dialog
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowAddGamesAsync()
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        Logger.Trace("An add games window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using AddGamesDialog dialog = Application.Current.Dispatcher.Invoke(() => new AddGamesDialog());
-        await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.DuplicateTypesNotAllowed);
-    }
+    public async Task ShowAddGamesAsync() => 
+        await ShowWindowAsync(() => new AddGamesDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     /// <summary>
     /// Shows a new instance of the game clients setup dialog
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowGameClientsSetupAsync()
-    {
-        if (Application.Current.Dispatcher == null)
-            throw new Exception("The application does not have a valid dispatcher");
-
-        Logger.Trace("A game clients setup window was opened");
-
-        // Run on UI thread
-        // ReSharper disable once AccessToDisposedClosure
-        using GameClientsSetupDialog dialog = Application.Current.Dispatcher.Invoke(() => new GameClientsSetupDialog());
-        await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.DuplicateTypesNotAllowed);
-    }
+    public async Task ShowGameClientsSetupAsync() => 
+        await ShowWindowAsync(() => new GameClientsSetupDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     #endregion
 }

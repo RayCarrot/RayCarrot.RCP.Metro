@@ -55,7 +55,7 @@ public partial class ArchiveExplorerDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = ViewModel.Title;
+        WindowInstance.Title = Metro.Resources.Archive_Title;
         WindowInstance.Icon = GenericIconKind.Window_ArchiveExplorer;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
@@ -102,6 +102,13 @@ public partial class ArchiveExplorerDialog : WindowContentControl
                 DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(DirectoryViewModel.DisplayName), ListSortDirection.Descending));
                 break;
         }
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+
+        ViewModel.Dispose();
     }
 
     #endregion

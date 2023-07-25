@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// View model for an archive creator dialog
 /// </summary>
-public class ArchiveCreatorDialogViewModel : UserInputViewModel
+public class ArchiveCreatorDialogViewModel : BaseViewModel
 {
     #region Constructor
 
@@ -16,7 +16,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     public ArchiveCreatorDialogViewModel(IArchiveDataManager manager)
     {
         // Set properties
-        Title = Resources.Archive_CreateHeader;
         Manager = manager;
         LoaderViewModel = new LoaderViewModel();
     }

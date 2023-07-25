@@ -74,6 +74,13 @@ public partial class PatcherDialog : WindowContentControl
             return true;
     }
 
+    public override void Dispose()
+    {
+        base.Dispose();
+
+        ViewModel.Dispose();
+    }
+
     #endregion
 
     #region Event Handlers

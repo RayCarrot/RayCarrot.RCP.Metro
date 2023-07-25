@@ -43,7 +43,7 @@ public partial class ArchiveCreatorDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = ViewModel.Title;
+        WindowInstance.Title = Metro.Resources.Archive_CreateHeader;
         WindowInstance.Icon = GenericIconKind.Window_ArchiveCreator;
     }
 

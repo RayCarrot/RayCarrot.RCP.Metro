@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// View model for an archive explorer dialog
 /// </summary>
-public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
+public class ArchiveExplorerDialogViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
@@ -36,9 +36,6 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
 
         try
         {
-            // Set the default title
-            Title = Resources.Archive_Title;
-
             // Get the manager
             Manager = manager;
 

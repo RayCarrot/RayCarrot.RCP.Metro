@@ -102,7 +102,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
         where UserInput : UserInputViewModel
         where Result : UserInputResult
     {
-        try
+        using (windowContent)
         {
             // Show as a modal with the user input title
             await ShowWindowAsync(windowContent, true, windowContent.ViewModel.Title);
@@ -113,10 +113,6 @@ public class WindowDialogBaseManager : IDialogBaseManager
             // Return the result
             return dispatcher.Invoke(windowContent.GetResult);
         }
-        finally
-        {
-            windowContent.Dispose();
-        }
     }
 
     public async Task ShowWindowAsync(
@@ -125,57 +121,61 @@ public class WindowDialogBaseManager : IDialogBaseManager
         string[] typeGroupNames = null, 
         string[] globalGroupNames = null)
     {
-        OpenWindowInstance openWindowInstance = new(windowContent, typeGroupNames, globalGroupNames);
 
-        try
+        using (windowContent)
         {
-            Type contentType = windowContent.UIContent.GetType();
+            OpenWindowInstance openWindowInstance = new(windowContent, typeGroupNames, globalGroupNames);
 
-            // Get first potentially blocking window
-            IWindowControl blockingWindow = OpenWindows.
-                FirstOrDefault(x =>
-                {
-                    // Check for duplicate types
-                    if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) && x.Window.UIContent.GetType() == contentType)
-                        return true;
-
-                    // Check for duplicate global group names
-                    if (globalGroupNames != null && 
-                        globalGroupNames.Any() && 
-                        x.GlobalGroupNames.Any(globalGroupNames.Contains))
-                        return true;
-
-                    // Check for duplicate type group names
-                    if (typeGroupNames != null && 
-                        typeGroupNames.Any() && 
-                        x.Window.UIContent.GetType() == contentType && 
-                        x.TypeGroupNames.Any(typeGroupNames.Contains))
-                        return true;
-
-                    return false;
-                })?.Window;
-
-            // If there is a window blocking this one from showing we return
-            if (blockingWindow != null)
+            try
             {
-                Logger.Info("The window is not being shown due to a window of the same type or ID being available");
+                Type contentType = windowContent.UIContent.GetType();
 
-                // Focus the blocking window
-                if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
-                    blockingWindow.WindowInstance?.Focus();
+                // Get first potentially blocking window
+                IWindowControl blockingWindow = OpenWindows.
+                    FirstOrDefault(x =>
+                    {
+                        // Check for duplicate types
+                        if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) && x.Window.UIContent.GetType() == contentType)
+                            return true;
 
-                return;
+                        // Check for duplicate global group names
+                        if (globalGroupNames != null &&
+                            globalGroupNames.Any() &&
+                            x.GlobalGroupNames.Any(globalGroupNames.Contains))
+                            return true;
+
+                        // Check for duplicate type group names
+                        if (typeGroupNames != null &&
+                            typeGroupNames.Any() &&
+                            x.Window.UIContent.GetType() == contentType &&
+                            x.TypeGroupNames.Any(typeGroupNames.Contains))
+                            return true;
+
+                        return false;
+                    })?.Window;
+
+                // If there is a window blocking this one from showing we return
+                if (blockingWindow != null)
+                {
+                    Logger.Info("The window is not being shown due to a window of the same type or ID being available");
+
+                    // Focus the blocking window
+                    if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
+                        blockingWindow.WindowInstance?.Focus();
+
+                    return;
+                }
+
+                OpenWindows.Add(openWindowInstance);
+
+                // Show the window and wait for it to close
+                await ShowWindowAsync(windowContent, false, null);
             }
-
-            OpenWindows.Add(openWindowInstance);
-
-            // Show the window and wait for it to close
-            await ShowWindowAsync(windowContent, false, null);
-        }
-        finally
-        {
-            // Remove the window from list of open windows
-            OpenWindows.Remove(openWindowInstance);
+            finally
+            {
+                // Remove the window from list of open windows
+                OpenWindows.Remove(openWindowInstance);
+            }
         }
     }
 
