@@ -242,7 +242,7 @@ public class AppUIManager
     /// </summary>
     /// <returns>The task</returns>
     public async Task ShowVersionHistoryAsync() =>
-        await ShowWindowAsync(() => new VersionHistoryDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
+        await ShowWindowAsync(() => new VersionHistoryDialog(), ShowWindowFlags.Modal);
 
     /// <summary>
     /// Shows a new instance of the game options
