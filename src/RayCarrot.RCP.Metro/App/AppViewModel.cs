@@ -123,6 +123,11 @@ public class AppViewModel : BaseViewModel
     public Version? PrevAppVersion { get; set; }
 
     /// <summary>
+    /// Indicates if this is the first time the app is launched
+    /// </summary>
+    public bool IsFirstLaunch => PrevAppVersion == null || PrevAppVersion == new Version(0, 0, 0, 0);
+
+    /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
     public bool IsBeta => true;

@@ -442,13 +442,17 @@ public class StartupManager
     {
         Logger.Info("Running startup operations after app window has loaded");
 
-        // Show the anniversary update dialog if updated to the anniversary update (14.0)
-        if (AppViewModel.PrevAppVersion < new Version(14, 0, 0, 0)) // TODO-UPDATE: Change this to 14.0.0.3 when new beta is released
-            await Services.UI.ShowAnniversaryUpdateAsync();
+        // Only show update dialogs if this is not the first launch
+        if (!AppViewModel.IsFirstLaunch)
+        {
+            // Show the anniversary update dialog if updated to the anniversary update (14.0)
+            if (AppViewModel.PrevAppVersion < new Version(14, 0, 0, 0)) // TODO-UPDATE: Change this to 14.0.0.3 when new beta is released
+                await Services.UI.ShowAnniversaryUpdateAsync();
 
-        // Show the version history if updated to a new version
-        if (AppViewModel.PrevAppVersion < AppViewModel.CurrentAppVersion)
-            await UI.ShowVersionHistoryAsync();
+            // Show the version history if updated to a new version
+            if (AppViewModel.PrevAppVersion < AppViewModel.CurrentAppVersion)
+                await UI.ShowVersionHistoryAsync();
+        }
 
         // Clean deployed files
         await CleanDeployedFilesAsync();

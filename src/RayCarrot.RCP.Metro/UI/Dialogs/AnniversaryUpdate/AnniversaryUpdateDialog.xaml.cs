@@ -2,8 +2,6 @@
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO: Don't show if user hasn't used RCP before. Retake screenshots.
-
 /// <summary>
 /// Interaction logic for AnniversaryUpdateDialog.xaml
 /// </summary>
