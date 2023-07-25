@@ -13,8 +13,6 @@ public class AppNewsViewModel : BaseViewModel
         Data = appUserData ?? throw new ArgumentNullException(nameof(appUserData));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
 
-        ShowMore(true);
-
         ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
         ShowMoreCommand = new RelayCommand(() => ShowMore(false));
     }

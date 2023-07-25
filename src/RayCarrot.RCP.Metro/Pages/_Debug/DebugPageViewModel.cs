@@ -51,7 +51,6 @@ public class DebugPageViewModel : BasePageViewModel
         ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
         ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
         ShowWelcomeWindowCommand = new RelayCommand(ShowWelcomeWindow);
-        ShowAnniversaryUpdatWindowCommand = new RelayCommand(ShowAnniversaryUpdatWindow);
         RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
         GCCollectCommand = new RelayCommand(GCCollect);
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
@@ -78,7 +77,6 @@ public class DebugPageViewModel : BasePageViewModel
     public ICommand ShowDialogCommand { get; }
     public ICommand ShowLogCommand { get; }
     public ICommand ShowWelcomeWindowCommand { get; }
-    public ICommand ShowAnniversaryUpdatWindowCommand { get; }
     public ICommand RefreshDataOutputCommand { get; }
     public ICommand GCCollectCommand { get; }
     public ICommand ThrowUnhandledExceptionCommand { get; }
@@ -279,6 +277,10 @@ public class DebugPageViewModel : BasePageViewModel
                     });
                     break;
 
+                case DebugDialogType.AnniversaryUpdate:
+                    await UI.ShowAnniversaryUpdateAsync();
+                    break;
+
                 default:
                     await MessageUI.DisplayMessageAsync("Invalid selection");
                     break;
@@ -310,14 +312,6 @@ public class DebugPageViewModel : BasePageViewModel
     public void ShowWelcomeWindow()
     {
         new FirstLaunchInfoDialog().ShowDialog();
-    }
-
-    /// <summary>
-    /// Shows the anniversary update window
-    /// </summary>
-    public void ShowAnniversaryUpdatWindow()
-    {
-        new AnniversaryUpdateDialog().ShowDialog();
     }
 
     /// <summary>
@@ -789,6 +783,8 @@ public class DebugPageViewModel : BasePageViewModel
 
         GamesSelection_Single,
         GamesSelection_Multiple,
+
+        AnniversaryUpdate,
     }
 
     /// <summary>

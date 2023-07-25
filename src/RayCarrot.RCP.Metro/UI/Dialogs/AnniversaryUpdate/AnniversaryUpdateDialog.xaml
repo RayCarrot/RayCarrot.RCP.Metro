@@ -1,17 +1,15 @@
-﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.AnniversaryUpdateDialog"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                  mc:Ignorable="d"
-                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                  Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
-                  Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                  Title="{Resx AnniversaryUpdate_Title}"
-                  Width="900" Height="600">
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.AnniversaryUpdateDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            mc:Ignorable="d"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
 
-    <Window.Resources>
+    <local:WindowContentControl.Resources>
         <Style x:Key="AnniversaryDialog.Styles.TextBlock.Default" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -20,7 +18,7 @@
             <Setter Property="FontSize" Value="16" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
-    </Window.Resources>
+    </local:WindowContentControl.Resources>
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -112,7 +110,7 @@
 
                             </Grid>
                         </local:Card>
-
+                        
                         <local:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
                                     Margin="{StaticResource RCP.Thicknesses.Card}">
                             <Grid>
@@ -191,4 +189,4 @@
                 Click="ButtonBase_OnClick"/>
 
     </Grid>
-</local:BaseWindow>
+</local:WindowContentControl>

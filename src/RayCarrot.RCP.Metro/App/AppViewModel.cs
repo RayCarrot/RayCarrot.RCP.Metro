@@ -118,6 +118,11 @@ public class AppViewModel : BaseViewModel
     public Version CurrentAppVersion => AppVersion;
 
     /// <summary>
+    /// The previously recorded app version
+    /// </summary>
+    public Version? PrevAppVersion { get; set; }
+
+    /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
     public bool IsBeta => true;

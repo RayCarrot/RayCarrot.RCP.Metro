@@ -51,8 +51,6 @@ public class GamesPageViewModel : BasePageViewModel,
         GamesView = CollectionViewSource.GetDefaultView(Games);
         GamesView.Filter = x => MatchesFilter((InstalledGameViewModel)x);
 
-        RefreshGrouping(GroupGames);
-
         // Create commands
         DeselectGameCommand = new RelayCommand(DeselectGame);
         SelectGameCommand = new RelayCommand(x => SelectGame((InstalledGameViewModel)x!));
@@ -297,6 +295,12 @@ public class GamesPageViewModel : BasePageViewModel,
 
     protected override async Task InitializeAsync()
     {
+        // Perform an initial refresh for the grouping
+        RefreshGrouping(GroupGames);
+
+        // Load cached app news first
+        AppNewsViewModel.ShowMore(true);
+
         // Refresh the games
         await RefreshAsync();
 

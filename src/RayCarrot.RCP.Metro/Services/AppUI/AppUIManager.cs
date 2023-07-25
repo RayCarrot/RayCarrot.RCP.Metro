@@ -344,5 +344,12 @@ public class AppUIManager
     public async Task ShowGameClientsSetupAsync() => 
         await ShowWindowAsync(() => new GameClientsSetupDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
 
+    /// <summary>
+    /// Shows a new instance of the anniversary update dialog
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowAnniversaryUpdateAsync() => 
+        await ShowWindowAsync(() => new AnniversaryUpdateDialog(), ShowWindowFlags.Modal);
+
     #endregion
 }

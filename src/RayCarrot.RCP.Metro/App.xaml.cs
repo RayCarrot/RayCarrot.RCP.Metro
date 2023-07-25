@@ -7,6 +7,7 @@ using System.Windows.Automation;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using NLog.Targets;
+using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -121,15 +122,7 @@ public partial class App : Application
         }
 
         StartupManager startupManager = ServiceProvider.GetRequiredService<StartupManager>();
-        await startupManager.RunAsync(
-            isFullStartup: true,
-            createWindow: ServiceProvider.GetRequiredService<MainWindow>,
-            additionalFullStartup: async () =>
-            {
-                // Find installed games if set to do so on startup
-                if (Data.Game_AutoLocateGames)
-                    await ServiceProvider.GetRequiredService<MainWindow>().ViewModel.GamesPage.FindGamesAsync(true);
-            });
+        await startupManager.RunAsync(true, ServiceProvider.GetRequiredService<MainWindow>);
     }
 
     private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

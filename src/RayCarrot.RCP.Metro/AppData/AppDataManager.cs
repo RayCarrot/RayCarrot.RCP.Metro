@@ -745,9 +745,6 @@ public class AppDataManager
             {
                 Logger.Error(ex, "Setting patch file type association");
             }
-
-            // Show the anniversary update dialog
-            new AnniversaryUpdateDialog().ShowDialog();
         }
 
         if (lastVersion < new Version(14, 0, 0, 1))

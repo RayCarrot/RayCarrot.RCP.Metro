@@ -7,6 +7,7 @@ using System.Windows;
 using MahApps.Metro.Controls;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Pages.Games;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
@@ -29,7 +30,8 @@ public class StartupManager
         GamesManager gamesManager, 
         GameClientsManager gameClientsManager, 
         IMessageUIManager messageUi, 
-        AppUIManager ui)
+        AppUIManager ui, 
+        GamesPageViewModel gamesPage)
     {
         Args = args ?? throw new ArgumentNullException(nameof(args));
         LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
@@ -42,6 +44,7 @@ public class StartupManager
         GameClientsManager = gameClientsManager ?? throw new ArgumentNullException(nameof(gameClientsManager));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        GamesPage = gamesPage ?? throw new ArgumentNullException(nameof(gamesPage));
     }
 
     #endregion
@@ -52,11 +55,7 @@ public class StartupManager
 
     #endregion
 
-    #region Private Properties
-
-    private TimeSpan SplashScreenFadeoutTime => TimeSpan.FromMilliseconds(200);
-    private SplashScreen? SplashScreen { get; set; }
-    private const string SplashScreenResourceName = "Files/Splash Screen.png";
+    #region Services
 
     private LaunchArguments Args { get; }
     private LoggerManager LoggerManager { get; }
@@ -69,6 +68,16 @@ public class StartupManager
     private GameClientsManager GameClientsManager { get; }
     private IMessageUIManager MessageUI { get; }
     private AppUIManager UI { get; }
+    private GamesPageViewModel GamesPage { get; }
+
+
+    #endregion
+
+    #region Private Properties
+
+    private TimeSpan SplashScreenFadeoutTime => TimeSpan.FromMilliseconds(200);
+    private SplashScreen? SplashScreen { get; set; }
+    private const string SplashScreenResourceName = "Files/Splash Screen.png";
 
     #endregion
 
@@ -333,6 +342,9 @@ public class StartupManager
     {
         Logger.Info("Current version is {0}", AppViewModel.CurrentAppVersion);
 
+        // Set the previous app version
+        AppViewModel.PrevAppVersion = Data.App_LastVersion;
+
         // Check if it's a new version
         if (Data.App_LastVersion < AppViewModel.CurrentAppVersion)
         {
@@ -340,12 +352,6 @@ public class StartupManager
 
             // Refresh the jump list
             JumpListManager.Refresh();
-
-            // Close the splash screen
-            CloseSplashScreen();
-
-            // Show the version history
-            await UI.ShowVersionHistoryAsync();
 
             // Update the last version
             Data.App_LastVersion = AppViewModel.CurrentAppVersion;
@@ -371,7 +377,7 @@ public class StartupManager
         }
     }
 
-    private void ShowAppWindow<AppWindow>(Func<AppWindow> createWindow)
+    private void ShowAppWindow<AppWindow>(Func<AppWindow> createWindow, bool isFullStartup)
         where AppWindow : Window
     {
         // Create the main window
@@ -381,44 +387,19 @@ public class StartupManager
         Data.UI_WindowState?.ApplyToWindow(appWindow);
 
         appWindow.PreviewKeyDown += async (_, e) => await SecretCodeManager.AddKeyAsync(e.Key);
+
+        // Only perform the loaded actions if this is a full startup
+        if (isFullStartup)
+            appWindow.Loaded += AppWindow_OnLoaded;
         
-        appWindow.Closing += AppWindow_Closing;
-        appWindow.Closed += AppWindow_Closed;
+        appWindow.Closing += AppWindow_OnClosing;
+        appWindow.Closed += AppWindow_OnClosed;
 
         // Close the splash screen
         CloseSplashScreen();
 
         // Show the main window
         appWindow.Show();
-
-        // Static event handlers
-        static async void AppWindow_Closing(object sender, CancelEventArgs e)
-        {
-            // NOTE: When the actual app shutdown is called this even will be invoked
-            //       which will cause the below code to run twice if the user closes
-            //       the window. However that doesn't matter since e.Cancel is ignored
-            //       the second time and ShutdownAppAsync won't run while shutting down.
-
-            // Cancel the native closing
-            e.Cancel = true;
-
-            // Don't close if the close button is disabled (such as from F4)
-            if (sender is MetroWindow { IsCloseButtonEnabled: false })
-                return;
-
-            Logger.Info("The app window is closing...");
-
-            // Shut down the app
-            await App.Current.ShutdownAppAsync(false);
-        }
-
-        static void AppWindow_Closed(object sender, EventArgs e)
-        {
-            // Make sure the app shuts down. It should already
-            // be shutting down at this point in which case
-            // this will be ignored.
-            App.Current.Shutdown();
-        }
     }
 
     private Task CleanDeployedFilesAsync()
@@ -446,11 +427,75 @@ public class StartupManager
             return Task.CompletedTask;
     }
 
+    private async Task FindInstalledGamesAsync()
+    {
+        // Find installed games if set to do so on startup
+        if (Data.Game_AutoLocateGames)
+            await GamesPage.FindGamesAsync(true);
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private async void AppWindow_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        Logger.Info("Running startup operations after app window has loaded");
+
+        // Show the anniversary update dialog if updated to the anniversary update (14.0)
+        if (AppViewModel.PrevAppVersion < new Version(14, 0, 0, 0)) // TODO-UPDATE: Change this to 14.0.0.3 when new beta is released
+            await Services.UI.ShowAnniversaryUpdateAsync();
+
+        // Show the version history if updated to a new version
+        if (AppViewModel.PrevAppVersion < AppViewModel.CurrentAppVersion)
+            await UI.ShowVersionHistoryAsync();
+
+        // Clean deployed files
+        await CleanDeployedFilesAsync();
+
+        // Check for updates and installed games
+        await Task.WhenAll(new[]
+        {
+            CheckForUpdatesAsync(),
+            FindInstalledGamesAsync(),
+        });
+     
+        Logger.Info("Finished running startup operations after app window has loaded");
+    }
+
+    private static async void AppWindow_OnClosing(object sender, CancelEventArgs e)
+    {
+        // NOTE: When the actual app shutdown is called this even will be invoked
+        //       which will cause the below code to run twice if the user closes
+        //       the window. However that doesn't matter since e.Cancel is ignored
+        //       the second time and ShutdownAppAsync won't run while shutting down.
+
+        // Cancel the native closing
+        e.Cancel = true;
+
+        // Don't close if the close button is disabled (such as from F4)
+        if (sender is MetroWindow { IsCloseButtonEnabled: false })
+            return;
+
+        Logger.Info("The app window is closing...");
+
+        // Shut down the app
+        await App.Current.ShutdownAppAsync(false);
+    }
+
+    private static void AppWindow_OnClosed(object sender, EventArgs e)
+    {
+        // Make sure the app shuts down. It should already
+        // be shutting down at this point in which case
+        // this will be ignored.
+        App.Current.Shutdown();
+    }
+
     #endregion
 
     #region Public Methods
 
-    public async Task RunAsync<AppWindow>(bool isFullStartup, Func<AppWindow> createWindow, Func<Task> additionalFullStartup)
+    public async Task RunAsync<AppWindow>(bool isFullStartup, Func<AppWindow> createWindow)
         where AppWindow : Window
     {
         try
@@ -498,7 +543,7 @@ public class StartupManager
                 Logger.Debug("Startup {0} ms: Checked first launch, validated games and clients & ran post-update", sw.ElapsedMilliseconds);
             }
 
-            ShowAppWindow<AppWindow>(createWindow);
+            ShowAppWindow<AppWindow>(createWindow, isFullStartup);
             Logger.Debug("Startup {0} ms: Showed app window", sw.ElapsedMilliseconds);
 
             // Show the log viewer if set to do so
@@ -511,23 +556,6 @@ public class StartupManager
 
             // Start receiving arguments from potentially new process
             Args.StartReceiveArguments();
-
-            // The following startup actions can run in the background after the app window has opened
-            if (isFullStartup)
-            {
-                // Start by cleaning deployed files
-                await CleanDeployedFilesAsync();
-                Logger.Debug("Startup {0} ms: Cleaned deployed files", sw.ElapsedMilliseconds);
-
-                // Check for updates and run additional startup
-                await Task.WhenAll(new[]
-                {
-                    CheckForUpdatesAsync(),
-                    additionalFullStartup(),
-                });
-
-                Logger.Debug("Startup {0} ms: Checked for updates and ran additional startup", sw.ElapsedMilliseconds);
-            }
 
             sw.Stop();
 
