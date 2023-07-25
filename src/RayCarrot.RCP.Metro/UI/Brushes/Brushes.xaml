@@ -58,6 +58,10 @@
     <SolidColorBrush x:Key="RCP.Brushes.Progression.HalfWayComplete" Color="{StaticResource RCP.Colors.YellowPrimary400}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Progression.NotComplete" Color="{StaticResource RCP.Colors.RedPrimary400}" po:Freeze="True" />
 
+    <!-- State -->
+    <SolidColorBrush x:Key="RCP.Brushes.CompleteState" Color="{StaticResource RCP.Colors.GreenPrimary600}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.IncompleteState" Color="{StaticResource RCP.Colors.GreyPrimary500}" po:Freeze="True" />
+
     <!-- Other -->
     <SolidColorBrush x:Key="RCP.Brushes.Favorites" Color="{StaticResource RCP.Colors.YellowPrimary500}" po:Freeze="True" />
 

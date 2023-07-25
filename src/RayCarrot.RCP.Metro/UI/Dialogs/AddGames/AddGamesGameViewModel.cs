@@ -56,16 +56,19 @@ public class AddGamesGameViewModel : BaseViewModel
     public LocalizedString PlatformDisplayName { get; }
     public GamePlatformIconAsset PlatformIcon { get; }
 
+    public bool IsAdded { get; set; }
+
     #endregion
 
     #region Private Methods
 
     private void Refresh(bool firstRefresh)
     {
+        // Check if there any added games with this game descriptor
+        IsAdded = Services.Games.AnyInstalledGames(x => x.GameDescriptor == GameDescriptor);
+
         // Only get the finder item if there are no added games with this game descriptor
-        FinderItem = !Services.Games.AnyInstalledGames(x => x.GameDescriptor == GameDescriptor) 
-            ? GameDescriptor.GetFinderItem() 
-            : null;
+        FinderItem = IsAdded ? null : GameDescriptor.GetFinderItem();
 
         if (firstRefresh)
             return;

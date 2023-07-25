@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="400" 
              d:DataContext="{d:DesignInstance local:AddGamesGameViewModel}"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-    <Grid x:Name="RootGrid">
+    <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -17,24 +19,54 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
+        <!-- TODO-UPDATE: Localize -->
+        <iconPacks:PackIconMaterial Kind="CheckboxMarkedCircleOutline"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent">
+            <iconPacks:PackIconMaterial.Style>
+                <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsAdded}" Value="True">
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <TextBlock Text="Added"
+                                               ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CompleteState}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsAdded}" Value="False">
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <TextBlock Text="Not added"
+                                               ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.IncompleteState}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </iconPacks:PackIconMaterial.Style>
+        </iconPacks:PackIconMaterial>
+
         <!-- Platform icon -->
-        <Image Grid.Column="0"
+        <Image Grid.Column="1"
                Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                d:Source="{x:Static local:DesignData.GamePlatformIconSource}"
                VerticalAlignment="Center"
                Width="20"
-               Margin="0 2"
+               Margin="8 2 0 2"
                ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
         <!-- Game title -->
-        <TextBlock Grid.Column="1"
+        <TextBlock Grid.Column="2"
                    Text="{Binding Path=DisplayName.Value}"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    Margin="8 0 0 0"/>
 
         <!-- Add actions -->
-        <ItemsControl Grid.Column="2"
+        <ItemsControl Grid.Column="3"
                       ItemsSource="{Binding Path=AddActions, Mode=OneTime}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -56,7 +88,7 @@
         </ItemsControl>
 
         <!-- Finder action -->
-        <Button Grid.Column="3"
+        <Button Grid.Column="4"
                 IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
                 Command="{Binding Path=FindGameCommand, Mode=OneTime}"
                 Style="{StaticResource RCP.Styles.Button.Flat}"
@@ -65,7 +97,7 @@
                 Margin="4 0 0 0" />
 
         <!-- Purchase links -->
-        <local:PopupCard Grid.Column="4"
+        <local:PopupCard Grid.Column="5"
                          IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
                          Margin="4 0 0 0">
             <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
