@@ -30,7 +30,7 @@ public class GameFileFinder
     {
         Logger.Info("Running the game file finder with {0} finder items", FinderItems.Count);
 
-        foreach (FileSystemPath filePath in Directory.EnumerateFiles(DirectoryPath, "*", SearchOption))
+        foreach (FileSystemPath filePath in DirectoryHelpers.EnumerateDirectoriesSafe(DirectoryPath, "*", SearchOption))
         {
             if (ExcludedFiles.Contains(filePath))
                 continue;
