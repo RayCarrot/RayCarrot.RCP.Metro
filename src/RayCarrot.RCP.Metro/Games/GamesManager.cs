@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -204,6 +205,11 @@ public class GamesManager
 
     #region Game Installation Methods
 
+    public async Task<GameInstallation> AddGameAsync(GameToAdd gameToAdd)
+    {
+        return await AddGameAsync(gameToAdd.GameDescriptor, gameToAdd.InstallLocation, gameToAdd.ConfigureInstallation);
+    }
+
     /// <summary>
     /// Adds a new game to the app
     /// </summary>
@@ -342,6 +348,32 @@ public class GamesManager
             throw new ArgumentNullException(nameof(installationId));
 
         return Data.Game_GameInstallations.FirstOrDefault(x => x.InstallationId == installationId);
+    }
+
+    /// <summary>
+    /// Gets finder items for the games which have not yet been added
+    /// </summary>
+    /// <returns>The finder items</returns>
+    public IEnumerable<FinderItem> GetFinderItems()
+    {
+        // Get the currently installed games
+        IReadOnlyList<GameInstallation> installedGames = GetInstalledGames();
+
+        // Get finder items for all games which don't have an added game installation
+        foreach (GameDescriptor gameDescriptor in Services.Games.GetGameDescriptors())
+        {
+            // Make sure the game has not already been added
+            if (installedGames.Any(g => g.GameDescriptor == gameDescriptor))
+                continue;
+
+            // Get the finder item for the game
+            GameFinderItem? finderItem = gameDescriptor.GetFinderItem();
+
+            if (finderItem == null)
+                continue;
+
+            yield return finderItem;
+        }
     }
 
     #endregion

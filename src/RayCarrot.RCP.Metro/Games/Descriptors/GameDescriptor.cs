@@ -163,6 +163,21 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     #region Public Methods
 
     /// <summary>
+    /// Registers the components without a game installation. This should only be used to analyze the components rather than use them.
+    /// </summary>
+    /// <returns>The component builder with the components ready to be built</returns>
+    public GameComponentBuilder RegisterComponents()
+    {
+        // Create the builder
+        GameComponentBuilder builder = new();
+
+        // Register the components from the game descriptor
+        RegisterComponents(builder);
+
+        return builder;
+    }
+
+    /// <summary>
     /// Registers the components for a game installation
     /// </summary>
     /// <param name="gameInstallation">The game installation to build the components for</param>

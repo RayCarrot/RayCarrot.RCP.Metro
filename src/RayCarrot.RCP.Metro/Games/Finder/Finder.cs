@@ -37,6 +37,11 @@ public class Finder
 
     #region Public Methods
 
+    public async Task RunAsync()
+    {
+        await Task.Run(Run);
+    }
+
     public void Run()
     {
         Logger.Info("Running the finder with {0} operations and {1} finder items", Operations.Length, FinderItems.Length);

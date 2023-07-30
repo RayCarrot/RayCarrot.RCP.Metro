@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Reflection;
+using System.Windows.Input;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
@@ -16,7 +18,8 @@ public class AddGamesGameViewModel : BaseViewModel
             Reverse().Select(x => new GameAddActionViewModel(x)));
         PurchaseLinks = new ObservableCollection<GamePurchaseLinkViewModel>(gameDescriptor.GetPurchaseLinks().
             Select(x => new GamePurchaseLinkViewModel(x.Header, x.Path, x.Icon)));
-        
+        GameFeatures = new ObservableCollection<GameFeatureViewModel>(GetGameFeatures().Reverse());
+
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
         PlatformDisplayName = platformInfo.DisplayName;
@@ -52,6 +55,7 @@ public class AddGamesGameViewModel : BaseViewModel
     public GameFinderItem? FinderItem { get; set; }
     public ObservableCollection<GamePurchaseLinkViewModel> PurchaseLinks { get; }
     public bool HasPurchaseLinks => PurchaseLinks.Any();
+    public ObservableCollection<GameFeatureViewModel> GameFeatures { get; }
 
     public LocalizedString PlatformDisplayName { get; }
     public GamePlatformIconAsset PlatformIcon { get; }
@@ -61,6 +65,33 @@ public class AddGamesGameViewModel : BaseViewModel
     #endregion
 
     #region Private Methods
+
+    private IEnumerable<GameFeatureViewModel> GetGameFeatures()
+    {
+        // TODO-UPDATE: Show if it has downloadable patches?
+
+        // Game features are specified from specific components. Since we don't have an installation yet we
+        // can't build components for one. But we can register components into a builder and then access them.
+        GameComponentBuilder gameComponentBuilder = GameDescriptor.RegisterComponents();
+        IEnumerable<GameComponentBuilder.Component> builtComponents = gameComponentBuilder.Build();
+
+        HashSet<Type> checkedTypes = new();
+
+        foreach (GameComponentBuilder.Component c in builtComponents)
+        {
+            // For now we only check each base type once to avoid duplicates. For example the
+            // utility components may be registered multiple times.
+            if (checkedTypes.Contains(c.BaseType))
+                continue;
+
+            checkedTypes.Add(c.BaseType);
+
+            Type instanceType = c.InstanceType;
+
+            foreach (GameFeatureAttribute gameFeatureAttribute in instanceType.GetCustomAttributes<GameFeatureAttribute>())
+                yield return new GameFeatureViewModel(gameFeatureAttribute.DisplayName, gameFeatureAttribute.Icon);
+        }
+    }
 
     private void Refresh(bool firstRefresh)
     {
@@ -118,20 +149,14 @@ public class AddGamesGameViewModel : BaseViewModel
             return;
         }
 
-        if (FinderItem.HasBeenFound)
+        GamesManager.GameToAdd? gameToAdd = FinderItem.GetGameToAdd();
+
+        if (gameToAdd != null)
         {
-            // Have to get the location here since FinderItem is null after the game gets added
-            InstallLocation foundLocation = FinderItem.FoundLocation.Value;
-
-            ConfigureGameInstallation? configureGameInstallation = null;
-
-            if (FinderItem.FoundQuery.ConfigureInstallation != null)
-                configureGameInstallation = new ConfigureGameInstallation(FinderItem.FoundQuery.ConfigureInstallation);
-
             // Add the found games
-            await Services.Games.AddGameAsync(FinderItem.GameDescriptor, foundLocation, configureGameInstallation);
+            await Services.Games.AddGameAsync(gameToAdd);
 
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGames_FindSuccessResult, foundLocation), 
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGames_FindSuccessResult, gameToAdd.InstallLocation), 
                 Resources.AddGames_FindResultHeader, MessageType.Success);
         }
         else
@@ -177,6 +202,18 @@ public class AddGamesGameViewModel : BaseViewModel
         public GenericIconKind Icon { get; }
 
         public Task OpenLinkAsync() => Services.File.LaunchFileAsync(Path);
+    }
+
+    public class GameFeatureViewModel : BaseViewModel
+    {
+        public GameFeatureViewModel(LocalizedString header, GenericIconKind icon)
+        {
+            Header = header;
+            Icon = icon;
+        }
+
+        public LocalizedString Header { get; }
+        public GenericIconKind Icon { get; }
     }
 
     #endregion

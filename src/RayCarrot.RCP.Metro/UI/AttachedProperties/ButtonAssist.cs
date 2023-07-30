@@ -17,4 +17,17 @@ public static class ButtonAssist
         ownerType: typeof(ButtonAssist));
 
     #endregion
+
+    #region Is Loading
+
+    public static bool GetIsLoading(ButtonBase obj) => (bool)obj.GetValue(IsLoadingProperty);
+
+    public static void SetIsLoading(ButtonBase obj, bool value) => obj.SetValue(IsLoadingProperty, value);
+
+    public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.RegisterAttached(
+        name: "IsLoading",
+        propertyType: typeof(bool),
+        ownerType: typeof(ButtonAssist));
+
+    #endregion
 }

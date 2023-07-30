@@ -119,21 +119,15 @@ public class AvailableGameClientViewModel : BaseViewModel
             return;
         }
 
-        if (FinderItem.HasBeenFound)
+        GameClientsManager.GameClientToAdd? gameClientToAdd = FinderItem.GetGameClientToAdd();
+
+        if (gameClientToAdd != null)
         {
-            // Have to get the location here since FinderItem is null after the game client gets added
-            InstallLocation foundLocation = FinderItem.FoundLocation.Value;
-
-            ConfigureGameClientInstallation? configureGameClientInstallation = null;
-
-            if (FinderItem.FoundQuery.ConfigureInstallation != null)
-                configureGameClientInstallation = new ConfigureGameClientInstallation(FinderItem.FoundQuery.ConfigureInstallation);
-
             // Add the found game client
-            await Services.GameClients.AddGameClientAsync(FinderItem.GameClientDescriptor, foundLocation, configureGameClientInstallation);
+            await Services.GameClients.AddGameClientAsync(gameClientToAdd);
 
             await Services.MessageUI.DisplayMessageAsync(
-                String.Format(Resources.GameClients_FindSuccessResult, foundLocation), Resources.GameClients_FindResultHeader, MessageType.Success);
+                String.Format(Resources.GameClients_FindSuccessResult, gameClientToAdd.InstallLocation), Resources.GameClients_FindResultHeader, MessageType.Success);
         }
         else
         {

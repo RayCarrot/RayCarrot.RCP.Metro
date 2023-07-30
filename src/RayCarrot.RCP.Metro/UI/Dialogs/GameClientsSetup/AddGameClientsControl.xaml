@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -95,6 +96,15 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <!-- TODO-UPDATE: Localize -->
+        <Button Grid.Row="2"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=FindGameClientsCommand, Mode=OneTime}"
+                Style="{StaticResource RCP.Styles.Button.Flat}"
+                local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
+                Content="Find installed game clients/emulators"
+                local:ButtonAssist.IsLoading="{Binding Path=IsFinderRunning}" />
 
     </Grid>
 </UserControl>

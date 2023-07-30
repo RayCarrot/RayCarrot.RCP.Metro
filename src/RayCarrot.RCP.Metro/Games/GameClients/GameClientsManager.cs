@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Games.Clients.MGba;
 using RayCarrot.RCP.Metro.Games.Clients.Steam;
 using RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
 
@@ -232,6 +233,14 @@ public class GameClientsManager
 
     #region Game Client Installation Methods
 
+    public async Task<GameClientInstallation> AddGameClientAsync(GameClientToAdd gameClientToAdd)
+    {
+        return await AddGameClientAsync(
+            descriptor: gameClientToAdd.GameClientDescriptor, 
+            installLocation: gameClientToAdd.InstallLocation,
+            configureInstallation: gameClientToAdd.ConfigureInstallation);
+    }
+
     public async Task<GameClientInstallation> AddGameClientAsync(
         GameClientDescriptor descriptor,
         InstallLocation installLocation,
@@ -346,6 +355,32 @@ public class GameClientsManager
     /// <returns>True if there is at least one installed game client which meets the specified criteria, otherwise false</returns>
     public bool AnyInstalledGameClients(Func<GameClientInstallation, bool> predicate) => 
         Data.Game_GameClientInstallations.Any(predicate);
+
+    /// <summary>
+    /// Gets finder items for the game clients which have not yet been added
+    /// </summary>
+    /// <returns>The finder items</returns>
+    public IEnumerable<FinderItem> GetFinderItems()
+    {
+        // Get the currently installed game clients
+        IReadOnlyList<GameClientInstallation> installedGameClients = GetInstalledGameClients();
+
+        // Get finder items for all game clients which don't have an added game client installation
+        foreach (GameClientDescriptor gameClientDescriptor in GetGameClientDescriptors())
+        {
+            // Make sure the game client has not already been added
+            if (installedGameClients.Any(g => g.GameClientDescriptor == gameClientDescriptor))
+                continue;
+
+            // Get the finder item for the game client
+            GameClientFinderItem? finderItem = gameClientDescriptor.GetFinderItem();
+
+            if (finderItem == null)
+                continue;
+
+            yield return finderItem;
+        }
+    }
 
     #endregion
 

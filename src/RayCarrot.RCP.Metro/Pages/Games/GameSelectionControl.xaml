@@ -274,54 +274,28 @@
         </ListBox>
 
         <!-- Actions -->
-        <StackPanel x:Name="ActionsPanel" 
-                    Grid.Row="3" 
-                    Margin="2 0"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
+        <Grid Grid.Row="3" 
+              Margin="2 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-            <Grid Margin="0 0 4 0">
-                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=FindGameFilesCommand, Mode=OneTime}"
-                        ToolTip="{Resx GameSelection_FindGameFiles}"
-                        rcp:Icon.Kind="{StaticResource RCP.Icons.RomFinder}" />
-
-                <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
-                                    Height="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
-                                    Visibility="{Binding Path=IsGameFileFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}"
-                                    d:Visibility="Collapsed"  />
-
-            </Grid>
-
-            <Grid Margin="0 0 4 0">
-                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
-                        Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
-                        ToolTip="{Resx GameSelection_FindInstallations}"
-                        rcp:Icon.Kind="{StaticResource RCP.Icons.Finder}" />
-
-                <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
-                                    Height="{Binding Path=ActualHeight, ElementName=ActionsPanel}"
-                                    Visibility="{Binding Path=IsGameFinderRunning, Converter={rcp:BooleanToVisibilityConverter}}"
-                                    d:Visibility="Collapsed" />
-
-            </Grid>
-
-            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" 
-                       Margin="0 0 4 0" />
-
-            <Button Margin="0 0 4 0"
+            <Button Grid.Column="1"
+                    Margin="0 0 4 0"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     Command="{Binding Path=ConfigureGameClientsCommand, Mode=OneTime}"
                     ToolTip="{Resx GameSelection_ConfigureClients}"
                     rcp:Icon.Kind="{StaticResource RCP.Icons.GameClientEdit}" />
 
-            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+            <Button Grid.Column="2"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
                     Command="{Binding Path=AddGamesCommand, Mode=OneTime}"
                     ToolTip="{Resx GameSelection_AddGame}"
                     rcp:Icon.Kind="PlusBoxOutline" />
 
-        </StackPanel>
+        </Grid>
 
     </Grid>
 </UserControl>

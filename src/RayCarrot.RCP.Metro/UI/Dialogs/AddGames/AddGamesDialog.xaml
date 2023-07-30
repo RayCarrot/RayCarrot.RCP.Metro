@@ -12,88 +12,132 @@
                             mc:Ignorable="d"
                             d:DataContext="{d:DesignInstance local:AddGamesViewModel}">
 
-    <!-- Game categories -->
-    <mah:MetroAnimatedTabControl FocusVisualStyle="{x:Null}"
-                                 Margin="10"
-                                 ItemsSource="{Binding Path=GameCategories, Mode=OneTime}"
-                                 d:ItemsSource="{d:SampleData ItemCount=3}">
-        <mah:MetroAnimatedTabControl.ItemContainerStyle>
-            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-                <Setter Property="HeaderTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                       Width="24"
-                                       Height="24"
-                                       Margin="0 0 8 0" />
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-                                <TextBlock Text="{Binding Path=DisplayName.Value}" />
+        <!-- Game categories -->
+        <mah:MetroAnimatedTabControl Grid.Row="0"
+                                     FocusVisualStyle="{x:Null}"
+                                     Margin="0 0 0 8"
+                                     ItemsSource="{Binding Path=GameCategories, Mode=OneTime}"
+                                     d:ItemsSource="{d:SampleData ItemCount=3}">
+            <mah:MetroAnimatedTabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                                           Width="24"
+                                           Height="24"
+                                           Margin="0 0 8 0" />
 
-                            </StackPanel>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </mah:MetroAnimatedTabControl.ItemContainerStyle>
+                                    <TextBlock Text="{Binding Path=DisplayName.Value}" />
 
-        <mah:MetroAnimatedTabControl.ContentTemplate>
-            <DataTemplate DataType="{x:Type local:AddGamesGameCategoryViewModel}">
-                <!-- Game groups -->
-                <ItemsControl ItemsSource="{Binding Path=GameGroups, Mode=OneTime}"
-                              d:ItemsSource="{d:SampleData ItemCount=3}"
-                              Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
-                              VirtualizingPanel.ScrollUnit="Pixel">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:Card Margin="8">
-                                <StackPanel>
-                                 
-                                    <!-- Game group title -->
-                                    <Grid Margin="0 0 0 8" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <local:GameIcon Grid.Column="0"
-                                                        IconSize="Small"
-                                                        Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                                        d:Source="{x:Static local:DesignData.GameIconSource}"
-                                                        IsDemo="False"
-                                                        Margin="0 0 8 0" />
-
-                                        <TextBlock Grid.Column="1" 
-                                                   TextWrapping="Wrap"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14"
-                                                   Text="{Binding Path=DisplayName.Value}" />
-
-                                    </Grid>
-
-                                    <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}"
-                                                  d:ItemsSource="{d:SampleData ItemCount=3}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
-
-                                                    <Separator Visibility="{Binding RelativeSource={RelativeSource PreviousData}, Converter={local:InvertedObjectNullToVisibilityConverter}}"
-                                                               Margin="0 4" />
-
-                                                    <local:AddGamesGameControl />
-
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
                                 </StackPanel>
-                            </local:Card>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </mah:MetroAnimatedTabControl.ContentTemplate>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </mah:MetroAnimatedTabControl.ItemContainerStyle>
 
-    </mah:MetroAnimatedTabControl>
+            <mah:MetroAnimatedTabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type local:AddGamesGameCategoryViewModel}">
+                    <!-- Game groups -->
+                    <ItemsControl ItemsSource="{Binding Path=GameGroups, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=3}"
+                                  Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
+                                  VirtualizingPanel.ScrollUnit="Pixel">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:Card Margin="8">
+                                    <StackPanel>
+
+                                        <!-- Game group title -->
+                                        <Grid Margin="0 0 0 8" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <local:GameIcon Grid.Column="0"
+                                                            IconSize="Small"
+                                                            Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                                                            d:Source="{x:Static local:DesignData.GameIconSource}"
+                                                            IsDemo="False"
+                                                            Margin="0 0 8 0" />
+
+                                            <TextBlock Grid.Column="1" 
+                                                       TextWrapping="Wrap"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       Text="{Binding Path=DisplayName.Value}" />
+
+                                        </Grid>
+
+                                        <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}"
+                                                      d:ItemsSource="{d:SampleData ItemCount=3}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Separator Visibility="{Binding RelativeSource={RelativeSource PreviousData}, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                                                                   Margin="0 4" />
+
+                                                        <local:AddGamesGameControl />
+
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </local:Card>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+            </mah:MetroAnimatedTabControl.ContentTemplate>
+
+        </mah:MetroAnimatedTabControl>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- TODO-UPDATE: Localize -->
+            <Button Grid.Column="0"
+                    Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
+                    Content="Find installed games"
+                    local:ButtonAssist.IsLoading="{Binding Path=IsGameFinderRunning}"
+                    Margin="0 0 4 0" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <Button Grid.Column="1"
+                    Command="{Binding Path=FindGameFilesCommand, Mode=OneTime}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    local:Icon.Kind="{StaticResource RCP.Icons.RomFinder}"
+                    ToolTip="{Resx GameSelection_FindGameFiles}"
+                    Content="Find ROMs"
+                    local:ButtonAssist.IsLoading="{Binding Path=IsGameFileFinderRunning}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <ToggleButton Grid.Column="3"
+                          Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
+                          IsChecked="{Binding Path=ShowGameFeatures}"
+                          local:Icon.Kind="ShapeOutline"
+                          Content="Show features" />
+
+        </Grid>
+
+    </Grid>
 
 </local:WindowContentControl>

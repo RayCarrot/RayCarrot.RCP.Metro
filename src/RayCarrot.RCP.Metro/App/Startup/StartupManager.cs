@@ -7,6 +7,7 @@ using System.Windows;
 using MahApps.Metro.Controls;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Pages.Games;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -30,8 +31,7 @@ public class StartupManager
         GamesManager gamesManager, 
         GameClientsManager gameClientsManager, 
         IMessageUIManager messageUi, 
-        AppUIManager ui, 
-        GamesPageViewModel gamesPage)
+        AppUIManager ui)
     {
         Args = args ?? throw new ArgumentNullException(nameof(args));
         LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
@@ -44,7 +44,6 @@ public class StartupManager
         GameClientsManager = gameClientsManager ?? throw new ArgumentNullException(nameof(gameClientsManager));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
-        GamesPage = gamesPage ?? throw new ArgumentNullException(nameof(gamesPage));
     }
 
     #endregion
@@ -68,7 +67,6 @@ public class StartupManager
     private GameClientsManager GameClientsManager { get; }
     private IMessageUIManager MessageUI { get; }
     private AppUIManager UI { get; }
-    private GamesPageViewModel GamesPage { get; }
 
 
     #endregion
@@ -431,7 +429,65 @@ public class StartupManager
     {
         // Find installed games if set to do so on startup
         if (Data.Game_AutoLocateGames)
-            await GamesPage.FindGamesAsync(true);
+        {
+            FinderItem[] runFinderItems;
+
+            try
+            {
+
+                // Add the items for game clients and games
+                List<FinderItem> finderItems = new();
+                finderItems.AddRange(Services.GameClients.GetFinderItems());
+                finderItems.AddRange(Services.Games.GetFinderItems());
+
+                // Create a finder
+                Finder finder = new(Finder.DefaultOperations, finderItems.ToArray());
+
+                // Run the finder
+                await finder.RunAsync();
+
+                // Get the finder items
+                runFinderItems = finder.FinderItems;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Running finder on startup");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Finder_Error);
+                return;
+            }
+
+            // Get the game clients to add
+            IEnumerable<GameClientsManager.GameClientToAdd> gameClientsToAdd = runFinderItems.
+                OfType<GameClientFinderItem>().
+                Select(x => x.GetGameClientToAdd()).
+                Where(x => x != null)!;
+
+            // Add the found game clients
+            IList<GameClientInstallation> addedGameClients = await Services.GameClients.AddGameClientsAsync(gameClientsToAdd);
+
+            if (addedGameClients.Any())
+            {
+                Logger.Info("The finder found {0} game clients", addedGameClients.Count);
+
+                await Services.MessageUI.DisplayMessageAsync($"{Resources.Finder_FoundClients}{Environment.NewLine}{Environment.NewLine}• {addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.Finder_FoundClientsHeader, MessageType.Success);
+            }
+
+            // Get the games to add
+            IEnumerable<GamesManager.GameToAdd> gamesToAdd = runFinderItems.
+                OfType<GameFinderItem>().
+                Select(x => x.GetGameToAdd()).
+                Where(x => x != null)!;
+
+            // Add the found games
+            IList<GameInstallation> addedGames = await Services.Games.AddGamesAsync(gamesToAdd);
+
+            if (addedGames.Any())
+            {
+                Logger.Info("The finder found {0} games", addedGames.Count);
+
+                await Services.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+            }
+        }
     }
 
     #endregion

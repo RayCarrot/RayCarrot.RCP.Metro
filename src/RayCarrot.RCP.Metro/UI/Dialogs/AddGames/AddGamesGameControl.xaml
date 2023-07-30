@@ -7,6 +7,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="400" 
+             Height="32"
              d:DataContext="{d:DesignInstance local:AddGamesGameViewModel}"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
     <Grid>
@@ -14,8 +15,6 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
@@ -65,53 +64,79 @@
                    VerticalAlignment="Center"
                    Margin="8 0 0 0"/>
 
-        <!-- Add actions -->
-        <ItemsControl Grid.Column="3"
-                      ItemsSource="{Binding Path=AddActions, Mode=OneTime}">
+        <!-- Add game -->
+        <StackPanel Grid.Column="3" 
+                    Orientation="Horizontal" 
+                    Visibility="{Binding Path=DataContext.(local:AddGamesViewModel.ShowGameFeatures), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AddGamesDialog}}, Converter={local:InvertedBooleanToVisibilityConverter}}">
+
+            <!-- Add actions -->
+            <ItemsControl ItemsSource="{Binding Path=AddActions, Mode=OneTime}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Margin="4 0 0 0"
+                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Content="{Binding Path=Header.Value}"
+                                local:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                IsEnabled="{Binding Path=IsAvailable}"
+                                Command="{Binding Path=DataContext.AddGameCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Mode=OneTime}"
+                                CommandParameter="{Binding Mode=OneTime}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Finder action -->
+            <Button IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
+                    Command="{Binding Path=FindGameCommand, Mode=OneTime}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
+                    ToolTip="{Resx AddGames_Find}"
+                    Margin="4 0 0 0" />
+
+            <!-- Purchase links -->
+            <local:PopupCard IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
+                             Margin="4 0 0 0">
+                <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Header.Value}"
+                                    local:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                    local:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                    Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
+                                    ToolTip="{Binding Path=Path, Mode=OneTime}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </local:PopupCard>
+
+        </StackPanel>
+
+        <!-- Game features -->
+        <ItemsControl Grid.Column="3" 
+                      Margin="0 0 4 0"
+                      Visibility="{Binding Path=DataContext.(local:AddGamesViewModel.ShowGameFeatures), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AddGamesDialog}}, Converter={local:BooleanToVisibilityConverter}}"
+                      ItemsSource="{Binding Path=GameFeatures, Mode=OneTime}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Margin="4 0 0 0"
-                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                            Content="{Binding Path=Header.Value}"
-                            local:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                            IsEnabled="{Binding Path=IsAvailable}"
-                            Command="{Binding Path=DataContext.AddGameCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Mode=OneTime}"
-                            CommandParameter="{Binding Mode=OneTime}" />
+                    <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}"
+                                                Foreground="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}"
+                                                Background="Transparent"
+                                                ToolTip="{Binding Path=Header.Value}"
+                                                VerticalAlignment="Center"
+                                                Margin="8 0 0 0" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
-        <!-- Finder action -->
-        <Button Grid.Column="4"
-                IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
-                Command="{Binding Path=FindGameCommand, Mode=OneTime}"
-                Style="{StaticResource RCP.Styles.Button.Flat}"
-                local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                ToolTip="{Resx AddGames_Find}"
-                Margin="4 0 0 0" />
-
-        <!-- Purchase links -->
-        <local:PopupCard Grid.Column="5"
-                         IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
-                         Margin="4 0 0 0">
-            <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Path=Header.Value}"
-                                local:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                local:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
-                                Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
-                                ToolTip="{Binding Path=Path, Mode=OneTime}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </local:PopupCard>
 
     </Grid>
 </UserControl>

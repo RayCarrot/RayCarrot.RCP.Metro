@@ -56,8 +56,6 @@ public class GamesPageViewModel : BasePageViewModel,
         SelectGameCommand = new RelayCommand(x => SelectGame((InstalledGameViewModel)x!));
         ResetSortCommand = new RelayCommand(ResetSort);
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
-        FindGamesCommand = new AsyncRelayCommand(() => FindGamesAsync(false));
-        FindGameFilesCommand = new AsyncRelayCommand(FindGameFilesAsync);
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
         ConfigureGameClientsCommand = new AsyncRelayCommand(ConfigureGameClientsAsync);
     }
@@ -76,8 +74,6 @@ public class GamesPageViewModel : BasePageViewModel,
     public ICommand SelectGameCommand { get; }
     public ICommand ResetSortCommand { get; }
     public ICommand RefreshGamesCommand { get; }
-    public ICommand FindGamesCommand { get; }
-    public ICommand FindGameFilesCommand { get; }
     public ICommand AddGamesCommand { get; }
     public ICommand ConfigureGameClientsCommand { get; }
 
@@ -88,7 +84,7 @@ public class GamesPageViewModel : BasePageViewModel,
     private string _gameFilter = String.Empty;
     private InstalledGameViewModel? _selectedInstalledGame;
     private bool _isSettingGroupSelection;
-    private readonly Dictionary<Game, GameGroupViewModel> _gamegroups = new();
+    private readonly Dictionary<Game, GameGroupViewModel> _gameGroups = new();
 
     #endregion
 
@@ -156,12 +152,12 @@ public class GamesPageViewModel : BasePageViewModel,
             {
                 if (value != null)
                 {
-                    foreach (GameGroupViewModel group in _gamegroups.Values)
+                    foreach (GameGroupViewModel group in _gameGroups.Values)
                         group.IsSelected = value.GameGroup == group;
                 }
                 else
                 {
-                    foreach (GameGroupViewModel group in _gamegroups.Values)
+                    foreach (GameGroupViewModel group in _gameGroups.Values)
                         group.IsSelected = false;
                 }
             }
@@ -173,9 +169,6 @@ public class GamesPageViewModel : BasePageViewModel,
             SetSelectedGame(value);
         }
     }
-
-    public bool IsGameFinderRunning { get; private set; }
-    public bool IsGameFileFinderRunning { get; private set; }
 
     public bool GroupGames
     {
@@ -200,7 +193,7 @@ public class GamesPageViewModel : BasePageViewModel,
         }
     }
 
-    public bool ShowGameCategories => GroupGames && _gamegroups.Count > 5;
+    public bool ShowGameCategories => GroupGames && _gameGroups.Count > 5;
 
     #endregion
 
@@ -233,7 +226,7 @@ public class GamesPageViewModel : BasePageViewModel,
             sender is GameGroupViewModel { IsSelected: true } group)
         {
             // Deselect all other groups
-            foreach (GameGroupViewModel g in _gamegroups.Values.Where(x => x != group))
+            foreach (GameGroupViewModel g in _gameGroups.Values.Where(x => x != group))
                 g.IsSelected = false;
 
             // Select first game in group
@@ -337,7 +330,7 @@ public class GamesPageViewModel : BasePageViewModel,
                         game.Unload();
                     }
 
-                    foreach (GameGroupViewModel group in _gamegroups.Values)
+                    foreach (GameGroupViewModel group in _gameGroups.Values)
                         group.PropertyChanged -= GameGroup_OnPropertyChanged;
 
                     foreach (GameCategoryViewModel category in GamesCategories)
@@ -349,21 +342,21 @@ public class GamesPageViewModel : BasePageViewModel,
                     {
                         // Clear the games
                         x.Clear();
-                        _gamegroups.Clear();
+                        _gameGroups.Clear();
 
                         // Enumerate every group of installed games
                         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
                         {
                             Game game = gameInstallation.GameDescriptor.Game;
 
-                            if (!_gamegroups.TryGetValue(game, out GameGroupViewModel group))
+                            if (!_gameGroups.TryGetValue(game, out GameGroupViewModel group))
                             {
                                 // Create a view model for the group
                                 GameInfoAttribute gameInfo = game.GetInfo();
                                 group = new GameGroupViewModel(gameInfo.GameIcon, gameInfo.DisplayName);
                                 group.PropertyChanged += GameGroup_OnPropertyChanged;
 
-                                _gamegroups[game] = group;
+                                _gameGroups[game] = group;
                             }
 
                             GameCategoryViewModel category = GamesCategories.First(y => y.Category == gameInstallation.GameDescriptor.Category);
@@ -419,215 +412,6 @@ public class GamesPageViewModel : BasePageViewModel,
                     await installedGame.RefreshAsync(rebuiltComponents);
                 }
             }
-        }
-    }
-
-    public async Task FindGamesAsync(bool runInBackground)
-    {
-        if (IsGameFinderRunning)
-            return;
-
-        IsGameFinderRunning = true;
-
-        FinderItem[] runFinderItems;
-
-        try
-        {
-            // Get the installed games
-            IReadOnlyList<GameClientInstallation> installedGameClients = GameClientsManager.GetInstalledGameClients();
-            IReadOnlyList<GameInstallation> installedGames = GamesManager.GetInstalledGames();
-
-            // Add the items for game clients and games
-            List<FinderItem> finderItems = new();
-
-            // Get finder items for all game clients which don't have an added game client installation
-            foreach (GameClientDescriptor gameClientDescriptor in GameClientsManager.GetGameClientDescriptors())
-            {
-                // Make sure the game client has not already been added
-                if (installedGameClients.Any(g => g.GameClientDescriptor == gameClientDescriptor))
-                    continue;
-
-                // Get the finder item for the game client
-                GameClientFinderItem? finderItem = gameClientDescriptor.GetFinderItem();
-
-                if (finderItem == null)
-                    continue;
-
-                finderItems.Add(finderItem);
-            }
-
-            // Get finder items for all games which don't have an added game installation
-            foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
-            {
-                // Make sure the game has not already been added
-                if (installedGames.Any(g => g.GameDescriptor == gameDescriptor))
-                    continue;
-
-                // Get the finder item for the game
-                GameFinderItem? finderItem = gameDescriptor.GetFinderItem();
-
-                if (finderItem == null)
-                    continue;
-
-                finderItems.Add(finderItem);
-            }
-
-            // Create a finder
-            Finder finder = new(Finder.DefaultOperations, finderItems.ToArray());
-
-            // Run the finder
-            await Task.Run(finder.Run);
-
-            // Get the finder items
-            runFinderItems = finder.FinderItems;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Running finder");
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Finder_Error);
-            return;
-        }
-        finally
-        {
-            IsGameFinderRunning = false;
-        }
-
-        bool foundItems = false;
-
-        // Get the game clients to add
-        List<GameClientsManager.GameClientToAdd> gameClientsToAdd = new();
-        foreach (GameClientFinderItem finderItem in runFinderItems.OfType<GameClientFinderItem>())
-        {
-            if (!finderItem.HasBeenFound)
-                continue;
-
-            ConfigureGameClientInstallation? configureGameClientInstallation = null;
-
-            if (finderItem.FoundQuery.ConfigureInstallation != null)
-                configureGameClientInstallation = new ConfigureGameClientInstallation(finderItem.FoundQuery.ConfigureInstallation);
-
-            gameClientsToAdd.Add(new GameClientsManager.GameClientToAdd(finderItem.GameClientDescriptor, finderItem.FoundLocation.Value, configureGameClientInstallation));
-        }
-
-        // Add the found game clients
-        IList<GameClientInstallation> addedGameClients = await GameClientsManager.AddGameClientsAsync(gameClientsToAdd);
-
-        if (addedGameClients.Any())
-        {
-            foundItems = true;
-
-            Logger.Info("The finder found {0} game clients", addedGameClients.Count);
-
-            await MessageUI.DisplayMessageAsync($"{Resources.Finder_FoundClients}{Environment.NewLine}{Environment.NewLine}• {addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.Finder_FoundClientsHeader, MessageType.Success);
-        }
-
-        // Get the games to add
-        List<GamesManager.GameToAdd> gamesToAdd = new();
-        foreach (GameFinderItem finderItem in runFinderItems.OfType<GameFinderItem>())
-        {
-            if (!finderItem.HasBeenFound)
-                continue;
-
-            ConfigureGameInstallation? configureGameInstallation = null;
-
-            if (finderItem.FoundQuery.ConfigureInstallation != null)
-                configureGameInstallation = new ConfigureGameInstallation(finderItem.FoundQuery.ConfigureInstallation);
-
-            gamesToAdd.Add(new GamesManager.GameToAdd(finderItem.GameDescriptor, finderItem.FoundLocation.Value, configureGameInstallation));
-        }
-
-        // Add the found games
-        IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(gamesToAdd);
-
-        if (addedGames.Any())
-        {
-            foundItems = true;
-
-            Logger.Info("The finder found {0} games", addedGames.Count);
-
-            await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
-        }
-
-        if (!foundItems && !runInBackground)
-            await MessageUI.DisplayMessageAsync(Resources.Finder_NoResults, Resources.Finder_ResultHeader,
-                MessageType.Information);
-    }
-
-    public async Task FindGameFilesAsync()
-    {
-        if (IsGameFileFinderRunning)
-            return;
-
-        DirectoryBrowserResult browseResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
-        {
-            Title = Resources.GameFileFinder_BrowseDirectoryHeader,
-        });
-
-        if (browseResult.CanceledByUser)
-            return;
-
-        IsGameFileFinderRunning = true;
-
-        // Don't find games from the same paths. But we still allow the same game to be found multiple times.
-        List<FileSystemPath> excludedPaths = GamesManager.GetInstalledGames().
-            Where(x => x.GameDescriptor.Structure is SingleFileProgramInstallationStructure { SupportGameFileFinder: true }).
-            Select(x => x.InstallLocation.FilePath).
-            ToList();
-
-        // Search for every game which is a single file
-        List<GameFileFinderItem> finderItems = GamesManager.GetGameDescriptors().
-            Where(x => x.Structure is SingleFileProgramInstallationStructure { SupportGameFileFinder: true }).
-            Select(x => new GameFileFinderItem(x, (RomProgramInstallationStructure)x.Structure)).
-            ToList();
-
-        try
-        {
-            GameFileFinder finder = new(browseResult.SelectedDirectory, SearchOption.AllDirectories, excludedPaths, finderItems);
-
-            // Run the finder
-            await Task.Run(finder.Run);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Running game file finder");
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFileFinder_Error);
-            return;
-        }
-        finally
-        {
-            IsGameFileFinderRunning = false;
-        }
-
-        // Get the games to add
-        List<GamesManager.GameToAdd> gamesToAdd = new();
-        foreach (GameFileFinderItem finderItem in finderItems)
-        {
-            foreach (InstallLocation installLocation in finderItem.GetFoundLocations())
-            {
-                gamesToAdd.Add(new GamesManager.GameToAdd(
-                    GameDescriptor: finderItem.GameDescriptor,
-                    InstallLocation: installLocation,
-                    ConfigureInstallation: new ConfigureGameInstallation(
-                        x =>
-                        {
-                            // Default the name to the filename
-                            x.SetValue(GameDataKey.RCP_CustomName, x.InstallLocation.FilePath.RemoveFileExtension().Name);
-                        })));
-            }
-        }
-
-        // Add the found games
-        IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(gamesToAdd);
-
-        if (addedGames.Any())
-        {
-            Logger.Info("The game file finder found {0} games", addedGames.Count);
-
-            await MessageUI.DisplayMessageAsync($"{Resources.GameFileFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.GameFileFinder_GamesFoundHeader, MessageType.Success);
-        }
-        else
-        {
-            await MessageUI.DisplayMessageAsync(Resources.GameFileFinder_NoResults, Resources.GameFileFinder_ResultHeader, MessageType.Information);
         }
     }
 

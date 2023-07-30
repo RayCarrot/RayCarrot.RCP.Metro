@@ -57,27 +57,33 @@
                                 </Grid.ColumnDefinitions>
 
                                 <iconpacks:PackIconMaterial x:Name="Icon"
-                                                        Grid.Column="0" 
-                                                        Kind="{TemplateBinding local:Icon.Kind}"
-                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                        Visibility="{TemplateBinding local:Icon.Kind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconpacks:PackIconMaterialKind.None}}"
-                                                        Width="{TemplateBinding local:Icon.Size}"
-                                                        Height="{TemplateBinding local:Icon.Size}"
-                                                        Foreground="{TemplateBinding local:Icon.Brush}"
-                                                        Margin="0 0 6 0" />
+                                                            Grid.Column="0"
+                                                            Kind="{TemplateBinding local:Icon.Kind}"
+                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                            Width="{TemplateBinding local:Icon.Size}"
+                                                            Height="{TemplateBinding local:Icon.Size}"
+                                                            Visibility="{TemplateBinding local:Icon.Kind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconpacks:PackIconMaterialKind.None}}"
+                                                            Foreground="{TemplateBinding local:Icon.Brush}"
+                                                            Margin="0 0 6 0" />
+
+                                <mah:ProgressRing Grid.Column="0"
+                                                  Width="{TemplateBinding local:Icon.Size}"
+                                                  Height="{TemplateBinding local:Icon.Size}"
+                                                  Visibility="{TemplateBinding local:ButtonAssist.IsLoading, Converter={local:BooleanToVisibilityConverter}}"
+                                                  Margin="0 0 6 0" />
 
                                 <!-- Enable clear type so text looks good in popups -->
                                 <mah:ContentControlEx x:Name="PART_ContentPresenter"
-                                                  Grid.Column="1"
-                                                  RenderOptions.ClearTypeHint="Enabled"
-                                                  Content="{TemplateBinding Content}"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.ContentCharacterCasing)}"
-                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                                  RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" />
+                                                      Grid.Column="1"
+                                                      RenderOptions.ClearTypeHint="Enabled"
+                                                      Content="{TemplateBinding Content}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.ContentCharacterCasing)}"
+                                                      ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                      RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" />
                             </Grid>
                         </Border>
                     </mah:ClipBorder>
@@ -98,13 +104,17 @@
                                     Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.32}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.38" />
+                            <Setter TargetName="Icon" Property="Opacity" Value="0.38" />
+                            <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="0.38" />
                         </Trigger>
                         <Trigger Property="Content" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Margin" Value="0" />
                         </Trigger>
                         <Trigger Property="local:Icon.Brush" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Trigger>
+                        <Trigger Property="local:ButtonAssist.IsLoading" Value="True">
+                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
