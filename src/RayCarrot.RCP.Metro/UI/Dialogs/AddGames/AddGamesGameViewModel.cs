@@ -175,11 +175,14 @@ public class AddGamesGameViewModel : BaseViewModel
         public GameAddActionViewModel(GameAddAction addAction)
         {
             AddAction = addAction;
+
+            // Have to set this instead of using the getter or else we get binding errors when changing language. Not sure why...
+            Header = addAction.Header;
         }
 
         public GameAddAction AddAction { get; }
 
-        public LocalizedString Header => AddAction.Header;
+        public LocalizedString Header { get; }
         public GenericIconKind Icon => AddAction.Icon;
         public bool IsAvailable => AddAction.IsAvailable;
     }
