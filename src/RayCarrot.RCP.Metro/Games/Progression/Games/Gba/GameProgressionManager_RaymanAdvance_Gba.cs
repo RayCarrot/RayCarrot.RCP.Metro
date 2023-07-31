@@ -28,7 +28,7 @@ public class GameProgressionManager_RaymanAdvance_Gba : EmulatedGameProgressionM
             int slotIndex = saveIndex;
 
             yield return new SerializabeEmulatedGameProgressionSlot<SaveData>(
-                name: saveSlot.SaveName.ToUpper(),
+                name: saveSlot.SaveName.ToUpper().Replace('~', '△'),
                 index: saveIndex,
                 collectiblesCount: collectiblesCount,
                 totalCollectiblesCount: maxCollectiblesCount,
