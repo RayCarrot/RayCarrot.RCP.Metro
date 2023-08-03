@@ -78,6 +78,8 @@ public class GameViewModel : BaseRCPViewModel
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
+    public bool IsVisibleEdit { get; set; }
+    public bool IsEditingVisibility { get; set; }
 
     public BackupStatus CurrentBackupStatus { get; set; }
     public GameBackups_BackupInfo? BackupInfo { get; set; }

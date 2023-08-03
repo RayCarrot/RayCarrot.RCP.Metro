@@ -24,6 +24,14 @@
 
             <Separator />
 
+            <!-- TODO-UPDATE: Localize -->
+            <Button Content="Show/hide games"
+                    rcp:Icon.Kind="EyeOutline"
+                    Command="{Binding Path=EditVisibilityCommand, Mode=OneTime}"
+                    IsEnabled="{Binding Path=IsEditingVisibility, Converter={rcp:InvertedBooleanConverter}}" />
+
+            <Separator />
+
             <mah:ToggleSwitch Content="{Resx Backup_Compress}"
                               ToolTip="{Resx Backup_CompressInfo}"
                               IsOn="{Binding Path=Data.Backup_CompressBackups}"
@@ -70,74 +78,93 @@
 
     <rcp:Card Margin="12"
               Padding="0">
-        <ScrollViewer Padding="8">
-            <i:Interaction.Behaviors>
-                <rcp:FocusScrollViewerOnLoad />
-            </i:Interaction.Behaviors>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <!-- Games -->
 
-            <ItemsControl Grid.IsSharedSizeScope="True"
-                          ItemsSource="{Binding Path=GamesView, Mode=OneTime}"
-                          d:ItemsSource="{d:SampleData ItemCount=2}">
+            <ScrollViewer Grid.Row="0" Padding="8">
+                <i:Interaction.Behaviors>
+                    <rcp:FocusScrollViewerOnLoad />
+                </i:Interaction.Behaviors>
 
-                <ItemsControl.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate DataType="{x:Type CollectionViewGroup}">
-                                <!-- Game title -->
-                                <Grid Margin="8 4"
-                                      DataContext="{Binding Path=Name}"
-                                      d:DataContext="{d:DesignInstance progression:GameGroupViewModel}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                <!-- Games -->
 
-                                    <rcp:GameIcon Grid.Column="0"
-                                                  IconSize="Small"
-                                                  Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                                                  d:Source="{x:Static rcp:DesignData.GameIconSource}"
-                                                  IsDemo="False"
-                                                  Margin="0 0 8 0" />
+                <ItemsControl Grid.IsSharedSizeScope="True"
+                              ItemsSource="{Binding Path=GamesView, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=2}">
 
-                                    <TextBlock Grid.Column="1" 
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               Text="{Binding Path=DisplayName.Value}"
-                                               d:Text="Rayman 2" />
+                    <ItemsControl.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                                    <!-- Game title -->
+                                    <Grid Margin="8 4"
+                                          DataContext="{Binding Path=Name}"
+                                          d:DataContext="{d:DesignInstance progression:GameGroupViewModel}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                </Grid>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                        <GroupStyle.ContainerStyle>
-                            <Style TargetType="{x:Type GroupItem}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <HeaderedContentControl>
-                                                <HeaderedContentControl.Header>
-                                                    <ContentPresenter />
-                                                </HeaderedContentControl.Header>
-                                                <ItemsPresenter Margin="0 0 0 4" />
-                                            </HeaderedContentControl>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </GroupStyle.ContainerStyle>
-                    </GroupStyle>
-                </ItemsControl.GroupStyle>
+                                        <rcp:GameIcon Grid.Column="0"
+                                                      IconSize="Small"
+                                                      Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                                                      d:Source="{x:Static rcp:DesignData.GameIconSource}"
+                                                      IsDemo="False"
+                                                      Margin="0 0 8 0" />
 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <progression:GameControl />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                        <TextBlock Grid.Column="1" 
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   Text="{Binding Path=DisplayName.Value}"
+                                                   d:Text="Rayman 2" />
 
-        </ScrollViewer>
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                <HeaderedContentControl>
+                                                    <HeaderedContentControl.Header>
+                                                        <ContentPresenter />
+                                                    </HeaderedContentControl.Header>
+                                                    <ItemsPresenter Margin="0 0 0 4" />
+                                                </HeaderedContentControl>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </ItemsControl.GroupStyle>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <progression:GameControl />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </ScrollViewer>
+
+            <Button Grid.Row="1"
+                    Margin="8"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Command="{Binding Path=SaveEditVisibilityCommand, Mode=OneTime}"
+                    Visibility="{Binding Path=IsEditingVisibility, Converter={rcp:BooleanToVisibilityConverter}}"
+                    HorizontalAlignment="Right" 
+                    rcp:Icon.Kind="ContentSaveOutline"
+                    Content="{Resx Save}" />
+
+        </Grid>
+
     </rcp:Card>
 
 </rcp:BasePage>

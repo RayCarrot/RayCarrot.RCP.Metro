@@ -31,11 +31,14 @@ public class ProgressionPageViewModel : BasePageViewModel,
         AsyncLock = new AsyncLock();
         Games = new ObservableCollectionEx<GameViewModel>();
         GamesView = CollectionViewSource.GetDefaultView(Games);
+        RefreshFiltering(true);
 
         RefreshGrouping(GroupGames);
 
         // Create commands
         RefreshCommand = new AsyncRelayCommand(RefreshAsync);
+        EditVisibilityCommand = new RelayCommand(EditVisibility);
+        SaveEditVisibilityCommand = new RelayCommand(SaveEditVisibility);
         BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
         ChangeSaveEditProgramCommand = new AsyncRelayCommand(ChangeSaveEditProgramAsync);
     }
@@ -57,6 +60,8 @@ public class ProgressionPageViewModel : BasePageViewModel,
     #region Commands
 
     public ICommand RefreshCommand { get; }
+    public ICommand EditVisibilityCommand { get; }
+    public ICommand SaveEditVisibilityCommand { get; }
     public ICommand BackupAllCommand { get; }
     public ICommand ChangeSaveEditProgramCommand { get; }
 
@@ -77,6 +82,8 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public override AppPage Page => AppPage.Progression;
     public ObservableCollectionEx<GameViewModel> Games { get; }
     public ICollectionView GamesView { get; }
+
+    public bool IsEditingVisibility { get; set; }
 
     public bool GroupGames
     {
@@ -101,6 +108,16 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
         foreach (GameViewModel game in Games)
             game.IsGameGrouped = group;
+    }
+
+    private void RefreshFiltering(bool filter)
+    {
+        if (filter)
+            GamesView.Filter = x => ((GameViewModel)x).GameInstallation.GetValue<bool>(GameDataKey.Progression_Show, true);
+        else
+            GamesView.Filter = null;
+
+        GamesView.Refresh();
     }
 
     #endregion
@@ -161,6 +178,8 @@ public class ProgressionPageViewModel : BasePageViewModel,
             try
             {
                 Logger.Info("Refreshing progression game items");
+
+                SaveEditVisibility();
 
                 Metro.App.Current.Dispatcher.Invoke(() =>
                 {
@@ -227,6 +246,35 @@ public class ProgressionPageViewModel : BasePageViewModel,
                 throw;
             }
         }
+    }
+
+    public void EditVisibility()
+    {
+        IsEditingVisibility = true;
+
+        foreach (GameViewModel game in Games)
+        {
+            game.IsVisibleEdit = game.GameInstallation.GetValue<bool>(GameDataKey.Progression_Show, true);
+            game.IsEditingVisibility = true;
+        }
+
+        RefreshFiltering(false);
+    }
+
+    public void SaveEditVisibility()
+    {
+        if (!IsEditingVisibility)
+            return;
+
+        IsEditingVisibility = false;
+
+        foreach (GameViewModel game in Games)
+        {
+            game.GameInstallation.SetValue<bool>(GameDataKey.Progression_Show, game.IsVisibleEdit);
+            game.IsEditingVisibility = false;
+        }
+
+        RefreshFiltering(true);
     }
 
     public async Task BackupAllAsync()

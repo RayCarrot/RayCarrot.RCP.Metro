@@ -14,6 +14,7 @@
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Title" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="ProgName" />
             <ColumnDefinition Width="*" />
@@ -22,8 +23,27 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
+        <!-- Visibility toggle -->
+        <ToggleButton IsChecked="{Binding Path=IsVisibleEdit}" 
+                      Visibility="{Binding Path=IsEditingVisibility, Converter={rcp:BooleanToVisibilityConverter}}"
+                      VerticalAlignment="Center"
+                      Margin="0 0 8 0">
+            <ToggleButton.Style>
+                <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.ToggleButton.Flat}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsVisibleEdit}" Value="True">
+                            <Setter Property="rcp:Icon.Kind" Value="EyeOutline" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsVisibleEdit}" Value="False">
+                            <Setter Property="rcp:Icon.Kind" Value="EyeOffOutline" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+
         <!-- Title -->
-        <ContentPresenter Grid.Column="0"
+        <ContentPresenter Grid.Column="1"
                           Content="{Binding}"
                           Margin="0 0 4 0">
             <ContentPresenter.Style>
@@ -73,7 +93,7 @@
             </ContentPresenter.Style>
         </ContentPresenter>
 
-        <TextBlock Grid.Column="1"
+        <TextBlock Grid.Column="2"
                    Margin="0 0 25 0"
                    FontSize="14"
                    FontStyle="Italic"
@@ -81,7 +101,7 @@
                    VerticalAlignment="Center" />
 
         <!-- Primary Data Items -->
-        <ItemsControl Grid.Column="2"
+        <ItemsControl Grid.Column="3"
                       VerticalAlignment="Center"
                       ItemsSource="{Binding Path=PrimarySlot.PrimaryDataItems}"
                       d:ItemsSource="{d:SampleData ItemCount=3}"
@@ -133,7 +153,7 @@
         </ItemsControl>
 
         <!-- Percentage -->
-        <Grid Grid.Column="3"
+        <Grid Grid.Column="4"
               Margin="0 0 25 0" 
               Visibility="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
             <progression:SlotPercentageControl Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
@@ -141,13 +161,13 @@
         </Grid>
 
         <!-- Loading -->
-        <Grid Grid.Column="3"
+        <Grid Grid.Column="4"
               Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}">
             <mah:ProgressRing />
         </Grid>
 
         <!-- Backup Options -->
-        <StackPanel Grid.Column="4"
+        <StackPanel Grid.Column="5"
                     Orientation="Horizontal"
                     VerticalAlignment="Center"
                     IsEnabled="{Binding Path=IsPerformingBackupRestore, Converter={rcp:InvertedBooleanConverter}}"
@@ -171,14 +191,14 @@
         </StackPanel>
 
         <!-- Backup Loading -->
-        <Grid Grid.Column="4"
+        <Grid Grid.Column="5"
               Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
               Margin="0 0 10 0">
             <mah:ProgressRing />
         </Grid>
 
         <!-- Backup Status -->
-        <Grid Grid.Column="5" 
+        <Grid Grid.Column="6" 
               VerticalAlignment="Center"
               Width="20">
             <iconPacks:PackIconMaterial Kind="CheckboxMarkedCircle"

@@ -18,6 +18,7 @@ public static class GameDataKey
     public const string Client_DosBox_MountPath = "Client_DosBox_MountPath";
 
     // Progression
+    public const string Progression_Show = "Progression_Show";
     public const string Progression_DataSources = "Progression_DataSources";
 
     // Games
