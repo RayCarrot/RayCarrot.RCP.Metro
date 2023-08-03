@@ -206,6 +206,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
                                         <RadioButton Style="{StaticResource RCP.Styles.RadioButton.GameGroup}"
+                                                     PreviewMouseDown="GameGroupRadioButton_OnPreviewMouseDown"
                                                      IsChecked="{Binding Path=Name.IsSelected}">
                                             <HeaderedContentControl>
                                                 <HeaderedContentControl.Header>

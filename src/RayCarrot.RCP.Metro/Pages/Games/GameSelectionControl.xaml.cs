@@ -110,4 +110,13 @@ public partial class GameSelectionControl : UserControl
 
         ViewModel.SelectedInstalledGame = game;
     }
+
+    private void GameGroupRadioButton_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is RadioButton radioButton)
+        {
+            radioButton.IsChecked = true;
+            e.Handled = true;
+        }
+    }
 }
