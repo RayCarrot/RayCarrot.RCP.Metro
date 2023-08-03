@@ -39,7 +39,7 @@
                       Text="{Binding Path=MapPath}" />
         </StackPanel>
 
-        <Button Content="{Resx GameDisplay_Launch}"
+        <Button Content="{Resx GameHub_Play}"
                 Command="{Binding Path=LaunchGameCommand, Mode=OneTime}"
                 HorizontalAlignment="Left"/>
 
