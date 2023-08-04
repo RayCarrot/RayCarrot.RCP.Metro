@@ -4,87 +4,13 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                            xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher"
-                            xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                             mc:Ignorable="d"
                             d:DesignWidth="800" d:DesignHeight="600"
-                            d:DataContext="{d:DesignInstance patcher:PatchCreatorViewModel}"
                             Language="{UICulture}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-    <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
 
-            <mah:MetroAnimatedTabControl Grid.Row="0"
-                                         Margin="0 0 0 8">
 
-                <TabItem Header="{Resx PatchCreator_MetadataHeader}"
-                         local:Icon.Kind="TextBoxOutline"
-                         local:Icon.Brush="{StaticResource RCP.Brushes.Info}">
-                    <patcher:PatchCreatorMetadataPage />
-                </TabItem>
-
-                <TabItem Header="{Resx PatchCreator_ChangelogHeader}"
-                         local:Icon.Kind="TextBoxMultipleOutline"
-                         local:Icon.Brush="{StaticResource RCP.Brushes.Info}">
-                    <patcher:PatchCreatorChangelogPage />
-                </TabItem>
-
-                <TabItem Header="{Resx PatchCreator_FileModificationsHeader}"
-                         local:Icon.Kind="FileMultipleOutline"
-                         local:Icon.Brush="{StaticResource RCP.Brushes.File}">
-                    <patcher:PatchCreatorFileModificationsPage />
-                </TabItem>
-
-            </mah:MetroAnimatedTabControl>
-
-            <!-- Actions -->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0"
-                        Content="{Resx PatchCreator_ImportPatch}"
-                        ToolTip="{Resx PatchCreator_ImportPatchInfo}"
-                        Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:Icon.Kind="Import"
-                        Command="{Binding Path=ImportPatchCommand, Mode=OneTime}"
-                        Margin="0 0 10 0" />
-
-                <Button Grid.Column="2"
-                        Content="{Resx Cancel}"
-                        Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:Icon.Kind="CloseOutline"
-                        Click="CancelButton_OnClick"
-                        Margin="0 0 10 0" />
-
-                <Button Grid.Column="3"
-                        Content="{Resx PatchCreator_Create}"
-                        Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:Icon.Kind="ContentSaveOutline"
-                        Click="CreateButton_OnClick">
-                    <Button.IsEnabled>
-                        <Binding Path="Files.Count" Converter="{local:InvertedEqualsToConverter}">
-                            <Binding.ConverterParameter>
-                                <sys:Int32>0</sys:Int32>
-                            </Binding.ConverterParameter>
-                        </Binding>
-                    </Button.IsEnabled>
-                </Button>
-
-            </Grid>
-
-        </Grid>
-    </local:LoadingHost>
 
 </local:WindowContentControl>

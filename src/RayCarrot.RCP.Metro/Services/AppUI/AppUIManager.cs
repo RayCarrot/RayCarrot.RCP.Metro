@@ -328,7 +328,7 @@ public class AppUIManager
     /// <param name="gameTargets">The game installations the patch should be made for</param>
     /// <returns>The task</returns>
     public async Task ShowPatchCreatorAsync(params GameInstallation[] gameTargets) => 
-        await ShowWindowAsync(() => new PatchCreatorDialog(new PatchCreatorViewModel(gameTargets)));
+        await ShowWindowAsync(() => new PatchCreatorDialog());
 
     /// <summary>
     /// Shows a new instance of the add games dialog
