@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Settings;
 
@@ -206,8 +207,8 @@ public class SettingsPageViewModel : BasePageViewModel
 
             if (refreshPatchAssociations)
             {
-                bool? isAssociatedWithFileType = PatchFile.IsAssociatedWithFileType();
-                bool? isAssociatedWithURIProtocol = PatchFile.IsAssociatedWithURIProtocol();
+                bool? isAssociatedWithFileType = PatchPackage.IsAssociatedWithFileType();
+                bool? isAssociatedWithURIProtocol = PatchPackage.IsAssociatedWithURIProtocol();
 
                 CanAssociatePatchFileType = isAssociatedWithFileType != null;
                 CanAssociatePatchURIProtocol = isAssociatedWithURIProtocol != null;
@@ -255,7 +256,7 @@ public class SettingsPageViewModel : BasePageViewModel
     {
         try
         {
-            PatchFile.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, AssociatePatchFileType);
+            PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, AssociatePatchFileType);
         }
         catch (Exception ex)
         {
@@ -269,7 +270,7 @@ public class SettingsPageViewModel : BasePageViewModel
     {
         try
         {
-            PatchFile.AssociateWithURIProtocol(Data.App_ApplicationPath, AssociatePatchURIProtocol);
+            PatchPackage.AssociateWithURIProtocol(Data.App_ApplicationPath, AssociatePatchURIProtocol);
         }
         catch (Exception ex)
         {

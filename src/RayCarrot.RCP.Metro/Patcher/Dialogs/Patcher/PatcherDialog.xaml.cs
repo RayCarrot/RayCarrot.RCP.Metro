@@ -1,10 +1,6 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
-namespace RayCarrot.RCP.Metro.Patcher;
+namespace RayCarrot.RCP.Metro.Patcher.Dialogs.Patcher;
 
 /// <summary>
 /// Interaction logic for PatcherDialog.xaml
@@ -35,7 +31,6 @@ public partial class PatcherDialog : WindowContentControl
     #region Public Properties
 
     public override bool IsResizable => true;
-
     public PatcherViewModel ViewModel { get; }
 
     #endregion
@@ -74,13 +69,6 @@ public partial class PatcherDialog : WindowContentControl
             return true;
     }
 
-    public override void Dispose()
-    {
-        base.Dispose();
-
-        ViewModel.Dispose();
-    }
-
     #endregion
 
     #region Event Handlers
@@ -97,78 +85,22 @@ public partial class PatcherDialog : WindowContentControl
         bool success = await ViewModel.InitializeAsync();
 
         if (!success)
-        {
-            // Close the dialog
-            _forceClose = true;
-            WindowInstance.Close();
-        }
+            ForceClose();
     }
 
-    private void FileTableHeadersGrid_OnLoaded(object sender, RoutedEventArgs e)
-    {
-        // Hacky workaround for having the headers be aligned with the table items. Without this
-        // the scroll bar thumb will offset it incorrectly.
-        FileTableItems.ApplyTemplate();
-        ItemsPresenter itemsPresenter = (ItemsPresenter)FileTableItems.Template.FindName("Presenter", FileTableItems);
+    #endregion
 
-        itemsPresenter.SizeChanged -= FileTableItemsPresenter_OnSizeChanged;
-        itemsPresenter.SizeChanged += FileTableItemsPresenter_OnSizeChanged;
+    #region Public Methods
 
-        FileTableHeadersGrid.Width = itemsPresenter.ActualWidth;
-    }
-
-    private void FileTableItemsPresenter_OnSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        ItemsPresenter control = (ItemsPresenter)sender;
-        FileTableHeadersGrid.Width = control.ActualWidth;
-    }
-
-    private void PatchesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
-    {
-        HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
-
-        if (r.VisualHit.GetType() != typeof(ListBoxItem))
-        {
-            ViewModel.SelectedLocalPatch = null;
-            ViewModel.SelectedExternalPatch = null;
-        }
-    }
-
-    private void PatchesListBox_OnLoaded(object sender, RoutedEventArgs e)
-    {
-        var listBox = (ListBox)sender;
-        var dropHandler = (PatchDropHandler)DragDrop.GetDropHandler(listBox);
-        dropHandler.ViewModel = ViewModel;
-    }
-
-    private void PatchesListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
-    {
-        // Redirect the mouse wheel movement to allow scrolling
-        var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
-        {
-            RoutedEvent = MouseWheelEvent,
-            Source = e.Source
-        };
-
-        PatchesScrollViewer?.RaiseEvent(eventArg);
-        e.Handled = true;
-    }
-
-    private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+    public void Close()
     {
         WindowInstance.Close();
     }
-
-    private async void ApplyButton_OnClick(object sender, RoutedEventArgs e)
+    
+    public void ForceClose()
     {
-        bool success = await ViewModel.ApplyAsync();
-
-        if (!success)
-        {
-            // Close the dialog
-            _forceClose = true;
-            WindowInstance.Close();
-        }
+        _forceClose = true;
+        WindowInstance.Close();
     }
 
     #endregion

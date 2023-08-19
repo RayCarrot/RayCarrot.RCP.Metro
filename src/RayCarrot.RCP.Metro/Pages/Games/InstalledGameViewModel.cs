@@ -1,12 +1,11 @@
 ﻿using System.IO;
 using System.Windows.Input;
-using BinarySerializer;
 using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.Structure;
-using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Patcher.Library;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -400,22 +399,27 @@ public class InstalledGameViewModel : BaseViewModel
         if (GameDescriptor.AllowPatching)
         {
             // Get applied patches
-            using Context context = new RCPContext(String.Empty);
-            PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
-            PatchLibraryFile? libraryFile = null;
+            PatchManifest? patchManifest = null;
 
             try
             {
-                libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
+                PatchLibrary library = new(GameInstallation);
+                patchManifest = library.ReadPatchManifest();
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Reading patch library");
+                Logger.Warn(ex, "Reading patch manifest");
             }
 
+            int appliedPatchesCount = patchManifest?.Patches.Values.Count(x => x.IsEnabled) ?? 0;
+
             // Warn about applied patches, if any
-            if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
-                return;
+            if (appliedPatchesCount > 0)
+            {
+                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, appliedPatchesCount), 
+                        MessageType.Warning, true)) 
+                    return;
+            }
         }
 
         // Remove the game

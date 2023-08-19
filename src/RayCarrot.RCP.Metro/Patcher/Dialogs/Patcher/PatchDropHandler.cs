@@ -1,10 +1,9 @@
-﻿#nullable disable
-using GongSolutions.Wpf.DragDrop;
+﻿using GongSolutions.Wpf.DragDrop;
 
-namespace RayCarrot.RCP.Metro.Patcher;
+namespace RayCarrot.RCP.Metro.Patcher.Dialogs.Patcher;
 
 /// <summary>
-/// The drop handler for a <see cref="PatchViewModel"/> collection
+/// The drop handler for a <see cref="InstalledPatchViewModel"/> collection
 /// </summary>
 public class PatchDropHandler : DefaultDropHandler
 {
@@ -13,7 +12,7 @@ public class PatchDropHandler : DefaultDropHandler
     /// <summary>
     /// The options view model
     /// </summary>
-    public PatcherViewModel ViewModel { get; set; }
+    public PatcherViewModel? ViewModel { get; set; }
 
     public override void Drop(IDropInfo dropInfo)
     {
@@ -22,7 +21,6 @@ public class PatchDropHandler : DefaultDropHandler
             
         Logger.Debug("The patches have been reordered");
 
-        ViewModel.RefreshPatchedFiles();
-        ViewModel.HasChanges = true;
+        ViewModel?.OnReorderedPatches();
     }
 }

@@ -7,12 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using BinarySerializer;
 using ByteSizeLib;
 using ControlzEx.Theming;
-using Newtonsoft.Json;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Debug;
 
@@ -58,9 +55,6 @@ public class DebugPageViewModel : BasePageViewModel
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
         ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
-        ExportWebPatchesJSONCommand = new AsyncRelayCommand(ExportWebPatchesJSONAsync);
-        ExportWebPatchesFilesCommand = new AsyncRelayCommand(ExportWebPatchesFilesAsync);
-        ExtractPatchLibraryCommand = new AsyncRelayCommand(ExtractPatchLibraryAsync);
         RunLoadOperationCommand = new AsyncRelayCommand(RunLoadOperationAsync);
     }
 
@@ -84,9 +78,6 @@ public class DebugPageViewModel : BasePageViewModel
     public ICommand RunInstallerCommand { get; }
     public ICommand ShutdownAppCommand { get; }
     public ICommand UpdateThemeCommand { get; }
-    public ICommand ExportWebPatchesJSONCommand { get; }
-    public ICommand ExportWebPatchesFilesCommand { get; }
-    public ICommand ExtractPatchLibraryCommand { get; }
     public ICommand RunLoadOperationCommand { get; }
 
     #endregion
@@ -503,205 +494,6 @@ public class DebugPageViewModel : BasePageViewModel
         Metro.App.Current.SetTheme(Data.Theme_DarkMode, false, SelectedAccentColor);
     }
     
-    public async Task ExportWebPatchesJSONAsync()
-    {
-        try
-        {
-            DirectoryBrowserResult browseResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                Title = "Select patches directory"
-            });
-
-            if (browseResult.CanceledByUser)
-                return;
-
-            // Write out JSON manually to allow for nicer formatting
-            using StreamWriter writer = new(browseResult.SelectedDirectory + "external_patches.jsonc", false);
-
-            await writer.WriteLineAsync("[");
-
-            var files = Directory.EnumerateFiles(browseResult.SelectedDirectory, $"*{PatchFile.FileExtension}", SearchOption.AllDirectories);
-            foreach (FileSystemPath patchFilePath in files)
-            {
-                await writer.WriteLineAsync(
-                    $$"""    { "patchFile": "{{patchFilePath - browseResult.SelectedDirectory}}", "rcp_minAppVersion": "{{App.CurrentAppVersion.ToString(4)}}", "rcp_maxAppVersion": null },""");
-            }
-
-            await writer.WriteLineAsync("]");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Generating web patches files");
-
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when generating the files");
-        }
-    }
-
-    public async Task ExportWebPatchesFilesAsync()
-    {
-        try
-        {
-            FileBrowserResult inputResult = await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-            {
-                Title = "Select patches JSON",
-                ExtensionFilter = new FileFilterItem("*jsonc", "JSON").StringRepresentation,
-            });
-
-            if (inputResult.CanceledByUser)
-                return;
-
-            DirectoryBrowserResult outputResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                Title = "Select output folder",
-            });
-
-            if (outputResult.CanceledByUser)
-                return;
-
-            // Read the .jsonc to get the patches, their order and additional data
-            WebPatchEntry[] patchEntries = JsonHelpers.DeserializeFromFile<WebPatchEntry[]>(inputResult.SelectedFile);
-
-            ExternalPatch[] patches = new ExternalPatch[patchEntries.Length];
-
-            using RCPContext context = new(String.Empty);
-
-            // Process each patch
-            for (int i = 0; i < patchEntries.Length; i++)
-            {
-                WebPatchEntry patchEntry = patchEntries[i];
-                FileSystemPath localPatchFilePath = inputResult.SelectedFile.Parent + patchEntry.PatchFilePath;
-
-                // Read the file
-                PatchFile patch = context.ReadRequiredFileData<PatchFile>(localPatchFilePath, removeFileWhenComplete: false);
-
-                string? thumbURL = null;
-
-                // Extract thumbnail, if one exists
-                if (patch.HasThumbnail)
-                {
-                    thumbURL = $"patches/{localPatchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
-
-                    FileSystemPath thumbFilePath = outputResult.SelectedDirectory + thumbURL;
-
-                    Directory.CreateDirectory(thumbFilePath.Parent);
-
-                    using Stream thumbOutputStream = File.Create(thumbFilePath);
-                    using Stream thumbInputSteam = patch.ThumbnailResource.ReadData(context, true);
-                    thumbInputSteam.CopyTo(thumbOutputStream);
-                }
-
-                string patchURL = $"patches/{localPatchFilePath.Name}";
-
-                // Copy the patch file
-                FileManager.CopyFile(localPatchFilePath, outputResult.SelectedDirectory + patchURL, true);
-
-                patches[i] = new ExternalPatch(
-                    MinAppVersion: patchEntry.MinAppVersion,
-                    MaxAppVersion: patchEntry.MaxAppVersion,
-                    MetaData: new ExternalPatchMetaData(
-                        Id: patch.Metadata.ID,
-                        FormatVersion: patch.FormatVersion,
-                        GameIds: patch.Metadata.GameIds,
-                        Name: patch.Metadata.Name,
-                        Description: patch.Metadata.Description,
-                        Author: patch.Metadata.Author,
-                        Website: patch.Metadata.Website,
-                        TotalSize: patch.Metadata.TotalSize,
-                        FileSize: (int)localPatchFilePath.GetSize().Bytes,
-                        ModifiedDate: patch.Metadata.ModifiedDate,
-                        Version: patch.Metadata.Version,
-                        ChangelogEntries: patch.Metadata.ChangelogEntries?.
-                            Select(x => new ExternalPatchChangeLogEntry(x.Version, x.Date, x.Description)).
-                            ToArray(),
-                        AddedFilesCount: patch.AddedFiles?.Length ?? 0,
-                        RemovedFilesCount: patch.RemovedFiles?.Length ?? 0,
-                        PatchUrl: patchURL,
-                        ThumbnailUrl: thumbURL));
-            }
-
-            // Write the manifest
-            ExternalPatchesManifest patchesManifest = new(patches);
-            JsonHelpers.SerializeToFile(patchesManifest, outputResult.SelectedDirectory + "game_patches.json", Formatting.None);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Generating web patches files");
-
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when generating the files");
-        }
-    }
-
-    public async Task ExtractPatchLibraryAsync()
-    {
-        FileBrowserResult inputResult = await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-        {
-            Title = "Select patch library",
-            ExtensionFilter = new FileFilterItem($"*{PatchLibraryFile.FileExtension}", "Game Patch Library").StringRepresentation,
-        });
-
-        if (inputResult.CanceledByUser)
-            return;
-
-        DirectoryBrowserResult outputResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-        {
-            Title = "Select output folder",
-        });
-
-        if (outputResult.CanceledByUser)
-            return;
-
-        try
-        {
-            using RCPContext context = new(String.Empty);
-
-            // Read the file
-            PatchLibraryFile lib = context.ReadRequiredFileData<PatchLibraryFile>(inputResult.SelectedFile, removeFileWhenComplete: false);
-
-            // Extract removed files
-            for (int i = 0; i < lib.History.RemovedFileResources.Length; i++)
-                await extractResourcesAsync(
-                    context: context, 
-                    filePath: lib.History.RemovedFiles[i], 
-                    resource: lib.History.RemovedFileResources[i], 
-                    outputDir: outputResult.SelectedDirectory + "removed_files");
-
-            // Extract replaced files
-            for (int i = 0; i < lib.History.ReplacedFileResources.Length; i++)
-                await extractResourcesAsync(
-                    context: context, 
-                    filePath: lib.History.ReplacedFiles[i], 
-                    resource: lib.History.ReplacedFileResources[i], 
-                    outputDir: outputResult.SelectedDirectory + "replaced_files");
-
-            // Extract added files
-            File.WriteAllLines(outputResult.SelectedDirectory + "added_files.txt", lib.History.AddedFiles.Select(x => x.ToString()));
-
-            // Extract the patches list
-            JsonHelpers.SerializeToFile(lib.Patches, outputResult.SelectedDirectory + "patches.json");
-
-            static async Task extractResourcesAsync(
-                Context context, 
-                PatchFilePath filePath, 
-                PackagedResourceEntry resource, 
-                FileSystemPath outputDir)
-            {
-                FileSystemPath fileDest = outputDir + filePath.FullFilePath;
-                Directory.CreateDirectory(fileDest.Parent);
-
-                using FileStream dstStream = File.Create(fileDest);
-                using Stream srcStream = resource.ReadData(context, true);
-
-                await srcStream.CopyToAsync(dstStream);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Extracting patch library");
-
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch library");
-        }
-    }
-
     public async Task RunLoadOperationAsync()
     {
         using (LoadState state = await App.LoaderViewModel.RunAsync("Debug load operation"))
@@ -729,15 +521,6 @@ public class DebugPageViewModel : BasePageViewModel
             });
         }
     }
-
-    #endregion
-
-    #region Records
-
-    private record WebPatchEntry(
-        [property: JsonProperty("patchFile")] string PatchFilePath,
-        [property: JsonProperty("rcp_minAppVersion")] Version? MinAppVersion,
-        [property: JsonProperty("rcp_maxAppVersion")] Version? MaxAppVersion);
 
     #endregion
 

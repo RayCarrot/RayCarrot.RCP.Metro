@@ -1,6 +1,4 @@
-﻿using RayCarrot.RCP.Metro.Patcher;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class PatchFileLaunchHandler : FileLaunchHandler
 {
@@ -10,8 +8,9 @@ public class PatchFileLaunchHandler : FileLaunchHandler
 
     public override bool IsValid(FileSystemPath filePath)
     {
-        return filePath.FileExtension.PrimaryFileExtension.Equals(PatchFile.FileExtension,
-            StringComparison.InvariantCultureIgnoreCase);
+        // TODO-UPDATE: Check if the file has a valid archive extension for a patch. Allow .gp as well for legacy support.
+
+        return false;
     }
 
     public override async void Invoke(FileSystemPath filePath, State state)

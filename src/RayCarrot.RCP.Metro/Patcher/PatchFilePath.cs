@@ -1,40 +1,29 @@
-﻿using System.Text;
-using BinarySerializer;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
-#nullable disable
-
 [JsonConverter(typeof(PatchFilePathJsonConverter))]
-public class PatchFilePath : BinarySerializable
+public readonly struct PatchFilePath
 {
-    public PatchFilePath()
+    public PatchFilePath(string filePath)
     {
-        
-    }
-
-    public PatchFilePath(string location, string locationId, string filePath)
-    {
-        Location = location ?? String.Empty;
-        LocationID = locationId ?? String.Empty;
         FilePath = filePath;
+        Location = String.Empty;
+        LocationID = String.Empty;
+    }
+    public PatchFilePath(string filePath, string location, string locationId)
+    {
+        FilePath = filePath;
+        Location = location;
+        LocationID = locationId;
     }
 
-    public string Location { get; private set; }
-    public string LocationID { get; private set; }
-    public string FilePath { get; private set; }
+    public string FilePath { get; }
+    public string Location { get; }
+    public string LocationID { get; }
 
     public bool HasLocation => Location != String.Empty;
     public string FullFilePath => HasLocation ? System.IO.Path.Combine(Location, FilePath) : FilePath;
-    public string NormalizedFullFilePath => FullFilePath.ToLowerInvariant().Replace('\\', '/');
-
-    public override void SerializeImpl(SerializerObject s)
-    {
-        Location = s.SerializeString(Location, encoding: Encoding.UTF8, name: nameof(Location));
-        LocationID = s.SerializeString(LocationID, encoding: Encoding.UTF8, name: nameof(LocationID));
-        FilePath = s.SerializeString(FilePath, encoding: Encoding.UTF8, name: nameof(FilePath));
-    }
 
     public override string ToString() => HasLocation ? $"{Location}:{FilePath}" : FilePath;
 }

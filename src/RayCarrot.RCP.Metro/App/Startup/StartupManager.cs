@@ -10,6 +10,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Pages.Games;
 using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -235,11 +236,11 @@ public class StartupManager
             return;
         
         // If the file type association is set for patch files we need to update them
-        if (PatchFile.IsAssociatedWithFileType() == true)
+        if (PatchPackage.IsAssociatedWithFileType() == true)
         {
             try
             {
-                PatchFile.AssociateWithFileType(assemblyPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+                PatchPackage.AssociateWithFileType(assemblyPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
             }
             catch (Exception ex)
             {
@@ -247,11 +248,11 @@ public class StartupManager
             }
         }
 
-        if (PatchFile.IsAssociatedWithURIProtocol() == true)
+        if (PatchPackage.IsAssociatedWithURIProtocol() == true)
         {
             try
             {
-                PatchFile.AssociateWithURIProtocol(assemblyPath, true);
+                PatchPackage.AssociateWithURIProtocol(assemblyPath, true);
             }
             catch (Exception ex)
             {

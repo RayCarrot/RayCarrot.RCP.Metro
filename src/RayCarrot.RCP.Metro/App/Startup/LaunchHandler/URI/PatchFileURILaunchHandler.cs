@@ -1,16 +1,17 @@
 ﻿using System.IO;
 using System.Net;
-using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-UPDATE: Update this to support new patcher changes
 public class PatchFileURILaunchHandler : URILaunchHandler
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     public override bool DisableFullStartup => true;
 
-    public override string BaseURI => PatchFile.URIProtocol;
+    public override string BaseURI => PatchPackage.URIProtocol;
 
     // TODO: Move to some general helper class
     private static string GetRedirectedUrl(string url)
@@ -54,7 +55,7 @@ public class PatchFileURILaunchHandler : URILaunchHandler
 
             if (ext.Equals(".zip", StringComparison.OrdinalIgnoreCase))
                 fileType = FileType.Zip;
-            else if (ext.Equals(PatchFile.FileExtension, StringComparison.OrdinalIgnoreCase))
+            else if (ext.Equals(PatchPackage.FileExtension, StringComparison.OrdinalIgnoreCase))
                 fileType = FileType.GamePatch;
 
             if (fileType == FileType.Unknown)
@@ -73,7 +74,7 @@ public class PatchFileURILaunchHandler : URILaunchHandler
             if (!result)
                 return;
 
-            string[] patchFiles = Directory.GetFiles(tempDir.TempPath, $"*{PatchFile.FileExtension}", SearchOption.AllDirectories);
+            string[] patchFiles = Directory.GetFiles(tempDir.TempPath, $"*{PatchPackage.FileExtension}", SearchOption.AllDirectories);
 
             if (patchFiles.Length == 0)
             {

@@ -1,6 +1,5 @@
-﻿#nullable disable
-using System.Windows;
-using System.Windows.Media;
+﻿using System.Windows;
+using MahApps.Metro.Controls;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,18 +14,19 @@ public static class DependencyObjectExtensions
     /// <typeparam name="T">The type of parent control to find</typeparam>
     /// <param name="child">The object to search from</param>
     /// <returns>The parent of the specified type, or null if none was found</returns>
-    public static T FindParent<T>(this DependencyObject child)
+    public static T? FindParent<T>(this DependencyObject child)
         where T : DependencyObject
     {
-        try
-        {
-            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+        DependencyObject? item = child.GetParentObject();
 
-            return parentObject == null ? null : parentObject is T parent ? parent : FindParent<T>(parentObject);
-        }
-        catch
+        while (item != null)
         {
-            return null;
+            if (item is T itemAsT)
+                return itemAsT;
+
+            item = item.GetParentObject();
         }
+
+        return null;
     }
 }

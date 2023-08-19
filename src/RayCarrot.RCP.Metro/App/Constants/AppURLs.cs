@@ -26,11 +26,6 @@ public static class AppURLs
     public const string UpdateManifestUrl = RCPBaseUrl + "RCP_Metro_Manifest.json";
 
     /// <summary>
-    /// The patches manifest URL
-    /// </summary>
-    public const string PatchesManifestUrl = RCPBaseUrl + "game_patches.json";
-
-    /// <summary>
     /// The app news URL
     /// </summary>
     public const string AppNewsUrl = RCPBaseUrl + "news.json";

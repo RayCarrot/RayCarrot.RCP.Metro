@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Patcher.Dialogs.Patcher.PatchItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher.Dialogs.Patcher"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance patcher:InstalledPatchViewModel}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-UPDATE: Localize -->
+    <Grid Margin="0 4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- TODO-UPDATE: Finish styling this "modern" checkbox and use it in other places in the app -->
+        <!-- Patch Toggle -->
+        <CheckBox Grid.Column="0" 
+                  VerticalAlignment="Center"
+                  Padding="0"
+                  mah:CheckBoxHelper.CheckBackgroundFillChecked="{DynamicResource MahApps.Brushes.Accent}"
+                  mah:CheckBoxHelper.CheckGlyphForegroundChecked="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                  mah:CheckBoxHelper.CheckBackgroundStrokeChecked="Transparent"
+                  IsChecked="{Binding Path=IsEnabled}"
+                  Margin="0 0 4 0" />
+
+        <!-- Thumbnail -->
+        <patcher:PatchThumbnailControl Grid.Column="1"
+                                       Width="32" Height="32"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 4 0" />
+
+        <!-- Title -->
+        <TextBlock Grid.Column="2" 
+                   VerticalAlignment="Center"
+                   FontSize="14"
+                   Text="{Binding Path=Name, Mode=OneTime}"
+                   TextWrapping="Wrap"
+                   Margin="0 0 8 0" />
+
+        <!-- Status -->
+        <StackPanel Grid.Column="3" Orientation="Horizontal">
+            <iconPacks:PackIconMaterial VerticalAlignment="Center"
+                                        Width="12"
+                                        Kind="{StaticResource RCP.Icons.Info}"
+                                        Foreground="{StaticResource RCP.Brushes.Info}"
+                                        Margin="0 0 4 0" />
+
+            <!-- TODO-UPDATE: This is currently a mock-up. Have it show text such as "Pending install", "Pending uninstall" and "Update available" -->
+            <TextBlock VerticalAlignment="Center"
+                       FontSize="10"
+                       Text="Pending install" />
+        </StackPanel>
+
+        <!-- Actions -->
+        <StackPanel Grid.Column="4"
+                    Orientation="Horizontal"
+                    Margin="15 0 0 0">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+
+            <Button ToolTip="{Resx Patcher_ExtractPatch}"
+                    d:ToolTip="{x:Null}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Foreground="{StaticResource RCP.Brushes.Info}"
+                    Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
+                    VerticalAlignment="Center"
+                    rcp:Icon.Kind="Export"
+                    rcp:Icon.Size="16"
+                    Margin="0 0 4 0"
+                    rcp:UserLevelAssist.MinUserLevel="Technical" />
+
+            <Button ToolTip="Uninstall"
+                    d:ToolTip="{x:Null}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Foreground="{StaticResource RCP.Brushes.DeleteItem}"
+                    Command="{Binding Path=UninstallCommand, Mode=OneTime}"
+                    VerticalAlignment="Center"
+                    rcp:Icon.Kind="DeleteOutline"
+                    rcp:Icon.Size="16"
+                    Margin="0 0 10 0" />
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

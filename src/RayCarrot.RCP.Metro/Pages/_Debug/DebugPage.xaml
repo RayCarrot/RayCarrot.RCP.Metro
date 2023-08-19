@@ -264,53 +264,6 @@
 
         </TabItem>
 
-        <!-- Tools -->
-
-        <TabItem rcp:Icon.Kind="Tools"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
-                 Header="Tools">
-
-            <ScrollViewer>
-                <StackPanel Margin="12 0 12 12">
-                    <i:Interaction.Behaviors>
-                        <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                    </i:Interaction.Behaviors>
-
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="Patches"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <Button Content="Generate web json"
-                                ToolTip="Generates a JSON file from the selected patch files. This JSON file is only used locally to generate the actual web files. The array in it allows the patch order and other properties to be modified."
-                                HorizontalAlignment="Left"
-                                Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                rcp:Icon.Kind="CodeJson"
-                                Command="{Binding Path=ExportWebPatchesJSONCommand, Mode=OneTime}"/>
-
-                        <Button Content="Generate web files" 
-                                ToolTip="Generates all the files to be hosted for external patches from a JSON file."
-                                HorizontalAlignment="Left"
-                                Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                rcp:Icon.Kind="DatabaseExportOutline"
-                                Command="{Binding Path=ExportWebPatchesFilesCommand, Mode=OneTime}"/>
-
-                        <Button Content="Extract library (.gpl)" 
-                                HorizontalAlignment="Left"
-                                Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                rcp:Icon.Kind="FileExportOutline"
-                                Command="{Binding Path=ExtractPatchLibraryCommand, Mode=OneTime}"/>
-
-                    </StackPanel>
-
-                </StackPanel>
-            </ScrollViewer>
-
-        </TabItem>
-
         <!-- User Interface -->
 
         <TabItem rcp:Icon.Kind="PaletteOutline"

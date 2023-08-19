@@ -8,6 +8,8 @@ using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Patcher.Dialogs.PatchCreator;
+using RayCarrot.RCP.Metro.Patcher.Dialogs.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -312,14 +314,7 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowPatcherAsync(FileSystemPath[] patchFilePaths)
     {
-        PatcherViewModel? vm = await PatcherViewModel.FromFilesAsync(patchFilePaths);
-
-        if (vm == null)
-            return;
-
-        await ShowWindowAsync(() => new PatcherDialog(vm),
-            // Only allow one patcher window per installation
-            typeGroupNames: new[] { vm.GameInstallation.InstallationId });
+        // TODO-UPDATE: Implement opening patcher from files to install
     }
 
     /// <summary>

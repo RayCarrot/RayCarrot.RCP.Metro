@@ -1,6 +1,5 @@
 ﻿using System.Windows.Input;
-using BinarySerializer;
-using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Patcher.Library;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -44,14 +43,11 @@ public class PatcherGamePanelViewModel : GamePanelViewModel, IRecipient<Modified
 
     protected override async Task LoadAsyncImpl()
     {
-        // Get applied patches
-        using Context context = new RCPContext(String.Empty);
-        PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
-
         try
         {
-            PatchLibraryFile? libraryFile = await Task.Run(() => context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath));
-            int count = libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0;
+            PatchLibrary library = new(GameInstallation);
+            PatchManifest patchManifest = await Task.Run(library.ReadPatchManifest);
+            int count = patchManifest.Patches.Values.Count(x => x.IsEnabled);
 
             if (count == 1)
                 InfoText = new ResourceLocString(nameof(Resources.GameHub_PatcherPanel_InfoSingle), count);
@@ -60,7 +56,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel, IRecipient<Modified
         }
         catch (Exception ex)
         {
-            Logger.Warn(ex, "Reading patch library");
+            Logger.Warn(ex, "Reading patch manifest");
             InfoText = String.Empty;
         }
     }

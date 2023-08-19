@@ -7,6 +7,7 @@ using BinarySerializer.Ray1.GBA;
 using BinarySerializer.Ray1.PC;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -222,18 +223,18 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     },
                 }),
 
-            new Serializers_TypeViewModel<PatchFile>(
+            new Serializers_TypeViewModel<PatchPackage>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchHeader)),
-                fileExtension: new FileExtension(PatchFile.FileExtension),
+                fileExtension: new FileExtension(PatchPackage.FileExtension),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new("Rayman Control Panel"),
                 }),
 
-            new Serializers_TypeViewModel<PatchLibraryFile>(
+            new Serializers_TypeViewModel<PatchLibraryPackage>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchLibraryHeader)),
-                fileExtension: new FileExtension(PatchLibraryFile.FileExtension),
+                fileExtension: new FileExtension(PatchLibraryPackage.FileExtension),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {

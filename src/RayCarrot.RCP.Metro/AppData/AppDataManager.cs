@@ -10,7 +10,8 @@ using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
-using RayCarrot.RCP.Metro.Patcher;
+using RayCarrot.RCP.Metro.Legacy.AppData;
+using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -688,7 +689,7 @@ public class AppDataManager
             try
             {
                 // Default to the file type association being enabled
-                PatchFile.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+                PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
             }
             catch (Exception ex)
             {
@@ -698,7 +699,7 @@ public class AppDataManager
             try
             {
                 // Default to the URI protocol association being enabled
-                PatchFile.AssociateWithURIProtocol(Data.App_ApplicationPath, true);
+                PatchPackage.AssociateWithURIProtocol(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
@@ -738,8 +739,8 @@ public class AppDataManager
             try
             {
                 // Update the patch file association now that we have a custom icon for it
-                if (PatchFile.IsAssociatedWithFileType() == true)
-                    PatchFile.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+                if (PatchPackage.IsAssociatedWithFileType() == true)
+                    PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
             }
             catch (Exception ex)
             {

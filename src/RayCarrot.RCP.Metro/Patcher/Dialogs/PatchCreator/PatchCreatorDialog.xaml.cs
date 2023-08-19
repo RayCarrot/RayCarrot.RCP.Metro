@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro.Patcher;
+﻿namespace RayCarrot.RCP.Metro.Patcher.Dialogs.PatchCreator;
 
 /// <summary>
 /// Interaction logic for PatchCreatorDialog.xaml

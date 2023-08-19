@@ -51,6 +51,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Microsoft">MicrosoftWindows</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Patcher">ArchiveOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.PatcherDownload">ArchiveArrowDownOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.PatchCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_CompleteSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
