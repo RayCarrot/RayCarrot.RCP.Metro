@@ -7,4 +7,4 @@ namespace RayCarrot.RCP.Metro.ModLoader.Library;
 /// </summary>
 /// <param name="Mods">The installed mods</param>
 public record ModManifest(
-    [JsonProperty("mods", Required = Required.Always)] Dictionary<string, ModManifestEntry> Mods);
+    [property: JsonProperty("mods", Required = Required.Always)] Dictionary<string, ModManifestEntry> Mods);

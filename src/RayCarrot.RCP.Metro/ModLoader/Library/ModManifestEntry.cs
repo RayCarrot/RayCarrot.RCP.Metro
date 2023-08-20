@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro.ModLoader.Library;
 /// <param name="IsEnabled">Indicates if the mod is currently enabled</param>
 /// <param name="Version">The currently selected mod version if it's enabled</param>
 public record ModManifestEntry(
-    [JsonProperty("id", Required = Required.Always)] string Id,
-    [JsonProperty("size")] long Size,
-    [JsonProperty("enabled")] bool IsEnabled,
-    [JsonProperty("version")] string? Version);
+    [property: JsonProperty("id", Required = Required.Always)] string Id,
+    [property: JsonProperty("size")] long Size,
+    [property: JsonProperty("enabled")] bool IsEnabled,
+    [property: JsonProperty("version")] string? Version);
