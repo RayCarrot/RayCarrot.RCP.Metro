@@ -324,8 +324,8 @@
                                   d:ItemsSource="{d:SampleData ItemCount=4}">
                         <!-- Panel templates -->
                         <ItemsControl.Resources>
-                            <DataTemplate DataType="{x:Type games:PatcherGamePanelViewModel}">
-                                <games:PatcherGamePanelControl />
+                            <DataTemplate DataType="{x:Type games:ModLoaderGamePanelViewModel}">
+                                <games:ModLoaderGamePanelControl />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type games:ArchiveGamePanelViewModel}">
                                 <games:ArchiveGamePanelControl />

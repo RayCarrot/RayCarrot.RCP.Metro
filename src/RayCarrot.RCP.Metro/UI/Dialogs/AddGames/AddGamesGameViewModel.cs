@@ -68,8 +68,6 @@ public class AddGamesGameViewModel : BaseViewModel
 
     private IEnumerable<GameFeatureViewModel> GetGameFeatures()
     {
-        // TODO-UPDATE: Show if it has downloadable patches?
-
         // Game features are specified from specific components. Since we don't have an installation yet we
         // can't build components for one. But we can register components into a builder and then access them.
         GameComponentBuilder gameComponentBuilder = GameDescriptor.RegisterComponents();

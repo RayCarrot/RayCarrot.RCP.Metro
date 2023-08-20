@@ -89,9 +89,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public virtual GameBannerAsset Banner => GameBannerAsset.Default;
 
     /// <summary>
-    /// Indicates if the game supports the game patcher
+    /// Indicates if the game supports the installing mods
     /// </summary>
-    public virtual bool AllowPatching => Structure.AllowPatching;
+    public virtual bool SupportsMods => Structure.SupportsMods;
 
     /// <summary>
     /// Indicates if the game should default to use an available game client. This is mainly

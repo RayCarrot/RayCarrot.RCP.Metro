@@ -689,7 +689,7 @@ public class AppDataManager
             try
             {
                 // Default to the file type association being enabled
-                PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+                PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, true);
             }
             catch (Exception ex)
             {
@@ -711,7 +711,7 @@ public class AppDataManager
         {
             try
             {
-                // Delete old R2 DRM removal utility backup files since it's now a patch
+                // Delete old R2 DRM removal utility backup files since it's now a mod
                 Services.File.DeleteDirectory(AppFilePaths.UtilitiesBaseDir + "RemoveDRM");
             }
             catch (Exception ex)
@@ -740,7 +740,7 @@ public class AppDataManager
             {
                 // Update the patch file association now that we have a custom icon for it
                 if (PatchPackage.IsAssociatedWithFileType() == true)
-                    PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+                    PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, true);
             }
             catch (Exception ex)
             {

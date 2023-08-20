@@ -9,7 +9,7 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public override bool AllowPatching => true;
+    public override bool SupportsMods => true;
 
     /// <summary>
     /// The paths defined for the game installation. Note that these aren't

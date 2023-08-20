@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader.ModLoaderDownloadPageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
+             mc:Ignorable="d"
+             d:DesignWidth="900" d:DesignHeight="600"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DataContext="{d:DesignInstance modLoader:ModLoaderViewModel}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-UPDATE: This is currently just a mockup for downloading mods from different supported sources -->
+    <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
+                <Image Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png" 
+                       Width="32" 
+                       Margin="0 0 8 0"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+                <TextBlock Text="Rayman Control Panel" 
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="GameBanana.png" 
+                       Width="32" 
+                       Margin="0 0 8 0"/>
+                <TextBlock Text="GameBanana" 
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </rcp:Card>
+</UserControl>

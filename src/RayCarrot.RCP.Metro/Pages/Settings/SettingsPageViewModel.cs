@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.RCP.Metro.Patcher;
 using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Settings;
@@ -256,7 +255,7 @@ public class SettingsPageViewModel : BasePageViewModel
     {
         try
         {
-            PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, AssociatePatchFileType);
+            PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, AssociatePatchFileType);
         }
         catch (Exception ex)
         {

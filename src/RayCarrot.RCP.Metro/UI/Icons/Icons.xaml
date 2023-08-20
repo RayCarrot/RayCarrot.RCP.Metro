@@ -20,7 +20,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_ArchiveExplorer">FolderCogOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_Patcher">ArchiveCogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_ModLoader">ArchiveCogOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_GameClient">FileCogOutline</iconPacks:PackIconMaterialKind>
     
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClient">ApplicationOutline</iconPacks:PackIconMaterialKind>
@@ -50,9 +50,9 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Steam">Steam</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Microsoft">MicrosoftWindows</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Patcher">ArchiveOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.PatcherDownload">ArchiveArrowDownOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.PatchCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModLoader">ArchiveOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModLoaderDownload">ArchiveArrowDownOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_CompleteSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
@@ -102,9 +102,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Archive" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Patcher" 
-                       IconKind="{StaticResource RCP.Icons.Patcher}" 
-                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_ModLoader" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}" 
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Progression" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
@@ -138,12 +138,12 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_ArchiveCreator" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Window_Patcher" 
-                       IconKind="{StaticResource RCP.Icons.Patcher}"
-                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Window_PatchCreator" 
-                       IconKind="{StaticResource RCP.Icons.PatchCreator}"
-                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_ModLoader" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}"
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_ModCreator" 
+                       IconKind="{StaticResource RCP.Icons.ModCreator}"
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameOptions" 
                        IconKind="{StaticResource RCP.Icons.Settings}"
                        IconColor="{StaticResource RCP.Brushes.Settings}" />

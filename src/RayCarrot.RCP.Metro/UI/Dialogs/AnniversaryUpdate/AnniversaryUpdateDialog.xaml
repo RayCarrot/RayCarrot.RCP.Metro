@@ -111,6 +111,7 @@
                             </Grid>
                         </local:Card>
                         
+                        <!-- TODO-UPDATE: Update this -->
                         <local:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
                                     Margin="{StaticResource RCP.Thicknesses.Card}">
                             <Grid>
@@ -124,7 +125,7 @@
                                             VerticalAlignment="Center">
 
                                     <TextBlock Text="{Resx AnniversaryUpdate_PatcherHeader}"
-                                               Foreground="{StaticResource RCP.Brushes.Patcher}"
+                                               Foreground="{StaticResource RCP.Brushes.ModLoader}"
                                                Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
                                                Margin="0 0 0 4" />
 

@@ -9,6 +9,7 @@ public enum AppNewsIconAsset
     [AssetFileName("Rayman.png")] 
     Rayman,
 
+    // TODO-UPDATE: Keep or remove?
     [AssetFileName("Patcher.png")] 
     Patcher,
 }

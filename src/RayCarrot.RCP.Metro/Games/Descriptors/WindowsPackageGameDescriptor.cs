@@ -17,7 +17,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     public static bool SupportsWinRT => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 
     public override GamePlatform Platform => GamePlatform.WindowsPackage;
-    public override bool AllowPatching => false;
+    public override bool SupportsMods => false;
 
     public abstract string PackageName { get; }
     public abstract string FullPackageName { get; }

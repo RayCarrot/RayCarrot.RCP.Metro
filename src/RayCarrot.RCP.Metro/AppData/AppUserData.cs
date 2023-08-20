@@ -89,8 +89,8 @@ public partial class AppUserData : BaseViewModel
         Binary_IsSerializationLogEnabled = false;
         Binary_BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
 
-        // Patcher
-        Patcher_LoadExternalPatches = true;
+        // Mod Loader
+        ModLoader_LoadExternalMods = true;
     }
 
     /// <summary>
@@ -423,12 +423,12 @@ public partial class AppUserData : BaseViewModel
 
     #endregion
 
-    #region Patcher
+    #region Mod Loader
 
     /// <summary>
-    /// Indicates if external patches should be loaded in the patcher
+    /// Indicates if external mods should be loaded in the mod loader
     /// </summary>
-    public bool Patcher_LoadExternalPatches { get; set; }
+    public bool ModLoader_LoadExternalMods { get; set; }
 
     #endregion
 }

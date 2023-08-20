@@ -12,7 +12,7 @@ public enum GenericIconKind
     GameAction_Microsoft,
 
     GamePanel_Archive,
-    GamePanel_Patcher,
+    GamePanel_ModLoader,
     GamePanel_Progression,
 
     GameAdd_Locate,
@@ -26,8 +26,8 @@ public enum GenericIconKind
 
     Window_ArchiveExplorer,
     Window_ArchiveCreator,
-    Window_Patcher,
-    Window_PatchCreator,
+    Window_ModLoader,
+    Window_ModCreator,
     Window_GameOptions,
     Window_Installer,
     Window_Downloader,

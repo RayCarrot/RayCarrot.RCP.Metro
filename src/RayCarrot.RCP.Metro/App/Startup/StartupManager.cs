@@ -8,8 +8,6 @@ using MahApps.Metro.Controls;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Pages.Games;
-using RayCarrot.RCP.Metro.Patcher;
 using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
@@ -240,7 +238,7 @@ public class StartupManager
         {
             try
             {
-                PatchPackage.AssociateWithFileType(assemblyPath, Files.GamePatch, AppFilePaths.GamePatchIconPath, true);
+                PatchPackage.AssociateWithFileType(assemblyPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, true);
             }
             catch (Exception ex)
             {

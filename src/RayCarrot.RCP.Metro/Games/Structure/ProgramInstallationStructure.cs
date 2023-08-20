@@ -3,9 +3,9 @@
 public abstract class ProgramInstallationStructure
 {
     /// <summary>
-    /// Indicates if the structure allows the game to be patched using the game patcher
+    /// Indicates if the structure allows mods to be installed for the game
     /// </summary>
-    public abstract bool AllowPatching { get; }
+    public abstract bool SupportsMods { get; }
 
     /// <summary>
     /// Indicates if the location has a valid installation structure

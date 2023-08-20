@@ -496,11 +496,12 @@
 
         </TabItem>
 
-        <!-- Patcher -->
+        <!-- Mod Loader -->
 
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings_Patcher}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Patcher}"
-                 Header="{Resx Patcher_Title}">
+        <!-- TODO-UPDATE: Localize -->
+        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings_ModLoader}"
+                 rcp:Icon.Brush="{StaticResource RCP.Brushes.ModLoader}"
+                 Header="Mod Loader">
 
             <ScrollViewer>
                 <StackPanel Margin="12 0 12 12">
@@ -508,14 +509,15 @@
                         <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
-                    <!-- Patcher -->
+                    <!-- Mod Loader -->
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
                             <rcp:UnifiedMarginBehavior Margin="0 2" />
                         </i:Interaction.Behaviors>
 
-                        <TextBlock Text="{Resx Patcher_Title}"
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Text="Mod Loader"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
@@ -523,9 +525,10 @@
                                 <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
-                            <CheckBox Content="{Resx Settings_PatcherShowExternal}"
-                                      ToolTip="{Resx Settings_PatcherShowExternalInfo}"
-                                      IsChecked="{Binding Path=Data.Patcher_LoadExternalPatches}" />
+                            <!-- TODO-UPDATE: Localize and rewrite? -->
+                            <CheckBox Content="Load downloadable mods"
+                                      ToolTip="If enabled then the Mod Loader will load and show a list of external mods available for download or update"
+                                      IsChecked="{Binding Path=Data.ModLoader_LoadExternalMods}" />
 
                         </StackPanel>
 
@@ -533,6 +536,7 @@
 
                     <!-- File Associations -->
 
+                    <!-- TODO-UPDATE: Update or remove -->
                     <StackPanel>
                         <i:Interaction.Behaviors>
                             <rcp:UnifiedMarginBehavior Margin="0 2" />

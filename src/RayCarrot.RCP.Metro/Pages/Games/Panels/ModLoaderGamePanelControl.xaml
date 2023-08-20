@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Games.ModLoaderGamePanelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             mc:Ignorable="d" 
+             d:DesignWidth="200" d:DesignHeight="135"
+             d:DataContext="{d:DesignInstance games:ModLoaderGamePanelViewModel}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Info -->
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Path=InfoText.Value}"
+                   d:Text="X mods applied"
+                   VerticalAlignment="Center" />
+
+        <WrapPanel Grid.Row="1"
+                   Orientation="Horizontal">
+
+            <!-- Open -->
+            <!-- TODO-UPDATE: Localize -->
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
+                    Command="{Binding Path=OpenModLoaderCommand, Mode=OneTime}"
+                    Background="{DynamicResource RCP.Brushes.FlatButton.ModLoader}"
+                    Content="Manage mods"
+                    Margin="0 0 8 0" />
+
+            <!-- Create -->
+            <!-- TODO-UPDATE: Localize -->
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
+                    Command="{Binding Path=OpenModCreatorCommand, Mode=OneTime}"
+                    Background="{DynamicResource RCP.Brushes.FlatButton.ModLoader}"
+                    Content="Create mod" />
+
+        </WrapPanel>
+
+    </Grid>
+</UserControl>

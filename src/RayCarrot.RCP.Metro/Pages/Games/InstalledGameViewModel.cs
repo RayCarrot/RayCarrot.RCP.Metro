@@ -5,7 +5,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.Structure;
-using RayCarrot.RCP.Metro.Patcher.Library;
+using RayCarrot.RCP.Metro.ModLoader.Library;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -126,9 +126,9 @@ public class InstalledGameViewModel : BaseViewModel
 
         GamePanels.Clear();
 
-        // Patcher
-        if (GameDescriptor.AllowPatching)
-            GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
+        // Mod Loader
+        if (GameDescriptor.SupportsMods)
+            GamePanels.Add(new ModLoaderGamePanelViewModel(GameInstallation));
 
         // Archive Explorer
         foreach (ArchiveComponent archiveComponent in GameInstallation.GetComponents<ArchiveComponent>())
@@ -395,28 +395,29 @@ public class InstalledGameViewModel : BaseViewModel
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(CanUninstall ? Resources.RemoveInstalledGameQuestion : Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader, MessageType.Question, true))
             return;
 
-        // Check if there are applied patches
-        if (GameDescriptor.AllowPatching)
+        // Check if there are applied mods
+        if (GameDescriptor.SupportsMods)
         {
-            // Get applied patches
-            PatchManifest? patchManifest = null;
+            // Get applied mods
+            ModManifest? modManifest = null;
 
             try
             {
-                PatchLibrary library = new(GameInstallation);
-                patchManifest = library.ReadPatchManifest();
+                ModLibrary library = new(GameInstallation);
+                modManifest = library.ReadModManifest();
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Reading patch manifest");
+                Logger.Warn(ex, "Reading mod manifest");
             }
 
-            int appliedPatchesCount = patchManifest?.Patches.Values.Count(x => x.IsEnabled) ?? 0;
+            int appliedModsCount = modManifest?.Mods.Values.Count(x => x.IsEnabled) ?? 0;
 
-            // Warn about applied patches, if any
-            if (appliedPatchesCount > 0)
+            // Warn about applied mods, if any
+            if (appliedModsCount > 0)
             {
-                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, appliedPatchesCount), 
+                // TODO-UPDATE: Localize
+                if (!await Services.MessageUI.DisplayMessageAsync(String.Format("This game has {0} applied mods. Removing the game from the program won't remove the applied mods. You can add the game back at any time to change which mods are applied. Continue?", appliedModsCount), 
                         MessageType.Warning, true)) 
                     return;
             }

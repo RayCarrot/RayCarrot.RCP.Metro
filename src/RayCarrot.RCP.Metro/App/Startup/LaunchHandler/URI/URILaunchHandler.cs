@@ -4,7 +4,7 @@ public abstract class URILaunchHandler : LaunchArgHandler
 {
     public static URILaunchHandler[] Handlers => new URILaunchHandler[]
     {
-        new PatchFileURILaunchHandler(),
+        new LegacyPatchFileURILaunchHandler(),
     };
 
     public static URILaunchHandler? GetHandler(string uri) => Handlers.FirstOrDefault(x => x.IsValid(uri));

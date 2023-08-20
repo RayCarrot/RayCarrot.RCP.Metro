@@ -7,9 +7,9 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
-using RayCarrot.RCP.Metro.Patcher;
-using RayCarrot.RCP.Metro.Patcher.Dialogs.PatchCreator;
-using RayCarrot.RCP.Metro.Patcher.Dialogs.Patcher;
+using RayCarrot.RCP.Metro.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
+using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -298,32 +298,32 @@ public class AppUIManager
         await ShowWindowAsync(() => new ArchiveCreatorDialog(new ArchiveCreatorDialogViewModel(manager)));
 
     /// <summary>
-    /// Shows a new instance of the Patcher from a game installation
+    /// Shows a new instance of the Mod Loader from a game installation
     /// </summary>
     /// <param name="gameInstallation">The game installation</param>
     /// <returns>The task</returns>
-    public async Task ShowPatcherAsync(GameInstallation gameInstallation) =>
-        await ShowWindowAsync(() => new PatcherDialog(new PatcherViewModel(gameInstallation)),
-            // Only allow one patcher window per installation
+    public async Task ShowModLoaderAsync(GameInstallation gameInstallation) =>
+        await ShowWindowAsync(() => new ModLoaderDialog(new ModLoaderViewModel(gameInstallation)),
+            // Only allow one Mod Loader window per installation
             typeGroupNames: new[] { gameInstallation.InstallationId });
 
     /// <summary>
-    /// Shows a new instance of the Patcher from patch file paths
+    /// Shows a new instance of the Mod Loader from mod file paths
     /// </summary>
-    /// <param name="patchFilePaths">The patch file paths</param>
+    /// <param name="modFilePaths">The mod file paths</param>
     /// <returns>The task</returns>
-    public async Task ShowPatcherAsync(FileSystemPath[] patchFilePaths)
+    public async Task ShowModLoaderAsync(FileSystemPath[] modFilePaths)
     {
         // TODO-UPDATE: Implement opening patcher from files to install
     }
 
     /// <summary>
-    /// Shows a new instance of the Patch Creator
+    /// Shows a new instance of the Mod Creator
     /// </summary>
-    /// <param name="gameTargets">The game installations the patch should be made for</param>
+    /// <param name="gameTargets">The game installations the mod should be created for</param>
     /// <returns>The task</returns>
-    public async Task ShowPatchCreatorAsync(params GameInstallation[] gameTargets) => 
-        await ShowWindowAsync(() => new PatchCreatorDialog());
+    public async Task ShowModCreatorAsync(params GameInstallation[] gameTargets) => 
+        await ShowWindowAsync(() => new ModCreatorDialog());
 
     /// <summary>
     /// Shows a new instance of the add games dialog
