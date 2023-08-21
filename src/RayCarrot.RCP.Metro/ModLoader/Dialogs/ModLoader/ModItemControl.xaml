@@ -23,11 +23,9 @@
         <!-- TODO-UPDATE: Finish styling this "modern" checkbox and use it in other places in the app -->
         <!-- Mod Toggle -->
         <CheckBox Grid.Column="0" 
+                  Style="{StaticResource RCP.Styles.CheckBox.Default}"
                   VerticalAlignment="Center"
                   Padding="0"
-                  mah:CheckBoxHelper.CheckBackgroundFillChecked="{DynamicResource MahApps.Brushes.Accent}"
-                  mah:CheckBoxHelper.CheckGlyphForegroundChecked="{DynamicResource MahApps.Brushes.ThemeBackground}"
-                  mah:CheckBoxHelper.CheckBackgroundStrokeChecked="Transparent"
                   IsChecked="{Binding Path=IsEnabled}"
                   Margin="0 0 4 0" />
 

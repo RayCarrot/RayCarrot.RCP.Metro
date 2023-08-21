@@ -1,11 +1,56 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Default checkbox -->
 
     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
         <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <!-- Flat -->
+
+    <Style x:Key="RCP.Styles.CheckBox.Default" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="mah:CheckBoxHelper.CheckStrokeThickness" Value="1" />
+        <Setter Property="mah:CheckBoxHelper.CheckCornerRadius" Value="4" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillChecked" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <!--<Setter Property="mah:CheckBoxHelper.CheckBackgroundFillCheckedDisabled" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillCheckedMouseOver" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillCheckedPressed" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillIndeterminate" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <!--<Setter Property="mah:CheckBoxHelper.CheckBackgroundFillIndeterminateDisabled" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillIndeterminateMouseOver" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillIndeterminatePressed" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillUnchecked" Value="Transparent" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillUncheckedDisabled" Value="Transparent" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillUncheckedMouseOver" Value="Transparent" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundFillUncheckedPressed" Value="Transparent" />
+
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeChecked" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <!--<Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeCheckedDisabled" Value="Transparent" />-->
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeCheckedMouseOver" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeCheckedPressed" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeIndeterminate" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <!--<Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeIndeterminateDisabled" Value="Transparent" />-->
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeIndeterminateMouseOver" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeIndeterminatePressed" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeUnchecked" Value="{DynamicResource MahApps.Brushes.CheckBox}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeUncheckedDisabled" Value="{DynamicResource MahApps.Brushes.CheckBox}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeUncheckedMouseOver" Value="{DynamicResource MahApps.Brushes.CheckBox.MouseOver}" />
+        <Setter Property="mah:CheckBoxHelper.CheckBackgroundStrokeUncheckedPressed" Value="{DynamicResource MahApps.Brushes.CheckBox.MouseOver}" />
+
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundChecked" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundCheckedDisabled" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundCheckedMouseOver" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundCheckedPressed" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundIndeterminate" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundIndeterminateDisabled" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundIndeterminateMouseOver" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundIndeterminatePressed" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundUnchecked" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundUncheckedDisabled" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundUncheckedMouseOver" Value="{DynamicResource RCP.Brushes.Card.Background}" />
+        <Setter Property="mah:CheckBoxHelper.CheckGlyphForegroundUncheckedPressed" Value="{DynamicResource RCP.Brushes.Card.Background}" />
     </Style>
 
 </ResourceDictionary>

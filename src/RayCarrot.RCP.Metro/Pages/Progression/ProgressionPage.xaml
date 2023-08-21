@@ -17,10 +17,11 @@
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-            <mah:ToggleSwitch Content="{Resx Progression_GroupGames}"
-                              IsOn="{Binding Path=GroupGames}"
-                              Margin="6"
-                              Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
+            <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                      Content="{Resx Progression_GroupGames}"
+                      IsChecked="{Binding Path=GroupGames}"
+                      Margin="6"
+                      Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
 
             <Separator />
 
@@ -32,11 +33,12 @@
 
             <Separator />
 
-            <mah:ToggleSwitch Content="{Resx Backup_Compress}"
-                              ToolTip="{Resx Backup_CompressInfo}"
-                              IsOn="{Binding Path=Data.Backup_CompressBackups}"
-                              Margin="6"
-                              Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
+            <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                      Content="{Resx Backup_Compress}"
+                      ToolTip="{Resx Backup_CompressInfo}"
+                      IsChecked="{Binding Path=Data.Backup_CompressBackups}"
+                      Margin="6"
+                      Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
 
             <Separator />
 

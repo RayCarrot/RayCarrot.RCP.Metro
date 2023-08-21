@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro.Games.Options"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:Win32GameOptionsViewModel}">
     <!-- TODO-UPDATE: Localize -->
-    <mah:ToggleSwitch Content="Run as admin"
-                      Margin="6"
-                      Background="{DynamicResource RCP.Brushes.Card.Popup}"
-                      IsOn="{Binding Path=RunAsAdmin}" />
+    <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+              Content="Run as admin"
+              Margin="6"
+              Background="{DynamicResource RCP.Brushes.Card.Popup}"
+              IsChecked="{Binding Path=RunAsAdmin}" />
 </UserControl>

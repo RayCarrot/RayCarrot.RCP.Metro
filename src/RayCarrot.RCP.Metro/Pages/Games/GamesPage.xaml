@@ -18,10 +18,11 @@
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-            <mah:ToggleSwitch Content="{Resx Home_ShowRecentGames}"
-                              Margin="6"
-                              Background="{DynamicResource RCP.Brushes.Card.Popup}"
-                              IsOn="{Binding Path=ShowRecentSetting}"/>
+            <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                      Content="{Resx Home_ShowRecentGames}"
+                      Margin="6"
+                      Background="{DynamicResource RCP.Brushes.Card.Popup}"
+                      IsChecked="{Binding Path=ShowRecentSetting}"/>
 
             <Separator />
 

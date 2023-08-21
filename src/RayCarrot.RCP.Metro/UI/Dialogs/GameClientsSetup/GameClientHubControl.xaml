@@ -126,7 +126,8 @@
                       d:ItemsSource="{d:SampleData ItemCount=3}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox HorizontalAlignment="Stretch"
+                    <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                              HorizontalAlignment="Stretch"
                               IsChecked="{Binding Path=UsesGameClient}">
                         <local:GameTitle Margin="0 0 0 8" 
                                          GameIconSize="Smallest"
