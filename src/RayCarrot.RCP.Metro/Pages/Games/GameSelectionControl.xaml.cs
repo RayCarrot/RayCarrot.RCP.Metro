@@ -113,10 +113,12 @@ public partial class GameSelectionControl : UserControl
 
     private void GameGroupRadioButton_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (sender is RadioButton radioButton)
+        // Allow game groups to be selected on mouse down rather than waiting for mouse up
+        if (sender is RadioButton radioButton && 
+            // Make sure we didn't click on a game directly
+            e.OriginalSource is DependencyObject d && d.FindParent<ListBoxItem>() == null)
         {
             radioButton.IsChecked = true;
-            e.Handled = true;
         }
     }
 }
