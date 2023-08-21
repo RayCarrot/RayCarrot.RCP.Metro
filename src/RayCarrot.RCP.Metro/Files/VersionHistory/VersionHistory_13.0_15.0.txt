@@ -1,4 +1,4 @@
-﻿-----   Version 14.0.0 - August ??, 2023   -----
+﻿-----   Version 14.0.0 - TBA, 2023   -----
 • Multiple installations of the same game can now be added
 • Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
@@ -82,6 +82,7 @@ Other changes:
 	• Fixed a bug where closing the manual download dialog might show an error
 	• Fixed a bug where progress would sometimes be shown on the taskbar even though the setting for it was unchecked
 	• Fixed a bug where certain parts of the app wouldn't use the specified language
+	• Fixed a bug where importing files from a folder wouldn't work for IPK archives
 
 
 -----   Version 13.4.5 - January 23, 2023   -----

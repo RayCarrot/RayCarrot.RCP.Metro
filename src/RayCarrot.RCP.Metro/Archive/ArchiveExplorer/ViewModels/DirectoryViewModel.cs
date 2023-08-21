@@ -365,7 +365,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 fileIndex++;
 
                                 // Get the file directory, relative to the selected directory
-                                FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
+                                FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Archive.Manager.PathSeparatorCharacter);
 
                                 if (!fileDir.DirectoryExists)
                                     continue;
