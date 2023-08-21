@@ -20,11 +20,11 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- TODO-UPDATE: Finish styling this "modern" checkbox and use it in other places in the app -->
         <!-- Mod Toggle -->
         <CheckBox Grid.Column="0" 
                   Style="{StaticResource RCP.Styles.CheckBox.Default}"
                   VerticalAlignment="Center"
+                  Visibility="{Binding Path=CanModify, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
                   Padding="0"
                   IsChecked="{Binding Path=IsEnabled}"
                   Margin="0 0 4 0" />
@@ -44,17 +44,19 @@
                    Margin="0 0 8 0" />
 
         <!-- Status -->
-        <StackPanel Grid.Column="3" Orientation="Horizontal">
+        <StackPanel Grid.Column="3" 
+                    Orientation="Horizontal"
+                    Visibility="{Binding Path=StateMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
             <iconPacks:PackIconMaterial VerticalAlignment="Center"
                                         Width="12"
                                         Kind="{StaticResource RCP.Icons.Info}"
                                         Foreground="{StaticResource RCP.Brushes.Info}"
                                         Margin="0 0 4 0" />
 
-            <!-- TODO-UPDATE: This is currently a mock-up. Have it show text such as "Pending install", "Pending uninstall" and "Update available" -->
             <TextBlock VerticalAlignment="Center"
                        FontSize="10"
-                       Text="Pending install" />
+                       DataContext="{Binding Path=StateMessage}"
+                       Text="{Binding Path=Value}" />
         </StackPanel>
 
         <!-- Actions -->
@@ -65,11 +67,14 @@
                 <Style TargetType="{x:Type StackPanel}">
                     <Setter Property="Visibility" Value="Hidden" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                        <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
                             <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
                             <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=CanModify}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

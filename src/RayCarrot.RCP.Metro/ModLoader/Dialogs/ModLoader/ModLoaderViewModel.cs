@@ -15,7 +15,7 @@ public class ModLoaderViewModel : BaseViewModel
         GameInstallation = gameInstallation;
 
         LoaderViewModel = new LoaderViewModel();
-        InstalledMods = new ObservableCollection<InstalledModViewModel>();
+        Mods = new ObservableCollection<InstalledModViewModel>();
 
         ModProcessor = new ModProcessor(GameInstallation);
         Library = new ModLibrary(GameInstallation);
@@ -44,8 +44,8 @@ public class ModLoaderViewModel : BaseViewModel
     public ModLibrary Library { get; }
     public LoaderViewModel LoaderViewModel { get; }
     
-    public ObservableCollection<InstalledModViewModel> InstalledMods { get; }
-    public InstalledModViewModel? SelectedInstalledMod { get; set; }
+    public ObservableCollection<InstalledModViewModel> Mods { get; }
+    public InstalledModViewModel? SelectedMod { get; set; }
 
     public bool HasChanges { get; set; }
 
@@ -60,7 +60,7 @@ public class ModLoaderViewModel : BaseViewModel
         try
         {
             // Clear any previously loaded mods
-            InstalledMods.Clear();
+            Mods.Clear();
 
             ModManifest modManifest = Library.ReadModManifest();
 
@@ -92,7 +92,7 @@ public class ModLoaderViewModel : BaseViewModel
 
                 // Create and add view model
                 InstalledModViewModel vm = new(this, LoaderViewModel, mod, modEntry);
-                InstalledMods.Add(vm);
+                Mods.Add(vm);
 
                 // Load thumbnail
                 vm.LoadThumbnail();
@@ -125,7 +125,7 @@ public class ModLoaderViewModel : BaseViewModel
     {
         // Reset properties
         HasChanges = false;
-        SelectedInstalledMod = null;
+        SelectedMod = null;
 
         try
         {
@@ -165,12 +165,6 @@ public class ModLoaderViewModel : BaseViewModel
         throw new NotImplementedException();
     }
 
-    public async Task UninstallModAsync(InstalledModViewModel modViewModel)
-    {
-        throw new NotImplementedException();
-        Logger.Info("Uninstalled mod '{0}' with version {1} and ID {2}", modViewModel.Name, modViewModel.Metadata.Version, modViewModel.Metadata.Id);
-    }
-
     public async Task<bool> ApplyAsync()
     {
         // TODO-UPDATE: Localize
@@ -182,8 +176,40 @@ public class ModLoaderViewModel : BaseViewModel
             {
                 await Task.Run(async () =>
                 {
-                    // TODO-UPDATE: Update library
+                    Dictionary<string, ModManifestEntry> installedMods = new();
                     
+                    // Process every mod
+                    foreach (InstalledModViewModel modViewModel in Mods)
+                    {
+                        string id = modViewModel.Metadata.Id;
+
+                        switch (modViewModel.State)
+                        {
+                            // Already installed mod
+                            case InstalledModViewModel.InstallState.Installed:
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.Size, modViewModel.IsEnabled, modViewModel.Version));
+                                break;
+                            
+                            // Install new mod
+                            case InstalledModViewModel.InstallState.PendingInstall:
+                                Library.InstallMod(modViewModel.InstalledMod.ModDirectoryPath, id, false);
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.Size, modViewModel.IsEnabled, modViewModel.Version));
+                                break;
+                            
+                            // Uninstall
+                            case InstalledModViewModel.InstallState.PendingUninstall:
+                                Library.UninstallMod(modViewModel.Metadata.Id);
+                                break;
+
+                            default:
+                                throw new InvalidOperationException($"Mod state {modViewModel.State} is invalid");
+                        }
+                    }
+
+                    // Update the mod manifest
+                    Library.WriteModManifest(new ModManifest(installedMods));
+
+                    // Apply the mods
                     bool success = await ModProcessor.ApplyAsync(Library, state.SetProgress);
 
                     Services.Messenger.Send(new ModifiedGameModsMessage(GameInstallation));

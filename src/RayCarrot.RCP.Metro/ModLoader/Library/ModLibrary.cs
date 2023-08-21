@@ -96,17 +96,17 @@ public class ModLibrary
         }
     }
 
-    public ModManifestEntry InstallMod(FileSystemPath modFile, string modId)
+    // TODO: Install from already extracted folder
+    public void InstallMod(FileSystemPath sourcePath, string modId, bool keepSourceFiles)
     {
         CreateLibrary();
 
         FileSystemPath modOutputPath = GetInstalledModPath(modId);
 
-        throw new NotImplementedException("Not implemented installing mod from file");
-
-        long size = (long)modOutputPath.GetSize().Bytes;
-
-        return new ModManifestEntry(modId, size, false, InstalledMod.DefaultVersion);
+        if (keepSourceFiles)
+            Services.File.CopyDirectory(sourcePath, modOutputPath, true, true);
+        else
+            Services.File.MoveDirectory(sourcePath, modOutputPath, true, true);
     }
 
     public void UninstallMod(string modId)

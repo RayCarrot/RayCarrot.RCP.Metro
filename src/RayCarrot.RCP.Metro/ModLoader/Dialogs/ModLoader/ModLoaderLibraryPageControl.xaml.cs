@@ -29,7 +29,7 @@ public partial class ModLoaderLibraryPageControl : UserControl
 
         if (r.VisualHit.GetType() != typeof(ListBoxItem))
         {
-            ViewModel.SelectedInstalledMod = null;
+            ViewModel.SelectedMod = null;
         }
     }
 

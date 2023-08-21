@@ -51,9 +51,9 @@
                     </StackPanel>
 
                     <ListBox Grid.Row="1"
-                             ItemsSource="{Binding Path=InstalledMods, Mode=OneTime}"
+                             ItemsSource="{Binding Path=Mods, Mode=OneTime}"
                              d:ItemsSource="{d:SampleData ItemCount=3}"
-                             SelectedItem="{Binding Path=SelectedInstalledMod}"
+                             SelectedItem="{Binding Path=SelectedMod}"
                              d:SelectedIndex="1"
                              VerticalAlignment="Top"
                              Background="Transparent"
@@ -102,7 +102,7 @@
                 <!-- TODO-UPDATE: Show something here when no mod is selected? -->
                 <!-- Selected mod -->
                 <Grid Grid.Column="2"
-                      DataContext="{Binding Path=SelectedInstalledMod}"
+                      DataContext="{Binding Path=SelectedMod}"
                       Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                       d:Visibility="Visible">
                     <Grid.RowDefinitions>

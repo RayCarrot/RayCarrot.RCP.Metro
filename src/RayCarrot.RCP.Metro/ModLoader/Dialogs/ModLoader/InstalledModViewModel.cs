@@ -18,6 +18,7 @@ public class InstalledModViewModel : BaseViewModel
         _isEnabled = modEntry.IsEnabled;
         // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
         Version = modEntry.Version ?? InstalledMod.DefaultVersion;
+        Size = modEntry.Size;
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
@@ -35,7 +36,7 @@ public class InstalledModViewModel : BaseViewModel
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
-        UninstallCommand = new AsyncRelayCommand(async () => await ModLoaderViewModel.UninstallModAsync(this));
+        UninstallCommand = new RelayCommand(UninstallMod);
         OpenWebsiteCommand = new RelayCommand(OpenWebsite);
     }
 
@@ -89,6 +90,28 @@ public class InstalledModViewModel : BaseViewModel
         }
     }
     public string Version { get; set; } // TODO-UPDATE: Allow changing from UI
+    public long Size { get; }
+
+    public InstallState State { get; set; }
+    public LocalizedString? StateMessage { get; set; }
+    public bool CanModify => State != InstallState.PendingUninstall;
+
+    #endregion
+
+    #region Private Methods
+
+    private void SetState(InstallState state)
+    {
+        State = state;
+        // TODO-UPDATE: Localize
+        StateMessage = state switch
+        {
+            InstallState.Installed => null,
+            InstallState.PendingInstall => "Pending install",
+            InstallState.PendingUninstall => "Pending uninstall",
+            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
+        };
+    }
 
     #endregion
 
@@ -129,6 +152,16 @@ public class InstalledModViewModel : BaseViewModel
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The mod contents were successfully extracted");
     }
 
+    public void UninstallMod()
+    {
+        SetState(InstallState.PendingUninstall);
+
+        ModLoaderViewModel.RefreshModifiedFiles();
+        ModLoaderViewModel.HasChanges = true;
+
+        Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", Name, Metadata.Version, Metadata.Id);
+    }
+
     public void LoadThumbnail()
     {
         Logger.Trace("Loading thumbnail for mod with ID {0}", Metadata.Id);
@@ -150,6 +183,17 @@ public class InstalledModViewModel : BaseViewModel
     {
         if (Metadata.Website != null)
             Services.App.OpenUrl(Metadata.Website);
+    }
+
+    #endregion
+
+    #region Enums
+
+    public enum InstallState
+    {
+        Installed,
+        PendingInstall,
+        PendingUninstall,
     }
 
     #endregion
