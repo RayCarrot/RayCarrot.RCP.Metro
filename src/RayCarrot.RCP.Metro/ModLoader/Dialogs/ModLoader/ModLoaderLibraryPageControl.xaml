@@ -50,6 +50,10 @@
 
                     </StackPanel>
 
+                    <Viewbox Grid.Row="1" Visibility="{Binding Path=Mods.Count, Converter={rcp:InvertedIntToVisibilityConverter}}">
+                        <TextBlock Text="No mods installed" TextAlignment="Center" Margin="30" Opacity="0.5" />
+                    </Viewbox>
+
                     <ListBox Grid.Row="1"
                              ItemsSource="{Binding Path=Mods, Mode=OneTime}"
                              d:ItemsSource="{d:SampleData ItemCount=3}"
