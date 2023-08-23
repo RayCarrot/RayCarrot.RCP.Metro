@@ -41,6 +41,7 @@
                                     <Button x:Name="PART_CancelButton"
                                             HorizontalAlignment="Center"
                                             Content="{Resx Cancel}"
+                                            Style="{StaticResource RCP.Styles.Button.Default}"
                                             Visibility="{TemplateBinding CanCancel, Converter={local:BooleanToVisibilityConverter}}" />
 
                                 </StackPanel>
