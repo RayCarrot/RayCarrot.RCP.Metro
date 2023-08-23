@@ -19,7 +19,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
         ModMetadata modMetadata = new(
             Id: patch.Metadata.ID,
             Games: patch.Metadata.GameIds,
-            Format: InstalledMod.LatestFormatVersion,
+            Format: Mod.LatestFormatVersion,
             Name: patch.Metadata.Name,
             Description: patch.Metadata.Description,
             Author: patch.Metadata.Author,
@@ -27,7 +27,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
             Version: new ModVersion(patch.Metadata.Version_Major, patch.Metadata.Version_Minor, patch.Metadata.Version_Revision),
             Changelog: patch.Metadata.ChangelogEntries.ToArray(x => 
                 new ModChangelogEntry(new ModVersion(x.Version_Major, x.Version_Minor, x.Version_Revision), x.Date, x.Description)));
-        JsonHelpers.SerializeToFile(modMetadata, outputPath + InstalledMod.MetadataFileName);
+        JsonHelpers.SerializeToFile(modMetadata, outputPath + Mod.MetadataFileName);
 
         // Get every used archive
         ModArchiveInfo[] archives = patch.AddedFiles.
@@ -43,14 +43,14 @@ public class LegacyGamePatchModExtractor : ModExtractor
             Archives: archives,
             RemovedFiles: new Dictionary<string, string[]>()
             {
-                [InstalledMod.DefaultVersion] = patch.RemovedFiles.ToArray(x => x.FullFilePath)
+                [Mod.DefaultVersion] = patch.RemovedFiles.ToArray(x => x.FullFilePath)
             });
-        JsonHelpers.SerializeToFile(modFilesInfo, outputPath + InstalledMod.FilesInfoFileName);
+        JsonHelpers.SerializeToFile(modFilesInfo, outputPath + Mod.FilesInfoFileName);
 
         // Extract thumbnail
         if (patch.HasThumbnail)
         {
-            using Stream thumbOutputStream = File.Create(outputPath + InstalledMod.ThumbnailFileName);
+            using Stream thumbOutputStream = File.Create(outputPath + Mod.ThumbnailFileName);
             await patch.ThumbnailResource.ReadData(context, true).CopyToAsync(thumbOutputStream);
         }
 
@@ -64,7 +64,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
 
             progressCallback(new Progress(i, patch.AddedFiles.Length));
 
-            FileSystemPath fileDest = outputPath + InstalledMod.FilesDirectoryName + filePath.FullFilePath;
+            FileSystemPath fileDest = outputPath + Mod.FilesDirectoryName + filePath.FullFilePath;
             Directory.CreateDirectory(fileDest.Parent);
 
             using FileStream dstStream = File.Create(fileDest);

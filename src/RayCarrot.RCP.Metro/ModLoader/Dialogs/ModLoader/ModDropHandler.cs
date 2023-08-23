@@ -3,7 +3,7 @@
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 /// <summary>
-/// The drop handler for a <see cref="InstalledModViewModel"/> collection
+/// The drop handler for a <see cref="ModViewModel"/> collection
 /// </summary>
 public class ModDropHandler : DefaultDropHandler
 {

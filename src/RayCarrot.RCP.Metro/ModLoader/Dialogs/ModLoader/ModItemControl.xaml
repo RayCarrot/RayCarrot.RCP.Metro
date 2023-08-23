@@ -8,7 +8,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance modLoader:InstalledModViewModel}"
+             d:DataContext="{d:DesignInstance modLoader:ModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <!-- TODO-UPDATE: Localize -->
     <Grid Margin="0 4">

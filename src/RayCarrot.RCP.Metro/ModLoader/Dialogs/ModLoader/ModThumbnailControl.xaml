@@ -7,7 +7,7 @@
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance modLoader:InstalledModViewModel}"
+             d:DataContext="{d:DesignInstance modLoader:ModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <Grid>
 

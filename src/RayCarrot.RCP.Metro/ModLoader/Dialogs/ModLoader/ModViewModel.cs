@@ -6,18 +6,18 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-public class InstalledModViewModel : BaseViewModel
+public class ModViewModel : BaseViewModel
 {
     #region Constructor
 
-    public InstalledModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, InstalledMod installedMod, ModManifestEntry modEntry)
+    public ModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, Mod mod, ModManifestEntry modEntry)
     {
         ModLoaderViewModel = modLoaderViewModel;
         LoaderViewModel = loaderViewModel;
-        InstalledMod = installedMod;
+        Mod = mod;
         _isEnabled = modEntry.IsEnabled;
         // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
-        Version = modEntry.Version ?? InstalledMod.DefaultVersion;
+        Version = modEntry.Version ?? Mod.DefaultVersion;
         Size = modEntry.Size;
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -29,8 +29,8 @@ public class InstalledModViewModel : BaseViewModel
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Debug),
 
             // TODO-UPDATE: Update these values when the user changes version
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), installedMod.GetAddedFiles(Version).Count().ToString()),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), installedMod.GetRemovedFiles(Version).Count().ToString()),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), mod.GetAddedFiles(Version).Count().ToString()),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), mod.GetRemovedFiles(Version).Count().ToString()),
         };
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
@@ -66,8 +66,8 @@ public class InstalledModViewModel : BaseViewModel
 
     public ModLoaderViewModel ModLoaderViewModel { get; }
     public LoaderViewModel LoaderViewModel { get; }
-    public InstalledMod InstalledMod { get; }
-    public ModMetadata Metadata => InstalledMod.Metadata;
+    public Mod Mod { get; }
+    public ModMetadata Metadata => Mod.Metadata;
     public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
     public ObservableCollection<ModChangelogEntry> ChangelogEntries { get; }
 
@@ -168,7 +168,7 @@ public class InstalledModViewModel : BaseViewModel
 
         try
         {
-            Thumbnail = InstalledMod.GetThumbnail();
+            Thumbnail = Mod.GetThumbnail();
 
             if (Thumbnail?.CanFreeze == true)
                 Thumbnail.Freeze();

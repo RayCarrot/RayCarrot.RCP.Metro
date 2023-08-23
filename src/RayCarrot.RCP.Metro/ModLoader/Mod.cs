@@ -6,11 +6,11 @@ using RayCarrot.RCP.Metro.ModLoader.Resource;
 
 namespace RayCarrot.RCP.Metro.ModLoader;
 
-public class InstalledMod
+public class Mod
 {
     #region Constructor
 
-    public InstalledMod(FileSystemPath modDirectoryPath)
+    public Mod(FileSystemPath modDirectoryPath)
     {
         ModDirectoryPath = modDirectoryPath;
 

@@ -141,7 +141,7 @@ public class ModProcessor
         }
     }
 
-    private void AddModificationsFromMod(InstalledMod mod, string version)
+    private void AddModificationsFromMod(Mod mod, string version)
     {
         foreach (IModFileResource addedFile in mod.GetAddedFiles(version))
         {
@@ -185,7 +185,7 @@ public class ModProcessor
         Logger.Info("Applying modifications with {0} enabled mods", modManifest.Mods.Count);
 
         // Read the mods
-        List<(ModManifestEntry Entry, InstalledMod Mod)> mods = new(modManifest.Mods.Count);
+        List<(ModManifestEntry Entry, Mod Mod)> mods = new(modManifest.Mods.Count);
         foreach (ModManifestEntry modEntry in modManifest.Mods.Values)
             mods.Add((modEntry, library.ReadInstalledMod(modEntry.Id)));
 
@@ -205,10 +205,10 @@ public class ModProcessor
         Logger.Info("Getting file modifications from enabled mods");
 
         // Add modifications for each enabled mod. Reverse the order for the correct mod priority.
-        foreach ((ModManifestEntry Entry, InstalledMod Mod) p in 
-                 ((IEnumerable<(ModManifestEntry Entry, InstalledMod Mod)>)mods).Reverse())
+        foreach ((ModManifestEntry Entry, Mod Mod) p in 
+                 ((IEnumerable<(ModManifestEntry Entry, Mod Mod)>)mods).Reverse())
         {
-            AddModificationsFromMod(p.Mod, p.Entry.Version ?? InstalledMod.DefaultVersion);
+            AddModificationsFromMod(p.Mod, p.Entry.Version ?? Mod.DefaultVersion);
         }
 
         Logger.Info("Finished retrieving file modifications");

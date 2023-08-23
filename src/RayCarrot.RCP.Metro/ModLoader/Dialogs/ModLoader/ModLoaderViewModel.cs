@@ -16,7 +16,7 @@ public class ModLoaderViewModel : BaseViewModel
         GameInstallation = gameInstallation;
 
         LoaderViewModel = new LoaderViewModel();
-        Mods = new ObservableCollection<InstalledModViewModel>();
+        Mods = new ObservableCollection<ModViewModel>();
 
         ModProcessor = new ModProcessor(GameInstallation);
         Library = new ModLibrary(GameInstallation);
@@ -45,8 +45,8 @@ public class ModLoaderViewModel : BaseViewModel
     public ModLibrary Library { get; }
     public LoaderViewModel LoaderViewModel { get; }
     
-    public ObservableCollection<InstalledModViewModel> Mods { get; }
-    public InstalledModViewModel? SelectedMod { get; set; }
+    public ObservableCollection<ModViewModel> Mods { get; }
+    public ModViewModel? SelectedMod { get; set; }
 
     public bool HasChanges { get; set; }
 
@@ -67,7 +67,7 @@ public class ModLoaderViewModel : BaseViewModel
 
             foreach (ModManifestEntry modEntry in modManifest.Mods.Values)
             {
-                InstalledMod mod;
+                Mod mod;
 
                 try
                 {
@@ -92,7 +92,7 @@ public class ModLoaderViewModel : BaseViewModel
                 }
 
                 // Create and add view model
-                InstalledModViewModel vm = new(this, LoaderViewModel, mod, modEntry);
+                ModViewModel vm = new(this, LoaderViewModel, mod, modEntry);
                 Mods.Add(vm);
 
                 // Load thumbnail
@@ -118,7 +118,7 @@ public class ModLoaderViewModel : BaseViewModel
         }
     }
 
-    private async Task<bool> VerifyPatchSecurityAsync(InstalledMod mod)
+    private async Task<bool> VerifyPatchSecurityAsync(Mod mod)
     {
         // Check if the patch adds or replaces exe or dll files. Expand to check other file types too?
         bool hasCodeFiles = mod.Versions.Any(version => mod.GetAddedFiles(version).Any(file =>
@@ -227,7 +227,7 @@ public class ModLoaderViewModel : BaseViewModel
                             state.CancellationToken));
 
                     // Read the mod
-                    InstalledMod extractedMod = new(extractTempDir.TempPath);
+                    Mod extractedMod = new(extractTempDir.TempPath);
 
                     // Verify game
                     if (!extractedMod.Metadata.IsGameValid(GameInstallation.GameDescriptor))
@@ -291,25 +291,25 @@ public class ModLoaderViewModel : BaseViewModel
                     Dictionary<string, ModManifestEntry> installedMods = new();
                     
                     // Process every mod
-                    foreach (InstalledModViewModel modViewModel in Mods)
+                    foreach (ModViewModel modViewModel in Mods)
                     {
                         string id = modViewModel.Metadata.Id;
 
                         switch (modViewModel.State)
                         {
                             // Already installed mod
-                            case InstalledModViewModel.InstallState.Installed:
+                            case ModViewModel.InstallState.Installed:
                                 installedMods.Add(id, new ModManifestEntry(id, modViewModel.Size, modViewModel.IsEnabled, modViewModel.Version));
                                 break;
                             
                             // Install new mod
-                            case InstalledModViewModel.InstallState.PendingInstall:
-                                Library.InstallMod(modViewModel.InstalledMod.ModDirectoryPath, id, false);
+                            case ModViewModel.InstallState.PendingInstall:
+                                Library.InstallMod(modViewModel.Mod.ModDirectoryPath, id, false);
                                 installedMods.Add(id, new ModManifestEntry(id, modViewModel.Size, modViewModel.IsEnabled, modViewModel.Version));
                                 break;
                             
                             // Uninstall
-                            case InstalledModViewModel.InstallState.PendingUninstall:
+                            case ModViewModel.InstallState.PendingUninstall:
                                 Library.UninstallMod(modViewModel.Metadata.Id);
                                 break;
 

@@ -123,9 +123,9 @@ public class ModLibrary
         return JsonHelpers.DeserializeFromFile<ModManifest>(ModManifestFilePath);
     }
 
-    public InstalledMod ReadInstalledMod(string modId)
+    public Mod ReadInstalledMod(string modId)
     {
-        return new InstalledMod(LibraryDirectoryPath + modId);
+        return new Mod(LibraryDirectoryPath + modId);
     }
 
     public void WriteModManifest(ModManifest modManifest)
