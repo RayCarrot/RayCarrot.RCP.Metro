@@ -16,6 +16,7 @@ public class ModLibrary
         LibraryMetadataFilePath = LibraryDirectoryPath + LibraryMetadataFileName;
         FileHistoryFilePath = LibraryDirectoryPath + HistoryFileName;
         FileHistoryDirectoryPath = LibraryDirectoryPath + HistoryDirectoryName;
+        ModsDirectoryPath = LibraryDirectoryPath + ModsDirectoryName;
         ModManifestFilePath = LibraryDirectoryPath + ModsFileName;
     }
 
@@ -29,6 +30,7 @@ public class ModLibrary
     private const string LibraryMetadataFileName = "library.json";
     private const string HistoryDirectoryName = "file_history";
     private const string HistoryFileName = "file_history.json";
+    private const string ModsDirectoryName = "mods";
     private const string ModsFileName = "mods.json";
 
     #endregion
@@ -39,6 +41,7 @@ public class ModLibrary
     private FileSystemPath LibraryMetadataFilePath { get; }
     private FileSystemPath FileHistoryDirectoryPath { get; }
     private FileSystemPath FileHistoryFilePath { get; }
+    private FileSystemPath ModsDirectoryPath { get; }
     private FileSystemPath ModManifestFilePath { get; }
 
     private bool HasCreatedLibrary { get; set; }
@@ -55,7 +58,7 @@ public class ModLibrary
 
     private FileSystemPath GetInstalledModPath(string modId)
     {
-        return LibraryDirectoryPath + modId;
+        return ModsDirectoryPath + modId;
     }
 
     private void CreateLibrary()
@@ -125,7 +128,7 @@ public class ModLibrary
 
     public Mod ReadInstalledMod(string modId)
     {
-        return new Mod(LibraryDirectoryPath + modId);
+        return new Mod(GetInstalledModPath(modId));
     }
 
     public void WriteModManifest(ModManifest modManifest)

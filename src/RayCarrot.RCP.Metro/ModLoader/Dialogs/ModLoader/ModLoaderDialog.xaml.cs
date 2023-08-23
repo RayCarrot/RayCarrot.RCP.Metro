@@ -104,5 +104,11 @@ public partial class ModLoaderDialog : WindowContentControl
         WindowInstance.Close();
     }
 
+    public override void Dispose()
+    {
+        base.Dispose();
+        ViewModel.Dispose();
+    }
+
     #endregion
 }

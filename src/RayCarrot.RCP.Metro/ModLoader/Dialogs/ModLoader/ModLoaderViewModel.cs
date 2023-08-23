@@ -4,7 +4,7 @@ using RayCarrot.RCP.Metro.ModLoader.Library;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-public class ModLoaderViewModel : BaseViewModel
+public class ModLoaderViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
@@ -61,6 +61,7 @@ public class ModLoaderViewModel : BaseViewModel
         try
         {
             // Clear any previously loaded mods
+            Mods.DisposeAll();
             Mods.Clear();
 
             ModManifest modManifest = Library.ReadModManifest();
@@ -139,6 +140,7 @@ public class ModLoaderViewModel : BaseViewModel
             return true;
         }
     }
+
     #endregion
 
     #region Public Methods
@@ -223,8 +225,7 @@ public class ModLoaderViewModel : BaseViewModel
                 {
                     // Extract the mod
                     await Task.Run(async () =>
-                        await modExtractor.ExtractAsync(selectedFile, extractTempDir.TempPath, state.SetProgress,
-                            state.CancellationToken));
+                        await modExtractor.ExtractAsync(selectedFile, extractTempDir.TempPath, state.SetProgress, state.CancellationToken));
 
                     // Read the mod
                     Mod extractedMod = new(extractTempDir.TempPath);
@@ -252,9 +253,29 @@ public class ModLoaderViewModel : BaseViewModel
                     }
 
                     string id = extractedMod.Metadata.Id;
+                    long size = (long)extractTempDir.TempPath.GetSize().Bytes;
 
-                    // TODO-UPDATE: Add mod
-                    throw new NotImplementedException();
+                    int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
+
+                    // The mod is being added as a new mod
+                    if (existingModIndex == -1)
+                    {
+                        ModManifestEntry modEntry = new(id, size, true, null);
+                        ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
+
+                        Mods.Add(viewModel);
+                    }
+                    // The mod is being added as an update
+                    else
+                    {
+                        ModViewModel existingMod = Mods[existingModIndex];
+
+                        ModManifestEntry modEntry = new(id, size, existingMod.IsEnabled, existingMod.Version);
+                        ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
+
+                        existingMod.Dispose();
+                        Mods[existingModIndex] = viewModel;
+                    }
 
                     HasChanges = true;
                 }
@@ -272,6 +293,7 @@ public class ModLoaderViewModel : BaseViewModel
                 }
             }
 
+            RefreshModifiedFiles();
         }
 
         Logger.Info("Added mods");
@@ -346,6 +368,11 @@ public class ModLoaderViewModel : BaseViewModel
             // No matter if it succeeds or fails we want to reset the state
             return await InitializeAsync();
         }
+    }
+
+    public void Dispose()
+    {
+        Mods.DisposeAll();
     }
 
     #endregion

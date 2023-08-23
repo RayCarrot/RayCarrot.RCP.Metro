@@ -6,14 +6,15 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-public class ModViewModel : BaseViewModel
+public class ModViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, Mod mod, ModManifestEntry modEntry)
+    public ModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, Mod mod, ModManifestEntry modEntry, TempDirectory? pendingInstallTempDir = null)
     {
         ModLoaderViewModel = modLoaderViewModel;
         LoaderViewModel = loaderViewModel;
+        PendingInstallTempDir = pendingInstallTempDir;
         Mod = mod;
         _isEnabled = modEntry.IsEnabled;
         // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
@@ -34,6 +35,9 @@ public class ModViewModel : BaseViewModel
         };
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
+
+        if (PendingInstallTempDir != null)
+            SetState(InstallState.PendingInstall);
 
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
         UninstallCommand = new RelayCommand(UninstallMod);
@@ -66,6 +70,7 @@ public class ModViewModel : BaseViewModel
 
     public ModLoaderViewModel ModLoaderViewModel { get; }
     public LoaderViewModel LoaderViewModel { get; }
+    public TempDirectory? PendingInstallTempDir { get; }
     public Mod Mod { get; }
     public ModMetadata Metadata => Mod.Metadata;
     public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
@@ -183,6 +188,11 @@ public class ModViewModel : BaseViewModel
     {
         if (Metadata.Website != null)
             Services.App.OpenUrl(Metadata.Website);
+    }
+
+    public void Dispose()
+    {
+        PendingInstallTempDir?.Dispose();
     }
 
     #endregion
