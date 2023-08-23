@@ -182,12 +182,12 @@ public class ModProcessor
         FileSystemPath gameDir = _gameInstallation.InstallLocation.Directory;
         ModManifest modManifest = library.ReadModManifest();
 
-        Logger.Info("Applying modifications with {0} enabled mods", modManifest.Mods.Count);
-
         // Read the mods
-        List<(ModManifestEntry Entry, Mod Mod)> mods = new(modManifest.Mods.Count);
-        foreach (ModManifestEntry modEntry in modManifest.Mods.Values)
-            mods.Add((modEntry, library.ReadInstalledMod(modEntry.Id)));
+        List<(ModManifestEntry Entry, Mod Mod)> enabledMods = new();
+        foreach (ModManifestEntry modEntry in modManifest.Mods.Values.Where(x => x.IsEnabled))
+            enabledMods.Add((modEntry, library.ReadInstalledMod(modEntry.Id)));
+
+        Logger.Info("Applying modifications with {0} enabled mods", enabledMods.Count);
 
         // Keep track of file changes
         using LibraryFileHistoryBuilder historyBuilder = new();
@@ -206,7 +206,7 @@ public class ModProcessor
 
         // Add modifications for each enabled mod. Reverse the order for the correct mod priority.
         foreach ((ModManifestEntry Entry, Mod Mod) p in 
-                 ((IEnumerable<(ModManifestEntry Entry, Mod Mod)>)mods).Reverse())
+                 ((IEnumerable<(ModManifestEntry Entry, Mod Mod)>)enabledMods).Reverse())
         {
             AddModificationsFromMod(p.Mod, p.Entry.Version ?? Mod.DefaultVersion);
         }
