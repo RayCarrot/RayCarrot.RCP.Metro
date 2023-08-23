@@ -31,13 +31,12 @@ public class InstalledMod
 
     #region Constants
 
-    private const int LatestFormatVersion = 0;
+    public const string MetadataFileName = "metadata.jsonc";
+    public const string FilesInfoFileName = "files.jsonc";
+    public const string ThumbnailFileName = "thumbnail.png";
+    public const string FilesDirectoryName = "files";
 
-    private const string MetadataFileName = "metadata.jsonc";
-    private const string FilesInfoFileName = "files.jsonc";
-    private const string ThumbnailFileName = "thumbnail.png";
-    private const string FilesDirectoryName = "thumbnail.png";
-
+    public const int LatestFormatVersion = 0;
     public const string DefaultVersion = "default";
 
     #endregion
@@ -55,6 +54,7 @@ public class InstalledMod
     public FileSystemPath ModDirectoryPath { get; }
     public ModMetadata Metadata { get; }
     public ModFilesInfo FilesInfo { get; }
+    public string[] Versions => _validVersions.ToArray();
 
     #endregion
 

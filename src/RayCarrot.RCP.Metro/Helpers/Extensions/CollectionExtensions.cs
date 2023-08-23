@@ -17,4 +17,16 @@ public static class CollectionExtensions
         foreach (T item in collection.Where(x => predicate(x)).ToArray())
             collection.Remove(item);
     }
+
+    public static TResult[] ToArray<TSource, TResult>(this IList<TSource> collection, Func<TSource, TResult> selector)
+    {
+        TResult[] resultArray = new TResult[collection.Count];
+
+        for (int i = 0; i < collection.Count; i++)
+        {
+            resultArray[i] = selector(collection[i]);
+        }
+
+        return resultArray;
+    }
 }

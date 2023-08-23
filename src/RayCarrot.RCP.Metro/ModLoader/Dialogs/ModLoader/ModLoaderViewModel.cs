@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -117,6 +118,27 @@ public class ModLoaderViewModel : BaseViewModel
         }
     }
 
+    private async Task<bool> VerifyPatchSecurityAsync(InstalledMod mod)
+    {
+        // Check if the patch adds or replaces exe or dll files. Expand to check other file types too?
+        bool hasCodeFiles = mod.Versions.Any(version => mod.GetAddedFiles(version).Any(file =>
+            file.Path.FilePath.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
+            file.Path.FilePath.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
+
+        // Have the user verify
+        if (hasCodeFiles)
+        {
+            Logger.Info("Mod with id {0} contains one or more potentially harmful files", mod.Metadata.Id);
+
+            // TODO-UPDATE: Localize
+            return await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} adds or replaces sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?", mod.Metadata.Name),
+                MessageType.Question, true);
+        }
+        else
+        {
+            return true;
+        }
+    }
     #endregion
 
     #region Public Methods
@@ -162,7 +184,97 @@ public class ModLoaderViewModel : BaseViewModel
 
     public async Task InstallModFromFileAsync()
     {
-        throw new NotImplementedException();
+        ModExtractor[] modExtractors = 
+        {
+            new ZipModExtractor(), // .zip
+            new SevenZipModExtractor(), // .7z
+            new RarModExtractor(), // .rar
+            new LegacyGamePatchModExtractor(), // .gp (legacy)
+        };
+
+        FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+        {
+            // TODO-UPDATE: Localize
+            Title = "Select mods to install",
+            // TODO-UPDATE: Localize
+            ExtensionFilter = new FileFilterItem(modExtractors.Select(x => x.FileExtension), "Mod archives").StringRepresentation,
+            MultiSelection = true
+        });
+
+        if (result.CanceledByUser)
+            return;
+
+        Logger.Info("Adding {0} patches to be installed", result.SelectedFiles.Length);
+        using (LoadState state = await LoaderViewModel.RunAsync())
+        {
+            state.SetCanCancel(true);
+
+            foreach (FileSystemPath selectedFile in result.SelectedFiles)
+            {
+                // TODO-UPDATE: Localize
+                state.SetStatus($"Extracting mod {selectedFile.Name}");
+
+                FileExtension fileExtension = selectedFile.FileExtension;
+                ModExtractor modExtractor = modExtractors.First(x => x.FileExtension == fileExtension);
+
+                TempDirectory extractTempDir = new(true);
+
+                try
+                {
+                    // Extract the mod
+                    await Task.Run(async () =>
+                        await modExtractor.ExtractAsync(selectedFile, extractTempDir.TempPath, state.SetProgress,
+                            state.CancellationToken));
+
+                    // Read the mod
+                    InstalledMod extractedMod = new(extractTempDir.TempPath);
+
+                    // Verify game
+                    if (!extractedMod.Metadata.IsGameValid(GameInstallation.GameDescriptor))
+                    {
+                        Logger.Warn("Failed to add mod due to the current game {0} not being supported", GameInstallation.FullId);
+
+                        IEnumerable<LocalizedString> gameTargets = extractedMod.Metadata.Games.Select(x => Services.Games.GetGameDescriptor(x).DisplayName);
+                        // TODO-UPDATE: Localize
+                        await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} can't be installed to this game due to it not being one of the game targets:\r\n\r\n{1}",
+                            extractedMod.Metadata.Name, String.Join(Environment.NewLine, gameTargets)), MessageType.Error);
+
+                        extractTempDir.Dispose();
+
+                        continue;
+                    }
+
+                    // Verify the security
+                    if (!await VerifyPatchSecurityAsync(extractedMod))
+                    {
+                        extractTempDir.Dispose();
+                        continue;
+                    }
+
+                    string id = extractedMod.Metadata.Id;
+
+                    // TODO-UPDATE: Add mod
+                    throw new NotImplementedException();
+
+                    HasChanges = true;
+                }
+                catch (OperationCanceledException ex)
+                {
+                    // TODO-UPDATE: Log
+                    extractTempDir.Dispose();
+
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    // TODO-UPDATE: Log and show error message
+                    extractTempDir.Dispose();
+                }
+            }
+
+        }
+
+        Logger.Info("Added mods");
     }
 
     public async Task<bool> ApplyAsync()

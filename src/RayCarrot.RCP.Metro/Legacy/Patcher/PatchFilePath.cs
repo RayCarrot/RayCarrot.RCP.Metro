@@ -23,6 +23,9 @@ public class PatchFilePath : BinarySerializable
     public string LocationID { get; private set; }
     public string FilePath { get; private set; }
 
+    public bool HasLocation => Location != String.Empty;
+    public string FullFilePath => HasLocation ? System.IO.Path.Combine(Location, FilePath) : FilePath;
+
     public override void SerializeImpl(SerializerObject s)
     {
         Location = s.SerializeString(Location, encoding: Encoding.UTF8, name: nameof(Location));

@@ -78,6 +78,8 @@ public class FileExtension
     /// </summary>
     public string DisplayName => FileExtensions.ToUpperInvariant();
 
+    public string FileFilter => PrimaryFileExtension.IsNullOrWhiteSpace() ? "*" : $"*{PrimaryFileExtension}";
+
     /// <summary>
     /// Gets a file filter item for the file extension. This only includes the primary one.
     /// </summary>

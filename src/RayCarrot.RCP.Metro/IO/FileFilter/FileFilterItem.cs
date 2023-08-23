@@ -26,6 +26,12 @@ public class FileFilterItem : IEqualityComparer<FileFilterItem>
         Description = description;
     }
 
+    public FileFilterItem(IEnumerable<FileExtension> fileExtensions, string description)
+    {
+        Filter = String.Join(";", fileExtensions.Select(x => x.FileFilter));
+        Description = description;
+    }
+
     #endregion
 
     #region Public Properties
