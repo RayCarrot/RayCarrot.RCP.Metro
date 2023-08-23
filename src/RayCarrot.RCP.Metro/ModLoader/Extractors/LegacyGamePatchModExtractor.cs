@@ -39,7 +39,6 @@ public class LegacyGamePatchModExtractor : ModExtractor
 
         // Write files info
         ModFilesInfo modFilesInfo = new(
-            Versions: null,
             Archives: archives,
             RemovedFiles: new Dictionary<string, string[]>()
             {
@@ -64,7 +63,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
 
             progressCallback(new Progress(i, patch.AddedFiles.Length));
 
-            FileSystemPath fileDest = outputPath + Mod.FilesDirectoryName + filePath.FullFilePath;
+            FileSystemPath fileDest = outputPath + Mod.DefaultVersion + Mod.FilesDirectoryName + filePath.FullFilePath;
             Directory.CreateDirectory(fileDest.Parent);
 
             using FileStream dstStream = File.Create(fileDest);

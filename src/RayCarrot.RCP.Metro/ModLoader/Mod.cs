@@ -17,10 +17,10 @@ public class Mod
         Metadata = ReadMetadata();
         FilesInfo = ReadFilesInfo();
 
-        // Get valid versions
-        _validVersions = new List<string> { DefaultVersion };
-        if (FilesInfo.Versions != null)
-            _validVersions.AddRange(FilesInfo.Versions);
+        // Get versions
+        _validVersions = new HashSet<string> { DefaultVersion };
+        foreach (FileSystemPath subDir in Directory.GetDirectories(modDirectoryPath))
+            _validVersions.Add(subDir.Name);
 
         // Create file tables
         _addedFiles = CreateAddedFilesTable();
@@ -45,7 +45,7 @@ public class Mod
 
     private readonly Dictionary<string, List<IModFileResource>> _addedFiles;
     private readonly Dictionary<string, List<ModFilePath>> _removedFiles;
-    private readonly List<string> _validVersions;
+    private readonly HashSet<string> _validVersions;
 
     #endregion
 
@@ -90,7 +90,7 @@ public class Mod
 
         // This file is optional, so we return an empty instance if it doesn't exist
         if (!filesInfoFilePath.FileExists)
-            return new ModFilesInfo(null, null, null);
+            return new ModFilesInfo(null, null);
 
         ModFilesInfo filesInfo;
 
@@ -108,7 +108,7 @@ public class Mod
 
     private FileSystemPath GetFilesPath(string version)
     {
-        return ModDirectoryPath + FilesDirectoryName + version;
+        return ModDirectoryPath + version + FilesDirectoryName;
     }
 
     private void VerifyVersion(string version)
