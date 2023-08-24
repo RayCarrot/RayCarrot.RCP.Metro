@@ -200,54 +200,133 @@
 
         <rcp:Card Grid.Row="1"
                   Margin="{StaticResource RCP.Thicknesses.Card}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <DockPanel>
 
-                <!-- TODO-UPDATE: Have this button bring up tree-view of modified files -->
-                <Button Grid.Column="0"
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Content="View all changes"
-                        rcp:Icon.Kind="ChevronUp"
-                        Margin="0 0 4 0" />
+                <!-- Expand content -->
+                <Border x:Name="FileModificationsBorder" 
+                        Height="250" 
+                        DockPanel.Dock="Top"
+                        Opacity="0"
+                        Visibility="Collapsed">
+                    <Border.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="FileModificationsScaleTransform" />
+                        </TransformGroup>
+                    </Border.LayoutTransform>
 
-                <!-- TODO-UPDATE: This is currently just a mockup -->
-                <StackPanel Grid.Column="1" 
-                            VerticalAlignment="Center">
-                    <TextBlock Text="15 files added" 
-                               Foreground="{StaticResource RCP.Brushes.AddItem}" />
-                    <TextBlock Text="0 files removed" 
-                               Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
-                </StackPanel>
+                    <!-- TODO-UPDATE: Show list of modified files -->
 
-                <!-- TODO-UPDATE: This is currently just a mockup -->
-                <TextBlock Grid.Column="3" 
-                           VerticalAlignment="Center"
-                           Text="1 unsaved mod" 
-                           Foreground="{StaticResource RCP.Brushes.Info}"
-                           Margin="0 0 8 0" />
+                </Border>
 
-                <Button Grid.Column="4" 
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Content="{Resx Cancel}"
-                        Click="CancelButton_OnClick"
-                        VerticalAlignment="Center"
-                        rcp:Icon.Kind="CloseOutline"
-                        Margin="0 0 4 0" />
-                <Button Grid.Column="5" 
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Click="ApplyButton_OnClick"
-                        Content="{Resx Patcher_Apply}"
-                        VerticalAlignment="Center"
-                        rcp:Icon.Kind="ContentSaveOutline"
-                        IsEnabled="{Binding Path=HasChanges}" />
-            </Grid>
+                <!-- Expander header -->
+                <Grid DockPanel.Dock="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ToggleButton Grid.Column="0"
+                                  Content="View all changes"
+                                  Margin="0 0 8 0">
+                        <ToggleButton.Style>
+                            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.ToggleButton.Flat}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="rcp:Icon.Kind" Value="ChevronDown" />
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="rcp:Icon.Kind" Value="ChevronUp" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+                        <ToggleButton.Triggers>
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileModificationsBorder" 
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                         Storyboard.TargetName="FileModificationsBorder" 
+                                                         From="0" To="1"
+                                                         Duration="0:0:0.22"/>
+                                        <DoubleAnimation Storyboard.TargetName="FileModificationsScaleTransform" 
+                                                         Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
+                                                         From="0" To="1"
+                                                         Duration="0:0:0.22">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="FileModificationsBorder"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         From="1"
+                                                         To="0"
+                                                         Duration="0:0:0.22" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileModificationsBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.22" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="FileModificationsScaleTransform" 
+                                                         Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
+                                                         From="1" To="0"
+                                                         Duration="0:0:0.22">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ToggleButton.Triggers>
+
+                    </ToggleButton>
+
+                    <!-- TODO-UPDATE: This is currently just a mockup -->
+                    <StackPanel Grid.Column="1" 
+                                VerticalAlignment="Center">
+                        <TextBlock Text="15 files added" 
+                                   Foreground="{StaticResource RCP.Brushes.AddItem}" />
+                        <TextBlock Text="0 files removed" 
+                                   Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
+                    </StackPanel>
+
+                    <!-- TODO-UPDATE: This is currently just a mockup -->
+                    <TextBlock Grid.Column="3" 
+                               VerticalAlignment="Center"
+                               Text="1 unsaved mod" 
+                               Foreground="{StaticResource RCP.Brushes.Info}"
+                               Margin="0 0 8 0" />
+
+                    <Button Grid.Column="4" 
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Content="{Resx Cancel}"
+                            Click="CancelButton_OnClick"
+                            VerticalAlignment="Center"
+                            rcp:Icon.Kind="CloseOutline"
+                            Margin="0 0 4 0" />
+                    <Button Grid.Column="5" 
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Click="ApplyButton_OnClick"
+                            Content="{Resx Patcher_Apply}"
+                            VerticalAlignment="Center"
+                            rcp:Icon.Kind="ContentSaveOutline"
+                            IsEnabled="{Binding Path=HasChanges}" />
+                </Grid>
+
+            </DockPanel>
         </rcp:Card>
 
     </Grid>
