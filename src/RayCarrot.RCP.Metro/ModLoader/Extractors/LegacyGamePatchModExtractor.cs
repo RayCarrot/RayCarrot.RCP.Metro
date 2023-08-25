@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer;
 using RayCarrot.RCP.Metro.Legacy.Patcher;
-using RayCarrot.RCP.Metro.ModLoader.FileInfo;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Extractors;
@@ -14,7 +13,15 @@ public class LegacyGamePatchModExtractor : ModExtractor
     {
         using Context context = new RCPContext(modFilePath.Parent);
         PatchPackage patch = context.ReadRequiredFileData<PatchPackage>(modFilePath.Name);
-        
+
+        // Get every used archive
+        ModArchiveInfo[] archives = patch.AddedFiles.
+            Concat(patch.RemovedFiles).
+            GroupBy(x => x.Location).
+            Where(x => x.Key != String.Empty).
+            Select(x => new ModArchiveInfo(x.First().LocationID, x.Key)).
+            ToArray();
+
         // Write metadata
         ModMetadata modMetadata = new(
             Id: patch.Metadata.ID,
@@ -26,25 +33,16 @@ public class LegacyGamePatchModExtractor : ModExtractor
             Website: patch.Metadata.Website,
             Version: new ModVersion(patch.Metadata.Version_Major, patch.Metadata.Version_Minor, patch.Metadata.Version_Revision),
             Changelog: patch.Metadata.ChangelogEntries.ToArray(x => 
-                new ModChangelogEntry(new ModVersion(x.Version_Major, x.Version_Minor, x.Version_Revision), x.Date, x.Description)));
+                new ModChangelogEntry(new ModVersion(x.Version_Major, x.Version_Minor, x.Version_Revision), x.Date, x.Description)), 
+            Archives: archives);
         JsonHelpers.SerializeToFile(modMetadata, outputPath + Mod.MetadataFileName);
 
-        // Get every used archive
-        ModArchiveInfo[] archives = patch.AddedFiles.
-            Concat(patch.RemovedFiles).
-            GroupBy(x => x.Location).
-            Where(x => x.Key != String.Empty).
-            Select(x => new ModArchiveInfo(x.First().LocationID, x.Key)).
-            ToArray();
-
-        // Write files info
-        ModFilesInfo modFilesInfo = new(
-            Archives: archives,
-            RemovedFiles: new Dictionary<string, string[]>()
-            {
-                [Mod.DefaultVersion] = patch.RemovedFiles.ToArray(x => x.FullFilePath)
-            });
-        JsonHelpers.SerializeToFile(modFilesInfo, outputPath + Mod.FilesInfoFileName);
+        // Write removed files, if any
+        if (patch.RemovedFiles.Any())
+        {
+            Directory.CreateDirectory(outputPath + Mod.DefaultVersion);
+            File.WriteAllLines(outputPath + Mod.DefaultVersion + Mod.RemovedFilesFileName, patch.RemovedFiles.ToArray(x => x.FullFilePath));
+        }
 
         // Extract thumbnail
         if (patch.HasThumbnail)

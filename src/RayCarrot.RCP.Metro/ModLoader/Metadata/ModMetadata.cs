@@ -14,6 +14,7 @@ namespace RayCarrot.RCP.Metro.ModLoader.Metadata;
 /// <param name="Website">A website URL for the mod</param>
 /// <param name="Version">The current mod version</param>
 /// <param name="Changelog">The mod changelog entries</param>
+/// <param name="Archives">The game archive files which this mod has data defined for</param>
 public record ModMetadata(
     [property: JsonProperty("id", Required = Required.Always)] string Id,
     [property: JsonProperty("games", Required = Required.Always)] string[] Games,
@@ -25,7 +26,9 @@ public record ModMetadata(
     [property: JsonProperty("website")] string? Website,
 
     [property: JsonProperty("version")] ModVersion? Version,
-    [property: JsonProperty("changelog")] ModChangelogEntry[]? Changelog)
+    [property: JsonProperty("changelog")] ModChangelogEntry[]? Changelog,
+
+    [property: JsonProperty("archives")] ModArchiveInfo[]? Archives)
 {
     public bool IsGameValid(GameDescriptor gameDescriptor)
     {

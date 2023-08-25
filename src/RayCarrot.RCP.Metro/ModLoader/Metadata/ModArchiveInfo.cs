@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RayCarrot.RCP.Metro.ModLoader.FileInfo;
+namespace RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 /// <summary>
 /// Defines an archive file in a mod

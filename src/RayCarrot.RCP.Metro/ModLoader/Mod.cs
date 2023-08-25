@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Windows.Media.Imaging;
-using RayCarrot.RCP.Metro.ModLoader.FileInfo;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
@@ -15,7 +14,6 @@ public class Mod
         ModDirectoryPath = modDirectoryPath;
 
         Metadata = ReadMetadata();
-        FilesInfo = ReadFilesInfo();
 
         // Get versions
         _validVersions = new HashSet<string> { DefaultVersion };
@@ -32,9 +30,9 @@ public class Mod
     #region Constants
 
     public const string MetadataFileName = "metadata.jsonc";
-    public const string FilesInfoFileName = "files.jsonc";
     public const string ThumbnailFileName = "thumbnail.png";
     public const string FilesDirectoryName = "files";
+    public const string RemovedFilesFileName = "removed_files.txt";
 
     public const int LatestFormatVersion = 0;
     public const string DefaultVersion = "default";
@@ -53,7 +51,6 @@ public class Mod
 
     public FileSystemPath ModDirectoryPath { get; }
     public ModMetadata Metadata { get; }
-    public ModFilesInfo FilesInfo { get; }
     public string[] Versions => _validVersions.ToArray();
 
     #endregion
@@ -84,31 +81,14 @@ public class Mod
         return metadata;
     }
 
-    private ModFilesInfo ReadFilesInfo()
-    {
-        FileSystemPath filesInfoFilePath = ModDirectoryPath + FilesInfoFileName;
-
-        // This file is optional, so we return an empty instance if it doesn't exist
-        if (!filesInfoFilePath.FileExists)
-            return new ModFilesInfo(null, null);
-
-        ModFilesInfo filesInfo;
-
-        try
-        {
-            filesInfo = JsonHelpers.DeserializeFromFile<ModFilesInfo>(filesInfoFilePath);
-        }
-        catch (Exception ex)
-        {
-            throw new InvalidModException($"The mod files info file is invalid. {ex.Message}", ex);
-        }
-
-        return filesInfo;
-    }
-
     private FileSystemPath GetFilesPath(string version)
     {
         return ModDirectoryPath + version + FilesDirectoryName;
+    }
+
+    private FileSystemPath GetRemovedFilesFilePath(string version)
+    {
+        return ModDirectoryPath + version + RemovedFilesFileName;
     }
 
     private void VerifyVersion(string version)
@@ -131,7 +111,7 @@ public class Mod
             if (!filesPath.DirectoryExists) 
                 continue;
 
-            if (FilesInfo.Archives == null || FilesInfo.Archives.Length == 0)
+            if (Metadata.Archives == null || Metadata.Archives.Length == 0)
             {
                 foreach (FileSystemPath file in Directory.EnumerateFiles(filesPath, "*", SearchOption.AllDirectories))
                 {
@@ -147,7 +127,7 @@ public class Mod
 
                     bool inArchive = false;
 
-                    foreach (ModArchiveInfo archive in FilesInfo.Archives)
+                    foreach (ModArchiveInfo archive in Metadata.Archives)
                     {
                         if (relativeFilePath.StartsWith(archive.FilePath))
                         {
@@ -172,40 +152,42 @@ public class Mod
 
     private Dictionary<string, List<ModFilePath>> CreateRemovedFilesTable()
     {
-        Dictionary<string, List<ModFilePath>> fileTable = _validVersions.ToDictionary(x => x, _ => new List<ModFilePath>());
+        Dictionary<string, List<ModFilePath>> fileTable = new();
 
-        if (FilesInfo.RemovedFiles == null)
-            return fileTable;
-
-        if (FilesInfo.Archives == null || FilesInfo.Archives.Length == 0)
+        foreach (string version in _validVersions)
         {
-            foreach (string version in FilesInfo.RemovedFiles.Keys)
+            List<ModFilePath> filePaths = new();
+            fileTable[version] = filePaths;
+
+            FileSystemPath removedFilesFilePath = GetRemovedFilesFilePath(version);
+
+            if (!removedFilesFilePath.FileExists)
+                continue;
+
+            string[] removedFiles = File.ReadAllLines(removedFilesFilePath);
+
+            if (Metadata.Archives == null || Metadata.Archives.Length == 0)
             {
-                fileTable[version].AddRange(FilesInfo.RemovedFiles[version].Select(x => new ModFilePath(x)));
+                filePaths.AddRange(removedFiles.Select(x => new ModFilePath(x)));
             }
-        }
-        else
-        {
-            foreach (string version in FilesInfo.RemovedFiles.Keys)
+            else
             {
-                List<ModFilePath> fileList = fileTable[version];
-
-                foreach (string removedFile in FilesInfo.RemovedFiles[version])
+                foreach (string removedFile in removedFiles)
                 {
                     bool inArchive = false;
 
-                    foreach (ModArchiveInfo archive in FilesInfo.Archives)
+                    foreach (ModArchiveInfo archive in Metadata.Archives)
                     {
                         if (removedFile.StartsWith(archive.FilePath))
                         {
-                            fileList.Add(new ModFilePath(removedFile.Substring(archive.FilePath.Length + 1), archive.FilePath, archive.Id));
+                            filePaths.Add(new ModFilePath(removedFile.Substring(archive.FilePath.Length + 1), archive.FilePath, archive.Id));
                             inArchive = true;
                             break;
                         }
                     }
 
                     if (!inArchive)
-                        fileList.Add(new ModFilePath(removedFile));
+                        filePaths.Add(new ModFilePath(removedFile));
                 }
             }
         }
