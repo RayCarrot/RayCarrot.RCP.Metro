@@ -132,7 +132,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Left" />
     </Style>
 
-    <Style x:Key="RCP.Styles.ToggleButton.Flat" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+    <Style x:Key="RCP.Styles.ToggleButton.Default" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.Button.Default}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -207,6 +207,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="RCP.Styles.ToggleButton.Flat" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.ToggleButton.Default}">
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
     <!-- Icon Circle Button -->

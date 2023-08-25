@@ -21,6 +21,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         ModProcessor = new ModProcessor(GameInstallation);
         Library = new ModLibrary(GameInstallation);
 
+        ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
+
         InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
     }
 
@@ -47,6 +49,17 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     
     public ObservableCollection<ModViewModel> Mods { get; }
     public ModViewModel? SelectedMod { get; set; }
+
+    public ModifiedFilesViewModel ModifiedFiles { get; }
+    public bool ShowModifiedFilesAsTree
+    {
+        get => ModifiedFiles.ShowModifiedFilesAsTree;
+        set
+        {
+            ModifiedFiles.ShowModifiedFilesAsTree = value;
+            RefreshModifiedFiles();
+        }
+    }
 
     public bool HasChanges { get; set; }
 
@@ -175,7 +188,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public void RefreshModifiedFiles()
     {
-        // TODO-UPDATE: Implement
+        // TODO-UPDATE: Log
+        ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
     }
 
     public void OnReorderedMods()

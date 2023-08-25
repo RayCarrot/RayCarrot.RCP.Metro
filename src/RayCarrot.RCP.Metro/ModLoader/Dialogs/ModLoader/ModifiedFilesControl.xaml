@@ -1,0 +1,185 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader.ModifiedFilesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d"
+             d:DesignWidth="900" d:DesignHeight="250"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DataContext="{d:DesignInstance modLoader:ModifiedFilesViewModel}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-UPDATE: Localize -->
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Headers -->
+        <Grid x:Name="FileTreeHeadersGrid"
+              Visibility="{Binding Path=ModifiedFilesRoot.Children.Count, Converter={rcp:IntToVisibilityConverter}}"
+              HorizontalAlignment="Left"
+              Loaded="FileTreeHeadersGrid_OnLoaded"
+              Grid.Row="0" 
+              Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Mod" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="OverridenMods" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                       Text="Path"
+                       Margin="4 0 0 0"/>
+
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                       Text="Mod"
+                       Margin="0 0 8 0" />
+
+            <TextBlock Grid.Column="2"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                       Text="Overriden mods"
+                       Margin="0 0 8 0" />
+
+        </Grid>
+
+        <Viewbox Grid.Row="1" Visibility="{Binding Path=ModifiedFilesRoot.Children.Count, Converter={rcp:InvertedIntToVisibilityConverter}}">
+            <TextBlock Text="Install a mod to modify the game files" TextAlignment="Center" Margin="30" Opacity="0.5" />
+        </Viewbox>
+
+        <TreeView x:Name="FileTreeView" 
+                  Grid.Row="1"
+                  Background="Transparent" 
+                  ItemsSource="{Binding Path=ModifiedFilesRoot.Children, Mode=OneTime}"
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
+            <TreeView.Style>
+                <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource MahApps.Styles.TreeView.Virtualized}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=ShowModifiedFilesAsTree}" Value="True">
+                            <!-- We only need to virtualize when showing as a list, otherwise it lags when scrolling -->
+                            <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.Style>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded}" />
+
+                    <!-- Hacky way to remove visuals for selection -->
+                    <Setter Property="mah:ItemHelper.SelectedBackgroundBrush" Value="Transparent" />
+                    <Setter Property="mah:ItemHelper.ActiveSelectionBackgroundBrush" Value="Transparent" />
+                    <Setter Property="mah:ItemHelper.HoverSelectedBackgroundBrush" Value="Transparent" />
+                    <Setter Property="mah:ItemHelper.HoverBackgroundBrush" Value="Transparent" />
+
+                    <!-- Hide the expander when showing as a list -->
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=DataContext.(modLoader:ModifiedFilesViewModel.ShowModifiedFilesAsTree), RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeView}}}" Value="False">
+                            <Setter Property="mah:TreeViewItemHelper.ToggleButtonStyle">
+                                <Setter.Value>
+                                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton.TreeViewItem.ExpandCollapse}">
+                                        <Setter Property="MinWidth" Value="0" />
+                                        <Setter Property="Width" Value="0" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Children, Mode=OneTime}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Mod" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="OverridenMods" />
+                        </Grid.ColumnDefinitions>
+
+                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                    VerticalAlignment="Center">
+                            <iconPacks:PackIconMaterial.Style>
+                                <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                    <Style.Triggers>
+                                        <!-- Folder -->
+                                        <DataTrigger Binding="{Binding Path=Type}" Value="Folder">
+                                            <Setter Property="Kind" Value="{StaticResource RCP.Icons.Folder}" />
+                                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Folder}" />
+                                        </DataTrigger>
+                                        <!-- Archive -->
+                                        <DataTrigger Binding="{Binding Path=Type}" Value="Archive">
+                                            <Setter Property="Kind" Value="{StaticResource RCP.Icons.Archive}" />
+                                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Folder}" />
+                                        </DataTrigger>
+                                        <!-- Add file -->
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=Type}" Value="File" />
+                                                <Condition Binding="{Binding Path=Modification}" Value="Add" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Kind" Value="{StaticResource RCP.Icons.FileAdd}" />
+                                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.AddItem}" />
+                                        </MultiDataTrigger>
+                                        <!-- Remove file -->
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=Type}" Value="File" />
+                                                <Condition Binding="{Binding Path=Modification}" Value="Remove" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Kind" Value="{StaticResource RCP.Icons.FileRemove}" />
+                                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.DeleteItem}" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </iconPacks:PackIconMaterial.Style>
+                        </iconPacks:PackIconMaterial>
+
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Path=Name, Mode=OneTime}"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 8 0" />
+
+                        <iconPacks:PackIconMaterial Grid.Column="3"
+                                                    Visibility="{Binding Path=HasInvalidLocation, Converter={rcp:BooleanToVisibilityConverter}}"
+                                                    Width="16" Height="16"
+                                                    VerticalAlignment="Center"
+                                                    ToolTip="This file will be ignored when applying the mods due to the containing archive file not being found for this game"
+                                                    Kind="{StaticResource RCP.Icons.Info}"
+                                                    Background="Transparent"
+                                                    Foreground="{StaticResource RCP.Brushes.Warning}"
+                                                    Margin="0 0 16 0" />
+
+                        <TextBlock Grid.Column="4" 
+                                   Text="{Binding Path=Mod, Mode=OneTime}"
+                                   Margin="0 0 16 0"
+                                   VerticalAlignment="Center" />
+
+                        <ItemsControl Grid.Column="5"
+                                      ItemsSource="{Binding Path=OverridenMods, Mode=OneWay}"
+                                      VerticalAlignment="Center"
+                                      Margin="0 0 16 0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Mode=OneTime}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Grid>
+
+</UserControl>

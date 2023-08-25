@@ -6,6 +6,7 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:dd="urn:gong-wpf-dragdrop"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignWidth="900" d:DesignHeight="600"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
@@ -214,13 +215,14 @@
                         </TransformGroup>
                     </Border.LayoutTransform>
 
-                    <!-- TODO-UPDATE: Show list of modified files -->
+                    <modLoader:ModifiedFilesControl DataContext="{Binding Path=ModifiedFiles, Mode=OneTime}" />
 
                 </Border>
 
                 <!-- Expander header -->
                 <Grid DockPanel.Dock="Bottom">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -248,10 +250,18 @@
                             <EventTrigger RoutedEvent="ToggleButton.Checked">
                                 <BeginStoryboard>
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileModificationsOptions" 
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileModificationsBorder" 
                                                                        Storyboard.TargetProperty="(UIElement.Visibility)">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                         Storyboard.TargetName="FileModificationsOptions" 
+                                                         From="0" To="1"
+                                                         Duration="0:0:0.22"/>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" 
                                                          Storyboard.TargetName="FileModificationsBorder" 
                                                          From="0" To="1"
@@ -270,11 +280,20 @@
                             <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                                 <BeginStoryboard>
                                     <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="FileModificationsOptions"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         From="1"
+                                                         To="0"
+                                                         Duration="0:0:0.22" />
                                         <DoubleAnimation Storyboard.TargetName="FileModificationsBorder"
                                                          Storyboard.TargetProperty="(UIElement.Opacity)"
                                                          From="1"
                                                          To="0"
                                                          Duration="0:0:0.22" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileModificationsOptions" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.22" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileModificationsBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0.22" Value="{x:Static Visibility.Collapsed}" />
@@ -296,28 +315,56 @@
 
                     <!-- TODO-UPDATE: This is currently just a mockup -->
                     <StackPanel Grid.Column="1" 
-                                VerticalAlignment="Center">
+                                VerticalAlignment="Center"
+                                Margin="0 0 8 0">
                         <TextBlock Text="15 files added" 
                                    Foreground="{StaticResource RCP.Brushes.AddItem}" />
                         <TextBlock Text="0 files removed" 
                                    Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
                     </StackPanel>
 
+                    <StackPanel x:Name="FileModificationsOptions" 
+                                Grid.Column="2"
+                                Opacity="0"
+                                Visibility="Collapsed"
+                                Orientation="Horizontal"
+                                Margin="0 0 8 0">
+
+                        <ToggleButton rcp:Icon.Kind="FormatListCheckbox"
+                                      ToolTip="Show files as a list"
+                                      Style="{StaticResource RCP.Styles.ToggleButton.Default}"
+                                      mah:ControlsHelper.CornerRadius="3 0 0 3"
+                                      IsChecked="{Binding Path=ShowModifiedFilesAsTree, Converter={rcp:InvertedBooleanConverter}}" />
+                        <ToggleButton rcp:Icon.Kind="FileTreeOutline"
+                                      ToolTip="Show files as a tree"
+                                      Style="{StaticResource RCP.Styles.ToggleButton.Default}"
+                                      mah:ControlsHelper.CornerRadius="0 3 3 0"
+                                      IsChecked="{Binding Path=ShowModifiedFilesAsTree}"
+                                      Margin="0 0 8 0" />
+
+                        <Button rcp:Icon.Kind="ExpandAllOutline"
+                                ToolTip="Expand all"
+                                Command="{Binding Path=ModifiedFiles.ExpandAllCommand, Mode=OneTime}"
+                                Visibility="{Binding Path=ShowModifiedFilesAsTree, Converter={rcp:BooleanToVisibilityConverter}}"
+                                Style="{StaticResource RCP.Styles.Button.Flat}" />
+
+                    </StackPanel>
+
                     <!-- TODO-UPDATE: This is currently just a mockup -->
-                    <TextBlock Grid.Column="3" 
+                    <TextBlock Grid.Column="4" 
                                VerticalAlignment="Center"
                                Text="1 unsaved mod" 
                                Foreground="{StaticResource RCP.Brushes.Info}"
                                Margin="0 0 8 0" />
 
-                    <Button Grid.Column="4" 
+                    <Button Grid.Column="5" 
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             Content="{Resx Cancel}"
                             Click="CancelButton_OnClick"
                             VerticalAlignment="Center"
                             rcp:Icon.Kind="CloseOutline"
                             Margin="0 0 4 0" />
-                    <Button Grid.Column="5" 
+                    <Button Grid.Column="6" 
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             Click="ApplyButton_OnClick"
                             Content="{Resx Patcher_Apply}"
