@@ -61,6 +61,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
+    public LocalizedString? AddedFilesText { get; set; }
+    public LocalizedString? RemovedFilesText { get; set; }
+
     public bool HasChanges { get; set; }
 
     #endregion
@@ -190,6 +193,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         // TODO-UPDATE: Log
         ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
+
+        AddedFilesText = new ConstLocString($"{ModifiedFiles.AddedFilesCount} added files");
+        RemovedFilesText = new ConstLocString($"{ModifiedFiles.RemovedFilesCount} removed files");
     }
 
     public void OnReorderedMods()

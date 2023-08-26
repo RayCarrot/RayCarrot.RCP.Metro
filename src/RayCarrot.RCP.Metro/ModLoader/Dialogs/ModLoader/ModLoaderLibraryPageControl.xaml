@@ -313,13 +313,14 @@
 
                     </ToggleButton>
 
-                    <!-- TODO-UPDATE: This is currently just a mockup -->
                     <StackPanel Grid.Column="1" 
                                 VerticalAlignment="Center"
                                 Margin="0 0 8 0">
-                        <TextBlock Text="15 files added" 
+                        <TextBlock Text="{Binding Path=AddedFilesText.Value}" 
+                                   d:Text="15 added files"
                                    Foreground="{StaticResource RCP.Brushes.AddItem}" />
-                        <TextBlock Text="0 files removed" 
+                        <TextBlock Text="{Binding Path=RemovedFilesText.Value}" 
+                                   d:Text="2 removed files"
                                    Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
                     </StackPanel>
 

@@ -43,6 +43,9 @@ public class ModifiedFilesViewModel : BaseViewModel
     public ModifiedFileItemViewModel ModifiedFilesRoot { get; }
     public bool ShowModifiedFilesAsTree { get; set; }
 
+    public int AddedFilesCount { get; private set; }
+    public int RemovedFilesCount { get; private set; }
+
     #endregion
 
     #region Private Methods
@@ -111,6 +114,11 @@ public class ModifiedFilesViewModel : BaseViewModel
             }
             currentItem.AddItem(new ModifiedFileItemViewModel(fileName, mod.Metadata.Name,
                 ModifiedFileItemViewModel.ItemType.File, modification, _invalidLocations[filePath.Location]));
+
+            if (modification == ModifiedFileItemViewModel.FileModification.Add)
+                AddedFilesCount++;
+            else if (modification == ModifiedFileItemViewModel.FileModification.Remove)
+                RemovedFilesCount++;
         }
     }
 
@@ -120,6 +128,9 @@ public class ModifiedFilesViewModel : BaseViewModel
 
     public void Refresh(IEnumerable<ModViewModel> enabledMods)
     {
+        AddedFilesCount = 0;
+        RemovedFilesCount = 0;
+
         foreach (ModViewModel modViewModel in enabledMods)
         {
             Mod mod = modViewModel.Mod;
