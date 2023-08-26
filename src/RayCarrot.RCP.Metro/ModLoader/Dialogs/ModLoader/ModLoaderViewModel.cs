@@ -284,6 +284,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                         ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
 
                         Mods.Add(viewModel);
+                        viewModel.LoadThumbnail();
                     }
                     // The mod is being added as an update
                     else
@@ -295,6 +296,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                         existingMod.Dispose();
                         Mods[existingModIndex] = viewModel;
+                        viewModel.LoadThumbnail();
                     }
 
                     HasChanges = true;
