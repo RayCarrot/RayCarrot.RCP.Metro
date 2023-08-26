@@ -63,6 +63,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public LocalizedString? AddedFilesText { get; set; }
     public LocalizedString? RemovedFilesText { get; set; }
+    public LocalizedString? ChangedModsText { get; set; }
 
     public bool HasChanges { get; set; }
 
@@ -194,14 +195,23 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Log
         ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
 
+        // TODO-UPDATE: Localize
         AddedFilesText = new ConstLocString($"{ModifiedFiles.AddedFilesCount} added files");
         RemovedFilesText = new ConstLocString($"{ModifiedFiles.RemovedFilesCount} removed files");
     }
 
-    public void OnReorderedMods()
+    public void ReportNewChanges()
     {
         RefreshModifiedFiles();
-        HasChanges = true;
+
+        int changedMods = Mods.Count(x => x.HasChanges);
+
+        HasChanges = changedMods > 0;
+        // TODO-UPDATE: Localize
+        if (HasChanges)
+            ChangedModsText = $"{changedMods} unsaved mods";
+        else
+            ChangedModsText = null;
     }
 
     public async Task InstallModFromFileAsync()
@@ -298,8 +308,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                         Mods[existingModIndex] = viewModel;
                         viewModel.LoadThumbnail();
                     }
-
-                    HasChanges = true;
                 }
                 catch (OperationCanceledException ex)
                 {
@@ -315,7 +323,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
             }
 
-            RefreshModifiedFiles();
+            ReportNewChanges();
         }
 
         Logger.Info("Added mods");

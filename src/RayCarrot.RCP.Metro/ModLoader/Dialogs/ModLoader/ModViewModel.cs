@@ -17,6 +17,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         PendingInstallTempDir = pendingInstallTempDir;
         Mod = mod;
         _isEnabled = modEntry.IsEnabled;
+        _wasEnabled = _isEnabled;
         // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
         Version = modEntry.Version ?? Mod.DefaultVersion;
         Size = modEntry.Size;
@@ -54,7 +55,10 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private bool? _wasEnabled;
+
     private bool _isEnabled;
+    private bool _hasChanges;
 
     #endregion
 
@@ -90,8 +94,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         set
         {
             _isEnabled = value;
-            ModLoaderViewModel.RefreshModifiedFiles();
-            ModLoaderViewModel.HasChanges = true;
+            ReportNewChange();
         }
     }
     public string Version { get; set; } // TODO-UPDATE: Allow changing from UI
@@ -100,6 +103,16 @@ public class ModViewModel : BaseViewModel, IDisposable
     public InstallState State { get; set; }
     public LocalizedString? StateMessage { get; set; }
     public bool CanModify => State != InstallState.PendingUninstall;
+
+    public bool HasChanges
+    {
+        get => _hasChanges;
+        set
+        {
+            _hasChanges = value;
+            ModLoaderViewModel.ReportNewChanges();
+        }
+    }
 
     #endregion
 
@@ -116,6 +129,21 @@ public class ModViewModel : BaseViewModel, IDisposable
             InstallState.PendingUninstall => "Pending uninstall",
             _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
         };
+
+        ReportNewChange();
+    }
+
+    private void ReportNewChange()
+    {
+        if (State != InstallState.Installed)
+        {
+            _wasEnabled = null;
+            HasChanges = true;
+        }
+        else
+        {
+            HasChanges = IsEnabled != _wasEnabled;
+        }
     }
 
     #endregion
@@ -160,9 +188,6 @@ public class ModViewModel : BaseViewModel, IDisposable
     public void UninstallMod()
     {
         SetState(InstallState.PendingUninstall);
-
-        ModLoaderViewModel.RefreshModifiedFiles();
-        ModLoaderViewModel.HasChanges = true;
 
         Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", Name, Metadata.Version, Metadata.Id);
     }

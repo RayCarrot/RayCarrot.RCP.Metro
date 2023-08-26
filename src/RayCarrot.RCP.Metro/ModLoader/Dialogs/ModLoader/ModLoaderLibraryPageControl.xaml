@@ -351,10 +351,10 @@
 
                     </StackPanel>
 
-                    <!-- TODO-UPDATE: This is currently just a mockup -->
                     <TextBlock Grid.Column="4" 
                                VerticalAlignment="Center"
-                               Text="1 unsaved mod" 
+                               Text="{Binding Path=ChangedModsText.Value}" 
+                               d:Text="2 unsaved mods"
                                Foreground="{StaticResource RCP.Brushes.Info}"
                                Margin="0 0 8 0" />
 
