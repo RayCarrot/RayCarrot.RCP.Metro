@@ -22,6 +22,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Library = new ModLibrary(GameInstallation);
 
         ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
+        DownloadableMods = new DownloadableModsViewModel(GameInstallation);
 
         InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
     }
@@ -66,6 +67,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public LocalizedString? ChangedModsText { get; set; }
 
     public bool HasChanges { get; set; }
+
+    public DownloadableModsViewModel DownloadableMods { get; }
 
     #endregion
 
@@ -403,6 +406,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public void Dispose()
     {
         Mods.DisposeAll();
+        DownloadableMods.Dispose();
     }
 
     #endregion

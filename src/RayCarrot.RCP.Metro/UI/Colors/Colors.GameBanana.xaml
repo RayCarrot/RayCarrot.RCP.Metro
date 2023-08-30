@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="RCP.Colors.GameBanana.Like">#ff519f</Color>
+    <Color x:Key="RCP.Colors.GameBanana.Download">#7cd870</Color>
+    <Color x:Key="RCP.Colors.GameBanana.View">#d1c981</Color>
+
+</ResourceDictionary>

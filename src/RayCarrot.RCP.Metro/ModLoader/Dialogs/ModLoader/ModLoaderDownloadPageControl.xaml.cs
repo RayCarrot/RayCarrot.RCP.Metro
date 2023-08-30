@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -12,4 +14,15 @@ public partial class ModLoaderDownloadPageControl : UserControl
         InitializeComponent();
     }
 
+    public DownloadableModsViewModel ViewModel => (DownloadableModsViewModel)DataContext;
+
+    private void ModsGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
+
+        if (r.VisualHit.GetType() != typeof(ListBoxItem))
+        {
+            ViewModel.SelectedMod = null;
+        }
+    }
 }

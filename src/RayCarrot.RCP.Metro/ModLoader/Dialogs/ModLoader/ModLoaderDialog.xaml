@@ -16,7 +16,8 @@
     <!-- TODO-UPDATE: Localize -->
     <rcp:LoadingHost rcp:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
-            <mah:MetroAnimatedTabControl>
+            <mah:MetroAnimatedTabControl x:Name="ModLoaderTabControl" 
+                                         SelectionChanged="ModLoaderTabControl_OnSelectionChanged">
                 <!-- Library -->
                 <TabItem Header="Library" 
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoader}" 
@@ -26,10 +27,10 @@
 
                 <!-- Download -->
                 <!-- TODO-UPDATE: Disable if user has disabled loading external mods -->
-                <TabItem Header="Download" 
+                <TabItem Header="Download"
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}" 
                          rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}">
-                    <modLoader:ModLoaderDownloadPageControl />
+                    <modLoader:ModLoaderDownloadPageControl DataContext="{Binding Path=DownloadableMods, Mode=OneTime}" />
                 </TabItem>
             </mah:MetroAnimatedTabControl>
         </Grid>

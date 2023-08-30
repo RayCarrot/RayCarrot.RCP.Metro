@@ -5,32 +5,253 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              d:DesignWidth="900" d:DesignHeight="600"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             d:DataContext="{d:DesignInstance modLoader:ModLoaderViewModel}"
+             d:DataContext="{d:DesignInstance modLoader:DownloadableModsViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: This is currently just a mockup for downloading mods from different supported sources -->
+    <!-- TODO-UPDATE: Localize -->
     <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
-                <Image Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png" 
-                       Width="32" 
-                       Margin="0 0 8 0"
-                       RenderOptions.BitmapScalingMode="HighQuality" />
-                <TextBlock Text="Rayman Control Panel" 
-                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Image Source="GameBanana.png" 
-                       Width="32" 
-                       Margin="0 0 8 0"/>
-                <TextBlock Text="GameBanana" 
-                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           VerticalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.25*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Available mods -->
+            <Grid Grid.Column="0"
+                  Background="Transparent"
+                  MouseDown="ModsGrid_OnMouseDown">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <Grid Grid.Row="0" 
+                      Margin="0 0 0 8"
+                      Height="38">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0"
+                           Source="GameBanana.png" 
+                           Width="32" 
+                           Margin="0 0 8 0"/>
+                    <TextBlock Grid.Column="1"
+                               Text="GameBanana" 
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               VerticalAlignment="Center" />
+
+                    <rcp:InfoIcon Grid.Column="2"
+                                  Text="These mods have been uploaded to GameBanana by various users" />
+
+                    <!-- Loading indicator -->
+                    <mah:ProgressRing Grid.Column="3"
+                                      Margin="8 0 0 0" 
+                                      Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}"
+                                      Width="38" Height="38" />
+
+                    <Button Grid.Column="4"
+                            IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            rcp:Icon.Kind="Refresh"
+                            Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
+                            ToolTip="Refresh the available mods"
+                            Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
+
+                </Grid>
+
+                <!-- Mods -->
+                <ListBox Grid.Row="2"
+                         Grid.IsSharedSizeScope="True"
+                         ItemsSource="{Binding Path=Mods, Mode=OneTime}"
+                         d:ItemsSource="{d:SampleData ItemCount=5}"
+                         SelectedItem="{Binding Path=SelectedMod}"
+                         d:SelectedIndex="1"
+                         VerticalAlignment="Top"
+                         Background="Transparent"
+                         ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
+                         VirtualizingPanel.ScrollUnit="Pixel"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         Margin="0 0 0 4">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <modLoader:DownloadableModItemControl />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <!-- TODO-UPDATE: Finish this. Link to docs? -->
+                <TextBlock Grid.Row="3"
+                           Text="Want your mod to show up here? Find out how here: " />
+            </Grid>
+
+            <!-- Empty text -->
+            <Viewbox Grid.Column="0"
+                     Grid.ColumnSpan="2" 
+                     Visibility="{Binding Path=IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
+                <TextBlock Text="No mods found" 
+                           TextAlignment="Center" 
+                           Margin="30" 
+                           Opacity="0.5" />
+            </Viewbox>
+
+            <!-- Error message -->
+            <Grid Grid.Column="0"
+                  Grid.ColumnSpan="2" 
+                  Margin="30"
+                  Visibility="{Binding Path=ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                  HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <iconPacks:PackIconMaterial Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            Kind="InformationOutline" 
+                                            Foreground="{StaticResource RCP.Brushes.Warning}"
+                                            Margin="0 0 4 0" />
+
+                <TextBlock Grid.Column="1" 
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Text="{Binding Path=ErrorMessage}"
+                           d:Text="Error message"/>
+
+            </Grid>
+
+            <!-- TODO-UPDATE: Show something here when no mod is selected? Info about current game? -->
+            <!-- Selected mod -->
+            <rcp:Card Grid.Column="1"
+                      DataContext="{Binding Path=SelectedMod}"
+                      Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                      d:Visibility="Visible"
+                      Margin="{StaticResource RCP.Thicknesses.Card}" 
+                      Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Header -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                       Text="{Binding Path=Name, Mode=OneTime}"
+                                       d:Text="Mod title"
+                                       TextTrimming="CharacterEllipsis"
+                                       Margin="0 0 0 4" />
+
+                            <TextBlock TextWrapping="Wrap"
+                                       Margin="0 0 0 4"
+                                       FontStyle="Italic">
+                                <Run Text="Uploaded by" />
+
+                                <!-- TODO-UPDATE: Add command to open GameBanana -->
+                                <Hyperlink>
+                                    <Run Text="{Binding Path=UploaderUserName, Mode=OneTime}"
+                                         d:Text="RayCarrot" />
+                                </Hyperlink>
+
+                                <Run Text="on" />
+                                <Run Text="{Binding Path=UploadDate, Mode=OneTime, StringFormat=D}"
+                                     d:Text="Date" />
+
+                            </TextBlock>
+                        </StackPanel>
+
+                        <Button Grid.Column="1"
+                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                rcp:Icon.Kind="OpenInNew"
+                                Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
+                                ToolTip="Open in GameBanana"
+                                Command="{Binding Path=OpenInGameBananaCommand, Mode=OneTime}" />
+
+                    </Grid>
+
+                    <!-- Preview image -->
+                    <Image Grid.Row="1"
+                           Source="{Binding Path=ImageUrl, Mode=OneTime}"
+                           Width="{Binding Path=ImageWidth, Mode=OneTime}"
+                           Height="{Binding Path=ImageHeight, Mode=OneTime}"
+                           d:Width="220" d:Height="120"
+                           HorizontalAlignment="Left"
+                           Margin="0 0 0 4" />
+
+                    <!-- Description -->
+                    <TextBlock Grid.Row="2"
+                               Text="{Binding Path=Description, Mode=OneTime}"
+                               d:Text="Description"
+                               Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                               TextWrapping="Wrap"
+                               FontStyle="Italic" 
+                               FontSize="11" />
+
+                    <!-- Text -->
+                    <ScrollViewer Grid.Row="3" 
+                                  VerticalAlignment="Top"
+                                  Margin="0 8 0 8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- TODO-UPDATE: Move to resource so it can have a light mode value -->
+                            <Border Grid.Column="0" 
+                                    Background="#494949"
+                                    Width="5"
+                                    Margin="0 0 8 0" />
+
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Path=Text, Mode=OneTime}"
+                                       d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                       Visibility="{Binding Path=Text, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                                       TextWrapping="Wrap"/>
+
+                        </Grid>
+                    </ScrollViewer>
+
+                    <!-- Download buttons -->
+                    <StackPanel Grid.Row="4"
+                                HorizontalAlignment="Left">
+                        <!-- TODO-UPDATE: Can have multiple download buttons -->
+                        <!-- TODO-UPDATE: Add command -->
+                        <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Content="Download"
+                                rcp:Icon.Kind="DownloadOutline" 
+                                rcp:Icon.Brush="{StaticResource RCP.Brushes.GameBanana.Download}" 
+                                HorizontalContentAlignment="Left"
+                                Margin="0 0 0 4" />
+                    </StackPanel>
+
+                </Grid>
+
+            </rcp:Card>
+
+        </Grid>
     </rcp:Card>
 </UserControl>

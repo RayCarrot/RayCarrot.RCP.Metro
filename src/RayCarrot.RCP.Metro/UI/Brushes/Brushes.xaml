@@ -5,6 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Colors/Colors.MaterialDesign.xaml" />
         <ResourceDictionary Source="../Colors/Colors.Brands.xaml" />
+        <ResourceDictionary Source="../Colors/Colors.GameBanana.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Main -->
@@ -27,6 +28,11 @@
     <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Twitter" Color="{StaticResource RCP.Colors.Twitter}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.YouTube" Color="{StaticResource RCP.Colors.YouTube}" po:Freeze="True" />
+    
+    <!-- GameBanana -->
+    <SolidColorBrush x:Key="RCP.Brushes.GameBanana.Like" Color="{StaticResource RCP.Colors.GameBanana.Like}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameBanana.Download" Color="{StaticResource RCP.Colors.GameBanana.Download}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameBanana.View" Color="{StaticResource RCP.Colors.GameBanana.View}" po:Freeze="True" />
 
     <!-- Status -->
     <SolidColorBrush x:Key="RCP.Brushes.StatusComplete" Color="{StaticResource RCP.Colors.GreenPrimary500}" po:Freeze="True" />

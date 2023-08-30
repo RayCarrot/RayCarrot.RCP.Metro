@@ -55,6 +55,8 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
             "patch_PC.ipk",
         }));
 
+        builder.Register(new GameBananaGameComponent(7400));
+
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_UbiRay(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_DebugCommands(x)));
     }

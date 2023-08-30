@@ -61,6 +61,8 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
                 Name: "Gamedatabin",
                 Archives: new[] { "tex32_1.cnt", "tex32_2.cnt", "vignette.cnt" })));
 
+        builder.Register(new GameBananaGameComponent(6188));
+
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
 

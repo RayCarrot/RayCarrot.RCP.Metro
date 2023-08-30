@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -25,6 +26,7 @@ public partial class ModLoaderDialog : WindowContentControl
     #region Private Fields
 
     private bool _forceClose;
+    private bool _hasLoadedDownloadableMods;
 
     #endregion
 
@@ -87,6 +89,15 @@ public partial class ModLoaderDialog : WindowContentControl
 
         if (!success)
             ForceClose();
+    }
+
+    private async void ModLoaderTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_hasLoadedDownloadableMods || ModLoaderTabControl.SelectedIndex != 1)
+            return;
+
+        _hasLoadedDownloadableMods = true;
+        await ViewModel.DownloadableMods.LoadModsAsync();
     }
 
     #endregion

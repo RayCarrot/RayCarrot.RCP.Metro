@@ -82,6 +82,8 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
             new CPATextureSyncDataItem(
                 Name: "Data",
                 Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
+
+        builder.Register(new GameBananaGameComponent(6244));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
