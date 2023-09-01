@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ByteSizeLib;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
@@ -58,7 +59,6 @@ public class ModViewModel : BaseViewModel, IDisposable
     private bool? _wasEnabled;
 
     private bool _isEnabled;
-    private bool _hasChanges;
 
     #endregion
 
@@ -104,15 +104,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public LocalizedString? StateMessage { get; set; }
     public bool CanModify => State != InstallState.PendingUninstall;
 
-    public bool HasChanges
-    {
-        get => _hasChanges;
-        set
-        {
-            _hasChanges = value;
-            ModLoaderViewModel.ReportNewChanges();
-        }
-    }
+    public bool HasChanges { get; private set; }
 
     #endregion
 
@@ -139,10 +131,12 @@ public class ModViewModel : BaseViewModel, IDisposable
         {
             _wasEnabled = null;
             HasChanges = true;
+            ModLoaderViewModel.ReportNewChanges();
         }
         else
         {
             HasChanges = IsEnabled != _wasEnabled;
+            ModLoaderViewModel.ReportNewChanges();
         }
     }
 
@@ -198,10 +192,24 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         try
         {
-            Thumbnail = Mod.GetThumbnail();
+            FileSystemPath? thumbFilePath = Mod.GetThumbnailFilePath();
 
-            if (Thumbnail?.CanFreeze == true)
-                Thumbnail.Freeze();
+            if (thumbFilePath == null)
+            {
+                Thumbnail = null;
+                return;
+            }
+
+            BitmapImage thumb = new();
+            thumb.BeginInit();
+            thumb.CacheOption = BitmapCacheOption.OnLoad; // Required to allow the file to be deleted, such as if a temp file
+            thumb.UriSource = new Uri(thumbFilePath);
+            thumb.EndInit();
+
+            if (thumb.CanFreeze)
+                thumb.Freeze();
+
+            Thumbnail = thumb;
         }
         catch (Exception ex)
         {

@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.IO;
+using System.Net.Http;
+using System.Windows.Input;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 
@@ -14,6 +16,14 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             throw new InvalidOperationException("The game installation doesn't support mods");
 
         GameInstallation = gameInstallation;
+        _httpClient = new HttpClient();
+        _modExtractors = new ModExtractor[]
+        {
+            new ZipModExtractor(), // .zip
+            new SevenZipModExtractor(), // .7z
+            new RarModExtractor(), // .rar
+            new LegacyGamePatchModExtractor(), // .gp (legacy)
+        };
 
         LoaderViewModel = new LoaderViewModel();
         Mods = new ObservableCollection<ModViewModel>();
@@ -22,9 +32,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Library = new ModLibrary(GameInstallation);
 
         ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
-        DownloadableMods = new DownloadableModsViewModel(GameInstallation);
+        DownloadableMods = new DownloadableModsViewModel(GameInstallation, _httpClient);
 
         InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
+        InstallModFromDownloadableFileCommand = new AsyncRelayCommand(x => InstallModFromDownloadableFileAsync((DownloadableModFileViewModel)x!));
     }
 
     #endregion
@@ -35,9 +46,17 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #endregion
 
+    #region Private Fields
+
+    private readonly HttpClient _httpClient;
+    private readonly ModExtractor[] _modExtractors;
+
+    #endregion
+
     #region Commands
 
     public ICommand InstallModFromFileCommand { get; }
+    public ICommand InstallModFromDownloadableFileCommand { get; }
 
     #endregion
 
@@ -161,6 +180,78 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
+    private async Task AddModToInstallAsync(FileSystemPath filePath, LoadState loadState)
+    {
+        FileExtension fileExtension = filePath.FileExtension;
+        ModExtractor modExtractor = _modExtractors.First(x => x.FileExtension == fileExtension);
+
+        TempDirectory extractTempDir = new(true);
+
+        try
+        {
+            // Extract the mod
+            await Task.Run(async () =>
+                await modExtractor.ExtractAsync(filePath, extractTempDir.TempPath, loadState.SetProgress, loadState.CancellationToken));
+
+            // Read the mod
+            Mod extractedMod = new(extractTempDir.TempPath);
+
+            // Verify game
+            if (!extractedMod.Metadata.IsGameValid(GameInstallation.GameDescriptor))
+            {
+                Logger.Warn("Failed to add mod due to the current game {0} not being supported", GameInstallation.FullId);
+
+                IEnumerable<LocalizedString> gameTargets = extractedMod.Metadata.Games.Select(x => Services.Games.GetGameDescriptor(x).DisplayName);
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} can't be installed to this game due to it not being one of the game targets:\r\n\r\n{1}",
+                    extractedMod.Metadata.Name, String.Join(Environment.NewLine, gameTargets)), MessageType.Error);
+
+                extractTempDir.Dispose();
+
+                return;
+            }
+
+            // Verify the security
+            if (!await VerifyPatchSecurityAsync(extractedMod))
+            {
+                extractTempDir.Dispose();
+                return;
+            }
+
+            string id = extractedMod.Metadata.Id;
+            long size = (long)extractTempDir.TempPath.GetSize().Bytes;
+
+            int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
+
+            // The mod is being added as a new mod
+            if (existingModIndex == -1)
+            {
+                ModManifestEntry modEntry = new(id, size, true, null);
+                ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
+
+                Mods.Add(viewModel);
+                viewModel.LoadThumbnail();
+            }
+            // The mod is being added as an update
+            else
+            {
+                ModViewModel existingMod = Mods[existingModIndex];
+
+                ModManifestEntry modEntry = new(id, size, existingMod.IsEnabled, existingMod.Version);
+                ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
+
+                existingMod.Dispose();
+                Mods[existingModIndex] = viewModel;
+                viewModel.LoadThumbnail();
+            }
+        }
+        catch
+        {
+            extractTempDir.Dispose();
+            throw;
+        }
+    }
+
     #endregion
 
     #region Public Methods
@@ -219,20 +310,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task InstallModFromFileAsync()
     {
-        ModExtractor[] modExtractors = 
-        {
-            new ZipModExtractor(), // .zip
-            new SevenZipModExtractor(), // .7z
-            new RarModExtractor(), // .rar
-            new LegacyGamePatchModExtractor(), // .gp (legacy)
-        };
-
         FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
             // TODO-UPDATE: Localize
             Title = "Select mods to install",
             // TODO-UPDATE: Localize
-            ExtensionFilter = new FileFilterItem(modExtractors.Select(x => x.FileExtension), "Mod archives").StringRepresentation,
+            ExtensionFilter = new FileFilterItem(_modExtractors.Select(x => x.FileExtension), "Mod archives").StringRepresentation,
             MultiSelection = true
         });
 
@@ -249,80 +332,18 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 // TODO-UPDATE: Localize
                 state.SetStatus($"Extracting mod {selectedFile.Name}");
 
-                FileExtension fileExtension = selectedFile.FileExtension;
-                ModExtractor modExtractor = modExtractors.First(x => x.FileExtension == fileExtension);
-
-                TempDirectory extractTempDir = new(true);
-
                 try
                 {
-                    // Extract the mod
-                    await Task.Run(async () =>
-                        await modExtractor.ExtractAsync(selectedFile, extractTempDir.TempPath, state.SetProgress, state.CancellationToken));
-
-                    // Read the mod
-                    Mod extractedMod = new(extractTempDir.TempPath);
-
-                    // Verify game
-                    if (!extractedMod.Metadata.IsGameValid(GameInstallation.GameDescriptor))
-                    {
-                        Logger.Warn("Failed to add mod due to the current game {0} not being supported", GameInstallation.FullId);
-
-                        IEnumerable<LocalizedString> gameTargets = extractedMod.Metadata.Games.Select(x => Services.Games.GetGameDescriptor(x).DisplayName);
-                        // TODO-UPDATE: Localize
-                        await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} can't be installed to this game due to it not being one of the game targets:\r\n\r\n{1}",
-                            extractedMod.Metadata.Name, String.Join(Environment.NewLine, gameTargets)), MessageType.Error);
-
-                        extractTempDir.Dispose();
-
-                        continue;
-                    }
-
-                    // Verify the security
-                    if (!await VerifyPatchSecurityAsync(extractedMod))
-                    {
-                        extractTempDir.Dispose();
-                        continue;
-                    }
-
-                    string id = extractedMod.Metadata.Id;
-                    long size = (long)extractTempDir.TempPath.GetSize().Bytes;
-
-                    int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
-
-                    // The mod is being added as a new mod
-                    if (existingModIndex == -1)
-                    {
-                        ModManifestEntry modEntry = new(id, size, true, null);
-                        ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
-
-                        Mods.Add(viewModel);
-                        viewModel.LoadThumbnail();
-                    }
-                    // The mod is being added as an update
-                    else
-                    {
-                        ModViewModel existingMod = Mods[existingModIndex];
-
-                        ModManifestEntry modEntry = new(id, size, existingMod.IsEnabled, existingMod.Version);
-                        ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
-
-                        existingMod.Dispose();
-                        Mods[existingModIndex] = viewModel;
-                        viewModel.LoadThumbnail();
-                    }
+                    await AddModToInstallAsync(selectedFile, state);
                 }
                 catch (OperationCanceledException ex)
                 {
                     // TODO-UPDATE: Log
-                    extractTempDir.Dispose();
-
                     break;
                 }
                 catch (Exception ex)
                 {
                     // TODO-UPDATE: Log and show error message
-                    extractTempDir.Dispose();
                 }
             }
 
@@ -330,6 +351,44 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
 
         Logger.Info("Added mods");
+    }
+
+    public async Task InstallModFromDownloadableFileAsync(DownloadableModFileViewModel file)
+    {
+        // TODO-UPDATE: Localize
+        // TODO-UPDATE: Try/catch
+        using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {file.DownloadableFile.File}", true))
+        {
+            // Create a temp file to download to
+            using TempFile tempFile = new(false, new FileExtension(file.DownloadableFile.File));
+
+            // Open a stream to the downloadable file
+            using (Stream httpStream = await _httpClient.GetStreamAsync(file.DownloadableFile.DownloadUrl))
+            {
+                // Download to the temp file
+                using FileStream tempFileStream = File.Create(tempFile.TempPath);
+                await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: file.DownloadableFile.FileSize);
+            }
+
+            // TODO-UPDATE: Localize
+            state.SetStatus($"Extracting mod {file.DownloadableFile.File}");
+
+            try
+            {
+                await AddModToInstallAsync(tempFile.TempPath, state);
+                ReportNewChanges();
+
+                // TODO-UPDATE: Have some way to indicate it was downloaded. Switch tabs? Show icon on library tab?
+            }
+            catch (OperationCanceledException ex)
+            {
+                // TODO-UPDATE: Log
+            }
+            catch (Exception ex)
+            {
+                // TODO-UPDATE: Log and show error message
+            }
+        }
     }
 
     public async Task<bool> ApplyAsync()
@@ -406,7 +465,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public void Dispose()
     {
         Mods.DisposeAll();
-        DownloadableMods.Dispose();
+        _httpClient.Dispose();
     }
 
     #endregion

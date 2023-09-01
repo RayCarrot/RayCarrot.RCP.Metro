@@ -77,7 +77,15 @@ public record GameBananaMod(
     [property: JsonProperty("_aSubmitter")] GameBananaMember? Submitter);
 
 public record GameBananaFile(
-    [property: JsonProperty("_aModManagerIntegrations")] GameBananaModManager[]? ModManagerIntegrations);
+    [property: JsonProperty("_idRow", Required = Required.Always)] int Id,
+    [property: JsonProperty("_aModManagerIntegrations")] GameBananaModManager[]? ModManagerIntegrations,
+    [property: JsonProperty("_nDownloadCount")] int DownloadCount,
+    [property: JsonProperty("_nFilesize")] int FileSize,
+    [property: JsonProperty("_sDescription")] string? Description,
+    [property: JsonProperty("_sDownloadUrl", Required = Required.Always)] string DownloadUrl,
+    [property: JsonProperty("_sFile", Required = Required.Always)] string File,
+    [property: JsonProperty("_sMd5Checksum")] string Md5Checksum,
+    [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateAdded);
 
 public record GameBananaModManager(
     [property: JsonProperty("_aGameRowIds")] int[]? GameIds,

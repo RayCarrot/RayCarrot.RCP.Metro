@@ -149,6 +149,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <!-- Header -->
@@ -235,18 +236,52 @@
                         </Grid>
                     </ScrollViewer>
 
-                    <!-- Download buttons -->
-                    <StackPanel Grid.Row="4"
-                                HorizontalAlignment="Left">
-                        <!-- TODO-UPDATE: Can have multiple download buttons -->
-                        <!-- TODO-UPDATE: Add command -->
-                        <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                                Content="Download"
-                                rcp:Icon.Kind="DownloadOutline" 
-                                rcp:Icon.Brush="{StaticResource RCP.Brushes.GameBanana.Download}" 
-                                HorizontalContentAlignment="Left"
-                                Margin="0 0 0 4" />
-                    </StackPanel>
+                    <Separator Grid.Row="4"
+                               Margin="0 0 0 8" />
+
+                    <ItemsControl Grid.Row="5"
+                                  ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=2}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 0 0 8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                Kind="FileSettingsOutline" 
+                                                                Width="22" Height="22"
+                                                                VerticalAlignment="Center" 
+                                                                Margin="0 0 4 0" />
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Path=FileName, Mode=OneTime}" 
+                                                   ToolTip="{Binding Path=FileName, Mode=OneTime}"
+                                                   FontSize="14" 
+                                                   FontWeight="Medium"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <TextBlock Text="{Binding Path=FileDescription, Mode=OneTime}" 
+                                                   Visibility="{Binding Path=FileDescription, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                                                   FontStyle="Italic"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+
+                                    <Button Grid.Column="2"
+                                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                                            Command="{Binding Path=DataContext.(modLoader:ModLoaderViewModel.InstallModFromDownloadableFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type modLoader:ModLoaderDialog}}}"
+                                            CommandParameter="{Binding Mode=OneTime}"
+                                            Content="Download"
+                                            ToolTip="Download and install the mod"
+                                            rcp:Icon.Kind="DownloadOutline" 
+                                            rcp:Icon.Brush="{StaticResource RCP.Brushes.GameBanana.Download}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
                 </Grid>
 

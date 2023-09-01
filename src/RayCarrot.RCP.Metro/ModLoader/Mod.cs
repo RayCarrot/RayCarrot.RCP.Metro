@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Windows.Media.Imaging;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
@@ -227,14 +226,14 @@ public class Mod
         }
     }
 
-    public BitmapImage? GetThumbnail()
+    public FileSystemPath? GetThumbnailFilePath()
     {
         FileSystemPath thumbFilePath = ModDirectoryPath + ThumbnailFileName;
 
         if (!thumbFilePath.FileExists)
             return null;
 
-        return new BitmapImage(new Uri(thumbFilePath));
+        return thumbFilePath;
     }
 
     #endregion

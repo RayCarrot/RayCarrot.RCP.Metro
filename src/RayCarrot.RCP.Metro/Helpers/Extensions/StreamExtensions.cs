@@ -10,11 +10,10 @@ public static class StreamExtensions
         Stream destination,
         Action<Progress>? progressCallback = null, 
         CancellationToken cancellationToken = default,
-        int bufferSize = 0x80000)
+        int bufferSize = 0x80000,
+        long? length = null)
     {
-        long? length = null;
-
-        if (progressCallback != null)
+        if (progressCallback != null && length == null)
         {
             try
             {

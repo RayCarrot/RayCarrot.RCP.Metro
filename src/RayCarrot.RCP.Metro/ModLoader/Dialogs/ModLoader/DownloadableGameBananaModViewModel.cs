@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 public class DownloadableGameBananaModViewModel : BaseViewModel
 {
-    public DownloadableGameBananaModViewModel(GameBananaMod mod)
+    public DownloadableGameBananaModViewModel(GameBananaMod mod, IEnumerable<GameBananaFile> files)
     {
         Mod = mod;
 
@@ -39,6 +39,8 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
         DownloadsCount = mod.DownloadCount;
         ViewsCount = mod.ViewCount;
 
+        Files = new ObservableCollection<DownloadableModFileViewModel>(files.Select(x => new DownloadableModFileViewModel(x)));
+
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
     }
 
@@ -59,6 +61,8 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
     public int LikesCount { get; }
     public int DownloadsCount { get; }
     public int ViewsCount { get; }
+
+    public ObservableCollection<DownloadableModFileViewModel> Files { get; }
 
     private static string RemoveHthmlFromString(string? html)
     {

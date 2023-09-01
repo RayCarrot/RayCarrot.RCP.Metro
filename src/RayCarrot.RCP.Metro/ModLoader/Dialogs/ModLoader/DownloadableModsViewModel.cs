@@ -7,14 +7,14 @@ using RayCarrot.RCP.Metro.Games.Components;
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 // TODO-UPDATE: Add logging here and other places
-public class DownloadableModsViewModel : BaseViewModel, IDisposable
+public class DownloadableModsViewModel : BaseViewModel
 {
     #region Constructor
 
-    public DownloadableModsViewModel(GameInstallation gameInstallation)
+    public DownloadableModsViewModel(GameInstallation gameInstallation, HttpClient httpClient)
     {
         GameInstallation = gameInstallation;
-        _httpClient = new HttpClient();
+        _httpClient = httpClient;
         _gameBananaApi = new GameBananaApi();
 
         Mods = new ObservableCollection<DownloadableGameBananaModViewModel>();
@@ -57,14 +57,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         return JsonConvert.DeserializeObject<T>(jsonString) ?? throw new Exception("The retrieved JSON response was null");
     }
 
-    private bool ValidateMod(GameBananaMod mod)
-    {
-        // Make sure at least one file has mod integration with the Rayman Control Panel
-        return mod.Files != null && 
-               mod.Files.Any(x => x.ModManagerIntegrations != null && 
-                                  x.ModManagerIntegrations.Any(m => m.ToolId == _gameBananaApi.RaymanControlPanelToolId));
-    }
-
     #endregion
 
     #region Public Methods
@@ -101,9 +93,20 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
                     {
                         // Read the mod profile
                         GameBananaMod modProfile = await ReadAsync<GameBananaMod>(_gameBananaApi.GetModUrl(modRecord.Id));
+                        
+                        // Make sure the mod has files
+                        if (modProfile.Files == null)
+                            continue;
 
-                        if (ValidateMod(modProfile))
-                            Mods.Add(new DownloadableGameBananaModViewModel(modProfile));
+                        // Get the files which contain valid RCP mods
+                        List<GameBananaFile> validFiles = modProfile.Files.
+                            Where(x => x.ModManagerIntegrations != null && 
+                                       x.ModManagerIntegrations.Any(m => m.ToolId == _gameBananaApi.RaymanControlPanelToolId)).
+                            ToList();
+
+                        // Make sure at least one file has mod integration with RCP
+                        if (validFiles.Count > 0)
+                            Mods.Add(new DownloadableGameBananaModViewModel(modProfile, validFiles));
                     }
 
                     page++;
@@ -122,11 +125,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         {
             IsLoading = false;
         }
-    }
-
-    public void Dispose()
-    {
-        _httpClient.Dispose();
     }
 
     #endregion

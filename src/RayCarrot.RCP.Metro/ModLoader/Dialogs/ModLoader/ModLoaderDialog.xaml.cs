@@ -48,8 +48,8 @@ public partial class ModLoaderDialog : WindowContentControl
         WindowInstance.Icon = GenericIconKind.Window_ModLoader;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
-        WindowInstance.Width = 900;
-        WindowInstance.Height = 600;
+        WindowInstance.Width = 950;
+        WindowInstance.Height = 650;
     }
 
     protected override async Task<bool> ClosingAsync()
