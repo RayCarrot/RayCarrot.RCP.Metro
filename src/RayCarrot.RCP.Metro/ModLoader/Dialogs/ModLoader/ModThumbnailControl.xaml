@@ -12,13 +12,13 @@
     <Grid>
 
         <Image Source="{Binding Path=Thumbnail}"
-               VerticalAlignment="Center"
+               VerticalAlignment="{Binding Path=VerticalAlignment, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type modLoader:ModThumbnailControl}}}"
                HorizontalAlignment="Center"/>
 
         <iconPacks:PackIconMaterial Visibility="{Binding Path=Thumbnail, Converter={rcp:ObjectNullToVisibilityConverter}}" 
                                     Kind="FileSettingsOutline" 
                                     Width="Auto" Height="Auto"
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="{Binding Path=VerticalAlignment, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type modLoader:ModThumbnailControl}}}"
                                     HorizontalAlignment="Center" />
 
     </Grid>
