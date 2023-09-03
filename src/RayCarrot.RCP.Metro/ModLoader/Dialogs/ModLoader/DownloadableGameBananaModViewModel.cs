@@ -6,17 +6,27 @@ namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 public class DownloadableGameBananaModViewModel : BaseViewModel
 {
-    public DownloadableGameBananaModViewModel(GameBananaMod mod, IEnumerable<GameBananaFile> files)
+    public DownloadableGameBananaModViewModel(
+        int gameBananaId, 
+        string name, 
+        string uploaderUserName, 
+        DateTime uploadDate, 
+        string description, 
+        string text,
+        GameBananaMedia? previewMedia, 
+        int likesCount, 
+        int downloadsCount, 
+        int viewsCount, 
+        IEnumerable<GameBananaFile> files)
     {
-        Mod = mod;
+        GameBananaId = gameBananaId;
+        Name = name;
+        UploaderUserName = uploaderUserName;
+        UploadDate = uploadDate;
+        Description = description;
+        Text = RemoveHthmlFromString(text);
 
-        Name = mod.Name;
-        UploaderUserName = mod.Submitter?.Name ?? String.Empty;
-        UploadDate = mod.DateAdded;
-        Description = mod.Description ?? String.Empty;
-        Text = RemoveHthmlFromString(mod.Text);
-
-        if (mod.PreviewMedia?.Images is { Length: > 0 } images)
+        if (previewMedia?.Images is { Length: > 0 } images)
         {
             GameBananaImage img = images[0];
 
@@ -35,9 +45,9 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
             }
         }
 
-        LikesCount = mod.LikeCount;
-        DownloadsCount = mod.DownloadCount;
-        ViewsCount = mod.ViewCount;
+        LikesCount = likesCount;
+        DownloadsCount = downloadsCount;
+        ViewsCount = viewsCount;
 
         Files = new ObservableCollection<DownloadableModFileViewModel>(files.Select(x => new DownloadableModFileViewModel(x)));
 
@@ -46,7 +56,7 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
 
     public ICommand OpenInGameBananaCommand { get; }
 
-    public GameBananaMod Mod { get; }
+    public int GameBananaId { get; }
 
     public string Name { get; }
     public string UploaderUserName { get; }
@@ -64,11 +74,8 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
 
     public ObservableCollection<DownloadableModFileViewModel> Files { get; }
 
-    private static string RemoveHthmlFromString(string? html)
+    private static string RemoveHthmlFromString(string html)
     {
-        if (html == null)
-            return String.Empty;
-
         // Linebreaks
         html = html.Replace("<br>", Environment.NewLine);
         html = html.Replace(@"</li>", Environment.NewLine);
@@ -103,6 +110,6 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
 
     public void OpenInGameBanana()
     {
-        Services.App.OpenUrl($"https://gamebanana.com/mods/{Mod.Id}");
+        Services.App.OpenUrl($"https://gamebanana.com/mods/{GameBananaId}");
     }
 }

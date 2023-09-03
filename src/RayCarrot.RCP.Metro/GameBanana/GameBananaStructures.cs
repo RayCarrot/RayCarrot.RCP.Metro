@@ -57,17 +57,19 @@ public record GameBananaMember(
     [property: JsonProperty("_sAvatarUrl")] string? AvatarUrl);
 
 public record GameBananaMod(
-    [property: JsonProperty("_idRow", Required = Required.Always)] int Id,
+    [property: JsonProperty("_idRow")] int Id,
     [property: JsonProperty("_bIsPrivate")] bool IsPrivate,
     [property: JsonProperty("_tsDateModified"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateModified,
     [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateAdded,
     [property: JsonProperty("_aPreviewMedia")] GameBananaMedia? PreviewMedia,
     [property: JsonProperty("_bIsTrashed")] bool IsTrashed,
     [property: JsonProperty("_bIsWithheld")] bool IsWithheld,
-    [property: JsonProperty("_sName", Required = Required.Always)] string Name,
+    [property: JsonProperty("_sName")] string? Name,
     [property: JsonProperty("_bCreatedBySubmitter")] bool CreatedBySubmitter,
     [property: JsonProperty("_nDownloadCount")] int DownloadCount,
     [property: JsonProperty("_aFiles")] GameBananaFile[]? Files,
+    // Can't set the type here since if it's empty then it's an array [] and if not an object {}
+    [property: JsonProperty("_aModManagerIntegrations")] object? ModManagerIntegrations,
     [property: JsonProperty("_sDescription")] string? Description,
     [property: JsonProperty("_sText")] string? Text,
     [property: JsonProperty("_bIsObsolete")] bool IsObsolete,

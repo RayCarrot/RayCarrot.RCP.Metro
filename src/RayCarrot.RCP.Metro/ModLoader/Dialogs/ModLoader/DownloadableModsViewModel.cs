@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.GameBanana;
 using RayCarrot.RCP.Metro.Games.Components;
 
@@ -15,7 +16,6 @@ public class DownloadableModsViewModel : BaseViewModel
     {
         GameInstallation = gameInstallation;
         _httpClient = httpClient;
-        _gameBananaApi = new GameBananaApi();
 
         Mods = new ObservableCollection<DownloadableGameBananaModViewModel>();
 
@@ -24,10 +24,15 @@ public class DownloadableModsViewModel : BaseViewModel
 
     #endregion
 
+    #region Constant Fields
+
+    private const int RaymanControlPanelToolId = 10372;
+
+    #endregion
+
     #region Private Fields
 
     private readonly HttpClient _httpClient;
-    private readonly GameBananaApi _gameBananaApi;
 
     #endregion
 
@@ -73,6 +78,8 @@ public class DownloadableModsViewModel : BaseViewModel
 
         try
         {
+            List<GameBananaRecord> modRecords = new();
+
             // Enumerate every supported GameBanana game
             foreach (GameBananaGameComponent gameBananaGameComponent in GameInstallation.GetComponents<GameBananaGameComponent>())
             {
@@ -86,31 +93,54 @@ public class DownloadableModsViewModel : BaseViewModel
                 do
                 {
                     // Read the subfeed page
-                    subfeed = await ReadAsync<GameBananaSubfeed>(_gameBananaApi.GetGameSubfeedUrl(gameId, page));
+                    subfeed = await ReadAsync<GameBananaSubfeed>($"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
+                                                                 $"_nPage={page}&" +
+                                                                 $"_sSort=new&" +
+                                                                 $"_csvModelInclusions=Mod");
 
-                    // Process every mod in the page
-                    foreach (GameBananaRecord modRecord in subfeed.Records.Where(x => x.HasFiles))
-                    {
-                        // Read the mod profile
-                        GameBananaMod modProfile = await ReadAsync<GameBananaMod>(_gameBananaApi.GetModUrl(modRecord.Id));
-                        
-                        // Make sure the mod has files
-                        if (modProfile.Files == null)
-                            continue;
-
-                        // Get the files which contain valid RCP mods
-                        List<GameBananaFile> validFiles = modProfile.Files.
-                            Where(x => x.ModManagerIntegrations != null && 
-                                       x.ModManagerIntegrations.Any(m => m.ToolId == _gameBananaApi.RaymanControlPanelToolId)).
-                            ToList();
-
-                        // Make sure at least one file has mod integration with RCP
-                        if (validFiles.Count > 0)
-                            Mods.Add(new DownloadableGameBananaModViewModel(modProfile, validFiles));
-                    }
+                    // Add the mods
+                    modRecords.AddRange(subfeed.Records.Where(x => x.HasFiles));
 
                     page++;
                 } while (!subfeed.Metadata.IsComplete);
+            }
+
+            // Get data for every mod
+            GameBananaMod[] mods = await ReadAsync<GameBananaMod[]>($"https://gamebanana.com/apiv11/Mod/Multi?" + 
+                                                                    $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" + 
+                                                                    $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
+            
+            // Process every mod
+            for (int i = 0; i < modRecords.Count; i++)
+            {
+                GameBananaRecord modRecord = modRecords[i];
+                GameBananaMod mod = mods[i];
+
+                // Make sure the mod has files
+                if (mod.Files == null)
+                    continue;
+
+                // Get the files which contain valid RCP mods
+                List<GameBananaFile> validFiles = mod.Files.
+                    Where(x => mod.ModManagerIntegrations is JObject obj &&
+                               obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
+                               m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
+                    ToList();
+
+                // Make sure at least one file has mod integration with RCP
+                if (validFiles.Count > 0)
+                    Mods.Add(new DownloadableGameBananaModViewModel(
+                        gameBananaId: modRecord.Id,
+                        name: modRecord.Name,
+                        uploaderUserName: modRecord.Submitter?.Name ?? String.Empty,
+                        uploadDate: modRecord.DateAdded,
+                        description: mod.Description ?? String.Empty,
+                        text: mod.Text ?? String.Empty,
+                        previewMedia: modRecord.PreviewMedia,
+                        likesCount: modRecord.LikeCount,
+                        downloadsCount: mod.DownloadCount,
+                        viewsCount: modRecord.ViewCount,
+                        files: validFiles));
             }
 
             IsEmpty = !Mods.Any();
