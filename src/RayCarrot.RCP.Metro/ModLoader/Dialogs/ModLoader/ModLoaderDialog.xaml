@@ -16,8 +16,7 @@
     <!-- TODO-UPDATE: Localize -->
     <rcp:LoadingHost rcp:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
-            <mah:MetroAnimatedTabControl x:Name="ModLoaderTabControl" 
-                                         SelectionChanged="ModLoaderTabControl_OnSelectionChanged">
+            <mah:MetroAnimatedTabControl>
                 <!-- Library -->
                 <TabItem Header="Library" 
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoader}" 

@@ -281,7 +281,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
 
         // Load mods
-        return await LoadInstalledModsAsync();
+        bool success = await LoadInstalledModsAsync();
+
+        if (!success)
+            return false;
+
+        // Load downloadable mods
+        await DownloadableMods.LoadModsAsync();
+
+        return true;
     }
 
     public void RefreshModifiedFiles()

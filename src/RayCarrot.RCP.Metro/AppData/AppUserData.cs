@@ -428,7 +428,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// Indicates if external mods should be loaded in the mod loader
     /// </summary>
-    public bool ModLoader_LoadExternalMods { get; set; }
+    public bool ModLoader_LoadExternalMods { get; set; } // TODO-UPDATE: Use this?
 
     #endregion
 }
