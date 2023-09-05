@@ -41,6 +41,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         if (PendingInstallTempDir != null)
             SetState(InstallState.PendingInstall);
 
+        OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
         UninstallCommand = new RelayCommand(UninstallMod);
         OpenWebsiteCommand = new RelayCommand(OpenWebsite);
@@ -64,6 +65,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Commands
 
+    public ICommand OpenLocationCommand { get; }
     public ICommand ExtractContentsCommand { get; }
     public ICommand UninstallCommand { get; }
     public ICommand OpenWebsiteCommand { get; }
@@ -143,6 +145,11 @@ public class ModViewModel : BaseViewModel, IDisposable
     #endregion
 
     #region Public Methods
+
+    public async Task OpenLocationAsync()
+    {
+        await Services.File.OpenExplorerLocationAsync(Mod.ModDirectoryPath);
+    }
 
     public async Task ExtractModContentsAsync()
     {

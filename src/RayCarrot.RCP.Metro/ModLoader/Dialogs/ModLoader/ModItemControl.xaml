@@ -80,6 +80,17 @@
                 </Style>
             </StackPanel.Style>
 
+            <Button ToolTip="Open location"
+                    d:ToolTip="{x:Null}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Foreground="{StaticResource RCP.Brushes.Info}"
+                    Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
+                    VerticalAlignment="Center"
+                    rcp:Icon.Kind="{StaticResource RCP.Icons.Folder}"
+                    rcp:Icon.Size="16"
+                    Margin="0 0 4 0"
+                    rcp:UserLevelAssist.MinUserLevel="Debug" />
+
             <Button ToolTip="{Resx Patcher_ExtractPatch}"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
