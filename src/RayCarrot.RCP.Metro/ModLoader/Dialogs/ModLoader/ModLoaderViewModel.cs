@@ -1,8 +1,11 @@
 ﻿using System.IO;
 using System.Net.Http;
 using System.Windows.Input;
+using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Sources;
+using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -24,6 +27,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             new RarModExtractor(), // .rar
             new LegacyGamePatchModExtractor(), // .gp (legacy)
         };
+        _downloadableModsSources = new DownloadableModsSource[]
+        {
+            new GameBananaModsSource(), // GameBanana
+        };
 
         LoaderViewModel = new LoaderViewModel();
         Mods = new ObservableCollection<ModViewModel>();
@@ -32,10 +39,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Library = new ModLibrary(GameInstallation);
 
         ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
-        DownloadableMods = new DownloadableModsViewModel(GameInstallation, _httpClient);
+        DownloadableMods = new DownloadableModsViewModel(this, GameInstallation, _httpClient, _downloadableModsSources);
 
         InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
-        InstallModFromDownloadableFileCommand = new AsyncRelayCommand(x => InstallModFromDownloadableFileAsync((DownloadableModFileViewModel)x!));
+        CheckForUpdatesCommand = new AsyncRelayCommand(CheckForUpdatesAsync);
     }
 
     #endregion
@@ -50,13 +57,14 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     private readonly HttpClient _httpClient;
     private readonly ModExtractor[] _modExtractors;
+    private readonly DownloadableModsSource[] _downloadableModsSources;
 
     #endregion
 
     #region Commands
 
     public ICommand InstallModFromFileCommand { get; }
-    public ICommand InstallModFromDownloadableFileCommand { get; }
+    public ICommand CheckForUpdatesCommand { get; }
 
     #endregion
 
@@ -180,7 +188,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private async Task AddModToInstallAsync(FileSystemPath filePath, LoadState loadState)
+    private async Task AddModToInstallAsync(FileSystemPath filePath, LoadState loadState, string? sourceId, object? installData)
     {
         FileExtension fileExtension = filePath.FileExtension;
         ModExtractor modExtractor = _modExtractors.First(x => x.FileExtension == fileExtension);
@@ -220,13 +228,14 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
             string id = extractedMod.Metadata.Id;
             long size = (long)extractTempDir.TempPath.GetSize().Bytes;
+            ModInstallInfo installInfo = new(sourceId, size, DateTime.Now, installData == null ? null : JObject.FromObject(installData));
 
             int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
 
             // The mod is being added as a new mod
             if (existingModIndex == -1)
             {
-                ModManifestEntry modEntry = new(id, size, true, null);
+                ModManifestEntry modEntry = new(id, installInfo, true, null);
                 ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
 
                 Mods.Add(viewModel);
@@ -237,7 +246,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             {
                 ModViewModel existingMod = Mods[existingModIndex];
 
-                ModManifestEntry modEntry = new(id, size, existingMod.IsEnabled, existingMod.Version);
+                ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled, existingMod.Version);
                 ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
 
                 existingMod.Dispose();
@@ -342,7 +351,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 try
                 {
-                    await AddModToInstallAsync(selectedFile, state);
+                    await AddModToInstallAsync(selectedFile, state, null, null);
                 }
                 catch (OperationCanceledException ex)
                 {
@@ -361,29 +370,34 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Logger.Info("Added mods");
     }
 
-    public async Task InstallModFromDownloadableFileAsync(DownloadableModFileViewModel file)
+    public async Task InstallModFromDownloadableFileAsync(
+        DownloadableModsSource source, 
+        string fileName, 
+        string downloadUrl, 
+        long fileSize, 
+        object installData)
     {
         // TODO-UPDATE: Localize
         // TODO-UPDATE: Try/catch
-        using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {file.DownloadableFile.File}", true))
+        using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {fileName}", true))
         {
             // Create a temp file to download to
-            using TempFile tempFile = new(false, new FileExtension(file.DownloadableFile.File));
+            using TempFile tempFile = new(false, new FileExtension(fileName));
 
             // Open a stream to the downloadable file
-            using (Stream httpStream = await _httpClient.GetStreamAsync(file.DownloadableFile.DownloadUrl))
+            using (Stream httpStream = await _httpClient.GetStreamAsync(downloadUrl))
             {
                 // Download to the temp file
                 using FileStream tempFileStream = File.Create(tempFile.TempPath);
-                await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: file.DownloadableFile.FileSize);
+                await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: fileSize);
             }
 
             // TODO-UPDATE: Localize
-            state.SetStatus($"Extracting mod {file.DownloadableFile.File}");
+            state.SetStatus($"Extracting mod {fileName}");
 
             try
             {
-                await AddModToInstallAsync(tempFile.TempPath, state);
+                await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
                 ReportNewChanges();
 
                 // TODO-UPDATE: Have some way to indicate it was downloaded. Switch tabs? Show icon on library tab?
@@ -397,6 +411,11 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 // TODO-UPDATE: Log and show error message
             }
         }
+    }
+
+    public async Task CheckForUpdatesAsync()
+    {
+        // TODO-UPDATE: Implement
     }
 
     public async Task<bool> ApplyAsync()
@@ -421,13 +440,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                         {
                             // Already installed mod
                             case ModViewModel.InstallState.Installed:
-                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.Size, modViewModel.IsEnabled, modViewModel.Version));
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled, modViewModel.Version));
                                 break;
                             
                             // Install new mod
                             case ModViewModel.InstallState.PendingInstall:
                                 Library.InstallMod(modViewModel.Mod.ModDirectoryPath, id, false);
-                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.Size, modViewModel.IsEnabled, modViewModel.Version));
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled, modViewModel.Version));
                                 break;
                             
                             // Uninstall

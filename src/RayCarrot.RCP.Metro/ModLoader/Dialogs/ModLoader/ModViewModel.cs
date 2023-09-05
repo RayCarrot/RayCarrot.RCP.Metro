@@ -21,12 +21,12 @@ public class ModViewModel : BaseViewModel, IDisposable
         _wasEnabled = _isEnabled;
         // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
         Version = modEntry.Version ?? Mod.DefaultVersion;
-        Size = modEntry.Size;
+        InstallInfo = modEntry.InstallInfo;
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Author)), Metadata.Author),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Size)), ByteSize.FromBytes(modEntry.Size).ToString()),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Size)), ByteSize.FromBytes(modEntry.InstallInfo.Size).ToString()),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Version)), Metadata.Version?.ToString()),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ID)), Metadata.Id, UserLevel.Debug),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Debug),
@@ -98,7 +98,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         }
     }
     public string Version { get; set; } // TODO-UPDATE: Allow changing from UI
-    public long Size { get; }
+    public ModInstallInfo InstallInfo { get; }
 
     public InstallState State { get; set; }
     public LocalizedString? StateMessage { get; set; }

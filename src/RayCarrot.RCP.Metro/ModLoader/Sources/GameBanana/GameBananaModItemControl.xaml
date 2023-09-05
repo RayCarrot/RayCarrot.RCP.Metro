@@ -1,15 +1,15 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader.DownloadableModItemControl"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana.GameBananaModItemControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             d:DataContext="{d:DesignInstance modLoader:DownloadableGameBananaModViewModel}"
+             d:DataContext="{d:DesignInstance gameBanana:GameBananaModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <!-- TODO-UPDATE: Localize -->
     <Grid Margin="0 8">

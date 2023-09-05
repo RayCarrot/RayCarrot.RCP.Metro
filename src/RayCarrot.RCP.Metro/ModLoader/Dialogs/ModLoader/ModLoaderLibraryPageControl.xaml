@@ -87,12 +87,18 @@
 
                     </ListBox>
 
-                    <Button Grid.Row="2"
-                            HorizontalAlignment="Left"
-                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                            Content="Install from file"
-                            rcp:Icon.Kind="FileDownloadOutline"
-                            Command="{Binding Path=InstallModFromFileCommand, Mode=OneTime}" />
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal">
+                        <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Content="Install from file"
+                                rcp:Icon.Kind="FileDownloadOutline"
+                                Command="{Binding Path=InstallModFromFileCommand, Mode=OneTime}"
+                                Margin="0 0 4 0"/>
+                        <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Content="Check for updates"
+                                rcp:Icon.Kind="Update"
+                                Command="{Binding Path=CheckForUpdatesCommand, Mode=OneTime}" />
+                    </StackPanel>
                 </Grid>
 
                 <Separator Grid.Column="1"

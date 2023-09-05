@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 /// <summary>
 /// Interaction logic for DownloadableModItemControl.xaml
 /// </summary>
-public partial class DownloadableModItemControl : UserControl
+public partial class GameBananaModItemControl : UserControl
 {
-    public DownloadableModItemControl()
+    public GameBananaModItemControl()
     {
         InitializeComponent();
     }

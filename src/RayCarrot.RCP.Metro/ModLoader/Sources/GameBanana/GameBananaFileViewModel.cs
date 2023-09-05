@@ -1,10 +1,8 @@
-﻿using RayCarrot.RCP.Metro.GameBanana;
+﻿namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
-
-public class DownloadableModFileViewModel : BaseViewModel
+public class GameBananaFileViewModel : BaseViewModel
 {
-    public DownloadableModFileViewModel(GameBananaFile downloadableFile)
+    public GameBananaFileViewModel(GameBananaFile downloadableFile)
     {
         DownloadableFile = downloadableFile;
 

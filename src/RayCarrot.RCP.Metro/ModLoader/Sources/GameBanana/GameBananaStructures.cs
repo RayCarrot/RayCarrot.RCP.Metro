@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace RayCarrot.RCP.Metro.GameBanana;
+namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 // These are classes for the different GameBanana API structures so that
 // we can easily deserialize them. They do not include every possible

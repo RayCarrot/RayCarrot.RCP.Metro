@@ -1,12 +1,17 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows.Input;
-using RayCarrot.RCP.Metro.GameBanana;
+using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Library;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-public class DownloadableGameBananaModViewModel : BaseViewModel
+public class GameBananaModViewModel : DownloadableModViewModel
 {
-    public DownloadableGameBananaModViewModel(
+    #region Constructor
+
+    public GameBananaModViewModel(
+        DownloadableModsSource downloadableModsSource,
+        ModLoaderViewModel modLoaderViewModel,
         int gameBananaId, 
         string name, 
         string uploaderUserName, 
@@ -19,6 +24,9 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
         int viewsCount, 
         IEnumerable<GameBananaFile> files)
     {
+        _downloadableModsSource = downloadableModsSource;
+        _modLoaderViewModel = modLoaderViewModel;
+
         GameBananaId = gameBananaId;
         Name = name;
         UploaderUserName = uploaderUserName;
@@ -49,12 +57,30 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
         DownloadsCount = downloadsCount;
         ViewsCount = viewsCount;
 
-        Files = new ObservableCollection<DownloadableModFileViewModel>(files.Select(x => new DownloadableModFileViewModel(x)));
+        Files = new ObservableCollection<GameBananaFileViewModel>(files.Select(x => new GameBananaFileViewModel(x)));
 
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
+        DownloadFileCommand = new AsyncRelayCommand(x => DownloadFileAsync((GameBananaFileViewModel)x!));
     }
 
+    #endregion
+
+    #region Private Fields
+
+    // NOTE: Might be worth abstracting this more in the future to not pass in these here
+    private readonly DownloadableModsSource _downloadableModsSource;
+    private readonly ModLoaderViewModel _modLoaderViewModel;
+
+    #endregion
+
+    #region Commands
+
     public ICommand OpenInGameBananaCommand { get; }
+    public ICommand DownloadFileCommand { get; }
+
+    #endregion
+
+    #region Public Properties
 
     public int GameBananaId { get; }
 
@@ -72,7 +98,11 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
     public int DownloadsCount { get; }
     public int ViewsCount { get; }
 
-    public ObservableCollection<DownloadableModFileViewModel> Files { get; }
+    public ObservableCollection<GameBananaFileViewModel> Files { get; }
+
+    #endregion
+
+    #region Private Methods
 
     private static string RemoveHthmlFromString(string html)
     {
@@ -108,8 +138,24 @@ public class DownloadableGameBananaModViewModel : BaseViewModel
         return html.Trim();
     }
 
+    #endregion
+
+    #region Public Methods
+
     public void OpenInGameBanana()
     {
         Services.App.OpenUrl($"https://gamebanana.com/mods/{GameBananaId}");
     }
+
+    public async Task DownloadFileAsync(GameBananaFileViewModel file)
+    {
+        await _modLoaderViewModel.InstallModFromDownloadableFileAsync(
+            source: _downloadableModsSource, 
+            fileName: file.DownloadableFile.File, 
+            downloadUrl: file.DownloadableFile.DownloadUrl, 
+            fileSize: file.DownloadableFile.FileSize, 
+            installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id));
+    }
+
+    #endregion
 }
