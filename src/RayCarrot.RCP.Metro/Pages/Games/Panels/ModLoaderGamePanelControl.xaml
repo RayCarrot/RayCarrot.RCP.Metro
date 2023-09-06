@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="200" d:DesignHeight="135"
              d:DataContext="{d:DesignInstance games:ModLoaderGamePanelViewModel}"
@@ -19,10 +20,22 @@
         </Grid.RowDefinitions>
 
         <!-- Info -->
-        <TextBlock Grid.Row="0"
-                   Text="{Binding Path=InfoText.Value}"
-                   d:Text="X mods applied"
-                   VerticalAlignment="Center" />
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center">
+            <TextBlock Text="{Binding Path=InfoText.Value}"
+                       d:Text="X mods applied"
+                       Margin="0 0 0 4" />
+
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding Path=UpdatesText, Converter={rcp:StringEmptyToVisibilityConverter}}">
+                <iconPacks:PackIconMaterial Kind="InformationOutline" 
+                                            Foreground="{StaticResource RCP.Brushes.Info}"
+                                            Margin="0 0 4 0"/>
+                <TextBlock Text="{Binding Path=UpdatesText.Value}"
+                           d:Text="X mod updates available" />
+            </StackPanel>
+
+        </StackPanel>
 
         <WrapPanel Grid.Row="1"
                    Orientation="Horizontal">

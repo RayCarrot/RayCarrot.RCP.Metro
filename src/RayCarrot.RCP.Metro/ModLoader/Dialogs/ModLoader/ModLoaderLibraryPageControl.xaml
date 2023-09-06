@@ -111,6 +111,7 @@
                               Margin="6 0"/>
 
                 <!-- TODO-UPDATE: Show something here when no mod is selected? -->
+                <!-- TODO-UPDATE: Show "Downloaded from GameBanana", with link? -->
                 <!-- Selected mod -->
                 <Grid Grid.Column="2"
                       DataContext="{Binding Path=SelectedMod}"

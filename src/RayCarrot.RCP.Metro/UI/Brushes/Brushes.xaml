@@ -38,6 +38,7 @@
     <SolidColorBrush x:Key="RCP.Brushes.StatusComplete" Color="{StaticResource RCP.Colors.GreenPrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.StatusIncomplete" Color="{StaticResource RCP.Colors.RedPrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.StatusPending" Color="{StaticResource RCP.Colors.IndigoPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusUnavailable" Color="{StaticResource RCP.Colors.GreyPrimary500}" po:Freeze="True" />
 
     <!-- Alert -->
     <SolidColorBrush x:Key="RCP.Brushes.Warning" Color="{StaticResource RCP.Colors.RedPrimary700}" po:Freeze="True" />

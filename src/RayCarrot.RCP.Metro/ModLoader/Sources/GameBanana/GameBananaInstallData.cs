@@ -8,5 +8,5 @@ namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 /// <param name="ModId">The GameBanana mod id</param>
 /// <param name="FileId">The GameBanana file id</param>
 public record GameBananaInstallData(
-    [property: JsonProperty("mod_id")] long ModId,
-    [property: JsonProperty("file_id")] long FileId);
+    [property: JsonProperty("mod_id", Required = Required.Always)] long ModId,
+    [property: JsonProperty("file_id", Required = Required.Always)] long FileId);

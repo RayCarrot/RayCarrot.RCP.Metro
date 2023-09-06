@@ -5,7 +5,6 @@ using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
-using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -19,17 +18,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             throw new InvalidOperationException("The game installation doesn't support mods");
 
         GameInstallation = gameInstallation;
-        _httpClient = new HttpClient();
+        _httpClient = new HttpClient(); // TODO-UPDATE: Share a single client throughout the app?
         _modExtractors = new ModExtractor[]
         {
             new ZipModExtractor(), // .zip
             new SevenZipModExtractor(), // .7z
             new RarModExtractor(), // .rar
             new LegacyGamePatchModExtractor(), // .gp (legacy)
-        };
-        _downloadableModsSources = new DownloadableModsSource[]
-        {
-            new GameBananaModsSource(), // GameBanana
         };
 
         LoaderViewModel = new LoaderViewModel();
@@ -39,7 +34,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Library = new ModLibrary(GameInstallation);
 
         ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
-        DownloadableMods = new DownloadableModsViewModel(this, GameInstallation, _httpClient, _downloadableModsSources);
+        DownloadableMods = new DownloadableModsViewModel(this, GameInstallation, _httpClient, DownloadableModsSource.GetSources());
 
         InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
         CheckForUpdatesCommand = new AsyncRelayCommand(CheckForUpdatesAsync);
@@ -57,7 +52,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     private readonly HttpClient _httpClient;
     private readonly ModExtractor[] _modExtractors;
-    private readonly DownloadableModsSource[] _downloadableModsSources;
 
     #endregion
 
@@ -140,7 +134,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
 
                 // Create and add view model
-                ModViewModel vm = new(this, LoaderViewModel, mod, modEntry);
+                ModViewModel vm = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), mod, modEntry);
                 Mods.Add(vm);
 
                 // Load thumbnail
@@ -228,7 +222,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
             string id = extractedMod.Metadata.Id;
             long size = (long)extractTempDir.TempPath.GetSize().Bytes;
-            ModInstallInfo installInfo = new(sourceId, size, DateTime.Now, installData == null ? null : JObject.FromObject(installData));
+            ModInstallInfo installInfo = new(
+                Source: sourceId, 
+                Version: extractedMod.Metadata.Version, 
+                Size: size, 
+                Date: DateTime.Now, 
+                Data: installData == null ? null : JObject.FromObject(installData));
 
             int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
 
@@ -236,7 +235,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             if (existingModIndex == -1)
             {
                 ModManifestEntry modEntry = new(id, installInfo, true, null);
-                ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
+                ModViewModel viewModel = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
 
                 Mods.Add(viewModel);
                 viewModel.LoadThumbnail();
@@ -247,7 +246,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 ModViewModel existingMod = Mods[existingModIndex];
 
                 ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled, existingMod.Version);
-                ModViewModel viewModel = new(this, LoaderViewModel, extractedMod, modEntry, extractTempDir);
+                ModViewModel viewModel = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
 
                 existingMod.Dispose();
                 Mods[existingModIndex] = viewModel;
@@ -294,6 +293,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         if (!success)
             return false;
+
+        // Check for mod updates if set to do so
+        if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
+            CheckForUpdatesCommand.Execute(null);
 
         // Load downloadable mods
         await DownloadableMods.LoadModsAsync();
@@ -415,7 +418,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task CheckForUpdatesAsync()
     {
-        // TODO-UPDATE: Implement
+        await Task.WhenAll(Mods.Select(x => x.CheckForUpdateAsync(_httpClient)));
     }
 
     public async Task<bool> ApplyAsync()
@@ -436,26 +439,26 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     {
                         string id = modViewModel.Metadata.Id;
 
-                        switch (modViewModel.State)
+                        switch (modViewModel.InstallState)
                         {
                             // Already installed mod
-                            case ModViewModel.InstallState.Installed:
+                            case ModViewModel.ModInstallState.Installed:
                                 installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled, modViewModel.Version));
                                 break;
                             
                             // Install new mod
-                            case ModViewModel.InstallState.PendingInstall:
+                            case ModViewModel.ModInstallState.PendingInstall:
                                 Library.InstallMod(modViewModel.Mod.ModDirectoryPath, id, false);
                                 installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled, modViewModel.Version));
                                 break;
                             
                             // Uninstall
-                            case ModViewModel.InstallState.PendingUninstall:
+                            case ModViewModel.ModInstallState.PendingUninstall:
                                 Library.UninstallMod(modViewModel.Metadata.Id);
                                 break;
 
                             default:
-                                throw new InvalidOperationException($"Mod state {modViewModel.State} is invalid");
+                                throw new InvalidOperationException($"Mod state {modViewModel.InstallState} is invalid");
                         }
                     }
 

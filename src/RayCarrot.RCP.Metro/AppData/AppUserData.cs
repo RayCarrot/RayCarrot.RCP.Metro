@@ -1,4 +1,4 @@
-﻿#nullable disable
+#nullable disable
 using System.Reflection;
 using System.Windows.Input;
 using RayCarrot.RCP.Metro.Archive;
@@ -91,6 +91,7 @@ public partial class AppUserData : BaseViewModel
 
         // Mod Loader
         ModLoader_LoadExternalMods = true;
+        ModLoader_AutomaticallyCheckForUpdates = true;
     }
 
     /// <summary>
@@ -429,6 +430,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if external mods should be loaded in the mod loader
     /// </summary>
     public bool ModLoader_LoadExternalMods { get; set; } // TODO-UPDATE: Use this?
+
+    /// <summary>
+    /// Indicates if the mod loader should automatically check for mod updates
+    /// </summary>
+    public bool ModLoader_AutomaticallyCheckForUpdates { get; set; }
 
     #endregion
 }

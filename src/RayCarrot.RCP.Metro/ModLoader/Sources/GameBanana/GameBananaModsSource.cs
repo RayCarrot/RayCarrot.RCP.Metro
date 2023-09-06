@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
@@ -97,6 +99,49 @@ public class GameBananaModsSource : DownloadableModsSource
                     downloadsCount: mod.DownloadCount,
                     viewsCount: modRecord.ViewCount,
                     files: validFiles));
+        }
+    }
+
+    public override async Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo)
+    {
+        long gameBananaModId = modInstallInfo.GetRequiredInstallData<GameBananaInstallData>().ModId;
+
+        GameBananaMod gameBananaMod = await httpClient.GetDeserializedAsync<GameBananaMod>(
+            $"https://gamebanana.com/apiv11/Mod/{gameBananaModId}/ProfilePage");
+
+        ModVersion? localVersion = modInstallInfo.Version;
+
+        if (gameBananaMod.Version.IsNullOrWhiteSpace() || localVersion == null)
+        {
+            // TODO-UPDATE: Localize
+            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
+                "Unable to check for updates due to there not being a version to compare against");
+        }
+
+        ModVersion onlineVersion;
+
+        try
+        {
+            onlineVersion = ModVersion.Parse(gameBananaMod.Version);
+        }
+        catch (Exception ex)
+        {
+            // TODO-UPDATE: Log exception
+
+            // TODO-UPDATE: Localize
+            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
+                "Unable to check for updates due to the version not being formatted correctly");
+        }
+
+        if (onlineVersion > localVersion)
+        {
+            // No need to pass in a message here as it shows a button then instead
+            return new ModUpdateCheckResult(ModUpdateState.UpdateAvailable, String.Empty);
+        }
+        else
+        {
+            // TODO-UPDATE: Localize
+            return new ModUpdateCheckResult(ModUpdateState.UpToDate, "The mod is up to date");
         }
     }
 

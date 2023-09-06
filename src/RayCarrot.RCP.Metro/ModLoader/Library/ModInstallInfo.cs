@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Library;
 
@@ -12,6 +13,16 @@ namespace RayCarrot.RCP.Metro.ModLoader.Library;
 /// <param name="Data">Optional installation data. This is managed by the source. If the source is null then this is always null.</param>
 public record ModInstallInfo(
     [property: JsonProperty("source")] string? Source, // Null if installed locally
+    [property: JsonProperty("version")] ModVersion? Version,
     [property: JsonProperty("size")] long Size,
     [property: JsonProperty("date")] DateTime? Date,
-    [property: JsonProperty("data")] JObject? Data); // Data type depends on the source
+    [property: JsonProperty("data")] JObject? Data) // Data type depends on the source
+{
+    public T GetRequiredInstallData<T>()
+    {
+        if (Data == null)
+            throw new InvalidOperationException("Data is null");
+
+        return Data.ToObject<T>() ?? throw new InvalidOperationException("Deserialized data object is null");
+    }
+}

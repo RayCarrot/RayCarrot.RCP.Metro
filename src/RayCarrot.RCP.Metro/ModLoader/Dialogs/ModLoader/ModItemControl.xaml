@@ -1,13 +1,16 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader.ModItemControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:sources="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources"
              mc:Ignorable="d"
+             d:DesignWidth="500"
+             d:Background="{DynamicResource RCP.Brushes.Card.Background}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:ModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <!-- TODO-UPDATE: Localize -->
@@ -16,6 +19,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
@@ -40,13 +44,15 @@
                    VerticalAlignment="Center"
                    FontSize="14"
                    Text="{Binding Path=Name, Mode=OneTime}"
+                   d:Text="Mod title"
                    TextWrapping="Wrap"
                    Margin="0 0 8 0" />
 
         <!-- Status -->
         <StackPanel Grid.Column="3" 
                     Orientation="Horizontal"
-                    Visibility="{Binding Path=StateMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+                    Visibility="{Binding Path=InstallStateMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+
             <iconPacks:PackIconMaterial VerticalAlignment="Center"
                                         Width="12"
                                         Kind="{StaticResource RCP.Icons.Info}"
@@ -55,14 +61,16 @@
 
             <TextBlock VerticalAlignment="Center"
                        FontSize="10"
-                       DataContext="{Binding Path=StateMessage}"
-                       Text="{Binding Path=Value}" />
+                       DataContext="{Binding Path=InstallStateMessage}"
+                       Text="{Binding Path=Value}"
+                       d:Text="Pending install" />
         </StackPanel>
 
         <!-- Actions -->
         <StackPanel Grid.Column="4"
                     Orientation="Horizontal"
-                    Margin="15 0 0 0">
+                    Margin="16 0 0 0"
+                    d:Visibility="Visible">
             <StackPanel.Style>
                 <Style TargetType="{x:Type StackPanel}">
                     <Setter Property="Visibility" Value="Hidden" />
@@ -83,7 +91,7 @@
             <Button ToolTip="Open location"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    Foreground="{StaticResource RCP.Brushes.Info}"
+                    rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                     Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
                     VerticalAlignment="Center"
                     rcp:Icon.Kind="{StaticResource RCP.Icons.Folder}"
@@ -94,7 +102,7 @@
             <Button ToolTip="{Resx Patcher_ExtractPatch}"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    Foreground="{StaticResource RCP.Brushes.Info}"
+                    rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                     Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
                     VerticalAlignment="Center"
                     rcp:Icon.Kind="Export"
@@ -105,7 +113,7 @@
             <Button ToolTip="Uninstall"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    Foreground="{StaticResource RCP.Brushes.DeleteItem}"
+                    rcp:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}"
                     Command="{Binding Path=UninstallCommand, Mode=OneTime}"
                     VerticalAlignment="Center"
                     rcp:Icon.Kind="DeleteOutline"
@@ -113,6 +121,59 @@
                     Margin="0 0 10 0" />
 
         </StackPanel>
+
+        <!-- Update state -->
+        <iconPacks:PackIconMaterial Grid.Column="5"
+                                    VerticalAlignment="Center"
+                                    ToolTip="{Binding Path=UpdateStateMessage.Value}"
+                                    Margin="0 0 10 0">
+            <iconPacks:PackIconMaterial.Style>
+                <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                    <Style.Triggers>
+                        <!-- None -->
+                        <DataTrigger Binding="{Binding Path=UpdateState}" Value="None">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <!-- Update available -->
+                        <DataTrigger Binding="{Binding Path=UpdateState}" Value="UpdateAvailable">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <!-- Up to date -->
+                        <DataTrigger Binding="{Binding Path=UpdateState}" Value="UpToDate">
+                            <Setter Property="Kind" Value="CheckboxMarkedCircle" />
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.StatusComplete}" />
+                        </DataTrigger>
+                        <!-- Checking for updates -->
+                        <DataTrigger Binding="{Binding Path=UpdateState}" Value="CheckingForUpdates">
+                            <Setter Property="Kind" Value="SyncCircle" />
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.StatusPending}" />
+                        </DataTrigger>
+                        <!-- Unable to check for updates -->
+                        <DataTrigger Binding="{Binding Path=UpdateState}" Value="UnableToCheckForUpdates">
+                            <Setter Property="Kind" Value="HelpCircle" />
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.StatusUnavailable}" />
+                        </DataTrigger>
+                        <!-- Error checking for updates -->
+                        <DataTrigger Binding="{Binding Path=UpdateState}" Value="ErrorCheckingForUpdates">
+                            <Setter Property="Kind" Value="Information" />
+                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.StatusIncomplete}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </iconPacks:PackIconMaterial.Style>
+        </iconPacks:PackIconMaterial>
+
+        <!-- TODO-UPDATE: Implement updating -->
+        <!-- Update button -->
+        <Button Grid.Column="5"
+                Visibility="{Binding Path=UpdateState, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static sources:ModUpdateState.UpdateAvailable}}"
+                Style="{StaticResource RCP.Styles.Button.Flat}"
+                rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                VerticalAlignment="Center"
+                Content="Update"
+                rcp:Icon.Kind="RefreshCircle"
+                rcp:Icon.Size="16"
+                Margin="0 0 10 0" />
 
     </Grid>
 </UserControl>

@@ -1,9 +1,11 @@
-﻿using System.Windows.Input;
+using System.Net.Http;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ByteSizeLib;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
+using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -11,11 +13,12 @@ public class ModViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, Mod mod, ModManifestEntry modEntry, TempDirectory? pendingInstallTempDir = null)
+    public ModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, DownloadableModsSource? downloadableModsSource, Mod mod, ModManifestEntry modEntry, TempDirectory? pendingInstallTempDir = null)
     {
         ModLoaderViewModel = modLoaderViewModel;
         LoaderViewModel = loaderViewModel;
         PendingInstallTempDir = pendingInstallTempDir;
+        DownloadableModsSource = downloadableModsSource;
         Mod = mod;
         _isEnabled = modEntry.IsEnabled;
         _wasEnabled = _isEnabled;
@@ -39,7 +42,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
         if (PendingInstallTempDir != null)
-            SetState(InstallState.PendingInstall);
+            SetInstallState(ModInstallState.PendingInstall);
 
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
@@ -77,6 +80,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public ModLoaderViewModel ModLoaderViewModel { get; }
     public LoaderViewModel LoaderViewModel { get; }
     public TempDirectory? PendingInstallTempDir { get; }
+    public DownloadableModsSource? DownloadableModsSource { get; }
     public Mod Mod { get; }
     public ModMetadata Metadata => Mod.Metadata;
     public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
@@ -102,9 +106,12 @@ public class ModViewModel : BaseViewModel, IDisposable
     public string Version { get; set; } // TODO-UPDATE: Allow changing from UI
     public ModInstallInfo InstallInfo { get; }
 
-    public InstallState State { get; set; }
-    public LocalizedString? StateMessage { get; set; }
-    public bool CanModify => State != InstallState.PendingUninstall;
+    public ModInstallState InstallState { get; set; }
+    public LocalizedString? InstallStateMessage { get; set; }
+    public bool CanModify => InstallState != ModInstallState.PendingUninstall;
+
+    public ModUpdateState UpdateState { get; set; }
+    public LocalizedString? UpdateStateMessage { get; set; }
 
     public bool HasChanges { get; private set; }
 
@@ -112,24 +119,30 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Private Methods
 
-    private void SetState(InstallState state)
+    private void SetInstallState(ModInstallState state)
     {
-        State = state;
+        InstallState = state;
         // TODO-UPDATE: Localize
-        StateMessage = state switch
+        InstallStateMessage = state switch
         {
-            InstallState.Installed => null,
-            InstallState.PendingInstall => "Pending install",
-            InstallState.PendingUninstall => "Pending uninstall",
+            ModInstallState.Installed => null,
+            ModInstallState.PendingInstall => "Pending install",
+            ModInstallState.PendingUninstall => "Pending uninstall",
             _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
         };
 
         ReportNewChange();
     }
 
+    private void SetUpdateState(ModUpdateState state, LocalizedString message)
+    {
+        UpdateState = state;
+        UpdateStateMessage = message;
+    }
+
     private void ReportNewChange()
     {
-        if (State != InstallState.Installed)
+        if (InstallState != ModInstallState.Installed)
         {
             _wasEnabled = null;
             HasChanges = true;
@@ -188,7 +201,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public void UninstallMod()
     {
-        SetState(InstallState.PendingUninstall);
+        SetInstallState(ModInstallState.PendingUninstall);
 
         Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", Name, Metadata.Version, Metadata.Id);
     }
@@ -230,6 +243,31 @@ public class ModViewModel : BaseViewModel, IDisposable
             Services.App.OpenUrl(Metadata.Website);
     }
 
+    public async Task CheckForUpdateAsync(HttpClient httpClient)
+    {
+        if (DownloadableModsSource == null)
+        {
+            // TODO-UPDATE: Localize
+            SetUpdateState(ModUpdateState.UnableToCheckForUpdates, "Unable to check for updates for locally installed mods");
+            return;
+        }
+
+        // TODO-UPDATE: Localize
+        SetUpdateState(ModUpdateState.CheckingForUpdates, "Checking for updates");
+
+        try
+        {
+            ModUpdateCheckResult result = await DownloadableModsSource.CheckForUpdateAsync(httpClient, InstallInfo);
+            SetUpdateState(result.State, result.Message ?? String.Empty);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Checking for mod update");
+
+            SetUpdateState(ModUpdateState.ErrorCheckingForUpdates, ex.Message);
+        }
+    }
+
     public void Dispose()
     {
         PendingInstallTempDir?.Dispose();
@@ -239,7 +277,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Enums
 
-    public enum InstallState
+    public enum ModInstallState
     {
         Installed,
         PendingInstall,

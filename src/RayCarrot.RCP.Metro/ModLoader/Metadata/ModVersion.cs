@@ -26,14 +26,14 @@ public class ModVersion : ICloneable, IComparable, IComparable<ModVersion>, IEqu
 
         string[] components = input.Split(SeparatorsArray);
         
-        if (components.Length != 3)
+        if (components.Length != 2 && components.Length != 3)
             throw new FormatException("The number of components in the version string is invalid");
 
         static int parseComponent(string component) => Int32.Parse(component, NumberStyles.Integer, CultureInfo.InvariantCulture);
 
         int major = parseComponent(components[0]);
         int minor = parseComponent(components[1]);
-        int revision = parseComponent(components[2]);
+        int revision = components.Length > 2 ? parseComponent(components[2]) : 0;
 
         return new ModVersion(major, minor, revision);
     }
