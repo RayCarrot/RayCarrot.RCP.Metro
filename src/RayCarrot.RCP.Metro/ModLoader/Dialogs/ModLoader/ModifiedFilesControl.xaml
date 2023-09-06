@@ -79,6 +79,10 @@
                     <Setter Property="mah:ItemHelper.ActiveSelectionBackgroundBrush" Value="Transparent" />
                     <Setter Property="mah:ItemHelper.HoverSelectedBackgroundBrush" Value="Transparent" />
                     <Setter Property="mah:ItemHelper.HoverBackgroundBrush" Value="Transparent" />
+                    <Setter Property="mah:ItemHelper.SelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.Text}" />
+                    <Setter Property="mah:ItemHelper.ActiveSelectionForegroundBrush" Value="{DynamicResource MahApps.Brushes.Text}" />
+                    <Setter Property="mah:ItemHelper.HoverSelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.Text}" />
+                    <Setter Property="mah:ItemHelper.HoverForegroundBrush" Value="{DynamicResource MahApps.Brushes.Text}" />
 
                     <!-- Hide the expander when showing as a list -->
                     <Style.Triggers>
