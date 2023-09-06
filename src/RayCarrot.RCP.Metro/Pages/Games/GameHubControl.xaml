@@ -384,8 +384,7 @@
                                                           Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />-->
 
                                     <!-- Content -->
-                                    <ContentPresenter Content="{Binding Mode=OneTime}"
-                                                      Visibility="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanToVisibilityConverter}}"  />
+                                    <ContentPresenter Content="{Binding Mode=OneTime}"  />
 
                                     <GroupBox.Triggers>
                                         <EventTrigger RoutedEvent="MouseEnter">
