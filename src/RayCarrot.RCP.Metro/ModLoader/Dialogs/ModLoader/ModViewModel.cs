@@ -47,6 +47,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
         UninstallCommand = new RelayCommand(UninstallMod);
+        UpdateModCommand = new AsyncRelayCommand(UpdateModAsync);
         OpenWebsiteCommand = new RelayCommand(OpenWebsite);
     }
 
@@ -71,6 +72,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public ICommand OpenLocationCommand { get; }
     public ICommand ExtractContentsCommand { get; }
     public ICommand UninstallCommand { get; }
+    public ICommand UpdateModCommand { get; }
     public ICommand OpenWebsiteCommand { get; }
 
     #endregion
@@ -112,6 +114,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public ModUpdateState UpdateState { get; set; }
     public LocalizedString? UpdateStateMessage { get; set; }
+    public object? UpdateData { get; set; }
 
     public bool HasChanges { get; private set; }
 
@@ -134,10 +137,11 @@ public class ModViewModel : BaseViewModel, IDisposable
         ReportNewChange();
     }
 
-    private void SetUpdateState(ModUpdateState state, LocalizedString message)
+    private void SetUpdateState(ModUpdateState state, LocalizedString message, object? updateData = null)
     {
         UpdateState = state;
         UpdateStateMessage = message;
+        UpdateData = updateData;
     }
 
     private void ReportNewChange()
@@ -206,6 +210,37 @@ public class ModViewModel : BaseViewModel, IDisposable
         Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", Name, Metadata.Version, Metadata.Id);
     }
 
+    public async Task UpdateModAsync()
+    {
+        if (DownloadableModsSource == null)
+            return;
+
+        try
+        {
+            ModDownload download = await DownloadableModsSource.GetModUpdateDownloadAsync(UpdateData);
+
+            await ModLoaderViewModel.InstallModFromDownloadableFileAsync(
+                source: DownloadableModsSource,
+                fileName: download.FileName,
+                downloadUrl: download.DownloadUrl,
+                fileSize: download.FileSize,
+                installData: download.InstallData);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Updating mod");
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the mod");
+
+            return;
+        }
+
+        // Mark this mod as being uninstalled. Ideally the new downloaded mod should replace this,
+        // but if it happens to have a separate id we want to remove this old mod.
+        SetInstallState(ModInstallState.PendingUninstall);
+    }
+
     public void LoadThumbnail()
     {
         Logger.Trace("Loading thumbnail for mod with ID {0}", Metadata.Id);
@@ -245,6 +280,12 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public async Task CheckForUpdateAsync(HttpClient httpClient)
     {
+        if (InstallState != ModInstallState.Installed)
+        {
+            SetUpdateState(ModUpdateState.None, String.Empty);
+            return;
+        }
+
         if (DownloadableModsSource == null)
         {
             // TODO-UPDATE: Localize
@@ -258,7 +299,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         try
         {
             ModUpdateCheckResult result = await DownloadableModsSource.CheckForUpdateAsync(httpClient, InstallInfo);
-            SetUpdateState(result.State, result.Message ?? String.Empty);
+            SetUpdateState(result.State, result.Message ?? String.Empty, result.UpdateData);
         }
         catch (Exception ex)
         {

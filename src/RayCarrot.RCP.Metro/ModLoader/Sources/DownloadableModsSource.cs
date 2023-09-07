@@ -7,13 +7,23 @@ namespace RayCarrot.RCP.Metro.ModLoader.Sources;
 
 public abstract class DownloadableModsSource
 {
+    #region Private Static Fields
+
     private static readonly Dictionary<string, DownloadableModsSource> _downloadableModsSources = new DownloadableModsSource[]
     {
         new GameBananaModsSource(), // GameBanana
     }.ToDictionary(x => x.Id);
 
+    #endregion
+
+    #region Public Properties
+
     public abstract string Id { get; }
     public abstract ModSourceIconAsset Icon { get; }
+
+    #endregion
+
+    #region Public Static Methods
 
     public static IEnumerable<DownloadableModsSource> GetSources() => _downloadableModsSources.Values;
 
@@ -25,6 +35,10 @@ public abstract class DownloadableModsSource
         return _downloadableModsSources.TryGetValue(installInfo.Source, out DownloadableModsSource src) ? src : null;
     }
 
+    #endregion
+
+    #region Public Methods
+
     public abstract Task LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,
         HttpClient httpClient,
@@ -32,4 +46,8 @@ public abstract class DownloadableModsSource
         ObservableCollection<DownloadableModViewModel> modsCollection);
 
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);
+
+    public abstract Task<ModDownload> GetModUpdateDownloadAsync(object? updateData);
+
+    #endregion
 }

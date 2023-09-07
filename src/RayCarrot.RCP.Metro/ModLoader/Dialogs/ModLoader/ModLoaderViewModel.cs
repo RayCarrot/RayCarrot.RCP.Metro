@@ -378,7 +378,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         string fileName, 
         string downloadUrl, 
         long fileSize, 
-        object installData)
+        object? installData)
     {
         // TODO-UPDATE: Localize
         // TODO-UPDATE: Try/catch
@@ -486,10 +486,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when applying the mods. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying mods.");
             }
-
-            // No matter if it succeeds or fails we want to reset the state
-            return await InitializeAsync();
         }
+
+        // No matter if it succeeds or fails we want to reset the state
+        return await InitializeAsync();
     }
 
     public void Dispose()

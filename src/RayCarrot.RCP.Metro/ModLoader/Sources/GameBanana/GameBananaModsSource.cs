@@ -109,13 +109,22 @@ public class GameBananaModsSource : DownloadableModsSource
         GameBananaMod gameBananaMod = await httpClient.GetDeserializedAsync<GameBananaMod>(
             $"https://gamebanana.com/apiv11/Mod/{gameBananaModId}/ProfilePage");
 
-        ModVersion? localVersion = modInstallInfo.Version;
+        ModVersion localVersion = modInstallInfo.Version ?? new ModVersion(1, 0, 0);
 
-        if (gameBananaMod.Version.IsNullOrWhiteSpace() || localVersion == null)
+        if (gameBananaMod.Version.IsNullOrWhiteSpace())
         {
             // TODO-UPDATE: Localize
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
                 "Unable to check for updates due to there not being a version to compare against");
+        }
+
+        if (gameBananaMod.Files == null || !gameBananaMod.Files.Any(x =>
+                x.ModManagerIntegrations != null &&
+                x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)))
+        {
+            // TODO-UPDATE: Localize
+            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
+                "Unable to check for updates due to the GameBanana mod not having any valid files");
         }
 
         ModVersion onlineVersion;
@@ -136,13 +145,43 @@ public class GameBananaModsSource : DownloadableModsSource
         if (onlineVersion > localVersion)
         {
             // No need to pass in a message here as it shows a button then instead
-            return new ModUpdateCheckResult(ModUpdateState.UpdateAvailable, String.Empty);
+            return new ModUpdateCheckResult(ModUpdateState.UpdateAvailable, String.Empty, gameBananaMod);
         }
         else
         {
             // TODO-UPDATE: Localize
             return new ModUpdateCheckResult(ModUpdateState.UpToDate, "The mod is up to date");
         }
+    }
+
+    public override Task<ModDownload> GetModUpdateDownloadAsync(object? updateData)
+    {
+        if (updateData is not GameBananaMod gameBananaMod)
+            throw new ArgumentException("The update data is not of the correct type", nameof(updateData));
+
+        if (gameBananaMod.Files == null)
+            throw new Exception("Files is null");
+
+        List<GameBananaFile> validFiles = gameBananaMod.Files.
+            Where(x => x.ModManagerIntegrations != null && x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)).
+            ToList();
+
+        if (validFiles.Count == 0)
+            throw new Exception("There are no valid files");
+
+        GameBananaFile file;
+
+        if (validFiles.Count > 1)
+        {
+            // TODO-UPDATE: Have user pick download
+            file = validFiles[0];
+        }
+        else
+        {
+            file = validFiles[0];
+        }
+
+        return Task.FromResult(new ModDownload(file.File, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id)));
     }
 
     #endregion

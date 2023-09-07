@@ -167,6 +167,7 @@
         <!-- Update button -->
         <Button Grid.Column="5"
                 Visibility="{Binding Path=UpdateState, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static sources:ModUpdateState.UpdateAvailable}}"
+                Command="{Binding Path=UpdateModCommand, Mode=OneTime}"
                 Style="{StaticResource RCP.Styles.Button.Flat}"
                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                 VerticalAlignment="Center"
