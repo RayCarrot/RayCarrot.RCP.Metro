@@ -1,11 +1,10 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Structure;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+
+namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public abstract class ProgramInstallationStructure
 {
-    /// <summary>
-    /// Indicates if the structure allows mods to be installed for the game
-    /// </summary>
-    public abstract bool SupportsMods { get; }
+    public virtual void RegisterComponents(IGameComponentBuilder builder) { }
 
     /// <summary>
     /// Indicates if the location has a valid installation structure

@@ -2,6 +2,7 @@
 using BinarySerializer;
 using RayCarrot.RCP.Metro.Legacy.Patcher;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
+using RayCarrot.RCP.Metro.ModLoader.Modules;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Extractors;
 
@@ -37,17 +38,20 @@ public class LegacyGamePatchModExtractor : ModExtractor
             Archives: archives);
         JsonHelpers.SerializeToFile(modMetadata, outputPath + Mod.MetadataFileName);
 
-        // Write removed files, if any
-        if (patch.RemovedFiles.Any())
-        {
-            File.WriteAllLines(outputPath + Mod.RemovedFilesFileName, patch.RemovedFiles.ToArray(x => x.FullFilePath));
-        }
-
         // Extract thumbnail
         if (patch.HasThumbnail)
         {
             using Stream thumbOutputStream = File.Create(outputPath + Mod.ThumbnailFileName);
             await patch.ThumbnailResource.ReadData(context, true).CopyToAsync(thumbOutputStream);
+        }
+
+        // Create a files module
+        FilesModule filesModule = new();
+
+        // Write removed files, if any
+        if (patch.RemovedFiles.Any())
+        {
+            File.WriteAllLines(outputPath + filesModule.Id + FilesModule.RemovedFilesFileName, patch.RemovedFiles.ToArray(x => x.FullFilePath));
         }
 
         // Extract added files
@@ -60,7 +64,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
 
             progressCallback(new Progress(i, patch.AddedFiles.Length));
 
-            FileSystemPath fileDest = outputPath + Mod.FilesDirectoryName + filePath.FullFilePath;
+            FileSystemPath fileDest = outputPath + filesModule.Id + FilesModule.AddedFilesDirectoryName + filePath.FullFilePath;
             Directory.CreateDirectory(fileDest.Parent);
 
             using FileStream dstStream = File.Create(fileDest);

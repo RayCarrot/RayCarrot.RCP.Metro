@@ -1,6 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Modules;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
 namespace RayCarrot.RCP.Metro.ModLoader;
@@ -172,6 +173,7 @@ public class ModProcessor
 
     public async Task<bool> ApplyAsync(
         ModLibrary library,
+        IReadOnlyCollection<ModModule> possibleModules,
         Action<Progress>? progressCallback = null)
     {
         // Reset fields
@@ -185,7 +187,7 @@ public class ModProcessor
         // Read the mods
         List<(ModManifestEntry Entry, Mod Mod)> enabledMods = new();
         foreach (ModManifestEntry modEntry in modManifest.Mods.Values.Where(x => x.IsEnabled))
-            enabledMods.Add((modEntry, library.ReadInstalledMod(modEntry.Id)));
+            enabledMods.Add((modEntry, library.ReadInstalledMod(modEntry.Id, possibleModules)));
 
         Logger.Info("Applying modifications with {0} enabled mods", enabledMods.Count);
 

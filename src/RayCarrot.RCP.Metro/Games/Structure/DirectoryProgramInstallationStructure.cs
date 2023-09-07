@@ -1,4 +1,7 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Structure;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.ModLoader.Modules;
+
+namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public class DirectoryProgramInstallationStructure : ProgramInstallationStructure
 {
@@ -8,8 +11,6 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    public override bool SupportsMods => true;
 
     /// <summary>
     /// The paths defined for the game installation. Note that these aren't
@@ -32,6 +33,14 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
 
     public IEnumerable<(FileSystemPath FullPath, GameInstallationPath Path)> EnumeratePaths(FileSystemPath basePath) =>
         EnumeratePaths(basePath, GamePaths);
+
+    public override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        // Programs with a directory structure can always use the files module for mods
+        builder.Register(new ModModuleComponent(_ => new FilesModule()));
+    }
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
     {

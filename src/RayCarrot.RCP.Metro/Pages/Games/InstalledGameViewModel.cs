@@ -127,7 +127,7 @@ public class InstalledGameViewModel : BaseViewModel
         GamePanels.Clear();
 
         // Mod Loader
-        if (GameDescriptor.SupportsMods)
+        if (GameInstallation.GetComponents<ModModuleComponent>().Any())
             GamePanels.Add(new ModLoaderGamePanelViewModel(GameInstallation));
 
         // Archive Explorer
@@ -396,7 +396,7 @@ public class InstalledGameViewModel : BaseViewModel
             return;
 
         // Check if there are applied mods
-        if (GameDescriptor.SupportsMods)
+        if (GameInstallation.GetComponents<ModModuleComponent>().Any())
         {
             // Get applied mods
             ModManifest? modManifest = null;

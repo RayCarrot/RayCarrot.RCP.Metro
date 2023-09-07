@@ -89,11 +89,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public virtual GameBannerAsset Banner => GameBannerAsset.Default;
 
     /// <summary>
-    /// Indicates if the game supports the installing mods
-    /// </summary>
-    public virtual bool SupportsMods => Structure.SupportsMods;
-
-    /// <summary>
     /// Indicates if the game should default to use an available game client. This is mainly
     /// for games which require to be emulated as they can't launch by themselves.
     /// </summary>
@@ -171,6 +166,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Create the builder
         GameComponentBuilder builder = new();
 
+        // Register components from the structure
+        Structure.RegisterComponents(builder);
+
         // Register the components from the game descriptor
         RegisterComponents(builder);
 
@@ -194,6 +192,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // added. To solve that we either need to rebuild components twice in those
         // cases or we have the OnGameAdded component be a virtual method in the
         // GameDescriptor.
+
+        // Register components from the structure
+        Structure.RegisterComponents(builder);
 
         // Register the components from the game descriptor
         RegisterComponents(builder);

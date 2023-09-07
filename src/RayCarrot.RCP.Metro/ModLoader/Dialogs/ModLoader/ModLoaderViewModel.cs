@@ -2,8 +2,10 @@
 using System.Net.Http;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Modules;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -14,10 +16,14 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public ModLoaderViewModel(GameInstallation gameInstallation)
     {
-        if (!gameInstallation.GameDescriptor.SupportsMods)
+        GameInstallation = gameInstallation;
+
+        // Get the available mod modules for this game
+        _modModules = gameInstallation.GetComponents<ModModuleComponent>().CreateObjects().ToArray();
+
+        if (_modModules.Length == 0)
             throw new InvalidOperationException("The game installation doesn't support mods");
 
-        GameInstallation = gameInstallation;
         _httpClient = new HttpClient(); // TODO-UPDATE: Share a single client throughout the app?
         _modExtractors = new ModExtractor[]
         {
@@ -50,6 +56,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private readonly ModModule[] _modModules;
     private readonly HttpClient _httpClient;
     private readonly ModExtractor[] _modExtractors;
 
@@ -114,7 +121,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 try
                 {
                     // Read the mod
-                    mod = Library.ReadInstalledMod(modEntry.Id);
+                    mod = Library.ReadInstalledMod(modEntry.Id, _modModules);
                 }
                 catch (UnsupportedModFormatException ex)
                 {
@@ -196,7 +203,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 await modExtractor.ExtractAsync(filePath, extractTempDir.TempPath, loadState.SetProgress, loadState.CancellationToken));
 
             // Read the mod
-            Mod extractedMod = new(extractTempDir.TempPath);
+            Mod extractedMod = new(extractTempDir.TempPath, _modModules);
 
             // Verify game
             if (!extractedMod.Metadata.IsGameValid(GameInstallation.GameDescriptor))
@@ -466,7 +473,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Library.WriteModManifest(new ModManifest(installedMods));
 
                     // Apply the mods
-                    bool success = await ModProcessor.ApplyAsync(Library, state.SetProgress);
+                    bool success = await ModProcessor.ApplyAsync(Library, _modModules, state.SetProgress);
 
                     Services.Messenger.Send(new ModifiedGameModsMessage(GameInstallation));
 

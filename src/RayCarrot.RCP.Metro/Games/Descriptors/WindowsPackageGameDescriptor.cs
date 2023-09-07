@@ -17,7 +17,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     public static bool SupportsWinRT => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 
     public override GamePlatform Platform => GamePlatform.WindowsPackage;
-    public override bool SupportsMods => false;
+    //public override bool SupportsMods => false; // TODO-UPDATE: Rather than explicitly disabling this we should maybe check dir permissions when opening loader?
 
     public abstract string PackageName { get; }
     public abstract string FullPackageName { get; }

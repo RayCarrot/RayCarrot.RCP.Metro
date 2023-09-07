@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
+using RayCarrot.RCP.Metro.ModLoader.Modules;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
 namespace RayCarrot.RCP.Metro.ModLoader;
@@ -8,15 +9,31 @@ public class Mod
 {
     #region Constructor
 
-    public Mod(FileSystemPath modDirectoryPath)
+    public Mod(FileSystemPath modDirectoryPath, IReadOnlyCollection<ModModule> possibleModules)
     {
         ModDirectoryPath = modDirectoryPath;
 
         Metadata = ReadMetadata();
 
+        // Get the used modules
+        _modules = new Dictionary<string, ModModule>();
+        foreach (FileSystemPath modDir in Directory.GetDirectories(modDirectoryPath))
+        {
+            string name = modDir.Name;
+            ModModule? module = possibleModules.FirstOrDefault(x => x.Id == name);
+
+            if (module == null)
+            {
+                // TODO-UPDATE: Throw or ignore? Have a way of showing an error in the UI? Save used modules and unsupported modules?
+                continue;
+            }
+
+            _modules[module.Id] = module;
+        }
+
         // Create file tables
-        _addedFiles = CreateAddedFilesTable();
-        _removedFiles = CreateRemovedFilesTable();
+        _addedFiles = _modules.Values.SelectMany(x => x.GetAddedFiles(this, GetModulePath(x))).ToList();
+        _removedFiles = _modules.Values.SelectMany(x => x.GetRemovedFiles(this, GetModulePath(x))).ToList();
     }
 
     #endregion
@@ -25,8 +42,6 @@ public class Mod
 
     public const string MetadataFileName = "metadata.jsonc";
     public const string ThumbnailFileName = "thumbnail.png";
-    public const string FilesDirectoryName = "files";
-    public const string RemovedFilesFileName = "removed_files.txt";
 
     public const int LatestFormatVersion = 0;
 
@@ -34,6 +49,7 @@ public class Mod
 
     #region Private Fields
 
+    private readonly Dictionary<string, ModModule> _modules;
     private readonly List<IModFileResource> _addedFiles;
     private readonly List<ModFilePath> _removedFiles;
 
@@ -72,89 +88,9 @@ public class Mod
         return metadata;
     }
 
-    private List<IModFileResource> CreateAddedFilesTable()
+    private FileSystemPath GetModulePath(ModModule module)
     {
-        List<IModFileResource> fileResources = new();
-
-        FileSystemPath filesPath = ModDirectoryPath + FilesDirectoryName;
-
-        if (!filesPath.DirectoryExists)
-            return fileResources;
-
-        if (Metadata.Archives == null || Metadata.Archives.Length == 0)
-        {
-            foreach (FileSystemPath file in Directory.EnumerateFiles(filesPath, "*", SearchOption.AllDirectories))
-            {
-                ModFilePath modFilePath = new(file - filesPath);
-                fileResources.Add(new PhysicalModFileResource(modFilePath, file));
-            }
-        }
-        else
-        {
-            foreach (FileSystemPath file in Directory.EnumerateFiles(filesPath, "*", SearchOption.AllDirectories))
-            {
-                string relativeFilePath = file - filesPath;
-
-                bool inArchive = false;
-
-                foreach (ModArchiveInfo archive in Metadata.Archives)
-                {
-                    if (relativeFilePath.StartsWith(archive.FilePath))
-                    {
-                        ModFilePath modFilePath = new(relativeFilePath.Substring(archive.FilePath.Length + 1), archive.FilePath, archive.Id);
-                        fileResources.Add(new PhysicalModFileResource(modFilePath, file));
-                        inArchive = true;
-                        break;
-                    }
-                }
-
-                if (!inArchive)
-                {
-                    ModFilePath modFilePath = new(relativeFilePath);
-                    fileResources.Add(new PhysicalModFileResource(modFilePath, file));
-                }
-            }
-        }
-
-        return fileResources;
-    }
-    private List<ModFilePath> CreateRemovedFilesTable()
-    {
-        List<ModFilePath> filePaths = new();
-
-        FileSystemPath removedFilesFilePath = ModDirectoryPath + RemovedFilesFileName;
-
-        if (!removedFilesFilePath.FileExists)
-            return filePaths;
-
-        string[] removedFiles = File.ReadAllLines(removedFilesFilePath);
-
-        if (Metadata.Archives == null || Metadata.Archives.Length == 0)
-        {
-            filePaths.AddRange(removedFiles.Select(x => new ModFilePath(x)));
-        }
-        else
-        {
-            foreach (string removedFile in removedFiles)
-            {
-                bool inArchive = false;
-
-                foreach (ModArchiveInfo archive in Metadata.Archives)
-                {
-                    if (removedFile.StartsWith(archive.FilePath))
-                    {
-                        filePaths.Add(new ModFilePath(removedFile.Substring(archive.FilePath.Length + 1), archive.FilePath, archive.Id));
-                        inArchive = true;
-                        break;
-                    }
-                }
-
-                if (!inArchive)
-                    filePaths.Add(new ModFilePath(removedFile));
-            }
-        }
-
-        return filePaths;
+        return ModDirectoryPath + module.Id;
     }
 
     #endregion
