@@ -163,9 +163,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     private async Task<bool> VerifyPatchSecurityAsync(Mod mod)
     {
         // Check if the patch adds or replaces exe or dll files. Expand to check other file types too?
-        bool hasCodeFiles = mod.Versions.Any(version => mod.GetAddedFiles(version).Any(file =>
+        bool hasCodeFiles = mod.GetAddedFiles().Any(file =>
             file.Path.FilePath.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
-            file.Path.FilePath.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
+            file.Path.FilePath.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase));
 
         // Have the user verify
         if (hasCodeFiles)
@@ -234,7 +234,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             // The mod is being added as a new mod
             if (existingModIndex == -1)
             {
-                ModManifestEntry modEntry = new(id, installInfo, true, null);
+                ModManifestEntry modEntry = new(id, installInfo, true);
                 ModViewModel viewModel = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
 
                 Mods.Add(viewModel);
@@ -245,7 +245,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             {
                 ModViewModel existingMod = Mods[existingModIndex];
 
-                ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled, existingMod.Version);
+                ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled);
                 ModViewModel viewModel = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
 
                 existingMod.Dispose();
@@ -443,13 +443,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                         {
                             // Already installed mod
                             case ModViewModel.ModInstallState.Installed:
-                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled, modViewModel.Version));
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled));
                                 break;
                             
                             // Install new mod
                             case ModViewModel.ModInstallState.PendingInstall:
                                 Library.InstallMod(modViewModel.Mod.ModDirectoryPath, id, false);
-                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled, modViewModel.Version));
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled));
                                 break;
                             
                             // Uninstall

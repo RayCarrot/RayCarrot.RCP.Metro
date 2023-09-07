@@ -23,7 +23,6 @@ public class ModViewModel : BaseViewModel, IDisposable
         _isEnabled = modEntry.IsEnabled;
         _wasEnabled = _isEnabled;
         // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
-        Version = modEntry.Version ?? Mod.DefaultVersion;
         InstallInfo = modEntry.InstallInfo;
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -34,9 +33,8 @@ public class ModViewModel : BaseViewModel, IDisposable
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ID)), Metadata.Id, UserLevel.Debug),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Debug),
 
-            // TODO-UPDATE: Update these values when the user changes version
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), mod.GetAddedFiles(Version).Count().ToString()),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), mod.GetRemovedFiles(Version).Count().ToString()),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), mod.GetRemovedFiles().Count.ToString()),
         };
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
@@ -105,7 +103,6 @@ public class ModViewModel : BaseViewModel, IDisposable
             ReportNewChange();
         }
     }
-    public string Version { get; set; } // TODO-UPDATE: Allow changing from UI
     public ModInstallInfo InstallInfo { get; }
 
     public ModInstallState InstallState { get; set; }

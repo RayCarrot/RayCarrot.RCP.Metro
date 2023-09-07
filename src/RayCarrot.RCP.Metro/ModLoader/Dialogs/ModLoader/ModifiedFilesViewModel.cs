@@ -134,12 +134,11 @@ public class ModifiedFilesViewModel : BaseViewModel
         foreach (ModViewModel modViewModel in enabledMods)
         {
             Mod mod = modViewModel.Mod;
-            string version = modViewModel.Version;
 
-            foreach (IModFileResource addedFile in mod.GetAddedFiles(version))
+            foreach (IModFileResource addedFile in mod.GetAddedFiles())
                 AddFile(addedFile.Path, mod, ModifiedFileItemViewModel.FileModification.Add);
 
-            foreach (ModFilePath removedFile in mod.GetRemovedFiles(version))
+            foreach (ModFilePath removedFile in mod.GetRemovedFiles())
                 AddFile(removedFile, mod, ModifiedFileItemViewModel.FileModification.Remove);
         }
 

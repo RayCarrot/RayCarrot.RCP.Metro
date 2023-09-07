@@ -141,9 +141,9 @@ public class ModProcessor
         }
     }
 
-    private void AddModificationsFromMod(Mod mod, string version)
+    private void AddModificationsFromMod(Mod mod)
     {
-        foreach (IModFileResource addedFile in mod.GetAddedFiles(version))
+        foreach (IModFileResource addedFile in mod.GetAddedFiles())
         {
             AddModification(
                 type: FileModification.FileType.Add,
@@ -154,7 +154,7 @@ public class ModProcessor
         }
 
         // TODO-UPDATE: Pass in correct version
-        foreach (ModFilePath removedFile in mod.GetRemovedFiles(version))
+        foreach (ModFilePath removedFile in mod.GetRemovedFiles())
         {
             AddModification(
                 type: FileModification.FileType.Remove,
@@ -208,7 +208,7 @@ public class ModProcessor
         foreach ((ModManifestEntry Entry, Mod Mod) p in 
                  ((IEnumerable<(ModManifestEntry Entry, Mod Mod)>)enabledMods).Reverse())
         {
-            AddModificationsFromMod(p.Mod, p.Entry.Version ?? Mod.DefaultVersion);
+            AddModificationsFromMod(p.Mod);
         }
 
         Logger.Info("Finished retrieving file modifications");

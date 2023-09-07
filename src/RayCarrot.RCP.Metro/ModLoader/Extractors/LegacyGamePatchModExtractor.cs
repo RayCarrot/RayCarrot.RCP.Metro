@@ -40,8 +40,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
         // Write removed files, if any
         if (patch.RemovedFiles.Any())
         {
-            Directory.CreateDirectory(outputPath + Mod.DefaultVersion);
-            File.WriteAllLines(outputPath + Mod.DefaultVersion + Mod.RemovedFilesFileName, patch.RemovedFiles.ToArray(x => x.FullFilePath));
+            File.WriteAllLines(outputPath + Mod.RemovedFilesFileName, patch.RemovedFiles.ToArray(x => x.FullFilePath));
         }
 
         // Extract thumbnail
@@ -61,7 +60,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
 
             progressCallback(new Progress(i, patch.AddedFiles.Length));
 
-            FileSystemPath fileDest = outputPath + Mod.DefaultVersion + Mod.FilesDirectoryName + filePath.FullFilePath;
+            FileSystemPath fileDest = outputPath + Mod.FilesDirectoryName + filePath.FullFilePath;
             Directory.CreateDirectory(fileDest.Parent);
 
             using FileStream dstStream = File.Create(fileDest);

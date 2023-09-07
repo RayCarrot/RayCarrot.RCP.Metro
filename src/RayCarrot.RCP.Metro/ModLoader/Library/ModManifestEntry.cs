@@ -12,5 +12,4 @@ namespace RayCarrot.RCP.Metro.ModLoader.Library;
 public record ModManifestEntry(
     [property: JsonProperty("id", Required = Required.Always)] string Id,
     [property: JsonProperty("install_info", Required = Required.Always)] ModInstallInfo InstallInfo,
-    [property: JsonProperty("enabled")] bool IsEnabled,
-    [property: JsonProperty("version")] string? Version);
+    [property: JsonProperty("enabled")] bool IsEnabled);
