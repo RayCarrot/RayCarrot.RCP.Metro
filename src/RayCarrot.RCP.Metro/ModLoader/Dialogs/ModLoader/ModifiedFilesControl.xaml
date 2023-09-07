@@ -57,6 +57,7 @@
         <TreeView x:Name="FileTreeView" 
                   Grid.Row="1"
                   Background="Transparent" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   ItemsSource="{Binding Path=ModifiedFilesRoot.Children, Mode=OneTime}"
                   d:ItemsSource="{d:SampleData ItemCount=5}">
             <TreeView.Style>
@@ -105,8 +106,8 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="4" />
-                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Mod" />
                             <ColumnDefinition Width="Auto" SharedSizeGroup="OverridenMods" />
                         </Grid.ColumnDefinitions>
@@ -151,6 +152,7 @@
 
                         <TextBlock Grid.Column="2"
                                    Text="{Binding Path=Name, Mode=OneTime}"
+                                   TextWrapping="WrapWithOverflow"
                                    VerticalAlignment="Center"
                                    Margin="0 0 8 0" />
 
