@@ -525,11 +525,6 @@
                                 <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
-                            <!-- TODO-UPDATE: Localize and rewrite? -->
-                            <CheckBox Content="Load downloadable mods"
-                                      ToolTip="If enabled then the Mod Loader will load and show a list of external mods available for download or update"
-                                      IsChecked="{Binding Path=Data.ModLoader_LoadExternalMods}" />
-
                             <!-- TODO-UPDATE: Localize -->
                             <CheckBox Content="Automatically check for mod updates"
                                       IsChecked="{Binding Path=Data.ModLoader_AutomaticallyCheckForUpdates}" />

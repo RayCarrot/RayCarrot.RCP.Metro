@@ -90,7 +90,6 @@ public partial class AppUserData : BaseViewModel
         Binary_BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
 
         // Mod Loader
-        ModLoader_LoadExternalMods = true;
         ModLoader_AutomaticallyCheckForUpdates = true;
     }
 
@@ -425,11 +424,6 @@ public partial class AppUserData : BaseViewModel
     #endregion
 
     #region Mod Loader
-
-    /// <summary>
-    /// Indicates if external mods should be loaded in the mod loader
-    /// </summary>
-    public bool ModLoader_LoadExternalMods { get; set; } // TODO-UPDATE: Use this?
 
     /// <summary>
     /// Indicates if the mod loader should automatically check for mod updates
