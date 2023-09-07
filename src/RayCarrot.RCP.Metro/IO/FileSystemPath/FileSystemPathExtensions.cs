@@ -310,7 +310,7 @@ public static class FileSystemPathExtensions
         if (!dirPath.DirectoryExists)
             return;
 
-        // Delete the directory
-        Directory.Delete(dirPath, true);
+        // Use "\\?\" to support long paths. TODO: Maybe we should do that elsewhere too? Is there a drawback to it?
+        Directory.Delete($@"\\?\{dirPath}", true);
     }
 }
