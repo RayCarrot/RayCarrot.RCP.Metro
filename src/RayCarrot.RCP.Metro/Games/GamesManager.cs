@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using System.Diagnostics.CodeAnalysis;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
@@ -171,6 +172,20 @@ public class GamesManager
     /// </summary>
     /// <returns>The game descriptors</returns>
     public IReadOnlyList<GameDescriptor> GetGameDescriptors() => SortedGameDescriptors;
+
+    /// <summary>
+    /// Tried and gets a game descriptor from the id
+    /// </summary>
+    /// <param name="gameId">The game descriptor id</param>
+    /// <param name="gameDescriptor">The game descriptor to return</param>
+    /// <returns>True if a game descriptor was found</returns>
+    public bool TryGetGameDescriptor(string gameId, [NotNullWhen(true)] out GameDescriptor? gameDescriptor)
+    {
+        if (gameId == null)
+            throw new ArgumentNullException(nameof(gameId));
+
+        return GameDescriptors.TryGetValue(gameId, out gameDescriptor);
+    }
 
     /// <summary>
     /// Gets a game descriptor from the id

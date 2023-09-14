@@ -8,7 +8,6 @@ using MahApps.Metro.Controls;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -188,11 +187,11 @@ public class StartupManager
         return null;
     }
 
-    private URILaunchHandler? CheckURILaunch()
+    private UriLaunchHandler? CheckURILaunch()
     {
         // Check if the app was opened from a URI
         if (Args.HasArgs)
-            return URILaunchHandler.GetHandler(Args.Args[0]);
+            return UriLaunchHandler.GetHandler(Args.Args[0]);
 
         return null;
     }
@@ -233,28 +232,34 @@ public class StartupManager
         if (!File.Exists(assemblyPath)) 
             return;
         
-        // If the file type association is set for patch files we need to update them
-        if (PatchPackage.IsAssociatedWithFileType() == true)
+        // Update file type and uri associations
+        foreach (FileLaunchHandler handler in FileLaunchHandler.GetHandlers())
         {
+            if (handler.IsAssociatedWithFileType() != true)
+                continue;
+
             try
             {
-                PatchPackage.AssociateWithFileType(assemblyPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, true);
+                handler.AssociateWithFileType(assemblyPath, true);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Setting patch file type association");
+                Logger.Error(ex, "Setting file type association");
             }
         }
 
-        if (PatchPackage.IsAssociatedWithURIProtocol() == true)
+        foreach (UriLaunchHandler handler in UriLaunchHandler.GetHandlers())
         {
+            if (handler.IsAssociatedWithUriProtocol() != true) 
+                continue;
+            
             try
             {
-                PatchPackage.AssociateWithURIProtocol(assemblyPath, true);
+                handler.AssociateWithUriProtocol(assemblyPath, true);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Setting patch URI protocol association");
+                Logger.Error(ex, "Setting uri protocol association");
             }
         }
     }
@@ -581,7 +586,7 @@ public class StartupManager
 
             CheckLaunchArgs();
             FileLaunchHandler? fileLaunchHandler = CheckFileLaunch();
-            URILaunchHandler? uriLaunchHandler = CheckURILaunch();
+            UriLaunchHandler? uriLaunchHandler = CheckURILaunch();
             InitWebProtocol();
             Logger.Debug("Startup {0} ms: Checked launch arguments and initialized web protocol", sw.ElapsedMilliseconds);
 

@@ -1,18 +1,65 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-public abstract class URILaunchHandler : LaunchArgHandler
+public abstract class UriLaunchHandler : LaunchArgHandler
 {
-    public static URILaunchHandler[] Handlers => new URILaunchHandler[]
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Public Properties
+
+    public abstract string UriProtocol { get; }
+    public abstract string UriProtocolName { get; }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected string GetValueFromUri(string uri) => uri.Substring(UriProtocol.Length + 1);
+
+    #endregion
+
+    #region Public Static Methods
+
+    public static UriLaunchHandler[] GetHandlers() => new UriLaunchHandler[]
     {
-        new LegacyPatchFileURILaunchHandler(),
+        new ModFileUriLaunchHandler(),
     };
 
-    public static URILaunchHandler? GetHandler(string uri) => Handlers.FirstOrDefault(x => x.IsValid(uri));
+    public static UriLaunchHandler? GetHandler(string uri) => GetHandlers().FirstOrDefault(x => x.IsUriValid(uri));
 
-    public abstract string BaseURI { get; }
+    #endregion
 
-    protected string GetValue(string uri) => uri.Substring(BaseURI.Length + 1);
+    #region Public Methods
 
-    public bool IsValid(string uri) => uri.StartsWith($"{BaseURI}:", StringComparison.Ordinal);
+    public bool? IsAssociatedWithUriProtocol()
+    {
+        try
+        {
+            return WindowsHelpers.GetHasURIProtocolAssociation(UriProtocol);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, $"Checking if the uri protocol association for {UriProtocol} is set");
+            return null;
+        }
+    }
+
+    public void AssociateWithUriProtocol(FileSystemPath programFilePath, bool enable)
+    {
+        WindowsHelpers.SetURIProtocolAssociation(programFilePath, UriProtocol, UriProtocolName, enable);
+
+        if (enable)
+            Logger.Info($"Set the uri protocol association for {UriProtocol}");
+        else
+            Logger.Info($"Removed the uri protocol association for {UriProtocol}");
+    }
+
+    public bool IsUriValid(string uri) => uri.StartsWith($"{UriProtocol}:", StringComparison.Ordinal);
+    
     public abstract void Invoke(string uri, State state);
+
+    #endregion
 }

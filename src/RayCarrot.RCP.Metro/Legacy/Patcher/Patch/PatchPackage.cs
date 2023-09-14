@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using System.IO;
 using System.Text;
 using BinarySerializer;
 
@@ -12,17 +11,8 @@ public class PatchPackage : BinarySerializable, IPackageFile
 {
     #region Constants
 
-    private const string FileTypeID = "RCP_Metro.GamePatch";
-    
-    public const string URIProtocol = "rcpgp";
     public const string FileExtension = ".gp"; // Game Patch
     public const int LatestFormatVersion = 3;
-
-    #endregion
-
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -80,69 +70,6 @@ public class PatchPackage : BinarySerializable, IPackageFile
     /// The files removed by this patch
     /// </summary>
     public PatchFilePath[] RemovedFiles { get; set; }
-
-    #endregion
-
-    #region Public Static Methods
-
-    // TODO-UPDATE: Remove this?
-
-    public static bool? IsAssociatedWithFileType()
-    {
-        try
-        {
-            return WindowsHelpers.GetFileTypeAssociationID(FileExtension) == FileTypeID;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Checking if the patch file type association is set");
-            return null;
-        }
-    }
-
-    public static bool? IsAssociatedWithURIProtocol()
-    {
-        try
-        {
-            return WindowsHelpers.GetHasURIProtocolAssociation(URIProtocol);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Checking if the patch URI protocol association is set");
-            return null;
-        }
-    }
-
-    public static void AssociateWithFileType(FileSystemPath programFilePath, System.Drawing.Icon icon, FileSystemPath iconFilePath, bool enable)
-    {
-        if (enable)
-        {
-            Directory.CreateDirectory(iconFilePath.Parent);
-            using Stream fileStream = File.Create(iconFilePath);
-            icon.Save(fileStream);
-        }
-        else
-        {
-            Services.File.DeleteFile(iconFilePath);
-        }
-
-        WindowsHelpers.SetFileTypeAssociation(programFilePath, FileExtension, "Rayman Control Panel Game Patch", FileTypeID, iconFilePath, enable);
-        
-        if (enable)
-            Logger.Info("Set the file type association for patch files");
-        else
-            Logger.Info("Removed the file type association for patch files");
-    }
-
-    public static void AssociateWithURIProtocol(FileSystemPath programFilePath, bool enable)
-    {
-        WindowsHelpers.SetURIProtocolAssociation(programFilePath, URIProtocol, "Rayman Control Panel Game Patch Protocol", enable);
-
-        if (enable)
-            Logger.Info("Set the URI protocol association for patch files");
-        else
-            Logger.Info("Removed the URI protocol association for patch files");
-    }
 
     #endregion
 

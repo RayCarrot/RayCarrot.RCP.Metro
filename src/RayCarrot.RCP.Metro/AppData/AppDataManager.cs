@@ -11,7 +11,6 @@ using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Legacy.AppData;
-using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -689,21 +688,21 @@ public class AppDataManager
             try
             {
                 // Default to the file type association being enabled
-                PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, true);
+                new ModFileLaunchHandler().AssociateWithFileType(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Setting patch file type association");
+                Logger.Error(ex, "Setting mod file type association");
             }
 
             try
             {
-                // Default to the URI protocol association being enabled
-                PatchPackage.AssociateWithURIProtocol(Data.App_ApplicationPath, true);
+                // Default to the uri protocol association being enabled
+                new ModFileUriLaunchHandler().AssociateWithUriProtocol(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Setting patch URI protocol association");
+                Logger.Error(ex, "Setting mod uri protocol association");
             }
         }
 
@@ -738,13 +737,14 @@ public class AppDataManager
 
             try
             {
-                // Update the patch file association now that we have a custom icon for it
-                if (PatchPackage.IsAssociatedWithFileType() == true)
-                    PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, true);
+                // Update the mod file association now that we have a custom icon for it
+                ModFileLaunchHandler handler = new();
+                if (handler.IsAssociatedWithFileType() == true)
+                    handler.AssociateWithFileType(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Setting patch file type association");
+                Logger.Error(ex, "Setting mod file type association");
             }
         }
 

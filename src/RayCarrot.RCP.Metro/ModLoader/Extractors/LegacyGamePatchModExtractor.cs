@@ -10,6 +10,14 @@ public class LegacyGamePatchModExtractor : ModExtractor
 {
     public override FileExtension FileExtension => new(PatchPackage.FileExtension);
 
+    public override string[] GetGameTargets(FileSystemPath modFilePath)
+    {
+        using Context context = new RCPContext(modFilePath.Parent);
+        PatchPackage patch = context.ReadRequiredFileData<PatchPackage>(modFilePath.Name);
+
+        return patch.Metadata.GameIds;
+    }
+
     public override async Task ExtractAsync(FileSystemPath modFilePath, FileSystemPath outputPath, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {
         using Context context = new RCPContext(modFilePath.Parent);

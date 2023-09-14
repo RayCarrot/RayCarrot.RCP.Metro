@@ -7,7 +7,6 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
-using RayCarrot.RCP.Metro.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -314,7 +313,14 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowModLoaderAsync(FileSystemPath[] modFilePaths)
     {
-        // TODO-UPDATE: Implement opening patcher from files to install
+        ModLoaderViewModel? viewModel = await ModLoaderViewModel.FromFilesAsync(modFilePaths);
+
+        if (viewModel == null)
+            return;
+
+        await ShowWindowAsync(() => new ModLoaderDialog(viewModel),
+            // Only allow one Mod Loader window per installation
+            typeGroupNames: new[] { viewModel.GameInstallation.InstallationId });
     }
 
     /// <summary>

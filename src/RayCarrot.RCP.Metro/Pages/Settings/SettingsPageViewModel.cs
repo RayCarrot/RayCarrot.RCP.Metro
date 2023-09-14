@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Settings;
 
@@ -206,8 +205,8 @@ public class SettingsPageViewModel : BasePageViewModel
 
             if (refreshPatchAssociations)
             {
-                bool? isAssociatedWithFileType = PatchPackage.IsAssociatedWithFileType();
-                bool? isAssociatedWithURIProtocol = PatchPackage.IsAssociatedWithURIProtocol();
+                bool? isAssociatedWithFileType = new ModFileLaunchHandler().IsAssociatedWithFileType();
+                bool? isAssociatedWithURIProtocol = new ModFileUriLaunchHandler().IsAssociatedWithUriProtocol();
 
                 CanAssociatePatchFileType = isAssociatedWithFileType != null;
                 CanAssociatePatchURIProtocol = isAssociatedWithURIProtocol != null;
@@ -251,16 +250,18 @@ public class SettingsPageViewModel : BasePageViewModel
         await App.RestartAsync("-reset");
     }
 
+    // TODO-UPDATE: Rework UI to have these things be dynamic based on the available handlers
     public async Task UpdatePatchFileTypeAssociationAsync()
     {
         try
         {
-            PatchPackage.AssociateWithFileType(Data.App_ApplicationPath, Files.GamePatch, AppFilePaths.LegacyGamePatchIconPath, AssociatePatchFileType);
+            new ModFileLaunchHandler().AssociateWithFileType(Data.App_ApplicationPath, AssociatePatchFileType);
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Setting patch file type association");            
+            Logger.Error(ex, "Setting mod file type association");            
 
+            // TODO-UPDATE: Update localization
             await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_AssociateFileTypeError);
         }
     }
@@ -269,12 +270,13 @@ public class SettingsPageViewModel : BasePageViewModel
     {
         try
         {
-            PatchPackage.AssociateWithURIProtocol(Data.App_ApplicationPath, AssociatePatchURIProtocol);
+            new ModFileUriLaunchHandler().AssociateWithUriProtocol(Data.App_ApplicationPath, AssociatePatchURIProtocol);
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Setting patch uri protocol association");
+            Logger.Error(ex, "Setting mod uri protocol association");
 
+            // TODO-UPDATE: Update localization
             await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_AssociateURIProtocolError);
         }
     }

@@ -150,7 +150,7 @@ public class LaunchArguments
                 }
                 if (newArgs.HasArgs)
                 {
-                    URILaunchHandler? uriLaunchHandler = URILaunchHandler.GetHandler(newArgs.Args[0]);
+                    UriLaunchHandler? uriLaunchHandler = UriLaunchHandler.GetHandler(newArgs.Args[0]);
                     uriLaunchHandler?.Invoke(newArgs.Args[0], LaunchArgHandler.State.Running);
                 }
 

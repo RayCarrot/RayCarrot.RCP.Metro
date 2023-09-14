@@ -14,9 +14,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ModLoaderViewModel(GameInstallation gameInstallation)
+    public ModLoaderViewModel(GameInstallation gameInstallation, FileSystemPath[]? pendingModFiles = null)
     {
         GameInstallation = gameInstallation;
+        _pendingModFiles = pendingModFiles;
 
         // Get the available mod modules for this game
         _modModules = gameInstallation.GetComponents<ModModuleComponent>().CreateObjects().ToArray();
@@ -25,13 +26,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             throw new InvalidOperationException("The game installation doesn't support mods");
 
         _httpClient = new HttpClient(); // TODO-UPDATE: Share a single client throughout the app?
-        _modExtractors = new ModExtractor[]
-        {
-            new ZipModExtractor(), // .zip
-            new SevenZipModExtractor(), // .7z
-            new RarModExtractor(), // .rar
-            new LegacyGamePatchModExtractor(), // .gp (legacy)
-        };
+        _modExtractors = ModExtractor.GetModExtractors();
 
         LoaderViewModel = new LoaderViewModel();
         Mods = new ObservableCollection<ModViewModel>();
@@ -56,6 +51,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private FileSystemPath[]? _pendingModFiles;
     private readonly ModModule[] _modModules;
     private readonly HttpClient _httpClient;
     private readonly ModExtractor[] _modExtractors;
@@ -189,6 +185,36 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
+    private async Task AddLocalModsToInstall(FileSystemPath[] filePaths)
+    {
+        using (LoadState state = await LoaderViewModel.RunAsync())
+        {
+            state.SetCanCancel(true);
+
+            foreach (FileSystemPath modFilePath in filePaths)
+            {
+                // TODO-UPDATE: Localize
+                state.SetStatus($"Extracting mod {modFilePath.Name}");
+
+                try
+                {
+                    await AddModToInstallAsync(modFilePath, state, null, null);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    // TODO-UPDATE: Log
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    // TODO-UPDATE: Log and show error message
+                }
+            }
+
+            ReportNewChanges();
+        }
+    }
+
     private async Task AddModToInstallAsync(FileSystemPath filePath, LoadState loadState, string? sourceId, object? installData)
     {
         FileExtension fileExtension = filePath.FileExtension;
@@ -269,6 +295,63 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #endregion
 
+    #region Public Static Methods
+
+    public static async Task<ModLoaderViewModel?> FromFilesAsync(FileSystemPath[] modFilePaths)
+    {
+        if (modFilePaths.Length == 0)
+            throw new ArgumentException("There has to be a least one mod file provided", nameof(modFilePaths));
+
+        // Use the first file to determine which games are being targeted
+        FileSystemPath firstFile = modFilePaths[0];
+        FileExtension firstFileExtension = firstFile.FileExtension;
+        ModExtractor? modExtractor = ModExtractor.GetModExtractors().FirstOrDefault(x => x.FileExtension == firstFileExtension);
+
+        if (modExtractor == null)
+            throw new Exception("One or more mod files are not valid");
+
+        string[] gameTargets = modExtractor.GetGameTargets(firstFile);
+
+        // Get all the installations which the patch supports
+        List<GameInstallation> gameInstallations = Services.Games.GetInstalledGames().
+            Where(x => gameTargets.Contains(x.GameDescriptor.GameId)).
+            ToList();
+
+        // Make sure there is an installed game which can be patched
+        if (!gameInstallations.Any())
+        {
+            string gameTargetNames = String.Join(Environment.NewLine, gameTargets.Select(x =>
+                Services.Games.TryGetGameDescriptor(x, out GameDescriptor? g) ? g.DisplayName.Value : x));
+            await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the mod due to none of the following targeted games having been added:\r\n\r\n{0}", gameTargetNames), MessageType.Error);
+            return null;
+        }
+
+        GameInstallation gameInstallation;
+
+        // If there is more than 1 matching game we ask the user which one to patch
+        if (gameInstallations.Count > 1)
+        {
+            GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
+            {
+                // TODO-UPDATE: Localize
+                Title = "Select game to install the mod to"
+            });
+
+            if (result.CanceledByUser)
+                return null;
+
+            gameInstallation = result.SelectedGame;
+        }
+        else
+        {
+            gameInstallation = gameInstallations.First();
+        }
+
+        return new ModLoaderViewModel(gameInstallation, modFilePaths);
+    }
+
+    #endregion
+
     #region Public Methods
 
     public async Task<bool> InitializeAsync()
@@ -300,6 +383,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         if (!success)
             return false;
+
+        // Add pending mods
+        if (_pendingModFiles != null)
+        {
+            await AddLocalModsToInstall(_pendingModFiles);
+            _pendingModFiles = null;
+        }
 
         // Check for mod updates if set to do so
         if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
@@ -349,33 +439,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         if (result.CanceledByUser)
             return;
 
-        Logger.Info("Adding {0} patches to be installed", result.SelectedFiles.Length);
-        using (LoadState state = await LoaderViewModel.RunAsync())
-        {
-            state.SetCanCancel(true);
-
-            foreach (FileSystemPath selectedFile in result.SelectedFiles)
-            {
-                // TODO-UPDATE: Localize
-                state.SetStatus($"Extracting mod {selectedFile.Name}");
-
-                try
-                {
-                    await AddModToInstallAsync(selectedFile, state, null, null);
-                }
-                catch (OperationCanceledException ex)
-                {
-                    // TODO-UPDATE: Log
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    // TODO-UPDATE: Log and show error message
-                }
-            }
-
-            ReportNewChanges();
-        }
+        Logger.Info("Adding {0} mods to be installed", result.SelectedFiles.Length);
+        await AddLocalModsToInstall(result.SelectedFiles);
 
         Logger.Info("Added mods");
     }

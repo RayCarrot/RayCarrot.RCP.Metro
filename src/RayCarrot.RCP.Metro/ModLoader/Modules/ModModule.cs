@@ -10,6 +10,8 @@ public abstract class ModModule
 {
     public abstract string Id { get; }
 
-    public abstract IReadOnlyCollection<IModFileResource> GetAddedFiles(Mod mod, FileSystemPath modulePath);
-    public abstract IReadOnlyCollection<ModFilePath> GetRemovedFiles(Mod mod, FileSystemPath modulePath);
+    public virtual IReadOnlyCollection<IModFileResource> GetAddedFiles(Mod mod, FileSystemPath modulePath) =>
+        new ReadOnlyCollection<IModFileResource>(new List<IModFileResource>());
+    public virtual IReadOnlyCollection<ModFilePath> GetRemovedFiles(Mod mod, FileSystemPath modulePath) =>
+        new ReadOnlyCollection<ModFilePath>(new List<ModFilePath>());
 }

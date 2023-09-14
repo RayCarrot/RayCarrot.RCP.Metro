@@ -60,9 +60,9 @@ public static class AppFilePaths
     public static FileSystemPath AdminWorkerPath => UserDataBaseDir + "Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
 
     /// <summary>
-    /// The legacy game patch icon file path
+    /// The icon files path
     /// </summary>
-    public static FileSystemPath LegacyGamePatchIconPath => UserDataBaseDir + "Icons\\GamePatch.ico";
+    public static FileSystemPath IconsPath => UserDataBaseDir + "Icons";
 
     /// <summary>
     /// The temporary files path
