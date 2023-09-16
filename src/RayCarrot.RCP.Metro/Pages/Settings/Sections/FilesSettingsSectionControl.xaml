@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Settings.Sections.FilesSettingsSectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:sections="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings.Sections"
+             mc:Ignorable="d"
+             d:DesignWidth="500"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" 
+             d:DataContext="{d:DesignInstance sections:FilesSettingsSectionViewModel}">
+
+    <StackPanel>
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Archive_BinaryEditor}"
+                   Margin="0 0 0 4" />
+
+        <rcp:BrowseBox FileFilter="Exe (*.exe)|*.exe"
+                       DataContext="{Binding Path=Data}"
+                       SelectedPath="{Binding Path=Archive_BinaryEditorExe}"
+                       BrowseType="File"
+                       PathValidation="FileExists"
+                       Margin="0 0 0 8" />
+
+        <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={rcp:EnumerableEmptyVisibilityConverter}}">
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Archive_FileEditors}"
+                       Margin="0 0 0 4" />
+
+            <!-- TODO-UPDATE: Redesign with itemscontrol instead. Show save file editor, .json, here. Allow adding? Show info text for what this is for. -->
+            <DataGrid CanUserAddRows="False"
+                      CanUserResizeRows="False"
+                      CanUserResizeColumns="False"
+                      CanUserSortColumns="True"
+                      CanUserReorderColumns="False"
+                      CanUserDeleteRows="True"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding Path=AssociatedPrograms, Mode=OneTime}"
+                      Margin="0 0 0 8">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}"
+                                        ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+                                        Width="Auto"
+                                        Binding="{Binding Path=FileExtension, Mode=OneTime}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}"
+                                        ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+                                        Width="*">
+                        <DataGridTextColumn.Binding>
+                            <Binding Path="ExeFilePath" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <rcp:FileExistsValidationRule AllowEmpty="False" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

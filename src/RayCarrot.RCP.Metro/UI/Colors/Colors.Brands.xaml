@@ -3,5 +3,6 @@
 
     <Color x:Key="RCP.Colors.Twitter">#38A1F3</Color>
     <Color x:Key="RCP.Colors.YouTube">#FF0000</Color>
+    <Color x:Key="RCP.Colors.Windows11">#0078d4</Color>
 
 </ResourceDictionary>

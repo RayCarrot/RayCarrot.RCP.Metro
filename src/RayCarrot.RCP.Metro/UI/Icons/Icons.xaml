@@ -19,7 +19,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_ArchiveExplorer">FolderCogOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_ModLoader">ArchiveCogOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_GameClient">FileCogOutline</iconPacks:PackIconMaterialKind>
     
@@ -43,6 +42,10 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Program">ApplicationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Link">Link</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Language">Earth</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.User">AccountOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Design">PaletteOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Startup">Power</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.RomFinder">FolderSearchOutline</iconPacks:PackIconMaterialKind>
@@ -79,6 +82,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_RRR">MapOutline</iconPacks:PackIconMaterialKind>
 
     <!-- Generic Icons (used from C# code) -->
+    <!-- TODO-UPDATE: The key should be the enum directly -->
 
     <local:GenericIcon x:Key="RCP.GenericIcons.None" 
                        IconKind="{x:Static iconPacks:PackIconMaterialKind.None}" />
@@ -134,6 +138,40 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_Utilities" 
                        IconKind="{StaticResource RCP.Icons.Utilities}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
+
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_Language" 
+                       IconKind="{StaticResource RCP.Icons.Language}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_UserLevel" 
+                       IconKind="{StaticResource RCP.Icons.User}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_General" 
+                       IconKind="{StaticResource RCP.Icons.Settings}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_Design" 
+                       IconKind="{StaticResource RCP.Icons.Design}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_Startup" 
+                       IconKind="{StaticResource RCP.Icons.Startup}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_Files" 
+                       IconKind="{StaticResource RCP.Icons.File}"
+                       IconColor="{StaticResource RCP.Brushes.File}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_WindowsIntegration" 
+                       IconKind="{StaticResource RCP.Icons.Microsoft}"
+                       IconColor="{StaticResource RCP.Brushes.Windows11}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_Progression" 
+                       IconKind="{StaticResource RCP.Icons.Progression}"
+                       IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_ArchiveExplorer" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_ModLoader" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}"
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Settings_Debug" 
+                       IconKind="{StaticResource RCP.Icons.Debug}"
+                       IconColor="{StaticResource RCP.Brushes.Debug}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_ArchiveExplorer" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"

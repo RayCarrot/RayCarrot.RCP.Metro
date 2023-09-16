@@ -24,6 +24,18 @@ public enum GenericIconKind
     GameOptions_GameClient,
     GameOptions_Utilities,
 
+    Settings_Language,
+    Settings_UserLevel,
+    Settings_General,
+    Settings_Design,
+    Settings_Startup,
+    Settings_Files,
+    Settings_WindowsIntegration,
+    Settings_Progression,
+    Settings_ArchiveExplorer,
+    Settings_ModLoader,
+    Settings_Debug,
+
     Window_ArchiveExplorer,
     Window_ArchiveCreator,
     Window_ModLoader,

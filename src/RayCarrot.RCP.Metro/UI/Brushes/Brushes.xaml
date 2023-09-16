@@ -28,6 +28,7 @@
     <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Twitter" Color="{StaticResource RCP.Colors.Twitter}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.YouTube" Color="{StaticResource RCP.Colors.YouTube}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Windows11" Color="{StaticResource RCP.Colors.Windows11}" po:Freeze="True" />
     
     <!-- GameBanana -->
     <SolidColorBrush x:Key="RCP.Brushes.GameBanana.Like" Color="{StaticResource RCP.Colors.GameBanana.Like}" po:Freeze="True" />

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Settings.Sections.StartupSettingsSectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:sections="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings.Sections"
+             mc:Ignorable="d"
+             d:DesignWidth="500"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" 
+             d:DataContext="{d:DesignInstance sections:StartupSettingsSectionViewModel}">
+
+    <StackPanel DataContext="{Binding Path=Data}">
+
+        <CheckBox Content="{Resx Settings_StartupGameFinder}"
+                  IsChecked="{Binding Path=Game_AutoLocateGames}"
+                  Margin="0 0 0 8" />
+
+        <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
+                  IsChecked="{Binding Path=Update_AutoUpdate}" 
+                  Margin="0 0 0 8" />
+
+        <CheckBox Content="{Resx Settings_LoadAppNews}"
+                  IsChecked="{Binding Path=App_LoadNews}"
+                  Margin="0 0 0 8" />
+
+    </StackPanel>
+
+</UserControl>

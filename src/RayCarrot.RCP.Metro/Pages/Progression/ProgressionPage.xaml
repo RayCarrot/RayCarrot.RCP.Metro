@@ -33,15 +33,6 @@
 
             <Separator />
 
-            <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
-                      Content="{Resx Backup_Compress}"
-                      ToolTip="{Resx Backup_CompressInfo}"
-                      IsChecked="{Binding Path=Data.Backup_CompressBackups}"
-                      Margin="6"
-                      Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
-
-            <Separator />
-
             <Button Content="{Resx Backup_BackupAll}"
                     rcp:Icon.Kind="FolderUploadOutline"
                     Command="{Binding Path=BackupAllCommand, Mode=OneTime}" />
@@ -67,6 +58,7 @@
 
             <Separator />
 
+            <!-- TODO-UPDATE: Move to settings page, maybe more general .json association? -->
             <Button Content="{Resx Progression_ChangeEditProgram}"
                     rcp:Icon.Kind="ApplicationOutline"
                     Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />

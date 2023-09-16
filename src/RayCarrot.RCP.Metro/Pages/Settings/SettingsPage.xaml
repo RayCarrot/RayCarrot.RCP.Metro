@@ -1,12 +1,11 @@
 ﻿<rcp:BasePage x:Class="RayCarrot.RCP.Metro.Pages.Settings.SettingsPage"
               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
               xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings"
+              xmlns:sections="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings.Sections"
               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
               Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
               Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -15,6 +14,7 @@
               d:DesignWidth="800"
               d:DataContext="{d:DesignInstance settings:SettingsPageViewModel}">
 
+    <!-- TODO-UPDATE: Integrate some of this into the page UI? Edit jump list could go in the general section and the technical ones in the debug section? -->
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
@@ -89,537 +89,111 @@
         <KeyBinding Key="F5" Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
     </Control.InputBindings>
 
-    <metro:MetroAnimatedTabControl x:Name="SettingsTabControl"
-                                   Margin="0 12 0 0"
-                                   FocusVisualStyle="{x:Null}">
+    <rcp:BasePage.Resources>
+        <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource RCP.Styles.CheckBox.Default}" />
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Padding" Value="0 8 0 -4" />
+        </Style>
+    </rcp:BasePage.Resources>
 
-        <i:Interaction.Behaviors>
-            <rcp:FocusElementOnLoad />
-        </i:Interaction.Behaviors>
+    <rcp:Card Margin="12">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- General -->
+            <ItemsControl Grid.Column="0"
+                          Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
+                          ItemsSource="{Binding Path=FlatSections, Mode=OneTime}"
+                          d:ItemsSource="{d:SampleData ItemCount=3}"
+                          Margin="2 8 4 8">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                                HorizontalContentAlignment="Left"
+                                rcp:UserLevelAssist.MinUserLevel="{Binding Path=UserLevel, Mode=OneTime}"
+                                rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
+                                rcp:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToBrushConverter}}"
+                                rcp:Icon.Size="22"
+                                Content="{Binding Path=Header.Value}"
+                                rcp:ButtonAssist.IsSelected="{Binding Path=IsSelected}"
+                                Click="SectionButton_OnClick"
+                                Margin="0 1" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Settings}"
-                 Header="{Resx Settings_GeneralHeader}">
+            <ScrollViewer x:Name="SectionsScrollViewer"
+                          Grid.Column="1"
+                          ScrollChanged="SectionsScrollViewer_OnScrollChanged">
 
-            <ScrollViewer>
-                <StackPanel Margin="12 0 12 12">
-                    <i:Interaction.Behaviors>
-                        <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                    </i:Interaction.Behaviors>
-
-                    <!-- Language -->
-
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Settings_Language}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
-                                      ItemsSource="{Binding Source={x:Static rcp:LocalizationManager.Languages}}"
-                                      HorizontalAlignment="Left"
-                                      MinWidth="150">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ComboBoxItem}"
-                                           BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                                        <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                                <ComboBox.ItemTemplate>
+                <ItemsControl x:Name="SectionsItemsControl"
+                              ItemsSource="{Binding Path=Sections, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=3}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding Mode=OneTime}"
+                                          d:ItemsSource="{d:SampleData ItemCount=1}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Rows="1" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}" />
+                                        <GroupBox Content="{Binding Mode=OneTime}"
+                                                  Header="{Binding Path=Header.Value}" 
+                                                  rcp:UserLevelAssist.MinUserLevel="{Binding Path=UserLevel, Mode=OneTime}"
+                                                  rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
+                                                  rcp:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToBrushConverter}}"
+                                                  Margin="{StaticResource RCP.Thicknesses.Card}"
+                                                  Loaded="SectionGroupBox_OnLoaded">
+                                            <GroupBox.Resources>
+                                                <DataTemplate DataType="{x:Type sections:LanguageSettingsSectionViewModel}">
+                                                    <sections:LanguageSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:UserLevelSettingsSectionViewModel}">
+                                                    <sections:UserLevelSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:GeneralSettingsSectionViewModel}">
+                                                    <sections:GeneralSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:DesignSettingsSectionViewModel}">
+                                                    <sections:DesignSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:StartupSettingsSectionViewModel}">
+                                                    <sections:StartupSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:ProgressionSettingsSectionViewModel}">
+                                                    <sections:ProgressionSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:FilesSettingsSectionViewModel}">
+                                                    <sections:FilesSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:ArchiveExplorerSettingsSectionViewModel}">
+                                                    <sections:ArchiveExplorerSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:ModLoaderSettingsSectionViewModel}">
+                                                    <sections:ModLoaderSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:WindowsIntegrationSettingsSectionViewModel}">
+                                                    <sections:WindowsIntegrationSettingsSectionControl />
+                                                </DataTemplate>
+                                                <DataTemplate DataType="{x:Type sections:DebugSettingsSectionViewModel}">
+                                                    <sections:DebugSettingsSectionControl />
+                                                </DataTemplate>
+                                            </GroupBox.Resources>
+                                        </GroupBox>
                                     </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-
-                            <TextBlock>
-                                <Hyperlink Command="{Binding Path=ContributeLocalizationCommand}">
-                                    <TextBlock Text="{Resx Settings_LanguageContribute}" />
-                                </Hyperlink>
-                            </TextBlock>
-
-                            <CheckBox rcp:UserLevelAssist.MinUserLevel="Debug"
-                                      Content="{Resx Settings_IncompleteTranslations}"
-                                      IsChecked="{Binding Path=ShowIncompleteTranslations}" />
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <!-- User Level -->
-
-                    <StackPanel DataContext="{Binding Path=Data}">
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Resx Settings_UserLevel}"
-                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                            <rcp:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
-
-                        </StackPanel>
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <!-- User Levels -->
-
-                            <WrapPanel>
-
-                                <i:Interaction.Behaviors>
-                                    <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
-                                </i:Interaction.Behaviors>
-
-                                <!-- Normal -->
-
-                                <rcp:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
-                                                          ToolTip="{Resx Settings_UserLevelNormalInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserLevel.Normal}}" />
-
-                                <!-- Advanced -->
-
-                                <rcp:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
-                                                          ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserLevel.Advanced}}" />
-
-                                <!-- Technical -->
-
-                                <rcp:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
-                                                          ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserLevel.Technical}}" />
-
-                                <!-- Debug -->
-
-                                <rcp:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
-                                                          ToolTip="{Resx Settings_UserLevelDebugInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserLevel.Debug}}"
-                                                          rcp:UserLevelAssist.MinUserLevel="Technical" />
-
-                            </WrapPanel>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <!-- General -->
-
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Settings_GeneralHeader}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
-                                      DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=App_CloseAppOnGameLaunch}" />
-
-                            <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
-                                      DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=App_CloseConfigOnSave}" />
-
-                            <CheckBox Content="{Resx Settings_GetBetaUpdates}"
-                                      DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=Update_GetBetaUpdates}"
-                                      rcp:UserLevelAssist.MinUserLevel="Technical" />
-
-                            <CheckBox Content="{Resx Settings_ManualDownloads}"
-                                      ToolTip="{Resx Settings_ManualDownloadsInfo}"
-                                      DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=App_HandleDownloadsManually}"
-                                      rcp:UserLevelAssist.MinUserLevel="Advanced" />
-
-                            <StackPanel DataContext="{Binding Path=Data}">
-
-                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                           Text="{Resx Settings_BackupLocation}"
-                                           Margin="0 0 0 8"  />
-
-                                <rcp:BrowseBox SelectedPath="{Binding Path=Backup_BackupLocation}"
-                                                 UseCurrentPathAsDefaultLocationIfValid="True"
-                                                 BrowseType="Directory"
-                                                 PathValidation="DirectoryExistsAndNotEmpty" />
-
-                            </StackPanel>
-
-                            <StackPanel rcp:UserLevelAssist.MinUserLevel="Technical"
-                                        DataContext="{Binding Path=Data}">
-
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="0 0 0 8">
-                                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                               Text="{Resx Settings_SerializationLog}" />
-
-                                    <rcp:InfoIcon Text="{Resx Settings_SerializationLogInfo}" />
-
-                                </StackPanel>
-
-                                <CheckBox Content="{Resx IsEnabled}" 
-                                          IsChecked="{Binding Path=Binary_IsSerializationLogEnabled}"
-                                          Margin="0 0 0 8" />
-
-                                <rcp:BrowseBox Visibility="{Binding Path=Binary_IsSerializationLogEnabled, Converter={rcp:BooleanToVisibilityConverter}}"
-                                                 FileFilter="Txt (*.txt)|*.txt"
-                                                 SelectedPath="{Binding Path=Binary_BinarySerializationFileLogPath}"
-                                                 BrowseType="SaveFile" />
-
-                            </StackPanel>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <!-- Design -->
-
-                    <StackPanel DataContext="{Binding Path=Data}">
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Settings_DesignHeader}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <CheckBox Content="{Resx Settings_SyncTheme}"
-                                      ToolTip="{Resx Settings_SyncThemeInfo}"
-                                      IsChecked="{Binding Path=Theme_SyncTheme}" />
-
-                            <metro:ToggleSwitch IsOn="{Binding Path=Theme_DarkMode}"
-                                                IsEnabled="{Binding Path=Theme_SyncTheme, Converter={rcp:InvertedBooleanConverter}}"
-                                                HorizontalAlignment="Left"
-                                                OnContent="{Resx Settings_DesignDark}"
-                                                OffContent="{Resx Settings_DesignLight}" />
-
-                            <CheckBox Content="{Resx Settings_DesignAnimations}"
-                                      ToolTip="{Resx Settings_DesignAnimationsInfo}"
-                                      IsChecked="{Binding Path=UI_EnableAnimations}" />
-
-                            <CheckBox Content="{Resx Settings_DesignSuccessMessages}"
-                                      ToolTip="{Resx Settings_DesignSuccessMessagesInfo}"
-                                      IsChecked="{Binding Path=App_ShowActionComplete}" />
-
-                            <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
-                                      ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
-                                      IsChecked="{Binding Path=UI_ShowProgressOnTaskBar}" />
-
-                            <CheckBox Content="{Resx Settings_UseChildWindows}"
-                                      ToolTip="{Resx Settings_UseChildWindowsInfo}"
-                                      IsChecked="{Binding Path=UI_UseChildWindows}" />
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <!-- Startup -->
-
-                    <StackPanel DataContext="{Binding Path=Data}">
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Settings_StartupHeader}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <CheckBox Content="{Resx Settings_StartupGameFinder}"
-                                      IsChecked="{Binding Path=Game_AutoLocateGames}" />
-
-                            <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
-                                      IsChecked="{Binding Path=Update_AutoUpdate}" />
-
-                            <CheckBox Content="{Resx Settings_LoadAppNews}"
-                                      IsChecked="{Binding Path=App_LoadNews}" />
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                </StackPanel>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
 
-        </TabItem>
-
-        <!-- Archive Explorer -->
-
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.ArchiveExplorer}"
-                 Header="{Resx Archive_Title}">
-
-            <ScrollViewer>
-                <StackPanel Margin="12 0 12 12">
-                    <i:Interaction.Behaviors>
-                        <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                    </i:Interaction.Behaviors>
-
-                    <!-- Archive Explorer -->
-
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Archive_Title}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <StackPanel DataContext="{Binding Path=Data}">
-
-                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                           Text="{Resx Archive_BinaryEditor}"
-                                           Margin="0 0 0 8" />
-
-                                <rcp:BrowseBox FileFilter="Exe (*.exe)|*.exe"
-                                                SelectedPath="{Binding Path=Archive_BinaryEditorExe}"
-                                                BrowseType="File"
-                                                PathValidation="FileExists" />
-
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={rcp:EnumerableEmptyVisibilityConverter}}">
-
-                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                           Text="{Resx Archive_FileEditors}"
-                                           Margin="0 0 0 8" />
-
-                                <DataGrid CanUserAddRows="False"
-                                          CanUserResizeRows="False"
-                                          CanUserResizeColumns="False"
-                                          CanUserSortColumns="True"
-                                          CanUserReorderColumns="False"
-                                          CanUserDeleteRows="True"
-                                          AutoGenerateColumns="False"
-                                          ItemsSource="{Binding Path=AssociatedPrograms, Mode=OneTime}">
-
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}"
-                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
-                                                            Width="Auto"
-                                                            Binding="{Binding Path=FileExtension, Mode=OneTime}"
-                                                            IsReadOnly="True" />
-                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}"
-                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
-                                                            Width="*">
-                                            <DataGridTextColumn.Binding>
-                                                <Binding Path="ExeFilePath" UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding.ValidationRules>
-                                                        <rcp:FileExistsValidationRule AllowEmpty="False" />
-                                                    </Binding.ValidationRules>
-                                                </Binding>
-                                            </DataGridTextColumn.Binding>
-                                        </DataGridTextColumn>
-                                    </DataGrid.Columns>
-
-                                </DataGrid>
-
-                            </StackPanel>
-
-                            <CheckBox Content="{Resx Settings_ArchiveCNTSyncOnRepack}"
-                                      ToolTip="{Resx Settings_ArchiveCNTSyncOnRepackInfo}"
-                                      IsChecked="{Binding Path=Data.Archive_CNT_SyncOnRepack}" />
-
-                            <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"
-                                      ToolTip="{Resx Settings_ArchiveGFGenerateMipmapsInfo}"
-                                      IsChecked="{Binding Path=Data.Archive_GF_GenerateMipmaps}" />
-
-                            <CheckBox Content="{Resx Settings_ArchiveGFForce8888}"
-                                      ToolTip="{Resx Settings_ArchiveGFForce8888Info}"
-                                      IsChecked="{Binding Path=Data.Archive_GF_ForceGF8888Import}" />
-
-                            <StackPanel>
-
-                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                           Text="{Resx Settings_ArchiveGFTransparency}"
-                                           Margin="0 0 0 8" />
-
-                                <ComboBox HorizontalAlignment="Left"
-                                          SelectedIndex="{Binding Path=Data.Archive_GF_UpdateTransparency, Converter={rcp:EnumToIntConverter}}">
-
-                                    <ComboBox.ItemContainerStyle>
-                                        <Style TargetType="{x:Type ComboBoxItem}"
-                                               BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                            <Setter Property="ToolTip"
-                                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.ToolTip}" />
-                                        </Style>
-                                    </ComboBox.ItemContainerStyle>
-
-                                    <TextBlock Text="{Resx Settings_ArchiveGFTransparency_PreserveFormat}"
-                                               ToolTip="{Resx Settings_ArchiveGFTransparency_PreserveFormatInfo}" />
-
-                                    <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat}"
-                                               ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo}" />
-
-                                    <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized}"
-                                               ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo}" />
-
-                                </ComboBox>
-
-                            </StackPanel>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                </StackPanel>
-            </ScrollViewer>
-
-        </TabItem>
-
-        <!-- Mod Loader -->
-
-        <!-- TODO-UPDATE: Localize -->
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Settings_ModLoader}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.ModLoader}"
-                 Header="Mod Loader">
-
-            <ScrollViewer>
-                <StackPanel Margin="12 0 12 12">
-                    <i:Interaction.Behaviors>
-                        <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                    </i:Interaction.Behaviors>
-
-                    <!-- Mod Loader -->
-
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Text="Mod Loader"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Automatically check for mod updates"
-                                      IsChecked="{Binding Path=Data.ModLoader_AutomaticallyCheckForUpdates}" />
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <!-- File Associations -->
-
-                    <!-- TODO-UPDATE: Update or remove -->
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Settings_PatcherFileAssociationsHeader}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <CheckBox Content="{Resx Settings_PatcherAssociatePatchFileType}"
-                                      IsEnabled="{Binding Path=CanAssociatePatchFileType}"
-                                      IsChecked="{Binding Path=AssociatePatchFileType}"
-                                      Command="{Binding Path=UpdatePatchFileTypeAssociationCommand, Mode=OneTime}" />
-
-                            <CheckBox Content="{Resx Settings_PatcherAssociatePatchURIProtocol}"
-                                      ToolTip="{Resx Settings_PatcherAssociatePatchURIProtocolInfo}"
-                                      IsEnabled="{Binding Path=CanAssociatePatchURIProtocol}"
-                                      IsChecked="{Binding Path=AssociatePatchURIProtocol}"
-                                      Command="{Binding Path=UpdatePatchURIProtocolAssociationCommand, Mode=OneTime}"/>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                </StackPanel>
-            </ScrollViewer>
-
-        </TabItem>
-
-        <!-- Debug -->
-
-        <TabItem rcp:Icon.Kind="CodeBraces"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
-                 Header="{Resx DebugPageHeader}"
-                 rcp:UserLevelAssist.MinUserLevel="Debug">
-
-            <ScrollViewer>
-                <StackPanel Margin="12 0 12 12">
-                    <i:Interaction.Behaviors>
-                        <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                    </i:Interaction.Behaviors>
-
-                    <!-- Debug -->
-
-                    <StackPanel rcp:UserLevelAssist.MinUserLevel="Debug"
-                                DataContext="{Binding Path=Data}">
-                        <i:Interaction.Behaviors>
-                            <rcp:UnifiedMarginBehavior Margin="0 2" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="{Resx Settings_DebugHeader}"
-                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
-
-                        <StackPanel>
-                            <i:Interaction.Behaviors>
-                                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                            </i:Interaction.Behaviors>
-
-                            <CheckBox Content="{Resx Settings_DisableGameValidation}"
-                                      IsChecked="{Binding Path=App_DisableGameValidation}" />
-
-                            <CheckBox Content="{Resx Settings_ForceUpdates}"
-                                      IsChecked="{Binding Path=Update_ForceUpdate}" />
-
-                            <CheckBox Content="{Resx Settings_DisableDowngradeWarning}"
-                                      IsChecked="{Binding Path=Update_DisableDowngradeWarning}" />
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                </StackPanel>
-            </ScrollViewer>
-
-        </TabItem>
-
-    </metro:MetroAnimatedTabControl>
-
-    <i:Interaction.Behaviors>
-        <rcp:SubTabControlBehavior ChildTabControl="{Binding ElementName=SettingsTabControl}" />
-    </i:Interaction.Behaviors>
+        </Grid>
+    </rcp:Card>
 
 </rcp:BasePage>
