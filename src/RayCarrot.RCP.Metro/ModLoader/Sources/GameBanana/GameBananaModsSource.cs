@@ -60,6 +60,9 @@ public class GameBananaModsSource : DownloadableModsSource
             } while (!subfeed.Metadata.IsComplete);
         }
 
+        if (modRecords.Count == 0)
+            return;
+
         // Get data for every mod
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
