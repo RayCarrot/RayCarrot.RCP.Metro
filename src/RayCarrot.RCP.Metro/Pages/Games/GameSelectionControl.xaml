@@ -102,10 +102,11 @@
                            Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
                 <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
 
-                    <metro:ToggleSwitch Content="{Resx GameSelection_GroupGames}"
-                                        IsOn="{Binding Path=GroupGames}"
-                                        Margin="6"
-                                        Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
+                    <CheckBox Content="{Resx GameSelection_GroupGames}"
+                              Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                              Margin="6"
+                              Background="{DynamicResource RCP.Brushes.Card.Popup}"
+                              IsChecked="{Binding Path=GroupGames}" />
 
                     <Separator />
 
