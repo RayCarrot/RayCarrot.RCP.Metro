@@ -386,7 +386,7 @@
                             rcp:Icon.Kind="CloseOutline"
                             Margin="0 0 4 0" />
                     <Button Grid.Column="6" 
-                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Style="{StaticResource RCP.Styles.Button.Accent}"
                             Click="ApplyButton_OnClick"
                             Content="{Resx Patcher_Apply}"
                             VerticalAlignment="Center"

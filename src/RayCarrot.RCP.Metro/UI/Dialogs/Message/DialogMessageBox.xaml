@@ -4,32 +4,47 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                            mc:Ignorable="d" d:DataContext="{d:DesignInstance local:DialogMessageViewModel}">
+                            mc:Ignorable="d" 
+                            d:DataContext="{d:DesignInstance local:DialogMessageViewModel}"
+                            d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
 
-    <Grid Margin="1" MinWidth="430" MinHeight="170" MaxWidth="600">
+    <Grid Margin="12"
+          MinWidth="430" 
+          MinHeight="170" 
+          MaxWidth="600">
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="100"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition MinHeight="100" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Height="Auto">
+
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding Path=MessageText}"
+
+            <TextBlock Grid.Column="0"
+                       Text="{Binding Path=MessageText}"
+                       d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a feugiat sapien, in euismod quam. Sed placerat lacinia sapien, id molestie mauris consequat eu. Donec id iaculis libero, auctor euismod nulla. Sed a molestie elit, in sodales purus. Proin rhoncus, enim sed mattis dapibus, magna urna porttitor ante, quis lacinia justo nisl sit amet erat. In ac mi ut urna iaculis varius. Suspendisse non placerat dui, eu eleifend lectus. Phasellus volutpat et dolor in euismod. Integer malesuada elit nisi, vitae porttitor ligula vehicula vel. Donec blandit nec tellus vel ultrices."
                        TextWrapping="Wrap"
-                       Margin="20"
+                       Margin="12"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
-            <Image Margin="5"
+
+            <Image Grid.Column="1"
                    Width="120"
                    Height="120"
-                   Grid.Column="1"
                    RenderOptions.BitmapScalingMode="HighQuality"
                    Source="{Binding Path=DialogImageSource}"
+                   d:Source="{Binding Source={x:Static local:DesignData.MessageIconSource}}"
                    Visibility="{Binding Path=DialogImageSource, Converter={local:InvertedObjectNullToVisibilityConverter}}"/>
         </Grid>
-        <ItemsControl Grid.Row="1" HorizontalAlignment="Right" ItemsSource="{Binding Path=DialogActions}">
+
+        <ItemsControl Grid.Row="1" 
+                      HorizontalAlignment="Right" 
+                      ItemsSource="{Binding Path=DialogActions}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="local:DialogMessageActionViewModel">
                     <Button Content="{Binding Path=DisplayText}"
@@ -37,10 +52,18 @@
                             IsDefault="{Binding Path=IsDefault}"
                             IsCancel="{Binding Path=IsCancel}"
                             Command="{Binding Path=ActionCommand}"
-                            Margin="8"
-                            VerticalAlignment="Center"
-                            Padding="4"
-                            MinWidth="50"/>
+                            Margin="8 0 0 0"
+                            MinWidth="50">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Default}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsDefault}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
 

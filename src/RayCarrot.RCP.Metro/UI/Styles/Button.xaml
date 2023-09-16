@@ -126,6 +126,10 @@
         <Setter Property="Background" Value="Transparent" />
     </Style>
 
+    <Style x:Key="RCP.Styles.Button.Accent" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource RCP.Styles.Button.Default}">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    </Style>
+
     <Style x:Key="RCP.Styles.Button.FlatMenuItem" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource RCP.Styles.Button.Default}">
         <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
         <Setter Property="local:Icon.Size" Value="16" />

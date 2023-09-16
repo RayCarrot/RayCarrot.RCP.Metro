@@ -19,6 +19,8 @@ public static class DesignData
         }
     }
 
+    public static ImageSource MessageIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(MessageIconAsset.Info.GetAssetPath())!;
+    
     public static ImageSource GameIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(GameIconAsset.Rayman2.GetAssetPath())!;
 
     public static ImageSource GamePlatformIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(GamePlatformIconAsset.Win32.GetAssetPath())!;

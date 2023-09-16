@@ -90,7 +90,8 @@
 
                     <ListBox Grid.Row="1"
                              Style="{StaticResource JumpListItemsDisplay}"
-                             ItemsSource="{Binding Path=Included}" />
+                             ItemsSource="{Binding Path=Included}"
+                             VirtualizingPanel.ScrollUnit="Pixel" />
 
                 </Grid>
             </local:Card>
@@ -110,7 +111,8 @@
 
                     <ListBox Grid.Row="1"
                              Style="{StaticResource JumpListItemsDisplay}"
-                             ItemsSource="{Binding Path=NotIncluded}" />
+                             ItemsSource="{Binding Path=NotIncluded}"
+                             VirtualizingPanel.ScrollUnit="Pixel" />
 
                 </Grid>
             </local:Card>
@@ -128,6 +130,7 @@
             </Grid.ColumnDefinitions>
 
             <CheckBox Grid.Column="0"
+                      Style="{StaticResource RCP.Styles.CheckBox.Default}"
                       Content="{Resx JumpListEditor_AutoSort}"
                       IsChecked="{Binding Path=AutoSort}" />
 
@@ -135,14 +138,12 @@
                     Content="{Resx Cancel}"
                     Click="CancelButton_Click" 
                     Style="{StaticResource RCP.Styles.Button.Default}" 
-                    local:Icon.Kind="CloseOutline"
-                    Margin="0 0 10 0" />
+                    Margin="0 0 8 0" />
 
             <Button Grid.Column="3"
                     Content="{Resx Accept}"
                     Click="OKButton_Click" 
-                    Style="{StaticResource RCP.Styles.Button.Default}" 
-                    local:Icon.Kind="ContentSaveOutline"
+                    Style="{StaticResource RCP.Styles.Button.Accent}" 
                     IsDefault="True" />
 
         </Grid>
