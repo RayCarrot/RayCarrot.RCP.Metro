@@ -116,7 +116,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
         if (gameBananaMod.Version.IsNullOrWhiteSpace())
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
                 "Unable to check for updates due to there not being a version to compare against");
         }
@@ -125,7 +125,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 x.ModManagerIntegrations != null &&
                 x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)))
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
                 "Unable to check for updates due to the GameBanana mod not having any valid files");
         }
@@ -140,7 +140,7 @@ public class GameBananaModsSource : DownloadableModsSource
         {
             // TODO-UPDATE: Log exception
 
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
                 "Unable to check for updates due to the version not being formatted correctly");
         }
@@ -152,7 +152,7 @@ public class GameBananaModsSource : DownloadableModsSource
         }
         else
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UpToDate, "The mod is up to date");
         }
     }

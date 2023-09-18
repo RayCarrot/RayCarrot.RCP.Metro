@@ -37,7 +37,7 @@ public class WindowsIntegrationSettingsSectionViewModel : SettingsSectionViewMod
 
     #region Public Properties
 
-    public override LocalizedString Header => "Windows Integration"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => "Windows Integration"; // TODO-LOC
     public override GenericIconKind Icon => GenericIconKind.Settings_WindowsIntegration;
 
     public bool CanAssociatePatchFileType { get; set; }

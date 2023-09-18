@@ -25,7 +25,7 @@
 
             <Separator />
 
-            <!-- TODO-UPDATE: Localize -->
+            <!-- TODO-LOC -->
             <Button Content="Show/hide games"
                     rcp:Icon.Kind="EyeOutline"
                     Command="{Binding Path=EditVisibilityCommand, Mode=OneTime}"

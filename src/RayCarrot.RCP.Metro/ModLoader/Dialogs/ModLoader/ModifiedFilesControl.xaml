@@ -13,7 +13,7 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:ModifiedFilesViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: Localize -->
+    <!-- TODO-LOC -->
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

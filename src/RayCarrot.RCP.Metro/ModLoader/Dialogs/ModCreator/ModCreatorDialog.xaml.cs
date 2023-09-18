@@ -27,7 +27,7 @@ public partial class ModCreatorDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Mod Creator"; // TODO-UPDATE: Localize
+        WindowInstance.Title = "Mod Creator"; // TODO-LOC
         WindowInstance.Icon = GenericIconKind.Window_ModCreator;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

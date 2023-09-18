@@ -111,7 +111,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-UPDATE: Localize -->
+            <!-- TODO-LOC -->
             <Button Grid.Column="0"
                     Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
@@ -120,7 +120,7 @@
                     local:ButtonAssist.IsLoading="{Binding Path=IsGameFinderRunning}"
                     Margin="0 0 4 0" />
 
-            <!-- TODO-UPDATE: Localize -->
+            <!-- TODO-LOC -->
             <Button Grid.Column="1"
                     Command="{Binding Path=FindGameFilesCommand, Mode=OneTime}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
@@ -129,7 +129,7 @@
                     Content="Find ROMs"
                     local:ButtonAssist.IsLoading="{Binding Path=IsGameFileFinderRunning}" />
 
-            <!-- TODO-UPDATE: Localize -->
+            <!-- TODO-LOC -->
             <ToggleButton Grid.Column="3"
                           Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
                           IsChecked="{Binding Path=ShowGameFeatures}"

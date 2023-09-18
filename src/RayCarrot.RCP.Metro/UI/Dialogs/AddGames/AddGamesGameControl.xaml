@@ -18,7 +18,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- TODO-UPDATE: Localize -->
+        <!-- TODO-LOC -->
         <iconPacks:PackIconMaterial Kind="CheckboxMarkedCircleOutline"
                                     VerticalAlignment="Center"
                                     Background="Transparent">

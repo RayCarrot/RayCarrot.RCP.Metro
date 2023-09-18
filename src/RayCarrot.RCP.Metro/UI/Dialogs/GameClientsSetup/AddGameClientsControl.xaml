@@ -97,7 +97,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <!-- TODO-UPDATE: Localize -->
+        <!-- TODO-LOC -->
         <Button Grid.Row="2"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=FindGameClientsCommand, Mode=OneTime}"

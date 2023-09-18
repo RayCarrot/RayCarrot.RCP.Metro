@@ -416,7 +416,7 @@ public class InstalledGameViewModel : BaseViewModel
             // Warn about applied mods, if any
             if (appliedModsCount > 0)
             {
-                // TODO-UPDATE: Localize
+                // TODO-LOC
                 if (!await Services.MessageUI.DisplayMessageAsync(String.Format("This game has {0} applied mods. Removing the game from the program won't remove the applied mods. You can add the game back at any time to change which mods are applied. Continue?", appliedModsCount), 
                         MessageType.Warning, true)) 
                     return;

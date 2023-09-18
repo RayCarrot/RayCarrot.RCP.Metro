@@ -41,7 +41,7 @@
                    Orientation="Horizontal">
 
             <!-- Open -->
-            <!-- TODO-UPDATE: Localize -->
+            <!-- TODO-LOC -->
             <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=OpenModLoaderCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.ModLoader}"
@@ -49,7 +49,7 @@
                     Margin="0 0 8 0" />
 
             <!-- Create -->
-            <!-- TODO-UPDATE: Localize -->
+            <!-- TODO-LOC -->
             <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=OpenModCreatorCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.ModLoader}"

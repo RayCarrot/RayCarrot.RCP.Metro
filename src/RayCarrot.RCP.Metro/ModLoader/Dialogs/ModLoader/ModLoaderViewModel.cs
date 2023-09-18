@@ -107,7 +107,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         try
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             using (LoadState state = await LoaderViewModel.RunAsync("Migrating patches to mods"))
             {
                 await Task.Run(async () => await manager.MigrateAsync(state.SetProgress));
@@ -117,7 +117,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Migrating legacy patches");
 
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when migrating patches to mods");
         }
     }
@@ -147,7 +147,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Warn(ex, "Adding mod");
 
-                    // TODO-UPDATE: Localize
+                    // TODO-LOC
                     await Services.MessageUI.DisplayMessageAsync("The selected mod was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
                     return false;
                 }
@@ -155,7 +155,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Error(ex, "Adding mod");
 
-                    // TODO-UPDATE: Localize
+                    // TODO-LOC
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The selected mod could not be read");
                     return false;
                 }
@@ -180,7 +180,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Loading installed mods");
 
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the mods");
 
             return false;
@@ -199,7 +199,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Info("Mod with id {0} contains one or more potentially harmful files", mod.Metadata.Id);
 
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             return await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} adds or replaces sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?", mod.Metadata.Name),
                 MessageType.Question, true);
         }
@@ -217,7 +217,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
             foreach (FileSystemPath modFilePath in filePaths)
             {
-                // TODO-UPDATE: Localize
+                // TODO-LOC
                 state.SetStatus($"Extracting mod {modFilePath.Name}");
 
                 try
@@ -261,7 +261,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Logger.Warn("Failed to add mod due to the current game {0} not being supported", GameInstallation.FullId);
 
                 IEnumerable<LocalizedString> gameTargets = extractedMod.Metadata.Games.Select(x => Services.Games.GetGameDescriptor(x).DisplayName);
-                // TODO-UPDATE: Localize
+                // TODO-LOC
                 await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} can't be installed to this game due to it not being one of the game targets:\r\n\r\n{1}",
                     extractedMod.Metadata.Name, String.Join(Environment.NewLine, gameTargets)), MessageType.Error);
 
@@ -357,7 +357,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
             {
-                // TODO-UPDATE: Localize
+                // TODO-LOC
                 Title = "Select game to install the mod to"
             });
 
@@ -390,7 +390,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
         catch (UnsupportedModLibraryFormatException ex)
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             Logger.Warn(ex, "Verifying library");
             await Services.MessageUI.DisplayMessageAsync("The game mod library was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
             return false;
@@ -433,7 +433,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Log
         ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
 
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         AddedFilesText = new ConstLocString($"{ModifiedFiles.AddedFilesCount} added files");
         RemovedFilesText = new ConstLocString($"{ModifiedFiles.RemovedFilesCount} removed files");
     }
@@ -445,7 +445,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         int changedMods = Mods.Count(x => x.HasChanges);
 
         HasChanges = changedMods > 0;
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         if (HasChanges)
             ChangedModsText = $"{changedMods} unsaved mods";
         else
@@ -456,9 +456,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             Title = "Select mods to install",
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             ExtensionFilter = new FileFilterItem(_modExtractors.Select(x => x.FileExtension), "Mod archives").StringRepresentation,
             MultiSelection = true
         });
@@ -479,7 +479,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         long fileSize, 
         object? installData)
     {
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         // TODO-UPDATE: Try/catch
         using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {fileName}", true))
         {
@@ -494,7 +494,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: fileSize);
             }
 
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             state.SetStatus($"Extracting mod {fileName}");
 
             try
@@ -522,7 +522,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ApplyAsync()
     {
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         using (LoadState state = await LoaderViewModel.RunAsync("Applying mods"))
         {
             Logger.Info("Applying mods");
@@ -572,10 +572,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Logger.Info("Applied mods");
 
                     if (success)
-                        // TODO-UPDATE: Localize
+                        // TODO-LOC
                         await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all mods");
                     else
-                        // TODO-UPDATE: Localize
+                        // TODO-LOC
                         await Services.MessageUI.DisplayMessageAsync("Finished applying mods. Some files could not be modified.", MessageType.Warning);
                 });
             }

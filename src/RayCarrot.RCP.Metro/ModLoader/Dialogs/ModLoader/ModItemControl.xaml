@@ -13,7 +13,7 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:ModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: Localize -->
+    <!-- TODO-LOC -->
     <Grid Margin="0 4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

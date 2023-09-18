@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro.Games.Options"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:Win32GameOptionsViewModel}">
-    <!-- TODO-UPDATE: Localize -->
+    <!-- TODO-LOC -->
     <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
               Content="Run as admin"
               Margin="6"

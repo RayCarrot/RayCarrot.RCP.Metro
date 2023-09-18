@@ -13,7 +13,7 @@
              d:DataContext="{d:DesignInstance sections:ModLoaderSettingsSectionViewModel}">
     <StackPanel DataContext="{Binding Path=Data}">
 
-        <!-- TODO-UPDATE: Localize -->
+        <!-- TODO-LOC -->
         <CheckBox Content="Automatically check for mod updates"
                   IsChecked="{Binding Path=ModLoader_AutomaticallyCheckForUpdates}"
                   Margin="0 0 0 8" />

@@ -122,7 +122,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     private void SetInstallState(ModInstallState state)
     {
         InstallState = state;
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         InstallStateMessage = state switch
         {
             ModInstallState.Installed => null,
@@ -167,7 +167,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractModContentsAsync()
     {
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         using (await LoaderViewModel.RunAsync("Extracting mod contents"))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
@@ -190,13 +190,13 @@ public class ModViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Extracting mod contents");
 
-                // TODO-UPDATE: Localize
+                // TODO-LOC
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the mod contents");
                 return;
             }
         }
 
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The mod contents were successfully extracted");
     }
 
@@ -227,7 +227,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Updating mod");
 
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the mod");
 
             return;
@@ -285,12 +285,12 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         if (DownloadableModsSource == null)
         {
-            // TODO-UPDATE: Localize
+            // TODO-LOC
             SetUpdateState(ModUpdateState.UnableToCheckForUpdates, "Unable to check for updates for locally installed mods");
             return;
         }
 
-        // TODO-UPDATE: Localize
+        // TODO-LOC
         SetUpdateState(ModUpdateState.CheckingForUpdates, "Checking for updates");
 
         try

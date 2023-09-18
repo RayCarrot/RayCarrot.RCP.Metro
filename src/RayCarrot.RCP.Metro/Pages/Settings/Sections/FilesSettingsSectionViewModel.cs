@@ -29,7 +29,7 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel
         };
     }
 
-    public override LocalizedString Header => "Files"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => "Files"; // TODO-LOC
     public override GenericIconKind Icon => GenericIconKind.Settings_Files;
 
     public ObservableCollection<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
