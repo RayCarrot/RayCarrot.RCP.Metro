@@ -98,6 +98,30 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #region Private Methods
 
+    private async Task MigrateLegacyPatchesAsync()
+    {
+        LegacyPatchMigrationManager manager = new(GameInstallation, Library);
+
+        if (!manager.CanMigrate())
+            return;
+
+        try
+        {
+            // TODO-UPDATE: Localize
+            using (LoadState state = await LoaderViewModel.RunAsync("Migrating patches to mods"))
+            {
+                await Task.Run(async () => await manager.MigrateAsync(state.SetProgress));
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Migrating legacy patches");
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when migrating patches to mods");
+        }
+    }
+
     private async Task<bool> LoadInstalledModsAsync()
     {
         Logger.Info("Loading installed mods");
@@ -377,6 +401,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             // TODO-UPDATE: Error message
             return false;
         }
+
+        // Migrate legacy patches first
+        await MigrateLegacyPatchesAsync();
 
         // Load mods
         bool success = await LoadInstalledModsAsync();

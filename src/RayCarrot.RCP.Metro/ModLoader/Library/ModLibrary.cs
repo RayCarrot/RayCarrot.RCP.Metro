@@ -52,6 +52,7 @@ public class ModLibrary
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
+    public bool IsInitialized => LibraryDirectoryPath.DirectoryExists;
 
     #endregion
 
@@ -100,7 +101,11 @@ public class ModLibrary
         }
     }
 
-    // TODO: Install from already extracted folder
+    public void DeleteLibrary()
+    {
+        Services.File.DeleteDirectory(LibraryDirectoryPath);
+    }
+
     public void InstallMod(FileSystemPath sourcePath, string modId, bool keepSourceFiles)
     {
         CreateLibrary();
