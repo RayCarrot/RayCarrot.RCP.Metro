@@ -23,6 +23,12 @@ public class ModLibrary
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Constants
 
     private const int LatestFormatVersion = 0;
@@ -45,7 +51,7 @@ public class ModLibrary
     private FileSystemPath ModsDirectoryPath { get; }
     private FileSystemPath ModManifestFilePath { get; }
 
-    private bool HasCreatedLibrary { get; set; }
+    private bool HasInitializedLibrary { get; set; }
 
     #endregion
 
@@ -63,11 +69,11 @@ public class ModLibrary
         return ModsDirectoryPath + modId;
     }
 
-    private void CreateLibrary()
+    private void InitializeLibrary()
     {
-        // Always run through the creation code once, even if it already exists. This is to ensure
+        // Always run through the initializing code once, even if it already exists. This is to ensure
         // everything is set up correctly and using the latest version.
-        if (HasCreatedLibrary)
+        if (HasInitializedLibrary)
             return;
 
         // Create the root directory and set it to be hidden
@@ -78,7 +84,9 @@ public class ModLibrary
         // Write latest metadata
         JsonHelpers.SerializeToFile(new LibraryMetadata(LatestFormatVersion), LibraryMetadataFilePath);
 
-        HasCreatedLibrary = true;
+        HasInitializedLibrary = true;
+
+        Logger.Info("Initialized mod library");
     }
 
     #endregion
@@ -95,9 +103,9 @@ public class ModLibrary
             if (metadata.Format > LatestFormatVersion)
                 throw new UnsupportedModLibraryFormatException($"Format version {metadata.Format} is higher than the latest supported version {LatestFormatVersion}");
         }
-        else if (LibraryDirectoryPath.DirectoryExists)
+        else if (IsInitialized)
         {
-            // TODO-UPDATE: Log error since this shouldn't happen, but continue anyway without throwing
+            Logger.Warn("Mod library is initialized without a metadata file");
         }
     }
 
@@ -108,7 +116,7 @@ public class ModLibrary
 
     public void InstallMod(FileSystemPath sourcePath, string modId, bool keepSourceFiles)
     {
-        CreateLibrary();
+        InitializeLibrary();
 
         FileSystemPath modOutputPath = GetInstalledModPath(modId);
 
@@ -139,7 +147,7 @@ public class ModLibrary
 
     public void WriteModManifest(ModManifest modManifest)
     {
-        CreateLibrary();
+        InitializeLibrary();
 
         JsonHelpers.SerializeToFile(modManifest, ModManifestFilePath);
     }
@@ -159,7 +167,7 @@ public class ModLibrary
 
     public void ReplaceFileHistory(FileSystemPath sourcePath, bool keepSourceFiles)
     {
-        CreateLibrary();
+        InitializeLibrary();
 
         if (keepSourceFiles)
             Services.File.CopyDirectory(sourcePath, FileHistoryDirectoryPath, true, true);
@@ -169,7 +177,7 @@ public class ModLibrary
 
     public void WriteHistory(LibraryFileHistory fileHistory)
     {
-        CreateLibrary();
+        InitializeLibrary();
 
         JsonHelpers.SerializeToFile<LibraryFileHistory>(fileHistory, FileHistoryFilePath);
     }

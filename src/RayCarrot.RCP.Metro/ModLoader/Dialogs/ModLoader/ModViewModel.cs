@@ -121,6 +121,8 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     private void SetInstallState(ModInstallState state)
     {
+        Logger.Trace("Set install state to {0} for mod with ID {1}", state, Metadata.Id);
+
         InstallState = state;
         // TODO-LOC
         InstallStateMessage = state switch
@@ -136,6 +138,8 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     private void SetUpdateState(ModUpdateState state, LocalizedString message, object? updateData = null)
     {
+        Logger.Trace("Set update state to {0} for mod with ID {1}", state, Metadata.Id);
+
         UpdateState = state;
         UpdateStateMessage = message;
         UpdateData = updateData;
@@ -214,6 +218,8 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         try
         {
+            Logger.Info("Updating mod with ID {0}", Metadata.Id);
+
             ModDownload download = await DownloadableModsSource.GetModUpdateDownloadAsync(UpdateData);
 
             await ModLoaderViewModel.InstallModFromDownloadableFileAsync(

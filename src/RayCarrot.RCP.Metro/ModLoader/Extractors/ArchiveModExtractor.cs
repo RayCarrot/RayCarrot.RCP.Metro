@@ -9,19 +9,19 @@ namespace RayCarrot.RCP.Metro.ModLoader.Extractors;
 
 public abstract class ArchiveModExtractor : ModExtractor
 {
-    private IArchiveEntry? FindModMetadata(IArchive archive)
+    private static IArchiveEntry? FindModMetadata(IArchive archive)
     {
         return archive.Entries.FirstOrDefault(x => x.Key == Mod.MetadataFileName);
     }
 
-    private IArchiveEntry? FindLegacyPatchPackageEntry(IArchive archive)
+    private static IArchiveEntry? FindLegacyPatchPackageEntry(IArchive archive)
     {
         return archive.Entries.FirstOrDefault(x => 
             !x.IsDirectory && 
             x.Key.EndsWith(PatchPackage.FileExtension, StringComparison.InvariantCultureIgnoreCase));
     }
 
-    private async Task ExtractArchiveAsync(IArchive archive, FileSystemPath outputPath, Action<Progress> progressCallback, CancellationToken cancellationToken)
+    private static async Task ExtractArchiveAsync(IArchive archive, FileSystemPath outputPath, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {
         using IReader reader = archive.ExtractAllEntries();
 

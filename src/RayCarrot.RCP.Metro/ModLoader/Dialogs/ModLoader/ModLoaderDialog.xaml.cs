@@ -22,6 +22,12 @@ public partial class ModLoaderDialog : WindowContentControl
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Private Fields
 
     private bool _forceClose;
@@ -100,6 +106,8 @@ public partial class ModLoaderDialog : WindowContentControl
     
     public void ForceClose()
     {
+        Logger.Trace("Force closing the mod loader dialog");
+
         _forceClose = true;
         WindowInstance.Close();
     }

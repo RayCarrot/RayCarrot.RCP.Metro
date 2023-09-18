@@ -7,6 +7,7 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
+// TODO-UPDATE: Add logging
 public class GameBananaModsSource : DownloadableModsSource
 {
     #region Constant Fields

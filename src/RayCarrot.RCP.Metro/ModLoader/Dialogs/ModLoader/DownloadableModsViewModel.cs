@@ -4,7 +4,6 @@ using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-// TODO-UPDATE: Add logging here and other places
 public class DownloadableModsViewModel : BaseViewModel
 {
     #region Constructor
@@ -21,6 +20,12 @@ public class DownloadableModsViewModel : BaseViewModel
 
         RefreshCommand = new AsyncRelayCommand(LoadModsAsync);
     }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -58,6 +63,8 @@ public class DownloadableModsViewModel : BaseViewModel
         if (IsLoading)
             return;
 
+        Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
+
         IsLoading = true;
         IsEmpty = false;
         ErrorMessage = null;
@@ -69,10 +76,12 @@ public class DownloadableModsViewModel : BaseViewModel
                 await modsSource.Source.LoadDownloadableModsAsync(_modLoaderViewModel, _httpClient, GameInstallation, Mods);
 
             IsEmpty = !Mods.Any();
+            Logger.Info("Loaded {0} downloadable mods", Mods.Count);
         }
         catch (Exception ex)
         {
-            // TODO-UPDATE: Log
+            Logger.Error(ex, "Loaded downloadable mods");
+
             ErrorMessage = ex.Message;
             IsEmpty = false;
         }

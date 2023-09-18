@@ -145,7 +145,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
                 catch (UnsupportedModFormatException ex)
                 {
-                    Logger.Warn(ex, "Adding mod");
+                    Logger.Warn(ex, "Reading installed mod");
 
                     // TODO-LOC
                     await Services.MessageUI.DisplayMessageAsync("The selected mod was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
@@ -153,7 +153,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Adding mod");
+                    Logger.Error(ex, "Reading installed mod");
 
                     // TODO-LOC
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The selected mod could not be read");
@@ -167,10 +167,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 // Load thumbnail
                 vm.LoadThumbnail();
 
-                Logger.Info("Added mod '{0}' from library with version {1} and ID {2}", vm.Metadata.Name, vm.Metadata.Version, vm.Metadata.Id);
+                Logger.Info("Added installed mod '{0}' from library with version {1} and ID {2}", vm.Metadata.Name, vm.Metadata.Version, vm.Metadata.Id);
             }
 
-            Logger.Info("Loaded {0} mods", modManifest.Mods.Count);
+            Logger.Info("Loaded {0} installed mods", modManifest.Mods.Count);
 
             RefreshModifiedFiles();
 
@@ -211,6 +211,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     private async Task AddLocalModsToInstall(FileSystemPath[] filePaths)
     {
+        Logger.Info("Adding {0} new mods to install", filePaths.Length);
+
         using (LoadState state = await LoaderViewModel.RunAsync())
         {
             state.SetCanCancel(true);
@@ -309,6 +311,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Mods[existingModIndex] = viewModel;
                 viewModel.LoadThumbnail();
             }
+
+            Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
         }
         catch
         {
@@ -425,12 +429,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         // Load downloadable mods
         await DownloadableMods.LoadModsAsync();
 
+        Logger.Info("Finished initializing mod loader");
+
         return true;
     }
 
     public void RefreshModifiedFiles()
     {
-        // TODO-UPDATE: Log
+        Logger.Trace("Refreshing modified files");
+
         ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
 
         // TODO-LOC
@@ -440,6 +447,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public void ReportNewChanges()
     {
+        Logger.Trace("New mod loader changes have been reported");
+
         RefreshModifiedFiles();
 
         int changedMods = Mods.Count(x => x.HasChanges);
@@ -479,44 +488,48 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         long fileSize, 
         object? installData)
     {
-        // TODO-LOC
-        // TODO-UPDATE: Try/catch
-        using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {fileName}", true))
+        try
         {
-            // Create a temp file to download to
-            using TempFile tempFile = new(false, new FileExtension(fileName));
-
-            // Open a stream to the downloadable file
-            using (Stream httpStream = await _httpClient.GetStreamAsync(downloadUrl))
-            {
-                // Download to the temp file
-                using FileStream tempFileStream = File.Create(tempFile.TempPath);
-                await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: fileSize);
-            }
-
             // TODO-LOC
-            state.SetStatus($"Extracting mod {fileName}");
-
-            try
+            using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {fileName}", true))
             {
+                Logger.Info("Downloading mod to install from {0}", downloadUrl);
+
+                // Create a temp file to download to
+                using TempFile tempFile = new(false, new FileExtension(fileName));
+
+                // Open a stream to the downloadable file
+                using (Stream httpStream = await _httpClient.GetStreamAsync(downloadUrl))
+                {
+                    // Download to the temp file
+                    using FileStream tempFileStream = File.Create(tempFile.TempPath);
+                    await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: fileSize);
+                }
+
+                // TODO-LOC
+                state.SetStatus($"Extracting mod {fileName}");
+
                 await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
                 ReportNewChanges();
 
                 // TODO-UPDATE: Have some way to indicate it was downloaded. Switch tabs? Show icon on library tab?
             }
-            catch (OperationCanceledException ex)
-            {
-                // TODO-UPDATE: Log
-            }
-            catch (Exception ex)
-            {
-                // TODO-UPDATE: Log and show error message
-            }
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Info(ex, "Canceled downloading mod");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Downloading mod");
+            
+            // TODO-UPDATE: Show error message
         }
     }
 
     public async Task CheckForUpdatesAsync()
     {
+        Logger.Info("Checking all mods for updates");
         await Task.WhenAll(Mods.Select(x => x.CheckForUpdateAsync(_httpClient)));
     }
 
