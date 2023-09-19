@@ -538,6 +538,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         Logger.Info("Checking all mods for updates");
         await Task.WhenAll(Mods.Select(x => x.CheckForUpdateAsync(_httpClient)));
+        Logger.Info("Finished checking for updates");
     }
 
     public async Task<bool> ApplyAsync()

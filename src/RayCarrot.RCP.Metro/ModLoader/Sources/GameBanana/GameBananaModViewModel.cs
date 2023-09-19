@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows.Input;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
-using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
@@ -18,6 +18,7 @@ public class GameBananaModViewModel : DownloadableModViewModel
         DateTime uploadDate, 
         string description, 
         string text,
+        string version,
         GameBananaMedia? previewMedia, 
         int likesCount, 
         int downloadsCount, 
@@ -33,6 +34,8 @@ public class GameBananaModViewModel : DownloadableModViewModel
         UploadDate = uploadDate;
         Description = description;
         Text = RemoveHthmlFromString(text);
+
+        Version = ModVersion.TryParse(version, out ModVersion? v) ? v : null;
 
         if (previewMedia?.Images is { Length: > 0 } images)
         {
@@ -89,7 +92,9 @@ public class GameBananaModViewModel : DownloadableModViewModel
     public DateTime UploadDate { get; }
     public string Description { get; }
     public string Text { get; }
-    
+
+    public ModVersion? Version { get; }
+
     public string? ImageUrl { get; }
     public double ImageWidth { get; }
     public double ImageHeight { get; }

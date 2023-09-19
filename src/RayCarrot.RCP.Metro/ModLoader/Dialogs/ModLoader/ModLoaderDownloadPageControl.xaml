@@ -29,6 +29,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -77,32 +78,42 @@
                 </Grid>
 
                 <!-- Mods -->
-                <ListBox Grid.Row="2"
-                         Grid.IsSharedSizeScope="True"
-                         ItemsSource="{Binding Path=Mods, Mode=OneTime}"
-                         d:ItemsSource="{d:SampleData ItemCount=5}"
-                         SelectedItem="{Binding Path=SelectedMod}"
-                         d:SelectedIndex="1"
-                         VerticalAlignment="Top"
-                         Background="Transparent"
-                         ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
-                         VirtualizingPanel.ScrollUnit="Pixel"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         Margin="0 0 0 4">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <ContentPresenter Content="{Binding Mode=OneTime}">
-                                <ContentPresenter.Resources>
-                                    <DataTemplate DataType="{x:Type gameBanana:GameBananaModViewModel}">
-                                        <gameBanana:GameBananaModItemControl />
-                                    </DataTemplate>
-                                </ContentPresenter.Resources>
-                            </ContentPresenter>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="2">
+                    <StackPanel>
+                        <ListBox Grid.IsSharedSizeScope="True"
+                                 ItemsSource="{Binding Path=Mods, Mode=OneTime}"
+                                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                                 SelectedItem="{Binding Path=SelectedMod}"
+                                 d:SelectedIndex="1"
+                                 VerticalAlignment="Top"
+                                 Background="Transparent"
+                                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
+                                 PreviewMouseWheel="ModsListBox_OnPreviewMouseWheel"
+                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 Margin="0 0 0 4">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding Mode=OneTime}">
+                                        <ContentPresenter.Resources>
+                                            <DataTemplate DataType="{x:Type gameBanana:GameBananaModViewModel}">
+                                                <gameBanana:GameBananaModItemControl />
+                                            </DataTemplate>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
 
-                <TextBlock Grid.Row="3">
+                        <TextBlock Visibility="{Binding Path=CanLoadChunk, Converter={rcp:BooleanToVisibilityConverter}}">
+                            <Hyperlink Command="{Binding Path=LoadChunkCommand, Mode=OneTime}">
+                                <Run Text="Load more" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <TextBlock Grid.Row="4">
                     <Hyperlink Command="{Binding Path=OpenModDocsCommand, Mode=OneTime}">
                         <TextBlock Text="Want your mod to show up here? Click here to find out how." />
                     </Hyperlink>

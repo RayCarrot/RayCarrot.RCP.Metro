@@ -39,11 +39,11 @@ public abstract class DownloadableModsSource
 
     #region Public Methods
 
-    public abstract Task LoadDownloadableModsAsync(
+    public abstract Task<DownloadableModsFeed> LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,
         HttpClient httpClient,
-        GameInstallation gameInstallation, 
-        ObservableCollection<DownloadableModViewModel> modsCollection);
+        GameInstallation gameInstallation,
+        int page);
 
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);
 

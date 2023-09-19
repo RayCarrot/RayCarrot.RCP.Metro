@@ -25,50 +25,47 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #region Public Methods
 
-    public override async Task LoadDownloadableModsAsync(
+    public override async Task<DownloadableModsFeed> LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,
         HttpClient httpClient, 
-        GameInstallation gameInstallation, 
-        ObservableCollection<DownloadableModViewModel> modsCollection)
+        GameInstallation gameInstallation,
+        int page)
     {
         List<GameBananaRecord> modRecords = new();
 
-        // TODO-UPDATE: Maybe we should load in batches if there are too many mods? Pages?
+        int largestPageCount = 0;
 
         // Enumerate every supported GameBanana game
         foreach (GameBananaGameComponent gameBananaGameComponent in gameInstallation.GetComponents<GameBananaGameComponent>())
         {
             int gameId = gameBananaGameComponent.GameId;
 
-            GameBananaSubfeed subfeed;
-            int page = 1;
+            // Read the subfeed page
+            GameBananaSubfeed subfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
+                $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
+                $"_nPage={page + 1}&" +
+                $"_sSort=new&" +
+                $"_csvModelInclusions=Mod");
 
-            // Add every mod from every available page. This might become inefficient if there
-            // are a lot of mods to load, but currently it's not a problem.
-            do
-            {
-                // Read the subfeed page
-                subfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
-                    $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
-                    $"_nPage={page}&" +
-                    $"_sSort=new&" +
-                    $"_csvModelInclusions=Mod");
+            // Get the page count
+            int pageCount = (int)Math.Ceiling(subfeed.Metadata.RecordCount / (double)subfeed.Metadata.PerPage);
+            if (pageCount > largestPageCount)
+                largestPageCount = pageCount;
 
-                // Add the mods
-                modRecords.AddRange(subfeed.Records.Where(x => x.HasFiles));
-
-                page++;
-            } while (!subfeed.Metadata.IsComplete);
+            // Add the mods
+            modRecords.AddRange(subfeed.Records.Where(x => x.HasFiles));
         }
 
         if (modRecords.Count == 0)
-            return;
+            return new DownloadableModsFeed(Array.Empty<DownloadableModViewModel>(), largestPageCount);
 
         // Get data for every mod
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
             $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
             $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
+
+        List<GameBananaModViewModel> viewModels = new();
 
         // Process every mod
         for (int i = 0; i < modRecords.Count; i++)
@@ -89,7 +86,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
             // Make sure at least one file has mod integration with RCP
             if (validFiles.Count > 0)
-                modsCollection.Add(new GameBananaModViewModel(
+                viewModels.Add(new GameBananaModViewModel(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
                     gameBananaId: modRecord.Id,
@@ -98,12 +95,15 @@ public class GameBananaModsSource : DownloadableModsSource
                     uploadDate: modRecord.DateAdded,
                     description: mod.Description ?? String.Empty,
                     text: mod.Text ?? String.Empty,
+                    version: modRecord.Version ?? String.Empty,
                     previewMedia: modRecord.PreviewMedia,
                     likesCount: modRecord.LikeCount,
                     downloadsCount: mod.DownloadCount,
                     viewsCount: modRecord.ViewCount,
                     files: validFiles));
         }
+
+        return new DownloadableModsFeed(viewModels, largestPageCount);
     }
 
     public override async Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo)
@@ -190,3 +190,4 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #endregion
 }
+

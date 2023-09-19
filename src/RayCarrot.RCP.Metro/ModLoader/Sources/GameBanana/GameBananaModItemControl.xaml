@@ -18,6 +18,7 @@
             <ColumnDefinition Width="Auto" SharedSizeGroup="Likes" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Downloads" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Views" />
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Views2" />
         </Grid.ColumnDefinitions>
 
         <!-- Title -->
@@ -27,9 +28,15 @@
                    Text="{Binding Path=Name, Mode=OneTime}"
                    d:Text="Mod name"
                    TextWrapping="Wrap"
-                   Margin="0 0 8 0" />
+                   Margin="0 0 12 0" />
 
-        <StackPanel Grid.Column="1"
+        <TextBlock Grid.Column="1" 
+                   Text="{Binding Path=Version, Mode=OneTime}" 
+                   Margin="0 0 16 0" 
+                   FontStyle="Italic" 
+                   VerticalAlignment="Center" />
+
+        <StackPanel Grid.Column="2"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="HeartOutline" 
@@ -41,7 +48,7 @@
                        FontSize="14"
                        VerticalAlignment="Center" />
         </StackPanel>
-        <StackPanel Grid.Column="2"
+        <StackPanel Grid.Column="3"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="ArrowDownBoldOutline" 
@@ -53,7 +60,7 @@
                        FontSize="14"
                        VerticalAlignment="Center" />
         </StackPanel>
-        <StackPanel Grid.Column="3"
+        <StackPanel Grid.Column="4"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="EyeOutline" 

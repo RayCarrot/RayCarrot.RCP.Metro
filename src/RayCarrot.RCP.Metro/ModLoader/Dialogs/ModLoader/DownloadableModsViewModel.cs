@@ -20,6 +20,7 @@ public class DownloadableModsViewModel : BaseViewModel
 
         RefreshCommand = new AsyncRelayCommand(LoadModsAsync);
         OpenModDocsCommand = new RelayCommand(OpenModDocs);
+        LoadChunkCommand = new AsyncRelayCommand(LoadChunkAsync);
     }
 
     #endregion
@@ -30,10 +31,18 @@ public class DownloadableModsViewModel : BaseViewModel
 
     #endregion
 
+    #region Constants
+
+    private const int ChunkSize = 10;
+
+    #endregion
+
     #region Private Fields
 
     private readonly HttpClient _httpClient;
     private readonly ModLoaderViewModel _modLoaderViewModel;
+    private int _pageCount;
+    private int _currentPage;
 
     #endregion
 
@@ -41,6 +50,7 @@ public class DownloadableModsViewModel : BaseViewModel
 
     public ICommand RefreshCommand { get; }
     public ICommand OpenModDocsCommand { get; }
+    public ICommand LoadChunkCommand { get; }
 
     #endregion
 
@@ -55,6 +65,61 @@ public class DownloadableModsViewModel : BaseViewModel
     public bool IsEmpty { get; set; }
     public bool IsLoading { get; set; }
     public string? ErrorMessage { get; set; }
+    public bool CanLoadChunk { get; set; }
+
+    #endregion
+
+    #region Private Methods
+
+    private async Task LoadPageAsync()
+    {
+        Logger.Info("Loading page {0}", _currentPage);
+
+        foreach (DownloadableModsSourceViewModel modsSource in DownloadableModsSources)
+        {
+            DownloadableModsFeed feed = await modsSource.Source.LoadDownloadableModsAsync(_modLoaderViewModel, _httpClient, GameInstallation, _currentPage);
+            Mods.AddRange(feed.DownloadableMods);
+            _pageCount = feed.PageCount;
+        }
+        
+        Logger.Info("Loaded page {0} out of {1} total pages", _currentPage, _pageCount);
+    }
+
+    private async Task LoadChunkAsync()
+    {
+        if (IsLoading)
+            return;
+
+        IsLoading = true;
+
+        Logger.Info("Loaded chunk of downloadable mods");
+
+        try
+        {
+            do
+            {
+                _currentPage++;
+                await LoadPageAsync();
+            } while (Mods.Count < ChunkSize && _currentPage < _pageCount - 1);
+
+            CanLoadChunk = _pageCount != -1 && _currentPage < _pageCount - 1;
+
+            IsEmpty = !Mods.Any();
+            Logger.Info("Loaded chunk");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading chunk of downloadable mods");
+
+            ErrorMessage = ex.Message;
+            IsEmpty = false;
+            CanLoadChunk = false;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
 
     #endregion
 
@@ -67,30 +132,14 @@ public class DownloadableModsViewModel : BaseViewModel
 
         Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
 
-        IsLoading = true;
         IsEmpty = false;
         ErrorMessage = null;
         Mods.Clear();
+        _currentPage = -1;
+        _pageCount = -1;
+        CanLoadChunk = false;
 
-        try
-        {
-            foreach (DownloadableModsSourceViewModel modsSource in DownloadableModsSources)
-                await modsSource.Source.LoadDownloadableModsAsync(_modLoaderViewModel, _httpClient, GameInstallation, Mods);
-
-            IsEmpty = !Mods.Any();
-            Logger.Info("Loaded {0} downloadable mods", Mods.Count);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Loaded downloadable mods");
-
-            ErrorMessage = ex.Message;
-            IsEmpty = false;
-        }
-        finally
-        {
-            IsLoading = false;
-        }
+        await LoadChunkAsync();
     }
 
     public void OpenModDocs()

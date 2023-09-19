@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Newtonsoft.Json;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Metadata;
@@ -36,6 +37,45 @@ public class ModVersion : ICloneable, IComparable, IComparable<ModVersion>, IEqu
         int revision = components.Length > 2 ? parseComponent(components[2]) : 0;
 
         return new ModVersion(major, minor, revision);
+    }
+
+    public static bool TryParse(string? input, [NotNullWhen(true)] out ModVersion? modVersion)
+    {
+        if (input == null)
+        {
+            modVersion = null;
+            return false;
+        }
+
+        string[] components = input.Split(SeparatorsArray);
+
+        if (components.Length != 2 && components.Length != 3)
+        {
+            modVersion = null;
+            return false;
+        }
+
+        if (!Int32.TryParse(components[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out int major))
+        {
+            modVersion = null;
+            return false;
+        }
+        if (!Int32.TryParse(components[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int minor))
+        {
+            modVersion = null;
+            return false;
+        }
+
+        int revision = 0;
+        if (components.Length > 2 &&
+            !Int32.TryParse(components[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out revision))
+        {
+            modVersion = null;
+            return false;
+        }
+
+        modVersion = new ModVersion(major, minor, revision);
+        return true;
     }
 
     public object Clone() => new ModVersion(Major, Minor, Revision);

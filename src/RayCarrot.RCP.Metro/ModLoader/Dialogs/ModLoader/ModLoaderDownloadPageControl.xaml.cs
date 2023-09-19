@@ -25,4 +25,17 @@ public partial class ModLoaderDownloadPageControl : UserControl
             ViewModel.SelectedMod = null;
         }
     }
+
+    private void ModsListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        // Redirect the mouse wheel movement to allow scrolling
+        MouseWheelEventArgs eventArg = new(e.MouseDevice, e.Timestamp, e.Delta)
+        {
+            RoutedEvent = MouseWheelEvent,
+            Source = e.Source
+        };
+
+        ModsScrollViewer?.RaiseEvent(eventArg);
+        e.Handled = true;
+    }
 }
