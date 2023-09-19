@@ -14,6 +14,7 @@
     <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground" po:Freeze="True">#404040</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Card.TransparentSecondaryBackground" po:Freeze="True">#B0404040</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Button.Background" po:Freeze="True">#404040</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Separator.Quote" po:Freeze="True">#494949</SolidColorBrush>
 
     <!-- Flat button (use darker colors here since the foreground is white) -->
     <SolidColorBrush x:Key="RCP.Brushes.FlatButton.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary800}" po:Freeze="True" />

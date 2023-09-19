@@ -93,9 +93,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- TODO-UPDATE: Move to resource so it can have a light mode value -->
                 <Border Grid.Column="0" 
-                        Background="#494949"
+                        Background="{DynamicResource RCP.Brushes.Separator.Quote}"
                         Width="5"
                         Margin="0 0 8 0" />
 

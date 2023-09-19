@@ -239,7 +239,8 @@ public class FileLocationModifications
 
         // Encode the data to the pending import stream
         manager.EncodeFile(resource, file.PendingImport, file.ArchiveEntry,
-            // TODO-UPDATE: We should be able to access the metadata now that we're mainly dealing with physical files
+            // TODO: For now there is no point to supply metadata since the way the mod loader works, by using streams, means that
+            //       metadata like file dates, attributes etc. get lost regardless of if it's a physical file or in an archive.
             new FileMetadata());
 
         // If no data was encoded we copy over the decoded data

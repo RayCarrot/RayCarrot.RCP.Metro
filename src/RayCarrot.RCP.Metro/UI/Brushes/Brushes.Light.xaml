@@ -15,6 +15,7 @@
     <!-- Not sure why, but freezing this brush causes it not to update even with a dynamic resource... -->
     <SolidColorBrush x:Key="RCP.Brushes.Card.TransparentSecondaryBackground">#B0D8D8D8</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Button.Background" po:Freeze="True">#D8D8D8</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Separator.Quote" po:Freeze="True">#C4C4C4</SolidColorBrush>
 
     <!-- Flat button -->
     <SolidColorBrush x:Key="RCP.Brushes.FlatButton.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" po:Freeze="True" />

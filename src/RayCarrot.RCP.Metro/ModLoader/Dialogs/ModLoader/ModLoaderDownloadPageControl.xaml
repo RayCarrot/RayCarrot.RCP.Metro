@@ -102,9 +102,11 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <!-- TODO-UPDATE: Finish this. Link to docs? -->
-                <TextBlock Grid.Row="3"
-                           Text="Want your mod to show up here? Find out how here: " />
+                <TextBlock Grid.Row="3">
+                    <Hyperlink Command="{Binding Path=OpenModDocsCommand, Mode=OneTime}">
+                        <TextBlock Text="Want your mod to show up here? Click here to find out how." />
+                    </Hyperlink>
+                </TextBlock>
             </Grid>
 
             <!-- Empty text -->
@@ -142,7 +144,6 @@
 
             </Grid>
 
-            <!-- TODO-UPDATE: Show something here when no mod is selected? Info about current game? -->
             <!-- Selected mod -->
             <rcp:Card Grid.Column="1"
                       DataContext="{Binding Path=SelectedMod}"

@@ -25,7 +25,6 @@
                 </TabItem>
 
                 <!-- Download -->
-                <!-- TODO-UPDATE: Disable if user has disabled loading external mods -->
                 <TabItem Header="Download"
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}" 
                          rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}">

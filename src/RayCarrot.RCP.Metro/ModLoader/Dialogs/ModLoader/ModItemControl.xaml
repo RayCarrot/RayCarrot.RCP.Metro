@@ -163,7 +163,6 @@
             </iconPacks:PackIconMaterial.Style>
         </iconPacks:PackIconMaterial>
 
-        <!-- TODO-UPDATE: Implement updating -->
         <!-- Update button -->
         <Button Grid.Column="5"
                 Visibility="{Binding Path=UpdateState, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static sources:ModUpdateState.UpdateAvailable}}"

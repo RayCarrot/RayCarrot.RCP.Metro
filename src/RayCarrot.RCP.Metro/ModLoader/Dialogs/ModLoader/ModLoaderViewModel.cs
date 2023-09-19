@@ -228,12 +228,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
                 catch (OperationCanceledException ex)
                 {
-                    // TODO-UPDATE: Log
+                    Logger.Info(ex, "Canceled adding mod to install");
                     break;
                 }
                 catch (Exception ex)
                 {
-                    // TODO-UPDATE: Log and show error message
+                    Logger.Error(ex, "Adding mod to install");
+
+                    // TODO-LOC
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, $"An error occurred when installing the mod from {modFilePath.Name}");
                 }
             }
 
@@ -402,7 +405,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         catch (Exception ex)
         {
             Logger.Error(ex, "Verifying library");
-            // TODO-UPDATE: Error message
+
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when reading the mod library");
+
             return false;
         }
 
@@ -512,7 +517,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
                 ReportNewChanges();
 
-                // TODO-UPDATE: Have some way to indicate it was downloaded. Switch tabs? Show icon on library tab?
+                // TODO-UPDATE: Have some way to indicate it was downloaded. Switch tabs? Show icon on library tab? Or perhaps in download page show file
+                //              as "Downloaded" or "Update". Synchronize collections between tabs using an IMessenger with a token to have it be scoped.
             }
         }
         catch (OperationCanceledException ex)
@@ -523,7 +529,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Downloading mod");
             
-            // TODO-UPDATE: Show error message
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading and installing the mod");
         }
     }
 

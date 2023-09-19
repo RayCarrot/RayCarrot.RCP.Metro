@@ -154,7 +154,6 @@ public class ModProcessor
             Logger.Trace("File mod add: {0}", addedFile.Path);
         }
 
-        // TODO-UPDATE: Pass in correct version
         foreach (ModFilePath removedFile in mod.GetRemovedFiles())
         {
             AddModification(

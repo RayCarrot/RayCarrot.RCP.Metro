@@ -22,7 +22,6 @@ public class ModViewModel : BaseViewModel, IDisposable
         Mod = mod;
         _isEnabled = modEntry.IsEnabled;
         _wasEnabled = _isEnabled;
-        // TODO-UPDATE: Perhaps we should check if the selected version is defined, otherwise go back to the default
         InstallInfo = modEntry.InstallInfo;
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -186,7 +185,7 @@ public class ModViewModel : BaseViewModel, IDisposable
             {
                 Logger.Info("Extracting mod contents");
 
-                // TODO-UPDATE: Implement. Copy folder?
+                await Task.Run(() => Services.File.CopyDirectory(Mod.ModDirectoryPath, result.SelectedDirectory, false, true));
 
                 Logger.Info("Extracted mod contents");
             }

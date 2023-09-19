@@ -24,7 +24,7 @@ public class Mod
 
             if (module == null)
             {
-                // TODO-UPDATE: Throw or ignore? Have a way of showing an error in the UI? Save used modules and unsupported modules?
+                // TODO-UPDATE: Save used modules and unsupported modules - show list in UI with indication of which ones are supported
                 continue;
             }
 

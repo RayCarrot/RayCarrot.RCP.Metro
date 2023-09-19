@@ -19,6 +19,7 @@ public class DownloadableModsViewModel : BaseViewModel
         Mods = new ObservableCollection<DownloadableModViewModel>();
 
         RefreshCommand = new AsyncRelayCommand(LoadModsAsync);
+        OpenModDocsCommand = new RelayCommand(OpenModDocs);
     }
 
     #endregion
@@ -39,6 +40,7 @@ public class DownloadableModsViewModel : BaseViewModel
     #region Commands
 
     public ICommand RefreshCommand { get; }
+    public ICommand OpenModDocsCommand { get; }
 
     #endregion
 
@@ -89,6 +91,11 @@ public class DownloadableModsViewModel : BaseViewModel
         {
             IsLoading = false;
         }
+    }
+
+    public void OpenModDocs()
+    {
+        Services.App.OpenUrl("https://github.com/RayCarrot/RayCarrot.RCP.Metro/wiki/Mod-Loader");
     }
 
     #endregion
