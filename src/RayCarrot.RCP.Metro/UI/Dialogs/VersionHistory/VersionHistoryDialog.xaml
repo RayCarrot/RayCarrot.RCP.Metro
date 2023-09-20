@@ -26,7 +26,8 @@
 
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
                     <ScrollViewer>
-                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_01_0_03_0}, Mode=OneTime}" />
+                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_01_0_03_0}, Mode=OneTime}"
+                                   TextWrapping="Wrap" />
                     </ScrollViewer>
                 </local:Card>
 
@@ -38,7 +39,8 @@
 
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
                     <ScrollViewer>
-                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_04_0_06_0}, Mode=OneTime}" />
+                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_04_0_06_0}, Mode=OneTime}"
+                                   TextWrapping="Wrap" />
                     </ScrollViewer>
                 </local:Card>
 
@@ -50,7 +52,8 @@
 
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
                     <ScrollViewer>
-                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_07_0_09_0}, Mode=OneTime}" />
+                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_07_0_09_0}, Mode=OneTime}"
+                                   TextWrapping="Wrap" />
                     </ScrollViewer>
                 </local:Card>
 
@@ -62,7 +65,8 @@
 
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
                     <ScrollViewer>
-                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_10_0_12_0}, Mode=OneTime}" />
+                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_10_0_12_0}, Mode=OneTime}"
+                                   TextWrapping="Wrap" />
                     </ScrollViewer>
                 </local:Card>
 
@@ -75,7 +79,8 @@
 
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
                     <ScrollViewer>
-                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_13_0_15_0}, Mode=OneTime}" />
+                        <TextBlock Text="{Binding Source={x:Static local:Files.VersionHistory_13_0_15_0}, Mode=OneTime}"
+                                   TextWrapping="Wrap" />
                     </ScrollViewer>
                 </local:Card>
 
