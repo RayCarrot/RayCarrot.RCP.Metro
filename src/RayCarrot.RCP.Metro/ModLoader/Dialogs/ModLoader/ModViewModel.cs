@@ -38,6 +38,8 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
+        PanelFooterViewModel = DownloadableModsSource?.GetPanelFooterViewModel(InstallInfo);
+
         if (PendingInstallTempDir != null)
             SetInstallState(ModInstallState.PendingInstall);
 
@@ -113,6 +115,8 @@ public class ModViewModel : BaseViewModel, IDisposable
     public object? UpdateData { get; set; }
 
     public bool HasChanges { get; private set; }
+
+    public ModPanelFooterViewModel? PanelFooterViewModel { get; }
 
     #endregion
 

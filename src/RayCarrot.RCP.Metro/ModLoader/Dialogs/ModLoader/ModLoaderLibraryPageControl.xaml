@@ -7,6 +7,7 @@
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:dd="urn:gong-wpf-dragdrop"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
              mc:Ignorable="d"
              d:DesignWidth="900" d:DesignHeight="600"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
@@ -66,6 +67,7 @@
                              dd:DragDrop.IsDragSource="True"
                              dd:DragDrop.IsDropTarget="True"
                              dd:DragDrop.SelectDroppedItems="True"
+                             VirtualizingPanel.ScrollUnit="Pixel"
                              Margin="0 0 0 4"
                              Loaded="ModsListBox_OnLoaded">
                         <dd:DragDrop.DropHandler>
@@ -113,6 +115,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Title -->
@@ -203,6 +206,16 @@
 
                             </StackPanel>
                         </ScrollViewer>
+
+                        <!-- Footer -->
+                        <ContentPresenter Grid.Row="3"
+                                          Content="{Binding Path=PanelFooterViewModel, Mode=OneTime}">
+                            <ContentPresenter.Resources>
+                                <DataTemplate DataType="{x:Type gameBanana:GameBananaModPanelFooterViewModel}">
+                                    <gameBanana:GameBananaModPanelFooterControl />
+                                </DataTemplate>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
 
                     </Grid>
                 </rcp:Card>

@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
@@ -44,6 +44,8 @@ public abstract class DownloadableModsSource
         HttpClient httpClient,
         GameInstallation gameInstallation,
         int page);
+
+    public abstract ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo);
 
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);
 
