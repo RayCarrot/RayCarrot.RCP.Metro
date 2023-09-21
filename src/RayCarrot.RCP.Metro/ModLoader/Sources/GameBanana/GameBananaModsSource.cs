@@ -65,7 +65,7 @@ public class GameBananaModsSource : DownloadableModsSource
             $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
             $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
 
-        List<GameBananaModViewModel> viewModels = new();
+        List<GameBananaDownloadableModViewModel> viewModels = new();
 
         // Process every mod
         for (int i = 0; i < modRecords.Count; i++)
@@ -86,7 +86,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
             // Make sure at least one file has mod integration with RCP
             if (validFiles.Count > 0)
-                viewModels.Add(new GameBananaModViewModel(
+                viewModels.Add(new GameBananaDownloadableModViewModel(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
                     gameBananaId: modRecord.Id,
@@ -190,4 +190,3 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #endregion
 }
-

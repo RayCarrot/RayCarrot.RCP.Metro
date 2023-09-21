@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana.GameBananaModPanelControl"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana.GameBananaDownloadableModPanelControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             d:DataContext="{d:DesignInstance gameBanana:GameBananaModViewModel}"
+             d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <!-- TODO-LOC -->
     <Grid>
@@ -141,7 +141,7 @@
 
                         <Button Grid.Column="2"
                                 Style="{StaticResource RCP.Styles.Button.Flat}"
-                                Command="{Binding Path=DataContext.(gameBanana:GameBananaModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                Command="{Binding Path=DataContext.(gameBanana:GameBananaDownloadableModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                 CommandParameter="{Binding Mode=OneTime}"
                                 Content="Download"
                                 ToolTip="Download and install the mod"

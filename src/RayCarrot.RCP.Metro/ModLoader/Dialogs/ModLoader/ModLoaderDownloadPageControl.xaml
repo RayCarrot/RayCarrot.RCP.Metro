@@ -96,8 +96,8 @@
                                 <DataTemplate>
                                     <ContentPresenter Content="{Binding Mode=OneTime}">
                                         <ContentPresenter.Resources>
-                                            <DataTemplate DataType="{x:Type gameBanana:GameBananaModViewModel}">
-                                                <gameBanana:GameBananaModItemControl />
+                                            <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                                                <gameBanana:GameBananaDownloadableModItemControl />
                                             </DataTemplate>
                                         </ContentPresenter.Resources>
                                     </ContentPresenter>
@@ -165,8 +165,8 @@
 
                 <ContentPresenter Content="{Binding Mode=OneTime}">
                     <ContentPresenter.Resources>
-                        <DataTemplate DataType="{x:Type gameBanana:GameBananaModViewModel}">
-                            <gameBanana:GameBananaModPanelControl />
+                        <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                            <gameBanana:GameBananaDownloadableModPanelControl />
                         </DataTemplate>
                     </ContentPresenter.Resources>
                 </ContentPresenter>

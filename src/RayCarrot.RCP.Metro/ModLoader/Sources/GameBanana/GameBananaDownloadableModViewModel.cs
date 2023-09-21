@@ -5,11 +5,11 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-public class GameBananaModViewModel : DownloadableModViewModel
+public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 {
     #region Constructor
 
-    public GameBananaModViewModel(
+    public GameBananaDownloadableModViewModel(
         DownloadableModsSource downloadableModsSource,
         ModLoaderViewModel modLoaderViewModel,
         int gameBananaId, 
