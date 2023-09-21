@@ -7,8 +7,16 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A duo grid item to be used in a <see cref="DuoGrid"/>
 /// </summary>
+[TemplatePart(Name = nameof(PART_CopyValueMenuItem), Type = typeof(MenuItem))]
 public class DuoGridItem : Control
 {
+    static DuoGridItem()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(DuoGridItem), new FrameworkPropertyMetadata(typeof(DuoGridItem)));
+    }
+
+    private MenuItem PART_CopyValueMenuItem;
+
     /// <summary>
     /// The header
     /// </summary>
@@ -41,4 +49,22 @@ public class DuoGridItem : Control
     }
 
     public static readonly DependencyProperty MinUserLevelProperty = DependencyProperty.Register(nameof(MinUserLevel), typeof(UserLevel), typeof(DuoGridItem));
+
+    private void CopyValueMenuItem_OnClick(object sender, RoutedEventArgs e)
+    {
+        Clipboard.SetText(Text);
+    }
+
+    public override void OnApplyTemplate()
+    {
+        if (PART_CopyValueMenuItem != null)
+            PART_CopyValueMenuItem.Click -= CopyValueMenuItem_OnClick;
+
+        PART_CopyValueMenuItem = GetTemplateChild(nameof(PART_CopyValueMenuItem)) as MenuItem;
+
+        if (PART_CopyValueMenuItem != null)
+            PART_CopyValueMenuItem.Click += CopyValueMenuItem_OnClick;
+
+        base.OnApplyTemplate();
+    }
 }

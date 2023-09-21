@@ -19,9 +19,43 @@
                                    FontWeight="Bold" 
                                    Margin="0 0 12 0" />
 
+                        <Border x:Name="BgBorder"
+                                Grid.Column="1"
+                                Background="{TemplateBinding Foreground}"
+                                Opacity="0" />
+
                         <TextBlock Grid.Column="1"
+                                   Background="Transparent"
                                    Text="{TemplateBinding Property=Text}"
-                                   TextWrapping="Wrap" />
+                                   TextWrapping="Wrap">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <!-- TODO-LOC -->
+                                    <MenuItem x:Name="PART_CopyValueMenuItem" Header="Copy value" />
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                            <TextBlock.Triggers>
+                                <EventTrigger RoutedEvent="ContextMenuOpening">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.200" 
+                                                             Storyboard.TargetName="BgBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2"  />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="ContextMenuClosing">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.200" 
+                                                             Storyboard.TargetName="BgBorder"
+                                                             Storyboard.TargetProperty="Opacity"  />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </TextBlock.Triggers>
+                        </TextBlock>
 
                     </Grid>
                 </ControlTemplate>
