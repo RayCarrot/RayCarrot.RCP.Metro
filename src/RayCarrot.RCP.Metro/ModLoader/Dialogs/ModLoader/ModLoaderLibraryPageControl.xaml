@@ -110,58 +110,57 @@
                           d:Visibility="Visible"
                           Margin="{StaticResource RCP.Thicknesses.Card}" 
                           Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <!-- Title -->
-                        <TextBlock Grid.Row="0"
-                                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                   Text="{Binding Path=Name, Mode=OneTime}"
-                                   d:Text="Mod title"
-                                   TextTrimming="CharacterEllipsis"
-                                   Margin="0 0 0 10"/>
+                            <StackPanel Grid.Row="0">
 
-                        <!-- Info and thumbnail -->
-                        <Grid Grid.Row="1"
-                              Margin="0 0 0 12">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                                <!-- Title -->
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                           Text="{Binding Path=Name, Mode=OneTime}"
+                                           d:Text="Mod title"
+                                           TextTrimming="CharacterEllipsis"
+                                           Margin="0 0 0 10" />
 
-                            <!-- Info -->
-                            <StackPanel Grid.Column="0">
+                                <Grid Margin="0 0 0 8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                                <rcp:DuoGrid ItemsSource="{Binding Path=ModInfo, Mode=OneTime}" 
-                                             Margin="0 0 0 8" />
+                                    <!-- Info -->
+                                    <StackPanel Grid.Column="0" Margin="0 0 4 0">
+                                        <rcp:DuoGrid ItemsSource="{Binding Path=ModInfo, Mode=OneTime}" 
+                                                     Margin="0 0 0 8" />
 
-                                <TextBlock TextTrimming="CharacterEllipsis"
-                                           Visibility="{Binding Path=HasWebsite, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}">
-                                    <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
-                                               Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
-                                        <Run Text="{Binding Path=Website, Mode=OneTime}"
-                                             d:Text="https://github.com/RayCarrot/RayCarrot.RCP.Metro" />
-                                    </Hyperlink>
-                                </TextBlock>
+                                        <TextBlock TextTrimming="CharacterEllipsis"
+                                                   Visibility="{Binding Path=HasWebsite, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}">
+                                            <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
+                                                       Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
+                                                <Run Text="{Binding Path=Website, Mode=OneTime}"
+                                                     d:Text="https://github.com/RayCarrot/RayCarrot.RCP.Metro" />
+                                            </Hyperlink>
+                                        </TextBlock>
+
+                                    </StackPanel>
+
+                                    <!-- Thumbnail -->
+
+                                    <modLoader:ModThumbnailControl Grid.Column="1"
+                                                                   Width="128" MaxHeight="128"
+                                                                   VerticalAlignment="Top" />
+
+                                </Grid>
 
                             </StackPanel>
 
-                            <!-- Thumbnail -->
-
-                            <modLoader:ModThumbnailControl Grid.Column="1"
-                                                           Width="128" Height="128"
-                                                           VerticalAlignment="Top" />
-
-                        </Grid>
-
-                        <!-- Description and changelog -->
-                        <ScrollViewer Grid.Row="2">
-                            <StackPanel>
+                            <!-- Description and changelog -->
+                            <StackPanel Grid.Row="1">
 
                                 <!-- Description -->
                                 <Grid Margin="0 0 0 12"
@@ -205,19 +204,19 @@
                                 </ItemsControl>
 
                             </StackPanel>
-                        </ScrollViewer>
 
-                        <!-- Footer -->
-                        <ContentPresenter Grid.Row="3"
-                                          Content="{Binding Path=PanelFooterViewModel, Mode=OneTime}">
-                            <ContentPresenter.Resources>
-                                <DataTemplate DataType="{x:Type gameBanana:GameBananaModPanelFooterViewModel}">
-                                    <gameBanana:GameBananaModPanelFooterControl />
-                                </DataTemplate>
-                            </ContentPresenter.Resources>
-                        </ContentPresenter>
+                            <!-- Footer -->
+                            <ContentPresenter Grid.Row="2"
+                                              Content="{Binding Path=PanelFooterViewModel, Mode=OneTime}">
+                                <ContentPresenter.Resources>
+                                    <DataTemplate DataType="{x:Type gameBanana:GameBananaModPanelFooterViewModel}">
+                                        <gameBanana:GameBananaModPanelFooterControl />
+                                    </DataTemplate>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
 
-                    </Grid>
+                        </Grid>
+                    </ScrollViewer>
                 </rcp:Card>
 
             </Grid>

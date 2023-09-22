@@ -15,25 +15,23 @@ public class Mod
 
         Metadata = ReadMetadata();
 
-        // Get the used modules
-        _modules = new Dictionary<string, ModModule>();
+        // Get the modules used by the mod
+        _supportedModules = new Dictionary<string, ModModule>();
+        _unsupportedModules = new List<string>();
         foreach (FileSystemPath modDir in Directory.GetDirectories(modDirectoryPath))
         {
             string name = modDir.Name;
             ModModule? module = possibleModules.FirstOrDefault(x => x.Id == name);
 
             if (module == null)
-            {
-                // TODO-UPDATE: Save used modules and unsupported modules - show list in UI with indication of which ones are supported
-                continue;
-            }
-
-            _modules[module.Id] = module;
+                _unsupportedModules.Add(name);
+            else
+                _supportedModules[module.Id] = module;
         }
 
         // Create file tables
-        _addedFiles = _modules.Values.SelectMany(x => x.GetAddedFiles(this, GetModulePath(x))).ToList();
-        _removedFiles = _modules.Values.SelectMany(x => x.GetRemovedFiles(this, GetModulePath(x))).ToList();
+        _addedFiles = _supportedModules.Values.SelectMany(x => x.GetAddedFiles(this, GetModulePath(x))).ToList();
+        _removedFiles = _supportedModules.Values.SelectMany(x => x.GetRemovedFiles(this, GetModulePath(x))).ToList();
     }
 
     #endregion
@@ -49,7 +47,8 @@ public class Mod
 
     #region Private Fields
 
-    private readonly Dictionary<string, ModModule> _modules;
+    private readonly Dictionary<string, ModModule> _supportedModules;
+    private readonly List<string> _unsupportedModules;
     private readonly List<IModFileResource> _addedFiles;
     private readonly List<ModFilePath> _removedFiles;
 
@@ -99,6 +98,8 @@ public class Mod
 
     public ReadOnlyCollection<IModFileResource> GetAddedFiles() => _addedFiles.AsReadOnly();
     public ReadOnlyCollection<ModFilePath> GetRemovedFiles() => _removedFiles.AsReadOnly();
+    public ReadOnlyCollection<ModModule> GetSupportedModules() => _supportedModules.Values.ToList().AsReadOnly();
+    public ReadOnlyCollection<string> GetUnsupportedModules() => _unsupportedModules.AsReadOnly();
 
     public FileSystemPath? GetThumbnailFilePath()
     {

@@ -1,4 +1,4 @@
-using System.Net.Http;
+﻿using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -19,6 +19,7 @@ public class GameBananaModsSource : DownloadableModsSource
     #region Public Properties
 
     public override string Id => "GameBanana";
+    public override LocalizedString DisplayName => "GameBanana"; // TODO-LOC
     public override ModSourceIconAsset Icon => ModSourceIconAsset.GameBanana;
 
     #endregion

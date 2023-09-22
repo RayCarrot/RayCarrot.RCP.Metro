@@ -22,6 +22,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <!-- Mod Toggle -->
@@ -48,8 +49,21 @@
                    TextWrapping="Wrap"
                    Margin="0 0 8 0" />
 
-        <!-- Status -->
-        <StackPanel Grid.Column="3" 
+        <!-- Modules warning -->
+        <iconPacks:PackIconMaterial Grid.Column="3"
+                                    VerticalAlignment="Center"
+                                    Width="12"
+                                    Kind="{StaticResource RCP.Icons.Info}"
+                                    Foreground="{StaticResource RCP.Brushes.Warning}"
+                                    Background="Transparent"
+                                    DataContext="{Binding Path=UnsupportedModulesErrorMessage, Mode=OneTime}"
+                                    Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                    d:Visibility="Visible"
+                                    ToolTip="{Binding Path=Value}"
+                                    Margin="0 0 4 0" />
+
+        <!-- Install state -->
+        <StackPanel Grid.Column="4" 
                     Orientation="Horizontal"
                     Visibility="{Binding Path=InstallStateMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
 
@@ -67,7 +81,7 @@
         </StackPanel>
 
         <!-- Actions -->
-        <StackPanel Grid.Column="4"
+        <StackPanel Grid.Column="5"
                     Orientation="Horizontal"
                     Margin="16 0 0 0"
                     d:Visibility="Visible">
@@ -123,7 +137,7 @@
         </StackPanel>
 
         <!-- Update state -->
-        <iconPacks:PackIconMaterial Grid.Column="5"
+        <iconPacks:PackIconMaterial Grid.Column="6"
                                     VerticalAlignment="Center"
                                     ToolTip="{Binding Path=UpdateStateMessage.Value}"
                                     Margin="0 0 10 0">
@@ -164,7 +178,7 @@
         </iconPacks:PackIconMaterial>
 
         <!-- Update button -->
-        <Button Grid.Column="5"
+        <Button Grid.Column="6"
                 Visibility="{Binding Path=UpdateState, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static sources:ModUpdateState.UpdateAvailable}}"
                 Command="{Binding Path=UpdateModCommand, Mode=OneTime}"
                 Style="{StaticResource RCP.Styles.Button.Flat}"

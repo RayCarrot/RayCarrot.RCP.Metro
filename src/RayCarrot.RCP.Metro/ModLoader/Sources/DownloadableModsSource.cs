@@ -1,4 +1,4 @@
-using System.Net.Http;
+﻿using System.Net.Http;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
@@ -19,6 +19,7 @@ public abstract class DownloadableModsSource
     #region Public Properties
 
     public abstract string Id { get; }
+    public abstract LocalizedString DisplayName { get; }
     public abstract ModSourceIconAsset Icon { get; }
 
     #endregion

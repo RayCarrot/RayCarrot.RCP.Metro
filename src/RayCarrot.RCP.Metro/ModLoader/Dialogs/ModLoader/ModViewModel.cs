@@ -27,14 +27,23 @@ public class ModViewModel : BaseViewModel, IDisposable
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Author)), Metadata.Author),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Size)), ByteSize.FromBytes(modEntry.InstallInfo.Size).ToString()),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Version)), Metadata.Version?.ToString()),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ID)), Metadata.Id, UserLevel.Debug),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Debug),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Technical),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ID)), Metadata.Id, UserLevel.Technical),
+            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Size)), ByteSize.FromBytes(modEntry.InstallInfo.Size).ToString()),
+            // TODO-LOC
+            new("Install source:", DownloadableModsSource?.DisplayName ?? new ConstLocString("Local")),
 
+            // TODO-LOC
+            new("Modules:", Mod.GetSupportedModules().JoinItems(", ", x => x.Id)),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), mod.GetRemovedFiles().Count.ToString()),
         };
+
+        ReadOnlyCollection<string> unsupportedModules = Mod.GetUnsupportedModules();
+        if (unsupportedModules.Any())
+            // TODO-LOC
+            UnsupportedModulesErrorMessage = $"The following modules used by this mod are unsupported and will be not be applied: {unsupportedModules.JoinItems(", ")}";
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
@@ -86,6 +95,8 @@ public class ModViewModel : BaseViewModel, IDisposable
     public ModMetadata Metadata => Mod.Metadata;
     public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
     public ObservableCollection<ModChangelogEntry> ChangelogEntries { get; }
+
+    public LocalizedString? UnsupportedModulesErrorMessage { get; }
 
     public string? Name => Metadata.Name;
     public string? Description => Metadata.Description;
