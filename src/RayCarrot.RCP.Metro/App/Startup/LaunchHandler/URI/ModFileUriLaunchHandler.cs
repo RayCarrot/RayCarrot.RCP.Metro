@@ -65,7 +65,7 @@ public class ModFileUriLaunchHandler : UriLaunchHandler
             // Download the patch
             bool downloadResult = 
                 // TODO-UPDATE: Don't use this api - do a load operation on the app view model
-                await Services.App.DownloadAsync(new[] { downloadUri }, false, tempDir.TempPath);
+                await Services.App.DownloadAsync(new[] { new Uri(downloadUrlString)}, false, tempDir.TempPath);
 
             if (!downloadResult)
                 return;
