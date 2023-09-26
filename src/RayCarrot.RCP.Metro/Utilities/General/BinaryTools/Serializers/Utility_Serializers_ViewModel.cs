@@ -223,7 +223,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     },
                 }),
 
-            // TODO-UPDATE: Update or remove?
             new Serializers_TypeViewModel<PatchPackage>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchHeader)),
                 fileExtension: new FileExtension(PatchPackage.FileExtension),
@@ -233,7 +232,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     new("Rayman Control Panel"),
                 }),
 
-            // TODO-UPDATE: Update or remove?
             new Serializers_TypeViewModel<PatchLibraryPackage>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchLibraryHeader)),
                 fileExtension: new FileExtension(PatchLibraryPackage.FileExtension),

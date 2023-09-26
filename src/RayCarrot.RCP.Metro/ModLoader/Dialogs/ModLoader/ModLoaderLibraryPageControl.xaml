@@ -102,7 +102,6 @@
                     </StackPanel>
                 </Grid>
 
-                <!-- TODO-UPDATE: Show "Downloaded from GameBanana", with link? -->
                 <!-- Selected mod -->
                 <rcp:Card Grid.Column="1"
                           DataContext="{Binding Path=SelectedMod}"

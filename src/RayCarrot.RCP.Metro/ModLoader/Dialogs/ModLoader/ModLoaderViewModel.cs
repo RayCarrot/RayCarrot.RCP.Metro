@@ -391,6 +391,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         HasChanges = false;
         SelectedMod = null;
 
+        // Make sure we have write access
+        if (!Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation.Directory))
+        {
+            // TODO-LOC
+            Logger.Info("User does not have write access to game installation");
+            await Services.MessageUI.DisplayMessageAsync("Write access is not allowed to the game installation. Try restarting as administrator. If this game is downloaded from the Microsoft Store then write access can't be achieved without installing the game as a package through the developer mode.", MessageType.Error);
+            return false;
+        }
+
         try
         {
             Library.VerifyLibrary();

@@ -77,9 +77,8 @@ public class ModFileUriLaunchHandler : UriLaunchHandler
         {
             Logger.Error(ex, "Runing mod loader from URI launch");
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, 
-                // TODO-UPDATE: Error message
-                "");
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading the mod");
         }
     }
 }

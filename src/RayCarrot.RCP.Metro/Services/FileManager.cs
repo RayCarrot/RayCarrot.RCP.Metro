@@ -2,6 +2,8 @@
 using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
 using System.IO;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -420,16 +422,32 @@ public class FileManager
     /// <returns>True if the directory can be written to, otherwise false</returns>
     public bool CheckDirectoryWriteAccess(FileSystemPath path)
     {
+        return CheckDirectoryPermission(path, FileSystemRights.Modify);
+    }
+
+    public bool CheckDirectoryPermission(FileSystemPath path, FileSystemRights accessRight)
+    {
+        if (path == FileSystemPath.EmptyPath)
+            return false;
+
         try
         {
-            Directory.CreateDirectory(path);
+            AuthorizationRuleCollection dirRules = Directory.GetAccessControl(path).GetAccessRules(true, true, typeof(SecurityIdentifier));
+            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
 
-            using (File.Create(path + Path.GetRandomFileName(), 1, FileOptions.DeleteOnClose))
+            if (dirRules.Cast<FileSystemAccessRule>().Any(rule =>
+                    currentIdentity.Groups?.Contains(rule.IdentityReference) == true &&
+                    (accessRight & rule.FileSystemRights) == accessRight &&
+                    rule.AccessControlType == AccessControlType.Allow))
+            {
                 return true;
+            }
         }
-        catch
+        catch (Exception ex)
         {
-            return false;
+            Logger.Info(ex, "Checking directory for permission");
         }
+
+        return false;
     }
 }
