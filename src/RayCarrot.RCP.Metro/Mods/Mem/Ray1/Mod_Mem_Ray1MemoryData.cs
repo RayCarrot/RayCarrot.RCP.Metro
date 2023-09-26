@@ -190,6 +190,8 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
 
     protected override void SerializeImpl()
     {
+        // TODO-UPDATE: Prevent ObjData from serializing from pointers. It didn't before, but after a recent refactoring it now does.
+
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
         Ray = SerializeObject<ObjData>(Ray, name: nameof(Ray));

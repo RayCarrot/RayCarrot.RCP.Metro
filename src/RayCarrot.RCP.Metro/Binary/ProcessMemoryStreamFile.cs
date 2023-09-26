@@ -23,6 +23,9 @@ public class ProcessMemoryStreamFile : MemoryMappedStreamFile
 
     public override BinaryFile GetPointerFile(long serializedValue, Pointer anchor = null)
     {
+        if (serializedValue < BaseAddress)
+            return null;
+
         // If haven't specified a length for this memory region then we can only assume the pointer should be in this file
         if (MemoryRegionLength == null)
             return this;
