@@ -7,6 +7,6 @@ public class GenericIconToIconKindConverter : BaseValueConverter<GenericIconToIc
 {
     public override PackIconMaterialKind ConvertValue(GenericIconKind value, Type targetType, object parameter, CultureInfo culture)
     {
-        return ((GenericIcon)App.Current.FindResource($"RCP.GenericIcons.{value}")).IconKind;
+        return ((GenericIcon)App.Current.FindResource(value)).IconKind;
     }
 }
