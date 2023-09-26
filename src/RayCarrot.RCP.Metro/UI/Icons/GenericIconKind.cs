@@ -11,6 +11,12 @@ public enum GenericIconKind
     GameAction_Steam,
     GameAction_Microsoft,
 
+    GameFeature_Archive,
+    GameFeature_Config,
+    GameFeature_Progression,
+    GameFeature_Utilities,
+    GameFeature_ModLoader,
+
     GamePanel_Archive,
     GamePanel_ModLoader,
     GamePanel_Progression,

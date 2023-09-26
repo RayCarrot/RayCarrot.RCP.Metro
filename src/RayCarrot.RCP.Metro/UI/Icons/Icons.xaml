@@ -106,6 +106,22 @@
                        IconKind="{StaticResource RCP.Icons.Microsoft}" 
                        IconColor="{x:Null}" />
 
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameFeature_Archive" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameFeature_Config" 
+                       IconKind="{StaticResource RCP.Icons.GameOptions_Config}" 
+                       IconColor="{StaticResource RCP.Brushes.GameConfig}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameFeature_Progression" 
+                       IconKind="{StaticResource RCP.Icons.Progression}" 
+                       IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameFeature_Utilities" 
+                       IconKind="{StaticResource RCP.Icons.Utilities}" 
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameFeature_ModLoader" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}" 
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Archive" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
