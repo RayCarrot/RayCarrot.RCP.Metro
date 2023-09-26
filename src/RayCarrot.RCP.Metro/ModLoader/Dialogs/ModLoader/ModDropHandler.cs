@@ -21,6 +21,10 @@ public class ModDropHandler : DefaultDropHandler
             
         Logger.Debug("The mods have been reordered");
 
-        ViewModel?.ReportNewChanges();
+        if (ViewModel != null)
+        {
+            ViewModel.HasReorderedMods = true;
+            ViewModel.ReportNewChanges();
+        }
     }
 }

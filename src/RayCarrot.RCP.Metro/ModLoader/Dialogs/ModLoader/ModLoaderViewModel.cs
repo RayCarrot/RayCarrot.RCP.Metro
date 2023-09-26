@@ -91,6 +91,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public LocalizedString? ChangedModsText { get; set; }
 
     public bool HasChanges { get; set; }
+    public bool HasReorderedMods { get; set; }
 
     public DownloadableModsViewModel DownloadableMods { get; }
 
@@ -467,10 +468,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         int changedMods = Mods.Count(x => x.HasChanges);
 
-        HasChanges = changedMods > 0;
+        HasChanges = changedMods > 0 || HasReorderedMods;
         // TODO-LOC
-        if (HasChanges)
+        if (changedMods > 0)
             ChangedModsText = $"{changedMods} unsaved mods";
+        else if (HasReorderedMods)
+            ChangedModsText = "Unsaved mod reordering";
         else
             ChangedModsText = null;
     }
