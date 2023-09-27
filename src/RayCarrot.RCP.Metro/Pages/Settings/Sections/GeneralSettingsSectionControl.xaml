@@ -5,53 +5,84 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:sections="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings.Sections"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignWidth="500"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" 
              d:DataContext="{d:DesignInstance sections:GeneralSettingsSectionViewModel}">
-    <StackPanel DataContext="{Binding Path=Data}">
+    <StackPanel>
+        <StackPanel DataContext="{Binding Path=Data}">
+            <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
+                      IsChecked="{Binding Path=App_CloseAppOnGameLaunch}"
+                      Margin="0 0 0 8" />
 
-        <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
-                  IsChecked="{Binding Path=App_CloseAppOnGameLaunch}"
-                  Margin="0 0 0 8" />
+            <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
+                      IsChecked="{Binding Path=App_CloseConfigOnSave}"
+                      Margin="0 0 0 8" />
 
-        <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
-                  IsChecked="{Binding Path=App_CloseConfigOnSave}"
-                  Margin="0 0 0 8" />
+            <CheckBox Content="{Resx Settings_GetBetaUpdates}"
+                      IsChecked="{Binding Path=Update_GetBetaUpdates}"
+                      rcp:UserLevelAssist.MinUserLevel="Technical"
+                      Margin="0 0 0 8" />
 
-        <CheckBox Content="{Resx Settings_GetBetaUpdates}"
-                  IsChecked="{Binding Path=Update_GetBetaUpdates}"
-                  rcp:UserLevelAssist.MinUserLevel="Technical"
-                  Margin="0 0 0 8" />
+            <CheckBox Content="{Resx Settings_ManualDownloads}"
+                      ToolTip="{Resx Settings_ManualDownloadsInfo}"
+                      IsChecked="{Binding Path=App_HandleDownloadsManually}"
+                      rcp:UserLevelAssist.MinUserLevel="Advanced"
+                      Margin="0 0 0 8" />
 
-        <CheckBox Content="{Resx Settings_ManualDownloads}"
-                  ToolTip="{Resx Settings_ManualDownloadsInfo}"
-                  IsChecked="{Binding Path=App_HandleDownloadsManually}"
-                  rcp:UserLevelAssist.MinUserLevel="Advanced"
-                  Margin="0 0 0 8" />
+            <StackPanel rcp:UserLevelAssist.MinUserLevel="Technical">
 
-        <StackPanel rcp:UserLevelAssist.MinUserLevel="Technical">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 0 0 4">
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               Text="{Resx Settings_SerializationLog}" />
 
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 4">
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Text="{Resx Settings_SerializationLog}" />
+                    <rcp:InfoIcon Text="{Resx Settings_SerializationLogInfo}" />
 
-                <rcp:InfoIcon Text="{Resx Settings_SerializationLogInfo}" />
+                </StackPanel>
+
+                <CheckBox Content="{Resx IsEnabled}" 
+                          IsChecked="{Binding Path=Binary_IsSerializationLogEnabled}"
+                          Margin="0 0 0 4" />
+
+                <rcp:BrowseBox Visibility="{Binding Path=Binary_IsSerializationLogEnabled, Converter={rcp:BooleanToVisibilityConverter}}"
+                               FileFilter="Txt (*.txt)|*.txt"
+                               SelectedPath="{Binding Path=Binary_BinarySerializationFileLogPath}"
+                               BrowseType="SaveFile"
+                               Margin="0 0 0 8" />
 
             </StackPanel>
+        </StackPanel>
 
-            <CheckBox Content="{Resx IsEnabled}" 
-                      IsChecked="{Binding Path=Binary_IsSerializationLogEnabled}"
-                      Margin="0 0 0 4" />
+        <!-- TODO-LOC -->
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="Jump List"
+                   Margin="0 0 0 4" />
 
-            <rcp:BrowseBox Visibility="{Binding Path=Binary_IsSerializationLogEnabled, Converter={rcp:BooleanToVisibilityConverter}}"
-                           FileFilter="Txt (*.txt)|*.txt"
-                           SelectedPath="{Binding Path=Binary_BinarySerializationFileLogPath}"
-                           BrowseType="SaveFile"
-                           Margin="0 0 0 8" />
+        <StackPanel HorizontalAlignment="Left">
+
+            <Button HorizontalContentAlignment="Left"
+                    Content="{Resx Settings_EditJumpList}"
+                    ToolTip="{Resx Settings_EditJumpListInfo}"
+                    Command="{Binding Path=EditJumpListCommand, Mode=OneTime}"
+                    rcp:Icon.Kind="PencilBoxOutline" 
+                    Style="{StaticResource RCP.Styles.Button.Default}"
+                    Margin="0 0 0 4" />
+
+            <mah:ClipBorder CornerRadius="{StaticResource CornerRadius.Default}" 
+                            Height="250"
+                            Margin="0 0 0 4">
+                <Image Source="JumpList.png" 
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+            </mah:ClipBorder>
+
+            <!-- TODO-LOC -->
+            <TextBlock Text="Launch games directly from the taskbar" 
+                       FontStyle="Italic" 
+                       Margin="0 0 0 8" />
 
         </StackPanel>
 

@@ -14,28 +14,17 @@ public class SettingsPageViewModel : BasePageViewModel
     public SettingsPageViewModel(
         AppViewModel app, 
         AppUserData data, 
-        IAppInstanceData instanceData, 
         IMessageUIManager messageUi, 
         AppUIManager ui, 
-        GamesManager gamesManager, 
         JumpListManager jumpListManager, 
         FileManager fileManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
-        InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
-        UI = ui ?? throw new ArgumentNullException(nameof(ui));
-        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
-        JumpListManager = jumpListManager ?? throw new ArgumentNullException(nameof(jumpListManager));
-        FileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
 
         // Create commands
-        EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
         RefreshCommand = new AsyncRelayCommand(RefreshAsync);
-        OpenFileCommand = new AsyncRelayCommand(x => OpenFileAsync((FileSystemPath)x!));
-        OpenDirectoryCommand = new AsyncRelayCommand(x => OpenDirectoryAsync((FileSystemPath)x!));
-        OpenRegistryKeyCommand = new AsyncRelayCommand(x => OpenRegistryKeyAsync((string)x!));
         ResetCommand = new AsyncRelayCommand(ResetAsync);
 
         // Create properties
@@ -45,7 +34,7 @@ public class SettingsPageViewModel : BasePageViewModel
         Sections = new ObservableCollection<ObservableCollection<SettingsSectionViewModel>>()
         {
             new() { new LanguageSettingsSectionViewModel(Data, App), new UserLevelSettingsSectionViewModel(Data), },
-            new() { new GeneralSettingsSectionViewModel(Data), },
+            new() { new GeneralSettingsSectionViewModel(Data, ui, jumpListManager), },
             new() { new DesignSettingsSectionViewModel(Data), },
             new() { new StartupSettingsSectionViewModel(Data), },
             new() { new FilesSettingsSectionViewModel(Data), },
@@ -53,7 +42,7 @@ public class SettingsPageViewModel : BasePageViewModel
             new() { new ProgressionSettingsSectionViewModel(Data), },
             new() { new ArchiveExplorerSettingsSectionViewModel(Data), },
             new() { new ModLoaderSettingsSectionViewModel(Data), },
-            new() { new DebugSettingsSectionViewModel(Data), },
+            new() { new DebugSettingsSectionViewModel(Data, fileManager), },
         };
         FlatSections = new ObservableCollection<SettingsSectionViewModel>(Sections.SelectMany(x => x));
     }
@@ -62,10 +51,6 @@ public class SettingsPageViewModel : BasePageViewModel
 
     #region Commands
 
-    public ICommand EditJumpListCommand { get; }
-    public ICommand OpenFileCommand { get; }
-    public ICommand OpenDirectoryCommand { get; }
-    public ICommand OpenRegistryKeyCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand ResetCommand { get; }
 
@@ -83,12 +68,7 @@ public class SettingsPageViewModel : BasePageViewModel
     #region Services
 
     public AppUserData Data { get; }
-    public IAppInstanceData InstanceData { get; }
     public IMessageUIManager MessageUI { get; }
-    public AppUIManager UI { get; }
-    public GamesManager GamesManager { get; }
-    private JumpListManager JumpListManager { get; }
-    private FileManager FileManager { get; }
 
     #endregion
 
@@ -109,23 +89,6 @@ public class SettingsPageViewModel : BasePageViewModel
     }
 
     /// <summary>
-    /// Edits the jump list items
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task EditJumpListAsync()
-    {
-        // Get the result
-        JumpListEditResult result = await UI.EditJumpListAsync(new JumpListEditViewModel());
-
-        if (result.CanceledByUser)
-            return;
-
-        // Update the jump list items collection
-        Data.App_AutoSortJumpList = result.AutoSort;
-        JumpListManager.SetItems(result.IncludedItems.Select(x => new JumpListItem(x.GameInstallation.InstallationId, x.Id)));
-    }
-
-    /// <summary>
     /// Refreshes the page
     /// </summary>
     /// <returns>The task</returns>
@@ -138,10 +101,6 @@ public class SettingsPageViewModel : BasePageViewModel
                 section.Refresh();
         }
     }
-
-    public Task OpenFileAsync(FileSystemPath filePath) => FileManager.LaunchFileAsync(filePath);
-    public Task OpenDirectoryAsync(FileSystemPath dirPath) => FileManager.OpenExplorerLocationAsync(dirPath);
-    public Task OpenRegistryKeyAsync(string registryKey) => FileManager.OpenRegistryKeyAsync(registryKey);
 
     public async Task ResetAsync()
     {

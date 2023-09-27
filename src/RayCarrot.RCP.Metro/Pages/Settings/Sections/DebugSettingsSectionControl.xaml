@@ -11,19 +11,51 @@
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" 
              d:DataContext="{d:DesignInstance sections:DebugSettingsSectionViewModel}">
-    <StackPanel DataContext="{Binding Path=Data}">
+    <StackPanel>
+        <WrapPanel Margin="0 0 0 8">
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                    Content="{Resx Links_Local_AppData}"
+                    rcp:Icon.Kind="{StaticResource RCP.Icons.Folder}"
+                    Command="{Binding Path=OpenDirectoryCommand, Mode=OneTime}"
+                    CommandParameter="{x:Static rcp:AppFilePaths.UserDataBaseDir}"
+                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}" />
 
-        <CheckBox Content="{Resx Settings_DisableGameValidation}"
-                  IsChecked="{Binding Path=App_DisableGameValidation}"
-                  Margin="0 0 0 8" />
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                    Content="{Resx Links_Local_LogFile}"
+                    rcp:Icon.Kind="FileDocumentOutline"
+                    Command="{Binding Path=OpenFileCommand, Mode=OneTime}"
+                    CommandParameter="{x:Static rcp:AppFilePaths.LogFile}"
+                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}"  />
 
-        <CheckBox Content="{Resx Settings_ForceUpdates}"
-                  IsChecked="{Binding Path=Update_ForceUpdate}"
-                  Margin="0 0 0 8" />
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                    Content="{Resx Links_Local_Temp}"
+                    rcp:Icon.Kind="{StaticResource RCP.Icons.Folder}"
+                    Command="{Binding Path=OpenDirectoryCommand, Mode=OneTime}"
+                    CommandParameter="{x:Static rcp:AppFilePaths.TempPath}"
+                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}"  />
 
-        <CheckBox Content="{Resx Settings_DisableDowngradeWarning}"
-                  IsChecked="{Binding Path=Update_DisableDowngradeWarning}"
-                  Margin="0 0 0 8" />
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                    Content="{Resx Links_Local_RegAppData}"
+                    rcp:Icon.Kind="DatabaseOutline"
+                    Command="{Binding Path=OpenRegistryKeyCommand, Mode=OneTime}"
+                    CommandParameter="{x:Static rcp:AppFilePaths.RegistryBaseKey}"
+                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}"  />
+        </WrapPanel>
 
+        <StackPanel DataContext="{Binding Path=Data}">
+
+            <CheckBox Content="{Resx Settings_DisableGameValidation}"
+                      IsChecked="{Binding Path=App_DisableGameValidation}"
+                      Margin="0 0 0 8" />
+
+            <CheckBox Content="{Resx Settings_ForceUpdates}"
+                      IsChecked="{Binding Path=Update_ForceUpdate}"
+                      Margin="0 0 0 8" />
+
+            <CheckBox Content="{Resx Settings_DisableDowngradeWarning}"
+                      IsChecked="{Binding Path=Update_DisableDowngradeWarning}"
+                      Margin="0 0 0 8" />
+
+        </StackPanel>
     </StackPanel>
 </UserControl>

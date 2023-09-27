@@ -14,47 +14,8 @@
               d:DesignWidth="800"
               d:DataContext="{d:DesignInstance settings:SettingsPageViewModel}">
 
-    <!-- TODO-UPDATE: Integrate some of this into the page UI? Edit jump list could go in the general section and the technical ones in the debug section? -->
     <rcp:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-
-            <!-- Edit jump list -->
-            <Button Content="{Resx Settings_EditJumpList}"
-                    ToolTip="{Resx Settings_EditJumpListInfo}"
-                    Command="{Binding Path=EditJumpListCommand}"
-                    rcp:Icon.Kind="PencilBoxOutline" />
-
-            <Separator rcp:UserLevelAssist.MinUserLevel="Technical"/>
-
-            <Button Content="{Resx Links_Local_AppData}"
-                    rcp:Icon.Kind="{StaticResource RCP.Icons.Folder}"
-                    Command="{Binding Path=OpenDirectoryCommand, Mode=OneTime}"
-                    CommandParameter="{x:Static rcp:AppFilePaths.UserDataBaseDir}"
-                    rcp:UserLevelAssist.MinUserLevel="Technical"
-                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}" />
-
-            <Button Content="{Resx Links_Local_LogFile}"
-                    rcp:Icon.Kind="FileDocumentOutline"
-                    Command="{Binding Path=OpenFileCommand, Mode=OneTime}"
-                    CommandParameter="{x:Static rcp:AppFilePaths.LogFile}"
-                    rcp:UserLevelAssist.MinUserLevel="Technical"
-                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}"  />
-
-            <Button Content="{Resx Links_Local_Temp}"
-                    rcp:Icon.Kind="{StaticResource RCP.Icons.Folder}"
-                    Command="{Binding Path=OpenDirectoryCommand, Mode=OneTime}"
-                    CommandParameter="{x:Static rcp:AppFilePaths.TempPath}"
-                    rcp:UserLevelAssist.MinUserLevel="Debug"
-                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}"  />
-
-            <Button Content="{Resx Links_Local_RegAppData}"
-                    rcp:Icon.Kind="DatabaseOutline"
-                    Command="{Binding Path=OpenRegistryKeyCommand, Mode=OneTime}"
-                    CommandParameter="{x:Static rcp:AppFilePaths.RegistryBaseKey}"
-                    rcp:UserLevelAssist.MinUserLevel="Technical"
-                    ToolTip="{Binding Path=CommandParameter, RelativeSource={RelativeSource Self}}"  />
-
-            <Separator rcp:UserLevelAssist.MinUserLevel="Advanced"/>
 
             <Button rcp:Icon.Kind="Refresh"
                     Command="{Binding Path=RefreshCommand}"
@@ -75,8 +36,6 @@
 
                 </Grid>
             </Button>
-
-            <Separator />
 
             <Button Content="{Resx Settings_ResetAppData}"
                     rcp:Icon.Kind="Restore"
