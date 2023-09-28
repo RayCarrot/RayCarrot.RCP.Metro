@@ -1,21 +1,16 @@
-﻿using RayCarrot.RCP.Metro.Legacy.Patcher;
-using RayCarrot.RCP.Metro.ModLoader.Extractors;
+﻿using RayCarrot.RCP.Metro.ModLoader.Extractors;
 
 namespace RayCarrot.RCP.Metro;
 
 public class ModFileLaunchHandler : FileLaunchHandler
 {
+    // TODO-LOC
+    public override LocalizedString DisplayName => "Game mod";
     public override bool DisableFullStartup => true;
 
-    // Only use the legacy patch package file extension for associations since
-    // we don't want ones like .zip to be associated with this program
-    public override FileAssociationInfo FileAssociationInfo => new(
-        FileExtension: PatchPackage.FileExtension,
-        Id: "RCP_Metro.GamePatch",
-        Name: "Rayman Control Panel Game Patch",
-        GetIconFunc: () => Files.GamePatch,
-        IconFileName: "GamePatch.ico");
-
+    // We don't want extensions such as .zip to be associated with this program
+    public override FileAssociationInfo? FileAssociationInfo => null;
+    
     public override bool IsValid(FileSystemPath filePath)
     {
         FileExtension fileExtension = filePath.FileExtension;

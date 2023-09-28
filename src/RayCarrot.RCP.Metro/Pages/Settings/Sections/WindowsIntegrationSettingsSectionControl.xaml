@@ -13,18 +13,51 @@
              d:DataContext="{d:DesignInstance sections:WindowsIntegrationSettingsSectionViewModel}">
     <StackPanel>
 
-        <CheckBox Content="{Resx Settings_PatcherAssociatePatchFileType}"
-                  IsEnabled="{Binding Path=CanAssociatePatchFileType}"
-                  IsChecked="{Binding Path=AssociatePatchFileType}"
-                  Command="{Binding Path=UpdatePatchFileTypeAssociationCommand, Mode=OneTime}"
-                  Margin="0 0 0 8" />
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="File type associations"
+                   Margin="0 0 0 4" />
 
-        <CheckBox Content="{Resx Settings_PatcherAssociatePatchURIProtocol}"
-                  ToolTip="{Resx Settings_PatcherAssociatePatchURIProtocolInfo}"
-                  IsEnabled="{Binding Path=CanAssociatePatchURIProtocol}"
-                  IsChecked="{Binding Path=AssociatePatchURIProtocol}"
-                  Command="{Binding Path=UpdatePatchURIProtocolAssociationCommand, Mode=OneTime}"
-                  Margin="0 0 0 8" />
+        <!-- TODO-LOC -->
+        <TextBlock Text="This specifies which types of files will be opened in Rayman Control Panel from File Explorer" 
+                   FontStyle="Italic" 
+                   TextWrapping="Wrap" 
+                   Margin="0 0 0 8" />
+
+        <ItemsControl ItemsSource="{Binding Path=FileAssociations, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Path=Name.Value}"
+                              IsEnabled="{Binding Path=CanAssociate}"
+                              IsChecked="{Binding Path=IsAssociated}"
+                              Command="{Binding Path=UpdateAssociationCommand, Mode=OneTime}"
+                              Margin="0 0 0 8" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="URI associations"
+                   Margin="0 0 0 4" />
+
+        <!-- TODO-LOC -->
+        <TextBlock Text="This specifies which URI protocols will be opened in Rayman Control Panel" 
+                   FontStyle="Italic" 
+                   TextWrapping="Wrap" 
+                   Margin="0 0 0 8" />
+
+        <ItemsControl ItemsSource="{Binding Path=UriAssociations, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Path=Name.Value}"
+                              IsEnabled="{Binding Path=CanAssociate}"
+                              IsChecked="{Binding Path=IsAssociated}"
+                              Command="{Binding Path=UpdateAssociationCommand, Mode=OneTime}"
+                              Margin="0 0 0 8" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
     </StackPanel>
 </UserControl>

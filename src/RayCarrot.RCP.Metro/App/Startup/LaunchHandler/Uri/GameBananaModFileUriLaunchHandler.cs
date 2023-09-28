@@ -4,11 +4,14 @@ using RayCarrot.RCP.Metro.ModLoader.Extractors;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ModFileUriLaunchHandler : UriLaunchHandler
+public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    // TODO-LOC
+    public override LocalizedString DisplayName => "Game mod (GameBanana 1-click installation)";
     public override bool DisableFullStartup => true;
+    
     public override string UriProtocol => "rcpgp";
     public override string UriProtocolName => "Rayman Control Panel Mod Protocol";
 

@@ -8,10 +8,11 @@ public class WindowsIntegrationSettingsSectionViewModel : SettingsSectionViewMod
 
     public WindowsIntegrationSettingsSectionViewModel(AppUserData data, IMessageUIManager messageUi) : base(data)
     {
-        MessageUI = messageUi;
-
-        UpdatePatchFileTypeAssociationCommand = new AsyncRelayCommand(UpdatePatchFileTypeAssociationAsync);
-        UpdatePatchURIProtocolAssociationCommand = new AsyncRelayCommand(UpdatePatchURIProtocolAssociationAsync);
+        FileAssociations = new ObservableCollection<FileAssociationViewModel>(FileLaunchHandler.GetHandlers().
+            Where(x => x.FileAssociationInfo != null).
+            Select(x => new FileAssociationViewModel(Data, messageUi, x)));
+        UriAssociations = new ObservableCollection<UriAssociationViewModel>(UriLaunchHandler.GetHandlers().
+            Select(x => new UriAssociationViewModel(Data, messageUi, x)));
     }
 
     #endregion
@@ -22,74 +23,122 @@ public class WindowsIntegrationSettingsSectionViewModel : SettingsSectionViewMod
 
     #endregion
 
-    #region Commands
-
-    public ICommand UpdatePatchFileTypeAssociationCommand { get; }
-    public ICommand UpdatePatchURIProtocolAssociationCommand { get; }
-
-    #endregion
-
-    #region Services
-
-    private IMessageUIManager MessageUI { get; }
-
-    #endregion
-
     #region Public Properties
 
     public override LocalizedString Header => "Windows Integration"; // TODO-LOC
     public override GenericIconKind Icon => GenericIconKind.Settings_WindowsIntegration;
 
-    public bool CanAssociatePatchFileType { get; set; }
-    public bool CanAssociatePatchURIProtocol { get; set; }
-    public bool AssociatePatchFileType { get; set; }
-    public bool AssociatePatchURIProtocol { get; set; }
+    public ObservableCollection<FileAssociationViewModel> FileAssociations { get; }
+    public ObservableCollection<UriAssociationViewModel> UriAssociations { get; }
 
     #endregion
 
     #region Public Methods
 
-    // TODO-UPDATE: Rework UI to have these things be dynamic based on the available handlers
-    public async Task UpdatePatchFileTypeAssociationAsync()
-    {
-        try
-        {
-            new ModFileLaunchHandler().AssociateWithFileType(Data.App_ApplicationPath, AssociatePatchFileType);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Setting mod file type association");
-
-            // TODO-UPDATE: Update localization
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_AssociateFileTypeError);
-        }
-    }
-
-    public async Task UpdatePatchURIProtocolAssociationAsync()
-    {
-        try
-        {
-            new ModFileUriLaunchHandler().AssociateWithUriProtocol(Data.App_ApplicationPath, AssociatePatchURIProtocol);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Setting mod uri protocol association");
-
-            // TODO-UPDATE: Update localization
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_AssociateURIProtocolError);
-        }
-    }
-
     public override void Refresh()
     {
-        bool? isAssociatedWithFileType = new ModFileLaunchHandler().IsAssociatedWithFileType();
-        bool? isAssociatedWithURIProtocol = new ModFileUriLaunchHandler().IsAssociatedWithUriProtocol();
+        foreach (FileAssociationViewModel fileAssociation in FileAssociations)
+            fileAssociation.Refresh();
 
-        CanAssociatePatchFileType = isAssociatedWithFileType != null;
-        CanAssociatePatchURIProtocol = isAssociatedWithURIProtocol != null;
+        foreach (UriAssociationViewModel uriAssociation in UriAssociations)
+            uriAssociation.Refresh();
+    }
 
-        AssociatePatchFileType = isAssociatedWithFileType ?? false;
-        AssociatePatchURIProtocol = isAssociatedWithURIProtocol ?? false;
+    #endregion
+
+    #region Classes
+
+    public abstract class AssociationViewModel<T> : BaseViewModel
+        where T : LaunchArgHandler
+    {
+        protected AssociationViewModel(T launchHandler)
+        {
+            LaunchHandler = launchHandler;
+            Name = launchHandler.DisplayName;
+
+            UpdateAssociationCommand = new AsyncRelayCommand(UpdateAssociationAsync);
+        }
+
+        public ICommand UpdateAssociationCommand { get; }
+
+        public T LaunchHandler { get; }
+        public LocalizedString Name { get; }
+        public bool CanAssociate { get; set; }
+        public bool IsAssociated { get; set; }
+
+        public abstract Task UpdateAssociationAsync();
+        public abstract void Refresh();
+    }
+
+    public class FileAssociationViewModel : AssociationViewModel<FileLaunchHandler>
+    {
+        public FileAssociationViewModel(AppUserData data, IMessageUIManager messageUi, FileLaunchHandler launchHandler) : base(launchHandler)
+        {
+            Data = data;
+            MessageUI = messageUi;
+        }
+
+        private AppUserData Data { get; }
+        private IMessageUIManager MessageUI { get; }
+
+        public override async Task UpdateAssociationAsync()
+        {
+            try
+            {
+                LaunchHandler.AssociateWithFileType(Data.App_ApplicationPath, IsAssociated);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting file type association");
+
+                // TODO-LOC
+                await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the file type association. Try running the Rayman Control Panel as admin and try again.");
+            }
+        }
+
+        public override void Refresh()
+        {
+            bool? isAssociatedWithFileType = LaunchHandler.IsAssociatedWithFileType();
+
+            CanAssociate = isAssociatedWithFileType != null;
+            IsAssociated = isAssociatedWithFileType ?? false;
+        }
+    }
+
+    public class UriAssociationViewModel : AssociationViewModel<UriLaunchHandler>
+    {
+        public UriAssociationViewModel(AppUserData data, IMessageUIManager messageUi, UriLaunchHandler launchHandler) : base(launchHandler)
+        {
+            Data = data;
+            MessageUI = messageUi;
+
+        }
+
+        private AppUserData Data { get; }
+        private IMessageUIManager MessageUI { get; }
+
+        public override async Task UpdateAssociationAsync()
+        {
+            try
+            {
+                LaunchHandler.AssociateWithUriProtocol(Data.App_ApplicationPath, IsAssociated);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting uri protocol association");
+
+                // TODO-LOC
+                await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the URI protocol association. Try running the Rayman Control Panel as admin and try again.");
+            }
+        }
+
+        public override void Refresh()
+        {
+            bool? isAssociatedWithFileType = LaunchHandler.IsAssociatedWithUriProtocol();
+
+            CanAssociate = isAssociatedWithFileType != null;
+            IsAssociated = isAssociatedWithFileType ?? false;
+        }
     }
 
     #endregion

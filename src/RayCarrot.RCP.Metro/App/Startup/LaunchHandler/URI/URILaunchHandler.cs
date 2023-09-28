@@ -25,7 +25,7 @@ public abstract class UriLaunchHandler : LaunchArgHandler
 
     public static UriLaunchHandler[] GetHandlers() => new UriLaunchHandler[]
     {
-        new ModFileUriLaunchHandler(),
+        new GameBananaModFileUriLaunchHandler(),
     };
 
     public static UriLaunchHandler? GetHandler(string uri) => GetHandlers().FirstOrDefault(x => x.IsUriValid(uri));

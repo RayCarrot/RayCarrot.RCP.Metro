@@ -20,7 +20,8 @@ public abstract class FileLaunchHandler : LaunchArgHandler
 
     public static FileLaunchHandler[] GetHandlers() => new FileLaunchHandler[]
     {
-        new ModFileLaunchHandler()
+        new LegacyGamePatchFileLaunchHandler(),
+        new ModFileLaunchHandler(),
     };
 
     public static FileLaunchHandler? GetHandler(FileSystemPath filePath) => GetHandlers().FirstOrDefault(x => x.IsValid(filePath));

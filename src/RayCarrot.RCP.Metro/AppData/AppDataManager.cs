@@ -688,7 +688,7 @@ public class AppDataManager
             try
             {
                 // Default to the file type association being enabled
-                new ModFileLaunchHandler().AssociateWithFileType(Data.App_ApplicationPath, true);
+                new LegacyGamePatchFileLaunchHandler().AssociateWithFileType(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
@@ -698,7 +698,7 @@ public class AppDataManager
             try
             {
                 // Default to the uri protocol association being enabled
-                new ModFileUriLaunchHandler().AssociateWithUriProtocol(Data.App_ApplicationPath, true);
+                new GameBananaModFileUriLaunchHandler().AssociateWithUriProtocol(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
@@ -737,14 +737,14 @@ public class AppDataManager
 
             try
             {
-                // Update the mod file association now that we have a custom icon for it
-                ModFileLaunchHandler handler = new();
+                // Update the legacy game patch file association now that we have a custom icon for it
+                LegacyGamePatchFileLaunchHandler handler = new();
                 if (handler.IsAssociatedWithFileType() == true)
                     handler.AssociateWithFileType(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Setting mod file type association");
+                Logger.Error(ex, "Setting legacy game patch file type association");
             }
         }
 
