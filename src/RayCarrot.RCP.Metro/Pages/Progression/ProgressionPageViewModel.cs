@@ -16,14 +16,12 @@ public class ProgressionPageViewModel : BasePageViewModel,
         AppViewModel app, 
         AppUserData data, 
         IMessageUIManager messageUi, 
-        AppUIManager ui, 
         GamesManager gamesManager, 
         IMessenger messenger) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
-        UI = ui ?? throw new ArgumentNullException(nameof(ui));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
@@ -40,7 +38,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
         EditVisibilityCommand = new RelayCommand(EditVisibility);
         SaveEditVisibilityCommand = new RelayCommand(SaveEditVisibility);
         BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
-        ChangeSaveEditProgramCommand = new AsyncRelayCommand(ChangeSaveEditProgramAsync);
     }
 
     #endregion
@@ -63,7 +60,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
     public ICommand EditVisibilityCommand { get; }
     public ICommand SaveEditVisibilityCommand { get; }
     public ICommand BackupAllCommand { get; }
-    public ICommand ChangeSaveEditProgramCommand { get; }
 
     #endregion
 
@@ -71,7 +67,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
     public AppUserData Data { get; } // Need to keep public for now due to binding
     private IMessageUIManager MessageUI { get; }
-    private AppUIManager UI { get; }
     private GamesManager GamesManager { get; }
     private IMessenger Messenger { get; }
 
@@ -314,21 +309,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
             else
                 await MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, Games.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
         }
-    }
-
-    public async Task ChangeSaveEditProgramAsync()
-    {
-        ProgramSelectionResult programResult = await UI.GetProgramAsync(new ProgramSelectionViewModel()
-        {
-            Title = Resources.Progression_SelectEditProgram,
-            ProgramFilePath = Data.Progression_SaveEditorExe,
-            FileExtensions = new FileExtension[] { new(".json"), new(".txt"), }
-        });
-
-        if (programResult.CanceledByUser)
-            return;
-
-        Data.Progression_SaveEditorExe = programResult.ProgramFilePath;
     }
 
     #endregion

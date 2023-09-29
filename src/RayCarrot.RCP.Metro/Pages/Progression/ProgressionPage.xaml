@@ -56,13 +56,6 @@
                 </Grid>
             </Button>
 
-            <Separator />
-
-            <!-- TODO-UPDATE: Move to settings page, maybe more general .json association? -->
-            <Button Content="{Resx Progression_ChangeEditProgram}"
-                    rcp:Icon.Kind="ApplicationOutline"
-                    Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />
-
         </StackPanel>
     </rcp:BasePage.PopupMenu>
 

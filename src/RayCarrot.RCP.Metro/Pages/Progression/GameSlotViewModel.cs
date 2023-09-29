@@ -223,42 +223,25 @@ public class GameSlotViewModel : BaseRCPViewModel
                 originalHash = sha1.ComputeHash(tmpFile);
 
             // Get the program to open the file with
-            FileSystemPath programPath = Data.Progression_SaveEditorExe;
+            FileSystemPath? programPath = await Services.AssociatedFileEditorsManager.RequestFileEditorAssociatonAsync(".json");
 
-            // Have the user select a program if it doesn't exist
-            if (!programPath.FileExists)
-            {
-                ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
-                {
-                    Title = Resources.Progression_SelectEditProgram,
-                    FileExtensions = new FileExtension[]
-                    {
-                        new FileExtension(".json"),
-                        new FileExtension(".txt"),
-                    }
-                });
-
-                if (programResult.CanceledByUser)
-                    return;
-
-                programPath = programResult.ProgramFilePath;
-                Data.Progression_SaveEditorExe = programPath;
-            }
+            if (programPath == null)
+                return;
 
             string args = String.Empty;
 
             // Add specific arguments for common editor programs so that they open a new instance. If not then the new
             // process will close immediately as it will re-use the already existing one which means the WaitForExitAsync
             // won't wait for the program to close.
-            if (programPath.Name == "Code.exe") // VS Code
+            if (programPath.Value.Name == "Code.exe") // VS Code
                 args += $"--new-window ";
-            else if (programPath.Name == "notepad++.exe") // Notepad++
+            else if (programPath.Value.Name == "notepad++.exe") // Notepad++
                 args += $"-multiInst ";
 
             args += $"\"{tempFile.TempPath}\"";
 
             // Open the file
-            using (Process? p = await Services.File.LaunchFileAsync(programPath, arguments: args))
+            using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: args))
             {
                 // Ignore if the file wasn't opened
                 if (p == null)
@@ -268,7 +251,7 @@ public class GameSlotViewModel : BaseRCPViewModel
                 }
 
                 // Wait for the file to close...
-                using (LoadState state = await App.LoaderViewModel.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.RemoveFileExtension().Name), canCancel: true))
+                using (LoadState state = await App.LoaderViewModel.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name), canCancel: true))
                 {
                     try
                     {

@@ -72,7 +72,6 @@ public partial class AppUserData : BaseViewModel
         Backup_CompressBackups = true;
 
         // Progression
-        Progression_SaveEditorExe = FileSystemPath.EmptyPath;
         Progression_ShownEditSaveWarning = false;
 
         // Archive
@@ -341,11 +340,6 @@ public partial class AppUserData : BaseViewModel
     #endregion
 
     #region Progression
-
-    /// <summary>
-    /// The file path to the exe file used for editing JSON save files
-    /// </summary>
-    public FileSystemPath Progression_SaveEditorExe { get; set; }
 
     /// <summary>
     /// Indicates if the warning for editing save files has been shown

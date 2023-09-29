@@ -49,10 +49,21 @@ public class AssociatedFileEditorsManager
         bool isBinary = fileExtension == BinaryFileExtension;
         string extName = isBinary ? Resources.Archive_EditBinary.ToLower() : new FileExtension(fileExtension).ToString();
 
+        FileExtension[]? dialogFileExtensions = null;
+
+        if (!isBinary)
+        {
+            // Hard-code some similar file extensions for the dialog to make it easier finding a program
+            if (new FileExtension(fileExtension) == new FileExtension(".json"))
+                dialogFileExtensions = new FileExtension[] { new(fileExtension), new(".txt") };
+            else
+                dialogFileExtensions = new FileExtension[] { new(fileExtension) };
+        }
+
         ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
         {
             Title = String.Format(Resources.Archive_SelectEditExe, extName),
-            FileExtensions = isBinary ? null : new[] { new FileExtension(fileExtension) },
+            FileExtensions = dialogFileExtensions,
         });
 
         if (programResult.CanceledByUser)
