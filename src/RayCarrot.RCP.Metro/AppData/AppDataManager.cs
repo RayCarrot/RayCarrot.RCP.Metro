@@ -761,6 +761,18 @@ public class AppDataManager
                 NOTE: If you want to downgrade to a version prior to 14.0 you have to uninstall this version (in the about page) or manually remove the app data folder before doing so.
                 """, "14.0 Beta", MessageType.Generic);
         }
+
+        if (lastVersion < new Version(14, 0, 0, 5))
+        {
+            // The binary file editor path is no longer stored in its own value
+            if (_dataJObject != null)
+            {
+                FileSystemPath binaryFileEditor = _dataJObject.Value<string>("Archive_BinaryEditorExe");
+
+                if (binaryFileEditor != FileSystemPath.EmptyPath)
+                    Data.FileEditors_AssociatedEditors[String.Empty] = binaryFileEditor;
+            }
+        }
     }
 
     #endregion

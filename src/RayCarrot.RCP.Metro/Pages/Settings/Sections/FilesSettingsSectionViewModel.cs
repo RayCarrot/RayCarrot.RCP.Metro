@@ -1,63 +1,186 @@
-﻿using System.Collections.Specialized;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro.Pages.Settings.Sections;
 
-public class FilesSettingsSectionViewModel : SettingsSectionViewModel
+public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipient<FileEditorAssociationAdded>, IRecipient<FileEditorAssociationRemoved>
 {
-    public FilesSettingsSectionViewModel(AppUserData data) : base(data)
+    public FilesSettingsSectionViewModel(
+        AppUserData data, 
+        AppUIManager ui, 
+        IMessageUIManager messageUi, 
+        AssociatedFileEditorsManager associatedFileEditorsManager,
+        IMessenger messenger) : base(data)
     {
-        AssociatedPrograms = new ObservableCollection<AssociatedProgramEntryViewModel>();
+        UI = ui;
+        MessageUI = messageUi;
+        AssociatedFileEditorsManager = associatedFileEditorsManager;
 
-        // Refresh when needed
-        Data.PropertyChanged += (_, e) =>
-        {
-            if (e.PropertyName == nameof(Data.Archive_AssociatedPrograms))
-                Refresh();
-        };
-        AssociatedPrograms.CollectionChanged += (_, e) =>
-        {
-            // For now you can only remove items from the UI
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                foreach (AssociatedProgramEntryViewModel item in e.OldItems)
-                    Data.Archive_AssociatedPrograms.Remove(item.FileExtension);
+        AssociatedPrograms = new ObservableCollectionEx<AssociatedProgramEntryViewModel>();
 
-                // Make sure the check for if the collection is empty or not updates
-                OnPropertyChanged(nameof(AssociatedPrograms));
-            }
-        };
+        messenger.RegisterAll(this);
+
+        AddCommand = new AsyncRelayCommand(AddAsync);
     }
+
+    private AppUIManager UI { get; }
+    private IMessageUIManager MessageUI { get; }
+    private AssociatedFileEditorsManager AssociatedFileEditorsManager { get; }
+
+    public ICommand AddCommand { get; }
 
     public override LocalizedString Header => "Files"; // TODO-LOC
     public override GenericIconKind Icon => GenericIconKind.Settings_Files;
 
-    public ObservableCollection<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
+    public ObservableCollectionEx<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
 
-    public override void Refresh()
+    private void SortPrograms()
+    {
+        AssociatedPrograms.ModifyCollection(x => x.Sort((item1, item2) => String.Compare(item1.FileExtension, item2.FileExtension, StringComparison.Ordinal)));
+    }
+
+    public async Task AddAsync()
+    {
+        StringInputResult stringResult = await UI.GetStringInputAsync(new StringInputViewModel()
+        {
+            // TODO-LOC
+            Title = "Add file editor",
+            HeaderText = "Specify the file extension"
+        });
+
+        if (stringResult.CanceledByUser)
+            return;
+
+        string ext = stringResult.StringInput.ToLowerInvariant();
+
+        if (AssociatedFileEditorsManager.GetFileEditorAssociations().ContainsKey(ext))
+        {
+            // TODO-LOC
+            await MessageUI.DisplayMessageAsync("The specified file extension has already been defined");
+            return;
+        }
+
+        bool isBinary = ext == AssociatedFileEditorsManager.BinaryFileExtension;
+
+        if (!isBinary && (!ext.StartsWith(".") || ext.Count(x => x == '.') > 1))
+        {
+            // TODO-LOC
+            await MessageUI.DisplayMessageAsync("The specified file extension is not valid. It must start with a period and not have any more periods afterwards.");
+            return;
+        }
+
+        ProgramSelectionResult programResult = await UI.GetProgramAsync(new ProgramSelectionViewModel
+        {
+            // TODO-LOC
+            Title = "Add file editor",
+            FileExtensions = isBinary ? Array.Empty<FileExtension>() : new[] { new FileExtension(ext) },
+        });
+
+        if (programResult.CanceledByUser)
+            return;
+
+        AssociatedFileEditorsManager.AddFileEditorAssociaton(ext, programResult.ProgramFilePath);
+    }
+
+    public override async void Refresh()
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            AssociatedPrograms.Clear();
+            AssociatedPrograms.ModifyCollection(x =>
+            {
+                x.Clear();
+                x.AddRange(AssociatedFileEditorsManager.GetFileEditorAssociations().
+                    Select(p => new AssociatedProgramEntryViewModel(UI, AssociatedFileEditorsManager, p.Key)).
+                    OrderBy(p => p.FileExtension));
+            });
+        });
 
-            AssociatedPrograms.AddRange(Data.Archive_AssociatedPrograms.Select(x => new AssociatedProgramEntryViewModel(x.Key)));
+        await Task.WhenAll(AssociatedPrograms.Select(x => Task.Run(x.LoadIcon)));
+    }
 
-            OnPropertyChanged(nameof(AssociatedPrograms));
+    public void Receive(FileEditorAssociationAdded message)
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            AssociatedProgramEntryViewModel vm = new(UI, AssociatedFileEditorsManager, message.FileExtension);
+            vm.LoadIcon();
+            AssociatedPrograms.Add(vm);
+            SortPrograms();
+        });
+    }
+
+    public void Receive(FileEditorAssociationRemoved message)
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            AssociatedPrograms.RemoveWhere(x => x.FileExtension == message.FileExtension);
+            SortPrograms();
         });
     }
 
     public class AssociatedProgramEntryViewModel : BaseRCPViewModel
     {
-        public AssociatedProgramEntryViewModel(string fileExtension)
+        public AssociatedProgramEntryViewModel(AppUIManager ui, AssociatedFileEditorsManager associatedFileEditorsManager, string fileExtension)
         {
+            UI = ui;
+            AssociatedFileEditorsManager = associatedFileEditorsManager;
             FileExtension = fileExtension;
+
+            ChangeProgramCommand = new AsyncRelayCommand(ChangeProgramAsync);
+            RemoveCommand = new RelayCommand(Remove);
         }
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        private AppUIManager UI { get; }
+        private AssociatedFileEditorsManager AssociatedFileEditorsManager { get; }
+
+        public ICommand ChangeProgramCommand { get; }
+        public ICommand RemoveCommand { get; }
 
         public string FileExtension { get; }
         public string ExeFilePath
         {
-            get => Data.Archive_AssociatedPrograms[FileExtension];
-            set => Data.Archive_AssociatedPrograms[FileExtension] = value;
+            get => AssociatedFileEditorsManager.GetFileEditorAssociaton(FileExtension) ?? String.Empty;
+            set => AssociatedFileEditorsManager.UpdateFileEditorAssociaton(FileExtension, value);
+        }
+        public ImageSource? ExeIconImageSource { get; set; }
+
+        public async Task ChangeProgramAsync()
+        {
+            ProgramSelectionResult programResult = await UI.GetProgramAsync(new ProgramSelectionViewModel
+            {
+                // TODO-LOC
+                Title = "Change editor program",
+                ProgramFilePath = ExeFilePath,
+                FileExtensions = new[] { new FileExtension(FileExtension) },
+            });
+
+            if (programResult.CanceledByUser)
+                return;
+
+            ExeFilePath = programResult.ProgramFilePath;
+
+            LoadIcon();
+        }
+
+        public void Remove()
+        {
+            AssociatedFileEditorsManager.RemoveFileEditorAssociaton(FileExtension);
+        }
+
+        public void LoadIcon()
+        {
+            try
+            {
+                ExeIconImageSource = WindowsHelpers.GetIconOrThumbnail(ExeFilePath, ShellThumbnailSize.Medium).ToImageSource();
+                ExeIconImageSource?.Freeze();
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "Getting exe icon image source");
+            }
         }
     }
 }

@@ -14,56 +14,79 @@
 
     <StackPanel>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Archive_BinaryEditor}"
-                   Margin="0 0 0 4" />
+        <!-- TODO-LOC -->
+        <TextBlock Text="Here you can specify which program to use for editing certain file types. This is used in places such as the Archive Explorer or Progression page where you're able to use an external program to edit a file. An empty file extension is used to specify the program to use for editing binary files. It is recommended to use a hex editor for this." 
+                   FontStyle="Italic" 
+                   TextWrapping="Wrap" 
+                   Margin="0 0 0 8" />
 
-        <rcp:BrowseBox FileFilter="Exe (*.exe)|*.exe"
-                       DataContext="{Binding Path=Data}"
-                       SelectedPath="{Binding Path=Archive_BinaryEditorExe}"
-                       BrowseType="File"
-                       PathValidation="FileExists"
-                       Margin="0 0 0 8" />
-
-        <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={rcp:EnumerableEmptyVisibilityConverter}}">
-
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Archive_FileEditors}"
-                       Margin="0 0 0 4" />
-
-            <!-- TODO-UPDATE: Redesign with itemscontrol instead. Show save file editor, .json, here. Allow adding? Show info text for what this is for. -->
-            <DataGrid CanUserAddRows="False"
-                      CanUserResizeRows="False"
-                      CanUserResizeColumns="False"
-                      CanUserSortColumns="True"
-                      CanUserReorderColumns="False"
-                      CanUserDeleteRows="True"
-                      AutoGenerateColumns="False"
+        <ItemsControl Grid.IsSharedSizeScope="True"
                       ItemsSource="{Binding Path=AssociatedPrograms, Mode=OneTime}"
-                      Margin="0 0 0 8">
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0 0 0 8" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="FileExt" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" SharedSizeGroup="ExePath" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}"
-                                        ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
-                                        Width="Auto"
-                                        Binding="{Binding Path=FileExtension, Mode=OneTime}"
-                                        IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}"
-                                        ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
-                                        Width="*">
-                        <DataGridTextColumn.Binding>
-                            <Binding Path="ExeFilePath" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <rcp:FileExistsValidationRule AllowEmpty="False" />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Path=FileExtension, Mode=OneTime}"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 8 0" />
 
-            </DataGrid>
+                        <Image Grid.Column="1"
+                               Source="{Binding Path=ExeIconImageSource}"
+                               Width="22" Height="22"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               VerticalAlignment="Center"
+                               Margin="0 0 4 0" />
 
-        </StackPanel>
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Path=ExeFilePath}"
+                                   ToolTip="{Binding Path=ExeFilePath}"
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center"
+                                   MaxWidth="300"
+                                   Margin="0 0 8 0" />
+
+                        <!-- TODO-LOC -->
+                        <Button Grid.Column="3"
+                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Command="{Binding Path=ChangeProgramCommand, Mode=OneTime}"
+                                VerticalAlignment="Center"
+                                Content="Change program"
+                                rcp:Icon.Kind="{StaticResource RCP.Icons.Program}"
+                                rcp:Icon.Size="16"
+                                Margin="0 0 4 0" />
+
+                        <!-- TODO-LOC -->
+                        <Button Grid.Column="4"
+                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Command="{Binding Path=RemoveCommand, Mode=OneTime}"
+                                VerticalAlignment="Center"
+                                Content="Remove"
+                                rcp:Icon.Kind="DeleteOutline"
+                                rcp:Icon.Size="16" />
+
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- TODO-LOC -->
+        <Button Margin="0 0 0 8"
+                Style="{StaticResource RCP.Styles.Button.Flat}"
+                Command="{Binding Path=AddCommand, Mode=OneTime}"
+                Content="Add file type"
+                rcp:Icon.Kind="Plus"
+                rcp:Icon.Size="14"
+                HorizontalAlignment="Left" />
 
     </StackPanel>
 

@@ -80,10 +80,11 @@ public partial class AppUserData : BaseViewModel
         Archive_GF_UpdateTransparency = GFTransparencyMode.PreserveFormat;
         Archive_GF_ForceGF8888Import = false;
         Archive_ExplorerSortOption = ArchiveItemsSort.Default;
-        Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
-        Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
         Archive_CNT_SyncOnRepack = false;
         Archive_CNT_SyncOnRepackRequested = false;
+
+        // File editors
+        FileEditors_AssociatedEditors = new Dictionary<string, FileSystemPath>();
 
         // Binary
         Binary_IsSerializationLogEnabled = false;
@@ -112,8 +113,8 @@ public partial class AppUserData : BaseViewModel
         Mod_RRR_ToggleStates ??= new Dictionary<string, Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping ??= new Dictionary<int, Key>();
 
-        // Archive
-        Archive_AssociatedPrograms ??= new Dictionary<string, FileSystemPath>();
+        // File editors
+        FileEditors_AssociatedEditors ??= new Dictionary<string, FileSystemPath>();
     }
 
     #endregion
@@ -376,16 +377,6 @@ public partial class AppUserData : BaseViewModel
     public ArchiveItemsSort Archive_ExplorerSortOption { get; set; }
 
     /// <summary>
-    /// The executable to use when opening a binary file for editing
-    /// </summary>
-    public FileSystemPath Archive_BinaryEditorExe { get; set; }
-
-    /// <summary>
-    /// The executables to use, associated with their file extensions
-    /// </summary>
-    public Dictionary<string, FileSystemPath> Archive_AssociatedPrograms { get; set; }
-
-    /// <summary>
     /// Indicates if the textures for a CNT file should be synchronized with the game on repacking the archive
     /// </summary>
     public bool Archive_CNT_SyncOnRepack { get; set; }
@@ -395,17 +386,14 @@ public partial class AppUserData : BaseViewModel
     /// </summary>
     public bool Archive_CNT_SyncOnRepackRequested { get; set; }
 
-    public void Archive_AddAssociatedProgram(FileExtension ext, FileSystemPath exePath)
-    {
-        Archive_AssociatedPrograms.Add(ext.FileExtensions, exePath);
-        OnPropertyChanged(nameof(Archive_AssociatedPrograms));
-    }
+    #endregion
 
-    public void Archive_RemoveAssociatedProgram(FileExtension ext)
-    {
-        Archive_AssociatedPrograms.Remove(ext.FileExtensions);
-        OnPropertyChanged(nameof(Archive_AssociatedPrograms));
-    }
+    #region File Editors
+
+    /// <summary>
+    /// The file editor file paths, associated with their file extensions. An empty string is used for a binary file editor.
+    /// </summary>
+    public Dictionary<string, FileSystemPath> FileEditors_AssociatedEditors { get; set; }
 
     #endregion
 

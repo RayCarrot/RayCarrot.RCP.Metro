@@ -747,53 +747,10 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                     }
 
                     // Get the program to open the file with
-                    FileSystemPath? programPath = null;
+                    FileSystemPath? programPath = await Services.AssociatedFileEditorsManager.RequestFileEditorAssociatonAsync(asBinary ? Services.AssociatedFileEditorsManager.BinaryFileExtension : ext.FileExtensions);
 
-                    // If not opening as binary we check for programs associated with the file extension
-                    if (!asBinary)
-                    {
-                        Dictionary<string, FileSystemPath> extPrograms = Services.Data.Archive_AssociatedPrograms;
-
-                        // Start by checking if the user has specified a default program
-                        if (extPrograms.ContainsKey(ext.FileExtensions))
-                        {
-                            FileSystemPath exe = extPrograms[ext.FileExtensions];
-
-                            if (exe.FileExists)
-                                programPath = exe;
-                            else
-                                Services.Data.Archive_RemoveAssociatedProgram(ext);
-                        }
-                    }
-                    else
-                    {
-                        FileSystemPath binaryEditor = Services.Data.Archive_BinaryEditorExe;
-
-                        if (binaryEditor.FileExists)
-                            programPath = binaryEditor;
-                    }
-
-                    // If it's still null we ask the user for the program to use
                     if (programPath == null)
-                    {
-                        string e = asBinary ? Resources.Archive_EditBinary.ToLower() : $"{ext}";
-
-                        ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
-                        {
-                            Title = String.Format(Resources.Archive_SelectEditExe, e),
-                            FileExtensions = asBinary ? null : new FileExtension[] { ext },
-                        });
-
-                        if (programResult.CanceledByUser)
-                            return;
-
-                        if (asBinary)
-                            Services.Data.Archive_BinaryEditorExe = programResult.ProgramFilePath;
-                        else
-                            Services.Data.Archive_AddAssociatedProgram(ext, programResult.ProgramFilePath);
-
-                        programPath = programResult.ProgramFilePath;
-                    }
+                        return;
 
                     // If read-only set the attribute
                     if (readOnly)

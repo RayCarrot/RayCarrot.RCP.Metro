@@ -36,6 +36,8 @@ public static class Services
     /// </summary>
     public static IDialogBaseManager DialogBaseManager => GetService<IDialogBaseManager>();
 
+    public static AssociatedFileEditorsManager AssociatedFileEditorsManager => GetService<AssociatedFileEditorsManager>();
+
     /// <summary>
     /// The application user data
     /// </summary>

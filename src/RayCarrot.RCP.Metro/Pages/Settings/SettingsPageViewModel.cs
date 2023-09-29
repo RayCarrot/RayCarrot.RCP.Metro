@@ -17,7 +17,9 @@ public class SettingsPageViewModel : BasePageViewModel
         IMessageUIManager messageUi, 
         AppUIManager ui, 
         JumpListManager jumpListManager, 
-        FileManager fileManager) : base(app)
+        FileManager fileManager,
+        AssociatedFileEditorsManager associatedFileEditorsManager,
+        IMessenger messenger) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
@@ -37,7 +39,7 @@ public class SettingsPageViewModel : BasePageViewModel
             new() { new GeneralSettingsSectionViewModel(Data, ui, jumpListManager), },
             new() { new DesignSettingsSectionViewModel(Data), },
             new() { new StartupSettingsSectionViewModel(Data), },
-            new() { new FilesSettingsSectionViewModel(Data), },
+            new() { new FilesSettingsSectionViewModel(Data, ui, messageUi, associatedFileEditorsManager, messenger), },
             new() { new WindowsIntegrationSettingsSectionViewModel(Data, MessageUI), },
             new() { new ProgressionSettingsSectionViewModel(Data), },
             new() { new ArchiveExplorerSettingsSectionViewModel(Data), },
