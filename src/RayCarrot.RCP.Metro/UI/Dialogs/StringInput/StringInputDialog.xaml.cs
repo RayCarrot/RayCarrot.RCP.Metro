@@ -60,7 +60,7 @@ public partial class StringInputDialog : WindowContentControl, IDialogWindowCont
         return new StringInputResult()
         {
             CanceledByUser = CanceledByUser,
-            StringInput = ViewModel.StringInput
+            StringInput = ViewModel.StringInput ?? String.Empty
         };
     }
 

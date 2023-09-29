@@ -218,6 +218,15 @@ public class ProgramSelectionViewModel : UserInputViewModel
             }).
             ThenBy(x => x?.Name));
 
+        // Select if a path is set
+        if (ProgramFilePath != FileSystemPath.EmptyPath)
+        {
+            ProgramSelectionItemViewModel? selectedProgram = Programs.FirstOrDefault(x => x != null && x.FilePath == ProgramFilePath);
+
+            if (selectedProgram != null)
+                SelectedProgram = selectedProgram;
+        }
+
         // Get icons
         await Task.Run(() =>
         {

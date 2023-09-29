@@ -19,6 +19,8 @@
         </Grid.RowDefinitions>
 
         <ListBox Grid.Row="0" 
+                 IsTextSearchEnabled="True"
+                 TextSearch.TextPath="Name"
                  ItemsSource="{Binding Path=Programs}"
                  SelectedItem="{Binding Path=SelectedProgram}">
 
