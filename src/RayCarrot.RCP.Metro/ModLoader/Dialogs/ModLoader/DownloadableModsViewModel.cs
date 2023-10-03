@@ -4,7 +4,7 @@ using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-public class DownloadableModsViewModel : BaseViewModel
+public class DownloadableModsViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
@@ -134,6 +134,7 @@ public class DownloadableModsViewModel : BaseViewModel
 
         IsEmpty = false;
         ErrorMessage = null;
+        Mods.DisposeAll();
         Mods.Clear();
         _currentPage = -1;
         _pageCount = -1;
@@ -145,6 +146,11 @@ public class DownloadableModsViewModel : BaseViewModel
     public void OpenModDocs()
     {
         Services.App.OpenUrl("https://github.com/RayCarrot/RayCarrot.RCP.Metro/wiki/Mod-Loader");
+    }
+
+    public void Dispose()
+    {
+        Mods.DisposeAll();
     }
 
     #endregion

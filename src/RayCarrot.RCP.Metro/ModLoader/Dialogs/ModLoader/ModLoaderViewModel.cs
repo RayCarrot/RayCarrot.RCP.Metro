@@ -294,11 +294,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
             int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
 
+            ModViewModel viewModel;
+
             // The mod is being added as a new mod
             if (existingModIndex == -1)
             {
                 ModManifestEntry modEntry = new(id, installInfo, true);
-                ModViewModel viewModel = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
+                viewModel = new ModViewModel(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
 
                 Mods.Add(viewModel);
                 viewModel.LoadThumbnail();
@@ -309,12 +311,18 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 ModViewModel existingMod = Mods[existingModIndex];
 
                 ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled);
-                ModViewModel viewModel = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
+                viewModel = new ModViewModel(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
 
                 existingMod.Dispose();
                 Mods[existingModIndex] = viewModel;
                 viewModel.LoadThumbnail();
             }
+
+            Services.Messenger.Send(new ModInstalledMessage(viewModel), 
+                // TODO: For now we use the installation id as the token to keep this scoped to the current
+                //       dialog instance. In the future we might want to set up a system where each open
+                //       dialog instance has an id which we can then use as a token.
+                GameInstallation.InstallationId);
 
             Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
         }
@@ -628,6 +636,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         Mods.DisposeAll();
         _httpClient.Dispose();
+        DownloadableMods.Dispose();
     }
 
     #endregion

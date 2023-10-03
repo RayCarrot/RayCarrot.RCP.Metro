@@ -5,7 +5,7 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-public class GameBananaDownloadableModViewModel : DownloadableModViewModel
+public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRecipient<ModInstalledMessage>
 {
     #region Constructor
 
@@ -60,7 +60,14 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         DownloadsCount = downloadsCount;
         ViewsCount = viewsCount;
 
-        Files = new ObservableCollection<GameBananaFileViewModel>(files.Select(x => new GameBananaFileViewModel(x)));
+        Files = new ObservableCollection<GameBananaFileViewModel>(files.Select(x => new GameBananaFileViewModel(x)
+        {
+            DownloadedMod = modLoaderViewModel.Mods.
+                Where(mod => mod.DownloadableModsSource?.Id == downloadableModsSource.Id).
+                FirstOrDefault(mod => mod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == x.Id)
+        }));
+
+        Services.Messenger.RegisterAll(this, modLoaderViewModel.GameInstallation.InstallationId);
 
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
         DownloadFileCommand = new AsyncRelayCommand(x => DownloadFileAsync((GameBananaFileViewModel)x!));
@@ -160,6 +167,30 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
             downloadUrl: file.DownloadableFile.DownloadUrl, 
             fileSize: file.DownloadableFile.FileSize, 
             installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id));
+    }
+
+    public void Receive(ModInstalledMessage message)
+    {
+        if (message.ModViewModel.DownloadableModsSource?.Id != _downloadableModsSource.Id)
+            return;
+
+        long fileId = message.ModViewModel.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId;
+
+        foreach (GameBananaFileViewModel file in Files)
+        {
+            if (file.DownloadableFile.Id == fileId)
+            {
+                file.DownloadedMod = message.ModViewModel;
+                break;
+            }
+        }
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+
+        Services.Messenger.UnregisterAll(this, _modLoaderViewModel.GameInstallation.InstallationId);
     }
 
     #endregion

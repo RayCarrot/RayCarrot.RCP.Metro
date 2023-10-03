@@ -6,10 +6,10 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
-             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DesignWidth="500"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <!-- TODO-LOC -->
@@ -140,13 +140,34 @@
                         </StackPanel>
 
                         <Button Grid.Column="2"
-                                Style="{StaticResource RCP.Styles.Button.Flat}"
                                 Command="{Binding Path=DataContext.(gameBanana:GameBananaDownloadableModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                CommandParameter="{Binding Mode=OneTime}"
-                                Content="Download"
-                                ToolTip="Download and install the mod"
-                                rcp:Icon.Kind="DownloadOutline" 
-                                rcp:Icon.Brush="{StaticResource RCP.Brushes.GameBanana.Download}" />
+                                CommandParameter="{Binding Mode=OneTime}">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                                    <Setter Property="rcp:Icon.Kind" Value="DownloadOutline" />
+                                    <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.GameBanana.Download}" />
+                                    <Setter Property="Content" Value="Download" />
+                                    <Setter Property="ToolTip" Value="Download and install the mod" />
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=DownloadedMod, Converter={rcp:IsNotNullConverter}}" Value="True">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                            <Setter Property="Content" Value="Installed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState}" Value="PendingUninstall">
+                                            <Setter Property="IsEnabled" Value="True" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=DownloadedMod.UpdateState}" Value="UpdateAvailable">
+                                            <Setter Property="IsEnabled" Value="True" />
+                                            <Setter Property="rcp:Icon.Kind" Value="RefreshCircle" />
+                                            <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.Info}" />
+                                            <Setter Property="Content" Value="Update" />
+                                            <Setter Property="ToolTip" Value="Update the installed mod" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
 
                     </Grid>
                 </DataTemplate>

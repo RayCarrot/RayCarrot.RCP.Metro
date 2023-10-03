@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
+﻿using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+
+namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 public class GameBananaFileViewModel : BaseViewModel
 {
@@ -14,4 +16,6 @@ public class GameBananaFileViewModel : BaseViewModel
 
     public string FileName { get; }
     public string FileDescription { get; }
+
+    public ModViewModel? DownloadedMod { get; set; }
 }
