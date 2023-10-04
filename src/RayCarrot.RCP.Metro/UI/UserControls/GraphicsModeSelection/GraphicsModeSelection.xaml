@@ -8,11 +8,17 @@
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:GraphicsModeSelectionViewModel}">
-    <ComboBox ItemsSource="{Binding Path=GraphicsModes, Mode=OneTime}" 
+    <ComboBox x:Name="ModesComboBox"
+              ItemsSource="{Binding Path=GraphicsModes, Mode=OneTime}" 
               HorizontalAlignment="Left"
               MinWidth="100"
               IsEditable="{Binding Path=AllowCustomGraphicsMode, Mode=OneWay}"
               metro:TextBoxHelper.Watermark="{Resx Config_Resolution}">
+        <ComboBox.Resources>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="FlowDirection" Value="LeftToRight" />
+            </Style>
+        </ComboBox.Resources>
         <ComboBox.Text>
             <Binding Path="SelectedGraphicsMode" Converter="{local:GraphicsModeToStringConverter}">
                 <Binding.ValidationRules>
