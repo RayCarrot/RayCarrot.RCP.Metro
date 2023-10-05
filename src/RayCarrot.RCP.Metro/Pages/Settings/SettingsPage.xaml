@@ -75,10 +75,12 @@
                                 rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
                                 rcp:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToBrushConverter}}"
                                 rcp:Icon.Size="22"
-                                Content="{Binding Path=Header.Value}"
                                 rcp:ButtonAssist.IsSelected="{Binding Path=IsSelected}"
                                 Click="SectionButton_OnClick"
-                                Margin="0 1" />
+                                Margin="0 1">
+                            <TextBlock DataContext="{Binding Path=Header, Mode=OneTime}" 
+                                       Text="{Binding Path=Value}" />
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
