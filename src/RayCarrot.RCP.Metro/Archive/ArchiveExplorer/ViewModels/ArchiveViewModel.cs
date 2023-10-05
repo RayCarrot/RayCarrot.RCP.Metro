@@ -242,6 +242,14 @@ public class ArchiveViewModel : DirectoryViewModel
     {
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
+        // Make sure we can repack the archive
+        if (Services.File.IsFileLocked(FilePath))
+        {
+            // TODO-LOC
+            await Services.MessageUI.DisplayMessageAsync("The archive file is currently in use by another process and can not be repacked", MessageType.Warning);
+            return;
+        }
+
         // Run as a load operation
         using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName), canCancel: true))
         {

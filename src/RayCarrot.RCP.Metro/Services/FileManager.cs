@@ -450,4 +450,18 @@ public class FileManager
 
         return false;
     }
+
+    public bool IsFileLocked(FileSystemPath path)
+    {
+        try
+        {
+            using FileStream _ = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.None);
+        }
+        catch (IOException)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
