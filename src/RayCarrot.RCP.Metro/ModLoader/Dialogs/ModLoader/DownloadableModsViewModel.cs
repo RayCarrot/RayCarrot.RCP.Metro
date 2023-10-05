@@ -44,6 +44,8 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     private int _pageCount;
     private int _currentPage;
 
+    private DownloadableModViewModel? _selectedMod;
+
     #endregion
 
     #region Commands
@@ -60,7 +62,16 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public ObservableCollection<DownloadableModsSourceViewModel> DownloadableModsSources { get; }
 
-    public DownloadableModViewModel? SelectedMod { get; set; }
+    public DownloadableModViewModel? SelectedMod
+    {
+        get => _selectedMod;
+        set
+        {
+            _selectedMod = value;
+            _selectedMod?.OnSelected();
+        }
+    }
+
     public ObservableCollection<DownloadableModViewModel> Mods { get; }
     public bool IsEmpty { get; set; }
     public bool IsLoading { get; set; }

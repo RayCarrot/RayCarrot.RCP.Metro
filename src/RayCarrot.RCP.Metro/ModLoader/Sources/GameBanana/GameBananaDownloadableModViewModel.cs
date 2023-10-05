@@ -67,6 +67,9 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
                 FirstOrDefault(mod => mod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == x.Id)
         }));
 
+        HasViewed = Services.Data.ModLoader_ViewedMods.TryGetValue(downloadableModsSource.Id, out List<ViewedMod> viewedMod) &&
+                    viewedMod.Any(x => x.Id == GameBananaId.ToString());
+
         Services.Messenger.RegisterAll(this, modLoaderViewModel.GameInstallation.InstallationId);
 
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
@@ -111,6 +114,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public int ViewsCount { get; }
 
     public ObservableCollection<GameBananaFileViewModel> Files { get; }
+
+    public bool HasViewed { get; set; }
 
     #endregion
 
@@ -184,6 +189,18 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
                 break;
             }
         }
+    }
+
+    public override void OnSelected()
+    {
+        base.OnSelected();
+
+        HasViewed = true;
+
+        if (!Services.Data.ModLoader_ViewedMods.ContainsKey(_downloadableModsSource.Id))
+            Services.Data.ModLoader_ViewedMods.Add(_downloadableModsSource.Id, new List<ViewedMod>());
+
+        Services.Data.ModLoader_ViewedMods[_downloadableModsSource.Id].Add(new ViewedMod(GameBananaId.ToString(), DateTime.Now, Version));
     }
 
     public override void Dispose()

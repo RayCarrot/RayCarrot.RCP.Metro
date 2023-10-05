@@ -91,6 +91,7 @@ public partial class AppUserData : BaseViewModel
 
         // Mod Loader
         ModLoader_AutomaticallyCheckForUpdates = true;
+        ModLoader_ViewedMods = new Dictionary<string, List<ViewedMod>>();
     }
 
     /// <summary>
@@ -114,6 +115,9 @@ public partial class AppUserData : BaseViewModel
 
         // File editors
         FileEditors_AssociatedEditors ??= new Dictionary<string, FileSystemPath>();
+
+        // Mod loader
+        ModLoader_ViewedMods ??= new Dictionary<string, List<ViewedMod>>();
     }
 
     #endregion
@@ -411,6 +415,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the mod loader should automatically check for mod updates
     /// </summary>
     public bool ModLoader_AutomaticallyCheckForUpdates { get; set; }
+
+    /// <summary>
+    /// Specifies which downloadable mods have been viewed, for each source
+    /// </summary>
+    public Dictionary<string, List<ViewedMod>> ModLoader_ViewedMods { get; set; }
 
     #endregion
 }

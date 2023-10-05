@@ -14,6 +14,7 @@
     <!-- TODO-LOC -->
     <Grid Margin="0 8">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Likes" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Downloads" />
@@ -21,8 +22,14 @@
             <ColumnDefinition Width="Auto" SharedSizeGroup="Views2" />
         </Grid.ColumnDefinitions>
 
+        <Ellipse Width="6" 
+                 Height="6" 
+                 Visibility="{Binding Path=HasViewed, Converter={rcp:InvertedBooleanToVisibilityHiddenConverter}}"
+                 Fill="{StaticResource RCP.Brushes.Info}" 
+                 Margin="0 0 4 0" />
+
         <!-- Title -->
-        <TextBlock Grid.Column="0" 
+        <TextBlock Grid.Column="1" 
                    VerticalAlignment="Center"
                    FontSize="14"
                    Text="{Binding Path=Name, Mode=OneTime}"
@@ -30,13 +37,13 @@
                    TextWrapping="Wrap"
                    Margin="0 0 12 0" />
 
-        <TextBlock Grid.Column="1" 
+        <TextBlock Grid.Column="2" 
                    Text="{Binding Path=Version, Mode=OneTime}" 
                    Margin="0 0 16 0" 
                    FontStyle="Italic" 
                    VerticalAlignment="Center" />
 
-        <StackPanel Grid.Column="2"
+        <StackPanel Grid.Column="3"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="HeartOutline" 
@@ -48,7 +55,7 @@
                        FontSize="14"
                        VerticalAlignment="Center" />
         </StackPanel>
-        <StackPanel Grid.Column="3"
+        <StackPanel Grid.Column="4"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="ArrowDownBoldOutline" 
@@ -60,7 +67,7 @@
                        FontSize="14"
                        VerticalAlignment="Center" />
         </StackPanel>
-        <StackPanel Grid.Column="4"
+        <StackPanel Grid.Column="5"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="EyeOutline" 
