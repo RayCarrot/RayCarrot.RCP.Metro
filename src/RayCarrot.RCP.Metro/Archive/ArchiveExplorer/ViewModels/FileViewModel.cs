@@ -1,12 +1,10 @@
-﻿using MahApps.Metro.IconPacks;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
-using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -41,9 +39,9 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         RenameCommand = new AsyncRelayCommand(RenameFileAsync);
 
         // Enable collection synchronization
-        BindingOperations.EnableCollectionSynchronization(FileExports, Application.Current);
-        BindingOperations.EnableCollectionSynchronization(EditActions, Application.Current);
-        BindingOperations.EnableCollectionSynchronization(FileDisplayInfo, Application.Current);
+        FileExports.EnableCollectionSynchronization();
+        EditActions.EnableCollectionSynchronization();
+        FileDisplayInfo.EnableCollectionSynchronization();
     }
 
     #endregion
@@ -893,11 +891,6 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// </summary>
     public void Dispose()
     {
-        // Disable collection synchronization
-        BindingOperations.DisableCollectionSynchronization(FileExports);
-        BindingOperations.DisableCollectionSynchronization(EditActions);
-        BindingOperations.DisableCollectionSynchronization(FileDisplayInfo);
-
         // Dispose the file data
         FileData.Dispose();
     }

@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro;
@@ -12,7 +11,7 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
     {
         Processes = new ObservableCollection<AttachableProcessViewModel>();
 
-        BindingOperations.EnableCollectionSynchronization(Processes, App.Current);
+        Processes.EnableCollectionSynchronization();
 
         RefreshProcessesCommand = new AsyncRelayCommand(RefreshProcessesAsync);
         AttachProcessCommand = new RelayCommand(AttachProcess);
@@ -192,7 +191,6 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
     {
         ClearProcesses(true);
         AttachedProcess?.Dispose();
-        BindingOperations.DisableCollectionSynchronization(Processes);
     }
 
     #endregion

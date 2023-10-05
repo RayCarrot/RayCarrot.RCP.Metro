@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using AutoCompleteTextBox.Editors;
 using ByteSizeLib;
 using Nito.AsyncEx;
@@ -30,7 +28,7 @@ public class ArchiveExplorerDialogViewModel : BaseViewModel, IDisposable
         StatusBarItems = new ObservableCollection<LocalizedString>();
         SearchProvider = new BaseSuggestionProvider(SearchForEntries);
 
-        BindingOperations.EnableCollectionSynchronization(StatusBarItems, Application.Current);
+        StatusBarItems.EnableCollectionSynchronization();
 
         // TODO: Do not load the archives in the constructor! Create a separate init method or similar.
 
@@ -591,9 +589,6 @@ public class ArchiveExplorerDialogViewModel : BaseViewModel, IDisposable
 
         // Dispose the manager
         Manager.Dispose();
-
-        // Disable collection synchronization
-        BindingOperations.DisableCollectionSynchronization(StatusBarItems);
     }
 
     #endregion

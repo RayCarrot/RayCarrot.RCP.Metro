@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
@@ -74,9 +72,9 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         InfoItems = new ObservableCollection<DuoGridItemViewModel>();
         Actions = new ObservableCollection<Mod_Mem_ActionViewModel>();
 
-        BindingOperations.EnableCollectionSynchronization(EditorFieldGroups, Application.Current);
-        BindingOperations.EnableCollectionSynchronization(InfoItems, Application.Current);
-        BindingOperations.EnableCollectionSynchronization(Actions, Application.Current);
+        EditorFieldGroups.EnableCollectionSynchronization();
+        InfoItems.EnableCollectionSynchronization();
+        Actions.EnableCollectionSynchronization();
 
         RefreshLogCommand = new RelayCommand(RefreshLog);
     }
@@ -388,9 +386,6 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         AttachedGame?.DetachContainer();
         AttachedGame = null;
         DisposeContext();
-
-        BindingOperations.DisableCollectionSynchronization(EditorFieldGroups);
-        BindingOperations.DisableCollectionSynchronization(InfoItems);
     }
 
     #endregion

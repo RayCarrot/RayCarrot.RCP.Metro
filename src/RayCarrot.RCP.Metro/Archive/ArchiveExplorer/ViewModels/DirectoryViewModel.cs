@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using MahApps.Metro.IconPacks;
 
@@ -44,8 +42,8 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
         // Enable collection synchronization
-        BindingOperations.EnableCollectionSynchronization(Files, Application.Current);
-        BindingOperations.EnableCollectionSynchronization(this, Application.Current);
+        Files.EnableCollectionSynchronization();
+        this.EnableCollectionSynchronization();
     }
 
     #endregion
@@ -660,10 +658,6 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     /// </summary>
     public virtual void Dispose()
     {
-        // Disable collection synchronization
-        BindingOperations.DisableCollectionSynchronization(Files);
-        BindingOperations.DisableCollectionSynchronization(this);
-
         // Dispose files
         Files.DisposeAll();
     }

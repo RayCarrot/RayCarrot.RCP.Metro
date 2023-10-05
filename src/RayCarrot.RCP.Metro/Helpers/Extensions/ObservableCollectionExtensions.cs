@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System.Windows.Data;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Extension methods for an <see cref="ObservableCollection{T}"/>
@@ -22,5 +24,15 @@ public static class ObservableCollectionExtensions
 
         foreach (T item in range)
             collection.Add(item);
+    }
+
+    public static void EnableCollectionSynchronization<T>(this ObservableCollection<T> collection)
+    {
+        // Ensure we're on the UI thread
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            // Enable synchronization with a new object to lock on
+            BindingOperations.EnableCollectionSynchronization(collection, new object());
+        });
     }
 }
