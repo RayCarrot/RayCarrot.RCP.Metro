@@ -575,7 +575,10 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             Stream.Read(buffer, 0, buffer.Length);
 
             // Read the bytes into the buffer
-            return new MemoryStream(buffer);
+            MemoryStream ms = new();
+            ms.Write(buffer, 0, buffer.Length);
+            ms.Position = 0;
+            return ms;
         }
 
         /// <summary>

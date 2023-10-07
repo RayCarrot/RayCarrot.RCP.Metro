@@ -191,9 +191,11 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     private async Task<bool> VerifyPatchSecurityAsync(Mod mod)
     {
         // Check if the patch adds or replaces exe or dll files. Expand to check other file types too?
-        bool hasCodeFiles = mod.GetAddedFiles().Any(file =>
-            file.Path.FilePath.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
-            file.Path.FilePath.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase));
+        bool hasCodeFiles = mod.GetAddedFiles().
+            Select(x => x.Path.FilePath).
+            Concat(mod.GetPatchedFiles().Select(x => x.Path.FilePath)).
+            Any(x => x.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
+                     x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase));
 
         // Have the user verify
         if (hasCodeFiles)
@@ -201,7 +203,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             Logger.Info("Mod with id {0} contains one or more potentially harmful files", mod.Metadata.Id);
 
             // TODO-LOC
-            return await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} adds or replaces sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?", mod.Metadata.Name),
+            return await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} modifies sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?", mod.Metadata.Name),
                 MessageType.Question, true);
         }
         else

@@ -38,6 +38,8 @@ public class ModViewModel : BaseViewModel, IDisposable
             new("Modules:", Mod.GetSupportedModules().JoinItems(", ", x => x.Id)),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),
             new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), mod.GetRemovedFiles().Count.ToString()),
+            // TODO-LOC
+            new("Patched files:", mod.GetPatchedFiles().Count.ToString()),
         };
 
         ReadOnlyCollection<string> unsupportedModules = Mod.GetUnsupportedModules();

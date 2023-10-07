@@ -14,4 +14,6 @@ public abstract class ModModule
         new ReadOnlyCollection<IModFileResource>(new List<IModFileResource>());
     public virtual IReadOnlyCollection<ModFilePath> GetRemovedFiles(Mod mod, FileSystemPath modulePath) =>
         new ReadOnlyCollection<ModFilePath>(new List<ModFilePath>());
+    public virtual IReadOnlyCollection<IFilePatch> GetPatchedFiles(Mod mod, FileSystemPath modulePath) =>
+        new ReadOnlyCollection<IFilePatch>(new List<IFilePatch>());
 }

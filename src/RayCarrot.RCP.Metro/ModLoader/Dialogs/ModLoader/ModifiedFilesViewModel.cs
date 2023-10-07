@@ -140,6 +140,8 @@ public class ModifiedFilesViewModel : BaseViewModel
 
             foreach (ModFilePath removedFile in mod.GetRemovedFiles())
                 AddFile(removedFile, mod, ModifiedFileItemViewModel.FileModification.Remove);
+
+            // TODO-UPDATE: Show patched files too
         }
 
         ModifiedFilesRoot.ApplyItems();

@@ -17,6 +17,8 @@ public class LibraryFileHistoryBuilder : IDisposable
     private readonly TempDirectory _tempDirectory = new(true);
     private readonly HashSet<string> _dirsToDeleteIfEmpty = new();
 
+    private readonly HashSet<string> _files = new();
+
     private readonly List<ModFilePath> _addedFiles = new();
     private readonly List<ModFilePath> _replacedFiles = new();
     private readonly List<ModFilePath> _removedFiles = new();
@@ -41,9 +43,8 @@ public class LibraryFileHistoryBuilder : IDisposable
         {
             Directory.CreateDirectory(destFilePath.Parent);
 
-            using Stream resourceStream = resource.Read();
             using Stream destStream = File.Create(destFilePath);
-            resourceStream.CopyTo(destStream);
+            resource.CopyToStream(destStream);
         }
     }
 
@@ -88,18 +89,26 @@ public class LibraryFileHistoryBuilder : IDisposable
     public void AddAddedFile(ModFilePath filePath)
     {
         _addedFiles.Add(filePath);
+        _files.Add(ModLoaderHelpers.NormalizePath(filePath.FullFilePath));
     }
 
     public void AddReplacedFile(ModFilePath filePath, IModFileResource resource)
     {
         _replacedFiles.Add(filePath);
+        _files.Add(ModLoaderHelpers.NormalizePath(filePath.FullFilePath));
         AddFileToHistory(filePath, resource);
     }
 
     public void AddRemovedFile(ModFilePath filePath, IModFileResource resource)
     {
         _removedFiles.Add(filePath);
+        _files.Add(ModLoaderHelpers.NormalizePath(filePath.FullFilePath));
         AddFileToHistory(filePath, resource);
+    }
+
+    public bool HasAddedFile(ModFilePath filePath)
+    {
+        return _files.Contains(ModLoaderHelpers.NormalizePath(filePath.FullFilePath));
     }
 
     // TODO: This feels a bit out of place in this class, but I don't know where

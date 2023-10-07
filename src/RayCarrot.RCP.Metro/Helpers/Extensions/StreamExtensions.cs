@@ -45,4 +45,16 @@ public static class StreamExtensions
 
         progressCallback?.Invoke(progress.Completed());
     }
+
+    public static void CopyToEx(
+        this Stream source, 
+        Stream destination,
+        int bufferSize = 0x80000)
+    {
+        using ArrayRental<byte> buffer = new(bufferSize);
+
+        int count;
+        while ((count = source.Read(buffer.Array, 0, bufferSize)) != 0)
+            destination.Write(buffer.Array, 0, count);
+    }
 }

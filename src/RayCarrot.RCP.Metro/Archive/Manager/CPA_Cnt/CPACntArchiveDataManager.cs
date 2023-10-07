@@ -460,7 +460,10 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             Stream.Read(buffer, 0, buffer.Length);
 
             // Return the buffer
-            return new MemoryStream(buffer);
+            MemoryStream ms = new();
+            ms.Write(buffer, 0, buffer.Length);
+            ms.Position = 0;
+            return ms;
         }
 
         /// <summary>

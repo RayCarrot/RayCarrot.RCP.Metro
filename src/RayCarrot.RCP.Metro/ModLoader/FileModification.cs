@@ -1,5 +1,4 @@
-﻿using System.IO;
-using RayCarrot.RCP.Metro.ModLoader.Resource;
+﻿using RayCarrot.RCP.Metro.ModLoader.Resource;
 
 namespace RayCarrot.RCP.Metro.ModLoader;
 
@@ -39,6 +38,7 @@ public class FileModification
     #region Private Properties
 
     private bool AddToHistory => Source != FileSource.History;
+    private List<IFilePatch>? FilePatches { get; set; }
 
     #endregion
 
@@ -54,7 +54,7 @@ public class FileModification
 
     #region Private Methods
 
-    private void AddAddedFileToHistory(LibraryFileHistoryBuilder historyBuilder, bool fileExists, Func<Stream> getCurrentFile)
+    private void AddAddedFileToHistory(LibraryFileHistoryBuilder historyBuilder, bool fileExists, FileModificationStream fileStream)
     {
         // If the file was added previously we don't want to mark it as being replaced or else we'd 
         // be replacing the previously added file (which we know wasn't there originally). Instead
@@ -81,8 +81,7 @@ public class FileModification
         {
             if (fileExists)
             {
-                using Stream fileStream = getCurrentFile();
-                historyBuilder.AddReplacedFile(ModFilePath, new VirtualModFileResource(ModFilePath, fileStream));
+                historyBuilder.AddReplacedFile(ModFilePath, new VirtualModFileResource(ModFilePath, fileStream.Stream));
             }
             else
             {
@@ -91,7 +90,7 @@ public class FileModification
         }
     }
 
-    private void AddRemovedFileToHistory(LibraryFileHistoryBuilder historyBuilder, bool fileExists, Func<Stream> getCurrentFile)
+    private void AddRemovedFileToHistory(LibraryFileHistoryBuilder historyBuilder, bool fileExists, FileModificationStream fileStream)
     {
         // If the file was previously added we don't want to do anything. This means that the file
         // which currently exists there was added (not replaced) by a previous mod and we don't
@@ -116,8 +115,23 @@ public class FileModification
         // remove a file which doesn't exist.
         else if (fileExists)
         {
-            using Stream fileStream = getCurrentFile();
-            historyBuilder.AddRemovedFile(ModFilePath, new VirtualModFileResource(ModFilePath, fileStream));
+            historyBuilder.AddRemovedFile(ModFilePath, new VirtualModFileResource(ModFilePath, fileStream.Stream));
+        }
+    }
+
+    private void ProcessFilePatches(LibraryFileHistoryBuilder historyBuilder, FileModificationStream fileStream)
+    {
+        // Ignore if there are no patches
+        if (FilePatches == null || !FilePatches.Any())
+            return;
+
+        // If not already added to history (might have happened if file was added), then manually add here before applying patches
+        if (!historyBuilder.HasAddedFile(ModFilePath))
+            historyBuilder.AddReplacedFile(ModFilePath, new VirtualModFileResource(ModFilePath, fileStream.Stream));
+
+        foreach (IFilePatch filePatch in FilePatches)
+        {
+            filePatch.PatchFile(fileStream.Stream);
         }
     }
 
@@ -125,13 +139,29 @@ public class FileModification
 
     #region Public Methods
 
+    public void AddFilePatch(IFilePatch filePatch)
+    {
+        // If the modification is to remove the file then there's no point in patching it
+        if (Type == FileType.Remove)
+            return;
+
+        FilePatches ??= new List<IFilePatch>();
+
+        // Add the patch
+        FilePatches.Add(filePatch);
+    }
+
+    public bool HasFilePatches() => FilePatches.Any();
+
     public void ProcessFile(
         LibraryFileHistoryBuilder historyBuilder,
         bool fileExists,
-        Func<Stream> getCurrentFile,
-        Action<Stream> addCurrentFile,
-        Action deleteFile)
+        FileModificationStream fileStream)
     {
+        if (Type == FileType.PatchOnly)
+        {
+            // The will happen if a file has patches to be applied to it but is not set to be added or removed
+        }
         if (Type == FileType.Add)
         {
             if (fileExists)
@@ -141,12 +171,14 @@ public class FileModification
 
             // Optionally add the file to the history
             if (AddToHistory)
-                AddAddedFileToHistory(historyBuilder, fileExists, getCurrentFile);
+                AddAddedFileToHistory(historyBuilder, fileExists, fileStream);
 
             // Add/replace the file
             IModFileResource resourceEntry = ResourceEntry ?? throw new Exception("Missing resource entry");
-            using Stream resource = resourceEntry.Read();
-            addCurrentFile(resource);
+            fileStream.Stream.SetLength(0);
+            resourceEntry.CopyToStream(fileStream.Stream);
+
+            fileExists = true;
         }
         else if (Type == FileType.Remove)
         {
@@ -154,15 +186,20 @@ public class FileModification
 
             // Optionally add the file to the history
             if (AddToHistory)
-                AddRemovedFileToHistory(historyBuilder, fileExists, getCurrentFile);
+                AddRemovedFileToHistory(historyBuilder, fileExists, fileStream);
 
             // Remove the file
-            deleteFile();
+            fileStream.DeleteFile();
+
+            fileExists = false;
         }
         else
         {
             throw new Exception($"The file modification type {Type} is not supported");
         }
+
+        if (fileExists)
+            ProcessFilePatches(historyBuilder, fileStream);
     }
 
     #endregion
@@ -171,7 +208,7 @@ public class FileModification
 
     public record HistoryFileEntry(HistoryFileType Type, IModFileResource? ResourceEntry = null);
 
-    public enum FileType { Add, Remove, }
+    public enum FileType { PatchOnly, Add, Remove }
     public enum FileSource { History, Mod, }
     public enum HistoryFileType { Add, Replace, Remove, }
 

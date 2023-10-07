@@ -59,31 +59,32 @@ public class FileLocationModifications
                 continue;
             }
 
+            using FileModificationStream fileStream = new(
+                getStreamFunc: () => 
+                {
+                    Directory.CreateDirectory(physicalFilePath.Parent);
+                    return File.Open(physicalFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                },
+                onStreamClosed: stream =>
+                {
+                    if (stream == null)
+                    {
+                        // Delete the file
+                        physicalFilePath.DeleteFile();
+
+                        // Delete the directory if it's empty
+                        historyBuilder.DeleteDirectoryIfEmpty(physicalFilePath.Parent);
+                    }
+                });
+            
             modification.ProcessFile(
                 historyBuilder: historyBuilder,
                 fileExists: physicalFilePath.FileExists,
-                getCurrentFile: () => File.OpenRead(physicalFilePath),
-                addCurrentFile: x => ReplacePhysicalFile(physicalFilePath, x),
-                deleteFile: () =>
-                {
-                    // Delete the file
-                    physicalFilePath.DeleteFile();
-
-                    // Delete the directory if it's empty
-                    historyBuilder.DeleteDirectoryIfEmpty(physicalFilePath.Parent);
-                });
+                fileStream: fileStream);
 
             fileIndex++;
             progressCallback?.Invoke(new Progress(fileIndex, _fileModifications.Count));
         }
-    }
-
-    private void ReplacePhysicalFile(FileSystemPath filePath, Stream resource)
-    {
-        Directory.CreateDirectory(filePath.Parent);
-        using Stream fileStream = File.OpenWrite(filePath);
-        fileStream.SetLength(0);
-        resource.CopyTo(fileStream);
     }
 
     private void ModifyArchive(
@@ -145,17 +146,22 @@ public class FileLocationModifications
 
                         _fileModifications.Remove(filePathKey);
 
+                        using FileModificationStream fileStream = new(
+                            // ReSharper disable once AccessToDisposedClosure
+                            getStreamFunc: () => file.GetDecodedFileData(archiveData.Generator).Stream,
+                            onStreamClosed: stream =>
+                            {
+                                if (stream != null)
+                                {
+                                    archiveFiles.Add(file);
+                                    ReplaceArchiveFile(file, manager, stream);
+                                }
+                            });
+
                         modification.ProcessFile(
                             historyBuilder: historyBuilder,
                             fileExists: true,
-                            // ReSharper disable once AccessToDisposedClosure
-                            getCurrentFile: () => file.GetDecodedFileData(archiveData.Generator).Stream,
-                            addCurrentFile: x =>
-                            {
-                                archiveFiles.Add(file);
-                                ReplaceArchiveFile(file, manager, x);
-                            },
-                            deleteFile: () => { });
+                            fileStream: fileStream);
                     }
                 }
 
@@ -167,32 +173,38 @@ public class FileLocationModifications
                     progressCallback?.Invoke(new Progress(totalFilesIndex, totalFilesMax));
                     totalFilesIndex++;
 
+                    using FileModificationStream fileStream = new(
+                        // ReSharper disable once AccessToDisposedClosure
+                        getStreamFunc: () => new MemoryStream(),
+                        onStreamClosed: stream =>
+                        {
+                            if (stream != null)
+                            {
+                                // Get the file name and directory
+                                string fileName = Path.GetFileName(modification.ModFilePath.FilePath);
+                                string dir = Path.GetDirectoryName(modification.ModFilePath.FilePath)?.
+                                    Replace(Path.DirectorySeparatorChar, manager.PathSeparatorCharacter) ?? String.Empty;
+
+                                // Create a new archive entry
+                                object entry = manager.GetNewFileEntry(archive, dir, fileName);
+
+                                Logger.Trace("Adding file {0}", modification.ModFilePath);
+
+                                // Create a new file item
+                                FileItem file = new(manager, fileName, dir, entry);
+
+                                // Add the file
+                                archiveFiles.Add(file);
+
+                                // Set the stream
+                                ReplaceArchiveFile(file, manager, stream);
+                            }
+                        });
+
                     modification.ProcessFile(
                         historyBuilder: historyBuilder,
                         fileExists: false,
-                        getCurrentFile: () => throw new InvalidOperationException("Can't get a file which doesn't exist"),
-                        addCurrentFile: x =>
-                        {
-                            // Get the file name and directory
-                            string fileName = Path.GetFileName(modification.ModFilePath.FilePath);
-                            string dir = Path.GetDirectoryName(modification.ModFilePath.FilePath)?.
-                                Replace(Path.DirectorySeparatorChar, manager.PathSeparatorCharacter) ?? String.Empty;
-
-                            // Create a new archive entry
-                            object entry = manager.GetNewFileEntry(archive, dir, fileName);
-
-                            Logger.Trace("Adding file {0}", modification.ModFilePath);
-
-                            // Create a new file item
-                            FileItem file = new(manager, fileName, dir, entry);
-
-                            // Add the file
-                            archiveFiles.Add(file);
-
-                            // Set the stream
-                            ReplaceArchiveFile(file, manager, x);
-                        },
-                        deleteFile: () => { });
+                        fileStream: fileStream);
                 }
 
                 sw.Stop();
@@ -237,6 +249,8 @@ public class FileLocationModifications
         // Get the temp stream to store the pending import data
         file.SetPendingImport();
 
+        resource.Position = 0;
+
         // Encode the data to the pending import stream
         manager.EncodeFile(resource, file.PendingImport, file.ArchiveEntry,
             // TODO: For now there is no point to supply metadata since the way the mod loader works, by using streams, means that
@@ -259,23 +273,52 @@ public class FileLocationModifications
         FileModification.FileSource source,
         ModFilePath modFilePath,
         FileModification.HistoryFileEntry? historyEntry = null,
-        IModFileResource? resourceEntry = null)
+        IModFileResource? resourceEntry = null,
+        IFilePatch? filePatch = null)
     {
         string filePathKey = GetFilePathKey(modFilePath.FilePath);
 
-        // If this modification overrides an existing one we want to copy over the history entry
-        if (historyEntry == null &&
-            _fileModifications.TryGetValue(filePathKey, out FileModification? existingModification))
+        if (type == FileModification.FileType.PatchOnly)
         {
-            historyEntry = existingModification.HistoryEntry;
-        }
+            // Make sure we have a patch
+            if (filePatch == null)
+                throw new Exception("Missing file patch entry");
 
-        _fileModifications[filePathKey] = new FileModification(
-            type: type,
-            source: source,
-            modFilePath: modFilePath,
-            historyEntry: historyEntry,
-            resourceEntry: resourceEntry);
+            // Try get existing file modification
+            if (!_fileModifications.TryGetValue(filePathKey, out FileModification? existingModification))
+            {
+                // If we could not get one then we create one
+                existingModification = new FileModification(
+                    type: type,
+                    source: source,
+                    modFilePath: modFilePath,
+                    historyEntry: historyEntry,
+                    resourceEntry: resourceEntry);
+                _fileModifications[filePathKey] = existingModification;
+            }
+
+            existingModification.AddFilePatch(filePatch);
+        }
+        else
+        {
+            // If this modification overrides an existing one we want to copy over the history entry
+            if (historyEntry == null &&
+                _fileModifications.TryGetValue(filePathKey, out FileModification? existingModification))
+            {
+                historyEntry = existingModification.HistoryEntry;
+
+                // If the existing modification has patches then we've added our modifications in the wrong order! Patches have to be added last.
+                if (existingModification.HasFilePatches())
+                    throw new Exception("Can not override a file modification with patches. The patches should always be added last!");
+            }
+
+            _fileModifications[filePathKey] = new FileModification(
+                type: type,
+                source: source,
+                modFilePath: modFilePath,
+                historyEntry: historyEntry,
+                resourceEntry: resourceEntry);
+        }
     }
 
     public void ApplyModifications(LibraryFileHistoryBuilder historyBuilder, FileSystemPath gameDir, Action<Progress>? progressCallback)

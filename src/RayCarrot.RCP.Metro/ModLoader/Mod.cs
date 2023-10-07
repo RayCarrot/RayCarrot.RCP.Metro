@@ -32,6 +32,7 @@ public class Mod
         // Create file tables
         _addedFiles = _supportedModules.Values.SelectMany(x => x.GetAddedFiles(this, GetModulePath(x))).ToList();
         _removedFiles = _supportedModules.Values.SelectMany(x => x.GetRemovedFiles(this, GetModulePath(x))).ToList();
+        _patchedFiles = _supportedModules.Values.SelectMany(x => x.GetPatchedFiles(this, GetModulePath(x))).ToList();
     }
 
     #endregion
@@ -51,6 +52,7 @@ public class Mod
     private readonly List<string> _unsupportedModules;
     private readonly List<IModFileResource> _addedFiles;
     private readonly List<ModFilePath> _removedFiles;
+    private readonly List<IFilePatch> _patchedFiles;
 
     #endregion
 
@@ -98,6 +100,7 @@ public class Mod
 
     public ReadOnlyCollection<IModFileResource> GetAddedFiles() => _addedFiles.AsReadOnly();
     public ReadOnlyCollection<ModFilePath> GetRemovedFiles() => _removedFiles.AsReadOnly();
+    public ReadOnlyCollection<IFilePatch> GetPatchedFiles() => _patchedFiles.AsReadOnly();
     public ReadOnlyCollection<ModModule> GetSupportedModules() => _supportedModules.Values.ToList().AsReadOnly();
     public ReadOnlyCollection<string> GetUnsupportedModules() => _unsupportedModules.AsReadOnly();
 

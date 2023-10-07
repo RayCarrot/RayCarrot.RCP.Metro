@@ -83,7 +83,8 @@ public class ModProcessor
         FileModification.FileSource source,
         ModFilePath modFilePath,
         FileModification.HistoryFileEntry? historyEntry = null,
-        IModFileResource? resourceEntry = null)
+        IModFileResource? resourceEntry = null,
+        IFilePatch? filePatch = null)
     {
         // Get the location to add the modification to
         FileLocationModifications? locationModifications = GetLocationModifications(modFilePath.Location);
@@ -97,7 +98,7 @@ public class ModProcessor
                 return;
         }
 
-        locationModifications.AddFileModification(type, source, modFilePath, historyEntry, resourceEntry);
+        locationModifications.AddFileModification(type, source, modFilePath, historyEntry, resourceEntry, filePatch);
     }
 
     private void AddModificationsFromHistory(ModLibrary library, LibraryFileHistory fileHistory)
@@ -164,6 +165,19 @@ public class ModProcessor
         }
     }
 
+    private void AddPatchModificationsFromMod(Mod mod)
+    {
+        foreach (IFilePatch patchedFile in mod.GetPatchedFiles())
+        {
+            AddModification(
+                type: FileModification.FileType.PatchOnly,
+                source: FileModification.FileSource.Mod,
+                modFilePath: patchedFile.Path,
+                filePatch: patchedFile);
+            Logger.Trace("File mod patch: {0}", patchedFile.Path);
+        }
+    }
+
     private IEnumerable<FileLocationModifications> GetLocationModifications() => _locationModifications.Values;
 
     #endregion
@@ -210,6 +224,13 @@ public class ModProcessor
                  ((IEnumerable<(ModManifestEntry Entry, Mod Mod)>)enabledMods).Reverse())
         {
             AddModificationsFromMod(p.Mod);
+        }
+
+        // We have to add the patch modifications last
+        foreach ((ModManifestEntry Entry, Mod Mod) p in 
+                 ((IEnumerable<(ModManifestEntry Entry, Mod Mod)>)enabledMods).Reverse())
+        {
+            AddPatchModificationsFromMod(p.Mod);
         }
 
         Logger.Info("Finished retrieving file modifications");

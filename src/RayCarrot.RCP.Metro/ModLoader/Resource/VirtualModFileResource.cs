@@ -11,7 +11,11 @@ public class VirtualModFileResource : IModFileResource
     }
 
     public ModFilePath Path { get; }
+
     public Stream Stream { get; }
 
-    public Stream Read() => Stream;
+    public void CopyToStream(Stream destinationStream)
+    {
+        Stream.CopyToEx(destinationStream);
+    }
 }

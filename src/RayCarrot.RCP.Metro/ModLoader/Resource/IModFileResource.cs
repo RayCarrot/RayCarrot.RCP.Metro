@@ -13,8 +13,8 @@ public interface IModFileResource
     ModFilePath Path { get; }
 
     /// <summary>
-    /// Reads the file resource as a stream
+    /// Copies the file resource to the destination stream
     /// </summary>
-    /// <returns>The file resource stream</returns>
-    Stream Read();
+    /// <param name="destinationStream">The stream to copy the resource to</param>
+    void CopyToStream(Stream destinationStream);
 }

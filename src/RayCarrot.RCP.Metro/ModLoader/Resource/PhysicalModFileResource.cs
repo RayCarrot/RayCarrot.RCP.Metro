@@ -13,5 +13,9 @@ public class PhysicalModFileResource : IModFileResource
     public ModFilePath Path { get; }
     public FileSystemPath FilePath { get; }
 
-    public Stream Read() => File.OpenRead(FilePath);
+    public void CopyToStream(Stream destinationStream)
+    {
+        using Stream fileStream = File.OpenRead(FilePath);
+        fileStream.CopyToEx(destinationStream);
+    }
 }

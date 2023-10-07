@@ -38,8 +38,9 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
     {
         base.RegisterComponents(builder);
 
-        // Programs with a directory structure can always use the files module for mods
+        // Programs with a directory structure can always use the file and delta modules for mods
         builder.Register(new ModModuleComponent(_ => new FilesModule()));
+        builder.Register(new ModModuleComponent(_ => new DeltasModule()));
     }
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
