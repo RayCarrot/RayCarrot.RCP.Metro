@@ -10,6 +10,5 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 [BaseGameComponent]
 public class InitializeContextComponent : ActionGameComponent<Context>
 {
-    public InitializeContextComponent(Func<GameInstallation, Context, Task> asyncAction) : base(asyncAction) { }
     public InitializeContextComponent(Action<GameInstallation, Context> action) : base(action) { }
 }

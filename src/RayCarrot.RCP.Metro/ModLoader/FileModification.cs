@@ -162,7 +162,7 @@ public class FileModification
         {
             // The will happen if a file has patches to be applied to it but is not set to be added or removed
         }
-        if (Type == FileType.Add)
+        else if (Type == FileType.Add)
         {
             if (fileExists)
                 Logger.Trace("Replacing file {0}", ModFilePath);

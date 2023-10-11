@@ -6,14 +6,14 @@ public class EmulatedGbaSaveFile : EmulatedSaveFile
 {
     public EmulatedGbaSaveFile(FileSystemPath filePath) : base(filePath) { }
 
-    public override async Task<EmulatedSave[]> GetSavesAsync(GameInstallation gameInstallation)
+    public override Task<EmulatedSave[]> GetSavesAsync(GameInstallation gameInstallation)
     {
         RCPContext context = new(FilePath.Parent);
-        await gameInstallation.GetComponents<InitializeContextComponent>().InvokeAllAsync(context);
+        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
 
-        return new EmulatedSave[]
+        return Task.FromResult(new EmulatedSave[]
         {
             new EmulatedGbaSave(this, context, FilePath.Name)
-        };
+        });
     }
 }

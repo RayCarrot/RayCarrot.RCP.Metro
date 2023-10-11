@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Modules;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
@@ -9,13 +10,15 @@ public class Mod
 {
     #region Constructor
 
-    public Mod(FileSystemPath modDirectoryPath, IReadOnlyCollection<ModModule> possibleModules)
+    public Mod(FileSystemPath modDirectoryPath, GameInstallation gameInstallation)
     {
         ModDirectoryPath = modDirectoryPath;
+        GameInstallation = gameInstallation;
 
         Metadata = ReadMetadata();
 
         // Get the modules used by the mod
+        List<ModModule> possibleModules = gameInstallation.GetComponents<ModModuleComponent>().CreateObjects().ToList();
         _supportedModules = new Dictionary<string, ModModule>();
         _unsupportedModules = new List<string>();
         foreach (FileSystemPath modDir in Directory.GetDirectories(modDirectoryPath))
@@ -57,8 +60,8 @@ public class Mod
     #endregion
 
     #region Public Properties
-
     public FileSystemPath ModDirectoryPath { get; }
+    public GameInstallation GameInstallation { get; }
     public ModMetadata Metadata { get; }
 
     #endregion

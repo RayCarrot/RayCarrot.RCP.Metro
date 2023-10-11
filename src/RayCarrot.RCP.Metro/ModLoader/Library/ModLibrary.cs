@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using RayCarrot.RCP.Metro.ModLoader.Modules;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Library;
@@ -140,9 +139,9 @@ public class ModLibrary
         return JsonHelpers.DeserializeFromFile<ModManifest>(ModManifestFilePath);
     }
 
-    public Mod ReadInstalledMod(string modId, IReadOnlyCollection<ModModule> possibleModules)
+    public Mod ReadInstalledMod(string modId, GameInstallation gameInstallation)
     {
-        return new Mod(GetInstalledModPath(modId), possibleModules);
+        return new Mod(GetInstalledModPath(modId), gameInstallation);
     }
 
     public void WriteModManifest(ModManifest modManifest)
