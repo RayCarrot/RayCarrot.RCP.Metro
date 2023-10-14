@@ -3,7 +3,7 @@ using BinarySerializer;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Modules;
+namespace RayCarrot.RCP.Metro.ModLoader.Modules.UbiArtLocalization;
 
 public class UbiArtLocalizationFilePatch : IFilePatch
 {

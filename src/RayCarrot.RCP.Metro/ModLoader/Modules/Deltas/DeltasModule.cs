@@ -1,11 +1,13 @@
 ﻿using System.IO;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Modules;
+namespace RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
 
 public class DeltasModule : ModModule
 {
     public override string Id => "deltas";
+    // TODO-LOC
+    public override LocalizedString Description => "This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked.";
 
     public override IReadOnlyCollection<IFilePatch> GetPatchedFiles(Mod mod, FileSystemPath modulePath)
     {

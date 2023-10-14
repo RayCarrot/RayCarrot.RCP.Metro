@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Modules;
+namespace RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
 
 public class DeltaFilePatch : IFilePatch
 {

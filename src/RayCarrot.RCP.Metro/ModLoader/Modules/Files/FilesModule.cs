@@ -2,7 +2,7 @@
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
-namespace RayCarrot.RCP.Metro.ModLoader.Modules;
+namespace RayCarrot.RCP.Metro.ModLoader.Modules.Files;
 
 /// <summary>
 /// The most basic module. This provides support for adding/replacing and removing files from the game.
@@ -13,6 +13,8 @@ public class FilesModule : ModModule
     public const string RemovedFilesFileName = "removed_files.txt";
 
     public override string Id => "files";
+    // TODO-LOC
+    public override LocalizedString Description => "This is used to add, replace and remove entire files in the game. Great for mods such as texture replacements and the like!";
 
     public override IReadOnlyCollection<IModFileResource> GetAddedFiles(Mod mod, FileSystemPath modulePath)
     {

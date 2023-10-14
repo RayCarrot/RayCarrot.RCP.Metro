@@ -9,6 +9,9 @@ namespace RayCarrot.RCP.Metro.ModLoader.Modules;
 public abstract class ModModule
 {
     public abstract string Id { get; }
+    public abstract LocalizedString Description { get; }
+
+    public virtual ModModuleViewModel GetViewModel() => new(this);
 
     public virtual IReadOnlyCollection<IModFileResource> GetAddedFiles(Mod mod, FileSystemPath modulePath) =>
         new ReadOnlyCollection<IModFileResource>(new List<IModFileResource>());

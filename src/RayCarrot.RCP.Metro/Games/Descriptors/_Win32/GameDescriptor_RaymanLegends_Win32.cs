@@ -2,7 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
-using RayCarrot.RCP.Metro.ModLoader.Modules;
+using RayCarrot.RCP.Metro.ModLoader.Modules.UbiArtLocalization;
 
 namespace RayCarrot.RCP.Metro;
 

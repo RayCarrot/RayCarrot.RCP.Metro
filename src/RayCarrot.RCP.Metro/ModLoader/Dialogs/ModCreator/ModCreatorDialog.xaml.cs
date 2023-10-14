@@ -7,8 +7,10 @@ public partial class ModCreatorDialog : WindowContentControl
 {
     #region Constructor
     
-    public ModCreatorDialog()
+    public ModCreatorDialog(ModCreatorViewModel viewModel)
     {
+        DataContext = viewModel;
+
         // Set up UI
         InitializeComponent();
     }
@@ -31,8 +33,8 @@ public partial class ModCreatorDialog : WindowContentControl
         WindowInstance.Icon = GenericIconKind.Window_ModCreator;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
-        WindowInstance.Width = 900;
-        WindowInstance.Height = 600;
+        WindowInstance.Width = 700;
+        WindowInstance.Height = 700;
     }
 
     #endregion

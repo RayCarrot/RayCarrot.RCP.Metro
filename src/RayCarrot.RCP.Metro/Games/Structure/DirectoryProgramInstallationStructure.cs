@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.ModLoader.Modules;
+using RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
+using RayCarrot.RCP.Metro.ModLoader.Modules.Files;
 
 namespace RayCarrot.RCP.Metro.Games.Structure;
 

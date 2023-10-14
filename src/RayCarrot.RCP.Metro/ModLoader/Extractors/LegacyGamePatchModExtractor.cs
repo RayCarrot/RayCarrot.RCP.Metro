@@ -2,7 +2,7 @@
 using BinarySerializer;
 using RayCarrot.RCP.Metro.Legacy.Patcher;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
-using RayCarrot.RCP.Metro.ModLoader.Modules;
+using RayCarrot.RCP.Metro.ModLoader.Modules.Files;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Extractors;
 

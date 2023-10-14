@@ -326,10 +326,10 @@ public class AppUIManager
     /// <summary>
     /// Shows a new instance of the Mod Creator
     /// </summary>
-    /// <param name="gameTargets">The game installations the mod should be created for</param>
+    /// <param name="gameInstallation">The game installation the mod should be created for</param>
     /// <returns>The task</returns>
-    public async Task ShowModCreatorAsync(params GameInstallation[] gameTargets) => 
-        await ShowWindowAsync(() => new ModCreatorDialog());
+    public async Task ShowModCreatorAsync(GameInstallation gameInstallation) => 
+        await ShowWindowAsync(() => new ModCreatorDialog(new ModCreatorViewModel(gameInstallation)));
 
     /// <summary>
     /// Shows a new instance of the add games dialog
