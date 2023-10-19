@@ -249,7 +249,7 @@ public class FileManager
         if (replaceDir)
         {
             // Move the directory
-            Directory.Move(source, destination);
+            FileSystem.MoveDirectory(source, destination); // Use Visual Basic API to support moving across volumes
         }
         // If we do not replace we have to move file by file and directory by directory
         else
