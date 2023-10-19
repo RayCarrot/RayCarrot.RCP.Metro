@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Modules.Deltas.DeltasModuleControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:deltas="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules.Deltas"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             mc:Ignorable="d" 
+             d:DesignWidth="500"
+             Language="{UICulture}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:DataContext="{d:DesignInstance deltas:DeltasModuleViewModel}">
+    <!-- TODO-LOC -->
+    <StackPanel>
+        <Button HorizontalAlignment="Left" 
+                Style="{StaticResource RCP.Styles.Button.Flat}" 
+                Content="Create delta file"
+                ToolTip="Create a .delta patch file from two files"
+                rcp:Icon.Kind="FilePlusOutline"
+                Command="{Binding Path=CreateDeltaFileCommand, Mode=OneTime}" />
+    </StackPanel>
+</UserControl>

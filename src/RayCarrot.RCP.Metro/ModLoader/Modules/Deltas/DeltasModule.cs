@@ -5,15 +5,19 @@ namespace RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
 
 public class DeltasModule : ModModule
 {
+    public const string FileExtension = ".delta";
+
     public override string Id => "deltas";
     // TODO-LOC
     public override LocalizedString Description => "This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked.";
+
+    public override ModModuleViewModel GetViewModel() => new DeltasModuleViewModel(this);
 
     public override IReadOnlyCollection<IFilePatch> GetPatchedFiles(Mod mod, FileSystemPath modulePath)
     {
         List<IFilePatch> filePatches = new();
 
-        FileExtension deltaExt = new(".delta");
+        FileExtension deltaExt = new(FileExtension);
 
         if (mod.Metadata.Archives == null || mod.Metadata.Archives.Length == 0)
         {

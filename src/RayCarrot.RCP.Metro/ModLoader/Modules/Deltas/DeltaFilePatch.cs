@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
 
@@ -15,6 +16,13 @@ public class DeltaFilePatch : IFilePatch
     
     public void PatchFile(Stream stream)
     {
-        // TODO-UPDATE: Implement delta patching
+        using Context context = new RCPContext(DeltaPatchFilePath.Parent);
+        DeltaFile deltaFile = context.ReadRequiredFileData<DeltaFile>(DeltaPatchFilePath.Name);
+
+        foreach (DeltaChunk deltaChunk in deltaFile.Chunks)
+        {
+            stream.Position = deltaChunk.PatchOffset;
+            stream.Write(deltaChunk.PatchData, 0, deltaChunk.PatchData.Length);
+        }
     }
 }

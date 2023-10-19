@@ -5,6 +5,8 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:modCreator="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator"
+                            xmlns:deltas="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules.Deltas"
+                            xmlns:modules="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules"
                             mc:Ignorable="d"
                             d:DesignWidth="800"
                             Language="{UICulture}"
@@ -149,7 +151,6 @@
                                                 </CheckBox>
 
                                                 <Grid x:Name="ModuleContentGrid"
-                                                      Height="100"
                                                       Opacity="0"
                                                       Visibility="Collapsed">
                                                     <Grid.LayoutTransform>
@@ -158,7 +159,16 @@
                                                         </TransformGroup>
                                                     </Grid.LayoutTransform>
 
-                                                    <!-- TODO-UPDATE: Content dependent on module -->
+                                                    <ContentPresenter Content="{Binding Mode=OneTime}">
+                                                        <ContentPresenter.Resources>
+                                                            <DataTemplate DataType="{x:Type deltas:DeltasModuleViewModel}">
+                                                                <deltas:DeltasModuleControl Margin="0 8 0 0" />
+                                                            </DataTemplate>
+                                                            <DataTemplate DataType="{x:Type modules:ModModuleViewModel}">
+                                                                <!-- Empty -->
+                                                            </DataTemplate>
+                                                        </ContentPresenter.Resources>
+                                                    </ContentPresenter>
 
                                                 </Grid>
                                             </StackPanel>
