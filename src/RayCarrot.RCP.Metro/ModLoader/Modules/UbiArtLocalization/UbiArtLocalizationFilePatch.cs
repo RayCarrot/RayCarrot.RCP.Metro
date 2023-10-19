@@ -68,6 +68,7 @@ public class UbiArtLocalizationFilePatch : IFilePatch
         }
 
         context.WriteStreamData(stream, loc, name: Path.FilePath, endian: Endian.Big, mode: VirtualFileMode.DoNotClose);
+        stream.TrimEnd();
     }
 
     public record LocaleFile(int Index, FileSystemPath FilePath);

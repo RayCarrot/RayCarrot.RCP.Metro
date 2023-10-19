@@ -57,4 +57,9 @@ public static class StreamExtensions
         while ((count = source.Read(buffer.Array, 0, bufferSize)) != 0)
             destination.Write(buffer.Array, 0, count);
     }
+
+    public static void TrimEnd(this Stream source)
+    {
+        source.SetLength(source.Position);
+    }
 }
