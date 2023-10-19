@@ -506,7 +506,7 @@ public class StartupManager
         if (!AppViewModel.IsFirstLaunch)
         {
             // Show the anniversary update dialog if updated to the anniversary update (14.0)
-            if (AppViewModel.PrevAppVersion < new Version(14, 0, 0, 0)) // TODO-UPDATE: Change this to 14.0.0.3 when new beta is released
+            if (AppViewModel.PrevAppVersion < new Version(14, 0, 0, 5))
                 await Services.UI.ShowAnniversaryUpdateAsync();
 
             // Show the version history if updated to a new version
