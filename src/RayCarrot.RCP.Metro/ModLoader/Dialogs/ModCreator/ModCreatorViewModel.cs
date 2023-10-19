@@ -179,6 +179,13 @@ public class ModCreatorViewModel : BaseViewModel
 
     public async Task CreateModAsync()
     {
+        if (!Modules.Any(x => x.IsEnabled))
+        {
+            // TODO-LOC
+            await Services.MessageUI.DisplayMessageAsync("At least one module has to be selected in order to create a mod", MessageType.Error);
+            return;
+        }
+
         DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
         {
             // TODO-LOC

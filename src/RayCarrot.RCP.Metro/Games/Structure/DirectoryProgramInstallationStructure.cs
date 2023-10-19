@@ -41,7 +41,9 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
 
         // Programs with a directory structure can always use the file and delta modules for mods
         builder.Register(new ModModuleComponent(_ => new FilesModule()));
-        builder.Register(new ModModuleComponent(_ => new DeltasModule()));
+        builder.Register(new ModModuleComponent(_ => new DeltasModule(null)));
+
+        builder.Register(new ModLibraryPathComponent(x => x.InstallLocation.Directory + ".rcp_mods"));
     }
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)

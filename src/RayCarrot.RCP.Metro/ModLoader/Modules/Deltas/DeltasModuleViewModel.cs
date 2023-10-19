@@ -5,12 +5,15 @@ namespace RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
 
 public class DeltasModuleViewModel : ModModuleViewModel
 {
-    public DeltasModuleViewModel(ModModule module) : base(module)
+    public DeltasModuleViewModel(ModModule module, bool isSingleFile) : base(module)
     {
+        IsSingleFile = isSingleFile;
         CreateDeltaFileCommand = new AsyncRelayCommand(CreateDeltaFileAsync);
     }
 
     public ICommand CreateDeltaFileCommand { get; }
+
+    public bool IsSingleFile { get; }
 
     public async Task CreateDeltaFileAsync()
     {
@@ -34,7 +37,9 @@ public class DeltasModuleViewModel : ModModuleViewModel
 
         DeltaFile deltaFile = DeltaFile.Create(originalFileBrowseResult.SelectedFile, modifiedFileBrowseResult.SelectedFile);
         
-        FileSystemPath deltaFilePath = modifiedFileBrowseResult.SelectedFile.AppendFileExtension(new FileExtension(DeltasModule.FileExtension));
+        FileSystemPath deltaFilePath = IsSingleFile 
+            ? modifiedFileBrowseResult.SelectedFile.Parent + DeltasModule.SingleFileDeltaPatchName 
+            : modifiedFileBrowseResult.SelectedFile.AppendFileExtension(new FileExtension(DeltasModule.FileExtension));
 
         using Context context = new RCPContext(deltaFilePath.Parent);
         context.WriteFileData(deltaFilePath.Name, deltaFile);

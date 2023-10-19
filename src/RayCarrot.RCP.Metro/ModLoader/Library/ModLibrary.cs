@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Library;
@@ -12,7 +13,7 @@ public class ModLibrary
         GameInstallation = gameInstallation;
 
         // Get paths
-        LibraryDirectoryPath = gameInstallation.InstallLocation.Directory + RootDirectoryName;
+        LibraryDirectoryPath = gameInstallation.GetRequiredComponent<ModLibraryPathComponent>().CreateObject();
         LibraryMetadataFilePath = LibraryDirectoryPath + LibraryMetadataFileName;
         FileHistoryFilePath = LibraryDirectoryPath + HistoryFileName;
         FileHistoryDirectoryPath = LibraryDirectoryPath + HistoryDirectoryName;
@@ -32,7 +33,6 @@ public class ModLibrary
 
     private const int LatestFormatVersion = 0;
 
-    private const string RootDirectoryName = ".rcp_mods";
     private const string LibraryMetadataFileName = "library.json";
     private const string HistoryDirectoryName = "file_history";
     private const string HistoryFileName = "file_history.json";
