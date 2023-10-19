@@ -13,6 +13,8 @@ public abstract class ModModule
 
     public virtual ModModuleViewModel GetViewModel() => new(this);
 
+    public virtual void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath) { }
+
     public virtual IReadOnlyCollection<IModFileResource> GetAddedFiles(Mod mod, FileSystemPath modulePath) =>
         new ReadOnlyCollection<IModFileResource>(new List<IModFileResource>());
     public virtual IReadOnlyCollection<ModFilePath> GetRemovedFiles(Mod mod, FileSystemPath modulePath) =>

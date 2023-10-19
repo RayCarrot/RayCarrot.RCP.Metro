@@ -192,7 +192,14 @@ public class ModCreatorViewModel : BaseViewModel
         string metadataString = GetMetadataString();
         File.WriteAllText(browseResult.SelectedDirectory + Mod.MetadataFileName, metadataString);
 
-        // TODO-UPDATE: Create module folders. Some of them need default files.
+        foreach (ModModuleViewModel moduleViewModel in Modules.Where(x => x.IsEnabled))
+        {
+            FileSystemPath modulePath = browseResult.SelectedDirectory + moduleViewModel.Module.Id;
+            Directory.CreateDirectory(modulePath);
+
+            moduleViewModel.Module.SetupModuleFolder(moduleViewModel, modulePath);
+        }
+
         // TODO-UPDATE: Create default thumbnail to make it clearer for people that they can change?
 
         WindowsHelpers.OpenExplorerPath(browseResult.SelectedDirectory);

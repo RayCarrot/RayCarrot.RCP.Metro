@@ -38,6 +38,11 @@ public class UbiArtLocalizationModule : ModModule
     // TODO-LOC
     public override LocalizedString Description => "This is used to replace or add strings in the game localization for any of the supported languages. The benefit of using this module over replacing the entire file is that multiple localization mods can be stacked.";
 
+    public override void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath)
+    {
+        File.Create(modulePath + "en-US.txt").Dispose();
+    }
+
     public override IReadOnlyCollection<IFilePatch> GetPatchedFiles(Mod mod, FileSystemPath modulePath)
     {
         List<UbiArtLocalizationFilePatch.LocaleFile> localeFiles = new();

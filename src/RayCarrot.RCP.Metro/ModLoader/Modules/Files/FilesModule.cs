@@ -16,6 +16,12 @@ public class FilesModule : ModModule
     // TODO-LOC
     public override LocalizedString Description => "This is used to add, replace and remove entire files in the game. Great for mods such as texture replacements and the like!";
 
+    public override void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath)
+    {
+        Directory.CreateDirectory(modulePath + AddedFilesDirectoryName);
+        File.Create(modulePath + RemovedFilesFileName).Dispose();
+    }
+
     public override IReadOnlyCollection<IModFileResource> GetAddedFiles(Mod mod, FileSystemPath modulePath)
     {
         List<IModFileResource> fileResources = new();
