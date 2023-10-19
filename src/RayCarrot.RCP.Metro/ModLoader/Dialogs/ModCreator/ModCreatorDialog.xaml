@@ -192,11 +192,11 @@
                                     HorizontalAlignment="Left"
                                     Margin="0 0 0 12" />
 
-                            <TextBlock Text="3. Edit the metadata and add module contents"
+                            <TextBlock Text="3. Edit the metadata, add a custom thumbnail and add module contents"
                                        FontWeight="DemiBold"
                                        Margin="0 0 0 4" />
 
-                            <TextBlock Text="It is recommended using a text editor with JSON support to edit the metadata, such as VS Code or Notepad++."
+                            <TextBlock Text="It is recommended using a text editor with JSON support to edit the metadata, such as VS Code or Notepad++. Adding a thumbnail is done by adding a file named thumbnail.png with a recommended size of 128x128."
                                        TextWrapping="Wrap"
                                        Margin="0 0 0 12" />
 

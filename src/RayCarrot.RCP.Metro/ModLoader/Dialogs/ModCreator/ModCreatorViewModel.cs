@@ -200,8 +200,6 @@ public class ModCreatorViewModel : BaseViewModel
             moduleViewModel.Module.SetupModuleFolder(moduleViewModel, modulePath);
         }
 
-        // TODO-UPDATE: Create default thumbnail to make it clearer for people that they can change?
-
         WindowsHelpers.OpenExplorerPath(browseResult.SelectedDirectory);
     }
 
