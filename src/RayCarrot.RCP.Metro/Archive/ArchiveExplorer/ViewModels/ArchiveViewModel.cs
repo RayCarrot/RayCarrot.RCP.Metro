@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows.Input;
 using Nito.AsyncEx;
@@ -242,11 +243,13 @@ public class ArchiveViewModel : DirectoryViewModel
     {
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
-        // Make sure we can repack the archive
-        if (Services.File.IsFileLocked(FilePath))
+        // Make sure we can repack the archive by checking if the file is locked
+        Process[] lockProcesses = WindowsHelpers.GetProcessesLockingFile(FilePath);
+        int currentId = Process.GetCurrentProcess().Id;
+        if (lockProcesses.Any(x => x.Id != currentId))
         {
             // TODO-LOC
-            await Services.MessageUI.DisplayMessageAsync("The archive file is currently in use by another process and can not be repacked", MessageType.Warning);
+            await Services.MessageUI.DisplayMessageAsync($"The archive file is currently in use by the following programs and can not be repacked. Try to close the programs and try again.{Environment.NewLine}{Environment.NewLine}{lockProcesses.Where(x => x.Id != currentId).Select(x => $"- {x.ProcessName} ({x.MainModule?.ModuleName})").JoinItems(Environment.NewLine)}", MessageType.Error);
             return;
         }
 

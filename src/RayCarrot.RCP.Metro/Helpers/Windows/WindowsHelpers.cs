@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Helper methods for managing Windows specific requests
 /// </summary>
-public static class WindowsHelpers
+public static partial class WindowsHelpers
 {
     /// <summary>
     /// Returns true if the current program is running as administrator
