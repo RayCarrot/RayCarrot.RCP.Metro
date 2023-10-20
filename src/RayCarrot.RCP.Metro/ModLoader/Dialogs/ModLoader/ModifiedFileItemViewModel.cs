@@ -19,7 +19,8 @@ public class ModifiedFileItemViewModel : BaseViewModel
 
     #region Private Fields
 
-    private readonly Dictionary<string, ModifiedFileItemViewModel> _itemsToAdd = new();
+    private readonly Dictionary<string, ModifiedFileItemViewModel> _overridableItemsToAdd = new();
+    private readonly List<ModifiedFileItemViewModel> _itemsToAdd = new();
 
     #endregion
 
@@ -39,14 +40,17 @@ public class ModifiedFileItemViewModel : BaseViewModel
 
     #region Public Methods
 
-    public ModifiedFileItemViewModel? GetItem(string name)
+    public ModifiedFileItemViewModel? GetOverridableItem(string name)
     {
-        return _itemsToAdd.TryGetValue(name.ToLowerInvariant());
+        return _overridableItemsToAdd.TryGetValue(name.ToLowerInvariant());
     }
 
-    public void AddItem(ModifiedFileItemViewModel item)
+    public void AddItem(ModifiedFileItemViewModel item, bool isOverridable)
     {
-        _itemsToAdd[item.Name.ToLowerInvariant()] = item;
+        if (isOverridable)
+            _overridableItemsToAdd[item.Name.ToLowerInvariant()] = item;
+        else
+            _itemsToAdd.Add(item);
     }
 
     public void ApplyItems()
@@ -54,9 +58,14 @@ public class ModifiedFileItemViewModel : BaseViewModel
         Children.ModifyCollection(x =>
         {
             x.Clear();
-            x.AddRange(_itemsToAdd.Values.OrderBy(item => item.Type).ThenBy(item => item.Name));
+            x.AddRange(_overridableItemsToAdd.Values.
+                Concat(_itemsToAdd).
+                OrderBy(item => item.Type).
+                ThenBy(item => item.Name).
+                ThenBy(item => item.Modification));
         });
 
+        _overridableItemsToAdd.Clear();
         _itemsToAdd.Clear();
 
         foreach (ModifiedFileItemViewModel child in Children)
@@ -80,6 +89,7 @@ public class ModifiedFileItemViewModel : BaseViewModel
         None,
         Add,
         Remove,
+        Patch,
     }
 
     #endregion

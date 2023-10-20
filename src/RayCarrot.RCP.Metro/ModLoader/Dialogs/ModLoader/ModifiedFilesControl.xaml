@@ -145,6 +145,15 @@
                                             <Setter Property="Kind" Value="{StaticResource RCP.Icons.FileRemove}" />
                                             <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.DeleteItem}" />
                                         </MultiDataTrigger>
+                                        <!-- Patch file -->
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=Type}" Value="File" />
+                                                <Condition Binding="{Binding Path=Modification}" Value="Patch" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Kind" Value="{StaticResource RCP.Icons.FileEdit}" />
+                                            <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Info}" />
+                                        </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </iconPacks:PackIconMaterial.Style>

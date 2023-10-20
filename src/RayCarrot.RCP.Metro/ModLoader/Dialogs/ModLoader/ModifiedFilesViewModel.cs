@@ -45,6 +45,7 @@ public class ModifiedFilesViewModel : BaseViewModel
 
     public int AddedFilesCount { get; private set; }
     public int RemovedFilesCount { get; private set; }
+    public int PatchedFilesCount { get; private set; }
 
     #endregion
 
@@ -57,7 +58,7 @@ public class ModifiedFilesViewModel : BaseViewModel
 
         for (int i = 0; i < count; i++)
         {
-            ModifiedFileItemViewModel? existingItem = currentItem.GetItem(folders[i]);
+            ModifiedFileItemViewModel? existingItem = currentItem.GetOverridableItem(folders[i]);
 
             if (existingItem == null)
             {
@@ -65,7 +66,7 @@ public class ModifiedFilesViewModel : BaseViewModel
                     ? ModifiedFileItemViewModel.ItemType.Archive
                     : ModifiedFileItemViewModel.ItemType.Folder;
                 existingItem = new ModifiedFileItemViewModel(folders[i], null, type, ModifiedFileItemViewModel.FileModification.None, false);
-                currentItem.AddItem(existingItem);
+                currentItem.AddItem(existingItem, true);
             }
 
             currentItem = existingItem;
@@ -74,7 +75,7 @@ public class ModifiedFilesViewModel : BaseViewModel
         return currentItem;
     }
 
-    private void AddFile(ModFilePath filePath, Mod mod, ModifiedFileItemViewModel.FileModification modification)
+    private void AddFile(ModFilePath filePath, Mod mod, ModifiedFileItemViewModel.FileModification modification, bool isOverridable)
     {
         ModifiedFileItemViewModel currentItem = ModifiedFilesRoot;
         string[] pathParths = filePath.FilePath.Split(_pathSeparators);
@@ -92,9 +93,7 @@ public class ModifiedFilesViewModel : BaseViewModel
         string fileName = ShowModifiedFilesAsTree ? pathParths.Last() : filePath.ToString();
 
         // See if one already exists
-        ModifiedFileItemViewModel? existingFileItem = currentItem.GetItem(fileName);
-
-        if (existingFileItem != null)
+        if (isOverridable && currentItem.GetOverridableItem(fileName) is { } existingFileItem)
         {
             existingFileItem.OverridenMods.Add(mod.Metadata.Name);
         }
@@ -113,12 +112,14 @@ public class ModifiedFilesViewModel : BaseViewModel
                 _invalidLocations.Add(filePath.Location, archiveComponent == null || !archivePath.FileExists);
             }
             currentItem.AddItem(new ModifiedFileItemViewModel(fileName, mod.Metadata.Name,
-                ModifiedFileItemViewModel.ItemType.File, modification, _invalidLocations[filePath.Location]));
+                ModifiedFileItemViewModel.ItemType.File, modification, _invalidLocations[filePath.Location]), isOverridable);
 
             if (modification == ModifiedFileItemViewModel.FileModification.Add)
                 AddedFilesCount++;
             else if (modification == ModifiedFileItemViewModel.FileModification.Remove)
                 RemovedFilesCount++;
+            else if (modification == ModifiedFileItemViewModel.FileModification.Patch)
+                PatchedFilesCount++;
         }
     }
 
@@ -130,18 +131,20 @@ public class ModifiedFilesViewModel : BaseViewModel
     {
         AddedFilesCount = 0;
         RemovedFilesCount = 0;
+        PatchedFilesCount = 0;
 
         foreach (ModViewModel modViewModel in enabledMods)
         {
             Mod mod = modViewModel.Mod;
 
             foreach (IModFileResource addedFile in mod.GetAddedFiles())
-                AddFile(addedFile.Path, mod, ModifiedFileItemViewModel.FileModification.Add);
+                AddFile(addedFile.Path, mod, ModifiedFileItemViewModel.FileModification.Add, true);
 
             foreach (ModFilePath removedFile in mod.GetRemovedFiles())
-                AddFile(removedFile, mod, ModifiedFileItemViewModel.FileModification.Remove);
+                AddFile(removedFile, mod, ModifiedFileItemViewModel.FileModification.Remove, true);
 
-            // TODO-UPDATE: Show patched files too
+            foreach (IFilePatch patchedFile in mod.GetPatchedFiles())
+                AddFile(patchedFile.Path, mod, ModifiedFileItemViewModel.FileModification.Patch, false);
         }
 
         ModifiedFilesRoot.ApplyItems();

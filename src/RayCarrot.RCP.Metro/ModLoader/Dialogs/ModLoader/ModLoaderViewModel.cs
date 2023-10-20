@@ -84,6 +84,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public LocalizedString? AddedFilesText { get; set; }
     public LocalizedString? RemovedFilesText { get; set; }
+    public LocalizedString? PatchedFilesText { get; set; }
     public LocalizedString? ChangedModsText { get; set; }
 
     public bool HasChanges { get; set; }
@@ -464,6 +465,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         // TODO-LOC
         AddedFilesText = new ConstLocString($"{ModifiedFiles.AddedFilesCount} added files");
         RemovedFilesText = new ConstLocString($"{ModifiedFiles.RemovedFilesCount} removed files");
+        PatchedFilesText = new ConstLocString($"{ModifiedFiles.PatchedFilesCount} patched files");
     }
 
     public void ReportNewChanges()

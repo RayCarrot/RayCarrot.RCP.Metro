@@ -256,6 +256,7 @@
 
                     <ToggleButton Grid.Column="0"
                                   Content="View all changes"
+                                  VerticalAlignment="Center"
                                   Margin="0 0 8 0">
                         <ToggleButton.Style>
                             <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.ToggleButton.Flat}">
@@ -345,11 +346,15 @@
                         <TextBlock Text="{Binding Path=RemovedFilesText.Value}" 
                                    d:Text="2 removed files"
                                    Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
+                        <TextBlock Text="{Binding Path=PatchedFilesText.Value}" 
+                                   d:Text="4 patched files"
+                                   Foreground="{StaticResource RCP.Brushes.Info}" />
                     </StackPanel>
 
                     <StackPanel x:Name="FileModificationsOptions" 
                                 Grid.Column="2"
-                                Opacity="0"
+                                Opacity="0" 
+                                VerticalAlignment="Center"
                                 Visibility="Collapsed"
                                 Orientation="Horizontal"
                                 Margin="0 0 8 0">
