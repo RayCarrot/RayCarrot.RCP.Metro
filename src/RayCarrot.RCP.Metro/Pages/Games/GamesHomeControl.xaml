@@ -6,11 +6,13 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignWidth="900" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <!-- TODO-LOC -->
     <UserControl.Resources>
         <ItemsPanelTemplate x:Key="GameItemsPanel">
             <WrapPanel />
@@ -79,8 +81,6 @@
         <!-- News -->
         <GroupBox Grid.Row="1"
                   Background="{DynamicResource RCP.Brushes.Card.TransparentSecondaryBackground}"
-                  rcp:Icon.Kind="TextBoxOutline"
-                  rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                   Margin="{StaticResource RCP.Thicknesses.Card}">
 
             <GroupBox.Style>
@@ -100,15 +100,32 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="{Resx Home_News}"
-                               VerticalAlignment="Center"
-                               FontSize="14" />
+                    <StackPanel Grid.Column="0"
+                                Orientation="Horizontal" 
+                                DataContext="{Binding Path=NewsViewModel, Mode=OneTime}">
+                        <ToggleButton rcp:Icon.Kind="TextBoxOutline"
+                                      rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                                      Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
+                                      IsChecked="{Binding Path=SelectedFeed, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static games:NewsViewModel+NewsFeed.App}}"
+                                      Content="App news"
+                                      VerticalAlignment="Center"
+                                      FontSize="14" />
+                        <ToggleButton rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoader}"
+                                      rcp:Icon.Brush="{StaticResource RCP.Brushes.ModLoader}"
+                                      Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
+                                      IsChecked="{Binding Path=SelectedFeed, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static games:NewsViewModel+NewsFeed.Mods}}"
+                                      Content="Recent mods"
+                                      VerticalAlignment="Center"
+                                      FontSize="14"
+                                      Margin="0 0 8 0"/>
+                        <mah:ProgressRing Width="32" Height="32" 
+                                          Visibility="{Binding Path=ModNewsFeedViewModel.IsLoading, Converter={rcp:BooleanToVisibilityConverter}}" />
+                    </StackPanel>
 
                     <Button Grid.Column="1"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             ToolTip="{Resx About_UpdateHistory}"
-                            DataContext="{Binding Path=AppNewsViewModel, Mode=OneTime}"
+                            DataContext="{Binding Path=NewsViewModel, Mode=OneTime}"
                             Command="{Binding Path=ShowVersionHistoryCommand, Mode=OneTime}"
                             rcp:Icon.Kind="TooltipTextOutline"
                             rcp:Icon.Size="16" />
@@ -116,50 +133,17 @@
                 </Grid>
             </GroupBox.Header>
 
-            <ScrollViewer DataContext="{Binding Path=AppNewsViewModel, Mode=OneTime}">
-                <StackPanel>
-                    <ItemsControl ItemsSource="{Binding Path=NewsEntries}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0 0 0 12">
-                                    <Grid Margin="0 0 0 4"
-                                          VerticalAlignment="Center">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image Grid.Column="0"
-                                               RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                               Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AppNewsIconToImageSourceConverter}}" 
-                                               Width="32"
-                                               Height="32"
-                                               Margin="0 0 4 0" />
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="{Binding Path=Header, Mode=OneTime}" 
-                                                       TextWrapping="Wrap"
-                                                       FontWeight="Bold" 
-                                                       FontSize="14"
-                                                       Margin="0 0 0 2" />
-                                            <TextBlock Text="{Binding Path=Date, Mode=OneTime}"
-                                                       FontStyle="Italic" 
-                                                       FontSize="12" />
-                                        </StackPanel>
-                                    </Grid>
-                                    <TextBlock Text="{Binding Path=Text, Mode=OneTime}"
-                                               TextWrapping="Wrap"
-                                               FontSize="12" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                    <TextBlock Visibility="{Binding Path=CanShowMore, Converter={rcp:BooleanToVisibilityConverter}}">
-                        <Hyperlink Command="{Binding Path=ShowMoreCommand, Mode=OneTime}">
-                            <Run Text="{Resx Home_ShowMoreNews}" />
-                        </Hyperlink>
-                    </TextBlock>
-
-                </StackPanel>
+            <ScrollViewer DataContext="{Binding Path=NewsViewModel, Mode=OneTime}">
+                <mah:TransitioningContentControl Content="{Binding Path=FeedViewModel}">
+                    <mah:TransitioningContentControl.Resources>
+                        <DataTemplate DataType="{x:Type games:AppNewsFeedViewModel}">
+                            <games:AppNewsFeedControl />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type games:ModNewsFeedViewModel}">
+                            <games:ModNewsFeedControl />
+                        </DataTemplate>
+                    </mah:TransitioningContentControl.Resources>
+                </mah:TransitioningContentControl> 
             </ScrollViewer>
         </GroupBox>
 

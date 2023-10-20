@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
+using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
@@ -192,6 +193,94 @@ public class GameBananaModsSource : DownloadableModsSource
         }
 
         return Task.FromResult(new ModDownload(file.File, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id)));
+    }
+
+    public override async IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager)
+    {
+        // Get the GameBanana game id for every game, even ones that are not installed
+        Dictionary<int, List<GameDescriptor>> games = new();
+        foreach (GameDescriptor gameDescriptor in gamesManager.GetGameDescriptors())
+        {
+            GameComponentBuilder gameComponentBuilder = gameDescriptor.RegisterComponents();
+            IEnumerable<GameComponentBuilder.Component> builtComponents = gameComponentBuilder.Build();
+
+            foreach (GameComponentBuilder.Component builtComponent in builtComponents)
+            {
+                if (builtComponent.BaseType == typeof(GameBananaGameComponent))
+                {
+                    GameBananaGameComponent gameBananaComponent = (GameBananaGameComponent)builtComponent.GetInstance();
+                    int gameId = gameBananaComponent.GameId;
+
+                    if (!games.TryGetValue(gameId, out List<GameDescriptor> g))
+                    {
+                        g = new List<GameDescriptor>();
+                        games[gameId] = g;
+                    }
+
+                    g.Add(gameDescriptor);
+                }
+            }
+        }
+
+        using HttpClient httpClient = new();
+
+        foreach (var g in games)
+        {
+            GameBananaSubfeed newSubfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
+                $"https://gamebanana.com/apiv11/Game/{g.Key}/Subfeed?" +
+                $"_nPage=1&" +
+                $"_sSort=new&" +
+                $"_csvModelInclusions=Mod");
+            GameBananaSubfeed updatedSubfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
+                $"https://gamebanana.com/apiv11/Game/{g.Key}/Subfeed?" +
+                $"_nPage=1&" +
+                $"_sSort=updated&" +
+                $"_csvModelInclusions=Mod");
+
+            var modRecords = newSubfeed.Records.
+                // Take the 10 most recent new mods
+                Take(10).Select(x => new { Record = x, IsUpdate = false, }).
+                // Add the 5 most recent updated mods
+                Concat(updatedSubfeed.Records.Take(5).Select(x => new { Record = x, IsUpdate = true, })).
+                // Remove duplicates
+                GroupBy(x => x.Record.Id).Select(x => x.OrderBy(y => y.Record.DateModified).Last()).
+                // Only keep ones which have files
+                Where(x => x.Record.HasFiles).
+                // Only keep from a maximum of a year back
+                Where(x => (x.Record.DateModified - DateTime.Now) < TimeSpan.FromDays(365)).
+                ToList();
+
+            // Get additional data for every mod
+            GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
+                $"https://gamebanana.com/apiv11/Mod/Multi?" +
+                $"_csvRowIds={modRecords.Select(x => x.Record.Id).JoinItems(",")}&" +
+                $"_csvProperties=_aFiles,_aModManagerIntegrations");
+
+            for (int i = 0; i < mods.Length; i++)
+            {
+                GameBananaRecord modRecord = modRecords[i].Record;
+                bool isUpdate = modRecords[i].IsUpdate;
+                GameBananaMod mod = mods[i];
+
+                // Make sure the mod has files
+                if (mod.Files == null)
+                    continue;
+
+                // Make sure it's compatible with Rayman Control Panel
+                if (mod.Files.Any(x => mod.ModManagerIntegrations is JObject obj &&
+                                       obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.
+                                           TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
+                                       m.Any(mm => mm.ToolId == RaymanControlPanelToolId)))
+                {
+                     yield return new NewModViewModel(
+                        name: modRecord.Name,
+                        modificationDate: modRecord.DateModified,
+                        modUrl: $"https://gamebanana.com/mods/{modRecord.Id}",
+                        isUpdate: isUpdate,
+                        gameDescriptors: g.Value);
+                }
+            }
+        }
     }
 
     #endregion

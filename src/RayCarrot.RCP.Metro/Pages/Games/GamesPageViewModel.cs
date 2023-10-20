@@ -28,7 +28,7 @@ public class GamesPageViewModel : BasePageViewModel,
         IMessenger messenger, 
         AppUserData data, 
         IBrowseUIManager browseUi, 
-        AppNewsViewModel appNewsViewModel) : base(app)
+        NewsViewModel newsViewModel) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
@@ -38,7 +38,7 @@ public class GamesPageViewModel : BasePageViewModel,
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         Data = data ?? throw new ArgumentNullException(nameof(data));
         BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
-        AppNewsViewModel = appNewsViewModel ?? throw new ArgumentNullException(nameof(appNewsViewModel));
+        NewsViewModel = newsViewModel ?? throw new ArgumentNullException(nameof(newsViewModel));
 
         // Set properties
         AsyncLock = new AsyncLock();
@@ -110,7 +110,7 @@ public class GamesPageViewModel : BasePageViewModel,
 
     public override AppPage Page => AppPage.Games;
 
-    public AppNewsViewModel AppNewsViewModel { get; }
+    public NewsViewModel NewsViewModel { get; }
 
     public string GameFilter
     {
@@ -291,9 +291,6 @@ public class GamesPageViewModel : BasePageViewModel,
         // Perform an initial refresh for the grouping
         RefreshGrouping(GroupGames);
 
-        // Load cached app news first
-        AppNewsViewModel.ShowMore(true);
-
         // Refresh the games
         await RefreshAsync();
 
@@ -301,7 +298,7 @@ public class GamesPageViewModel : BasePageViewModel,
         Messenger.RegisterAll(this);
 
         // Initialize the app news
-        await AppNewsViewModel.InitializeAsync();
+        await NewsViewModel.InitializeAsync();
     }
 
     #endregion

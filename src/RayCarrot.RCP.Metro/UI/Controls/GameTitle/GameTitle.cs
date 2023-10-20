@@ -65,6 +65,53 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
 
     #endregion
 
+    #region GameDescriptor
+
+    public GameDescriptor? GameDescriptor
+    {
+        get => (GameDescriptor?)GetValue(GameDescriptorProperty);
+        set => SetValue(GameDescriptorProperty, value);
+    }
+
+    public static readonly DependencyProperty GameDescriptorProperty = DependencyProperty.Register(
+        nameof(GameDescriptor), typeof(GameDescriptor), typeof(GameTitle), new PropertyMetadata(OnGameDescriptorChanged));
+
+    private static void OnGameDescriptorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        GameTitle gameTitle = (GameTitle)d;
+        GameDescriptor? gameDescriptor = (GameDescriptor?)e.NewValue;
+
+        // If in design mode then App.Current is null and some things won't work. So we manually set some dummy data.
+        if (DesignerProperties.GetIsInDesignMode(gameTitle))
+        {
+            gameTitle.GameIcon = GameIconAsset.Rayman2;
+            gameTitle.IsDemo = false;
+            gameTitle.GameDisplayName = "Rayman 2";
+            gameTitle.PlatformIcon = GamePlatformIconAsset.Win32;
+            gameTitle.PlatformDisplayName = Metro.Resources.Platform_Win32;
+        }
+        else if (gameDescriptor != null)
+        {
+            GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
+
+            gameTitle.GameIcon = gameDescriptor.Icon;
+            gameTitle.IsDemo = gameDescriptor.IsDemo;
+            gameTitle.GameDisplayName = gameDescriptor.DisplayName;
+            gameTitle.PlatformIcon = platformInfo.Icon;
+            gameTitle.PlatformDisplayName = platformInfo.DisplayName;
+        }
+        else
+        {
+            gameTitle.GameIcon = null;
+            gameTitle.IsDemo = false;
+            gameTitle.GameDisplayName = null;
+            gameTitle.PlatformIcon = null;
+            gameTitle.PlatformDisplayName = null;
+        }
+    }
+
+    #endregion
+
     #region GameIconSize
 
     public GameIconSize GameIconSize

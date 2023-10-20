@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
+using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources;
 
@@ -51,6 +52,8 @@ public abstract class DownloadableModsSource
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);
 
     public abstract Task<ModDownload> GetModUpdateDownloadAsync(object? updateData);
+
+    public abstract IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager);
 
     #endregion
 }

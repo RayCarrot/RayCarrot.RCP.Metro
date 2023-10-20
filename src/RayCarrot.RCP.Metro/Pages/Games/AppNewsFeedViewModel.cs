@@ -2,18 +2,17 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
-public class AppNewsViewModel : BaseViewModel
+public class AppNewsFeedViewModel : BaseViewModel
 {
     #region Constructor
 
-    public AppNewsViewModel(
-        AppUserData appUserData, 
-        AppUIManager ui)
+    public AppNewsFeedViewModel(AppUserData appUserData)
     {
         Data = appUserData ?? throw new ArgumentNullException(nameof(appUserData));
-        UI = ui ?? throw new ArgumentNullException(nameof(ui));
 
-        ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
+        // Load cached news first
+        ShowMore(true);
+
         ShowMoreCommand = new RelayCommand(() => ShowMore(false));
     }
 
@@ -27,7 +26,6 @@ public class AppNewsViewModel : BaseViewModel
 
     #region Commands
 
-    public ICommand ShowVersionHistoryCommand { get; }
     public ICommand ShowMoreCommand { get; }
 
     #endregion
@@ -35,7 +33,6 @@ public class AppNewsViewModel : BaseViewModel
     #region Services
 
     private AppUserData Data { get; }
-    private AppUIManager UI { get; }
 
     #endregion
 
@@ -67,8 +64,6 @@ public class AppNewsViewModel : BaseViewModel
     #endregion
 
     #region Public Methods
-
-    public Task ShowVersionHistoryAsync() => UI.ShowVersionHistoryAsync();
 
     public void ShowMore(bool reset)
     {

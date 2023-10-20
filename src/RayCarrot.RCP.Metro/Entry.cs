@@ -69,7 +69,7 @@ public static class Entry
         serviceCollection.AddSingleton<DebugPageViewModel>();
 
         // Add view models
-        serviceCollection.AddSingleton<AppNewsViewModel>();
+        serviceCollection.AddSingleton<NewsViewModel>();
 
         // Add UI managers
         serviceCollection.AddSingleton<IDialogBaseManager, RCPWindowDialogBaseManager>();
