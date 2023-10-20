@@ -91,12 +91,12 @@
                         <Trigger Property="local:ButtonAssist.IsSelected" Value="True">
                             <Setter TargetName="OpacityBorder" 
                                     Property="Background" 
-                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.32}" />
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.20}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="OpacityBorder" 
                                     Property="Background" 
-                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.16}" />
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.12}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="OpacityBorder" 
@@ -186,12 +186,12 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="OpacityBorder" 
                                     Property="Background" 
-                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.32}" />
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.20}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="OpacityBorder" 
                                     Property="Background" 
-                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.16}" />
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.12}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="OpacityBorder" 
