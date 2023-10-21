@@ -496,24 +496,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can&apos;t find a utility you&apos;re looking for? It has most likely been reworked as a patch..
-        /// </summary>
-        public static string AnniversaryUpdate_PatcherDescription {
-            get {
-                return ResourceManager.GetString("AnniversaryUpdate_PatcherDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to More utilities are now patches.
-        /// </summary>
-        public static string AnniversaryUpdate_PatcherHeader {
-            get {
-                return ResourceManager.GetString("AnniversaryUpdate_PatcherHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The texture sync utility has been replaced by a button in the Archive Explorer game panel for easier access. Like before you can also enable textures to automatically sync when an archive has been repacked..
         /// </summary>
         public static string AnniversaryUpdate_TextureSyncDescription {
@@ -704,15 +686,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_AutoSyncCPATextures {
             get {
                 return ResourceManager.GetString("Archive_AutoSyncCPATextures", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Binary file editor.
-        /// </summary>
-        public static string Archive_BinaryEditor {
-            get {
-                return ResourceManager.GetString("Archive_BinaryEditor", resourceCulture);
             }
         }
         
@@ -965,33 +938,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Extract_Info {
             get {
                 return ResourceManager.GetString("Archive_Extract_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File editors.
-        /// </summary>
-        public static string Archive_FileEditors {
-            get {
-                return ResourceManager.GetString("Archive_FileEditors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Associated program.
-        /// </summary>
-        public static string Archive_FileEditorsExe {
-            get {
-                return ResourceManager.GetString("Archive_FileEditorsExe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File extension.
-        /// </summary>
-        public static string Archive_FileEditorsExt {
-            get {
-                return ResourceManager.GetString("Archive_FileEditorsExt", resourceCulture);
             }
         }
         
@@ -3574,15 +3520,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image.
-        /// </summary>
-        public static string FileSelection_ImageFormat {
-            get {
-                return ResourceManager.GetString("FileSelection_ImageFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred during the finder operation.
         /// </summary>
         public static string Finder_Error {
@@ -4606,42 +4543,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create patch.
-        /// </summary>
-        public static string GameHub_PatcherPanel_Create {
-            get {
-                return ResourceManager.GetString("GameHub_PatcherPanel_Create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} patches applied.
-        /// </summary>
-        public static string GameHub_PatcherPanel_InfoMultiple {
-            get {
-                return ResourceManager.GetString("GameHub_PatcherPanel_InfoMultiple", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} patch applied.
-        /// </summary>
-        public static string GameHub_PatcherPanel_InfoSingle {
-            get {
-                return ResourceManager.GetString("GameHub_PatcherPanel_InfoSingle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open patcher.
-        /// </summary>
-        public static string GameHub_PatcherPanel_Open {
-            get {
-                return ResourceManager.GetString("GameHub_PatcherPanel_Open", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string GameHub_Play {
@@ -4987,15 +4888,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find installed games and game clients/emulators.
-        /// </summary>
-        public static string GameSelection_FindInstallations {
-            get {
-                return ResourceManager.GetString("GameSelection_FindInstallations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Group games.
         /// </summary>
         public static string GameSelection_GroupGames {
@@ -5208,24 +5100,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Home_FavoriteGames {
             get {
                 return ResourceManager.GetString("Home_FavoriteGames", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to News.
-        /// </summary>
-        public static string Home_News {
-            get {
-                return ResourceManager.GetString("Home_News", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Play game.
-        /// </summary>
-        public static string Home_PlayGame {
-            get {
-                return ResourceManager.GetString("Home_PlayGame", resourceCulture);
             }
         }
         
@@ -6507,15 +6381,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_TickError {
             get {
                 return ResourceManager.GetString("Mod_Mem_TickError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown {0}.
-        /// </summary>
-        public static string Mod_Mem_Unk {
-            get {
-                return ResourceManager.GetString("Mod_Mem_Unk", resourceCulture);
             }
         }
         
@@ -7997,384 +7862,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        public static string PatchCreator_AddFile {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add from files.
-        /// </summary>
-        public static string PatchCreator_AddFromFiles {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddFromFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select files to add.
-        /// </summary>
-        public static string PatchCreator_AddFromFilesHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddFromFilesHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add from folder.
-        /// </summary>
-        public static string PatchCreator_AddFromFolder {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddFromFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when adding the selected files.
-        /// </summary>
-        public static string PatchCreator_AddFromFolderError {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddFromFolderError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select folder to add.
-        /// </summary>
-        public static string PatchCreator_AddFromFolderHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddFromFolderHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a thumbnail. The recommended size is 128x128..
-        /// </summary>
-        public static string PatchCreator_AddThumbnailInfo {
-            get {
-                return ResourceManager.GetString("PatchCreator_AddThumbnailInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Author.
-        /// </summary>
-        public static string PatchCreator_AuthorField {
-            get {
-                return ResourceManager.GetString("PatchCreator_AuthorField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add changelog entry.
-        /// </summary>
-        public static string PatchCreator_ChangelogAdd {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogAdd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date.
-        /// </summary>
-        public static string PatchCreator_ChangelogDateField {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogDateField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a date.
-        /// </summary>
-        public static string PatchCreator_ChangelogDateWatermark {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogDateWatermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        public static string PatchCreator_ChangelogDescriptionField {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogDescriptionField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Changelog.
-        /// </summary>
-        public static string PatchCreator_ChangelogHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove changelog entry.
-        /// </summary>
-        public static string PatchCreator_ChangelogRemove {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogRemove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version.
-        /// </summary>
-        public static string PatchCreator_ChangelogVersionField {
-            get {
-                return ResourceManager.GetString("PatchCreator_ChangelogVersionField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create.
-        /// </summary>
-        public static string PatchCreator_Create {
-            get {
-                return ResourceManager.GetString("PatchCreator_Create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating patch.
-        /// </summary>
-        public static string PatchCreator_Create_Status {
-            get {
-                return ResourceManager.GetString("PatchCreator_Create_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when creating the patch.
-        /// </summary>
-        public static string PatchCreator_CreateError {
-            get {
-                return ResourceManager.GetString("PatchCreator_CreateError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save patch file.
-        /// </summary>
-        public static string PatchCreator_CreateSaveFileHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_CreateSaveFileHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The patch was saved successfully.
-        /// </summary>
-        public static string PatchCreator_CreateSuccess {
-            get {
-                return ResourceManager.GetString("PatchCreator_CreateSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        public static string PatchCreator_DescriptionField {
-            get {
-                return ResourceManager.GetString("PatchCreator_DescriptionField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File modifications.
-        /// </summary>
-        public static string PatchCreator_FileModificationsHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_FileModificationsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game targets.
-        /// </summary>
-        public static string PatchCreator_GameTargets {
-            get {
-                return ResourceManager.GetString("PatchCreator_GameTargets", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game..
-        /// </summary>
-        public static string PatchCreator_GameTargetsInfo {
-            get {
-                return ResourceManager.GetString("PatchCreator_GameTargetsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select game targets.
-        /// </summary>
-        public static string PatchCreator_GameTargetsSelectionHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_GameTargetsSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Importing from existing patch.
-        /// </summary>
-        public static string PatchCreator_ImportingPatch_Status {
-            get {
-                return ResourceManager.GetString("PatchCreator_ImportingPatch_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Import from existing patch.
-        /// </summary>
-        public static string PatchCreator_ImportPatch {
-            get {
-                return ResourceManager.GetString("PatchCreator_ImportPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch..
-        /// </summary>
-        public static string PatchCreator_ImportPatchInfo {
-            get {
-                return ResourceManager.GetString("PatchCreator_ImportPatchInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Metadata.
-        /// </summary>
-        public static string PatchCreator_MetadataHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_MetadataHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        public static string PatchCreator_NameField {
-            get {
-                return ResourceManager.GetString("PatchCreator_NameField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The path can not be empty.
-        /// </summary>
-        public static string PatchCreator_PathEmptyError {
-            get {
-                return ResourceManager.GetString("PatchCreator_PathEmptyError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The path can not contain invalid characters.
-        /// </summary>
-        public static string PatchCreator_PathInvalidCharsError {
-            get {
-                return ResourceManager.GetString("PatchCreator_PathInvalidCharsError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The path can not be the same as an archive file.
-        /// </summary>
-        public static string PatchCreator_PathLocationCollisionError {
-            get {
-                return ResourceManager.GetString("PatchCreator_PathLocationCollisionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove the thumbnail.
-        /// </summary>
-        public static string PatchCreator_RemoveThumbnailInfo {
-            get {
-                return ResourceManager.GetString("PatchCreator_RemoveThumbnailInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a patch to import from.
-        /// </summary>
-        public static string PatchCreator_SelectImportPatch {
-            get {
-                return ResourceManager.GetString("PatchCreator_SelectImportPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a thumbnail.
-        /// </summary>
-        public static string PatchCreator_SelectThumbnailHeader {
-            get {
-                return ResourceManager.GetString("PatchCreator_SelectThumbnailHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The path of the file to add to the specified destination. If this is empty then any existing file at the destination will be removed instead..
-        /// </summary>
-        public static string PatchCreator_SourcePathInfo {
-            get {
-                return ResourceManager.GetString("PatchCreator_SourcePathInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patch Creator.
-        /// </summary>
-        public static string PatchCreator_Title {
-            get {
-                return ResourceManager.GetString("PatchCreator_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version.
-        /// </summary>
-        public static string PatchCreator_VersionField {
-            get {
-                return ResourceManager.GetString("PatchCreator_VersionField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Website.
-        /// </summary>
-        public static string PatchCreator_WebsiteField {
-            get {
-                return ResourceManager.GetString("PatchCreator_WebsiteField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add patch.
-        /// </summary>
-        public static string Patcher_AddPatch {
-            get {
-                return ResourceManager.GetString("Patcher_AddPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select patches to add.
-        /// </summary>
-        public static string Patcher_AddPatchHeader {
-            get {
-                return ResourceManager.GetString("Patcher_AddPatchHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Patcher_Apply {
@@ -8384,380 +7871,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applying patches.
-        /// </summary>
-        public static string Patcher_Apply_Status {
-            get {
-                return ResourceManager.GetString("Patcher_Apply_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches..
-        /// </summary>
-        public static string Patcher_ApplyError {
-            get {
-                return ResourceManager.GetString("Patcher_ApplyError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Successfully applied all patches.
-        /// </summary>
-        public static string Patcher_ApplySuccess {
-            get {
-                return ResourceManager.GetString("Patcher_ApplySuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Finished applying patches. Some files could not be modified..
-        /// </summary>
-        public static string Patcher_ApplySuccessWithErrors {
-            get {
-                return ResourceManager.GetString("Patcher_ApplySuccessWithErrors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again..
-        /// </summary>
-        public static string Patcher_AssociateFileTypeError {
-            get {
-                return ResourceManager.GetString("Patcher_AssociateFileTypeError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when setting the URI protocol association for patch files. Try running the Rayman Control Panel as admin and try again..
-        /// </summary>
-        public static string Patcher_AssociateURIProtocolError {
-            get {
-                return ResourceManager.GetString("Patcher_AssociateURIProtocolError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred in the patcher and it had to close.
-        /// </summary>
-        public static string Patcher_CriticalError {
-            get {
-                return ResourceManager.GetString("Patcher_CriticalError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patcher - {0}.
-        /// </summary>
-        public static string Patcher_DialogTitle {
-            get {
-                return ResourceManager.GetString("Patcher_DialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download.
-        /// </summary>
-        public static string Patcher_DownloadPatch {
-            get {
-                return ResourceManager.GetString("Patcher_DownloadPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download update.
-        /// </summary>
-        public static string Patcher_DownloadPatchUpdate {
-            get {
-                return ResourceManager.GetString("Patcher_DownloadPatchUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exporting patch.
-        /// </summary>
-        public static string Patcher_Export_Status {
-            get {
-                return ResourceManager.GetString("Patcher_Export_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when exporting the patch.
-        /// </summary>
-        public static string Patcher_ExportError {
-            get {
-                return ResourceManager.GetString("Patcher_ExportError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Export patch.
-        /// </summary>
-        public static string Patcher_ExportPatch {
-            get {
-                return ResourceManager.GetString("Patcher_ExportPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The patch was successfully exported.
-        /// </summary>
-        public static string Patcher_ExportSuccess {
-            get {
-                return ResourceManager.GetString("Patcher_ExportSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extracting patch contents.
-        /// </summary>
-        public static string Patcher_ExtractContents_Status {
-            get {
-                return ResourceManager.GetString("Patcher_ExtractContents_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when extracting the patch contents.
-        /// </summary>
-        public static string Patcher_ExtractContentsError {
-            get {
-                return ResourceManager.GetString("Patcher_ExtractContentsError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The patch contents were successfully extracted.
-        /// </summary>
-        public static string Patcher_ExtractContentsSuccess {
-            get {
-                return ResourceManager.GetString("Patcher_ExtractContentsSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Extract contents.
         /// </summary>
         public static string Patcher_ExtractPatch {
             get {
                 return ResourceManager.GetString("Patcher_ExtractPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Patch.
-        /// </summary>
-        public static string Patcher_FileType {
-            get {
-                return ResourceManager.GetString("Patcher_FileType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ID.
-        /// </summary>
-        public static string Patcher_ID {
-            get {
-                return ResourceManager.GetString("Patcher_ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patch Library.
-        /// </summary>
-        public static string Patcher_LibraryHeader {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Added files:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_AddedFiles {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_AddedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Applied patches:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_AppliedPatches {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_AppliedPatches", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Format version:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_FormatVersion {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_FormatVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_Game {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_Game", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Directory:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_Location {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_Location", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last modified:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_ModifiedDate {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_ModifiedDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patches:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_Patches {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_Patches", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Platform.
-        /// </summary>
-        public static string Patcher_LibraryInfo_Platform {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_Platform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Removed files:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_RemovedFiles {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_RemovedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Replaced files:.
-        /// </summary>
-        public static string Patcher_LibraryInfo_ReplacedFiles {
-            get {
-                return ResourceManager.GetString("Patcher_LibraryInfo_ReplacedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when loading the patches.
-        /// </summary>
-        public static string Patcher_LoadError {
-            get {
-                return ResourceManager.GetString("Patcher_LoadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when loading external patches.
-        /// </summary>
-        public static string Patcher_LoadExternalGenericError {
-            get {
-                return ResourceManager.GetString("Patcher_LoadExternalGenericError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File.
-        /// </summary>
-        public static string Patcher_Modifications_FileColumn {
-            get {
-                return ResourceManager.GetString("Patcher_Modifications_FileColumn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This file will be ignored due to the location not being found.
-        /// </summary>
-        public static string Patcher_Modifications_InvalidLocationInfo {
-            get {
-                return ResourceManager.GetString("Patcher_Modifications_InvalidLocationInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Location.
-        /// </summary>
-        public static string Patcher_Modifications_LocationColumn {
-            get {
-                return ResourceManager.GetString("Patcher_Modifications_LocationColumn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Overridden Patches.
-        /// </summary>
-        public static string Patcher_Modifications_OverridesColumn {
-            get {
-                return ResourceManager.GetString("Patcher_Modifications_OverridesColumn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patch.
-        /// </summary>
-        public static string Patcher_Modifications_PatchColumn {
-            get {
-                return ResourceManager.GetString("Patcher_Modifications_PatchColumn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add and enable a patch to modify the game files.
-        /// </summary>
-        public static string Patcher_ModificationsEmpty {
-            get {
-                return ResourceManager.GetString("Patcher_ModificationsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Modified files.
-        /// </summary>
-        public static string Patcher_ModificationsHeader {
-            get {
-                return ResourceManager.GetString("Patcher_ModificationsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patches.
-        /// </summary>
-        public static string Patcher_PatchesHeader {
-            get {
-                return ResourceManager.GetString("Patcher_PatchesHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won&apos;t go into effect until it&apos;s enabled and applied, allowing patches to be easily toggled on and off. It is not recommended to manually change game files which a patch modifies as it might result in some changes being lost..
-        /// </summary>
-        public static string Patcher_PatchesInfo {
-            get {
-                return ResourceManager.GetString("Patcher_PatchesInfo", resourceCulture);
             }
         }
         
@@ -8780,15 +7898,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File path:.
-        /// </summary>
-        public static string Patcher_PatchInfo_FilePath {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_FilePath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Format version:.
         /// </summary>
         public static string Patcher_PatchInfo_FormatVersion {
@@ -8803,15 +7912,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Patcher_PatchInfo_ID {
             get {
                 return ResourceManager.GetString("Patcher_PatchInfo_ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last modified:.
-        /// </summary>
-        public static string Patcher_PatchInfo_ModifiedDate {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_ModifiedDate", resourceCulture);
             }
         }
         
@@ -8839,118 +7939,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Patcher_PatchInfo_Version {
             get {
                 return ResourceManager.GetString("Patcher_PatchInfo_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select game to patch.
-        /// </summary>
-        public static string Patcher_PatchSelectGame {
-            get {
-                return ResourceManager.GetString("Patcher_PatchSelectGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Website.
-        /// </summary>
-        public static string Patcher_PatchWebsiteLink {
-            get {
-                return ResourceManager.GetString("Patcher_PatchWebsiteLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game.
-        /// </summary>
-        public static string Patcher_PhysicalGameLocation {
-            get {
-                return ResourceManager.GetString("Patcher_PhysicalGameLocation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The game patch library was made for a different game and can not be read.
-        /// </summary>
-        public static string Patcher_ReadLibraryInvalidGameError {
-            get {
-                return ResourceManager.GetString("Patcher_ReadLibraryInvalidGameError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The game patch library was made with a newer version of the Rayman Control Panel and can not be read.
-        /// </summary>
-        public static string Patcher_ReadLibraryNewerVersionError {
-            get {
-                return ResourceManager.GetString("Patcher_ReadLibraryNewerVersionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Can&apos;t open the patch {0} due to none of the following targeted games having been added:
-        ///
-        ///{1}.
-        /// </summary>
-        public static string Patcher_ReadPatchGamesNotAddedError {
-            get {
-                return ResourceManager.GetString("Patcher_ReadPatchGamesNotAddedError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The selected patch could not be read.
-        /// </summary>
-        public static string Patcher_ReadPatchGenericError {
-            get {
-                return ResourceManager.GetString("Patcher_ReadPatchGenericError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Can&apos;t open the patch {0} due to the current game not being one of the game targets:
-        ///
-        ///{1}.
-        /// </summary>
-        public static string Patcher_ReadPatchInvalidGameError {
-            get {
-                return ResourceManager.GetString("Patcher_ReadPatchInvalidGameError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The selected patch was made with a newer version of the Rayman Control Panel and can not be read.
-        /// </summary>
-        public static string Patcher_ReadPatchNewerVersionError {
-            get {
-                return ResourceManager.GetString("Patcher_ReadPatchNewerVersionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove.
-        /// </summary>
-        public static string Patcher_RemovePatch {
-            get {
-                return ResourceManager.GetString("Patcher_RemovePatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The patch {0} adds or replaces sensitive files, such as executable files, in the game. Only add this patch if you trust the author. Continue?.
-        /// </summary>
-        public static string Patcher_SecurityWarning {
-            get {
-                return ResourceManager.GetString("Patcher_SecurityWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Patcher.
-        /// </summary>
-        public static string Patcher_Title {
-            get {
-                return ResourceManager.GetString("Patcher_Title", resourceCulture);
             }
         }
         
@@ -9113,15 +8101,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_Cages {
             get {
                 return ResourceManager.GetString("Progression_Cages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change save editor program.
-        /// </summary>
-        public static string Progression_ChangeEditProgram {
-            get {
-                return ResourceManager.GetString("Progression_ChangeEditProgram", resourceCulture);
             }
         }
         
@@ -10176,15 +9155,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_SaveEditWarningHeader {
             get {
                 return ResourceManager.GetString("Progression_SaveEditWarningHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select an executable for editing JSON save files.
-        /// </summary>
-        public static string Progression_SelectEditProgram {
-            get {
-                return ResourceManager.GetString("Progression_SelectEditProgram", resourceCulture);
             }
         }
         
@@ -12003,15 +10973,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ReadOnly {
             get {
                 return ResourceManager.GetString("ReadOnly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There are {0} patches which have been applied to this game. Do you want to continue removing the game and keep the patches applied?.
-        /// </summary>
-        public static string RemoveGame_PatchWarning {
-            get {
-                return ResourceManager.GetString("RemoveGame_PatchWarning", resourceCulture);
             }
         }
         
@@ -14613,60 +13574,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_ManualDownloadsInfo {
             get {
                 return ResourceManager.GetString("Settings_ManualDownloadsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open game patch (.gp) files in Rayman Control Panel from File Explorer.
-        /// </summary>
-        public static string Settings_PatcherAssociatePatchFileType {
-            get {
-                return ResourceManager.GetString("Settings_PatcherAssociatePatchFileType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open game patch (.gp) files in Rayman Control Panel from URI protocol.
-        /// </summary>
-        public static string Settings_PatcherAssociatePatchURIProtocol {
-            get {
-                return ResourceManager.GetString("Settings_PatcherAssociatePatchURIProtocol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabling this allows for 1-click installation support from GameBanana.
-        /// </summary>
-        public static string Settings_PatcherAssociatePatchURIProtocolInfo {
-            get {
-                return ResourceManager.GetString("Settings_PatcherAssociatePatchURIProtocolInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File Associations.
-        /// </summary>
-        public static string Settings_PatcherFileAssociationsHeader {
-            get {
-                return ResourceManager.GetString("Settings_PatcherFileAssociationsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show external patches.
-        /// </summary>
-        public static string Settings_PatcherShowExternal {
-            get {
-                return ResourceManager.GetString("Settings_PatcherShowExternal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If enabled then the patcher will load and show a list of external patches available for download.
-        /// </summary>
-        public static string Settings_PatcherShowExternalInfo {
-            get {
-                return ResourceManager.GetString("Settings_PatcherShowExternalInfo", resourceCulture);
             }
         }
         

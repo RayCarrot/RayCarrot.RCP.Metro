@@ -2431,18 +2431,6 @@ BinarySerializer</value>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>אירעה שגיאה בעת פתיחת הקובץ לעריכה</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>עורך קבצים בינאריים</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>עורכי קבצים</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>סיומת קובץ</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>תוכנית קשורה</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>שמע</value>
   </data>
@@ -3653,14 +3641,8 @@ Start: הפסק</value>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>שונה לאחרונה</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>בחר קובץ הפעלה לעריכת קבצי שמירה של JSON</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>קובץ השמירה עבר שינוי בהצלחה</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>שנה את תוכנת עורך השמירה</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>מגובה</value>
@@ -3924,9 +3906,6 @@ Start: הפסק</value>
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>פלטפורמת אגרוף</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>לא ידוע {0}</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>הצג מידע על המנוע</value>
@@ -4193,9 +4172,6 @@ Start: הפסק</value>
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>אירעה שגיאה במיישם הטלאים והוא נאלץ לסגור</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>קיימים שינויים שלא נשמרו. האם ברצונך להמשיך ולבטל אותם?</value>
   </data>
@@ -4211,251 +4187,17 @@ Start: הפסק</value>
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>תרגום תוכנה בצרפתית (צרפת).</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>מיישם טלאים</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>הצג טלאים חיצוניים</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>אם מופעל אז הטלאי ייטען ויציג רשימה של טלאים חיצוניים הזמינים להורדה</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>איגודי קבצים</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>פתח את קבצי תיקון המשחק (.gp) בRayman Control Panel מסייר הקבצים</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>פתח את קבצי תיקון המשחק (.gp) בRayman Control Panel מפרוטוקול URI</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>הפעלת זה מאפשרת תמיכה בהתקנה בלחיצה אחת מ-GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>אירעה שגיאה בעת הגדרת שיוך סוג הקובץ עבור קבצי תיקון. נסה להפעיל את Rayman Control Panel כמנהל ונסה שוב.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>אירעה שגיאה בעת הגדרת שיוך פרוטוקול URI עבור קבצי תיקון. נסה להפעיל את Rayman Control Panel כמנהל ונסה שוב.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>שם</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>יוצר</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>תיאור</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>גרסה</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>בחר תמונה ממוזערת. הגודל המומלץ הוא 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>הסר את התמונה הממוזערת</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>הנתיב של הקובץ להוספה ליעד שצוין. אם שדה זה ריק, כל קובץ קיים ביעד יוסר במקום זאת.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>הוספה</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>הוספה מתוך קבצים</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>הוספה מתוך תקיה</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>ליצור</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>יוצר נתיב</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>משחק</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>מייבא מתיקון קיים</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>התיקון שנבחר נוצר עם גרסה חדשה יותר של Rayman Control Panel ולא ניתן לקרוא אותו</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>לא ניתן היה לקרוא את הטלאי שנבחר</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>בחר תמונה ממוזערת</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>תמונה</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>בחר קבצים להוספה</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>בחר תיקיה להוספה</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>אירעה שגיאה בעת הוספת הקבצים שנבחרו</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>יוצר טלאי</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>שמור קובץ טלאי</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>טלאי משחק</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>הטלאי נשמר בהצלחה</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>אירעה שגיאה בעת יצירת הטלאי</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>הנתיב לא יכול להיות ריק</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>הנתיב לא יכול להכיל תווים לא חוקיים</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>הנתיב לא יכול להיות זהה לקובץ ארכיון</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>טלאים</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>טלאים הם שינויים בקבצי המשחק שניתן ליישם כדי לשנות או לשפר את המשחק בדרכים שונות. הטלאי לא ייכנס לתוקף עד שהוא יופעל ויושם, מה שמאפשר להפעיל ולכבות טלאים בקלות. לא מומלץ לשנות ידנית קבצי משחק שתיקון משנה אותם מכיוון שזה עלול לגרום לאיבוד שינויים מסוימים.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>הוסף טלאי</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>חלץ תוכן</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>ייצוא טלאי</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>להסיר</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>הורד</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>ספריית טלאים</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>קבצים ששונו</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>הוסף והפעל טלאי כדי לשנות את קבצי המשחק</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>קובץ</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>מקום</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>טלאי</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>טלאים שנעקפו</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>החל</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>מיישם טלאי - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>משחק:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>טלאים:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>טלאים שהוחלו:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>שונה לאחרונה:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>גרסת פורמט:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>ספרייה:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>קבצים שנוספו:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>קבצים שהוחלפו:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>קבצים שהוסרו:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>ספריית ykth המשחק נוצרה עם גרסה חדשה יותר של Rayman Control Panel ואינה ניתנת לקריאה</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>טלאי {0} מוסיף או מחליף קבצים רגישים, כגון קבצי הפעלה, במשחק. הוסף את התיקון הזה רק אם אתה סומך על יוצר הטלאי. האם להמשיך?</value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>בחר טלאים להוספה</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>חילוץ תוכן הטלאי</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>תוכן הטלאי חולץ בהצלחה</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>אירעה שגיאה בעת חילוץ תוכן הטלאי</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>מייצא טלאי</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>הטלאי יוצא בהצלחה</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>אירעה שגיאה בעת ייצוא התיקון</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>אירעה שגיאה בעת טעינת הטלאים</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>אירעה שגיאה בעת טעינת טלאים חיצוניים</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>מחיל טלאים</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>כל הטלאים הוחלו בהצלחה</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>סיימם להחיל טלאים. לא ניתן היה לשנות חלק מהקבצים.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>אירעה שגיאה בעת החלת הטלאים. לא כל השינויים הוחלו וייתכן שחלק מהנתונים אבדו. ודאו שלא יהיו קבצים מהמשחק פתוחים בזמן החלת הטלאים.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>יוצר:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>גודל:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>שונה לאחרונה:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>גרסה:</value>
@@ -4466,17 +4208,11 @@ Start: הפסק</value>
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>גרסת פורמט:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>נתיב קובץ:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>קבצים שנוספו:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>קבצים שהוסרו:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>בחר טלאי לייבא ממנו</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>טלאי משחק (.gp)</value>
@@ -4489,15 +4225,6 @@ Start: הפסק</value>
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>העתק את נתיב התיקיה</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>אתר</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>אתר</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>ישנם {0} תלאים שהוחלו על המשחק הזה. האם ברצונך להמשיך ולהסיר את המשחק ולהשאיר את התלאים מוחלים?</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>אירעה שגיאה בעת העברת נתוני האפליקציה לגרסה החדשה</value>
@@ -4638,9 +4365,6 @@ Start: הפסק</value>
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>איפוס מיון מותאם אישית</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>חיפוש משחקים מותקנים ולקוחות משחקים/אימולטורים</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>הגדירו לקוחות/אימולטורים למשחק</value>
   </data>
@@ -4649,12 +4373,6 @@ Start: הפסק</value>
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>חיפוש משחקים מותקנים ולקוחות משחקים/אימולטורים</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>לשחק משחק</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>חדשות</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>לאחרונה</value>
@@ -4689,12 +4407,6 @@ Start: הפסק</value>
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>פתיחה</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>פתחו את מיישם הטלאים</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>צורו טלאי</value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
@@ -4706,43 +4418,6 @@ Start: הפסק</value>
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>לאגד משחקים</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>יעדי משחק</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>המשחקים שאליהם התיקון מכוון קובעים לאילו משחקים ניתן להחיל אותו. תיקון יכול לכוון למשחקים מרובים, אבל אם זה מוסיף קבצים לארכיון של משחק חסר, אז קבצים אלו יתעלמו ממשחק זה.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>ייבוא מטלאי קיים</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>זה יאפשר לייבא את התוכן מהטלאי שכבר נוצר. זה יכול לשמש כדי ליצור גרסה מעודכנת של טלאי.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>בחרו יעדי משחק</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>האשף ייתעלם מן הקובץ כיוון שמיקומו לא נמצא</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>פלטפורמה</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>ספריית התיקונים למשחק נוצרה עבור משחק אחר ואינה ניתנת לקריאה</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>לא ניתן לפתוח את הטלאי {0} בגלל שאף אחד מהמשחקים הממוקדים הבאים לא נוסו:
-
-{1}</value>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>בחרו משחק ליישום טלאי</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>לא ניתן לפתוח את הטלאי {0} בגלל שהמשחק הנוכחי אינו אחד ממטרות המשחק:
-
-{1}</value>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>הוסף משחק</value>
@@ -5281,36 +4956,6 @@ Start: הפסק</value>
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>טען את חדשות האפליקציה בדף הבית</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>גרסה</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>תאריך</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>בחרו תאריך</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>תיאור</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>הסירו את הערך ביומן השינויים</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>הוסף ערך יומן שינויים</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>מטא נתונים</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>יומן שינויים</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>שינויים בקובץ</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>להוריד עדכון</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>ברוכים הבאים לעדכון היובל</value>
   </data>
@@ -5328,12 +4973,6 @@ Start: הפסק</value>
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>חדש בעדכון זה הוא תמיכה עבור לקוחות/אימולטורים של משחקים. ניתן להוסיף אותם בתיבת דו-שיח נפרדת ולהגדיר אותם לשימוש במשחקים שנוספו. לקוחות משחקים כגון Steam הם אופציונליים בעוד שמשחקי קונסולות דורשים אמולטור על מנת לשחק. אם אמולטור אינו ברשימה הנתמכת, ניתן להוסיף אותו כאמולטור מותאם אישית. לידיעתכם, פעולה זו אינה מאפשרת הצגה של התקדמות משחק כלשהי.</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>כלי עזר נוספים הם כעת טלאים</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>לא מוצאים כלי עזר שאתם מחפשים? סביר להניח שהוא עובד מחדש כתיקון.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>סנכרון הטקסטורה הועבר</value>
@@ -5368,16 +5007,55 @@ Start: הפסק</value>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
     <value>תרגום תוכנה בספרדית (ספרד)</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
-    <value>טלאי {0} הוחל</value>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>שונה לאחרונה:</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
-    <value>הוחלו {0} טלאים</value>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>סנכרון טקסטורות</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>אב טיפוס  Rayman 3</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
   </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>שלבי בונוס GameCube שהושלמו</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>אגרוף טריקה</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>שליטה באגרוף</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>תרגום דני (דנמרק)</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>הצג משחקים אחרונים</value>
   </data>
 </root>

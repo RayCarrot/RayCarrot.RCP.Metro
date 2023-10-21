@@ -2431,18 +2431,6 @@
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>Произошла ошибка при открытии файла для редактирования</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Редактор двоичных файлов</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Редакторы файлов</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Расширение файла</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Привязанная программа</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Звук</value>
   </data>
@@ -3653,14 +3641,8 @@ Start: Пауза</value>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Последнее изменение</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Выберите исполняемый файл для редактирования JSON файлов сохранения</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>Файл сохранения был успешно изменен</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Изменить программу редактора сохранений</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Резервные копии сохранены</value>
@@ -3922,9 +3904,6 @@ Start: Пауза</value>
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Кулак-платформа</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>Неизвестный {0}</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Показать информацию о движке</value>
@@ -4191,9 +4170,6 @@ Start: Пауза</value>
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>В патчере произошла ошибка, из-за чего он был закрыт</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Изменения не сохранены. Вы хотите продолжить и отменить их?</value>
   </data>
@@ -4209,251 +4185,17 @@ Start: Пауза</value>
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Перевод программы на французский (Франция)</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Патчер</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Отобразить внешние патчи</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>При активации патчер загрузится и отобразит список внешних патчей, доступных для загрузки</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>Ассоциации файлов</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Открыть файлы игрового патча (.gp) в Rayman Control Panel через Проводник</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Открыть файлы игрового патча (.gp) в Rayman Control Panel через протокол URI</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>Активация этого параметра позволяет устанавливать файлы в 1 клик с GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>Произошла ошибка при настройке ассоциации типов файлов для файлов патча. Попробуйте запустить Rayman Control Panel от имени администратора и повторить попытку.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>Произошла ошибка при настройке ассоциации протокола URI для файлов патча. Попробуйте запустить Rayman Control Panel от имени администратора и повторить попытку.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Название</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Автор</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Версия</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Выберите обложку. Рекомендуемый размер - 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Убрать обложку</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>Путь к файлу для добавления в указанную папку назначения. Если это поле пустое, то тогда все существующие файлы в папке назначения будут удалены.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Добавить</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Добавить из файлов</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Добавить из папки</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Создать</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Редактор Патчей</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Игра</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Импорт из существующего патча</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>Выбранный патч был создан с помощью более новой версии Rayman Control Panel и не может быть прочитан</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>Выбранный патч не может быть прочитан</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Выберите обложку</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Изображение</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Выберите файлы для добавления</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Выберите папку для добавления</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>Произошла ошибка при добавлении выбранных файлов</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Создание патча</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Сохранить файл патча</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Игровой патч</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>Патч был успешно сохранён</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>Произошла ошибка при создании патча</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>Путь не может быть пустым</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>Путь не может содержать недопустимые символы</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>Путь не может быть тем же, что и файл архива</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Патчи</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Патчи - это модификации игровых файлов, которые могут быть применены для изменения или улучшения игры в различных аспектах. Патч не вступит в силу до тех пор, пока не будет включён и применён, позволяя с лёгкостью включать и отключать патчи. Не рекомендуется вручную изменять игровые файлы, которые модифицирует патч, так как это может привести к потере некоторых изменений.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Добавить патч</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Извлечь содержимое</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Экспорт патча</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Убрать</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Загрузить</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Библиотека патчей</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>Модифицированные файлы</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Добавьте и активируйте патч для изменения файлов игры</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>Файл </value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Расположение</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Патч</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Перезаписанные патчи</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Применить</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Патчер - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Игра:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Патчи:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Применённые патчи:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Последнее изменение:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Версия формата:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Расположение:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>Добавленные файлы:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>Заменённые файлы:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>Удалённые файлы:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>Библиотека патчей игры была создана с помощью более новой версии Rayman Control Panel и не может быть прочитана</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>Патч {0} добавляет или заменяет в игре такие важные файлы, как исполняемые файлы. Добавляйте этот патч только в том случае, если вы доверяете его автору. Продолжить?</value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Выберите патчи для добавления</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>Извлечение содержимого патча</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>Содержимое патча было успешно извлечено</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>Произошла ошибка при извлечении содержимого патча</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Экспорт патча</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>Патч был успешно экспортирован</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>При экспорте патча произошла ошибка</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>При загрузке патчей произошла ошибка</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>Произошла ошибка при загрузке внешних патчей</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Применение патчей</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Все патчи были успешно применены</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Применение патчей завершено. Некоторые файлы не удалось модифицировать.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>Произошла ошибка при применении патчей. Не все изменения были применены, а некоторые данные, возможно, были утеряны. Убедитесь в том, что во время применения патчей не открыты какие-либо файлы игры.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Автор:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Размер:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Последнее изменение:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Версия:</value>
@@ -4464,17 +4206,11 @@ Start: Пауза</value>
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Версия формата:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>Путь к файлу:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>Добавленные файлы:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Удалённые файлы:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Выберите патч для импорта из него</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Игровой патч (.gp)</value>
@@ -4487,15 +4223,6 @@ Start: Пауза</value>
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Скопировать путь к папке</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Веб-сайт</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Веб-сайт</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>{0} патчей были применены к этой игре. Вы хотите продолжить удаление игры и сохранить применённые патчи?</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Произошла ошибка при переносе данных приложения в новую версию</value>
@@ -4560,11 +4287,501 @@ Start: Пауза</value>
   <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
     <value>Аргументы запуска</value>
   </data>
+  <data name="GameClients_Custom_LaunchArgsInfo" xml:space="preserve">
+    <value>Здесь вы можете указать, какие аргументы запуска передаются программе. В поле расположения игры введите %game%. Также рекомендуется заключить в кавычки, чтобы избежать появления пробелов в пути.</value>
+  </data>
+  <data name="GameClients_DOSBox_ConfigPaths" xml:space="preserve">
+    <value>Расположение файлов конфигурации</value>
+  </data>
+  <data name="GameClients_DOSBox_AddConfigPath" xml:space="preserve">
+    <value>Добавить файл</value>
+  </data>
+  <data name="GameClients_DOSBox_RemoveConfigPaths" xml:space="preserve">
+    <value>Удалить выбранные файлы</value>
+  </data>
+  <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
+    <value>Выбор файла конфигурации</value>
+  </data>
+  <data name="Config_LocationsHeader" xml:space="preserve">
+    <value>Расположение файла конфигурации</value>
+  </data>
+  <data name="Page_LoadError" xml:space="preserve">
+    <value>Во время загрузки страницы произошла ошибка</value>
+  </data>
+  <data name="GameClients_SelectionHeader" xml:space="preserve">
+    <value>Клиент/эмулятор</value>
+  </data>
+  <data name="GameClients_SelectionInfo" xml:space="preserve">
+    <value>Здесь можно выбрать клиент или эмулятор для запуска игры. Это необходимо для эмулируемых игр, так как их самостоятельный запуск невозможен.</value>
+  </data>
+  <data name="GameClients_SelectionNone" xml:space="preserve">
+    <value>Не выбрано</value>
+  </data>
+  <data name="Ray1_VersionSelectionHeader" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Версия игры</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>Версия игры определяет, какие наборы мини-игр доступны в игре. Некоторые релизы игры ограничены определенной версией, в то время как остальные поддерживают все. Если при запуске игры возникает ошибка, попробуйте изменить версию игры.</value>
+  </data>
+  <data name="Games_ValidationMissingPaths" xml:space="preserve">
+    <value>Следующие требуемые пути не были найдены:
+{0}</value>
+  </data>
+  <data name="Games_ValidationFileMissing" xml:space="preserve">
+    <value>Файл не существует</value>
+  </data>
+  <data name="Games_ValidationRomInvalid" xml:space="preserve">
+    <value>ROM-файл не подходит для этой игры</value>
+  </data>
+  <data name="GameHub_Play" xml:space="preserve">
+    <value>Играть</value>
+  </data>
+  <data name="GameHub_FavoriteOn" xml:space="preserve">
+    <value>В избранное</value>
+  </data>
+  <data name="GameHub_FavoriteOff" xml:space="preserve">
+    <value>Убрать из избранного</value>
+  </data>
+  <data name="GameHub_Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="GameHub_RefreshPanel" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="GameSelection_Home" xml:space="preserve">
+    <value>Домашняя страница</value>
+  </data>
+  <data name="GameSelection_Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="GameSelection_GroupGames" xml:space="preserve">
+    <value>Группировать игры</value>
+  </data>
+  <data name="GameSelection_ResetSort" xml:space="preserve">
+    <value>Сброс пользовательской сортировки</value>
+  </data>
+  <data name="GameSelection_ConfigureClients" xml:space="preserve">
+    <value>Настройка игровых клиентов/эмуляторов</value>
+  </data>
+  <data name="GameSelection_AddGame" xml:space="preserve">
+    <value>Добавить игру</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Поиск установленных игр и игровых клиентов/эмуляторов</value>
+  </data>
+  <data name="Home_RecentGames" xml:space="preserve">
+    <value>Недавнее</value>
+  </data>
+  <data name="Home_FavoriteGames" xml:space="preserve">
+    <value>Избранное</value>
+  </data>
+  <data name="Finder_NoResults" xml:space="preserve">
+    <value>Не было обнаружено новых установленных игр или игровых клиентов/эмуляторов</value>
+  </data>
+  <data name="Finder_ResultHeader" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Finder_Error" xml:space="preserve">
+    <value>Во время поиска произошла ошибка</value>
+  </data>
+  <data name="Finder_FoundClients" xml:space="preserve">
+    <value>Были найдены следующие новые игровые клиенты/эмуляторы:</value>
+  </data>
+  <data name="Finder_FoundClientsHeader" xml:space="preserve">
+    <value>Найденные установленные игровые клиенты/эмуляторы</value>
+  </data>
+  <data name="Games_MissingLaunchComponent" xml:space="preserve">
+    <value>Эта игра не может быть запущена без игрового клиента/эмулятора. Убедитесь, что вы сначала добавили поддерживаемый игровой клиент/эмулятор, а затем выбрали его для использования с этой игрой.</value>
+  </data>
+  <data name="Games_RenameHeader" xml:space="preserve">
+    <value>Переименование игры</value>
+  </data>
+  <data name="Games_RenameInfo" xml:space="preserve">
+    <value>Переименование {0}. Оставьте поле название пустым, чтобы использовать название по умолчанию.</value>
+  </data>
+  <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
+  <data name="Progression_SharedBackupsInfo" xml:space="preserve">
+    <value>В этой игре используются те же резервные копии, что и в следующих играх. Это означает, что создание резервной копии для одной из этих игр приведет к перезаписи всех резервных копий, созданных и для остальных игр.</value>
+  </data>
   <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
     <value>• {0}</value>
+  </data>
+  <data name="Progression_GroupGames" xml:space="preserve">
+    <value>Группировать игры</value>
+  </data>
+  <data name="AddGames_Title" xml:space="preserve">
+    <value>Добавить игры</value>
+  </data>
+  <data name="AddGames_Find" xml:space="preserve">
+    <value>Найти игру</value>
+  </data>
+  <data name="AddGames_AddError" xml:space="preserve">
+    <value>Произошла ошибка при добавлении игры</value>
+  </data>
+  <data name="AddGames_AddErrorHeader" xml:space="preserve">
+    <value>Ошибка при добавлении игры</value>
+  </data>
+  <data name="AddGames_FindSuccessResult" xml:space="preserve">
+    <value>Игра была найдена в {0}</value>
+  </data>
+  <data name="AddGames_FindResultHeader" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="AddGames_FindFailedResult" xml:space="preserve">
+    <value>Игра не найдена</value>
+  </data>
+  <data name="GameClients_BrowseFileHeader" xml:space="preserve">
+    <value>Выберите исполняемый файл игрового клиента</value>
+  </data>
+  <data name="GameClients_BrowseDirHeader" xml:space="preserve">
+    <value>Выберите установочный файл игрового клиента</value>
+  </data>
+  <data name="GameClients_InvalidLocation" xml:space="preserve">
+    <value>Выбранное местоположение некорректно</value>
+  </data>
+  <data name="GameClients_FindSuccessResult" xml:space="preserve">
+    <value>Игровой клиент/эмулятор был найден в {0}</value>
+  </data>
+  <data name="GameClients_FindResultHeader" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="GameClients_FindFailedResult" xml:space="preserve">
+    <value>Игровой клиент/эмулятор не был найден</value>
+  </data>
+  <data name="GameClients_AddedClientsHeader" xml:space="preserve">
+    <value>Добавленные игровые клиенты/эмуляторы</value>
+  </data>
+  <data name="GameClients_AvailableClientsHeader" xml:space="preserve">
+    <value>Доступные игровые клиенты и эмуляторы</value>
+  </data>
+  <data name="GameClients_LocateClient" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="GameClients_FindClient" xml:space="preserve">
+    <value>Найти игровой клиент/эмулятор</value>
+  </data>
+  <data name="GameClients_OpenLocation" xml:space="preserve">
+    <value>Открыть местоположение</value>
+  </data>
+  <data name="GameClients_Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="GameClients_Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="GameClients_SupportedGamesHeader" xml:space="preserve">
+    <value>Поддерживаемые игры</value>
+  </data>
+  <data name="GameClients_ConfigTitle" xml:space="preserve">
+    <value>Настройка игровых клиентов/эмуляторов</value>
+  </data>
+  <data name="GameClients_RenameHeader" xml:space="preserve">
+    <value>Переименование игрового клиента/эмулятора</value>
+  </data>
+  <data name="GameClients_RenameHeaderInfo" xml:space="preserve">
+    <value>Переименование {0}. Оставьте поле название пустым, чтобы использовать название по умолчанию.</value>
+  </data>
+  <data name="JumpListEditor_AutoSort" xml:space="preserve">
+    <value>Авторматическая сортировка игр</value>
+  </data>
+  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
+    <value>Включите или отключите эту утилиту, выбрав или отменив выбор игрового клиента саундтрека для каждого уровня для этой игры</value>
+  </data>
+  <data name="R1U_TPLSGameClientName" xml:space="preserve">
+    <value>DOSBox (саундтрек для каждого уровня)</value>
+  </data>
+  <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
+    <value>Данные сохранения для Rayman Advance</value>
+  </data>
+  <data name="Utilities_Converter_R3GbaSaveHeader" xml:space="preserve">
+    <value>Данные сохранения для Rayman 3 (GBA)</value>
+  </data>
+  <data name="Utilities_Converter_RHRSaveHeader" xml:space="preserve">
+    <value>Данные сохранения для Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="Utilities_Converter_RRRGbaSaveHeader" xml:space="preserve">
+    <value>Данные сохранения для Rayman Raving Rabbids (GBA)</value>
+  </data>
+  <data name="Rayman1_MsDos_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman1_Gba_Title" xml:space="preserve">
+    <value>Rayman Advance</value>
+  </data>
+  <data name="RaymanDesigner_MsDos_Title" xml:space="preserve">
+    <value>Rayman Designer</value>
+  </data>
+  <data name="RaymanByHisFans_MsDos_Title" xml:space="preserve">
+    <value>Rayman by his Fans</value>
+  </data>
+  <data name="Rayman60Levels_MsDos_Title" xml:space="preserve">
+    <value>Rayman 60 Levels</value>
+  </data>
+  <data name="Rayman2_Win32_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanM_Win32_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanArena_Win32_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="Rayman3_Win32_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanOrigins_Win32_Title" xml:space="preserve">
+    <value>Rayman Origins</value>
+  </data>
+  <data name="RaymanLegends_Win32_Title" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="RaymanJungleRun_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="RaymanFiestaRunPreloadEdition_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run Preload Edition</value>
+  </data>
+  <data name="RaymanFiestaRunWindows10Edition_WindowsPackage_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run Windows 10 Edition</value>
+  </data>
+  <data name="RaymanRavingRabbids_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="RaymanRavingRabbids2_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2</value>
+  </data>
+  <data name="RabbidsGoHome_Win32_Title" xml:space="preserve">
+    <value>Rabbids Go Home</value>
+  </data>
+  <data name="RabbidsBigBang_WindowsPackage_Title" xml:space="preserve">
+    <value>Rabbids Big Bang</value>
+  </data>
+  <data name="RabbidsCoding_Win32_Title" xml:space="preserve">
+    <value>Rabbids Coding</value>
+  </data>
+  <data name="Rayman3_Gba_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanHoodlumsRevenge_Gba_Title" xml:space="preserve">
+    <value>Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="RaymanRavingRabbids_Gba_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Rayman1_Demo_19951207_MsDos_Title" xml:space="preserve">
+    <value>Rayman Демо (07/12/1995)</value>
+  </data>
+  <data name="Rayman1_Demo_19960215_MsDos_Title" xml:space="preserve">
+    <value>Rayman Демо (15/02/1996)</value>
+  </data>
+  <data name="Rayman1_Demo_19951204_MsDos_Title" xml:space="preserve">
+    <value>Rayman Демо (04/12/1995)</value>
+  </data>
+  <data name="RaymanGold_Demo_19970930_MsDos_Title" xml:space="preserve">
+    <value>Rayman Gold Демо (30/09/1997)</value>
+  </data>
+  <data name="Rayman2_Demo_19990818_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Демо (18/08/1999)</value>
+  </data>
+  <data name="Rayman2_Demo_19990904_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Демо (04/09/1999)</value>
+  </data>
+  <data name="RaymanM_Demo_20020627_Win32_Title" xml:space="preserve">
+    <value>Rayman M Демо (27/06/2002)</value>
+  </data>
+  <data name="Rayman3_Demo_20021004_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Демо (04/10/2002)</value>
+  </data>
+  <data name="Rayman3_Demo_20021021_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Демо (21/10/2002)</value>
+  </data>
+  <data name="Rayman3_Demo_20021210_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Демо (10/12/2002)</value>
+  </data>
+  <data name="Rayman3_Demo_20030129_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Демо (29/01/2003)</value>
+  </data>
+  <data name="Rayman3_Demo_20030108_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Демо (08/01/2003)</value>
+  </data>
+  <data name="RaymanRavingRabbids_Demo_20061106_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Демо (06/11/2006)</value>
+  </data>
+  <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
+    <value>Rayman Minigames</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Quiz)</value>
+  </data>
+  <data name="TonicTrouble_Win32_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="TonicTroubleSpecialEdition_Win32_Title" xml:space="preserve">
+    <value>Tonic Trouble Special Edition</value>
+  </data>
+  <data name="RaymanDictées_Win32_Title" xml:space="preserve">
+    <value>Rayman Dictées</value>
+  </data>
+  <data name="RaymanPremiersClics_Win32_Title" xml:space="preserve">
+    <value>Rayman Premiers Clics</value>
+  </data>
+  <data name="Rayman3PrintStudio_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Print Studio</value>
+  </data>
+  <data name="RaymanActivityCenter_Win32_Title" xml:space="preserve">
+    <value>Rayman Activity Center</value>
+  </data>
+  <data name="RaymanRavingRabbidsActivityCenter_Win32_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Activity Center</value>
+  </data>
+  <data name="TheDarkMagiciansReignofTerror_Win32_Title" xml:space="preserve">
+    <value>Rayman: The Dark Magician's Reign of Terror</value>
+  </data>
+  <data name="RaymanRedemption_Win32_Title" xml:space="preserve">
+    <value>Rayman Redemption</value>
+  </data>
+  <data name="RaymanRedesigner_Win32_Title" xml:space="preserve">
+    <value>Rayman ReDesigner</value>
+  </data>
+  <data name="RaymanBowling2_Win32_Title" xml:space="preserve">
+    <value>Rayman Bowling 2</value>
+  </data>
+  <data name="RaymanGardenPLUS_Win32_Title" xml:space="preserve">
+    <value>Rayman Garden PLUS</value>
+  </data>
+  <data name="GloboxMoment_Win32_Title" xml:space="preserve">
+    <value>Globox Moment</value>
+  </data>
+  <data name="RaymanTheDreamersBoundary_Win32_Title" xml:space="preserve">
+    <value>Rayman: The Dreamer's Boundary</value>
+  </data>
+  <data name="Game_Rayman1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Game_RaymanDesigner_Title" xml:space="preserve">
+    <value>Rayman Designer</value>
+  </data>
+  <data name="Game_RaymanByHisFans_Title" xml:space="preserve">
+    <value>Rayman by his Fans</value>
+  </data>
+  <data name="Game_Rayman60Levels_Title" xml:space="preserve">
+    <value>Rayman 60 Levels</value>
+  </data>
+  <data name="Game_Rayman2_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Game_RaymanMArena_Title" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Game_Rayman3_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Game_RaymanOrigins_Title" xml:space="preserve">
+    <value>Rayman Origins</value>
+  </data>
+  <data name="Game_RaymanLegends_Title" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Game_RaymanJungleRun_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="Game_RaymanFiestaRun_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids2_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2</value>
+  </data>
+  <data name="Game_RabbidsGoHome_Title" xml:space="preserve">
+    <value>Rabbids Go Home</value>
+  </data>
+  <data name="Game_RabbidsBigBang_Title" xml:space="preserve">
+    <value>Rabbids Big Bang</value>
+  </data>
+  <data name="Game_RabbidsCoding_Title" xml:space="preserve">
+    <value>Rabbids Coding</value>
+  </data>
+  <data name="Game_Rayman3_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 (Game Boy Advance)</value>
+  </data>
+  <data name="Game_RaymanHoodlumsRevenge_Title" xml:space="preserve">
+    <value>Rayman Hoodlums' Revenge</value>
+  </data>
+  <data name="Game_RaymanRavingRabbids_Gba_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids (Game Boy Advance)</value>
+  </data>
+  <data name="Game_TheDarkMagiciansReignofTerror_Title" xml:space="preserve">
+    <value>Rayman: The Dark Magician's Reign of Terror</value>
+  </data>
+  <data name="Game_RaymanRedemption_Title" xml:space="preserve">
+    <value>Rayman Redemption</value>
+  </data>
+  <data name="Game_RaymanRedesigner_Title" xml:space="preserve">
+    <value>Rayman ReDesigner</value>
+  </data>
+  <data name="Game_RaymanBowling2_Title" xml:space="preserve">
+    <value>Rayman Bowling 2</value>
+  </data>
+  <data name="Game_RaymanGardenPLUS_Title" xml:space="preserve">
+    <value>Rayman Garden PLUS</value>
+  </data>
+  <data name="Game_GloboxMoment_Title" xml:space="preserve">
+    <value>Globox Moment</value>
+  </data>
+  <data name="Game_RaymanTheDreamersBoundary_Title" xml:space="preserve">
+    <value>Rayman: The Dreamer's Boundary</value>
+  </data>
+  <data name="Game_Rayman1Minigames_Title" xml:space="preserve">
+    <value>Rayman Minigames</value>
+  </data>
+  <data name="Game_RaymanEdutainment_Title" xml:space="preserve">
+    <value>Rayman Edutainment</value>
+  </data>
+  <data name="Game_TonicTrouble_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_RaymanDictées_Title" xml:space="preserve">
+    <value>Rayman Dictées</value>
+  </data>
+  <data name="Game_RaymanPremiersClics_Title" xml:space="preserve">
+    <value>Rayman Premiers Clics</value>
+  </data>
+  <data name="Game_Rayman3PrintStudio_Title" xml:space="preserve">
+    <value>Rayman 3 Print Studio</value>
+  </data>
+  <data name="Game_RaymanActivityCenter_Title" xml:space="preserve">
+    <value>Rayman Activity Center</value>
+  </data>
+  <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids Activity Center</value>
+  </data>
+  <data name="Platform_MsDos" xml:space="preserve">
+    <value>MS-DOS</value>
+  </data>
+  <data name="Platform_Win32" xml:space="preserve">
+    <value>Рабочий стол (Win32)</value>
+  </data>
+  <data name="Platform_WindowsPackage" xml:space="preserve">
+    <value>Пакет Windows (.appx/.msix)</value>
+  </data>
+  <data name="Platform_Gba" xml:space="preserve">
+    <value>Game Boy Advance</value>
   </data>
   <data name="Progression_RHR_Level0Header" xml:space="preserve">
     <value>Fairy Council</value>
@@ -4704,10 +4921,139 @@ Start: Пауза</value>
   <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
     <value>The rabbids' lair</value>
   </data>
+  <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
+    <value>Time attack</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Найти игровые ROM'ы и диски из папки</value>
+  </data>
+  <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
+    <value>Выберите папку для поиска ROM'ов и дисков в ней</value>
+  </data>
+  <data name="GameFileFinder_Error" xml:space="preserve">
+    <value>Во время поиска файла игры произошла ошибка</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>Следующие новые игры были найдены:</value>
+  </data>
+  <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Найденные ROM'ы и диски</value>
+  </data>
+  <data name="GameFileFinder_NoResults" xml:space="preserve">
+    <value>Никаких новых игровых ROM'ов или дисков не было найдено</value>
+  </data>
+  <data name="GameFileFinder_ResultHeader" xml:space="preserve">
+    <value>Результаты поиска файла игры</value>
+  </data>
+  <data name="GameSelection_RefreshError" xml:space="preserve">
+    <value>При загрузке игр произошла ошибка</value>
+  </data>
+  <data name="Home_ShowMoreNews" xml:space="preserve">
+    <value>Показать ещё</value>
+  </data>
+  <data name="Settings_LoadAppNews" xml:space="preserve">
+    <value>Загрузить новости приложения на домашней странице</value>
+  </data>
+  <data name="AnniversaryUpdate_Title" xml:space="preserve">
+    <value>Добро пожаловать в Юбилейное Обновление</value>
+  </data>
+  <data name="AnniversaryUpdate_Header" xml:space="preserve">
+    <value>Добро пожаловать в Юбилейное Обновление!</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
+    <value>Переработанная страница игр</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
+    <value>Страница игр была переработана для поддержки новых функций, таких как возможность многократной установки одной и той же игры и эмуляции консольных игр. У каждой игры теперь есть окно справа, где вы можете видеть общий фунционал, например, из разделов "Патчи" и "Archive Explorer".</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
+    <value>Игровые клиенты/эмуляторы</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
+    <value>Нововведением в этом обновлении стала поддержка игровых клиентов/эмуляторов. Они могут быть добавлены в отдельном диалоговом окне и настроены для использования в добавленных играх. Игровые клиенты, такие как Steam, являются необязательными, в то время как для запуска консольных игр требуется эмулятор. Если эмулятора нет в списке поддерживаемых, вы можете добавить его в качестве пользовательского эмулятора. Имейте в виду, что отображение какого-либо игрового прогресса для них недоступно.</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
+    <value>Синхронизация текстур перемещена</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
+    <value>Утилита синхронизации текстур была заменена кнопкой на панели Archive Explorer для более комфортного использования. Как и ранее, вы также можете включить автоматическую синхронизацию текстур при переупаковке архива.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
+    <value>1.12 (Не защищена)</value>
+  </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>Доступна более свежая версия. Удалите текущую версию, чтобы установить ее.</value>
+  </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID игры:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Открыть в Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>ID пользователя</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Перевод программы на испанский (Испания)</value>
+  </data>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Последнее изменение:</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Синхронизация текстур</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Прототип Rayman 3</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Пройденные бонусные GameCube-уровни</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Удар кулаком вниз</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Управление кулаком</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Перевод программы на датский (Дания)</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Показать недавние игры</value>
   </data>
 </root>

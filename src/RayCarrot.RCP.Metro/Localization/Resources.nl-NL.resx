@@ -2428,18 +2428,6 @@ Foutmelding: {1}</value>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden bij het openen van het bestand voor wijzigingen</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Binaire bestanden-editor</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Bestanden-editors</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Bestandsextensie</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Geassocieerde programma</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Geluid</value>
   </data>
@@ -3650,14 +3638,8 @@ Start: Pauzeren</value>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Laatst gewijzigd</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Selecteer een uitvoerbaar bestand voor het wijzigen van JSON save files</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>De save file is succesvol gewijzigd</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Wijzig save editor programma</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Geback-upt</value>
@@ -3919,9 +3901,6 @@ Conflicten:
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Vuistplatform</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>Onbekend {0}</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Engine info inzien</value>
@@ -4187,9 +4166,6 @@ Conflicten:
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden in de patcher, welke afgesloten moest worden.</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Er zijn onopgeslagen wijzigingen. Wil je verdergaan en deze negeren?</value>
   </data>
@@ -4205,251 +4181,17 @@ Conflicten:
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Franse (Frankrijk) programmavertaling</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Patcher</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Bekijken externe patches</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>Indien ingeschakeld, zal de patcher een lijst van externe patches laden en laten zien die beschikbaar zijn om te downloaden</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>Bestandsassociaties</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Open game patch (.gp) bestanden in Rayman Control Panel via Windows Verkenner</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Open game patch (.gp) bestanden in Rayman Control Panel via een URI-protocol</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>Wanneer dit wordt ingeschakeld, kan er 1-klik installatie ondersteuning plaatsvinden via GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het instellen van een bestandstype-associatie voor patchbestanden. Probeer Rayman Control Panel als administrator uit te voeren en probeer het nogeens.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het instellen van het URI-protocol voor patchbestanden. Probeer Rayman Control Panel als administrator uit te voeren en probeer het nogeens.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Naam</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Auteur</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Beschrijving</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Versie</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Selecteer een miniatuurweergave. De aanbevolen grootte is 128 x 128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Verwijder de miniatuurweergave</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>Het pad van het bestand dat toegevoegd wordt aan de gespecificeerde locatie. Indien het pad leeg is, zal elk bestaand bestand op deze locatie in plaats daarvan worden verwijderd.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Toevoegen</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Toevoegen via bestanden</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Toevoegen via map</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Aanmaken</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Patch Maker</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Spel</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Importeren vanaf bestaande patch</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>De geselecteerde patch is gemaakt via een nieuwere versie van Rayman Control Panel en kan niet gelezen worden.</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>De geselecteerde patch kon niet gelezen worden</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Selecteer een miniatuurweergave</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Afbeelding</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Selecteer bestanden voor toevoeging</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Selecteer map voor toevoeging</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het toevoegen van de geselecteerde bestanden</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Creëren patch</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Opslaan patchbestand</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Spelpatch</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>De patch is succesvol opgeslagen</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het creëren van de patch</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>Het pad kan niet leeg zijn</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>Het pad kan geen ongeldige tekens bevatten</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>Het pad kan niet hetzelfde zijn als die van een archiefbestand</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Patches</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Patches zijn bewerkingen in de spelbestanden die toegepast kunnen worden voor het veranderen of verbeteren van het spel op verschillende manieren. De patch zal geen effect hebben totdat deze ingeschakeld is en toegepast wordt; patches kunnen zo gemakkelijk in-/uitgeschakeld worden. Het is niet aanbevolen handmatig spelbestanden te wijzigen die een patch bewerkt, omdat het kan resulteren in verloren wijzigingen.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Toevoegen patch</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Uitpakken inhoud</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Exporteren patch</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Verwijderen</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Downloaden</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Patch Bibliotheek</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>Bewerkte bestanden</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Voeg een patch toe en schakel deze in om spelbestanden te bewerken</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>Bestand</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Locatie</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Patch</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Overschreven Patches</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Toevoegen</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Patcher - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Spel:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Patches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Toegepaste patches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Laatst gewijzigd:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Format versie:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Map:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>Toegevoegde bestanden:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>Vervangen bestanden:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>Verwijderde bestanden:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>De spelpatch-bibliotheek is gemaakt via een nieuwere versie van Rayman Control Panel en kan niet gelezen worden</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>De patch {0} voegt gevoelige bestanden toe of vervangt deze in het spel, zoals uitvoerbare bestanden. Voeg deze patch uitsluitend toe als je de maker vertrouwt. Verdergaan? </value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Selecteer patches voor toevoeging</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>UItpakken patch-inhoud</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>De patch-inhoud is succesvol uitgepakt</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het uitpakken van de patch-inhoud</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Exporteren patch</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>De patch is succesvol geëxporteerd</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het exporteren van de patch</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het laden van de patches</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het laden van externe patches</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Toepassen patches</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Toepassing alle patches succesvol</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Toepassen patches afgerond. Sommige bestanden konden niet worden gewijzigd.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de patches. Niet alle bewerkingen zijn toegepast en sommige data kunnen verloren zijn gegaan. Wees er zeker van dat geen enkel spelbestand geopend is tijdens het toepassen van patches.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Maker:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Grootte:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Laatst gewijzigd:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Versie:</value>
@@ -4460,17 +4202,11 @@ Conflicten:
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Format versie:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>Bestandspad:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>Toegevoegde bestanden:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Verwijderde bestanden:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Selecteer een patch om vanaf te importeren</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Spelpatch (.gp)</value>
@@ -4483,15 +4219,6 @@ Conflicten:
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Kopieer mappad</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>Er zijn {0} patches toegepast op dit spel. Wil je verdergaan met het deïnstalleren van het spel en de toegepaste patches behouden?</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het migreren van de app-data naar de nieuwe versie</value>
@@ -4632,9 +4359,6 @@ Conflicten:
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>Reset aangepaste sortering</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>Zoek geïnstalleerde spellen en gameplatforms/emulators</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Configureer gameplatforms/emulators</value>
   </data>
@@ -4643,12 +4367,6 @@ Conflicten:
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Zoek naar geïnstalleerde spellen en gameplatforms/emulators</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>Speel spel</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>Nieuws</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>Recent</value>
@@ -4683,12 +4401,6 @@ Conflicten:
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>Open patcher</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>Creëer patch</value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
@@ -4700,43 +4412,6 @@ Conflicten:
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Groepeer spellen</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>Spel doelen</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>De spellen waar de patch zich op richt, zijn de spellen waar de patch op van toepassing is. Een patch kan toegepast worden op meerdere spellen, maar als het bestanden toevoegt aan een ontbrekend archief voor een bepaald spel, dan worden deze genegeerd voor dat spel.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>Importeren vanaf bestaande patch</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>Middels deze optie wordt inhoud  van een eerder gemaakte patch geïmporteerd. Handig voor het maken van een geüpdatete versie van een patch.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>Selecteer spel doelen</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>Dit bestand zal worden genegeerd omdat de locatie niet kon worden gevonden</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>Platform</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>De spelpatch-bibliotheek is gemaakt voor een ander spel en kan niet worden gelezen</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>Kan de patch {0} niet openen, omdat géén van de beoogde spellen is toegevoegd:
-
-{1}</value>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>Selecteer spel om te patchen</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>Kan de patch {0} niet openen, omdat het huidige spel niet één van de de spel doelen is:
-
-{1}</value>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>Spellen Toevoegen</value>
@@ -5275,36 +4950,6 @@ Conflicten:
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Laad app-nieuws in via de homepagina</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Versie</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Datum</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Selecteer een datum</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Omschrijving</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Verwijder changelog ingang</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Voeg changelog ingang toe</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadata</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Changelog</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>Bestandsmodificaties</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Downloaden update</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Welkom bij de Anniversary Update</value>
   </data>
@@ -5322,12 +4967,6 @@ Conflicten:
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>Nieuw in deze update is ondersteuning voor gameplatforms/emulators. Deze kunnen worden toegevoegd in een apart dialoogvenster en ingezet worden voor toegevoegde spellen. Gameplatforms zoals Steam zijn optioneel, terwijl console-spellen een emulator vereisen om gespeeld te kunnen worden. Als een emulator níét in de lijst van ondersteunde emulators zit, kun je deze handmatig toevoegen. Wees er in dat geval dan wel op verdacht dat géén spelvoortgang getoond kan worden.</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>Meer hulpprogramma's zijn nú patches</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>Kun je een bepaald hulpprogramma niet vinden? Deze is hoogstwaarschijnlijk herschreven in de vorm van een patch.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>Textuursynchronisatie is verplaatst</value>
@@ -5361,12 +5000,6 @@ Conflicten:
   </data>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
     <value>Spaanse (Spanje) programmavertaling</value>
-  </data>
-  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
-    <value>{0} patch toegepast</value>
-  </data>
-  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
-    <value>{0} patches toegepast</value>
   </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>

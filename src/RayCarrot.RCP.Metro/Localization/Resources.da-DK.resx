@@ -2428,18 +2428,6 @@ Fejlmeddelelse: {1}</value>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at åbne filen til redigering</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Redigering af binærfiler</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Redigeringer af filer</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Filtype</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Tilhørende program</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Lyd</value>
   </data>
@@ -3650,14 +3638,8 @@ Start: Pause</value>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Sidst ændret</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Vælg eksekverbaren, der skal bruges til at redigere .ISON spildata</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>Spildataen er blevet modificeret med succes</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Ændr redigeringsprogram til spildata</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Backet op</value>
@@ -3920,9 +3902,6 @@ Konflikter:
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Næveplatform</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>Ukendt {0}</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Vis motorinformation</value>
@@ -4189,9 +4168,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>En fejl opstod i patcheren, og den måtte lukke</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Der er ændringer, der ikke er blevet gemt. Ønsker du at fortsætte og kassere dem?</value>
   </data>
@@ -4207,251 +4183,17 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Fransk (Frankrig) programoversættelse</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Patcher</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Vis eksterne patches</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>Hvis aktiveret, vil patcheren indlæse og vise en liste af eksterne patches, der er tilgængelige til download</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>Filassociationer</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Åbn spilpatchfiler (.gp) i Rayman Control Panel fra Stilfinderen</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Åbn spilpatchfiler (.gp) i Rayman Control Panel fra URI-protokol</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>Når dette er aktiveret, giver det mulighed for 1-klik installationsunderstøttelse fra GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at indstille filtypeassociationen til patchfiler. Prøv at køre Rayman Control Panel som administrator, og prøv igen.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at indstille URI-protokolassociationen til patchfiler. Prøv at køre Rayman Control Panel som administrator, og prøv igen.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Navn</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Forfatter</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Beskrivelse</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Vælg et miniaturebillede. Den anbefalede størrelse er 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Fjern miniaturebillede</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>Stilen tilhørende filen der skal tilføjes til den valgte destination. Hvis dette er tomt, fjernes enhver eksisterende fil ved destinationen i stedet.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Tilføj</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Tilføj fra filer</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Tilføj fra mappe</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Opret</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Patchopretter</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Spil</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Importerer fra eksisterende patch</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>Den valgte patch blev skabt med en nyere version af Rayman Control Panel og kan ikke læses</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>Den valgte patch kunne ikke læses</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Vælg et miniaturebillede</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Billede</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Vælg filer, der skal tilføjes</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Vælg mappe, der skal tilføjes</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at tilføje de valgte filer</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Opretter patch</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Gem patchfil</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Spilpatch</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>Patchen blev gemt med succes</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at oprette patchen</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>Stien må ikke være tom</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>Stien må ikke indholde ugyldige tegn</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>Stien må ikke være det samme som en arkivfil</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Patches</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Patches er modifikationer til spilfilerne, som kan anvendes for at ændre eller forbedre spillet på mange forskellige måder. Patchen tager ikke effekt indtil den er aktiveret og anvendt, hvilket tillader at patches nemt kan slås til eller fra. Det anbefales ikke at ændre de spilfiler som en patch modificerer manuelt, da det muligvis kan resultere i, at nogle ændringer bliver tabt.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Tilføj patch</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Udpak indhold</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Eksportér patch</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Fjern</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Patchbibliotek</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>Modificerede filer</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Tilføj og aktivér patch for at modificere spilfiler</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>Fil</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Placering</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Patch</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Anvend</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Anvend</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Patcher - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Spil:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Patches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Anvendte patches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Sidst ændret:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Formatversion:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Mappe:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>Tilføjede filer:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>Erstattede filer:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>Fjernede filer:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>Spilpatchbiblioteket blev skabt med en nyere version af Rayman Control Panel og kan derfor ikke læses</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>Patchen {0} tilføjer eller erstatter følsomme filer, som f.eks. eksekverbare filer, i spillet. Anvend kun denne patch hvis du stoler på forfatteren. Fortsæt?</value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Vælg patches, der skal tilføjes</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>Udpakker indhold til patch</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>Indholdet til patchen blev udpakket med sucees</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at udpakke inholdet til patchen</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Eksporterer patch</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>Patchen blev eksporteret med succes</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at eksportere patchen</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at indlæse patches</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at indlæse eksterne patches</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Anvender patches</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Alle patches blev anvendt med succes</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Patches blev anvendt. Nogle filer kunne ikke modificeres.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at anvende patches. Ikke alle ændringer blev anvendt, og noget af dataen er muligvis blevet tabt. Sikr dig, at du ikke har spilfiler åbne, mens at du anvender patches.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Forfatter:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Størrelse:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Sidst ændret:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Version:</value>
@@ -4462,17 +4204,11 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Formatversion:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>Filsti:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>Tilføjede filer:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Fjernede filer:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Vælg en patch, der skal importeres fra</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Spilpatch (.gp)</value>
@@ -4485,15 +4221,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Kopiér mappesti</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Hjemmeside</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Hjemmeside</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>Der er {0} patches, som er blevet anvendt til dette spil. Ønsker du at fortsætte med at fjerne spillet og beholde de anvendte patches?</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at migrere appdataen til den nye version</value>
@@ -4634,9 +4361,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>Nulstil brugerdefineret sortering</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>Find installerede spil og spilklienter/emulatorer</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Konfigurér spilklienter/emulatorer</value>
   </data>
@@ -4645,12 +4369,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Søg efter installerede spil og spilklienter/emulatorer</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>Spil spil</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>Nyheder</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>Seneste</value>
@@ -4685,12 +4403,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Åbn</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>Åbn patcher</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>Opret patch</value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>[0} {{1}}</value>
   </data>
@@ -4702,43 +4414,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Gruppér spil</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>Målrettede spil</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>Spillene, som patchen er rettet mod, bestemmer hvilke spil den kan anvendes på. En patch kan rette sig mod flere spil, men hvis den tilføjer filer til et arkiv, som et spil mangler, ignoreres de for det spil.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>Importér fra eksisterende patch</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>Dette tillader, at indhold kan importeres fra en patch, der allerede er oprettet. Dette kan bruges til at oprette an opdateret version af en patch.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>Vælg målrettede spil</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>Denne fil ignoreres, da placeringen ikke kan findes</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>Platform</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>Spilpatch-biblioteket blev lavet til et andet spil og kan ikke læses</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>Patchen {0} kan ikke åbnes, da ingen af de følgende målrettede spil er blevet tilføjet:
-
-{1}</value>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>Vælg spil, der skal patches</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>Patchen {0} kan ikke åbnes, da det nuværende spil ikke er én af de målrettede spil:
-
-{1}</value>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>Tilføj spil</value>
@@ -5277,36 +4952,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Indlæs appnyheder på siden 'hjem'</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Dato</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Vælg en dato</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Beskrivelse</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Fjern ændringslogpost</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Tilføj ændringslogpost</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadata</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Ændringslog</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>Filmodifikationer</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Download opdatering</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Velkommen til jubilæumsopdateringen</value>
   </data>
@@ -5324,12 +4969,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>En ny funktion i denne opdatering er understøttelse af spilklienter/emulatorer. Disse kan tilføjes i en separat dialog, og kan vælges til at blive brugt på tilføjede spil. Spilklienter som f.eks. Steam er valgfrie, mens at konsolspil kræver en emulator for at kunne spilles. Hvis en emulator ikke er i den understøttede liste, kan du tilføje den som en brugerdefineret emulator. Vær opmærksom på, at hvis du gør det, kan spilfremskridt ikke vises.</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>Flere hjælpeværktøjer er nu patches</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>Kan du ikke finde det hjælpeværktøj, du leder efter? Det er højst sandsynligt blevet lavet om til en patch.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>Synkronisering af overflader er flyttet</value>
@@ -5364,16 +5003,55 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
     <value>Spansk (Spanien) programoversættelse</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
-    <value>{0} patch blev anvendt</value>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Sidst ændret:</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
-    <value>{0} patches blev anvendt</value>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Synkronisér overflader</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Rayman 3-prototype</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
   </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Fuldførte GameCube bonusbaner</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Nævekraftangreb</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Nævestyring</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Dansk (Danmark) programoversættelse</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Vis seneste spil</value>
   </data>
 </root>

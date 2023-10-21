@@ -2437,18 +2437,6 @@ Mensaje de error: {1}</value>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>Se produjo un error al abrir el archivo para editar</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Editor de archivos binarios</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Editores de archivos</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Extensión de archivo</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Programa asociado</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Sonido</value>
   </data>
@@ -3659,14 +3647,8 @@ Botón Start: Pausa</value>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Última modificación</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Seleccionar un ejecutable para editar archivos de guardado JSON</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>El archivo de guardado se ha modificado correctamente</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Cambiar programa de edición de guardados</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Respaldo realizado</value>
@@ -3929,9 +3911,6 @@ Restauración del prototipo</value>
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Plataforma de puño</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>Desconocido {0}</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Mostrar información del motor</value>
@@ -4198,9 +4177,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>Se produjo un error en el parcheador y tuvo que cerrarse.</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Hay cambios sin guardar. ¿Deseas continuar y descartarlos?</value>
   </data>
@@ -4216,251 +4192,17 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Traducción del programa al francés (Francia)</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Parcheador</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Mostrar parches externos</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>Si está activado, el parcheador cargará y mostrará una lista de parches externos disponibles para descargar</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>Asociaciones de archivos</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Abrir archivos de parches de juegos (.gp) en Rayman Control Panel desde el Explorador de archivos</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Abrir archivos de parches de juegos (.gp) en Rayman Control Panel desde el protocolo URI</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>Activar esto permite el soporte de instalación con un solo clic desde GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>Se produjo un error al establecer la asociación del tipo de archivo para los archivos del parche. Intenta ejecutar Rayman Control Panel como administrador y vuelve a intentarlo.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>Se produjo un error al establecer la asociación del protocolo URI para los archivos de parche. Intenta ejecutar Rayman Control Panel como administrador y vuelve a intentarlo.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Autor</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Versión</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Selecciona una miniatura. El tamaño recomendado es de 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Eliminar la miniatura</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>La ruta del archivo que se agregará al destino especificado. Si está vacío, se eliminará cualquier archivo existente en el destino.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Agregar</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Agregar desde archivos</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Agregar desde carpeta</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Crear</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Creador de parches</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Juego</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Importar desde parche existente</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>El parche seleccionado fue creado con una versión más reciente de Rayman Control Panel y no se puede leer</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>No se pudo leer el parche seleccionado</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Selecciona una miniatura</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Imagen</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Seleccionar archivos para agregar</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Seleccionar carpeta para agregar</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>Se produjo un error al agregar los archivos seleccionados</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Creando parche</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Guardar archivo de parche</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Parche de juego</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>El parche se guardó correctamente</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>Se produjo un error al crear el parche</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>La ruta no puede estar vacía</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>La ruta no puede contener caracteres no válidos</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>La ruta no puede ser la misma que la de un archivo de archivo</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Parches</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Los parches son modificaciones a los archivos del juego que se pueden aplicar para cambiar o mejorar el juego de diversas formas. El parche no tendrá efecto hasta que esté habilitado y aplicado, lo que permite activar y desactivar los parches fácilmente. No se recomienda cambiar manualmente los archivos del juego que un parche modifica, ya que podría resultar en la pérdida de algunos cambios.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Agregar parche</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Extraer contenido</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Exportar parche</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Eliminar</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Descargar</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Biblioteca de parches</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>Archivos modificados</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Agregar y habilitar un parche para modificar los archivos del juego</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>Archivo</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Ubicación</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Parche</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Parches anulados</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Aplicar</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Parcheador - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Juego:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Parches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Parches aplicados:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Última modificación:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Versión del formato:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Directorio:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>Archivos agregados:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>Archivos reemplazados:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>Archivos eliminados:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>La biblioteca de parches del juego fue creada con una versión más reciente de Rayman Control Panel y no se puede leer</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>El parche {0} agrega o reemplaza archivos sensibles, como archivos ejecutables, en el juego. Solo agrega este parche si confías en el autor. ¿Deseas continuar?</value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Seleccionar parches para agregar</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>Extrayendo el contenido del parche</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>Se extrajo correctamente el contenido del parche</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>Se produjo un error al extraer el contenido del parche</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Exportando parche</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>El parche se exportó correctamente</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Se produjo un error al exportar el parche</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>Se produjo un error al cargar los parches</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>Se produjo un error al cargar los parches externos</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Aplicando parches</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Se aplicaron correctamente todos los parches</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Finalizó la aplicación de los parches. Algunos archivos no pudieron ser modificados.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>Se produjo un error al aplicar los parches. No todos los cambios se aplicaron y es posible que se haya perdido parte de la información. Asegúrate de no tener ningún archivo del juego abierto al aplicar los parches.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Autor:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Tamaño:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Última modificación:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Versión:</value>
@@ -4471,17 +4213,11 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Versión del formato:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>Ruta del archivo:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>Archivos agregados:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Archivos eliminados:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Selecciona un parche para importar desde</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Parche de juego (.gp)</value>
@@ -4494,15 +4230,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Copiar ruta del directorio</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Sitio web</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Sitio web</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>Hay {0} parches que se han aplicado a este juego. ¿Deseas continuar eliminando el juego y mantener los parches aplicados?</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Se produjo un error al migrar los datos de la aplicación a la nueva versión</value>
@@ -4643,9 +4370,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>Restablecer orden personalizado</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>Buscar juegos instalados y clientes/emuladores de juegos</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Configurar clientes/emuladores de juegos</value>
   </data>
@@ -4654,12 +4378,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Buscar juegos y clientes/emuladores de juegos instalados</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>Jugar juego</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>Noticias</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>Recientes</value>
@@ -4694,12 +4412,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Abrir</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>Abrir panel de parches</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>Crear parche</value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
@@ -4711,43 +4423,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Agrupar juegos</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>Objetivos del juego</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>Los juegos a los que apunta el parche determinan a qué juegos se puede aplicar. Un parche puede apuntar a varios juegos, pero si agrega archivos a un archivo que falta en un juego, se ignorarán para ese juego.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>Importar desde un parche existente</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>Esto permitirá importar el contenido de un parche ya creado. Esto se puede utilizar para crear una versión actualizada de un parche.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>Seleccionar objetivos de juego</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>Este archivo se ignorará debido a que no se encuentra la ubicación.</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>Plataforma</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>La biblioteca de parches del juego fue creada para un juego diferente y no se puede leer</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>No se puede abrir el parche {0} porque ninguno de los siguientes juegos a los que apunta ha sido agregado:
-
-{1}</value>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>Selecciona el juego para parchear</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>No se puede abrir el parche {0} porque el juego actual no es uno de los juegos objetivo:
-
-{1}</value>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>Agregar juegos</value>
@@ -5286,36 +4961,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Cargar noticias de la aplicación en la página de inicio.</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Versión</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Fecha</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Selecciona una fecha</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Eliminar entrada del registro de cambios</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Agregar entrada al registro de cambios</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadatos</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Registro de cambios</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>Modificaciones de archivos</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Descargar actualización</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Bienvenido a la Actualización Aniversario</value>
   </data>
@@ -5334,12 +4979,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>Novedad en esta actualización es el soporte para clientes/emuladores de juegos. Estos se pueden agregar en un diálogo aparte y configurarse para ser utilizados en los juegos agregados. Los clientes de juegos como Steam son opcionales, mientras que los juegos de consola requieren un emulador para poder jugar. Si un emulador no está en la lista de compatibilidad, puedes agregarlo como un emulador personalizado. Ten en cuenta que hacerlo no permite mostrar ningún progreso del juego.</value>
   </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>Más utilidades ahora son parches</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>¿No encuentras una utilidad que estás buscando? Lo más probable es que se haya transformado en un parche.</value>
-  </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>La sincronización de texturas se ha movido</value>
   </data>
@@ -5352,10 +4991,76 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>Hay disponible una versión más reciente. Desinstala la versión actual para instalarla.</value>
   </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID de juego:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Abrir en la Tienda Ubisoft</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>ID de usuario</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Traducción del programa al español (España)</value>
+  </data>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Última modificación:</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Sincronizar texturas</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 Prototype</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Niveles de bonificación de GameCube completados</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Golpe de puño hacia abajo</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Control de puño</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Traducción del programa a danés (Dinamarca)</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Mostrar juegos recientes</value>
   </data>
 </root>

@@ -1083,7 +1083,7 @@ Spróbować ponownie?</value>
     <value>Narzędzie do ścieżki dźwiękowej na poziom</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Tłumaczenie portugalskie (Portugalia) programu</value>
+    <value>Tłumaczenie portugalskie programu (Portugalia)</value>
   </data>
   <data name="ROU_UpdateFailed" xml:space="preserve">
     <value>Pobieranie aktualizacji Rayman Origins nie powiodło się</value>
@@ -1282,7 +1282,7 @@ Spróbować ponownie?</value>
     <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Tłumaczenie holdenderskie (Holandia) programu</value>
+    <value>Tłumaczenie holenderskie programu (Holandia), testowanie programu</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Przeglądaj</value>
@@ -2096,7 +2096,7 @@ Komunikat o błędzie: {1}</value>
     <value>Zakodowane pliki Tonic Trouble (.sna/.dsb)</value>
   </data>
   <data name="About_Credits_Fabiosek" xml:space="preserve">
-    <value>Tłumaczenie polskie (Polska) programu</value>
+    <value>Tłumaczenie polskie programu (Polska)</value>
   </data>
   <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
     <value>Pliki zapisu gier Rayman M/Arena (.sav)</value>
@@ -2195,10 +2195,10 @@ Komunikat o błędzie: {1}</value>
     <value>Wybierz dysk</value>
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
-    <value>Tłumaczenie rosyjskie (Rosja) programu</value>
+    <value>Tłumaczenie rosyjskie programu (Rosja)</value>
   </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
-    <value>Tłumaczenie włoskie (Włochy) programu</value>
+    <value>Tłumaczenie włoskie programu (Włochy)</value>
   </data>
   <data name="Archive_Sort" xml:space="preserve">
     <value>Sortuj</value>
@@ -2448,18 +2448,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>Wystąpił błąd podczas otwierania pliku do edycji</value>
-  </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Edytor plików binarnych</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Edytory plików</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Rozszerzenie pliku</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Program powiązany</value>
   </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Dźwięk</value>
@@ -3682,14 +3670,8 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Ostatnio zmodyfikowany</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Wybierz plik wykonywalny do edycji plików zapisu JSON</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>Plik zapisu został pomyślnie zmodyfikowany</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Zmień program do edycji zapisów</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Wykonano kopię zapasową</value>
@@ -3951,9 +3933,6 @@ Konflikty:
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Platforma pięści</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>Nieznany {0}</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Pokaż informacje o silniku</value>
@@ -4219,9 +4198,6 @@ Konflikty:
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>Wystąpił błąd w aktualizatorze i musiał zostać zamknięty</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Istnieją niezapisane zmiany. Czy chcesz kontynuować i je odrzucić?</value>
   </data>
@@ -4232,256 +4208,22 @@ Konflikty:
     <value>Czy chcesz automatycznie synchronizować tekstury gry, gdy archiwum tekstur zostanie przepakowane? Synchronizacja jest wymagana, aby tekstury w wyższej rozdzielczości działały na niektórych poziomach. Można to zmienić w dowolnym momencie na stronie ustawień.</value>
   </data>
   <data name="About_Credits_Marteaufou" xml:space="preserve">
-    <value>Tłumaczenie francuskie (Francja) programu</value>
+    <value>Tłumaczenie francuskie programu (Francja)</value>
   </data>
   <data name="About_Credits_ZetaXO" xml:space="preserve">
-    <value>Tłumaczenie francuskie (Francja) programu</value>
-  </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Aktualizator</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Pokaż łatki zewnętrzne</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>Jeśli opcja jest włączona, aktualizator załaduje i wyświetli listę zewnętrznych łatek dostępnych do pobrania</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>Skojarzenia plików</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Otwórz pliki łatek do gry (.gp) w Rayman Control Panel z Eksploratora plików</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Otwórz pliki łatek do gry (.gp) w Rayman Control Panel z protokołu URI</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>Włączenie tej opcji pozwala na obsługę instalacji jednym kliknięciem przez GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>Wystąpił bląd podczas ustawiania skojarzenia typu plików dla plików łatek. Uruchom Rayman Control Panel jako administrator i spróbuj ponownie.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>Wystąpił błąd podczas ustawianai skojarzenia prookołu URI dla plików łatek. Uruchom Rayman Control Panel jako administrator i spróbuj ponownie.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Nazwa</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Autor</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Opis</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Wersja</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Wybierz miniaturę. Zalecany rozmiar to 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Usuń miniaturę</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>Ścieżka pliku, który ma zostać dodany do określonego miejsca docelowego. Jeśli jest pusta, wszystkie istniejące pliki w miejscu docelowym zostaną usunięte.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Dodaj</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Dodaj z plików</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Dodaj z folderu</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Utwórz</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Kreator łatek</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Gra</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Importowanie z istniejącej łatki</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>Wybrana łatka została wykonana za pomocą nowszej wersji Rayman Control Panel i nie można jej odczytać</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>Nie można odczytać wybranej łatki</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Wybierz miniaturę</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Obrazek</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Wybierz pliki do dodania</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Wybierz folder do dodania</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>Wystąpił błąd podczas dodawania wybranych plików</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Tworzenie łatki</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Zapisywanie pliku łatki</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Łatka gry</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>Łatka została pomyślnie zapisana</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>Wystąpił błąd podczas tworzenia łatki</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>Ścieżka nie może być pusta</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>Ścieżka nie może zawierać niedozwolonych znaków</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>Ścieżka nie może być taka sama jak plik archiwum</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Łatki</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Łatki to modyfikacje plików gry, które można zastosować w celu zmiany lub ulepszenia gry na różne sposoby. Łatka nie wejdzie w życie, dopóki nie zostanie włączona i zastosowana, co pozwala na łatwe włączanie i wyłączanie łatek. Nie zaleca się ręcznej zmiany plików gry, które modyfikuje łatka, ponieważ może to spowodować utratę niektórych zmian.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Dodaj łatkę</value>
+    <value>Tłumaczenie francuskie programu (Francja)</value>
   </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Wyodrębnij zawartość</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Eksportuj łatkę</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Usuń</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Pobierz</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Biblioteka łatek</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>Zmodyfikowane pliki</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Dodaj i włącz łatkę, aby zmodyfikować pliki gry</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>Plik</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Lokalizacja</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Łatka</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Nadpisane łatki</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Zastosuj</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Aktualizator - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Gra:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Łatki:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Zastosowane łatki:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Ostatnio zmodyfikowano:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Wersja formatu:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Folder:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>Dodane pliki:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>Zastąpione pliki:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>Usunięte pliki:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>Biblioteka łaek do gry została stworzona przy pomocy nowszej wersji Rayman Control Panel i nie można jej odczytać</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>Łatka {0} dodaje lub zastępuje w grze wrażliwe pliki, takie jak pliki wykonywalne. Dodaj tę łatkę tylko wtedy, gdy ufasz jej autorowi. Czy chcesz kontynuować?</value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Wybierz łatki do dodania</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>Wyodrębnianie zawartości łatki</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>Zawartość łatki została wyodrębniona pomyślnie</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>Wystąpił błąd podczas wyodrębniania zawartości łatki</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Eksportowanie łatki</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>Łatka została pomyślnie wyeksportowana</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Wystąpił błąd podczas eksportowania łatki</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>Wystąpił błąd podczas wczytywania łatek</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>Wystąpił błąd podczas stosowania zewnętrznych łatek</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Stosowanie łatek</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Pomyślnie zastosowano wszystkie łatki</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Zakończono stosowanie łatek. Niektóre pliki nie mogły zostać zmodyfikowane.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>Wystąpil błąd podczas stosowania łatek. Nie wszystkie zmiany zostały zastosowane i niektóre dane mogły zostać utracone. Upewnij się, że podczas stosowania łatek nie są otwarte żadne pliki z gry.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Autor:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Rozmiar:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Ostatnio zmodyfikowano:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Wersja:</value>
@@ -4492,17 +4234,11 @@ Konflikty:
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Wersja formatu:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>Ścieżka pliku:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>Dodane pliki:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Usunięte pliki:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Wybierz łatkę, z której chcesz zaimportować</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Łatka gry (.gp)</value>
@@ -4515,15 +4251,6 @@ Konflikty:
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Skopiuj ścieżkę folderu</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Strona internetowa</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Strona internetowa</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>Istnieje {0} łatek, które zostały zastosowane do tej gry. Czy chcesz kontynuować usuwanie gry i zachować zastosowane łatki?</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Wystąpił błąd podczas migracji danych aplikacji do nowej wersji</value>
@@ -4664,9 +4391,6 @@ Konflikty:
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>Zresetuj sortowanie niestandardowe</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>Znajdź zainstalowane gry i klientów/emulatory gier</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Konfiguracja klientów gier/emulatorów</value>
   </data>
@@ -4675,12 +4399,6 @@ Konflikty:
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Wyszukaj zainstalowane gry i klientów/emulatory gier</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>Zagraj w grę</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>Aktualności</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>Ostatnie</value>
@@ -4715,12 +4433,6 @@ Konflikty:
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Otwórz</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>Otwórz patcher</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>Utwórz łatkę</value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
@@ -4732,43 +4444,6 @@ Konflikty:
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Pogrupowane gry</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>Wybrana gra</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>Gry, których dotyczy łatka, określają, do których gier można ją zastosować. Łatka może dotyczyć wielu gier, ale jeśli doda pliki do archiwum, którego brakuje w grze, zostaną one zignorowane dla tej gry.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>Importuj z istniejącej łatki</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>Umożliwi to zaimportowanie zawartości z już utworzonej łatki. Można to wykorzystać do stworzenia zaktualizowanej wersji łatki.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>Wybierz grę</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>Ten plik zostanie zignorowany, ponieważ nie znaleziono jego lokalizacji</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>Platforma</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>Biblioteka poprawek do gry została stworzona dla innej gry i nie można jej odczytać</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>Nie można otworzyć łatki {0}, ponieważ żadna z poniższych gier nie została dodana:
-
-{1}</value>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>Wybierz grę do łatania</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>Nie można otworzyć łatki {0}, ponieważ bieżąca gra nie jest jednym z celów gry:
-
-{1}</value>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>Dodaj gry</value>
@@ -5307,36 +4982,6 @@ Konflikty:
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Załaduj wiadomości o aplikacji na stronie głównej</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Wersja</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Data</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Wybierz datę</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Opis</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Usuń wpis w dzienniku zmian</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Dodaj wpis w dzienniku zmian</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadane</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Dziennik zmian</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>Zmiany w plikach</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Pobierz aktualizację</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Witamy w aktualizacji Anniversary</value>
   </data>
@@ -5354,12 +4999,6 @@ Konflikty:
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>Nowością w tej aktualizacji jest obsługa klientów/emulatorów gier. Można je dodać w osobnym oknie dialogowym i ustawić, aby były używane w dodanych grach. Klienci gier, tacy jak Steam, są opcjonalni, podczas gdy gry konsolowe wymagają emulatora, aby można było w nie grać. Jeśli emulatora nie ma na liście obsługiwanych, możesz dodać go jako emulator niestandardowy. Należy pamiętać, że nie pozwoli to na wyświetlanie postępów w grze.</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>Więcej narzędzi stało się łatkami</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>Nie można znaleźć narzędzia, którego szukasz? To najprawdopodobniej dlatego, że zostało ono przerobione jako łatka.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>Synchronizacja tekstur została przeniesiona</value>
@@ -5392,18 +5031,57 @@ Konflikty:
     <value>ID użytkownika</value>
   </data>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
-    <value>Tłumaczenie hiszpańskie (Hiszpania) programu</value>
+    <value>Tłumaczenie hiszpańskie programu (Hiszpania)</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
-    <value>Zastosowano {0} łatkę</value>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Ostatnio zmodyfikowano:</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
-    <value>Zastosowano {0} łatek</value>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Synchronizuj tekstury</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 Prototype</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman </value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
   </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Ukończone bonusowe poziomy GameCube</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Uderzenie pięścią w dół</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Kontrola pięści</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Tłumaczenie duńskie programu (Dania)</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Pokaż ostatnie gry</value>
   </data>
 </root>

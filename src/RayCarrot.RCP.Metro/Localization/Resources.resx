@@ -2563,18 +2563,6 @@ fileExt</comment>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>An error occurred when opening the file for editing</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Binary file editor</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>File editors</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>File extension</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Associated program</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Sound</value>
   </data>
@@ -3796,14 +3784,8 @@ gameName</comment>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Last modified</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Select an executable for editing JSON save files</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>The save file has been successfully modified</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Change save editor program</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Backed up</value>
@@ -4073,11 +4055,6 @@ Prototype Restoration</value>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Fist platform</value>
   </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>Unknown {0}</value>
-    <comment>Arguments:
-index</comment>
-  </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Show engine info</value>
   </data>
@@ -4345,9 +4322,6 @@ partNumber</comment>
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>An error occurred in the patcher and it had to close</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>There are unsaved changes. Do you want to continue and discard them?</value>
   </data>
@@ -4363,257 +4337,18 @@ partNumber</comment>
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>French (France) program translation</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Patcher</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Show external patches</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>If enabled then the patcher will load and show a list of external patches available for download</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>File Associations</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Open game patch (.gp) files in Rayman Control Panel from File Explorer</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Open game patch (.gp) files in Rayman Control Panel from URI protocol</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>Enabling this allows for 1-click installation support from GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>An error occurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>An error occurred when setting the URI protocol association for patch files. Try running the Rayman Control Panel as admin and try again.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Author</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Select a thumbnail. The recommended size is 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Remove the thumbnail</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>The path of the file to add to the specified destination. If this is empty then any existing file at the destination will be removed instead.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Add from files</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Add from folder</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Patch Creator</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Game</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Importing from existing patch</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>The selected patch was made with a newer version of the Rayman Control Panel and can not be read</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>The selected patch could not be read</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Select a thumbnail</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Image</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Select files to add</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Select folder to add</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>An error occurred when adding the selected files</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Creating patch</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Save patch file</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Game Patch</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>The patch was saved successfully</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>An error occurred when creating the patch</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>The path can not be empty</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>The path can not contain invalid characters</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>The path can not be the same as an archive file</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Patches</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won't go into effect until it's enabled and applied, allowing patches to be easily toggled on and off. It is not recommended to manually change game files which a patch modifies as it might result in some changes being lost.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Add patch</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Extract contents</value>
     <comment>Extracting will extract the contents within the patch</comment>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Export patch</value>
-    <comment>Exporting will export the patch itself</comment>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Patch Library</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>Modified files</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Add and enable a patch to modify the game files</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Patch</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Overridden Patches</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Apply</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Patcher - {0}</value>
-    <comment>Arguments:
-game</comment>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Game:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Patches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Applied patches:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Last modified:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Format version:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Directory:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>Added files:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>Replaced files:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>Removed files:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>The game patch library was made with a newer version of the Rayman Control Panel and can not be read</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>The patch {0} adds or replaces sensitive files, such as executable files, in the game. Only add this patch if you trust the author. Continue?</value>
-    <comment>Arguments:
-patchName</comment>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Select patches to add</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>Extracting patch contents</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>The patch contents were successfully extracted</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>An error occurred when extracting the patch contents</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Exporting patch</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>The patch was successfully exported</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>An error occurred when exporting the patch</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>An error occurred when loading the patches</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>An error occurred when loading external patches</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Applying patches</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Successfully applied all patches</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Finished applying patches. Some files could not be modified.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Author:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Size:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Last modified:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Version:</value>
@@ -4624,17 +4359,11 @@ patchName</comment>
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Format version:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>File path:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>Added files:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>Removed files:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Select a patch to import from</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Game Patch (.gp)</value>
@@ -4647,17 +4376,6 @@ patchName</comment>
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Copy directory path</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>There are {0} patches which have been applied to this game. Do you want to continue removing the game and keep the patches applied?</value>
-    <comment>Arguments:
-patchCount</comment>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>An error occurred when migrating the app data to the new version</value>
@@ -4806,9 +4524,6 @@ paths</comment>
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>Reset custom sort</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>Find installed games and game clients/emulators</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Configure game clients/emulators</value>
   </data>
@@ -4817,12 +4532,6 @@ paths</comment>
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Search for installed games and game clients/emulators</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>Play game</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>News</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>Recent</value>
@@ -4859,12 +4568,6 @@ gameName</comment>
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>Open patcher</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>Create patch</value>
-  </data>
   <data name="Progression_HeaderWithSecondary" xml:space="preserve">
     <value>{0} ({1})</value>
     <comment>Arguments:
@@ -4879,49 +4582,6 @@ secondaryName</comment>
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Group games</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>Game targets</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>Import from existing patch</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>Select game targets</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>This file will be ignored due to the location not being found</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>Platform</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>The game patch library was made for a different game and can not be read</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>Can't open the patch {0} due to none of the following targeted games having been added:
-
-{1}</value>
-    <comment>Arguments:
-patchName
-gameTargets</comment>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>Select game to patch</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>Can't open the patch {0} due to the current game not being one of the game targets:
-
-{1}</value>
-    <comment>Arguments:
-patchName
-gameTargets</comment>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>Add Games</value>
@@ -5464,36 +5124,6 @@ gameClientName</comment>
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Load app news in the home page</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Select a date</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Remove changelog entry</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Add changelog entry</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadata</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Changelog</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>File modifications</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Download update</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Welcome to the Anniversary Update</value>
   </data>
@@ -5511,12 +5141,6 @@ gameClientName</comment>
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>New to this update is support for game clients/emulators. These can be added in a separate dialog and set to be used on added games. Game clients such as Steam are optional while console games require an emulator in order to be played. If an emulator is not in the supported list you can add it as a custom emulator. Be aware that doing so does not allow for any game progression to be shown.</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>More utilities are now patches</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>Can't find a utility you're looking for? It has most likely been reworked as a patch.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>Texture sync has moved</value>
@@ -5550,16 +5174,6 @@ gameClientName</comment>
   </data>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
     <value>Spanish (Spain) program translation</value>
-  </data>
-  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
-    <value>{0} patch applied</value>
-    <comment>Arguments:
-patchesCount</comment>
-  </data>
-  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
-    <value>{0} patches applied</value>
-    <comment>Arguments:
-patchesCount</comment>
   </data>
   <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
     <value>Last modified:</value>

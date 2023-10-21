@@ -2432,18 +2432,6 @@ Messaggio di errore: {1} </value>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>Si è verificato un errore durante l'apertura del file per la modifica</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>Editor di file binari</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Editor di file</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Estensione file</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>Programma associato</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Suoni</value>
   </data>
@@ -3654,14 +3642,8 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
     <value>Ultima modifica</value>
   </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Seleziona un eseguibile per la modifica dei file di salvataggio JSON</value>
-  </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>Il file di salvataggio è stato modificato con successo</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Cambia programma di salvataggio dell'editor</value>
   </data>
   <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
     <value>Backup effettuato</value>
@@ -3925,9 +3907,6 @@ Rayman Raving Rabbids</value>
   </data>
   <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
     <value>Piattaforma pugno</value>
-  </data>
-  <data name="Mod_Mem_Unk" xml:space="preserve">
-    <value>{0} sconosciuto</value>
   </data>
   <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
     <value>Mostra informazioni motore</value>
@@ -4194,9 +4173,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>Si è verificato un errore nel patcher ed é stato necessario chiuderlo</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Ci sono modifiche non salvate. Vuoi continuare e scartarle?</value>
   </data>
@@ -4212,251 +4188,17 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Traduzione del programma in Francese (Francia)</value>
   </data>
-  <data name="Patcher_Title" xml:space="preserve">
-    <value>Patcher</value>
-  </data>
-  <data name="Settings_PatcherShowExternal" xml:space="preserve">
-    <value>Mostra patch esterne</value>
-  </data>
-  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
-    <value>Se abilitato, il patcher caricherà e mostrerà un elenco di patch esterne disponibili per il download</value>
-  </data>
-  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
-    <value>Associazioni dei file</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
-    <value>Apri i file delle patch di gioco (.gp) in Rayman Control Panel da Esplora File</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
-    <value>Apri i file delle patch di gioco (.gp) in Rayman Control Panel dal protocollo URI</value>
-  </data>
-  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
-    <value>L'abilitazione di questa opzione consente il supporto per l'installazione con 1-clic da GameBanana</value>
-  </data>
-  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'impostazione dell'associazione del tipo di file per i file di patch. Prova a eseguire Rayman Control Panel come amministratore e riprova.</value>
-  </data>
-  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'impostazione dell'associazione del protocollo URI per i file di patch. Prova a eseguire Rayman Control Panel come amministratore e riprova.</value>
-  </data>
-  <data name="PatchCreator_NameField" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="PatchCreator_AuthorField" xml:space="preserve">
-    <value>Autore</value>
-  </data>
-  <data name="PatchCreator_DescriptionField" xml:space="preserve">
-    <value>Descrizione</value>
-  </data>
-  <data name="PatchCreator_VersionField" xml:space="preserve">
-    <value>Versione</value>
-  </data>
-  <data name="Patcher_ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
-    <value>Seleziona una miniatura. La dimensione consigliata è 128x128.</value>
-  </data>
-  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
-    <value>Rimuovi la miniatura</value>
-  </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>Il percorso del file da aggiungere alla destinazione specificata. Se questo è vuoto, qualsiasi file esistente nella destinazione verrà invece rimosso.</value>
-  </data>
-  <data name="PatchCreator_AddFile" xml:space="preserve">
-    <value>Aggiungi</value>
-  </data>
-  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
-    <value>Aggiungi da file</value>
-  </data>
-  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
-    <value>Aggiungi da cartella</value>
-  </data>
-  <data name="PatchCreator_Create" xml:space="preserve">
-    <value>Crea</value>
-  </data>
-  <data name="PatchCreator_Title" xml:space="preserve">
-    <value>Creatore di Patch</value>
-  </data>
-  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
-    <value>Gioco</value>
-  </data>
-  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
-    <value>Importando da patch esistente</value>
-  </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>La patch selezionata è stata realizzata con una versione più recente di Rayman Control Panel e non può essere letta</value>
-  </data>
-  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
-    <value>Impossibile leggere la patch selezionata</value>
-  </data>
-  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
-    <value>Seleziona una miniatura</value>
-  </data>
-  <data name="FileSelection_ImageFormat" xml:space="preserve">
-    <value>Immagine</value>
-  </data>
-  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
-    <value>Seleziona file da aggiungere</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
-    <value>Seleziona cartella da aggiungere</value>
-  </data>
-  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'aggiunta dei file selezionati</value>
-  </data>
-  <data name="PatchCreator_Create_Status" xml:space="preserve">
-    <value>Creando patch</value>
-  </data>
-  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
-    <value>Salva il file della patch</value>
-  </data>
-  <data name="Patcher_FileType" xml:space="preserve">
-    <value>Patch di Gioco</value>
-  </data>
-  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
-    <value>La patch è stata salvata con successo</value>
-  </data>
-  <data name="PatchCreator_CreateError" xml:space="preserve">
-    <value>Si è verificato un errore durante la creazione della patch</value>
-  </data>
-  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
-    <value>Il percorso non può essere vuoto</value>
-  </data>
-  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
-    <value>Il percorso non può contenere caratteri non validi</value>
-  </data>
-  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
-    <value>Il percorso non può essere lo stesso di un file di archivio</value>
-  </data>
-  <data name="Patcher_PatchesHeader" xml:space="preserve">
-    <value>Patch</value>
-  </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Le patch sono modifiche ai file di gioco che possono essere applicate per cambiare o migliorare il gioco in vari modi. La patch non entrerà in vigore finché non sarà abilitata e applicata, consentendo di attivare e disattivare facilmente le patch. Non è consigliabile modificare manualmente i file di gioco modificati da una patch poiché potrebbe causare la perdita di alcune modifiche.</value>
-  </data>
-  <data name="Patcher_AddPatch" xml:space="preserve">
-    <value>Aggiungi patch</value>
-  </data>
   <data name="Patcher_ExtractPatch" xml:space="preserve">
     <value>Estrai i contenuti</value>
   </data>
-  <data name="Patcher_ExportPatch" xml:space="preserve">
-    <value>Esporta patch</value>
-  </data>
-  <data name="Patcher_RemovePatch" xml:space="preserve">
-    <value>Rimuovi</value>
-  </data>
-  <data name="Patcher_DownloadPatch" xml:space="preserve">
-    <value>Scarica</value>
-  </data>
-  <data name="Patcher_LibraryHeader" xml:space="preserve">
-    <value>Libreria Patch</value>
-  </data>
-  <data name="Patcher_ModificationsHeader" xml:space="preserve">
-    <value>File modificati</value>
-  </data>
-  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
-    <value>Aggiungi e abilita una patch per modificare i file di gioco</value>
-  </data>
-  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
-    <value>Posizione</value>
-  </data>
-  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
-    <value>Patch</value>
-  </data>
-  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Patch sovrascritte</value>
-  </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Applica</value>
-  </data>
-  <data name="Patcher_DialogTitle" xml:space="preserve">
-    <value>Patcher - {0}</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
-    <value>Gioco:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
-    <value>Patch:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
-    <value>Patch applicate:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
-    <value>Ultima modifica:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
-    <value>Versione formato:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Directory:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
-    <value>File aggiunti:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
-    <value>File sostituiti:</value>
-  </data>
-  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
-    <value>File rimossi:</value>
-  </data>
-  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
-    <value>La libreria delle patch di gioco è stata realizzata con una versione più recente di Rayman Control Panel e non può essere letta</value>
-  </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>La patch {0} aggiunge o sostituisce i file sensibili, come i file eseguibili, nel gioco. Aggiungi questa patch solo se ti fidi dell'autore. Continuare?</value>
-  </data>
-  <data name="Patcher_AddPatchHeader" xml:space="preserve">
-    <value>Seleziona patch da aggiungere</value>
-  </data>
-  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
-    <value>Estraendo il contenuto della patch</value>
-  </data>
-  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
-    <value>Il contenuto della patch è stato estratto con successo</value>
-  </data>
-  <data name="Patcher_ExtractContentsError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'estrazione del contenuto della patch</value>
-  </data>
-  <data name="Patcher_Export_Status" xml:space="preserve">
-    <value>Esportando la patch</value>
-  </data>
-  <data name="Patcher_ExportSuccess" xml:space="preserve">
-    <value>La patch è stata esportata con successo</value>
-  </data>
-  <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'esportazione della patch</value>
-  </data>
-  <data name="Patcher_LoadError" xml:space="preserve">
-    <value>Si è verificato un errore durante il caricamento delle patch</value>
-  </data>
-  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
-    <value>Si è verificato un errore durante il caricamento delle patch esterne</value>
-  </data>
-  <data name="Patcher_Apply_Status" xml:space="preserve">
-    <value>Applicando le patch</value>
-  </data>
-  <data name="Patcher_ApplySuccess" xml:space="preserve">
-    <value>Tutte le patch sono state applicate con successo</value>
-  </data>
-  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
-    <value>Finito di applicare le patch. Non è stato possibile modificare alcuni file.</value>
-  </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'applicazione delle patch. Non tutte le modifiche sono state applicate e alcuni dati potrebbero essere andati persi. Assicurati di non avere alcun file del gioco aperto durante l'applicazione delle patch.</value>
   </data>
   <data name="Patcher_PatchInfo_Author" xml:space="preserve">
     <value>Autore:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
     <value>Dimensione:</value>
-  </data>
-  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
-    <value>Ultima modifica:</value>
   </data>
   <data name="Patcher_PatchInfo_Version" xml:space="preserve">
     <value>Versione:</value>
@@ -4467,17 +4209,11 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
     <value>Versione formato:</value>
   </data>
-  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
-    <value>Percorso del file:</value>
-  </data>
   <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
     <value>File aggiunti:</value>
   </data>
   <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
     <value>File rimossi:</value>
-  </data>
-  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
-    <value>Seleziona una patch da cui importare</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
     <value>Patch di Gioco (.gp)</value>
@@ -4490,159 +4226,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Copia il percorso della directory</value>
-  </data>
-  <data name="PatchCreator_WebsiteField" xml:space="preserve">
-    <value>Sito web</value>
-  </data>
-  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
-    <value>Sito web</value>
-  </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>Ci sono {0} patch che sono state applicate a questo gioco. Vuoi continuare a rimuovere il gioco e mantenere le patch applicate?</value>
-  </data>
-  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
-    <value>• {0}</value>
-  </data>
-  <data name="Progression_RHR_Level0Header" xml:space="preserve">
-    <value>Concilio delle Fate</value>
-  </data>
-  <data name="Progression_RHR_Level1Header" xml:space="preserve">
-    <value>Foresta di Chiarafoglia</value>
-  </data>
-  <data name="Progression_RHR_Level2Header" xml:space="preserve">
-    <value>Cascate di Chiarafoglia</value>
-  </data>
-  <data name="Progression_RHR_Level3Header" xml:space="preserve">
-    <value>Macchina infernale</value>
-  </data>
-  <data name="Progression_RHR_Level4Header" xml:space="preserve">
-    <value>Prigione del fango</value>
-  </data>
-  <data name="Progression_RHR_Level5Header" xml:space="preserve">
-    <value>Palude Fangosa</value>
-  </data>
-  <data name="Progression_RHR_Level6Header" xml:space="preserve">
-    <value>Acquitrino di Begoniax</value>
-  </data>
-  <data name="Progression_RHR_Level7Header" xml:space="preserve">
-    <value>Fiumi di Fango</value>
-  </data>
-  <data name="Progression_RHR_Level8Header" xml:space="preserve">
-    <value>Piana degli Hoodlum</value>
-  </data>
-  <data name="Progression_RHR_Level9Header" xml:space="preserve">
-    <value>Terra dei morti lividi</value>
-  </data>
-  <data name="Progression_RHR_Level10Header" xml:space="preserve">
-    <value>Menhir del potere</value>
-  </data>
-  <data name="Progression_RHR_Level11Header" xml:space="preserve">
-    <value>Fossa del fuoco infinito</value>
-  </data>
-  <data name="Progression_RHR_Level12Header" xml:space="preserve">
-    <value>Nubi del periglio</value>
-  </data>
-  <data name="Progression_RHR_Level13Header" xml:space="preserve">
-    <value>Cuore del Mondo</value>
-  </data>
-  <data name="Progression_RHR_Level14Header" xml:space="preserve">
-    <value>Covo di Reflux</value>
-  </data>
-  <data name="Progression_RHR_Level15Header" xml:space="preserve">
-    <value>Vertiginoso enigma</value>
-  </data>
-  <data name="Progression_RHR_Level16Header" xml:space="preserve">
-    <value>Tra le nuvole</value>
-  </data>
-  <data name="Progression_RHR_Level17Header" xml:space="preserve">
-    <value>Mischia furibonda</value>
-  </data>
-  <data name="Progression_RHR_Level18Header" xml:space="preserve">
-    <value>Cascata rovente</value>
-  </data>
-  <data name="Progression_RHR_Level19Header" xml:space="preserve">
-    <value>Mare sulfureo</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
-    <value>Gioco da bambini</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
-    <value>Villaggio delle marmotte</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
-    <value>Scatola dei giochi</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
-    <value>Caccia ai giochi</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
-    <value>Castello celeste</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
-    <value>Foresta dei sogni</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
-    <value>La valle delle foglie</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
-    <value>Giungla coloniale</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
-    <value>Le cime lussureggianti</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
-    <value>Buca nascosta</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
-    <value>Giro di pancia</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
-    <value>Fiumi gastrici</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
-    <value>Caverne organiche</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
-    <value>Tesori inghiottiti</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
-    <value>La tana appiccicosa</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
-    <value>Deserto di dessert</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
-    <value>Corsa di torte</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
-    <value>Le isole dolci</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
-    <value>Non è una dolcezza?</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
-    <value>Tunnel farciti</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
-    <value>Coniglio pasquale</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
-    <value>Sordidi corridoi</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
-    <value>Prigione dell'agonia</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
-    <value>Fuga infernale</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
-    <value>Corse e spine</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
-    <value>La tana dei conigli</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Si è verificato un errore durante la migrazione dei dati dell'app alla nuova versione</value>
@@ -4783,9 +4366,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="GameSelection_ResetSort" xml:space="preserve">
     <value>Ripristina ordine personalizzato</value>
   </data>
-  <data name="GameSelection_FindInstallations" xml:space="preserve">
-    <value>Trova giochi installati e client di gioco/emulatori</value>
-  </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Configura client di gioco/emulatori</value>
   </data>
@@ -4794,12 +4374,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Cerca giochi installati e client di gioco/emulatori</value>
-  </data>
-  <data name="Home_PlayGame" xml:space="preserve">
-    <value>Gioca</value>
-  </data>
-  <data name="Home_News" xml:space="preserve">
-    <value>Novità</value>
   </data>
   <data name="Home_RecentGames" xml:space="preserve">
     <value>Recenti</value>
@@ -4834,54 +4408,17 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Apri</value>
   </data>
-  <data name="GameHub_PatcherPanel_Open" xml:space="preserve">
-    <value>Apri patcher</value>
-  </data>
-  <data name="GameHub_PatcherPanel_Create" xml:space="preserve">
-    <value>Crea patch</value>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Progression_SharedBackupsInfo" xml:space="preserve">
     <value>Questo gioco condivide gli stessi backup dei seguenti giochi. Ciò significa che la creazione di un backup da uno di questi giochi sovrascriverà anche eventuali backup creati per gli altri.</value>
   </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
+  </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Raggruppa giochi</value>
-  </data>
-  <data name="PatchCreator_GameTargets" xml:space="preserve">
-    <value>Target giochi</value>
-  </data>
-  <data name="PatchCreator_GameTargetsInfo" xml:space="preserve">
-    <value>I giochi a cui è destinata la patch determinano a quali giochi può essere applicata. Una patch può essere destinata per più giochi, ma se aggiunge file a un archivio che manca in un gioco, la patch verrà ignorata per quel gioco.</value>
-  </data>
-  <data name="PatchCreator_ImportPatch" xml:space="preserve">
-    <value>Importa da una patch esistente</value>
-  </data>
-  <data name="PatchCreator_ImportPatchInfo" xml:space="preserve">
-    <value>Ciò consentirà di importare i contenuti da una patch già creata. Questo può essere usato per creare una versione aggiornata di una patch.</value>
-  </data>
-  <data name="PatchCreator_GameTargetsSelectionHeader" xml:space="preserve">
-    <value>Seleziona target giochi</value>
-  </data>
-  <data name="Patcher_Modifications_InvalidLocationInfo" xml:space="preserve">
-    <value>Questo file verrà ignorato perché la posizione non è stata trovata</value>
-  </data>
-  <data name="Patcher_LibraryInfo_Platform" xml:space="preserve">
-    <value>Piattaforma</value>
-  </data>
-  <data name="Patcher_ReadLibraryInvalidGameError" xml:space="preserve">
-    <value>La libreria della patch del gioco è stata creata per un gioco diverso e non può essere letta</value>
-  </data>
-  <data name="Patcher_ReadPatchGamesNotAddedError" xml:space="preserve">
-    <value>Impossibile aprire la patch {0} poiché nessuno dei seguenti target è stato aggiunto:
-
-{1}</value>
-  </data>
-  <data name="Patcher_PatchSelectGame" xml:space="preserve">
-    <value>Seleziona il gioco da patchare</value>
-  </data>
-  <data name="Patcher_ReadPatchInvalidGameError" xml:space="preserve">
-    <value>Impossibile aprire la patch {0} poiché il gioco corrente non è uno dei target:
-
-{1}</value>
   </data>
   <data name="AddGames_Title" xml:space="preserve">
     <value>Aggiungi gioco</value>
@@ -5249,6 +4786,144 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Platform_Gba" xml:space="preserve">
     <value>Game Boy Advance</value>
   </data>
+  <data name="Progression_RHR_Level0Header" xml:space="preserve">
+    <value>Concilio delle Fate</value>
+  </data>
+  <data name="Progression_RHR_Level1Header" xml:space="preserve">
+    <value>Foresta di Chiarafoglia</value>
+  </data>
+  <data name="Progression_RHR_Level2Header" xml:space="preserve">
+    <value>Cascate di Chiarafoglia</value>
+  </data>
+  <data name="Progression_RHR_Level3Header" xml:space="preserve">
+    <value>Macchina infernale</value>
+  </data>
+  <data name="Progression_RHR_Level4Header" xml:space="preserve">
+    <value>Prigione del fango</value>
+  </data>
+  <data name="Progression_RHR_Level5Header" xml:space="preserve">
+    <value>Palude Fangosa</value>
+  </data>
+  <data name="Progression_RHR_Level6Header" xml:space="preserve">
+    <value>Acquitrino di Begoniax</value>
+  </data>
+  <data name="Progression_RHR_Level7Header" xml:space="preserve">
+    <value>Fiumi di Fango</value>
+  </data>
+  <data name="Progression_RHR_Level8Header" xml:space="preserve">
+    <value>Piana degli Hoodlum</value>
+  </data>
+  <data name="Progression_RHR_Level9Header" xml:space="preserve">
+    <value>Terra dei morti lividi</value>
+  </data>
+  <data name="Progression_RHR_Level10Header" xml:space="preserve">
+    <value>Menhir del potere</value>
+  </data>
+  <data name="Progression_RHR_Level11Header" xml:space="preserve">
+    <value>Fossa del fuoco infinito</value>
+  </data>
+  <data name="Progression_RHR_Level12Header" xml:space="preserve">
+    <value>Nubi del periglio</value>
+  </data>
+  <data name="Progression_RHR_Level13Header" xml:space="preserve">
+    <value>Cuore del Mondo</value>
+  </data>
+  <data name="Progression_RHR_Level14Header" xml:space="preserve">
+    <value>Covo di Reflux</value>
+  </data>
+  <data name="Progression_RHR_Level15Header" xml:space="preserve">
+    <value>Vertiginoso enigma</value>
+  </data>
+  <data name="Progression_RHR_Level16Header" xml:space="preserve">
+    <value>Tra le nuvole</value>
+  </data>
+  <data name="Progression_RHR_Level17Header" xml:space="preserve">
+    <value>Mischia furibonda</value>
+  </data>
+  <data name="Progression_RHR_Level18Header" xml:space="preserve">
+    <value>Cascata rovente</value>
+  </data>
+  <data name="Progression_RHR_Level19Header" xml:space="preserve">
+    <value>Mare sulfureo</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Gioco da bambini</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>Villaggio delle marmotte</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>Scatola dei giochi</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Caccia ai giochi</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Castello celeste</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Foresta dei sogni</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>La valle delle foglie</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Giungla coloniale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>Le cime lussureggianti</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Buca nascosta</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Giro di pancia</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Fiumi gastrici</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Caverne organiche</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Tesori inghiottiti</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>La tana appiccicosa</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>Deserto di dessert</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Corsa di torte</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>Le isole dolci</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>Non è una dolcezza?</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Tunnel farciti</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Coniglio pasquale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Sordidi corridoi</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Prigione dell'agonia</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Fuga infernale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Corse e spine</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>La tana dei conigli</value>
+  </data>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
   </data>
@@ -5282,36 +4957,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Carica le notizie dell'app nella home page</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Versione</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Data</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Seleziona una data</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Descrizione</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Rimuovi la voce del registro delle modifiche</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Aggiungi la voce del registro delle modifiche</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadati</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Registro delle modifiche</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>Modifiche ai file</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Scarica aggiornamento</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Benvenuto all'Aggiornamento dell'Anniversario</value>
   </data>
@@ -5329,12 +4974,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>La novità di questo aggiornamento è il supporto per client di gioco/emulatori. Questi possono essere aggiunti in una finestra di dialogo separata e impostati per essere utilizzati nei giochi aggiunti. I client di gioco come Steam sono opzionali mentre i giochi per console richiedono un emulatore per poter essere riprodotti. Se un emulatore non è nell'elenco supportato, puoi aggiungerlo come emulatore personalizzato. Tieni presente che ciò non consente la visualizzazione di alcuna progressione del gioco.</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>Più utilità ora sono patch</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>Non riesci a trovare un'utilità che stai cercando? Molto probabilmente è stato rielaborato come una patch.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>La sincronizzazione delle texture è stata spostata</value>
@@ -5367,18 +5006,57 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>ID utente</value>
   </data>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
-    <value>Traduzione del programma in spagnolo (Spagna).</value>
+    <value>Traduzione del programma in Spagnolo (Spagna).</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoSingle" xml:space="preserve">
-    <value>{0} patch applicata</value>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Ultima modifica:</value>
   </data>
-  <data name="GameHub_PatcherPanel_InfoMultiple" xml:space="preserve">
-    <value>{0} patch applicate</value>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Sincronizza texture</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Prototipo Rayman 3</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
   </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Livelli bonus GameCube completati</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Pugno verso il basso</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Controllo del pugno</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Traduzione del programma in Danese (Danimarca).</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Mostra i giochi recenti</value>
   </data>
 </root>

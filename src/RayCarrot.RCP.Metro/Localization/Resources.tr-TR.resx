@@ -2431,18 +2431,6 @@ Yükle</value>
   <data name="Archive_ViewEditFileError" xml:space="preserve">
     <value>Dosyayı düzenlemek için açarken bir hata oluştu</value>
   </data>
-  <data name="Archive_BinaryEditor" xml:space="preserve">
-    <value>İkili dosya düzenleyici</value>
-  </data>
-  <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Dosya editörleri</value>
-  </data>
-  <data name="Archive_FileEditorsExt" xml:space="preserve">
-    <value>Dosya uzantısı</value>
-  </data>
-  <data name="Archive_FileEditorsExe" xml:space="preserve">
-    <value>İlişkili program</value>
-  </data>
   <data name="Config_Sound" xml:space="preserve">
     <value>Ses</value>
   </data>
@@ -2693,6 +2681,9 @@ Uygulamayı manuel olarak güncellemek için {1} adresine gidin ve en son sürü
     Sağ analog çubuk: Etkinleştirilmişse kamera kontrolleri
     Geri: Klipsiz mod
     Başlat Durdur</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Görünüm modu ekle</value>
   </data>
   <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
     <value>Birinci şahıs bakış modu eklendi ve LT'ye eşlendi</value>
@@ -3518,20 +3509,131 @@ Yapıştır</value>
   <data name="Archive_ReplaceFile" xml:space="preserve">
     <value>Degistir</value>
   </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Değiştirilecek dosyayı seçin</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>Dosya değiştirilirken bir hata oluştu</value>
+  </data>
   <data name="Config_Cheats" xml:space="preserve">
     <value>Hileler</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Ayna kamerası</value>
   </data>
   <data name="Config_RRROldMovie" xml:space="preserve">
     <value>Eski film</value>
   </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>Uygulanan yama güncel değil. Yamayı etkin tutun ve en yeni sürüme güncellemek için kaydedin.</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Tamamlanan seviyeler</value>
+  </data>
   <data name="Progression_Cages" xml:space="preserve">
     <value>Kafazlar</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Token'lar</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Hediyeler</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Rayman skin'ler</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Bzzit skin'ler</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Checkpoint skin'ler</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Ting'lar</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Hayatlar</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Yıldızlar</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Günler</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Tamamlanan mini oyunlar</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Puanlar)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Score)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Total puanlar</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Devamlar</value>
   </data>
   <data name="Progression_Lums" xml:space="preserve">
     <value>Lumlar</value>
   </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Stamp'lar</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Total score</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Crown'lar</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>NIghtmare mode</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Dişler</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Teensie'lar</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Rütbe</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Bronze kuplar</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Silver kuplar</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Gold kuplar</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Diamond kuplar</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Bitmiş yarışlar</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Bitmiş savaşlar</value>
+  </data>
   <data name="Progression_Electoons" xml:space="preserve">
     <value>Electoonlar</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum medalyonlar</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Hız kupaları</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Kayıt dosyalarını düzenlemek, yanlış yapılırsa onları bozabilir. Devam etmeden önce bir yedek almanız önemle tavsiye edilir. Devam etmek?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Dosya düzenlemeyi kaydetmeyi onaylayın</value>
   </data>
   <data name="Progression_SlotInfo_File" xml:space="preserve">
     <value>Dosya</value>
@@ -3539,33 +3641,171 @@ Yapıştır</value>
   <data name="Progression_SlotInfo_Size" xml:space="preserve">
     <value>Boyutcu</value>
   </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Son düzenleme</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>Kaydetme dosyası başarıyla değiştirildi</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Yedeklendi</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>Yeni değişiklikler yedeklenmez</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Düzenleme</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Veri kaynağı</value>
+  </data>
   <data name="Progression_DataSourceInfo" xml:space="preserve">
     <value>Daha eski uygulamalar için, uygulama yönetici olarak çalışmıyorsa Windows bazı durumlarda kaydetme/yapılandırma dosyalarını VirtualStore'a yönlendirecektir. Bunun yan etkisi, oyunu yönetici olarak çalıştırıp çalıştırmadığınıza bağlı olarak oyun için kullanılan farklı kaydetme/yapılandırma dosyalarına sahip olmanızdır.
 Burada veri kaynağını değiştirerek yedeklemeler ve ilerleme görünümü için hangi konumun kullanılacağını seçebilirsiniz.</value>
   </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Oto</value>
+  </data>
   <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
     <value>Yeni bir yedekleme oluştururken veya ilerleme görünümü için kaydetme dosyalarını kullanırken, en son dosyaların bulunduğu konum seçilir. Bir yedeği geri yüklerken, her iki konuma da geri yüklenir.</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>Varsayılan</value>
   </data>
   <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
     <value>Varsayılan konum her zaman kullanılır. Bu, oyunun yönetici olarak çalışırken kullandığı konuma karşılık gelir.</value>
   </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
   <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
     <value>VirtualStore konumu her zaman kullanılır. Bu, oyunun yönetici olarak çalışmadığı zamanlarda kullandığı konuma karşılık gelir.</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Destek </value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Serileştirme Günlüğü</value>
   </data>
   <data name="Settings_SerializationLogInfo" xml:space="preserve">
     <value>Günlüğün etkinleştirilmesi, Arşiv Gezgini'ni kullanma veya oyun ilerlemesini görüntüleme gibi herhangi bir ikili serileştirme eylemine sahip olacak, belirtilen günlük dosyasına giriş yapacaktır. Bu öncelikle hata ayıklama içindir, ancak belirli biçimlerin veri yapısını görüntülemek için de yararlı olabilir.</value>
   </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Etkin</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>İkili Araçlar</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Geri dönüştürülecek formatı seçin</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids Dosyaları Kaydet (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Seri hale getiriciler</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Günlük olarak çıktı</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>JSON'a seri hale getirme</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>JSON'dan serileştirme</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Rayman Fiesta Çalıştır Kayıt Dosyası (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Unity Player Tercihleri ​​/ Rabbids Big Bang Dosyayı Kaydet (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS Haritası / Rayman Redemption Dosyayı Kaydet (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Serileştirilecek dosyaları seçin</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>Dosyalar günlüğe kaydedilemedi</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>Dosyalar başarıyla seri durumdan çıkarıldı</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>Dosyaların seri durumu kaldırılamadı</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>Dosyalar başarıyla serileştirildi</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>Dosyalar serileştirilemedi</value>
+  </data>
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
-    <value>The cheats will go into effect when first loading a map. Sometimes it is also required to return to the menu afterwards for everything to update.</value>
+    <value>Bir harita ilk yüklenirken hileler devreye girecektir. Bazen her şeyin güncellenmesi için daha sonra menüye geri dönmek de gerekir.</value>
+  </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>DirectPlay yalnızca Windows 8 veya sonraki sürümlerde değiştirilebilir</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Kaydetme ilerlemesini düzelt</value>
   </data>
   <data name="RFRU_SaveFixInfo" xml:space="preserve">
     <value>Oyunun önceki sürümlerindeki bir hata nedeniyle, dosya kaydetme ilerlemesi senkronize olmayabilir ve bu da gerçekte kazandığınızdan daha az ergenliğe sahip olmanıza neden olabilir. Bu, belirli seviyelerin erişilemez hale gelmesine neden olabilir. Bu yardımcı program bunu düzeltmeye çalışacaktır.</value>
   </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Kaydetmeyi düzelt</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>Sorun bulunamadı</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>Kaydetme başarıyla düzeltildi</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>Kaydetme düzeltilirken bir hata oluştu</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>Hata ayıklama komutları Steam sürümü için mevcut değildir.</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>Yardımcı program kullanılamıyor</value>
+  </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>İbranice program çevirisi, oyun yama dosyası simgesi</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Yeniden paketlemede (.cnt) dokuları otomatik olarak senkronize et</value>
+  </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>Etkinleştirilirse, bir .cnt arşivi yeniden paketlendiğinde oyunun dokuları otomatik olarak eşitlenir. Bu, daha yüksek çözünürlüklü dokuları içe aktarmak için senkronizasyonun gerekli olduğu oyunlar için kullanışlıdır.</value>
   </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Ambalaj arşivi</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>dosya ekleme</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Dosyaları içe aktarma</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>{0} dosya mevcut dosyalarla aynı ada sahip. Bunları değiştirmek istiyor musunuz?
+
+çatışmalar:
+{1}</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>{0}'in kapanması bekleniyor</value>
+  </data>
   <data name="Bool_True" xml:space="preserve">
     <value>Evet</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>Oyun Süreci</value>
   </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Çalışan bir oyun sürecine bağlanarak, oyun değerlerini gerçek zamanlı olarak değiştirebilecek ve görüntüleyebileceksiniz. Belirli oyunlar için bu, kullanılmayan özellikleri etkinleştirmenize izin verir.</value>
@@ -3573,17 +3813,219 @@ Burada veri kaynağını değiştirerek yedeklemeler ve ilerleme görünümü i�
   <data name="Mod_Mem_GameSelection" xml:space="preserve">
     <value>Oyun</value>
   </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Emülatör</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>Özellikler</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>Hareketler</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Raving Rabbids
+Prototip Restorasyonu</value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>Bellek Modları</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>Sürece eklenirken bir hata oluştu</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>Oyun değerleri güncellenirken bir hata oluştu</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Geçici dosyalar</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>Eklemek</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>Ayır</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>İsabet noktaları</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Maksimum can puanı</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Ray yerleştirin</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Rayman'ın seviyeye serbestçe yerleştirilmesini sağlar</value>
+  </data>
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
+    <value>Mevcut harita</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Harita seçimi</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>Oyun içi harita seçimini dünya haritasında değiştirir</value>
+  </data>
   <data name="Mod_Mem_Lang" xml:space="preserve">
     <value>Dil</value>
   </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Fist</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Hang</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Helico</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Grab</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Seed</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Super-helico</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>Squished</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>Firefly</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Force run</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Ters kontroller</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Fist platformu</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Motor bilgisini göster</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Nesne bilgilerini göster</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Hata ayıklama modu</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Demo modunda başla</value>
+  </data>
   <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
     <value>Etkinleştirilirse, seviye yüklendiğinde oyun kullanılmayan iki kayıtlı demoyu oynamaya başlayacaktır. Bu, tüm canları kaybederek ve tekrar denemeyi seçerek tetiklenebilir.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Çok oyunculu menüleri yükle</value>
   </data>
   <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
     <value>Bu etkinleştirildiğinde, oyun başlangıçta kullanılmayan çok oyunculu menüleri yükleyecektir. Oyun zaten başlatılmışsa, duraklatma menüsünden oyundan çıkmayı seçerek buna erişilebilir.
 Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu menüler tam değildir.
 
 İlk menü oyuncu seçimi, ikincisi ise seviye seçimidir. Bunların işlevsel olmaması nedeniyle bunları değiştirmenin tek yolu aşağıdaki alanları kullanmaktır.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Seviye zaman aşımı</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>oyuncu 2 mi</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>Seçilen harita</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>hata ayıklama</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>çok oyunculu</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>Yetkiler</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>Kamera X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>Kamera Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>X konumu</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>Y konumu</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>Rayman'ın durumu</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>helico zamanı</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>Yumruk şarjı</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>aktif nesneler</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Harita zamanı</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Rastgele dizin</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>Bitiş seviyesi</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>Tüm seviyelerin kilidini aç</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>Tüm kafesler</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>Dünya haritasına dön</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>Ana menü</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>Kapılar Salonu</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>Skor Ekranı</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>Bonus Aşaması</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>ara sahneler</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>Giriş Bölüm 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>Giriş Bölüm 2</value>
   </data>
   <data name="R2_LevelName_nego_10" xml:space="preserve">
     <value>Council Chamber of the Teensies</value>
@@ -3735,9 +4177,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
-  <data name="Patcher_CriticalError" xml:space="preserve">
-    <value>Yama düzenleyicide bir hata oluştu ve kapatılması gerekiyordu</value>
-  </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
     <value>Kaydedilmemiş değişiklikler var. Devam edip onları atmak istiyor musunuz?</value>
   </data>
@@ -3747,41 +4186,252 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
     <value>Bir doku arşivi yeniden paketlendiğinde oyun dokularını otomatik olarak senkronize etmek istiyor musunuz? Daha yüksek çözünürlüklü dokuların bazı seviyelerde çalışması için senkronizasyon gereklidir. Bu, ayarlar sayfasında herhangi bir zamanda değiştirilebilir.</value>
   </data>
-  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
-    <value>Belirtilen hedefe eklenecek dosyanın yolu. Bu boşsa, bunun yerine hedefteki mevcut herhangi bir dosya kaldırılacaktır.</value>
+  <data name="About_Credits_Marteaufou" xml:space="preserve">
+    <value>Fransızca (Fransa) program çevirisi</value>
   </data>
-  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
-    <value>Seçilen yama, Rayman Kontrol Panelinin daha yeni bir sürümüyle yapıldı ve okunamıyor</value>
+  <data name="About_Credits_ZetaXO" xml:space="preserve">
+    <value>Fransızca (Fransa) program çevirisi</value>
   </data>
-  <data name="Patcher_PatchesInfo" xml:space="preserve">
-    <value>Yamalar, oyunu çeşitli şekillerde değiştirmek veya geliştirmek için uygulanabilen oyun dosyalarında yapılan değişikliklerdir. Yama, etkinleştirilene ve uygulanana kadar yürürlüğe girmez, bu da yamaların kolayca açılıp kapanmasına olanak tanır. Bazı değişikliklerin kaybolmasına neden olabileceğinden, bir yamanın değiştirdiği oyun dosyalarının manuel olarak değiştirilmesi önerilmez.</value>
+  <data name="Patcher_ExtractPatch" xml:space="preserve">
+    <value>İçeriği çıkar</value>
   </data>
-  <data name="Patcher_SecurityWarning" xml:space="preserve">
-    <value>{0} yaması, oyuna yürütülebilir dosyalar gibi hassas dosyaları ekler veya değiştirir. Bu yamayı yalnızca yazara güveniyorsanız ekleyin. Devam etmek?</value>
+  <data name="Patcher_Apply" xml:space="preserve">
+    <value>Uygula</value>
   </data>
-  <data name="Patcher_ApplyError" xml:space="preserve">
-    <value>Yamalar uygulanırken bir hata oluştu. Tüm değişiklikler uygulanmadı ve bazı veriler kaybolmuş olabilir. Yamaları uygularken oyundan herhangi bir dosyanın açık olmadığından emin olun.</value>
+  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+    <value>Yazar:</value>
   </data>
-  <data name="RemoveGame_PatchWarning" xml:space="preserve">
-    <value>Bu oyuna uygulanmış {0} yama var. Oyunu kaldırmaya devam etmek ve yamaları uygulamak istiyor musunuz?</value>
+  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+    <value>Boyut:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+    <value>Sürüm:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+    <value>İD:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+    <value>Sürümü biçimlendir:</value>
+  </data>
+  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+    <value>Eklenen dosyalar:</value>
+  </data>
+  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+    <value>Kaldırılan dosyalar:</value>
+  </data>
+  <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
+    <value>Oyun Yaması (.gp)</value>
+  </data>
+  <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
+    <value>Oyun Yama Kitaplığı (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Dosya yolunu kopyala</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Dizin yolunu kopyala</value>
+  </data>
+  <data name="AppData_MigrateError" xml:space="preserve">
+    <value>Uygulama verileri yeni sürüme taşınırken bir hata oluştu</value>
+  </data>
+  <data name="Games_RemovedInvalidGames" xml:space="preserve">
+    <value>Aşağıdaki oyunlar artık geçerli değil ve kaldırıldı:
+
+{0}</value>
+  </data>
+  <data name="Games_RemovedInvalidGamesHeader" xml:space="preserve">
+    <value>Geçersiz oyunlar kaldırıldı</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClients" xml:space="preserve">
+    <value>Aşağıdaki oyun istemcileri/emülatörleri artık geçerli değil ve kaldırıldı:
+
+{0}</value>
+  </data>
+  <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
+    <value>Geçersiz oyun istemcileri/emülatörleri kaldırıldı</value>
+  </data>
+  <data name="GameAdd_Download" xml:space="preserve">
+    <value>İndirmek</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
+    <value>oyun dosyasını seçin</value>
+  </data>
+  <data name="GameAdd_LocateFileBrowseFileTypes" xml:space="preserve">
+    <value>Oyun dosyası</value>
+  </data>
+  <data name="GameAdd_LocateFileInvalidFile" xml:space="preserve">
+    <value>Seçilen dosya bu oyun için geçerli değil.
+
+{0}</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SyncStatus" xml:space="preserve">
+    <value>Dokuları senkronize etme</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
     <value>Dokuları senkronize edin. Bu, oyun dosyalarındaki doku boyutlarını doku dosyalarıyla eşleşecek şekilde günceller. Bu, bir dokunun çözünürlüğü artırıldığında yapılmalıdır, aksi halde oyun çökebilir.</value>
   </data>
+  <data name="GameInfo_AddedDate" xml:space="preserve">
+    <value>Katma:</value>
+  </data>
+  <data name="GameClients_Launch_ClientNotFound" xml:space="preserve">
+    <value>Oyun istemcisi/emülatörü bulunamadı</value>
+  </data>
+  <data name="GamesPage_Category_Handheld" xml:space="preserve">
+    <value>Handheld</value>
+  </data>
+  <data name="GameClients_Custom" xml:space="preserve">
+    <value>Gelenek</value>
+  </data>
+  <data name="GameClients_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameClients_MGba" xml:space="preserve">
+    <value>mGBA</value>
+  </data>
+  <data name="GameClients_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
+    <value>Argümanları başlat</value>
+  </data>
   <data name="GameClients_Custom_LaunchArgsInfo" xml:space="preserve">
     <value>Burada, programa hangi başlatma bağımsız değişkenlerinin iletileceğini belirtebilirsiniz. Oyun yolu için %game% yazın. Yolun boşluklarda kesilmesini önlemek için tırnak içine almanız önerilir.</value>
+  </data>
+  <data name="GameClients_DOSBox_ConfigPaths" xml:space="preserve">
+    <value>Yapılandırma dosyası yolları</value>
+  </data>
+  <data name="GameClients_DOSBox_AddConfigPath" xml:space="preserve">
+    <value>Dosya Ekle</value>
+  </data>
+  <data name="GameClients_DOSBox_RemoveConfigPaths" xml:space="preserve">
+    <value>Seçili dosyaları kaldır</value>
+  </data>
+  <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
+    <value>Bir yapılandırma dosyası seçin</value>
+  </data>
+  <data name="Config_LocationsHeader" xml:space="preserve">
+    <value>Yapılandırma konumları</value>
+  </data>
+  <data name="Page_LoadError" xml:space="preserve">
+    <value>Sayfa yüklenirken bir hata oluştu</value>
+  </data>
+  <data name="GameClients_SelectionHeader" xml:space="preserve">
+    <value>İstemci/emülatör</value>
   </data>
   <data name="GameClients_SelectionInfo" xml:space="preserve">
     <value>Burada oyunla birlikte kullanılmak üzere bir istemci veya öykünücü seçilebilir. Seçilen müşteri oyunu başlatmaktan sorumlu olacaktır. Öykünülmüş oyunlar için bu, kendi başlarına başlayamadıkları için gereklidir.</value>
   </data>
+  <data name="GameClients_SelectionNone" xml:space="preserve">
+    <value>Hiçbiri</value>
+  </data>
+  <data name="Ray1_VersionSelectionHeader" xml:space="preserve">
+    <value>Sürüm</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Oyun versiyonu</value>
+  </data>
   <data name="RR2Options_GameModeInfo" xml:space="preserve">
     <value>Oyun versiyonu, oyunda hangi mini oyun setlerinin mevcut olduğunu belirler. Oyunun belirli sürümleri belirli bir oyun sürümüyle sınırlıyken, diğerleri hepsini desteklemektedir. Oyunu başlatırken bir hata oluşursa, oyun sürümünü değiştirmeyi deneyin.</value>
+  </data>
+  <data name="Games_ValidationMissingPaths" xml:space="preserve">
+    <value>Aşağıdaki gerekli yollar bulunamadı:
+{0}</value>
+  </data>
+  <data name="Games_ValidationFileMissing" xml:space="preserve">
+    <value>dosya yok</value>
+  </data>
+  <data name="Games_ValidationRomInvalid" xml:space="preserve">
+    <value>ROM bu oyun için geçerli değil</value>
+  </data>
+  <data name="GameHub_Play" xml:space="preserve">
+    <value>Oynamak</value>
+  </data>
+  <data name="GameHub_FavoriteOn" xml:space="preserve">
+    <value>Favori</value>
+  </data>
+  <data name="GameHub_FavoriteOff" xml:space="preserve">
+    <value>Favorilerden kaldır</value>
+  </data>
+  <data name="GameHub_Rename" xml:space="preserve">
+    <value>Yeniden isimlendirmek</value>
+  </data>
+  <data name="GameHub_RefreshPanel" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="GameSelection_Home" xml:space="preserve">
+    <value>Ev</value>
+  </data>
+  <data name="GameSelection_Search" xml:space="preserve">
+    <value>Aramak</value>
+  </data>
+  <data name="GameSelection_GroupGames" xml:space="preserve">
+    <value>Grup oyunları</value>
+  </data>
+  <data name="GameSelection_ResetSort" xml:space="preserve">
+    <value>Özel sıralamayı sıfırla</value>
+  </data>
+  <data name="GameSelection_ConfigureClients" xml:space="preserve">
+    <value>Oyun istemcilerini/emülatörlerini yapılandırın</value>
+  </data>
+  <data name="GameSelection_AddGame" xml:space="preserve">
+    <value>Oyun ekle</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Yüklü oyunları ve oyun istemcilerini/emülatörlerini arayın</value>
+  </data>
+  <data name="Home_RecentGames" xml:space="preserve">
+    <value>Son</value>
+  </data>
+  <data name="Home_FavoriteGames" xml:space="preserve">
+    <value>Favoriler</value>
+  </data>
+  <data name="Finder_NoResults" xml:space="preserve">
+    <value>Yeni yüklenmiş oyun veya oyun istemcisi/emülatörü bulunamadı</value>
+  </data>
+  <data name="Finder_ResultHeader" xml:space="preserve">
+    <value>Bulucu sonucu</value>
+  </data>
+  <data name="Finder_Error" xml:space="preserve">
+    <value>Bulucu işlemi sırasında bir hata oluştu</value>
+  </data>
+  <data name="Finder_FoundClients" xml:space="preserve">
+    <value>Aşağıdaki yeni oyun istemcileri/emülatörleri bulundu:</value>
+  </data>
+  <data name="Finder_FoundClientsHeader" xml:space="preserve">
+    <value>Yüklü oyun istemcileri/emülatörleri bulundu</value>
   </data>
   <data name="Games_MissingLaunchComponent" xml:space="preserve">
     <value>Bu oyun, bir oyun istemcisi/emülatörü olmadan başlatılamaz. Önce desteklenen bir oyun istemcisi/emülatörü eklediğinizden emin olun ve ardından onu bu oyunla kullanmak için seçin.</value>
   </data>
+  <data name="Games_RenameHeader" xml:space="preserve">
+    <value>Oyunu yeniden adlandır</value>
+  </data>
+  <data name="Games_RenameInfo" xml:space="preserve">
+    <value>{0}'ı yeniden adlandırın. Varsayılanı kullanmak için adı boş bırakın.</value>
+  </data>
+  <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
   <data name="Progression_SharedBackupsInfo" xml:space="preserve">
     <value>Bu oyun, aşağıdaki oyunlarla aynı yedekleri paylaşır. Bu, bu oyunlardan birinden yedek oluşturmanın, diğerleri için oluşturulan tüm yedeklerin üzerine yazacağı anlamına gelir.</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
+  </data>
+  <data name="Progression_GroupGames" xml:space="preserve">
+    <value>Grup oyunları</value>
+  </data>
+  <data name="AddGames_Title" xml:space="preserve">
+    <value>Oyun Ekle</value>
+  </data>
+  <data name="AddGames_Find" xml:space="preserve">
+    <value>Oyun bul</value>
+  </data>
+  <data name="AddGames_AddError" xml:space="preserve">
+    <value>Oyun eklenirken bir hata oluştu</value>
   </data>
   <data name="AddGames_AddErrorHeader" xml:space="preserve">
     <value>Oyun eklenirken hata oluştu</value>
@@ -4311,36 +4961,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="Settings_LoadAppNews" xml:space="preserve">
     <value>Ana sayfada uygulama haberlerini yükleyin</value>
   </data>
-  <data name="PatchCreator_ChangelogVersionField" xml:space="preserve">
-    <value>Sürüm</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateField" xml:space="preserve">
-    <value>Tarih</value>
-  </data>
-  <data name="PatchCreator_ChangelogDateWatermark" xml:space="preserve">
-    <value>Bir tarih seçin</value>
-  </data>
-  <data name="PatchCreator_ChangelogDescriptionField" xml:space="preserve">
-    <value>Tanım</value>
-  </data>
-  <data name="PatchCreator_ChangelogRemove" xml:space="preserve">
-    <value>Değişiklik günlüğü girişini kaldır</value>
-  </data>
-  <data name="PatchCreator_ChangelogAdd" xml:space="preserve">
-    <value>Değişiklik günlüğü girişi ekle</value>
-  </data>
-  <data name="PatchCreator_MetadataHeader" xml:space="preserve">
-    <value>Metadata</value>
-  </data>
-  <data name="PatchCreator_ChangelogHeader" xml:space="preserve">
-    <value>Değişiklik günlüğü</value>
-  </data>
-  <data name="PatchCreator_FileModificationsHeader" xml:space="preserve">
-    <value>Dosya değişiklikleri</value>
-  </data>
-  <data name="Patcher_DownloadPatchUpdate" xml:space="preserve">
-    <value>Güncellemeyi indir</value>
-  </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Yıldönümü Güncellemesine Hoş Geldiniz</value>
   </data>
@@ -4359,12 +4979,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
     <value>Bu güncellemede yeni olan, oyun istemcileri/emülatörleri için destektir. Bunlar ayrı bir iletişim kutusuna eklenebilir ve eklenen oyunlarda kullanılmak üzere ayarlanabilir. Steam gibi oyun istemcileri isteğe bağlıdır, konsol oyunlarının oynanabilmesi için bir öykünücü gerekir. Bir öykünücü desteklenen listede yoksa, onu özel bir öykünücü olarak ekleyebilirsiniz. Bunu yapmanın herhangi bir oyun ilerlemesinin gösterilmesine izin vermediğini unutmayın.</value>
   </data>
-  <data name="AnniversaryUpdate_PatcherHeader" xml:space="preserve">
-    <value>Artık daha fazla yardımcı program yamadır</value>
-  </data>
-  <data name="AnniversaryUpdate_PatcherDescription" xml:space="preserve">
-    <value>Aradığınız bir yardımcı programı bulamıyor musunuz? Büyük olasılıkla bir yama olarak elden geçirildi.</value>
-  </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>Doku senkronizasyonu taşındı</value>
   </data>
@@ -4377,10 +4991,76 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
     <value>Daha yeni bir sürüm mevcut. Yüklemek için geçerli sürümü kaldırın.</value>
   </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Oyun Kimliği:</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Ubisoft Store'da aç</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>Kullanıcı kimliği</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>İspanyolca (İspanya) program çevirisi</value>
+  </data>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Son düzenleme:</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Dokuları senkronize et</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 Prototip</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
   <data name="GameClients_SameBoy" xml:space="preserve">
     <value>SameBoy</value>
   </data>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Tamamlanan GameCube bonus seviyeleri</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Yumruk aşağı çarpma</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Yumruk kontrolü</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Danca (Danimarka) program çevirisi</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Son oyunları göster</value>
   </data>
 </root>
