@@ -536,9 +536,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
                 ReportNewChanges();
-
-                // TODO-UPDATE: Have some way to indicate it was downloaded. Switch tabs? Show icon on library tab? Or perhaps in download page show file
-                //              as "Downloaded" or "Update". Synchronize collections between tabs using an IMessenger with a token to have it be scoped.
             }
         }
         catch (OperationCanceledException ex)

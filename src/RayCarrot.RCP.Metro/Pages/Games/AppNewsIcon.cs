@@ -6,5 +6,5 @@ public enum AppNewsIcon
 {
     [EnumMember(Value = "main")] Main,
     [EnumMember(Value = "rayman")] Rayman,
-    [EnumMember(Value = "patcher")] Patcher, // TODO-UPDATE: Remove?
+    [EnumMember(Value = "patcher")] Patcher,
 }

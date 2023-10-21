@@ -8,12 +8,17 @@ using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-// TODO-UPDATE: Add logging
 public class GameBananaModsSource : DownloadableModsSource
 {
     #region Constant Fields
 
     private const int RaymanControlPanelToolId = 10372;
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -33,6 +38,8 @@ public class GameBananaModsSource : DownloadableModsSource
         GameInstallation gameInstallation,
         int page)
     {
+        Logger.Info("Loading downloadable GameBanana mods");
+
         List<GameBananaRecord> modRecords = new();
 
         int largestPageCount = 0;
@@ -41,6 +48,8 @@ public class GameBananaModsSource : DownloadableModsSource
         foreach (GameBananaGameComponent gameBananaGameComponent in gameInstallation.GetComponents<GameBananaGameComponent>())
         {
             int gameId = gameBananaGameComponent.GameId;
+
+            Logger.Info("Loading mods using GameBanana game id {0}", gameId);
 
             // Read the subfeed page
             GameBananaSubfeed subfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
@@ -57,6 +66,8 @@ public class GameBananaModsSource : DownloadableModsSource
             // Add the mods
             modRecords.AddRange(subfeed.Records.Where(x => x.HasFiles));
         }
+
+        Logger.Info("{0} mods found", modRecords.Count);
 
         if (modRecords.Count == 0)
             return new DownloadableModsFeed(Array.Empty<DownloadableModViewModel>(), largestPageCount);
@@ -94,6 +105,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     gameBananaId: modRecord.Id,
                     name: modRecord.Name,
                     uploaderUserName: modRecord.Submitter?.Name ?? String.Empty,
+                    uploaderUrl: modRecord.Submitter?.ProfileUrl,
                     uploadDate: modRecord.DateAdded,
                     description: mod.Description ?? String.Empty,
                     text: mod.Text ?? String.Empty,
@@ -104,6 +116,8 @@ public class GameBananaModsSource : DownloadableModsSource
                     viewsCount: modRecord.ViewCount,
                     files: validFiles));
         }
+
+        Logger.Info("Finished loading mods");
 
         return new DownloadableModsFeed(viewModels, largestPageCount);
     }
@@ -117,13 +131,19 @@ public class GameBananaModsSource : DownloadableModsSource
     {
         long gameBananaModId = modInstallInfo.GetRequiredInstallData<GameBananaInstallData>().ModId;
 
+        Logger.Info("Checking mod updates for mod with GameBanana id {0}", gameBananaModId);
+
         GameBananaMod gameBananaMod = await httpClient.GetDeserializedAsync<GameBananaMod>(
             $"https://gamebanana.com/apiv11/Mod/{gameBananaModId}/ProfilePage");
 
         ModVersion localVersion = modInstallInfo.Version ?? new ModVersion(1, 0, 0);
 
+        Logger.Trace("Local version determined as {0}", localVersion);
+
         if (gameBananaMod.Version.IsNullOrWhiteSpace())
         {
+            Logger.Trace("Failed to check for updates due to there not being a valid version defined on GameBanana");
+
             // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
                 "Unable to check for updates due to there not being a version to compare against");
@@ -133,6 +153,8 @@ public class GameBananaModsSource : DownloadableModsSource
                 x.ModManagerIntegrations != null &&
                 x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)))
         {
+            Logger.Trace("Failed to check for updates due to the GameBanana mod not having any valid files");
+
             // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
                 "Unable to check for updates due to the GameBanana mod not having any valid files");
@@ -146,7 +168,7 @@ public class GameBananaModsSource : DownloadableModsSource
         }
         catch (Exception ex)
         {
-            // TODO-UPDATE: Log exception
+            Logger.Info(ex, "Failed to check for updates due to the GameBanana mod not having its version formatted correctly");
 
             // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
@@ -155,11 +177,15 @@ public class GameBananaModsSource : DownloadableModsSource
 
         if (onlineVersion > localVersion)
         {
+            Logger.Info("A new update was found with version {0}", onlineVersion);
+
             // No need to pass in a message here as it shows a button then instead
             return new ModUpdateCheckResult(ModUpdateState.UpdateAvailable, String.Empty, gameBananaMod);
         }
         else
         {
+            Logger.Info("No new update found");
+
             // TODO-LOC
             return new ModUpdateCheckResult(ModUpdateState.UpToDate, "The mod is up to date");
         }

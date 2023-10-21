@@ -15,6 +15,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         int gameBananaId, 
         string name, 
         string uploaderUserName, 
+        string? uploaderUrl, 
         DateTime uploadDate, 
         string description, 
         string text,
@@ -31,6 +32,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         GameBananaId = gameBananaId;
         Name = name;
         UploaderUserName = uploaderUserName;
+        UploaderUrl = uploaderUrl;
         UploadDate = uploadDate;
         Description = description;
         Text = RemoveHthmlFromString(text);
@@ -73,6 +75,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         Services.Messenger.RegisterAll(this, modLoaderViewModel.GameInstallation.InstallationId);
 
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
+        OpenUserPageCommand = new RelayCommand(OpenUserPage, UploaderUrl != null);
         DownloadFileCommand = new AsyncRelayCommand(x => DownloadFileAsync((GameBananaFileViewModel)x!));
     }
 
@@ -89,6 +92,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     #region Commands
 
     public ICommand OpenInGameBananaCommand { get; }
+    public ICommand OpenUserPageCommand { get; }
     public ICommand DownloadFileCommand { get; }
 
     #endregion
@@ -99,6 +103,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public string Name { get; }
     public string UploaderUserName { get; }
+    public string? UploaderUrl { get; }
     public DateTime UploadDate { get; }
     public string Description { get; }
     public string Text { get; }
@@ -162,6 +167,12 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public void OpenInGameBanana()
     {
         Services.App.OpenUrl($"https://gamebanana.com/mods/{GameBananaId}");
+    }
+
+    public void OpenUserPage()
+    {
+        if (UploaderUrl != null)
+            Services.App.OpenUrl(UploaderUrl);
     }
 
     public async Task DownloadFileAsync(GameBananaFileViewModel file)

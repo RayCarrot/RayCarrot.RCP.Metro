@@ -42,8 +42,7 @@
                            FontStyle="Italic">
                     <Run Text="Uploaded by" />
 
-                    <!-- TODO-UPDATE: Add command to open GameBanana -->
-                    <Hyperlink>
+                    <Hyperlink Command="{Binding Path=OpenUserPageCommand, Mode=OneTime}">
                         <Run Text="{Binding Path=UploaderUserName, Mode=OneTime}"
                              d:Text="RayCarrot" />
                     </Hyperlink>

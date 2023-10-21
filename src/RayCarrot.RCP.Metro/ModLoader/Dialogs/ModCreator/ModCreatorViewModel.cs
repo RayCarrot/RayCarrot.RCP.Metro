@@ -8,7 +8,6 @@ using RayCarrot.RCP.Metro.ModLoader.Modules;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
 
-// TODO-UPDATE: Log
 public class ModCreatorViewModel : BaseViewModel
 {
     #region Constructor
@@ -151,25 +150,43 @@ public class ModCreatorViewModel : BaseViewModel
         if (browseResult.CanceledByUser)
             return;
 
+        Logger.Info("Converting legacy patches to mods");
+
         // TODO-LOC
-        // TODO-UPDATE: Try/catch, especially for cancellation
         using (LoadState state = await LoaderViewModel.RunAsync("Converting patches", true))
         {
-            LegacyGamePatchModExtractor extractor = new();
-            Progress progress = new(0, browseResult.SelectedFiles.Length);
-
-            foreach (FileSystemPath patchFile in browseResult.SelectedFiles)
+            try
             {
-                FileSystemPath outputDir = patchFile.RemoveFileExtension().GetNonExistingDirectoryName();
-                Directory.CreateDirectory(outputDir);
+                LegacyGamePatchModExtractor extractor = new();
+                Progress progress = new(0, browseResult.SelectedFiles.Length);
 
-                await extractor.ExtractAsync(patchFile, outputDir, x => state.SetProgress(progress.Add(x, 1)), state.CancellationToken);
-                
-                progress++;
+                foreach (FileSystemPath patchFile in browseResult.SelectedFiles)
+                {
+                    FileSystemPath outputDir = patchFile.RemoveFileExtension().GetNonExistingDirectoryName();
+                    Directory.CreateDirectory(outputDir);
+
+                    await extractor.ExtractAsync(patchFile, outputDir, x => state.SetProgress(progress.Add(x, 1)),
+                        state.CancellationToken);
+
+                    progress++;
+                }
+
+                WindowsHelpers.OpenExplorerPath(browseResult.SelectedFiles.First().Parent);
             }
+            catch (OperationCanceledException ex)
+            {
+                Logger.Trace(ex, "Cancelled converting legacy patches");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Converting legacy patches");
 
-            WindowsHelpers.OpenExplorerPath(browseResult.SelectedFiles.First().Parent);
+                // TODO-LOC
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when converting the patches");
+            }
         }
+        
+        Logger.Info("Converted legacy patches to mods");
     }
 
     public void OpenDocumentation()
@@ -179,12 +196,18 @@ public class ModCreatorViewModel : BaseViewModel
 
     public async Task CreateModAsync()
     {
+        Logger.Info("Creating new mod");
+
         if (!Modules.Any(x => x.IsEnabled))
         {
+            Logger.Info("No modules have been enabled");
+
             // TODO-LOC
             await Services.MessageUI.DisplayMessageAsync("At least one module has to be selected in order to create a mod", MessageType.Error);
             return;
         }
+
+        Logger.Info("The following modules are enabled: {0}", Modules.JoinItems(", ", x => x.Module.Id));
 
         DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
         {
@@ -208,6 +231,8 @@ public class ModCreatorViewModel : BaseViewModel
         }
 
         WindowsHelpers.OpenExplorerPath(browseResult.SelectedDirectory);
+        
+        Logger.Info("Created new mod");
     }
 
     #endregion
