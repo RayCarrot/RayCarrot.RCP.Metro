@@ -4,8 +4,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class LegacyGamePatchFileLaunchHandler : FileLaunchHandler
 {
-    // TODO-LOC
-    public override LocalizedString DisplayName => "Game patch (.gp)";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.LaunchHandler_LegacyPatch));
     public override bool DisableFullStartup => true;
 
     public override FileAssociationInfo FileAssociationInfo => new(

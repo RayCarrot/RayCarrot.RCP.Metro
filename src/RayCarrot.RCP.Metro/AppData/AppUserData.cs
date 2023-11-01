@@ -224,7 +224,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// Indicates if animations are enabled
     /// </summary>
-    public bool UI_EnableAnimations { get; set; }
+    public bool UI_EnableAnimations { get; set; } // TODO: This doesn't disable all animations - worth keeping?
 
     /// <summary>
     /// Indicates if dialogs should be shown as child windows whenever possible

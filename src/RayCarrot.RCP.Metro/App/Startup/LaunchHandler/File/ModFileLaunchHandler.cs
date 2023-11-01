@@ -4,8 +4,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class ModFileLaunchHandler : FileLaunchHandler
 {
-    // TODO-LOC
-    public override LocalizedString DisplayName => "Game mod";
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.LauncHandler_Mod));
     public override bool DisableFullStartup => true;
 
     // We don't want extensions such as .zip to be associated with this program

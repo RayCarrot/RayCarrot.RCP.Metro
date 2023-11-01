@@ -5226,4 +5226,203 @@ gameClientName</comment>
   <data name="Home_ShowRecentGames" xml:space="preserve">
     <value>Show recent games</value>
   </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Game patch (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Game mod</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>Game mod (GameBanana 1-click installation)</value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>The archive file is currently in use by the following programs and can not be repacked. Try to close the programs and try again.
+
+{0}</value>
+    <comment>Arguments:
+programs</comment>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>Mod Loader</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>Manage mods</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
+    <value>Create mod</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
+    <value>{0} mod applied</value>
+    <comment>Arguments:
+modsCount</comment>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} mods applied</value>
+    <comment>Arguments:
+modsCount</comment>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
+    <value>{0} mod update available</value>
+    <comment>Arguments:
+updatesCount</comment>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableMultiple" xml:space="preserve">
+    <value>{0} mod updates available</value>
+    <comment>Arguments:
+updatesCount</comment>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Installed mods</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>Mods can be installed to modify certain parts of the game. Most mods work by replacing certain game files. The mod won't go into effect until it's enabled and the changes applied, thus allowing mods to be easily toggled on and off. It is not recommended to manually change the game files which a mod modifies as it might result in some changes being lost.</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>No mods installed</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>Install from file</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>View all changes</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>Show files as a list</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>Show files as a tree</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>Expand all</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>Overriden mods</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesEmpty" xml:space="preserve">
+    <value>Install a mod to modify the game files</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesHasInvalidLocation" xml:space="preserve">
+    <value>This file will be ignored when applying the mods due to the containing archive file not being found for this game</value>
+  </data>
+  <data name="ModLoader_OpenModLocation" xml:space="preserve">
+    <value>Open location</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ModLoader_DialogTitle" xml:space="preserve">
+    <value>Mod Loader - {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadableModsInfo" xml:space="preserve">
+    <value>These mods have been uploaded to GameBanana by various users</value>
+  </data>
+  <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
+    <value>Refresh the available mods</value>
+  </data>
+  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
+    <value>Load more</value>
+  </data>
+  <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
+    <value>No mods found</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesStatus" xml:space="preserve">
+    <value>Migrating patches to mods</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesError" xml:space="preserve">
+    <value>An error occurred when migrating patches to mods</value>
+  </data>
+  <data name="ModLoader_ReadingModVersionError" xml:space="preserve">
+    <value>The selected mod was made with a newer version of the Rayman Control Panel and can not be read</value>
+  </data>
+  <data name="ModLoader_ReadingModError" xml:space="preserve">
+    <value>The selected mod could not be read</value>
+  </data>
+  <data name="ModLoader_ReadingModsError" xml:space="preserve">
+    <value>An error occurred when loading the mods</value>
+  </data>
+  <data name="ModLoader_SecurityWarning" xml:space="preserve">
+    <value>The mod {0} modifies sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?</value>
+    <comment>Arguments:
+modName</comment>
+  </data>
+  <data name="ModLoader_InstallStatus" xml:space="preserve">
+    <value>Extracting mod {0}</value>
+    <comment>Arguments:
+modFileName</comment>
+  </data>
+  <data name="ModLoader_InstallError" xml:space="preserve">
+    <value>An error occurred when installing the mod from {0}</value>
+    <comment>Arguments:
+modFileName</comment>
+  </data>
+  <data name="ModLoader_InstallInvalidTargetError" xml:space="preserve">
+    <value>The mod {0} can't be installed to this game due to it not being one of the game targets:
+
+{1}</value>
+    <comment>Arguments:
+modName
+gameTargets</comment>
+  </data>
+  <data name="ModLoader_SelectInstallTargetTitle" xml:space="preserve">
+    <value>Select game to install the mod to</value>
+  </data>
+  <data name="ModLoader_WriteAccessDenied" xml:space="preserve">
+    <value>Write access is not allowed to the game installation. Try restarting as administrator. If this game is downloaded from the Microsoft Store then write access can't be achieved without first installing the game as a package through developer mode.</value>
+  </data>
+  <data name="ModLoader_ReadLibraryVersionError" xml:space="preserve">
+    <value>The game mod library was made with a newer version of the Rayman Control Panel and can not be read</value>
+  </data>
+  <data name="ModLoader_ReadLibraryError" xml:space="preserve">
+    <value>An error occurred when reading the mod library</value>
+  </data>
+  <data name="ModLoader_AddedFilesInfo" xml:space="preserve">
+    <value>{0} added files</value>
+    <comment>Arguments:
+addedFilesCount</comment>
+  </data>
+  <data name="ModLoader_RemovedFilesInfo" xml:space="preserve">
+    <value>{0} removed files</value>
+    <comment>Arguments:
+removedFilesCount</comment>
+  </data>
+  <data name="ModLoader_PatchedFilesInfo" xml:space="preserve">
+    <value>{0} patched files</value>
+    <comment>Arguments:
+patchedFilesCount</comment>
+  </data>
+  <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
+    <value>{0} unsaved mods</value>
+    <comment>Arguments:
+modsCount</comment>
+  </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>Unsaved mod reordering</value>
+  </data>
+  <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
+    <value>Select mods to install</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod archives</value>
+  </data>
 </root>

@@ -19,7 +19,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         Mods = new ObservableCollection<DownloadableModViewModel>();
 
         RefreshCommand = new AsyncRelayCommand(LoadModsAsync);
-        OpenModDocsCommand = new RelayCommand(OpenModDocs);
         LoadChunkCommand = new AsyncRelayCommand(LoadChunkAsync);
     }
 
@@ -51,7 +50,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     #region Commands
 
     public ICommand RefreshCommand { get; }
-    public ICommand OpenModDocsCommand { get; }
     public ICommand LoadChunkCommand { get; }
 
     #endregion
@@ -152,11 +150,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         CanLoadChunk = false;
 
         await LoadChunkAsync();
-    }
-
-    public void OpenModDocs()
-    {
-        Services.App.OpenUrl("https://github.com/RayCarrot/RayCarrot.RCP.Metro/wiki/Mod-Loader");
     }
 
     public void Dispose()

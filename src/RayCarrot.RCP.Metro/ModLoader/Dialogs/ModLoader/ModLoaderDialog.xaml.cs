@@ -47,8 +47,7 @@ public partial class ModLoaderDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        // TODO-LOC
-        WindowInstance.Title = String.Format("Mod Loader - {0}", ViewModel.GameInstallation.GetDisplayName());
+        WindowInstance.Title = String.Format(Metro.Resources.ModLoader_DialogTitle, ViewModel.GameInstallation.GetDisplayName());
         WindowInstance.Icon = GenericIconKind.Window_ModLoader;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

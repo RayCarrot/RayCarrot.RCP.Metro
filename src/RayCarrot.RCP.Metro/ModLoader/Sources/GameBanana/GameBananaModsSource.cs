@@ -25,7 +25,7 @@ public class GameBananaModsSource : DownloadableModsSource
     #region Public Properties
 
     public override string Id => "GameBanana";
-    public override LocalizedString DisplayName => "GameBanana"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.ModLoader_GameBanana_Title));
     public override ModSourceIconAsset Icon => ModSourceIconAsset.GameBanana;
 
     #endregion

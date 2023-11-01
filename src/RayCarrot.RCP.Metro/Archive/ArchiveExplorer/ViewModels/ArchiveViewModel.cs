@@ -248,8 +248,11 @@ public class ArchiveViewModel : DirectoryViewModel
         int currentId = Process.GetCurrentProcess().Id;
         if (lockProcesses.Any(x => x.Id != currentId))
         {
-            // TODO-LOC
-            await Services.MessageUI.DisplayMessageAsync($"The archive file is currently in use by the following programs and can not be repacked. Try to close the programs and try again.{Environment.NewLine}{Environment.NewLine}{lockProcesses.Where(x => x.Id != currentId).Select(x => $"- {x.ProcessName} ({x.MainModule?.ModuleName})").JoinItems(Environment.NewLine)}", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_RepackLocked, 
+                lockProcesses.
+                    Where(x => x.Id != currentId).
+                    Select(x => $"- {x.ProcessName} ({x.MainModule?.ModuleName})").
+                    JoinItems(Environment.NewLine)), MessageType.Error);
             return;
         }
 

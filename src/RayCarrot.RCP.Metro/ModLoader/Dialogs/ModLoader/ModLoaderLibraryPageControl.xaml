@@ -14,7 +14,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:ModLoaderViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -45,14 +44,14 @@
 
                         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                    VerticalAlignment="Center"
-                                   Text="Installed mods" />
+                                   Text="{Resx ModLoader_InstalledHeader}" />
 
-                        <rcp:InfoIcon Text="Mods can be installed to modify certain parts of the game. Most mods work by replacing certain game files. The mod won't go into effect until it's enabled and the changes applied, thus allowing mods to be easily toggled on and off. It is not recommended to manually change the game files which a mod modifies as it might result in some changes being lost." />
+                        <rcp:InfoIcon Text="{Resx ﻿ModLoader_InstalledInfo}" />
 
                     </StackPanel>
 
                     <Viewbox Grid.Row="1" Visibility="{Binding Path=Mods.Count, Converter={rcp:InvertedIntToVisibilityConverter}}">
-                        <TextBlock Text="No mods installed" TextAlignment="Center" Margin="30" Opacity="0.5" />
+                        <TextBlock Text="{Resx ModLoader_InstalledEmpty}" TextAlignment="Center" Margin="30" Opacity="0.5" />
                     </Viewbox>
 
                     <ListBox Grid.Row="1"
@@ -91,12 +90,12 @@
                     <StackPanel Grid.Row="2"
                                 Orientation="Horizontal">
                         <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                                Content="Install from file"
+                                Content="{Resx ModLoader_InstallFromFile}"
                                 rcp:Icon.Kind="FileDownloadOutline"
                                 Command="{Binding Path=InstallModFromFileCommand, Mode=OneTime}"
                                 Margin="0 0 4 0"/>
                         <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                                Content="Check for updates"
+                                Content="{Resx ModLoader_CheckUpdates}"
                                 rcp:Icon.Kind="Update"
                                 Command="{Binding Path=CheckForUpdatesCommand, Mode=OneTime}" />
                     </StackPanel>
@@ -255,7 +254,7 @@
                     </Grid.ColumnDefinitions>
 
                     <ToggleButton Grid.Column="0"
-                                  Content="View all changes"
+                                  Content="{Resx ModLoader_ViewModifications}"
                                   VerticalAlignment="Center"
                                   Margin="0 0 8 0">
                         <ToggleButton.Style>
@@ -360,19 +359,19 @@
                                 Margin="0 0 8 0">
 
                         <ToggleButton rcp:Icon.Kind="FormatListCheckbox"
-                                      ToolTip="Show files as a list"
+                                      ToolTip="{Resx ModLoader_ShowModificationsAsList}"
                                       Style="{StaticResource RCP.Styles.ToggleButton.Default}"
                                       mah:ControlsHelper.CornerRadius="3 0 0 3"
                                       IsChecked="{Binding Path=ShowModifiedFilesAsTree, Converter={rcp:InvertedBooleanConverter}}" />
                         <ToggleButton rcp:Icon.Kind="FileTreeOutline"
-                                      ToolTip="Show files as a tree"
+                                      ToolTip="{Resx ModLoader_ShowModificationsAsTree}"
                                       Style="{StaticResource RCP.Styles.ToggleButton.Default}"
                                       mah:ControlsHelper.CornerRadius="0 3 3 0"
                                       IsChecked="{Binding Path=ShowModifiedFilesAsTree}"
                                       Margin="0 0 8 0" />
 
                         <Button rcp:Icon.Kind="ExpandAllOutline"
-                                ToolTip="Expand all"
+                                ToolTip="{Resx ModLoader_ExpandModifications﻿}"
                                 Command="{Binding Path=ModifiedFiles.ExpandAllCommand, Mode=OneTime}"
                                 Visibility="{Binding Path=ShowModifiedFilesAsTree, Converter={rcp:BooleanToVisibilityConverter}}"
                                 Style="{StaticResource RCP.Styles.Button.Flat}" />

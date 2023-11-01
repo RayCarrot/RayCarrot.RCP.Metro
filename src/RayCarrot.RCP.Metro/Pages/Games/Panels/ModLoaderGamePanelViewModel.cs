@@ -35,7 +35,7 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
     #region Public Properties
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_ModLoader;
-    public override LocalizedString Header => "Mod Loader"; // TODO-LOC
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.ModLoader_Title));
 
     public LocalizedString? InfoText { get; set; }
     public LocalizedString? UpdatesText { get; set; }
@@ -81,11 +81,10 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
             // Get the amount of applied mods
             int count = modManifest.Mods.Values.Count(x => x.IsEnabled);
 
-            // TODO-LOC
             if (count == 1)
-                InfoText = String.Format("{0} mod applied", count);
+                InfoText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_InfoSingle), count);
             else
-                InfoText = String.Format("{0} mods applied", count);
+                InfoText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_InfoMultiple), count);
 
             // Check for updates if set to do so
             if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
@@ -94,13 +93,12 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
                 bool[] results = await Task.WhenAll(modManifest.Mods.Values.Select(x => CheckForModUpdateAsync(httpClient, x.InstallInfo)));
                 int updates = results.Count(x => x);
 
-                // TODO-LOC
                 if (updates == 0)
                     UpdatesText = null;
                 else if (updates == 1)
-                    UpdatesText = String.Format("{0} mod update available", updates);
+                    UpdatesText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_UpdatesAvailableSingle), updates);
                 else
-                    UpdatesText = String.Format("{0} mod updates available", updates);
+                    UpdatesText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_UpdatesAvailableMultiple), updates);
             }
         }
         catch (Exception ex)

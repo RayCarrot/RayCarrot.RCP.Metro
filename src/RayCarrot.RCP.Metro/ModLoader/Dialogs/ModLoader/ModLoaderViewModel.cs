@@ -105,8 +105,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         try
         {
-            // TODO-LOC
-            using (LoadState state = await LoaderViewModel.RunAsync("Migrating patches to mods"))
+            using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
             {
                 await Task.Run(async () => await manager.MigrateAsync(state.SetProgress));
             }
@@ -115,8 +114,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Migrating legacy patches");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when migrating patches to mods");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_MigratingPatchesError);
         }
     }
 
@@ -145,16 +143,14 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Warn(ex, "Reading installed mod");
 
-                    // TODO-LOC
-                    await Services.MessageUI.DisplayMessageAsync("The selected mod was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_ReadingModVersionError, MessageType.Error);
                     return false;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex, "Reading installed mod");
 
-                    // TODO-LOC
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The selected mod could not be read");
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ReadingModError);
                     return false;
                 }
 
@@ -178,14 +174,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Loading installed mods");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the mods");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ReadingModsError);
 
             return false;
         }
     }
 
-    private async Task<bool> VerifyPatchSecurityAsync(Mod mod)
+    private async Task<bool> VerifyModSecurityAsync(Mod mod)
     {
         // Check if the patch adds or replaces exe or dll files. Expand to check other file types too?
         bool hasCodeFiles = mod.GetAddedFiles().
@@ -199,9 +194,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Info("Mod with id {0} contains one or more potentially harmful files", mod.Metadata.Id);
 
-            // TODO-LOC
-            return await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} modifies sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?", mod.Metadata.Name),
-                MessageType.Question, true);
+            return await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.ModLoader_SecurityWarning, mod.Metadata.Name), MessageType.Question, true);
         }
         else
         {
@@ -219,8 +212,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
             foreach (FileSystemPath modFilePath in filePaths)
             {
-                // TODO-LOC
-                state.SetStatus($"Extracting mod {modFilePath.Name}");
+                state.SetStatus(String.Format(Resources.ModLoader_InstallStatus, modFilePath.Name));
 
                 try
                 {
@@ -235,8 +227,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Error(ex, "Adding mod to install");
 
-                    // TODO-LOC
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, $"An error occurred when installing the mod from {modFilePath.Name}");
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ModLoader_InstallError, modFilePath.Name));
                 }
             }
 
@@ -266,8 +257,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Logger.Warn("Failed to add mod due to the current game {0} not being supported", GameInstallation.FullId);
 
                 IEnumerable<LocalizedString> gameTargets = extractedMod.Metadata.Games.Select(x => Services.Games.GetGameDescriptor(x).DisplayName);
-                // TODO-LOC
-                await Services.MessageUI.DisplayMessageAsync(String.Format("The mod {0} can't be installed to this game due to it not being one of the game targets:\r\n\r\n{1}",
+
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.ModLoader_InstallInvalidTargetError,
                     extractedMod.Metadata.Name, String.Join(Environment.NewLine, gameTargets)), MessageType.Error);
 
                 extractTempDir.Dispose();
@@ -276,7 +267,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             }
 
             // Verify the security
-            if (!await VerifyPatchSecurityAsync(extractedMod))
+            if (!await VerifyModSecurityAsync(extractedMod))
             {
                 extractTempDir.Dispose();
                 return;
@@ -372,8 +363,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
             {
-                // TODO-LOC
-                Title = "Select game to install the mod to"
+                Title = Resources.ModLoader_SelectInstallTargetTitle
             });
 
             if (result.CanceledByUser)
@@ -402,9 +392,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         // Make sure we have write access
         if (!Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation.Directory))
         {
-            // TODO-LOC
             Logger.Info("User does not have write access to game installation");
-            await Services.MessageUI.DisplayMessageAsync("Write access is not allowed to the game installation. Try restarting as administrator. If this game is downloaded from the Microsoft Store then write access can't be achieved without installing the game as a package through the developer mode.", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_WriteAccessDenied, MessageType.Error);
             return false;
         }
 
@@ -414,16 +403,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
         catch (UnsupportedModLibraryFormatException ex)
         {
-            // TODO-LOC
             Logger.Warn(ex, "Verifying library");
-            await Services.MessageUI.DisplayMessageAsync("The game mod library was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_ReadLibraryVersionError, MessageType.Error);
             return false;
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Verifying library");
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when reading the mod library");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ReadLibraryError);
 
             return false;
         }
@@ -462,10 +450,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
 
-        // TODO-LOC
-        AddedFilesText = new ConstLocString($"{ModifiedFiles.AddedFilesCount} added files");
-        RemovedFilesText = new ConstLocString($"{ModifiedFiles.RemovedFilesCount} removed files");
-        PatchedFilesText = new ConstLocString($"{ModifiedFiles.PatchedFilesCount} patched files");
+        AddedFilesText = new ResourceLocString(nameof(Resources.ModLoader_AddedFilesInfo), ModifiedFiles.AddedFilesCount);
+        RemovedFilesText = new ResourceLocString(nameof(Resources.ModLoader_RemovedFilesInfo), ModifiedFiles.RemovedFilesCount);
+        PatchedFilesText = new ResourceLocString(nameof(Resources.ModLoader_PatchedFilesInfo), ModifiedFiles.PatchedFilesCount);
     }
 
     public void ReportNewChanges()
@@ -477,11 +464,11 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         int changedMods = Mods.Count(x => x.HasChanges);
 
         HasChanges = changedMods > 0 || HasReorderedMods;
-        // TODO-LOC
+
         if (changedMods > 0)
-            ChangedModsText = $"{changedMods} unsaved mods";
+            ChangedModsText = new ResourceLocString(nameof(Resources.ModLoader_UnsavedChangesInfo), changedMods);
         else if (HasReorderedMods)
-            ChangedModsText = "Unsaved mod reordering";
+            ChangedModsText = new ResourceLocString(nameof(Resources.ModLoader_UnsavedOrderChangesInfo));
         else
             ChangedModsText = null;
     }
@@ -490,10 +477,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-LOC
-            Title = "Select mods to install",
-            // TODO-LOC
-            ExtensionFilter = new FileFilterItem(_modExtractors.Select(x => x.FileExtension), "Mod archives").StringRepresentation,
+            Title = Resources.ModLoader_InstallSelectionTitle,
+            ExtensionFilter = new FileFilterItem(_modExtractors.Select(x => x.FileExtension), Resources.ModLoader_ModFileTypeFilterName).StringRepresentation,
             MultiSelection = true
         });
 

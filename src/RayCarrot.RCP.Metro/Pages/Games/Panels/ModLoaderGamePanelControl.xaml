@@ -41,19 +41,17 @@
                    Orientation="Horizontal">
 
             <!-- Open -->
-            <!-- TODO-LOC -->
             <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=OpenModLoaderCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.ModLoader}"
-                    Content="Manage mods"
+                    Content="{Resx GameHub_ModLoaderPanel_Open}"
                     Margin="0 0 8 0" />
 
             <!-- Create -->
-            <!-- TODO-LOC -->
             <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=OpenModCreatorCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.ModLoader}"
-                    Content="Create mod" />
+                    Content="{Resx GameHub_ModLoaderPanel_Create}" />
 
         </WrapPanel>
 

@@ -14,7 +14,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:DownloadableModsViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -31,7 +30,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- Header -->
@@ -53,12 +51,12 @@
                            Width="32" 
                            Margin="0 0 8 0"/>
                     <TextBlock Grid.Column="1"
-                               Text="GameBanana" 
+                               Text="{Resx ModLoader_GameBanana_Title}" 
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                VerticalAlignment="Center" />
 
                     <rcp:InfoIcon Grid.Column="2"
-                                  Text="These mods have been uploaded to GameBanana by various users" />
+                                  Text="{Resx ModLoader_GameBanana_DownloadableModsInfo}" />
 
                     <!-- Loading indicator -->
                     <mah:ProgressRing Grid.Column="3"
@@ -72,7 +70,7 @@
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             rcp:Icon.Kind="Refresh"
                             Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                            ToolTip="Refresh the available mods"
+                            ToolTip="{Resx ModLoader_RefreshDownloadableMods}"
                             Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
 
                 </Grid>
@@ -107,24 +105,18 @@
 
                         <TextBlock Visibility="{Binding Path=CanLoadChunk, Converter={rcp:BooleanToVisibilityConverter}}">
                             <Hyperlink Command="{Binding Path=LoadChunkCommand, Mode=OneTime}">
-                                <Run Text="Load more" />
+                                <Run Text="{Resx ModLoader_LoadMoreDownloadableMods}" />
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>
                 </ScrollViewer>
-
-                <TextBlock Grid.Row="4">
-                    <Hyperlink Command="{Binding Path=OpenModDocsCommand, Mode=OneTime}">
-                        <TextBlock Text="Want your mod to show up here? Click here to find out how." />
-                    </Hyperlink>
-                </TextBlock>
             </Grid>
 
             <!-- Empty text -->
             <Viewbox Grid.Column="0"
                      Grid.ColumnSpan="2" 
                      Visibility="{Binding Path=IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
-                <TextBlock Text="No mods found" 
+                <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}" 
                            TextAlignment="Center" 
                            Margin="30" 
                            Opacity="0.5" />

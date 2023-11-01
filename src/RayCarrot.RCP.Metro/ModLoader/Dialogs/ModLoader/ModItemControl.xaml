@@ -13,7 +13,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:ModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Grid Margin="0 4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -102,7 +101,7 @@
                 </Style>
             </StackPanel.Style>
 
-            <Button ToolTip="Open location"
+            <Button ToolTip="{Resx ModLoader_OpenModLocation}"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
@@ -124,7 +123,7 @@
                     Margin="0 0 4 0"
                     rcp:UserLevelAssist.MinUserLevel="Technical" />
 
-            <Button ToolTip="Uninstall"
+            <Button ToolTip="{Resx ModLoader_UninstallMod}"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Brush="{StaticResource RCP.Brushes.DeleteItem}"
@@ -184,7 +183,7 @@
                 Style="{StaticResource RCP.Styles.Button.Flat}"
                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                 VerticalAlignment="Center"
-                Content="Update"
+                Content="{Resx ModLoader_UpdateMod}"
                 rcp:Icon.Kind="RefreshCircle"
                 rcp:Icon.Size="16"
                 Margin="0 0 10 0" />

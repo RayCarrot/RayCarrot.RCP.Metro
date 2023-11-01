@@ -1275,6 +1275,17 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The archive file is currently in use by the following programs and can not be repacked. Try to close the programs and try again.
+        ///
+        ///{0}.
+        /// </summary>
+        public static string Archive_RepackLocked {
+            get {
+                return ResourceManager.GetString("Archive_RepackLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replace.
         /// </summary>
         public static string Archive_ReplaceFile {
@@ -4543,6 +4554,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create mod.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_Create {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} mods applied.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_InfoMultiple {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_InfoMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} mod applied.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_InfoSingle {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_InfoSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage mods.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_Open {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} mod updates available.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_UpdatesAvailableMultiple {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_UpdatesAvailableMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} mod update available.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_UpdatesAvailableSingle {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_UpdatesAvailableSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string GameHub_Play {
@@ -5610,6 +5675,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game mod.
+        /// </summary>
+        public static string LauncHandler_Mod {
+            get {
+                return ResourceManager.GetString("LauncHandler_Mod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The mount path could not be found. Specify a valid path under the game options to run this game..
         /// </summary>
         public static string LaunchGame_MountPathNotFound {
@@ -5624,6 +5698,15 @@ namespace RayCarrot.RCP.Metro {
         public static string LaunchGame_WinStoreError {
             get {
                 return ResourceManager.GetString("LaunchGame_WinStoreError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game patch (.gp).
+        /// </summary>
+        public static string LaunchHandler_LegacyPatch {
+            get {
+                return ResourceManager.GetString("LaunchHandler_LegacyPatch", resourceCulture);
             }
         }
         
@@ -7687,6 +7770,422 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_RRR_UpdateBFPatch {
             get {
                 return ResourceManager.GetString("Mod_RRR_UpdateBFPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} added files.
+        /// </summary>
+        public static string ModLoader_AddedFilesInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_AddedFilesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for updates.
+        /// </summary>
+        public static string ModLoader_CheckUpdates {
+            get {
+                return ResourceManager.GetString("ModLoader_CheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod Loader - {0}.
+        /// </summary>
+        public static string ModLoader_DialogTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_DialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No mods found.
+        /// </summary>
+        public static string ModLoader_DownloadableModsEmpty {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadableModsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string ModLoader_DownloadTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand all.
+        /// </summary>
+        public static string ModLoader_ExpandModifications {
+            get {
+                return ResourceManager.GetString("ModLoader_ExpandModifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These mods have been uploaded to GameBanana by various users.
+        /// </summary>
+        public static string ModLoader_GameBanana_DownloadableModsInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_DownloadableModsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GameBanana.
+        /// </summary>
+        public static string ModLoader_GameBanana_Title {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No mods installed.
+        /// </summary>
+        public static string ModLoader_InstalledEmpty {
+            get {
+                return ResourceManager.GetString("ModLoader_InstalledEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed mods.
+        /// </summary>
+        public static string ModLoader_InstalledHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_InstalledHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mods can be installed to modify certain parts of the game. Most mods work by replacing certain game files. The mod won&apos;t go into effect until it&apos;s enabled and the changes applied, thus allowing mods to be easily toggled on and off. It is not recommended to manually change the game files which a mod modifies as it might result in some changes being lost..
+        /// </summary>
+        public static string ModLoader_InstalledInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_InstalledInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when installing the mod from {0}.
+        /// </summary>
+        public static string ModLoader_InstallError {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install from file.
+        /// </summary>
+        public static string ModLoader_InstallFromFile {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallFromFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod {0} can&apos;t be installed to this game due to it not being one of the game targets:
+        ///
+        ///{1}.
+        /// </summary>
+        public static string ModLoader_InstallInvalidTargetError {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallInvalidTargetError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mods to install.
+        /// </summary>
+        public static string ModLoader_InstallSelectionTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracting mod {0}.
+        /// </summary>
+        public static string ModLoader_InstallStatus {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        public static string ModLoader_LibraryTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_LibraryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load more.
+        /// </summary>
+        public static string ModLoader_LoadMoreDownloadableMods {
+            get {
+                return ResourceManager.GetString("ModLoader_LoadMoreDownloadableMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when migrating patches to mods.
+        /// </summary>
+        public static string ModLoader_MigratingPatchesError {
+            get {
+                return ResourceManager.GetString("ModLoader_MigratingPatchesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Migrating patches to mods.
+        /// </summary>
+        public static string ModLoader_MigratingPatchesStatus {
+            get {
+                return ResourceManager.GetString("ModLoader_MigratingPatchesStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod archives.
+        /// </summary>
+        public static string ModLoader_ModFileTypeFilterName {
+            get {
+                return ResourceManager.GetString("ModLoader_ModFileTypeFilterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install a mod to modify the game files.
+        /// </summary>
+        public static string ModLoader_ModifiedFilesEmpty {
+            get {
+                return ResourceManager.GetString("ModLoader_ModifiedFilesEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file will be ignored when applying the mods due to the containing archive file not being found for this game.
+        /// </summary>
+        public static string ModLoader_ModifiedFilesHasInvalidLocation {
+            get {
+                return ResourceManager.GetString("ModLoader_ModifiedFilesHasInvalidLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod.
+        /// </summary>
+        public static string ModLoader_ModifiedFilesModHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_ModifiedFilesModHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overriden mods.
+        /// </summary>
+        public static string ModLoader_ModifiedFilesOverridenModsHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_ModifiedFilesOverridenModsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path.
+        /// </summary>
+        public static string ModLoader_ModifiedFilesPathHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_ModifiedFilesPathHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open location.
+        /// </summary>
+        public static string ModLoader_OpenModLocation {
+            get {
+                return ResourceManager.GetString("ModLoader_OpenModLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} patched files.
+        /// </summary>
+        public static string ModLoader_PatchedFilesInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_PatchedFilesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected mod could not be read.
+        /// </summary>
+        public static string ModLoader_ReadingModError {
+            get {
+                return ResourceManager.GetString("ModLoader_ReadingModError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the mods.
+        /// </summary>
+        public static string ModLoader_ReadingModsError {
+            get {
+                return ResourceManager.GetString("ModLoader_ReadingModsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected mod was made with a newer version of the Rayman Control Panel and can not be read.
+        /// </summary>
+        public static string ModLoader_ReadingModVersionError {
+            get {
+                return ResourceManager.GetString("ModLoader_ReadingModVersionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when reading the mod library.
+        /// </summary>
+        public static string ModLoader_ReadLibraryError {
+            get {
+                return ResourceManager.GetString("ModLoader_ReadLibraryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game mod library was made with a newer version of the Rayman Control Panel and can not be read.
+        /// </summary>
+        public static string ModLoader_ReadLibraryVersionError {
+            get {
+                return ResourceManager.GetString("ModLoader_ReadLibraryVersionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh the available mods.
+        /// </summary>
+        public static string ModLoader_RefreshDownloadableMods {
+            get {
+                return ResourceManager.GetString("ModLoader_RefreshDownloadableMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} removed files.
+        /// </summary>
+        public static string ModLoader_RemovedFilesInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_RemovedFilesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod {0} modifies sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?.
+        /// </summary>
+        public static string ModLoader_SecurityWarning {
+            get {
+                return ResourceManager.GetString("ModLoader_SecurityWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select game to install the mod to.
+        /// </summary>
+        public static string ModLoader_SelectInstallTargetTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_SelectInstallTargetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show files as a list.
+        /// </summary>
+        public static string ModLoader_ShowModificationsAsList {
+            get {
+                return ResourceManager.GetString("ModLoader_ShowModificationsAsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show files as a tree.
+        /// </summary>
+        public static string ModLoader_ShowModificationsAsTree {
+            get {
+                return ResourceManager.GetString("ModLoader_ShowModificationsAsTree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod Loader.
+        /// </summary>
+        public static string ModLoader_Title {
+            get {
+                return ResourceManager.GetString("ModLoader_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        public static string ModLoader_UninstallMod {
+            get {
+                return ResourceManager.GetString("ModLoader_UninstallMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} unsaved mods.
+        /// </summary>
+        public static string ModLoader_UnsavedChangesInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_UnsavedChangesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved mod reordering.
+        /// </summary>
+        public static string ModLoader_UnsavedOrderChangesInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_UnsavedOrderChangesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string ModLoader_UpdateMod {
+            get {
+                return ResourceManager.GetString("ModLoader_UpdateMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all changes.
+        /// </summary>
+        public static string ModLoader_ViewModifications {
+            get {
+                return ResourceManager.GetString("ModLoader_ViewModifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write access is not allowed to the game installation. Try restarting as administrator. If this game is downloaded from the Microsoft Store then write access can&apos;t be achieved without first installing the game as a package through developer mode..
+        /// </summary>
+        public static string ModLoader_WriteAccessDenied {
+            get {
+                return ResourceManager.GetString("ModLoader_WriteAccessDenied", resourceCulture);
             }
         }
         
@@ -14073,6 +14572,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_WebError {
             get {
                 return ResourceManager.GetString("Update_WebError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game mod (GameBanana 1-click installation).
+        /// </summary>
+        public static string UriLaunchHandler_GameBananaMod {
+            get {
+                return ResourceManager.GetString("UriLaunchHandler_GameBananaMod", resourceCulture);
             }
         }
         

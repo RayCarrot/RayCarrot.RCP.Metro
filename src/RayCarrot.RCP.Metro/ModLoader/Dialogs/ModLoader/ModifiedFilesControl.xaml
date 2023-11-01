@@ -13,7 +13,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:ModifiedFilesViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -35,23 +34,23 @@
 
             <TextBlock Grid.Column="0"
                        Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                       Text="Path"
+                       Text="{Resx ModLoader_ModifiedFilesPathHeader}"
                        Margin="4 0 0 0"/>
 
             <TextBlock Grid.Column="1"
                        Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                       Text="Mod"
+                       Text="{Resx ModLoader_ModifiedFilesModHeader}"
                        Margin="0 0 8 0" />
 
             <TextBlock Grid.Column="2"
                        Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                       Text="Overriden mods"
+                       Text="{Resx ModLoader_ModifiedFilesOverridenModsHeader}"
                        Margin="0 0 8 0" />
 
         </Grid>
 
         <Viewbox Grid.Row="1" Visibility="{Binding Path=ModifiedFilesRoot.Children.Count, Converter={rcp:InvertedIntToVisibilityConverter}}">
-            <TextBlock Text="Install a mod to modify the game files" TextAlignment="Center" Margin="30" Opacity="0.5" />
+            <TextBlock Text="{Resx ModLoader_ModifiedFilesEmpty}" TextAlignment="Center" Margin="30" Opacity="0.5" />
         </Viewbox>
 
         <TreeView x:Name="FileTreeView" 
@@ -169,7 +168,7 @@
                                                     Visibility="{Binding Path=HasInvalidLocation, Converter={rcp:BooleanToVisibilityConverter}}"
                                                     Width="16" Height="16"
                                                     VerticalAlignment="Center"
-                                                    ToolTip="This file will be ignored when applying the mods due to the containing archive file not being found for this game"
+                                                    ToolTip="{Resx ModLoader_ModifiedFilesHasInvalidLocation}"
                                                     Kind="{StaticResource RCP.Icons.Info}"
                                                     Background="Transparent"
                                                     Foreground="{StaticResource RCP.Brushes.Warning}"

@@ -13,19 +13,18 @@
                           Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                           Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <rcp:LoadingHost rcp:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
             <mah:MetroAnimatedTabControl>
                 <!-- Library -->
-                <TabItem Header="Library" 
+                <TabItem Header="{Resx ModLoader_LibraryTitle}" 
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoader}" 
                          rcp:Icon.Brush="{StaticResource RCP.Brushes.ModLoader}">
                     <modLoader:ModLoaderLibraryPageControl />
                 </TabItem>
 
                 <!-- Download -->
-                <TabItem Header="Download"
+                <TabItem Header="{Resx ModLoader_DownloadTitle}"
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}" 
                          rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}">
                     <modLoader:ModLoaderDownloadPageControl DataContext="{Binding Path=DownloadableMods, Mode=OneTime}" />
