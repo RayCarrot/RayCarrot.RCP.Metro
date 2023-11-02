@@ -4183,31 +4183,31 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Fransk (Frankrig) programoversættelse</value>
   </data>
-  <data name="Patcher_ExtractPatch" xml:space="preserve">
+  <data name="ModLoader_ExtractPatch" xml:space="preserve">
     <value>Udpak indhold</value>
   </data>
-  <data name="Patcher_Apply" xml:space="preserve">
+  <data name="ModLoader_Apply" xml:space="preserve">
     <value>Anvend</value>
   </data>
-  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Author" xml:space="preserve">
     <value>Forfatter:</value>
   </data>
-  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Size" xml:space="preserve">
     <value>Størrelse:</value>
   </data>
-  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Version" xml:space="preserve">
     <value>Version:</value>
   </data>
-  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+  <data name="ModLoader_ModInfo_ID" xml:space="preserve">
     <value>ID:</value>
   </data>
-  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+  <data name="ModLoader_ModInfo_FormatVersion" xml:space="preserve">
     <value>Formatversion:</value>
   </data>
-  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_AddedFiles" xml:space="preserve">
     <value>Tilføjede filer:</value>
   </data>
-  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_RemovedFiles" xml:space="preserve">
     <value>Fjernede filer:</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">

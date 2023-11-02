@@ -4337,32 +4337,32 @@ partNumber</comment>
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>French (France) program translation</value>
   </data>
-  <data name="Patcher_ExtractPatch" xml:space="preserve">
+  <data name="ModLoader_ExtractPatch" xml:space="preserve">
     <value>Extract contents</value>
     <comment>Extracting will extract the contents within the patch</comment>
   </data>
-  <data name="Patcher_Apply" xml:space="preserve">
+  <data name="ModLoader_Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
-  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Author" xml:space="preserve">
     <value>Author:</value>
   </data>
-  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Size" xml:space="preserve">
     <value>Size:</value>
   </data>
-  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Version" xml:space="preserve">
     <value>Version:</value>
   </data>
-  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+  <data name="ModLoader_ModInfo_ID" xml:space="preserve">
     <value>ID:</value>
   </data>
-  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+  <data name="ModLoader_ModInfo_FormatVersion" xml:space="preserve">
     <value>Format version:</value>
   </data>
-  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_AddedFiles" xml:space="preserve">
     <value>Added files:</value>
   </data>
-  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_RemovedFiles" xml:space="preserve">
     <value>Removed files:</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
@@ -5424,5 +5424,71 @@ modsCount</comment>
   </data>
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod archives</value>
+  </data>
+  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
+    <value>Downloading mod {0}</value>
+    <comment>Arguments:
+modFileName</comment>
+  </data>
+  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
+    <value>Extracting mod {0}</value>
+    <comment>Arguments:
+modFileName</comment>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>An error occurred when downloading and installing the mod</value>
+  </data>
+  <data name="ModLoader_ApplyStatus" xml:space="preserve">
+    <value>Applying mods</value>
+  </data>
+  <data name="ModLoader_ApplySuccess" xml:space="preserve">
+    <value>Successfully applied all mods</value>
+  </data>
+  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
+    <value>Finished applying mods. Some files could not be modified.</value>
+  </data>
+  <data name="ModLoader_ApplyError" xml:space="preserve">
+    <value>An error occurred when applying the mods. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying mods.</value>
+  </data>
+  <data name="ModLoader_ModInfo_InstallSource" xml:space="preserve">
+    <value>Install source:</value>
+  </data>
+  <data name="ModLoader_LocalInstallSource" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="ModLoader_ModInfo_Modules" xml:space="preserve">
+    <value>Modules:</value>
+  </data>
+  <data name="ModLoader_ModInfo_PatchedFiles" xml:space="preserve">
+    <value>Patched files:</value>
+  </data>
+  <data name="ModLoader_UnsupportedModulesInfo" xml:space="preserve">
+    <value>The following modules used by this mod are unsupported and will be not be applied: {0}</value>
+    <comment>Arguments:
+modules</comment>
+  </data>
+  <data name="ModLoader_InstallState_PendingInstall" xml:space="preserve">
+    <value>Pending install</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingUninstall" xml:space="preserve">
+    <value>Pending uninstall</value>
+  </data>
+  <data name="ModLoader_ExtractingModStatus" xml:space="preserve">
+    <value>Extracting mod contents</value>
+  </data>
+  <data name="ModLoader_ExtractingModError" xml:space="preserve">
+    <value>An error occurred when extracting the mod contents</value>
+  </data>
+  <data name="ModLoader_ExtractingModSuccess" xml:space="preserve">
+    <value>The mod contents were successfully extracted</value>
+  </data>
+  <data name="ModLoader_UpdateError" xml:space="preserve">
+    <value>An error occurred when updating the mod</value>
+  </data>
+  <data name="ModLoader_UpdateState_UnableToCheckLocal" xml:space="preserve">
+    <value>Unable to check for updates for locally installed mods</value>
+  </data>
+  <data name="ModLoader_UpdateState_Checking" xml:space="preserve">
+    <value>Checking for updates</value>
   </data>
 </root>

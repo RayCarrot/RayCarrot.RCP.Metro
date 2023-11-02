@@ -4192,31 +4192,31 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Traducción del programa al francés (Francia)</value>
   </data>
-  <data name="Patcher_ExtractPatch" xml:space="preserve">
+  <data name="ModLoader_ExtractPatch" xml:space="preserve">
     <value>Extraer contenido</value>
   </data>
-  <data name="Patcher_Apply" xml:space="preserve">
+  <data name="ModLoader_Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
-  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Author" xml:space="preserve">
     <value>Autor:</value>
   </data>
-  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Size" xml:space="preserve">
     <value>Tamaño:</value>
   </data>
-  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Version" xml:space="preserve">
     <value>Versión:</value>
   </data>
-  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+  <data name="ModLoader_ModInfo_ID" xml:space="preserve">
     <value>ID:</value>
   </data>
-  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+  <data name="ModLoader_ModInfo_FormatVersion" xml:space="preserve">
     <value>Versión del formato:</value>
   </data>
-  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_AddedFiles" xml:space="preserve">
     <value>Archivos agregados:</value>
   </data>
-  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_RemovedFiles" xml:space="preserve">
     <value>Archivos eliminados:</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">

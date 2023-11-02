@@ -4192,31 +4192,31 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Fransızca (Fransa) program çevirisi</value>
   </data>
-  <data name="Patcher_ExtractPatch" xml:space="preserve">
+  <data name="ModLoader_ExtractPatch" xml:space="preserve">
     <value>İçeriği çıkar</value>
   </data>
-  <data name="Patcher_Apply" xml:space="preserve">
+  <data name="ModLoader_Apply" xml:space="preserve">
     <value>Uygula</value>
   </data>
-  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Author" xml:space="preserve">
     <value>Yazar:</value>
   </data>
-  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Size" xml:space="preserve">
     <value>Boyut:</value>
   </data>
-  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Version" xml:space="preserve">
     <value>Sürüm:</value>
   </data>
-  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+  <data name="ModLoader_ModInfo_ID" xml:space="preserve">
     <value>İD:</value>
   </data>
-  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+  <data name="ModLoader_ModInfo_FormatVersion" xml:space="preserve">
     <value>Sürümü biçimlendir:</value>
   </data>
-  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_AddedFiles" xml:space="preserve">
     <value>Eklenen dosyalar:</value>
   </data>
-  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_RemovedFiles" xml:space="preserve">
     <value>Kaldırılan dosyalar:</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">

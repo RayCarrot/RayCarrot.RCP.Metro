@@ -7783,6 +7783,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string ModLoader_Apply {
+            get {
+                return ResourceManager.GetString("ModLoader_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when applying the mods. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying mods..
+        /// </summary>
+        public static string ModLoader_ApplyError {
+            get {
+                return ResourceManager.GetString("ModLoader_ApplyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying mods.
+        /// </summary>
+        public static string ModLoader_ApplyStatus {
+            get {
+                return ResourceManager.GetString("ModLoader_ApplyStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully applied all mods.
+        /// </summary>
+        public static string ModLoader_ApplySuccess {
+            get {
+                return ResourceManager.GetString("ModLoader_ApplySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished applying mods. Some files could not be modified..
+        /// </summary>
+        public static string ModLoader_ApplyUnsuccess {
+            get {
+                return ResourceManager.GetString("ModLoader_ApplyUnsuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string ModLoader_CheckUpdates {
@@ -7810,6 +7855,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading mod {0}.
+        /// </summary>
+        public static string ModLoader_DownloadingModStatus {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadingModStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when downloading and installing the mod.
+        /// </summary>
+        public static string ModLoader_DownloadModError {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadModError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
         public static string ModLoader_DownloadTitle {
@@ -7824,6 +7887,51 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_ExpandModifications {
             get {
                 return ResourceManager.GetString("ModLoader_ExpandModifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracting mod {0}.
+        /// </summary>
+        public static string ModLoader_ExtractingDownloadedModStatus {
+            get {
+                return ResourceManager.GetString("ModLoader_ExtractingDownloadedModStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when extracting the mod contents.
+        /// </summary>
+        public static string ModLoader_ExtractingModError {
+            get {
+                return ResourceManager.GetString("ModLoader_ExtractingModError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracting mod contents.
+        /// </summary>
+        public static string ModLoader_ExtractingModStatus {
+            get {
+                return ResourceManager.GetString("ModLoader_ExtractingModStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod contents were successfully extracted.
+        /// </summary>
+        public static string ModLoader_ExtractingModSuccess {
+            get {
+                return ResourceManager.GetString("ModLoader_ExtractingModSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extract contents.
+        /// </summary>
+        public static string ModLoader_ExtractPatch {
+            get {
+                return ResourceManager.GetString("ModLoader_ExtractPatch", resourceCulture);
             }
         }
         
@@ -7911,6 +8019,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pending install.
+        /// </summary>
+        public static string ModLoader_InstallState_PendingInstall {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallState_PendingInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending uninstall.
+        /// </summary>
+        public static string ModLoader_InstallState_PendingUninstall {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallState_PendingUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extracting mod {0}.
         /// </summary>
         public static string ModLoader_InstallStatus {
@@ -7934,6 +8060,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_LoadMoreDownloadableMods {
             get {
                 return ResourceManager.GetString("ModLoader_LoadMoreDownloadableMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local.
+        /// </summary>
+        public static string ModLoader_LocalInstallSource {
+            get {
+                return ResourceManager.GetString("ModLoader_LocalInstallSource", resourceCulture);
             }
         }
         
@@ -8006,6 +8141,96 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_ModifiedFilesPathHeader {
             get {
                 return ResourceManager.GetString("ModLoader_ModifiedFilesPathHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added files:.
+        /// </summary>
+        public static string ModLoader_ModInfo_AddedFiles {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_AddedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        public static string ModLoader_ModInfo_Author {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format version:.
+        /// </summary>
+        public static string ModLoader_ModInfo_FormatVersion {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_FormatVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID:.
+        /// </summary>
+        public static string ModLoader_ModInfo_ID {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install source:.
+        /// </summary>
+        public static string ModLoader_ModInfo_InstallSource {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_InstallSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modules:.
+        /// </summary>
+        public static string ModLoader_ModInfo_Modules {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_Modules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patched files:.
+        /// </summary>
+        public static string ModLoader_ModInfo_PatchedFiles {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_PatchedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed files:.
+        /// </summary>
+        public static string ModLoader_ModInfo_RemovedFiles {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_RemovedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string ModLoader_ModInfo_Size {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string ModLoader_ModInfo_Version {
+            get {
+                return ResourceManager.GetString("ModLoader_ModInfo_Version", resourceCulture);
             }
         }
         
@@ -8163,11 +8388,47 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following modules used by this mod are unsupported and will be not be applied: {0}.
+        /// </summary>
+        public static string ModLoader_UnsupportedModulesInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_UnsupportedModulesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the mod.
+        /// </summary>
+        public static string ModLoader_UpdateError {
+            get {
+                return ResourceManager.GetString("ModLoader_UpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string ModLoader_UpdateMod {
             get {
                 return ResourceManager.GetString("ModLoader_UpdateMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking for updates.
+        /// </summary>
+        public static string ModLoader_UpdateState_Checking {
+            get {
+                return ResourceManager.GetString("ModLoader_UpdateState_Checking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to check for updates for locally installed mods.
+        /// </summary>
+        public static string ModLoader_UpdateState_UnableToCheckLocal {
+            get {
+                return ResourceManager.GetString("ModLoader_UpdateState_UnableToCheckLocal", resourceCulture);
             }
         }
         
@@ -8357,87 +8618,6 @@ namespace RayCarrot.RCP.Metro {
         public static string PartX {
             get {
                 return ResourceManager.GetString("PartX", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply.
-        /// </summary>
-        public static string Patcher_Apply {
-            get {
-                return ResourceManager.GetString("Patcher_Apply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extract contents.
-        /// </summary>
-        public static string Patcher_ExtractPatch {
-            get {
-                return ResourceManager.GetString("Patcher_ExtractPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Added files:.
-        /// </summary>
-        public static string Patcher_PatchInfo_AddedFiles {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_AddedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Author:.
-        /// </summary>
-        public static string Patcher_PatchInfo_Author {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_Author", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Format version:.
-        /// </summary>
-        public static string Patcher_PatchInfo_FormatVersion {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_FormatVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ID:.
-        /// </summary>
-        public static string Patcher_PatchInfo_ID {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Removed files:.
-        /// </summary>
-        public static string Patcher_PatchInfo_RemovedFiles {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_RemovedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Size:.
-        /// </summary>
-        public static string Patcher_PatchInfo_Size {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_Size", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version:.
-        /// </summary>
-        public static string Patcher_PatchInfo_Version {
-            get {
-                return ResourceManager.GetString("Patcher_PatchInfo_Version", resourceCulture);
             }
         }
         

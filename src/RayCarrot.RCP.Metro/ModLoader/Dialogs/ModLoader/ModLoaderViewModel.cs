@@ -500,8 +500,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         try
         {
-            // TODO-LOC
-            using (LoadState state = await LoaderViewModel.RunAsync($"Downloading mod {fileName}", true))
+            using (LoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
             {
                 Logger.Info("Downloading mod to install from {0}", downloadUrl);
 
@@ -516,8 +515,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: fileSize);
                 }
 
-                // TODO-LOC
-                state.SetStatus($"Extracting mod {fileName}");
+                state.SetStatus(String.Format(Resources.ModLoader_ExtractingDownloadedModStatus, fileName));
 
                 await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
                 ReportNewChanges();
@@ -531,8 +529,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Downloading mod");
             
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading and installing the mod");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError﻿);
         }
     }
 
@@ -545,8 +542,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ApplyAsync()
     {
-        // TODO-LOC
-        using (LoadState state = await LoaderViewModel.RunAsync("Applying mods"))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))
         {
             Logger.Info("Applying mods");
 
@@ -595,18 +591,16 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Logger.Info("Applied mods");
 
                     if (success)
-                        // TODO-LOC
-                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all mods");
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ApplySuccess);
                     else
-                        // TODO-LOC
-                        await Services.MessageUI.DisplayMessageAsync("Finished applying mods. Some files could not be modified.", MessageType.Warning);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_ApplyUnsuccess, MessageType.Warning);
                 });
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Applying mods");
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when applying the mods. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying mods.");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ApplyError);
             }
         }
 

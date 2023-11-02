@@ -4213,31 +4213,31 @@ Konflikty:
   <data name="About_Credits_ZetaXO" xml:space="preserve">
     <value>Tłumaczenie francuskie programu (Francja)</value>
   </data>
-  <data name="Patcher_ExtractPatch" xml:space="preserve">
+  <data name="ModLoader_ExtractPatch" xml:space="preserve">
     <value>Wyodrębnij zawartość</value>
   </data>
-  <data name="Patcher_Apply" xml:space="preserve">
+  <data name="ModLoader_Apply" xml:space="preserve">
     <value>Zastosuj</value>
   </data>
-  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Author" xml:space="preserve">
     <value>Autor:</value>
   </data>
-  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Size" xml:space="preserve">
     <value>Rozmiar:</value>
   </data>
-  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+  <data name="ModLoader_ModInfo_Version" xml:space="preserve">
     <value>Wersja:</value>
   </data>
-  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+  <data name="ModLoader_ModInfo_ID" xml:space="preserve">
     <value>ID:</value>
   </data>
-  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+  <data name="ModLoader_ModInfo_FormatVersion" xml:space="preserve">
     <value>Wersja formatu:</value>
   </data>
-  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_AddedFiles" xml:space="preserve">
     <value>Dodane pliki:</value>
   </data>
-  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+  <data name="ModLoader_ModInfo_RemovedFiles" xml:space="preserve">
     <value>Usunięte pliki:</value>
   </data>
   <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">

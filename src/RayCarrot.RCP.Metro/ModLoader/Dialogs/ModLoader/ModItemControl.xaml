@@ -112,7 +112,7 @@
                     Margin="0 0 4 0"
                     rcp:UserLevelAssist.MinUserLevel="Debug" />
 
-            <Button ToolTip="{Resx Patcher_ExtractPatch}"
+            <Button ToolTip="{Resx ModLoader_ExtractPatch}"
                     d:ToolTip="{x:Null}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"

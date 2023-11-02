@@ -26,26 +26,21 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Author)), Metadata.Author),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Version)), Metadata.Version?.ToString()),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Technical),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_ID)), Metadata.Id, UserLevel.Technical),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_Size)), ByteSize.FromBytes(modEntry.InstallInfo.Size).ToString()),
-            // TODO-LOC
-            new("Install source:", DownloadableModsSource?.DisplayName ?? new ConstLocString("Local")),
-
-            // TODO-LOC
-            new("Modules:", Mod.GetSupportedModules().JoinItems(", ", x => x.Id)),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),
-            new(new ResourceLocString(nameof(Resources.Patcher_PatchInfo_RemovedFiles)), mod.GetRemovedFiles().Count.ToString()),
-            // TODO-LOC
-            new("Patched files:", mod.GetPatchedFiles().Count.ToString()),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Author)), Metadata.Author),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Version)), Metadata.Version?.ToString()),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Technical),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_ID)), Metadata.Id, UserLevel.Technical),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Size)), ByteSize.FromBytes(modEntry.InstallInfo.Size).ToString()),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_InstallSource)), DownloadableModsSource?.DisplayName ?? new ResourceLocString(nameof(Resources.ModLoader_LocalInstallSource))),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Modules)), Mod.GetSupportedModules().JoinItems(", ", x => x.Id)),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_RemovedFiles)), mod.GetRemovedFiles().Count.ToString()),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_PatchedFiles)), mod.GetPatchedFiles().Count.ToString()),
         };
 
         ReadOnlyCollection<string> unsupportedModules = Mod.GetUnsupportedModules();
         if (unsupportedModules.Any())
-            // TODO-LOC
-            UnsupportedModulesErrorMessage = $"The following modules used by this mod are unsupported and will be not be applied: {unsupportedModules.JoinItems(", ")}";
+            UnsupportedModulesErrorMessage = new ResourceLocString(nameof(Resources.ModLoader_UnsupportedModulesInfo), unsupportedModules.JoinItems(", "));
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
@@ -140,12 +135,11 @@ public class ModViewModel : BaseViewModel, IDisposable
         Logger.Trace("Set install state to {0} for mod with ID {1}", state, Metadata.Id);
 
         InstallState = state;
-        // TODO-LOC
         InstallStateMessage = state switch
         {
             ModInstallState.Installed => null,
-            ModInstallState.PendingInstall => "Pending install",
-            ModInstallState.PendingUninstall => "Pending uninstall",
+            ModInstallState.PendingInstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingInstall)),
+            ModInstallState.PendingUninstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingUninstall)),
             _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
         };
 
@@ -187,8 +181,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractModContentsAsync()
     {
-        // TODO-LOC
-        using (await LoaderViewModel.RunAsync("Extracting mod contents"))
+        using (await LoaderViewModel.RunAsync(Resources.ModLoader_ExtractingModStatus))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
             {
@@ -210,14 +203,12 @@ public class ModViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Extracting mod contents");
 
-                // TODO-LOC
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the mod contents");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ExtractingModError);
                 return;
             }
         }
 
-        // TODO-LOC
-        await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The mod contents were successfully extracted");
+        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ExtractingModSuccess);
     }
 
     public void UninstallMod()
@@ -249,8 +240,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Updating mod");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the mod");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_UpdateError);
 
             return;
         }
@@ -307,13 +297,11 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         if (DownloadableModsSource == null)
         {
-            // TODO-LOC
-            SetUpdateState(ModUpdateState.UnableToCheckForUpdates, "Unable to check for updates for locally installed mods");
+            SetUpdateState(ModUpdateState.UnableToCheckForUpdates, new ResourceLocString(nameof(Resources.ModLoader_UpdateState_UnableToCheckLocal)));
             return;
         }
 
-        // TODO-LOC
-        SetUpdateState(ModUpdateState.CheckingForUpdates, "Checking for updates");
+        SetUpdateState(ModUpdateState.CheckingForUpdates, new ResourceLocString(nameof(Resources.ModLoader_UpdateState_Checking)));
 
         try
         {
