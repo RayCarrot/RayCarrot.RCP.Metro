@@ -12,13 +12,10 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:DataContext="{d:DesignInstance deltas:DeltasModuleViewModel}">
-    <!-- TODO-LOC -->
-    <StackPanel>
-        <Button HorizontalAlignment="Left" 
-                Style="{StaticResource RCP.Styles.Button.Flat}" 
-                Content="Create delta file"
-                ToolTip="Create a .delta patch file from two files"
-                rcp:Icon.Kind="FilePlusOutline"
-                Command="{Binding Path=CreateDeltaFileCommand, Mode=OneTime}" />
-    </StackPanel>
+    <Button HorizontalAlignment="Left" 
+            Style="{StaticResource RCP.Styles.Button.Flat}" 
+            Content="{Resx ModLoader_DeltasModule_CreateFile}"
+            ToolTip="{Resx ModLoader_DeltasModule_CreateFileInfo}"
+            rcp:Icon.Kind="FilePlusOutline"
+            Command="{Binding Path=CreateDeltaFileCommand, Mode=OneTime}" />
 </UserControl>

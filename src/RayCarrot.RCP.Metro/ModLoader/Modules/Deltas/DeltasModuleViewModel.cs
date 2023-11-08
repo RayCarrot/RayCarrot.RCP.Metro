@@ -19,8 +19,7 @@ public class DeltasModuleViewModel : ModModuleViewModel
     {
         FileBrowserResult originalFileBrowseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-LOC
-            Title = "Select original file",
+            Title = Resources.ModLoader_DeltasModule_BrowseOriginalFile,
         });
 
         if (originalFileBrowseResult.CanceledByUser)
@@ -28,8 +27,7 @@ public class DeltasModuleViewModel : ModModuleViewModel
 
         FileBrowserResult modifiedFileBrowseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-LOC
-            Title = "Select modified file",
+            Title = Resources.ModLoader_DeltasModule_BrowseModifiedFile,
         });
 
         if (modifiedFileBrowseResult.CanceledByUser)

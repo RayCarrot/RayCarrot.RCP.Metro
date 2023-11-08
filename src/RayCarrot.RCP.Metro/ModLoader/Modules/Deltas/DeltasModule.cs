@@ -14,10 +14,9 @@ public class DeltasModule : ModModule
     public const string SingleFileDeltaPatchName = "game.delta";
 
     public override string Id => "deltas";
-    // TODO-LOC
     public override LocalizedString Description => IsSingleFile 
-        ? "This is used to patch parts of the game file. The file name for single-file games should be 'game.delta'. Deltas from multiple mods can be stacked."
-        : "This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked.";
+        ? new ResourceLocString(nameof(Resources.ModLoader_DeltasModule_DescriptionSingle))
+        : new ResourceLocString(nameof(Resources.ModLoader_DeltasModule_DescriptionMulti));
 
     public FileSystemPath? SingleFilePath { get; }
     public bool IsSingleFile => SingleFilePath != null;

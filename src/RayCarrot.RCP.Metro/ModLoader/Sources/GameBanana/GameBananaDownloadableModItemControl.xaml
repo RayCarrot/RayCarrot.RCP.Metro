@@ -11,18 +11,18 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Grid Margin="0 8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Version" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Likes" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Downloads" />
             <ColumnDefinition Width="Auto" SharedSizeGroup="Views" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Views2" />
         </Grid.ColumnDefinitions>
 
-        <Ellipse Width="6" 
+        <Ellipse Grid.Column="0"
+                 Width="6" 
                  Height="6" 
                  Visibility="{Binding Path=HasViewed, Converter={rcp:InvertedBooleanToVisibilityHiddenConverter}}"
                  Fill="{StaticResource RCP.Brushes.Info}" 
@@ -55,6 +55,7 @@
                        FontSize="14"
                        VerticalAlignment="Center" />
         </StackPanel>
+
         <StackPanel Grid.Column="4"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
@@ -67,6 +68,7 @@
                        FontSize="14"
                        VerticalAlignment="Center" />
         </StackPanel>
+
         <StackPanel Grid.Column="5"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">

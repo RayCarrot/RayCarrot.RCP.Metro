@@ -144,9 +144,7 @@ public class GameBananaModsSource : DownloadableModsSource
         {
             Logger.Trace("Failed to check for updates due to there not being a valid version defined on GameBanana");
 
-            // TODO-LOC
-            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
-                "Unable to check for updates due to there not being a version to compare against");
+            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates, new ResourceLocString(nameof(Resources.ModLoader_GameBanana_UpdateState_MissingVersion)));
         }
 
         if (gameBananaMod.Files == null || !gameBananaMod.Files.Any(x =>
@@ -155,9 +153,7 @@ public class GameBananaModsSource : DownloadableModsSource
         {
             Logger.Trace("Failed to check for updates due to the GameBanana mod not having any valid files");
 
-            // TODO-LOC
-            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
-                "Unable to check for updates due to the GameBanana mod not having any valid files");
+            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates, new ResourceLocString(nameof(Resources.ModLoader_GameBanana_UpdateState_MissingFiles)));
         }
 
         ModVersion onlineVersion;
@@ -170,9 +166,7 @@ public class GameBananaModsSource : DownloadableModsSource
         {
             Logger.Info(ex, "Failed to check for updates due to the GameBanana mod not having its version formatted correctly");
 
-            // TODO-LOC
-            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates,
-                "Unable to check for updates due to the version not being formatted correctly");
+            return new ModUpdateCheckResult(ModUpdateState.UnableToCheckForUpdates, new ResourceLocString(nameof(Resources.ModLoader_GameBanana_UpdateState_InvalidVersion)));
         }
 
         if (onlineVersion > localVersion)
@@ -186,8 +180,7 @@ public class GameBananaModsSource : DownloadableModsSource
         {
             Logger.Info("No new update found");
 
-            // TODO-LOC
-            return new ModUpdateCheckResult(ModUpdateState.UpToDate, "The mod is up to date");
+            return new ModUpdateCheckResult(ModUpdateState.UpToDate, new ResourceLocString(nameof(Resources.ModLoader_UpdateState_UpToDate)));
         }
     }
 

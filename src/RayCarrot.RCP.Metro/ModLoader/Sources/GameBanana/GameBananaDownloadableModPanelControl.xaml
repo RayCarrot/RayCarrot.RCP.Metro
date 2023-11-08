@@ -40,16 +40,16 @@
                 <TextBlock TextWrapping="Wrap"
                            Margin="0 0 0 4"
                            FontStyle="Italic">
-                    <Run Text="Uploaded by" />
+                    <Run Text="{Binding Path=UploadInfoPreText.Value, Mode=OneWay}"
+                         d:Text="Uploaded by"/>
 
                     <Hyperlink Command="{Binding Path=OpenUserPageCommand, Mode=OneTime}">
                         <Run Text="{Binding Path=UploaderUserName, Mode=OneTime}"
                              d:Text="RayCarrot" />
                     </Hyperlink>
 
-                    <Run Text="on" />
-                    <Run Text="{Binding Path=UploadDate, Mode=OneTime, StringFormat=D}"
-                         d:Text="Date" />
+                    <Run Text="{Binding Path=UploadInfoPostText.Value, Mode=OneWay}"
+                         d:Text="on Date" />
 
                 </TextBlock>
             </StackPanel>

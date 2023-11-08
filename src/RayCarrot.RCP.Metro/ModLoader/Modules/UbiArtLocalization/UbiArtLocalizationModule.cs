@@ -35,8 +35,7 @@ public class UbiArtLocalizationModule : ModModule
     };
 
     public override string Id => "ubiart-loc";
-    // TODO-LOC
-    public override LocalizedString Description => "This is used to replace or add strings in the game localization for any of the supported languages. The benefit of using this module over replacing the entire file is that multiple localization mods can be stacked.";
+    public override LocalizedString Description => new ResourceLocString(nameof(Resources.ModLoader_UbiArtLocalizationModule_Description));
 
     public override void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath)
     {

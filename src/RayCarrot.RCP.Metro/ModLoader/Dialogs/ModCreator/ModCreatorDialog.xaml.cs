@@ -29,7 +29,7 @@ public partial class ModCreatorDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Mod Creator"; // TODO-LOC
+        WindowInstance.Title = Metro.Resources.ModCreator_Title;
         WindowInstance.Icon = GenericIconKind.Window_ModCreator;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

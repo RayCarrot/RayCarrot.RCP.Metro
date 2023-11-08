@@ -13,8 +13,7 @@ public class FilesModule : ModModule
     public const string RemovedFilesFileName = "removed_files.txt";
 
     public override string Id => "files";
-    // TODO-LOC
-    public override LocalizedString Description => "This is used to add, replace and remove entire files in the game. Great for mods such as texture replacements and the like!";
+    public override LocalizedString Description => new ResourceLocString(nameof(Resources.ModLoader_FilesModule_Description));
 
     public override void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath)
     {

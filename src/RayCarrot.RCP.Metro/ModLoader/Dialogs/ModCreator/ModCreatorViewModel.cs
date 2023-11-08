@@ -141,8 +141,7 @@ public class ModCreatorViewModel : BaseViewModel
     {
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-LOC
-            Title = "Select patch files to convert",
+            Title = Resources.ModCreator_ConvertLegacyPatchBrowseTitle,
             ExtensionFilter = new FileExtension(PatchPackage.FileExtension).GetFileFilterItem.StringRepresentation,
             MultiSelection = true,
         });
@@ -152,8 +151,7 @@ public class ModCreatorViewModel : BaseViewModel
 
         Logger.Info("Converting legacy patches to mods");
 
-        // TODO-LOC
-        using (LoadState state = await LoaderViewModel.RunAsync("Converting patches", true))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModCreator_ConvertLegacyPatchStatus, true))
         {
             try
             {
@@ -181,8 +179,7 @@ public class ModCreatorViewModel : BaseViewModel
             {
                 Logger.Error(ex, "Converting legacy patches");
 
-                // TODO-LOC
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when converting the patches");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModCreator_ConvertLegacyPatchError);
             }
         }
         
@@ -202,8 +199,7 @@ public class ModCreatorViewModel : BaseViewModel
         {
             Logger.Info("No modules have been enabled");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayMessageAsync("At least one module has to be selected in order to create a mod", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.ModCreator_CreateModNoModulesError, MessageType.Error);
             return;
         }
 
@@ -211,8 +207,7 @@ public class ModCreatorViewModel : BaseViewModel
 
         DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
         {
-            // TODO-LOC
-            Title = "Select mod destination"
+            Title = Resources.ModCreator_CreateModBrowseTitle
         });
 
         if (browseResult.CanceledByUser) 

@@ -14,7 +14,6 @@
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
                             d:DataContext="{d:DesignInstance modCreator:ModCreatorViewModel}">
-    <!-- TODO-LOC -->
     <rcp:LoadingHost rcp:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="8">
             <Grid.RowDefinitions>
@@ -26,15 +25,15 @@
                       Margin="{StaticResource RCP.Thicknesses.Card}">
                 <StackPanel>
 
-                    <TextBlock Text="Convert patch (.gp) to mod"
+                    <TextBlock Text="{Resx ModCreator_ConvertLegacyPatchHeader}"
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                Margin="0 0 0 4" />
 
-                    <TextBlock Text="Starting with version 14.0 patches have been replaced by mods. You can still use patches (.gp files), but won't be able to create new ones or edit existing ones. Here you can convert a patch into a mod so it can continue to be updated."
+                    <TextBlock Text="{Resx ModCreator_ConvertLegacyPatchInfo}"
                                TextWrapping="Wrap"
                                Margin="0 0 0 4" />
 
-                    <Button Content="Convert"
+                    <Button Content="{Resx ModCreator_ConvertLegacyPatch}"
                             rcp:Icon.Kind="ArchiveSyncOutline"
                             Command="{Binding Path=ConvertLegacyPatchCommand, Mode=OneTime}"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
@@ -53,23 +52,23 @@
 
                     <TextBlock Grid.Row="0" 
                                Margin="0 0 0 4"
-                               Text="Create new mod"
+                               Text="{Resx ModCreator_CreateHeader}"
                                Style="{StaticResource RCP.Styles.TextBlock.Header}" />
 
                     <ScrollViewer Grid.Row="1">
                         <StackPanel>
-                            <Button Content="Mod documentation"
+                            <Button Content="{Resx ModCreator_ModDocumentation}"
                                     HorizontalAlignment="Left"
                                     rcp:Icon.Kind="FileDocumentOutline"
                                     Command="{Binding Path=OpenDocumentationCommand, Mode=OneTime}"
                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Margin="0 0 0 8" />
 
-                            <TextBlock Text="1. Select modules"
+                            <TextBlock Text="{Resx ModCreator_Step1}"
                                        FontWeight="DemiBold"
                                        Margin="0 0 0 4" />
 
-                            <TextBlock Text="Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differs from game to game. You can use multiple modules within the same mod."
+                            <TextBlock Text="{Resx ModCreator_Step1Info}"
                                        TextWrapping="Wrap"
                                        Margin="0 0 0 4" />
 
@@ -177,34 +176,34 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <TextBlock Text="2. Create mod folder"
+                            <TextBlock Text="{Resx ModCreator_Step2}"
                                        FontWeight="DemiBold"
                                        Margin="0 0 0 4" />
 
-                            <TextBlock Text="Select an empty folder to create the new mod in."
+                            <TextBlock Text="{Resx ModCreator_Step2Info}"
                                        TextWrapping="Wrap"
                                        Margin="0 0 0 4" />
 
                             <Button Command="{Binding Path=CreateModCommand, Mode=OneTime}"
-                                    Content="Create mod"
+                                    Content="{Resx ModCreator_Create﻿}"
                                     rcp:Icon.Kind="{StaticResource RCP.Icons.ModCreator}"
                                     Style="{StaticResource RCP.Styles.Button.Accent}"
                                     HorizontalAlignment="Left"
                                     Margin="0 0 0 12" />
 
-                            <TextBlock Text="3. Edit the metadata, add a custom thumbnail and add module contents"
+                            <TextBlock Text="{Resx ModCreator_Step3}"
                                        FontWeight="DemiBold"
                                        Margin="0 0 0 4" />
 
-                            <TextBlock Text="It is recommended using a text editor with JSON support to edit the metadata, such as VS Code or Notepad++. Adding a thumbnail is done by adding a file named thumbnail.png with a recommended size of 128x128."
+                            <TextBlock Text="{Resx ModCreator_Step3Info}"
                                        TextWrapping="Wrap"
                                        Margin="0 0 0 12" />
 
-                            <TextBlock Text="4. Publish the mod"
+                            <TextBlock Text="{Resx ModCreator_Step4}"
                                        FontWeight="DemiBold"
                                        Margin="0 0 0 4" />
 
-                            <TextBlock Text="The mod is published by adding the folder to a supported archive format (.zip, .7z, .rar). If the mod is published on GameBanana it will show up as a downloadable mod in the mod manager. See the documentation for more details."
+                            <TextBlock Text="{Resx ModCreator_Step4Info}"
                                        TextWrapping="Wrap" />
 
                         </StackPanel>

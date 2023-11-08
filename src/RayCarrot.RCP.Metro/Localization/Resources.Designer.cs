@@ -7774,6 +7774,186 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert.
+        /// </summary>
+        public static string ModCreator_ConvertLegacyPatch {
+            get {
+                return ResourceManager.GetString("ModCreator_ConvertLegacyPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select patch files to convert.
+        /// </summary>
+        public static string ModCreator_ConvertLegacyPatchBrowseTitle {
+            get {
+                return ResourceManager.GetString("ModCreator_ConvertLegacyPatchBrowseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when converting the patches.
+        /// </summary>
+        public static string ModCreator_ConvertLegacyPatchError {
+            get {
+                return ResourceManager.GetString("ModCreator_ConvertLegacyPatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert patch (.gp) to mod.
+        /// </summary>
+        public static string ModCreator_ConvertLegacyPatchHeader {
+            get {
+                return ResourceManager.GetString("ModCreator_ConvertLegacyPatchHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting with version 14.0 patches have been replaced by mods. You can still use patches (.gp files), but won&apos;t be able to create new ones or edit existing ones. Here you can convert a patch into a mod so it can continue to be updated..
+        /// </summary>
+        public static string ModCreator_ConvertLegacyPatchInfo {
+            get {
+                return ResourceManager.GetString("ModCreator_ConvertLegacyPatchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converting patches.
+        /// </summary>
+        public static string ModCreator_ConvertLegacyPatchStatus {
+            get {
+                return ResourceManager.GetString("ModCreator_ConvertLegacyPatchStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create mod.
+        /// </summary>
+        public static string ModCreator_Create {
+            get {
+                return ResourceManager.GetString("ModCreator_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new mod.
+        /// </summary>
+        public static string ModCreator_CreateHeader {
+            get {
+                return ResourceManager.GetString("ModCreator_CreateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mod destination.
+        /// </summary>
+        public static string ModCreator_CreateModBrowseTitle {
+            get {
+                return ResourceManager.GetString("ModCreator_CreateModBrowseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one module has to be selected in order to create a mod.
+        /// </summary>
+        public static string ModCreator_CreateModNoModulesError {
+            get {
+                return ResourceManager.GetString("ModCreator_CreateModNoModulesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod documentation.
+        /// </summary>
+        public static string ModCreator_ModDocumentation {
+            get {
+                return ResourceManager.GetString("ModCreator_ModDocumentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Select modules.
+        /// </summary>
+        public static string ModCreator_Step1 {
+            get {
+                return ResourceManager.GetString("ModCreator_Step1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differs from game to game. You can use multiple modules within the same mod..
+        /// </summary>
+        public static string ModCreator_Step1Info {
+            get {
+                return ResourceManager.GetString("ModCreator_Step1Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Create mod folder.
+        /// </summary>
+        public static string ModCreator_Step2 {
+            get {
+                return ResourceManager.GetString("ModCreator_Step2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a new folder to create the mod in..
+        /// </summary>
+        public static string ModCreator_Step2Info {
+            get {
+                return ResourceManager.GetString("ModCreator_Step2Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Edit the metadata, add a custom thumbnail and add module contents.
+        /// </summary>
+        public static string ModCreator_Step3 {
+            get {
+                return ResourceManager.GetString("ModCreator_Step3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is recommended using a text editor with JSON support to edit the metadata, such as VS Code or Notepad++. Adding a thumbnail is done by adding a file named thumbnail.png with a recommended size of 128x128..
+        /// </summary>
+        public static string ModCreator_Step3Info {
+            get {
+                return ResourceManager.GetString("ModCreator_Step3Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. Publish the mod.
+        /// </summary>
+        public static string ModCreator_Step4 {
+            get {
+                return ResourceManager.GetString("ModCreator_Step4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod is published by packing the mod folder in a supported archive format (.zip, .7z, .rar). If the mod is published to GameBanana it will show up as a downloadable mod in the mod loader. See the documentation for more details..
+        /// </summary>
+        public static string ModCreator_Step4Info {
+            get {
+                return ResourceManager.GetString("ModCreator_Step4Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod Creator.
+        /// </summary>
+        public static string ModCreator_Title {
+            get {
+                return ResourceManager.GetString("ModCreator_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} added files.
         /// </summary>
         public static string ModLoader_AddedFilesInfo {
@@ -7833,6 +8013,60 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_CheckUpdates {
             get {
                 return ResourceManager.GetString("ModLoader_CheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select modified file.
+        /// </summary>
+        public static string ModLoader_DeltasModule_BrowseModifiedFile {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_BrowseModifiedFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select original file.
+        /// </summary>
+        public static string ModLoader_DeltasModule_BrowseOriginalFile {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_BrowseOriginalFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create delta file.
+        /// </summary>
+        public static string ModLoader_DeltasModule_CreateFile {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_CreateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a .delta patch file from two files.
+        /// </summary>
+        public static string ModLoader_DeltasModule_CreateFileInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_CreateFileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked..
+        /// </summary>
+        public static string ModLoader_DeltasModule_DescriptionMulti {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_DescriptionMulti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is used to patch parts of the game file. The file name for single-file games should be &apos;game.delta&apos;. Deltas from multiple mods can be stacked..
+        /// </summary>
+        public static string ModLoader_DeltasModule_DescriptionSingle {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_DescriptionSingle", resourceCulture);
             }
         }
         
@@ -7936,6 +8170,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is used to add, replace and remove files in the game. Useful for mods such as texture replacements that wish to replace entire files..
+        /// </summary>
+        public static string ModLoader_FilesModule_Description {
+            get {
+                return ResourceManager.GetString("ModLoader_FilesModule_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to These mods have been uploaded to GameBanana by various users.
         /// </summary>
         public static string ModLoader_GameBanana_DownloadableModsInfo {
@@ -7950,6 +8193,42 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameBanana_Title {
             get {
                 return ResourceManager.GetString("ModLoader_GameBanana_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to check for updates due to the version not being formatted correctly.
+        /// </summary>
+        public static string ModLoader_GameBanana_UpdateState_InvalidVersion {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UpdateState_InvalidVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to check for updates due to the GameBanana mod not having any valid files.
+        /// </summary>
+        public static string ModLoader_GameBanana_UpdateState_MissingFiles {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UpdateState_MissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to check for updates due to there not being a version to compare against.
+        /// </summary>
+        public static string ModLoader_GameBanana_UpdateState_MissingVersion {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UpdateState_MissingVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploaded by {0} on {1}.
+        /// </summary>
+        public static string ModLoader_GameBanana_UploadInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UploadInfo", resourceCulture);
             }
         }
         
@@ -8361,6 +8640,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is used to replace or add strings in the game localization for any of the supported languages. The benefit of using this module over replacing the entire file is that multiple localization mods can be stacked..
+        /// </summary>
+        public static string ModLoader_UbiArtLocalizationModule_Description {
+            get {
+                return ResourceManager.GetString("ModLoader_UbiArtLocalizationModule_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uninstall.
         /// </summary>
         public static string ModLoader_UninstallMod {
@@ -8429,6 +8717,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_UpdateState_UnableToCheckLocal {
             get {
                 return ResourceManager.GetString("ModLoader_UpdateState_UnableToCheckLocal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod is up to date.
+        /// </summary>
+        public static string ModLoader_UpdateState_UpToDate {
+            get {
+                return ResourceManager.GetString("ModLoader_UpdateState_UpToDate", resourceCulture);
             }
         }
         

@@ -5491,4 +5491,106 @@ modules</comment>
   <data name="ModLoader_UpdateState_Checking" xml:space="preserve">
     <value>Checking for updates</value>
   </data>
+  <data name="ModCreator_ConvertLegacyPatchHeader" xml:space="preserve">
+    <value>Convert patch (.gp) to mod</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchInfo" xml:space="preserve">
+    <value>Starting with version 14.0 patches have been replaced by mods. You can still use patches (.gp files), but won't be able to create new ones or edit existing ones. Here you can convert a patch into a mod so it can continue to be updated.</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatch" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="ModCreator_CreateHeader" xml:space="preserve">
+    <value>Create new mod</value>
+  </data>
+  <data name="ModCreator_ModDocumentation" xml:space="preserve">
+    <value>Mod documentation</value>
+  </data>
+  <data name="ModCreator_Step1" xml:space="preserve">
+    <value>1. Select modules</value>
+  </data>
+  <data name="ModCreator_Step1Info" xml:space="preserve">
+    <value>Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differs from game to game. You can use multiple modules within the same mod.</value>
+  </data>
+  <data name="ModCreator_Step2" xml:space="preserve">
+    <value>2. Create mod folder</value>
+  </data>
+  <data name="ModCreator_Step2Info" xml:space="preserve">
+    <value>Select a new folder to create the mod in.</value>
+  </data>
+  <data name="ModCreator_Create" xml:space="preserve">
+    <value>Create mod</value>
+  </data>
+  <data name="ModCreator_Step3" xml:space="preserve">
+    <value>3. Edit the metadata, add a custom thumbnail and add module contents</value>
+  </data>
+  <data name="ModCreator_Step3Info" xml:space="preserve">
+    <value>It is recommended using a text editor with JSON support to edit the metadata, such as VS Code or Notepad++. Adding a thumbnail is done by adding a file named thumbnail.png with a recommended size of 128x128.</value>
+  </data>
+  <data name="ModCreator_Step4" xml:space="preserve">
+    <value>4. Publish the mod</value>
+  </data>
+  <data name="ModCreator_Step4Info" xml:space="preserve">
+    <value>The mod is published by packing the mod folder in a supported archive format (.zip, .7z, .rar). If the mod is published to GameBanana it will show up as a downloadable mod in the mod loader. See the documentation for more details.</value>
+  </data>
+  <data name="ModCreator_Title" xml:space="preserve">
+    <value>Mod Creator</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchBrowseTitle" xml:space="preserve">
+    <value>Select patch files to convert</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchStatus" xml:space="preserve">
+    <value>Converting patches</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchError" xml:space="preserve">
+    <value>An error occurred when converting the patches</value>
+  </data>
+  <data name="ModCreator_CreateModNoModulesError" xml:space="preserve">
+    <value>At least one module has to be selected in order to create a mod</value>
+  </data>
+  <data name="ModCreator_CreateModBrowseTitle" xml:space="preserve">
+    <value>Select mod destination</value>
+  </data>
+  <data name="ModLoader_FilesModule_Description" xml:space="preserve">
+    <value>This is used to add, replace and remove files in the game. Useful for mods such as texture replacements that wish to replace entire files.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionSingle" xml:space="preserve">
+    <value>This is used to patch parts of the game file. The file name for single-file games should be 'game.delta'. Deltas from multiple mods can be stacked.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionMulti" xml:space="preserve">
+    <value>This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
+    <value>Create delta file</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFileInfo" xml:space="preserve">
+    <value>Create a .delta patch file from two files</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseOriginalFile" xml:space="preserve">
+    <value>Select original file</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseModifiedFile" xml:space="preserve">
+    <value>Select modified file</value>
+  </data>
+  <data name="ModLoader_UbiArtLocalizationModule_Description" xml:space="preserve">
+    <value>This is used to replace or add strings in the game localization for any of the supported languages. The benefit of using this module over replacing the entire file is that multiple localization mods can be stacked.</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingVersion" xml:space="preserve">
+    <value>Unable to check for updates due to there not being a version to compare against</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingFiles" xml:space="preserve">
+    <value>Unable to check for updates due to the GameBanana mod not having any valid files</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_InvalidVersion" xml:space="preserve">
+    <value>Unable to check for updates due to the version not being formatted correctly</value>
+  </data>
+  <data name="ModLoader_UpdateState_UpToDate" xml:space="preserve">
+    <value>The mod is up to date</value>
+  </data>
+  <data name="ModLoader_GameBanana_UploadInfo" xml:space="preserve">
+    <value>Uploaded by {0} on {1}</value>
+    <comment>Arguments:
+uploaderName
+uploadDate</comment>
+  </data>
 </root>

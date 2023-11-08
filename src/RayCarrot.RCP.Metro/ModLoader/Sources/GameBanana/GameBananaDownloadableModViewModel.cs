@@ -37,6 +37,20 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         Description = description;
         Text = RemoveHthmlFromString(text);
 
+        // Uploaded by {0} on {1}
+        UploadInfoPreText = new GeneratedLocString(() =>
+        {
+            string str = Resources.ModLoader_GameBanana_UploadInfo;
+            str = str.Substring(0, str.IndexOf("{0}", StringComparison.InvariantCultureIgnoreCase));
+            return String.Format(str, null, $"{UploadDate:D}").TrimEnd();
+        });
+        UploadInfoPostText = new GeneratedLocString(() =>
+        {
+            string str = Resources.ModLoader_GameBanana_UploadInfo;
+            str = str.Substring(str.IndexOf("{0}", StringComparison.InvariantCultureIgnoreCase) + 3);
+            return String.Format(str, null, $"{UploadDate:D}").TrimStart();
+        });
+
         Version = ModVersion.TryParse(version, out ModVersion? v) ? v : null;
 
         if (previewMedia?.Images is { Length: > 0 } images)
@@ -107,6 +121,10 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public DateTime UploadDate { get; }
     public string Description { get; }
     public string Text { get; }
+
+    // Do this to allow the name to be a link, but not the rest of the text
+    public LocalizedString UploadInfoPreText { get; }
+    public LocalizedString UploadInfoPostText { get; }
 
     public ModVersion? Version { get; }
 
