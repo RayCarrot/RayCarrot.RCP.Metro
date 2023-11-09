@@ -77,6 +77,9 @@ public static class LocalizationManager
 
             // Spanish (Spain)
             new CultureInfo("es-ES"),
+
+            // Turkish (Turkey)
+            new CultureInfo("tr-TR"),
         });
 
         if (includeIncomplete)
@@ -86,9 +89,6 @@ public static class LocalizationManager
             {
                 // Hungarian (Hungary)
                 new CultureInfo("hu-HU"),
-
-                // Turkish (Turkey)
-                new CultureInfo("tr-TR"),
             });
         }
     }
