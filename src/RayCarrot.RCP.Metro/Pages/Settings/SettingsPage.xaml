@@ -104,7 +104,6 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <GroupBox Content="{Binding Mode=OneTime}"
-                                                  Header="{Binding Path=Header.Value}" 
                                                   rcp:UserLevelAssist.MinUserLevel="{Binding Path=UserLevel, Mode=OneTime}"
                                                   rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
                                                   rcp:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToBrushConverter}}"
@@ -145,6 +144,10 @@
                                                     <sections:DebugSettingsSectionControl />
                                                 </DataTemplate>
                                             </GroupBox.Resources>
+                                            <GroupBox.Header>
+                                                <TextBlock DataContext="{Binding Path=Header, Mode=OneTime}"
+                                                           Text="{Binding Path=Value}" />
+                                            </GroupBox.Header>
                                         </GroupBox>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

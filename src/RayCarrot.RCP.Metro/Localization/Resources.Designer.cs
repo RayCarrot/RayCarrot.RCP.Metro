@@ -14762,6 +14762,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Jump List.
+        /// </summary>
+        public static string Settings_General_JumpListHeader {
+            get {
+                return ResourceManager.GetString("Settings_General_JumpListHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch games directly from the taskbar.
         /// </summary>
         public static string Settings_General_JumpListImageCaption {

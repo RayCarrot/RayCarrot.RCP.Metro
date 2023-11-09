@@ -5729,4 +5729,7 @@ If there's a utility or other type of patch missing then it has most likely been
   <data name="AddGameClients_FindClients" xml:space="preserve">
     <value>Find installed game clients/emulators</value>
   </data>
+  <data name="Settings_General_JumpListHeader" xml:space="preserve">
+    <value>Jump List</value>
+  </data>
 </root>
