@@ -29,9 +29,9 @@
                                    Text="{TemplateBinding Property=Text}"
                                    TextWrapping="Wrap">
                             <TextBlock.ContextMenu>
-                                <ContextMenu>
-                                    <!-- TODO-LOC -->
-                                    <MenuItem x:Name="PART_CopyValueMenuItem" Header="Copy value" />
+                                <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+                                    <MenuItem x:Name="PART_CopyValueMenuItem" 
+                                              Header="{Resx DuoGrid_CopyValue}" />
                                 </ContextMenu>
                             </TextBlock.ContextMenu>
                             <TextBlock.Triggers>

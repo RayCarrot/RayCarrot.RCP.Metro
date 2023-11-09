@@ -5094,7 +5094,7 @@ gameClientName</comment>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
   </data>
-  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>Find game ROMs and discs from folder</value>
   </data>
   <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
@@ -5592,5 +5592,141 @@ modules</comment>
     <comment>Arguments:
 uploaderName
 uploadDate</comment>
+  </data>
+  <data name="ModLoader_GameBanana_OpenModPage" xml:space="preserve">
+    <value>Open in GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFile" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
+    <value>Download and install the mod</value>
+  </data>
+  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
+    <value>Installed</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
+    <value>Update the installed mod</value>
+  </data>
+  <data name="Games_Win32RunAsAdmin" xml:space="preserve">
+    <value>Run as admin</value>
+  </data>
+  <data name="Home_AppNews" xml:space="preserve">
+    <value>App news</value>
+  </data>
+  <data name="Home_RecentMods" xml:space="preserve">
+    <value>Recent mods</value>
+  </data>
+  <data name="Games_VerifyRemoveWithMods" xml:space="preserve">
+    <value>This game has {0} applied mods. Removing the game from the program won't remove the applied mods. You can add the game back at any time to change which mods are applied. Continue?</value>
+    <comment>Arguments:
+appliedModsCount</comment>
+  </data>
+  <data name="ModNews_UpdatedInfo" xml:space="preserve">
+    <value>Updated on {0}</value>
+    <comment>Arguments:
+modificationDate</comment>
+  </data>
+  <data name="ModNews_UploadedInfo" xml:space="preserve">
+    <value>Uploaded on {0}</value>
+    <comment>Arguments:
+modificationDate</comment>
+  </data>
+  <data name="Progression_EditGamesVisibility" xml:space="preserve">
+    <value>Show/hide games</value>
+  </data>
+  <data name="Settings_Files_Info" xml:space="preserve">
+    <value>Here you can specify which program to use for editing certain file types. This is used in places such as the Archive Explorer or the Progression page where you're able to use an external program to edit a file. An empty file extension is used to specify the program to use for editing binary files. It is recommended to use a hex editor for this.</value>
+  </data>
+  <data name="Settings_Files_ChangeProgram" xml:space="preserve">
+    <value>Change program</value>
+  </data>
+  <data name="Settings_Files_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Settings_Files_Add" xml:space="preserve">
+    <value>Add file type</value>
+  </data>
+  <data name="Settings_Files_Header" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Settings_Files_FileExtInputTitle" xml:space="preserve">
+    <value>Add file editor</value>
+  </data>
+  <data name="Settings_Files_FileExtInputHeader" xml:space="preserve">
+    <value>Specify the file extension</value>
+  </data>
+  <data name="Settings_Files_ConflictError" xml:space="preserve">
+    <value>The specified file extension has already been defined</value>
+  </data>
+  <data name="Settings_Files_FormatError" xml:space="preserve">
+    <value>The specified file extension is not valid. It must start with a period and not have any more periods afterwards.</value>
+  </data>
+  <data name="Settings_Files_ProgramSelectionTitle" xml:space="preserve">
+    <value>Specify file editor</value>
+  </data>
+  <data name="Settings_Files_ChangeProgramSelectionTitle" xml:space="preserve">
+    <value>Change editor program</value>
+  </data>
+  <data name="Settings_General_JumpListImageCaption" xml:space="preserve">
+    <value>Launch games directly from the taskbar</value>
+  </data>
+  <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
+    <value>Automatically check for mod updates</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>Mod Loader</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsHeader" xml:space="preserve">
+    <value>File type associations</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsInfo" xml:space="preserve">
+    <value>This specifies which types of files will be opened in Rayman Control Panel from File Explorer</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsHeader" xml:space="preserve">
+    <value>URI associations</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsInfo" xml:space="preserve">
+    <value>This specifies which URI protocols will be opened in Rayman Control Panel</value>
+  </data>
+  <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
+    <value>Windows Integration</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
+    <value>An error occurred when setting the file type association. Try running the Rayman Control Panel as admin and try again.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateUriAssociationsError" xml:space="preserve">
+    <value>An error occurred when setting the URI protocol association. Try running the Rayman Control Panel as admin and try again.</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>Copy value</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>Find installed games</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Find ROMs</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>Show features</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>Not added</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderHeader" xml:space="preserve">
+    <value>New mod loader replaces the patcher</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
+    <value>The patcher has been replaced by an all new mod loader! New types of mods can now be created, such as ones which only modify parts of a file. Mods uploaded to GameBanana can now also be downloaded directly through the app.
+If there's a utility or other type of patch missing then it has most likely been moved over into a mod.</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>Find installed game clients/emulators</value>
   </data>
 </root>

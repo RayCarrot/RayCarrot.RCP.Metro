@@ -4927,7 +4927,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
   </data>
-  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>Trova ROM e dischi di gioco dalla cartella</value>
   </data>
   <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">

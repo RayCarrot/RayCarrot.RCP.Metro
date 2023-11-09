@@ -14,11 +14,10 @@
     <StackPanel>
 
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="File type associations"
+                   Text="{Resx Settings_WindowsIntegration_FileAssociationsHeader}"
                    Margin="0 0 0 4" />
 
-        <!-- TODO-LOC -->
-        <TextBlock Text="This specifies which types of files will be opened in Rayman Control Panel from File Explorer" 
+        <TextBlock Text="{Resx Settings_WindowsIntegration_FileAssociationsInfo}" 
                    FontStyle="Italic" 
                    TextWrapping="Wrap" 
                    Margin="0 0 0 8" />
@@ -37,11 +36,10 @@
         </ItemsControl>
 
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="URI associations"
+                   Text="{Resx Settings_WindowsIntegration_UriAssociationsHeader}"
                    Margin="0 0 0 4" />
 
-        <!-- TODO-LOC -->
-        <TextBlock Text="This specifies which URI protocols will be opened in Rayman Control Panel" 
+        <TextBlock Text="{Resx Settings_WindowsIntegration_UriAssociationsInfo}" 
                    FontStyle="Italic" 
                    TextWrapping="Wrap" 
                    Margin="0 0 0 8" />

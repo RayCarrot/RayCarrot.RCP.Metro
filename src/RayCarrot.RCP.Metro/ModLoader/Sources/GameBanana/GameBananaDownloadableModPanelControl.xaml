@@ -12,7 +12,6 @@
              d:DesignWidth="500"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -58,7 +57,7 @@
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Kind="OpenInNew"
                     Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                    ToolTip="Open in GameBanana"
+                    ToolTip="{Resx ModLoader_GameBanana_OpenModPage}"
                     Command="{Binding Path=OpenInGameBananaCommand, Mode=OneTime}" />
 
         </Grid>
@@ -145,13 +144,28 @@
                                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
                                     <Setter Property="rcp:Icon.Kind" Value="DownloadOutline" />
                                     <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.GameBanana.Download}" />
-                                    <Setter Property="Content" Value="Download" />
-                                    <Setter Property="ToolTip" Value="Download and install the mod" />
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFile}"
+                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="ToolTip">
+                                        <Setter.Value>
+                                            <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFileInfo}"
+                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                        </Setter.Value>
+                                    </Setter>
 
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Path=DownloadedMod, Converter={rcp:IsNotNullConverter}}" Value="True">
                                             <Setter Property="IsEnabled" Value="False" />
-                                            <Setter Property="Content" Value="Installed" />
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <TextBlock Text="{Resx ModLoader_GameBanana_ModFileInstalled}"
+                                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                </Setter.Value>
+                                            </Setter>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState}" Value="PendingUninstall">
                                             <Setter Property="IsEnabled" Value="True" />
@@ -160,8 +174,18 @@
                                             <Setter Property="IsEnabled" Value="True" />
                                             <Setter Property="rcp:Icon.Kind" Value="RefreshCircle" />
                                             <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.Info}" />
-                                            <Setter Property="Content" Value="Update" />
-                                            <Setter Property="ToolTip" Value="Update the installed mod" />
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFile}"
+                                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFileInfo}"
+                                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                </Setter.Value>
+                                            </Setter>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>

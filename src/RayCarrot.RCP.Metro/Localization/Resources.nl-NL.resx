@@ -4920,7 +4920,7 @@ Conflicten:
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
   </data>
-  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>Zoek spel ROMs en schijven vanaf een map</value>
   </data>
   <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">

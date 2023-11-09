@@ -18,7 +18,6 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- TODO-LOC -->
         <iconPacks:PackIconMaterial Kind="CheckboxMarkedCircleOutline"
                                     VerticalAlignment="Center"
                                     Background="Transparent">
@@ -28,7 +27,7 @@
                         <DataTrigger Binding="{Binding Path=IsAdded}" Value="True">
                             <Setter Property="ToolTip">
                                 <Setter.Value>
-                                    <TextBlock Text="Added"
+                                    <TextBlock Text="{Resx AddGames_Added}"
                                                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"/>
                                 </Setter.Value>
                             </Setter>
@@ -37,7 +36,7 @@
                         <DataTrigger Binding="{Binding Path=IsAdded}" Value="False">
                             <Setter Property="ToolTip">
                                 <Setter.Value>
-                                    <TextBlock Text="Not added"
+                                    <TextBlock Text="{Resx AddGames_NotAdded}"
                                                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"/>
                                 </Setter.Value>
                             </Setter>

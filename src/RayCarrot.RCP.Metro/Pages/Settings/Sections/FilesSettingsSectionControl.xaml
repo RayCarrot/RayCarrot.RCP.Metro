@@ -13,9 +13,7 @@
              d:DataContext="{d:DesignInstance sections:FilesSettingsSectionViewModel}">
 
     <StackPanel>
-
-        <!-- TODO-LOC -->
-        <TextBlock Text="Here you can specify which program to use for editing certain file types. This is used in places such as the Archive Explorer or Progression page where you're able to use an external program to edit a file. An empty file extension is used to specify the program to use for editing binary files. It is recommended to use a hex editor for this." 
+        <TextBlock Text="{Resx Settings_Files_Info}" 
                    FontStyle="Italic" 
                    TextWrapping="Wrap" 
                    Margin="0 0 0 8" />
@@ -55,22 +53,20 @@
                                    MaxWidth="300"
                                    Margin="0 0 8 0" />
 
-                        <!-- TODO-LOC -->
                         <Button Grid.Column="3"
                                 Style="{StaticResource RCP.Styles.Button.Flat}"
                                 Command="{Binding Path=ChangeProgramCommand, Mode=OneTime}"
                                 VerticalAlignment="Center"
-                                Content="Change program"
+                                Content="{Resx Settings_Files_ChangeProgram}"
                                 rcp:Icon.Kind="{StaticResource RCP.Icons.Program}"
                                 rcp:Icon.Size="16"
                                 Margin="0 0 4 0" />
 
-                        <!-- TODO-LOC -->
                         <Button Grid.Column="4"
                                 Style="{StaticResource RCP.Styles.Button.Flat}"
                                 Command="{Binding Path=RemoveCommand, Mode=OneTime}"
                                 VerticalAlignment="Center"
-                                Content="Remove"
+                                Content="{Resx Settings_Files_Remove}"
                                 rcp:Icon.Kind="DeleteOutline"
                                 rcp:Icon.Size="16" />
 
@@ -79,11 +75,10 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <!-- TODO-LOC -->
         <Button Margin="0 0 0 8"
                 Style="{StaticResource RCP.Styles.Button.Flat}"
                 Command="{Binding Path=AddCommand, Mode=OneTime}"
-                Content="Add file type"
+                Content="{Resx Settings_Files_Add}"
                 rcp:Icon.Kind="Plus"
                 rcp:Icon.Size="14"
                 HorizontalAlignment="Left" />

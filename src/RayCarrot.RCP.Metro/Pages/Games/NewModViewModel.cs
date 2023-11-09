@@ -9,11 +9,10 @@ public class NewModViewModel : BaseViewModel
         Name = name;
         ModificationDate = modificationDate;
         
-        // TODO-LOC
         if (isUpdate)
-            ModificationDateDisplayText = $"Updated on {modificationDate:D}";
+            ModificationDateDisplayText = new GeneratedLocString(() => String.Format(Resources.ModNews_UpdatedInfo, $"{modificationDate:D}"));
         else
-            ModificationDateDisplayText = $"Uploaded on {modificationDate:D}";
+            ModificationDateDisplayText = new GeneratedLocString(() => String.Format(Resources.ModNews_UploadedInfo, $"{modificationDate:D}"));
         
         ModUrl = modUrl;
         GameDescriptors = new ObservableCollection<GameDescriptor>(gameDescriptors);

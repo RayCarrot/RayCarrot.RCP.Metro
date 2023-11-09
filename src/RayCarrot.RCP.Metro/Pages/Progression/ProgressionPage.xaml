@@ -25,8 +25,7 @@
 
             <Separator />
 
-            <!-- TODO-LOC -->
-            <Button Content="Show/hide games"
+            <Button Content="{Resx Progression_EditGamesVisibility}"
                     rcp:Icon.Kind="EyeOutline"
                     Command="{Binding Path=EditVisibilityCommand, Mode=OneTime}"
                     IsEnabled="{Binding Path=IsEditingVisibility, Converter={rcp:InvertedBooleanConverter}}" />

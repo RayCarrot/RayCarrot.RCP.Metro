@@ -30,7 +30,7 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
 
     public ICommand AddCommand { get; }
 
-    public override LocalizedString Header => "Files"; // TODO-LOC
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Settings_Files_Header));
     public override GenericIconKind Icon => GenericIconKind.Settings_Files;
 
     public ObservableCollectionEx<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
@@ -44,9 +44,8 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
     {
         StringInputResult stringResult = await UI.GetStringInputAsync(new StringInputViewModel()
         {
-            // TODO-LOC
-            Title = "Add file editor",
-            HeaderText = "Specify the file extension"
+            Title = Resources.Settings_Files_FileExtInputTitle,
+            HeaderText = Resources.Settings_Files_FileExtInputHeader
         });
 
         if (stringResult.CanceledByUser)
@@ -56,8 +55,7 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
 
         if (AssociatedFileEditorsManager.GetFileEditorAssociations().ContainsKey(ext))
         {
-            // TODO-LOC
-            await MessageUI.DisplayMessageAsync("The specified file extension has already been defined");
+            await MessageUI.DisplayMessageAsync(Resources.Settings_Files_ConflictError, MessageType.Error);
             return;
         }
 
@@ -65,15 +63,13 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
 
         if (!isBinary && (!ext.StartsWith(".") || ext.Count(x => x == '.') > 1))
         {
-            // TODO-LOC
-            await MessageUI.DisplayMessageAsync("The specified file extension is not valid. It must start with a period and not have any more periods afterwards.");
+            await MessageUI.DisplayMessageAsync(Resources.Settings_Files_FormatError, MessageType.Error);
             return;
         }
 
         ProgramSelectionResult programResult = await UI.GetProgramAsync(new ProgramSelectionViewModel
         {
-            // TODO-LOC
-            Title = "Add file editor",
+            Title = Resources.Settings_Files_ProgramSelectionTitle,
             FileExtensions = isBinary ? Array.Empty<FileExtension>() : new[] { new FileExtension(ext) },
         });
 
@@ -151,8 +147,7 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
         {
             ProgramSelectionResult programResult = await UI.GetProgramAsync(new ProgramSelectionViewModel
             {
-                // TODO-LOC
-                Title = "Change editor program",
+                Title = Resources.Settings_Files_ChangeProgramSelectionTitle,
                 ProgramFilePath = ExeFilePath,
                 FileExtensions = new[] { new FileExtension(FileExtension) },
             });

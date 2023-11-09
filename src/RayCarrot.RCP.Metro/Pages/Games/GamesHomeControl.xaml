@@ -12,7 +12,6 @@
              d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <UserControl.Resources>
         <ItemsPanelTemplate x:Key="GameItemsPanel">
             <WrapPanel />
@@ -107,14 +106,14 @@
                                       rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                                       Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
                                       IsChecked="{Binding Path=SelectedFeed, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static games:NewsViewModel+NewsFeed.App}}"
-                                      Content="App news"
+                                      Content="{Resx Home_AppNews}"
                                       VerticalAlignment="Center"
                                       FontSize="14" />
                         <ToggleButton rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoader}"
                                       rcp:Icon.Brush="{StaticResource RCP.Brushes.ModLoader}"
                                       Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
                                       IsChecked="{Binding Path=SelectedFeed, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static games:NewsViewModel+NewsFeed.Mods}}"
-                                      Content="Recent mods"
+                                      Content="{Resx Home_RecentMods}"
                                       VerticalAlignment="Center"
                                       FontSize="14"
                                       Margin="0 0 8 0"/>

@@ -25,7 +25,7 @@ public class WindowsIntegrationSettingsSectionViewModel : SettingsSectionViewMod
 
     #region Public Properties
 
-    public override LocalizedString Header => "Windows Integration"; // TODO-LOC
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Settings_WindowsIntegration_Header));
     public override GenericIconKind Icon => GenericIconKind.Settings_WindowsIntegration;
 
     public ObservableCollection<FileAssociationViewModel> FileAssociations { get; }
@@ -91,8 +91,7 @@ public class WindowsIntegrationSettingsSectionViewModel : SettingsSectionViewMod
             {
                 Logger.Error(ex, "Setting file type association");
 
-                // TODO-LOC
-                await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the file type association. Try running the Rayman Control Panel as admin and try again.");
+                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Settings_WindowsIntegration_UpdateFileAssociationsError);
             }
         }
 
@@ -127,8 +126,7 @@ public class WindowsIntegrationSettingsSectionViewModel : SettingsSectionViewMod
             {
                 Logger.Error(ex, "Setting uri protocol association");
 
-                // TODO-LOC
-                await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the URI protocol association. Try running the Rayman Control Panel as admin and try again.");
+                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Settings_WindowsIntegration_UpdateUriAssociationsError);
             }
         }
 

@@ -13,8 +13,7 @@
              d:DataContext="{d:DesignInstance sections:ModLoaderSettingsSectionViewModel}">
     <StackPanel DataContext="{Binding Path=Data}">
 
-        <!-- TODO-LOC -->
-        <CheckBox Content="Automatically check for mod updates"
+        <CheckBox Content="{Resx Settings_ModLoader_AutoCheckForUpdates}"
                   IsChecked="{Binding Path=ModLoader_AutomaticallyCheckForUpdates}"
                   Margin="0 0 0 8" />
 

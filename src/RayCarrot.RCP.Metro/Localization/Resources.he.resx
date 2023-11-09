@@ -4926,7 +4926,7 @@ Start: הפסק</value>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>מרוץ נגד השעון</value>
   </data>
-  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>מצאו רומי משחקים ודיסקים מהתיקייה</value>
   </data>
   <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">

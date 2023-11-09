@@ -4924,7 +4924,7 @@ Start: Пауза</value>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time attack</value>
   </data>
-  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>Найти игровые ROM'ы и диски из папки</value>
   </data>
   <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">

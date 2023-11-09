@@ -124,15 +124,12 @@
                                 <StackPanel Grid.Column="0"
                                             VerticalAlignment="Center">
 
-                                    <!-- TODO-LOC -->
-                                    <TextBlock Text="New mod loader replaces the patcher"
+                                    <TextBlock Text="{Resx AnniversaryUpdate_ModLoaderHeader}"
                                                Foreground="{StaticResource RCP.Brushes.ModLoader}"
                                                Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
                                                Margin="0 0 0 4" />
 
-                                    <!-- TODO-LOC -->
-                                    <TextBlock Text="The patcher has now been replaced by an all new mod loader! New types of mods can now be created, such as ones which only modify parts of a file. Mods uploaded to GameBanana can now also be downloaded directly through the app.
-                                               If there's a utility or other type of patch missing then it has most likely been moved over into a mod."
+                                    <TextBlock Text="{Resx AnniversaryUpdate_ModLoaderDescription}"
                                                Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
 
                                 </StackPanel>

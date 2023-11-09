@@ -10,7 +10,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaModPanelFooterViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Button Style="{StaticResource RCP.Styles.Button.Flat}"
             HorizontalAlignment="Left"
             Command="{Binding Path=OpenInGameBananaCommand, Mode=OneTime}">
@@ -19,7 +18,7 @@
                    RenderOptions.BitmapScalingMode="HighQuality"
                    Source="{Binding Source={x:Static rcp:ModSourceIconAsset.GameBanana}, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
                    Margin="0 0 4 0"/>
-            <TextBlock Text="Open in GameBanana" 
+            <TextBlock Text="{Resx ModLoader_GameBanana_OpenModPage}" 
                        VerticalAlignment="Center" />
         </StackPanel>
     </Button>

@@ -97,13 +97,12 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <!-- TODO-LOC -->
         <Button Grid.Row="2"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=FindGameClientsCommand, Mode=OneTime}"
                 Style="{StaticResource RCP.Styles.Button.Flat}"
                 local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                Content="Find installed game clients/emulators"
+                Content="{Resx AddGameClients_FindClients}"
                 local:ButtonAssist.IsLoading="{Binding Path=IsFinderRunning}" />
 
     </Grid>

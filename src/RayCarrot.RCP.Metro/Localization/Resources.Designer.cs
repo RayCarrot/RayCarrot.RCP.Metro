@@ -388,6 +388,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find installed game clients/emulators.
+        /// </summary>
+        public static string AddGameClients_FindClients {
+            get {
+                return ResourceManager.GetString("AddGameClients_FindClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added.
+        /// </summary>
+        public static string AddGames_Added {
+            get {
+                return ResourceManager.GetString("AddGames_Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when adding the game.
         /// </summary>
         public static string AddGames_AddError {
@@ -442,11 +460,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not added.
+        /// </summary>
+        public static string AddGames_NotAdded {
+            get {
+                return ResourceManager.GetString("AddGames_NotAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Games.
         /// </summary>
         public static string AddGames_Title {
             get {
                 return ResourceManager.GetString("AddGames_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show features.
+        /// </summary>
+        public static string AddGames_ToggleFeatures {
+            get {
+                return ResourceManager.GetString("AddGames_ToggleFeatures", resourceCulture);
             }
         }
         
@@ -492,6 +528,25 @@ namespace RayCarrot.RCP.Metro {
         public static string AnniversaryUpdate_Header {
             get {
                 return ResourceManager.GetString("AnniversaryUpdate_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The patcher has been replaced by an all new mod loader! New types of mods can now be created, such as ones which only modify parts of a file. Mods uploaded to GameBanana can now also be downloaded directly through the app.
+        ///If there&apos;s a utility or other type of patch missing then it has most likely been moved over into a mod..
+        /// </summary>
+        public static string AnniversaryUpdate_ModLoaderDescription {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_ModLoaderDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New mod loader replaces the patcher.
+        /// </summary>
+        public static string AnniversaryUpdate_ModLoaderHeader {
+            get {
+                return ResourceManager.GetString("AnniversaryUpdate_ModLoaderHeader", resourceCulture);
             }
         }
         
@@ -3414,6 +3469,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy value.
+        /// </summary>
+        public static string DuoGrid_CopyValue {
+            get {
+                return ResourceManager.GetString("DuoGrid_CopyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         public static string EmuSelection_None {
@@ -4926,6 +4990,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This game has {0} applied mods. Removing the game from the program won&apos;t remove the applied mods. You can add the game back at any time to change which mods are applied. Continue?.
+        /// </summary>
+        public static string Games_VerifyRemoveWithMods {
+            get {
+                return ResourceManager.GetString("Games_VerifyRemoveWithMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run as admin.
+        /// </summary>
+        public static string Games_Win32RunAsAdmin {
+            get {
+                return ResourceManager.GetString("Games_Win32RunAsAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add game.
         /// </summary>
         public static string GameSelection_AddGame {
@@ -4944,11 +5026,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find game ROMs and discs from folder.
+        ///   Looks up a localized string similar to Find ROMs.
         /// </summary>
         public static string GameSelection_FindGameFiles {
             get {
                 return ResourceManager.GetString("GameSelection_FindGameFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find game ROMs and discs from folder.
+        /// </summary>
+        public static string GameSelection_FindGameFilesInfo {
+            get {
+                return ResourceManager.GetString("GameSelection_FindGameFilesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find installed games.
+        /// </summary>
+        public static string GameSelection_FindGames {
+            get {
+                return ResourceManager.GetString("GameSelection_FindGames", resourceCulture);
             }
         }
         
@@ -5160,6 +5260,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App news.
+        /// </summary>
+        public static string Home_AppNews {
+            get {
+                return ResourceManager.GetString("Home_AppNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.
         /// </summary>
         public static string Home_FavoriteGames {
@@ -5174,6 +5283,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Home_RecentGames {
             get {
                 return ResourceManager.GetString("Home_RecentGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent mods.
+        /// </summary>
+        public static string Home_RecentMods {
+            get {
+                return ResourceManager.GetString("Home_RecentMods", resourceCulture);
             }
         }
         
@@ -8188,11 +8306,65 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string ModLoader_GameBanana_DownloadModFile {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_DownloadModFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download and install the mod.
+        /// </summary>
+        public static string ModLoader_GameBanana_DownloadModFileInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_DownloadModFileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed.
+        /// </summary>
+        public static string ModLoader_GameBanana_ModFileInstalled {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_ModFileInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in GameBanana.
+        /// </summary>
+        public static string ModLoader_GameBanana_OpenModPage {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_OpenModPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GameBanana.
         /// </summary>
         public static string ModLoader_GameBanana_Title {
             get {
                 return ResourceManager.GetString("ModLoader_GameBanana_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string ModLoader_GameBanana_UpdateModFile {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UpdateModFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update the installed mod.
+        /// </summary>
+        public static string ModLoader_GameBanana_UpdateModFileInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UpdateModFileInfo", resourceCulture);
             }
         }
         
@@ -8748,6 +8920,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updated on {0}.
+        /// </summary>
+        public static string ModNews_UpdatedInfo {
+            get {
+                return ResourceManager.GetString("ModNews_UpdatedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploaded on {0}.
+        /// </summary>
+        public static string ModNews_UploadedInfo {
+            get {
+                return ResourceManager.GetString("ModNews_UploadedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mods.
         /// </summary>
         public static string ModsPageHeader {
@@ -9159,6 +9349,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_DataSourceInfo {
             get {
                 return ResourceManager.GetString("Progression_DataSourceInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/hide games.
+        /// </summary>
+        public static string Progression_EditGamesVisibility {
+            get {
+                return ResourceManager.GetString("Progression_EditGamesVisibility", resourceCulture);
             }
         }
         
@@ -14455,11 +14654,119 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add file type.
+        /// </summary>
+        public static string Settings_Files_Add {
+            get {
+                return ResourceManager.GetString("Settings_Files_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change program.
+        /// </summary>
+        public static string Settings_Files_ChangeProgram {
+            get {
+                return ResourceManager.GetString("Settings_Files_ChangeProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change editor program.
+        /// </summary>
+        public static string Settings_Files_ChangeProgramSelectionTitle {
+            get {
+                return ResourceManager.GetString("Settings_Files_ChangeProgramSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified file extension has already been defined.
+        /// </summary>
+        public static string Settings_Files_ConflictError {
+            get {
+                return ResourceManager.GetString("Settings_Files_ConflictError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify the file extension.
+        /// </summary>
+        public static string Settings_Files_FileExtInputHeader {
+            get {
+                return ResourceManager.GetString("Settings_Files_FileExtInputHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add file editor.
+        /// </summary>
+        public static string Settings_Files_FileExtInputTitle {
+            get {
+                return ResourceManager.GetString("Settings_Files_FileExtInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified file extension is not valid. It must start with a period and not have any more periods afterwards..
+        /// </summary>
+        public static string Settings_Files_FormatError {
+            get {
+                return ResourceManager.GetString("Settings_Files_FormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        public static string Settings_Files_Header {
+            get {
+                return ResourceManager.GetString("Settings_Files_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can specify which program to use for editing certain file types. This is used in places such as the Archive Explorer or the Progression page where you&apos;re able to use an external program to edit a file. An empty file extension is used to specify the program to use for editing binary files. It is recommended to use a hex editor for this..
+        /// </summary>
+        public static string Settings_Files_Info {
+            get {
+                return ResourceManager.GetString("Settings_Files_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify file editor.
+        /// </summary>
+        public static string Settings_Files_ProgramSelectionTitle {
+            get {
+                return ResourceManager.GetString("Settings_Files_ProgramSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Settings_Files_Remove {
+            get {
+                return ResourceManager.GetString("Settings_Files_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Force manual updates.
         /// </summary>
         public static string Settings_ForceUpdates {
             get {
                 return ResourceManager.GetString("Settings_ForceUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch games directly from the taskbar.
+        /// </summary>
+        public static string Settings_General_JumpListImageCaption {
+            get {
+                return ResourceManager.GetString("Settings_General_JumpListImageCaption", resourceCulture);
             }
         }
         
@@ -14550,6 +14857,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_ManualDownloadsInfo {
             get {
                 return ResourceManager.GetString("Settings_ManualDownloadsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically check for mod updates.
+        /// </summary>
+        public static string Settings_ModLoader_AutoCheckForUpdates {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_AutoCheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod Loader.
+        /// </summary>
+        public static string Settings_ModLoader_Header {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_Header", resourceCulture);
             }
         }
         
@@ -14730,6 +15055,69 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_UserLevelTechnicalInfo {
             get {
                 return ResourceManager.GetString("Settings_UserLevelTechnicalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File type associations.
+        /// </summary>
+        public static string Settings_WindowsIntegration_FileAssociationsHeader {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_FileAssociationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This specifies which types of files will be opened in Rayman Control Panel from File Explorer.
+        /// </summary>
+        public static string Settings_WindowsIntegration_FileAssociationsInfo {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_FileAssociationsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Integration.
+        /// </summary>
+        public static string Settings_WindowsIntegration_Header {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when setting the file type association. Try running the Rayman Control Panel as admin and try again..
+        /// </summary>
+        public static string Settings_WindowsIntegration_UpdateFileAssociationsError {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_UpdateFileAssociationsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when setting the URI protocol association. Try running the Rayman Control Panel as admin and try again..
+        /// </summary>
+        public static string Settings_WindowsIntegration_UpdateUriAssociationsError {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_UpdateUriAssociationsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URI associations.
+        /// </summary>
+        public static string Settings_WindowsIntegration_UriAssociationsHeader {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_UriAssociationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This specifies which URI protocols will be opened in Rayman Control Panel.
+        /// </summary>
+        public static string Settings_WindowsIntegration_UriAssociationsInfo {
+            get {
+                return ResourceManager.GetString("Settings_WindowsIntegration_UriAssociationsInfo", resourceCulture);
             }
         }
         

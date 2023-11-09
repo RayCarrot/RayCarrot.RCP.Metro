@@ -4931,7 +4931,7 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Time Attack</value>
   </data>
-  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>Klasörden oyun ROM'larını ve disklerini bulun</value>
   </data>
   <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">

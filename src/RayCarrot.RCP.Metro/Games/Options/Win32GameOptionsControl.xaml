@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro.Games.Options"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:Win32GameOptionsViewModel}">
-    <!-- TODO-LOC -->
     <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
-              Content="Run as admin"
+              Content="{Resx Games_Win32RunAsAdmin}"
               Margin="6"
               Background="{DynamicResource RCP.Brushes.Card.Popup}"
               IsChecked="{Binding Path=RunAsAdmin}" />

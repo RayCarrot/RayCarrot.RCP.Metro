@@ -111,30 +111,27 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-LOC -->
             <Button Grid.Column="0"
                     Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     local:Icon.Kind="{StaticResource RCP.Icons.Finder}"
-                    Content="Find installed games"
+                    Content="{Resx GameSelection_FindGames}"
                     local:ButtonAssist.IsLoading="{Binding Path=IsGameFinderRunning}"
                     Margin="0 0 4 0" />
 
-            <!-- TODO-LOC -->
             <Button Grid.Column="1"
                     Command="{Binding Path=FindGameFilesCommand, Mode=OneTime}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     local:Icon.Kind="{StaticResource RCP.Icons.RomFinder}"
-                    ToolTip="{Resx GameSelection_FindGameFiles}"
-                    Content="Find ROMs"
+                    ToolTip="{Resx GameSelection_FindGameFilesInfo}"
+                    Content="{Resx GameSelection_FindGameFiles}"
                     local:ButtonAssist.IsLoading="{Binding Path=IsGameFileFinderRunning}" />
 
-            <!-- TODO-LOC -->
             <ToggleButton Grid.Column="3"
                           Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
                           IsChecked="{Binding Path=ShowGameFeatures}"
                           local:Icon.Kind="ShapeOutline"
-                          Content="Show features" />
+                          Content="{Resx AddGames_ToggleFeatures}" />
 
         </Grid>
 
