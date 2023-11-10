@@ -184,7 +184,7 @@ public class GameBananaModsSource : DownloadableModsSource
         }
     }
 
-    public override Task<ModDownload> GetModUpdateDownloadAsync(object? updateData)
+    public override async Task<ModDownload?> GetModUpdateDownloadAsync(object? updateData)
     {
         if (updateData is not GameBananaMod gameBananaMod)
             throw new ArgumentException("The update data is not of the correct type", nameof(updateData));
@@ -203,15 +203,24 @@ public class GameBananaModsSource : DownloadableModsSource
 
         if (validFiles.Count > 1)
         {
-            // TODO-UPDATE: Have user pick download
-            file = validFiles[0];
+            // TODO-LOC
+            ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.Select(x => x.File).ToArray(),
+                "Select mod file from GameBanana to use when updating")
+            {
+                Title = "Select mod file"
+            });
+
+            if (result.CanceledByUser)
+                return null;
+
+            file = validFiles[result.SelectedIndex];
         }
         else
         {
             file = validFiles[0];
         }
 
-        return Task.FromResult(new ModDownload(file.File, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id)));
+        return new ModDownload(file.File, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id));
     }
 
     public override async IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager)

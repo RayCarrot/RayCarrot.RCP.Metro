@@ -51,7 +51,7 @@ public abstract class DownloadableModsSource
 
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);
 
-    public abstract Task<ModDownload> GetModUpdateDownloadAsync(object? updateData);
+    public abstract Task<ModDownload?> GetModUpdateDownloadAsync(object? updateData);
 
     public abstract IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager);
 

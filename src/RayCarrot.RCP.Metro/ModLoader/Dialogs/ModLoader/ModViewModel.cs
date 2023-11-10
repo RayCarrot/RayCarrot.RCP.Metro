@@ -227,7 +227,10 @@ public class ModViewModel : BaseViewModel, IDisposable
         {
             Logger.Info("Updating mod with ID {0}", Metadata.Id);
 
-            ModDownload download = await DownloadableModsSource.GetModUpdateDownloadAsync(UpdateData);
+            ModDownload? download = await DownloadableModsSource.GetModUpdateDownloadAsync(UpdateData);
+
+            if (download == null)
+                return;
 
             await ModLoaderViewModel.InstallModFromDownloadableFileAsync(
                 source: DownloadableModsSource,
