@@ -50,7 +50,7 @@ public enum GenericIconKind
     Window_Installer,
     Window_Downloader,
     Window_DriveSelection,
-    Window_FileExtensionSelection,
+    Window_ItemSelection,
     Window_GamesSelection,
     Window_JumpListEdit,
     Window_DialogMessage,

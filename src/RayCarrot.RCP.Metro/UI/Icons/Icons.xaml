@@ -47,6 +47,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.User">AccountOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Design">PaletteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Startup">Power</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.List">ViewListOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.RomFinder">FolderSearchOutline</iconPacks:PackIconMaterialKind>
@@ -213,8 +214,8 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_DriveSelection}" 
                        IconKind="{StaticResource RCP.Icons.Disc}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_FileExtensionSelection}" 
-                       IconKind="{StaticResource RCP.Icons.File}"
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ItemSelection}" 
+                       IconKind="{StaticResource RCP.Icons.List}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GamesSelection}" 
                        IconKind="{StaticResource RCP.Icons.Games}"

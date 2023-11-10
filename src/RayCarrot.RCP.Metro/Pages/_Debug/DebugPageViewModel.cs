@@ -226,12 +226,12 @@ public class DebugPageViewModel : BasePageViewModel
                     });
                     break;
 
-                case DebugDialogType.FileExtensionSelection:
-                    await UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(new string[]
+                case DebugDialogType.ItemSelection:
+                    await UI.SelectItemAsync(new ItemSelectionDialogViewModel(new string[]
                     {
-                        "EXT 1",
-                        "EXT 2",
-                    }, "Select a file extension")
+                        "Item 1",
+                        "Item 2",
+                    }, "Select an item")
                     {
                         Title = "Debug"
                     });
@@ -558,7 +558,7 @@ public class DebugPageViewModel : BasePageViewModel
 
         EditJumpList,
 
-        FileExtensionSelection,
+        ItemSelection,
 
         StringInput,
 

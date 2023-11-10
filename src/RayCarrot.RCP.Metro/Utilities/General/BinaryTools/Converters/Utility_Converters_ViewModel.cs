@@ -107,7 +107,7 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
                 return;
 
             // Allow the user to select the file extension to export as
-            FileExtensionSelectionDialogResult extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(SelectedType.ConvertFormats, Resources.Utilities_Converter_ExportExtensionHeader));
+            ItemSelectionDialogResult extResult = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(SelectedType.ConvertFormats, Resources.Utilities_Converter_ExportExtensionHeader));
 
             if (extResult.CanceledByUser)
                 return;
@@ -127,7 +127,7 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
 
                         // Set the file extension
                         destinationFile = destinationFile.
-                            ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat)).
+                            ChangeFileExtension(new FileExtension(SelectedType.ConvertFormats[extResult.SelectedIndex])).
                             GetNonExistingFileName();
 
                         // Convert the file

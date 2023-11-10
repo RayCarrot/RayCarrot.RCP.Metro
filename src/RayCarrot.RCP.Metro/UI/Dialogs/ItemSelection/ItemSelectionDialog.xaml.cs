@@ -4,9 +4,9 @@ using System.Windows;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Interaction logic for FileExtensionSelectionDialog.xaml
+/// Interaction logic for ItemSelectionDialog.xaml
 /// </summary>
-public partial class FileExtensionSelectionDialog : WindowContentControl, IDialogWindowControl<FileExtensionSelectionDialogViewModel, FileExtensionSelectionDialogResult>
+public partial class ItemSelectionDialog : WindowContentControl, IDialogWindowControl<ItemSelectionDialogViewModel, ItemSelectionDialogResult>
 {
     #region Constructor
 
@@ -14,7 +14,7 @@ public partial class FileExtensionSelectionDialog : WindowContentControl, IDialo
     /// Default constructor
     /// </summary>
     /// <param name="vm">The view model</param>
-    public FileExtensionSelectionDialog(FileExtensionSelectionDialogViewModel vm)
+    public ItemSelectionDialog(ItemSelectionDialogViewModel vm)
     {
         InitializeComponent();
         ViewModel = vm;
@@ -34,7 +34,7 @@ public partial class FileExtensionSelectionDialog : WindowContentControl, IDialo
     /// <summary>
     /// The view model
     /// </summary>
-    public FileExtensionSelectionDialogViewModel ViewModel { get; }
+    public ItemSelectionDialogViewModel ViewModel { get; }
 
     #endregion
 
@@ -44,7 +44,7 @@ public partial class FileExtensionSelectionDialog : WindowContentControl, IDialo
     {
         base.WindowAttached();
 
-        WindowInstance.Icon = GenericIconKind.Window_FileExtensionSelection;
+        WindowInstance.Icon = GenericIconKind.Window_ItemSelection;
     }
 
     #endregion
@@ -55,12 +55,12 @@ public partial class FileExtensionSelectionDialog : WindowContentControl, IDialo
     /// Gets the current result for the dialog
     /// </summary>
     /// <returns>The result</returns>
-    public FileExtensionSelectionDialogResult GetResult()
+    public ItemSelectionDialogResult GetResult()
     {
-        return new FileExtensionSelectionDialogResult()
+        return new ItemSelectionDialogResult()
         {
             CanceledByUser = CanceledByUser,
-            SelectedFileFormat = ViewModel.SelectedFileFormat
+            SelectedIndex = ViewModel.SelectedIndex
         };
     }
 

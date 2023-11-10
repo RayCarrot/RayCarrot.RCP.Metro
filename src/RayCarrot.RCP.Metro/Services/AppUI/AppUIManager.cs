@@ -95,19 +95,19 @@ public class AppUIManager
 
     public Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel) => ShowDialogAsync(() => new JumpListEditDialog(viewModel));
 
-    public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel)
+    public async Task<ItemSelectionDialogResult> SelectItemAsync(ItemSelectionDialogViewModel viewModel)
     {
         // If only one item is available, return it
-        if (viewModel.FileFormats.Length == 1)
+        if (viewModel.Items.Length == 1)
         {
-            return new FileExtensionSelectionDialogResult()
+            return new ItemSelectionDialogResult()
             {
                 CanceledByUser = false,
-                SelectedFileFormat = viewModel.FileFormats.First()
+                SelectedIndex = 0
             };
         }
 
-        return await ShowDialogAsync(() => new FileExtensionSelectionDialog(viewModel));
+        return await ShowDialogAsync(() => new ItemSelectionDialog(viewModel));
     }
 
     public Task<StringInputResult> GetStringInputAsync(StringInputViewModel stringInputViewModel) => ShowDialogAsync(() => new StringInputDialog(stringInputViewModel));

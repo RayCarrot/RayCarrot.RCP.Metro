@@ -44,12 +44,13 @@ public class Utility_Converters_CPAGF_TypeViewModel : Utility_Converters_TypeVie
     public override async Task<object?> GetConvertBackStateAsync()
     {
         // Allow the user to select the format
-        FileExtensionSelectionDialogResult extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(Enum.GetNames(typeof(GF_Format)), Resources.Utilities_Converter_SelectConvertBackFormat));
+        string[] formats = Enum.GetNames(typeof(GF_Format));
+        ItemSelectionDialogResult extResult = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(formats, Resources.Utilities_Converter_SelectConvertBackFormat));
 
         if (extResult.CanceledByUser)
             return null;
 
-        return extResult.SelectedFileFormat;
+        return formats[extResult.SelectedIndex];
     }
 
     public override void ConvertBack(Context context, FileSystemPath inputFilePath, string outputFileName, object state)

@@ -249,16 +249,16 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                     }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
                                     // Have user select the format
-                                    FileExtensionSelectionDialogResult extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
+                                    ItemSelectionDialogResult extResult = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
 
                                     // Since this operation can't be canceled we get the first format
                                     if (extResult.CanceledByUser)
-                                        extResult.SelectedFileFormat = ext.First();
+                                        extResult.SelectedIndex = 0;
 
                                     // Add the selected format
-                                    FileExtension? e = extResult.SelectedFileFormat == ext.First() 
+                                    FileExtension? e = extResult.SelectedIndex == 0
                                         ? null
-                                        : new FileExtension(extResult.SelectedFileFormat, multiple: true);
+                                        : new FileExtension(ext[extResult.SelectedIndex], multiple: true);
 
                                     selectedFormats.Add(file.FileType, e);
                                 }
