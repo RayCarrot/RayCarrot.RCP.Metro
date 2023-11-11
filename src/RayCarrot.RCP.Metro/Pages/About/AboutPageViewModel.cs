@@ -42,6 +42,7 @@ public class AboutPageViewModel : BasePageViewModel
             new("Marcos03BR", new ResourceLocString(nameof(Resources.About_Credits_Marcos03BR))),
             new("Marteaufou", new ResourceLocString(nameof(Resources.About_Credits_Marteaufou))),
             new("Noserdog", new ResourceLocString(nameof(Resources.About_Credits_Noserdog))),
+            new("payopayo", "Turkish (Turkey) program translation"), // TODO-LOC
             new("PluMGMK", new ResourceLocString(nameof(Resources.About_Credits_PluMGMK))),
             new("RayActivity", new ResourceLocString(nameof(Resources.About_Credits_RayActivity))),
             new("Rayman Universe - Рэйман и его Вселенная", new ResourceLocString(nameof(Resources.About_Credits_RaymanUniverse))),
