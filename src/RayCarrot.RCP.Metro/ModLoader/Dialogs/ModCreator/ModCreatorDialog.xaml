@@ -185,7 +185,7 @@
                                        Margin="0 0 0 4" />
 
                             <Button Command="{Binding Path=CreateModCommand, Mode=OneTime}"
-                                    Content="{Resx ModCreator_Create﻿}"
+                                    Content="{Resx ModCreator_Create}"
                                     rcp:Icon.Kind="{StaticResource RCP.Icons.ModCreator}"
                                     Style="{StaticResource RCP.Styles.Button.Accent}"
                                     HorizontalAlignment="Left"
