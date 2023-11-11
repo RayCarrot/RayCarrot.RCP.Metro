@@ -4385,9 +4385,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>Favoriler</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>Yeni yüklenmiş oyun veya oyun istemcisi/emülatörü bulunamadı</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>Bulucu sonucu</value>
   </data>

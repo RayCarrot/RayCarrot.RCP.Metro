@@ -203,11 +203,10 @@ public class GameBananaModsSource : DownloadableModsSource
 
         if (validFiles.Count > 1)
         {
-            // TODO-LOC
             ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.Select(x => x.File).ToArray(),
-                "Select mod file from GameBanana to use when updating")
+                Resources.ModLoader_GameBanana_SelectUpdateFileHeader)
             {
-                Title = "Select mod file"
+                Title = Resources.ModLoader_GameBanana_SelectUpdateFileTitle
             });
 
             if (result.CanceledByUser)

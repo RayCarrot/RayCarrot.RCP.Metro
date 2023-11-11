@@ -4406,9 +4406,6 @@ Konflikty:
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>Ulubione</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>Nie znaleziono żadnych nowych zainstalowanych gier ani klientów/emulatorów gier</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>Wynik wyszukiwania</value>
   </data>

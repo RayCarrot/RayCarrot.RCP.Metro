@@ -4374,9 +4374,6 @@ Conflicten:
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>Favorieten</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>Er zijn géén nieuw geïnstalleerde spellen of gameplatforms/emulators gevonden</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>Zoekresultaten</value>
   </data>

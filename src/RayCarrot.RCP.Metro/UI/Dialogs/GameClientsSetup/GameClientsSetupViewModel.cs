@@ -127,8 +127,7 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
         }
         else
         {
-            // TODO-UPDATE: Update message to not mention games
-            await Services.MessageUI.DisplayMessageAsync(Resources.Finder_NoResults, Resources.Finder_ResultHeader, MessageType.Information);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Finder_NoGameClientResults, Resources.Finder_ResultHeader, MessageType.Information);
         }
     }
 

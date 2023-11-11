@@ -4378,9 +4378,6 @@ Start: Пауза</value>
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>Избранное</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>Не было обнаружено новых установленных игр или игровых клиентов/эмуляторов</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>Результаты поиска</value>
   </data>

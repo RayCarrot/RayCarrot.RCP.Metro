@@ -187,6 +187,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turkish (Turkey) program translation.
+        /// </summary>
+        public static string About_Credits_payopayo {
+            get {
+                return ResourceManager.GetString("About_Credits_payopayo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Per-level soundtrack utility.
         /// </summary>
         public static string About_Credits_PluMGMK {
@@ -3622,11 +3631,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No new installed games or game clients/emulators were found.
+        ///   Looks up a localized string similar to No new installed game clients/emulators were found.
         /// </summary>
-        public static string Finder_NoResults {
+        public static string Finder_NoGameClientResults {
             get {
-                return ResourceManager.GetString("Finder_NoResults", resourceCulture);
+                return ResourceManager.GetString("Finder_NoGameClientResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No new installed games were found.
+        /// </summary>
+        public static string Finder_NoGameResults {
+            get {
+                return ResourceManager.GetString("Finder_NoGameResults", resourceCulture);
             }
         }
         
@@ -8338,6 +8356,24 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameBanana_OpenModPage {
             get {
                 return ResourceManager.GetString("ModLoader_GameBanana_OpenModPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mod file from GameBanana to use when updating.
+        /// </summary>
+        public static string ModLoader_GameBanana_SelectUpdateFileHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_SelectUpdateFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mod file.
+        /// </summary>
+        public static string ModLoader_GameBanana_SelectUpdateFileTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_SelectUpdateFileTitle", resourceCulture);
             }
         }
         

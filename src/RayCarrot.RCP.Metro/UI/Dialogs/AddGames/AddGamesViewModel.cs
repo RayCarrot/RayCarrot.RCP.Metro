@@ -134,8 +134,7 @@ public class AddGamesViewModel : BaseViewModel, IInitializable,
         }
         else
         {
-            // TODO-UPDATE: Update message to not mention game clients
-            await Services.MessageUI.DisplayMessageAsync(Resources.Finder_NoResults, Resources.Finder_ResultHeader, MessageType.Information);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Finder_NoGameResults, Resources.Finder_ResultHeader, MessageType.Information);
         }
     }
 

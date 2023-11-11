@@ -4385,9 +4385,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>Favoritos</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>No se encontraron nuevos juegos o clientes/emuladores de juegos instalados</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>Resultado de búsqueda</value>
   </data>

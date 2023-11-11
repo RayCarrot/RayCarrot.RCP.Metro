@@ -4380,9 +4380,6 @@ Start: הפסק</value>
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>מועדפים</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>לא נמצאו משחקים חדשים מותקנים או לקוחות/אימולטורים של משחקים</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>תוצאת איתור</value>
   </data>

@@ -4376,9 +4376,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Home_FavoriteGames" xml:space="preserve">
     <value>Favoritter</value>
   </data>
-  <data name="Finder_NoResults" xml:space="preserve">
-    <value>Ingen nye spil eller spilklienter/emulatorer blev fundet</value>
-  </data>
   <data name="Finder_ResultHeader" xml:space="preserve">
     <value>Søgeresultat</value>
   </data>
