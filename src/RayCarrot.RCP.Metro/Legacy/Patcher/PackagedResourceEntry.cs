@@ -1,7 +1,7 @@
 ﻿#nullable disable
 using System.IO;
+using System.IO.Compression;
 using BinarySerializer;
-using Ionic.Zlib;
 
 namespace RayCarrot.RCP.Metro.Legacy.Patcher;
 

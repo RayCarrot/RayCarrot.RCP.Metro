@@ -86,7 +86,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
     <PackageReference Include="ini-parser" Version="2.5.2" />
     <PackageReference Include="Magick.NET-Q8-x64" Version="13.1.3" />
