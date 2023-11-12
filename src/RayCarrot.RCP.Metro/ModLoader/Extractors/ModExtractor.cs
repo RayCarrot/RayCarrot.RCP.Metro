@@ -7,6 +7,7 @@ public abstract class ModExtractor
         new ZipModExtractor(), // .zip
         new SevenZipModExtractor(), // .7z
         new RarModExtractor(), // .rar
+        new FolderModExtractor(), // .jsonc (folder)
         new LegacyGamePatchModExtractor(), // .gp (legacy)
     };
 
