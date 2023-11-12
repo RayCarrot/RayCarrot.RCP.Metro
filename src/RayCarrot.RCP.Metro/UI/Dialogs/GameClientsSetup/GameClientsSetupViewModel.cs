@@ -134,22 +134,26 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
     public void Initialize() => Services.Messenger.RegisterAll(this);
     public void Deinitialize() => Services.Messenger.UnregisterAll(this);
 
-    public void Receive(AddedGameClientsMessage message) => 
+    #endregion
+
+    #region Message Receivers
+
+    void IRecipient<AddedGameClientsMessage>.Receive(AddedGameClientsMessage message) =>
         Refresh(message.GameClientInstallations.FirstOrDefault());
-    public void Receive(RemovedGameClientsMessage message) => 
+    void IRecipient<RemovedGameClientsMessage>.Receive(RemovedGameClientsMessage message) =>
         Refresh(SelectedGameClient?.GameClientInstallation);
 
-    public void Receive(ModifiedGameClientsMessage message)
+    void IRecipient<ModifiedGameClientsMessage>.Receive(ModifiedGameClientsMessage message)
     {
         foreach (InstalledGameClientViewModel gameClient in InstalledGameClients)
             gameClient.RefreshDisplayName();
     }
 
-    public void Receive(AddedGamesMessage message) =>
+    void IRecipient<AddedGamesMessage>.Receive(AddedGamesMessage message) =>
         RefreshSupportedGames();
-    public void Receive(RemovedGamesMessage message) =>
+    void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) =>
         RefreshSupportedGames();
-    public void Receive(ModifiedGamesMessage message)
+    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message)
     {
         foreach (InstalledGameClientViewModel installedGameClient in InstalledGameClients)
         {
@@ -160,9 +164,9 @@ public class GameClientsSetupViewModel : BaseViewModel, IInitializable,
             }
         }
     }
-    public void Receive(SortedGamesMessage message) =>
+    void IRecipient<SortedGamesMessage>.Receive(SortedGamesMessage message) =>
         RefreshSupportedGames();
-    public void Receive(SortedGameClientsMessage message)
+    void IRecipient<SortedGameClientsMessage>.Receive(SortedGameClientsMessage message)
     {
         InstalledGameClients.ModifyCollection(x =>
             x.Sort((x1, x2) => message.SortedCollection.

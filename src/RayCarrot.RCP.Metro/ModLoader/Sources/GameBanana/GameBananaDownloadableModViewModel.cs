@@ -203,23 +203,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id));
     }
 
-    public void Receive(ModInstalledMessage message)
-    {
-        if (message.ModViewModel.DownloadableModsSource?.Id != _downloadableModsSource.Id)
-            return;
-
-        long fileId = message.ModViewModel.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId;
-
-        foreach (GameBananaFileViewModel file in Files)
-        {
-            if (file.DownloadableFile.Id == fileId)
-            {
-                file.DownloadedMod = message.ModViewModel;
-                break;
-            }
-        }
-    }
-
     public override void OnSelected()
     {
         base.OnSelected();
@@ -237,6 +220,27 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         base.Dispose();
 
         Services.Messenger.UnregisterAll(this, _modLoaderViewModel.GameInstallation.InstallationId);
+    }
+
+    #endregion
+
+    #region Message Receivers
+
+    void IRecipient<ModInstalledMessage>.Receive(ModInstalledMessage message)
+    {
+        if (message.ModViewModel.DownloadableModsSource?.Id != _downloadableModsSource.Id)
+            return;
+
+        long fileId = message.ModViewModel.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId;
+
+        foreach (GameBananaFileViewModel file in Files)
+        {
+            if (file.DownloadableFile.Id == fileId)
+            {
+                file.DownloadedMod = message.ModViewModel;
+                break;
+            }
+        }
     }
 
     #endregion

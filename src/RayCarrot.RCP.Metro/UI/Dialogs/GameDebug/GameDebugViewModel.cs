@@ -82,9 +82,9 @@ public class GameDebugViewModel : BaseViewModel, IInitializable,
     public void Initialize() => Services.Messenger.RegisterAll(this);
     public void Deinitialize() => Services.Messenger.UnregisterAll(this);
 
-    public void Receive(AddedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
-    public void Receive(RemovedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
-    public void Receive(ModifiedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
+    void IRecipient<AddedGamesMessage>.Receive(AddedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
+    void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
+    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message) => RefreshGameInstallations(SelectedGameInstallation?.GameInstallation);
 
     public record InstalledGameViewModel(
         GameInstallation GameInstallation, 

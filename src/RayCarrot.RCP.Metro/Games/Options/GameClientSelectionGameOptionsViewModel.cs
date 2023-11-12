@@ -88,19 +88,23 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel, IIn
         Services.Messenger.UnregisterAll(this);
     }
 
-    public void Receive(AddedGameClientsMessage message)
+    #endregion
+
+    #region Message Receivers
+
+    void IRecipient<AddedGameClientsMessage>.Receive(AddedGameClientsMessage message)
     {
         // Refresh if any added game clients support this game
         if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation, x)))
             Load();
     }
-    public void Receive(RemovedGameClientsMessage message)
+    void IRecipient<RemovedGameClientsMessage>.Receive(RemovedGameClientsMessage message)
     {
         // Refresh if any removed game clients support this game
         if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation, x)))
             Load();
     }
-    public void Receive(ModifiedGameClientsMessage message)
+    void IRecipient<ModifiedGameClientsMessage>.Receive(ModifiedGameClientsMessage message)
     {
         if (GameClients == null)
             return;
@@ -114,7 +118,7 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel, IIn
             }
         }
     }
-    public void Receive(SortedGameClientsMessage message) => Load();
+    void IRecipient<SortedGameClientsMessage>.Receive(SortedGameClientsMessage message) => Load();
 
     #endregion
 

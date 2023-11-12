@@ -113,6 +113,6 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
         Refresh();
     }
 
-    public void Receive(RemovedGamesMessage message) => Refresh();
-    public void Receive(ModifiedGamesMessage message) => Refresh();
+    void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) => Refresh();
+    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message) => Refresh();
 }

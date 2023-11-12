@@ -92,8 +92,12 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
                 Max(x => (x.IsMaximized ? x.MinContentHeight : x.ActualContentHeight) + x.Padding.Top + x.Padding.Bottom + 80);
     }
 
-    public void Receive(AddedGamesMessage message) => RefreshProgressionPageEnabled();
-    public void Receive(RemovedGamesMessage message) => RefreshProgressionPageEnabled();
+    #endregion
+
+    #region Message Receivers
+
+    void IRecipient<AddedGamesMessage>.Receive(AddedGamesMessage message) => RefreshProgressionPageEnabled();
+    void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) => RefreshProgressionPageEnabled();
 
     #endregion
 

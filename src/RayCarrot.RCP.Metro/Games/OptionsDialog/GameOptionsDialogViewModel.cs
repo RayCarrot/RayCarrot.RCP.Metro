@@ -128,7 +128,7 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IInitializable, IDis
         Services.Messenger.UnregisterAll(this);
     }
 
-    public void Receive(ModifiedGamesMessage message)
+    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message)
     {
         // If the components were rebuilt we have to re-create the
         // pages too since they might have changed

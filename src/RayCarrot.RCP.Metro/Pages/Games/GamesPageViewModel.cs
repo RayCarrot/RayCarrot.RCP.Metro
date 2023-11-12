@@ -1,12 +1,7 @@
 ﻿using System.ComponentModel;
-using System.IO;
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.RCP.Metro.Games.Clients;
-using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.GameFileFinder;
-using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -22,22 +17,18 @@ public class GamesPageViewModel : BasePageViewModel,
     public GamesPageViewModel(
         AppViewModel app,
         GamesManager gamesManager, 
-        GameClientsManager gameClientsManager, 
         AppUIManager ui,
         IMessageUIManager messageUi,
         IMessenger messenger, 
         AppUserData data, 
-        IBrowseUIManager browseUi, 
         NewsViewModel newsViewModel) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
-        GameClientsManager = gameClientsManager ?? throw new ArgumentNullException(nameof(gameClientsManager));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         Data = data ?? throw new ArgumentNullException(nameof(data));
-        BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
         NewsViewModel = newsViewModel ?? throw new ArgumentNullException(nameof(newsViewModel));
 
         // Set properties
@@ -97,12 +88,10 @@ public class GamesPageViewModel : BasePageViewModel,
     #region Services
 
     private GamesManager GamesManager { get; }
-    private GameClientsManager GameClientsManager { get; }
     private AppUIManager UI { get; }
     private IMessageUIManager MessageUI { get; }
     private IMessenger Messenger { get; }
     private AppUserData Data { get; }
-    private IBrowseUIManager BrowseUI { get; }
 
     #endregion
 
@@ -415,20 +404,24 @@ public class GamesPageViewModel : BasePageViewModel,
     public Task AddGamesAsync() => UI.ShowAddGamesAsync();
     public Task ConfigureGameClientsAsync() => UI.ShowGameClientsSetupAsync();
 
-    public async void Receive(AddedGamesMessage message) =>
+    #endregion
+
+    #region Message Receivers
+
+    async void IRecipient<AddedGamesMessage>.Receive(AddedGamesMessage message) =>
         await RefreshAsync(message.GameInstallations.FirstOrDefault());
-    public async void Receive(RemovedGamesMessage message) =>
+    async void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) =>
         await RefreshAsync(SelectedInstalledGame?.GameInstallation);
-    public async void Receive(ModifiedGamesMessage message) =>
+    async void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message) =>
         await RefreshInstallations(message.GameInstallations, message.RebuiltComponents);
-    public void Receive(SortedGamesMessage message)
+    void IRecipient<SortedGamesMessage>.Receive(SortedGamesMessage message)
     {
-        Games.ModifyCollection(x => 
+        Games.ModifyCollection(x =>
             x.Sort((x1, x2) => message.SortedCollection.
                 IndexOf(x1.GameInstallation).
                 CompareTo(message.SortedCollection.
                     IndexOf(x2.GameInstallation))));
-        FavoriteGames?.ModifyCollection(x => 
+        FavoriteGames?.ModifyCollection(x =>
             x.Sort((x1, x2) => message.SortedCollection.
                 IndexOf(x1.GameInstallation).
                 CompareTo(message.SortedCollection.

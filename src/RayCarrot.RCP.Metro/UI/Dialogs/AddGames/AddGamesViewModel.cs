@@ -219,8 +219,12 @@ public class AddGamesViewModel : BaseViewModel, IInitializable,
     public void Initialize() => Services.Messenger.RegisterAll(this);
     public void Deinitialize() => Services.Messenger.UnregisterAll(this);
 
-    public void Receive(AddedGamesMessage message) => RefreshGames();
-    public void Receive(RemovedGamesMessage message) => RefreshGames();
+    #endregion
+
+    #region Message Receivers
+
+    void IRecipient<AddedGamesMessage>.Receive(AddedGamesMessage message) => RefreshGames();
+    void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) => RefreshGames();
 
     #endregion
 }

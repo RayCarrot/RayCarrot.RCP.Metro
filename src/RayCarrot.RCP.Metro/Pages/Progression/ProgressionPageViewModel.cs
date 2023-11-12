@@ -130,42 +130,6 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
     #region Public Methods
 
-    public async void Receive(AddedGamesMessage message) => await Task.Run(RefreshAsync);
-    public async void Receive(RemovedGamesMessage message) => await Task.Run(RefreshAsync);
-    public async void Receive(BackupLocationChangedMessage message) => await Task.Run(RefreshAsync);
-    public async void Receive(ModifiedGamesMessage message)
-    {
-        using (await AsyncLock.LockAsync())
-        {
-            foreach (GameViewModel gameProgression in Games.
-                         Where(x => message.GameInstallations.Contains(x.GameInstallation)))
-            {
-                // Only fully refresh if requested to do so when components have been rebuilt
-                if (message.RebuiltComponents && gameProgression.ProgressionManager.RefreshOnRebuiltComponents)
-                {
-                    await gameProgression.LoadProgressAsync();
-                    await gameProgression.LoadBackupAsync();
-                    await gameProgression.LoadSlotInfoItemsAsync();
-                }
-
-                gameProgression.RefreshGameInfo();
-            }
-        }
-    }
-    public void Receive(SortedGamesMessage message)
-    {
-        Games.ModifyCollection(x =>
-            x.Sort((x1, x2) => message.SortedCollection.
-                IndexOf(x1.GameInstallation).
-                CompareTo(message.SortedCollection.
-                    IndexOf(x2.GameInstallation))));
-
-        // Need to refresh the view if the games are
-        // grouped or else the order won't update
-        if (GroupGames)
-            GamesView.Refresh();
-    }
-
     public async Task RefreshAsync()
     {
         using (await AsyncLock.LockAsync())
@@ -309,6 +273,46 @@ public class ProgressionPageViewModel : BasePageViewModel,
             else
                 await MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, Games.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
         }
+    }
+
+    #endregion
+
+    #region Message Receivers
+
+    async void IRecipient<AddedGamesMessage>.Receive(AddedGamesMessage message) => await Task.Run(RefreshAsync);
+    async void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message) => await Task.Run(RefreshAsync);
+    async void IRecipient<BackupLocationChangedMessage>.Receive(BackupLocationChangedMessage message) => await Task.Run(RefreshAsync);
+    async void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message)
+    {
+        using (await AsyncLock.LockAsync())
+        {
+            foreach (GameViewModel gameProgression in Games.
+                         Where(x => message.GameInstallations.Contains(x.GameInstallation)))
+            {
+                // Only fully refresh if requested to do so when components have been rebuilt
+                if (message.RebuiltComponents && gameProgression.ProgressionManager.RefreshOnRebuiltComponents)
+                {
+                    await gameProgression.LoadProgressAsync();
+                    await gameProgression.LoadBackupAsync();
+                    await gameProgression.LoadSlotInfoItemsAsync();
+                }
+
+                gameProgression.RefreshGameInfo();
+            }
+        }
+    }
+    void IRecipient<SortedGamesMessage>.Receive(SortedGamesMessage message)
+    {
+        Games.ModifyCollection(x =>
+            x.Sort((x1, x2) => message.SortedCollection.
+                IndexOf(x1.GameInstallation).
+                CompareTo(message.SortedCollection.
+                    IndexOf(x2.GameInstallation))));
+
+        // Need to refresh the view if the games are
+        // grouped or else the order won't update
+        if (GroupGames)
+            GamesView.Refresh();
     }
 
     #endregion

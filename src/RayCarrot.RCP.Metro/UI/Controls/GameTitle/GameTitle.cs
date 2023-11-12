@@ -223,9 +223,9 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
 
     #endregion
 
-    #region Public Methods
+    #region Message Receivers
 
-    public void Receive(ModifiedGamesMessage message)
+    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message)
     {
         GameInstallation? gameInstallation = GameInstallation;
 

@@ -115,16 +115,20 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
     public Task OpenModLoaderAsync() => Services.UI.ShowModLoaderAsync(GameInstallation);
     public Task OpenModCreatorAsync() => Services.UI.ShowModCreatorAsync(GameInstallation);
 
-    public async void Receive(ModifiedGameModsMessage message)
-    {
-        if (message.GameInstallation == GameInstallation)
-            await RefreshAsync();
-    }
-
     public override Task UnloadAsync()
     {
         Services.Messenger.UnregisterAll(this);
         return Task.CompletedTask;
+    }
+
+    #endregion
+
+    #region Message Receivers
+
+    async void IRecipient<ModifiedGameModsMessage>.Receive(ModifiedGameModsMessage message)
+    {
+        if (message.GameInstallation == GameInstallation)
+            await RefreshAsync();
     }
 
     #endregion

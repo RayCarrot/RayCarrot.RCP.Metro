@@ -95,7 +95,7 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
         await Task.WhenAll(AssociatedPrograms.Select(x => Task.Run(x.LoadIcon)));
     }
 
-    public void Receive(FileEditorAssociationAdded message)
+    void IRecipient<FileEditorAssociationAdded>.Receive(FileEditorAssociationAdded message)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
@@ -106,7 +106,7 @@ public class FilesSettingsSectionViewModel : SettingsSectionViewModel, IRecipien
         });
     }
 
-    public void Receive(FileEditorAssociationRemoved message)
+    void IRecipient<FileEditorAssociationRemoved>.Receive(FileEditorAssociationRemoved message)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {

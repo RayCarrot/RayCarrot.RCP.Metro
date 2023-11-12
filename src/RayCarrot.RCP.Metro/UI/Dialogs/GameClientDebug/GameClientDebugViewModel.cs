@@ -73,9 +73,9 @@ public class GameClientDebugViewModel : BaseViewModel, IInitializable,
     public void Initialize() => Services.Messenger.RegisterAll(this);
     public void Deinitialize() => Services.Messenger.UnregisterAll(this);
 
-    public void Receive(AddedGameClientsMessage message) => RefreshGameClientInstallations(SelectedGameClientInstallation?.GameClientInstallation);
-    public void Receive(RemovedGameClientsMessage message) => RefreshGameClientInstallations(SelectedGameClientInstallation?.GameClientInstallation);
-    public void Receive(ModifiedGameClientsMessage message) => RefreshGameClientInstallations(SelectedGameClientInstallation?.GameClientInstallation);
+    void IRecipient<AddedGameClientsMessage>.Receive(AddedGameClientsMessage message) => RefreshGameClientInstallations(SelectedGameClientInstallation?.GameClientInstallation);
+    void IRecipient<RemovedGameClientsMessage>.Receive(RemovedGameClientsMessage message) => RefreshGameClientInstallations(SelectedGameClientInstallation?.GameClientInstallation);
+    void IRecipient<ModifiedGameClientsMessage>.Receive(ModifiedGameClientsMessage message) => RefreshGameClientInstallations(SelectedGameClientInstallation?.GameClientInstallation);
 
     public record InstalledGameClientViewModel(
         GameClientInstallation GameClientInstallation,

@@ -109,19 +109,23 @@ public partial class GameOptionsDialog : WindowContentControl, IInitializable, I
             page.Saved -= Page_Saved;
     }
 
-    public void Receive(RemovedGamesMessage message)
+    public override void Dispose()
+    {
+        base.Dispose();
+        ViewModel?.Dispose();
+    }
+
+    #endregion
+
+    #region Message Receivers
+
+    void IRecipient<RemovedGamesMessage>.Receive(RemovedGamesMessage message)
     {
         if (message.GameInstallations.Contains(ViewModel.GameInstallation))
         {
             ForceClose = true;
             WindowInstance.Close();
         }
-    }
-
-    public override void Dispose()
-    {
-        base.Dispose();
-        ViewModel?.Dispose();
     }
 
     #endregion
