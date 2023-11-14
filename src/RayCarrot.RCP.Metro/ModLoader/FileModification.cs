@@ -151,7 +151,7 @@ public class FileModification
         FilePatches.Add(filePatch);
     }
 
-    public bool HasFilePatches() => FilePatches.Any();
+    public bool HasFilePatches() => FilePatches?.Any() == true;
 
     public void ProcessFile(
         LibraryFileHistoryBuilder historyBuilder,

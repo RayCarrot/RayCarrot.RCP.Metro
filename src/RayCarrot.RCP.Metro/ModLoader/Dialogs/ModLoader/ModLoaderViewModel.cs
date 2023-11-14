@@ -387,6 +387,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         // Reset properties
         HasChanges = false;
+        HasReorderedMods = false;
+        ChangedModsText = null;
         SelectedMod = null;
 
         // Make sure we have write access
