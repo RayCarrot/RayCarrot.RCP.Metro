@@ -2,13 +2,15 @@
 • Multiple installations of the same game can now be added
 • Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
-• Added a home page for news and recent/favorite games. Newly added and updated patches are now shown there instead of the app changelog.
+• Replaced the patcher with an all new mod loader where mods are now created as .zip, .7z or .rar files and have a lot more features, such as delta patches and game-specific patches
+• Added GameBanana integration to the new mod loader, allowing mods to be downloaded and updated from GameBanana through the app
+• Added a home page for news and recent/favorite games
 • Added support for new games:
 	• Rayman Jungle Run (Ubisoft Connect) and Rayman Fiesta Run (Ubisoft Connect)
 	• Rayman (Game Boy Color), Rayman 2 (Game Boy Color) and Tonic Trouble (Game Boy Color)
 	• Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA)
 	• Rayman: The Dreamer's Boundary
-• The program has now been translated to Danish (thanks Lex!) and Spanish (thanks Marcos03BR!)
+• The program has now been translated to Danish (thanks Lex!), Spanish (thanks Marcos03BR!) and Turkish (thanks payopayo!)
 • The game finder has been reworked to be faster and to be able to find game clients/emulators
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
 • The jumplist now sorts games by default and only automatically adds certain games to it
@@ -18,25 +20,27 @@ Other changes:
 • Game changes
 	• The game options have been moved from the options dialog to the new game hub
 	• The Rayman Edutainment games are now split up between Edu and Quiz
+• Settings page changes
+	• Redesigned the settings page, having everything on a single page with different sections to jump between
+	• Options from the settings overflow menu have now been integrated into the page itself
+	• Updated the settings for file/uri associations
+	• Updated the settings for file editors and have the progression page save editor be specified there
 • UI changes
 	• Redesigned the games page, now split between a selection and the game hub
 	• Decreased large corner radiuses
 	• Card backgrounds are now darker
-	• Updated button and list box styles
+	• Updated various control styles, including for buttons, checkboxes and lists
 	• Redesigned the overflow/popup menus
 	• Redesigned the edit jumplist dialog
-• Patcher changes
-	• Game patch files (.gp) now use a custom file icon
-	• Patches can now include a changelog
-	• The patcher now shows if a file will be ignored due to the location not existing
-	• The patcher now shows updates using a download icon and always at the top of the list
-	• Patches can now be created to target multiple games
-	• Patches can now be created for the Rayman Edutainment games
-	• The patch creator is now accessed from the game hub with the option to update a patch being moved into the creator
-	• The patch creator is now categorized into pages
-	• Enabled spell checking for certain fields in the patch creator
-	• When saving a created patch the file name now defaults to the patch name
+• Mod loader (prev. patcher) changes
+	• The patch creator has been removed in favor of a new, simpler, mod creator, accessible directly from the game hub
+	• Legacy game patch files (.gp) now use a custom file icon
+	• Besides features supported by game patches, mods can now also include a changelog and target multiple games
+	• The mod loader now shows if a file will be ignored due to the archive it belongs to not existing
+	• When viewing file changes in the mod loader you can now show it as a tree view
+	• Mods can now be created for all games, with different modules being available for different games
 • Archive changes
+	• When repacking an archive it will now check if the archive can be written to, avoiding it crashing if attempting to repack an archive while running the game
 	• The CPA texture sync is now available for the Rayman M and Rayman 3 demos
 	• The CPA texture sync has been moved from a utility to an archive action in the game hub
 	• The CPA texture sync now syncs the individual Rayman M/Arena game folders separately
@@ -44,15 +48,16 @@ Other changes:
 	• Exporting/importing files in an IPK archive now preserves the file dates
 	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
 	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
-• Added incomplete Danish (Denmark), Hungarian (Hungary) and Turkish (Turkey) translations
+• Added incomplete Hungarian (Hungary) translation
 • Removed incomplete Serbian (Cyrillic), Spanish (Mexico) and Swedish (Sweden) translations
-• Added Lex and Marcos03BR to the credits
+• Added Lex, Marcos03BR and payopayo to the credits
 • Updated the per-level soundtrack utility for Rayman 1 to support the unprotected 1.12 version of the game
 • More text is now localized, including game names
 • Updated the progression page layout and added support for multiple games sharing the same backup
 • Games can now be hidden in the progression page
 • Progression backups no longer warn if GOG Galaxy cloud syncing is detected
 • The Rayman Jungle Run progression now always assumes all 7 worlds are available
+• Various improvements to the program selection dialog, such as allowing to auto-select a program from the keyboard
 • A DOSBox installation can now have multiple config files
 • The option to run a game as admin is now always visible in the drop-down
 • The option to run a game as admin is no longer available for emulated games, such as MS-DOS games
@@ -62,6 +67,7 @@ Other changes:
 • Validating a game location now includes more path checks and shows which paths were missing when validation fails
 • Windows shown on startup will now show after the main window
 • The version history window is now a blocking window and no longer shows the first time the app is launched
+• Right-clicking a value in a grid of headers and values now gives the option to copy it to the clipboard
 • Removed the demo games category
 • Renamed Rayman 1 to always say Rayman for consistency
 • Removing a game will no longer prompt about applied utilities
@@ -83,6 +89,8 @@ Other changes:
 	• Fixed a bug where progress would sometimes be shown on the taskbar even though the setting for it was unchecked
 	• Fixed a bug where certain parts of the app wouldn't use the specified language
 	• Fixed a bug where importing files from a folder wouldn't work for IPK archives
+	• Fixed a bug where the resolution selection wouldn't be formatted correctly in Hebrew
+	• Fixed a bug where importing files to a .ipk archive would cause it to be compressed incorrectly in rare cases
 
 
 -----   Version 13.4.5 - January 23, 2023   -----
