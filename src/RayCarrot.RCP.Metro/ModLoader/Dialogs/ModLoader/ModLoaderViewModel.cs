@@ -452,9 +452,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
 
-        AddedFilesText = new ResourceLocString(nameof(Resources.ModLoader_AddedFilesInfo), ModifiedFiles.AddedFilesCount);
-        RemovedFilesText = new ResourceLocString(nameof(Resources.ModLoader_RemovedFilesInfo), ModifiedFiles.RemovedFilesCount);
-        PatchedFilesText = new ResourceLocString(nameof(Resources.ModLoader_PatchedFilesInfo), ModifiedFiles.PatchedFilesCount);
+        AddedFilesText = ModifiedFiles.AddedFilesCount == 0 
+            ? null 
+            : new ResourceLocString(nameof(Resources.ModLoader_AddedFilesInfo), ModifiedFiles.AddedFilesCount);
+        RemovedFilesText = ModifiedFiles.RemovedFilesCount == 0
+            ? null
+            : new ResourceLocString(nameof(Resources.ModLoader_RemovedFilesInfo), ModifiedFiles.RemovedFilesCount);
+        PatchedFilesText = ModifiedFiles.PatchedFilesCount == 0
+            ? null
+            : new ResourceLocString(nameof(Resources.ModLoader_PatchedFilesInfo), ModifiedFiles.PatchedFilesCount);
     }
 
     public void ReportNewChanges()

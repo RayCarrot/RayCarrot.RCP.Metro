@@ -340,12 +340,15 @@
                                 VerticalAlignment="Center"
                                 Margin="0 0 8 0">
                         <TextBlock Text="{Binding Path=AddedFilesText.Value}" 
+                                   Visibility="{Binding Path=AddedFilesText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                    d:Text="15 added files"
                                    Foreground="{StaticResource RCP.Brushes.AddItem}" />
                         <TextBlock Text="{Binding Path=RemovedFilesText.Value}" 
+                                   Visibility="{Binding Path=RemovedFilesText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                    d:Text="2 removed files"
                                    Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
                         <TextBlock Text="{Binding Path=PatchedFilesText.Value}" 
+                                   Visibility="{Binding Path=PatchedFilesText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                    d:Text="4 patched files"
                                    Foreground="{StaticResource RCP.Brushes.Info}" />
                     </StackPanel>
