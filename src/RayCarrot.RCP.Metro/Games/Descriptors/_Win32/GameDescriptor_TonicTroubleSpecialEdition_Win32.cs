@@ -60,6 +60,8 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
             new CPATextureSyncDataItem(
                 Name: "GameData",
                 Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
+
+        builder.Register(new GameBananaGameComponent(18937));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
