@@ -5744,4 +5744,7 @@ If there's a utility or other type of patch missing then it has most likely been
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>No new installed game clients/emulators were found</value>
   </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>An error occurred when downloading the mod</value>
+  </data>
 </root>

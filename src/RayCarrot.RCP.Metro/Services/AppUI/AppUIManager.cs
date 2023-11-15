@@ -309,11 +309,11 @@ public class AppUIManager
     /// <summary>
     /// Shows a new instance of the Mod Loader from mod file paths
     /// </summary>
-    /// <param name="modFilePaths">The mod file paths</param>
+    /// <param name="modPaths">The mods to install</param>
     /// <returns>The task</returns>
-    public async Task ShowModLoaderAsync(FileSystemPath[] modFilePaths)
+    public async Task ShowModLoaderAsync(ModLoaderViewModel.ModToInstall[] modPaths)
     {
-        ModLoaderViewModel? viewModel = await ModLoaderViewModel.FromFilesAsync(modFilePaths);
+        ModLoaderViewModel? viewModel = await ModLoaderViewModel.FromFilesAsync(modPaths);
 
         if (viewModel == null)
             return;

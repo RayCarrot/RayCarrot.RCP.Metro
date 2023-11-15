@@ -13,7 +13,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ModLoaderViewModel(GameInstallation gameInstallation, FileSystemPath[]? pendingModFiles = null)
+    public ModLoaderViewModel(GameInstallation gameInstallation, ModToInstall[]? pendingModFiles = null)
     {
         GameInstallation = gameInstallation;
         _pendingModFiles = pendingModFiles;
@@ -48,7 +48,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private FileSystemPath[]? _pendingModFiles;
+    private ModToInstall[]? _pendingModFiles;
     private readonly HttpClient _httpClient;
     private readonly ModExtractor[] _modExtractors;
 
@@ -202,21 +202,21 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private async Task AddLocalModsToInstall(FileSystemPath[] filePaths)
+    private async Task AddLocalModsToInstall(IEnumerable<ModToInstall> modFiles)
     {
-        Logger.Info("Adding {0} new mods to install", filePaths.Length);
+        Logger.Info("Adding new mods to install");
 
         using (LoadState state = await LoaderViewModel.RunAsync())
         {
             state.SetCanCancel(true);
 
-            foreach (FileSystemPath modFilePath in filePaths)
+            foreach (ModToInstall modFile in modFiles)
             {
-                state.SetStatus(String.Format(Resources.ModLoader_InstallStatus, modFilePath.Name));
+                state.SetStatus(String.Format(Resources.ModLoader_InstallStatus, modFile.FilePath.Name));
 
                 try
                 {
-                    await AddModToInstallAsync(modFilePath, state, null, null);
+                    await AddModToInstallAsync(modFile.FilePath, state, modFile.SourceId, modFile.InstallData);
                 }
                 catch (OperationCanceledException ex)
                 {
@@ -227,7 +227,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Error(ex, "Adding mod to install");
 
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ModLoader_InstallError, modFilePath.Name));
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ModLoader_InstallError, modFile.FilePath.Name));
                 }
             }
 
@@ -327,20 +327,20 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #region Public Static Methods
 
-    public static async Task<ModLoaderViewModel?> FromFilesAsync(FileSystemPath[] modFilePaths)
+    public static async Task<ModLoaderViewModel?> FromFilesAsync(ModToInstall[] modFilePaths)
     {
         if (modFilePaths.Length == 0)
             throw new ArgumentException("There has to be a least one mod file provided", nameof(modFilePaths));
 
         // Use the first file to determine which games are being targeted
-        FileSystemPath firstFile = modFilePaths[0];
-        FileExtension firstFileExtension = firstFile.FileExtension;
+        ModToInstall firstFile = modFilePaths[0];
+        FileExtension firstFileExtension = firstFile.FilePath.FileExtension;
         ModExtractor? modExtractor = ModExtractor.GetModExtractors().FirstOrDefault(x => x.FileExtension == firstFileExtension);
 
         if (modExtractor == null)
             throw new Exception("One or more mod files are not valid");
 
-        string[] gameTargets = modExtractor.GetGameTargets(firstFile);
+        string[] gameTargets = modExtractor.GetGameTargets(firstFile.FilePath);
 
         // Get all the installations which the patch supports
         List<GameInstallation> gameInstallations = Services.Games.GetInstalledGames().
@@ -494,7 +494,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             return;
 
         Logger.Info("Adding {0} mods to be installed", result.SelectedFiles.Length);
-        await AddLocalModsToInstall(result.SelectedFiles);
+        await AddLocalModsToInstall(result.SelectedFiles.Select(x => new ModToInstall(x, null, null)));
 
         Logger.Info("Added mods");
     }
@@ -622,6 +622,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         _httpClient.Dispose();
         DownloadableMods.Dispose();
     }
+
+    #endregion
+
+    #region Records
+
+    public record ModToInstall(FileSystemPath FilePath, string? SourceId, object? InstallData);
 
     #endregion
 }

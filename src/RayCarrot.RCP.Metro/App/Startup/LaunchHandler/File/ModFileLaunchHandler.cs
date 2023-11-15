@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.ModLoader.Extractors;
+﻿using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Extractors;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -19,6 +20,6 @@ public class ModFileLaunchHandler : FileLaunchHandler
     public override async void Invoke(FileSystemPath filePath, State state)
     {
         // Show the mod loader
-        await Services.UI.ShowModLoaderAsync(new[] { filePath });
+        await Services.UI.ShowModLoaderAsync(new[] { new ModLoaderViewModel.ModToInstall(filePath, null, null) });
     }
 }

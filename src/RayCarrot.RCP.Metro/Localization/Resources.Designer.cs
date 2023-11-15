@@ -8243,6 +8243,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when downloading the mod.
+        /// </summary>
+        public static string ModLoader_DownloadModFromUriError {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadModFromUriError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
         public static string ModLoader_DownloadTitle {

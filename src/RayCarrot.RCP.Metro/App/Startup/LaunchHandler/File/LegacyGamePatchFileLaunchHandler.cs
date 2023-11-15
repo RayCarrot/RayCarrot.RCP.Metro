@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Legacy.Patcher;
+using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,6 +23,6 @@ public class LegacyGamePatchFileLaunchHandler : FileLaunchHandler
     public override async void Invoke(FileSystemPath filePath, State state)
     {
         // Show the mod loader
-        await Services.UI.ShowModLoaderAsync(new[] { filePath });
+        await Services.UI.ShowModLoaderAsync(new[] { new ModLoaderViewModel.ModToInstall(filePath, null, null) });
     }
 }
