@@ -277,6 +277,9 @@ public class GameBananaModsSource : DownloadableModsSource
                 Where(x => (x.Record.DateModified - DateTime.Now) < TimeSpan.FromDays(365)).
                 ToList();
 
+            if (modRecords.Count == 0)
+                yield break;
+
             // Get additional data for every mod
             GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
                 $"https://gamebanana.com/apiv11/Mod/Multi?" +
