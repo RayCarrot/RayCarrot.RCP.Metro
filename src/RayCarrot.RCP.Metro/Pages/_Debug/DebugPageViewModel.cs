@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Runtime.Versioning;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -458,6 +459,24 @@ public class DebugPageViewModel : BasePageViewModel
 
                     break;
 
+                case DebugDataOutputType.GameIdsMarkdownTable:
+
+                    StringBuilder sb = new();
+
+                    // Header
+                    sb.AppendLine("| Id | Game | Platform |");
+                    sb.AppendLine("|---|---|---|");
+
+                    // Add game rows
+                    foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
+                    {
+                        sb.AppendLine($"| {gameDescriptor.GameId} | {gameDescriptor.DisplayName} | {gameDescriptor.Platform.GetInfo().DisplayName}");
+                    }
+
+                    DataOutput = sb.ToString();
+
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -604,6 +623,11 @@ public class DebugPageViewModel : BasePageViewModel
         /// Displays the install sizes for each game
         /// </summary>
         GameSizes,
+
+        /// <summary>
+        /// Displays a markdown table for the game ids
+        /// </summary>
+        GameIdsMarkdownTable,
     }
 
     #endregion
