@@ -15,41 +15,43 @@
                   Grid.IsSharedSizeScope="True">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Grid Margin="0 4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Button Margin="0 2"
+                        Style="{StaticResource RCP.Styles.Button.Flat}" 
+                        HorizontalContentAlignment="Stretch"
+                        Command="{Binding Path=OpenModCommand, Mode=OneTime}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Margin="0 0 8 0" 
-                               TextWrapping="Wrap"
-                               ToolTip="{Binding Path=ModUrl, Mode=OneTime}">
-                        <Hyperlink Command="{Binding Path=OpenModCommand, Mode=OneTime}">
-                            <Run Text="{Binding Path=Name, Mode=OneTime}"
-                                 FontSize="14" />
-                        </Hyperlink>
-                    </TextBlock>
+                        <TextBlock Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 8 0" 
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Path=Name, Mode=OneTime}"
+                                   FontSize="14"
+                                   ToolTip="{Binding Path=ModUrl, Mode=OneTime}" />
 
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding Path=ModificationDateDisplayText, Mode=OneTime}"
-                               TextWrapping="Wrap"
-                               VerticalAlignment="Center"
-                               Margin="0 0 8 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Path=ModificationDateDisplayText, Mode=OneTime}"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 8 0" />
 
-                    <ItemsControl Grid.Column="2" 
-                                  ItemsSource="{Binding Path=GameDescriptors}"
-                                  Margin="0 0 8 0">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" GameIconSize="Smallest" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        <ItemsControl Grid.Column="2" 
+                                      ItemsSource="{Binding Path=GameDescriptors}"
+                                      Margin="0 0 8 0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" GameIconSize="Smallest" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-                </Grid>
+                    </Grid>
+                </Button>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
