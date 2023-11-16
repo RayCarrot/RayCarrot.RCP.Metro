@@ -5747,4 +5747,10 @@ If there's a utility or other type of patch missing then it has most likely been
   <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
     <value>An error occurred when downloading the mod</value>
   </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>The files are identical. Please select two different files and try again.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>Failed to create delta file</value>
+  </data>
 </root>

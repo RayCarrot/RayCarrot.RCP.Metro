@@ -8207,6 +8207,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The files are identical. Please select two different files and try again..
+        /// </summary>
+        public static string ModLoader_DeltasModule_IdenticalFilesError {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_IdenticalFilesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create delta file.
+        /// </summary>
+        public static string ModLoader_DeltasModule_IdenticalFilesErrorHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_DeltasModule_IdenticalFilesErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mod Loader - {0}.
         /// </summary>
         public static string ModLoader_DialogTitle {

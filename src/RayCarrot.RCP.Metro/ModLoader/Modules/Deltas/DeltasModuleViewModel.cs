@@ -34,6 +34,12 @@ public class DeltasModuleViewModel : ModModuleViewModel
             return;
 
         DeltaFile deltaFile = DeltaFile.Create(originalFileBrowseResult.SelectedFile, modifiedFileBrowseResult.SelectedFile);
+
+        if (deltaFile.Chunks.Length == 0)
+        {
+            await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_DeltasModule_IdenticalFilesError, Resources.ModLoader_DeltasModule_IdenticalFilesErrorHeader, MessageType.Warning);
+            return;
+        }
         
         FileSystemPath deltaFilePath = IsSingleFile 
             ? modifiedFileBrowseResult.SelectedFile.Parent + DeltasModule.SingleFileDeltaPatchName 
