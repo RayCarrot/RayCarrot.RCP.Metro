@@ -194,7 +194,8 @@
                                                                FontStyle="Italic" />
                                                 </StackPanel>
 
-                                                <TextBlock Text="{Binding Path=Description, Mode=OneTime}" />
+                                                <TextBlock Text="{Binding Path=Description, Mode=OneTime}"
+                                                           TextWrapping="Wrap" />
 
                                             </StackPanel>
                                         </DataTemplate>
