@@ -252,9 +252,11 @@ public class ModProcessor
         // Modify every location
         foreach (FileLocationModifications locationModifications in GetLocationModifications())
         {
+            int filesCount = locationModifications.FilesCount;
+
             try
             {
-                locationModifications.ApplyModifications(historyBuilder, gameDir, getOperationProgressCallback(locationModifications.FilesCount));
+                locationModifications.ApplyModifications(historyBuilder, gameDir, getOperationProgressCallback(filesCount));
             }
             catch (Exception ex)
             {
@@ -262,7 +264,7 @@ public class ModProcessor
                 success = false;
             }
 
-            currentProgress += locationModifications.FilesCount;
+            currentProgress += filesCount;
         }
 
         foreach (var archivedLocations in GetLocationModifications().
