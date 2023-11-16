@@ -27,8 +27,6 @@
                   MouseDown="ModsGrid_OnMouseDown">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -76,7 +74,7 @@
                 </Grid>
 
                 <!-- Mods -->
-                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="2">
+                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1">
                     <StackPanel>
                         <ListBox Grid.IsSharedSizeScope="True"
                                  ItemsSource="{Binding Path=Mods, Mode=OneTime}"
