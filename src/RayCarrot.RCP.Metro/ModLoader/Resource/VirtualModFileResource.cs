@@ -16,6 +16,7 @@ public class VirtualModFileResource : IModFileResource
 
     public void CopyToStream(Stream destinationStream)
     {
+        Stream.Position = 0;
         Stream.CopyToEx(destinationStream);
     }
 }
