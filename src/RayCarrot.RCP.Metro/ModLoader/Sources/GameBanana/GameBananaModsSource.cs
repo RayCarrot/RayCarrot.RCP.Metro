@@ -30,14 +30,108 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #endregion
 
+    #region Private Methods
+
+    private List<GameBananaFile> GetValidFiles(GameBananaMod mod, GameBananaFile[] files)
+    {
+        return files.
+            Where(x => mod.ModManagerIntegrations is JObject obj &&
+                       obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
+                       m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
+            ToList();
+    }
+
+    private async Task LoadFeaturedModsAsync(
+        ModLoaderViewModel modLoaderViewModel,
+        HttpClient httpClient,
+        GameInstallation gameInstallation,
+        Dictionary<int, int[]> featuredMods,
+        List<GameBananaDownloadableModViewModel> modViewModels)
+    {
+        List<int> modIds = new();
+
+        foreach (GameBananaGameComponent gameBananaComponent in gameInstallation.GetComponents<GameBananaGameComponent>())
+        {
+            if (featuredMods.TryGetValue(gameBananaComponent.GameId, out int[] ids))
+            {
+                modIds.AddRange(ids);
+            }
+        }
+
+        if (modIds.Count == 0)
+            return;
+
+        // Get data for every mod
+        GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
+            $"https://gamebanana.com/apiv11/Mod/Multi?" +
+            $"_csvRowIds={modIds.JoinItems(",")}&" +
+            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_sVersion,_aPreviewMedia,_nLikeCount,_nViewCount,_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
+
+        // Process every mod
+        foreach (GameBananaMod mod in mods)
+        {
+            // Make sure the mod has files
+            if (mod.Files == null)
+                continue;
+
+            // Get the files which contain valid RCP mods
+            List<GameBananaFile> validFiles = GetValidFiles(mod, mod.Files);
+
+            // Make sure at least one file has mod integration with RCP
+            if (validFiles.Count > 0)
+                modViewModels.Add(new GameBananaDownloadableModViewModel(
+                    downloadableModsSource: this,
+                    modLoaderViewModel: modLoaderViewModel,
+                    gameBananaId: mod.Id,
+                    name: mod.Name ?? String.Empty,
+                    uploaderUserName: mod.Submitter?.Name ?? String.Empty,
+                    uploaderUrl: mod.Submitter?.ProfileUrl,
+                    uploadDate: mod.DateAdded,
+                    description: mod.Description ?? String.Empty,
+                    text: mod.Text ?? String.Empty,
+                    version: mod.Version ?? String.Empty,
+                    previewMedia: mod.PreviewMedia,
+                    likesCount: mod.LikeCount,
+                    downloadsCount: mod.DownloadCount,
+                    viewsCount: mod.ViewCount,
+                    files: validFiles,
+                    isFeatured: true));
+        }
+    }
+
+    #endregion
+
     #region Public Methods
 
     public override async Task<DownloadableModsFeed> LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,
-        HttpClient httpClient, 
+        IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
+        HttpClient httpClient,
         GameInstallation gameInstallation,
         int page)
     {
+        List<GameBananaDownloadableModViewModel> modViewModels = new();
+
+        // Only load features mods on first page
+        if (page == 0)
+        {
+            Logger.Info("Loading featured GameBanana mods");
+
+            Dictionary<int, int[]>? featuredMods = null;
+            try
+            {
+                featuredMods = await JsonHelpers.DeserializeFromURLAsync<Dictionary<int, int[]>>(AppURLs.ModLoader_FeaturedGameBananaMods_URL);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Loading featured GameBanana mods");
+            }
+
+            // Load the featured mods first
+            if (featuredMods != null)
+                await LoadFeaturedModsAsync(modLoaderViewModel, httpClient, gameInstallation, featuredMods, modViewModels);
+        }
+
         Logger.Info("Loading downloadable GameBanana mods");
 
         List<GameBananaRecord> modRecords = new();
@@ -64,21 +158,22 @@ public class GameBananaModsSource : DownloadableModsSource
                 largestPageCount = pageCount;
 
             // Add the mods
-            modRecords.AddRange(subfeed.Records.Where(x => x.HasFiles));
+            modRecords.AddRange(subfeed.Records.Where(x => 
+                x.HasFiles && 
+                !loadedDownloadableMods.Any(m => m is GameBananaDownloadableModViewModel vm && vm.GameBananaId == x.Id) &&
+                !modViewModels.Any(vm => vm.GameBananaId == x.Id)));
         }
 
         Logger.Info("{0} mods found", modRecords.Count);
 
         if (modRecords.Count == 0)
-            return new DownloadableModsFeed(Array.Empty<DownloadableModViewModel>(), largestPageCount);
+            return new DownloadableModsFeed(modViewModels, largestPageCount);
 
         // Get data for every mod
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
             $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
             $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
-
-        List<GameBananaDownloadableModViewModel> viewModels = new();
 
         // Process every mod
         for (int i = 0; i < modRecords.Count; i++)
@@ -91,15 +186,11 @@ public class GameBananaModsSource : DownloadableModsSource
                 continue;
 
             // Get the files which contain valid RCP mods
-            List<GameBananaFile> validFiles = mod.Files.
-                Where(x => mod.ModManagerIntegrations is JObject obj &&
-                           obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
-                           m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
-                ToList();
+            List<GameBananaFile> validFiles = GetValidFiles(mod, mod.Files);
 
             // Make sure at least one file has mod integration with RCP
             if (validFiles.Count > 0)
-                viewModels.Add(new GameBananaDownloadableModViewModel(
+                modViewModels.Add(new GameBananaDownloadableModViewModel(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
                     gameBananaId: modRecord.Id,
@@ -114,12 +205,13 @@ public class GameBananaModsSource : DownloadableModsSource
                     likesCount: modRecord.LikeCount,
                     downloadsCount: mod.DownloadCount,
                     viewsCount: modRecord.ViewCount,
-                    files: validFiles));
+                    files: validFiles,
+                    isFeatured: false));
         }
 
         Logger.Info("Finished loading mods");
 
-        return new DownloadableModsFeed(viewModels, largestPageCount);
+        return new DownloadableModsFeed(modViewModels, largestPageCount);
     }
 
     public override ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo)

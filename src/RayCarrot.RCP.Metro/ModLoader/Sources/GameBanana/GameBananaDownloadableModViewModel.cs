@@ -24,7 +24,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         int likesCount, 
         int downloadsCount, 
         int viewsCount, 
-        IEnumerable<GameBananaFile> files)
+        IEnumerable<GameBananaFile> files,
+        bool isFeatured)
     {
         _downloadableModsSource = downloadableModsSource;
         _modLoaderViewModel = modLoaderViewModel;
@@ -83,6 +84,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
                 FirstOrDefault(mod => mod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == x.Id)
         }));
 
+        IsFeatured = isFeatured;
+
         HasViewed = Services.Data.ModLoader_ViewedMods.TryGetValue(downloadableModsSource.Id, out List<ViewedMod> viewedMod) &&
                     viewedMod.Any(x => x.Id == GameBananaId.ToString());
 
@@ -137,6 +140,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public int ViewsCount { get; }
 
     public ObservableCollection<GameBananaFileViewModel> Files { get; }
+
+    public bool IsFeatured { get; set; }
 
     public bool HasViewed { get; set; }
 

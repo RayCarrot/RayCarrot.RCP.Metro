@@ -43,6 +43,7 @@ public abstract class DownloadableModsSource
 
     public abstract Task<DownloadableModsFeed> LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,
+        IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
         HttpClient httpClient,
         GameInstallation gameInstallation,
         int page);

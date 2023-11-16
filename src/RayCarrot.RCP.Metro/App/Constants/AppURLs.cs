@@ -218,6 +218,15 @@ public static class AppURLs
 
     #endregion
 
+    #region Mod Loader
+
+    /// <summary>
+    /// The GameBanana featured mods list URL
+    /// </summary>
+    public const string ModLoader_FeaturedGameBananaMods_URL = RCPBaseUrl + "featured_gb_mods.jsonc";
+
+    #endregion
+
     #region Contact
 
     /// <summary>

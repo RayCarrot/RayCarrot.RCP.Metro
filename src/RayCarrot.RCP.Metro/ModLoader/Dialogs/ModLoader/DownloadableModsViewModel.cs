@@ -86,7 +86,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         foreach (DownloadableModsSourceViewModel modsSource in DownloadableModsSources)
         {
-            DownloadableModsFeed feed = await modsSource.Source.LoadDownloadableModsAsync(_modLoaderViewModel, _httpClient, GameInstallation, _currentPage);
+            DownloadableModsFeed feed = await modsSource.Source.LoadDownloadableModsAsync(_modLoaderViewModel, Mods, _httpClient, GameInstallation, _currentPage);
             Mods.AddRange(feed.DownloadableMods);
             _pageCount = feed.PageCount;
         }
