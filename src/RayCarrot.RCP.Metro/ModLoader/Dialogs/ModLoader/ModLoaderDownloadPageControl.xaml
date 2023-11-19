@@ -74,7 +74,7 @@
                 </Grid>
 
                 <!-- Mods -->
-                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1">
+                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1" VerticalAlignment="Top">
                     <StackPanel>
                         <ListBox Grid.IsSharedSizeScope="True"
                                  ItemsSource="{Binding Path=Mods, Mode=OneTime}"
