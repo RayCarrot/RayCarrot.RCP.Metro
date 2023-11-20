@@ -45,7 +45,9 @@
                                       Margin="0 0 8 0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" GameIconSize="Smallest" />
+                                    <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" 
+                                                   GameIconSize="Smallest"
+                                                   Margin="0 0 0 2" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
