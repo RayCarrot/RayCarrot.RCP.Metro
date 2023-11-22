@@ -375,7 +375,7 @@
                                       Margin="0 0 8 0" />
 
                         <Button rcp:Icon.Kind="ExpandAllOutline"
-                                ToolTip="{Resx ModLoader_ExpandModifications﻿}"
+                                ToolTip="{Resx ModLoader_ExpandModifications}"
                                 Command="{Binding Path=ModifiedFiles.ExpandAllCommand, Mode=OneTime}"
                                 Visibility="{Binding Path=ShowModifiedFilesAsTree, Converter={rcp:BooleanToVisibilityConverter}}"
                                 Style="{StaticResource RCP.Styles.Button.Flat}" />
