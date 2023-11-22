@@ -16,7 +16,10 @@ public class VirtualModFileResource : IModFileResource
 
     public void CopyToStream(Stream destinationStream)
     {
-        Stream.Position = 0;
+        // We always want to copy from the start, so attempt to seek to the beginning of the stream
+        if (Stream.CanSeek)
+            Stream.Position = 0;
+
         Stream.CopyToEx(destinationStream);
     }
 }

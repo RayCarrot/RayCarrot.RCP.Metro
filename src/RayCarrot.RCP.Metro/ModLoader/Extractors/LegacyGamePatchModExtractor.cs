@@ -59,6 +59,7 @@ public class LegacyGamePatchModExtractor : ModExtractor
         // Write removed files, if any
         if (patch.RemovedFiles.Any())
         {
+            Directory.CreateDirectory(outputPath + filesModule.Id);
             File.WriteAllLines(outputPath + filesModule.Id + FilesModule.RemovedFilesFileName, patch.RemovedFiles.ToArray(x => x.FullFilePath));
         }
 
