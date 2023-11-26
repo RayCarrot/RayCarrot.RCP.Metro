@@ -62,6 +62,7 @@ Other changes:
 • The option to run a game as admin is now always visible in the drop-down
 • The option to run a game as admin is no longer available for emulated games, such as MS-DOS games
 • The MS-DOS games now launch using the exe rather than a separate bat file
+• Using recommended settings for a DOSBox game now sets the fullscreen resolution to desktop
 • Downloading Rayman Demo (1995/12/07) now includes the music
 • Uninstalling previously installable fan games no longer removes their save data
 • Validating a game location now includes more path checks and shows which paths were missing when validation fails

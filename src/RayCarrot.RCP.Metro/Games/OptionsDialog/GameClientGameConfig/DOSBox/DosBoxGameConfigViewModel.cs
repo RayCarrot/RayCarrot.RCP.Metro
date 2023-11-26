@@ -482,6 +482,7 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
         MemorySize = 30;
         Frameskip = 0;
         SelectedOutput = "default";
+        FullscreenResolution = "desktop";
         SelectedCycles = "20000";
 
         Logger.Trace("Recommended DosBox settings were applied");
