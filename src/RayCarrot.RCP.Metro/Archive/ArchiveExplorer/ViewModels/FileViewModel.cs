@@ -61,10 +61,6 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
     #endregion
 
-    #region Private Fields
-
-    #endregion
-
     #region Public Properties
         
     /// <summary>
