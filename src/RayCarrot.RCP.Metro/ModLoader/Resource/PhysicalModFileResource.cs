@@ -15,7 +15,9 @@ public class PhysicalModFileResource : IModFileResource
 
     public void CopyToStream(Stream destinationStream)
     {
-        using Stream fileStream = File.OpenRead(FilePath);
+        // The \\?\ part is a temp fix for dealing with long file paths, an issue that appears with Rayman Legends for many mods
+        // This should be removed when we migrate to .NET 8 since that supports long file paths
+        using Stream fileStream = File.OpenRead($@"\\?\{FilePath}");
         fileStream.CopyToEx(destinationStream);
     }
 }
