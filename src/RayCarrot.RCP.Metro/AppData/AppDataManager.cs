@@ -748,20 +748,6 @@ public class AppDataManager
             }
         }
 
-        if (lastVersion < new Version(14, 0, 0, 1))
-        {
-            // TODO-UPDATE: Remove this when the beta is finished
-            await Services.MessageUI.DisplayMessageAsync("""
-                Welcome to the Rayman Control Panel Anniversary Update (14.0) beta and thank you for helping out with testing it!
-                
-                Due to the scope of this update I'm expecting to keep this in beta for a while as I gather feedback and keep making refinements. I would very much appreciate any feedback you can give and I have made a survey you can find a link to in the title bar during the beta.
-                                
-                If you come across any bugs, or something which is unclear or looks wrong, then please let me know no matter how small or insignificant it might seem! You can contact me through the survey or contact links in the about page.
-                
-                NOTE: If you want to downgrade to a version prior to 14.0 you have to uninstall this version (in the about page) or manually remove the app data folder before doing so.
-                """, "14.0 Beta", MessageType.Generic);
-        }
-
         if (lastVersion < new Version(14, 0, 0, 5))
         {
             // The binary file editor path is no longer stored in its own value

@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using PropertyChanged;
+﻿using PropertyChanged;
 using RayCarrot.RCP.Metro.Pages.About;
 using RayCarrot.RCP.Metro.Pages.Debug;
 using RayCarrot.RCP.Metro.Pages.Games;
@@ -36,14 +35,9 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
         SelectedPageChanged += MainWindowViewModel_SelectedPageChanged;
 
         SelectedPage = AppPage.Games;
-
-        OpenBetaSurveyCommand = new RelayCommand(() => App.OpenUrl("https://forms.gle/cwDPDmFyhPSXLi4q6"));
     }
 
     private AppPage _selectedPage = AppPage.None;
-
-    // TODO-UPDATE: Remove this when the beta is finished
-    public ICommand OpenBetaSurveyCommand { get; }
 
     public AppViewModel App { get; } // TODO: Remove this from here
     public GamesPageViewModel GamesPage { get; }
