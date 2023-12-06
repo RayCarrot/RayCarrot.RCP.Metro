@@ -49,10 +49,10 @@ public class UbiArtLocalizationModule : ModModule
         foreach (FileSystemPath filePath in Directory.GetFiles(modulePath, "*.txt", SearchOption.TopDirectoryOnly))
         {
             string fileName = filePath.RemoveFileExtension().Name;
-            int localeIndex = Locales.FindItemIndex(x => x.Equals(fileName, StringComparison.OrdinalIgnoreCase));
+            int localeId = Locales.FindItemIndex(x => x.Equals(fileName, StringComparison.OrdinalIgnoreCase));
 
-            if (localeIndex != -1)
-                localeFiles.Add(new UbiArtLocalizationFilePatch.LocaleFile(localeIndex, filePath));
+            if (localeId != -1)
+                localeFiles.Add(new UbiArtLocalizationFilePatch.LocaleFile(localeId, filePath));
         }
 
         if (localeFiles.Count == 0)

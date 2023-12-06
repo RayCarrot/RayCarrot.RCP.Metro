@@ -28,11 +28,12 @@ public class UbiArtLocalizationFilePatch : IFilePatch
 
         foreach (LocaleFile localeFile in LocaleFiles)
         {
-            if (localeFile.Index >= loc.Strings.Length)
+            List<UbiArtKeyObjValuePair<int, String8>>? stringTable = loc.Strings.FirstOrDefault(x => x.Key == localeFile.Id)?.Value.ToList();
+            
+            if (stringTable == null)
                 continue;
 
             string[] lines = File.ReadAllLines(localeFile.FilePath);
-            List<UbiArtKeyObjValuePair<int, String8>> stringTable = loc.Strings[localeFile.Index].Value.ToList();
 
             foreach (string line in lines)
             {
@@ -64,12 +65,12 @@ public class UbiArtLocalizationFilePatch : IFilePatch
                 }
             }
 
-            loc.Strings[localeFile.Index].Value = stringTable.ToArray();
+            loc.Strings.First(x => x.Key == localeFile.Id).Value = stringTable.ToArray();
         }
 
         context.WriteStreamData(stream, loc, name: Path.FilePath, endian: Endian.Big, mode: VirtualFileMode.DoNotClose);
         stream.TrimEnd();
     }
 
-    public record LocaleFile(int Index, FileSystemPath FilePath);
+    public record LocaleFile(int Id, FileSystemPath FilePath);
 }
