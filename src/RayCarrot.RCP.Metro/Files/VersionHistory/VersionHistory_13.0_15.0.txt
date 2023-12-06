@@ -1,4 +1,4 @@
-﻿-----   Version 14.0.0 - TBA, 2023   -----
+﻿-----   Version 14.0.0 - December 13, 2023   -----
 • Multiple installations of the same game can now be added
 • Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
