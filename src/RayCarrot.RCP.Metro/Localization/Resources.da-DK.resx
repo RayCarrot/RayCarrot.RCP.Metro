@@ -5051,4 +5051,269 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Home_ShowRecentGames" xml:space="preserve">
     <value>Vis seneste spil</value>
   </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Spilpatch (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Spilmod</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>Spilmod (GameBanana 1-kliksinstallation)</value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>Arkivfilen er i øjeblikket åben via de følgende programmer og kan derfor ikke ompakkes. Luk programmerne og prøv igen.
+
+{0}</value>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>Modloader</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>Håndtér mods</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
+    <value>Opret mod</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
+    <value>[0} mod blev anvendt</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} mods blev anvendt</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
+    <value>{0} modopdatering tilgængelig</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableMultiple" xml:space="preserve">
+    <value>{0} modopdateringer tilgængelige</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Bibliotek</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Installerede mods</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>Mods kan installeres for at modificere bestemte dele af spillet. De fleste mods fungerer ved at erstatte bestemte spilfiler. Moddet tager ikke effekt, indtil at det er blevet aktiveret, og indtil at ændringerne er blevet anvendt. Dette gør, at mods nemt kan slås til og fra. Det anbefales ikke at manuelt ændre de spilfiler, som et mod modificerer, da det kan resultere i, at nogle ændringer ikke fungerer.</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>Ingen mods installeret</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>Installér fra fil</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>Søg efter opdateringer</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>Se alle ændringer</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>Vis filer som en liste</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>Vis filer som et træ</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>Udvid alle</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>Sti</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>Overskrevne mods</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesEmpty" xml:space="preserve">
+    <value>Installér et mod til at modificere spilfilerne</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesHasInvalidLocation" xml:space="preserve">
+    <value>Denne fil ignoreres, når mods bliver anvendt, da den indeholdene arkivfil for dette spil ikke blev fundet</value>
+  </data>
+  <data name="ModLoader_OpenModLocation" xml:space="preserve">
+    <value>Åbn placering</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>Afinstallér</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>Opdatér</value>
+  </data>
+  <data name="ModLoader_DialogTitle" xml:space="preserve">
+    <value>Modloader - {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadableModsInfo" xml:space="preserve">
+    <value>Disse mods er blevet uploadet til GameBanana af adskillige brugere</value>
+  </data>
+  <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
+    <value>Genindlæs tilgængelige mods</value>
+  </data>
+  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
+    <value>Indlæs flere</value>
+  </data>
+  <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
+    <value>Ingen mods fundet</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesStatus" xml:space="preserve">
+    <value>Migrerer patches til mods</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at migrere patches til mods</value>
+  </data>
+  <data name="ModLoader_ReadingModVersionError" xml:space="preserve">
+    <value>Det valgte mod blev oprettet ved hjælp af en nyere version af Rayman Control Panel, og kan derfor ikke læses</value>
+  </data>
+  <data name="ModLoader_ReadingModError" xml:space="preserve">
+    <value>Det valgte mod kunne ikke læses</value>
+  </data>
+  <data name="ModLoader_ReadingModsError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indlæse mods</value>
+  </data>
+  <data name="ModLoader_SecurityWarning" xml:space="preserve">
+    <value>Moddet {0} modificerer følsomme spilfiler, som f.eks eksekverbare filer. Installér kun dette mod, hvis du har tillid til forfatteren. Fortsæt?</value>
+  </data>
+  <data name="ModLoader_InstallStatus" xml:space="preserve">
+    <value>Udpakker mod {0}</value>
+  </data>
+  <data name="ModLoader_InstallError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at installere moddet fra {0}</value>
+  </data>
+  <data name="ModLoader_InstallInvalidTargetError" xml:space="preserve">
+    <value>Moddet {0} kan ikke installeres til dette spil, da det ikke er én af de målrettede spil:
+
+{1}</value>
+  </data>
+  <data name="ModLoader_SelectInstallTargetTitle" xml:space="preserve">
+    <value>Vælg spil, som moddet skal installeres til</value>
+  </data>
+  <data name="ModLoader_WriteAccessDenied" xml:space="preserve">
+    <value>Skriveadgang er ikke tilladt til spilinstallationen. Prøv at genstarte som administrator. Hvis dette spil er blevet downloadet fra Microsoft Store, kan skriveadgang ikke opnås uden at spillet først er blevet installeret som en pakke via udviklertilstand.</value>
+  </data>
+  <data name="ModLoader_ReadLibraryVersionError" xml:space="preserve">
+    <value>Spilmodsbiblioteket blev oprettet med en nyere version af Rayman Control Panel og kan derfor ikke læses</value>
+  </data>
+  <data name="ModLoader_ReadLibraryError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at læse modbiblioteket</value>
+  </data>
+  <data name="ModLoader_AddedFilesInfo" xml:space="preserve">
+    <value>{0} tilføjede filer</value>
+  </data>
+  <data name="ModLoader_RemovedFilesInfo" xml:space="preserve">
+    <value>{0} fjernede filer</value>
+  </data>
+  <data name="ModLoader_PatchedFilesInfo" xml:space="preserve">
+    <value>{0} patchede filer</value>
+  </data>
+  <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
+    <value>{0} ugemte filer</value>
+  </data>
+  <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
+    <value>Vælg mods, der skal installeres</value>
+  </data>
+  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
+    <value>Downloader mod {0}</value>
+  </data>
+  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
+    <value>Udpakker mod {0}</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at downloade og installere moddet</value>
+  </data>
+  <data name="ModLoader_ApplyStatus" xml:space="preserve">
+    <value>Anvender mods</value>
+  </data>
+  <data name="ModLoader_ApplySuccess" xml:space="preserve">
+    <value>Alle mods blev anvendt med succes</value>
+  </data>
+  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
+    <value>Anvendelse af mods gennemført. Nogle filer kunne ikke modificeres.</value>
+  </data>
+  <data name="ModLoader_ApplyError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at anvende de valgte mods. Ikke alle ændringer blev anvendt, og derfor kan noget data være gået tabt. Sørg for, at ingen af spilfilerne er åbne, mens at mods anvendes.</value>
+  </data>
+  <data name="ModLoader_ModInfo_InstallSource" xml:space="preserve">
+    <value>Installationskilde:</value>
+  </data>
+  <data name="ModLoader_LocalInstallSource" xml:space="preserve">
+    <value>Lokal</value>
+  </data>
+  <data name="ModLoader_ModInfo_Modules" xml:space="preserve">
+    <value>Moduler:</value>
+  </data>
+  <data name="ModLoader_ModInfo_PatchedFiles" xml:space="preserve">
+    <value>Patchede filer:</value>
+  </data>
+  <data name="ModLoader_UnsupportedModulesInfo" xml:space="preserve">
+    <value>De følgende moduler, som bruges af dette mod, understøttes ikke og kan derfor ikke anvendes: {0}</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingInstall" xml:space="preserve">
+    <value>Afventer installation</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingUninstall" xml:space="preserve">
+    <value>Afventer afinstallation</value>
+  </data>
+  <data name="ModLoader_ExtractingModStatus" xml:space="preserve">
+    <value>Udpakker modindhold</value>
+  </data>
+  <data name="ModLoader_ExtractingModError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at udpakke modinholdet</value>
+  </data>
+  <data name="ModLoader_ExtractingModSuccess" xml:space="preserve">
+    <value>Modindholdet blev udpakket med succes</value>
+  </data>
+  <data name="ModLoader_UpdateError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at opdatere moddet</value>
+  </data>
+  <data name="ModLoader_UpdateState_UnableToCheckLocal" xml:space="preserve">
+    <value>Kunne ikke søge efter opdateringer til lokalt installerede mods</value>
+  </data>
+  <data name="ModLoader_UpdateState_Checking" xml:space="preserve">
+    <value>Søger efter opdateringer</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchHeader" xml:space="preserve">
+    <value>Konvertér patch (.gp) til mod</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchInfo" xml:space="preserve">
+    <value>Fra version 14.0 og frem er patches blevet erstattet med mods. Du kan stadig bruge patches (.gp-filer), men det er ikke muligt at oprette nye eller at redigere nogle, der allerede eksisterer. Her kan du konvertere en patch til et mod, så den fortsat kan opdateres.</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatch" xml:space="preserve">
+    <value>Konvertér</value>
+  </data>
+  <data name="ModCreator_CreateHeader" xml:space="preserve">
+    <value>Opret nyt mod</value>
+  </data>
+  <data name="ModCreator_ModDocumentation" xml:space="preserve">
+    <value>Moddokumentation</value>
+  </data>
+  <data name="ModCreator_Step1" xml:space="preserve">
+    <value>1. Vælg moduler</value>
+  </data>
+  <data name="ModCreator_Step1Info" xml:space="preserve">
+    <value>Moduler bestemmer, hvordan spillet bliver modificeret af moddet. Erstatter det bare filer, eller udfører det nogle specifikke patches, som er afhængige af spillet? De tilgængelige moduler er anderledes fra spil til spil. Du kan godt bruge flere moduler i samme mod.</value>
+  </data>
+  <data name="ModCreator_Step2" xml:space="preserve">
+    <value>2. Opret modmappe</value>
+  </data>
+  <data name="ModCreator_Step2Info" xml:space="preserve">
+    <value>Vælg en ny mappe, som moddet skal oprettes i.</value>
+  </data>
+  <data name="ModCreator_Create" xml:space="preserve">
+    <value>Opret mod</value>
+  </data>
+  <data name="ModCreator_Step3" xml:space="preserve">
+    <value>3. Redigér metadataen, tilføj et brugerdefineret miniaturebillede, og tilføj modulindhold</value>
+  </data>
+  <data name="ModCreator_Step3Info" xml:space="preserve">
+    <value>Det anbefales at bruge et tekstredigeringsprogram der understøtter JSON til at redigere metadataen, som f.eks VS Code eller Notepad++. Et miniaturebillede kan tilføjes ved at tilføje en fil ved navnet thumbnail.png. Den anbefalede størrelse er 128x128.</value>
+  </data>
+  <data name="ModCreator_Step4" xml:space="preserve">
+    <value>4. Udgiv moddet</value>
+  </data>
 </root>

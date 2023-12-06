@@ -5161,7 +5161,7 @@ gameClientName</comment>
     <value>Ubisoft Connect</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Game ID:</value>
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Open in Ubisoft Store</value>
@@ -5420,7 +5420,7 @@ modsCount</comment>
     <value>Select mods to install</value>
   </data>
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
-    <value>Mod archives</value>
+    <value>Mod</value>
   </data>
   <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
     <value>Downloading mod {0}</value>

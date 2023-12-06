@@ -486,7 +486,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
             Title = Resources.ModLoader_InstallSelectionTitle,
-            // TODO-LOC: Change ModLoader_ModFileTypeFilterName to say "Mod"
             ExtensionFilter = new FileFilterItem(_modExtractors.Select(x => x.FileExtension), Resources.ModLoader_ModFileTypeFilterName).StringRepresentation,
             MultiSelection = true
         });

@@ -4762,7 +4762,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game ID:.
+        ///   Looks up a localized string similar to Ubisoft Connect ID:.
         /// </summary>
         public static string GameInfo_UbisoftGameId {
             get {
@@ -8605,7 +8605,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mod archives.
+        ///   Looks up a localized string similar to Mod.
         /// </summary>
         public static string ModLoader_ModFileTypeFilterName {
             get {

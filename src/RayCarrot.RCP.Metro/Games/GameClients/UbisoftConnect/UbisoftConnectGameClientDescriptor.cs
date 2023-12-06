@@ -19,7 +19,6 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
     private static IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) => new[]
     {
         new DuoGridItemViewModel(
-            // TODO-LOC: Change to "Ubisoft Connect ID:"
             header: new ResourceLocString(nameof(Resources.GameInfo_UbisoftGameId)),
             text: gameInstallation.GetRequiredComponent<UbisoftConnectGameClientComponent>().GameId,
             minUserLevel: UserLevel.Advanced)
