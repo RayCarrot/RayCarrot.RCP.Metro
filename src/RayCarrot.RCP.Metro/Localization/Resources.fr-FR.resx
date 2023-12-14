@@ -4945,4 +4945,604 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Platform_Gbc" xml:space="preserve">
     <value>Game Boy Color</value>
   </data>
+  <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
+    <value>Mini-jeux Rayman</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Edutainment (Quiz)</value>
+  </data>
+  <data name="RaymanRavingRabbidsActivityCenter_Win32_Title" xml:space="preserve">
+    <value>CD d'activité Rayman contre les Lapins Crétins</value>
+  </data>
+  <data name="Game_Rayman1Minigames_Title" xml:space="preserve">
+    <value>Mini-jeux Rayman</value>
+  </data>
+  <data name="Game_RaymanEdutainment_Title" xml:space="preserve">
+    <value>Rayman Edutainment</value>
+  </data>
+  <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
+    <value>CD d'activité Rayman contre les Lapins Crétins</value>
+  </data>
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
+    <value>Trouver des ROMs de jeux et des disques depuis le dossier</value>
+  </data>
+  <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
+    <value>Sélectionnez un dossier pour chercher des ROMs de jeux et des disques à l'intérieur</value>
+  </data>
+  <data name="GameFileFinder_Error" xml:space="preserve">
+    <value>Une erreur est survenue lors de la recherche de fichier de jeux</value>
+  </data>
+  <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
+    <value>ROMs de jeux et disques trouvés</value>
+  </data>
+  <data name="GameFileFinder_NoResults" xml:space="preserve">
+    <value>Aucune nouvelle ROM de jeu ou disque ont été trouvés
+
+</value>
+  </data>
+  <data name="GameFileFinder_ResultHeader" xml:space="preserve">
+    <value>Résultat de la recherche de fichiers de jeu</value>
+  </data>
+  <data name="GameSelection_RefreshError" xml:space="preserve">
+    <value>Une erreur est survenue pendant le chargement des jeux</value>
+  </data>
+  <data name="Home_ShowMoreNews" xml:space="preserve">
+    <value>Voir plus</value>
+  </data>
+  <data name="Settings_LoadAppNews" xml:space="preserve">
+    <value>Charge les dernières nouvelles de l'application dans l'accueil</value>
+  </data>
+  <data name="AnniversaryUpdate_Title" xml:space="preserve">
+    <value>Bienvenue dans la mise à jour anniversaire</value>
+  </data>
+  <data name="AnniversaryUpdate_Header" xml:space="preserve">
+    <value>Bienvenue dans la mise à jour anniversaire !</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
+    <value>Page des jeux redesignée</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
+    <value>La page des jeux a été redesignée afin de pouvoir prendre en charge de nouvelles fonctionnalités telles qu'autoriser plusieurs installations d'un même jeu ou des jeux console émulés. Chaque jeu a maintenant une zone dédiée à droite de la fenêtre où vous pouvez voir les actions communes telles que les fenêtres du Patcher ou de l'Archive Explorer.</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
+    <value>Clients de jeu/émulateurs</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
+    <value>la prise en charge des clients de jeu/émulateurs a été ajoutée avec cette mise à jour. Ces derniers peuvent être ajoutés via une option et être démarrés dans la page jeux ajoutés. Les clients de jeu tel que Steam sont optionnels là où les jeux console demandant un émulateur sont obligatoires pour être joués. Si un émulateur n'est pas dans la liste des émulateurs pris en charge, il peut être ajouté comme un émulateur personnalisé. La progression de jeu ne pourra pas être affichée via cette méthode.</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
+    <value>La synchronisation de textures a été déplacée</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
+    <value>L'outil de syncronisation de textures a été remplacé par un bouton dans l'onglet Archive Explorer pour un accès plus facile. Comme avant, vous pouvez aussi activer une option pour que les textures soient automatiquement compressées quand un archive est recompilée</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
+    <value>1.12 (Non protégée)</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Ouvrir dans l'Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>ID utilisateur</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Traduction du programme en espagnol (Espagne)</value>
+  </data>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Dernière modification :</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Synchroniser les textures</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Niveaux bonus Gamecube complétés</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Coup de poing vers le bas</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Contrôle du poing</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Traduction du programme en danois (Danemark)</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Montrer les jeux récents</value>
+  </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Patch de jeu (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Mod de jeu</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>Mod de jeu (installation en 1 clic de Gamebanana) </value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>Le fichier d'archive est en cours d'utilisation par les programmes suivants et ne peut pas être recompilé. Essayez de fermer ces programmes et recommencez.
+
+{0}</value>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>Mod Loader</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>Gérer les mods</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
+    <value>Créer un mod</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
+    <value>{0} mod appliqué</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} mods appliqué</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
+    <value>{0} mise à jour de mod disponible</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableMultiple" xml:space="preserve">
+    <value>{0} mises à jour de mod disponible</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Librairie</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Mods installés</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>Des mods peuvent être installés afin de modifier certaines parties d'un jeu. La majorité des mods marchent en remplaçant certains fichiers du jeu. Le mod ne prendra pas effet tant qu'il n'est pas activé et que ses changement soient appliqués, ce qui permet de facilement les activer et désactiver. Il n'est pas recommandé de modifier manuellement les fichier de vos jeux qu'un mod modifie au risque de perdre certains changements.</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>Pas de mods installés</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>Installer depuis un fichier</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>Vérifier les mises à jour</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>Voir tous les changements</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>Montrer les fichiers en tant que liste</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>Montrer les fichiers en tant qu'arbre</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>Tout dérouler</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>Chemin</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>Mod écrasés</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesEmpty" xml:space="preserve">
+    <value>Installer un mod pour modifier les fichiers du jeu</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesHasInvalidLocation" xml:space="preserve">
+    <value>Ce fichier sera ignoré en appliquant les mods car le fichier d'archive n'a pas été trouvé pour ce jeu</value>
+  </data>
+  <data name="ModLoader_OpenModLocation" xml:space="preserve">
+    <value>Ouvrir l'emplacement</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>Désinstaller</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="ModLoader_DialogTitle" xml:space="preserve">
+    <value>Mod Loader - {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadableModsInfo" xml:space="preserve">
+    <value>Ces mods ont été mis en ligne sur Gamebanana par plusieurs utilisateurs</value>
+  </data>
+  <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
+    <value>Rafraîchir la liste des mods disponibles</value>
+  </data>
+  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
+    <value>Charger plus</value>
+  </data>
+  <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
+    <value>Pas de mods trouvés</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesStatus" xml:space="preserve">
+    <value>Migrer les patchs en mods</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesError" xml:space="preserve">
+    <value>Une erreur est survenue lors de la migration des patchs en mods</value>
+  </data>
+  <data name="ModLoader_ReadingModVersionError" xml:space="preserve">
+    <value>Le mod sélectionné a été créé sur une version plus récente du Rayman Control Panel et ne peut pas être lu</value>
+  </data>
+  <data name="ModLoader_ReadingModError" xml:space="preserve">
+    <value>Le mod sélectionné n'a pas pu être lu</value>
+  </data>
+  <data name="ModLoader_ReadingModsError" xml:space="preserve">
+    <value>Une erreur est survenue lors du chargement des mods</value>
+  </data>
+  <data name="ModLoader_SecurityWarning" xml:space="preserve">
+    <value>Le mod {0} modifie des fichiers sensibles du jeu, tel que son exécutable. Installez ce mod uniquement si vous faites confiance à l'auteur. Continuer ?</value>
+  </data>
+  <data name="ModLoader_InstallStatus" xml:space="preserve">
+    <value>Extraction du mod {0}</value>
+  </data>
+  <data name="ModLoader_InstallError" xml:space="preserve">
+    <value>Une erreur est survenue en installant le mod depuis {0}</value>
+  </data>
+  <data name="ModLoader_InstallInvalidTargetError" xml:space="preserve">
+    <value>Le mod {0} ne peut pas être installé sur ce jeu car il n'est pas une des cibles du jeu :
+
+{1}</value>
+  </data>
+  <data name="ModLoader_SelectInstallTargetTitle" xml:space="preserve">
+    <value>Sélectionnez le jeu où installer le mod</value>
+  </data>
+  <data name="ModLoader_WriteAccessDenied" xml:space="preserve">
+    <value>L'accès à l'écriture n'est pas autorisé pour l'installation du jeu. Essayez de redémarrer l'application en tant qu'administrateur. Si le jeu est téléchargé via le Microsoft Store alors il n'est pas possible d'accorder l'accès en écriture sans installer le jeu en tant que paquet via le mode développeur.</value>
+  </data>
+  <data name="ModLoader_ReadLibraryVersionError" xml:space="preserve">
+    <value>La librairie de mods de jeux a été créée avec une nouvelle version du Rayman Control Panel et ne peut pas être lue</value>
+  </data>
+  <data name="ModLoader_ReadLibraryError" xml:space="preserve">
+    <value>Une erreur est survenue en lisant la librairie de mods</value>
+  </data>
+  <data name="ModLoader_AddedFilesInfo" xml:space="preserve">
+    <value>{0} fichiers ajoutés</value>
+  </data>
+  <data name="ModLoader_RemovedFilesInfo" xml:space="preserve">
+    <value>{0} fichiers retirés</value>
+  </data>
+  <data name="ModLoader_PatchedFilesInfo" xml:space="preserve">
+    <value>{0} fichiers patchés</value>
+  </data>
+  <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
+    <value>{0} mods non sauvegardés</value>
+  </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>Réarrangement des mods non sauvegardés</value>
+  </data>
+  <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
+    <value>Sélectionnez les mods à installer</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
+    <value>Téléchargement du mod {0}</value>
+  </data>
+  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
+    <value>Extraction du mod {0}</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>Une erreur est survenue lors du téléchargement et de l'installation du mod</value>
+  </data>
+  <data name="ModLoader_ApplyStatus" xml:space="preserve">
+    <value>Application du patch</value>
+  </data>
+  <data name="ModLoader_ApplySuccess" xml:space="preserve">
+    <value>Les mods ont été appliqués avec succès</value>
+  </data>
+  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
+    <value>Les mods ont été appliqués. Certains fichiers n'ont pas pu être modifiés</value>
+  </data>
+  <data name="ModLoader_ApplyError" xml:space="preserve">
+    <value>Une erreur est survenue lors de l'application des mods. Tous les changements n'ont pas pu être appliqués et certaines données ont peut-être été perdues. Assurez-vous de ne pas avoir de fichiers du jeu ouvert pendant que vous appliquez des mods.</value>
+  </data>
+  <data name="ModLoader_ModInfo_InstallSource" xml:space="preserve">
+    <value>Source d'installation :</value>
+  </data>
+  <data name="ModLoader_LocalInstallSource" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="ModLoader_ModInfo_Modules" xml:space="preserve">
+    <value>Modules :</value>
+  </data>
+  <data name="ModLoader_ModInfo_PatchedFiles" xml:space="preserve">
+    <value>Fichiers patchés :</value>
+  </data>
+  <data name="ModLoader_UnsupportedModulesInfo" xml:space="preserve">
+    <value>Les modules suivants ne sont pas pris en charge et ne seront pas installés : {0}</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingInstall" xml:space="preserve">
+    <value>Installation en attente</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingUninstall" xml:space="preserve">
+    <value>Désinstallation en attente</value>
+  </data>
+  <data name="ModLoader_ExtractingModStatus" xml:space="preserve">
+    <value>Extraction du contenu du mod</value>
+  </data>
+  <data name="ModLoader_ExtractingModError" xml:space="preserve">
+    <value>Une erreur est survenue lors de l'extraction du contenu des mods</value>
+  </data>
+  <data name="ModLoader_ExtractingModSuccess" xml:space="preserve">
+    <value>Le contenu des mods a été extrait avec succès</value>
+  </data>
+  <data name="ModLoader_UpdateError" xml:space="preserve">
+    <value>Une erreur est survenue lors de la mise à jour du mod</value>
+  </data>
+  <data name="ModLoader_UpdateState_UnableToCheckLocal" xml:space="preserve">
+    <value>Impossible de rechercher des mises à jour pour les mods installés localement</value>
+  </data>
+  <data name="ModLoader_UpdateState_Checking" xml:space="preserve">
+    <value>Recherche de mises à jour</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchHeader" xml:space="preserve">
+    <value>Convertir un patch (.gp) en mod</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchInfo" xml:space="preserve">
+    <value>A partir de la version 1.4.0, les patchs ont été remplacés par les mods. Vous pouvez toujours utiliser des patchs (fichiers en .gp) mais vous ne pourrez plus en créer ou modifier des patchs existants. Vous pouvez convertir un patch en mod ici afin qu'il puisse continuer à être mis à jour.</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatch" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="ModCreator_CreateHeader" xml:space="preserve">
+    <value>Créer un nouveau mod</value>
+  </data>
+  <data name="ModCreator_ModDocumentation" xml:space="preserve">
+    <value>Documentation du mod</value>
+  </data>
+  <data name="ModCreator_Step1" xml:space="preserve">
+    <value>1. Sélectionner les modules</value>
+  </data>
+  <data name="ModCreator_Step1Info" xml:space="preserve">
+    <value>Les modules déterminentn comment le mod va modifier le jeu. Est-ce que ce mod va simplement remplacer des fichiers ou faire des patchs plus spécifiques sur le jeu ? Les modules disponibles varient de jeu en jeu. Vous pouvez utiliser plusieurs modules à l'intérieur du même mod.</value>
+  </data>
+  <data name="ModCreator_Step2" xml:space="preserve">
+    <value>2. Créer un dossier de mod</value>
+  </data>
+  <data name="ModCreator_Step2Info" xml:space="preserve">
+    <value>Sélectionner un nouveau dossier où le mod sera créé.</value>
+  </data>
+  <data name="ModCreator_Create" xml:space="preserve">
+    <value>Créer le mod</value>
+  </data>
+  <data name="ModCreator_Step3" xml:space="preserve">
+    <value>3. Editer la métadonnée, ajouter une miniature personnalisée et ajouter des contenus de module</value>
+  </data>
+  <data name="ModCreator_Step3Info" xml:space="preserve">
+    <value>Il est recommandé d'utiliser un éditeur de texte avec du support pour le format JSON tel que VSCode ou Notepad++ pour éditer les métadonnées. Pour ajouter une miniature, ajoutez un fichier nommé "thumbnail.png", la taille recommandée est 128x128. </value>
+  </data>
+  <data name="ModCreator_Step4" xml:space="preserve">
+    <value>4. Publier le mod</value>
+  </data>
+  <data name="ModCreator_Step4Info" xml:space="preserve">
+    <value>Le mod est publié en compressant le dossier de mod dans un fichier d'archive pris en charge (.zip, .7z, .rar). Si le mod est publié sur GameBanana, il sera montré comme téléchargeable dans le mod loader. Veuillez regarder la documentation pour plus de détails.</value>
+  </data>
+  <data name="ModCreator_Title" xml:space="preserve">
+    <value>Créateur du mod</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchBrowseTitle" xml:space="preserve">
+    <value>Sélectionner les fichiers patch à convertir</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchStatus" xml:space="preserve">
+    <value>Conversion des patchs</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchError" xml:space="preserve">
+    <value>Une erreur est survenue lors de la conversion des patchs</value>
+  </data>
+  <data name="ModCreator_CreateModNoModulesError" xml:space="preserve">
+    <value>Pour pouvoir créer le mod, veuillez sélectionner au moins un module</value>
+  </data>
+  <data name="ModCreator_CreateModBrowseTitle" xml:space="preserve">
+    <value>Sélectionner la destination du mod</value>
+  </data>
+  <data name="ModLoader_FilesModule_Description" xml:space="preserve">
+    <value>Ce module sert à ajouter, remplacer et retirer des fichiers du jeu. Elle est particulièrement utile pour les mods visant à modifier des textures qui remplacent des fichiers entiers.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionSingle" xml:space="preserve">
+    <value>Ce module sert à patcher des parties du fichier de jeu. Le nom de fichier pour les jeux à un fichier devrait être "game.delta". Il est possible de cumuler des deltas de plusieurs mods.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionMulti" xml:space="preserve">
+    <value>Ce module est utilisé pour patcher des parties d'un fichier. Il est recommandé d'utiliser ce module sur les fichiers binaires qui sont connus pour ne pas beaucoup changer, tel qu'un exe ou une ROM de jeu. Il est possible de cumuler des deltas de plusieurs mods.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
+    <value>Créer un fichier delta</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFileInfo" xml:space="preserve">
+    <value>Créer un patch .delta à partir de deux fichiers</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseOriginalFile" xml:space="preserve">
+    <value>Sélectionner le fichier original</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseModifiedFile" xml:space="preserve">
+    <value>Sélectionner le fichier modifié</value>
+  </data>
+  <data name="ModLoader_UbiArtLocalizationModule_Description" xml:space="preserve">
+    <value>Ce module est utilisé pour remplacer ou ajouter du texte dans la localisation du jeu pour les langages pris en charge. Ce module permet de cumuler plusieurs mods de localisation, ce qui n'est pas possible en remplaçant le fichier.</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingVersion" xml:space="preserve">
+    <value>Impossible de vérifier les mises à jour par manque de version avec laquelle comparer</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingFiles" xml:space="preserve">
+    <value>Impossible de vérifier les mises à jour par manque de fichiers valides sur le mod Gamebanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_InvalidVersion" xml:space="preserve">
+    <value>Impossible de vérifier les mises à jour car la version n'est pas formatée correctement</value>
+  </data>
+  <data name="ModLoader_UpdateState_UpToDate" xml:space="preserve">
+    <value>Le mod est à jour</value>
+  </data>
+  <data name="ModLoader_GameBanana_UploadInfo" xml:space="preserve">
+    <value>Mis en ligne par {0} le {1}</value>
+  </data>
+  <data name="ModLoader_GameBanana_OpenModPage" xml:space="preserve">
+    <value>Ouvrir dans Gamebanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFile" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
+    <value>Télécharger et installer le mod</value>
+  </data>
+  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
+    <value>Installé</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
+    <value>Mettre à jour le mod installé</value>
+  </data>
+  <data name="Games_Win32RunAsAdmin" xml:space="preserve">
+    <value>Démarrer en tant qu'administrateur</value>
+  </data>
+  <data name="Home_AppNews" xml:space="preserve">
+    <value>Nouvelles de l'application</value>
+  </data>
+  <data name="Home_RecentMods" xml:space="preserve">
+    <value>Mods récents</value>
+  </data>
+  <data name="Games_VerifyRemoveWithMods" xml:space="preserve">
+    <value>Ce jeu a {0} mods appliqués. Retirer le jeu du programme ne retirera pas les mods appliqués. Vous pouvez ajouter le jeu à nouveau à n'importe quel moment pour changer quels mods sont appliqués. Voulez-vous continuer ?</value>
+  </data>
+  <data name="ModNews_UpdatedInfo" xml:space="preserve">
+    <value>Mis à jour le {0}</value>
+  </data>
+  <data name="ModNews_UploadedInfo" xml:space="preserve">
+    <value>Mis en ligne le {0}</value>
+  </data>
+  <data name="Progression_EditGamesVisibility" xml:space="preserve">
+    <value>Montrer/cacher les jeux</value>
+  </data>
+  <data name="Settings_Files_Info" xml:space="preserve">
+    <value>Vous pouvez spécifier ici quel programme utiliser pour éditer certains type de fichiers. Cette fonction est utilisée à plusieurs endroits, tel que l'Archive Explorer ou la page de progression où vous pouvez utiliser un programme externe pour modifier un fichier. Une extension de fichier vide est utilisée pour spécifier le programme à utiliser pour éditer les fichiers binaires. Il recommandé d'utiliser un éditeur héxadécimal pour cela.</value>
+  </data>
+  <data name="Settings_Files_ChangeProgram" xml:space="preserve">
+    <value>Changer le programme</value>
+  </data>
+  <data name="Settings_Files_Remove" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="Settings_Files_Add" xml:space="preserve">
+    <value>Ajouter un type de fichier</value>
+  </data>
+  <data name="Settings_Files_Header" xml:space="preserve">
+    <value>Fichiers</value>
+  </data>
+  <data name="Settings_Files_FileExtInputTitle" xml:space="preserve">
+    <value>Ajouter un éditeur de fichier</value>
+  </data>
+  <data name="Settings_Files_FileExtInputHeader" xml:space="preserve">
+    <value>Spécifier l'extension du fichier</value>
+  </data>
+  <data name="Settings_Files_ConflictError" xml:space="preserve">
+    <value>L'extension du fichier a déjà été définie</value>
+  </data>
+  <data name="Settings_Files_FormatError" xml:space="preserve">
+    <value>Le fichier d'extension n'est pas valide. Il doit commencer par un point et ne doit pas avoir d'autres points.</value>
+  </data>
+  <data name="Settings_Files_ProgramSelectionTitle" xml:space="preserve">
+    <value>Spécifier l'éditeur du fichier</value>
+  </data>
+  <data name="Settings_Files_ChangeProgramSelectionTitle" xml:space="preserve">
+    <value>Changer le programme d'édition</value>
+  </data>
+  <data name="Settings_General_JumpListHeader" xml:space="preserve">
+    <value>Liste de sauts</value>
+  </data>
+  <data name="Settings_General_JumpListImageCaption" xml:space="preserve">
+    <value>Démarrer les jeux directement depuis la barre des tâches</value>
+  </data>
+  <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
+    <value>Vérifier les mises à jours des mods automatiquement</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>Mod Loader</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsHeader" xml:space="preserve">
+    <value>Types de fichier associés</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsInfo" xml:space="preserve">
+    <value>Cette option spécifie quels types de fichier seront ouverts par le Rayman Control Panel depuis l'explorateur de fichier</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsHeader" xml:space="preserve">
+    <value>URI associées</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsInfo" xml:space="preserve">
+    <value>Cette option spécifie quels protocoles URI  seont ouverts par le Rayman Control Panel</value>
+  </data>
+  <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
+    <value>Intégration Windows</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
+    <value>Une erreur est survenue pendant le changement d'association de type de fichier. Veuillez réessayer en redémarrant le Rayman Control Panel en tant qu'administrateur.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateUriAssociationsError" xml:space="preserve">
+    <value>Une erreur est survenue pendant le changement d'association d'URI. Veuillez réessayer en redémarrant le Rayman Control Panel en tant qu'administrateur.</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>Copier la valeur</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>Trouver des jeux installés</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Trouver des ROMs</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>Montrer les fonctionnalités</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>Ajouté</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>Non ajouté</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderHeader" xml:space="preserve">
+    <value>Le nouveau mod loader remplace le patcher</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
+    <value>Le patcher a été remplacé par un tout nouveau mod loader ! De nouveaux types de mods peuvent dorénavant être créés, tels que des mods modifiant des parties d'un fichier. Les mods mis en ligne sur GameBanana peut aussi être téléchargés directement via l'application. Si un utilitaire ou un fichier est manquant, il est probable qu'il aie été transformé en mod.</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>Trouver des clients de jeu/émulateurs installés</value>
+  </data>
+  <data name="About_Credits_payopayo" xml:space="preserve">
+    <value>Traduction du programme en turque (Turquie)</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
+    <value>Sélectionnez le fichier de mod de Gamebanana à utiliser pour la mise à jour</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileTitle" xml:space="preserve">
+    <value>Sélectionner le fichier de mod</value>
+  </data>
+  <data name="Finder_NoGameResults" xml:space="preserve">
+    <value>Aucun nouveau jeu installé n'a été trouvé</value>
+  </data>
+  <data name="Finder_NoGameClientResults" xml:space="preserve">
+    <value>Aucun nouveau client de jeu/émulateur n'a été trouvé</value>
+  </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>Un erreur est survenue lors du téléchargement du mod</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>Les fichiers sont identiques. Veuillez choisir deux fichiers différents et réessayer.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>Impossible de créer le fichier delta</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID Ubisoft Connect :</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Écran de démarrage</value>
+  </data>
 </root>

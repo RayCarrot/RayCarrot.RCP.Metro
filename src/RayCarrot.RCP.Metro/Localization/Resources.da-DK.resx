@@ -4989,7 +4989,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Ubisoft Connect</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Spil-ID:</value>
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Åbn i Ubisoft Store</value>
@@ -5315,5 +5315,230 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="ModCreator_Step4" xml:space="preserve">
     <value>4. Udgiv moddet</value>
+  </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>Ugemt omarrangering af mods</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModCreator_Step4Info" xml:space="preserve">
+    <value>Moddet udgives ved at indpakke modmappen i et understøttet arkivformat (.zip, .7z, .rar). Hvis moddet udgives til GameBanana, vises det som et installerbart mod i modloaderen. Se dokumentationen for yderligere detaljer.</value>
+  </data>
+  <data name="ModCreator_Title" xml:space="preserve">
+    <value>Modskaber</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchBrowseTitle" xml:space="preserve">
+    <value>Vælg patchfiler, der skal konverteres</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchStatus" xml:space="preserve">
+    <value>Konverterer patches</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at konvertere patches</value>
+  </data>
+  <data name="ModCreator_CreateModNoModulesError" xml:space="preserve">
+    <value>Mindst ét modul skal vælges for at oprette et mod</value>
+  </data>
+  <data name="ModCreator_CreateModBrowseTitle" xml:space="preserve">
+    <value>Vælg moddestination</value>
+  </data>
+  <data name="ModLoader_FilesModule_Description" xml:space="preserve">
+    <value>Dette bruges til at tilføje, erstatte, og fjerne filer i spillet. Nyttig til mods som f.eks overfladeerstatninger, som ønsker at erstatte hele filer.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionSingle" xml:space="preserve">
+    <value>Dette bruges til at patche dele af spilfilen. Filnavnet tilhørende enkeltfilspil bør være 'game.delta'. Deltaer fra flere mods kan godt stables.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionMulti" xml:space="preserve">
+    <value>Dette bruges til at patche dele af en fil. Dette bør hovedsageligt bruges til binære filer, som normalt ikke ændrer meget, som f.eks en eksekverbar fil eller spil-ROM. Deltaer fra flere mods kan godt stables.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
+    <value>Opret deltafil</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFileInfo" xml:space="preserve">
+    <value>Opret .delta patchfil fra to filer</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseOriginalFile" xml:space="preserve">
+    <value>Vælg originalfil</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseModifiedFile" xml:space="preserve">
+    <value>Vælg modificeret fil</value>
+  </data>
+  <data name="ModLoader_UbiArtLocalizationModule_Description" xml:space="preserve">
+    <value>Dette bruges til at erstatte eller tilføje tekststrenge i spillokalisationen for alle de understøttede sprog. Fordelen ved at bruge dette modul, i stedet for at erstatte hele filen, er at flere lokalisationsmods kan stables.</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingVersion" xml:space="preserve">
+    <value>Kan ikke søge efter opdateringer, da der ikke findes en version at sammenligne med</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingFiles" xml:space="preserve">
+    <value>Kan ikke søge efter opdateringer, da GameBanana-moddet ikke har nogle gyldige filer</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_InvalidVersion" xml:space="preserve">
+    <value>Kan ikke søge efter opdateringer, da versionen ikke er korrekt formateret</value>
+  </data>
+  <data name="ModLoader_UpdateState_UpToDate" xml:space="preserve">
+    <value>Moddet er opdateret</value>
+  </data>
+  <data name="ModLoader_GameBanana_UploadInfo" xml:space="preserve">
+    <value>Uploadet af {0} d. {1}</value>
+  </data>
+  <data name="ModLoader_GameBanana_OpenModPage" xml:space="preserve">
+    <value>Åbn i GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFile" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
+    <value>Download og installér moddet</value>
+  </data>
+  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
+    <value>Installeret</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
+    <value>Opdatér</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
+    <value>Opdatér det installerede mod</value>
+  </data>
+  <data name="Games_Win32RunAsAdmin" xml:space="preserve">
+    <value>Kør som administrator</value>
+  </data>
+  <data name="Home_AppNews" xml:space="preserve">
+    <value>Appnyheder</value>
+  </data>
+  <data name="Home_RecentMods" xml:space="preserve">
+    <value>Seneste mods</value>
+  </data>
+  <data name="Games_VerifyRemoveWithMods" xml:space="preserve">
+    <value>Spillet har {0} anvendte mods. Fjernes spillet fra programmet, fjerner det ikke de anvendte mods. Du kan tilføje spillet tilbage til enhver tid for at ændre hvilke mods er anvendt. Fortsæt?</value>
+  </data>
+  <data name="ModNews_UpdatedInfo" xml:space="preserve">
+    <value>Opdateret d. {0}</value>
+  </data>
+  <data name="ModNews_UploadedInfo" xml:space="preserve">
+    <value>Uploadet d. {0}</value>
+  </data>
+  <data name="Progression_EditGamesVisibility" xml:space="preserve">
+    <value>Vis/skjul spil</value>
+  </data>
+  <data name="Settings_Files_Info" xml:space="preserve">
+    <value>Her kan du angive, hvilket program skal bruges til at redigere bestemte filtyper. Dette bruges til f.eks Archive Explorer eller fremskridtssiden, hvor det er muligt at bruge et eksternt program til at redigere en fil. En tom filtype bruges til at angive programmet der skal bruges til redigering af binære filer. Det anbefales at bruge en hex-editor til dette.</value>
+  </data>
+  <data name="Settings_Files_ChangeProgram" xml:space="preserve">
+    <value>Ændr program</value>
+  </data>
+  <data name="Settings_Files_Remove" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="Settings_Files_Add" xml:space="preserve">
+    <value>Tilføj filtype</value>
+  </data>
+  <data name="Settings_Files_Header" xml:space="preserve">
+    <value>Filer</value>
+  </data>
+  <data name="Settings_Files_FileExtInputTitle" xml:space="preserve">
+    <value>Tilføj filredigeringsprogram</value>
+  </data>
+  <data name="Settings_Files_FileExtInputHeader" xml:space="preserve">
+    <value>Angiv filtype</value>
+  </data>
+  <data name="Settings_Files_ConflictError" xml:space="preserve">
+    <value>Den valgte filtype er allerede blevet afvist</value>
+  </data>
+  <data name="Settings_Files_FormatError" xml:space="preserve">
+    <value>Den valgte filtype er ugyldig. Den skal starte med et punktum, og må derefter ikke indeholde flere punktummer.</value>
+  </data>
+  <data name="Settings_Files_ProgramSelectionTitle" xml:space="preserve">
+    <value>Angiv filredigeringsprogram</value>
+  </data>
+  <data name="Settings_Files_ChangeProgramSelectionTitle" xml:space="preserve">
+    <value>Ændr redigeringsprogram</value>
+  </data>
+  <data name="Settings_General_JumpListHeader" xml:space="preserve">
+    <value>Hoppeliste</value>
+  </data>
+  <data name="Settings_General_JumpListImageCaption" xml:space="preserve">
+    <value>Start spil direkte fra proceslinjen</value>
+  </data>
+  <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
+    <value>Søg automatisk efter modopdateringer</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>Modloader</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsHeader" xml:space="preserve">
+    <value>Filtypetilknytninger</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsInfo" xml:space="preserve">
+    <value>Dette bestemmer hvilke slags filer åbnes i Rayman Control Panel fra Stilfinderen</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsHeader" xml:space="preserve">
+    <value>URI-tilknytninger</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsInfo" xml:space="preserve">
+    <value>Dette bestemmer hvilke URI-protokoller åbnes i Rayman Control Panel</value>
+  </data>
+  <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
+    <value>Windows-intergrering</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indstille filtypetilknytningen. Kør Rayman Control Panel som administrator og prøv igen.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateUriAssociationsError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at indstille URI-protokoltilknytningen. Kør Rayman Control Panel som administrator og prøv igen.</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>Kopiér værdi</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>Søg efter installerede spil</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Søg efter ROMs</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>Vis funktioner</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>Tilføjet</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>Ikke tilføjet</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderHeader" xml:space="preserve">
+    <value>Ny modloader erstatter patcheren</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
+    <value>Patcheren er blevet erstattet med en spritny modloader! Nye slags mods kan nu blive skabt, som f.eks mods der kun modificerer bestemte dele af en fil. Mods, der er blevet uploadet til GameBanana, kan nu også downloades direkte fra appen. Mangler der et hjælpeværktøj eller en anden form for patch, er det højst sandsynligt blevet flyttet ind i et mod.</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>Søg efter installerede spilklienter/emulatorer</value>
+  </data>
+  <data name="About_Credits_payopayo" xml:space="preserve">
+    <value>Tyrkisk (Tyrkiet) programoversættelse</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
+    <value>Vælg modfil fra GameBanana som skal bruges ved opdatering</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileTitle" xml:space="preserve">
+    <value>Vælg modfil</value>
+  </data>
+  <data name="Finder_NoGameResults" xml:space="preserve">
+    <value>Ingen nye installerede spil blev fundet</value>
+  </data>
+  <data name="Finder_NoGameClientResults" xml:space="preserve">
+    <value>Ingen nye installerede spilklienter/emulatorer blev fundet</value>
+  </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at downloade moddet</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>Filerne er ens. Vælg venligst to forskellige filer, og prøv derefter igen.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>Kunne ikke oprette deltafil</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Velkomstbillede</value>
   </data>
 </root>

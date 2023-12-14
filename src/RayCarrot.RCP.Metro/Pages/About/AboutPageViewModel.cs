@@ -41,6 +41,7 @@ public class AboutPageViewModel : BasePageViewModel
             new("Mark", new ResourceLocString(nameof(Resources.About_Credits_432Hz))),
             new("Marcos03BR", new ResourceLocString(nameof(Resources.About_Credits_Marcos03BR))),
             new("Marteaufou", new ResourceLocString(nameof(Resources.About_Credits_Marteaufou))),
+            new("Nic", new ResourceLocString(nameof(Resources.About_Credits_Nic))),
             new("Noserdog", new ResourceLocString(nameof(Resources.About_Credits_Noserdog))),
             new("payopayo", new ResourceLocString(nameof(Resources.About_Credits_payopayo))),
             new("PluMGMK", new ResourceLocString(nameof(Resources.About_Credits_PluMGMK))),

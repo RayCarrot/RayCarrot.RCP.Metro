@@ -5507,7 +5507,7 @@ modules</comment>
     <value>1. Select modules</value>
   </data>
   <data name="ModCreator_Step1Info" xml:space="preserve">
-    <value>Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differs from game to game. You can use multiple modules within the same mod.</value>
+    <value>Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differ from game to game. You can use multiple modules within the same mod.</value>
   </data>
   <data name="ModCreator_Step2" xml:space="preserve">
     <value>2. Create mod folder</value>
@@ -5752,5 +5752,8 @@ If there's a utility or other type of patch missing then it has most likely been
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Failed to create delta file</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Splash screen</value>
   </data>
 </root>

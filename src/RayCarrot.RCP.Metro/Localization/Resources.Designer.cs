@@ -178,6 +178,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Splash screen.
+        /// </summary>
+        public static string About_Credits_Nic {
+            get {
+                return ResourceManager.GetString("About_Credits_Nic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controller patches.
         /// </summary>
         public static string About_Credits_Noserdog {
@@ -8018,7 +8027,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differs from game to game. You can use multiple modules within the same mod..
+        ///   Looks up a localized string similar to Modules determine how the mod will modify the game. Will it simply replace files or perform more game-specific patches? The available modules differ from game to game. You can use multiple modules within the same mod..
         /// </summary>
         public static string ModCreator_Step1Info {
             get {

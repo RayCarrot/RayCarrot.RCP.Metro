@@ -4993,10 +4993,10 @@ Start: הפסק</value>
     <value>Ubisoft Connect</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>ID משחק</value>
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
-    <value>לפתוח בUbisoft Store</value>
+    <value>לפתוח ב Ubisoft Connect</value>
   </data>
   <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
     <value>ID משתמש</value>
@@ -5054,5 +5054,496 @@ Start: הפסק</value>
   </data>
   <data name="Home_ShowRecentGames" xml:space="preserve">
     <value>הצג משחקים אחרונים</value>
+  </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>טלאי משחק (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>מוד משחק</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>מוד משחק (התקנת GameBanana בלחיצה אחת)</value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>קובץ הארכיון נמצא כרגע בשימוש על ידי התוכנות הבאות ולא ניתן לארוז אותו מחדש. נסו לסגור את התוכנה ונסו שנית.
+
+{0}</value>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>טעינת מודים</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>ניהול מודים</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
+    <value>יצירת מוד</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
+    <value>מוד {0} הוחל</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} מודים הוחלו</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
+    <value>עדכון מוד {0} זמין</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableMultiple" xml:space="preserve">
+    <value>{0} עדכוני מוד זמינים</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>ספריה</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>הורדה</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>מודים מותקנים</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>ניתן להתקין מודים כדי לשנות חלקים מסוימים של המשחק. רוב המודים פועלים על ידי החלפת קבצי משחק מסוימים. המוד לא ייכנס לתוקף עד שהוא יופעל והשינויים יחולו, ובכך יאפשר להפעיל ולכבות את המודדים בקלות. לא מומלץ לשנות ידנית את קבצי המשחק אותם מוד משנה מכיוון שזה עלול לגרום לאיבוד של שינויים מסוימים או לשבירת משחק.</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>אין מודים מותקנים</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>התקנה מקובץ</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>בדוק אם יש עדכונים</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>הצג את כל השינויים</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>הצג קבצים כרשימה</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>הצג קבצים בתור עץ</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>הרחב הכל</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>נתיב קובץ</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>מוד</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>מודים דרוסים</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesEmpty" xml:space="preserve">
+    <value>התקן מוד כדי לשנות את קבצי המשחק</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesHasInvalidLocation" xml:space="preserve">
+    <value>קובץ זה יתעלם בעת החלת המודים בגלל שקובץ הארכיון המכיל לא נמצא עבור משחק זה</value>
+  </data>
+  <data name="ModLoader_OpenModLocation" xml:space="preserve">
+    <value>פתח מיקום</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>הסר את ההתקנה</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>עדכון</value>
+  </data>
+  <data name="ModLoader_DialogTitle" xml:space="preserve">
+    <value>טוען מוד - {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadableModsInfo" xml:space="preserve">
+    <value>מודים אלו הועלו ל-GameBanana על ידי משתמשים שונים</value>
+  </data>
+  <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
+    <value>רענן את המודים הזמינים</value>
+  </data>
+  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
+    <value>טען עוד</value>
+  </data>
+  <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
+    <value>לא נמצאו מודים</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesStatus" xml:space="preserve">
+    <value>העברת טלאים למודים</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesError" xml:space="preserve">
+    <value>אירעה שגיאה בעת העברת טלאים למודדים</value>
+  </data>
+  <data name="ModLoader_ReadingModVersionError" xml:space="preserve">
+    <value>המוד הנבחר נוצר עם גרסה חדשה יותר של Rayman Control Panel ולא ניתן לקרוא אותו</value>
+  </data>
+  <data name="ModLoader_ReadingModError" xml:space="preserve">
+    <value>לא ניתן היה לקרוא את המוד שנבחר</value>
+  </data>
+  <data name="ModLoader_ReadingModsError" xml:space="preserve">
+    <value>אירעה שגיאה בעת טעינת המודים</value>
+  </data>
+  <data name="ModLoader_SecurityWarning" xml:space="preserve">
+    <value>המוד {0} משנה קבצים רגישים, כגון קבצי הפעלה, במשחק. התקינו את המוד הזה רק אם אתם סומכים על המחבר. להמשיך?</value>
+  </data>
+  <data name="ModLoader_InstallStatus" xml:space="preserve">
+    <value>מחלץ מוד {0}</value>
+  </data>
+  <data name="ModLoader_InstallError" xml:space="preserve">
+    <value>אירעה שגיאה בעת התקנת המוד מ-{0}</value>
+  </data>
+  <data name="ModLoader_InstallInvalidTargetError" xml:space="preserve">
+    <value>לא ניתן להתקין את המוד {0} למשחק הזה מכיוון שהוא לא אחד ממטרות התקנת המשחק:
+
+{1}</value>
+  </data>
+  <data name="ModLoader_SelectInstallTargetTitle" xml:space="preserve">
+    <value>בחרו את המשחק הרצוי על מנת להתקין את המוד</value>
+  </data>
+  <data name="ModLoader_WriteAccessDenied" xml:space="preserve">
+    <value>גישת כתיבה אסורה להתקנת המשחק. נסו להפעיל מחדש בתור מנהל מערכת. אם המשחק הזה הורד מ-Microsoft Store, לא ניתן להשיג גישת כתיבה בלי להתקין תחילה את המשחק כחבילה דרך מצב מפתחים.</value>
+  </data>
+  <data name="ModLoader_ReadLibraryVersionError" xml:space="preserve">
+    <value>ספריית מוד המשחק נוצרה עם גרסה חדשה יותר של Rayman Control Panel ואינה ניתנת לקריאה</value>
+  </data>
+  <data name="ModLoader_ReadLibraryError" xml:space="preserve">
+    <value>אירעה שגיאה בעת קריאת ספריית המוד</value>
+  </data>
+  <data name="ModLoader_AddedFilesInfo" xml:space="preserve">
+    <value>{0} נוספו קבצים</value>
+  </data>
+  <data name="ModLoader_RemovedFilesInfo" xml:space="preserve">
+    <value>{0} קבצים שהוסרו</value>
+  </data>
+  <data name="ModLoader_PatchedFilesInfo" xml:space="preserve">
+    <value>{0} קבצים מתוקנים</value>
+  </data>
+  <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
+    <value>{0} מודים שלא נשמרו</value>
+  </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>סידור מחדש של מוד שלא נשמר</value>
+  </data>
+  <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
+    <value>בחרו את המודים להתקנה</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>מוד</value>
+  </data>
+  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
+    <value>מוריד מוד {0}</value>
+  </data>
+  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
+    <value>מחלץ מוד {0}</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>אירעה שגיאה בעת הורדה והתקנה של המוד</value>
+  </data>
+  <data name="ModLoader_ApplyStatus" xml:space="preserve">
+    <value>החלת מודים</value>
+  </data>
+  <data name="ModLoader_ApplySuccess" xml:space="preserve">
+    <value>כל המודים הוחלו בהצלחה</value>
+  </data>
+  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
+    <value>סיימתי להחיל מודים. לא ניתן היה לשנות חלק מהקבצים.</value>
+  </data>
+  <data name="ModLoader_ApplyError" xml:space="preserve">
+    <value>אירעה שגיאה בעת החלת המודים. לא כל השינויים הוחלו וייתכן שחלק מהנתונים אבדו. ודאו שלא יהיו קבצים מהמשחק פתוחים בזמן החלת המודים.</value>
+  </data>
+  <data name="ModLoader_ModInfo_InstallSource" xml:space="preserve">
+    <value>מקור התקנה:</value>
+  </data>
+  <data name="ModLoader_LocalInstallSource" xml:space="preserve">
+    <value>מקומי</value>
+  </data>
+  <data name="ModLoader_ModInfo_Modules" xml:space="preserve">
+    <value>מודולים:</value>
+  </data>
+  <data name="ModLoader_ModInfo_PatchedFiles" xml:space="preserve">
+    <value>קבצים מותקנים</value>
+  </data>
+  <data name="ModLoader_UnsupportedModulesInfo" xml:space="preserve">
+    <value>המודולים הבאים המשמשים את המוד הזה אינם נתמכים ולא יחולו: {0}</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingInstall" xml:space="preserve">
+    <value>בהמתנה להתקנה</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingUninstall" xml:space="preserve">
+    <value>בהמתנה להסרה</value>
+  </data>
+  <data name="ModLoader_ExtractingModStatus" xml:space="preserve">
+    <value>חילוץ תוכן מוד</value>
+  </data>
+  <data name="ModLoader_ExtractingModError" xml:space="preserve">
+    <value>אירעה שגיאה בעת חילוץ תוכן המוד</value>
+  </data>
+  <data name="ModLoader_ExtractingModSuccess" xml:space="preserve">
+    <value>תוכן המוד חולץ בהצלחה</value>
+  </data>
+  <data name="ModLoader_UpdateError" xml:space="preserve">
+    <value>אירעה שגיאה בעת עדכון המוד</value>
+  </data>
+  <data name="ModLoader_UpdateState_UnableToCheckLocal" xml:space="preserve">
+    <value>לא ניתן לחפש עדכונים עבור מודים המותקנים מקומית</value>
+  </data>
+  <data name="ModLoader_UpdateState_Checking" xml:space="preserve">
+    <value>מחפש עדכונים</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchHeader" xml:space="preserve">
+    <value>המרת טלאי (.gp) ל-mod</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchInfo" xml:space="preserve">
+    <value>החל מגרסה 14.0 הטלאים הוחלפו במודים. אתם עדיין יכולים להשתמש בטלאים(קבצי gp), אך לא תוכלו ליצור חדשים או לערוך קיימים. כאן תוכלו להמיר טלאים למודים כדי שיוכלו להמשיך להתעדכן.</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatch" xml:space="preserve">
+    <value>להמיר</value>
+  </data>
+  <data name="ModCreator_CreateHeader" xml:space="preserve">
+    <value>צור מוד חדש</value>
+  </data>
+  <data name="ModCreator_ModDocumentation" xml:space="preserve">
+    <value>תיעוד מוד</value>
+  </data>
+  <data name="ModCreator_Step1" xml:space="preserve">
+    <value>1. בחרו מודולים</value>
+  </data>
+  <data name="ModCreator_Step1Info" xml:space="preserve">
+    <value>מודולים קובעים כיצד המוד ישנה את המשחק. האם הם רק יחליפו קבצים או יחילו טלאים ספציפיים יותר למשחק? המודולים הזמינים שונים ממשחק למשחק. אתם יכולים להשתמש במספר מודולים בתוך אותו מוד.</value>
+  </data>
+  <data name="ModCreator_Step2" xml:space="preserve">
+    <value>2. צורו תיקיה עבור המוד</value>
+  </data>
+  <data name="ModCreator_Step2Info" xml:space="preserve">
+    <value>בחרו תיקיה חדשה ליצירת המוד.</value>
+  </data>
+  <data name="ModCreator_Create" xml:space="preserve">
+    <value>צור מוד</value>
+  </data>
+  <data name="ModCreator_Step3" xml:space="preserve">
+    <value>3. ערכו את נתוני המטא, הוסיפו תמונת כריכה מותאמת אישית והוסיפו תוכן מודול</value>
+  </data>
+  <data name="ModCreator_Step3Info" xml:space="preserve">
+    <value>מומלץ להשתמש בעורך טקסט עם תמיכה ב-JSON כדי לערוך את המטא נתונים, כגון VS Code או Notepad++. הוספת תמונת כריכה מתבצעת על ידי הוספת קובץ בשם thumbnail.png בגודל מומלץ של 128x128.</value>
+  </data>
+  <data name="ModCreator_Step4" xml:space="preserve">
+    <value>4. פרסמו את המוד</value>
+  </data>
+  <data name="ModCreator_Step4Info" xml:space="preserve">
+    <value>המוד מתפרסם על ידי אריזת תיקיית המוד בפורמט ארכיון נתמך (.zip, .7z, .rar). אם המוד יתפרסם ל-GameBanana הוא יופיע כמוד להורדה במטען המוד. עיינו בתיעוד לפרטים נוספים.</value>
+  </data>
+  <data name="ModCreator_Title" xml:space="preserve">
+    <value>יוצר מודים</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchBrowseTitle" xml:space="preserve">
+    <value>בחר קבצי תיקון להמרה</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchStatus" xml:space="preserve">
+    <value>המרת טלאים</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchError" xml:space="preserve">
+    <value>אירעה שגיאה בעת המרת הטלאים</value>
+  </data>
+  <data name="ModCreator_CreateModNoModulesError" xml:space="preserve">
+    <value>יש לבחור לפחות מודול אחד כדי ליצור מוד</value>
+  </data>
+  <data name="ModCreator_CreateModBrowseTitle" xml:space="preserve">
+    <value>בחרו יעד מוד</value>
+  </data>
+  <data name="ModLoader_FilesModule_Description" xml:space="preserve">
+    <value>זה משמש להוספה, החלפה והסרה של קבצים במשחק. שימושי עבור מודים כמו החלפות טקסטורות שרוצים להחליף קבצים שלמים.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionSingle" xml:space="preserve">
+    <value>זה משמש לתיקון חלקים מקובץ המשחק. שם הקובץ עבור משחקים עם קובץ בודד צריך להיות 'game.delta'. ניתן לערום Delta ממספר מודים.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionMulti" xml:space="preserve">
+    <value>זה משמש לתיקון חלקים של קובץ. זה אמור לשמש בעיקר עבור קבצים בינאריים שידוע שהם לא משתנים הרבה, כגון exe או משחק רום. ניתן לערום Delta ממספר מודים.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
+    <value>צור קובץ Delta</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFileInfo" xml:space="preserve">
+    <value>צור קובץ תיקון .delta משני קבצים</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseOriginalFile" xml:space="preserve">
+    <value>בחר קובץ מקורי</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseModifiedFile" xml:space="preserve">
+    <value>בחר את הקובץ שהשתנה</value>
+  </data>
+  <data name="ModLoader_UbiArtLocalizationModule_Description" xml:space="preserve">
+    <value>זה משמש להחלפה או הוספה של מחרוזות בלוקליזציה של המשחק עבור כל אחת מהשפות הנתמכות. היתרון בשימוש במודול זה על פני החלפת הקובץ כולו הוא שניתן לערום מספר מודי לוקליזציה.</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingVersion" xml:space="preserve">
+    <value>לא ניתן לחפש עדכונים בגלל שאין גרסה להשוואה</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingFiles" xml:space="preserve">
+    <value>לא ניתן לחפש עדכונים בגלל שלמוד GameBanana אין קבצים חוקיים</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_InvalidVersion" xml:space="preserve">
+    <value>לא ניתן לבדוק אם קיימים עדכונים בגלל שהגרסה לא עוצבה כראוי</value>
+  </data>
+  <data name="ModLoader_UpdateState_UpToDate" xml:space="preserve">
+    <value>המוד מעודכן</value>
+  </data>
+  <data name="ModLoader_GameBanana_UploadInfo" xml:space="preserve">
+    <value>הועלה על ידי {0} בתאריך {1}</value>
+  </data>
+  <data name="ModLoader_GameBanana_OpenModPage" xml:space="preserve">
+    <value>פתח ב-GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFile" xml:space="preserve">
+    <value>הורדה</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
+    <value>הורד והתקן את המוד</value>
+  </data>
+  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
+    <value>מותקן</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
+    <value>עדכון</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
+    <value>עדכן את המוד המותקן</value>
+  </data>
+  <data name="Games_Win32RunAsAdmin" xml:space="preserve">
+    <value>הפעל כמנהל מערכת</value>
+  </data>
+  <data name="Home_AppNews" xml:space="preserve">
+    <value>חדשות האפליקציה</value>
+  </data>
+  <data name="Home_RecentMods" xml:space="preserve">
+    <value>מודים אחרונים</value>
+  </data>
+  <data name="Games_VerifyRemoveWithMods" xml:space="preserve">
+    <value>למשחק הזה יש {0} מודים מיושמים. הסרת המשחק מהאשף לא תסיר את המודים שהוחלו. אתם יכולים להוסיף את המשחק בחזרה בכל עת כדי לשנות את המודים המיושמים. להמשיך?</value>
+  </data>
+  <data name="ModNews_UpdatedInfo" xml:space="preserve">
+    <value>עודכן ב-{0}</value>
+  </data>
+  <data name="ModNews_UploadedInfo" xml:space="preserve">
+    <value>הועלה ב-{0}</value>
+  </data>
+  <data name="Progression_EditGamesVisibility" xml:space="preserve">
+    <value>הצג/הסתיר משחקים</value>
+  </data>
+  <data name="Settings_Files_Info" xml:space="preserve">
+    <value>כאן תוכלו לציין באיזו תוכנה להשתמש לעריכת סוגי קבצים מסוימים. זה משמש במקומות כגון Archive Explorer או דף ההתקדמות שבהם אתה יכול להשתמש בתוכנה חיצונית כדי לערוך קובץ. סיומת קובץ ריקה משמשת כדי לציין את התוכנית לשימוש לעריכת קבצים בינאריים. מומלץ להשתמש בעורך hex לשם כך.</value>
+  </data>
+  <data name="Settings_Files_ChangeProgram" xml:space="preserve">
+    <value>שנה תוכנית</value>
+  </data>
+  <data name="Settings_Files_Remove" xml:space="preserve">
+    <value>להסיר</value>
+  </data>
+  <data name="Settings_Files_Add" xml:space="preserve">
+    <value>הוסף סוג קובץ</value>
+  </data>
+  <data name="Settings_Files_Header" xml:space="preserve">
+    <value>קבצים</value>
+  </data>
+  <data name="Settings_Files_FileExtInputTitle" xml:space="preserve">
+    <value>הוסף עורך קבצים</value>
+  </data>
+  <data name="Settings_Files_FileExtInputHeader" xml:space="preserve">
+    <value>ציין את סיומת הקובץ</value>
+  </data>
+  <data name="Settings_Files_ConflictError" xml:space="preserve">
+    <value>סיומת הקובץ שצוינה כבר הוגדרה</value>
+  </data>
+  <data name="Settings_Files_FormatError" xml:space="preserve">
+    <value>סיומת הקובץ שצוינה אינה חוקית. זה חייב להתחיל עם נקודה ולא נקודה אחת יותר לאחר מכן.</value>
+  </data>
+  <data name="Settings_Files_ProgramSelectionTitle" xml:space="preserve">
+    <value>ציין את עורך הקבצים</value>
+  </data>
+  <data name="Settings_Files_ChangeProgramSelectionTitle" xml:space="preserve">
+    <value>שנה תוכנית עורך</value>
+  </data>
+  <data name="Settings_General_JumpListHeader" xml:space="preserve">
+    <value>רשימת קפיצות</value>
+  </data>
+  <data name="Settings_General_JumpListImageCaption" xml:space="preserve">
+    <value>הפעל משחקים ישירות משורת המשימות</value>
+  </data>
+  <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
+    <value>בדוק אוטומטית אם יש עדכוני מוד</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>טוען מודים</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsHeader" xml:space="preserve">
+    <value>שיוך סוגי קבצים</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsInfo" xml:space="preserve">
+    <value>זה מציין אילו סוגי קבצים ייפתחו בRayman Control Panel מסייר הקבצים</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsHeader" xml:space="preserve">
+    <value>איגודי URI</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsInfo" xml:space="preserve">
+    <value>זה מציין אילו פרוטוקולי URI ייפתחו בRayman Control Panel</value>
+  </data>
+  <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
+    <value>אינטגרציה של Windows</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
+    <value>אירעה שגיאה בעת הגדרת שיוך סוג הקובץ. נסו להפעיל את Rayman Control Panel  כמנהל מערכת ונסו שוב.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateUriAssociationsError" xml:space="preserve">
+    <value>אירעה שגיאה בעת הגדרת שיוך פרוטוקול URI. נסו להפעיל את Rayman Control Panel כמנהל ונסו שוב.</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>העתק ערך</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>מצא משחקים מותקנים</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>מצא ROMs</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>הצג תכונות</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>נוסף</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>לא נוסף</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderHeader" xml:space="preserve">
+    <value>מטעין המודים החדש מחליף את הטלאים</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
+    <value>הפאצ'ר הוחלף באשף טעינת מודים חדש לגמרי! ניתן ליצור כעת סוגים חדשים של מודים, כמו כאלה שמשנים רק חלקים מקובץ. כעת ניתן להוריד מודים שהועלו ל-GameBanana גם ישירות דרך האפליקציה.
+אם חסר כלי שירות או סוג אחר של תיקון, סביר להניח שהוא הועבר למוד.</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>מצא תוכנות/אימולטורים מותקנים של משחקים</value>
+  </data>
+  <data name="About_Credits_payopayo" xml:space="preserve">
+    <value>תרגום תוכנית לטורקית (טורקיה).</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
+    <value>בחר קובץ mod מ-GameBanana לשימוש בעת עדכון</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileTitle" xml:space="preserve">
+    <value>בחר קובץ mod</value>
+  </data>
+  <data name="Finder_NoGameResults" xml:space="preserve">
+    <value>לא נמצאו משחקים מותקנים חדשים</value>
+  </data>
+  <data name="Finder_NoGameClientResults" xml:space="preserve">
+    <value>לא נמצאו תוכנות/אימולטורים חדשים של משחקים מותקנים</value>
+  </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>אירעה שגיאה בעת הורדת המוד</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>הקבצים זהים. אנא בחרו שני קבצים שונים ונסו שוב.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>יצירת קובץ Delta נכשלה</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>מסך התחלה</value>
   </data>
 </root>
