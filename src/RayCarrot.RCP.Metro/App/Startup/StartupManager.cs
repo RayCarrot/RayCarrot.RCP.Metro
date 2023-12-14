@@ -73,7 +73,7 @@ public class StartupManager
 
     private TimeSpan SplashScreenFadeoutTime => TimeSpan.FromMilliseconds(200);
     private SplashScreen? SplashScreen { get; set; }
-    private const string SplashScreenResourceName = "Files/Splash Screen.png";
+    private const string SplashScreenResourceName = "Files/SplashScreen_512px.png";
 
     #endregion
 

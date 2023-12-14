@@ -74,7 +74,7 @@
 
         <!-- Icon -->
         <Image Grid.Row="0"
-               Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
+               Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/AppIcon.png"
                Height="128" Width="128" />
 
         <!-- News -->

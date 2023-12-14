@@ -30,7 +30,7 @@ public class BaseWindow : MetroWindow
         TitleCharacterCasing = CharacterCasing.Normal;
 
         // Set icon style
-        Icon = new ImageSourceConverter().ConvertFromString(AppViewModel.WPFApplicationBasePath + "Files/RCP_Metro.ico") as ImageSource;
+        Icon = new ImageSourceConverter().ConvertFromString(AppViewModel.WPFApplicationBasePath + "Files/AppIcon.ico") as ImageSource;
         IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
         // Set owner window
