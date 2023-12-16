@@ -5327,6 +5327,8 @@ updatesCount</comment>
   </data>
   <data name="ModLoader_DialogTitle" xml:space="preserve">
     <value>Mod Loader - {0}</value>
+    <comment>Arguments:
+gameName</comment>
   </data>
   <data name="ModLoader_GameBanana_Title" xml:space="preserve">
     <value>GameBanana</value>

@@ -5004,4 +5004,272 @@ Conflicten:
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
   </data>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Laatst gewijzigd:</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Synchroniseer texturen</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Rayman 3 Prototype</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>GameCube bonus levels voltooid</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Neerwaartse vuistslag</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Vuistbeheersing</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Deense (Denemarken) programmavertaling</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Weergeven recente spellen</value>
+  </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Spelpatch (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Spelmodificatie</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>Spelmodificatie (GameBanana 1-klik installatie)</value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>Het archiefbestand is momenteel in gebruik door de volgende programma's en kan niet worden herpakt. Sluit deze programma's en probeer het nog eens.
+
+{0}</value>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>Mod Loader</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>Beheer mods</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
+    <value>Creëer mod</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
+    <value>{0} mod toegepast</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
+    <value>{0} mods toegepast</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
+    <value>{0} mod update beschikbaar</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableMultiple" xml:space="preserve">
+    <value>{0} mod updates beschikbaar</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Bibliotheek</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>Downloaden</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Geïnstalleerde mods</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>Mods kunnen geïnstalleerd worden voor het wijzigen van bepaalde delen van het spel. De meeste mods treden in werking door het vervangen van bepaalde spelbestanden. Echter, zal de mod géén effect hebben totdat deze ingeschakeld is en de wijzigingen zijn toegepast, waardoor mods gemakkelijk in-/uitgeschakeld kunnen worden. Het is niet aanbevolen de spelbestanden, die een mod wijzigt, handmatig te wijzigen, omdat het kan resulteren in het ongedaan maken van wijzigingen.</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>Geen mods geïnstalleerd</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>Installeren vanaf bestand</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>Controleren op updates</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>Weergeven alle wijzigingen</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>Weergave bestanden in lijstvorm</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>Weergave bestanden in boom(structuur)</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>Alles uitklappen</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>Pad</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>Overschreven mods</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesEmpty" xml:space="preserve">
+    <value>Installeer een mod om de spelbestanden te wijzigingen</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesHasInvalidLocation" xml:space="preserve">
+    <value>Dit bestand zal genegeerd worden bij toepassing van de mods, omdat het betreffende archiefbestand niet gevonden is voor dit spel</value>
+  </data>
+  <data name="ModLoader_OpenModLocation" xml:space="preserve">
+    <value>Open locatie</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>Deïnstalleren</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>Updaten</value>
+  </data>
+  <data name="ModLoader_DialogTitle" xml:space="preserve">
+    <value>Mod Loader - {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadableModsInfo" xml:space="preserve">
+    <value>Deze mods zijn geüpload naar GameBanana door verschillende gebruikers</value>
+  </data>
+  <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
+    <value>Verversen beschikbare mods</value>
+  </data>
+  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
+    <value>Meer laden</value>
+  </data>
+  <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
+    <value>Geen mods gevonden</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesStatus" xml:space="preserve">
+    <value>Migreren patches naar mods</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het migreren van patches naar mods</value>
+  </data>
+  <data name="ModLoader_ReadingModVersionError" xml:space="preserve">
+    <value>De geselecteerde mod is gemaakt met een nieuwere versie van het Rayman Control Panel en kan niet worden gelezen</value>
+  </data>
+  <data name="ModLoader_ReadingModError" xml:space="preserve">
+    <value>De geselecteerde mod kon niet gelezen worden</value>
+  </data>
+  <data name="ModLoader_ReadingModsError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het laden van de mods</value>
+  </data>
+  <data name="ModLoader_SecurityWarning" xml:space="preserve">
+    <value>De mod {0} wijzigt gevoelige bestanden, zoals uitvoerbare bestanden, in het spel. Installeer deze mod louter als je de auteur vertrouwt! Doorgaan?</value>
+  </data>
+  <data name="ModLoader_InstallStatus" xml:space="preserve">
+    <value>Uitpakken mod {0}</value>
+  </data>
+  <data name="ModLoader_InstallError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het installeren van de mod van {0}</value>
+  </data>
+  <data name="ModLoader_InstallInvalidTargetError" xml:space="preserve">
+    <value>De mod {0} kan niet geïnstalleerd worden naar dit spel, omdat het niet één van de spel targets is:
+
+{1}</value>
+  </data>
+  <data name="ModLoader_SelectInstallTargetTitle" xml:space="preserve">
+    <value>Selecteer spel om de mod naartoe te installeren</value>
+  </data>
+  <data name="ModLoader_WriteAccessDenied" xml:space="preserve">
+    <value>Schrijfrechten zijn niet toegestaan op de spelinstallatie. Probeer te herstarten als administrator. Als dit spel is gedownload via de Microsoft Store kunnen er géén schrijfrechten worden verleend, tenzij het spel wordt geïnstalleerd middels een pakket via de ontwikkelaarsmodus.</value>
+  </data>
+  <data name="ModLoader_ReadLibraryVersionError" xml:space="preserve">
+    <value>De spelmodificatie-bibliotheek is gemaakt met een nieuwere versie van het Rayman Control Panel en kan niet worden gelezen</value>
+  </data>
+  <data name="ModLoader_ReadLibraryError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het lezen van de modificatie-bibliotheek</value>
+  </data>
+  <data name="ModLoader_AddedFilesInfo" xml:space="preserve">
+    <value>{0} toegevoegde bestanden</value>
+  </data>
+  <data name="ModLoader_RemovedFilesInfo" xml:space="preserve">
+    <value>{0} verwijderde bestanden</value>
+  </data>
+  <data name="ModLoader_PatchedFilesInfo" xml:space="preserve">
+    <value>{0} gepatchte bestanden</value>
+  </data>
+  <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
+    <value>{0} onopgeslagen mods</value>
+  </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>Onopgeslagen modificatie-herordening</value>
+  </data>
+  <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
+    <value>Selecteren mods voor installatie</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
+    <value>Downloaden mod {0}</value>
+  </data>
+  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
+    <value>Uitpakken mod {0}</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het downloaden &amp; installeren van de mod</value>
+  </data>
+  <data name="ModLoader_ApplyStatus" xml:space="preserve">
+    <value>Toepassen mods</value>
+  </data>
+  <data name="ModLoader_ApplySuccess" xml:space="preserve">
+    <value>Succesvol alle mods toegepast</value>
+  </data>
+  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
+    <value>Toepassen mods geëindigd. Sommige bestanden konden niet gewijzigd worden.</value>
+  </data>
+  <data name="ModLoader_ApplyError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de mods. Niet alle wijzigingen zijn doorgevoerd en sommige data zouden verloren gegaan kunnen zijn. Zorg ervoor dat geen enkel bestand van het spel geopend is tijdens het toepassen van de mods.</value>
+  </data>
+  <data name="ModLoader_ModInfo_InstallSource" xml:space="preserve">
+    <value>Installatiebron:</value>
+  </data>
+  <data name="ModLoader_LocalInstallSource" xml:space="preserve">
+    <value>Lokaal</value>
+  </data>
+  <data name="ModLoader_ModInfo_Modules" xml:space="preserve">
+    <value>Modules:</value>
+  </data>
+  <data name="ModLoader_ModInfo_PatchedFiles" xml:space="preserve">
+    <value>Gepatchte bestanden:</value>
+  </data>
+  <data name="ModLoader_UnsupportedModulesInfo" xml:space="preserve">
+    <value>De volgende modules die gebruikt worden door deze mod, zijn niet ondersteund en zullen niet worden toegepast: {0}</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingInstall" xml:space="preserve">
+    <value>Lopende installatie</value>
+  </data>
+  <data name="ModLoader_InstallState_PendingUninstall" xml:space="preserve">
+    <value>Lopende deïnstallatie</value>
+  </data>
+  <data name="ModLoader_ExtractingModStatus" xml:space="preserve">
+    <value>Uitpakken modificatie-inhoud</value>
+  </data>
+  <data name="ModLoader_ExtractingModError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het uitpakken van de modificatie-inhoud</value>
+  </data>
+  <data name="ModLoader_ExtractingModSuccess" xml:space="preserve">
+    <value>De modificatie-inhoud is succesvol uitgepakt</value>
+  </data>
 </root>

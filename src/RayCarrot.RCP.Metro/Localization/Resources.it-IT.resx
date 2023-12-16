@@ -4994,7 +4994,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>Ubisoft Connect</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>ID gioco:</value>
+    <value>ID Ubisoft Connect:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Apri nell'Ubisoft Store</value>
@@ -5149,7 +5149,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>Aggiornamento</value>
   </data>
   <data name="ModLoader_DialogTitle" xml:space="preserve">
-    <value>Mod Loader</value>
+    <value>Mod Loader - {0}</value>
   </data>
   <data name="ModLoader_GameBanana_Title" xml:space="preserve">
     <value>GameBanana</value>
@@ -5540,5 +5540,11 @@ Se manca un'utilità o un altro tipo di patch, molto probabilmente è stata camb
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Impossibile creare il file delta</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Splash screen</value>
   </data>
 </root>
