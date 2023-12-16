@@ -58,6 +58,7 @@ Other changes:
 • Games can now be hidden in the progression page
 • Progression backups no longer warn if GOG Galaxy cloud syncing is detected
 • The Rayman Jungle Run progression now always assumes all 7 worlds are available
+• The powers are now correctly named for the Rayman 1 memory mods
 • Various improvements to the program selection dialog, such as allowing to auto-select a program from the keyboard
 • A DOSBox installation can now have multiple config files
 • The option to run a game as admin is now always visible in the drop-down
