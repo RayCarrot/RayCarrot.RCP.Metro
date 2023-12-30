@@ -243,8 +243,8 @@ public class GamesPageViewModel : BasePageViewModel,
 
                 return new { Game = x, Date = lastPlayed > gameAdded ? lastPlayed : gameAdded };
             }).
-            // Only keep games from the last 25 days
-            Where(x => DateTime.Now - x.Date <= TimeSpan.FromDays(25)).
+            // Only keep games from the last 100 days
+            Where(x => DateTime.Now - x.Date <= TimeSpan.FromDays(100)).
             // Sort...
             OrderByDescending(x => x.Date).
             // Get the games
