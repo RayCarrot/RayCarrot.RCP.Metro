@@ -356,17 +356,17 @@ public class GameBananaModsSource : DownloadableModsSource
                 $"_sSort=updated&" +
                 $"_csvModelInclusions=Mod");
 
-            var modRecords = newSubfeed.Records.
+            List<GameBananaRecord> modRecords = newSubfeed.Records.
                 // Take the 10 most recent new mods
-                Take(10).Select(x => new { Record = x, IsUpdate = false, }).
+                Take(10).
                 // Add the 5 most recent updated mods
-                Concat(updatedSubfeed.Records.Take(5).Select(x => new { Record = x, IsUpdate = true, })).
+                Concat(updatedSubfeed.Records.Take(5)).
                 // Remove duplicates
-                GroupBy(x => x.Record.Id).Select(x => x.OrderBy(y => y.Record.DateModified).Last()).
+                GroupBy(x => x.Id).Select(x => x.OrderBy(y => y.DateModified).Last()).
                 // Only keep ones which have files
-                Where(x => x.Record.HasFiles).
+                Where(x => x.HasFiles).
                 // Only keep from a maximum of a year back
-                Where(x => (x.Record.DateModified - DateTime.Now) < TimeSpan.FromDays(365)).
+                Where(x => (x.DateModified - DateTime.Now) < TimeSpan.FromDays(365)).
                 ToList();
 
             if (modRecords.Count == 0)
@@ -375,14 +375,16 @@ public class GameBananaModsSource : DownloadableModsSource
             // Get additional data for every mod
             GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
                 $"https://gamebanana.com/apiv11/Mod/Multi?" +
-                $"_csvRowIds={modRecords.Select(x => x.Record.Id).JoinItems(",")}&" +
+                $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
                 $"_csvProperties=_aFiles,_aModManagerIntegrations");
 
             for (int i = 0; i < mods.Length; i++)
             {
-                GameBananaRecord modRecord = modRecords[i].Record;
-                bool isUpdate = modRecords[i].IsUpdate;
+                GameBananaRecord modRecord = modRecords[i];
                 GameBananaMod mod = mods[i];
+
+                // Treat as an update if it was modified a day after being added
+                bool isUpdate = modRecord.DateModified - modRecord.DateAdded > TimeSpan.FromDays(1);
 
                 // Make sure the mod has files
                 if (mod.Files == null)
