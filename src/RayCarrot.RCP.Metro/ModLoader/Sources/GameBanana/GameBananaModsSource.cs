@@ -92,7 +92,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     version: mod.Version ?? String.Empty,
                     previewMedia: mod.PreviewMedia,
                     likesCount: mod.LikeCount,
-                    downloadsCount: mod.DownloadCount,
+                    downloadsCount: mod.DownloadCount ?? 0,
                     viewsCount: mod.ViewCount,
                     files: validFiles,
                     isFeatured: true));
@@ -203,7 +203,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     version: modRecord.Version ?? String.Empty,
                     previewMedia: modRecord.PreviewMedia,
                     likesCount: modRecord.LikeCount,
-                    downloadsCount: mod.DownloadCount,
+                    downloadsCount: mod.DownloadCount ?? 0,
                     viewsCount: modRecord.ViewCount,
                     files: validFiles,
                     isFeatured: false));

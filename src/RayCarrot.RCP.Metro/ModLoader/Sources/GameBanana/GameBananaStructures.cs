@@ -66,7 +66,7 @@ public record GameBananaMod(
     [property: JsonProperty("_bIsWithheld")] bool IsWithheld,
     [property: JsonProperty("_sName")] string? Name,
     [property: JsonProperty("_bCreatedBySubmitter")] bool CreatedBySubmitter,
-    [property: JsonProperty("_nDownloadCount")] int DownloadCount,
+    [property: JsonProperty("_nDownloadCount")] int? DownloadCount, // Null if mod is trashed
     [property: JsonProperty("_aFiles")] GameBananaFile[]? Files,
     // Can't set the type here since if it's empty then it's an array [] and if not an object {}
     [property: JsonProperty("_aModManagerIntegrations")] object? ModManagerIntegrations,
