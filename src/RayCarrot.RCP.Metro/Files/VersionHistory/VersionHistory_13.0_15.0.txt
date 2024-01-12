@@ -1,4 +1,13 @@
-﻿-----   Version 14.0.0 - December 16, 2023   -----
+﻿-----   Version 14.0.1 - January 12, 2024   -----
+• Increased the maximum time since last used for a game to appear as a recent game from 25 to 100 days
+• Updated localization
+• Fixed a bug where GameBanana mods would fail to load if some had been trashed
+• Fixed a bug where the recent mods news feed would incorrectly show some mods as new uploads rather than updates
+• Fixed a bug where the app would crash if there was an error loading the recent mods news feed
+• Bug fixes
+
+
+-----   Version 14.0.0 - December 16, 2023   -----
 • Multiple installations of the same game can now be added
 • Games can be renamed and reordered
 • The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
