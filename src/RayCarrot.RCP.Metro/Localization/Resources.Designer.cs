@@ -8198,7 +8198,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked..
+        ///   Looks up a localized string similar to This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game ROM. Deltas from multiple mods can be stacked..
         /// </summary>
         public static string ModLoader_DeltasModule_DescriptionMulti {
             get {

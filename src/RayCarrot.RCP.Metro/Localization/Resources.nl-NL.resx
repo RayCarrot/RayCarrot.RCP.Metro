@@ -4987,7 +4987,7 @@ Conflicten:
     <value>Ubisoft Connect</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Game ID:</value>
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Open in Ubisoft Store</value>
@@ -5271,5 +5271,272 @@ Conflicten:
   </data>
   <data name="ModLoader_ExtractingModSuccess" xml:space="preserve">
     <value>De modificatie-inhoud is succesvol uitgepakt</value>
+  </data>
+  <data name="ModLoader_UpdateError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de modificatie</value>
+  </data>
+  <data name="ModLoader_UpdateState_UnableToCheckLocal" xml:space="preserve">
+    <value>Niet in staat op updates te controleren voor lokaal geïnstalleerde modificaties</value>
+  </data>
+  <data name="ModLoader_UpdateState_Checking" xml:space="preserve">
+    <value>Controleren op updates</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchHeader" xml:space="preserve">
+    <value>Converteren patch (.gp) naar modificatie</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchInfo" xml:space="preserve">
+    <value>Startend vanaf versie 14.0, zijn patches vervangen door modificaties. Je kunt nog steeds patches (.gp-bestanden) gebruiken, maar zult niet in staat zijn nieuwe te creëren of bestaande te wijzigen. Hier kun je een patch converteren naar een modificatie, zodat het in het vervolg geüpdatet kan blijven worden.</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatch" xml:space="preserve">
+    <value>Converteren</value>
+  </data>
+  <data name="ModCreator_CreateHeader" xml:space="preserve">
+    <value>Creëren nieuwe modificatie</value>
+  </data>
+  <data name="ModCreator_ModDocumentation" xml:space="preserve">
+    <value>Modificatie documentatie</value>
+  </data>
+  <data name="ModCreator_Step1" xml:space="preserve">
+    <value>1. Selecteer modules</value>
+  </data>
+  <data name="ModCreator_Step1Info" xml:space="preserve">
+    <value>Modules bepalen hoe de modificatie het spel zal wijzigen. Zal het simpelweg bestanden vervangen of meer spelspecifieke patches uitvoeren? De beschikbare modules verschillen per spel. Je kunt meerdere modules gebruiken binnen een en dezelfde modificatie.</value>
+  </data>
+  <data name="ModCreator_Step2" xml:space="preserve">
+    <value>2. Creëer modificatie-map</value>
+  </data>
+  <data name="ModCreator_Step2Info" xml:space="preserve">
+    <value>Selecteer een nieuwe map voor creatie van de modificatie</value>
+  </data>
+  <data name="ModCreator_Create" xml:space="preserve">
+    <value>Creëren modificatie</value>
+  </data>
+  <data name="ModCreator_Step3" xml:space="preserve">
+    <value>3. Wijzig de metadata, voeg een aangepaste miniatuurweergave en module-inhoud toe</value>
+  </data>
+  <data name="ModCreator_Step3Info" xml:space="preserve">
+    <value>Het is aanbevolen een teksteditor te gebruiken met JSON-ondersteuning voor het wijzigen van de metadata, zoals VS Code of Notepad++. Het toevoegen van een miniatuurweergave gebeurt middels het toevoegen van een bestand met de naam thumbnail.png, waarbij de aanbevolen grootte 128x128 is.</value>
+  </data>
+  <data name="ModCreator_Step4" xml:space="preserve">
+    <value>4. Publiceer de modificatie</value>
+  </data>
+  <data name="ModCreator_Step4Info" xml:space="preserve">
+    <value>De modificatie wordt gepubliceerd via het inpakken van de modificatie-map in een ondersteunde achiefindeling (.zip, .7z, .rar). Als de modificatie gepubliceerd wordt naar GameBanana, zal het zichtbaar zijn als een downloadbare modificatie in de mod loader. Zie de documentatie voor meer details!</value>
+  </data>
+  <data name="ModCreator_Title" xml:space="preserve">
+    <value>Mod Creator</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchBrowseTitle" xml:space="preserve">
+    <value>Selecteer patchbestanden voor conversie</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchStatus" xml:space="preserve">
+    <value>Converteren patches</value>
+  </data>
+  <data name="ModCreator_ConvertLegacyPatchError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het converteren van de patches</value>
+  </data>
+  <data name="ModCreator_CreateModNoModulesError" xml:space="preserve">
+    <value>Minimaal één module dient geselecteerd te worden voor het creëren van een modificatie</value>
+  </data>
+  <data name="ModCreator_CreateModBrowseTitle" xml:space="preserve">
+    <value>Selecteer modificatie bestemming</value>
+  </data>
+  <data name="ModLoader_FilesModule_Description" xml:space="preserve">
+    <value>Dit wordt gebruikt voor het toevoegen aan, vervangen door en verwijderen van bestanden uit het spel. Nuttig voor modificaties, zoals bij de vervanging van texturen, waarbij complete bestanden worden vervangen.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionSingle" xml:space="preserve">
+    <value>Dit wordt gebruikt voor het patchen van gedeelten van spelbestanden. De bestandsnaam voor 'single file'-spellen dient 'game.delta' te zijn. Delta's van meerdere modificaties kunnen gestapeld worden.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_DescriptionMulti" xml:space="preserve">
+    <value>Dit wordt gebruikt voor het patchen van gedeelten van een bestand. Hoofdzakelijk gebruikt voor binaire bestanden die er bekend om staan weinig te veranderen, zoals een exe of spel-ROM. Delta's van meerder modificaties kunnen gestapeld worden.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
+    <value>Creëren delta-bestand</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFileInfo" xml:space="preserve">
+    <value>Creëer een .delta patch-bestand van 2 bestanden</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseOriginalFile" xml:space="preserve">
+    <value>Selecteren originele bestand</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseModifiedFile" xml:space="preserve">
+    <value>Selecteren gewijzigde bestand</value>
+  </data>
+  <data name="ModLoader_UbiArtLocalizationModule_Description" xml:space="preserve">
+    <value>Dit wordt gebruikt voor het vervangen of toevoegen van rijen in de spellokalisatie voor elke van de ondersteunde talen. Het voordeel van het gebruiken van deze module boven het vervangen van het complete bestand is, dat meerdere lokalisatie-modificaties gestapeld kunnen worden.</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingVersion" xml:space="preserve">
+    <value>Niet in staat op updates te controleren, omdat er géén versie aanwezig is ter vergelijking</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_MissingFiles" xml:space="preserve">
+    <value>Niet in staat op updates te controleren, omdat de GameBanana-modificatie géén geldige bestanden kent</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateState_InvalidVersion" xml:space="preserve">
+    <value>Niet in staat op updates te controleren, omdat de versie niet correct is geformatteerd</value>
+  </data>
+  <data name="ModLoader_UpdateState_UpToDate" xml:space="preserve">
+    <value>De modificatie is up-to-date</value>
+  </data>
+  <data name="ModLoader_GameBanana_UploadInfo" xml:space="preserve">
+    <value>Geüpload door {0} op {1}</value>
+  </data>
+  <data name="ModLoader_GameBanana_OpenModPage" xml:space="preserve">
+    <value>Openen in GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFile" xml:space="preserve">
+    <value>Downloaden</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
+    <value>Downloaden en installeren modificatie</value>
+  </data>
+  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
+    <value>Geïnstalleerd</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
+    <value>Updaten</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
+    <value>Updaten geïnstalleerde modificatie</value>
+  </data>
+  <data name="Games_Win32RunAsAdmin" xml:space="preserve">
+    <value>Uitvoeren als administrator</value>
+  </data>
+  <data name="Home_AppNews" xml:space="preserve">
+    <value>App nieuws</value>
+  </data>
+  <data name="Home_RecentMods" xml:space="preserve">
+    <value>Recente modificaties</value>
+  </data>
+  <data name="Games_VerifyRemoveWithMods" xml:space="preserve">
+    <value>Dit spel heeft {0} toegepaste modificaties. Het verwijderen van het spel van het programma zal níét resulteren in verwijdering van de toegepaste modificaties. Je kunt het spel op elk gewenst moment opnieuw toevoegen, opdat kan worden aangepast welke modificaties in werking zullen zijn. Doorgaan?</value>
+  </data>
+  <data name="ModNews_UpdatedInfo" xml:space="preserve">
+    <value>Geüpdatet op {0}</value>
+  </data>
+  <data name="ModNews_UploadedInfo" xml:space="preserve">
+    <value>Geüpload op {0}</value>
+  </data>
+  <data name="Progression_EditGamesVisibility" xml:space="preserve">
+    <value>Weergeven/verbergen spellen</value>
+  </data>
+  <data name="Settings_Files_Info" xml:space="preserve">
+    <value>Hier kun je specificeren welk programma je wilt gebruiken voor het bewerken van bepaalde bestandstypes. Dit wordt gebruikt in o.a. de Archive Explorer en binnen de voortgangspagina, waar je een extern programma kunt inzetten voor aanpassen van een bestand. Een lege bestandsextensie wordt gebruikt voor het specificeren van het programma, gebruikt voor het wijzigen van binaire bestanden. Het is aanbevolen hiervoor een hex-editor te gebruiken.</value>
+  </data>
+  <data name="Settings_Files_ChangeProgram" xml:space="preserve">
+    <value>Wijzigen programma</value>
+  </data>
+  <data name="Settings_Files_Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Settings_Files_Add" xml:space="preserve">
+    <value>Toevoegen bestandstype</value>
+  </data>
+  <data name="Settings_Files_Header" xml:space="preserve">
+    <value>Bestanden</value>
+  </data>
+  <data name="Settings_Files_FileExtInputTitle" xml:space="preserve">
+    <value>Toevoegen bestandseditor</value>
+  </data>
+  <data name="Settings_Files_FileExtInputHeader" xml:space="preserve">
+    <value>Specificeer de bestandsextensie</value>
+  </data>
+  <data name="Settings_Files_ConflictError" xml:space="preserve">
+    <value>De gespecificeerde bestandsextensie is reeds gedefinieerd</value>
+  </data>
+  <data name="Settings_Files_FormatError" xml:space="preserve">
+    <value>De gespecificeerde bestandsextensie is niet geldig. Deze begint met een punt en dient daarna géén punten extra te bevatten.</value>
+  </data>
+  <data name="Settings_Files_ProgramSelectionTitle" xml:space="preserve">
+    <value>Specificeer de bestandseditor</value>
+  </data>
+  <data name="Settings_Files_ChangeProgramSelectionTitle" xml:space="preserve">
+    <value>Wijzig type editor</value>
+  </data>
+  <data name="Settings_General_JumpListHeader" xml:space="preserve">
+    <value>Jump List</value>
+  </data>
+  <data name="Settings_General_JumpListImageCaption" xml:space="preserve">
+    <value>Start spellen direct via de taakbalk</value>
+  </data>
+  <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
+    <value>Automatisch controleren op modificatie-updates</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>Mod Loader</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsHeader" xml:space="preserve">
+    <value>Bestandstype-associaties</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsInfo" xml:space="preserve">
+    <value>Hiermee specificeer je welke bestandstypes via (Windows) Verkenner geopend worden in het Rayman Control Panel</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsHeader" xml:space="preserve">
+    <value>URI associaties</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsInfo" xml:space="preserve">
+    <value>Hiermee specificeer je welke URI protocollen geopend zullen worden in het Rayman Control Panel</value>
+  </data>
+  <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
+    <value>Windows Integration</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het instellen van de bestandstype-associaties. Start het Rayman Control Panel als administrator en probeer het nog eens.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateUriAssociationsError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het instellen van de URI-protocol associatie. Start het Rayman Control Panel als administrator en probeer het nog eens.</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>Kopiëren waarde</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>Zoek geïnstalleerde spellen</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Zoek ROMs</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>Weergeven features</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>Toegevoegd</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>Niet toegevoegd</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderHeader" xml:space="preserve">
+    <value>Nieuwe mod loader vervangt de patcher</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
+    <value>De patcher is vervangen door een compleet nieuwe mod loader! Nieuwe soorten modificaties kunnen nu gecreëerd worden, zoals degenen die alleen delen van een bestand wijzigen. Modificaties die geüpload zijn naar GameBanana kunnen nu ook direct worden gedownload via de app. Als er een hulpprogramma of ander type patch ontbreekt, dan is het hoogstwaarschijnlijk overgegaan in een modificatie.</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>Zoek geïnstalleerde spelplatformen/emulators</value>
+  </data>
+  <data name="About_Credits_payopayo" xml:space="preserve">
+    <value>Turks (Turkije) programmavertaling</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
+    <value>Selecteer modificatie-bestand vanuit GameBanana om te gebruiken tijdens het updaten</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileTitle" xml:space="preserve">
+    <value>Selecteren modificatie-bestand</value>
+  </data>
+  <data name="Finder_NoGameResults" xml:space="preserve">
+    <value>Geen nieuwe, geïnstalleerde spellen gevonden</value>
+  </data>
+  <data name="Finder_NoGameClientResults" xml:space="preserve">
+    <value>Geen nieuwe, geïnstalleerde spelplatforms/emulators gevonden</value>
+  </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het downloaden van de modificatie</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>De bestanden zijn identiek. Probeer het nog eens, na 2 verschillende bestanden te hebben geselecteerd.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>Delta-bestand creatie mislukt</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Splash-scherm</value>
   </data>
 </root>

@@ -5557,7 +5557,7 @@ modules</comment>
     <value>This is used to patch parts of the game file. The file name for single-file games should be 'game.delta'. Deltas from multiple mods can be stacked.</value>
   </data>
   <data name="ModLoader_DeltasModule_DescriptionMulti" xml:space="preserve">
-    <value>This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game rom. Deltas from multiple mods can be stacked.</value>
+    <value>This is used to patch parts of a file. This should mainly be used for binary files which are known not to change much, such as an exe or game ROM. Deltas from multiple mods can be stacked.</value>
   </data>
   <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
     <value>Create delta file</value>

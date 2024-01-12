@@ -5455,7 +5455,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Ændr redigeringsprogram</value>
   </data>
   <data name="Settings_General_JumpListHeader" xml:space="preserve">
-    <value>Hoppeliste</value>
+    <value>Jumplist</value>
   </data>
   <data name="Settings_General_JumpListImageCaption" xml:space="preserve">
     <value>Start spil direkte fra proceslinjen</value>
