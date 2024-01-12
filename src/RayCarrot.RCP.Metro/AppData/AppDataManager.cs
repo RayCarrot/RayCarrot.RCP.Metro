@@ -566,6 +566,11 @@ public class AppDataManager
                     // Verify the data
                     Data.Verify();
                 }
+                else
+                {
+                    // Since we set this to null we need to make sure it's not null when leaving this method
+                    Data.App_LastVersion = new Version(0, 0, 0, 0);
+                }
             }
             else
             {
