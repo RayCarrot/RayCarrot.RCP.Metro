@@ -16,6 +16,12 @@ public class ModNewsFeedViewModel : BaseViewModel
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Services
 
     private GamesManager Games { get; }
@@ -26,6 +32,7 @@ public class ModNewsFeedViewModel : BaseViewModel
 
     public ObservableCollection<NewModViewModel> Mods { get; }
     public bool IsLoading { get; set; }
+    public string? ErrorMessage { get; set; }
 
     #endregion
 
@@ -37,6 +44,7 @@ public class ModNewsFeedViewModel : BaseViewModel
             return;
 
         IsLoading = true;
+        ErrorMessage = null;
 
         try
         {
@@ -52,6 +60,12 @@ public class ModNewsFeedViewModel : BaseViewModel
                     Mods.Insert(insertIndex, modViewModel);
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading mods news feed");
+            ErrorMessage = ex.Message;
+            Mods.Clear();
         }
         finally
         {

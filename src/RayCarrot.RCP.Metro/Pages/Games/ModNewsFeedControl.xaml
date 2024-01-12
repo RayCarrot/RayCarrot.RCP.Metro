@@ -5,56 +5,83 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="900"
              d:DataContext="{d:DesignInstance games:ModNewsFeedViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <ItemsControl ItemsSource="{Binding Path=Mods, Mode=OneTime}"
-                  d:ItemsSource="{d:SampleData ItemCount=3}"
-                  Grid.IsSharedSizeScope="True">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Button Margin="0 2"
-                        Style="{StaticResource RCP.Styles.Button.Flat}" 
-                        HorizontalContentAlignment="Stretch"
-                        Command="{Binding Path=OpenModCommand, Mode=OneTime}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+    <Grid>
+        <!-- Recent mods -->
+        <ItemsControl ItemsSource="{Binding Path=Mods, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}"
+                      Grid.IsSharedSizeScope="True">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Margin="0 2"
+                            Style="{StaticResource RCP.Styles.Button.Flat}" 
+                            HorizontalContentAlignment="Stretch"
+                            Command="{Binding Path=OpenModCommand, Mode=OneTime}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0"
-                                   VerticalAlignment="Center"
-                                   Margin="0 0 8 0" 
-                                   TextWrapping="Wrap"
-                                   Text="{Binding Path=Name, Mode=OneTime}"
-                                   FontSize="14"
-                                   ToolTip="{Binding Path=ModUrl, Mode=OneTime}" />
+                            <TextBlock Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 8 0" 
+                                       TextWrapping="Wrap"
+                                       Text="{Binding Path=Name, Mode=OneTime}"
+                                       FontSize="14"
+                                       ToolTip="{Binding Path=ModUrl, Mode=OneTime}" />
 
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Path=ModificationDateDisplayText, Mode=OneTime}"
-                                   TextWrapping="Wrap"
-                                   VerticalAlignment="Center"
-                                   Margin="0 0 8 0" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Path=ModificationDateDisplayText, Mode=OneTime}"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 8 0" />
 
-                        <ItemsControl Grid.Column="2" 
-                                      ItemsSource="{Binding Path=GameDescriptors}"
-                                      Margin="0 0 8 0">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" 
-                                                   GameIconSize="Smallest"
-                                                   Margin="0 0 0 2" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                            <ItemsControl Grid.Column="2" 
+                                          ItemsSource="{Binding Path=GameDescriptors}"
+                                          Margin="0 0 8 0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" 
+                                                       GameIconSize="Smallest"
+                                                       Margin="0 0 0 2" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
 
-                    </Grid>
-                </Button>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Error message -->
+        <Grid Margin="30"
+              Visibility="{Binding Path=ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+              HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <iconPacks:PackIconMaterial Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        Kind="InformationOutline" 
+                                        Foreground="{StaticResource RCP.Brushes.Warning}"
+                                        Margin="0 0 4 0" />
+
+            <TextBlock Grid.Column="1" 
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="{Binding Path=ErrorMessage}"
+                       d:Text="Error message"/>
+        </Grid>
+
+    </Grid>
 </UserControl>
