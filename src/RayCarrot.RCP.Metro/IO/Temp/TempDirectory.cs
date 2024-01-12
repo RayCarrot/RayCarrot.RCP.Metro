@@ -38,9 +38,14 @@ public sealed class TempDirectory : TempFileSystemEntry
         FileSystemPath tempDir;
 
         // Generate a random temp path until one does not exist
+        // NOTE: Previously we used a GUID, however they're long and would sometimes cause the full path to be too
+        //       long to be handled by the .NET Framework IO APIs. When we migrate to .NET this should no longer be
+        //       an issue and we can revert to using a GUID.
+        int num = 0;
         do
         {
-            tempDir = tempBaseDir + $"{Guid.NewGuid()}";
+            tempDir = tempBaseDir + $"{num}";
+            num++;
         } while (tempDir.DirectoryExists);
 
         return tempDir;
