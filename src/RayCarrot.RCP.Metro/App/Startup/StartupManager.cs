@@ -114,6 +114,11 @@ public class StartupManager
     private void LoadAppData()
     {
         AppDataManager.Load();
+
+        Logger.Info("Current version is {0}", AppViewModel.CurrentAppVersion);
+
+        // Set the previous app version
+        AppViewModel.PrevAppVersion = Data.App_LastVersion;
     }
 
     private void InitXAML()
@@ -342,11 +347,6 @@ public class StartupManager
 
     private async Task PostUpdateAsync()
     {
-        Logger.Info("Current version is {0}", AppViewModel.CurrentAppVersion);
-
-        // Set the previous app version
-        AppViewModel.PrevAppVersion = Data.App_LastVersion;
-
         // Check if it's a new version
         if (Data.App_LastVersion < AppViewModel.CurrentAppVersion)
         {
