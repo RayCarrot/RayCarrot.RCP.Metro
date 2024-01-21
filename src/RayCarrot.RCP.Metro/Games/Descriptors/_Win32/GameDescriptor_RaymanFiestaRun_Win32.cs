@@ -44,6 +44,8 @@ public sealed class GameDescriptor_RaymanFiestaRun_Win32 : Win32GameDescriptor
         builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x, UbisoftConnectHelpers.GetSaveDirectory(x), true)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanFiestaRun_PC));
+
+        builder.Register(new GameBananaGameComponent(19729));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]

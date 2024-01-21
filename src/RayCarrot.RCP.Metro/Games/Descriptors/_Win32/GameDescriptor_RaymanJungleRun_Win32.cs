@@ -44,6 +44,8 @@ public sealed class GameDescriptor_RaymanJungleRun_Win32 : Win32GameDescriptor
         builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this, x, UbisoftConnectHelpers.GetSaveDirectory(x), false, false, true)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanJungleRun_PC));
+
+        builder.Register(new GameBananaGameComponent(19728));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
