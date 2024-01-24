@@ -4990,9 +4990,6 @@ Start: Пауза</value>
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
   </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>ID игры:</value>
-  </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Открыть в Ubisoft Store</value>
   </data>

@@ -4382,4 +4382,283 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
   </data>
+  <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
+    <value>Time attack</value>
+  </data>
+  <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
+    <value>Encontrar ROMs de jogos e discos a partir de uma pasta</value>
+  </data>
+  <data name="GameFileFinder_BrowseDirectoryHeader" xml:space="preserve">
+    <value>Seleccionar pasta para procurar ROMs de jogos e discos</value>
+  </data>
+  <data name="GameFileFinder_Error" xml:space="preserve">
+    <value>Ocorreu um erro durante a operação de busca de ficheiro de jogo</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>Foram encontrados os novos jogos seguintes:</value>
+  </data>
+  <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Encontrados ROMs de jogos e discos </value>
+  </data>
+  <data name="GameFileFinder_NoResults" xml:space="preserve">
+    <value>Não foram encontrados novos ROMs de jogos e discos</value>
+  </data>
+  <data name="GameFileFinder_ResultHeader" xml:space="preserve">
+    <value>Resultado da busca de ficheiro de jogo</value>
+  </data>
+  <data name="GameSelection_RefreshError" xml:space="preserve">
+    <value>Ocorreu um erro ao carregar os jogos</value>
+  </data>
+  <data name="Home_ShowMoreNews" xml:space="preserve">
+    <value>Mostrar mais</value>
+  </data>
+  <data name="Settings_LoadAppNews" xml:space="preserve">
+    <value>Carregar notícias da aplicação na página inicial</value>
+  </data>
+  <data name="AnniversaryUpdate_Title" xml:space="preserve">
+    <value>Bem-vindo à actualização de aniversário</value>
+  </data>
+  <data name="AnniversaryUpdate_Header" xml:space="preserve">
+    <value>Bem-vindo à actualização de aniversário!</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
+    <value>Página de jogos redesenhados</value>
+  </data>
+  <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
+    <value>A página de jogos foi redesenhada para suportar novas características tais como permitir instalações múltiplas do mesmo jogo e de jogos de consola emulados. Agora cada jogo tem uma área central para o lado direito onde podes ver acções comuns tais como os painéis do Patcher e do Explorador de Arquivos. </value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsHeader" xml:space="preserve">
+    <value>Clientes/emuladores de jogos</value>
+  </data>
+  <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
+    <value>Novo nesta actualização é o suporte para clientes de jogos/emuladores. Estes podem ser acrescentados num diálogo separado e configurado para ser usado em jogos adicionados. Clientes de jogos como o Steam são opcionais enquando os jogos de consola requerem um emulador de maneira a serem jogados. Se um emulador não estiver na lista suportada poderás acrescentá-lo como um emulador personalizado. Tem atenção que ao fazê-lo não permite que seja mostrado qualquer progressão de jogo.</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
+    <value>A sincronização de texturas foi movida</value>
+  </data>
+  <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
+    <value>O utilitário de sincronização de textura foi substituída por um botão no painel de jogo Explorador de Arquivo para um acesso mais fácil. Tal como antes podes também activar texturas para sincronizar automaticamente quando um arquivo foi reempacotado. </value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
+    <value>1.12 (Desprogetido)</value>
+  </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>Há uma nova versão disponível. Desinstala a versão actual para instalá-la.</value>
+  </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
+  <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
+    <value>Abrir na Ubisoft Store</value>
+  </data>
+  <data name="GameClients_UbisoftConnect_UserIdHeader" xml:space="preserve">
+    <value>ID de utilizador</value>
+  </data>
+  <data name="About_Credits_Marcos03BR" xml:space="preserve">
+    <value>Programa de tradução Espanhola (Espanha)</value>
+  </data>
+  <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
+    <value>Última modificação:</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo" xml:space="preserve">
+    <value>Sincronizar texturas</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Protótipo Rayman 3</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
+  </data>
+  <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
+    <value>Níveis bonus GameCube completados</value>
+  </data>
+  <data name="Mod_Mem_R1_FistDownSlam" xml:space="preserve">
+    <value>Golpe de punho para baixo</value>
+  </data>
+  <data name="Mod_Mem_R1_FistControl" xml:space="preserve">
+    <value>Controlo do punho</value>
+  </data>
+  <data name="About_Credits_Lex" xml:space="preserve">
+    <value>Programa de tradução Espanhola (Espanha)</value>
+  </data>
+  <data name="Home_ShowRecentGames" xml:space="preserve">
+    <value>Mostrar jogos recentes</value>
+  </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Patch de jogo (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Modificação de jogo</value>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>Carregador de modificações</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>Gerir modificações</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Biblioteca</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>Descarregar</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Modificações instaladas</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>Nenhuma modificação instaladas</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>Instalar através de ficheiro</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>Verificar por actualizações</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>Ver todas as alterações</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>Mostrar ficheiros em lista</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>Mostrar ficheiros em árvore</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>Expandir tudo</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>Endereço</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>Modificação</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>Modificações anuladas</value>
+  </data>
+  <data name="ModLoader_ApplyStatus" xml:space="preserve">
+    <value>Aplicar modificações</value>
+  </data>
+  <data name="ModCreator_CreateModBrowseTitle" xml:space="preserve">
+    <value>Seleccionar destino da modificação</value>
+  </data>
+  <data name="ModLoader_DeltasModule_CreateFile" xml:space="preserve">
+    <value>Criar ficheiro delta</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseOriginalFile" xml:space="preserve">
+    <value>Seleccionar ficheiro original</value>
+  </data>
+  <data name="ModLoader_DeltasModule_BrowseModifiedFile" xml:space="preserve">
+    <value>Seleccionar ficheiro modificado</value>
+  </data>
+  <data name="ModLoader_UpdateState_UpToDate" xml:space="preserve">
+    <value>A modificação está actualizada</value>
+  </data>
+  <data name="ModLoader_GameBanana_OpenModPage" xml:space="preserve">
+    <value>Abrir em GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFile" xml:space="preserve">
+    <value>Descarregar</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
+    <value>Descarregar e instalar a modificação</value>
+  </data>
+  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
+    <value>Instalado</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
+    <value>Actualizar a modificação instalada</value>
+  </data>
+  <data name="Games_Win32RunAsAdmin" xml:space="preserve">
+    <value>Executar como administrador</value>
+  </data>
+  <data name="Home_AppNews" xml:space="preserve">
+    <value>Notícias da aplicação</value>
+  </data>
+  <data name="Home_RecentMods" xml:space="preserve">
+    <value>Modificações recentes</value>
+  </data>
+  <data name="Settings_General_JumpListHeader" xml:space="preserve">
+    <value>Lista de salto</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>Carregador de Modificações</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>Copiar valor</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>Procurar jogos instalados</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>Procurar ROMs</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>Mostrar características</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>Adicionado</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>Não adicionado</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>Procurar clientes/emuladores de jogos instalados</value>
+  </data>
+  <data name="About_Credits_payopayo" xml:space="preserve">
+    <value>Programa de tradução Turca (Turquia)</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
+    <value>Seleccionar ficheiro de modificação da GameBanana para usar ao actualizar</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileTitle" xml:space="preserve">
+    <value>Seleccionar ficheiro de modificação</value>
+  </data>
+  <data name="Finder_NoGameResults" xml:space="preserve">
+    <value>Não foram encontrados novos jogos instalados</value>
+  </data>
+  <data name="Finder_NoGameClientResults" xml:space="preserve">
+    <value>Não foram encontrados novos clientes/emuladores de jogos instalados</value>
+  </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>Ocorreu um erro ao descarregar a modificação</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>Os ficheiros são idênticos. Por favor selecciona dois ficheiros diferentes e tenta novamente.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>Erro ao criar ficheiro delta</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID Ubisoft Connect:</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Ecrã de apresentação</value>
+  </data>
 </root>

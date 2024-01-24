@@ -4998,7 +4998,7 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
     <value>Ubisoft Connect</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Oyun Kimliği:</value>
+    <value>Ubisoft Connect ID</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Ubisoft Store'da aç</value>
@@ -5059,5 +5059,125 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   </data>
   <data name="Home_ShowRecentGames" xml:space="preserve">
     <value>Son oyunları göster</value>
+  </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Oyun yaması (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Oyun modu</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>Oyun modu (GameBanana tek-tıkla kurulum)</value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>Arşiv dosyası şu anda aşağıdaki programlar tarafından kullanılıyor ve yeniden paketlenemiyor. Programları kapatıp tekrar deneyin.
+
+{0}</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Kütüphane</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>İndir</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Yüklü modlar</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>Oyunun belirli kısımlarını değiştirmek için modlar kurulabilir. Çoğu mod, belirli oyun dosyalarını değiştirerek çalışır. Mod, etkinleştirilene ve değişiklikler uygulanana kadar yürürlüğe girmeyecektir, böylece modların kolayca açılıp kapatılmasına olanak sağlanır. Bazı değişikliklerin kaybolmasına neden olabileceğinden, modun değiştirdiği oyun dosyalarını manuel olarak değiştirmeniz önerilmez.</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>Kaldir</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>Guncelle</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
+    <value>Mod güncellemelerini otomatik olarak kontrol et</value>
+  </data>
+  <data name="Settings_ModLoader_Header" xml:space="preserve">
+    <value>Mod Yükleyici</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsHeader" xml:space="preserve">
+    <value>Dosya türü ilişkileri</value>
+  </data>
+  <data name="Settings_WindowsIntegration_FileAssociationsInfo" xml:space="preserve">
+    <value>Bu, Rayman Control Panel-de Dosya Gezgini'nden hangi tür dosyaların açılacağını belirtir.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsHeader" xml:space="preserve">
+    <value>URI ilişkilendirmeleri</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UriAssociationsInfo" xml:space="preserve">
+    <value>Bu, Rayman Control Panel-de hangi URI protokollerinin açılacağını belirtir</value>
+  </data>
+  <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
+    <value>Windows Entegrasyonu</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
+    <value>Dosya türü ilişkisini ayarlarken bir hata oluştu. Rayman Kontrol Panelini yönetici olarak çalıştırmayı deneyin ve tekrar deneyin.</value>
+  </data>
+  <data name="Settings_WindowsIntegration_UpdateUriAssociationsError" xml:space="preserve">
+    <value>URI protokolü ilişkisini ayarlarken bir hata oluştu. Rayman COntrol Panel-i yönetici olarak çalıştırmayı deneyin ve tekrar deneyin.</value>
+  </data>
+  <data name="DuoGrid_CopyValue" xml:space="preserve">
+    <value>Değeri kopyala</value>
+  </data>
+  <data name="GameSelection_FindGames" xml:space="preserve">
+    <value>Yüklü oyunları bulun</value>
+  </data>
+  <data name="GameSelection_FindGameFiles" xml:space="preserve">
+    <value>ROM-lari bulun</value>
+  </data>
+  <data name="AddGames_ToggleFeatures" xml:space="preserve">
+    <value>Özellikleri göster</value>
+  </data>
+  <data name="AddGames_Added" xml:space="preserve">
+    <value>Eklendi</value>
+  </data>
+  <data name="AddGames_NotAdded" xml:space="preserve">
+    <value>Eklenmedi</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderHeader" xml:space="preserve">
+    <value>Yeni mod yükleyici yamanın yerini alıyor</value>
+  </data>
+  <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
+    <value>Yamalı programın yerini tamamen yeni bir mod yükleyici aldı! Artık, bir dosyanın yalnızca bölümlerini değiştirenler gibi yeni mod türleri oluşturulabilir. GameBanana'ya yüklenen modlar artık doğrudan uygulama aracılığıyla da indirilebilir.
+Eğer bir yardımcı program ya da başka türde bir yama eksikse, o zaman büyük olasılıkla bir moda taşınmıştır.</value>
+  </data>
+  <data name="AddGameClients_FindClients" xml:space="preserve">
+    <value>Yüklü oyun istemcilerini/emülatörlerini bulun</value>
+  </data>
+  <data name="About_Credits_payopayo" xml:space="preserve">
+    <value>Türkçe (Türkiye) program çeviri</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
+    <value>Güncelleme sırasında kullanılacak GameBanana'dan mod dosyasını seçin</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectUpdateFileTitle" xml:space="preserve">
+    <value>Mod dosyasını seçin</value>
+  </data>
+  <data name="Finder_NoGameResults" xml:space="preserve">
+    <value>Yeni yüklü oyun bulunamadı</value>
+  </data>
+  <data name="Finder_NoGameClientResults" xml:space="preserve">
+    <value>Yeni yüklü oyun istemcisi/emülatörü bulunamadı</value>
+  </data>
+  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
+    <value>Mod indirilirken bir hata oluştu</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
+    <value>Dosyalar aynı. Lütfen iki farklı dosya seçip tekrar deneyin.</value>
+  </data>
+  <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
+    <value>Delta dosyası oluşturulamadı</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Başlangıç ​​ekranı</value>
   </data>
 </root>
