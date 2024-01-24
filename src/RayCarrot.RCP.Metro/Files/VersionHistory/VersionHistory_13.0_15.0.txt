@@ -1,4 +1,10 @@
-﻿-----   Version 14.0.1 - January 12, 2024   -----
+﻿-----   Version 14.0.2 - January 24, 2024   -----
+• Added GameBanana mod support for the Ubisoft Connect versions of Rayman Jungle Run and Rayman Fiesta Run
+• Updated localization
+• Fixed a bug where the UI for a downloadable mod wouldn't show all downloadable files if there were too many of them
+
+
+-----   Version 14.0.1 - January 12, 2024   -----
 • Increased the maximum time since last used for a game to appear as a recent game from 25 to 100 days
 • Updated localization
 • Fixed a bug where GameBanana mods would fail to load if some had been trashed
