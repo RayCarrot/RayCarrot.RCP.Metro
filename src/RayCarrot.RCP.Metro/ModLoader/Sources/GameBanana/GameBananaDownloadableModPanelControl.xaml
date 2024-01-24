@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             d:DesignWidth="500"
+             d:DesignWidth="500" d:DesignHeight="500"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <Grid>
@@ -17,9 +17,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="145" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Header -->
@@ -104,98 +103,107 @@
             </Grid>
         </ScrollViewer>
 
-        <Separator Grid.Row="4"
-                   Margin="0 0 0 8" />
+        <Grid Grid.Row="4" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Row="5"
-                      ItemsSource="{Binding Path=Files, Mode=OneTime}"
-                      d:ItemsSource="{d:SampleData ItemCount=2}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0 0 0 8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+            <Separator Grid.Row="0"
+                           Margin="0 0 0 8" />
 
-                        <iconPacks:PackIconMaterial Grid.Column="0"
-                                                    Kind="FileSettingsOutline" 
-                                                    Width="22" Height="22"
-                                                    VerticalAlignment="Center" 
-                                                    Margin="0 0 4 0" />
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=2}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0 0 0 8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Path=FileName, Mode=OneTime}" 
-                                       ToolTip="{Binding Path=FileName, Mode=OneTime}"
-                                       FontSize="14" 
-                                       FontWeight="Medium"
-                                       TextTrimming="CharacterEllipsis" />
-                            <TextBlock Text="{Binding Path=FileDescription, Mode=OneTime}" 
-                                       Visibility="{Binding Path=FileDescription, Converter={rcp:StringEmptyToVisibilityConverter}}"
-                                       FontStyle="Italic"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
+                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Kind="FileSettingsOutline" 
+                                                            Width="22" Height="22"
+                                                            VerticalAlignment="Center" 
+                                                            Margin="0 0 4 0" />
 
-                        <Button Grid.Column="2"
-                                Command="{Binding Path=DataContext.(gameBanana:GameBananaDownloadableModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                CommandParameter="{Binding Mode=OneTime}">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
-                                    <Setter Property="rcp:Icon.Kind" Value="DownloadOutline" />
-                                    <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.GameBanana.Download}" />
-                                    <Setter Property="Content">
-                                        <Setter.Value>
-                                            <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFile}"
-                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="ToolTip">
-                                        <Setter.Value>
-                                            <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFileInfo}"
-                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
-                                        </Setter.Value>
-                                    </Setter>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Path=FileName, Mode=OneTime}" 
+                                               ToolTip="{Binding Path=FileName, Mode=OneTime}"
+                                               FontSize="14" 
+                                               FontWeight="Medium"
+                                               TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding Path=FileDescription, Mode=OneTime}" 
+                                               Visibility="{Binding Path=FileDescription, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                                               FontStyle="Italic"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
 
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=DownloadedMod, Converter={rcp:IsNotNullConverter}}" Value="True">
-                                            <Setter Property="IsEnabled" Value="False" />
+                                <Button Grid.Column="2"
+                                        Command="{Binding Path=DataContext.(gameBanana:GameBananaDownloadableModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                        CommandParameter="{Binding Mode=OneTime}">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                                            <Setter Property="rcp:Icon.Kind" Value="DownloadOutline" />
+                                            <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.GameBanana.Download}" />
                                             <Setter Property="Content">
                                                 <Setter.Value>
-                                                    <TextBlock Text="{Resx ModLoader_GameBanana_ModFileInstalled}"
-                                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState}" Value="PendingUninstall">
-                                            <Setter Property="IsEnabled" Value="True" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=DownloadedMod.UpdateState}" Value="UpdateAvailable">
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="rcp:Icon.Kind" Value="RefreshCircle" />
-                                            <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.Info}" />
-                                            <Setter Property="Content">
-                                                <Setter.Value>
-                                                    <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFile}"
+                                                    <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFile}"
                                                                ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                 </Setter.Value>
                                             </Setter>
                                             <Setter Property="ToolTip">
                                                 <Setter.Value>
-                                                    <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFileInfo}"
+                                                    <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFileInfo}"
                                                                ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                 </Setter.Value>
                                             </Setter>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
 
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=DownloadedMod, Converter={rcp:IsNotNullConverter}}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <TextBlock Text="{Resx ModLoader_GameBanana_ModFileInstalled}"
+                                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState}" Value="PendingUninstall">
+                                                    <Setter Property="IsEnabled" Value="True" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=DownloadedMod.UpdateState}" Value="UpdateAvailable">
+                                                    <Setter Property="IsEnabled" Value="True" />
+                                                    <Setter Property="rcp:Icon.Kind" Value="RefreshCircle" />
+                                                    <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.Info}" />
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFile}"
+                                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="ToolTip">
+                                                        <Setter.Value>
+                                                            <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFileInfo}"
+                                                                       ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
 
     </Grid>
 
