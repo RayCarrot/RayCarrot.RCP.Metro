@@ -149,6 +149,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 // component does not come from a client)
                 getInstanceIdFunc: _ => "Utilities"),
             priority: ComponentPriority.Low);
+
+        builder.Register<GamePanelComponent>(new ModLoaderGamePanelComponent());
     }
 
     protected abstract ProgramInstallationStructure GetStructure();
