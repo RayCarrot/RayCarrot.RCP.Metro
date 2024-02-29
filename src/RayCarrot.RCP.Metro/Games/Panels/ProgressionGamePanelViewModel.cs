@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Data;
 
-namespace RayCarrot.RCP.Metro.Pages.Games;
+namespace RayCarrot.RCP.Metro.Games.Panels;
 
 public class ProgressionGamePanelViewModel : GamePanelViewModel
 {

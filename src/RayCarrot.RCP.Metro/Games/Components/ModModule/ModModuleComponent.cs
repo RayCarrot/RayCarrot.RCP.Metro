@@ -7,4 +7,11 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 public class ModModuleComponent : FactoryGameComponent<ModModule>
 {
     public ModModuleComponent(Func<GameInstallation, ModModule> objFactory) : base(objFactory) { }
+
+    public override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register<GamePanelComponent>(new ModLoaderGamePanelComponent());
+    }
 }

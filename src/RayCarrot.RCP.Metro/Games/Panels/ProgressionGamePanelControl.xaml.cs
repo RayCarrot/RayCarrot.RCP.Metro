@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro.Pages.Games;
+namespace RayCarrot.RCP.Metro.Games.Panels;
 
 /// <summary>
 /// Interaction logic for ProgressionGamePanelControl.xaml

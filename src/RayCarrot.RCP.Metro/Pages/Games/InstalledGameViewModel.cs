@@ -4,6 +4,7 @@ using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
+using RayCarrot.RCP.Metro.Games.Panels;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 
@@ -126,19 +127,8 @@ public class InstalledGameViewModel : BaseViewModel
 
         GamePanels.Clear();
 
-        // Mod Loader
-        if (GameInstallation.GetComponents<ModModuleComponent>().Any())
-            GamePanels.Add(new ModLoaderGamePanelViewModel(GameInstallation));
-
-        // Archive Explorer
-        foreach (ArchiveComponent archiveComponent in GameInstallation.GetComponents<ArchiveComponent>())
-            GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation, archiveComponent));
-
-        // Progression
-        foreach (GameProgressionManager progressionManager in GameInstallation.
-                     GetComponents<ProgressionManagersComponent>().
-                     CreateManyObjects())
-            GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation, progressionManager));
+        foreach (GamePanelViewModel panel in GameInstallation.GetComponents<GamePanelComponent>().CreateManyObjects())
+            GamePanels.Add(panel);
     }
 
     private void AddAdditionalLaunchActions()

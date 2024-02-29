@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace RayCarrot.RCP.Metro.Pages.Games;
+namespace RayCarrot.RCP.Metro.Games.Panels;
 
 public abstract class GamePanelViewModel : BaseViewModel
 {

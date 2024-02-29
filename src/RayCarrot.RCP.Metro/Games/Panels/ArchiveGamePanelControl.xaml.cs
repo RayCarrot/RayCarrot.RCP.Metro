@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
 
-namespace RayCarrot.RCP.Metro.Pages.Games;
+namespace RayCarrot.RCP.Metro.Games.Panels;
 
 /// <summary>
 /// Interaction logic for ArchiveGamePanelControl.xaml

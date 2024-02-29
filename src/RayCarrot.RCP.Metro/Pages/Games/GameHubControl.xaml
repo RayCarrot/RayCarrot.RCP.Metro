@@ -6,6 +6,7 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:options="clr-namespace:RayCarrot.RCP.Metro.Games.Options"
              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+             xmlns:panels="clr-namespace:RayCarrot.RCP.Metro.Games.Panels"
              mc:Ignorable="d" 
              d:DesignWidth="900" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance games:InstalledGameViewModel}"
@@ -324,14 +325,14 @@
                                   d:ItemsSource="{d:SampleData ItemCount=4}">
                         <!-- Panel templates -->
                         <ItemsControl.Resources>
-                            <DataTemplate DataType="{x:Type games:ModLoaderGamePanelViewModel}">
-                                <games:ModLoaderGamePanelControl />
+                            <DataTemplate DataType="{x:Type panels:ModLoaderGamePanelViewModel}">
+                                <panels:ModLoaderGamePanelControl />
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type games:ArchiveGamePanelViewModel}">
-                                <games:ArchiveGamePanelControl />
+                            <DataTemplate DataType="{x:Type panels:ArchiveGamePanelViewModel}">
+                                <panels:ArchiveGamePanelControl />
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type games:ProgressionGamePanelViewModel}">
-                                <games:ProgressionGamePanelControl />
+                            <DataTemplate DataType="{x:Type panels:ProgressionGamePanelViewModel}">
+                                <panels:ProgressionGamePanelControl />
                             </DataTemplate>
                         </ItemsControl.Resources>
 

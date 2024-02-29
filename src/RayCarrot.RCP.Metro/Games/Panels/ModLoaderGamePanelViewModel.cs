@@ -3,7 +3,7 @@ using System.Windows.Input;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
-namespace RayCarrot.RCP.Metro.Pages.Games;
+namespace RayCarrot.RCP.Metro.Games.Panels;
 
 public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<ModifiedGameModsMessage>
 {

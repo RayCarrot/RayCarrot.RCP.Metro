@@ -27,5 +27,12 @@ public class ArchiveComponent : FactoryGameComponent<IArchiveDataManager>
 
     public virtual AdditionalArchiveAction? GetAdditionalAction() => null;
 
+    public override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register<GamePanelComponent>(new ArchiveExplorerGamePanelComponent(this));
+    }
+
     public record AdditionalArchiveAction(LocalizedString Header, LocalizedString Description, Func<GameInstallation, Task> Action);
 }

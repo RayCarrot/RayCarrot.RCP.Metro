@@ -13,5 +13,7 @@ public abstract class FactoryGameComponent<T> : GameComponent
 
     private readonly Func<GameInstallation, T> _objFactory;
 
+    public int Priority { get; init; }
+
     public virtual T CreateObject() => _objFactory(GameInstallation);
 }
