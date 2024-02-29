@@ -344,11 +344,16 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="Visibility" Value="{Binding Path=IsEmpty, Converter={rcp:InvertedBooleanToVisibilityConverter}}" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <!-- Panel -->
                                 <GroupBox x:Name="PanelCard"
-                                          Visibility="{Binding Path=IsEmpty, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
                                           Height="135" 
                                           Margin="{StaticResource RCP.Thicknesses.Card}"
                                           rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
