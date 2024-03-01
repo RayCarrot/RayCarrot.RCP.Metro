@@ -2,7 +2,6 @@
 using RayCarrot.RCP.Metro.Pages.About;
 using RayCarrot.RCP.Metro.Pages.Debug;
 using RayCarrot.RCP.Metro.Pages.Games;
-using RayCarrot.RCP.Metro.Pages.Mods;
 using RayCarrot.RCP.Metro.Pages.Progression;
 using RayCarrot.RCP.Metro.Pages.Settings;
 using RayCarrot.RCP.Metro.Pages.Utilities;
@@ -16,7 +15,6 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
         GamesPageViewModel gamesPage, 
         ProgressionPageViewModel progressionPage, 
         UtilitiesPageViewModel utilitiesPage, 
-        ModsPageViewModel modsPage, 
         SettingsPageViewModel settingsPage, 
         AboutPageViewModel aboutPage, 
         DebugPageViewModel debugPage)
@@ -25,7 +23,6 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
         GamesPage = gamesPage ?? throw new ArgumentNullException(nameof(gamesPage));
         ProgressionPage = progressionPage ?? throw new ArgumentNullException(nameof(progressionPage));
         UtilitiesPage = utilitiesPage ?? throw new ArgumentNullException(nameof(utilitiesPage));
-        ModsPage = modsPage ?? throw new ArgumentNullException(nameof(modsPage));
         SettingsPage = settingsPage ?? throw new ArgumentNullException(nameof(settingsPage));
         AboutPage = aboutPage ?? throw new ArgumentNullException(nameof(aboutPage));
         DebugPage = debugPage ?? throw new ArgumentNullException(nameof(debugPage));
@@ -43,7 +40,6 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
     public GamesPageViewModel GamesPage { get; }
     public ProgressionPageViewModel ProgressionPage { get; }
     public UtilitiesPageViewModel UtilitiesPage { get; }
-    public ModsPageViewModel ModsPage { get; }
     public SettingsPageViewModel SettingsPage { get; }
     public AboutPageViewModel AboutPage { get; }
     public DebugPageViewModel DebugPage { get; }
@@ -82,7 +78,6 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
             AppPage.Games => GamesPage,
             AppPage.Progression => ProgressionPage,
             AppPage.Utilities => UtilitiesPage,
-            AppPage.Mods => ModsPage,
             AppPage.Settings => SettingsPage,
             AppPage.About => AboutPage,
             AppPage.Debug => DebugPage,
@@ -101,6 +96,5 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
     public void Dispose()
     {
         UtilitiesPage.Dispose();
-        ModsPage.Dispose();
     }
 }

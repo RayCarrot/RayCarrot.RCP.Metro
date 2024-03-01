@@ -6,13 +6,14 @@ using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
+// TODO-UPDATE: Rewrite to use GameInstallation. Define available game and emulator options in components. Attempt to automatically detect it.
+public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public Mod_Mem_ViewModel(IMessageUIManager messageUi)
+    public RuntimeModificationsViewModel(GameInstallation gameInstallation, IMessageUIManager messageUi)
     {
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
 
@@ -21,43 +22,43 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         ProcessAttacherViewModel.ProcessAttached += (_, e) => AttachProcess(e.AttachedProcess);
         ProcessAttacherViewModel.ProcessDetached += (_, _) => DetachProcess();
 
-        Mod_Mem_EmulatorViewModel[] emuNone = Mod_Mem_EmulatorViewModel.None;
-        Mod_Mem_EmulatorViewModel[] emuMSDOS = Mod_Mem_EmulatorViewModel.MSDOS;
-        Mod_Mem_EmulatorViewModel[] emuPS1 = Mod_Mem_EmulatorViewModel.PS1;
-        Mod_Mem_EmulatorViewModel[] emuGBA = Mod_Mem_EmulatorViewModel.GBA;
+        EmulatorViewModel[] emuNone = EmulatorViewModel.None;
+        EmulatorViewModel[] emuMSDOS = EmulatorViewModel.MSDOS;
+        EmulatorViewModel[] emuPS1 = EmulatorViewModel.PS1;
+        EmulatorViewModel[] emuGBA = EmulatorViewModel.GBA;
 
-        Games = new ObservableCollection<Mod_Mem_GameViewModel>()
+        Games = new ObservableCollection<GameViewModel>()
         {
-            new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.PC),
+            new GameViewModel(
+                game: new Ray1Game(Ray1EngineVersion.PC),
                 displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
-                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PC_1_21,
+                getOffsetsFunc: () => Ray1MemoryData.Offsets_PC_1_21,
                 emulators: emuMSDOS),
-            new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.PS1),
+            new GameViewModel(
+                game: new Ray1Game(Ray1EngineVersion.PS1),
                 displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PS1_US)),
-                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PS1_US,
+                getOffsetsFunc: () => Ray1MemoryData.Offsets_PS1_US,
                 emulators: emuPS1),
-            new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.R2_PS1),
+            new GameViewModel(
+                game: new Ray1Game(Ray1EngineVersion.R2_PS1),
                 displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PS1_Proto)),
-                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PS1_R2,
+                getOffsetsFunc: () => Ray1MemoryData.Offsets_PS1_R2,
                 emulators: emuPS1),
-            new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.GBA),
+            new GameViewModel(
+                game: new Ray1Game(Ray1EngineVersion.GBA),
                 displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_GBA_EU)),
-                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_GBA_EU,
+                getOffsetsFunc: () => Ray1MemoryData.Offsets_GBA_EU,
                 emulators: emuGBA),
-            new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC)),
+            new GameViewModel(
+                game: new CPAGame(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC)),
                 displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PC)),
-                getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R2_PC,
+                getOffsetsFunc: () => CPAMemoryData.Offsets_R2_PC,
                 emulators: emuNone,
                 processNameKeywords: new [] { "Rayman2" }),
-            new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC)),
+            new GameViewModel(
+                game: new CPAGame(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC)),
                 displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R3_PC)),
-                getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R3_PC,
+                getOffsetsFunc: () => CPAMemoryData.Offsets_R3_PC,
                 emulators: emuNone,
                 processNameKeywords: new [] { "Rayman3" }),
         };
@@ -70,7 +71,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
         EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>();
         InfoItems = new ObservableCollection<DuoGridItemViewModel>();
-        Actions = new ObservableCollection<Mod_Mem_ActionViewModel>();
+        Actions = new ObservableCollection<ActionViewModel>();
 
         EditorFieldGroups.EnableCollectionSynchronization();
         InfoItems.EnableCollectionSynchronization();
@@ -89,10 +90,9 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private Mod_Mem_Control? _uiContent;
     private CancellationTokenSource? _updateCancellation;
-    private Mod_Mem_MemoryDataContainer? _memContainer;
-    private Mod_Mem_GameViewModel _selectedGame;
+    private MemoryDataContainer? _memContainer;
+    private GameViewModel _selectedGame;
     private bool _logNextTick;
 
     #endregion
@@ -111,36 +111,29 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_Mem_Header));
-    public override GenericIconKind Icon => GenericIconKind.Mods_Mem;
-    public override object UIContent => _uiContent ??= new Mod_Mem_Control()
-    {
-        DataContext = this
-    };
-
     public ProcessAttacherViewModel ProcessAttacherViewModel { get; }
     public Context? Context { get; private set; }
 
-    public ObservableCollection<Mod_Mem_GameViewModel> Games { get; }
-    public Mod_Mem_GameViewModel SelectedGame
+    public ObservableCollection<GameViewModel> Games { get; }
+    public GameViewModel SelectedGame
     {
         get => _selectedGame;
         [MemberNotNull(nameof(SelectedEmulator), nameof(_selectedGame))]
         set
         {
             _selectedGame = value;
-            Emulators = new ObservableCollection<Mod_Mem_EmulatorViewModel>(value.Emulators);
+            Emulators = new ObservableCollection<EmulatorViewModel>(value.Emulators);
             SelectedEmulator = Emulators.First();
         }
     }
-    public Mod_Mem_Game? AttachedGame { get; set; }
+    public Game? AttachedGame { get; set; }
 
-    public ObservableCollection<Mod_Mem_EmulatorViewModel>? Emulators { get; set; }
-    public Mod_Mem_EmulatorViewModel SelectedEmulator { get; set; }
+    public ObservableCollection<EmulatorViewModel>? Emulators { get; set; }
+    public EmulatorViewModel SelectedEmulator { get; set; }
 
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
-    public ObservableCollection<Mod_Mem_ActionViewModel> Actions { get; }
+    public ObservableCollection<ActionViewModel> Actions { get; }
     public bool HasActions { get; set; }
     public string? Log { get; set; }
 
@@ -167,7 +160,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
         string processName = ProcessAttacherViewModel.SelectedProcess.ProcessName;
 
-        foreach (Mod_Mem_GameViewModel game in Games)
+        foreach (GameViewModel game in Games)
         {
             if (game.ProcessNameKeywords.Concat(game.Emulators.SelectMany(x => x.ProcessNameKeywords)).
                 Any(x => processName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) != -1))
@@ -193,15 +186,15 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
                 IsEnabled = false, // Start disabled as we only want to log individual ticks
             });
 
-            Mod_Mem_MemoryData memData = AttachedGame.CreateMemoryData(Context);
-            _memContainer = new Mod_Mem_MemoryDataContainer(memData);
+            MemoryData memData = AttachedGame.CreateMemoryData(Context);
+            _memContainer = new MemoryDataContainer(memData);
 
             AttachedGame.AttachContainer(_memContainer);
             AttachedGame.InitializeContext(Context);
 
             BinaryDeserializer s = Context.Deserializer;
 
-            foreach (Mod_Mem_MemoryRegion memRegion in SelectedEmulator.MemoryRegions)
+            foreach (MemoryRegion memRegion in SelectedEmulator.MemoryRegions)
             {
                 // Open the process as a stream
                 ProcessMemoryStream stream = new(p.Process, ProcessMemoryStream.Mode.AllAccess);
@@ -308,7 +301,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         Log = null;
     }
 
-    private static void InitializeProcessStream(ProcessMemoryStream stream, Mod_Mem_MemoryRegion memRegion, BinaryDeserializer s)
+    private static void InitializeProcessStream(ProcessMemoryStream stream, MemoryRegion memRegion, BinaryDeserializer s)
     {
         long moduleOffset = 0;
 
@@ -359,7 +352,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
             if (item.Text is GeneratedLocString g)
                 g.RefreshValue();
 
-        foreach (Mod_Mem_ActionViewModel action in Actions)
+        foreach (ActionViewModel action in Actions)
             action.Refresh();
     }
 
@@ -367,10 +360,11 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Public Methods
 
-    public override async Task InitializeAsync()
-    {
-        await ProcessAttacherViewModel.RefreshProcessesAsync();
-    }
+    // TODO-UPDATE: Re-implement
+    //public override async Task InitializeAsync()
+    //{
+    //    await ProcessAttacherViewModel.RefreshProcessesAsync();
+    //}
 
     public void RefreshLog()
     {

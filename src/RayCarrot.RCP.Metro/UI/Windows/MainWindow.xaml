@@ -10,7 +10,6 @@
                   xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
                   xmlns:about="clr-namespace:RayCarrot.RCP.Metro.Pages.About"
                   xmlns:debug="clr-namespace:RayCarrot.RCP.Metro.Pages.Debug"
-                  xmlns:mods="clr-namespace:RayCarrot.RCP.Metro.Pages.Mods"
                   xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
                   xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings"
                   xmlns:utilities="clr-namespace:RayCarrot.RCP.Metro.Pages.Utilities"
@@ -192,15 +191,6 @@
                          local:Icon.Brush="{StaticResource RCP.Brushes.Utilities}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Utilities}}">
                     <utilities:UtilitiesPage DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
-                </TabItem>
-
-                <!-- Mods -->
-
-                <TabItem Header="{Resx ModsPageHeader}"
-                         local:Icon.Kind="{StaticResource RCP.Icons.Mods}"
-                         local:Icon.Brush="{StaticResource RCP.Brushes.Mods}"
-                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Mods}}">
-                    <mods:ModsPage DataContext="{Binding Path=ModsPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Settings -->

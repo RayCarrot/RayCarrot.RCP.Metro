@@ -8,6 +8,7 @@ using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
+using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -337,7 +338,16 @@ public class AppUIManager
     /// </summary>
     /// <returns>The task</returns>
     public async Task ShowPrototypeRestorationAsync(GameInstallation gameInstallation) =>
-        await ShowWindowAsync(() => new PrototypeRestorationDialog(new PrototypeRestorationViewModel(gameInstallation)), typeGroupNames: new[] { gameInstallation.InstallationId });
+        await ShowWindowAsync(() => new PrototypeRestorationDialog(new PrototypeRestorationViewModel(gameInstallation)), 
+            typeGroupNames: new[] { gameInstallation.InstallationId });
+
+    /// <summary>
+    /// Shows a new instance of the Runtime Modifications dialog
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowRuntimeModificationsAsync(GameInstallation gameInstallation) =>
+        await ShowWindowAsync(() => new RuntimeModificationsDialog(new RuntimeModificationsViewModel(gameInstallation, Services.MessageUI)), 
+            typeGroupNames: new[] { gameInstallation.InstallationId });
 
     /// <summary>
     /// Shows a new instance of the add games dialog

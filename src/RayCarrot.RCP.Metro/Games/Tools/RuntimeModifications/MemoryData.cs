@@ -1,8 +1,8 @@
 ﻿using BinarySerializer;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public abstract class Mod_Mem_MemoryData
+public abstract class MemoryData
 {
     private readonly HashSet<string> _modifiedValues = new();
     private readonly Dictionary<string, Pointer> _pointers = new();

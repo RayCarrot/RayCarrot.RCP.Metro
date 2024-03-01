@@ -1,10 +1,10 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_MemoryDataContainer
+public class MemoryDataContainer
 {
     #region Constructor
 
-    public Mod_Mem_MemoryDataContainer(Mod_Mem_MemoryData memData)
+    public MemoryDataContainer(MemoryData memData)
     {
         _memData = memData;
     }
@@ -13,33 +13,33 @@ public class Mod_Mem_MemoryDataContainer
 
     #region Private Fields
 
-    private readonly Mod_Mem_MemoryData _memData;
+    private readonly MemoryData _memData;
 
     #endregion
 
     #region Public Methods
 
-    public T? AccessMemory<T>(Func<Mod_Mem_MemoryData, T> func)
+    public T? AccessMemory<T>(Func<MemoryData, T> func)
     {
         lock (_memData)
             return func(_memData);
     }
 
-    public void AccessMemory(Action<Mod_Mem_MemoryData> action)
+    public void AccessMemory(Action<MemoryData> action)
     {
         lock (_memData)
             action(_memData);
     }
 
     public T? AccessMemory<TMemObj, T>(Func<TMemObj, T> func)
-        where TMemObj : Mod_Mem_MemoryData
+        where TMemObj : MemoryData
     {
         lock (_memData)
             return func((TMemObj)_memData);
     }
 
     public void AccessMemory<TMemObj>(Action<TMemObj> action)
-        where TMemObj : Mod_Mem_MemoryData
+        where TMemObj : MemoryData
     {
         lock (_memData)
             action((TMemObj)_memData);

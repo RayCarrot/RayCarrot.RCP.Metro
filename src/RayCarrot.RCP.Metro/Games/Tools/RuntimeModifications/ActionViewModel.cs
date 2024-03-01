@@ -1,11 +1,11 @@
 ﻿using System.Windows.Input;
 using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_ActionViewModel : BaseViewModel
+public class ActionViewModel : BaseViewModel
 {
-    public Mod_Mem_ActionViewModel(LocalizedString header, PackIconMaterialKind iconKind, ICommand command, Func<bool>? isEnabledFunc)
+    public ActionViewModel(LocalizedString header, PackIconMaterialKind iconKind, ICommand command, Func<bool>? isEnabledFunc)
     {
         Header = header;
         IconKind = iconKind;

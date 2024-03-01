@@ -3,7 +3,6 @@ using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Pages.About;
 using RayCarrot.RCP.Metro.Pages.Debug;
 using RayCarrot.RCP.Metro.Pages.Games;
-using RayCarrot.RCP.Metro.Pages.Mods;
 using RayCarrot.RCP.Metro.Pages.Progression;
 using RayCarrot.RCP.Metro.Pages.Settings;
 using RayCarrot.RCP.Metro.Pages.Utilities;
@@ -63,7 +62,6 @@ public static class Entry
         serviceCollection.AddSingleton<GamesPageViewModel>();
         serviceCollection.AddSingleton<ProgressionPageViewModel>();
         serviceCollection.AddSingleton<UtilitiesPageViewModel>();
-        serviceCollection.AddSingleton<ModsPageViewModel>();
         serviceCollection.AddSingleton<SettingsPageViewModel>();
         serviceCollection.AddSingleton<AboutPageViewModel>();
         serviceCollection.AddSingleton<DebugPageViewModel>();

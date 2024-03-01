@@ -2,13 +2,13 @@
 using BinarySerializer.Ray1;
 using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
+public class Ray1Game : Mod_Mem_Game<Ray1MemoryData>
 {
     #region Constructor
 
-    public Mod_Mem_Ray1Game(Ray1EngineVersion version)
+    public Ray1Game(Ray1EngineVersion version)
     {
         Version = version;
     }
@@ -554,10 +554,10 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_Menu)), m => m.MenuEtape);
     }
 
-    public override IEnumerable<Mod_Mem_ActionViewModel> CreateActions()
+    public override IEnumerable<ActionViewModel> CreateActions()
     {
         if (AccessMemory(m => m.SupportsProperty(nameof(m.FinBoss))))
-            yield return new Mod_Mem_ActionViewModel(
+            yield return new ActionViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_FinishLvlAction)),
                 iconKind: PackIconMaterialKind.FlagOutline,
                 command: new RelayCommand(() => AccessMemory(m =>
@@ -569,7 +569,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.WorldInfo))))
         {
-            yield return new Mod_Mem_ActionViewModel(
+            yield return new ActionViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_UnlockAllLvlsAction)),
                 iconKind: PackIconMaterialKind.CircleMultipleOutline,
                 command: new RelayCommand(() => AccessMemory(m =>
@@ -587,7 +587,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
                 })),
                 isEnabledFunc: () => true);
 
-            yield return new Mod_Mem_ActionViewModel(
+            yield return new ActionViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_AllCagesAction)),
                 iconKind: PackIconMaterialKind.CircleMultiple,
                 command: new RelayCommand(() => AccessMemory(m =>
@@ -609,7 +609,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         }
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.NewWorld))))
-            yield return new Mod_Mem_ActionViewModel(
+            yield return new ActionViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ExitLvlAction)),
                 iconKind: PackIconMaterialKind.MapOutline,
                 command: new RelayCommand(() => AccessMemory(m =>

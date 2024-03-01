@@ -10,7 +10,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Games">GamepadVariantOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Progression">TrophyVariantOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities">BriefcaseOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods">CircleEditOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings">CogOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Info">InformationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
@@ -81,8 +80,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PrototypeRestoration">MapOutline</iconPacks:PackIconMaterialKind>
-
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_Mem">Memory</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_RuntimeModifications">Memory</iconPacks:PackIconMaterialKind>
 
     <!-- Generic Icons (used from C# code) -->
 
@@ -135,6 +133,9 @@
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_PrototypeRestoration}" 
                        IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_RuntimeModification}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Locate}" 
@@ -257,6 +258,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_PrototypeRestoration}" 
                        IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}"
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_RuntimeModifications}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}"
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Rayman1_CompleteSoundtrack}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_CompleteSoundtrack}"
@@ -306,9 +310,5 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Serializers}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Serializers}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
-
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Mods_Mem}" 
-                       IconKind="{StaticResource RCP.Icons.Mods_Mem}"
-                       IconColor="{StaticResource RCP.Brushes.Mods}" />
 
 </ResourceDictionary>

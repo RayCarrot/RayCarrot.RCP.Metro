@@ -1,6 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_CPAMemoryData : Mod_Mem_MemoryData
+public class CPAMemoryData : MemoryData
 {
     public string? CurrentMap { get; set; }
     public byte EngineMode { get; set; }

@@ -12,7 +12,6 @@
     <SolidColorBrush x:Key="RCP.Brushes.Games" Color="{StaticResource RCP.Colors.PurplePrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Progression" Color="{StaticResource RCP.Colors.PinkPrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Utilities" Color="{StaticResource RCP.Colors.GreenPrimary500}" po:Freeze="True" />
-    <SolidColorBrush x:Key="RCP.Brushes.Mods" Color="{StaticResource RCP.Colors.DeepPurplePrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Settings" Color="{StaticResource RCP.Colors.AmberPrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Info" Color="{StaticResource RCP.Colors.BluePrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.Debug" Color="{StaticResource RCP.Colors.GreyPrimary500}" po:Freeze="True" />

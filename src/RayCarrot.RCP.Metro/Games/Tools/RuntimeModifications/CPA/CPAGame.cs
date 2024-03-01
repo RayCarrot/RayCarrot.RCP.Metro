@@ -1,13 +1,13 @@
 ﻿using BinarySerializer;
 using BinarySerializer.OpenSpace;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_CPAGame : Mod_Mem_Game<Mod_Mem_CPAMemoryData>
+public class CPAGame : Mod_Mem_Game<CPAMemoryData>
 {
     #region Constructor
 
-    public Mod_Mem_CPAGame(OpenSpaceSettings settings)
+    public CPAGame(OpenSpaceSettings settings)
     {
         Settings = settings;
     }
@@ -267,7 +267,7 @@ public class Mod_Mem_CPAGame : Mod_Mem_Game<Mod_Mem_CPAMemoryData>
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_Map)), m => m.CurrentMap);
     }
 
-    public override IEnumerable<Mod_Mem_ActionViewModel> CreateActions()
+    public override IEnumerable<ActionViewModel> CreateActions()
     {
         yield break;
     }

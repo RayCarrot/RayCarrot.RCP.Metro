@@ -1,8 +1,8 @@
 ﻿using BinarySerializer.Ray1;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
+public class Ray1MemoryData : MemoryData
 {
     public StatusBar? StatusBar { get; set; }
     public Poing? Poing { get; set; }
