@@ -1,9 +1,8 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public class Mod_RRR_MemoryPatch
+public class MemoryPatch
 {
-    public Mod_RRR_MemoryPatch(int addressSteam, int addressGOG, byte[] bytes)
+    public MemoryPatch(int addressSteam, int addressGOG, byte[] bytes)
     {
         AddressSteam = addressSteam;
         AddressGOG = addressGOG;
@@ -16,6 +15,6 @@ public class Mod_RRR_MemoryPatch
 
     public void Apply(int processHandle, bool isSteam)
     {
-        Mod_RRR_MemoryManager.WriteProcessMemoryBytes(processHandle, isSteam ? AddressSteam : AddressGOG, Bytes);
+        MemoryManager.WriteProcessMemoryBytes(processHandle, isSteam ? AddressSteam : AddressGOG, Bytes);
     }
 }

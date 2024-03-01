@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public static class Mod_RRR_MemoryManager
+public static class MemoryManager
 {
     #region Constants
 

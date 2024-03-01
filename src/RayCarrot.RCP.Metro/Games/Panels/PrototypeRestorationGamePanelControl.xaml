@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Panels.PrototypeRestorationGamePanelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:panels="clr-namespace:RayCarrot.RCP.Metro.Games.Panels"
+             mc:Ignorable="d" 
+             d:DesignWidth="200" d:DesignHeight="135"
+             d:DataContext="{d:DesignInstance panels:PrototypeRestorationGamePanelViewModel}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- TODO-LOC -->
+        <!-- Info -->
+        <TextBlock Grid.Row="0"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Modify the game to restore cut features from the early prototypes, such as free movement and combat for Rayman!"
+                   Margin="0 0 0 4" />
+
+        <!-- TODO-LOC -->
+        <!-- Open -->
+        <Button Grid.Row="1"
+                HorizontalAlignment="Left"
+                Style="{StaticResource RCP.Styles.Button.Flat}" 
+                Command="{Binding Path=OpenCommand, Mode=OneTime}"
+                Background="{DynamicResource RCP.Brushes.FlatButton.GameTools}"
+                Content="Open" />
+
+    </Grid>
+</UserControl>

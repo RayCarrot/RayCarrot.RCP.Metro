@@ -80,8 +80,9 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PrototypeRestoration">MapOutline</iconPacks:PackIconMaterialKind>
+
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_Mem">Memory</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_RRR">MapOutline</iconPacks:PackIconMaterialKind>
 
     <!-- Generic Icons (used from C# code) -->
 
@@ -132,6 +133,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_Progression}" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_PrototypeRestoration}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Locate}" 
                        IconKind="{StaticResource RCP.Icons.Folder}" 
@@ -250,6 +254,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_AnniversaryUpdate}" 
                        IconKind="{StaticResource RCP.Icons.News}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_PrototypeRestoration}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}"
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Rayman1_CompleteSoundtrack}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_CompleteSoundtrack}"
@@ -302,9 +309,6 @@
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Mods_Mem}" 
                        IconKind="{StaticResource RCP.Icons.Mods_Mem}"
-                       IconColor="{StaticResource RCP.Brushes.Mods}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Mods_RRR}" 
-                       IconKind="{StaticResource RCP.Icons.Mods_RRR}"
                        IconColor="{StaticResource RCP.Brushes.Mods}" />
 
 </ResourceDictionary>

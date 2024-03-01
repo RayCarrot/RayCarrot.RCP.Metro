@@ -1,6 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Panels;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -62,6 +63,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         builder.Register(new Win32LaunchPathComponent(x => x.InstallLocation.Directory + "CheckApplication.exe"));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids_PC));
+        builder.Register<GamePanelComponent>(new GameToolGamePanelComponent(x => new PrototypeRestorationGamePanelViewModel(x)));
 
         builder.Register(new GameBananaGameComponent(18586));
     }

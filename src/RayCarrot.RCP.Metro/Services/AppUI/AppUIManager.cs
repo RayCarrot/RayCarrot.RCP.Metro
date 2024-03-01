@@ -7,6 +7,7 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -330,6 +331,13 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowModCreatorAsync(GameInstallation gameInstallation) => 
         await ShowWindowAsync(() => new ModCreatorDialog(new ModCreatorViewModel(gameInstallation)));
+
+    /// <summary>
+    /// Shows a new instance of the Prototype Restoration dialog
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowPrototypeRestorationAsync(GameInstallation gameInstallation) =>
+        await ShowWindowAsync(() => new PrototypeRestorationDialog(new PrototypeRestorationViewModel(gameInstallation)), typeGroupNames: new[] { gameInstallation.InstallationId });
 
     /// <summary>
     /// Shows a new instance of the add games dialog

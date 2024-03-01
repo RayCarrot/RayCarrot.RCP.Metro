@@ -4,6 +4,7 @@ using System.Windows.Input;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro;
@@ -57,7 +58,7 @@ public partial class AppUserData : BaseViewModel
         Game_AutoLocateGames = true;
 
         // Mod
-        Mod_RRR_ToggleStates = new Dictionary<string, Mod_RRR_ToggleState>();
+        Mod_RRR_ToggleStates = new Dictionary<string, ToggleState>();
         Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
 
         // Update
@@ -110,7 +111,7 @@ public partial class AppUserData : BaseViewModel
         Game_GameClientInstallations ??= new List<GameClientInstallation>();
 
         // Mod
-        Mod_RRR_ToggleStates ??= new Dictionary<string, Mod_RRR_ToggleState>();
+        Mod_RRR_ToggleStates ??= new Dictionary<string, ToggleState>();
         Mod_RRR_KeyboardButtonMapping ??= new Dictionary<int, Key>();
 
         // File editors
@@ -288,10 +289,12 @@ public partial class AppUserData : BaseViewModel
 
     #region Mod
 
+    // TODO-UPDATE: These should be stored as data for the game installation
+
     /// <summary>
     /// The saves toggle states for the Rayman Raving Rabbids memory mod
     /// </summary>
-    public Dictionary<string, Mod_RRR_ToggleState> Mod_RRR_ToggleStates { get; set; }
+    public Dictionary<string, ToggleState> Mod_RRR_ToggleStates { get; set; }
 
     /// <summary>
     /// The saved button mapping for the Rayman Raving Rabbids memory mod

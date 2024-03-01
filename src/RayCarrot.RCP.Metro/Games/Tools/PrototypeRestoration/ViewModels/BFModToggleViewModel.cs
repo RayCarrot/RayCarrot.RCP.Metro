@@ -1,12 +1,11 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public class Mod_RRR_BFModToggleViewModel : BaseRCPViewModel, IDisposable
+public class BFModToggleViewModel : BaseViewModel, IDisposable
 {
-    public Mod_RRR_BFModToggleViewModel(LocalizedString header, Mod_RRR_BigFilePatch patch, bool isDefaultToggled, ObservableCollection<LocalizedString> selectionOptions = null) : this(header, new Mod_RRR_BigFilePatch[] { patch }, isDefaultToggled, selectionOptions)
+    public BFModToggleViewModel(LocalizedString header, BigFilePatch patch, bool isDefaultToggled, ObservableCollection<LocalizedString>? selectionOptions = null) : this(header, new[] { patch }, isDefaultToggled, selectionOptions)
     { }
 
-    public Mod_RRR_BFModToggleViewModel(LocalizedString header, Mod_RRR_BigFilePatch[] patches, bool isDefaultToggled, ObservableCollection<LocalizedString> selectionOptions = null)
+    public BFModToggleViewModel(LocalizedString header, BigFilePatch[] patches, bool isDefaultToggled, ObservableCollection<LocalizedString>? selectionOptions = null)
     {
         Header = header;
         Patches = patches;
@@ -16,11 +15,11 @@ public class Mod_RRR_BFModToggleViewModel : BaseRCPViewModel, IDisposable
     }
 
     public LocalizedString Header { get; }
-    public Mod_RRR_BigFilePatch[] Patches { get; }
+    public BigFilePatch[] Patches { get; }
     public bool IsDefaultToggled { get; }
     public bool IsToggled { get; set; }
 
-    public ObservableCollection<LocalizedString> SelectionOptions { get; }
+    public ObservableCollection<LocalizedString>? SelectionOptions { get; }
     public int SelectedSelectionIndex { get; set; }
 
     public int SelectedPatch
@@ -54,6 +53,6 @@ public class Mod_RRR_BFModToggleViewModel : BaseRCPViewModel, IDisposable
 
     public void Dispose()
     {
-        Header?.Dispose();
+        Header.Dispose();
     }
 }

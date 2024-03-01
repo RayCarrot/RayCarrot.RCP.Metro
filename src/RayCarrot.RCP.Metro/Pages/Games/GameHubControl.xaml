@@ -334,6 +334,9 @@
                             <DataTemplate DataType="{x:Type panels:ProgressionGamePanelViewModel}">
                                 <panels:ProgressionGamePanelControl />
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type panels:PrototypeRestorationGamePanelViewModel}">
+                                <panels:PrototypeRestorationGamePanelControl />
+                            </DataTemplate>
                         </ItemsControl.Resources>
 
                         <ItemsControl.ItemsPanel>

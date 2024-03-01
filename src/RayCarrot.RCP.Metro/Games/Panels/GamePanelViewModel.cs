@@ -49,7 +49,7 @@ public abstract class GamePanelViewModel : BaseViewModel
 
     #region Protected Methods
 
-    protected abstract Task LoadAsyncImpl();
+    protected virtual Task LoadAsyncImpl() => Task.CompletedTask;
 
     #endregion
 

@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public class Mod_RRR_MemoryPatcher
+public class MemoryPatcher
 {
     #region Logger
 
@@ -158,13 +158,13 @@ public class Mod_RRR_MemoryPatcher
         }
         finally
         {
-            Mod_RRR_MemoryManager.CloseHandle(processHandle);
+            MemoryManager.CloseHandle(processHandle);
         }
     }
 
     private void DetectVersion(int processHandle)
     {
-        int aeInitAddress = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, FctDefPointer(Mod_RRR_AI2C_fctDef.AE_Init));
+        int aeInitAddress = MemoryManager.ReadProcessMemoryInt32(processHandle, FctDefPointer(AI2C_fctDef.AE_Init));
         switch (aeInitAddress)
         {
             case off_AE_Init_GOG:
@@ -185,8 +185,8 @@ public class Mod_RRR_MemoryPatcher
     private void AddPlaytestMenu(int processHandle)
     {
         // Read Address for FPS triggers' exec state, then replace wait state with it
-        int execState = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, FctDefPointer(Mod_RRR_AI2C_fctDef.IntMIG_Page_Playtest));
-        Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, FctDefPointer(Mod_RRR_AI2C_fctDef.IntMIG_Page_GameType), execState);
+        int execState = MemoryManager.ReadProcessMemoryInt32(processHandle, FctDefPointer(AI2C_fctDef.IntMIG_Page_Playtest));
+        MemoryManager.WriteProcessMemoryInt32(processHandle, FctDefPointer(AI2C_fctDef.IntMIG_Page_GameType), execState);
         IntMIG_Page_MapList__ChangeBinCheck.Apply(processHandle, isSteam);
     }
 
@@ -235,23 +235,23 @@ public class Mod_RRR_MemoryPatcher
 
     private void Continuous_SetRaymanVars(int processHandle)
     {
-        int off_raymanBuffer = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_raymanbuffer_ptr);
+        int off_raymanBuffer = MemoryManager.ReadProcessMemoryInt32(processHandle, off_raymanbuffer_ptr);
         //Console.WriteLine($"{off_raymanBuffer:X8}");
         foreach (var var in RMVariables_int)
         {
-            int read = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_raymanBuffer + var.Key);
+            int read = MemoryManager.ReadProcessMemoryInt32(processHandle, off_raymanBuffer + var.Key);
             if (read != var.Value)
             {
-                int written = Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_raymanBuffer + var.Key, var.Value);
+                int written = MemoryManager.WriteProcessMemoryInt32(processHandle, off_raymanBuffer + var.Key, var.Value);
             }
             //Console.WriteLine(written);
         }
         foreach (var var in RMVariables_float)
         {
-            float read = Mod_RRR_MemoryManager.ReadProcessMemoryFloat(processHandle, off_raymanBuffer + var.Key);
+            float read = MemoryManager.ReadProcessMemoryFloat(processHandle, off_raymanBuffer + var.Key);
             if (read != var.Value)
             {
-                int written = Mod_RRR_MemoryManager.WriteProcessMemoryFloat(processHandle, off_raymanBuffer + var.Key, var.Value);
+                int written = MemoryManager.WriteProcessMemoryFloat(processHandle, off_raymanBuffer + var.Key, var.Value);
             }
             //Console.WriteLine(written);
         }
@@ -259,10 +259,10 @@ public class Mod_RRR_MemoryPatcher
 
     private void Continuous_Read(int processHandle)
     {
-        int off_raymanBuffer = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, 0x0085B5C4);
-        int read2 = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_raymanBuffer + 2928);
-        int off_mma = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, 0x0085AA94);
-        float read = Mod_RRR_MemoryManager.ReadProcessMemoryFloat(processHandle, off_mma + 0xFC);
+        int off_raymanBuffer = MemoryManager.ReadProcessMemoryInt32(processHandle, 0x0085B5C4);
+        int read2 = MemoryManager.ReadProcessMemoryInt32(processHandle, off_raymanBuffer + 2928);
+        int off_mma = MemoryManager.ReadProcessMemoryInt32(processHandle, 0x0085AA94);
+        float read = MemoryManager.ReadProcessMemoryFloat(processHandle, off_mma + 0xFC);
         //Console.WriteLine($"SND tempo: {read2} - {read2:X8} - Groovy: {read}");
     }
 
@@ -333,48 +333,48 @@ public class Mod_RRR_MemoryPatcher
 
     private void DestroyAnnoyingAI(int processHandle)
     {
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Ray_FPS_track_init);
+        DisableFctDef(processHandle, AI2C_fctDef.Ray_FPS_track_init);
 
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Fake_Ray_Course_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Fake_Ray_Throw_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Fake_Ray_JumpingRope_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Fake_Ray_Fighter_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Fake_Ray_Course_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Fake_Ray_Throw_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Fake_Ray_JumpingRope_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Fake_Ray_Fighter_Init);
         //DisableFctDef(processHandle, AI2C_fctDef.GST_Dance_INIT);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Fake_Toilette_Zone_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Traire_init);
+        DisableFctDef(processHandle, AI2C_fctDef.Fake_Toilette_Zone_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Traire_init);
         //DisableFctDef(processHandle, AI2C_fctDef.MG_BatPig_Track_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.RM_ChuteLibre_Track_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Tondre_ETAT_wait);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Wii_Cursor_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.KM_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Montures_Manager_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Foot_Rayman_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.mgrl_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Demineur_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Wii_FormRecognition_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.RM_ChuteLibre_Track_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Tondre_ETAT_wait);
+        DisableFctDef(processHandle, AI2C_fctDef.Wii_Cursor_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.KM_init);
+        DisableFctDef(processHandle, AI2C_fctDef.Montures_Manager_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Foot_Rayman_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.mgrl_init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Demineur_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Wii_FormRecognition_Init);
         //DisableFctDef(processHandle, AI2C_fctDef.MG_ClockTimer_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_GrappinSoucoupe_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_MasterMind_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Curling_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.Fake_CatchManager_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_123Soleil_Init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Maillard_Track_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Marteau_Track_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Punaise_Track_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_Simon_Track_init);
-        DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.MG_ThrowingAxe_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_GrappinSoucoupe_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_MasterMind_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Curling_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.Fake_CatchManager_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_123Soleil_Init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Maillard_Track_init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Marteau_Track_init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Punaise_Track_init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_Simon_Track_init);
+        DisableFctDef(processHandle, AI2C_fctDef.MG_ThrowingAxe_Init);
 
         //DisableFctDef(processHandle, AI2C_fctDef.ES_EnterMap);
-        if (disableMinigame) DisableFctDef(processHandle, Mod_RRR_AI2C_fctDef.GST_MiniGame_Init);
+        if (disableMinigame) DisableFctDef(processHandle, AI2C_fctDef.GST_MiniGame_Init);
         //DisableFctDef(processHandle, AI2C_fctDef.mkit_init);
     }
 
-    private void DisableFctDef(int processHandle, Mod_RRR_AI2C_fctDef function)
+    private void DisableFctDef(int processHandle, AI2C_fctDef function)
     {
-        Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, FctDefPointer(function), off_AE_Init);
+        MemoryManager.WriteProcessMemoryInt32(processHandle, FctDefPointer(function), off_AE_Init);
     }
 
-    private int FctDefPointer(Mod_RRR_AI2C_fctDef function) => off_AI2C_fctDefs + (int)function * 12 + 4;
+    private int FctDefPointer(AI2C_fctDef function) => off_AI2C_fctDefs + (int)function * 12 + 4;
 
     private void ImproveFPSTriggers(int processHandle)
     {
@@ -396,8 +396,8 @@ public class Mod_RRR_MemoryPatcher
         }
 
         // Read Address for FPS triggers' exec state, then replace wait state with it
-        int execState = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, FctDefPointer(Mod_RRR_AI2C_fctDef.GST_FPS_MP_ETAT_exec));
-        Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, FctDefPointer(Mod_RRR_AI2C_fctDef.GST_FPS_MP_ETAT_wait), execState);
+        int execState = MemoryManager.ReadProcessMemoryInt32(processHandle, FctDefPointer(AI2C_fctDef.GST_FPS_MP_ETAT_exec));
+        MemoryManager.WriteProcessMemoryInt32(processHandle, FctDefPointer(AI2C_fctDef.GST_FPS_MP_ETAT_wait), execState);
     }
 
     private void LapinChanges(int processHandle)
@@ -483,23 +483,23 @@ public class Mod_RRR_MemoryPatcher
     private void Continuous_ForceSectoMode(int processHandle)
     {
         // Forces secto mode to 1 (= sector changes controlled by the camera)
-        int read = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_SCT_gul_Flags);
+        int read = MemoryManager.ReadProcessMemoryInt32(processHandle, off_SCT_gul_Flags);
         if (read != 1)
         {
-            int written = Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_SCT_gul_Flags, 1);
+            int written = MemoryManager.WriteProcessMemoryInt32(processHandle, off_SCT_gul_Flags, 1);
         }
     }
 
     private void Continuous_SetUniversVars(int processHandle)
     {
-        int off_univBuffer = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
+        int off_univBuffer = MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
         //Console.WriteLine($"{off_raymanBuffer:X8}");
         foreach (var var in UniversVariables_Int)
         {
-            int read = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
+            int read = MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
             if (read != var.Value)
             {
-                int written = Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
+                int written = MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
             }
             //Console.WriteLine(written);
         }
@@ -507,13 +507,13 @@ public class Mod_RRR_MemoryPatcher
 
     private void AddDuel(int processHandle)
     {
-        int off_univBuffer = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
+        int off_univBuffer = MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
         foreach (var var in UniversVariables_Duel_Int)
         {
-            int read = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
+            int read = MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
             if (read != var.Value)
             {
-                int written = Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
+                int written = MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
             }
             //Console.WriteLine(written);
         }
@@ -528,21 +528,21 @@ public class Mod_RRR_MemoryPatcher
 
     private void DebugCheats(int processHandle)
     {
-        int off_univBuffer = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
+        int off_univBuffer = MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
 
         if (unlockAllMinigames)
         {
             foreach (var var in UniversVariables_Cheat_Int)
             {
-                int read = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
+                int read = MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
 
                 if (read != var.Value)
-                    Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
+                    MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
             }
         }
             
         if (setCheatPage)
-            Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + UniversVariables_CheatPage, cheatPage);
+            MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + UniversVariables_CheatPage, cheatPage);
     }
     private void FixKeyboardControls(int processHandle)
     {
@@ -554,7 +554,7 @@ public class Mod_RRR_MemoryPatcher
         var keycodes = KeyboardKeycodes;
 
         for (int i = 0; i < keycodes.Length; i++)
-            Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, addr_KeyboardKeycodes + i * 4, keycodes[i]);
+            MemoryManager.WriteProcessMemoryInt32(processHandle, addr_KeyboardKeycodes + i * 4, keycodes[i]);
     }
 
     private static IntPtr GetRRRProcessHandle()
@@ -574,7 +574,7 @@ public class Mod_RRR_MemoryPatcher
         if (process == null)
             throw new Exception("Game process was not found running");
 
-        IntPtr processHandle = Mod_RRR_MemoryManager.OpenProcess(Mod_RRR_MemoryManager.PROCESS_ALL_ACCESS, false, process.Id);
+        IntPtr processHandle = MemoryManager.OpenProcess(MemoryManager.PROCESS_ALL_ACCESS, false, process.Id);
 
         if (processHandle == IntPtr.Zero)
             throw new Win32Exception();
@@ -613,15 +613,15 @@ public class Mod_RRR_MemoryPatcher
 
     #region Sectors
     // Force disable sectors (necessary for FPS levels)
-    private Mod_RRR_MemoryPatch OBJ_GameObjectCallback__ForceSectosToZero_1 => new Mod_RRR_MemoryPatch(0x00724805, 0x00724895, new byte[] {
+    private MemoryPatch OBJ_GameObjectCallback__ForceSectosToZero_1 => new MemoryPatch(0x00724805, 0x00724895, new byte[] {
         0x90, 0x90, 0x90, 0x90 // nop * 4
     });
 
-    private Mod_RRR_MemoryPatch OBJ_GameObjectCallback__ForceSectosToZero_2 => new Mod_RRR_MemoryPatch(0x00724834, 0x007248C4, new byte[] {
+    private MemoryPatch OBJ_GameObjectCallback__ForceSectosToZero_2 => new MemoryPatch(0x00724834, 0x007248C4, new byte[] {
         0x90, 0x90, 0x90, 0x90 // nop * 4
     });
 
-    private Mod_RRR_MemoryPatch AI_EvalFunc_SCT_SetOf_C__ForceSectosToZero_3 => new Mod_RRR_MemoryPatch(0x00416FB0, 0x00417020, new byte[] {
+    private MemoryPatch AI_EvalFunc_SCT_SetOf_C__ForceSectosToZero_3 => new MemoryPatch(0x00416FB0, 0x00417020, new byte[] {
         0xC3, 0xCC, 0xCC, 0xCC // retn + 3 bytes of padding
     });
 
@@ -630,12 +630,12 @@ public class Mod_RRR_MemoryPatcher
 
     #region Rayman
     // If the game type is not zero, Rayman will sometimes be disabled
-    private Mod_RRR_MemoryPatch MM_InitFin__ForceTypeGameToZero => new Mod_RRR_MemoryPatch(0x00697910, 0x00697950, new byte[] {
+    private MemoryPatch MM_InitFin__ForceTypeGameToZero => new MemoryPatch(0x00697910, 0x00697950, new byte[] {
         0xB8, 0x00, 0x00, 0x00, 0x00, // mov eax, 0
         0x90                          // nop
     });
 
-    private Mod_RRR_MemoryPatch MM_InitFin__EnableRaymanFight => new Mod_RRR_MemoryPatch(0x0069791E, 0x0069795E, new byte[] {
+    private MemoryPatch MM_InitFin__EnableRaymanFight => new MemoryPatch(0x0069791E, 0x0069795E, new byte[] {
         0xB8, 0x01, 0x00, 0x00, 0x00,
         0x89, 0x81, 0xE4, 0x11, 0x00, 0x00, // mov     [ecx+11E4h], eax
         0xC7, 0x81, 0xE8, 0x09, 0x00, 0x00, (byte)(setGrappinGFX ? GrappinGFX : 0x03), 0x00, 0x00, 0x00, // i_grappin_gfx_mode
@@ -648,7 +648,7 @@ public class Mod_RRR_MemoryPatcher
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90
     }).ToArray());
 
-    private Mod_RRR_MemoryPatch MM_InitFin__EnableRaymanPowers => new Mod_RRR_MemoryPatch(0x0069795E, 0x0069799E, new byte[] {
+    private MemoryPatch MM_InitFin__EnableRaymanPowers => new MemoryPatch(0x0069795E, 0x0069799E, new byte[] {
         0xBA, 0x01, 0x00, 0x00, 0x00, 0x90, 0x89, 0x91, 0xD0, 0x11, 0x00, 0x00, // i_RM_Move = 1
         0xB8, 0x01, 0x00, 0x00, 0x00, 0x90, 0x89, 0x81, 0xD4, 0x11, 0x00, 0x00, // i_RM_Grappin = 1
         0xBA, 0x01, 0x00, 0x00, 0x00, 0x90, 0x89, 0x91, 0xD8, 0x11, 0x00, 0x00, // i_RM_Jump = 1
@@ -658,7 +658,7 @@ public class Mod_RRR_MemoryPatcher
         //0xBA, 0x00, 0x00, 0x00, 0x00, 0x90 // Set Rayman's item to 0
     });
 
-    private Mod_RRR_MemoryPatch raym_exec_read_joy__AddCheatModeToggle => new Mod_RRR_MemoryPatch(0x0067906B, 0x0067905B, new byte[] {
+    private MemoryPatch raym_exec_read_joy__AddCheatModeToggle => new MemoryPatch(0x0067906B, 0x0067905B, new byte[] {
         0x6A, io_button_noclip,
         0xE8, (byte)(isSteam ? 0xFE : 0xBE),  (byte)(isSteam ? 0xEF : 0xF0), 0xD8, 0xFF,
         0x83, 0xC4, 0x04,
@@ -675,14 +675,14 @@ public class Mod_RRR_MemoryPatcher
         0x0F, 0x85, 0xA2, 0x09, 0x00, 0x00
     });
 
-    private Mod_RRR_MemoryPatch raym_exec_read_joy__AddLookMode => new Mod_RRR_MemoryPatch(0x00679140, 0x00679130, new byte[] {
+    private MemoryPatch raym_exec_read_joy__AddLookMode => new MemoryPatch(0x00679140, 0x00679130, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
     });
 
     /*MemoryPatch raym_exec_read_joy__Deguisement_RemoveCapaCheck => new MemoryPatch(0x0067924C, 0x0067923C, new byte[] {
         0x90, 0x90,
     });*/
-    private Mod_RRR_MemoryPatch raym_exec_read_joy__RemoveBoostCheck_1 => new Mod_RRR_MemoryPatch(0x00679168, 0x00679158, new byte[] {
+    private MemoryPatch raym_exec_read_joy__RemoveBoostCheck_1 => new MemoryPatch(0x00679168, 0x00679158, new byte[] {
         //0xC7, 0x86, 0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x16, 0x43, // Sets boost speed to 150f
         0xC7, 0x86, 0x00, 0x12, 0x00, 0x00, 0x00, 0x00, (byte)(lowerSlippery ? 0x96 : 0x16), (byte)(lowerSlippery ? 0x42 : 0x43), // Sets boost speed to 75f (for modded friction) or 150 (og friction)
         /*0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,*/ 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
@@ -690,18 +690,18 @@ public class Mod_RRR_MemoryPatcher
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
     });
 
-    private Mod_RRR_MemoryPatch raym_exec_read_joy__RemoveBoostCheck_2 => new Mod_RRR_MemoryPatch(0x006791BF, 0x006791AF, new byte[] {
+    private MemoryPatch raym_exec_read_joy__RemoveBoostCheck_2 => new MemoryPatch(0x006791BF, 0x006791AF, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
     });
 
     // Allows you to hook walls and climb. However this sacrifices other parts of the hook behaviour.
-    private Mod_RRR_MemoryPatch raym_exec_grappin__HookWalls1 => new Mod_RRR_MemoryPatch(0x0067F1B5, 0x0067F1A5, new byte[] {
+    private MemoryPatch raym_exec_grappin__HookWalls1 => new MemoryPatch(0x0067F1B5, 0x0067F1A5, new byte[] {
         0xEB, 0x44,
     });
 
-    private Mod_RRR_MemoryPatch raym_exec_grappin__HookWalls2_SetVarapPos => new Mod_RRR_MemoryPatch(0x0067F208, 0x0067F1F8, new byte[] {
+    private MemoryPatch raym_exec_grappin__HookWalls2_SetVarapPos => new MemoryPatch(0x0067F208, 0x0067F1F8, new byte[] {
         //0xC7, 0x86, 0xEC, 0x08, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90, 0x8B,
         0x89, 0x8E, 0x74, 0x06, 0x00, 0x00,
         0x90,
@@ -716,7 +716,7 @@ public class Mod_RRR_MemoryPatcher
         0x90,
     });
 
-    private Mod_RRR_MemoryPatch raym_exec_grappin__HookWalls3_SetGrappinNormale => new Mod_RRR_MemoryPatch(0x0067F230, 0x0067F220, new byte[] {
+    private MemoryPatch raym_exec_grappin__HookWalls3_SetGrappinNormale => new MemoryPatch(0x0067F230, 0x0067F220, new byte[] {
         //0xC7, 0x86, 0xEC, 0x08, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90, 0x8B,
         0x89, 0x96, 0x8C, 0x09, 0x00, 0x00,
         0x8B, 0x48, 0x04,
@@ -732,18 +732,18 @@ public class Mod_RRR_MemoryPatcher
         0xE9, 0x55+5, 0x06, 0x00, 0x00,
     });
 
-    private Mod_RRR_MemoryPatch raym_exec_grappin__HookWalls4 => new Mod_RRR_MemoryPatch(0x04EBDAC, 0x004EBF3C, new byte[] {
+    private MemoryPatch raym_exec_grappin__HookWalls4 => new MemoryPatch(0x04EBDAC, 0x004EBF3C, new byte[] {
         0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,
     });
 
-    private Mod_RRR_MemoryPatch MOVE_CHANGE_To_Punch__Finishers_1 => new Mod_RRR_MemoryPatch(0x004EB546, 0x004EB6D6, new byte[] {
+    private MemoryPatch MOVE_CHANGE_To_Punch__Finishers_1 => new MemoryPatch(0x004EB546, 0x004EB6D6, new byte[] {
         0xB8, io_button_finisher, 0x00, 0x00, 0x00, // mov     eax, io_button_finisher
         0x50, // push eax
         0xE8, (byte)(isSteam ? 0x1F : 0x3F), (byte)(isSteam ? 0xC5 : 0xC4), 0xF1, 0xFF, // call    AI_EvalFunc_IoButtonPressed_C
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, // nop x 9
     });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_main__Finishers_2 => new Mod_RRR_MemoryPatch(0x006D7D20, 0x006D7D60, new byte[] {
+    private MemoryPatch raym_ETAT_main__Finishers_2 => new MemoryPatch(0x006D7D20, 0x006D7D60, new byte[] {
         0xB8, io_button_finisher, 0x00, 0x00, 0x00, // mov     eax, io_button_finisher
         0x89, 0xAE, 0xC4, 0x0D, 0x00, 0x00, // mov     dword ptr [esi+0DC4h], ebp
         0x50, // push eax
@@ -768,15 +768,15 @@ public class Mod_RRR_MemoryPatcher
         0x90, 0x90
     });*/
 
-    private Mod_RRR_MemoryPatch PROC_RM_Type_Hotspot__MakeRope => new Mod_RRR_MemoryPatch(0x004ED8A4, 0x004EDA34, new byte[] {
+    private MemoryPatch PROC_RM_Type_Hotspot__MakeRope => new MemoryPatch(0x004ED8A4, 0x004EDA34, new byte[] {
         0x90, 0x90
     });
 
-    private Mod_RRR_MemoryPatch KamP_JoyD_Get__EnableCameraControl_AllModes => new Mod_RRR_MemoryPatch(0x005D8E2E, 0x005D8E2E, new byte[] {
+    private MemoryPatch KamP_JoyD_Get__EnableCameraControl_AllModes => new MemoryPatch(0x005D8E2E, 0x005D8E2E, new byte[] {
         0x90, 0x90
     });
 
-    private Mod_RRR_MemoryPatch KamP_JoyD_Get__EnableCameraControl_RightStick => new Mod_RRR_MemoryPatch(0x005D8E30, 0x005D8E30, new byte[] {
+    private MemoryPatch KamP_JoyD_Get__EnableCameraControl_RightStick => new MemoryPatch(0x005D8E30, 0x005D8E30, new byte[] {
         0xE8, (byte)(isSteam ? 0xEB : 0x9B), (byte)(isSteam ? 0xF0 : 0xF1), 0xE2, 0xFF,             // call AI_EvalFunc_IoJoyGetMove1_C_AI2C__Fv
         /*
         0x83, 0xC4, 0x04,                         // add esp, 4
@@ -785,13 +785,13 @@ public class Mod_RRR_MemoryPatcher
         */
     });
 
-    private Mod_RRR_MemoryPatch raym_init__ChangeFriction => new Mod_RRR_MemoryPatch(0x006CA0EC, 0x006CA12C, new byte[] {
+    private MemoryPatch raym_init__ChangeFriction => new MemoryPatch(0x006CA0EC, 0x006CA12C, new byte[] {
         0x68, 0x00, 0x00, 0x00, 0x41, // Default value = 4 ( 00 00 80 40 )
         0x68, 0x00, 0x00, 0x00, 0x41, // Modded value = 8 ( 00 00 00 41 )
         0xC7, 0x86, 0xF8, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41
     });
 
-    private Mod_RRR_MemoryPatch MG_Traire_reflex__AddHitFunction => new Mod_RRR_MemoryPatch(0x006868C0, 0x006868B0, new byte[] {
+    private MemoryPatch MG_Traire_reflex__AddHitFunction => new MemoryPatch(0x006868C0, 0x006868B0, new byte[] {
         0x50,                                                        // push    eax
         0x56,                                                        // push    esi
         0x8B, 0x74, 0x24, 0x0C,                                      // mov     esi, [esp+8+4]
@@ -808,7 +808,7 @@ public class Mod_RRR_MemoryPatcher
         0xC3,                                                        // ret
     });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_paf__RemoveInstaKill => new Mod_RRR_MemoryPatch(0x00679D3F, 0x00679D2F, new byte[] {
+    private MemoryPatch raym_ETAT_paf__RemoveInstaKill => new MemoryPatch(0x00679D3F, 0x00679D2F, new byte[] {
         0x56,                               // push    esi
         0xE8, 0x7B, 0xCB, 0x00, 0x00,       // call    MG_Traire_reflex
         0x90,                               // nop
@@ -867,7 +867,7 @@ public class Mod_RRR_MemoryPatcher
 
     #region Health & Mana
     // reuse MG_Traire_ETAT_Minigame
-    private Mod_RRR_MemoryPatch MG_Traire_ETAT_MiniGame__DrawFloat => new Mod_RRR_MemoryPatch(0x00685A50, 0x00685A40, isSteam ? new byte[] {
+    private MemoryPatch MG_Traire_ETAT_MiniGame__DrawFloat => new MemoryPatch(0x00685A50, 0x00685A40, isSteam ? new byte[] {
         0x53, 0x57, 0x6A, 0x00, 0x8D, 0x5C, 0x24, 0x18, 0x53, 0xBB, 0x14, 0x74, 0x80, 0x00, 0x53, 0xE8,
         0x2C, 0x2D, 0x0B, 0x00, 0x89, 0xC7, 0x83, 0xC4, 0x0C, 0x8B, 0x5C, 0x24, 0x20, 0x6A, 0x06, 0x53,
         0x57, 0xE8, 0xAA, 0x2A, 0x0B, 0x00, 0xBB, 0x74, 0x89, 0x80, 0x00, 0x53, 0x57, 0xE8, 0x2E, 0x29,
@@ -943,18 +943,18 @@ public class Mod_RRR_MemoryPatcher
             ret
     */
 
-    private Mod_RRR_MemoryPatch raym_track_end__CallDrawFloat1 => new Mod_RRR_MemoryPatch(0x006CC239, 0x006CC279,
+    private MemoryPatch raym_track_end__CallDrawFloat1 => new MemoryPatch(0x006CC239, 0x006CC279,
         isSteam ? new byte[] { 0xE8, 0x12, 0x98, 0xFB, 0xFF }
             : new byte[] { 0xE8, 0xC2, 0x97, 0xFB, 0xFF } // call MG_Traire_ETAT_MiniGame
     );
-    private Mod_RRR_MemoryPatch raym_track_end__CallDrawFloat2 => new Mod_RRR_MemoryPatch(0x006CC423, 0x006CC463,
+    private MemoryPatch raym_track_end__CallDrawFloat2 => new MemoryPatch(0x006CC423, 0x006CC463,
         isSteam ? new byte[] { 0xE8, 0x28, 0x96, 0xFB, 0xFF }
             : new byte[] { 0xE8, 0xD8, 0x95, 0xFB, 0xFF }
     );
     #endregion
 
     #region Dance system
-    private Mod_RRR_MemoryPatch MMa_Go__AddGroovyBabyToggle => new Mod_RRR_MemoryPatch(0x00490BC2, 0x00490D22, new byte[] {
+    private MemoryPatch MMa_Go__AddGroovyBabyToggle => new MemoryPatch(0x00490BC2, 0x00490D22, new byte[] {
         // DBG_SND
         0x6A, io_button_danse,                                                            // push    4
         0xE8, (byte)(isSteam ? 0xA7 : 0xF7), (byte)(isSteam ? 0x74 : 0x73), 0xF7, 0xFF,   // call    AI_EvalFunc_IoButtonJustPressed_C
@@ -979,18 +979,18 @@ public class Mod_RRR_MemoryPatcher
         0xE9, 0x75, 0x03, 0x00, 0x00,                                                     // jmp     loc_4910F8
     });
 
-    private Mod_RRR_MemoryPatch Proc_RM_FullDeguisementGet__Fix1 => new Mod_RRR_MemoryPatch(0x0055271D, 0x0055283D, new byte[] { 0xEB });
+    private MemoryPatch Proc_RM_FullDeguisementGet__Fix1 => new MemoryPatch(0x0055271D, 0x0055283D, new byte[] { 0xEB });
 
-    private Mod_RRR_MemoryPatch Proc_RM_FullDeguisementGet__Fix2 => new Mod_RRR_MemoryPatch(0x005526FB, 0x0055281B, new byte[] { 0xEB });
+    private MemoryPatch Proc_RM_FullDeguisementGet__Fix2 => new MemoryPatch(0x005526FB, 0x0055281B, new byte[] { 0xEB });
 
-    private Mod_RRR_MemoryPatch Proc_RM_FullDeguisementGet__Fix3 => new Mod_RRR_MemoryPatch(0x005526F3, 0x00552813, new byte[] { 0x90, 0x90 });
+    private MemoryPatch Proc_RM_FullDeguisementGet__Fix3 => new MemoryPatch(0x005526F3, 0x00552813, new byte[] { 0x90, 0x90 });
 
-    private Mod_RRR_MemoryPatch Proc_RM_FullDeguisementGet__Fix4 => new Mod_RRR_MemoryPatch(0x005526E9, 0x00552809, new byte[] { 0xA4, 0x7F });
+    private MemoryPatch Proc_RM_FullDeguisementGet__Fix4 => new MemoryPatch(0x005526E9, 0x00552809, new byte[] { 0xA4, 0x7F });
 
-    private Mod_RRR_MemoryPatch Proc_SND_Groovy_Beat__SkipTempoChecks => new Mod_RRR_MemoryPatch(0x0068CDB4, 0x0068CDF4, new byte[] { 0xEB });
+    private MemoryPatch Proc_SND_Groovy_Beat__SkipTempoChecks => new MemoryPatch(0x0068CDB4, 0x0068CDF4, new byte[] { 0xEB });
 
     // Change beat check to use groovy flag & enable companion mode when on
-    private Mod_RRR_MemoryPatch Lapin_track_reflex__ModifyBeatCheck => new Mod_RRR_MemoryPatch(0x005A8D89, 0x005A8E19, new byte[] {
+    private MemoryPatch Lapin_track_reflex__ModifyBeatCheck => new MemoryPatch(0x005A8D89, 0x005A8E19, new byte[] {
         0x8B, 0x0D, (byte)(isSteam ? 0xB4 : 0xD4), 0xB5, 0x85, 0x00,    // mov     ecx, [raymanREF_87004419]
         0x51,                                  // push ecx
         0xE8, (byte)(isSteam ? 0xFB : 0xAB), 0x3D, 0x0E, 0x00,          // call    Proc_SND_Juice__FP20OBJ_tdst_GameObject_
@@ -1006,28 +1006,28 @@ public class Mod_RRR_MemoryPatcher
     private const int raym_ETAT_danse__base_gog = 0x006CDEF0;
     private const int raym_ETAT_danse__base_steam = 0x006CDEB0;
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_01 => new Mod_RRR_MemoryPatch(0x006CE1A4 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1A4, new byte[] { (byte)(0xDD - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_01 => new MemoryPatch(0x006CE1A4 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1A4, new byte[] { (byte)(0xDD - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_02 => new Mod_RRR_MemoryPatch(0x006CE1BC + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1BC, new byte[] { (byte)(0xDE - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_02 => new MemoryPatch(0x006CE1BC + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1BC, new byte[] { (byte)(0xDE - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_03 => new Mod_RRR_MemoryPatch(0x006CE1D4 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1D4, new byte[] { (byte)(0xDF - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_03 => new MemoryPatch(0x006CE1D4 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1D4, new byte[] { (byte)(0xDF - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_04 => new Mod_RRR_MemoryPatch(0x006CE1DE + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1DE, new byte[] { (byte)(0xDC - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_04 => new MemoryPatch(0x006CE1DE + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE1DE, new byte[] { (byte)(0xDC - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_05 => new Mod_RRR_MemoryPatch(0x006CE216 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE216, new byte[] { (byte)(0xE2 - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_05 => new MemoryPatch(0x006CE216 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE216, new byte[] { (byte)(0xE2 - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_06 => new Mod_RRR_MemoryPatch(0x006CE22A + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE22A, new byte[] { (byte)(0xE3 - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_06 => new MemoryPatch(0x006CE22A + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE22A, new byte[] { (byte)(0xE3 - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_07 => new Mod_RRR_MemoryPatch(0x006CE253 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE253, new byte[] { (byte)(0xE5 - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_07 => new MemoryPatch(0x006CE253 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE253, new byte[] { (byte)(0xE5 - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_08 => new Mod_RRR_MemoryPatch(0x006CE25A + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE25A, new byte[] { (byte)(0xE4 - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_08 => new MemoryPatch(0x006CE25A + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE25A, new byte[] { (byte)(0xE4 - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_09 => new Mod_RRR_MemoryPatch(0x006CE0BF + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE0BF, new byte[] { (byte)(0xE0 - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_09 => new MemoryPatch(0x006CE0BF + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE0BF, new byte[] { (byte)(0xE0 - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
-    private Mod_RRR_MemoryPatch raym_ETAT_danse__GroovyMoveset_10 => new Mod_RRR_MemoryPatch(0x006CE0C6 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE0C6, new byte[] { (byte)(0xDC - (groovyRaymanDanceMoveset ? 20 : 0)) });
+    private MemoryPatch raym_ETAT_danse__GroovyMoveset_10 => new MemoryPatch(0x006CE0C6 + raym_ETAT_danse__base_steam - raym_ETAT_danse__base_gog, 0x006CE0C6, new byte[] { (byte)(0xDC - (groovyRaymanDanceMoveset ? 20 : 0)) });
 
     // With LB you can set a tempo
-    private Mod_RRR_MemoryPatch Proc_MM_SND_BeatManager__SetTempo_1 => new Mod_RRR_MemoryPatch(0x004692FB, 0x0046943B, new byte[] {
+    private MemoryPatch Proc_MM_SND_BeatManager__SetTempo_1 => new MemoryPatch(0x004692FB, 0x0046943B, new byte[] {
         0x6A, io_button_beat,
         0x31, 0xDB,
         0xE8, (byte)(isSteam ? 0x6C : 0xDC), (byte)(isSteam ? 0xE7 : 0xE6), 0xF9, 0xFF,
@@ -1036,35 +1036,35 @@ public class Mod_RRR_MemoryPatcher
         0x90
     });
 
-    private Mod_RRR_MemoryPatch Proc_MM_SND_BeatManager__SetTempo_2 => new Mod_RRR_MemoryPatch(0x0046930E, 0x0046944E, new byte[] {
+    private MemoryPatch Proc_MM_SND_BeatManager__SetTempo_2 => new MemoryPatch(0x0046930E, 0x0046944E, new byte[] {
         0xBB, 0x11, 0x00, 0x00, 0x00
     });
     #endregion
 
     #region FPS Triggers
-    private Mod_RRR_MemoryPatch GST_FPS_MP_ETAT_exec__SkipTriggerCheck => new Mod_RRR_MemoryPatch(0x005CF3E7, 0x005CF3E7, new byte[] { 0xEB });
+    private MemoryPatch GST_FPS_MP_ETAT_exec__SkipTriggerCheck => new MemoryPatch(0x005CF3E7, 0x005CF3E7, new byte[] { 0xEB });
 
-    private Mod_RRR_MemoryPatch ActivatorTrigger_wait__SkipTriggerCheck => new Mod_RRR_MemoryPatch(0x004E34BB, 0x004E364B, new byte[] { 0xEB });
+    private MemoryPatch ActivatorTrigger_wait__SkipTriggerCheck => new MemoryPatch(0x004E34BB, 0x004E364B, new byte[] { 0xEB });
 
-    private Mod_RRR_MemoryPatch TrigTest_PivotInBV__SetGAO2ToRayman => new Mod_RRR_MemoryPatch(0x004D3A63, 0x004D3C53, new byte[] {
+    private MemoryPatch TrigTest_PivotInBV__SetGAO2ToRayman => new MemoryPatch(0x004D3A63, 0x004D3C53, new byte[] {
         0x8B, 0x35, (byte)(isSteam ? 0x24 : 0x44), 0xB7, 0x85, 0x00, // mov     esi, [raymanREF_9e00dcd3]
         0xEB, 0x19 // jmp     short loc_4D3C74
     });
 
-    private Mod_RRR_MemoryPatch TrigTest_PivotInBV__SetGAO2ToCamera => new Mod_RRR_MemoryPatch(0x004D3A63, 0x004D3C53, new byte[] {
+    private MemoryPatch TrigTest_PivotInBV__SetGAO2ToCamera => new MemoryPatch(0x004D3A63, 0x004D3C53, new byte[] {
         0x8B, 0x35, (byte)(isSteam ? 0x8C : 0xAC), 0xB5, 0x85, 0x00, // mov     esi, [raymanREF_26005c54]
         0xEB, 0x19 // jmp     short loc_4D3C74
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Bipod_Init__DontDestroy => new Mod_RRR_MemoryPatch(0x0050D69B, 0x0050D7AB, new byte[] { 0xEB });
+    private MemoryPatch PNJ_Bipod_Init__DontDestroy => new MemoryPatch(0x0050D69B, 0x0050D7AB, new byte[] { 0xEB });
 
-    private Mod_RRR_MemoryPatch PNJ_Bipod_ETAT_Basic__DontDestroy => new Mod_RRR_MemoryPatch(0x0050D7D9, 0x0050D8E9, new byte[] { 0xEB });
+    private MemoryPatch PNJ_Bipod_ETAT_Basic__DontDestroy => new MemoryPatch(0x0050D7D9, 0x0050D8E9, new byte[] { 0xEB });
 
-    private Mod_RRR_MemoryPatch PNJ_Bipod_Reflex_DontPaf => new Mod_RRR_MemoryPatch(0x0050E8D3, 0x0050E9E3, new byte[] {
+    private MemoryPatch PNJ_Bipod_Reflex_DontPaf => new MemoryPatch(0x0050E8D3, 0x0050E9E3, new byte[] {
         0xE9, 0x72, 0x01, 0x00, 0x00
     });
 
-    private Mod_RRR_MemoryPatch TrigTest_PivotInBV__AlwaysTrue => new Mod_RRR_MemoryPatch(0x004D3A91, 0x004D3C81, new byte[] {
+    private MemoryPatch TrigTest_PivotInBV__AlwaysTrue => new MemoryPatch(0x004D3A91, 0x004D3C81, new byte[] {
         0x90, 0x90
     });
 
@@ -1073,13 +1073,13 @@ public class Mod_RRR_MemoryPatcher
     byte[] addr_TrigTest_AlwaysTrue => isSteam ? new byte[] { 0 } : new byte[] { 0x90, 0x13, 0x4D, 0x00 };
     */
 
-    private Mod_RRR_MemoryPatch RM_MissileLauncher_Init__SetTargetToRayman => new Mod_RRR_MemoryPatch(0x0068C7FD, 0x0068C83D, new byte[] {
+    private MemoryPatch RM_MissileLauncher_Init__SetTargetToRayman => new MemoryPatch(0x0068C7FD, 0x0068C83D, new byte[] {
         0x89, 0x47, 0x40 // mov     dword ptr [edi+40h], eax
     });
     #endregion
 
     #region Lapin
-    private Mod_RRR_MemoryPatch Lapin_track_init__Test => new Mod_RRR_MemoryPatch(0x005754B4, 0x00575544, new byte[] {
+    private MemoryPatch Lapin_track_init__Test => new MemoryPatch(0x005754B4, 0x00575544, new byte[] {
         // 0xC7, 0x86, 0x70, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 // Force rabbids type value (Types: 0 regular, 1 regular stunnable, 2 commander with camera focus)
         // 0xC7, 0x86, 0x44, 0x0A, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 // Set Mort_SeReleve = 1 (Rabbids go to sleep for a while when you beat them and then get up)
         // 0xC7, 0x86, 0x30, 0x07, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 // Set Atk_Aspire = 1 (Rabbids use a sucking attack)
@@ -1094,7 +1094,7 @@ public class Mod_RRR_MemoryPatcher
         // 0xC7, 0x86, 0x94, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00 // Spawn 5 bonus mana (crash)
     });
 
-    private Mod_RRR_MemoryPatch Proc_PNJ_Lapin_DANSE_Init__RandomProtoPowers => new Mod_RRR_MemoryPatch(0x005736ED, 0x0057377D, new byte[] {
+    private MemoryPatch Proc_PNJ_Lapin_DANSE_Init__RandomProtoPowers => new MemoryPatch(0x005736ED, 0x0057377D, new byte[] {
         0x6A, 0x0A,                                                   // push    0Ah    // increase for lower chance
         0x6A, 0x00,                                                   // push    0
         0xE8, (byte)(isSteam ? 0xEA : 0x0A), (byte)(isSteam ? 0xE9 : 0xEA), 0xEA, 0xFF,                                 // call    AI_EvalFunc_MATHRandInt_C
@@ -1121,36 +1121,36 @@ public class Mod_RRR_MemoryPatcher
         0xE9, 0x7B, 0x01, 0x00, 0x00                                  // jmp		[end]
     });
 
-    private Mod_RRR_MemoryPatch Lapin_track_init__RandomProtoPowers1 => new Mod_RRR_MemoryPatch(0x00576E6A, 0x00576EFA, new byte[] {
+    private MemoryPatch Lapin_track_init__RandomProtoPowers1 => new MemoryPatch(0x00576E6A, 0x00576EFA, new byte[] {
         0x90, 0x90
     });
 
-    private Mod_RRR_MemoryPatch Lapin_track_init__RandomProtoPowers2 => new Mod_RRR_MemoryPatch(0x00576E81, 0x00576F11, new byte[] {
+    private MemoryPatch Lapin_track_init__RandomProtoPowers2 => new MemoryPatch(0x00576E81, 0x00576F11, new byte[] {
         0x90, 0x90,0x90, 0x90,0x90
     });
 
-    private Mod_RRR_MemoryPatch Lapin_track_init__IncreaseMaxLife => new Mod_RRR_MemoryPatch(0x005754B4, 0x00575544, new byte[] {
+    private MemoryPatch Lapin_track_init__IncreaseMaxLife => new MemoryPatch(0x005754B4, 0x00575544, new byte[] {
         0xC7, 0x86, 0x74, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC8, 0x42 // Set Rabbids Life_Max value to 100
     });
 
     // Make rabbids drop their items
-    private Mod_RRR_MemoryPatch Lapin_ITEM_Destroy__DropItems => new Mod_RRR_MemoryPatch(0x0049B551, 0x0049B731, new byte[] { 0xEB }); // jmp
+    private MemoryPatch Lapin_ITEM_Destroy__DropItems => new MemoryPatch(0x0049B551, 0x0049B731, new byte[] { 0xEB }); // jmp
     #endregion
 
     #region Mounts
     // Force rabbids off mounts
-    private Mod_RRR_MemoryPatch Lapin_track_init__ForceOffMount => new Mod_RRR_MemoryPatch(0x005761DF, 0x0057626F, new byte[] {
+    private MemoryPatch Lapin_track_init__ForceOffMount => new MemoryPatch(0x005761DF, 0x0057626F, new byte[] {
         0xB8, 0x00, 0x00, 0x00, 0x00, // mov eax, 0
         0x90                          // nop
     });
 
     // Allows jumping off all mounts
-    private Mod_RRR_MemoryPatch RM_Mount_Jump_OFF__RemoveIDCheck => new Mod_RRR_MemoryPatch(0x004ED84D, 0x004ED9DD, new byte[] {
+    private MemoryPatch RM_Mount_Jump_OFF__RemoveIDCheck => new MemoryPatch(0x004ED84D, 0x004ED9DD, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 // a lotta nops
     });
 
     // PNJ_Spider (most functions here have the same address for Steam & GOG)
-    private Mod_RRR_MemoryPatch PNJ_Spider_Reflex__RemoveNextWP => new Mod_RRR_MemoryPatch(0x005E569F, 0x005E569F, new byte[] {
+    private MemoryPatch PNJ_Spider_Reflex__RemoveNextWP => new MemoryPatch(0x005E569F, 0x005E569F, new byte[] {
         0x8B, 0x86, 0x24, 0x02, 0x00, 0x00,        // mov     eax, [esi+224h]
         0x85, 0xC0,                                // test    eax, eax
         0x57,                                      // push    edi
@@ -1160,48 +1160,48 @@ public class Mod_RRR_MemoryPatcher
         0x90,                                      // nop
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Spider_Init__UseSpiderType => new Mod_RRR_MemoryPatch(0x005E497E, 0x005E497E, new byte[] {
+    private MemoryPatch PNJ_Spider_Init__UseSpiderType => new MemoryPatch(0x005E497E, 0x005E497E, new byte[] {
         0xC7, 0x07, 0x01, 0x00, 0x00, 0x00,
         0x90
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Spider_Init_IK__Use4LegsForSpiderType => new Mod_RRR_MemoryPatch(0x005C8B74, 0x005C8B74, new byte[] { 0x04 });
+    private MemoryPatch PNJ_Spider_Init_IK__Use4LegsForSpiderType => new MemoryPatch(0x005C8B74, 0x005C8B74, new byte[] { 0x04 });
 
-    private Mod_RRR_MemoryPatch PNJ_Spider_RidedPosGet__FixGaoCanalForSpider => new Mod_RRR_MemoryPatch(0x004FAEA1, 0x004FB021, new byte[] { 0xEB, 0x1E });
+    private MemoryPatch PNJ_Spider_RidedPosGet__FixGaoCanalForSpider => new MemoryPatch(0x004FAEA1, 0x004FB021, new byte[] { 0xEB, 0x1E });
 
-    private Mod_RRR_MemoryPatch PNJ_Spider_ETAT_Basic__AllowJumpForQuadri => new Mod_RRR_MemoryPatch(0x00606A99, 0x00606A89, new byte[] {
+    private MemoryPatch PNJ_Spider_ETAT_Basic__AllowJumpForQuadri => new MemoryPatch(0x00606A99, 0x00606A89, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90,0x90 // Nop the creature type check
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Spider_Init__HalfSizeForSpiderType => new Mod_RRR_MemoryPatch(0x005E4A67, 0x005E4A67, new byte[] {
+    private MemoryPatch PNJ_Spider_Init__HalfSizeForSpiderType => new MemoryPatch(0x005E4A67, 0x005E4A67, new byte[] {
         0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90,0x90
     });
 
     // PNJ_Prune
-    private Mod_RRR_MemoryPatch PNJ_Prune_init__UsePlumTypeForPig_Type0 => new Mod_RRR_MemoryPatch(0x0046348E, 0x0046354E, new byte[] {
+    private MemoryPatch PNJ_Prune_init__UsePlumTypeForPig_Type0 => new MemoryPatch(0x0046348E, 0x0046354E, new byte[] {
         0xC7, 0x06, 0x00, 0x00, 0x00, 0x00, // mov     dword ptr [esi], 0
         0xE9, 0x4C, 0xFD, 0xFF, 0xFF
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Prune_init__UsePlumTypeForPig_Type1 => new Mod_RRR_MemoryPatch(0x0046348E, 0x0046354E, new byte[] {
+    private MemoryPatch PNJ_Prune_init__UsePlumTypeForPig_Type1 => new MemoryPatch(0x0046348E, 0x0046354E, new byte[] {
         0xC7, 0x06, 0x01, 0x00, 0x00, 0x00, // mov     dword ptr [esi], 1
         0xE9, 0x0A, 0xFE, 0xFF, 0xFF
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Prune_init__UsePlumTypeForPig_Type16 => new Mod_RRR_MemoryPatch(0x0046348E, 0x0046354E, new byte[] {
+    private MemoryPatch PNJ_Prune_init__UsePlumTypeForPig_Type16 => new MemoryPatch(0x0046348E, 0x0046354E, new byte[] {
         0xC7, 0x06, 0x10, 0x00, 0x00, 0x00, // mov     dword ptr [esi], 1
         0xE9, 0xB9, 0xFE, 0xFF, 0xFF
     });
 
 
     // PNJ_Volant
-    private Mod_RRR_MemoryPatch PNJ_Volant_Init__StartOutOfFPSMode_Parked => new Mod_RRR_MemoryPatch(0x004E42A2, 0x004E4432, new byte[] { 0xEB }); // jmp
+    private MemoryPatch PNJ_Volant_Init__StartOutOfFPSMode_Parked => new MemoryPatch(0x004E42A2, 0x004E4432, new byte[] { 0xEB }); // jmp
 
-    private Mod_RRR_MemoryPatch PNJ_Volant_Init__StartOutOfFPSMode_Flying => new Mod_RRR_MemoryPatch(0x004E42A4, 0x004E4434, new byte[] {
+    private MemoryPatch PNJ_Volant_Init__StartOutOfFPSMode_Flying => new MemoryPatch(0x004E42A4, 0x004E4434, new byte[] {
         0xA1, (byte)(isSteam ? 0x5C : 0x7C), 0xA3, 0x85, 0x00
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Volant_init__UseEagleTypeForBat => new Mod_RRR_MemoryPatch(0x004E3805, 0x004E3995, new byte[] {
+    private MemoryPatch PNJ_Volant_init__UseEagleTypeForBat => new MemoryPatch(0x004E3805, 0x004E3995, new byte[] {
         0xC7, 0x06, 0x00, 0x00, 0x00, 0x00, // mov     dword ptr [esi], 0
         0x90,                               // nop
         0x90,                               // nop
@@ -1211,16 +1211,16 @@ public class Mod_RRR_MemoryPatcher
     // Skip bat's code forcing Rayman's position to its own
     // Note: the bat shoot code changes that part of the code to the eagle's.
     // The bat's projectile is null in the minigame, but the eagle's works.
-    private Mod_RRR_MemoryPatch PNJ_Volant_callback_afterblend__RemoveRaymanPositionChange => new Mod_RRR_MemoryPatch(0x004E9A92, 0x004E9C22, new byte[] {
+    private MemoryPatch PNJ_Volant_callback_afterblend__RemoveRaymanPositionChange => new MemoryPatch(0x004E9A92, 0x004E9C22, new byte[] {
         0xE9, (byte)(makeBatShoot ? 0xC4 : 0xAF), 0x00, 0x00, 0x00
     });
 
-    private Mod_RRR_MemoryPatch PNJ_Volant_Shoot__MakeSoucoupeShoot => new Mod_RRR_MemoryPatch(0x004FFF68, 0x005000E8, new byte[] {
+    private MemoryPatch PNJ_Volant_Shoot__MakeSoucoupeShoot => new MemoryPatch(0x004FFF68, 0x005000E8, new byte[] {
         0xEB                          // jmp ...
     });
 
     // Make PNJ_Quadri agressive
-    private Mod_RRR_MemoryPatch PNJ_Quadri_Init__MakeAgressive => new Mod_RRR_MemoryPatch(0x004FB403, 0x004FB583, new byte[] {
+    private MemoryPatch PNJ_Quadri_Init__MakeAgressive => new MemoryPatch(0x004FB403, 0x004FB583, new byte[] {
         0xB8, 0x01, 0x00, 0x00, 0x00, // mov     eax, 1
         0x89, 0x46, 0x0C,             // mov     [esi+0Ch], eax
         0xB8, 0x00, 0x00, 0x00, 0x00, // mov     eax, 0
@@ -1230,12 +1230,12 @@ public class Mod_RRR_MemoryPatcher
     #endregion
 
     #region Minigame
-    private Mod_RRR_MemoryPatch GST_MiniGame_Init__DeactivateIntro_1 => new Mod_RRR_MemoryPatch(0x0068E2C9, 0x0068E309, new byte[] {
+    private MemoryPatch GST_MiniGame_Init__DeactivateIntro_1 => new MemoryPatch(0x0068E2C9, 0x0068E309, new byte[] {
         0xC7, 0x46, 0x08, 0x00, 0x00, 0x00, 0x00,
         0xEB, 0x16
     });
 
-    private Mod_RRR_MemoryPatch GST_MiniGame_Player_ShapeSet__SetPlayerCostume => new Mod_RRR_MemoryPatch(0x00677BAC, 0x00677B9C, new byte[] {
+    private MemoryPatch GST_MiniGame_Player_ShapeSet__SetPlayerCostume => new MemoryPatch(0x00677BAC, 0x00677B9C, new byte[] {
         0x8B, 0x1D, (byte)(isSteam ? 0x68 : 0x88), 0x9D, 0x85, 0x00,
         0x52,
         0x53,
@@ -1247,23 +1247,23 @@ public class Mod_RRR_MemoryPatcher
 
     #region Sounds
     // Disable footstep error sound. Also disables regular footstep sounds in the prison & arena.
-    private Mod_RRR_MemoryPatch raym_exec_SND__DisableFootstep => new Mod_RRR_MemoryPatch(0x0068047D, 0x0068046D, new byte[] { 0x00 });
+    private MemoryPatch raym_exec_SND__DisableFootstep => new MemoryPatch(0x0068047D, 0x0068046D, new byte[] { 0x00 });
 
-    private Mod_RRR_MemoryPatch SB_Init__MergeAllSoundbanksWithRaymans => new Mod_RRR_MemoryPatch(0x00490B38, 0x00490C98, new byte[] {
+    private MemoryPatch SB_Init__MergeAllSoundbanksWithRaymans => new MemoryPatch(0x00490B38, 0x00490C98, new byte[] {
         0x56,                                  // push    esi
         0x8B, 0x35, (byte)(isSteam ? 0xAC : 0xCC), 0x9A, 0x85, 0x00,    // mov     esi, [AI_gpst_CurrentGameObject]
         0xA1, (byte)(isSteam ? 0x68 : 0x88), 0xAF, 0x85, 0x00,          // mov     eax, [_COMMON_LIBREF_9e00dcd3]
         0x90                                   // nop
     });
 
-    private Mod_RRR_MemoryPatch GS_exec_SetMicro__SkipPresetMicroCheck => new Mod_RRR_MemoryPatch(0x0046C478, 0x0046C5B8, new byte[] {
+    private MemoryPatch GS_exec_SetMicro__SkipPresetMicroCheck => new MemoryPatch(0x0046C478, 0x0046C5B8, new byte[] {
         0xB8, 0x00, 0x00, 0x00, 0x00, // mov eax, 0
         0x90                          // nop
     });
     #endregion
 
     #region Menus
-    private Mod_RRR_MemoryPatch IntMIG_Page_MapList__ChangeBinCheck => new Mod_RRR_MemoryPatch(0x00664055, 0x00664045, new byte[] {
+    private MemoryPatch IntMIG_Page_MapList__ChangeBinCheck => new MemoryPatch(0x00664055, 0x00664045, new byte[] {
         0x74 // jz
     });
 
@@ -1315,18 +1315,18 @@ public class Mod_RRR_MemoryPatcher
     MemoryPatch SetWorldKeyMapping__FixKeyboardControls2 => new MemoryPatch(0, 0x007C3179, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90
     });*/
-    private Mod_RRR_MemoryPatch SetWorldKeyMapping__FixKeyboardControls1 => new Mod_RRR_MemoryPatch(0x007C3070, 0x007C3140, new byte[] {
+    private MemoryPatch SetWorldKeyMapping__FixKeyboardControls1 => new MemoryPatch(0x007C3070, 0x007C3140, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90,
         0xC7, 0x05, (byte)(isSteam ? 0x4C : 0x74), 0x71, 0xC8, 0x00, (byte)(isSteam ? 0xA0 : 0x70), (byte)(isSteam ? 0x28 : 0x29), 0x7C, 0x00
     });
-    private Mod_RRR_MemoryPatch SetWorldKeyMapping__FixKeyboardControls2 => new Mod_RRR_MemoryPatch(0x007C30A9, 0x007C3179, new byte[] {
+    private MemoryPatch SetWorldKeyMapping__FixKeyboardControls2 => new MemoryPatch(0x007C30A9, 0x007C3179, new byte[] {
         0x90, 0x90, 0x90, 0x90, 0x90,
         0xC7, 0x05, (byte)(isSteam ? 0x4C : 0x74), 0x71, 0xC8, 0x00, (byte)(isSteam ? 0xA0 : 0x70), (byte)(isSteam ? 0x28 : 0x29), 0x7C, 0x00
     });
-    private Mod_RRR_MemoryPatch SetWorldKeyMapping__FixKeyboardControls3 => new Mod_RRR_MemoryPatch(0x007C3021, 0x007C30F1, new byte[] {
+    private MemoryPatch SetWorldKeyMapping__FixKeyboardControls3 => new MemoryPatch(0x007C3021, 0x007C30F1, new byte[] {
         0xEB
     });
-    private Mod_RRR_MemoryPatch CheckControlMode_Gladiator__FixKeyboardControls4 => new Mod_RRR_MemoryPatch(0x007C2AFD, 0x007C2BCD, new byte[] {
+    private MemoryPatch CheckControlMode_Gladiator__FixKeyboardControls4 => new MemoryPatch(0x007C2AFD, 0x007C2BCD, new byte[] {
         0xD8, 0x0D, (byte)(isSteam ? 0x3C : 0xAC), 0x66, 0x80, 0x00
     });
     private int addr_KeyboardKeycodes => isSteam ? 0x00856F98 : 0x00856FA8;

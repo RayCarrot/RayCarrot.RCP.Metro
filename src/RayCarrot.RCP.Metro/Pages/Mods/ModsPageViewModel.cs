@@ -10,7 +10,6 @@ public class ModsPageViewModel : BasePageViewModel, IDisposable
         Mods = new Mod_BaseViewModel[]
         {
             new Mod_Mem_ViewModel(messageUi),
-            new Mod_RRR_ViewModel(),
         };
     }
 

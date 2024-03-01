@@ -1,8 +1,14 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public class Mod_RRR_MemoryModToggleViewModel : BaseRCPViewModel, IDisposable
+public class MemoryModToggleViewModel : BaseViewModel, IDisposable
 {
-    public Mod_RRR_MemoryModToggleViewModel(LocalizedString header, LocalizedString description, Action<bool> toggleAction, bool isToggled, ObservableCollection<LocalizedString>? selectionOptions = null, Action<int>? selectionAction = null)
+    public MemoryModToggleViewModel(
+        LocalizedString header, 
+        LocalizedString description, 
+        Action<bool> toggleAction, 
+        bool isToggled, 
+        ObservableCollection<LocalizedString>? selectionOptions = null, 
+        Action<int>? selectionAction = null)
     {
         Header = header;
         Description = description;
@@ -49,7 +55,7 @@ public class Mod_RRR_MemoryModToggleViewModel : BaseRCPViewModel, IDisposable
         if (ID == null)
             return;
 
-        Data.Mod_RRR_ToggleStates[ID] = new Mod_RRR_ToggleState(IsToggled, SelectedSelectionIndex);
+        Services.Data.Mod_RRR_ToggleStates[ID] = new ToggleState(IsToggled, SelectedSelectionIndex);
     }
 
     public void Init(string id)
@@ -58,10 +64,10 @@ public class Mod_RRR_MemoryModToggleViewModel : BaseRCPViewModel, IDisposable
         ID = id;
 
         // Attempt to restore saved values
-        if (Data.Mod_RRR_ToggleStates.ContainsKey(id))
+        if (Services.Data.Mod_RRR_ToggleStates.ContainsKey(id))
         {
-            _isToggled = Data.Mod_RRR_ToggleStates[id].IsToggled;
-            _selectedSelectionIndex = Data.Mod_RRR_ToggleStates[id].SelectionIndex;
+            _isToggled = Services.Data.Mod_RRR_ToggleStates[id].IsToggled;
+            _selectedSelectionIndex = Services.Data.Mod_RRR_ToggleStates[id].SelectionIndex;
         }
         else
         {

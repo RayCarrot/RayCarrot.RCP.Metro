@@ -1,25 +1,25 @@
-﻿#nullable disable
-using System.Text;
+﻿using System.Text;
 using System.Windows.Input;
 using BinarySerializer;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
+public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public Mod_RRR_ViewModel()
+    public PrototypeRestorationViewModel(GameInstallation gameInstallation)
     {
-        MemoryPatcher = new Mod_RRR_MemoryPatcher();
+        GameInstallation = gameInstallation;
+        MemoryPatcher = new MemoryPatcher();
 
-        MemoryModSections = new ObservableCollection<Mod_RRR_MemoryModsSectonViewModel>()
+        MemoryModSections = new ObservableCollection<MemoryModsSectonViewModel>()
         {
             // Main
-            new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MainHeader)), null, 
-                new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
+            new MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MainHeader)), null, 
+                new ObservableCollection<MemoryModToggleViewModel>()
                 {
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_EnableProtoFeatures)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_EnableProtoFeaturesInfo)),
                         toggleAction: x =>
@@ -29,27 +29,27 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                             IsCustomButtonMappingEnabled = x;
                         },
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddCamControls)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddCamControlsInfo)),
                         toggleAction: x => MemoryPatcher.addCameraControls = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddDuel)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddDuelInfo)),
                         toggleAction: x => MemoryPatcher.addDuel = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddPlaytestMenu)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddPlaytestMenuInfo)),
                         toggleAction: x => MemoryPatcher.addPlaytestMenu = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UnlockAllMinigames)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UnlockAllMinigamesInfo)),
                         toggleAction: x => MemoryPatcher.unlockAllMinigames = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_CheatPage)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_CheatPageInfo)),
                         toggleAction: x => MemoryPatcher.setCheatPage = x,
@@ -66,35 +66,35 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
 
             // Rayman
-            new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RaymanHeader)), new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RaymanInfo)), 
-                new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
+            new MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RaymanHeader)), new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RaymanInfo)), 
+                new ObservableCollection<MemoryModToggleViewModel>()
                 {
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddLookMode)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddLookModeInfo)),
                         toggleAction: x => MemoryPatcher.addLookMode = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddBoostButton)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddBoostButtonInfo)),
                         toggleAction: x => MemoryPatcher.addBoostButton = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddFinishers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddFinishersInfo)),
                         toggleAction: x => MemoryPatcher.addFinishers = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ClimbWalls)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ClimbWallsInfo)),
                         toggleAction: x => MemoryPatcher.climbWalls = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_HangFromSpots)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_HangFromSpotsInfo)),
                         toggleAction: x => MemoryPatcher.hangFromHotspots = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFXInfo)),
                         toggleAction: x => MemoryPatcher.setGrappinGFX = x,
@@ -108,52 +108,52 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                             new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX_4)),
                         },
                         selectionAction: x => MemoryPatcher.GrappinGFX = (byte)x),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UpgradedPowers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UpgradedPowersInfo)),
                         toggleAction: x => MemoryPatcher.allpowers = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_Immortal)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ImmortalInfo)),
                         toggleAction: x => MemoryPatcher.immortal = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ControlTempo)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ControlTempoInfo)),
                         toggleAction: x => MemoryPatcher.controlTempo = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GroovyMoveset)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GroovyMovesetInfo)),
                         toggleAction: x => MemoryPatcher.groovyRaymanDanceMoveset = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SetCostume)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SetCostumeInfo)),
                         toggleAction: x => MemoryPatcher.setPlayer1Costume = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableIntros)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableIntrosInfo)),
                         toggleAction: x => MemoryPatcher.disableMinigameIntro = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableFootstepSound)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableFootstepSoundInfo)),
                         toggleAction: x => MemoryPatcher.disableFootstepSound = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_LessSlippery)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_LessSlipperyInfo)),
                         toggleAction: x => MemoryPatcher.lowerSlippery = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DrawHealthMana)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DrawHealthManaInfo)),
                         toggleAction: x => MemoryPatcher.drawHealthMana = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_NoInstaKill)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_NoInstaKillInfo)),
                         toggleAction: x => MemoryPatcher.noInstaKill = x,
@@ -161,20 +161,20 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
 
             // Rabbids
-            new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsHeader)), null, 
-                new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
+            new MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsHeader)), null, 
+                new ObservableCollection<MemoryModToggleViewModel>()
                 {
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsDropItems)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsDropItemsInfo)),
                         toggleAction: x => MemoryPatcher.rabbidsDropItems = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_IncreasedRabbidHP)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_IncreasedRabbidHPInfo)),
                         toggleAction: x => MemoryPatcher.rabbidsIncreasedHP = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RandomProtoRabbidPowers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RandomProtoRabbidPowersInfo)),
                         toggleAction: x => MemoryPatcher.randomProtoRabbidPowers = x,
@@ -182,40 +182,40 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
 
             // Mounts
-            new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MountsHeader)), null, 
-                new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
+            new MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MountsHeader)), null, 
+                new ObservableCollection<MemoryModToggleViewModel>()
                 {
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_TameMounts)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_TameMountsInfo)),
                         toggleAction: x => MemoryPatcher.tameMounts = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatsActLikeEagles)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatsActLikeEaglesInfo)),
                         toggleAction: x => MemoryPatcher.makeBatsIntoEagles = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_PigsActLikePlums)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_PigsActLikePlumsInfo)),
                         toggleAction: x => MemoryPatcher.makePigsIntoPlums = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AggressiveRhinos)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AggressiveRhinosInfo)),
                         toggleAction: x => MemoryPatcher.makeRhinosAggressive = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SpiderJump)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SpiderJumpInfo)),
                         toggleAction: x => MemoryPatcher.makeSpidersJump = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatShoot)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatShootInfo)),
                         toggleAction: x => MemoryPatcher.makeBatShoot = x,
                         isToggled: true),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SaucersStartFlying)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SaucersStartFlyingInfo)),
                         toggleAction: x => MemoryPatcher.saucersStartFlying = x,
@@ -223,25 +223,25 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
 
             // Bunny hunts
-            new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BunnyHuntsHeader)), null, 
-                new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
+            new MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BunnyHuntsHeader)), null, 
+                new ObservableCollection<MemoryModToggleViewModel>()
                 {
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MissileLaunchersTarget)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MissileLaunchersTargetInfo)),
                         toggleAction: x => MemoryPatcher.missileLaunchersTargetPlayer = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DontDestroyBipods)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DontDestroyBipodsInfo)),
                         toggleAction: x => MemoryPatcher.dontDestroyBipods = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ActivatorTriggers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ActivatorTriggersInfo)),
                         toggleAction: x => MemoryPatcher.activateAllActivatorTriggers = x,
                         isToggled: false),
-                    new Mod_RRR_MemoryModToggleViewModel(
+                    new MemoryModToggleViewModel(
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BoundingVolumeTriggers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BoundingVolumeTriggersInfo)),
                         toggleAction: x => MemoryPatcher.activateAllPivotInBVTriggers = x,
@@ -276,15 +276,15 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_18)), Key.Escape, 18), // Pause
         };
 
-        BFModToggles = new ObservableCollection<Mod_RRR_BFModToggleViewModel>()
+        BFModToggles = new ObservableCollection<BFModToggleViewModel>()
         {
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_FixSounds)),
-                patches: Mod_RRR_BigFilePatch.FixSoundEffects,
+                patches: BigFilePatch.FixSoundEffects,
                 isDefaultToggled: true),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer)),
-                patch: Mod_RRR_BigFilePatch.PlayableCharacters,
+                patch: BigFilePatch.PlayableCharacters,
                 isDefaultToggled: false,
                 selectionOptions: new ObservableCollection<LocalizedString>()
                 {
@@ -297,35 +297,51 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                     new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid)), // Sam Fisher Rabbid
                     new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_NurgleDemon)), // Nurgle Demon
                 }),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_BatSoundLikeEagle)),
-                patch: Mod_RRR_BigFilePatch.MakeBatSoundLikeEagle,
+                patch: BigFilePatch.MakeBatSoundLikeEagle,
                 isDefaultToggled: false),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider)),
-                patches: Mod_RRR_BigFilePatch.MakeSpiderRobotsSoundLikeSpider,
+                patches: BigFilePatch.MakeSpiderRobotsSoundLikeSpider,
                 isDefaultToggled: false),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_CustomHelicoTexture)),
-                patch: Mod_RRR_BigFilePatch.AddCustomHelicopterTexture,
+                patch: BigFilePatch.AddCustomHelicopterTexture,
                 isDefaultToggled: true),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_RabbidsFur)),
-                patches: Mod_RRR_BigFilePatch.AddFurToRabbids,
+                patches: BigFilePatch.AddFurToRabbids,
                 isDefaultToggled: false),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_Flashlight)),
-                patch: Mod_RRR_BigFilePatch.EnableFlashlight,
+                patch: BigFilePatch.EnableFlashlight,
                 isDefaultToggled: true),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_FlashlightMines)),
-                patches: Mod_RRR_BigFilePatch.AddFlashlightToMines,
+                patches: BigFilePatch.AddFlashlightToMines,
                 isDefaultToggled: false),
-            new Mod_RRR_BFModToggleViewModel(
+            new BFModToggleViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_RabbidItems)),
-                patches: Mod_RRR_BigFilePatch.ModdedRabbidItems,
+                patches: BigFilePatch.ModdedRabbidItems,
                 isDefaultToggled: false),
         };
+
+        // Check patch state
+        IsExePatched = CheckIsExePatched();
+        CanDownloadPatchedBF = IsExePatched;
+        IsPatchedBFDownloaded = CheckIsPatchedBFDownloaded();
+        CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
+        RefreshBFPatches();
+
+        // Restore saved button mapping
+        foreach (var buttonItem in Services.Data.Mod_RRR_KeyboardButtonMapping)
+        {
+            ButtonMappingKeyItemViewModel<int>? matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
+
+            if (matchingItem != null)
+                matchingItem.NewKey = buttonItem.Value;
+        }
 
         ApplyMemoryPatchCommand = new AsyncRelayCommand(ApplyMemoryPatchAsync);
         ApplyExePatchCommand = new AsyncRelayCommand(() => PatchExeAsync(true));
@@ -353,24 +369,6 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     public ICommand RemovePatchedBFCommand { get; }
     public ICommand UpdatePatchedBFCommand { get; }
     public ICommand LaunchWithPatchedBFCommand { get; }
-
-    #endregion
-
-    #region Mods Page
-
-    public override GenericIconKind Icon => GenericIconKind.Mods_RRR;
-    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_RRR_Header));
-    public override object UIContent => _controlContent ??= new Mod_RRR_Control()
-    {
-        DataContext = this
-    };
-
-    #endregion
-
-    #region Private Fields
-
-    private Mod_RRR_Control _controlContent;
-    private FileSystemPath _gameDirectoryPath;
 
     #endregion
 
@@ -455,28 +453,20 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
         }),
     };
-    public FilePatcher ExePatcher => new FilePatcher(ExeFilePath, ExePatches.Values.ToArray());
+    public FilePatcher ExePatcher => new(ExeFilePath, ExePatches.Values.ToArray());
 
-    protected FileSystemPath ExeFilePath => GameDirectoryPath + "Jade_enr.exe";
-    protected FileSystemPath PatchedBFFilePath => GameDirectoryPath + "Rayman4_Mod.bf";
+    protected FileSystemPath ExeFilePath => GameInstallation.InstallLocation.Directory + "Jade_enr.exe";
+    protected FileSystemPath PatchedBFFilePath => GameInstallation.InstallLocation.Directory + "Rayman4_Mod.bf";
 
     #endregion
 
     #region Public Properties
 
-    public FileSystemPath GameDirectoryPath
-    {
-        get => _gameDirectoryPath;
-        set
-        {
-            _gameDirectoryPath = value;
-            GameDirectoryUpdated();
-        }
-    }
+    public GameInstallation GameInstallation { get; }
 
     // Memory Mods
-    public Mod_RRR_MemoryPatcher MemoryPatcher { get; }
-    public ObservableCollection<Mod_RRR_MemoryModsSectonViewModel> MemoryModSections { get; }
+    public MemoryPatcher MemoryPatcher { get; }
+    public ObservableCollection<MemoryModsSectonViewModel> MemoryModSections { get; }
     public bool IsCustomButtonMappingEnabled { get; set; }
     public bool UseCustomButtonMapping
     {
@@ -490,43 +480,11 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     public bool IsPatchedBFDownloaded { get; set; }
     public bool CanDownloadPatchedBF { get; set; }
     public bool CanUpdatePatchedBF { get; set; }
-    public ObservableCollection<Mod_RRR_BFModToggleViewModel> BFModToggles { get; }
-
-    #endregion
-
-    #region Protected Methods
-
-    protected void GameDirectoryUpdated()
-    {
-        Logger.Trace("Updating RRR mod directory");
-        IsExePatched = CheckIsExePatched();
-        CanDownloadPatchedBF = IsExePatched;
-        IsPatchedBFDownloaded = CheckIsPatchedBFDownloaded();
-        CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
-        RefreshBFPatches();
-    }
+    public ObservableCollection<BFModToggleViewModel> BFModToggles { get; }
 
     #endregion
 
     #region Public Methods
-
-    public override Task InitializeAsync()
-    {
-        // Set the default directory to that of the game, if it's been added
-        GameInstallation gameInstallation = Services.Games.FindInstalledGame(GameSearch.Create(Game.RaymanRavingRabbids, GamePlatform.Win32));
-        GameDirectoryPath = gameInstallation?.InstallLocation.Directory ?? FileSystemPath.EmptyPath;
-
-        // Restore saved button mapping
-        foreach (var buttonItem in Data.Mod_RRR_KeyboardButtonMapping)
-        {
-            ButtonMappingKeyItemViewModel<int> matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
-
-            if (matchingItem != null)
-                matchingItem.NewKey = buttonItem.Value;
-        }
-
-        return Task.CompletedTask;
-    }
 
     public async Task ApplyMemoryPatchAsync()
     {
@@ -541,7 +499,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                     MemoryPatcher.KeyboardKeycodes[buttonMappingItem.KeyObj] = DirectXKeyHelpers.GetKeyCode(buttonMappingItem.NewKey);
 
                 // Save the button mapping
-                Data.Mod_RRR_KeyboardButtonMapping = ButtonMappingItems.ToDictionary(x => x.KeyObj, x => x.NewKey);
+                Services.Data.Mod_RRR_KeyboardButtonMapping = ButtonMappingItems.ToDictionary(x => x.KeyObj, x => x.NewKey);
             }
 
             MemoryPatcher.Patch();
@@ -567,7 +525,8 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
         if (!exe.FileExists)
         {
             Logger.Info("RRR exe does not exist");
-            await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_InvalidGameDir, MessageType.Error);
+            // TODO-LOC
+            await Services.MessageUI.DisplayMessageAsync("Could not find the game executable", MessageType.Error);
             return GameVersion.Unknown;
         }
 
@@ -677,7 +636,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             return;
 
         // Download the game
-        bool downloaded = await Services.App.DownloadAsync(new Uri[]
+        bool downloaded = await Services.App.DownloadAsync(new[]
         {
             version switch
             {
@@ -685,7 +644,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 GameVersion.GOG_UbisoftConnect => new Uri(AppURLs.RRR_PatchedBF_GOG_URL),
                 _ => throw new Exception("Invalid game version")
             }
-        }, true, GameDirectoryPath);
+        }, true, GameInstallation.InstallLocation.Directory);
 
         if (!downloaded)
             return;
@@ -695,7 +654,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
         RefreshBFPatches();
 
         // Apply default patches
-        foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+        foreach (BFModToggleViewModel bfMod in BFModToggles)
             bfMod.IsToggled = bfMod.IsDefaultToggled;
 
         await UpdatePatchedBFAsync();
@@ -729,7 +688,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
         if (!PatchedBFFilePath.FileExists)
         {
-            foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+            foreach (BFModToggleViewModel bfMod in BFModToggles)
                 bfMod.IsToggled = false;
 
             return;
@@ -751,11 +710,11 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
             BinaryDeserializer s = context.Deserializer;
 
-            foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+            foreach (BFModToggleViewModel bfMod in BFModToggles)
             {
                 s.Log($"Patch ({bfMod.Header.Value})");
 
-                Mod_RRR_BigFilePatch patch = bfMod.Patches[0];
+                BigFilePatch patch = bfMod.Patches[0];
 
                 bfMod.SelectedPatch = patch.GetAppliedPatch(s, bf, file);
             }
@@ -764,7 +723,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Refreshing BF patches");
 
-            foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+            foreach (BFModToggleViewModel bfMod in BFModToggles)
                 bfMod.IsToggled = false;
         }
     }
@@ -792,11 +751,11 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
             var s = context.Serializer;
 
-            foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+            foreach (BFModToggleViewModel bfMod in BFModToggles)
             {
                 s.Log($"Patch ({bfMod.Header.Value})");
 
-                foreach (Mod_RRR_BigFilePatch patch in bfMod.Patches)
+                foreach (BigFilePatch patch in bfMod.Patches)
                 {
                     patch.Apply(
                         s: s,
@@ -826,8 +785,8 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        MemoryModSections?.DisposeAll();
-        BFModToggles?.DisposeAll();
+        MemoryModSections.DisposeAll();
+        BFModToggles.DisposeAll();
     }
 
     #endregion

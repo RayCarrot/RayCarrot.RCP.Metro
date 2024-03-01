@@ -1,7 +1,6 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
-public enum Mod_RRR_AI2C_fctDef
+public enum AI2C_fctDef
 {
     RM_Hammer,
     RM_Hammer_Proc,

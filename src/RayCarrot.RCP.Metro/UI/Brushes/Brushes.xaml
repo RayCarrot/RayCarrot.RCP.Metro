@@ -20,6 +20,7 @@
     <SolidColorBrush x:Key="RCP.Brushes.GameClient" Color="{StaticResource RCP.Colors.YellowPrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.GameConfig" Color="{StaticResource RCP.Colors.IndigoPrimary500}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.ModLoader" Color="{StaticResource RCP.Colors.DeepOrangePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameTools" Color="{StaticResource RCP.Colors.DeepPurplePrimary500}" po:Freeze="True" />
 
     <!-- General UI -->
     <SolidColorBrush x:Key="RCP.Brushes.Overlay" Color="#60000000" po:Freeze="True" />

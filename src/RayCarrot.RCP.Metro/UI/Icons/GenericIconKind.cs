@@ -20,6 +20,7 @@ public enum GenericIconKind
     GamePanel_Archive,
     GamePanel_ModLoader,
     GamePanel_Progression,
+    GamePanel_PrototypeRestoration,
 
     GameAdd_Locate,
     GameAdd_DiscInstall,
@@ -62,6 +63,7 @@ public enum GenericIconKind
     Window_GameDebug,
     Window_GameClientDebug,
     Window_AnniversaryUpdate,
+    Window_PrototypeRestoration,
 
     Utilities_Rayman1_CompleteSoundtrack,
     Utilities_Rayman1_TPLS,
@@ -81,5 +83,4 @@ public enum GenericIconKind
     Utilities_Serializers,
 
     Mods_Mem,
-    Mods_RRR,
 }
