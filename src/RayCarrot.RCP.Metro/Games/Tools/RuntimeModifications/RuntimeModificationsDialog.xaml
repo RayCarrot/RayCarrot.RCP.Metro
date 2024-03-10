@@ -60,9 +60,9 @@
 
                 <ComboBox Grid.Column="1" Grid.Row="0"
                           MinWidth="200"
-                          ItemsSource="{Binding Path=Games, Mode=OneTime}"
+                          ItemsSource="{Binding Path=GameVersions, Mode=OneTime}"
                           DisplayMemberPath="DisplayName.Value"
-                          SelectedItem="{Binding Path=SelectedGame}"/>
+                          SelectedItem="{Binding Path=SelectedGameVersion}"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="2"
                            Text="{Resx Mod_Mem_EmuSelection}"
@@ -70,9 +70,9 @@
                            Margin="0 0 10 0"/>
 
                 <ComboBox Grid.Column="1" Grid.Row="2"
-                          ItemsSource="{Binding Path=Emulators}"
+                          ItemsSource="{Binding Path=EmulatorVersions}"
                           DisplayMemberPath="DisplayName.Value"
-                          SelectedItem="{Binding Path=SelectedEmulator}"/>
+                          SelectedItem="{Binding Path=SelectedEmulatorVersion}"/>
 
             </Grid>
         </StackPanel>

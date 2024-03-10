@@ -150,6 +150,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 getInstanceIdFunc: _ => "Utilities"),
             priority: ComponentPriority.Low);
 
+        // TODO-UPDATE: Don't do this. Register from mod module component and define as single instance with new attribute.
         builder.Register<GamePanelComponent>(new ModLoaderGamePanelComponent());
     }
 

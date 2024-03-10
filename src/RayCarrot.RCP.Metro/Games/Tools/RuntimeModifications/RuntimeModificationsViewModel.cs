@@ -1,20 +1,19 @@
 ﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows.Input;
 using BinarySerializer;
-using BinarySerializer.OpenSpace;
-using BinarySerializer.Ray1;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-// TODO-UPDATE: Rewrite to use GameInstallation. Define available game and emulator options in components. Attempt to automatically detect it.
+// TODO-UPDATE: Update UI. Make more user-friendly - auto search game by default. Improve finding process.
 public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
     public RuntimeModificationsViewModel(GameInstallation gameInstallation, IMessageUIManager messageUi)
     {
+        GameInstallation = gameInstallation;
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
 
         ProcessAttacherViewModel = new ProcessAttacherViewModel();
@@ -22,50 +21,30 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
         ProcessAttacherViewModel.ProcessAttached += (_, e) => AttachProcess(e.AttachedProcess);
         ProcessAttacherViewModel.ProcessDetached += (_, _) => DetachProcess();
 
-        EmulatorViewModel[] emuNone = EmulatorViewModel.None;
-        EmulatorViewModel[] emuMSDOS = EmulatorViewModel.MSDOS;
-        EmulatorViewModel[] emuPS1 = EmulatorViewModel.PS1;
-        EmulatorViewModel[] emuGBA = EmulatorViewModel.GBA;
+        // Get the available game versions from components. Some games have different versions, such as Rayman 1 on PC,
+        // or different regional releases, such as most console games, where memory offsets will differ.
+        GameVersions = new ObservableCollection<GameVersionViewModel>(GameInstallation.
+            GetComponents<RuntimeModificationsManagersComponent>().
+            CreateManyObjects().
+            Select(x => new GameVersionViewModel(x)));
+        SelectedGameVersion = GameVersions.First();
 
-        Games = new ObservableCollection<GameViewModel>()
+        // Get the available emulator versions. We could have these be registered as components, but then we won't get
+        // any emulator versions if the game is launched through a non-emulator client such as Ubisoft Connect.
+        EmulatorVersion[] emulatorVersions = GameInstallation.GetRequiredComponent<RuntimeModificationsManagersComponent>().EmulatedPlatform switch
         {
-            new GameViewModel(
-                game: new Ray1Game(Ray1EngineVersion.PC),
-                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
-                getOffsetsFunc: () => Ray1MemoryData.Offsets_PC_1_21,
-                emulators: emuMSDOS),
-            new GameViewModel(
-                game: new Ray1Game(Ray1EngineVersion.PS1),
-                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PS1_US)),
-                getOffsetsFunc: () => Ray1MemoryData.Offsets_PS1_US,
-                emulators: emuPS1),
-            new GameViewModel(
-                game: new Ray1Game(Ray1EngineVersion.R2_PS1),
-                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PS1_Proto)),
-                getOffsetsFunc: () => Ray1MemoryData.Offsets_PS1_R2,
-                emulators: emuPS1),
-            new GameViewModel(
-                game: new Ray1Game(Ray1EngineVersion.GBA),
-                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_GBA_EU)),
-                getOffsetsFunc: () => Ray1MemoryData.Offsets_GBA_EU,
-                emulators: emuGBA),
-            new GameViewModel(
-                game: new CPAGame(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC)),
-                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PC)),
-                getOffsetsFunc: () => CPAMemoryData.Offsets_R2_PC,
-                emulators: emuNone,
-                processNameKeywords: new [] { "Rayman2" }),
-            new GameViewModel(
-                game: new CPAGame(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC)),
-                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R3_PC)),
-                getOffsetsFunc: () => CPAMemoryData.Offsets_R3_PC,
-                emulators: emuNone,
-                processNameKeywords: new [] { "Rayman3" }),
+            EmulatedPlatform.None => EmulatorVersion.None,
+            EmulatedPlatform.MsDos => EmulatorVersion.MsDos,
+            EmulatedPlatform.Gba => EmulatorVersion.Gba,
+            EmulatedPlatform.Ps1 => EmulatorVersion.Ps1,
+            _ => throw new ArgumentOutOfRangeException()
         };
-        SelectedGame = Games.First();
-
-        ProcessAttacherViewModel.ProcessNameKeywords = Games.
-            SelectMany(x => x.Emulators.SelectMany(e => e.ProcessNameKeywords).Concat(x.ProcessNameKeywords)).
+        EmulatorVersions = new ObservableCollection<EmulatorVersionViewModel>(emulatorVersions.Select(x => new EmulatorVersionViewModel(x)));
+        SelectedEmulatorVersion = EmulatorVersions.First();
+        
+        ProcessAttacherViewModel.ProcessNameKeywords = GameVersions.
+            SelectMany(x => x.Manager.ProcessNameKeywords).
+            Concat(EmulatorVersions.SelectMany(x => x.EmulatorVersion.ProcessNameKeywords)).
             Distinct().
             ToArray();
 
@@ -92,7 +71,6 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     private CancellationTokenSource? _updateCancellation;
     private MemoryDataContainer? _memContainer;
-    private GameViewModel _selectedGame;
     private bool _logNextTick;
 
     #endregion
@@ -111,25 +89,17 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
+    public GameInstallation GameInstallation { get; }
     public ProcessAttacherViewModel ProcessAttacherViewModel { get; }
     public Context? Context { get; private set; }
 
-    public ObservableCollection<GameViewModel> Games { get; }
-    public GameViewModel SelectedGame
-    {
-        get => _selectedGame;
-        [MemberNotNull(nameof(SelectedEmulator), nameof(_selectedGame))]
-        set
-        {
-            _selectedGame = value;
-            Emulators = new ObservableCollection<EmulatorViewModel>(value.Emulators);
-            SelectedEmulator = Emulators.First();
-        }
-    }
-    public Game? AttachedGame { get; set; }
+    public ObservableCollection<GameVersionViewModel> GameVersions { get; }
+    public GameVersionViewModel SelectedGameVersion { get; set; }
 
-    public ObservableCollection<EmulatorViewModel>? Emulators { get; set; }
-    public EmulatorViewModel SelectedEmulator { get; set; }
+    public ObservableCollection<EmulatorVersionViewModel>? EmulatorVersions { get; set; }
+    public EmulatorVersionViewModel SelectedEmulatorVersion { get; set; }
+
+    public RuntimeModificationsManager? AttachedGame { get; set; }
 
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
@@ -160,15 +130,16 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
         string processName = ProcessAttacherViewModel.SelectedProcess.ProcessName;
 
-        foreach (GameViewModel game in Games)
-        {
-            if (game.ProcessNameKeywords.Concat(game.Emulators.SelectMany(x => x.ProcessNameKeywords)).
-                Any(x => processName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) != -1))
-            {
-                SelectedGame = game;
-                return;
-            }
-        }
+        // TODO-UPDATE: Re-implement
+        //foreach (GameVersionViewModel game in Games)
+        //{
+        //    if (game.ProcessNameKeywords.Concat(game.Emulators.SelectMany(x => x.ProcessNameKeywords)).
+        //        Any(x => processName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) != -1))
+        //    {
+        //        SelectedGameVersion = game;
+        //        return;
+        //    }
+        //}
     }
 
     private async void AttachProcess(AttachableProcessViewModel p)
@@ -179,7 +150,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
             DisposeContext();
             
             AttachedGame?.DetachContainer();
-            AttachedGame = SelectedGame.Game;
+            AttachedGame = SelectedGameVersion.Manager;
             
             Context = new RCPContext(String.Empty, logger: new MemorySerializerLogger()
             {
@@ -194,7 +165,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
             BinaryDeserializer s = Context.Deserializer;
 
-            foreach (MemoryRegion memRegion in SelectedEmulator.MemoryRegions)
+            foreach (MemoryRegion memRegion in SelectedEmulatorVersion.EmulatorVersion.MemoryRegions)
             {
                 // Open the process as a stream
                 ProcessMemoryStream stream = new(p.Process, ProcessMemoryStream.Mode.AllAccess);
@@ -212,7 +183,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
                 InitializeProcessStream(stream, memRegion, s);
             }
 
-            memData.Initialize(Context, SelectedGame.GetOffsets());
+            memData.Initialize(Context, SelectedGameVersion.Manager.GetOffsets());
 
             // Initialize the fields
             EditorFieldGroups.Clear();

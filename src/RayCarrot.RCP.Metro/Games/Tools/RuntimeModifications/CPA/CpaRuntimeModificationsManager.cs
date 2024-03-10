@@ -1,15 +1,23 @@
 ﻿using BinarySerializer;
 using BinarySerializer.OpenSpace;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class CPAGame : Mod_Mem_Game<CPAMemoryData>
+public class CpaRuntimeModificationsManager : RuntimeModificationsManager<CPAMemoryData>
 {
     #region Constructor
 
-    public CPAGame(OpenSpaceSettings settings)
+    public CpaRuntimeModificationsManager(
+        GameInstallation gameInstallation, 
+        LocalizedString displayName, 
+        string[] processNameKeywords, 
+        Func<Dictionary<string, long>> getOffsetsFunc) 
+        : base(displayName, processNameKeywords, getOffsetsFunc)
     {
-        Settings = settings;
+        Settings = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent>().
+            GetRequiredSettings<OpenSpaceSettings>();
     }
 
     #endregion

@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Panels;
 using RayCarrot.RCP.Metro.Games.Structure;
+using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -52,8 +53,15 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
         
-        // TODO-UPDATE: Temporary for testing
-        builder.Register<GamePanelComponent>(new GameToolGamePanelComponent(x => new RuntimeModificationsGamePanelViewModel(x)));
+        builder.Register(new RuntimeModificationsManagersComponent(EmulatedPlatform.MsDos, x => 
+            new[]
+            {
+                new Ray1RuntimeModificationsManager(
+                    gameInstallation: x,
+                    displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
+                    processNameKeywords: Array.Empty<string>(),
+                    getOffsetsFunc: () => Ray1MemoryData.Offsets_PC_1_21)
+            }));
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));

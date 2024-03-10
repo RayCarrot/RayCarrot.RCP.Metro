@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
+using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -32,6 +33,16 @@ public sealed class GameDescriptor_Rayman1_Gba : GbaGameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanAdvance_Gba(x, "Rayman Advance")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanAdvanceGBAEU", "r1/gba"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_GBA));
+
+        builder.Register(new RuntimeModificationsManagersComponent(EmulatedPlatform.Gba, x =>
+            new[]
+            {
+                new Ray1RuntimeModificationsManager(
+                    gameInstallation: x,
+                    displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_GBA_EU)),
+                    processNameKeywords: Array.Empty<string>(),
+                    getOffsetsFunc: () => Ray1MemoryData.Offsets_GBA_EU)
+            }));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new GbaRomProgramInstallationStructure(new[]

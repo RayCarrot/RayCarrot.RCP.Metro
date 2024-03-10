@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
+using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -84,6 +85,16 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
                 Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
 
         builder.Register(new GameBananaGameComponent(6244));
+
+        builder.Register(new RuntimeModificationsManagersComponent(EmulatedPlatform.None, x =>
+            new[]
+            {
+                new CpaRuntimeModificationsManager(
+                    gameInstallation: x,
+                    displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PC)),
+                    processNameKeywords: new [] { "Rayman2" },
+                    getOffsetsFunc: () => CPAMemoryData.Offsets_R2_PC)
+            }));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]

@@ -1,16 +1,21 @@
 ﻿using BinarySerializer;
 using BinarySerializer.Ray1;
 using MahApps.Metro.IconPacks;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Ray1Game : Mod_Mem_Game<Ray1MemoryData>
+public class Ray1RuntimeModificationsManager : RuntimeModificationsManager<Ray1MemoryData>
 {
     #region Constructor
 
-    public Ray1Game(Ray1EngineVersion version)
+    public Ray1RuntimeModificationsManager(GameInstallation gameInstallation, LocalizedString displayName, string[] processNameKeywords, Func<Dictionary<string, long>> getOffsetsFunc) 
+        : base(displayName, processNameKeywords, getOffsetsFunc)
     {
-        Version = version;
+        Version = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent>().
+            GetRequiredSettings<Ray1Settings>().
+            EngineVersion;
     }
 
     #endregion

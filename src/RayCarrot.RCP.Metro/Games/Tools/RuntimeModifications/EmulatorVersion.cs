@@ -1,10 +1,10 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class EmulatorViewModel : BaseViewModel
+public class EmulatorVersion
 {
     #region Constructor
 
-    public EmulatorViewModel(LocalizedString displayName, string[] processNameKeywords, params MemoryRegion[] memoryRegions)
+    public EmulatorVersion(LocalizedString displayName, string[] processNameKeywords, params MemoryRegion[] memoryRegions)
     {
         DisplayName = displayName;
         ProcessNameKeywords = processNameKeywords;
@@ -15,7 +15,7 @@ public class EmulatorViewModel : BaseViewModel
 
     #region Constants
 
-    private const string MainMemoryRegionName = "Main";
+    public const string MainMemoryRegionName = "Main";
 
     #endregion
 
@@ -30,9 +30,9 @@ public class EmulatorViewModel : BaseViewModel
 
     #region Platforms
 
-    public static EmulatorViewModel[] None => new[]
+    public static EmulatorVersion[] None => new[]
     {
-        new EmulatorViewModel(
+        new EmulatorVersion(
             displayName: new ResourceLocString(nameof(Resources.EmuSelection_None)),
             processNameKeywords: Array.Empty<string>(),
             memoryRegions: new MemoryRegion(
@@ -43,9 +43,9 @@ public class EmulatorViewModel : BaseViewModel
                 ProcessOffset: 0x00,
                 IsProcessOffsetAPointer: false)),
     };
-    public static EmulatorViewModel[] MSDOS => new[] { DOSBox_0_74_3_x86, DOSBox_0_74_2_1_x86, DOSBox_0_74_x86,  };
-    public static EmulatorViewModel[] PS1 => new[] { BizHawk_PS1_2_8_0_x64, BizHawk_PS1_2_4_0_x64, };
-    public static EmulatorViewModel[] GBA => new[] { VisualBoyAdvance_M_2_1_3_x86 };
+    public static EmulatorVersion[] MsDos => new[] { DosBox_0_74_3_x86, DosBox_0_74_2_1_x86, DosBox_0_74_x86, };
+    public static EmulatorVersion[] Ps1 => new[] { BizHawk_Ps1_2_8_0_x64, BizHawk_Ps1_2_4_0_x64, };
+    public static EmulatorVersion[] Gba => new[] { VisualBoyAdvance_M_2_1_3_x86 };
 
     #endregion
 
@@ -57,7 +57,7 @@ public class EmulatorViewModel : BaseViewModel
     // - Check what writes to the value by right-clicking it. Change world and the list should get populated.
     // - The first one has the EAX set to the current game base address and the ECX to the string offset.
     // - Search for the EAX value. The last result should be the static pointer to it.
-    public static EmulatorViewModel DOSBox_0_74_x86 => new(
+    public static EmulatorVersion DosBox_0_74_x86 => new(
         displayName: "DOSBox (0.74 - x86)",
         processNameKeywords: new[] { "DOSBox" },
         memoryRegions: new MemoryRegion(
@@ -67,7 +67,7 @@ public class EmulatorViewModel : BaseViewModel
             ModuleName: null,
             ProcessOffset: 0x1D3A1A0,
             IsProcessOffsetAPointer: true));
-    public static EmulatorViewModel DOSBox_0_74_2_1_x86 => new(
+    public static EmulatorVersion DosBox_0_74_2_1_x86 => new(
         displayName: "DOSBox (0.74-2.1 - x86)",
         processNameKeywords: new[] { "DOSBox" },
         memoryRegions: new MemoryRegion(
@@ -77,7 +77,7 @@ public class EmulatorViewModel : BaseViewModel
             ModuleName: null,
             ProcessOffset: 0x1D4A380,
             IsProcessOffsetAPointer: true));
-    public static EmulatorViewModel DOSBox_0_74_3_x86 => new(
+    public static EmulatorVersion DosBox_0_74_3_x86 => new(
         displayName: "DOSBox (0.74-3 - x86)",
         processNameKeywords: new[] { "DOSBox" },
         memoryRegions: new MemoryRegion(
@@ -92,7 +92,7 @@ public class EmulatorViewModel : BaseViewModel
 
     #region BizHawk
 
-    public static EmulatorViewModel BizHawk_PS1_2_4_0_x64 => new(
+    public static EmulatorVersion BizHawk_Ps1_2_4_0_x64 => new(
         displayName: "BizHawk Octoshock (2.4.0 - x64)",
         processNameKeywords: new[] { "EmuHawk" },
         memoryRegions: new MemoryRegion(
@@ -102,7 +102,7 @@ public class EmulatorViewModel : BaseViewModel
             ModuleName: "octoshock.dll",
             ProcessOffset: 0x0011D880,
             IsProcessOffsetAPointer: false));
-    public static EmulatorViewModel BizHawk_PS1_2_8_0_x64 => new(
+    public static EmulatorVersion BizHawk_Ps1_2_8_0_x64 => new(
         displayName: "BizHawk Octoshock (2.8.0 - x64)",
         processNameKeywords: new[] { "EmuHawk" },
         memoryRegions: new MemoryRegion(
@@ -117,7 +117,7 @@ public class EmulatorViewModel : BaseViewModel
 
     #region VisualBoyAdvance-M
 
-    public static EmulatorViewModel VisualBoyAdvance_M_2_1_3_x86 => new(
+    public static EmulatorVersion VisualBoyAdvance_M_2_1_3_x86 => new(
         displayName: "VisualBoyAdvance-M (2.1.3 - x86)",
         processNameKeywords: new[] { "visualboyadvance-m" },
         memoryRegions: new[]
