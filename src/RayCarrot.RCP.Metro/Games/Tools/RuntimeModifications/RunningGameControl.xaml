@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications.RunningGameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:runtimeModifications="clr-namespace:RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" d:DesignHeight="450"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             d:DataContext="{d:DesignInstance runtimeModifications:RunningGameViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           Text="{Resx Mod_Mem_EditorFieldsHeader}"
+                           Margin="0 0 0 10" />
+
+                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
+                              ItemsSource="{Binding Path=EditorFieldGroups, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=3}"
+                              HorizontalAlignment="Left"
+                              MinWidth="250"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Column="2">
+            <StackPanel>
+
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           Text="{Resx Mod_Mem_InfoHeader}"
+                           Margin="0 0 0 10" />
+
+                <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
+                               Margin="0 0 0 10"/>
+
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
+                           Text="{Resx Mod_Mem_ActionsHeader}"
+                           Margin="0 0 0 10" />
+
+                <ItemsControl HorizontalAlignment="Left"
+                              ItemsSource="{Binding Path=Actions, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=3}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Header.Value}" 
+                                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                    Command="{Binding Path=Command, Mode=OneTime}"
+                                    IsEnabled="{Binding Path=IsEnabled}"
+                                    HorizontalContentAlignment="Left"
+                                    local:Icon.Kind="{Binding Path=IconKind, Mode=OneTime}"
+                                    Margin="0 0 0 7" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                       Text="{Resx Mod_Mem_LogHeader}"
+                       Margin="0 0 0 10" />
+
+            <Button Grid.Row="1"
+                    Margin="0 0 0 10"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    Content="{Resx Page_Refresh}"
+                    local:Icon.Kind="Refresh"
+                    Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
+
+            <TextBox Grid.Row="2"
+                     IsReadOnly="True" 
+                     AcceptsReturn="True"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     Text="{Binding Path=Log}"
+                     FontFamily="{StaticResource RCP.Fonts.Consolas}" />
+
+        </Grid>
+    </Grid>
+</UserControl>
