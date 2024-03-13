@@ -46,7 +46,7 @@ public partial class RuntimeModificationsDialog : WindowContentControl
         WindowInstance.Icon = GenericIconKind.Window_RuntimeModifications;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
-        WindowInstance.Width = 700;
+        WindowInstance.Width = 925;
         WindowInstance.Height = 700;
     }
 

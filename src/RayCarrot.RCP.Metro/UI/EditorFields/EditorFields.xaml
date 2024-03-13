@@ -21,7 +21,8 @@
     <!-- Bool -->
 
     <DataTemplate DataType="{x:Type local:EditorBoolFieldViewModel}">
-        <CheckBox IsChecked="{Binding Path=Value}" />
+        <CheckBox IsChecked="{Binding Path=Value}"
+                  Style="{StaticResource RCP.Styles.CheckBox.Default}" />
     </DataTemplate>
 
     <!-- Drop-down -->
