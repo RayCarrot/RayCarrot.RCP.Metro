@@ -48,6 +48,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
         SwitchToAutoFindGameCommand = new RelayCommand(SwitchToAutoFindGame);
         RefreshAvailableProcessesCommand = new AsyncRelayCommand(RefreshAvailableProcessesAsync);
         AttachSelectedProcessCommand = new AsyncRelayCommand(AttachSelectedProcessAsync);
+        DetachProcessCommand = new RelayCommand(DetachProcess);
     }
 
     #endregion
@@ -79,6 +80,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
     public ICommand SwitchToAutoFindGameCommand { get; }
     public ICommand RefreshAvailableProcessesCommand { get; }
     public ICommand AttachSelectedProcessCommand { get; }
+    public ICommand DetachProcessCommand { get; }
 
     #endregion
 
@@ -293,16 +295,21 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
                     await MessageUI.DisplayMessageAsync(Resources.Mod_Mem_TickError, MessageType.Error);
                 }
-
-                // We could switch to auto find game, but we might enter an endless loop of error messages then
-                SwitchToManuallyFindGame();
             }
+
+            // We could switch to auto find game, but we might enter an endless loop of error messages then
+            SwitchToManuallyFindGame();
 
             RunningGameViewModel?.Dispose();
             RefreshGameFieldsCancellation?.Dispose();
             RunningGameViewModel = null;
             RefreshGameFieldsCancellation = null;
         });
+    }
+
+    public void DetachProcess()
+    {
+        RefreshGameFieldsCancellation?.Cancel();
     }
 
     public async Task RefreshAvailableProcessesAsync()

@@ -143,12 +143,11 @@
                                Text="{Binding Path=ProcessViewModel.WindowTitle, Mode=OneTime}"
                                TextTrimming="CharacterEllipsis" />
 
-                    <!-- TODO-UPDATE: Implement -->
                     <Button Grid.Column="3"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             Content="{Resx ProcessAttacher_Detach}"
                             local:Icon.Kind="Cancel"
-                            Command="{Binding Path=DetachProcessCommand, Mode=OneTime}" />
+                            Command="{Binding Path=DataContext.(runtimeModifications:RuntimeModificationsViewModel.DetachProcessCommand), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type runtimeModifications:RuntimeModificationsDialog}}, Mode=OneTime}" />
 
                 </Grid>
             </StackPanel>
