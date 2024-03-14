@@ -1,13 +1,16 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
+﻿using System.Diagnostics;
 
-public class EmulatorVersion
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
+
+public class EmulatorManager
 {
     #region Constructor
 
-    public EmulatorVersion(LocalizedString displayName, string[] processNameKeywords, params MemoryRegion[] memoryRegions)
+    public EmulatorManager(
+        LocalizedString displayName, 
+        params MemoryRegion[] memoryRegions)
     {
         DisplayName = displayName;
-        ProcessNameKeywords = processNameKeywords;
         MemoryRegions = memoryRegions;
     }
 
@@ -22,19 +25,22 @@ public class EmulatorVersion
     #region Public Properties
 
     public LocalizedString DisplayName { get; }
-    public string[] ProcessNameKeywords { get; }
-    public MemoryRegion MainMemoryRegion => MemoryRegions[0];
     public MemoryRegion[] MemoryRegions { get; }
+
+    #endregion
+
+    #region Public Methods
+
+    public virtual bool IsProcessValid(Process process) => true;
 
     #endregion
 
     #region Platforms
 
-    public static EmulatorVersion[] None => new[]
+    public static EmulatorManager[] None => new[]
     {
-        new EmulatorVersion(
+        new EmulatorManager(
             displayName: new ResourceLocString(nameof(Resources.EmuSelection_None)),
-            processNameKeywords: Array.Empty<string>(),
             memoryRegions: new MemoryRegion(
                 Name: MainMemoryRegionName,
                 GameOffset: 0x00,
@@ -43,9 +49,9 @@ public class EmulatorVersion
                 ProcessOffset: 0x00,
                 IsProcessOffsetAPointer: false)),
     };
-    public static EmulatorVersion[] MsDos => new[] { DosBox_0_74_3_x86, DosBox_0_74_2_1_x86, DosBox_0_74_x86, };
-    public static EmulatorVersion[] Ps1 => new[] { BizHawk_Ps1_2_8_0_x64, BizHawk_Ps1_2_4_0_x64, };
-    public static EmulatorVersion[] Gba => new[] { VisualBoyAdvance_M_2_1_3_x86 };
+    public static EmulatorManager[] MsDos => new EmulatorManager[] { DosBox_0_74_3_x86, DosBox_0_74_2_x86, DosBox_0_74_x86, };
+    public static EmulatorManager[] Ps1 => new EmulatorManager[] { BizHawk_Ps1_2_8_0_x64, BizHawk_Ps1_2_4_0_x64, };
+    public static EmulatorManager[] Gba => new EmulatorManager[] { VisualBoyAdvance_M_2_1_3_x86 };
 
     #endregion
 
@@ -57,9 +63,12 @@ public class EmulatorVersion
     // - Check what writes to the value by right-clicking it. Change world and the list should get populated.
     // - The first one has the EAX set to the current game base address and the ECX to the string offset.
     // - Search for the EAX value. The last result should be the static pointer to it.
-    public static EmulatorVersion DosBox_0_74_x86 => new(
+    public static DosBoxEmulatorManager DosBox_0_74_x86 => new(
         displayName: "DOSBox (0.74 - x86)",
-        processNameKeywords: new[] { "DOSBox" },
+        majorVersion: 0, 
+        minorVersion: 74, 
+        buildVersion: 0, 
+        is64Bit: false,
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x00,
@@ -67,9 +76,12 @@ public class EmulatorVersion
             ModuleName: null,
             ProcessOffset: 0x1D3A1A0,
             IsProcessOffsetAPointer: true));
-    public static EmulatorVersion DosBox_0_74_2_1_x86 => new(
-        displayName: "DOSBox (0.74-2.1 - x86)",
-        processNameKeywords: new[] { "DOSBox" },
+    public static DosBoxEmulatorManager DosBox_0_74_2_x86 => new(
+        displayName: "DOSBox (0.74-2 - x86)",
+        majorVersion: 0,
+        minorVersion: 74,
+        buildVersion: 2,
+        is64Bit: false,
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x00,
@@ -77,9 +89,12 @@ public class EmulatorVersion
             ModuleName: null,
             ProcessOffset: 0x1D4A380,
             IsProcessOffsetAPointer: true));
-    public static EmulatorVersion DosBox_0_74_3_x86 => new(
+    public static DosBoxEmulatorManager DosBox_0_74_3_x86 => new(
         displayName: "DOSBox (0.74-3 - x86)",
-        processNameKeywords: new[] { "DOSBox" },
+        majorVersion: 0,
+        minorVersion: 74,
+        buildVersion: 3,
+        is64Bit: false,
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x00,
@@ -92,9 +107,9 @@ public class EmulatorVersion
 
     #region BizHawk
 
-    public static EmulatorVersion BizHawk_Ps1_2_4_0_x64 => new(
+    // TODO-UPDATE: Implement process check
+    public static EmulatorManager BizHawk_Ps1_2_4_0_x64 => new(
         displayName: "BizHawk Octoshock (2.4.0 - x64)",
-        processNameKeywords: new[] { "EmuHawk" },
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x80000000,
@@ -102,9 +117,8 @@ public class EmulatorVersion
             ModuleName: "octoshock.dll",
             ProcessOffset: 0x0011D880,
             IsProcessOffsetAPointer: false));
-    public static EmulatorVersion BizHawk_Ps1_2_8_0_x64 => new(
+    public static EmulatorManager BizHawk_Ps1_2_8_0_x64 => new(
         displayName: "BizHawk Octoshock (2.8.0 - x64)",
-        processNameKeywords: new[] { "EmuHawk" },
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x80000000,
@@ -117,9 +131,9 @@ public class EmulatorVersion
 
     #region VisualBoyAdvance-M
 
-    public static EmulatorVersion VisualBoyAdvance_M_2_1_3_x86 => new(
+    // TODO-UPDATE: Implement process check
+    public static EmulatorManager VisualBoyAdvance_M_2_1_3_x86 => new(
         displayName: "VisualBoyAdvance-M (2.1.3 - x86)",
-        processNameKeywords: new[] { "visualboyadvance-m" },
         memoryRegions: new[]
         {
             new MemoryRegion(

@@ -4,16 +4,15 @@ using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class CpaRuntimeModificationsManager : RuntimeModificationsManager<CPAMemoryData>
+public class CpaGameManager : GameManager<CPAMemoryData>
 {
     #region Constructor
 
-    public CpaRuntimeModificationsManager(
+    public CpaGameManager(
         GameInstallation gameInstallation, 
         LocalizedString displayName, 
-        string[] processNameKeywords, 
         Func<Dictionary<string, long>> getOffsetsFunc) 
-        : base(displayName, processNameKeywords, getOffsetsFunc)
+        : base(displayName, getOffsetsFunc)
     {
         Settings = gameInstallation.
             GetRequiredComponent<BinaryGameModeComponent>().

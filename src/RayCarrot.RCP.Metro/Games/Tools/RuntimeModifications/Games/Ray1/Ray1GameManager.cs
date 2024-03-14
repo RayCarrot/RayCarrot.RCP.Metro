@@ -5,12 +5,15 @@ using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public class Ray1RuntimeModificationsManager : RuntimeModificationsManager<Ray1MemoryData>
+public class Ray1GameManager : GameManager<Ray1MemoryData>
 {
     #region Constructor
 
-    public Ray1RuntimeModificationsManager(GameInstallation gameInstallation, LocalizedString displayName, string[] processNameKeywords, Func<Dictionary<string, long>> getOffsetsFunc) 
-        : base(displayName, processNameKeywords, getOffsetsFunc)
+    public Ray1GameManager(
+        GameInstallation gameInstallation, 
+        LocalizedString displayName, 
+        Func<Dictionary<string, long>> getOffsetsFunc) 
+        : base(displayName, getOffsetsFunc)
     {
         Version = gameInstallation.
             GetRequiredComponent<BinaryGameModeComponent>().

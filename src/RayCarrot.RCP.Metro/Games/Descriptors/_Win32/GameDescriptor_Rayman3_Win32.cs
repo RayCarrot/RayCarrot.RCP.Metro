@@ -64,13 +64,12 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
 
         builder.Register(new GameBananaGameComponent(6188));
 
-        builder.Register(new RuntimeModificationsManagersComponent(EmulatedPlatform.None, x =>
+        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.None, x =>
             new[]
             {
-                new CpaRuntimeModificationsManager(
+                new CpaGameManager(
                     gameInstallation: x,
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R3_PC)),
-                    processNameKeywords: new [] { "Rayman3" },
                     getOffsetsFunc: () => CPAMemoryData.Offsets_R3_PC)
             }));
 

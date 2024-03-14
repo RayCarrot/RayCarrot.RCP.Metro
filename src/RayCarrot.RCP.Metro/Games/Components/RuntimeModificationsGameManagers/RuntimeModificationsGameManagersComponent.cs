@@ -10,9 +10,9 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 //              Resources.Mod_Mem_Game_R2_PS1_Proto
 //              Ray1MemoryData.Offsets_PS1_R2
 [BaseGameComponent]
-public class RuntimeModificationsManagersComponent : FactoryGameComponent<IEnumerable<RuntimeModificationsManager>>
+public class RuntimeModificationsGameManagersComponent : FactoryGameComponent<IEnumerable<GameManager>>
 {
-    public RuntimeModificationsManagersComponent(EmulatedPlatform emulatedPlatform, Func<GameInstallation, IEnumerable<RuntimeModificationsManager>> objFactory) : base(objFactory)
+    public RuntimeModificationsGameManagersComponent(EmulatedPlatform emulatedPlatform, Func<GameInstallation, IEnumerable<GameManager>> objFactory) : base(objFactory)
     {
         EmulatedPlatform = emulatedPlatform;
     }

@@ -3,14 +3,13 @@ using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
 
-public class AttachableProcessViewModel : BaseViewModel, IDisposable
+public class ProcessViewModel : BaseViewModel
 {
-    public AttachableProcessViewModel(Process process, string filePath)
+    public ProcessViewModel(Process process, ShellThumbnailSize iconSize)
     {
         Process = process;
-        FilePath = filePath;
-        Icon16 = new BindableAsyncLazy<ImageSource>(() => LoadIconAsync(ShellThumbnailSize.Small));
-        Icon32 = new BindableAsyncLazy<ImageSource>(() => LoadIconAsync(ShellThumbnailSize.Medium));
+        FilePath = process.MainModule!.FileName;
+        Icon = new BindableAsyncLazy<ImageSource>(() => LoadIconAsync(iconSize));
 
         try
         {
@@ -34,8 +33,7 @@ public class AttachableProcessViewModel : BaseViewModel, IDisposable
     public string ProcessName { get; }
     public string WindowTitle { get; }
     
-    public BindableAsyncLazy<ImageSource> Icon16 { get; }
-    public BindableAsyncLazy<ImageSource> Icon32 { get; }
+    public BindableAsyncLazy<ImageSource> Icon { get; }
 
     private Task<ImageSource?> LoadIconAsync(ShellThumbnailSize size)
     {
@@ -53,10 +51,5 @@ public class AttachableProcessViewModel : BaseViewModel, IDisposable
                 return null;
             }
         });
-    }
-
-    public void Dispose()
-    {
-        Process.Dispose();
     }
 }

@@ -1,7 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
-using RayCarrot.RCP.Metro.Games.Panels;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -53,13 +52,12 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
         
-        builder.Register(new RuntimeModificationsManagersComponent(EmulatedPlatform.MsDos, x => 
+        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.MsDos, x => 
             new[]
             {
-                new Ray1RuntimeModificationsManager(
+                new Ray1GameManager(
                     gameInstallation: x,
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
-                    processNameKeywords: Array.Empty<string>(),
                     getOffsetsFunc: () => Ray1MemoryData.Offsets_PC_1_21)
             }));
 

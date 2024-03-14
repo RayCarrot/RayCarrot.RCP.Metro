@@ -5,6 +5,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:runtimeModifications="clr-namespace:RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications"
+                            xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -14,72 +15,152 @@
                             Focusable="True"
                             FocusVisualStyle="{x:Null}"
                             MouseDown="UserControl_OnMouseDown">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid Margin="10">
+        <!-- Auto find game -->
+        <StackPanel VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding Path=State, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.AutoFindGame}}">
+            <!-- TODO-LOC -->
+            <TextBlock Text="Searching for running game..." 
+                       HorizontalAlignment="Center"
+                       FontSize="22"
+                       Margin="0 0 0 4" />
 
-        <StackPanel Grid.Row="0">
+            <metro:MetroProgressBar IsIndeterminate="True"
+                                    Margin="0 0 0 12" />
 
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
+            <TextBlock HorizontalAlignment="Center">
+                <!-- TODO-LOC -->
+                <Run Text="Not found?" />
+                <Hyperlink Command="{Binding Path=SwitchToManuallyFindGameCommand, Mode=OneTime}">
+                    <!-- TODO-LOC -->
+                    <Run Text="Manually select game process" />
+                </Hyperlink>
+            </TextBlock>
 
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Text="{Resx Mod_Mem_ProcessHeader}"/>
-
-                <local:InfoIcon Text="{Resx Mod_Mem_ProcessInfo}" />
-
-            </StackPanel>
-
-            <local:ProcessAttacher DataContext="{Binding Path=ProcessAttacherViewModel, Mode=OneTime}" />
-
-            <Grid HorizontalAlignment="Left"
-                  Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                        <Setter Property="Padding" Value="5" />
-                    </Style>
-                </Grid.Resources>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Column="0" Grid.Row="0"
-                           Text="{Resx Mod_Mem_GameSelection}"
-                           VerticalAlignment="Center"
-                           Margin="0 0 10 0"/>
-
-                <ComboBox Grid.Column="1" Grid.Row="0"
-                          MinWidth="200"
-                          ItemsSource="{Binding Path=GameVersions, Mode=OneTime}"
-                          DisplayMemberPath="DisplayName.Value"
-                          SelectedItem="{Binding Path=SelectedGameVersion}"/>
-
-                <TextBlock Grid.Column="0" Grid.Row="2"
-                           Text="{Resx Mod_Mem_EmuSelection}"
-                           VerticalAlignment="Center"
-                           Margin="0 0 10 0"/>
-
-                <ComboBox Grid.Column="1" Grid.Row="2"
-                          ItemsSource="{Binding Path=EmulatorVersions}"
-                          DisplayMemberPath="DisplayName.Value"
-                          SelectedItem="{Binding Path=SelectedEmulatorVersion}"/>
-
-            </Grid>
         </StackPanel>
 
-        <runtimeModifications:RunningGameControl Grid.Row="1"
-                                                 DataContext="{Binding Path=RunningGameViewModel}"
-                                                 Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}"/>
+        <!-- Manually find game -->
+        <local:Card Margin="{StaticResource RCP.Thicknesses.Card}"
+                    Visibility="{Binding Path=State, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.ManuallyFindGame}}">
+            <StackPanel>
+
+                <!-- TODO-LOC -->
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="Select game process"
+                           Margin="0 0 0 4" />
+
+                <TextBlock Text="{Resx Mod_Mem_ProcessInfo}"
+                           TextWrapping="Wrap" 
+                           Margin="0 0 0 4" />
+
+                <TextBlock Margin="0 0 0 8">
+                    <Hyperlink Command="{Binding Path=SwitchToAutoFindGameCommand, Mode=OneTime}">
+                        <!-- TODO-LOC -->
+                        <Run Text="Automatically find game process" />
+                    </Hyperlink>
+                </TextBlock>
+
+                <Grid Margin="0 0 0 8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0"
+                              ItemsSource="{Binding Path=AvailableProcesses}"
+                              SelectedItem="{Binding Path=SelectedProcess}"
+                              Margin="0 0 10 0"
+                              Grid.IsSharedSizeScope="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0"
+                                           Width="16"
+                                           Source="{Binding Path=Icon.Value}"
+                                           Margin="0 0 8 0" />
+
+                                    <TextBlock Grid.Column="1"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding Path=ProcessName, Mode=OneTime}"
+                                               Margin="0 0 8 0"/>
+
+                                    <TextBlock Grid.Column="2"
+                                               VerticalAlignment="Center"
+                                               FontStyle="Italic"
+                                               Text="{Binding Path=WindowTitle, Mode=OneTime}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <Button Grid.Column="1"
+                            Margin="0 0 10 0"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Content="{Resx Page_Refresh}"
+                            local:Icon.Kind="Refresh"
+                            Command="{Binding Path=RefreshAvailableProcessesCommand, Mode=OneTime}" />
+
+                    <Button Grid.Column="2"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            IsEnabled="{Binding Path=SelectedProcess, Converter={local:IsNotNullConverter}}"
+                            Content="{Resx ProcessAttacher_Attach}"
+                            local:Icon.Kind="Connection"
+                            Command="{Binding Path=AttachSelectedProcessCommand, Mode=OneTime}" />
+
+                </Grid>
+
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                               Text="{Resx Mod_Mem_GameSelection}"
+                               VerticalAlignment="Center"
+                               Margin="0 0 8 0"/>
+
+                    <ComboBox Grid.Column="1" Grid.Row="0"
+                              MinWidth="200"
+                              ItemsSource="{Binding Path=AvailableGames, Mode=OneTime}"
+                              DisplayMemberPath="DisplayName.Value"
+                              SelectedItem="{Binding Path=SelectedGame}"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2"
+                               Text="{Resx Mod_Mem_EmuSelection}"
+                               VerticalAlignment="Center"
+                               Margin="0 0 8 0"/>
+
+                    <ComboBox Grid.Column="1" Grid.Row="2"
+                              ItemsSource="{Binding Path=AvailableEmulators, Mode=OneTime}"
+                              DisplayMemberPath="DisplayName.Value"
+                              SelectedItem="{Binding Path=SelectedEmulator}"/>
+
+                </Grid>
+            </StackPanel>
+
+        </local:Card>
+
+        <!-- Found game -->
+        <runtimeModifications:RunningGameControl DataContext="{Binding Path=RunningGameViewModel}"
+                                                 
+                                                 Visibility="{Binding Path=DataContext.State, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type runtimeModifications:RuntimeModificationsDialog}}, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.FoundGame}}"
+                                                 d:Visibility="Collapsed"/>
     </Grid>
 
 </local:WindowContentControl>

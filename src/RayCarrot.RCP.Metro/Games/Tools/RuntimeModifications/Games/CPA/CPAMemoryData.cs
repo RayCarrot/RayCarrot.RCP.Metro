@@ -1,5 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
+// TODO-UPDATE: Add more data
 public class CPAMemoryData : MemoryData
 {
     public string? CurrentMap { get; set; }

@@ -9,23 +9,25 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public RunningGameViewModel(RuntimeModificationsManager manager, EmulatorVersion emulatorVersion, Process process)
+    public RunningGameViewModel(GameManager gameManager, EmulatorManager emulatorManager, Process process)
     {
-        Manager = manager;
+        GameManager = gameManager;
+        ProcessViewModel = new ProcessViewModel(process, ShellThumbnailSize.Medium);
+
         Context = new RCPContext(String.Empty, logger: new MemorySerializerLogger()
         {
             IsEnabled = false, // Start disabled as we only want to log individual ticks
         });
 
-        MemoryData memData = Manager.CreateMemoryData(Context);
+        MemoryData memData = GameManager.CreateMemoryData(Context);
         MemContainer = new MemoryDataContainer(memData);
 
-        Manager.AttachContainer(MemContainer);
-        Manager.InitializeContext(Context);
+        GameManager.AttachContainer(MemContainer);
+        GameManager.InitializeContext(Context);
 
         BinaryDeserializer s = Context.Deserializer;
 
-        foreach (MemoryRegion memRegion in emulatorVersion.MemoryRegions)
+        foreach (MemoryRegion memRegion in emulatorManager.MemoryRegions)
         {
             // Open the process as a stream
             ProcessMemoryStream stream = new(process, ProcessMemoryStream.Mode.AllAccess);
@@ -45,12 +47,12 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
             InitializeProcessStream(stream, memRegion, s);
         }
 
-        memData.Initialize(Context, Manager.GetOffsets());
+        memData.Initialize(Context, GameManager.GetOffsets());
 
         // Create the fields
-        EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>(Manager.CreateEditorFieldGroups());
-        InfoItems = new ObservableCollection<DuoGridItemViewModel>(Manager.CreateInfoItems());
-        Actions = new ObservableCollection<ActionViewModel>(Manager.CreateActions());
+        EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>(GameManager.CreateEditorFieldGroups());
+        InfoItems = new ObservableCollection<DuoGridItemViewModel>(GameManager.CreateInfoItems());
+        Actions = new ObservableCollection<ActionViewModel>(GameManager.CreateActions());
         HasActions = Actions.Any();
 
         EditorFieldGroups.EnableCollectionSynchronization();
@@ -94,7 +96,8 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
     #region Public Properties
 
     public Context Context { get; }
-    public RuntimeModificationsManager Manager { get; }
+    public GameManager GameManager { get; }
+    public ProcessViewModel ProcessViewModel { get; }
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
     public ObservableCollection<ActionViewModel> Actions { get; }
@@ -139,7 +142,7 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
     public void RefreshFields()
     {
-        MemorySerializerLogger? logger = Context?.SerializerLogger as MemorySerializerLogger;
+        MemorySerializerLogger? logger = Context.SerializerLogger as MemorySerializerLogger;
 
         if (LogNextTick && logger != null)
             logger.IsEnabled = true;
@@ -177,7 +180,8 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
             file.DisposeStream();
 
         Context.Dispose();
-        Manager.DetachContainer();
+        GameManager.DetachContainer();
+        ProcessViewModel.Process.Dispose();
     }
 
     #endregion

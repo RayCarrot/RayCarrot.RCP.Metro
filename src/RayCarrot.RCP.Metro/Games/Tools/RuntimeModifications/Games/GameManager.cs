@@ -2,19 +2,17 @@
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-public abstract class RuntimeModificationsManager
+public abstract class GameManager
 {
-    protected RuntimeModificationsManager(LocalizedString displayName, string[] processNameKeywords, Func<Dictionary<string, long>> getOffsetsFunc)
+    protected GameManager(LocalizedString displayName, Func<Dictionary<string, long>> getOffsetsFunc)
     {
         DisplayName = displayName;
-        ProcessNameKeywords = processNameKeywords;
         _getOffsetsFunc = getOffsetsFunc;
     }
 
     private readonly Func<Dictionary<string, long>> _getOffsetsFunc;
 
     public LocalizedString DisplayName { get; }
-    public string[] ProcessNameKeywords { get; }
 
     protected MemoryDataContainer? Container { get; private set; }
 
@@ -31,11 +29,11 @@ public abstract class RuntimeModificationsManager
     public abstract IEnumerable<ActionViewModel> CreateActions();
 }
 
-public abstract class RuntimeModificationsManager<TMemObj> : RuntimeModificationsManager
+public abstract class GameManager<TMemObj> : GameManager
     where TMemObj : MemoryData, new()
 {
-    protected RuntimeModificationsManager(LocalizedString displayName, string[] processNameKeywords, Func<Dictionary<string, long>> getOffsetsFunc) 
-        : base(displayName, processNameKeywords, getOffsetsFunc) { }
+    protected GameManager(LocalizedString displayName, Func<Dictionary<string, long>> getOffsetsFunc) 
+        : base(displayName, getOffsetsFunc) { }
 
     protected DuoGridItemViewModel DuoGridItem(LocalizedString header, Func<TMemObj, object?> textFunc) => 
         new(header, new GeneratedLocString(() => AccessMemory(m => $"{textFunc(m)}")));

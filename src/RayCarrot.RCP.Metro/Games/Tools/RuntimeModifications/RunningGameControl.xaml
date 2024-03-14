@@ -12,93 +12,147 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              d:DataContext="{d:DesignInstance runtimeModifications:RunningGameViewModel}">
-    <metro:MetroAnimatedTabControl Margin="10">
-        <!-- TODO-LOC -->
-        <TabItem Header="Modifications" 
-                 local:Icon.Kind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
-                 local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
-            <Grid Margin="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-                <!-- Editor fields -->
-                <local:Card Grid.Column="0"
-                            Margin="{StaticResource RCP.Thicknesses.Card}">
-                    <ScrollViewer>
-                        <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
-                                      ItemsSource="{Binding Path=EditorFieldGroups, Mode=OneTime}"
-                                      d:ItemsSource="{d:SampleData ItemCount=3}"
-                                      HorizontalAlignment="Left"
-                                      MinWidth="250" />
-                    </ScrollViewer>
+        <metro:MetroAnimatedTabControl Grid.Row="0">
+            <!-- TODO-LOC -->
+            <TabItem Header="Modifications" 
+                     local:Icon.Kind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
+                     local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Editor fields -->
+                    <local:Card Grid.Column="0"
+                                Margin="{StaticResource RCP.Thicknesses.Card}">
+                        <ScrollViewer>
+                            <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
+                                          ItemsSource="{Binding Path=EditorFieldGroups, Mode=OneTime}"
+                                          d:ItemsSource="{d:SampleData ItemCount=3}"
+                                          HorizontalAlignment="Left"
+                                          MinWidth="250" />
+                        </ScrollViewer>
+                    </local:Card>
+
+                    <!-- Actions and info -->
+                    <local:Card Grid.Column="1"
+                                Margin="{StaticResource RCP.Thicknesses.Card}">
+                        <ScrollViewer>
+                            <StackPanel>
+                                <!-- Actions -->
+                                <ItemsControl HorizontalAlignment="Left"
+                                              ItemsSource="{Binding Path=Actions, Mode=OneTime}"
+                                              d:ItemsSource="{d:SampleData ItemCount=3}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Path=Header.Value}" 
+                                                    Style="{StaticResource RCP.Styles.Button.Default}"
+                                                    Command="{Binding Path=Command, Mode=OneTime}"
+                                                    IsEnabled="{Binding Path=IsEnabled}"
+                                                    HorizontalContentAlignment="Left"
+                                                    local:Icon.Kind="{Binding Path=IconKind, Mode=OneTime}"
+                                                    Margin="0 0 0 7" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <Separator Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
+                                           Margin="0 10" />
+
+                                <!-- Info -->
+                                <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"/>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </local:Card>
+                </Grid>
+            </TabItem>
+
+            <!-- TODO-LOC -->
+            <TabItem Header="Log" 
+                     local:Icon.Kind="CardTextOutline" 
+                     local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
+                <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- TODO-UPDATE: Remove refresh button. Auto-refresh when on this page once every second or so. -->
+                        <Button Grid.Row="1"
+                                Margin="0 0 0 10"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                Content="{Resx Page_Refresh}"
+                                local:Icon.Kind="Refresh"
+                                Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
+
+                        <TextBox Grid.Row="2"
+                                 IsReadOnly="True" 
+                                 AcceptsReturn="True"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                 Text="{Binding Path=Log}"
+                                 FontFamily="{StaticResource RCP.Fonts.Consolas}" />
+
+                    </Grid>
                 </local:Card>
+            </TabItem>
+        </metro:MetroAnimatedTabControl>
 
-                <!-- Actions and info -->
-                <local:Card Grid.Column="1"
-                            Margin="{StaticResource RCP.Thicknesses.Card}">
-                    <ScrollViewer>
-                        <StackPanel>
-                            <!-- Actions -->
-                            <ItemsControl HorizontalAlignment="Left"
-                                          ItemsSource="{Binding Path=Actions, Mode=OneTime}"
-                                          d:ItemsSource="{d:SampleData ItemCount=3}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Button Content="{Binding Path=Header.Value}" 
-                                                Style="{StaticResource RCP.Styles.Button.Default}"
-                                                Command="{Binding Path=Command, Mode=OneTime}"
-                                                IsEnabled="{Binding Path=IsEnabled}"
-                                                HorizontalContentAlignment="Left"
-                                                local:Icon.Kind="{Binding Path=IconKind, Mode=OneTime}"
-                                                Margin="0 0 0 7" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+        <local:Card Grid.Row="1"
+                    Margin="{StaticResource RCP.Thicknesses.Card}">
+            <!-- TODO-UPDATE: Show selected game and emu versions -->
+            <StackPanel>
 
-                            <Separator Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
-                                       Margin="0 10" />
+                <!-- TODO-LOC -->
+                <TextBlock Text="Attached to process"
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}" 
+                           Margin="0 0 0 4" />
 
-                            <!-- Info -->
-                            <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        </StackPanel>
-                    </ScrollViewer>
-                </local:Card>
-            </Grid>
-        </TabItem>
+                    <Image Grid.Column="0"
+                           Width="32"
+                           Source="{Binding Path=ProcessViewModel.Icon.Value}"
+                           Margin="0 0 8 0" />
 
-        <!-- TODO-LOC -->
-        <TabItem Header="Log" 
-                 local:Icon.Kind="CardTextOutline" 
-                 local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Text="{Binding Path=ProcessViewModel.ProcessName, Mode=OneTime}"
+                               d:Text="DOSBox"
+                               Margin="0 0 12 0" />
 
-                <!-- TODO-UPDATE: Remove refresh button. Auto-refresh when on this page once every second or so. -->
-                <Button Grid.Row="1"
-                        Margin="0 0 0 10"
-                        HorizontalAlignment="Left"
-                        Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        Content="{Resx Page_Refresh}"
-                        local:Icon.Kind="Refresh"
-                        Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
+                    <TextBlock Grid.Column="2"
+                               VerticalAlignment="Center"
+                               Text="{Binding Path=ProcessViewModel.WindowTitle, Mode=OneTime}"
+                               TextTrimming="CharacterEllipsis" />
 
-                <TextBox Grid.Row="2"
-                         IsReadOnly="True" 
-                         AcceptsReturn="True"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                         Text="{Binding Path=Log}"
-                         FontFamily="{StaticResource RCP.Fonts.Consolas}" />
+                    <!-- TODO-UPDATE: Implement -->
+                    <Button Grid.Column="3"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Content="{Resx ProcessAttacher_Detach}"
+                            local:Icon.Kind="Cancel"
+                            Command="{Binding Path=DetachProcessCommand, Mode=OneTime}" />
 
-            </Grid>
+                </Grid>
+            </StackPanel>
+        </local:Card>
 
-        </TabItem>
-    </metro:MetroAnimatedTabControl>
+    </Grid>
 </UserControl>
