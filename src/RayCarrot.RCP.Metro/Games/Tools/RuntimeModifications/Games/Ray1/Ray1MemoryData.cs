@@ -190,12 +190,11 @@ public class Ray1MemoryData : MemoryData
 
     protected override void SerializeImpl()
     {
-        // TODO-UPDATE: Prevent ObjData from serializing from pointers. It didn't before, but after a recent refactoring it now does.
 
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
-        Ray = SerializeObject<ObjData>(Ray, name: nameof(Ray));
-        R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, name: nameof(R2_Ray));
+        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = ObjData.RefDataFlags.None, name: nameof(Ray));
+        R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = R2_ObjData.RefDataFlags.None, name: nameof(R2_Ray));
         HelicoTime = Serialize<short>(HelicoTime, name: nameof(HelicoTime));
 
         WorldInfo = SerializeObjectArray<WorldInfo>(WorldInfo, 24, name: nameof(WorldInfo));
