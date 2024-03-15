@@ -88,7 +88,7 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
     #region Private Properties
 
-    public MemoryDataContainer? MemContainer { get; }
+    public MemoryDataContainer MemContainer { get; }
     public bool LogNextTick { get; private set; }
 
     #endregion
@@ -144,12 +144,13 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
     {
         MemorySerializerLogger? logger = Context.SerializerLogger as MemorySerializerLogger;
 
-        if (LogNextTick && logger != null)
+        bool log = LogNextTick; // Only read once since it might get changed during this function!
+        if (log && logger != null)
             logger.IsEnabled = true;
 
-        MemContainer?.Update();
+        MemContainer.Update();
 
-        if (LogNextTick && logger != null)
+        if (log && logger != null)
         {
             logger.IsEnabled = false;
             LogNextTick = false;
