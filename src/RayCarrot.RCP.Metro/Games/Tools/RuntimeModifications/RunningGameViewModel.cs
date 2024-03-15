@@ -110,7 +110,6 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
     private static void InitializeProcessStream(ProcessMemoryStream stream, MemoryRegion memRegion, BinaryDeserializer s)
     {
-        // TODO-UPDATE: Log
         long moduleOffset = 0;
 
         // We could also set the offset for the main module, but we assume it's always 0x400000
@@ -134,6 +133,8 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
         }
 
         stream.BaseStreamOffset = baseStreamOffset;
+
+        Logger.Info("Initialized process stream for region {0} at 0x{1:X8}", memRegion.Name, baseStreamOffset);
     }
 
     #endregion
