@@ -104,6 +104,36 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     #region Private Methods
 
+    private void CancelAutoFindGame(bool dispose)
+    {
+        if (AutoFindGameCancellation is not { } cts)
+            return;
+
+        cts.Cancel();
+
+        // Set to null before disposing to avoid race conditions
+        if (dispose)
+        {
+            AutoFindGameCancellation = null;
+            cts.Dispose();
+        }
+    }
+
+    private void CancelRefreshGameFields(bool dispose)
+    {
+        if (RefreshGameFieldsCancellation is not { } cts)
+            return;
+
+        cts.Cancel();
+
+        // Set to null before disposing to avoid race conditions
+        if (dispose)
+        {
+            RefreshGameFieldsCancellation = null;
+            cts.Dispose();
+        }
+    }
+
     private IEnumerable<Process> GetProcesses()
     {
         foreach (Process p in Process.GetProcesses())
@@ -189,9 +219,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
     {
         State = ViewModelState.AutoFindGame;
 
-        AutoFindGameCancellation?.Cancel();
-        AutoFindGameCancellation?.Dispose();
-        AutoFindGameCancellation = null;
+        CancelAutoFindGame(true);
 
         AutoFindGameCancellation = new CancellationTokenSource();
         CancellationToken token = AutoFindGameCancellation.Token;
@@ -232,21 +260,21 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
     public async void SwitchToManuallyFindGame()
     {
         State = ViewModelState.ManuallyFindGame;
-        AutoFindGameCancellation?.Cancel();
+        CancelAutoFindGame(false);
         await RefreshAvailableProcessesAsync();
     }
 
     public void SwitchToFoundGame(RunningGameViewModel viewModel)
     {
         State = ViewModelState.FoundGame;
-        AutoFindGameCancellation?.Cancel();
+        CancelAutoFindGame(false);
 
         RunningGameViewModel?.Dispose();
         RunningGameViewModel = viewModel;
 
+        CancelRefreshGameFields(true);
+
         // Create a cancellation source
-        RefreshGameFieldsCancellation?.Cancel();
-        RefreshGameFieldsCancellation?.Dispose();
         RefreshGameFieldsCancellation = new CancellationTokenSource();
         CancellationToken token = RefreshGameFieldsCancellation.Token;
 
@@ -301,15 +329,14 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
             SwitchToManuallyFindGame();
 
             RunningGameViewModel?.Dispose();
-            RefreshGameFieldsCancellation?.Dispose();
             RunningGameViewModel = null;
-            RefreshGameFieldsCancellation = null;
+            CancelRefreshGameFields(true);
         });
     }
 
     public void DetachProcess()
     {
-        RefreshGameFieldsCancellation?.Cancel();
+        CancelRefreshGameFields(false);
     }
 
     public async Task RefreshAvailableProcessesAsync()
@@ -373,10 +400,8 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     public virtual void Dispose()
     {
-        RefreshGameFieldsCancellation?.Cancel();
-        RefreshGameFieldsCancellation?.Dispose();
-        AutoFindGameCancellation?.Cancel();
-        AutoFindGameCancellation?.Dispose();
+        CancelRefreshGameFields(true);
+        CancelAutoFindGame(true);
         ClearAvailableProcesses(true);
     }
 
