@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Windows.Input;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
@@ -67,9 +66,6 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
         //    RefreshFields();
         //    m.ClearModifiedValues();
         //});
-
-        // Create commands
-        RefreshLogCommand = new RelayCommand(RefreshLog);
     }
 
     #endregion
@@ -80,16 +76,9 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
     #endregion
 
-    #region Commands
-
-    public ICommand RefreshLogCommand { get; }
-
-    #endregion
-
     #region Private Properties
 
     public MemoryDataContainer MemContainer { get; }
-    public bool LogNextTick { get; private set; }
 
     #endregion
 
@@ -103,6 +92,15 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
     public ObservableCollection<ActionViewModel> Actions { get; }
     public bool HasActions { get; set; }
     public string? Log { get; set; }
+    public bool LogEnabled
+    {
+        get => Context.SerializerLogger is MemorySerializerLogger { IsEnabled: true };
+        set
+        {
+            if (Context.SerializerLogger is MemorySerializerLogger logger)
+                logger.IsEnabled = value;
+        }
+    }
 
     #endregion
 
@@ -143,21 +141,13 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
     public void RefreshFields()
     {
-        MemorySerializerLogger? logger = Context.SerializerLogger as MemorySerializerLogger;
-
-        bool log = LogNextTick; // Only read once since it might get changed during this function!
-        if (log && logger != null)
-            logger.IsEnabled = true;
-
         MemContainer.Update();
 
         if (!MemContainer.Validate())
             throw new Exception("Serialized memory data was invalid");
 
-        if (log && logger != null)
+        if (Context.SerializerLogger is MemorySerializerLogger { IsEnabled: true } logger)
         {
-            logger.IsEnabled = false;
-            LogNextTick = false;
             Log = logger.GetString();
             logger.Clear();
         }
@@ -171,11 +161,6 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
         foreach (ActionViewModel action in Actions)
             action.Refresh();
-    }
-
-    public void RefreshLog()
-    {
-        LogNextTick = true;
     }
 
     public void Dispose()

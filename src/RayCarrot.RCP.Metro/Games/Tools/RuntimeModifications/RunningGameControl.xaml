@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <metro:MetroAnimatedTabControl Grid.Row="0">
+        <metro:MetroAnimatedTabControl Grid.Row="0" SelectionChanged="TabControl_OnSelectionChanged">
             <!-- TODO-LOC -->
             <TabItem Header="Modifications" 
                      local:Icon.Kind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
@@ -80,31 +80,10 @@
                      local:Icon.Kind="CardTextOutline" 
                      local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <!-- TODO-UPDATE: Remove refresh button. Auto-refresh when on this page once every second or so. -->
-                        <Button Grid.Row="1"
-                                Margin="0 0 0 10"
-                                HorizontalAlignment="Left"
-                                Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                Content="{Resx Page_Refresh}"
-                                local:Icon.Kind="Refresh"
-                                Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
-
-                        <TextBox Grid.Row="2"
-                                 IsReadOnly="True" 
-                                 AcceptsReturn="True"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                 Text="{Binding Path=Log}"
-                                 FontFamily="{StaticResource RCP.Fonts.Consolas}" />
-
-                    </Grid>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <TextBlock Text="{Binding Path=Log}"
+                                   FontFamily="{StaticResource RCP.Fonts.Consolas}" />
+                    </ScrollViewer>
                 </local:Card>
             </TabItem>
         </metro:MetroAnimatedTabControl>

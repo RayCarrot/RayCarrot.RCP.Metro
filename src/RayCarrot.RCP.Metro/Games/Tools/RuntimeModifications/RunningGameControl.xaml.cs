@@ -11,4 +11,10 @@ public partial class RunningGameControl : UserControl
     {
         InitializeComponent();
     }
+
+    private void TabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (DataContext is RunningGameViewModel vm && sender is TabControl tc)
+            vm.LogEnabled = tc.SelectedIndex == 1;
+    }
 }
