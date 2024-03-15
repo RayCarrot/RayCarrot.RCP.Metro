@@ -19,6 +19,7 @@ public class ProcessMemoryStreamFile : MemoryMappedStreamFile
         : base(context, name, baseAddress, stream, endianness, memoryMappedPriority, parentPointer, mode)
     {
         MemoryRegionLength = memoryRegionLength;
+        IgnoreCacheOnRead = true;
     }
 
     public override BinaryFile GetPointerFile(long serializedValue, Pointer anchor = null)
@@ -50,7 +51,6 @@ public class ProcessMemoryStreamFile : MemoryMappedStreamFile
 
     public long? MemoryRegionLength { get; }
     public override bool SavePointersToMemoryMap => false;
-    public override bool IgnoreCacheOnRead => true;
 
     public void DisposeStream() => Stream.Dispose();
 }
