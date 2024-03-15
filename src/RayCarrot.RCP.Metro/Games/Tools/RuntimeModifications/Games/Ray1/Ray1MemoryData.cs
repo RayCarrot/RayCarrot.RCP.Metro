@@ -188,9 +188,33 @@ public class Ray1MemoryData : MemoryData
         [nameof(GBA_MultiplayerLevelSelection)] = 0x02001178,
     };
 
+    protected override bool ValidateImpl()
+    {
+        if (StatusBar is { LivesCount: > 99 or < 0 } or { MaxHealth: > 5 or < 2 } or { TingsCount: > 99 }) 
+            return false;
+
+        if (WorldInfo != null)
+        {
+            foreach (WorldInfo worldInfo in WorldInfo)
+            {
+                if (worldInfo.World > World.Menu ||
+                    worldInfo.World < World.Jungle ||
+                    worldInfo.UpIndex >= WorldInfo.Length ||
+                    worldInfo.DownIndex >= WorldInfo.Length ||
+                    worldInfo.LeftIndex >= WorldInfo.Length ||
+                    worldInfo.RightIndex >= WorldInfo.Length)
+                    return false;
+            }
+        }
+
+        if (ActiveObjects != null && ActiveObjects.ActiveObjectsCount >= ActiveObjects.ActiveObjects.Length)
+            return false;
+
+        return true;
+    }
+
     protected override void SerializeImpl()
     {
-
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
         Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = ObjData.RefDataFlags.None, name: nameof(Ray));

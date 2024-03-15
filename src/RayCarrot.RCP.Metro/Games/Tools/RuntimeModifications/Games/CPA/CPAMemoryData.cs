@@ -18,6 +18,12 @@ public class CPAMemoryData : MemoryData
         [nameof(EngineMode)] = 0x7D7DC0 + 0x00,
     };
 
+    protected override bool ValidateImpl()
+    {
+        // TODO: Implement some way of validating values. Maybe we need to read more values to properly do so?
+        return true;
+    }
+
     protected override void SerializeImpl()
     {
         CurrentMap = SerializeString(CurrentMap, 16, name: nameof(CurrentMap));

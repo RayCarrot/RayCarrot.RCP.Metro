@@ -150,6 +150,9 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 
         MemContainer.Update();
 
+        if (!MemContainer.Validate())
+            throw new Exception("Serialized memory data was invalid");
+
         if (log && logger != null)
         {
             logger.IsEnabled = false;

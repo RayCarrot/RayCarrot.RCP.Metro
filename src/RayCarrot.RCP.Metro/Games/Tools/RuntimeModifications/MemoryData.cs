@@ -71,6 +71,7 @@ public abstract class MemoryData
 
         return s.SerializeString(obj, length, name: name);
     }
+    protected abstract bool ValidateImpl();
     protected abstract void SerializeImpl();
 
     public bool SupportsProperty(string name) => _pointers.ContainsKey(name);
@@ -96,6 +97,14 @@ public abstract class MemoryData
 
         foreach (var off in offsets)
             _pointers.Add(off.Key, new Pointer(off.Value, firstMemFile.GetPointerFile(off.Value)));
+    }
+
+    public bool Validate()
+    {
+        if (_context == null)
+            throw new Exception("Attempted to validate memory data before initializing it");
+
+        return ValidateImpl();
     }
 
     public void Serialize()

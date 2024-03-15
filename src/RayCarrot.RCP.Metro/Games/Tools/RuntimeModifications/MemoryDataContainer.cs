@@ -45,6 +45,12 @@ public class MemoryDataContainer
             action((TMemObj)_memData);
     }
 
+    public bool Validate()
+    {
+        lock (_memData)
+            return _memData.Validate();
+    }
+
     public void Update()
     {
         lock (_memData)
