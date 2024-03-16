@@ -35,7 +35,7 @@ public class ProcessMemoryStreamFile : MemoryMappedStreamFile
             return GetMemoryMappedPointerFile(serializedValue, anchor) ?? this;
     }
 
-    protected override BinaryFile GetLocalPointerFile(long serializedValue, Pointer anchor = null)
+    public override BinaryFile GetLocalPointerFile(long serializedValue, Pointer anchor = null)
     {
         // If we do not have a length we can't check this, so return null
         if (MemoryRegionLength == null)

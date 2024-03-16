@@ -4,6 +4,8 @@ namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
 public abstract class MemoryData
 {
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     private readonly HashSet<string> _modifiedValues = new();
     private readonly Dictionary<string, Pointer> _pointers = new();
     private Context? _context;
@@ -93,10 +95,18 @@ public abstract class MemoryData
         if (offsets == null)
             return;
 
-        BinaryFile firstMemFile = _context.MemoryMap.Files.First(x => x is ProcessMemoryStreamFile);
-
         foreach (var off in offsets)
-            _pointers.Add(off.Key, new Pointer(off.Value, firstMemFile.GetPointerFile(off.Value)));
+        {
+            BinaryFile? file = _context.GetMemoryMappedFileForAddress(off.Value);
+
+            if (file == null)
+            {
+                Logger.Warn("Failed to add offset {0}", off.Key);
+                continue;
+            }
+
+            _pointers.Add(off.Key, new Pointer(off.Value, file));
+        }
     }
 
     public bool Validate()
