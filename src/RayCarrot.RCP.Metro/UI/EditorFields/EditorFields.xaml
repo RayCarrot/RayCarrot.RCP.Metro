@@ -6,107 +6,153 @@
     <!-- Int -->
 
     <DataTemplate DataType="{x:Type local:EditorIntFieldViewModel}">
-        <metro:NumericUpDown Minimum="{Binding Path=Min, Mode=OneTime}"
-                             Maximum="{Binding Path=Max, Mode=OneTime}"
-                             Value="{Binding Path=Value}" />
+        <StackPanel>
+            <TextBlock Text="{Binding Path=Header.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontSize="11"
+                       Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2 0 0"
+                       Text="{Binding Path=Info.Value}"
+                       TextWrapping="Wrap" />
+
+            <metro:NumericUpDown Margin="0 4 0 0" 
+                                 Minimum="{Binding Path=Min, Mode=OneTime}"
+                                 Maximum="{Binding Path=Max, Mode=OneTime}"
+                                 Value="{Binding Path=Value}"
+                                 HorizontalAlignment="Left"
+                                 MinWidth="70" />
+        </StackPanel>
     </DataTemplate>
 
     <!-- String -->
 
     <DataTemplate DataType="{x:Type local:EditorStringFieldViewModel}">
-        <TextBox MaxLength="{Binding Path=MaxLength, Mode=OneTime}"
-                 Text="{Binding Path=Value}" />
+        <StackPanel>
+            <TextBlock Text="{Binding Path=Header.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontSize="11"
+                       Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2 0 0"
+                       Text="{Binding Path=Info.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBox Margin="0 4 0 0" 
+                     MaxLength="{Binding Path=MaxLength, Mode=OneTime}"
+                     Text="{Binding Path=Value}"
+                     HorizontalAlignment="Left"
+                     MinWidth="70" />
+        </StackPanel>
     </DataTemplate>
 
     <!-- Bool -->
 
     <DataTemplate DataType="{x:Type local:EditorBoolFieldViewModel}">
-        <CheckBox IsChecked="{Binding Path=Value}"
-                  Style="{StaticResource RCP.Styles.CheckBox.Default}" />
+        <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                  IsChecked="{Binding Path=Value}">
+            <StackPanel>
+                <TextBlock Text="{Binding Path=Header.Value}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock FontSize="11"
+                           Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                           Margin="0 2 0 0"
+                           Text="{Binding Path=Info.Value}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+        </CheckBox>
     </DataTemplate>
 
     <!-- Drop-down -->
 
     <DataTemplate DataType="{x:Type local:EditorDropDownFieldViewModel}">
-        <ComboBox ItemsSource="{Binding Path=Items}"
-                  VirtualizingStackPanel.IsVirtualizing="False"
-                  DisplayMemberPath="Header.Value"
-                  SelectedIndex="{Binding Path=SelectedItem}" />
+        <StackPanel>
+            <TextBlock Text="{Binding Path=Header.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontSize="11"
+                       Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2 0 0"
+                       Text="{Binding Path=Info.Value}"
+                       TextWrapping="Wrap" />
+
+            <ComboBox Margin="0 4 0 0" 
+                      ItemsSource="{Binding Path=Items}"
+                      VirtualizingStackPanel.IsVirtualizing="False"
+                      DisplayMemberPath="Header.Value"
+                      SelectedIndex="{Binding Path=SelectedItem}"
+                      HorizontalAlignment="Left"
+                      MinWidth="70" />
+        </StackPanel>
     </DataTemplate>
 
     <!-- Grouped Drop-down -->
 
     <DataTemplate DataType="{x:Type local:GroupedEditorDropDownFieldViewModel}">
-        <ComboBox ItemsSource="{Binding Path=Items}"
-                  VirtualizingStackPanel.IsVirtualizing="False"
-                  SelectedIndex="{Binding Path=SelectedItem}">
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                    <Setter Property="IsEnabled" Value="{Binding Path=IsGroupHeader, Mode=OneTime, Converter={local:InvertedBooleanConverter}}" />
-                </Style>
-            </ComboBox.ItemContainerStyle>
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="GroupHeaderTextBlock" 
-                                   FontWeight="Bold"
-                                   Visibility="Collapsed"
-                                   Text="{Binding Path=GroupHeader.Value}" />
-                        <TextBlock x:Name="HeaderTextBlock" 
-                                   Text="{Binding Path=Header.Value}" 
-                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" />
-                    </StackPanel>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsGroupHeader, Mode=OneTime}" Value="True">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="HeaderTextBlock" Property="FontWeight" Value="Bold" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=IsGroupHeader, Mode=OneTime}" Value="False">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="HeaderTextBlock" Property="Margin" Value="10 0 0 0" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}" Value="{x:Null}">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="GroupHeaderTextBlock" Property="Visibility" Value="Visible" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <StackPanel>
+            <TextBlock Text="{Binding Path=Header.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontSize="11"
+                       Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2 0 0"
+                       Text="{Binding Path=Info.Value}"
+                       TextWrapping="Wrap" />
+
+            <ComboBox Margin="0 4 0 0" 
+                      ItemsSource="{Binding Path=Items}"
+                      VirtualizingStackPanel.IsVirtualizing="False"
+                      SelectedIndex="{Binding Path=SelectedItem}"
+                      HorizontalAlignment="Left"
+                      MinWidth="70">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                        <Setter Property="IsEnabled" Value="{Binding Path=IsGroupHeader, Mode=OneTime, Converter={local:InvertedBooleanConverter}}" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="GroupHeaderTextBlock" 
+                                       FontWeight="Bold"
+                                       Visibility="Collapsed"
+                                       Text="{Binding Path=GroupHeader.Value}" />
+                            <TextBlock x:Name="HeaderTextBlock" 
+                                       Text="{Binding Path=Header.Value}" 
+                                       Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+                        </StackPanel>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsGroupHeader, Mode=OneTime}" Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter TargetName="HeaderTextBlock" Property="FontWeight" Value="Bold" />
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsGroupHeader, Mode=OneTime}" Value="False">
+                                <DataTrigger.Setters>
+                                    <Setter TargetName="HeaderTextBlock" Property="Margin" Value="10 0 0 0" />
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}" Value="{x:Null}">
+                                <DataTrigger.Setters>
+                                    <Setter TargetName="GroupHeaderTextBlock" Property="Visibility" Value="Visible" />
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
     </DataTemplate>
 
     <!-- Fields item control -->
 
     <Style x:Key="RCP.Styles.ItemsControl.EditorFields" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
-        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate DataType="{x:Type local:EditorFieldViewModel}">
-                    <Grid Margin="0 0 0 7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="FieldHeader" />
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="0"  Orientation="Horizontal">
-
-                            <TextBlock VerticalAlignment="Center"
-                                       DataContext="{Binding Path=Header, Mode=OneTime}"
-                                       Text="{Binding Path=Value}" />
-
-                            <local:InfoIcon DataContext="{Binding Path=Info, Mode=OneTime}"
-                                            Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}"
-                                            Text="{Binding Path=Value}" />
-
-                        </StackPanel>
-
-                        <ContentPresenter Grid.Column="2" Content="{Binding}" />
-
-                    </Grid>
+                    <ContentPresenter Content="{Binding}"
+                                      Margin="0 0 0 8" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
