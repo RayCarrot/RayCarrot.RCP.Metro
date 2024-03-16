@@ -95,9 +95,11 @@ public abstract class MemoryData
         if (offsets == null)
             return;
 
+        BinaryFile firstMemFile = _context.MemoryMap.Files.First(x => x is ProcessMemoryStreamFile);
+
         foreach (var off in offsets)
         {
-            BinaryFile? file = _context.GetMemoryMappedFileForAddress(off.Value);
+            BinaryFile? file = firstMemFile.GetPointerFile(off.Value);
 
             if (file == null)
             {
