@@ -1,4 +1,5 @@
-﻿using BinarySerializer;
+﻿using System.Diagnostics;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -15,6 +16,8 @@ public abstract class GameManager
     public LocalizedString DisplayName { get; }
 
     protected MemoryDataContainer? Container { get; private set; }
+
+    public virtual bool IsProcessValid(Process process) => true;
 
     public Dictionary<string, long> GetOffsets() => _getOffsetsFunc();
 

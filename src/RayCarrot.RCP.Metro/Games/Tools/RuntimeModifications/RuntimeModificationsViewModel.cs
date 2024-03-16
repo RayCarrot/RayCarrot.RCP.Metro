@@ -184,28 +184,37 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
         // Get the currently available processes
         foreach (Process process in GetProcesses())
         {
+            // Check every emulator
             foreach (EmulatorViewModel emulator in AvailableEmulators)
             {
                 try
                 {
-                    if (emulator.EmulatorManager.IsProcessValid(process))
+                    // Validate process in emulator manager
+                    if (!emulator.EmulatorManager.IsProcessValid(process)) 
+                        continue;
+                    
+                    // Check every game
+                    foreach (GameViewModel game in AvailableGames)
                     {
-                        foreach (GameViewModel game in AvailableGames)
-                        {
-                            // TODO-UPDATE: Check in game manager if process is valid
+                        // Validate process in game manager
+                        if (!game.GameManager.IsProcessValid(process)) 
+                            continue;
 
-                            RunningGameViewModel runningGame = new(game.GameManager, emulator.EmulatorManager, process);
-                            // TODO-UPDATE: Check in game manager if game memory is valid
-                            runningGame.RefreshFields();
+                        // Create a running game view model - this might fail
+                        RunningGameViewModel runningGame = new(game.GameManager, emulator.EmulatorManager, process);
 
-                            SwitchToFoundGame(runningGame);
-                            return;
-                        }
+                        // Refresh fields once first to make sure it works
+                        runningGame.RefreshFields();
+
+                        // Game seems valid, so switch to it
+                        SwitchToFoundGame(runningGame);
+
+                        return;
                     }
                 }
                 catch (Exception ex)
                 {
-                    // TODO-UPDATE: Handle
+                    Logger.Debug(ex, "Validating game process");
                 }
             }
         }
