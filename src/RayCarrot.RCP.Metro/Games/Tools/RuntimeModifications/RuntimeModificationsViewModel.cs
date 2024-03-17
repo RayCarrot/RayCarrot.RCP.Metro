@@ -399,8 +399,6 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
         Logger.Info("Attaching to process {0}", SelectedProcess.ProcessName);
 
-        ClearAvailableProcesses(false);
-
         RunningGameViewModel runningGame;
         try
         {
@@ -411,12 +409,12 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn(ex, "Attaching to selected process");
 
-            await MessageUI.DisplayMessageAsync(Resources.Mod_Mem_AttachError, MessageType.Error);
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_Mem_AttachError);
 
-            SwitchToManuallyFindGame();
             return;
         }
 
+        ClearAvailableProcesses(false);
         SwitchToFoundGame(runningGame);
     }
 
