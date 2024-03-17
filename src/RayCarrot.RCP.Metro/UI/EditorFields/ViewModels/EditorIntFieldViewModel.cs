@@ -3,17 +3,33 @@
 public class EditorIntFieldViewModel : EditorFieldViewModel<long>
 {
     public EditorIntFieldViewModel(
-        LocalizedString header, LocalizedString? info, 
-        Func<long> getValueAction, Action<long> setValueAction,
-        long min = 0, long max = Int32.MaxValue) : base(header, info, getValueAction, setValueAction)
+        LocalizedString header, 
+        LocalizedString? info, 
+        Func<long> getValueAction, 
+        Action<long> setValueAction,
+        Func<long>? getMinAction = null, 
+        Func<long>? getMaxAction = null) 
+        : base(header, info, getValueAction, setValueAction)
     {
-        Min = min;
-        Max = max;
-
-        // Set initial value to avoid unnecessary settings from UI when default value is not within min/max range
-        _value = min;
+        GetMinAction = getMinAction;
+        GetMaxAction = getMaxAction;
+        Min = 0;
+        Max = Int32.MaxValue;
     }
 
-    public long Min { get; }
-    public long Max { get; }
+    protected Func<long>? GetMinAction { get; }
+    protected Func<long>? GetMaxAction { get; }
+
+    public long Min { get; set; }
+    public long Max { get; set; }
+
+    public override void Refresh()
+    {
+        base.Refresh();
+
+        if (GetMinAction != null)
+            Min = GetMinAction();
+        if (GetMaxAction != null)
+            Max = GetMaxAction();
+    }
 }

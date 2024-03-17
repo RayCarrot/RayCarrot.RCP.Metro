@@ -17,8 +17,8 @@
                        TextWrapping="Wrap" />
 
             <metro:NumericUpDown Margin="0 4 0 0" 
-                                 Minimum="{Binding Path=Min, Mode=OneTime}"
-                                 Maximum="{Binding Path=Max, Mode=OneTime}"
+                                 Minimum="{Binding Path=Min}"
+                                 Maximum="{Binding Path=Max}"
                                  Value="{Binding Path=Value}"
                                  HorizontalAlignment="Left"
                                  MinWidth="70" />

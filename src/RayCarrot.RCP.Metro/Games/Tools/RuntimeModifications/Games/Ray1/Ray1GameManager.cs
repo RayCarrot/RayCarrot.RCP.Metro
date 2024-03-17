@@ -45,7 +45,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 m.StatusBar.LivesCount = (byte)x;
                 m.ModifiedValue(nameof(m.StatusBar));
             }),
-            max: 99);
+            getMaxAction: () => 99);
 
         yield return new EditorIntFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Progression_Tings)),
@@ -59,7 +59,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 m.StatusBar.TingsCount = (byte)x;
                 m.ModifiedValue(nameof(m.StatusBar));
             }),
-            max: 99);
+            getMaxAction: () => 99);
 
         yield return new EditorIntFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_HP)),
@@ -101,7 +101,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                     m.StatusBar.MaxHealth = (byte)x;
                     m.ModifiedValue(nameof(m.StatusBar));
                 }),
-                max: Byte.MaxValue);
+                getMaxAction: () => Byte.MaxValue);
         }
         else
         {
