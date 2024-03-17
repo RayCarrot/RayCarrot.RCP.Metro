@@ -193,6 +193,14 @@ public class Ray1MemoryData : MemoryData
         if (StatusBar is { LivesCount: > 99 or < 0 } or { MaxHealth: > 5 or < 2 } or { TingsCount: > 99 }) 
             return false;
 
+        if (Ray != null)
+        {
+            if (Ray.SpritesPointer == null ||
+                Ray.AnimationsPointer == null ||
+                Ray.ETAPointer == null)
+                return false;
+        }
+
         if (WorldInfo != null)
         {
             foreach (WorldInfo worldInfo in WorldInfo)

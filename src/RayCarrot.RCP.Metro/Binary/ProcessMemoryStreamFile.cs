@@ -24,6 +24,10 @@ public class ProcessMemoryStreamFile : MemoryMappedStreamFile
 
     public override BinaryFile GetPointerFile(long serializedValue, Pointer anchor = null)
     {
+        // We might have a BaseAddress of 0, but a pointer with a value of 0 should never be valid
+        if (serializedValue <= 0)
+            return null;
+
         if (serializedValue < BaseAddress)
             return null;
 
