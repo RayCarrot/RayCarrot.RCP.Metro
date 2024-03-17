@@ -57,15 +57,6 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
         EditorFieldGroups.EnableCollectionSynchronization();
         InfoItems.EnableCollectionSynchronization();
         Actions.EnableCollectionSynchronization();
-
-        // TODO-UPDATE: Do we still need this?
-        // Hack to fix a weird binding issue where the first int box gets set to 0
-        //MemContainer.AccessMemory(m =>
-        //{
-        //    m.ClearModifiedValues();
-        //    RefreshFields();
-        //    m.ClearModifiedValues();
-        //});
     }
 
     #endregion
