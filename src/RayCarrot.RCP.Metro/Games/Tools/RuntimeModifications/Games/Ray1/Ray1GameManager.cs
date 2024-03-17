@@ -577,6 +577,10 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             // TODO-LOC
             yield return DuoGridItem("Rayman position", m => $"{m.Ray?.XPosition} x {m.Ray?.YPosition}");
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.Ray?.MainEtat}-{m.Ray?.SubEtat}");
+            
+            // TODO-LOC
+            yield return DuoGridItem("Left speed storage", m => $"{m.Ray?.ETA.States[2][0x11].LeftSpeed}");
+            yield return DuoGridItem("Right speed storage", m => $"{m.Ray?.ETA.States[2][0x11].RightSpeed}");
         }
 
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoTime)), m => m.HelicoTime);
