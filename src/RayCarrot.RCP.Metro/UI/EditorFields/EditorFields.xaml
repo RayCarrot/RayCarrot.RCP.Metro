@@ -25,6 +25,29 @@
         </StackPanel>
     </DataTemplate>
 
+    <!-- Int slider -->
+
+    <DataTemplate DataType="{x:Type local:EditorIntSliderFieldViewModel}">
+        <StackPanel>
+            <TextBlock Text="{Binding Path=Header.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontSize="11"
+                       Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2 0 0"
+                       Text="{Binding Path=Info.Value}"
+                       TextWrapping="Wrap" />
+
+            <Slider Margin="0 4 0 0" 
+                    Minimum="{Binding Path=Min}"
+                    Maximum="{Binding Path=Max}"
+                    Value="{Binding Path=Value}"
+                    HorizontalAlignment="Left"
+                    MinWidth="70"
+                    TickPlacement="BottomRight" />
+        </StackPanel>
+    </DataTemplate>
+
     <!-- String -->
 
     <DataTemplate DataType="{x:Type local:EditorStringFieldViewModel}">
