@@ -88,6 +88,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     public GameInstallation GameInstallation { get; }
     public ViewModelState State { get; set; }
+    public ViewModelState PreviousState { get; set; }
 
     public ObservableCollection<ProcessViewModel> AvailableProcesses { get; }
     public ProcessViewModel? SelectedProcess { get; set; }
@@ -275,6 +276,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     public void SwitchToFoundGame(RunningGameViewModel viewModel)
     {
+        PreviousState = State;
         State = ViewModelState.FoundGame;
         CancelAutoFindGame(false);
 
@@ -294,6 +296,8 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
         // Start refreshing
         _ = Task.Run(async () =>
         {
+            bool shownErrorMessage = false;
+
             try
             {
                 try
@@ -330,12 +334,17 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Warn(ex, "Updating memory mod fields");
 
-                    await MessageUI.DisplayMessageAsync(Resources.Mod_Mem_TickError, MessageType.Error);
+                    await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_Mem_TickError);
+                    shownErrorMessage = true;
                 }
             }
 
-            // We could switch to auto find game, but we might enter an endless loop of error messages then
-            SwitchToManuallyFindGame();
+            // Switch back to the previous state, unless an error message was shown in which
+            // case we always switch to manually find game to avoid endless error loop.
+            if (shownErrorMessage || PreviousState == ViewModelState.ManuallyFindGame)
+                SwitchToManuallyFindGame();
+            else
+                SwitchToAutoFindGame();
 
             RunningGameViewModel?.Dispose();
             RunningGameViewModel = null;
@@ -345,6 +354,10 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     public void DetachProcess()
     {
+        // Force previous state to be manually finding game to avoid
+        // it automatically going back to the found game state
+        PreviousState = ViewModelState.ManuallyFindGame;
+
         CancelRefreshGameFields(false);
     }
 
