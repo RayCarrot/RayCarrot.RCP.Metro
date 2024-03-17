@@ -61,14 +61,16 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             }),
             getMaxAction: () => 99);
 
-        yield return new EditorIntFieldViewModel(
+        yield return new EditorIntSliderFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_HP)),
             info: null,
             getValueAction: () => AccessMemory(m => Version == Ray1EngineVersion.R2_PS1
                 ? m.R2_Ray?.HitPoints ?? 0
-                : m.Ray?.HitPoints ?? 0),
+                : m.Ray?.HitPoints ?? 0) + 1,
             setValueAction: x => AccessMemory(m =>
             {
+                x--; 
+                
                 if (Version == Ray1EngineVersion.R2_PS1)
                 {
                     if (m.R2_Ray == null)
@@ -82,10 +84,12 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                     if (m.Ray == null)
                         return;
 
-                    m.Ray.HitPoints = (byte)Math.Min(x, m.StatusBar?.MaxHealth ?? 0);
+                    m.Ray.HitPoints = (byte)x;
                     m.ModifiedValue(nameof(m.Ray));
                 }
-            }));
+            }),
+            getMinAction: () => 1,
+            getMaxAction: () => AccessMemory(m => m.StatusBar?.MaxHealth ?? 0) + 1);
 
         if (Version == Ray1EngineVersion.R2_PS1)
         {
@@ -127,6 +131,29 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
 
                     m.StatusBar.MaxHealth = x ? max : min;
                     m.ModifiedValue(nameof(m.StatusBar));
+
+                    if (Version == Ray1EngineVersion.R2_PS1)
+                    {
+                        if (m.R2_Ray == null)
+                            return;
+
+                        if (m.R2_Ray.HitPoints > m.StatusBar.MaxHealth)
+                        {
+                            m.R2_Ray.HitPoints = m.StatusBar.MaxHealth;
+                            m.ModifiedValue(nameof(m.R2_Ray));
+                        }
+                    }
+                    else
+                    {
+                        if (m.Ray == null)
+                            return;
+
+                        if (m.Ray.HitPoints > m.StatusBar.MaxHealth)
+                        {
+                            m.Ray.HitPoints = m.StatusBar.MaxHealth;
+                            m.ModifiedValue(nameof(m.Ray));
+                        }
+                    }
                 }));
         }
 
