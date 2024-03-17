@@ -217,7 +217,7 @@ public class Ray1MemoryData : MemoryData
     {
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
-        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = ObjData.RefDataFlags.None, name: nameof(Ray));
+        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = ObjData.RefDataFlags.States, name: nameof(Ray));
         R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = R2_ObjData.RefDataFlags.None, name: nameof(R2_Ray));
         HelicoTime = Serialize<short>(HelicoTime, name: nameof(HelicoTime));
 
