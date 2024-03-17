@@ -563,19 +563,19 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
 
     public override IEnumerable<DuoGridItemViewModel> CreateInfoItems()
     {
-        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_CamX)), m => m.XMap);
-        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_CamY)), m => m.YMap);
+        // TODO-LOC
+        yield return DuoGridItem("Camera position", m => $"{m.XMap} x {m.YMap}");
 
         if (Version == Ray1EngineVersion.R2_PS1)
         {
-            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_XPos)), m => m.R2_Ray?.XPosition);
-            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_YPos)), m => m.R2_Ray?.YPosition);
+            // TODO-LOC
+            yield return DuoGridItem("Rayman position", m => $"{m.R2_Ray?.XPosition} x {m.R2_Ray?.YPosition}");
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.R2_Ray?.MainEtat}-{m.R2_Ray?.SubEtat}");
         }
         else
         {
-            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_XPos)), m => m.Ray?.XPosition);
-            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_YPos)), m => m.Ray?.YPosition);
+            // TODO-LOC
+            yield return DuoGridItem("Rayman position", m => $"{m.Ray?.XPosition} x {m.Ray?.YPosition}");
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.Ray?.MainEtat}-{m.Ray?.SubEtat}");
         }
 
