@@ -224,9 +224,18 @@ public class Ray1MemoryData : MemoryData
 
     protected override void SerializeImpl(Context context)
     {
+        // TODO: Ideally we'd serialize states on GBA as well so that we can show things like speed storage. However
+        //       when serializing from memory we don't know the state array counts, and the current code for
+        //       calculating it doesn't work on GBA due to some states being copied into RAM.
+        ObjData.RefDataFlags refDataFlags;
+        if (context.GetRequiredSettings<Ray1Settings>().EngineBranch == Ray1EngineBranch.GBA)
+            refDataFlags = ObjData.RefDataFlags.None;
+        else
+            refDataFlags = ObjData.RefDataFlags.States;
+
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
-        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = ObjData.RefDataFlags.States, name: nameof(Ray));
+        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = refDataFlags, name: nameof(Ray));
         R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, onPreSerialize: x => x.Pre_SerializeRefDataFlags = R2_ObjData.RefDataFlags.None, name: nameof(R2_Ray));
         HelicoTime = Serialize<short>(HelicoTime, name: nameof(HelicoTime));
 
