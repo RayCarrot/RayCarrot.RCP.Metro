@@ -51,7 +51,7 @@ public class EmulatorManager
     };
     public static EmulatorManager[] MsDos => new EmulatorManager[] { DosBox_0_74_3_x86, DosBox_0_74_2_x86, DosBox_0_74_x86, };
     public static EmulatorManager[] Ps1 => new EmulatorManager[] { BizHawk_Ps1_2_8_0_x64, BizHawk_Ps1_2_4_0_x64, };
-    public static EmulatorManager[] Gba => new EmulatorManager[] { VisualBoyAdvance_M_2_1_9_x86, VisualBoyAdvance_M_2_1_3_x86 };
+    public static EmulatorManager[] Gba => new EmulatorManager[] { VisualBoyAdvanceM_2_1_9_x86, VisualBoyAdvanceM_2_1_3_x86 };
 
     #endregion
 
@@ -131,9 +131,12 @@ public class EmulatorManager
 
     #region VisualBoyAdvance-M
 
-    // TODO-UPDATE: Implement process check
-    public static EmulatorManager VisualBoyAdvance_M_2_1_3_x86 => new(
+    public static VisualBoyAdvanceMManager VisualBoyAdvanceM_2_1_3_x86 => new(
         displayName: "VisualBoyAdvance-M (2.1.3 - x86)",
+        majorVersion: 2,
+        minorVersion: 1,
+        buildVersion: 3,
+        is64Bit: false,
         memoryRegions: new[]
         {
             new MemoryRegion(
@@ -158,8 +161,12 @@ public class EmulatorManager
                 ProcessOffset: 0x018820EC,
                 IsProcessOffsetAPointer: true),
         });
-    public static EmulatorManager VisualBoyAdvance_M_2_1_9_x86 => new(
+    public static VisualBoyAdvanceMManager VisualBoyAdvanceM_2_1_9_x86 => new(
         displayName: "VisualBoyAdvance-M (2.1.9 - x86)",
+        majorVersion: 2,
+        minorVersion: 1,
+        buildVersion: 9,
+        is64Bit: false,
         memoryRegions: new[]
         {
             new MemoryRegion(

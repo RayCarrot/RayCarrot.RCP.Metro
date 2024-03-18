@@ -204,16 +204,8 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
                         // Create a running game view model - this might fail
                         RunningGameViewModel runningGame = new(GameInstallation, game.GameManager, emulator.EmulatorManager, process);
 
-                        try
-                        {
-                            // Refresh fields once first to make sure it works
-                            runningGame.RefreshFields();
-                        }
-                        catch
-                        {
-                            runningGame.Dispose();
-                            throw;
-                        }
+                        // Refresh fields once first to make sure it works
+                        runningGame.RefreshFields();
 
                         // Game seems valid, so switch to it
                         SwitchToFoundGame(runningGame);
