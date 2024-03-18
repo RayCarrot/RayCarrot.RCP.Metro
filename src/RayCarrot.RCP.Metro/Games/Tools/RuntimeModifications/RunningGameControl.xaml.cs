@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -16,5 +17,10 @@ public partial class RunningGameControl : UserControl
     {
         if (DataContext is RunningGameViewModel vm && sender is TabControl tc)
             vm.LogEnabled = tc.SelectedIndex == 1;
+    }
+
+    private void RunningGameControl_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        MainTabControl.SelectedIndex = 0;
     }
 }

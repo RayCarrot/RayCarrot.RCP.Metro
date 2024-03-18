@@ -11,14 +11,17 @@
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-             d:DataContext="{d:DesignInstance runtimeModifications:RunningGameViewModel}">
+             d:DataContext="{d:DesignInstance runtimeModifications:RunningGameViewModel}"
+             DataContextChanged="RunningGameControl_OnDataContextChanged">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <metro:MetroAnimatedTabControl Grid.Row="0" SelectionChanged="TabControl_OnSelectionChanged">
+        <metro:MetroAnimatedTabControl x:Name="MainTabControl" 
+                                       Grid.Row="0" 
+                                       SelectionChanged="TabControl_OnSelectionChanged">
             <!-- TODO-LOC -->
             <TabItem Header="Modifications" 
                      local:Icon.Kind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
