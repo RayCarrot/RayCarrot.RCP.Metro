@@ -191,6 +191,9 @@ public class Ray1MemoryData : MemoryData
 
     protected override bool ValidateImpl(Context context)
     {
+        // TODO: The MaxHealth and Ray pointer checks will make validation fail as the game is launching (splash screen and menus)
+        //       We could remove the checks, but how do we then validate the game in a good way?
+
         if (StatusBar is { LivesCount: > 99 or < 0 } or { MaxHealth: > 5 or < 2 } or { TingsCount: > 99 }) 
             return false;
 

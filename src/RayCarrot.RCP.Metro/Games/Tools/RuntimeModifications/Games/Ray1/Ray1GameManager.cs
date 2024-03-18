@@ -217,6 +217,8 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers(Ray1Settings settings)
     {
+        // TODO-UPDATE: Potentially remove some of these since they break the game
+
         // Fist
         yield return new EditorBoolFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower)),
