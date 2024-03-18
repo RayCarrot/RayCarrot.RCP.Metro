@@ -204,8 +204,16 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
                         // Create a running game view model - this might fail
                         RunningGameViewModel runningGame = new(GameInstallation, game.GameManager, emulator.EmulatorManager, process);
 
-                        // Refresh fields once first to make sure it works
-                        runningGame.RefreshFields();
+                        try
+                        {
+                            // Refresh fields once first to make sure it works
+                            runningGame.RefreshFields();
+                        }
+                        catch
+                        {
+                            runningGame.Dispose();
+                            throw;
+                        }
 
                         // Game seems valid, so switch to it
                         SwitchToFoundGame(runningGame);
@@ -399,7 +407,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
         Logger.Info("Attaching to process {0}", SelectedProcess.ProcessName);
 
-        RunningGameViewModel runningGame;
+        RunningGameViewModel? runningGame = null;
         try
         {
             runningGame = new RunningGameViewModel(GameInstallation, SelectedGame.GameManager, SelectedEmulator.EmulatorManager, SelectedProcess.Process);
@@ -411,6 +419,8 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
             await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_Mem_AttachError);
 
+            runningGame?.Dispose();
+            SwitchToManuallyFindGame();
             return;
         }
 
