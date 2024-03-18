@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using BinarySerializer;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -8,7 +9,7 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public RunningGameViewModel(GameManager gameManager, EmulatorManager emulatorManager, Process process)
+    public RunningGameViewModel(GameInstallation gameInstallation, GameManager gameManager, EmulatorManager emulatorManager, Process process)
     {
         GameManager = gameManager;
         ProcessViewModel = new ProcessViewModel(process, ShellThumbnailSize.Medium);
@@ -22,6 +23,7 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
         MemContainer = new MemoryDataContainer(memData);
 
         GameManager.AttachContainer(MemContainer);
+        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(Context);
         GameManager.InitializeContext(Context);
 
         BinaryDeserializer s = Context.Deserializer;
@@ -49,9 +51,9 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
         memData.Initialize(Context, GameManager.GetOffsets());
 
         // Create the fields
-        EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>(GameManager.CreateEditorFieldGroups());
-        InfoItems = new ObservableCollection<DuoGridItemViewModel>(GameManager.CreateInfoItems());
-        Actions = new ObservableCollection<ActionViewModel>(GameManager.CreateActions());
+        EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>(GameManager.CreateEditorFieldGroups(Context));
+        InfoItems = new ObservableCollection<DuoGridItemViewModel>(GameManager.CreateInfoItems(Context));
+        Actions = new ObservableCollection<ActionViewModel>(GameManager.CreateActions(Context));
         HasActions = Actions.Any();
 
         EditorFieldGroups.EnableCollectionSynchronization();

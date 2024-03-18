@@ -52,11 +52,10 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
         
-        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.MsDos, x => 
+        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.MsDos, _ => 
             new[]
             {
                 new Ray1GameManager(
-                    gameInstallation: x,
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
                     getOffsetsFunc: () => Ray1MemoryData.Offsets_PC_1_21)
             }));

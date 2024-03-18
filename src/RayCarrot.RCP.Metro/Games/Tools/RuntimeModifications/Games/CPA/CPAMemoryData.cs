@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
+﻿using BinarySerializer;
+
+namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
 // TODO-UPDATE: Add more data
 public class CPAMemoryData : MemoryData
@@ -18,13 +20,13 @@ public class CPAMemoryData : MemoryData
         [nameof(EngineMode)] = 0x7D7DC0 + 0x00,
     };
 
-    protected override bool ValidateImpl()
+    protected override bool ValidateImpl(Context context)
     {
         // TODO: Implement some way of validating values. Maybe we need to read more values to properly do so?
         return true;
     }
 
-    protected override void SerializeImpl()
+    protected override void SerializeImpl(Context context)
     {
         CurrentMap = SerializeString(CurrentMap, 16, name: nameof(CurrentMap));
         EngineMode = Serialize<byte>(EngineMode, name: nameof(EngineMode));

@@ -1,4 +1,5 @@
-﻿using BinarySerializer.Ray1;
+﻿using BinarySerializer;
+using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -188,7 +189,7 @@ public class Ray1MemoryData : MemoryData
         [nameof(GBA_MultiplayerLevelSelection)] = 0x02001178,
     };
 
-    protected override bool ValidateImpl()
+    protected override bool ValidateImpl(Context context)
     {
         if (StatusBar is { LivesCount: > 99 or < 0 } or { MaxHealth: > 5 or < 2 } or { TingsCount: > 99 }) 
             return false;
@@ -221,7 +222,7 @@ public class Ray1MemoryData : MemoryData
         return true;
     }
 
-    protected override void SerializeImpl()
+    protected override void SerializeImpl(Context context)
     {
         StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));

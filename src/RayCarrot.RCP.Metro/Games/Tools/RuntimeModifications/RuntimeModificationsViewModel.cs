@@ -202,7 +202,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
                             continue;
 
                         // Create a running game view model - this might fail
-                        RunningGameViewModel runningGame = new(game.GameManager, emulator.EmulatorManager, process);
+                        RunningGameViewModel runningGame = new(GameInstallation, game.GameManager, emulator.EmulatorManager, process);
 
                         // Refresh fields once first to make sure it works
                         runningGame.RefreshFields();
@@ -402,7 +402,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
         RunningGameViewModel runningGame;
         try
         {
-            runningGame = new RunningGameViewModel(SelectedGame.GameManager, SelectedEmulator.EmulatorManager, SelectedProcess.Process);
+            runningGame = new RunningGameViewModel(GameInstallation, SelectedGame.GameManager, SelectedEmulator.EmulatorManager, SelectedProcess.Process);
             runningGame.RefreshFields();
         }
         catch (Exception ex)

@@ -1,6 +1,5 @@
 ﻿using BinarySerializer;
 using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -9,15 +8,10 @@ public class CpaGameManager : GameManager<CPAMemoryData>
     #region Constructor
 
     public CpaGameManager(
-        GameInstallation gameInstallation, 
         LocalizedString displayName, 
         Func<Dictionary<string, long>> getOffsetsFunc) 
-        : base(displayName, getOffsetsFunc)
-    {
-        Settings = gameInstallation.
-            GetRequiredComponent<BinaryGameModeComponent>().
-            GetRequiredSettings<OpenSpaceSettings>();
-    }
+        : base(displayName, getOffsetsFunc) 
+    { }
 
     #endregion
 
@@ -228,25 +222,16 @@ public class CpaGameManager : GameManager<CPAMemoryData>
 
     #endregion
 
-    #region Public Properties
-
-    public OpenSpaceSettings Settings { get; }
-
-    #endregion
-
     #region Public Methods
     
-    public override void InitializeContext(Context context)
+    public override IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups(Context context)
     {
-        context.AddSettings(Settings);
-    }
+        OpenSpaceSettings settings = context.GetRequiredSettings<OpenSpaceSettings>();
 
-    public override IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups()
-    {
-        GroupedEditorDropDownFieldViewModel.DropDownItem<string>[] mapDropDowns = Settings.EngineVersion switch
+        GroupedEditorDropDownFieldViewModel.DropDownItem<string>[] mapDropDowns = settings.EngineVersion switch
         {
-            EngineVersion.Rayman2 when Settings.Platform == Platform.PC => Maps_R2_PC,
-            EngineVersion.Rayman3 when Settings.Platform == Platform.PC => Maps_R3_PC,
+            EngineVersion.Rayman2 when settings.Platform == Platform.PC => Maps_R2_PC,
+            EngineVersion.Rayman3 when settings.Platform == Platform.PC => Maps_R3_PC,
             _ => throw new IndexOutOfRangeException()
         };
 
@@ -269,12 +254,12 @@ public class CpaGameManager : GameManager<CPAMemoryData>
             });
     }
 
-    public override IEnumerable<DuoGridItemViewModel> CreateInfoItems()
+    public override IEnumerable<DuoGridItemViewModel> CreateInfoItems(Context context)
     {
         yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_Map)), m => m.CurrentMap);
     }
 
-    public override IEnumerable<ActionViewModel> CreateActions()
+    public override IEnumerable<ActionViewModel> CreateActions(Context context)
     {
         yield break;
     }

@@ -86,11 +86,10 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
         builder.Register(new GameBananaGameComponent(6244));
 
-        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.None, x =>
+        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.None, _ =>
             new[]
             {
                 new CpaGameManager(
-                    gameInstallation: x,
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PC)),
                     getOffsetsFunc: () => CPAMemoryData.Offsets_R2_PC)
             }));

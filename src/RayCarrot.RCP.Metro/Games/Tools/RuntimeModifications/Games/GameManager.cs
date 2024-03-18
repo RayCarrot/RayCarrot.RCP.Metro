@@ -25,11 +25,11 @@ public abstract class GameManager
     public void DetachContainer() => Container = null;
 
     public abstract MemoryData CreateMemoryData(Context context);
-    public abstract void InitializeContext(Context context);
+    public virtual void InitializeContext(Context context) { }
 
-    public abstract IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups();
-    public abstract IEnumerable<DuoGridItemViewModel> CreateInfoItems();
-    public abstract IEnumerable<ActionViewModel> CreateActions();
+    public abstract IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups(Context context);
+    public abstract IEnumerable<DuoGridItemViewModel> CreateInfoItems(Context context);
+    public abstract IEnumerable<ActionViewModel> CreateActions(Context context);
 }
 
 public abstract class GameManager<TMemObj> : GameManager

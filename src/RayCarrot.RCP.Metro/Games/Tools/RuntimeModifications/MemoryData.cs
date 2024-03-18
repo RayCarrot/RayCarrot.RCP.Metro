@@ -73,8 +73,8 @@ public abstract class MemoryData
 
         return s.SerializeString(obj, length, name: name);
     }
-    protected abstract bool ValidateImpl();
-    protected abstract void SerializeImpl();
+    protected abstract bool ValidateImpl(Context context);
+    protected abstract void SerializeImpl(Context context);
 
     public bool SupportsProperty(string name) => _pointers.ContainsKey(name);
 
@@ -116,7 +116,7 @@ public abstract class MemoryData
         if (_context == null)
             throw new Exception("Attempted to validate memory data before initializing it");
 
-        return ValidateImpl();
+        return ValidateImpl(_context);
     }
 
     public void Serialize()
@@ -124,6 +124,6 @@ public abstract class MemoryData
         if (_context == null)
             throw new Exception("Attempted to serialize memory data before initializing it");
 
-        SerializeImpl();
+        SerializeImpl(_context);
     }
 }

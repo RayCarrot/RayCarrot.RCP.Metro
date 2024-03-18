@@ -34,11 +34,10 @@ public sealed class GameDescriptor_Rayman1_Gba : GbaGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanAdvanceGBAEU", "r1/gba"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_GBA));
 
-        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.Gba, x =>
+        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.Gba, _ =>
             new[]
             {
                 new Ray1GameManager(
-                    gameInstallation: x,
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_GBA_EU)),
                     getOffsetsFunc: () => Ray1MemoryData.Offsets_GBA_EU)
             }));

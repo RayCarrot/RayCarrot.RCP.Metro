@@ -1,7 +1,6 @@
 ﻿using BinarySerializer;
 using BinarySerializer.Ray1;
 using MahApps.Metro.IconPacks;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -10,28 +9,16 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
     #region Constructor
 
     public Ray1GameManager(
-        GameInstallation gameInstallation, 
         LocalizedString displayName, 
         Func<Dictionary<string, long>> getOffsetsFunc) 
         : base(displayName, getOffsetsFunc)
-    {
-        Version = gameInstallation.
-            GetRequiredComponent<BinaryGameModeComponent>().
-            GetRequiredSettings<Ray1Settings>().
-            EngineVersion;
-    }
-
-    #endregion
-
-    #region Public Properties
-
-    public Ray1EngineVersion Version { get; }
+    { }
 
     #endregion
 
     #region Private Methods
 
-    private IEnumerable<EditorFieldViewModel> CreateEditorFields_General()
+    private IEnumerable<EditorFieldViewModel> CreateEditorFields_General(Ray1Settings settings)
     {
         yield return new EditorIntFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Progression_Lives)),
@@ -64,14 +51,14 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
         yield return new EditorIntSliderFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_HP)),
             info: null,
-            getValueAction: () => AccessMemory(m => Version == Ray1EngineVersion.R2_PS1
+            getValueAction: () => AccessMemory(m => settings.EngineVersion == Ray1EngineVersion.R2_PS1
                 ? m.R2_Ray?.HitPoints ?? 0
                 : m.Ray?.HitPoints ?? 0) + 1,
             setValueAction: x => AccessMemory(m =>
             {
                 x--; 
                 
-                if (Version == Ray1EngineVersion.R2_PS1)
+                if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
                 {
                     if (m.R2_Ray == null)
                         return;
@@ -91,7 +78,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             getMinAction: () => 1,
             getMaxAction: () => AccessMemory(m => m.StatusBar?.MaxHealth ?? 0) + 1);
 
-        if (Version == Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
         {
             yield return new EditorIntFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_MaxHP)),
@@ -109,12 +96,12 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
         }
         else
         {
-            byte min = Version switch
+            byte min = settings.EngineVersion switch
             {
                 Ray1EngineVersion.GBA => 3,
                 _ => 2
             };
-            byte max = Version switch
+            byte max = settings.EngineVersion switch
             {
                 Ray1EngineVersion.GBA => 5,
                 _ => 4
@@ -132,7 +119,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                     m.StatusBar.MaxHealth = x ? max : min;
                     m.ModifiedValue(nameof(m.StatusBar));
 
-                    if (Version == Ray1EngineVersion.R2_PS1)
+                    if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
                     {
                         if (m.R2_Ray == null)
                             return;
@@ -171,9 +158,9 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 m.ModifiedValue(nameof(m.RayMode));
             }));
 
-        if (Version != Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion != Ray1EngineVersion.R2_PS1)
         {
-            int[] lvls = Version switch
+            int[] lvls = settings.EngineVersion switch
             {
                 Ray1EngineVersion.PC => new[] { 0, 22, 18, 13, 13, 12, 4 }, // Breakout is map 22 in Jungle
                 Ray1EngineVersion.GBA => new[] { 0, 21, 18, 13, 13, 12, 4, 0, 6 }, // Multiplayer is world 8
@@ -210,7 +197,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                     m.ModifiedValue(nameof(m.AllWorld));
                 }));
 
-        if (Version == Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
         {
             string[] langs = { "French", "English", "German", "Italian", "Spanish" };
             var langItems = langs.Select(x => new EditorDropDownFieldViewModel.DropDownItem(x, null)).ToArray();
@@ -228,7 +215,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
         }
     }
 
-    private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers()
+    private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers(Ray1Settings settings)
     {
         // Fist
         yield return new EditorBoolFieldViewModel(
@@ -244,7 +231,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 m.ModifiedValue(nameof(m.RayEvts));
             }));
 
-        if (Version == Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
         {
             // Fist down-slam
             yield return new EditorBoolFieldViewModel(
@@ -373,7 +360,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 m.ModifiedValue(nameof(m.RayEvts));
             }));
 
-        if (Version != Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion != Ray1EngineVersion.R2_PS1)
         {
             // Small Rayman
             yield return new EditorBoolFieldViewModel(
@@ -533,40 +520,42 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
     
     public override void InitializeContext(Context context)
     {
-        context.AddSettings(new Ray1Settings(Version)
-        {
-            // We're loading from memory, so the data is never packed
-            IsLoadingPackedPCData = false
-        });
+        // We're loading from memory, so the data is never packed
+        Ray1Settings settings = context.GetRequiredSettings<Ray1Settings>();
+        settings.IsLoadingPackedPCData = false;
     }
 
-    public override IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups()
+    public override IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups(Context context)
     {
+        Ray1Settings settings = context.GetRequiredSettings<Ray1Settings>();
+
         yield return new EditorFieldGroupViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_GeneralCategory)),
-            editorFields: CreateEditorFields_General());
+            editorFields: CreateEditorFields_General(settings));
 
-        if (Version == Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
             yield return new EditorFieldGroupViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_DebugCategory)),
                 editorFields: CreateEditorFields_R2_Debug());
 
-        if (Version == Ray1EngineVersion.GBA)
+        if (settings.EngineVersion == Ray1EngineVersion.GBA)
             yield return new EditorFieldGroupViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_MultiplayerCategory)),
                 editorFields: CreateEditorFields_GBA_Multiplayer());
 
         yield return new EditorFieldGroupViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_PowersCategory)),
-            editorFields: CreateEditorFields_Powers());
+            editorFields: CreateEditorFields_Powers(settings));
     }
 
-    public override IEnumerable<DuoGridItemViewModel> CreateInfoItems()
+    public override IEnumerable<DuoGridItemViewModel> CreateInfoItems(Context context)
     {
+        Ray1Settings settings = context.GetRequiredSettings<Ray1Settings>();
+
         // TODO-LOC
         yield return DuoGridItem("Camera position", m => $"{m.XMap} x {m.YMap}");
 
-        if (Version == Ray1EngineVersion.R2_PS1)
+        if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
         {
             // TODO-LOC
             yield return DuoGridItem("Rayman position", m => $"{m.R2_Ray?.XPosition} x {m.R2_Ray?.YPosition}");
@@ -593,7 +582,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_Menu)), m => m.MenuEtape);
     }
 
-    public override IEnumerable<ActionViewModel> CreateActions()
+    public override IEnumerable<ActionViewModel> CreateActions(Context context)
     {
         if (AccessMemory(m => m.SupportsProperty(nameof(m.FinBoss))))
             yield return new ActionViewModel(
