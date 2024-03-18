@@ -51,7 +51,7 @@ public class EmulatorManager
     };
     public static EmulatorManager[] MsDos => new EmulatorManager[] { DosBox_0_74_3_x86, DosBox_0_74_2_x86, DosBox_0_74_x86, };
     public static EmulatorManager[] Ps1 => new EmulatorManager[] { BizHawk_Ps1_2_8_0_x64, BizHawk_Ps1_2_4_0_x64, };
-    public static EmulatorManager[] Gba => new EmulatorManager[] { VisualBoyAdvance_M_2_1_3_x86 };
+    public static EmulatorManager[] Gba => new EmulatorManager[] { VisualBoyAdvance_M_2_1_9_x86, VisualBoyAdvance_M_2_1_3_x86 };
 
     #endregion
 
@@ -143,12 +143,38 @@ public class EmulatorManager
                 ModuleName: null,
                 ProcessOffset: 0x018820E4,
                 IsProcessOffsetAPointer: true),
+            //new MemoryRegion(
+            //    Name: "IRAM",
+            //    GameOffset: 0x3000000,
+            //    Length: 0x8000,
+            //    ModuleName: null,
+            //    ProcessOffset: 0x018820E8,
+            //    IsProcessOffsetAPointer: true),
             new MemoryRegion(
                 Name: "ROM",
                 GameOffset: 0x08000000,
                 Length: 0x1000000,
                 ModuleName: null,
                 ProcessOffset: 0x018820EC,
+                IsProcessOffsetAPointer: true),
+        });
+    public static EmulatorManager VisualBoyAdvance_M_2_1_9_x86 => new(
+        displayName: "VisualBoyAdvance-M (2.1.9 - x86)",
+        memoryRegions: new[]
+        {
+            new MemoryRegion(
+                Name: "WRAM",
+                GameOffset: 0x2000000,
+                Length: 0x40000,
+                ModuleName: null,
+                ProcessOffset: 0x03FEADEC,
+                IsProcessOffsetAPointer: true),
+            new MemoryRegion(
+                Name: "ROM",
+                GameOffset: 0x08000000,
+                Length: 0x1000000,
+                ModuleName: null,
+                ProcessOffset: 0x03FEA97C,
                 IsProcessOffsetAPointer: true),
         });
 
