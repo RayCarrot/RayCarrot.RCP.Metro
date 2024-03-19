@@ -40,10 +40,10 @@ public class GameFileFinder
 
             foreach (GameFileFinderItem finderItem in FinderItems)
             {
-                if (finderItem.RomStructure.SupportedFileExtensions.All(x => x != ext))
+                if (finderItem.Structure.SupportedFileExtensions.All(x => x != ext))
                     continue;
 
-                GameLocationValidationResult result = finderItem.RomStructure.IsLocationValid(location);
+                GameLocationValidationResult result = finderItem.Structure.IsLocationValid(location);
 
                 if (result.IsValid)
                     finderItem.AddLocation(location);

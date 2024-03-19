@@ -162,7 +162,7 @@ public class AddGamesViewModel : BaseViewModel, IInitializable,
         // Search for every game which is a single file
         List<GameFileFinderItem> finderItems = Services.Games.GetGameDescriptors().
             Where(x => x.Structure is SingleFileProgramInstallationStructure { SupportGameFileFinder: true }).
-            Select(x => new GameFileFinderItem(x, (RomProgramInstallationStructure)x.Structure)).
+            Select(x => new GameFileFinderItem(x, (SingleFileProgramInstallationStructure)x.Structure)).
             ToList();
 
         try
