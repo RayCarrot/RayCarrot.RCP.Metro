@@ -24,6 +24,12 @@ public enum GamePlatform
     WindowsPackage,
 
     /// <summary>
+    /// PlayStation
+    /// </summary>
+    [GamePlatformInfo("PlayStation", GamePlatformIconAsset.Ps1)] // TODO-LOC
+    Ps1,
+
+    /// <summary>
     /// Game Boy Color
     /// </summary>
     [GamePlatformInfo(nameof(Resources.Platform_Gbc), GamePlatformIconAsset.Gbc)]
