@@ -65,7 +65,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Jade.exe", GameInstallationPathType.PrimaryExe, required: true),

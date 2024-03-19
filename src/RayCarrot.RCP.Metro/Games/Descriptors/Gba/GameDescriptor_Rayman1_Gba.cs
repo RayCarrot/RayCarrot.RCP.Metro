@@ -43,7 +43,7 @@ public sealed class GameDescriptor_Rayman1_Gba : GbaGameDescriptor
             }));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new GbaRomProgramInstallationStructure(new[]
+    protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
         new GbaRomLayout("EU", "RAYMAN", "ARYP", "41"),
         new GbaRomLayout("US", "RAYMAN", "ARYE", "41"),

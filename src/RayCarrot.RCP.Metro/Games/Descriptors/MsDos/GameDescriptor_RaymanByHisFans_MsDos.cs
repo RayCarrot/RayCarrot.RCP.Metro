@@ -57,7 +57,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYFAN.EXE", GameInstallationPathType.PrimaryExe, required: true),

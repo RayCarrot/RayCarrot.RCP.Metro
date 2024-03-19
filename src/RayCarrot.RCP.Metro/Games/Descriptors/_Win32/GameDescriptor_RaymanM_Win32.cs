@@ -52,7 +52,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
         builder.Register<CPATextureSyncComponent, RaymanMArenaCPATextureSyncComponent>();
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RaymanM.exe", GameInstallationPathType.PrimaryExe, required: true),

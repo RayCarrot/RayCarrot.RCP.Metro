@@ -33,7 +33,7 @@ public sealed class GameDescriptor_RaymanHoodlumsRevenge_Gba : GbaGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanHoodlumsRevengeEU", "gba_isometric/rhr_eu"));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new GbaRomProgramInstallationStructure(new[]
+    protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
         new GbaRomLayout("EU", "HOODLUMS REV", "BRYP", "41"),
         new GbaRomLayout("US", "HOODLUMS REV", "BRYE", "41"),

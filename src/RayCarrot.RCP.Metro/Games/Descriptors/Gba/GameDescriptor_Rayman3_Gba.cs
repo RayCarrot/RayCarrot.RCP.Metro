@@ -36,7 +36,7 @@ public sealed class GameDescriptor_Rayman3_Gba : GbaGameDescriptor
         builder.Register(new GameBananaGameComponent(19456));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new GbaRomProgramInstallationStructure(new[]
+    protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
         new GbaRomLayout("EU", "RAYMAN 3", "AYZP", "41"),
         new GbaRomLayout("US", "RAYMAN 3", "AYZE", "41"),

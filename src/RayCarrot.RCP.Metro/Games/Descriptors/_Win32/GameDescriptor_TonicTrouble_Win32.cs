@@ -64,7 +64,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
         builder.Register(new GameBananaGameComponent(18937));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("TonicTrouble.exe", GameInstallationPathType.PrimaryExe, required: true),

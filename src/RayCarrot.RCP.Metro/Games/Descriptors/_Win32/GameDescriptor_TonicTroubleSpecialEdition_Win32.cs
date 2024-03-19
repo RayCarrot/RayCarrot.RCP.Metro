@@ -64,7 +64,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
         builder.Register(new GameBananaGameComponent(18937));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("MaiD3Dvr.exe", GameInstallationPathType.PrimaryExe, required: true),

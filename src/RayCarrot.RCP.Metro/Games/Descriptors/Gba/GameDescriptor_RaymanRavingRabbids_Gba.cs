@@ -33,7 +33,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Gba : GbaGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanRavingRabbidsGBAEU", "gba_rrr/rrr_eu"));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new GbaRomProgramInstallationStructure(new[]
+    protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
         new GbaRomLayout("EU", "RAYMAN4", "BQ3P", "41"),
         new GbaRomLayout("US", "RAYMAN4", "BQ3E", "41"),

@@ -51,7 +51,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 1)));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RFR_WinRT.exe", GameInstallationPathType.PrimaryExe, required: true),

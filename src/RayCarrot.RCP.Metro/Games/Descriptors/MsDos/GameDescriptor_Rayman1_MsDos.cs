@@ -64,7 +64,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYMAN.EXE", GameInstallationPathType.PrimaryExe, required: true),

@@ -40,7 +40,7 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new ExeProgramInstallationStructure();
+    protected override ProgramInstallationStructure CreateStructure() => new ExeProgramInstallationStructure();
 
     #endregion
 

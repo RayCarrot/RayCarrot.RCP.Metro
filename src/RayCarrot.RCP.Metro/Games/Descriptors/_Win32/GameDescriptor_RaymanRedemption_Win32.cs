@@ -39,7 +39,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
     
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman Redemption.exe", GameInstallationPathType.PrimaryExe, required: true),

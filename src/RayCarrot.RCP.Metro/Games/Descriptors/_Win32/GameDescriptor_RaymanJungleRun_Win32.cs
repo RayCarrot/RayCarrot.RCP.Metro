@@ -48,7 +48,7 @@ public sealed class GameDescriptor_RaymanJungleRun_Win32 : Win32GameDescriptor
         builder.Register(new GameBananaGameComponent(19728));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman Jungle Run.exe", GameInstallationPathType.PrimaryExe, required: true),

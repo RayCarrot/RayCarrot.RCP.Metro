@@ -99,7 +99,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     public ProgramInstallationStructure Structure => 
         // Cache the object to avoid re-creating it each time it's requested
-        _structure ??= GetStructure();
+        _structure ??= CreateStructure();
 
     #endregion
 
@@ -154,7 +154,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<GamePanelComponent>(new ModLoaderGamePanelComponent());
     }
 
-    protected abstract ProgramInstallationStructure GetStructure();
+    protected abstract ProgramInstallationStructure CreateStructure();
 
     #endregion
 

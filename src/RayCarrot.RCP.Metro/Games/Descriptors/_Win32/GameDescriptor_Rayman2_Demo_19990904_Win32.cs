@@ -38,7 +38,7 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
         }));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman2Demo.exe", GameInstallationPathType.PrimaryExe, required: true),

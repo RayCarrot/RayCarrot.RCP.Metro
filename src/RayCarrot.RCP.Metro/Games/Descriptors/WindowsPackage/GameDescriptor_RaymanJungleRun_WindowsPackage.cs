@@ -47,7 +47,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanJungleRun_PC));
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RO1Mobile.exe", GameInstallationPathType.PrimaryExe, required: true),

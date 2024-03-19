@@ -24,7 +24,7 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
 
     #region Protected Methods
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYMAN.exe", GameInstallationPathType.PrimaryExe, required: true),

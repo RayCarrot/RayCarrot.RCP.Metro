@@ -44,7 +44,7 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
-    protected override ProgramInstallationStructure GetStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYPLUS.EXE", GameInstallationPathType.PrimaryExe, required: true),
