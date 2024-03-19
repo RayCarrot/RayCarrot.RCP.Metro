@@ -13,9 +13,8 @@ public abstract class SingleFileProgramInstallationStructure : ProgramInstallati
     {
         base.RegisterComponents(builder);
 
-        // Single-file games only support delta patch mods and can only modify its own file
-        builder.Register(new ModModuleComponent(x => new DeltasModule(x.InstallLocation.FilePath)));
-
+        // Single-file games need to store the mod library in a folder based on its file name to avoid conflicts
+        // if there are multiple single-file games in the same folder
         builder.Register(new ModLibraryPathComponent(x => x.InstallLocation.Directory + $".rcp_mods_{x.InstallLocation.FileName}"));
     }
 
