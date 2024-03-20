@@ -50,14 +50,14 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MsDos : MsDosGameDescri
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("RAYMAN.EXE", GameInstallationPathType.PrimaryExe, required: true),
+        new ProgramFilePath("RAYMAN.EXE", ProgramPathType.PrimaryExe, required: true),
 
         // Directories
-        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
-    });
+        new ProgramDirectoryPath("PCMAP", ProgramPathType.Data, required: true),
+    }));
 
     #endregion
 

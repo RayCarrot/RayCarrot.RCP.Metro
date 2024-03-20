@@ -39,11 +39,11 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Rayman! Dark Magician's reign of terror!.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Rayman! Dark Magician's reign of terror!.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

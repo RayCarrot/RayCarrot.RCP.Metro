@@ -2,7 +2,7 @@
 
 // TODO: This might need to change in the future. Maybe use constant strings instead of an enum to increase flexibility?
 //       The purpose of this is to be able to get common types of paths from a game in an abstract way.
-public enum GameInstallationPathType
+public enum ProgramPathType
 {
     PrimaryExe,
     ConfigExe,

@@ -51,12 +51,12 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("LyN_f.exe", GameInstallationPathType.PrimaryExe, required: true),
-        new GameInstallationFilePath("Launcher.exe", GameInstallationPathType.OtherExe, required: true),
-    });
+        new ProgramFilePath("LyN_f.exe", ProgramPathType.PrimaryExe, required: true),
+        new ProgramFilePath("Launcher.exe", ProgramPathType.OtherExe, required: true),
+    }));
 
     #endregion
 

@@ -38,11 +38,11 @@ public sealed class GameDescriptor_RaymanTheDreamersBoundary_Win32 : Win32GameDe
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
     
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Rayman - The Dreamer's Boundary.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Rayman - The Dreamer's Boundary.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

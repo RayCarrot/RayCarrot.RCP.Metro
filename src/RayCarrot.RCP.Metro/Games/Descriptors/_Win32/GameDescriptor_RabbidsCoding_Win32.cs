@@ -39,11 +39,11 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Rabbids Coding.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Rabbids Coding.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

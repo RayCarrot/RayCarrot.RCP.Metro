@@ -42,14 +42,14 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MsDos : MsDosGameDes
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),
+        new ProgramFilePath("RAYKIT.EXE", ProgramPathType.PrimaryExe, required: true),
 
         // Directories
-        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
-    });
+        new ProgramDirectoryPath("PCMAP", ProgramPathType.Data, required: true),
+    }));
 
     #endregion
 

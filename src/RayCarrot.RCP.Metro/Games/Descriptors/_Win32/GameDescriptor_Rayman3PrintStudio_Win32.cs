@@ -34,11 +34,11 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
         builder.Register(new GameOptionsComponent(x => new Rayman3PrintStudioGameOptionsViewModel(x)));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Autorun.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Autorun.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

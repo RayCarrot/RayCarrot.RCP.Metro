@@ -48,11 +48,11 @@ public sealed class GameDescriptor_RaymanFiestaRun_Win32 : Win32GameDescriptor
         builder.Register(new GameBananaGameComponent(19729));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Rayman Fiesta Run.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Rayman Fiesta Run.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

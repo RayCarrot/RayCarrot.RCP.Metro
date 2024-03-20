@@ -72,14 +72,14 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),
+        new ProgramFilePath("RAYKIT.EXE", ProgramPathType.PrimaryExe, required: true),
 
         // Directories
-        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
-    });
+        new ProgramDirectoryPath("PCMAP", ProgramPathType.Data, required: true),
+    }));
 
     #endregion
 

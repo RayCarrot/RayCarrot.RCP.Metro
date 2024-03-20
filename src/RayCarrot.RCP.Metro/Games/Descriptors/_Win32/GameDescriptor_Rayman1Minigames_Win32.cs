@@ -35,11 +35,11 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
         builder.Register<OnGameAddedComponent, DefaultToRunAsAdminOnGameAddedComponent>();
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("RayGames.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("RayGames.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

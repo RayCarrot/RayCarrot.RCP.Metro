@@ -9,6 +9,6 @@ public class DefaultWin32LaunchPathComponent : Win32LaunchPathComponent
     public static FileSystemPath GetLaunchPath(GameInstallation installation)
     {
         var structure = installation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-        return structure.GetAbsolutePath(installation, GameInstallationPathType.PrimaryExe);
+        return structure.FileSystem.GetAbsolutePath(installation, ProgramPathType.PrimaryExe);
     }
 }

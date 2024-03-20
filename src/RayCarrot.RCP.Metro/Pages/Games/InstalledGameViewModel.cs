@@ -236,7 +236,7 @@ public class InstalledGameViewModel : BaseViewModel
                     // Select the exe file in Explorer if it exists
                     if (GameInstallation.GameDescriptor.Structure is DirectoryProgramInstallationStructure structure)
                     {
-                        FileSystemPath exeFilePath = structure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+                        FileSystemPath exeFilePath = structure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
 
                         if (exeFilePath.FileExists && exeFilePath.Parent == pathToOpen)
                             pathToOpen = exeFilePath;

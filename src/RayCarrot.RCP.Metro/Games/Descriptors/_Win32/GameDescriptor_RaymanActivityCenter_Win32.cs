@@ -24,11 +24,11 @@ public sealed class GameDescriptor_RaymanActivityCenter_Win32 : Win32GameDescrip
 
     #region Protected Methods
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Rayman.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Rayman.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

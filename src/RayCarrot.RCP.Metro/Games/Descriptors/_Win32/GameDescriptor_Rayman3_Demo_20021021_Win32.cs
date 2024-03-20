@@ -44,11 +44,11 @@ public sealed class GameDescriptor_Rayman3_Demo_20021021_Win32 : Win32GameDescri
         builder.Register<CPATextureSyncComponent, Rayman3DemoCPATextureSyncComponent>();
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("MainP5Pvf.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("MainP5Pvf.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

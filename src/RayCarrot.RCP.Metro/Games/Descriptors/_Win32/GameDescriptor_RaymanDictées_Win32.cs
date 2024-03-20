@@ -24,11 +24,11 @@ public sealed class GameDescriptor_RaymanDictées_Win32 : Win32GameDescriptor
 
     #region Protected Methods
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Dictee.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Dictee.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 

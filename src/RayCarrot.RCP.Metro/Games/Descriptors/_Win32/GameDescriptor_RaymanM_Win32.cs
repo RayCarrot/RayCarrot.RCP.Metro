@@ -52,18 +52,18 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
         builder.Register<CPATextureSyncComponent, RaymanMArenaCPATextureSyncComponent>();
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("RaymanM.exe", GameInstallationPathType.PrimaryExe, required: true),
-        new GameInstallationFilePath("RM_Setup_DX8.exe", GameInstallationPathType.ConfigExe),
+        new ProgramFilePath("RaymanM.exe", ProgramPathType.PrimaryExe, required: true),
+        new ProgramFilePath("RM_Setup_DX8.exe", ProgramPathType.ConfigExe),
 
         // Directories
-        new GameInstallationDirectoryPath("MenuBin", GameInstallationPathType.Data, required: true),
-        new GameInstallationDirectoryPath("FishBin", GameInstallationPathType.Data, required: true),
-        new GameInstallationDirectoryPath("TribeBin", GameInstallationPathType.Data, required: true),
-        new GameInstallationDirectoryPath("MENU", GameInstallationPathType.Save),
-    });
+        new ProgramDirectoryPath("MenuBin", ProgramPathType.Data, required: true),
+        new ProgramDirectoryPath("FishBin", ProgramPathType.Data, required: true),
+        new ProgramDirectoryPath("TribeBin", ProgramPathType.Data, required: true),
+        new ProgramDirectoryPath("MENU", ProgramPathType.Save),
+    }));
 
     #endregion
 

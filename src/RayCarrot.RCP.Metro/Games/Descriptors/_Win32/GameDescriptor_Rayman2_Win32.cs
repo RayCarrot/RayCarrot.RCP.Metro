@@ -95,20 +95,20 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
             }));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Rayman2.exe", GameInstallationPathType.PrimaryExe, required: true),
-        new GameInstallationFilePath("GXSetup.exe", GameInstallationPathType.ConfigExe),
+        new ProgramFilePath("Rayman2.exe", ProgramPathType.PrimaryExe, required: true),
+        new ProgramFilePath("GXSetup.exe", ProgramPathType.ConfigExe),
 
         // Directories
-        new GameInstallationDirectoryPath("Data", GameInstallationPathType.Data, required: true)
+        new ProgramDirectoryPath("Data", ProgramPathType.Data, required: true)
         {
-            new GameInstallationDirectoryPath("Options", GameInstallationPathType.Save),
-            new GameInstallationDirectoryPath("World", GameInstallationPathType.Data, required: true),
-            new GameInstallationDirectoryPath("SaveGame", GameInstallationPathType.Save)
+            new ProgramDirectoryPath("Options", ProgramPathType.Save),
+            new ProgramDirectoryPath("World", ProgramPathType.Data, required: true),
+            new ProgramDirectoryPath("SaveGame", ProgramPathType.Save)
         },
-    });
+    }));
 
     #endregion
 

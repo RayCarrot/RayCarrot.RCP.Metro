@@ -49,7 +49,7 @@ public abstract class UriLaunchGameComponent : LaunchGameComponent
         new JumpListItemViewModel(
             gameInstallation: GameInstallation,
             name: GameInstallation.GetDisplayName(),
-            iconSource: GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>().GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe),
+            iconSource: GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>().FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe),
             launchPath: GetLaunchUri(),
             workingDirectory: null,
             launchArguments: null,

@@ -25,7 +25,7 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
 
         // Get the game exe file path
         var programStructure = gameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-        GameFilePath = programStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
+        GameFilePath = programStructure.FileSystem.GetAbsolutePath(gameInstallation, ProgramPathType.PrimaryExe);
     }
 
     #endregion

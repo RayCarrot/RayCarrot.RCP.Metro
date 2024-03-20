@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Structure;
 
-public class GameInstallationFilePath : GameInstallationPath
+public class ProgramFilePath : ProgramPath
 {
-    public GameInstallationFilePath(string path, GameInstallationPathType type, bool required = false) 
+    public ProgramFilePath(string path, ProgramPathType type, bool required = false) 
         : base(path, type, required) { }
 
     public override bool IsValid(FileSystemPath fullPath) => fullPath.FileExists;

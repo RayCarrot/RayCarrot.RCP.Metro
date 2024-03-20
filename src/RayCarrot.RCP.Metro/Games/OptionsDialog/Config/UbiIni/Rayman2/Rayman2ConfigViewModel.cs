@@ -558,7 +558,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         {
             // Get the exe file path
             var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-            FileSystemPath path = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+            FileSystemPath path = programStructure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
 
             // Get the location
             var location = GetAspectRatioLocation(path);
@@ -610,7 +610,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
 
             // Get the exe file path
             var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-            FileSystemPath path = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+            FileSystemPath path = programStructure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
 
             // Make sure the file exists
             if (!path.FileExists)

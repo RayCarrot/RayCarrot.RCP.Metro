@@ -43,11 +43,11 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("Template.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("Template.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 }

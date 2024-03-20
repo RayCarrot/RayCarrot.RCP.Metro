@@ -49,11 +49,11 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 1)));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new GameInstallationPath[]
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
-        new GameInstallationFilePath("RFR_WinRT_OEM.exe", GameInstallationPathType.PrimaryExe, required: true),
-    });
+        new ProgramFilePath("RFR_WinRT_OEM.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
 
     #endregion
 }
