@@ -33,7 +33,16 @@ public class FileExtension
         }
         else if (multiple)
         {
-            AllFileExtensions = fileExtensions.ToLowerInvariant().Split('.').Skip(1).Select(x => $".{x}").ToArray();
+            // Some probably not very efficient and ugly linq. But use for now until we remove support for multiple file extensions.
+            AllFileExtensions = fileExtensions.
+                ToLowerInvariant().
+                Split('.').
+                Skip(1).
+                Reverse().
+                Take(MaxExtensions).
+                Reverse().
+                Select(x => $".{x}").
+                ToArray();
         }
         else
         {
@@ -51,8 +60,21 @@ public class FileExtension
         if (fileExtensions == null)
             throw new ArgumentNullException(nameof(fileExtensions));
 
-        AllFileExtensions = fileExtensions.Select(x => x.ToLowerInvariant()).ToArray();
+        // Some probably not very efficient and ugly linq. But use for now until we remove support for multiple file extensions.
+        AllFileExtensions = fileExtensions.
+            Reverse().
+            Take(MaxExtensions).
+            Reverse().
+            Select(x => x.ToLowerInvariant()).
+            ToArray();
     }
+
+    #endregion
+
+    #region Constants
+
+    // Limit to 2 file extensions for now. This fixes the "swingman_2.0_a.tga.ckd" file in Rayman Origins.
+    private const int MaxExtensions = 2;
 
     #endregion
 
