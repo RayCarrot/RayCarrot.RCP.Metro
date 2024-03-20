@@ -1,10 +1,11 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;
 
 namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public abstract class SingleFileProgramInstallationStructure : ProgramInstallationStructure
 {
+    protected SingleFileProgramInstallationStructure(IReadOnlyCollection<ProgramLayout>? layouts) : base(layouts) { }
+    
     public virtual bool SupportGameFileFinder => false;
 
     public abstract FileExtension[] SupportedFileExtensions { get; }

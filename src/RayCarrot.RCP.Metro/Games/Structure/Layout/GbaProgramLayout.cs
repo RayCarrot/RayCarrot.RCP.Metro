@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Structure;
 
-public class GbaRomLayout : RomLayout
+public class GbaProgramLayout : ProgramLayout
 {
-    public GbaRomLayout(string variantId, string gameTitle, string gameCode, string makerCode) : base(variantId)
+    public GbaProgramLayout(string variantId, string gameTitle, string gameCode, string makerCode) : base(variantId)
     {
         GameTitle = gameTitle;
         GameCode = gameCode;

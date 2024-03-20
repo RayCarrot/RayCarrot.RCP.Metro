@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public class DirectoryProgramInstallationStructure : ProgramInstallationStructure
 {
-    public DirectoryProgramInstallationStructure(ProgramFileSystem fileSystem)
+    public DirectoryProgramInstallationStructure(ProgramFileSystem fileSystem) : base(null)
     {
         FileSystem = fileSystem;
     }

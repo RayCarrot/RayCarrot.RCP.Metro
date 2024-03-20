@@ -4,6 +4,13 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public abstract class ProgramInstallationStructure
 {
+    protected ProgramInstallationStructure(IReadOnlyCollection<ProgramLayout>? layouts)
+    {
+        Layouts = layouts ?? new[] { new ProgramLayout(String.Empty) };
+    }
+
+    public IReadOnlyCollection<ProgramLayout> Layouts { get; }
+
     public virtual void RegisterComponents(IGameComponentBuilder builder) { }
 
     /// <summary>

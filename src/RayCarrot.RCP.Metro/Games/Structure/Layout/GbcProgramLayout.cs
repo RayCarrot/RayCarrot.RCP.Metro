@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Structure;
 
-public class GbcRomLayout : RomLayout
+public class GbcProgramLayout : ProgramLayout
 {
-    public GbcRomLayout(string variantId, string gameTitle, string manufacturerCode, string licenseeCode) : base(variantId)
+    public GbcProgramLayout(string variantId, string gameTitle, string manufacturerCode, string licenseeCode) : base(variantId)
     {
         GameTitle = gameTitle;
         ManufacturerCode = manufacturerCode;

@@ -36,7 +36,7 @@ public sealed class GameDescriptor_Rayman3_Prototype_Gba : GbaGameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
-        new GbaRomLayout("US", "RAYMAN 3    ", "AYZE", "41"),
+        new GbaProgramLayout("US", "RAYMAN 3    ", "AYZE", "41"),
     });
 
     #endregion

@@ -26,7 +26,7 @@ public sealed class GameDescriptor_TonicTrouble_Gbc : GbcGameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new GbcRomProgramInstallationStructure(new[]
     {
-        new GbcRomLayout("EU", "TONICTROUBL", "AXTP", "41"),
+        new GbcProgramLayout("EU", "TONICTROUBL", "AXTP", "41"),
     });
 
     #endregion

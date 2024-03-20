@@ -35,8 +35,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Gba : GbaGameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
-        new GbaRomLayout("EU", "RAYMAN4", "BQ3P", "41"),
-        new GbaRomLayout("US", "RAYMAN4", "BQ3E", "41"),
+        new GbaProgramLayout("EU", "RAYMAN4", "BQ3P", "41"),
+        new GbaProgramLayout("US", "RAYMAN4", "BQ3E", "41"),
     });
 
     #endregion

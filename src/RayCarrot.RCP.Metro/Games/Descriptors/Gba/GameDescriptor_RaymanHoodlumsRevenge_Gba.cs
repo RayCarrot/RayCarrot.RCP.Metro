@@ -35,8 +35,8 @@ public sealed class GameDescriptor_RaymanHoodlumsRevenge_Gba : GbaGameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
     {
-        new GbaRomLayout("EU", "HOODLUMS REV", "BRYP", "41"),
-        new GbaRomLayout("US", "HOODLUMS REV", "BRYE", "41"),
+        new GbaProgramLayout("EU", "HOODLUMS REV", "BRYP", "41"),
+        new GbaProgramLayout("US", "HOODLUMS REV", "BRYE", "41"),
     });
 
     #endregion

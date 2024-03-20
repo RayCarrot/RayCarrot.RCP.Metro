@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Structure;
 
-public class RomLayout
+public class ProgramLayout
 {
-    public RomLayout(string variantId)
+    public ProgramLayout(string variantId)
     {
         VariantId = variantId;
     }
@@ -14,5 +14,5 @@ public class RomLayout
     /// </summary>
     public string VariantId { get; }
 
-    // TODO: Add other rom data like offset table etc.
+    // TODO: Add common data like offset table etc. (can be used for runtime modifications)
 }

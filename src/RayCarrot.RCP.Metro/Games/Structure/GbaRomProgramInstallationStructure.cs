@@ -5,14 +5,14 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public class GbaRomProgramInstallationStructure : RomProgramInstallationStructure
 {
-    public GbaRomProgramInstallationStructure(GbaRomLayout[] romLayouts) : base(romLayouts)
+    public GbaRomProgramInstallationStructure(GbaProgramLayout[] layouts) : base(layouts)
     {
-        RomLayouts = romLayouts;
+        Layouts = layouts;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public new GbaRomLayout[] RomLayouts { get; }
+    public new GbaProgramLayout[] Layouts { get; }
 
     public override FileExtension[] SupportedFileExtensions => new[]
     {
@@ -20,7 +20,7 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
         new FileExtension(".agb"),
     };
 
-    private GbaRomLayout? GetLayout(InstallLocation location)
+    private GbaProgramLayout? GetLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the ROM layout for a location without a file");
@@ -38,7 +38,7 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
             return null;
         }
 
-        return RomLayouts.FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
+        return Layouts.FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
                                               x.GameCode == romHeader.GameCode && 
                                               x.MakerCode == romHeader.MakerCode);
     }

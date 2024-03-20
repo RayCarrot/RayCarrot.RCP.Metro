@@ -34,9 +34,9 @@ public sealed class GameDescriptor_Rayman1_Gbc : GbcGameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new GbcRomProgramInstallationStructure(new[]
     {
-        new GbcRomLayout("EU", "RAYMAN", "AYQP", "41"),
-        new GbcRomLayout("US", "RAYMAN", "AYQE", "41"),
-        new GbcRomLayout("JP", "RAYMAN", "BURJ", "2H"),
+        new GbcProgramLayout("EU", "RAYMAN", "AYQP", "41"),
+        new GbcProgramLayout("US", "RAYMAN", "AYQE", "41"),
+        new GbcProgramLayout("JP", "RAYMAN", "BURJ", "2H"),
     });
 
     #endregion

@@ -2,6 +2,13 @@
 
 public class DiscProgramInstallationStructure : SingleFileProgramInstallationStructure
 {
+    public DiscProgramInstallationStructure(DiscProgramLayout[] layouts) : base(layouts)
+    {
+        Layouts = layouts;
+    }
+
+    public new DiscProgramLayout[] Layouts { get; }
+
     public override bool SupportGameFileFinder => true;
 
     public override FileExtension[] SupportedFileExtensions => new[]
