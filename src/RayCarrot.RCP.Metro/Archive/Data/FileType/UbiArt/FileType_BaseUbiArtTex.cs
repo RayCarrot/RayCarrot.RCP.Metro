@@ -157,15 +157,28 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
             // Get the image in specified format
             using MagickImage img = new(inputStream.Stream, GetMagickFormat(inputFormat.FileExtensions));
 
-            // Change the type to the output format
-            img.Format = MagickFormat;
-
-            // Get the image bytes
-            byte[] bytes = img.ToByteArray();
-
-            // Update the TEX header
             tex.Height = (ushort)img.Height;
             tex.Width = (ushort)img.Width;
+
+            byte[] bytes;
+            if (MagickFormat == MagickFormat.Dds)
+            {
+                // Create mipmaps without alpha blend
+                using MagickImageCollection ddsCollection = img.CreateDdsWithMipmaps(compress: true);
+                
+                // Get the image bytes
+                bytes = ddsCollection.ToByteArray();
+            }
+            else
+            {
+                // Change the type to the output format
+                img.Format = MagickFormat;
+
+                // Get the image bytes
+                bytes = img.ToByteArray();
+            }
+
+            // Update the TEX header
             // TODO: Figure out what the values are on Wii U where they don't match the actual size
             tex.TextureSize = (uint)bytes.Length;
             tex.TextureSize2 = (uint)bytes.Length;
@@ -175,6 +188,19 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
 
             // Write the TEX file
             manager.Context!.WriteStreamData(outputStream.Stream, tex, name: outputStream.Name, mode: VirtualFileMode.DoNotClose);
+        }
+    }
+
+    protected override void WriteImage(MagickImage img, MagickFormat outputFormat, ArchiveFileStream outputStream)
+    {
+        if (outputFormat == MagickFormat.Dds)
+        {
+            using MagickImageCollection ddsCollection = img.CreateDdsWithMipmaps(compress: true);
+            ddsCollection.Write(outputStream.Stream, outputFormat);
+        }
+        else
+        {
+            base.WriteImage(img, outputFormat, outputStream);
         }
     }
 

@@ -119,6 +119,11 @@ public class FileType_Image : IFileType
 
     #region Image Data
 
+    protected virtual void WriteImage(MagickImage img, MagickFormat outputFormat, ArchiveFileStream outputStream)
+    {
+        img.Write(outputStream.Stream, outputFormat);
+    }
+
     /// <summary>
     /// Gets an image from the file data
     /// </summary>
@@ -141,7 +146,7 @@ public class FileType_Image : IFileType
         using MagickImage img = new(inputStream.Stream, GetMagickFormat(inputFormat.FileExtensions));
 
         // Write to stream as native format
-        img.Write(outputStream.Stream, outputFormat);
+        WriteImage(img, outputFormat, outputStream);
     }
 
     /// <summary>
