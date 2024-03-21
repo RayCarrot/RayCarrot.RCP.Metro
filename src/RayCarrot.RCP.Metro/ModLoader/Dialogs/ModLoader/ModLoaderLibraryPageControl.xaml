@@ -46,7 +46,7 @@
                                    VerticalAlignment="Center"
                                    Text="{Resx ModLoader_InstalledHeader}" />
 
-                        <rcp:InfoIcon Text="{Resx ﻿ModLoader_InstalledInfo}" />
+                        <rcp:InfoIcon Text="{Resx ModLoader_InstalledInfo}" />
 
                     </StackPanel>
 

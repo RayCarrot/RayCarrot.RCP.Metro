@@ -269,6 +269,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
             BitmapImage thumb = new();
             thumb.BeginInit();
+            thumb.CreateOptions |= BitmapCreateOptions.IgnoreImageCache;
             thumb.CacheOption = BitmapCacheOption.OnLoad; // Required to allow the file to be deleted, such as if a temp file
             thumb.UriSource = new Uri(thumbFilePath);
             thumb.EndInit();

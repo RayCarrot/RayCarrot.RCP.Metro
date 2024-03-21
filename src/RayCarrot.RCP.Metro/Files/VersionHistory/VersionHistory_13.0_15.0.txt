@@ -1,4 +1,12 @@
-﻿-----   Version 14.0.2 - January 24, 2024   -----
+﻿-----   Version 14.0.3 - March 21, 2024   -----
+• Improved DDS mipmap generation for UbiArt textures, fixing issues caused by alpha blending and changed the filter type from triangle to box
+• Updated localization
+• Fixed a bug where the mod loader would show the wrong mod thumbnail due to a caching conflict
+• Fixed a bug where UbiArt textures with a period in the filename would not be detected as textures
+• Fixed a bug where the mod loader info tooltip wouldn't show the text
+
+
+-----   Version 14.0.2 - January 24, 2024   -----
 • Added GameBanana mod support for the Ubisoft Connect versions of Rayman Jungle Run and Rayman Fiesta Run
 • Updated localization
 • Fixed a bug where the UI for a downloadable mod wouldn't show all downloadable files if there were too many of them

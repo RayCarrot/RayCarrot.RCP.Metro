@@ -24,6 +24,8 @@ public sealed class TempDirectory : TempFileSystemEntry
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    
+    private static Random Random { get; }= new();
 
     /// <summary>
     /// The path of the temporary directory
@@ -41,11 +43,11 @@ public sealed class TempDirectory : TempFileSystemEntry
         // NOTE: Previously we used a GUID, however they're long and would sometimes cause the full path to be too
         //       long to be handled by the .NET Framework IO APIs. When we migrate to .NET this should no longer be
         //       an issue and we can revert to using a GUID.
-        int num = 0;
+        int num = Random.Next();
         do
         {
             tempDir = tempBaseDir + $"{num}";
-            num++;
+            num = Random.Next();
         } while (tempDir.DirectoryExists);
 
         return tempDir;
