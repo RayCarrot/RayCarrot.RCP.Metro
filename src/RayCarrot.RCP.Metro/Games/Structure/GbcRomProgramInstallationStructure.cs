@@ -39,8 +39,8 @@ public class GbcRomProgramInstallationStructure : RomProgramInstallationStructur
         }
 
         return Layouts.FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
-                                              x.ManufacturerCode == romHeader.ManufacturerCode && 
-                                              x.LicenseeCode == romHeader.NewLicenseeCode);
+                                           x.ManufacturerCode == romHeader.ManufacturerCode && 
+                                           x.LicenseeCode == romHeader.NewLicenseeCode);
     }
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)

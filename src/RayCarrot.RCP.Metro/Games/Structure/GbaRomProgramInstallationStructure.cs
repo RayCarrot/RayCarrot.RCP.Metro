@@ -39,8 +39,8 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
         }
 
         return Layouts.FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
-                                              x.GameCode == romHeader.GameCode && 
-                                              x.MakerCode == romHeader.MakerCode);
+                                           x.GameCode == romHeader.GameCode && 
+                                           x.MakerCode == romHeader.MakerCode);
     }
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
