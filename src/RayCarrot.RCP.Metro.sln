@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Nintendo",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Ray1.GBA", "..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1.GBA\BinarySerializer.Ray1.GBA.csproj", "{5DEEF582-D20F-4178-819B-47D9D41D9BC4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Disk", "..\submodules\BinarySerializer.Disk\src\BinarySerializer.Disk.csproj", "{F3BCA065-923D-407A-9A4B-412850C26A8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,14 @@ Global
 		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|x86.ActiveCfg = Release|Any CPU
 		{5DEEF582-D20F-4178-819B-47D9D41D9BC4}.Release|x86.Build.0 = Release|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Debug|x86.Build.0 = Debug|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3BCA065-923D-407A-9A4B-412850C26A8A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,11 +160,12 @@ Global
 		{015EB29F-C337-4862-BAA6-5066396FB9B1} = {7467979D-E630-4407-97D2-8EBAE531D746}
 		{DD7BF7C5-BB07-46C8-B74A-BA711E2A4F4C} = {7467979D-E630-4407-97D2-8EBAE531D746}
 		{5DEEF582-D20F-4178-819B-47D9D41D9BC4} = {7467979D-E630-4407-97D2-8EBAE531D746}
+		{F3BCA065-923D-407A-9A4B-412850C26A8A} = {7467979D-E630-4407-97D2-8EBAE531D746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_TaskErrorCategory = Message
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
 		RESX_ExcelExportMode = MultipleSheets
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_TaskErrorCategory = Message
 	EndGlobalSection
 EndGlobal

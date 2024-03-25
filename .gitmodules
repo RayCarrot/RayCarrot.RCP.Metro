@@ -16,3 +16,6 @@
 [submodule "submodules/BinarySerializer.Nintendo"]
 	path = submodules/BinarySerializer.Nintendo
 	url = https://github.com/BinarySerializer/BinarySerializer.Nintendo
+[submodule "submodules/BinarySerializer.Disk"]
+	path = submodules/BinarySerializer.Disk
+	url = https://github.com/BinarySerializer/BinarySerializer.Disk

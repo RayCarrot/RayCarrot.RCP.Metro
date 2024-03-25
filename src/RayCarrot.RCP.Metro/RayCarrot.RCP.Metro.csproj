@@ -117,6 +117,7 @@
 
   <!-- Project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\submodules\BinarySerializer.Disk\src\BinarySerializer.Disk.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.Nintendo\src\BinarySerializer.Nintendo.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.OpenSpace\src\BinarySerializer.OpenSpace.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.PS1\src\BinarySerializer.PS1.csproj" />
