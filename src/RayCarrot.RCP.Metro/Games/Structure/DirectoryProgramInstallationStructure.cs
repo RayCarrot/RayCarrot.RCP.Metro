@@ -26,6 +26,17 @@ public class DirectoryProgramInstallationStructure : ProgramInstallationStructur
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
     {
-        return FileSystem.IsLocationValid(location);
+        ProgramFileSystemValidationResult validationResult = FileSystem.IsLocationValid(new PhysicalFileSystemSource(location.Directory), true);
+
+        if (validationResult.IsValid)
+        {
+            return new GameLocationValidationResult(true);
+        }
+        else
+        {
+            return new GameLocationValidationResult(false,
+                String.Format(Resources.Games_ValidationMissingPaths,
+                    validationResult.InvalidPaths.Select(x => x.Path).Take(10).JoinItems(Environment.NewLine, x => $"- {x}")));
+        }
     }
 }

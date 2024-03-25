@@ -19,7 +19,7 @@ public abstract class ProgramPath : IEnumerable<ProgramPath>
     public ProgramPathType Type { get; }
     public bool Required { get; }
 
-    public abstract bool IsValid(FileSystemPath fullPath);
+    public abstract bool IsValid(IFileSystemSource source, string fullPath);
 
     public void Add(ProgramPath path) => SubPaths.Add(path);
     public void AddRange(IEnumerable<ProgramPath> paths) => SubPaths.AddRange(paths);

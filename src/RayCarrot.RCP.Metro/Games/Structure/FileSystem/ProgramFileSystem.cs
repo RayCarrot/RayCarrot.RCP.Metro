@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Structure;
+﻿using System.IO;
+
+namespace RayCarrot.RCP.Metro.Games.Structure;
 
 /// <summary>
 /// Defines paths for a program. Note that these aren't all the paths and
@@ -15,11 +17,11 @@ public class ProgramFileSystem
 
     public ProgramPath[] Paths { get; }
 
-    private static IEnumerable<(FileSystemPath FullPath, ProgramPath Path)> EnumeratePaths(FileSystemPath basePath, IEnumerable<ProgramPath> gamePaths)
+    private static IEnumerable<(string FullPath, ProgramPath Path)> EnumeratePaths(string basePath, IEnumerable<ProgramPath> gamePaths)
     {
         foreach (ProgramPath gamePath in gamePaths)
         {
-            FileSystemPath fullPath = basePath + gamePath.Path;
+            FileSystemPath fullPath = Path.Combine(basePath, gamePath.Path);
 
             yield return (fullPath, gamePath);
 
@@ -28,48 +30,55 @@ public class ProgramFileSystem
         }
     }
 
-    public IEnumerable<(FileSystemPath FullPath, ProgramPath Path)> EnumeratePaths(FileSystemPath basePath) =>
-        EnumeratePaths(basePath, Paths);
+    public IEnumerable<(string FullPath, ProgramPath Path)> EnumeratePaths() => 
+        EnumeratePaths(String.Empty, Paths);
 
     public IEnumerable<FileSystemPath> GetAbsolutePaths(GameInstallation gameInstallation, ProgramPathType type) =>
         GetAbsolutePaths(gameInstallation.InstallLocation.Directory, type);
     public IEnumerable<FileSystemPath> GetAbsolutePaths(FileSystemPath basePath, ProgramPathType type) =>
-        EnumeratePaths(basePath).Where(x => x.Path.Type == type).Select(x => x.FullPath);
+        EnumeratePaths().Where(x => x.Path.Type == type).Select(x => basePath + x.FullPath);
 
     public string GetLocalPath(ProgramPathType type) =>
         GetAbsolutePath(FileSystemPath.EmptyPath, type);
     public FileSystemPath GetAbsolutePath(GameInstallation gameInstallation, ProgramPathType type) =>
         GetAbsolutePath(gameInstallation.InstallLocation.Directory, type);
-    public FileSystemPath GetAbsolutePath(FileSystemPath basePath, ProgramPathType type) =>
-        EnumeratePaths(basePath).FirstOrDefault(x => x.Path.Type == type).FullPath;
-
-    public GameLocationValidationResult IsLocationValid(InstallLocation location)
+    public FileSystemPath GetAbsolutePath(FileSystemPath basePath, ProgramPathType type)
     {
-        List<string>? invalidPaths = null;
+        string? fullPath = EnumeratePaths().FirstOrDefault(x => x.Path.Type == type).FullPath;
 
-        foreach ((FileSystemPath FullPath, ProgramPath Path) in EnumeratePaths(location.Directory))
+        if (fullPath == null)
+            return FileSystemPath.EmptyPath;
+
+        return basePath + fullPath;
+    }
+
+    public ProgramFileSystemValidationResult IsLocationValid(IFileSystemSource source, bool checkAllPaths)
+    {
+        List<ProgramPath>? invalidPaths = null;
+
+        foreach ((string FullPath, ProgramPath Path) in EnumeratePaths())
         {
             if (!Path.Required)
                 continue;
 
-            if (!Path.IsValid(FullPath))
+            if (!Path.IsValid(source, FullPath))
             {
-                invalidPaths ??= new List<string>();
-                invalidPaths.Add(Path.Path);
+                invalidPaths ??= new List<ProgramPath>();
+                invalidPaths.Add(Path);
+
+                if (!checkAllPaths)
+                    break;
             }
         }
 
         if (invalidPaths == null)
         {
-            return new GameLocationValidationResult(true);
+            return new ProgramFileSystemValidationResult(true);
         }
         else
         {
-            Logger.Info("The validation for the location {0} failed due to {1} paths not being valid", location, invalidPaths.Count);
-
-            return new GameLocationValidationResult(false,
-                String.Format(Resources.Games_ValidationMissingPaths,
-                    invalidPaths.Take(10).JoinItems(Environment.NewLine, x => $"- {x}")));
+            Logger.Info("The validation for the location {0} failed due to {1} paths not being valid", source.BasePath, invalidPaths.Count);
+            return new ProgramFileSystemValidationResult(false, invalidPaths);
         }
     }
 }
