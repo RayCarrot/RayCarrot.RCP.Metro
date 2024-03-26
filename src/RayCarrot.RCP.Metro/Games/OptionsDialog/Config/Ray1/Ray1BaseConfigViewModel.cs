@@ -461,10 +461,10 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
 
         // Read config values
         GameLanguage = Config.Language;
-        IsMusicEnabled = Config.MusicCdActive != 0;
-        IsStero = Config.IsStero != 0;
-        SoundVolume = Config.VolumeSound;
-        VoicesVolume = Config.EDU_VoiceSound;
+        IsMusicEnabled = Config.MusicVolume != 0;
+        IsStero = Config.SteroEnabled != 0;
+        SoundVolume = Config.SoundVolume;
+        VoicesVolume = Config.VoicesVolume;
 
         ShowBackground = Config.BackgroundOptionOn;
         ShowParallaxBackground = Config.ScrollDiffOn;
@@ -472,9 +472,9 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         FrameRate = Config.Frequence;
         ZoneOfPlay = Config.SizeScreen;
 
-        GamePad_Jump = Config.KeyJump;
-        GamePad_Fist = Config.KeyWeapon;
-        GamePad_Action = Config.KeyAction;
+        GamePad_Jump = Config.JumpKey;
+        GamePad_Fist = Config.FistKey;
+        GamePad_Action = Config.ActionKey;
         XPadMax = Config.XPadMax;
         XPadMin = Config.XPadMin;
         YPadMax = Config.YPadMax;
@@ -528,10 +528,10 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
 
             // Set config values
             Config.Language = GameLanguage;
-            Config.MusicCdActive = (ushort)(IsMusicEnabled ? 1 : 0);
-            Config.IsStero = (ushort)(IsStero ? 1 : 0);
-            Config.VolumeSound = (ushort)SoundVolume;
-            Config.EDU_VoiceSound = (ushort)VoicesVolume;
+            Config.MusicVolume = (ushort)(IsMusicEnabled ? 1 : 0);
+            Config.SteroEnabled = (ushort)(IsStero ? 1 : 0);
+            Config.SoundVolume = (ushort)SoundVolume;
+            Config.VoicesVolume = (ushort)VoicesVolume;
 
             Config.BackgroundOptionOn = ShowBackground;
             Config.ScrollDiffOn = ShowParallaxBackground;
@@ -539,9 +539,9 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
             Config.Frequence = FrameRate;
             Config.SizeScreen = (byte)ZoneOfPlay;
 
-            Config.KeyJump = (ushort)GamePad_Jump;
-            Config.KeyWeapon = (ushort)GamePad_Fist;
-            Config.KeyAction = (ushort)GamePad_Action;
+            Config.JumpKey = (ushort)GamePad_Jump;
+            Config.FistKey = (ushort)GamePad_Fist;
+            Config.ActionKey = (ushort)GamePad_Action;
             Config.XPadMax = (short)XPadMax;
             Config.XPadMin = (short)XPadMin;
             Config.YPadMax = (short)YPadMax;
@@ -619,14 +619,14 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
             Param = 0,
             DeviceID = 57368,
             NumCard = 3,
-            KeyJump = 1,
-            KeyWeapon = 0,
-            Options_jeu_10 = 3,
-            KeyAction = 2,
-            MusicCdActive = 1,
-            VolumeSound = 18,
-            IsStero = 1,
-            EDU_VoiceSound = 18,
+            JumpKey = 1,
+            FistKey = 0,
+            UnusedKey = 3,
+            ActionKey = 2,
+            MusicVolume = 1,
+            SoundVolume = 18,
+            SteroEnabled = 1,
+            VoicesVolume = 18,
             Mode_Pad = false,
             Port_Pad = 0,
             XPadMax = 1610,
