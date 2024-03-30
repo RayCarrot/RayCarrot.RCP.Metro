@@ -29,7 +29,7 @@ public sealed class GameDescriptor_Rayman1_Ps1 : Ps1GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        // TODO-UPDATE: Progression manager
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1_Ps1(x, "Rayman 1 - PS1")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPS1US", "r1/ps1_us"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PS1));
 
