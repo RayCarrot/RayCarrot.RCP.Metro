@@ -20,7 +20,7 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
         new FileExtension(".agb"),
     };
 
-    private GbaProgramLayout? GetLayout(InstallLocation location)
+    public GbaProgramLayout? GetLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the ROM layout for a location without a file");

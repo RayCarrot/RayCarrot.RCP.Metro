@@ -4,14 +4,14 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallationStructure
 {
-    public PS1DiscProgramInstallationStructure(DiscProgramLayout[] layouts) : base(layouts)
+    public PS1DiscProgramInstallationStructure(Ps1DiscProgramLayout[] layouts) : base(layouts)
     {
         Layouts = layouts;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public new DiscProgramLayout[] Layouts { get; }
+    public new Ps1DiscProgramLayout[] Layouts { get; }
 
     public override bool SupportGameFileFinder => true;
 
@@ -20,7 +20,8 @@ public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallation
         new FileExtension(".cue"),
     };
 
-    private DiscProgramLayout? GetLayout(InstallLocation location)
+    // TODO-UPDATE: Cache the current layout. Store in game installation with id? Avoid calling this after added.
+    public Ps1DiscProgramLayout? GetLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the disc layout for a location without a file");

@@ -5,12 +5,14 @@ namespace RayCarrot.RCP.Metro;
 
 public static class ContextExtensions
 {
-    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
+    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true, bool recreateOnWrite = true)
         where T : BinarySerializable, new()
     {
         PhysicalFile file = encoder == null
             ? new LinearFile(context, fileName, endian)
             : new EncodedLinearFile(context, fileName, encoder, endian);
+
+        file.RecreateOnWrite = recreateOnWrite;
 
         if (!File.Exists(file.SourcePath))
             return null;
@@ -35,10 +37,10 @@ public static class ContextExtensions
     }
 
     public static T ReadRequiredFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null,
-        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
+        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true, bool recreateOnWrite = true)
         where T : BinarySerializable, new()
     {
-        return ReadFileData<T>(context, fileName, encoder, endian, onPreSerialize, removeFileWhenComplete) 
+        return ReadFileData<T>(context, fileName, encoder, endian, onPreSerialize, removeFileWhenComplete, recreateOnWrite) 
                ?? throw new FileNotFoundException($"The requested file {fileName} was not found");
     }
 
@@ -66,10 +68,10 @@ public static class ContextExtensions
     }
 
     public static Task<T> ReadRequiredFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null,
-        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
+        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true, bool recreateOnWrite = true)
         where T : BinarySerializable, new()
     {
-        return Task.Run(() => context.ReadRequiredFileData(fileName, encoder, endian, onPreSerialize, removeFileWhenComplete));
+        return Task.Run(() => context.ReadRequiredFileData(fileName, encoder, endian, onPreSerialize, removeFileWhenComplete, recreateOnWrite));
     }
 
     public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian? endian = null)

@@ -20,7 +20,7 @@ public class GbcRomProgramInstallationStructure : RomProgramInstallationStructur
         new FileExtension(".cgb"),
     };
 
-    private GbcProgramLayout? GetLayout(InstallLocation location)
+    public GbcProgramLayout? GetLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the ROM layout for a location without a file");

@@ -22,6 +22,7 @@ public sealed class DuckStationGameClientDescriptor : EmulatorGameClientDescript
         base.RegisterComponents(builder);
 
         builder.Register<LaunchGameComponent, DefaultGameClientLaunchGameComponent>();
+        builder.Register<EmulatedSaveFilesComponent, DuckStationEmulatedSaveFilesComponent>();
     }
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

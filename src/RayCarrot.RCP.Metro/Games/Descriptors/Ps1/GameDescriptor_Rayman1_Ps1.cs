@@ -38,7 +38,7 @@ public sealed class GameDescriptor_Rayman1_Ps1 : Ps1GameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new PS1DiscProgramInstallationStructure(new[]
     {
-        new DiscProgramLayout("EU", 51, new ProgramFileSystem(new ProgramPath[]
+        new Ps1DiscProgramLayout("EU", "BE", "SLES-00049", 51, new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLES_000.49;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramDirectoryPath("RAY", ProgramPathType.Data, required: true)
@@ -46,7 +46,7 @@ public sealed class GameDescriptor_Rayman1_Ps1 : Ps1GameDescriptor
                 new ProgramFilePath("RAY.XXX;1", ProgramPathType.Data, required: true),
             },
         })),
-        new DiscProgramLayout("US", 51, new ProgramFileSystem(new ProgramPath[]
+        new Ps1DiscProgramLayout("US", "BI", "SLUS-00005", 51, new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLUS-000.05;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramDirectoryPath("RAY", ProgramPathType.Data, required: true)
@@ -54,7 +54,7 @@ public sealed class GameDescriptor_Rayman1_Ps1 : Ps1GameDescriptor
                 new ProgramFilePath("RAY.XXX;1", ProgramPathType.Data, required: true),
             },
         })),
-        new DiscProgramLayout("JP", 48, new ProgramFileSystem(new ProgramPath[]
+        new Ps1DiscProgramLayout("JP", "BI", "SLPS-00026", 48, new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("PSX.EXE;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramDirectoryPath("RAY", ProgramPathType.Data, required: true)
