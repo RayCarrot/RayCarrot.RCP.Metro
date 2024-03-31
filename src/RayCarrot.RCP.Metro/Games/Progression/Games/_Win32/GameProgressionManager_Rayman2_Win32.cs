@@ -49,7 +49,7 @@ public class GameProgressionManager_Rayman2_Win32 : GameProgressionManager
 
             Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveSlot.SlotIndex);
 
-            R2GeneralSaveFile? saveData= await context.ReadFileDataAsync<R2GeneralSaveFile>(slotFilePath, new R2SaveEncoder(), removeFileWhenComplete: false);
+            R2GeneralSaveFile? saveData = await context.ReadFileDataAsync<R2GeneralSaveFile>(slotFilePath, new R2SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {

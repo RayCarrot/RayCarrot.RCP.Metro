@@ -13,6 +13,9 @@ public enum CPAGameMode
     [CPAGameModeInfo("Rayman 2 (iOS)", EngineVersion.Rayman2, Platform.iOS)]
     Rayman2_iOS,
 
+    [CPAGameModeInfo("Rayman 2 (PlayStation)", EngineVersion.Rayman2, Platform.PlayStation1)]
+    Rayman2_PS1,
+
     [CPAGameModeInfo("Rayman 2 (PlayStation 2)", EngineVersion.Rayman2Revolution, Platform.PlayStation2)]
     Rayman2_PS2,
 
