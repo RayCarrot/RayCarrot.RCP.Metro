@@ -3,7 +3,7 @@ using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public abstract class Rayman2Ps1SaveBlock : BinarySerializable
+public abstract class CPAPs1SaveBlock : BinarySerializable
 {
     public abstract int AllocatedSize { get; }
     public abstract int ExpectedSize { get; }

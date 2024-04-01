@@ -3,7 +3,7 @@ using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Rayman2Ps1SaveBlock2 : Rayman2Ps1SaveBlock
+public class Rayman2Ps1SaveBlock2 : CPAPs1SaveBlock
 {
     public override int AllocatedSize => 0x10;
     public override int ExpectedSize => 0x1;

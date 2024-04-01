@@ -3,7 +3,7 @@ using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Rayman2Ps1SaveBlock1 : Rayman2Ps1SaveBlock
+public class Rayman2Ps1SaveBlock1 : CPAPs1SaveBlock
 {
     public override int AllocatedSize => 0x200;
     public override int ExpectedSize => 0x148;
@@ -20,7 +20,7 @@ public class Rayman2Ps1SaveBlock1 : Rayman2Ps1SaveBlock
     public int Int_2C { get; set; } // A flag per level
     public byte Byte_30 { get; set; }
     public byte Byte_31 { get; set; } // Flags
-    public byte[] Bytes_32 { get; set; }
+    public byte[] Bytes_32 { get; set; } // Padding?
     public int Int_34 { get; set; }
     public byte[] LumFlags { get; set; } // One bit for each collected lum
     public byte[] LumCounts { get; set; } // Per level
@@ -43,7 +43,7 @@ public class Rayman2Ps1SaveBlock1 : Rayman2Ps1SaveBlock
     public int ScreenOffsetY { get; set; }
     public byte Byte_144 { get; set; }
     public byte Byte_145 { get; set; }
-    public byte[] Bytes_146 { get; set; }
+    public byte[] Bytes_146 { get; set; } // Padding?
 
     protected override void SerializeData(SerializerObject s)
     {
