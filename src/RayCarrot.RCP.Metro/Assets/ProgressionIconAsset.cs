@@ -40,6 +40,12 @@ public enum ProgressionIconAsset
     RM_R14,
     RM_R15,
 
+    // Rayman Rush
+    RR_Championship,
+    RR_TimeAttack,
+    RR_Lums,
+    RR_Target,
+
     // Rayman 3
     R3_Cage,
     R3_Score,

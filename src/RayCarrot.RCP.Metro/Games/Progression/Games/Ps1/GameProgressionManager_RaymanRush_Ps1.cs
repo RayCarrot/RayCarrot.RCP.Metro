@@ -14,12 +14,43 @@ public class GameProgressionManager_RaymanRush_Ps1 : EmulatedGameProgressionMana
     {
         DataBlock<RaymanRushPs1SaveData> saveBlock = await emulatedSave.ReadAsync<DataBlock<RaymanRushPs1SaveData>>();
 
+        int levelsCount = saveBlock.SaveData.SaveBlock1.Levels.Length;
+
+        // TODO: Maybe add lap/race times as well?
+        List<GameProgressionDataItem> dataItems = new()
+        {
+            new GameProgressionDataItem(
+                isPrimaryItem: true,
+                icon: ProgressionIconAsset.RR_Championship,
+                header: "Championship", // TODO-LOC
+                value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedChampionship != 0 ? 1 : 0),
+                max: levelsCount),
+            new GameProgressionDataItem(
+                isPrimaryItem: true,
+                icon: ProgressionIconAsset.RR_TimeAttack,
+                header: "Time Attack", // TODO-LOC
+                value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedModes >= 2 ? 1 : 0),
+                max: levelsCount),
+            new GameProgressionDataItem(
+                isPrimaryItem: true,
+                icon: ProgressionIconAsset.RR_Lums,
+                header: "Lums", // TODO-LOC
+                value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedModes >= 3 ? 1 : 0),
+                max: levelsCount),
+            new GameProgressionDataItem(
+                isPrimaryItem: true,
+                icon: ProgressionIconAsset.RR_Target,
+                header: "Target", // TODO-LOC
+                value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedModes >= 4 ? 1 : 0),
+                max: levelsCount),
+        };
+
         yield return new SerializabeEmulatedGameProgressionSlot<DataBlock<RaymanRushPs1SaveData>>(
             name: saveBlock.SaveData.SaveBlock1.Name,
             index: 0,
             percentage: saveBlock.SaveData.SaveBlock1.Percentage / 10f,
             emulatedSave: emulatedSave,
-            dataItems: Array.Empty<GameProgressionDataItem>(), // TODO-UPDATE: Add items
+            dataItems: dataItems,
             serializable: saveBlock)
         {
             GetExportObject = x => x.SaveData,
