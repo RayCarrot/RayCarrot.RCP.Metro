@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanRush_Ps1 : Ps1GameDescriptor
     public override string[] SearchKeywords => new[] { "rr" };
     public override DateTime ReleaseDate => new(2002, 03, 08);
 
-    public override GameIconAsset Icon => GameIconAsset.RaymanM; // TODO-UPDATE: New icon
+    public override GameIconAsset Icon => GameIconAsset.RaymanRush;
     public override GameBannerAsset Banner => GameBannerAsset.RaymanM;
 
     #endregion
