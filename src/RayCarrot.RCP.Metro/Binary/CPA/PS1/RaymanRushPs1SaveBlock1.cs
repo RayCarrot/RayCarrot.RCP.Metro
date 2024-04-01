@@ -23,17 +23,17 @@ public class RaymanRushPs1SaveBlock1 : CPAPs1SaveBlock
     public ushort Player2OptimizeInput { get; set; }
     public ushort Player1NoInput { get; set; }
     public ushort Player2NoInput { get; set; }
-    public short[] LumCounts { get; set; } // Per level - never updated
-    public short[] TargetCounts { get; set; } // Per level - never updated
+    public short[] OriginalLumCounts { get; set; } // Per level - never updated
+    public short[] OriginalTargetCounts { get; set; } // Per level - never updated
     public short Short_324 { get; set; } // 1-6, checked against 5 a lot
     public byte[] Bytes_326 { get; set; }
     public short Short_328 { get; set; }
     public short Short_32A { get; set; }
     public short Short_32C { get; set; }
-    public short TotalLums { get; set; } // Never updated
+    public short OriginalTotalLums { get; set; } // Never updated
     public short LevelIndex { get; set; }
     public byte Byte_332 { get; set; }
-    public byte Byte_333 { get; set; } // Padding?
+    public byte UnlockedCharacters { get; set; } // 0-4
     public byte[] Bytes_334 { get; set; }
     public byte Byte_338 { get; set; }
     public byte Byte_339 { get; set; }
@@ -70,17 +70,17 @@ public class RaymanRushPs1SaveBlock1 : CPAPs1SaveBlock
             Player2OptimizeInput = s.Serialize<ushort>(Player2OptimizeInput, name: nameof(Player2OptimizeInput));
             Player1NoInput = s.Serialize<ushort>(Player1NoInput, name: nameof(Player1NoInput));
             Player2NoInput = s.Serialize<ushort>(Player2NoInput, name: nameof(Player2NoInput));
-            LumCounts = s.SerializeArray<short>(LumCounts, 12, name: nameof(LumCounts));
-            TargetCounts = s.SerializeArray<short>(TargetCounts, 12, name: nameof(TargetCounts));
+            OriginalLumCounts = s.SerializeArray<short>(OriginalLumCounts, 12, name: nameof(OriginalLumCounts));
+            OriginalTargetCounts = s.SerializeArray<short>(OriginalTargetCounts, 12, name: nameof(OriginalTargetCounts));
             Short_324 = s.Serialize<short>(Short_324, name: nameof(Short_324));
             Bytes_326 = s.SerializeArray<byte>(Bytes_326, 2, name: nameof(Bytes_326));
             Short_328 = s.Serialize<short>(Short_328, name: nameof(Short_328));
             Short_32A = s.Serialize<short>(Short_32A, name: nameof(Short_32A));
             Short_32C = s.Serialize<short>(Short_32C, name: nameof(Short_32C));
-            TotalLums = s.Serialize<short>(TotalLums, name: nameof(TotalLums));
+            OriginalTotalLums = s.Serialize<short>(OriginalTotalLums, name: nameof(OriginalTotalLums));
             LevelIndex = s.Serialize<short>(LevelIndex, name: nameof(LevelIndex));
             Byte_332 = s.Serialize<byte>(Byte_332, name: nameof(Byte_332));
-            Byte_333 = s.Serialize<byte>(Byte_333, name: nameof(Byte_333));
+            UnlockedCharacters = s.Serialize<byte>(UnlockedCharacters, name: nameof(UnlockedCharacters));
             Bytes_334 = s.SerializeArray<byte>(Bytes_334, 4, name: nameof(Bytes_334));
             Byte_338 = s.Serialize<byte>(Byte_338, name: nameof(Byte_338));
             Byte_339 = s.Serialize<byte>(Byte_339, name: nameof(Byte_339));
