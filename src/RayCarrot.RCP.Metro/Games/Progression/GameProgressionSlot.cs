@@ -6,13 +6,19 @@ public class GameProgressionSlot
 
     public GameProgressionSlot(
         LocalizedString? name, 
-        int index, 
+        int index,
         int collectiblesCount, 
         int totalCollectiblesCount,
         FileSystemPath filePath,
         IReadOnlyList<GameProgressionDataItem> dataItems)
     {
-        Name = name ?? new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
+        if (name != null)
+            Name = name;
+        else if (index != -1)
+            Name = new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
+        else
+            Name = "Slot"; // TODO-LOC
+
         Index = index;
         CollectiblesCount = collectiblesCount;
         TotalCollectiblesCount = totalCollectiblesCount;
@@ -35,7 +41,13 @@ public class GameProgressionSlot
         FileSystemPath filePath,
         IReadOnlyList<GameProgressionDataItem> dataItems)
     {
-        Name = name ?? new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
+        if (name != null)
+            Name = name;
+        else if (index != -1)
+            Name = new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
+        else
+            Name = "Slot"; // TODO-LOC
+
         Index = index;
         CollectiblesCount = null;
         TotalCollectiblesCount = null;

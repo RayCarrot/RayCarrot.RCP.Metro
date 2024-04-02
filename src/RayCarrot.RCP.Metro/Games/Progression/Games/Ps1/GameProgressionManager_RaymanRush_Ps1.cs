@@ -47,7 +47,7 @@ public class GameProgressionManager_RaymanRush_Ps1 : EmulatedGameProgressionMana
 
         yield return new SerializabeEmulatedGameProgressionSlot<DataBlock<RaymanRushPs1SaveData>>(
             name: saveBlock.SaveData.SaveBlock1.Name,
-            index: 0,
+            index: -1,
             percentage: saveBlock.SaveData.SaveBlock1.Percentage / 10f,
             emulatedSave: emulatedSave,
             dataItems: dataItems,

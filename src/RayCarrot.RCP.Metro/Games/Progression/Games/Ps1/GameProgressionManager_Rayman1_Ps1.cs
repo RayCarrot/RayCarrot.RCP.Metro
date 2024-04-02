@@ -20,7 +20,7 @@ public class GameProgressionManager_Rayman1_Ps1 : EmulatedGameProgressionManager
 
         yield return new SerializabeEmulatedGameProgressionSlot<DataBlock<SaveSlot>>(
             name: (emulatedSave as EmulatedPs1Save)?.Name.Substring(0, 3).ToUpper(),
-            index: 0,
+            index: -1,
             collectiblesCount: collectiblesCount,
             totalCollectiblesCount: maxCollectiblesCount,
             emulatedSave: emulatedSave,

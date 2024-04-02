@@ -49,7 +49,7 @@ public class GameProgressionManager_Rayman2_Ps1 : EmulatedGameProgressionManager
 
         yield return new SerializabeEmulatedGameProgressionSlot<DataBlock<Rayman2Ps1SaveData>>(
             name: null,
-            index: 0,
+            index: -1,
             collectiblesCount: lums + cages,
             totalCollectiblesCount: 800 + 60,
             emulatedSave: emulatedSave,
