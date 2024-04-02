@@ -24,7 +24,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MsDos : MsDosGameDescri
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanEdutainmentQui_MsDos_Title));
+    public override LocalizedString DisplayName => "Rayman Junior - Language with Rayman (Quiz)"; // TODO-LOC
     public override string[] SearchKeywords => new[] { "edu", "quiz", "junior" };
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 

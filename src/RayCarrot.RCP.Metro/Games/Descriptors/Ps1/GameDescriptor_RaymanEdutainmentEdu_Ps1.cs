@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_Ps1 : Ps1GameDescriptor
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman Edutainment (Edu)"; // TODO-LOC
+    public override LocalizedString DisplayName => "Rayman Junior - Math and language with Rayman (Edu)"; // TODO-LOC
     public override string[] SearchKeywords => new[] { "edu", "junior", "brain" };
     public override DateTime ReleaseDate => new(2000, 01, 01); // Not exact
 
