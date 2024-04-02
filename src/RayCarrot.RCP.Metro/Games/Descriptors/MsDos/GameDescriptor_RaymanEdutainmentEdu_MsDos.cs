@@ -25,7 +25,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MsDos : MsDosGameDescrip
     public override GameCategory Category => GameCategory.Other;
 
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanEdutainmentEdu_MsDos_Title));
-    public override string[] SearchKeywords => new[] { "edu" };
+    public override string[] SearchKeywords => new[] { "edu", "junior" };
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
