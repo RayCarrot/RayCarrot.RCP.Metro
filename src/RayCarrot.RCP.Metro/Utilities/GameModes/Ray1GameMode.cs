@@ -14,6 +14,9 @@ public enum Ray1GameMode
     [Ray1GameModeInfo("Rayman Edutainment (PC)", Ray1EngineVersion.PC_Edu)]
     RaymanEducational_PC,
 
+    [Ray1GameModeInfo("Rayman Edutainment (PlayStation)", Ray1EngineVersion.PS1_Edu)]
+    RaymanEducational_PS1,
+
     [Ray1GameModeInfo("Rayman Designer (PC)", Ray1EngineVersion.PC_Kit)]
     RaymanDesigner_PC,
 

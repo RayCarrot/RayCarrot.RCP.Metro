@@ -70,7 +70,9 @@ public class GamesManager
             // Other
             new GameDescriptor_Rayman1Minigames_Win32(),
             new GameDescriptor_RaymanEdutainmentEdu_MsDos(),
+            new GameDescriptor_RaymanEdutainmentEdu_Ps1(),
             new GameDescriptor_RaymanEdutainmentQuiz_MsDos(),
+            new GameDescriptor_RaymanEdutainmentQuiz_Ps1(),
             new GameDescriptor_TonicTrouble_Win32(),
             new GameDescriptor_TonicTroubleSpecialEdition_Win32(),
             new GameDescriptor_TonicTrouble_Gbc(),
