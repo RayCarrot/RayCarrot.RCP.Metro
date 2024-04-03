@@ -47,6 +47,8 @@ public class ModifiedFilesViewModel : BaseViewModel
     public int RemovedFilesCount { get; private set; }
     public int PatchedFilesCount { get; private set; }
 
+    public bool HasConflicts { get; private set; }
+
     #endregion
 
     #region Private Methods
@@ -96,6 +98,7 @@ public class ModifiedFilesViewModel : BaseViewModel
         if (isOverridable && currentItem.GetOverridableItem(fileName) is { } existingFileItem)
         {
             existingFileItem.OverridenMods.Add(mod.Metadata.Name);
+            HasConflicts = true;
         }
         else
         {
@@ -132,6 +135,7 @@ public class ModifiedFilesViewModel : BaseViewModel
         AddedFilesCount = 0;
         RemovedFilesCount = 0;
         PatchedFilesCount = 0;
+        HasConflicts = false;
 
         foreach (ModViewModel modViewModel in enabledMods)
         {

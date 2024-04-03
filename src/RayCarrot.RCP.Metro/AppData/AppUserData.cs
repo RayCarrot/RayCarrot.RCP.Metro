@@ -93,6 +93,7 @@ public partial class AppUserData : BaseViewModel
         // Mod Loader
         ModLoader_AutomaticallyCheckForUpdates = true;
         ModLoader_ViewedMods = new Dictionary<string, List<ViewedMod>>();
+        ModLoader_ShowModConflictsWarning = true;
     }
 
     /// <summary>
@@ -423,6 +424,11 @@ public partial class AppUserData : BaseViewModel
     /// Specifies which downloadable mods have been viewed, for each source
     /// </summary>
     public Dictionary<string, List<ViewedMod>> ModLoader_ViewedMods { get; set; }
+
+    /// <summary>
+    /// Indicates if a warning message should be shown if there are mod conflicts when applying
+    /// </summary>
+    public bool ModLoader_ShowModConflictsWarning { get; set; }
 
     #endregion
 }

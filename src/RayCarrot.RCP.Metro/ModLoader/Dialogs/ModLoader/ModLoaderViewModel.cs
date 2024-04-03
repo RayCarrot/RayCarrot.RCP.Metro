@@ -548,8 +548,17 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Logger.Info("Finished checking for updates");
     }
 
-    public async Task<bool> ApplyAsync()
+    public async Task<bool?> ApplyAsync()
     {
+        if (ModifiedFiles.HasConflicts && Services.Data.ModLoader_ShowModConflictsWarning)
+        {
+            // TODO-LOC
+            bool result = await Services.MessageUI.DisplayMessageAsync("There are currently multiple mods applied which overwrite the same files. This might cause one or more mods to not work correctly. You can view the list of modified files to determine if it's an issue as well as re-order the mods to change their priority.\n\nYou can disable this warning message in the settings if you don't want it to be shown for future conflicts.\n\nContinue to apply mods?", "Mod conflicts warning", MessageType.Warning, true);
+
+            if (!result)
+                return null;
+        }
+
         using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))
         {
             Logger.Info("Applying mods");

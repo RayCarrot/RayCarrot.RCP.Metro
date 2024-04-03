@@ -50,9 +50,9 @@ public partial class ModLoaderLibraryPageControl : UserControl
 
     private async void ApplyButton_OnClick(object sender, RoutedEventArgs e)
     {
-        bool success = await ViewModel.ApplyAsync();
+        bool? success = await ViewModel.ApplyAsync();
 
-        if (!success)
+        if (success == false)
             ModLoaderDialog.ForceClose();
     }
 }
