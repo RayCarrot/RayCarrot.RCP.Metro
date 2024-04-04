@@ -10,7 +10,7 @@ public class UbiArtArchiveComponent : ArchiveComponent
     public UbiArtArchiveComponent(Func<GameInstallation, IEnumerable<string>> archivePathsFunc) 
         : base(GetArchiveManager, archivePathsFunc, Id) { }
 
-    private new const string Id = "UBIART_IPK";
+    public new const string Id = "UBIART_IPK";
 
     private static UbiArtSettings GetSettings(GameInstallation gameInstallation)
     {

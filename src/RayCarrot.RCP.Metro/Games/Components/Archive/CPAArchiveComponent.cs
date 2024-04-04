@@ -10,7 +10,7 @@ public class CPAArchiveComponent : ArchiveComponent
     public CPAArchiveComponent(Func<GameInstallation, IEnumerable<string>> archivePathsFunc) 
         : base(GetArchiveManager, archivePathsFunc, Id) { }
 
-    private new const string Id = "CPA_CNT";
+    public new const string Id = "CPA_CNT";
 
     private static OpenSpaceSettings GetSettings(GameInstallation gameInstallation)
     {

@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
+using RayCarrot.RCP.Metro.ModLoader.Modules.UbiArtLocalization;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -54,6 +55,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         }));
 
         builder.Register(new GameBananaGameComponent(5986));
+        builder.Register(new ModModuleComponent(_ => new UbiArtLocalizationModule()));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_Update(x)));

@@ -5,7 +5,8 @@ using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Modules.UbiArtLocalization;
 
-public class UbiArtLocalizationFilePatch : IFilePatch
+public class UbiArtLocalizationFilePatch<UAString> : IFilePatch
+    where UAString : UbiArtString, new()
 {
     public UbiArtLocalizationFilePatch(GameInstallation gameInstallation, ModFilePath path, IReadOnlyCollection<LocaleFile> localeFiles)
     {
@@ -23,13 +24,12 @@ public class UbiArtLocalizationFilePatch : IFilePatch
         using Context context = new RCPContext(String.Empty);
         GameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
 
-        // TODO: Support Origins (uses String16) and Fiesta Run (uses different template class)
-        Localisation_Template<String8> loc = context.ReadStreamData<Localisation_Template<String8>>(stream, name: Path.FilePath, endian: Endian.Big, mode: VirtualFileMode.DoNotClose);
+        Localisation_Template<UAString> loc = context.ReadStreamData<Localisation_Template<UAString>>(stream, name: Path.FilePath, endian: Endian.Big, mode: VirtualFileMode.DoNotClose);
 
         foreach (LocaleFile localeFile in LocaleFiles)
         {
-            List<UbiArtKeyObjValuePair<int, String8>>? stringTable = loc.Strings.FirstOrDefault(x => x.Key == localeFile.Id)?.Value.ToList();
-            
+            List<UbiArtKeyObjValuePair<int, UAString>>? stringTable = loc.Strings.FirstOrDefault(x => x.Key == localeFile.Id)?.Value.ToList();
+
             if (stringTable == null)
                 continue;
 
@@ -53,14 +53,14 @@ public class UbiArtLocalizationFilePatch : IFilePatch
 
                 if (stringTable.FirstOrDefault(x => x.Key == locId) is { } pair)
                 {
-                    pair.Value = locValue;
+                    pair.Value = new UAString { Value = locValue };
                 }
                 else
                 {
-                    stringTable.Add(new UbiArtKeyObjValuePair<int, String8>()
+                    stringTable.Add(new UbiArtKeyObjValuePair<int, UAString>()
                     {
                         Key = locId,
-                        Value = locValue,
+                        Value = new UAString { Value = locValue },
                     });
                 }
             }
@@ -71,6 +71,4 @@ public class UbiArtLocalizationFilePatch : IFilePatch
         context.WriteStreamData(stream, loc, name: Path.FilePath, endian: Endian.Big, mode: VirtualFileMode.DoNotClose);
         stream.TrimEnd();
     }
-
-    public record LocaleFile(int Id, FileSystemPath FilePath);
 }

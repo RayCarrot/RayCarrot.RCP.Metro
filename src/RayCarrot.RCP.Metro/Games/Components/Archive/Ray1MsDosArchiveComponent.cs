@@ -10,7 +10,7 @@ public class Ray1MsDosArchiveComponent : ArchiveComponent
 {
     public Ray1MsDosArchiveComponent() : base(GetArchiveManager, GetArchiveFilePaths, Id) { }
 
-    private new const string Id = "RAY1_DAT";
+    public new const string Id = "RAY1_DAT";
 
     private static Ray1Settings GetSettings(GameInstallation gameInstallation)
     {
