@@ -58,6 +58,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
                     UbiArtGameMode.RaymanOrigins_Wii,
                     UbiArtGameMode.RaymanOrigins_PSVita,
                     UbiArtGameMode.RaymanLegends_PC,
+                    UbiArtGameMode.RaymanLegends_PS3,
                     UbiArtGameMode.RaymanLegends_Xbox360,
                     UbiArtGameMode.RaymanLegends_WiiU,
                     UbiArtGameMode.RaymanLegends_PSVita,
