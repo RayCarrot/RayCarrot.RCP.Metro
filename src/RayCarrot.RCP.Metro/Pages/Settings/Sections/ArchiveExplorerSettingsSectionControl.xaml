@@ -59,5 +59,11 @@
 
         </StackPanel>
 
+        <!-- TODO-LOC -->
+        <CheckBox Content="Automatically recreate file table on repack (.ipk)"
+                  ToolTip="TODO: Info"
+                  IsChecked="{Binding Path=Archive_IPK_RecreateFileTableOnRepack}"
+                  Margin="0 0 0 8" />
+
     </StackPanel>
 </UserControl>

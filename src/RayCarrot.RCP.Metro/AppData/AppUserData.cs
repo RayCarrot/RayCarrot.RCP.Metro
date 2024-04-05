@@ -82,6 +82,8 @@ public partial class AppUserData : BaseViewModel
         Archive_ExplorerSortOption = ArchiveItemsSort.Default;
         Archive_CNT_SyncOnRepack = false;
         Archive_CNT_SyncOnRepackRequested = false;
+        Archive_IPK_RecreateFileTableOnRepack = false;
+        Archive_IPK_RecreateFileTableOnRepackRequested = false;
 
         // File editors
         FileEditors_AssociatedEditors = new Dictionary<string, FileSystemPath>();
@@ -387,6 +389,16 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the user has been asked to enable <see cref="Archive_CNT_SyncOnRepack"/>
     /// </summary>
     public bool Archive_CNT_SyncOnRepackRequested { get; set; }
+
+    /// <summary>
+    /// Indicates if the file table for UbiArt bundles should be recreated when repacked
+    /// </summary>
+    public bool Archive_IPK_RecreateFileTableOnRepack { get; set; }
+
+    /// <summary>
+    /// Indicates if the user has been asked to enable <see cref="Archive_IPK_RecreateFileTableOnRepack"/>
+    /// </summary>
+    public bool Archive_IPK_RecreateFileTableOnRepackRequested { get; set; }
 
     #endregion
 

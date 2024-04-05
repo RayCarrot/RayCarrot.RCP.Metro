@@ -2,6 +2,7 @@
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ByteSizeLib;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
@@ -16,14 +17,17 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
+    /// <param name="gameInstallation">The game installation or null if one is not specified</param>
     /// <param name="compressionMode">The file compression mode</param>
-    public UbiArtIPKArchiveDataManager(UbiArtSettings settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode compressionMode)
+    public UbiArtIPKArchiveDataManager(UbiArtSettings settings, GameInstallation? gameInstallation, UbiArtIPKArchiveConfigViewModel.FileCompressionMode compressionMode)
     {
         Context = new RCPContext(String.Empty, new RCPSerializerSettings()
         {
             DefaultEndianness = settings.Endian
         });
         Context.AddSettings(settings);
+
+        GameInstallation = gameInstallation;
 
         Config = new UbiArtIPKArchiveConfigViewModel(settings, compressionMode);
     }
@@ -37,6 +41,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     #endregion
 
     #region Public Properties
+
+    public GameInstallation? GameInstallation { get; }
 
     public Context Context { get; }
 
@@ -253,7 +259,54 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
     public double GetOnRepackedArchivesProgressLength() => 0;
 
-    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null) => Task.CompletedTask;
+    public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null)
+    {
+        // Make sure we have a game installation
+        if (GameInstallation == null)
+            return;
+
+        AppUserData data = Services.Data;
+
+        // Only automatically recreate the file table if set to do so
+        if (!data.Archive_IPK_RecreateFileTableOnRepack)
+        {
+            // Ask user the first time
+            if (!data.Archive_IPK_RecreateFileTableOnRepackRequested)
+            {
+                // TODO-LOC
+                if (await Services.MessageUI.DisplayMessageAsync("Do you want to automatically recreate the file table when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page.", MessageType.Question, true))
+                    data.Archive_IPK_RecreateFileTableOnRepack = true;
+
+                data.Archive_IPK_RecreateFileTableOnRepackRequested = true;
+            }
+
+            if (!data.Archive_IPK_RecreateFileTableOnRepack)
+                return;
+        }
+
+        data.Archive_IPK_RecreateFileTableOnRepackRequested = true;
+
+        UbiArtPathsComponent paths = GameInstallation.GetRequiredComponent<UbiArtPathsComponent>();
+        string globalFatFileName = paths.GlobalFatFile ?? throw new InvalidOperationException("A global fat file has to be specified");
+
+        UbiArtGlobalFatManager globalFatManager = new(GameInstallation, paths.GameDataDirectory, globalFatFileName);
+
+        try
+        {
+            string[] bundleNames = paths.GetBundleNames().ToArray();
+            await Task.Run(() => globalFatManager.CreateFileAllocationTable(bundleNames, CancellationToken.None, progressCallback));
+
+            // TODO-LOC
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync($"The file table was successfully recreated from the following bundles:\n\n{bundleNames.JoinItems(Environment.NewLine)}");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Recreating file table");
+
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when recreating the file table");
+        }
+    }
 
     private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {

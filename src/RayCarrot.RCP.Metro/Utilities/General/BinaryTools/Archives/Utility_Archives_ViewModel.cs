@@ -47,7 +47,10 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
             new Utility_Archives_TypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_IPKHeader)),
                 fileExtension: new FileExtension(".ipk"),
-                getManagerFunc: (data, mode) => new UbiArtIPKArchiveDataManager(data.GetAttribute<UbiArtGameModeInfoAttribute>().GetSettings(), mode == Utility_Archives_TypeViewModel.ArchiveMode.Explorer 
+                getManagerFunc: (data, mode) => new UbiArtIPKArchiveDataManager(
+                    settings: data.GetAttribute<UbiArtGameModeInfoAttribute>().GetSettings(), 
+                    gameInstallation: null, 
+                    compressionMode: mode == Utility_Archives_TypeViewModel.ArchiveMode.Explorer 
                     ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
                     : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting),
                 modes: new EnumSelectionViewModel<Enum>(UbiArtGameMode.RaymanOrigins_PC, new Enum[]

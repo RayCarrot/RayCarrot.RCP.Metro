@@ -49,8 +49,8 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanLegends_PC));
-        builder.Register<ArchiveComponent>(new UbiArtArchiveComponent(String.Empty));
-        builder.Register(new UbiArtGlobalFatComponent("secure_fat.gf"));
+        builder.Register<ArchiveComponent>(new UbiArtArchiveComponent());
+        builder.Register(new UbiArtPathsComponent(String.Empty, "secure_fat.gf"));
 
         builder.Register(new GameBananaGameComponent(7400));
         builder.Register(new ModModuleComponent(_ => new UbiArtLocalizationModule()));
