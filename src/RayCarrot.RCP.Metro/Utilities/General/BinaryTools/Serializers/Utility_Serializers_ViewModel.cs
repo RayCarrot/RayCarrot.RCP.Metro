@@ -90,7 +90,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<Origins_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
                 fileExtension: new FileExtension(""),
-                getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().Endian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanOrigins_PC)
@@ -102,7 +102,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<Legends_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RLSaveHeader)),
                 fileExtension: new FileExtension(""),
-                getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().Endian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanLegends_PC)

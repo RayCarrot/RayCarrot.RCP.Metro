@@ -119,7 +119,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
         using RCPContext context = new(String.Empty);
         UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC);
         context.AddSettings(settings);
-        BundleFile ipk = context.ReadStreamData<BundleFile>(ipkStream, name: name, endian: settings.GetEndian, mode: VirtualFileMode.DoNotClose);
+        BundleFile ipk = context.ReadStreamData<BundleFile>(ipkStream, name: name, endian: settings.Endian, mode: VirtualFileMode.DoNotClose);
 
         // Enumerate every patch
         foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))

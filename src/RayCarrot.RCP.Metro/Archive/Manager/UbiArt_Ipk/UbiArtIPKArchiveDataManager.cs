@@ -21,7 +21,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     {
         Context = new RCPContext(String.Empty, new RCPSerializerSettings()
         {
-            DefaultEndianness = settings.GetEndian
+            DefaultEndianness = settings.Endian
         });
         Context.AddSettings(settings);
 
