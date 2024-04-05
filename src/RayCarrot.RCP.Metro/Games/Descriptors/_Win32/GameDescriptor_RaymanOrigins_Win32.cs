@@ -49,10 +49,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanOrigins_PC));
-        builder.Register<ArchiveComponent>(new UbiArtArchiveComponent(_ => new[]
-        {
-            @"GameData\bundle_PC.ipk",
-        }));
+        builder.Register<ArchiveComponent>(new UbiArtArchiveComponent("GameData"));
 
         builder.Register(new GameBananaGameComponent(5986));
         builder.Register(new ModModuleComponent(_ => new UbiArtLocalizationModule()));
