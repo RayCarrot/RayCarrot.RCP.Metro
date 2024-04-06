@@ -44,12 +44,33 @@ public class WindowSessionState
     /// <param name="window">The window to apply the state to</param>
     public void ApplyToWindow(Window window)
     {
-        // TODO: Verify window is visible on screen
+        Rect virtualScreenRect = new(
+            x: SystemParameters.VirtualScreenLeft,
+            y: SystemParameters.VirtualScreenTop,
+            width: SystemParameters.VirtualScreenWidth,
+            height: SystemParameters.VirtualScreenHeight);
 
-        window.Height = WindowHeight;
-        window.Width = WindowWidth;
-        window.Left = WindowLeft;
-        window.Top = WindowTop;
+        double width = WindowWidth;
+        double height = WindowHeight;
+        double x = WindowLeft;
+        double y = WindowTop;
+
+        if (y < virtualScreenRect.Y)
+            y = virtualScreenRect.Y;
+
+        if (x < virtualScreenRect.X)
+            x = virtualScreenRect.X;
+
+        if (x + width > virtualScreenRect.Right)
+            x = virtualScreenRect.Right - width;
+
+        if (y + height > virtualScreenRect.Bottom)
+            y = virtualScreenRect.Bottom - height;
+
+        window.Width = width;
+        window.Height = height;
+        window.Left = x;
+        window.Top = y;
         window.WindowState = WindowMaximized ? WindowState.Maximized : WindowState.Normal;
     }
 
