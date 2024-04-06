@@ -315,8 +315,22 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowModLoaderAsync(ModLoaderViewModel.ModToInstall[] modPaths)
     {
-        ModLoaderViewModel? viewModel = await ModLoaderViewModel.FromFilesAsync(modPaths);
+        ModLoaderViewModel? viewModel;
 
+        try
+        {
+            viewModel = await ModLoaderViewModel.FromFilesAsync(modPaths);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Opening mod loader from files");
+
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when opening the mods");
+
+            return;    
+        }
+        
         if (viewModel == null)
             return;
 
