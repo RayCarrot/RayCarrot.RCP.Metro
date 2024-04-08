@@ -17,6 +17,7 @@
 • Added the option to not compress UbiArt textures when importing from other file formats
 • Added support for Rayman Origins for the UBIART-LOC mod module
 • Added the Rayman Legends (PS3) game mode when opening an IPK archive
+• The compression method is now shown for images in the Archive Explorer
 • A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
 • When launching the app it will now reposition the window to be on screen, avoiding it opening off screen if the last opened position was on a now disconnected monitor

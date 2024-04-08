@@ -81,6 +81,9 @@ public class FileType_Image : IFileType
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)), 
                 text: new GeneratedLocString(() => $"{GetFormat(fileExtension)}")),
+            new DuoGridItemViewModel(
+                header: "Image compression:", // TODO-LOC 
+                text: img.Compression == CompressionMethod.NoCompression ? "None" : $"{img.Compression}"), // TODO-LOC
         });
     }
 
