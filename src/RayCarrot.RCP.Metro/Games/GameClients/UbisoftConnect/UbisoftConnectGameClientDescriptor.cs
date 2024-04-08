@@ -6,6 +6,12 @@ namespace RayCarrot.RCP.Metro.Games.Clients.UbisoftConnect;
 
 public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
 {
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Public Properties
 
     public override string GameClientId => "UbisoftConnect";
@@ -50,8 +56,16 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
         builder.Register(new ExternalGameLinksComponent(GetExternalUriLinks));
     }
 
-    public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
-        new UbisoftConnectGameClientOptionsViewModel(gameClientInstallation);
+    public override GameClientOptionsViewModel? GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation)
+    {
+        List<string> userIds = TryGetUserIds(gameClientInstallation).ToList();
+
+        // Don't show options if there are no user ids to choose from
+        if (userIds.Count == 0)
+            return null;
+
+        return new UbisoftConnectGameClientOptionsViewModel(gameClientInstallation, userIds);
+    }
 
     public override bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>
         base.SupportsGame(gameInstallation, gameClientInstallation) && gameInstallation.HasComponent<UbisoftConnectGameClientComponent>();
@@ -61,18 +75,8 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
         await base.OnGameClientAddedAsync(gameClientInstallation);
 
         // Set a default user id
-        FileSystemPath saveGamesDir = gameClientInstallation.InstallLocation.Directory + "savegames";
-
-        if (saveGamesDir.DirectoryExists)
-        {
-            string[] subDirs = Directory.GetDirectories(saveGamesDir);
-
-            if (subDirs.Length > 0)
-            {
-                string userId = new FileSystemPath(subDirs[0]).Name;
-                gameClientInstallation.SetValue<string>(GameClientDataKey.UbisoftConnect_UserId, userId);
-            }
-        }
+        if (TryGetUserIds(gameClientInstallation).FirstOrDefault() is { } userId)
+            gameClientInstallation.SetValue<string>(GameClientDataKey.UbisoftConnect_UserId, userId);
     }
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
@@ -82,6 +86,47 @@ public class UbisoftConnectGameClientDescriptor : GameClientDescriptor
         new Win32ShortcutFinderQuery("Ubisoft Connect"),
         new Win32ShortcutFinderQuery("Uplay"),
     };
+
+    public IEnumerable<string> TryGetUserIds(GameClientInstallation gameClientInstallation)
+    {
+        // Try and find available ids by checking common locations
+
+        try
+        {
+            FileSystemPath saveDir = gameClientInstallation.InstallLocation.Directory + "savegames";
+
+            if (saveDir.DirectoryExists)
+            {
+                string[] subDirs = Directory.GetDirectories(saveDir);
+
+                if (subDirs.Length > 0)
+                    return subDirs.Select(x => new FileSystemPath(x).Name).Where(x => Guid.TryParse(x, out _));
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Getting available Ubisoft Connect user ids from savegames folder");
+        }
+
+        try
+        {
+            FileSystemPath cacheSettingsDir = gameClientInstallation.InstallLocation.Directory + "cache\\settings";
+
+            if (cacheSettingsDir.DirectoryExists)
+            {
+                string[] files = Directory.GetFiles(cacheSettingsDir);
+
+                if (files.Length > 0)
+                    return files.Select(x => new FileSystemPath(x).Name).Where(x => Guid.TryParse(x, out _));
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Getting available Ubisoft Connect user ids from cache settings folder");
+        }
+
+        return Enumerable.Empty<string>();
+    }
 
     #endregion
 }
