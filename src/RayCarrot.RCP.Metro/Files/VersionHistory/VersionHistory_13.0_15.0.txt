@@ -1,4 +1,27 @@
-﻿-----   Version 14.0.3 - March 21, 2024   -----
+﻿-----   Version 14.1.0 - April ??, 2024   -----
+• Added support for PS1 games:
+	• Rayman 1
+	• Rayman 2
+	• Rayman Rush
+	• Rayman Junior/Rayman Brain Games
+• Added support for new game clients/emulators:
+	• DuckStation
+• Moved the Rayman Raving Rabbids Prototype Restoration tool from the mods page to a game panel and redesigned it
+• Moved the Memory Mods from the mods page to game panels and renamed it to Runtime Modifications and redesigned it
+	• Games and emulator processes are now automatically found when running
+	• The serialization log now automatically refreshes when viewed
+	• Speed storage values are now shown for Rayman 1
+	• Added support for VisualBoyAdvance-M (2.1.9 - x86)
+	• Various fixes and improvements
+• Added the option to recreate the file table for UbiArt IPK archives (this can optionally be automatically done when repacking)
+• Added support for Rayman Origins for the UBIART-LOC mod module
+• Added the Rayman Legends (PS3) game mode when opening an IPK archive
+• A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
+• When launching the app it will now reposition the window to be on screen, avoiding it opening off screen if the last opened position was on a now disconnected monitor
+• Fixed a bug where the app would crash if there was an error reading a mod when opening directly to it, such as from the GameBanana 1-click installer
+
+
+-----   Version 14.0.3 - March 21, 2024   -----
 • Improved DDS mipmap generation for UbiArt textures, fixing issues caused by alpha blending and changed the filter type from triangle to box
 • Updated localization
 • Fixed a bug where the mod loader would show the wrong mod thumbnail due to a caching conflict
