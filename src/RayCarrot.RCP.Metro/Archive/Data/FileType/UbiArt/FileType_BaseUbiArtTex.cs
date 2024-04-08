@@ -164,7 +164,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
             if (MagickFormat == MagickFormat.Dds)
             {
                 // Create mipmaps without alpha blend
-                using MagickImageCollection ddsCollection = img.CreateDdsWithMipmaps(compress: true, filterType: FilterType.Box);
+                using MagickImageCollection ddsCollection = img.CreateDdsWithMipmaps(compress: Services.Data.Archive_UbiArtTexture_CompressOnImport, filterType: FilterType.Box);
                 
                 // Get the image bytes
                 bytes = ddsCollection.ToByteArray();
@@ -195,7 +195,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
     {
         if (outputFormat == MagickFormat.Dds)
         {
-            using MagickImageCollection ddsCollection = img.CreateDdsWithMipmaps(compress: true, filterType: FilterType.Box);
+            using MagickImageCollection ddsCollection = img.CreateDdsWithMipmaps(compress: Services.Data.Archive_UbiArtTexture_CompressOnImport, filterType: FilterType.Box);
             ddsCollection.Write(outputStream.Stream, outputFormat);
         }
         else

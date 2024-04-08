@@ -84,6 +84,7 @@ public partial class AppUserData : BaseViewModel
         Archive_CNT_SyncOnRepackRequested = false;
         Archive_IPK_RecreateFileTableOnRepack = false;
         Archive_IPK_RecreateFileTableOnRepackRequested = false;
+        Archive_UbiArtTexture_CompressOnImport = false;
 
         // File editors
         FileEditors_AssociatedEditors = new Dictionary<string, FileSystemPath>();
@@ -399,6 +400,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the user has been asked to enable <see cref="Archive_IPK_RecreateFileTableOnRepack"/>
     /// </summary>
     public bool Archive_IPK_RecreateFileTableOnRepackRequested { get; set; }
+
+    /// <summary>
+    /// Indicates if an imported UbiArt texture file should be DXT compressed
+    /// </summary>
+    public bool Archive_UbiArtTexture_CompressOnImport { get; set; }
 
     #endregion
 

@@ -65,5 +65,11 @@
                   IsChecked="{Binding Path=Archive_IPK_RecreateFileTableOnRepack}"
                   Margin="0 0 0 8" />
 
+        <!-- TODO-LOC -->
+        <CheckBox Content="Compress image on import (UbiArt texture)"
+                  ToolTip="TODO: Info"
+                  IsChecked="{Binding Path=Archive_UbiArtTexture_CompressOnImport}"
+                  Margin="0 0 0 8" />
+
     </StackPanel>
 </UserControl>
