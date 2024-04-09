@@ -624,12 +624,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             // Set the position
             Stream.Position = (long)(IPKData.BootHeader.IsBlockCompressed ? offset : (offset + IPKData.BootHeader.BaseOffset));
 
-            byte[] buffer = new byte[fileEntry.ArchiveSize];
-            Stream.Read(buffer, 0, buffer.Length);
+            int size = (int)fileEntry.ArchiveSize;
+
+            using ArrayRental<byte> buffer = new(size); 
+            Stream.Read(buffer.Array, 0, size);
 
             // Read the bytes into the buffer
             MemoryStream ms = new();
-            ms.Write(buffer, 0, buffer.Length);
+            ms.Write(buffer.Array, 0, size);
             ms.Position = 0;
             return ms;
         }

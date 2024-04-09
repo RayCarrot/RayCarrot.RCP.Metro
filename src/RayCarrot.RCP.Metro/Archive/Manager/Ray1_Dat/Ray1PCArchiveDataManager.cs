@@ -98,9 +98,10 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // TODO: Calculate the checksum when writing instead as we're accessing the bytes then
         // Calculate the checksum
         Checksum8Processor p = new();
-        var buffer = new byte[inputStream.Length - inputStream.Position];
-        inputStream.Read(buffer, 0, buffer.Length);
-        p.ProcessBytes(buffer, 0, buffer.Length);
+        int size = (int)(inputStream.Length - inputStream.Position);
+        using ArrayRental<byte> buffer = new(size);
+        inputStream.Read(buffer.Array, 0, size);
+        p.ProcessBytes(buffer.Array, 0, size);
         file.Checksum = (byte)p.CalculatedValue;
 
         inputStream.Position = 0;
@@ -406,15 +407,17 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             // Set the position
             Stream.Position = fileEntry.FileOffset;
 
+            int size = (int)fileEntry.FileSize;
+
             // Create the buffer
-            byte[] buffer = new byte[fileEntry.FileSize];
+            using ArrayRental<byte> buffer = new(size); 
 
             // Read the bytes into the buffer
-            Stream.Read(buffer, 0, buffer.Length);
+            Stream.Read(buffer.Array, 0, size);
 
             // Return the buffer
             MemoryStream ms = new();
-            ms.Write(buffer, 0, buffer.Length);
+            ms.Write(buffer.Array, 0, size);
             ms.Position = 0;
             return ms;
         }
