@@ -456,7 +456,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
             // Write the bytes directly to the stream if no format is specified
             if (format == null)
             {
-                stream.Stream.CopyTo(fileStream);
+                stream.Stream.CopyToEx(fileStream);
             }
             // Convert the file if the format is not the native one
             else
@@ -629,7 +629,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
         // If no data was encoded we copy over the original data
         if (FileData.PendingImport.Length == 0)
-            inputStream.CopyTo(FileData.PendingImport);
+            inputStream.CopyToEx(FileData.PendingImport);
 
         HasPendingImport = true;
 
@@ -724,7 +724,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                         // Copy the file data to the temporary file
                         if (!convert)
                         {
-                            decodedData.Stream.CopyTo(temp);
+                            decodedData.Stream.CopyToEx(temp);
                         }
                         else
                         {

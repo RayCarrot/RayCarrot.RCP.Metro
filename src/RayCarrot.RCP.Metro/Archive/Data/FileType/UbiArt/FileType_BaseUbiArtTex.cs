@@ -120,7 +120,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
             ReadTEXHeader(inputStream, manager);
 
             // Copy the image data
-            inputStream.Stream.CopyTo(outputStream);
+            inputStream.Stream.CopyToEx(outputStream);
         }
         else
         {
@@ -148,7 +148,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
         if (tex == null)
         {
             if (outputFormat == Format)
-                inputStream.Stream.CopyTo(outputStream.Stream);
+                inputStream.Stream.CopyToEx(outputStream.Stream);
             else
                 ConvertFrom(inputFormat, MagickFormat, inputStream, outputStream);
         }

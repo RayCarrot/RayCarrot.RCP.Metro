@@ -350,7 +350,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                     currentStream.Position = (long)(compressBlock ? offset : (offset + bundle.BootHeader.BaseOffset));
 
                     // Write the bytes
-                    fileStream.CopyTo(currentStream);
+                    fileStream.CopyToEx(currentStream);
                     fileStream.Position = 0;
                 }
 
@@ -381,7 +381,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                 stream.Position = bundle.BootHeader.BaseOffset;
 
                 // Write the data to main stream
-                tempCompressedBlockFileStream.CopyTo(stream);
+                tempCompressedBlockFileStream.CopyToEx(stream);
 
                 // Update the size
                 bundle.BootHeader.BlockCompressedSize = (uint)tempCompressedBlockFileStream.Length;

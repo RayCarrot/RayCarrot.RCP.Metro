@@ -259,7 +259,7 @@ public class FileLocationModifications
 
         // If no data was encoded we copy over the decoded data
         if (file.PendingImport.Length == 0)
-            resource.CopyTo(file.PendingImport);
+            resource.CopyToEx(file.PendingImport);
     }
 
     private string GetFilePathKey(string filePath) => ModLoaderHelpers.NormalizePath(filePath);

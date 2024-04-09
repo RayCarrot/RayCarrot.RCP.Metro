@@ -237,7 +237,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
                 outputFileStream.Stream.Position = file.FileOffset;
 
                 // Write the contents from the generator
-                fileStream.CopyTo(outputFileStream.Stream);
+                fileStream.CopyToEx(outputFileStream.Stream);
 
                 fileIndex++;
 

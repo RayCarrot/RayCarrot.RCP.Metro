@@ -130,7 +130,7 @@ public class ArchiveCreatorDialogViewModel : BaseViewModel
 
                             // If no data was encoded we copy over the decoded data
                             if (fileItem.PendingImport.Length == 0)
-                                inputStream.CopyTo(fileItem.PendingImport);
+                                inputStream.CopyToEx(fileItem.PendingImport);
 
                             archiveFiles.Add(fileItem);
                         }
