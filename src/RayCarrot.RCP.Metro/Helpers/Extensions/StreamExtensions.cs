@@ -4,7 +4,6 @@ namespace RayCarrot.RCP.Metro;
 
 public static class StreamExtensions
 {
-    // TODO: Use this in more places, such as Archive Explorer?
     public static async Task CopyToExAsync(
         this Stream source, 
         Stream destination,
