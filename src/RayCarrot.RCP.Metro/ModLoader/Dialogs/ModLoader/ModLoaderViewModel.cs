@@ -274,7 +274,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             }
 
             string id = extractedMod.Metadata.Id;
-            long size = (long)extractTempDir.TempPath.GetSize().Bytes;
+            long size = extractTempDir.TempPath.GetSize();
             ModInstallInfo installInfo = new(
                 Source: sourceId, 
                 Version: extractedMod.Metadata.Version, 

@@ -106,7 +106,7 @@ public class GameSlotViewModel : BaseRCPViewModel
                     text: FilePath.FullPath));
                 InfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_Size)), 
-                    text: await Task.Run(() => FilePath.GetSize().ToString())));
+                    text: await Task.Run(() => BinaryHelpers.BytesToString(FilePath.GetSize()))));
 
                 DateTime lastWriteTime = FilePath.GetFileInfo().LastWriteTime;
 

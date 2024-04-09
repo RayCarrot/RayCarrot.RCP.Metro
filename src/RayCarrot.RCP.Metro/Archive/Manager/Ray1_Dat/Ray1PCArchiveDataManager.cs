@@ -2,7 +2,6 @@
 using BinarySerializer;
 using BinarySerializer.Ray1;
 using BinarySerializer.Ray1.PC;
-using ByteSizeLib;
 
 namespace RayCarrot.RCP.Metro.Archive.Ray1;
 
@@ -314,7 +313,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
-            text: $"{ByteSize.FromBytes(entry.FileSize)}");
+            text: BinaryHelpers.BytesToString(entry.FileSize));
 
         if (archiveData.Entries.Contains(entry))
             yield return new DuoGridItemViewModel(

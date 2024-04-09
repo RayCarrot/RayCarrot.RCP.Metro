@@ -157,7 +157,7 @@ public class GameViewModel : BaseRCPViewModel
                 // Get the backup size
                 BackupInfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Backup_LastBackupSize)), 
-                    text: backup.Path.GetSize().ToString()));
+                    text: BinaryHelpers.BytesToString(backup.Path.GetSize())));
 
                 HasBackupInfoItems = true;
             }

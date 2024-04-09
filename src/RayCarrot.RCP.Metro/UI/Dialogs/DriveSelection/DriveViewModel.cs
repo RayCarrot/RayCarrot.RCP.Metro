@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using ByteSizeLib;
 using System.IO;
 using System.Windows.Media;
 
@@ -28,17 +27,20 @@ public class DriveViewModel : BaseViewModel
     /// <summary>
     /// The available free space
     /// </summary>
-    public ByteSize? FreeSpace { get; init; }
+    public long? FreeSpace { get; init; }
+    public string FreeSpaceDisplayString => FreeSpace == null ? String.Empty : BinaryHelpers.BytesToString(FreeSpace.Value);
 
     /// <summary>
     /// The used space
     /// </summary>
-    public ByteSize? UsedSpace => TotalSize - FreeSpace;
+    public long? UsedSpace => TotalSize - FreeSpace;
+    public string UsedSpaceDisplayString => UsedSpace == null ? String.Empty : BinaryHelpers.BytesToString(UsedSpace.Value);
 
     /// <summary>
     /// The total size
     /// </summary>
-    public ByteSize? TotalSize { get; init; }
+    public long? TotalSize { get; init; }
+    public string TotalSizeDisplayString => TotalSize == null ? String.Empty : BinaryHelpers.BytesToString(TotalSize.Value);
 
     /// <summary>
     /// The drive format

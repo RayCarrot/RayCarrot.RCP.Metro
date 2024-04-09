@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using ByteSizeLib;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro;
@@ -106,9 +105,9 @@ public class Utility_Rayman1_CompleteSoundtrack_ViewModel : BaseRCPViewModel
             if (!file.FileExists)
                 return null;
 
-            var size = file.GetSize();
+            long size = file.GetSize();
 
-            return size == ByteSize.FromBytes(1805221);
+            return size == 1805221;
         }
         catch (Exception ex)
         {

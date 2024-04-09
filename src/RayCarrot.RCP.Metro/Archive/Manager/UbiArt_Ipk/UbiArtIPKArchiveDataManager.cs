@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
-using ByteSizeLib;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
@@ -480,12 +479,12 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
-            text: $"{ByteSize.FromBytes(entry.FileSize)}");
+            text: BinaryHelpers.BytesToString(entry.FileSize));
 
         if (entry.IsCompressed)
             yield return new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_SizeComp)), 
-                text: $"{ByteSize.FromBytes(entry.CompressedSize)}");
+                text: BinaryHelpers.BytesToString(entry.CompressedSize));
 
         if (ipk.FilePack.Files.Contains(entry))
             yield return new DuoGridItemViewModel(

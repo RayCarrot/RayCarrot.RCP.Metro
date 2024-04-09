@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using ByteSizeLib;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -60,10 +59,10 @@ public static class FileSystemPathExtensions
     public static DirectoryInfo GetDirectoryInfo(this FileSystemPath path) => new DirectoryInfo(path);
 
     /// <summary>
-    /// Gets the size of a file system path file or directory
+    /// Gets the size of a file system path file or directory in bytes
     /// </summary>
     /// <param name="path">The path of the file or directory</param>
-    /// <returns>The size, or the default <see cref="ByteSize"/> if not found</returns>
+    /// <returns>The size, or 0 if not found</returns>
     /// <exception cref="System.Security.SecurityException">The caller does not have the required permission</exception>
     /// <exception cref="ArgumentException">The file name is empty, contains only white spaces, or contains invalid characters</exception>
     /// <exception cref="UnauthorizedAccessException">Access to the path is denied</exception>
@@ -71,23 +70,23 @@ public static class FileSystemPathExtensions
     /// For example, on Windows-based platforms, paths must be less than 248 characters, and file names must be less than 260 characters.</exception>
     /// <exception cref="NotSupportedException">The path contains a colon (:) in the middle of the string</exception>
     /// <exception cref="IOException">A device such as a disk drive is not ready</exception>
-    public static ByteSize GetSize(this FileSystemPath path)
+    public static long GetSize(this FileSystemPath path)
     {
         if (path.FileExists)
-            return ByteSize.FromBytes(path.GetFileInfo().Length);
+            return path.GetFileInfo().Length;
         else if (path.DirectoryExists)
             return GetDirectorySize(path);
         else
             return default;
 
         // Recursive method for getting the size of a directory
-        ByteSize GetDirectorySize(FileSystemPath dirPath)
+        static long GetDirectorySize(FileSystemPath dirPath)
         {
             DirectoryInfo dirInfo = dirPath.GetDirectoryInfo();
-            ByteSize size = ByteSize.FromBytes(0);
+            long size = 0;
 
             // Add file sizes
-            size = dirInfo.GetFiles().Aggregate(size, (current, fi) => current + ByteSize.FromBytes(fi.Length));
+            size = dirInfo.GetFiles().Aggregate(size, (current, fi) => current + fi.Length);
 
             // Add sub directory sizes
             size = dirInfo.GetDirectories().Aggregate(size, (current, di) => current + GetDirectorySize(di.FullName));

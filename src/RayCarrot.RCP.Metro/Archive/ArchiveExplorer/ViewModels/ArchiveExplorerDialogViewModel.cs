@@ -1,6 +1,5 @@
 ﻿using System.Windows.Input;
 using AutoCompleteTextBox.Editors;
-using ByteSizeLib;
 using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro.Archive;
@@ -379,7 +378,7 @@ public class ArchiveExplorerDialogViewModel : BaseViewModel, IDisposable
         StatusBarItems.Add(new ResourceLocString(nameof(Resources.Archive_Status_FilesCount), selectedDir.Files.Count));
 
         int selectedFilesCount = 0;
-        ByteSize selectedFilesSize = new();
+        long selectedFilesSize = 0;
         bool invalidSize = false;
 
         // Enumerate every selected file
@@ -399,7 +398,7 @@ public class ArchiveExplorerDialogViewModel : BaseViewModel, IDisposable
                 invalidSize = true;
             else
                 // Add the size (if multiple files are selected we show the total size)
-                selectedFilesSize = selectedFilesSize.AddBytes(length.Value);
+                selectedFilesSize += length.Value;
         }
 
         // Show the selected files count if multiple ones are selected
@@ -408,7 +407,7 @@ public class ArchiveExplorerDialogViewModel : BaseViewModel, IDisposable
 
         // Show the total file size for all selected files if any are selected
         if (selectedFilesCount > 0 && !invalidSize)
-            StatusBarItems.Add($"{selectedFilesSize}");
+            StatusBarItems.Add(BinaryHelpers.BytesToString(selectedFilesSize));
 
         Logger.Trace("Refreshed the status bar");
     }

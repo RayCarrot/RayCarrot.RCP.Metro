@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
 using System.IO;
@@ -153,8 +152,8 @@ public class DriveSelectionViewModel : BaseViewModel
                 string label = null;
                 string path;
                 string format = null;
-                ByteSize? freeSpace = null;
-                ByteSize? totalSize = null;
+                long? freeSpace = null;
+                long? totalSize = null;
                 DriveType? type = null;
                 bool? ready = null;
 
@@ -200,7 +199,7 @@ public class DriveSelectionViewModel : BaseViewModel
 
                 try
                 {
-                    freeSpace = ByteSize.FromBytes(drive.TotalFreeSpace);
+                    freeSpace = drive.TotalFreeSpace;
                 }
                 catch (Exception ex)
                 {
@@ -209,7 +208,7 @@ public class DriveSelectionViewModel : BaseViewModel
 
                 try
                 {
-                    totalSize = ByteSize.FromBytes(drive.TotalSize);
+                    totalSize = drive.TotalSize;
                 }
                 catch (Exception ex)
                 {

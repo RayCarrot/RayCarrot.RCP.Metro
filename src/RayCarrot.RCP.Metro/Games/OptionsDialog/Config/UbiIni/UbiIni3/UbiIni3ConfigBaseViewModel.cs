@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System.IO;
-using ByteSizeLib;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -536,14 +535,14 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
 
         try
         {
-            var size = path.GetSize();
+            long size = path.GetSize();
 
-            if (size == ByteSize.FromBytes(156160))
+            if (size == 156160)
                 return DinputType.Controller;
 
             // If the size equals that of the Rayman 2 dinput file, delete it
             // as the Rayman 2 dinput file was accidentally used prior to version 4.1.2
-            if (size == ByteSize.FromBytes(66560))
+            if (size == 66560)
             {
                 Services.File.DeleteFile(path);
                 return DinputType.None;

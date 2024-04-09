@@ -23,6 +23,7 @@
 • Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
 • Improved finding and setting Ubisoft Connect user id for finding save files
+• File sizes are now displayed using a binary base to match what Windows File Explorer shows
 • When launching the app it will now reposition the window to be on screen, avoiding it opening off screen if the last opened position was on a now disconnected monitor
 • Fixed a bug where the app would crash if there was an error reading a mod when opening directly to it, such as from the GameBanana 1-click installer
 

@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
-using ByteSizeLib;
 using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro;
@@ -266,21 +265,23 @@ public class AppViewModel : BaseViewModel
                 // Allow user to confirm
                 try
                 {
-                    ByteSize size = ByteSize.FromBytes(0);
+                    long size = 0;
                     foreach (Uri item in inputSources)
                     {
                         WebRequest webRequest = WebRequest.Create(item);
                         webRequest.Method = "HEAD";
 
                         using WebResponse webResponse = webRequest.GetResponse();
-                        size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
+                        size += Convert.ToInt64(webResponse.Headers.Get("Content-Length")); // TODO-UPDATE Test
                     }
 
-                    Logger.Debug("The size of the download has been retrieved as {0}", size);
+                    string sizeString = BinaryHelpers.BytesToString(size);
+
+                    Logger.Debug("The size of the download has been retrieved as {0}", sizeString);
 
                     string msg = isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize;
 
-                    if (!await MessageUI.DisplayMessageAsync(String.Format(msg, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await MessageUI.DisplayMessageAsync(String.Format(msg, sizeString), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
                 catch (Exception ex)

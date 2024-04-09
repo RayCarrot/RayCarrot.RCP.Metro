@@ -2,7 +2,6 @@ using System.Net.Http;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ByteSizeLib;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
@@ -30,7 +29,7 @@ public class ModViewModel : BaseViewModel, IDisposable
             new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Version)), Metadata.Version?.ToString()),
             new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Technical),
             new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_ID)), Metadata.Id, UserLevel.Technical),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Size)), ByteSize.FromBytes(modEntry.InstallInfo.Size).ToString()),
+            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Size)), BinaryHelpers.BytesToString(modEntry.InstallInfo.Size)),
             new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_InstallSource)), DownloadableModsSource?.DisplayName ?? new ResourceLocString(nameof(Resources.ModLoader_LocalInstallSource))),
             new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Modules)), Mod.GetSupportedModules().JoinItems(", ", x => x.Id)),
             new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),

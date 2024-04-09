@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System.IO;
 using System.Windows.Input;
-using ByteSizeLib;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -474,18 +473,15 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     private static int GetAspectRatioLocation(FileSystemPath path)
     {
         // Get the size to determine the version
-        var length = path.GetSize();
+        long length = path.GetSize();
 
         // Get the byte location
-        int location = -1;
-
-        // Check if it's the disc version
-        if ((int)length.Bytes == 676352)
-            location = 633496;
-
-        // Check if it's the GOG version
-        else if ((int)length.Bytes == 1468928)
-            location = 640152;
+        int location = length switch
+        {
+            676352 => 633496, // Disc version
+            1468928 => 640152, // GOG version
+            _ => -1
+        };
 
         return location;
     }
@@ -531,15 +527,14 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
 
         try
         {
-            var size = path.GetSize();
+            long size = path.GetSize();
 
-            if (size == ByteSize.FromBytes(136704))
-                return R2Dinput.Mapping;
-
-            if (size == ByteSize.FromBytes(66560))
-                return R2Dinput.Controller;
-
-            return R2Dinput.Unknown;
+            return size switch
+            {
+                136704 => R2Dinput.Mapping,
+                66560 => R2Dinput.Controller,
+                _ => R2Dinput.Unknown
+            };
         }
         catch (Exception ex)
         {

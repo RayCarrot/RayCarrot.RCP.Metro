@@ -534,7 +534,7 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
 
         try
         {
-            fileSize = (long)exe.GetSize().Bytes;
+            fileSize = exe.GetSize();
             Logger.Info("RRR exe size is {0} bytes", fileSize);
         }
         catch (Exception ex)

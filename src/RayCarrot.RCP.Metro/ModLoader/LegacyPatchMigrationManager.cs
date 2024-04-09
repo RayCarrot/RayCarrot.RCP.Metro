@@ -80,7 +80,7 @@ public class LegacyPatchMigrationManager
 
             await patchExtractor.ExtractAsync(_patchesDir + patchFileName, extractDir.TempPath, x => progressCallback(progress.Add(x, 1)), CancellationToken.None);
 
-            long modSize = (long)extractDir.TempPath.GetSize().Bytes;
+            long modSize = extractDir.TempPath.GetSize();
 
             Library.InstallMod(extractDir.TempPath, patchEntry.ID, false);
 

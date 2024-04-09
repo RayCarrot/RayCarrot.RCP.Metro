@@ -59,7 +59,7 @@ public class FilePatcher
         try
         {
             // Get the file size
-            uint fileSize = (uint)GameFile.GetSize().Bytes;
+            uint fileSize = (uint)GameFile.GetSize();
 
             // Find matching patch
             int patchIndex = Patches.FindItemIndex(x => x.FileSizes.Contains(fileSize));

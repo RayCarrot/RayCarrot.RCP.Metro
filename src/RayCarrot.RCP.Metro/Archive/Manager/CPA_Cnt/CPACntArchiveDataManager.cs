@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
-using ByteSizeLib;
 
 namespace RayCarrot.RCP.Metro.Archive.CPA;
 
@@ -370,7 +369,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
-            text: $"{ByteSize.FromBytes(entry.FileSize)}");
+            text: BinaryHelpers.BytesToString(entry.FileSize));
 
         if (cnt.Files.Contains(entry))
             yield return new DuoGridItemViewModel(

@@ -8,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using ByteSizeLib;
 using ControlzEx.Theming;
 using RayCarrot.RCP.Metro.Games.Finder;
 
@@ -437,7 +436,7 @@ public class DebugPageViewModel : BasePageViewModel
                             Stopwatch gameTimer = Stopwatch.StartNew();
 
                             // Get the size
-                            ByteSize size = (installedGame.InstallLocation.HasFile 
+                            long size = (installedGame.InstallLocation.HasFile 
                                 ? installedGame.InstallLocation.FilePath 
                                 : installedGame.InstallLocation.Directory).GetSize();
 
@@ -446,7 +445,7 @@ public class DebugPageViewModel : BasePageViewModel
                             totalTime += gameTimer.ElapsedMilliseconds;
 
                             // Output the size
-                            DataOutput += $"{installedGame.GetDisplayName()}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
+                            DataOutput += $"{installedGame.GetDisplayName()}: {BinaryHelpers.BytesToString(size)} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
                         }
                         catch (Exception ex)
                         {
