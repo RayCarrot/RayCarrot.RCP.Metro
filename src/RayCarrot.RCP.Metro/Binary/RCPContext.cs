@@ -51,8 +51,15 @@ public class RCPContext : Context
 
     public class RCPFileManager : DefaultFileManager
     {
+        /// <summary>
+        /// The file share to use when reading files
+        /// </summary>
+        public FileShare ReadFileShare { get; set; } = FileShare.Read;
+
         // Force back slash to be used as certain older Win32 APIs don't work well with forward slash
         public override PathSeparatorChar SeparatorCharacter => PathSeparatorChar.BackSlash;
+
+        public override Stream GetFileReadStream(string path) => new FileStream(path, FileMode.Open, FileAccess.Read, ReadFileShare);
     }
 
     private class RCPLogger : ISystemLogger

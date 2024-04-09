@@ -1,6 +1,8 @@
-﻿using BinarySerializer;
+﻿using System.IO;
+using BinarySerializer;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using Path = BinarySerializer.UbiArt.Path;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
@@ -27,6 +29,12 @@ public class UbiArtGlobalFatManager
         Logger.Info("Creating file allocation table for {0} bundles", bundleNames.Length);
 
         using Context context = new RCPContext(GameInstallation.InstallLocation.Directory + GameDataDir);
+
+        // NOTE: A bit hacky, but we need to allow to share write permissions of else
+        //       this will fail if archive explorer has any of these archives open
+        if (context.FileManager is RCPContext.RCPFileManager fileManager)
+            fileManager.ReadFileShare = FileShare.ReadWrite;
+
         GameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
         
         UbiArtSettings settings = context.GetRequiredSettings<UbiArtSettings>();
