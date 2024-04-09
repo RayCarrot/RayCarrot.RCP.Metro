@@ -709,7 +709,9 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 try
                 {
                     // Get a temporary file
-                    using TempFile tempFile = new(false, asBinary ? new FileExtension(".bin") : ext);
+                    using TempDirectory tempDir = new(true);
+                    FileSystemPath tempFile = tempDir.TempPath + $"{FileName}";
+                    tempFile = tempFile.AppendFileExtension(asBinary ? new FileExtension(".bin") : ext);
 
                     using HashAlgorithm sha1 = HashAlgorithm.Create();
 
@@ -719,7 +721,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                     using (var decodedData = GetDecodedFileStream())
                     {
                         // Create the temporary file
-                        using FileStream temp = File.Create(tempFile.TempPath);
+                        using FileStream temp = File.Create(tempFile);
 
                         // Copy the file data to the temporary file
                         if (!convert)
@@ -749,12 +751,12 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                     // If read-only set the attribute
                     if (readOnly)
                     {
-                        var info = tempFile.TempPath.GetFileInfo();
+                        var info = tempFile.GetFileInfo();
                         info.Attributes |= FileAttributes.ReadOnly;
                     }
 
                     // Open the file
-                    using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
+                    using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile}\""))
                     {
                         // Ignore if the file wasn't opened
                         if (p == null)
@@ -795,7 +797,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                         return;
 
                     // Open the temp file
-                    using ArchiveFileStream tempFileStream = new(new FileStream(tempFile.TempPath, FileMode.Open, FileAccess.Read), "Temp", true);
+                    using ArchiveFileStream tempFileStream = new(new FileStream(tempFile, FileMode.Open, FileAccess.Read), "Temp", true);
 
                     // Get the new hash
                     var newHash = sha1.ComputeHash(tempFileStream.Stream);

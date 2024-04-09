@@ -2,7 +2,6 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro.Pages.Progression;
 
@@ -209,17 +208,18 @@ public class GameSlotViewModel : BaseRCPViewModel
         try
         {
             // Create a temporary file
-            using TempFile tempFile = new(false, new FileExtension(".json"));
+            using TempDirectory tempDir = new(true);
+            FileSystemPath tempFile = tempDir.TempPath + "Save.json";
 
             using HashAlgorithm sha1 = HashAlgorithm.Create();
 
             // Export the slot to the temp file
-            Slot.ExportSlot(tempFile.TempPath);
+            Slot.ExportSlot(tempFile);
 
             IEnumerable<byte> originalHash;
 
             // Get the original file hash
-            using (var tmpFile = File.OpenRead(tempFile.TempPath))
+            using (var tmpFile = File.OpenRead(tempFile))
                 originalHash = sha1.ComputeHash(tmpFile);
 
             // Get the program to open the file with
@@ -238,7 +238,7 @@ public class GameSlotViewModel : BaseRCPViewModel
             else if (programPath.Value.Name == "notepad++.exe") // Notepad++
                 args += $"-multiInst ";
 
-            args += $"\"{tempFile.TempPath}\"";
+            args += $"\"{tempFile}\"";
 
             // Open the file
             using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: args))
@@ -275,7 +275,7 @@ public class GameSlotViewModel : BaseRCPViewModel
             }
 
             // Open the temp file
-            using FileStream tempFileStream = new(tempFile.TempPath, FileMode.Open, FileAccess.Read);
+            using FileStream tempFileStream = new(tempFile, FileMode.Open, FileAccess.Read);
 
             // Get the new hash
             byte[] newHash = sha1.ComputeHash(tempFileStream);
@@ -288,7 +288,7 @@ public class GameSlotViewModel : BaseRCPViewModel
                 Logger.Trace("The file was modified");
 
                 // Import the modified data
-                Slot.ImportSlot(tempFile.TempPath);
+                Slot.ImportSlot(tempFile);
 
                 // Reload data
                 await Game.LoadProgressAsync();
