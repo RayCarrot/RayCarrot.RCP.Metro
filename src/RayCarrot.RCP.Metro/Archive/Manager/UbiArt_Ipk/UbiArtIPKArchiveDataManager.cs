@@ -2,6 +2,7 @@
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using Path = BinarySerializer.UbiArt.Path;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
@@ -176,11 +177,32 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         {
             Entry = (BundleFile_FileEntry)x.ArchiveEntry,
             FileItem = x
-        }).ToArray();
+        }).ToList();
 
         // Set the files
-        data.FilePack.Files = archiveFiles.Select(x => x.Entry).ToArray();
+        data.FilePack.Files = archiveFiles.ToArray(x => x.Entry);
         data.BootHeader.FilesCount = (uint)data.FilePack.Files.Length;
+
+        // Convert the data if it's Origins 3DS
+        if (data.BootHeader.Version == 4)
+        {
+            data.FilePack.FileIds = data.FilePack.Files.
+                OrderBy(x => x.Path.StringID.ID).
+                Select((x, i) => new BundleFile_FileId
+                {
+                    Id = i,
+                    PathStringId = x.Path.StringID,
+                }).
+                ToArray();
+            data.FilePack.FilePaths = data.FilePack.Files.
+                OrderBy(x => x.Path.StringID.ID).
+                Select(x => new String16()
+                {
+                    Value = x.Path.FullPath,
+                }).
+                ToArray();
+            data.FilePack.Reserved = new uint[data.FilePack.Files.Length];
+        }
 
         // Save the old base offset
         uint oldBaseOffset = data.BootHeader.BaseOffset;
@@ -221,6 +243,15 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                 // Increase by the file size
                 currentOffset += entry.ArchiveSize;
 
+                // TODO: Do other platforms also need data alignment?
+                // Origins 3DS aligns offsets by 4
+                if (data.BootHeader.Version == 4)
+                {
+                    ulong align = currentOffset % 4;
+                    if (align != 0)
+                        currentOffset += 4 - align;
+                }
+
                 return fileStream;
             });
         }
@@ -239,6 +270,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             // Set the base offset
             data.RecalculateSize();
             data.BootHeader.BaseOffset = (uint)data.SerializedSize;
+
+            // NOTE: Unsure if this is needed for Origins 3DS, but file offsets are aligned so this might need to be as well
+            if (data.BootHeader.Version == 4)
+            {
+                uint align = data.BootHeader.BaseOffset % 4;
+                if (align != 0)
+                    data.BootHeader.BaseOffset += 4 - align;
+            }
 
             // Write the files
             WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), progressCallback, cancellationToken);
@@ -413,6 +452,18 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var data = (BundleFile)archive;
 
         Logger.Info("The directories are being retrieved for an IPK archive");
+
+        // Convert the data if it's Origins 3DS
+        if (data.BootHeader.Version == 4)
+        {
+            Dictionary<uint, string> paths = new();
+
+            foreach (String16 path in data.FilePack.FilePaths)
+                paths[new StringID(path).ID] = path;
+
+            foreach (BundleFile_FileId fileId in data.FilePack.FileIds)
+                data.FilePack.Files[fileId.Id].Path = new Path(paths[fileId.PathStringId.ID]);
+        }
 
         // Helper method for getting the directories
         IEnumerable<ArchiveDirectory> GetDirectories()

@@ -29,4 +29,16 @@ public static class CollectionExtensions
 
         return resultArray;
     }
+
+    public static TResult[] ToArray<TSource, TResult>(this IList<TSource> collection, Func<TSource, int, TResult> selector)
+    {
+        TResult[] resultArray = new TResult[collection.Count];
+
+        for (int i = 0; i < collection.Count; i++)
+        {
+            resultArray[i] = selector(collection[i], i);
+        }
+
+        return resultArray;
+    }
 }
