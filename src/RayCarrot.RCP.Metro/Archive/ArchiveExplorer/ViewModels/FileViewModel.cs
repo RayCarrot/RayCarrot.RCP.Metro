@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Security.Cryptography;
 using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.IconPacks;
@@ -708,116 +707,52 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
             {
                 try
                 {
-                    // Get a temporary file
-                    using TempDirectory tempDir = new(true);
-                    FileSystemPath tempFile = tempDir.TempPath + $"{FileName}";
-                    tempFile = tempFile.AppendFileExtension(asBinary ? new FileExtension(".bin") : ext);
+                    string fileName = FileName;
+                    if (asBinary)
+                        fileName += ".bin";
+                    else
+                        fileName += ext;
 
-                    using HashAlgorithm sha1 = HashAlgorithm.Create();
-
-                    IEnumerable<byte> originalHash;
-
-                    // Decode the file data
-                    using (var decodedData = GetDecodedFileStream())
-                    {
-                        // Create the temporary file
-                        using FileStream temp = File.Create(tempFile);
-
-                        // Copy the file data to the temporary file
-                        if (!convert)
+                    using FileEditing fileEditing = new(fileName);
+                    
+                    bool modified = await fileEditing.ExecuteAsync(
+                        fileExtension: asBinary
+                            ? Services.AssociatedFileEditorsManager.BinaryFileExtension
+                            : ext.FileExtensions,
+                        readOnly: readOnly,
+                        state: state,
+                        createFileAction: filePath =>
                         {
-                            decodedData.Stream.CopyToEx(temp);
-                        }
-                        else
-                        {
-                            if (FileType == null)
-                                throw new Exception("The file type must be set before editing and converting the file");
+                            // Decode the file data
+                            using ArchiveFileStream decodedData = GetDecodedFileStream();
+                                
+                            // Create the temporary file
+                            using FileStream temp = File.Create(filePath);
 
-                            FileType.ConvertTo(FileExtension, ext, decodedData, temp, Manager);
-                        }
-
-                        temp.Position = 0;
-
-                        // Get the original file hash
-                        originalHash = sha1.ComputeHash(temp);
-                    }
-
-                    // Get the program to open the file with
-                    FileSystemPath? programPath = await Services.AssociatedFileEditorsManager.RequestFileEditorAssociatonAsync(asBinary ? Services.AssociatedFileEditorsManager.BinaryFileExtension : ext.FileExtensions);
-
-                    if (programPath == null)
-                        return;
-
-                    // If read-only set the attribute
-                    if (readOnly)
-                    {
-                        var info = tempFile.GetFileInfo();
-                        info.Attributes |= FileAttributes.ReadOnly;
-                    }
-
-                    // Open the file
-                    using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile}\""))
-                    {
-                        // Ignore if the file wasn't opened
-                        if (p == null)
-                        {
-                            Logger.Trace("The file was not opened");
-                            return;
-                        }
-
-                        state.SetStatus(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name));
-                        state.SetCanCancel(true);
-
-                        // Wait for the file to close...
-                        try
-                        {
-                            await p.WaitForExitAsync(state.CancellationToken);
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                            Logger.Trace(ex, "Canceled editing archive file");
-
-                            try
+                            // Copy the file data to the temporary file
+                            if (!convert)
                             {
-                                // Attempt to close the process
-                                p.CloseMainWindow();
+                                decodedData.Stream.CopyToEx(temp);
                             }
-                            catch (Exception ex2)
+                            else
                             {
-                                Logger.Warn(ex2, "Closing archive file editor process after cancellation");
+                                if (FileType == null)
+                                    throw new Exception("The file type must be set before editing and converting the file");
+
+                                FileType.ConvertTo(FileExtension, ext, decodedData, temp, Manager);
                             }
-                        }
+                        });
 
-                        state.SetStatus(String.Empty);
-                        state.SetCanCancel(false);
-                    }
-
-                    // If read-only we don't need to check if it has been modified
-                    if (readOnly)
-                        return;
-
-                    // Open the temp file
-                    using ArchiveFileStream tempFileStream = new(new FileStream(tempFile, FileMode.Open, FileAccess.Read), "Temp", true);
-
-                    // Get the new hash
-                    var newHash = sha1.ComputeHash(tempFileStream.Stream);
-
-                    tempFileStream.SeekToBeginning();
-
-                    // Check if the file has been modified
-                    if (!originalHash.SequenceEqual(newHash))
+                    if (modified)
                     {
-                        Logger.Trace("The file was modified");
+                        // Open the temp file
+                        using ArchiveFileStream tempFileStream = new(new FileStream(fileEditing.FilePath, FileMode.Open, FileAccess.Read), "Temp", true);
 
                         // Import the modified file
                         ImportFile(tempFileStream, ext, convert, new FileMetadata()
                         {
                             LastModified = DateTimeOffset.Now
                         });
-                    }
-                    else
-                    {
-                        Logger.Trace("The file was not modified");
                     }
                 }
                 catch (Exception ex)

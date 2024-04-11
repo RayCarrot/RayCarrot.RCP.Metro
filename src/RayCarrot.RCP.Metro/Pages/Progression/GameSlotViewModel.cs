@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Security.Cryptography;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro.Pages.Progression;
 
@@ -205,108 +202,38 @@ public class GameSlotViewModel : BaseRCPViewModel
 
         Logger.Trace("Progression slot for {0} is being opened for editing...", Game.GameInstallation.FullId);
 
-        try
+        // Wait for the process to close...
+        using (LoadState state = await App.LoaderViewModel.RunAsync())
         {
-            // Create a temporary file
-            using TempDirectory tempDir = new(true);
-            FileSystemPath tempFile = tempDir.TempPath + "Save.json";
-
-            using HashAlgorithm sha1 = HashAlgorithm.Create();
-
-            // Export the slot to the temp file
-            Slot.ExportSlot(tempFile);
-
-            IEnumerable<byte> originalHash;
-
-            // Get the original file hash
-            using (var tmpFile = File.OpenRead(tempFile))
-                originalHash = sha1.ComputeHash(tmpFile);
-
-            // Get the program to open the file with
-            FileSystemPath? programPath = await Services.AssociatedFileEditorsManager.RequestFileEditorAssociatonAsync(".json");
-
-            if (programPath == null)
-                return;
-
-            string args = String.Empty;
-
-            // Add specific arguments for common editor programs so that they open a new instance. If not then the new
-            // process will close immediately as it will re-use the already existing one which means the WaitForExitAsync
-            // won't wait for the program to close.
-            if (programPath.Value.Name == "Code.exe") // VS Code
-                args += $"--new-window ";
-            else if (programPath.Value.Name == "notepad++.exe") // Notepad++
-                args += $"-multiInst ";
-
-            args += $"\"{tempFile}\"";
-
-            // Open the file
-            using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: args))
+            try
             {
-                // Ignore if the file wasn't opened
-                if (p == null)
-                {
-                    Logger.Trace("The file was not opened");
-                    return;
-                }
+                using FileEditing fileEditing = new("Save.json");
 
-                // Wait for the file to close...
-                using (LoadState state = await App.LoaderViewModel.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name), canCancel: true))
-                {
-                    try
-                    {
-                        await p.WaitForExitAsync(state.CancellationToken);
-                    }
-                    catch (OperationCanceledException ex)
-                    {
-                        Logger.Trace(ex, "Cancelled editing progression slot");
+                bool modified = await fileEditing.ExecuteAsync(
+                    fileExtension: ".json",
+                    readOnly: false,
+                    state: state,
+                    createFileAction: Slot.ExportSlot);
 
-                        try
-                        {
-                            // Attempt to close the process
-                            p.CloseMainWindow();
-                        }
-                        catch (Exception ex2)
-                        {
-                            Logger.Warn(ex2, "Closing progression slot editor process after cancellation");
-                        }
-                    }
+                if (modified)
+                {
+                    // Import the modified data
+                    Slot.ImportSlot(fileEditing.FilePath);
+
+                    // Reload data
+                    await Game.LoadProgressAsync();
+                    await Game.LoadSlotInfoItemsAsync();
+                    await Game.LoadBackupAsync();
+
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_SaveEditSuccess);
                 }
             }
-
-            // Open the temp file
-            using FileStream tempFileStream = new(tempFile, FileMode.Open, FileAccess.Read);
-
-            // Get the new hash
-            byte[] newHash = sha1.ComputeHash(tempFileStream);
-
-            tempFileStream.Position = 0;
-
-            // Check if the file has been modified
-            if (!originalHash.SequenceEqual(newHash))
+            catch (Exception ex)
             {
-                Logger.Trace("The file was modified");
+                Logger.Error(ex, "Opening progression slot file for editing");
 
-                // Import the modified data
-                Slot.ImportSlot(tempFile);
-
-                // Reload data
-                await Game.LoadProgressAsync();
-                await Game.LoadSlotInfoItemsAsync();
-                await Game.LoadBackupAsync();
-
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_SaveEditSuccess);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
             }
-            else
-            {
-                Logger.Trace("The file was not modified");
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Opening progression slot file for editing");
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
         }
     }
 

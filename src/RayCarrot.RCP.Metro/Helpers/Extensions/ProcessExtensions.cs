@@ -36,13 +36,13 @@ public static class ProcessExtensions
             return Task.CompletedTask;
 
         // Create a task completion source
-        var tcs = new TaskCompletionSource<object?>();
+        TaskCompletionSource<object?> tcs = new();
 
         // Subscribe for when the process exits
         process.EnableRaisingEvents = true;
         process.Exited += (_, _) => tcs.TrySetResult(null);
 
-        cancellationToken.Register(() => tcs.SetCanceled());
+        cancellationToken.Register(tcs.SetCanceled);
 
         return process.HasExited ? Task.CompletedTask : tcs.Task;
     }
