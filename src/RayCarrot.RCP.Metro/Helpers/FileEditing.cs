@@ -47,23 +47,16 @@ public class FileEditing : IDisposable
             info.Attributes |= FileAttributes.ReadOnly;
         }
 
-        string args = String.Empty;
+        bool canceled = false;
 
-        // Add specific arguments for common editor programs so that they open a new instance. If not then the new
-        // process will close immediately as it will re-use the already existing one which means the WaitForExitAsync
-        // won't wait for the program to close.
-        if (programPath.Value.Name == "Code.exe") // VS Code
-            args += $"--new-window ";
-        else if (programPath.Value.Name == "notepad++.exe") // Notepad++
-            args += $"-multiInst ";
-
-        args += $"\"{FilePath}\"";
-
-        // Open the process
-        using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: args))
+        Process? process = null;
+        try
         {
+            // Open the process
+            process = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{FilePath}\"");
+
             // Ignore if the file wasn't opened
-            if (p == null)
+            if (process == null)
             {
                 Logger.Trace("The file was not opened");
                 return false;
@@ -72,19 +65,44 @@ public class FileEditing : IDisposable
             state.SetStatus(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name));
             state.SetCanCancel(true);
 
-            // Wait for the process to close...
             try
             {
-                await p.WaitForExitAsync(state.CancellationToken);
+                Stopwatch sw = Stopwatch.StartNew();
+
+                // Wait for the process to close...
+                await process.WaitForExitAsync(state.CancellationToken);
+
+                sw.Stop();
+
+                // If the process closed within 2 seconds we can assume that it opened the file
+                // in an already opened process, so we try and find that instead
+                if (sw.Elapsed < TimeSpan.FromSeconds(2))
+                {
+                    process.Dispose();
+                    Process[] otherProcesses = Process.GetProcessesByName(programPath.Value.RemoveFileExtension().Name);
+
+                    // If exactly one was found then we wait for that now instead
+                    if (otherProcesses.Length == 1)
+                    {
+                        process = otherProcesses[0];
+                        await process.WaitForExitAsync(state.CancellationToken);
+                    }
+                }
             }
             catch (OperationCanceledException ex)
             {
                 Logger.Trace(ex, "Canceled editing file");
 
+                canceled = true;
+
                 try
                 {
                     // Attempt to close the process
-                    p.CloseMainWindow();
+                    process.CloseMainWindow();
+
+                    // Wait 2 seconds just to give it time to fully close. We could await it
+                    // closing, but we don't want to soft-lock here if the process doesn't close
+                    await Task.Delay(TimeSpan.FromSeconds(2));
                 }
                 catch (Exception ex2)
                 {
@@ -95,9 +113,13 @@ public class FileEditing : IDisposable
             state.SetStatus(String.Empty);
             state.SetCanCancel(false);
         }
+        finally
+        {
+            process?.Dispose();
+        }
 
-        // If read-only we don't need to check if it has been modified
-        if (readOnly)
+        // If canceled or read-only we don't need to check if it has been modified
+        if (canceled || readOnly)
             return false;
 
         // Get the new hash

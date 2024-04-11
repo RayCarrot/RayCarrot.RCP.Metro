@@ -42,7 +42,7 @@ public static class ProcessExtensions
         process.EnableRaisingEvents = true;
         process.Exited += (_, _) => tcs.TrySetResult(null);
 
-        cancellationToken.Register(tcs.SetCanceled);
+        cancellationToken.Register(() => tcs.TrySetCanceled());
 
         return process.HasExited ? Task.CompletedTask : tcs.Task;
     }

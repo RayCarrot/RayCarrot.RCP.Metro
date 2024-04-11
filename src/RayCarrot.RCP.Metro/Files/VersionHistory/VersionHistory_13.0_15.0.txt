@@ -21,7 +21,7 @@
 	• Improved performance
 • Added support for Rayman Origins for the UBIART-LOC mod module
 • A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
-• Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name
+• Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name and have better support if the file opens in an already running instance of the program
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
 • Improved finding and setting Ubisoft Connect user id for finding save files
 • File sizes are now displayed using a binary base to match what Windows File Explorer shows
