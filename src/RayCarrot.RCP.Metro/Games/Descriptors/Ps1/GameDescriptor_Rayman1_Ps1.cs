@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
+using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -33,7 +34,13 @@ public sealed class GameDescriptor_Rayman1_Ps1 : Ps1GameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPS1US", "r1/ps1_us"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PS1));
 
-        // TODO-UPDATE: Runtime modifications
+        builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.Ps1, _ =>
+            new[]
+            {
+                new Ray1GameManager(
+                    displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PS1_US)),
+                    getOffsetsFunc: () => Ray1MemoryData.Offsets_PS1_US)
+            }));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new PS1DiscProgramInstallationStructure(new[]
