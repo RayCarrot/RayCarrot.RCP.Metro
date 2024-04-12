@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Input;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -28,7 +29,8 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
         // Get the available emulator versions. We could have these be registered as components, but then we won't get
         // any emulator versions if the game is launched through a non-emulator client such as Ubisoft Connect.
-        EmulatorManager[] emulatorVersions = GameInstallation.GetRequiredComponent<RuntimeModificationsGameManagersComponent>().EmulatedPlatform switch
+        EmulatedPlatform = GameInstallation.GetRequiredComponent<RuntimeModificationsGameManagersComponent>().EmulatedPlatform;
+        EmulatorManager[] emulatorVersions = EmulatedPlatform switch
         {
             EmulatedPlatform.None => EmulatorManager.None,
             EmulatedPlatform.MsDos => EmulatorManager.MsDos,
@@ -67,6 +69,7 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 
     #region Private Properties
 
+    private EmulatedPlatform EmulatedPlatform { get; }
     private bool IsRefreshingAvailableProcesses { get; set; }
     private int CurrentProcessId { get; }
     private CancellationTokenSource? AutoFindGameCancellation { get; set; }
@@ -197,9 +200,16 @@ public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
                     // Check every game
                     foreach (GameViewModel game in AvailableGames)
                     {
-                        // Validate process in game manager
-                        if (!game.GameManager.IsProcessValid(process)) 
-                            continue;
+                        // If it's not emulated then we check if the process is from the current game installation
+                        if (EmulatedPlatform == EmulatedPlatform.None)
+                        {
+                            var structure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
+                            FileSystemPath processFilePath = process.MainModule?.FileName;
+                            FileSystemPath exeFilePath = structure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
+
+                            if (processFilePath != exeFilePath)
+                                continue;
+                        }
 
                         // Create a running game view model - this might fail
                         RunningGameViewModel runningGame = new(GameInstallation, game.GameManager, emulator.EmulatorManager, process);
