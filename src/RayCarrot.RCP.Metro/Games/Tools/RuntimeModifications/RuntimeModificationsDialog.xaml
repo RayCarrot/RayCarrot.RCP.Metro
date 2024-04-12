@@ -17,31 +17,83 @@
                             MouseDown="UserControl_OnMouseDown">
     <Grid Margin="10">
         <!-- Auto find game -->
-        <StackPanel VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Visibility="{Binding Path=State, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.AutoFindGame}}">
-            <!-- TODO-LOC -->
-            <TextBlock Text="Searching for running game..." 
-                       HorizontalAlignment="Center"
-                       FontSize="22"
-                       Margin="0 0 0 4" />
-
-            <metro:MetroProgressBar IsIndeterminate="True"
-                                    Margin="0 0 0 12" />
-
-            <TextBlock HorizontalAlignment="Center">
+        <Grid d:Visibility="Visible"
+              Visibility="{Binding Path=State, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.AutoFindGame}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
                 <!-- TODO-LOC -->
-                <Run Text="Not found?" />
-                <Hyperlink Command="{Binding Path=SwitchToManuallyFindGameCommand, Mode=OneTime}">
-                    <!-- TODO-LOC -->
-                    <Run Text="Manually select game process" />
-                </Hyperlink>
-            </TextBlock>
+                <TextBlock Text="Searching for running game..." 
+                           HorizontalAlignment="Center"
+                           FontSize="22"
+                           Margin="0 0 0 4" />
 
-        </StackPanel>
+                <metro:MetroProgressBar IsIndeterminate="True"
+                                        Margin="0 0 0 12" />
+
+                <TextBlock HorizontalAlignment="Center">
+                    <!-- TODO-LOC -->
+                    <Run Text="Not found?" />
+                    <Hyperlink Command="{Binding Path=SwitchToManuallyFindGameCommand, Mode=OneTime}">
+                        <!-- TODO-LOC -->
+                        <Run Text="Manually select game process" />
+                    </Hyperlink>
+                </TextBlock>
+
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0">
+                    <!-- TODO-LOC -->
+                    <TextBlock Text="Supported games" 
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               TextWrapping="Wrap"
+                               Margin="0 0 0 6"/>
+                    <ItemsControl ItemsSource="{Binding Path=AvailableGames, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=DisplayName.Value}"
+                                           TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <!-- TODO-LOC -->
+                    <TextBlock Text="Supported emulators" 
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               TextWrapping="Wrap"
+                               Margin="0 0 0 6"/>
+                    <ItemsControl ItemsSource="{Binding Path=AvailableEmulators, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=DisplayName.Value}"
+                                           TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
 
         <!-- Manually find game -->
         <local:Card Margin="{StaticResource RCP.Thicknesses.Card}"
+                    d:Visibility="Collapsed"
                     Visibility="{Binding Path=State, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.ManuallyFindGame}}">
             <StackPanel>
 
