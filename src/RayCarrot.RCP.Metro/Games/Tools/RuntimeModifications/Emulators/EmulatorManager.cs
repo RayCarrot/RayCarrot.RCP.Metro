@@ -107,9 +107,13 @@ public class EmulatorManager
 
     #region BizHawk
 
-    // TODO-UPDATE: Implement process check
-    public static EmulatorManager BizHawk_Ps1_2_4_0_x64 => new(
+    public static BizHawkManager BizHawk_Ps1_2_4_0_x64 => new(
         displayName: "BizHawk Octoshock (2.4.0 - x64)",
+        majorVersion: 2,
+        minorVersion: 4,
+        buildVersion: 0,
+        is64Bit: true,
+        coreModuleName: "octoshock.dll",
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x80000000,
@@ -117,8 +121,13 @@ public class EmulatorManager
             ModuleName: "octoshock.dll",
             ProcessOffset: 0x0011D880,
             IsProcessOffsetAPointer: false));
-    public static EmulatorManager BizHawk_Ps1_2_8_0_x64 => new(
+    public static BizHawkManager BizHawk_Ps1_2_8_0_x64 => new(
         displayName: "BizHawk Octoshock (2.8.0 - x64)",
+        majorVersion: 2,
+        minorVersion: 8,
+        buildVersion: 0,
+        is64Bit: true,
+        coreModuleName: "octoshock.dll",
         memoryRegions: new MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x80000000,
