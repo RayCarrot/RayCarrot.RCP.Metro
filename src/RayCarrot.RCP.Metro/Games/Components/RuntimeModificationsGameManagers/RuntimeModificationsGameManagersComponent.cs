@@ -4,9 +4,6 @@ using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 // TODO-UPDATE: Add game feature attribute
-// TODO-UPDATE: Add for PS1 games once those are supported:
-//              Resources.Mod_Mem_Game_R2_PS1_Proto
-//              Ray1MemoryData.Offsets_PS1_R2
 [BaseGameComponent]
 public class RuntimeModificationsGameManagersComponent : FactoryGameComponent<IEnumerable<GameManager>>
 {

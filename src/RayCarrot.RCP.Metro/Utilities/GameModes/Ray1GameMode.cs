@@ -28,4 +28,7 @@ public enum Ray1GameMode
 
     [Ray1GameModeInfo("Rayman Advance (Game Boy Advance)", Ray1EngineVersion.GBA)]
     Rayman1_GBA,
+
+    [Ray1GameModeInfo("Rayman 2 (PS1 - Prototype)", Ray1EngineVersion.R2_PS1)]
+    Rayman2_PS1,
 }

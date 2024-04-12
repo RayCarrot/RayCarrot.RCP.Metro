@@ -194,7 +194,25 @@ public class Ray1MemoryData : MemoryData
         // TODO: The MaxHealth and Ray pointer checks will make validation fail as the game is launching (splash screen and menus)
         //       We could remove the checks, but how do we then validate the game in a good way?
 
-        if (StatusBar is { LivesCount: > 99 or < 0 } or { MaxHealth: > 5 or < 2 } or { TingsCount: > 99 }) 
+        Ray1Settings settings = context.GetRequiredSettings<Ray1Settings>();
+
+        if (StatusBar is { LivesCount: > 99 or < 0 } or { TingsCount: > 99 }) 
+            return false;
+
+        byte minHealth = settings.EngineVersion switch
+        {
+            Ray1EngineVersion.GBA => 3,
+            Ray1EngineVersion.R2_PS1 => 0,
+            _ => 2
+        };
+        byte maxHealth = settings.EngineVersion switch
+        {
+            Ray1EngineVersion.GBA => 5,
+            Ray1EngineVersion.R2_PS1 => Byte.MaxValue,
+            _ => 4
+        };
+
+        if (StatusBar != null && (StatusBar.MaxHealth > maxHealth || StatusBar.MaxHealth < minHealth))
             return false;
 
         if (Ray != null)
@@ -202,6 +220,14 @@ public class Ray1MemoryData : MemoryData
             if (Ray.SpritesPointer == null ||
                 Ray.AnimationsPointer == null ||
                 Ray.ETAPointer == null)
+                return false;
+        }
+
+        if (R2_Ray != null)
+        {
+            if (R2_Ray.AnimSetPointer == null ||
+                R2_Ray.CharacterPointer == null ||
+                R2_Ray.UserDataPointer == null)
                 return false;
         }
 

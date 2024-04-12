@@ -83,15 +83,16 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             yield return new EditorIntFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_MaxHP)),
                 info: null,
-                getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth ?? 0),
+                getValueAction: () => AccessMemory(m => (m.StatusBar?.MaxHealth ?? 0) + 1),
                 setValueAction: x => AccessMemory(m =>
                 {
                     if (m.StatusBar == null)
                         return;
 
-                    m.StatusBar.MaxHealth = (byte)x;
+                    m.StatusBar.MaxHealth = (byte)(x - 1);
                     m.ModifiedValue(nameof(m.StatusBar));
                 }),
+                getMinAction: () => 1,
                 getMaxAction: () => Byte.MaxValue);
         }
         else
