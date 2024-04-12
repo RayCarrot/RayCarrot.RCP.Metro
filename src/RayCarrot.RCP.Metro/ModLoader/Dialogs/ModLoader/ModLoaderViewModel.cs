@@ -1,8 +1,10 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
@@ -550,6 +552,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task<bool?> ApplyAsync()
     {
+        // Warn about file conflicts
         if (ModifiedFiles.HasConflicts && Services.Data.ModLoader_ShowModConflictsWarning)
         {
             // TODO-LOC
@@ -557,6 +560,30 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
             if (!result)
                 return null;
+        }
+
+        // Verify the game is not running if Win32
+        if (GameInstallation.GameDescriptor is { Platform: GamePlatform.Win32, Structure: DirectoryProgramInstallationStructure structure })
+        {
+            FileSystemPath exeFilePath = structure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
+
+            if (exeFilePath.FileExists)
+            {
+                try
+                {
+                    Process[] processes = Process.GetProcessesByName(exeFilePath.RemoveFileExtension().Name);
+                    if (processes.Any(x => x.MainModule?.FileName == exeFilePath))
+                    {
+                        // TODO-LOC
+                        await Services.MessageUI.DisplayMessageAsync("Mods can not be applied while the game is running. Close any active instances of the game and try again.", "Game process detected", MessageType.Error);
+                        return null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn(ex, "Checking if game is running");
+                }
+            }
         }
 
         using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))

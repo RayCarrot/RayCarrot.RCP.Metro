@@ -13,14 +13,16 @@
 	• Speed storage values are now shown for Rayman 1
 	• Added support for VisualBoyAdvance-M (2.1.9 - x86)
 	• Various fixes and improvements
+• Mod loader changes
+	• Added support for Rayman Origins for the UBIART-LOC mod module
+	• A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
+	• Mods can no longer be applied if the game is currently running due to this usually causing errors
 • Archive changes
 	• Added the Rayman Origins (3DS) and Rayman Legends (PS3) game modes when opening an IPK archive
 	• Added the option to recreate the file table for UbiArt IPK archives (this can optionally be automatically done when repacking)
 	• Added the option to not compress UbiArt textures when importing from other file formats
 	• The compression method is now shown for images
 	• Improved performance
-• Added support for Rayman Origins for the UBIART-LOC mod module
-• A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
 • Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name and have better support if the file opens in an already running instance of the program
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
 • Improved finding and setting Ubisoft Connect user id for finding save files
