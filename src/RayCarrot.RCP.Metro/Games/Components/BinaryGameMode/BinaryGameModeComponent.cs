@@ -1,7 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 [BaseGameComponent]
-[SingleInstanceGameComponent]
 public abstract class BinaryGameModeComponent : GameComponent
 {
     protected BinaryGameModeComponent(Enum gameMode)
@@ -11,11 +10,11 @@ public abstract class BinaryGameModeComponent : GameComponent
                             ?? throw new Exception($"Game mode value {gameMode} is not valid");
     }
 
-    public Enum GameMode { get; }
-    public GameModeBaseAttribute GameModeAttribute { get; }
+    private GameModeBaseAttribute GameModeAttribute { get; }
 
-    // TODO-UPDATE: Use this in other places
-    public T GetRequiredSettings<T>() 
+    public Enum GameMode { get; }
+
+    protected T GetRequiredSettings<T>() 
         where T : class => 
         GameModeAttribute.GetSettingsObject() as T 
         ?? throw new Exception($"The settings object provided by the corresponding game mode {GameMode} is not of the correct type");

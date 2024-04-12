@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using BinarySerializer.UbiArt;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -19,8 +18,8 @@ public class UbiArtPathsComponent : GameComponent
     public IEnumerable<string> GetBundleNames()
     {
         string platformString = GameInstallation.
-            GetRequiredComponent<BinaryGameModeComponent>().
-            GetRequiredSettings<UbiArtSettings>().
+            GetRequiredComponent<BinaryGameModeComponent, UbiArtGameModeComponent>().
+            GetSettings().
             PlatformString;
 
         foreach (FileSystemPath bundleFilePath in Directory.EnumerateFiles(GameInstallation.InstallLocation.Directory + GameDataDirectory,

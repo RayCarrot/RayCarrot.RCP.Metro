@@ -62,10 +62,9 @@ public class UbiArtLocalizationModule : ModModule
 
     public override IReadOnlyCollection<IFilePatch> GetPatchedFiles(Mod mod, FileSystemPath modulePath)
     {
-        BinaryGameModeComponent gameModeComponent = mod.GameInstallation.GetRequiredComponent<BinaryGameModeComponent>();
-
-        if (gameModeComponent.GameModeAttribute.GetSettingsObject() is not UbiArtSettings ubiArtSettings)
-            throw new Exception($"The settings object provided by the corresponding game mode {gameModeComponent.GameMode} is not of the correct type");
+        UbiArtSettings ubiArtSettings = mod.GameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent, UbiArtGameModeComponent>().
+            GetSettings();
 
         string[] locales = ubiArtSettings switch
         {

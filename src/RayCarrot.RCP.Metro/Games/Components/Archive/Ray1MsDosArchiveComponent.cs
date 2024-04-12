@@ -12,24 +12,20 @@ public class Ray1MsDosArchiveComponent : ArchiveComponent
 
     public new const string Id = "RAY1_DAT";
 
-    private static Ray1Settings GetSettings(GameInstallation gameInstallation)
-    {
-        BinaryGameModeComponent gameModeComponent = gameInstallation.GetRequiredComponent<BinaryGameModeComponent>();
-
-        if (gameModeComponent.GameModeAttribute.GetSettingsObject() is not Ray1Settings ray1Settings)
-            throw new Exception($"The settings object provided by the corresponding game mode {gameModeComponent.GameMode} is not of the correct type");
-
-        return ray1Settings;
-    }
-
     private static IArchiveDataManager GetArchiveManager(GameInstallation gameInstallation)
     {
-        return new Ray1PCArchiveDataManager(GetSettings(gameInstallation));
+        Ray1Settings ray1Settings = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent, Ray1GameModeComponent>().
+            GetSettings();
+
+        return new Ray1PCArchiveDataManager(ray1Settings);
     }
 
     private static IEnumerable<string> GetArchiveFilePaths(GameInstallation gameInstallation)
     {
-        Ray1Settings ray1Settings = GetSettings(gameInstallation);
+        Ray1Settings ray1Settings = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent, Ray1GameModeComponent>().
+            GetSettings();
 
         if (ray1Settings.EngineVersion == Ray1EngineVersion.PC)
             throw new Exception("Getting archive paths for Rayman 1 PC is currently not supported");

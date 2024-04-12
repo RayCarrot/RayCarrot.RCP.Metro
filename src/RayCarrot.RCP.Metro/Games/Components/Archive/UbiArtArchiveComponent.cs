@@ -13,19 +13,11 @@ public class UbiArtArchiveComponent : ArchiveComponent
 
     public new const string Id = "UBIART_IPK";
 
-    private static UbiArtSettings GetSettings(GameInstallation gameInstallation)
-    {
-        BinaryGameModeComponent gameModeComponent = gameInstallation.GetRequiredComponent<BinaryGameModeComponent>();
-
-        if (gameModeComponent.GameModeAttribute.GetSettingsObject() is not UbiArtSettings ubiArtSettings)
-            throw new Exception($"The settings object provided by the corresponding game mode {gameModeComponent.GameMode} is not of the correct type");
-
-        return ubiArtSettings;
-    }
-
     private static IArchiveDataManager GetArchiveManager(GameInstallation gameInstallation)
     {
-        UbiArtSettings settings = GetSettings(gameInstallation);
+        UbiArtSettings settings = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent, UbiArtGameModeComponent>().
+            GetSettings();
 
         return new UbiArtIPKArchiveDataManager(
             settings: settings,
@@ -38,8 +30,8 @@ public class UbiArtArchiveComponent : ArchiveComponent
         UbiArtPathsComponent paths = gameInstallation.GetRequiredComponent<UbiArtPathsComponent>();
 
         string platformString = gameInstallation.
-            GetRequiredComponent<BinaryGameModeComponent>().
-            GetRequiredSettings<UbiArtSettings>().
+            GetRequiredComponent<BinaryGameModeComponent, UbiArtGameModeComponent>().
+            GetSettings().
             PlatformString;
 
         foreach (string bundleName in paths.GetBundleNames())

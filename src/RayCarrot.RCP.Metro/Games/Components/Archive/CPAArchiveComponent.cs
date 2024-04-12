@@ -12,19 +12,11 @@ public class CPAArchiveComponent : ArchiveComponent
 
     public new const string Id = "CPA_CNT";
 
-    private static OpenSpaceSettings GetSettings(GameInstallation gameInstallation)
-    {
-        BinaryGameModeComponent gameModeComponent = gameInstallation.GetRequiredComponent<BinaryGameModeComponent>();
-
-        if (gameModeComponent.GameModeAttribute.GetSettingsObject() is not OpenSpaceSettings openSpaceSettings)
-            throw new Exception($"The settings object provided by the corresponding game mode {gameModeComponent.GameMode} is not of the correct type");
-
-        return openSpaceSettings;
-    }
-
     private static IArchiveDataManager GetArchiveManager(GameInstallation gameInstallation)
     {
-        OpenSpaceSettings settings = GetSettings(gameInstallation);
+        OpenSpaceSettings settings = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent, CPAGameModeComponent>().
+            GetSettings();
 
         return new CPACntArchiveDataManager(
             settings: settings,
@@ -36,7 +28,11 @@ public class CPAArchiveComponent : ArchiveComponent
     {
         CPATextureSyncDataItem[] textureSyncItems = gameInstallation.GetRequiredComponent<CPATextureSyncComponent>().TextureSyncItems;
 
-        CPATextureSyncManager textureSyncManager = new(gameInstallation, GetSettings(gameInstallation), textureSyncItems);
+        OpenSpaceSettings settings = gameInstallation.
+            GetRequiredComponent<BinaryGameModeComponent, CPAGameModeComponent>().
+            GetSettings();
+
+        CPATextureSyncManager textureSyncManager = new(gameInstallation, settings, textureSyncItems);
 
         using (LoadState state = await Services.App.LoaderViewModel.RunAsync(Resources.Utilities_SyncTextureInfo_SyncStatus))
         {
