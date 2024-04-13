@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,6 +11,7 @@ using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
+using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.Legacy.AppData;
 
 namespace RayCarrot.RCP.Metro;
@@ -762,6 +764,27 @@ public class AppDataManager
 
                 if (binaryFileEditor != FileSystemPath.EmptyPath)
                     Data.FileEditors_AssociatedEditors[String.Empty] = binaryFileEditor;
+            }
+        }
+
+        if (lastVersion < new Version(14, 1, 0, 0))
+        {
+            // The RRR Prototype Restoration data is now stored per game installation
+            if (_dataJObject != null)
+            {
+                Dictionary<string, ToggleState>? toggleStates = _dataJObject["Mod_RRR_ToggleStates"]?.ToObject<Dictionary<string, ToggleState>>();
+                Dictionary<int, Key>? keyboardButtonMapping = _dataJObject["Mod_RRR_KeyboardButtonMapping"]?.ToObject<Dictionary<int, Key>>();
+
+                if (toggleStates != null && keyboardButtonMapping != null)
+                {
+                    foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+                    {
+                        if (gameInstallation.GameDescriptor is { Game: Game.RaymanRavingRabbids, Platform: GamePlatform.Win32 })
+                        {
+                            gameInstallation.SetObject(GameDataKey.RRR_PrototypeRestorationData, new PrototypeRestorationData(toggleStates, keyboardButtonMapping));
+                        }
+                    }
+                }
             }
         }
     }

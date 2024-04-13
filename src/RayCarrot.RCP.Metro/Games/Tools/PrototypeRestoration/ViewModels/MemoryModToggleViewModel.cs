@@ -3,6 +3,7 @@
 public class MemoryModToggleViewModel : BaseViewModel, IDisposable
 {
     public MemoryModToggleViewModel(
+        GameInstallation gameInstallation,
         LocalizedString header, 
         LocalizedString description, 
         Action<bool> toggleAction, 
@@ -10,6 +11,7 @@ public class MemoryModToggleViewModel : BaseViewModel, IDisposable
         ObservableCollection<LocalizedString>? selectionOptions = null, 
         Action<int>? selectionAction = null)
     {
+        GameInstallation = gameInstallation;
         Header = header;
         Description = description;
         ToggleAction = toggleAction;
@@ -23,6 +25,7 @@ public class MemoryModToggleViewModel : BaseViewModel, IDisposable
 
     public string? ID { get; private set; }
 
+    public GameInstallation GameInstallation { get; }
     public LocalizedString Header { get; }
     public LocalizedString Description { get; }
     public Action<bool> ToggleAction { get; }
@@ -55,7 +58,8 @@ public class MemoryModToggleViewModel : BaseViewModel, IDisposable
         if (ID == null)
             return;
 
-        Services.Data.Mod_RRR_ToggleStates[ID] = new ToggleState(IsToggled, SelectedSelectionIndex);
+        GameInstallation.ModifyObject<PrototypeRestorationData>(GameDataKey.RRR_PrototypeRestorationData, x =>
+            x.ToggleStates[ID] = new ToggleState(IsToggled, SelectedSelectionIndex));
     }
 
     public void Init(string id)
@@ -63,11 +67,13 @@ public class MemoryModToggleViewModel : BaseViewModel, IDisposable
         // Set the ID
         ID = id;
 
+        PrototypeRestorationData? data = GameInstallation.GetObject<PrototypeRestorationData>(GameDataKey.RRR_PrototypeRestorationData);
+
         // Attempt to restore saved values
-        if (Services.Data.Mod_RRR_ToggleStates.ContainsKey(id))
+        if (data != null && data.ToggleStates.TryGetValue(id, out ToggleState? state))
         {
-            _isToggled = Services.Data.Mod_RRR_ToggleStates[id].IsToggled;
-            _selectedSelectionIndex = Services.Data.Mod_RRR_ToggleStates[id].SelectionIndex;
+            _isToggled = state.IsToggled;
+            _selectedSelectionIndex = state.SelectionIndex;
         }
         else
         {

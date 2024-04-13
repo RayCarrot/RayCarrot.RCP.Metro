@@ -20,6 +20,7 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                 new ObservableCollection<MemoryModToggleViewModel>()
                 {
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_EnableProtoFeatures)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_EnableProtoFeaturesInfo)),
                         toggleAction: x =>
@@ -30,26 +31,31 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                         },
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddCamControls)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddCamControlsInfo)),
                         toggleAction: x => MemoryPatcher.addCameraControls = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddDuel)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddDuelInfo)),
                         toggleAction: x => MemoryPatcher.addDuel = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddPlaytestMenu)), 
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddPlaytestMenuInfo)),
                         toggleAction: x => MemoryPatcher.addPlaytestMenu = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UnlockAllMinigames)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UnlockAllMinigamesInfo)),
                         toggleAction: x => MemoryPatcher.unlockAllMinigames = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_CheatPage)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_CheatPageInfo)),
                         toggleAction: x => MemoryPatcher.setCheatPage = x,
@@ -70,31 +76,37 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                 new ObservableCollection<MemoryModToggleViewModel>()
                 {
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddLookMode)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddLookModeInfo)),
                         toggleAction: x => MemoryPatcher.addLookMode = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddBoostButton)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddBoostButtonInfo)),
                         toggleAction: x => MemoryPatcher.addBoostButton = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddFinishers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddFinishersInfo)),
                         toggleAction: x => MemoryPatcher.addFinishers = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ClimbWalls)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ClimbWallsInfo)),
                         toggleAction: x => MemoryPatcher.climbWalls = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_HangFromSpots)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_HangFromSpotsInfo)),
                         toggleAction: x => MemoryPatcher.hangFromHotspots = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFXInfo)),
                         toggleAction: x => MemoryPatcher.setGrappinGFX = x,
@@ -109,51 +121,61 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                         },
                         selectionAction: x => MemoryPatcher.GrappinGFX = (byte)x),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UpgradedPowers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UpgradedPowersInfo)),
                         toggleAction: x => MemoryPatcher.allpowers = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_Immortal)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ImmortalInfo)),
                         toggleAction: x => MemoryPatcher.immortal = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ControlTempo)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ControlTempoInfo)),
                         toggleAction: x => MemoryPatcher.controlTempo = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GroovyMoveset)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GroovyMovesetInfo)),
                         toggleAction: x => MemoryPatcher.groovyRaymanDanceMoveset = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SetCostume)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SetCostumeInfo)),
                         toggleAction: x => MemoryPatcher.setPlayer1Costume = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableIntros)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableIntrosInfo)),
                         toggleAction: x => MemoryPatcher.disableMinigameIntro = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableFootstepSound)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableFootstepSoundInfo)),
                         toggleAction: x => MemoryPatcher.disableFootstepSound = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_LessSlippery)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_LessSlipperyInfo)),
                         toggleAction: x => MemoryPatcher.lowerSlippery = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DrawHealthMana)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DrawHealthManaInfo)),
                         toggleAction: x => MemoryPatcher.drawHealthMana = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_NoInstaKill)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_NoInstaKillInfo)),
                         toggleAction: x => MemoryPatcher.noInstaKill = x,
@@ -165,16 +187,19 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                 new ObservableCollection<MemoryModToggleViewModel>()
                 {
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsDropItems)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsDropItemsInfo)),
                         toggleAction: x => MemoryPatcher.rabbidsDropItems = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_IncreasedRabbidHP)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_IncreasedRabbidHPInfo)),
                         toggleAction: x => MemoryPatcher.rabbidsIncreasedHP = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RandomProtoRabbidPowers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RandomProtoRabbidPowersInfo)),
                         toggleAction: x => MemoryPatcher.randomProtoRabbidPowers = x,
@@ -186,36 +211,43 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                 new ObservableCollection<MemoryModToggleViewModel>()
                 {
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_TameMounts)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_TameMountsInfo)),
                         toggleAction: x => MemoryPatcher.tameMounts = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatsActLikeEagles)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatsActLikeEaglesInfo)),
                         toggleAction: x => MemoryPatcher.makeBatsIntoEagles = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_PigsActLikePlums)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_PigsActLikePlumsInfo)),
                         toggleAction: x => MemoryPatcher.makePigsIntoPlums = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AggressiveRhinos)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AggressiveRhinosInfo)),
                         toggleAction: x => MemoryPatcher.makeRhinosAggressive = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SpiderJump)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SpiderJumpInfo)),
                         toggleAction: x => MemoryPatcher.makeSpidersJump = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatShoot)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatShootInfo)),
                         toggleAction: x => MemoryPatcher.makeBatShoot = x,
                         isToggled: true),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SaucersStartFlying)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SaucersStartFlyingInfo)),
                         toggleAction: x => MemoryPatcher.saucersStartFlying = x,
@@ -227,21 +259,25 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                 new ObservableCollection<MemoryModToggleViewModel>()
                 {
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MissileLaunchersTarget)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MissileLaunchersTargetInfo)),
                         toggleAction: x => MemoryPatcher.missileLaunchersTargetPlayer = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DontDestroyBipods)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DontDestroyBipodsInfo)),
                         toggleAction: x => MemoryPatcher.dontDestroyBipods = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ActivatorTriggers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ActivatorTriggersInfo)),
                         toggleAction: x => MemoryPatcher.activateAllActivatorTriggers = x,
                         isToggled: false),
                     new MemoryModToggleViewModel(
+                        gameInstallation: gameInstallation,
                         header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BoundingVolumeTriggers)),
                         description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BoundingVolumeTriggersInfo)),
                         toggleAction: x => MemoryPatcher.activateAllPivotInBVTriggers = x,
@@ -335,12 +371,16 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
         RefreshBFPatches();
 
         // Restore saved button mapping
-        foreach (var buttonItem in Services.Data.Mod_RRR_KeyboardButtonMapping)
+        PrototypeRestorationData? data = GameInstallation.GetObject<PrototypeRestorationData>(GameDataKey.RRR_PrototypeRestorationData);
+        if (data != null)
         {
-            ButtonMappingKeyItemViewModel<int>? matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
+            foreach (var buttonItem in data.KeyboardButtonMapping)
+            {
+                ButtonMappingKeyItemViewModel<int>? matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
 
-            if (matchingItem != null)
-                matchingItem.NewKey = buttonItem.Value;
+                if (matchingItem != null)
+                    matchingItem.NewKey = buttonItem.Value;
+            }
         }
 
         ApplyMemoryPatchCommand = new AsyncRelayCommand(ApplyMemoryPatchAsync);
@@ -499,7 +539,12 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
                     MemoryPatcher.KeyboardKeycodes[buttonMappingItem.KeyObj] = DirectXKeyHelpers.GetKeyCode(buttonMappingItem.NewKey);
 
                 // Save the button mapping
-                Services.Data.Mod_RRR_KeyboardButtonMapping = ButtonMappingItems.ToDictionary(x => x.KeyObj, x => x.NewKey);
+                GameInstallation.ModifyObject<PrototypeRestorationData>(GameDataKey.RRR_PrototypeRestorationData, x =>
+                {
+                    x.KeyboardButtonMapping.Clear();
+                    foreach (ButtonMappingKeyItemViewModel<int> buttonMappingItem in ButtonMappingItems)
+                        x.KeyboardButtonMapping[buttonMappingItem.KeyObj] = buttonMappingItem.NewKey;
+                });
             }
 
             MemoryPatcher.Patch();
