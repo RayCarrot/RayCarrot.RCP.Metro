@@ -1,33 +1,34 @@
 ﻿-----   Version 14.1.0 - April ??, 2024   -----
 • Added support for PS1 games:
-	• Rayman 1
-	• Rayman 2
-	• Rayman Rush
-	• Rayman Junior/Rayman Brain Games
+    • Rayman 1
+    • Rayman 2
+    • Rayman Rush
+    • Rayman Junior/Rayman Brain Games
 • Added support for new game clients/emulators:
-	• DuckStation
+    • DuckStation
 • Moved the Rayman Raving Rabbids Prototype Restoration tool from the mods page to a game panel and redesigned it
 • Moved the Memory Mods from the mods page to game panels and renamed it to Runtime Modifications and redesigned it
-	• Games and emulator processes are now automatically found when running
-	• The serialization log now automatically refreshes when viewed
-	• Speed storage values are now shown for Rayman 1
-	• Added support for VisualBoyAdvance-M (2.1.9 - x86)
-	• Various fixes and improvements
+    • Games and emulator processes are now automatically found when running
+    • The serialization log now automatically refreshes when viewed
+    • Speed storage values are now shown for Rayman 1
+    • Added support for VisualBoyAdvance-M (2.1.9 - x86)
+    • Various fixes and improvements
 • Mod loader changes
-	• Added support for Rayman Origins for the UBIART-LOC mod module
-	• A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
-	• Mods can no longer be applied if the game is currently running due to this usually causing errors
+    • Added support for Rayman Origins for the UBIART-LOC mod module
+    • A warning message is now shown when applying mods if there are file conflicts (this can be turned off in the settings page)
+    • Mods can no longer be applied if the game is currently running due to this usually causing errors
 • Archive changes
-	• Added the Rayman Origins (3DS) and Rayman Legends (PS3) game modes when opening an IPK archive
-	• Added the option to recreate the file table for UbiArt IPK archives (this can optionally be automatically done when repacking)
-	• Added the option to not compress UbiArt textures when importing from other file formats
-	• The compression method is now shown for images
-	• Improved performance
+    • Added the Rayman Origins (3DS) and Rayman Legends (PS3) game modes when opening an IPK archive
+    • Added the option to recreate the file table for UbiArt IPK archives (this can optionally be automatically done when repacking)
+    • Added the option to not compress UbiArt textures when importing from other file formats
+    • The compression method is now shown for images
+    • Improved performance
 • Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name and have better support if the file opens in an already running instance of the program
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
 • Improved finding and setting Ubisoft Connect user id for finding save files
 • File sizes are now displayed using a binary base to match what Windows File Explorer shows
 • When launching the app it will now reposition the window to be on screen, avoiding it opening off screen if the last opened position was on a now disconnected monitor
+• Replace tabs with four spaces in the changelogs to avoid it displaying with too large widths
 • Fixed a bug where the app would crash if there was an error reading a mod when opening directly to it, such as from the GameBanana 1-click installer
 • Fixed a bug where files in the Archive Explorer would show the wrong image size
 • Fixed a bug where files in the Archive Explorer would stop showing certain information after being exported
@@ -64,10 +65,10 @@
 • Added GameBanana integration to the new mod loader, allowing mods to be downloaded and updated from GameBanana through the app
 • Added a home page for news and recent/favorite games
 • Added support for new games:
-	• Rayman Jungle Run (Ubisoft Connect) and Rayman Fiesta Run (Ubisoft Connect)
-	• Rayman (Game Boy Color), Rayman 2 (Game Boy Color) and Tonic Trouble (Game Boy Color)
-	• Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA)
-	• Rayman: The Dreamer's Boundary
+    • Rayman Jungle Run (Ubisoft Connect) and Rayman Fiesta Run (Ubisoft Connect)
+    • Rayman (Game Boy Color), Rayman 2 (Game Boy Color) and Tonic Trouble (Game Boy Color)
+    • Rayman Advance, Rayman 3 (GBA), Rayman Hoodlums' Revenge and Rayman Raving Rabbids (GBA)
+    • Rayman: The Dreamer's Boundary
 • The program has now been translated to Danish (thanks Lex!), Spanish (thanks Marcos03BR!) and Turkish (thanks payopayo!)
 • The game finder has been reworked to be faster and to be able to find game clients/emulators
 • The links page has been removed. Config links can now instead be viewed in the game config dialogs and app links have been moved to the settings page overflow menu.
@@ -77,36 +78,36 @@
 
 Other changes:
 • Game changes
-	• The game options have been moved from the options dialog to the new game hub
-	• The Rayman Edutainment games are now split up between Edu and Quiz
+    • The game options have been moved from the options dialog to the new game hub
+    • The Rayman Edutainment games are now split up between Edu and Quiz
 • Settings page changes
-	• Redesigned the settings page, having everything on a single page with different sections to jump between
-	• Options from the settings overflow menu have now been integrated into the page itself
-	• Updated the settings for file/uri associations
-	• Updated the settings for file editors and have the progression page save editor be specified there
+    • Redesigned the settings page, having everything on a single page with different sections to jump between
+    • Options from the settings overflow menu have now been integrated into the page itself
+    • Updated the settings for file/uri associations
+    • Updated the settings for file editors and have the progression page save editor be specified there
 • UI changes
-	• Redesigned the games page, now split between a selection and the game hub
-	• Decreased large corner radiuses
-	• Card backgrounds are now darker
-	• Updated various control styles, including for buttons, checkboxes and lists
-	• Redesigned the overflow/popup menus
-	• Redesigned the edit jumplist dialog
+    • Redesigned the games page, now split between a selection and the game hub
+    • Decreased large corner radiuses
+    • Card backgrounds are now darker
+    • Updated various control styles, including for buttons, checkboxes and lists
+    • Redesigned the overflow/popup menus
+    • Redesigned the edit jumplist dialog
 • Mod loader (prev. patcher) changes
-	• The patch creator has been removed in favor of a new, simpler, mod creator, accessible directly from the game hub
-	• Legacy game patch files (.gp) now use a custom file icon
-	• Besides features supported by game patches, mods can now also include a changelog and target multiple games
-	• The mod loader now shows if a file will be ignored due to the archive it belongs to not existing
-	• When viewing file changes in the mod loader you can now show it as a tree view
-	• Mods can now be created for all games, with different modules being available for different games
+    • The patch creator has been removed in favor of a new, simpler, mod creator, accessible directly from the game hub
+    • Legacy game patch files (.gp) now use a custom file icon
+    • Besides features supported by game patches, mods can now also include a changelog and target multiple games
+    • The mod loader now shows if a file will be ignored due to the archive it belongs to not existing
+    • When viewing file changes in the mod loader you can now show it as a tree view
+    • Mods can now be created for all games, with different modules being available for different games
 • Archive changes
-	• When repacking an archive it will now check if the archive can be written to, avoiding it crashing if attempting to repack an archive while running the game
-	• The CPA texture sync is now available for the Rayman M and Rayman 3 demos
-	• The CPA texture sync has been moved from a utility to an archive action in the game hub
-	• The CPA texture sync now syncs the individual Rayman M/Arena game folders separately
-	• Progress is now shown when synchronizing CPA game textures
-	• Exporting/importing files in an IPK archive now preserves the file dates
-	• Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
-	• The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
+    • When repacking an archive it will now check if the archive can be written to, avoiding it crashing if attempting to repack an archive while running the game
+    • The CPA texture sync is now available for the Rayman M and Rayman 3 demos
+    • The CPA texture sync has been moved from a utility to an archive action in the game hub
+    • The CPA texture sync now syncs the individual Rayman M/Arena game folders separately
+    • Progress is now shown when synchronizing CPA game textures
+    • Exporting/importing files in an IPK archive now preserves the file dates
+    • Rayman Legends now includes the patch_PC.ipk file by default in the Archive Explorer if available
+    • The Rayman Designer WldDesc.dat file is now ignored by the Archive Explorer due to not being a valid archive
 • Added incomplete Hungarian (Hungary) translation
 • Removed incomplete Serbian (Cyrillic), Spanish (Mexico) and Swedish (Sweden) translations
 • Added Lex, Marcos03BR, Nic and payopayo to the credits
@@ -136,22 +137,22 @@ Other changes:
 • Removed purchase links for Microsoft Store games due to them being delisted
 • Removed the Rayman Origins High Quality videos utility as it has been replaced by a patch
 • Debug changes
-	• Removed debug options to refresh the app
-	• Added debug dialogs for game and game client installations
-	• The debug page has several added and removed options and improvements to existing ones
+    • Removed debug options to refresh the app
+    • Added debug dialogs for game and game client installations
+    • The debug page has several added and removed options and improvements to existing ones
 • Bug fixes
-	• Concurrent serializer log writes are now handled by creating multiple log files
-	• The app jumplist is now refreshed when the app exe is moved
-	• Fixed a bug where the Rayman Origins font wouldn't load in the progression page unless it was installed on the computer
-	• Fixed a bug with finding Rayman Forever installations through the game finder
-	• Fixed a bug with creating backups for the Rayman Edutainment (Quiz) games
-	• Fixed a bug where the Rabbis Go Home config wouldn't get saved when restarting the app
-	• Fixed a bug where closing the manual download dialog might show an error
-	• Fixed a bug where progress would sometimes be shown on the taskbar even though the setting for it was unchecked
-	• Fixed a bug where certain parts of the app wouldn't use the specified language
-	• Fixed a bug where importing files from a folder wouldn't work for IPK archives
-	• Fixed a bug where the resolution selection wouldn't be formatted correctly in Hebrew
-	• Fixed a bug where importing files to a .ipk archive would cause it to be compressed incorrectly in rare cases
+    • Concurrent serializer log writes are now handled by creating multiple log files
+    • The app jumplist is now refreshed when the app exe is moved
+    • Fixed a bug where the Rayman Origins font wouldn't load in the progression page unless it was installed on the computer
+    • Fixed a bug with finding Rayman Forever installations through the game finder
+    • Fixed a bug with creating backups for the Rayman Edutainment (Quiz) games
+    • Fixed a bug where the Rabbis Go Home config wouldn't get saved when restarting the app
+    • Fixed a bug where closing the manual download dialog might show an error
+    • Fixed a bug where progress would sometimes be shown on the taskbar even though the setting for it was unchecked
+    • Fixed a bug where certain parts of the app wouldn't use the specified language
+    • Fixed a bug where importing files from a folder wouldn't work for IPK archives
+    • Fixed a bug where the resolution selection wouldn't be formatted correctly in Hebrew
+    • Fixed a bug where importing files to a .ipk archive would cause it to be compressed incorrectly in rare cases
 
 
 -----   Version 13.4.5 - January 23, 2023   -----
@@ -279,14 +280,14 @@ Other changes:
 
 -----   Version 13.0.0 - January 28, 2022   -----
 • Added the progression page, replacing the backup/restore and game specific progression pages
-	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
-	• The progression data for backups can now be viewed and compared to the current data
-	• Save slots can now be directly edited as JSON data
+    • Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
+    • The progression data for backups can now be viewed and compared to the current data
+    • Save slots can now be directly edited as JSON data
 • Utilities changes
-	• Added a utility for fixing Rayman Fiesta Run saves
-	• Added a new serializers utility with an option for showing the file serialization log
-	• Added serializers for Rayman Raving Rabbids save files, Rayman Fiesta Run save files, Unity Player Preferences and Game Maker DS Map txt files
-	• Added a decoder for Rayman Raving Rabbids save files
+    • Added a utility for fixing Rayman Fiesta Run saves
+    • Added a new serializers utility with an option for showing the file serialization log
+    • Added serializers for Rayman Raving Rabbids save files, Rayman Fiesta Run save files, Unity Player Preferences and Game Maker DS Map txt files
+    • Added a decoder for Rayman Raving Rabbids save files
 • Added options to enable unused cheats in the Rayman Raving Rabbids config
 • Updated the Rayman Arena disc removal to make it work even when there are no available disc drives (save the changes in the config to apply the updated patch)
 • Migrated the code from using RayCarrot.Binary/Rayman to BinarySerializer for binary data parsing, utilizing much of the same code as in Ray1Map
@@ -294,22 +295,22 @@ Other changes:
 
 Other changes:
 • Progression page
-	• The backup status is now shown indicating if a backup is outdated
-	• If the save data has been redirected to VirtualStore there will now be an option to choose the data source to use
-	• Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
+    • The backup status is now shown indicating if a backup is outdated
+    • If the save data has been redirected to VirtualStore there will now be an option to choose the data source to use
+    • Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
 • Utilities changes
-	• Moved most general utilities to the new binary tools page
-	• The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
-	• The UbiArt localization file converter now produces more readable JSON files
-	• Added icons to the utility headers and normalized some layouts
-	• Unavailable utilities are no longer hidden and can optionally show why they are not available
-	• The UbiRay utility can no longer be used if the required costume files have been modified in size to avoid overwriting incorrect data
-	• Removed the decoder for Rayman 1 language files
-	• Removed the Rayman 2 disc patch utility
+    • Moved most general utilities to the new binary tools page
+    • The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
+    • The UbiArt localization file converter now produces more readable JSON files
+    • Added icons to the utility headers and normalized some layouts
+    • Unavailable utilities are no longer hidden and can optionally show why they are not available
+    • The UbiRay utility can no longer be used if the required costume files have been modified in size to avoid overwriting incorrect data
+    • Removed the decoder for Rayman 1 language files
+    • Removed the Rayman 2 disc patch utility
 • Visual changes
-	• Updated the game icons
-	• Added icons to more buttons
-	• Minor UI changes such as increased scrollbar padding
+    • Updated the game icons
+    • Added icons to more buttons
+    • Minor UI changes such as increased scrollbar padding
 • Major code and libraries refactoring
 • Rayman Control Panel and Archive Explorer are no longer displayed with the ™ symbol
 • Certain pages can now be refreshed by pressing F5
@@ -326,11 +327,11 @@ Other changes:
 • Added a debug option to show grid lines in the app user interface
 • Added a debug option to refresh all multiple times in parallel
 • Bug fixes
-	• Fixed the app window title not being shown in the taskbar
-	• Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
-	• Fixed some strings not being localized in the string input dialog
-	• Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked
-	• Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
-	• Fixed a bug where the app might crash when loading the games page
-	• Fixed some bugs with the game options dialog in-page selection (used for the educational games config)
-	• Fixed a bug where opening a read-only file directly in the Archive Explorer would not delete it afterwards
+    • Fixed the app window title not being shown in the taskbar
+    • Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
+    • Fixed some strings not being localized in the string input dialog
+    • Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked
+    • Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
+    • Fixed a bug where the app might crash when loading the games page
+    • Fixed some bugs with the game options dialog in-page selection (used for the educational games config)
+    • Fixed a bug where opening a read-only file directly in the Archive Explorer would not delete it afterwards
