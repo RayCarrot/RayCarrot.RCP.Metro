@@ -68,8 +68,11 @@ public class FileType_Image : IFileType
         // Get the image
         using MagickImage img = GetImage(inputStream, fileExtension, manager);
 
+        int originalWidth = img.Width;
+        int originalHeight = img.Height;
+
         // Resize to a thumbnail
-        img.Thumbnail(width, (int)(img.Height / ((double)img.Width / width)));
+        img.Thumbnail(width, (int)(originalHeight / ((double)originalWidth / width)));
 
         BitmapSource thumb = img.ToBitmapSource();
 
@@ -77,7 +80,7 @@ public class FileType_Image : IFileType
         {
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)), 
-                text: $"{img.Width}x{img.Height}"),
+                text: $"{originalWidth}x{originalHeight}"),
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)), 
                 text: new GeneratedLocString(() => $"{GetFormat(fileExtension)}")),
