@@ -229,8 +229,6 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers(Ray1Settings settings)
     {
-        // TODO-UPDATE: Potentially remove some of these since they break the game
-
         // Fist
         yield return new EditorBoolFieldViewModel(
             header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower)),
@@ -376,34 +374,6 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
 
         if (settings.EngineVersion != Ray1EngineVersion.R2_PS1)
         {
-            // Small Rayman
-            yield return new EditorBoolFieldViewModel(
-                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_SquishedPower)),
-                info: null,
-                getValueAction: () => AccessMemory(m => m.RayEvts?.SmallRayman ?? false),
-                setValueAction: x => AccessMemory(m =>
-                {
-                    if (m.RayEvts == null)
-                        return;
-
-                    m.RayEvts.SmallRayman = x;
-                    m.ModifiedValue(nameof(m.RayEvts));
-                }));
-
-            // Firefly
-            yield return new EditorBoolFieldViewModel(
-                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_FireflyPower)),
-                info: null,
-                getValueAction: () => AccessMemory(m => m.RayEvts?.Firefly ?? false),
-                setValueAction: x => AccessMemory(m =>
-                {
-                    if (m.RayEvts == null)
-                        return;
-
-                    m.RayEvts.Firefly = x;
-                    m.ModifiedValue(nameof(m.RayEvts));
-                }));
-
             // Force run
             yield return new EditorBoolFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ForcedRunPower)),
