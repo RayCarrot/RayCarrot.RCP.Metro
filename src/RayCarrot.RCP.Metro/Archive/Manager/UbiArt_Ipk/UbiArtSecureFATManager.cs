@@ -91,14 +91,14 @@ public class UbiArtGlobalFatManager
 
                     fileDescriptor = new FileDescriptor()
                     {
-                        Id = path.StringID,
+                        Id = new StringID() { ID = path.StringID.ID },
                         FileName = path.FileName,
                         Folder = folderDescriptor.Id
                     };
                     files.Add(fileDescriptor);
                     filesAdditional.Add(new FileAdditionalDescriptor
                     {
-                        Id = fileDescriptor.Id,
+                        Id = new StringID() { ID = fileDescriptor.Id.ID },
                         Folder = fileDescriptor.Folder,
                         FileName = fileDescriptor.FileName
                     });
