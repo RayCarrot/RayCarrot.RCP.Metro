@@ -187,6 +187,17 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 getItemsAction: () => levelDropDowns[AccessMemory(m => m.NumWorld)]);
         }
 
+        if (AccessMemory(m => m.SupportsProperty(nameof(m.DebugMode))))
+            yield return new EditorBoolFieldViewModel(
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_DebugMode)),
+                info: "Enables usage of debug button cheats", // TODO-LOC
+                getValueAction: () => AccessMemory(m => m.DebugMode),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    m.DebugMode = x;
+                    m.ModifiedValue(nameof(m.DebugMode));
+                }));
+
         if (AccessMemory(m => m.SupportsProperty(nameof(m.AllWorld))))
             yield return new EditorBoolFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MapSelect)),

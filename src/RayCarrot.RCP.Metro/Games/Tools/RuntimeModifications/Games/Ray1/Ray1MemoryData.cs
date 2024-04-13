@@ -32,6 +32,8 @@ public class Ray1MemoryData : MemoryData
     public short NewWorld { get; set; }
     public byte MenuEtape { get; set; }
 
+    public bool DebugMode { get; set; }
+
     public bool FinBoss { get; set; }
     public FinBossLevel FinBossLevel { get; set; }
 
@@ -76,6 +78,8 @@ public class Ray1MemoryData : MemoryData
         [nameof(NewWorld)] = 0x170892,
         [nameof(MenuEtape)] = 0x170A37,
 
+        //[nameof(DebugMode)] = ,
+
         [nameof(FinBoss)] = 0x170A76,
         [nameof(FinBossLevel)] = 0x17081E,
     };
@@ -108,6 +112,8 @@ public class Ray1MemoryData : MemoryData
         [nameof(NewWorld)] = 0x801fa5a8,
         [nameof(MenuEtape)] = 0x801f81a0,
 
+        [nameof(DebugMode)] = 0x801d7888,
+
         [nameof(FinBoss)] = 0x801f7a48,
         [nameof(FinBossLevel)] = 0x801f4ee8,
     };
@@ -139,6 +145,8 @@ public class Ray1MemoryData : MemoryData
         //[nameof(NewLevel)] = ,
         //[nameof(NewWorld)] = ,
         [nameof(MenuEtape)] = 0x80145a2a,
+
+        //[nameof(DebugMode)] = ,
 
         //[nameof(FinBoss)] = ,
         //[nameof(FinBossLevel)] = ,
@@ -178,6 +186,8 @@ public class Ray1MemoryData : MemoryData
         [nameof(NewLevel)] = 0x0202bf10,
         [nameof(NewWorld)] = 0x0203038c,
         //[nameof(MenuEtape)] = ,
+
+        //[nameof(DebugMode)] = ,
 
         [nameof(FinBoss)] = 0x02030810,
         [nameof(FinBossLevel)] = 0x0202fbf0,
@@ -288,6 +298,8 @@ public class Ray1MemoryData : MemoryData
         NewLevel = Serialize<short>(NewLevel, name: nameof(NewLevel));
         NewWorld = Serialize<short>(NewWorld, name: nameof(NewWorld));
         MenuEtape = Serialize<byte>(MenuEtape, name: nameof(MenuEtape));
+
+        DebugMode = Serialize<bool>(DebugMode, name: nameof(DebugMode));
 
         FinBoss = Serialize<bool>(FinBoss, name: nameof(FinBoss));
         FinBossLevel = Serialize<FinBossLevel>(FinBossLevel, name: nameof(FinBossLevel));
