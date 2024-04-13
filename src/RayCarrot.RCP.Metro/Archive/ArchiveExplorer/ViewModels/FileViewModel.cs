@@ -51,6 +51,12 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
     #endregion
 
+    #region Private Properties
+
+    private DuoGridItemViewModel[]? ThumbnailDisplayInfo { get; set; }
+
+    #endregion
+
     #region Commands
 
     public ICommand ImportCommand { get; }
@@ -179,7 +185,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         if (thumbnailLoadMode == ThumbnailLoadMode.None)
             return;
 
-        // If the mod is set to only reload the thumbnail if already loaded then we return
+        // If the mode is set to only reload the thumbnail if already loaded then we return
         // if the thumbnail is not currently loaded. It might still be cached however, so
         // we remove it from the cache as well to ensure it gets reloaded next time.
         if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnailIfLoaded && ThumbnailSource == null)
@@ -213,8 +219,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         // Set the image source
         ThumbnailSource = img;
 
-        // Add display info from the type data
-        FileDisplayInfo.AddRange(thumb.FileInfo);
+        // Save display info from the type data
+        ThumbnailDisplayInfo = thumb.FileInfo;
     }
 
     #endregion
@@ -264,6 +270,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
             // Load the thumbnail
             LoadThumbnail(fileStream, thumbnailLoadMode);
+            if (ThumbnailDisplayInfo != null)
+                FileDisplayInfo.AddRange(ThumbnailDisplayInfo);
 
             // Set icon
             IconKind = FileType!.Icon;
@@ -317,6 +325,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         ResetMenuActions();
         IconKind = FileType!.Icon;
         ThumbnailSource = null;
+        ThumbnailDisplayInfo = null;
         IsInitialized = true;
         CanImport = false;
     }
@@ -331,7 +340,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
         // Unload the thumbnail
         ThumbnailSource = null;
-            
+        ThumbnailDisplayInfo = null;
+
         // Deselect the file (this makes sure that the selection is cleared when the file is loaded the next time)
         IsSelected = false;
     }
