@@ -372,6 +372,23 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
                 m.ModifiedValue(nameof(m.RayEvts));
             }));
 
+        if (settings.EngineVersion == Ray1EngineVersion.PS1)
+        {
+            // Unused death
+            yield return new EditorBoolFieldViewModel(
+                header: "Unused death", // TODO-LOC
+                info: null,
+                getValueAction: () => AccessMemory(m => m.RayEvts?.Squished ?? false),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.RayEvts == null)
+                        return;
+
+                    m.RayEvts.Squished = x;
+                    m.ModifiedValue(nameof(m.RayEvts));
+                }));
+        }
+
         if (settings.EngineVersion != Ray1EngineVersion.R2_PS1)
         {
             // Force run
