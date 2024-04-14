@@ -6,6 +6,7 @@
     • Rayman Junior/Rayman Brain Games
 • Added support for new game clients/emulators:
     • DuckStation
+    • BizHawk
 • Moved the Rayman Raving Rabbids Prototype Restoration tool from the mods page to a game panel and redesigned it
 • Moved the Memory Mods from the mods page to game panels and renamed it to Runtime Modifications and redesigned it
     • Games and emulator processes are now automatically found when running
