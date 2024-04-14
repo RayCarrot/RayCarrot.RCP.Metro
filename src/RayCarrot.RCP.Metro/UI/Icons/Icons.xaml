@@ -121,6 +121,12 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_ModLoader}" 
                        IconKind="{StaticResource RCP.Icons.ModLoader}" 
                        IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_PrototypeRestoration}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_RuntimeModification}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_Archive}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 

@@ -16,6 +16,8 @@ public enum GenericIconKind
     GameFeature_Progression,
     GameFeature_Utilities,
     GameFeature_ModLoader,
+    GameFeature_PrototypeRestoration,
+    GameFeature_RuntimeModification,
 
     GamePanel_Archive,
     GamePanel_ModLoader,
