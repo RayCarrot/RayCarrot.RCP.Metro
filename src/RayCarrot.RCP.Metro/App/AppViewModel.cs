@@ -272,7 +272,7 @@ public class AppViewModel : BaseViewModel
                         webRequest.Method = "HEAD";
 
                         using WebResponse webResponse = webRequest.GetResponse();
-                        size += Convert.ToInt64(webResponse.Headers.Get("Content-Length")); // TODO-UPDATE Test
+                        size += Convert.ToInt64(webResponse.Headers.Get("Content-Length"));
                     }
 
                     string sizeString = BinaryHelpers.BytesToString(size);
