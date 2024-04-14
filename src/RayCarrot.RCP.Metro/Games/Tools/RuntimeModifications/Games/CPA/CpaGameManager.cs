@@ -242,13 +242,16 @@ public class CpaGameManager : GameManager<CPAMemoryData>
                 new GroupedEditorDropDownFieldViewModel(
                     header: new ResourceLocString(nameof(Resources.Mod_Mem_CurrentMap)),
                     info: null,
-                    getValueAction: () => AccessMemory(m => mapDropDowns.FindItemIndex(x => x.Data == m.CurrentMap)),
+                    getValueAction: () => AccessMemory(m => mapDropDowns.FindItemIndex(x => x.Data != null && x.Data.Equals(m.EngineStructure?.LevelName, StringComparison.InvariantCultureIgnoreCase))),
                     setValueAction: x => AccessMemory(m =>
                     {
-                        m.CurrentMap = mapDropDowns[x].Data;
-                        m.EngineMode = 6;
+                        if (m.EngineStructure != null)
+                        {
+                            m.EngineStructure.NextLevelName = mapDropDowns[x].Data;
+                            m.EngineStructure.EngineMode = GAM_EngineMode.ChangeLevel;
 
-                        m.ModifiedValue(nameof(m.EngineMode), nameof(m.CurrentMap));
+                            m.ModifiedValue(nameof(m.EngineStructure));
+                        }
                     }),
                     getItemsAction: () => mapDropDowns)
             });
@@ -256,7 +259,7 @@ public class CpaGameManager : GameManager<CPAMemoryData>
 
     public override IEnumerable<DuoGridItemViewModel> CreateInfoItems(Context context)
     {
-        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_Map)), m => m.CurrentMap);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_Map)), m => m.EngineStructure?.LevelName);
     }
 
     public override IEnumerable<ActionViewModel> CreateActions(Context context)
