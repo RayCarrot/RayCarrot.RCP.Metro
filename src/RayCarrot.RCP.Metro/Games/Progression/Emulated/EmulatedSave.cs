@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro;
 
-public abstract class EmulatedSave : IDisposable
+public abstract class EmulatedSave
 {
     protected EmulatedSave(EmulatedSaveFile file, Context context)
     {
@@ -17,9 +17,4 @@ public abstract class EmulatedSave : IDisposable
         where T : BinarySerializable, new();
     public abstract Task WriteAsync<T>(T obj)
         where T : BinarySerializable, new();
-
-    public void Dispose()
-    {
-        Context.Dispose();
-    }
 }

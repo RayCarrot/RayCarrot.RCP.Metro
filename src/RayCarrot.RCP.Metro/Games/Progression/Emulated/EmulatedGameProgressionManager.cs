@@ -23,9 +23,8 @@ public abstract class EmulatedGameProgressionManager : GameProgressionManager
         {
             foreach (EmulatedSave emulatedSave in await emulatedSaveFile.GetSavesAsync(GameInstallation))
             {
-                using (emulatedSave)
-                    await foreach (EmulatedGameProgressionSlot slot in LoadSlotsAsync(emulatedSave)) 
-                        yield return slot;
+                await foreach (EmulatedGameProgressionSlot slot in LoadSlotsAsync(emulatedSave)) 
+                    yield return slot;
             }
         }
     }

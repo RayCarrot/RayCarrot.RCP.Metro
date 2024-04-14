@@ -16,12 +16,15 @@ public class EmulatedPs1Save : EmulatedSave
     public int Block { get; }
     public string Name { get; }
 
-    public override Task<T> ReadAsync<T>()
+    public override async Task<T> ReadAsync<T>()
     {
-        Pointer savePointer = MemoryCard.GetPointer(Block, 0);
-        BinaryDeserializer s = Context.Deserializer;
-        s.Goto(savePointer);
-        return Task.Run(() => s.SerializeObject<T>(default, name: "DataBlock"));
+        using (Context)
+        {
+            Pointer savePointer = MemoryCard.GetPointer(Block, 0);
+            BinaryDeserializer s = Context.Deserializer;
+            s.Goto(savePointer);
+            return await Task.Run(() => s.SerializeObject<T>(default, name: "DataBlock"));
+        }
     }
 
     public override Task WriteAsync<T>(T obj)
