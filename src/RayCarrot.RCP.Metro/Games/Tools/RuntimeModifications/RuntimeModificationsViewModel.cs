@@ -5,7 +5,6 @@ using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
-// TODO-UPDATE: Check for old loc messages mentioning memory loading. Test everything. Test failures too.
 public class RuntimeModificationsViewModel : BaseViewModel, IDisposable
 {
     #region Constructor

@@ -1,10 +1,10 @@
 ﻿namespace RayCarrot.RCP.Metro;
-// TODO-UPDATE: Remove support for multiple extensions. This can cause issues when a file name has multiple periods
-//              in it. The reason for this class being made in the first place was for UbiArt IPK files containing files with
-//              extensions such as .tga.ckd, where the .ckd (cooked) extension was appended to the normal one, but not the
-//              extension we want to use (since it's not unique to that file type). A better fix for that might be to have the
-//              IPK archive manager return the non-ckd file extension when using it to identify the file type, while still
-//              keeping it in the name.
+// TODO: Remove support for multiple extensions. This can cause issues when a file name has multiple periods
+//       in it. The reason for this class being made in the first place was for UbiArt IPK files containing files with
+//       extensions such as .tga.ckd, where the .ckd (cooked) extension was appended to the normal one, but not the
+//       extension we want to use (since it's not unique to that file type). A better fix for that might be to have the
+//       IPK archive manager return the non-ckd file extension when using it to identify the file type, while still
+//       keeping it in the name.
 
 /// <summary>
 /// A file extension
