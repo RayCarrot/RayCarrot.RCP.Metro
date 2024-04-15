@@ -2,6 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
+[GameComponentInstance(SingleInstance = true)]
 public class ModLoaderGamePanelComponent : GamePanelComponent
 {
     public ModLoaderGamePanelComponent() : base(GetModLoaderGamePanelViewModels)
@@ -11,8 +12,9 @@ public class ModLoaderGamePanelComponent : GamePanelComponent
 
     private static IEnumerable<ModLoaderGamePanelViewModel> GetModLoaderGamePanelViewModels(GameInstallation gameInstallation)
     {
-        // Only create the panel if we have mod modules registered
-        if (gameInstallation.GetComponents<ModModuleComponent>().Any())
-            yield return new ModLoaderGamePanelViewModel(gameInstallation);
+        return new ModLoaderGamePanelViewModel[]
+        {
+            new(gameInstallation)
+        };
     }
 }

@@ -128,6 +128,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // might be confusing for users who haven't added an emulator yet and can't find it in the ui.
         builder.Register(new GameOptionsComponent(x => new GameClientSelectionGameOptionsViewModel(x)));
 
+        // TODO: These two components should maybe be registered from their respective components they depend on
         // Config page
         builder.Register(
             component: new GameOptionsDialogPageComponent(
@@ -149,9 +150,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 // component does not come from a client)
                 getInstanceIdFunc: _ => "Utilities"),
             priority: ComponentPriority.Low);
-
-        // TODO-UPDATE: Don't do this. Register from mod module component and define as single instance with new attribute.
-        builder.Register<GamePanelComponent>(new ModLoaderGamePanelComponent());
     }
 
     protected abstract ProgramInstallationStructure CreateStructure();
