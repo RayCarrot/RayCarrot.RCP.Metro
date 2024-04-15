@@ -9,7 +9,7 @@
 public sealed class GameComponentBaseAttribute : Attribute
 {
     /// <summary>
-    /// Indicates if only a single instance of this component type can be registered. The
+    /// Indicates if only a single instance of the component base type can be registered. The
     /// last one registered will be the last one used, thus overwriting existing ones.
     /// </summary>
     public bool SingleInstance { get; set; }

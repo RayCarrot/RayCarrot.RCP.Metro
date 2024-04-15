@@ -16,11 +16,12 @@ public class GameComponentBuilder : IGameComponentBuilder
         GameComponentBaseAttribute baseAttr = baseType.GetCustomAttribute<GameComponentBaseAttribute>() ??
                                               throw new InvalidOperationException($"Can't register a component of type {baseType} due to it not being a component base type");
 
-        // Check if it's a single-instance component
+        // Check if it's a single-instance component for the base type
         if (baseAttr.SingleInstance)
             _components.RemoveAll(x => x.BaseType == baseType);
 
         bool definedPriority = priority != ComponentPriority.Default;
+        bool isSingleInstance = false;
 
         // Get all instance attributes. These can be inherited from any derived type.
         foreach (GameComponentInstanceAttribute instanceAttr in instanceType.GetCustomAttributes<GameComponentInstanceAttribute>())
@@ -28,10 +29,17 @@ public class GameComponentBuilder : IGameComponentBuilder
             // Handle default priority
             if (!definedPriority && instanceAttr.DefaultPriority != ComponentPriority.Default)
                 priority = instanceAttr.DefaultPriority;
+
+            // Check if it's a single-instance component for the instance type
+            if (instanceAttr.SingleInstance)
+                isSingleInstance = true;
         }
 
         if (priority == ComponentPriority.Default)
             priority = ComponentPriority.Normal;
+
+        if (isSingleInstance)
+            _components.RemoveAll(x => x.InstanceType == instanceType);
 
         _components.Add(new Component(baseType, instanceType, instance, priority));
     }

@@ -11,4 +11,10 @@ public sealed class GameComponentInstanceAttribute : Attribute
     /// The default priority for registering the component
     /// </summary>
     public ComponentPriority DefaultPriority { get; set; }
+
+    /// <summary>
+    /// Indicates if only a single instance of the component instance type can be registered. The
+    /// last one registered will be the last one used, thus overwriting existing ones.
+    /// </summary>
+    public bool SingleInstance { get; set; }
 }
