@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro;
 
-[BaseGameComponent]
+[GameComponentBase]
 public class GameInfoComponent : FactoryGameComponent<IEnumerable<DuoGridItemViewModel>>
 {
     public GameInfoComponent(Func<GameInstallation, IEnumerable<DuoGridItemViewModel>> objFactory) : base(objFactory) { }

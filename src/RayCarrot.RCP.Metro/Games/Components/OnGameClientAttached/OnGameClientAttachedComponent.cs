@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 public class OnGameClientAttachedComponent : AsyncActionGameComponent<GameClientInstallation>
 {
     public OnGameClientAttachedComponent(Func<GameInstallation, GameClientInstallation, Task> asyncAction) : base(asyncAction) { }

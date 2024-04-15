@@ -5,8 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Provides the functionality to launch the game
 /// </summary>
-[BaseGameComponent]
-[SingleInstanceGameComponent]
+[GameComponentBase(SingleInstance = true)]
 public abstract class LaunchGameComponent : GameComponent
 {
     #region Logger

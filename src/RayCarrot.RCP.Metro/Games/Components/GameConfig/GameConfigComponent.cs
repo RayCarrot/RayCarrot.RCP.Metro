@@ -2,8 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
-[SingleInstanceGameComponent]
+[GameComponentBase(SingleInstance = true)]
 [GameFeature(nameof(Resources.GameOptions_Config), GenericIconKind.GameFeature_Config)]
 public class GameConfigComponent : FactoryGameComponent<ConfigPageViewModel>
 {

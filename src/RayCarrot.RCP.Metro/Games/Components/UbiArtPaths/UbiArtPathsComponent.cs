@@ -2,8 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
-[SingleInstanceGameComponent]
+[GameComponentBase(SingleInstance = true)]
 public class UbiArtPathsComponent : GameComponent
 {
     public UbiArtPathsComponent(string gameDataDirectory, string? globalFatFile)

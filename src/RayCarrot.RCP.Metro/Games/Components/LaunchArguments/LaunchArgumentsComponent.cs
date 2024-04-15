@@ -2,8 +2,7 @@
 
 namespace RayCarrot.RCP.Metro;
 
-[BaseGameComponent]
-[SingleInstanceGameComponent]
+[GameComponentBase(SingleInstance = true)]
 public class LaunchArgumentsComponent : FactoryGameComponent<string?>
 {
     public LaunchArgumentsComponent(Func<GameInstallation, string?> objFactory) : base(objFactory) { }

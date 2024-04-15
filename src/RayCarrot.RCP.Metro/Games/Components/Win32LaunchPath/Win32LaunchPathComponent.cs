@@ -2,8 +2,7 @@
 
 namespace RayCarrot.RCP.Metro;
 
-[BaseGameComponent]
-[SingleInstanceGameComponent]
+[GameComponentBase(SingleInstance = true)]
 public class Win32LaunchPathComponent : FactoryGameComponent<FileSystemPath>
 {
     public Win32LaunchPathComponent(Func<GameInstallation, FileSystemPath> objFactory) : base(objFactory) { }

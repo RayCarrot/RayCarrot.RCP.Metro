@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 /// for this game installation. This is usually used to add game-specific
 /// settings to the context.
 /// </summary>
-[BaseGameComponent]
+[GameComponentBase]
 public class InitializeContextComponent : ActionGameComponent<Context>
 {
     public InitializeContextComponent(Action<GameInstallation, Context> action) : base(action) { }

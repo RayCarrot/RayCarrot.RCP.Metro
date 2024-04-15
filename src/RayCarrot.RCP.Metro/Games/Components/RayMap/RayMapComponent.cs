@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines information for the RayMap map viewer
 /// </summary>
-[BaseGameComponent]
+[GameComponentBase]
 public class RayMapComponent : GameComponent
 {
     public RayMapComponent(RayMapViewer viewer, string mode, string folder, string? vol = null)

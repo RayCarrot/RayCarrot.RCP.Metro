@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 public class OnGameRemovedComponent : AsyncActionGameComponent
 {
     public OnGameRemovedComponent(Func<GameInstallation, Task> asyncAction) : base(asyncAction) { }

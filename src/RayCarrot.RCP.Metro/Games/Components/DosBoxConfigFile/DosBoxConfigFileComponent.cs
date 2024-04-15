@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a config file to load with DOSBox
 /// </summary>
-[BaseGameComponent]
+[GameComponentBase]
 public class DosBoxConfigFileComponent : FactoryGameComponent<FileSystemPath>
 {
     public DosBoxConfigFileComponent(Func<GameInstallation, FileSystemPath> objFactory) : base(objFactory) { }

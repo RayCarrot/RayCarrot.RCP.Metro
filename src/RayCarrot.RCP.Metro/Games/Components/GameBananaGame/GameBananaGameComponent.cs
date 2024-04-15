@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 public class GameBananaGameComponent : GameComponent
 {
     public GameBananaGameComponent(int gameId)

@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 [GameFeature(nameof(Resources.Utilities_ArchiveExplorer_Header), GenericIconKind.GameFeature_Archive)]
 public class ArchiveComponent : FactoryGameComponent<IArchiveDataManager>
 {

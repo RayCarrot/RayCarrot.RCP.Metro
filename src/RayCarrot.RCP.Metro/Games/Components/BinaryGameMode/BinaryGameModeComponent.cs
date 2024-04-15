@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 public abstract class BinaryGameModeComponent : GameComponent
 {
     protected BinaryGameModeComponent(Enum gameMode)

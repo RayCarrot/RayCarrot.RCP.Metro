@@ -1,7 +1,7 @@
 ﻿using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 [RequiredGameComponents(typeof(WindowsPackageComponent))]
 public class WindowsPackageLaunchGameComponent : LaunchGameComponent

@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 public abstract class GamePanelComponent : FactoryGameComponent<IEnumerable<GamePanelViewModel>>
 {
     protected GamePanelComponent(Func<GameInstallation, GamePanelViewModel> objFactory) : base(x => objFactory(x).Yield())

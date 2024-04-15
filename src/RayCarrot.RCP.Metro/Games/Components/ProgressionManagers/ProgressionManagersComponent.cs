@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 [GameFeature(nameof(Resources.Progression_Header), GenericIconKind.GameFeature_Progression)]
 public class ProgressionManagersComponent : FactoryGameComponent<IEnumerable<GameProgressionManager>>
 {

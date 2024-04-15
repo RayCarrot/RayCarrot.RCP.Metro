@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 [GameFeature(nameof(Resources.ModLoader_Title), GenericIconKind.GameFeature_ModLoader)]
 public class ModModuleComponent : FactoryGameComponent<ModModule>
 {

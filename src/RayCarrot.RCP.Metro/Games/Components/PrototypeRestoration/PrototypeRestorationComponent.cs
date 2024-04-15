@@ -3,7 +3,7 @@
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 // TODO-LOC
-[BaseGameComponent]
+[GameComponentBase]
 [GameFeature("Prototype Restoration", GenericIconKind.GameFeature_PrototypeRestoration)]
 public class PrototypeRestorationComponent : GameComponent
 {

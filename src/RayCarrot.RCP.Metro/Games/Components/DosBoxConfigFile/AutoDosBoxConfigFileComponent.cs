@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 public class AutoDosBoxConfigFileComponent : DosBoxConfigFileComponent
 {
     public AutoDosBoxConfigFileComponent() : base(GetGameConfigFile) { }

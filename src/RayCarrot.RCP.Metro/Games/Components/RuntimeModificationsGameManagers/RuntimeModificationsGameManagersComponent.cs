@@ -4,7 +4,7 @@ using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 // TODO-LOC
-[BaseGameComponent]
+[GameComponentBase]
 [GameFeature("Runtime Modifications", GenericIconKind.GameFeature_RuntimeModification)]
 public class RuntimeModificationsGameManagersComponent : FactoryGameComponent<IEnumerable<GameManager>>
 {

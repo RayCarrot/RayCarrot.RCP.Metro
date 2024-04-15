@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
+[GameComponentBase]
 [GameFeature(nameof(Resources.UtilitiesPageHeader), GenericIconKind.GameFeature_Utilities)]
 public class UtilityComponent : FactoryGameComponent<Utility>
 {

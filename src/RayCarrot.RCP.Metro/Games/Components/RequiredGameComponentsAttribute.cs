@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
 public sealed class RequiredGameComponentsAttribute : Attribute

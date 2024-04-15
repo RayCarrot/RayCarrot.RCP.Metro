@@ -1,5 +1,4 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[BaseGameComponent]
-[SingleInstanceGameComponent]
+[GameComponentBase(SingleInstance = true)]
 public class MsDosGameRequiresDiscComponent : GameComponent { }
