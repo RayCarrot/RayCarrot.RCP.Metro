@@ -15,7 +15,7 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
         new FileExtension(".agb"),
     };
 
-    protected override ProgramLayout? FindMatchingLayout(InstallLocation location)
+    public override ProgramLayout? FindMatchingLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the ROM layout for a location without a file");
@@ -36,15 +36,5 @@ public class GbaRomProgramInstallationStructure : RomProgramInstallationStructur
         return Layouts.OfType<GbaProgramLayout>().FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
                                                                       x.GameCode == romHeader.GameCode && 
                                                                       x.MakerCode == romHeader.MakerCode);
-    }
-
-    public override GameLocationValidationResult IsLocationValid(InstallLocation location)
-    {
-        if (!location.HasFile ||!location.FilePath.FileExists)
-            return new GameLocationValidationResult(false, Resources.Games_ValidationFileMissing);
-
-        bool isValid = FindMatchingLayout(location) != null;
-
-        return new GameLocationValidationResult(isValid, Resources.Games_ValidationRomInvalid);
     }
 }

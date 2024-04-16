@@ -43,10 +43,16 @@ public class GameFileFinder
                 if (finderItem.Structure.SupportedFileExtensions.All(x => x != ext))
                     continue;
 
+                // Validate the location
                 GameLocationValidationResult result = finderItem.Structure.IsLocationValid(location);
+                if (!result.IsValid) 
+                    continue;
 
-                if (result.IsValid)
-                    finderItem.AddLocation(location);
+                // Validate the layout if any are defined
+                if (finderItem.Structure.HasLayouts && finderItem.Structure.FindMatchingLayout(location) == null)
+                    continue;
+                
+                finderItem.AddLocation(location);
             }
         }
 

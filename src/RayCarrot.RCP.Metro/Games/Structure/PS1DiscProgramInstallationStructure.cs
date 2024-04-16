@@ -14,7 +14,7 @@ public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallation
         new FileExtension(".cue"),
     };
 
-    protected override ProgramLayout? FindMatchingLayout(InstallLocation location)
+    public override ProgramLayout? FindMatchingLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the disc layout for a location without a file");
@@ -51,15 +51,5 @@ public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallation
         return Layouts.OfType<Ps1DiscProgramLayout>().FirstOrDefault(x =>
             cue.Tracks.Count == x.TracksCount &&
             x.FileSystem.IsLocationValid(new ISO9960FileSystemSource(iso), false).IsValid);
-    }
-
-    public override GameLocationValidationResult IsLocationValid(InstallLocation location)
-    {
-        if (!location.HasFile || !location.FilePath.FileExists)
-            return new GameLocationValidationResult(false, Resources.Games_ValidationFileMissing);
-
-        bool isValid = FindMatchingLayout(location) != null;
-
-        return new GameLocationValidationResult(isValid, Resources.Games_ValidationRomInvalid);
     }
 }

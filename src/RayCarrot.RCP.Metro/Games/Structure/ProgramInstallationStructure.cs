@@ -12,9 +12,11 @@ public abstract class ProgramInstallationStructure
 
     protected IReadOnlyList<ProgramLayout> Layouts { get; }
 
+    public bool HasLayouts => Layouts.Count > 0;
+
     public virtual void RegisterComponents(IGameComponentBuilder builder) { }
 
-    protected virtual ProgramLayout? FindMatchingLayout(InstallLocation location) => null;
+    public virtual ProgramLayout? FindMatchingLayout(InstallLocation location) => null;
 
     /// <summary>
     /// Indicates if the location has a valid installation structure

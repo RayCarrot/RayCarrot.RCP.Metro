@@ -243,12 +243,19 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <returns>The validation result</returns>
     public GameLocationValidationResult ValidateLocation(InstallLocation installLocation)
     {
-        // Always return true if game validation is disabled
-        if (Services.Data.App_DisableGameValidation)
-            return new GameLocationValidationResult(true);
+        if (!Services.Data.App_DisableGameValidation)
+        {
+            // Validate the location
+            GameLocationValidationResult locationValidationResult = Structure.IsLocationValid(installLocation);
+            if (!locationValidationResult.IsValid)
+                return locationValidationResult;
 
-        // Verify the game structure
-        return Structure.IsLocationValid(installLocation);
+            // Validate the layout if any are defined
+            if (Structure.HasLayouts && Structure.FindMatchingLayout(installLocation) == null)
+                return new GameLocationValidationResult(false, "The game version is not valid"); // TODO-LOC
+        }
+
+        return new GameLocationValidationResult(true);
     }
 
     public T GetStructure<T>()

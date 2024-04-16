@@ -21,6 +21,6 @@ public abstract class SingleFileProgramInstallationStructure : ProgramInstallati
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
     {
-        return new GameLocationValidationResult(location.FilePath.FileExists, Resources.Games_ValidationFileMissing);
+        return new GameLocationValidationResult(location is { HasFile: true, FilePath.FileExists: true }, Resources.Games_ValidationFileMissing);
     }
 }
