@@ -93,7 +93,6 @@
 
         <local:Card Grid.Row="1"
                     Margin="{StaticResource RCP.Thicknesses.Card}">
-            <!-- TODO-UPDATE: Show selected game and emu versions -->
             <StackPanel>
 
                 <!-- TODO-LOC -->
