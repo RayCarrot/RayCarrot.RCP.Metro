@@ -4,7 +4,7 @@ using RayCarrot.RCP.Metro.Archive.UbiArt;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[RequiredGameComponents(typeof(BinaryGameModeComponent))]
+[RequiredGameComponents(typeof(BinaryGameModeComponent), typeof(UbiArtPathsComponent))]
 public class UbiArtArchiveComponent : ArchiveComponent
 {
     public UbiArtArchiveComponent() : base(GetArchiveManager, GetArchivePaths, Id) { }
