@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public abstract class RomProgramInstallationStructure : SingleFileProgramInstallationStructure
 {
-    protected RomProgramInstallationStructure(IReadOnlyCollection<ProgramLayout>? layouts) : base(layouts) { }
+    protected RomProgramInstallationStructure(IReadOnlyList<ProgramLayout> layouts) : base(layouts) { }
 
     public override bool SupportGameFileFinder => true;
 

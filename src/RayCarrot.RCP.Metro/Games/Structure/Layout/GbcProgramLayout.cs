@@ -2,7 +2,7 @@
 
 public class GbcProgramLayout : ProgramLayout
 {
-    public GbcProgramLayout(string variantId, string gameTitle, string manufacturerCode, string licenseeCode) : base(variantId)
+    public GbcProgramLayout(string layoutId, string gameTitle, string manufacturerCode, string licenseeCode) : base(layoutId)
     {
         GameTitle = gameTitle;
         ManufacturerCode = manufacturerCode;

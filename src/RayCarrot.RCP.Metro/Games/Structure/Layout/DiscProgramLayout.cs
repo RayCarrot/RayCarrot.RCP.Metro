@@ -2,13 +2,13 @@
 
 public class DiscProgramLayout : ProgramLayout
 {
-    public DiscProgramLayout(string variantId, ProgramFileSystem fileSystem) : base(variantId)
+    public DiscProgramLayout(string layoutId, ProgramFileSystem fileSystem) : base(layoutId)
     {
         TracksCount = 1;
         FileSystem = fileSystem;
     }
 
-    public DiscProgramLayout(string variantId, int tracksCount, ProgramFileSystem fileSystem) : base(variantId)
+    public DiscProgramLayout(string layoutId, int tracksCount, ProgramFileSystem fileSystem) : base(layoutId)
     {
         TracksCount = tracksCount;
         FileSystem = fileSystem;

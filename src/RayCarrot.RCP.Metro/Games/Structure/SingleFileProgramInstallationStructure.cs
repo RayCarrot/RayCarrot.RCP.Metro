@@ -4,10 +4,10 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public abstract class SingleFileProgramInstallationStructure : ProgramInstallationStructure
 {
-    protected SingleFileProgramInstallationStructure(IReadOnlyCollection<ProgramLayout>? layouts) : base(layouts) { }
+    protected SingleFileProgramInstallationStructure() { }
+    protected SingleFileProgramInstallationStructure(IReadOnlyList<ProgramLayout> layouts) : base(layouts) { }
     
-    public virtual bool SupportGameFileFinder => false;
-
+    public abstract bool SupportGameFileFinder { get; }
     public abstract FileExtension[] SupportedFileExtensions { get; }
 
     public override void RegisterComponents(IGameComponentBuilder builder)

@@ -27,10 +27,7 @@ public class EmulatedPs1SaveFile : EmulatedSaveFile
             return Array.Empty<EmulatedSave>();
         }
 
-        PS1DiscProgramInstallationStructure structure = gameInstallation.GameDescriptor.GetStructure<PS1DiscProgramInstallationStructure>();
-        Ps1DiscProgramLayout? layout = structure.GetLayout(gameInstallation.InstallLocation);
-
-        if (layout == null)
+        if (gameInstallation.GameDescriptor.Structure.GetLayout(gameInstallation) is not Ps1DiscProgramLayout layout)
         {
             Logger.Warn("No matching layout found for game");
             return Array.Empty<EmulatedSave>();

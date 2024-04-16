@@ -5,8 +5,7 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public class ExeProgramInstallationStructure : SingleFileProgramInstallationStructure
 {
-    public ExeProgramInstallationStructure() : base(null) { }
-
+    public override bool SupportGameFileFinder => false;
     public override FileExtension[] SupportedFileExtensions => new[]
     {
         new FileExtension(".exe"),

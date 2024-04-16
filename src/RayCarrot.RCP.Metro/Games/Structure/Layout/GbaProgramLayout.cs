@@ -2,7 +2,7 @@
 
 public class GbaProgramLayout : ProgramLayout
 {
-    public GbaProgramLayout(string variantId, string gameTitle, string gameCode, string makerCode) : base(variantId)
+    public GbaProgramLayout(string layoutId, string gameTitle, string gameCode, string makerCode) : base(layoutId)
     {
         GameTitle = gameTitle;
         GameCode = gameCode;

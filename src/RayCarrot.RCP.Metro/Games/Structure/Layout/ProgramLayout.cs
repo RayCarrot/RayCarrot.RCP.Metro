@@ -2,9 +2,9 @@
 
 public class ProgramLayout
 {
-    public ProgramLayout(string variantId)
+    public ProgramLayout(string layoutId)
     {
-        VariantId = variantId;
+        LayoutId = layoutId;
     }
 
     /// <summary>
@@ -12,7 +12,7 @@ public class ProgramLayout
     /// between different rom layouts of the same game. For example for
     /// regional releases and other variants.
     /// </summary>
-    public string VariantId { get; }
+    public string LayoutId { get; }
 
     // TODO: Add common data like offset table etc. (can be used for runtime modifications)
 }

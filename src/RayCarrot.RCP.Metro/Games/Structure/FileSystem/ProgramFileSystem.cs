@@ -8,14 +8,19 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 /// </summary>
 public class ProgramFileSystem
 {
-    public ProgramFileSystem(ProgramPath[] Paths)
+    public ProgramFileSystem()
     {
-        this.Paths = Paths;
+        Paths = Array.Empty<ProgramPath>();
+    }
+
+    public ProgramFileSystem(ProgramPath[] paths)
+    {
+        Paths = paths;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public ProgramPath[] Paths { get; }
+    private ProgramPath[] Paths { get; }
 
     private static IEnumerable<(string FullPath, ProgramPath Path)> EnumeratePaths(string basePath, IEnumerable<ProgramPath> gamePaths)
     {

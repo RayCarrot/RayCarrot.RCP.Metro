@@ -5,14 +5,9 @@ namespace RayCarrot.RCP.Metro.Games.Structure;
 
 public class GbcRomProgramInstallationStructure : RomProgramInstallationStructure
 {
-    public GbcRomProgramInstallationStructure(GbcProgramLayout[] layouts) : base(layouts)
-    {
-        Layouts = layouts;
-    }
+    public GbcRomProgramInstallationStructure(GbcProgramLayout[] layouts) : base(layouts) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    public new GbcProgramLayout[] Layouts { get; }
 
     public override FileExtension[] SupportedFileExtensions => new[]
     {
@@ -20,7 +15,7 @@ public class GbcRomProgramInstallationStructure : RomProgramInstallationStructur
         new FileExtension(".cgb"),
     };
 
-    public GbcProgramLayout? GetLayout(InstallLocation location)
+    protected override ProgramLayout? FindMatchingLayout(InstallLocation location)
     {
         if (!location.HasFile)
             throw new InvalidOperationException("Can't get the ROM layout for a location without a file");
@@ -38,9 +33,9 @@ public class GbcRomProgramInstallationStructure : RomProgramInstallationStructur
             return null;
         }
 
-        return Layouts.FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
-                                           x.ManufacturerCode == romHeader.ManufacturerCode && 
-                                           x.LicenseeCode == romHeader.NewLicenseeCode);
+        return Layouts.OfType<GbcProgramLayout>().FirstOrDefault(x => x.GameTitle == romHeader.GameTitle && 
+                                                                      x.ManufacturerCode == romHeader.ManufacturerCode && 
+                                                                      x.LicenseeCode == romHeader.NewLicenseeCode);
     }
 
     public override GameLocationValidationResult IsLocationValid(InstallLocation location)
@@ -48,7 +43,7 @@ public class GbcRomProgramInstallationStructure : RomProgramInstallationStructur
         if (!location.HasFile ||!location.FilePath.FileExists)
             return new GameLocationValidationResult(false, Resources.Games_ValidationFileMissing);
 
-        bool isValid = GetLayout(location) != null;
+        bool isValid = FindMatchingLayout(location) != null;
 
         return new GameLocationValidationResult(isValid, Resources.Games_ValidationRomInvalid);
     }

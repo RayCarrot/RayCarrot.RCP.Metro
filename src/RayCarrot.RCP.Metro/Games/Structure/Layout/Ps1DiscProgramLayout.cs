@@ -3,23 +3,23 @@
 public class Ps1DiscProgramLayout : DiscProgramLayout
 {
     public Ps1DiscProgramLayout(
-        string variantId,
+        string layoutId,
         string memoryCardCountryCode,
         string memoryCardProductCode, 
         ProgramFileSystem fileSystem) 
-        : base(variantId, fileSystem)
+        : base(layoutId, fileSystem)
     {
         MemoryCardCountryCode = memoryCardCountryCode;
         MemoryCardProductCode = memoryCardProductCode;
     }
 
     public Ps1DiscProgramLayout(
-        string variantId,
+        string layoutId,
         string memoryCardCountryCode,
         string memoryCardProductCode, 
         int tracksCount, 
         ProgramFileSystem fileSystem) 
-        : base(variantId, tracksCount, fileSystem)
+        : base(layoutId, tracksCount, fileSystem)
     {
         MemoryCardCountryCode = memoryCardCountryCode;
         MemoryCardProductCode = memoryCardProductCode;
