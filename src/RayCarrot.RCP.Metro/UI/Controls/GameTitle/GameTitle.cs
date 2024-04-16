@@ -200,6 +200,18 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
 
     #endregion
 
+    #region Private Methods
+
+    private void RefreshName()
+    {
+        GameInstallation? gameInstallation = GameInstallation;
+
+        if (gameInstallation != null)
+            GameDisplayName = gameInstallation.GetDisplayName();
+    }
+
+    #endregion
+
     #region Event Handlers
 
     private void GameTitle_OnUnloaded(object sender, RoutedEventArgs e)
@@ -218,6 +230,7 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
         if (Services.Messenger.IsRegistered<ModifiedGamesMessage>(this))
             return;
 
+        RefreshName(); // Name might have changed while the control was unloaded!
         Services.Messenger.RegisterAll(this);
     }
 
@@ -225,13 +238,7 @@ public class GameTitle : Control, IRecipient<ModifiedGamesMessage>
 
     #region Message Receivers
 
-    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message)
-    {
-        GameInstallation? gameInstallation = GameInstallation;
-
-        if (gameInstallation != null)
-            GameDisplayName = gameInstallation.GetDisplayName();
-    }
+    void IRecipient<ModifiedGamesMessage>.Receive(ModifiedGamesMessage message) => RefreshName();
 
     #endregion
 }

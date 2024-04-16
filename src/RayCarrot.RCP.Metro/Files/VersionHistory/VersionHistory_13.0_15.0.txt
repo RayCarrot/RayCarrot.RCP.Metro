@@ -34,6 +34,7 @@
 • Fixed a bug where the app would crash if there was an error reading a mod when opening directly to it, such as from the GameBanana 1-click installer
 • Fixed a bug where files in the Archive Explorer would show the wrong image size
 • Fixed a bug where files in the Archive Explorer would stop showing certain information after being exported
+• Fixed a bug where renaming a game would not always update across all pages
 
 
 -----   Version 14.0.3 - March 21, 2024   -----
