@@ -439,7 +439,7 @@ public class AppDataManager
                 else
                     location = new InstallLocation(installDir);
 
-                GameLocationValidationResult validationResult = descriptor.ValidateLocation(location);
+                GameLocationValidationResult validationResult = descriptor.ValidateLocation(location, GameValidationFlags.All);
 
                 if (!validationResult.IsValid)
                 {

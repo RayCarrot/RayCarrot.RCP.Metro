@@ -295,7 +295,7 @@ public class StartupManager
         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             // Check if it's valid
-            if (gameInstallation.GameDescriptor.ValidateLocation(gameInstallation.InstallLocation).IsValid &&
+            if (gameInstallation.GameDescriptor.ValidateLocation(gameInstallation.InstallLocation, GameValidationFlags.Location).IsValid &&
                 gameInstallation.GetComponents<GameValidationCheckComponent>().All(x => x.IsValid()))
                 continue;
 

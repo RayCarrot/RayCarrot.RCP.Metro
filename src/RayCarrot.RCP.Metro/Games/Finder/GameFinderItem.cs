@@ -24,5 +24,5 @@ public class GameFinderItem : FinderItem
     }
 
     protected override bool ValidateLocation(InstallLocation installLocation) => 
-        GameDescriptor.ValidateLocation(installLocation).IsValid;
+        GameDescriptor.ValidateLocation(installLocation, GameValidationFlags.All).IsValid;
 }

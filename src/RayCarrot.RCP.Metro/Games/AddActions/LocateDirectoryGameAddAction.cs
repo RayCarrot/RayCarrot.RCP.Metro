@@ -41,7 +41,7 @@ public class LocateDirectoryGameAddAction : GameAddAction
         InstallLocation location = new(result.SelectedDirectory);
 
         // Make sure the location is valid
-        GameLocationValidationResult validationResult = GameDescriptor.ValidateLocation(location);
+        GameLocationValidationResult validationResult = GameDescriptor.ValidateLocation(location, GameValidationFlags.All);
 
         if (!validationResult.IsValid)
         {
