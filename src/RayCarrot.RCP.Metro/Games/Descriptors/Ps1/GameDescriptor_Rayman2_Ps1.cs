@@ -15,7 +15,7 @@ public sealed class GameDescriptor_Rayman2_Ps1 : Ps1GameDescriptor
     public override Game Game => Game.Rayman2;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman 2"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman2_Ps1_Title));
     public override string[] SearchKeywords => new[] { "r2" };
     public override DateTime ReleaseDate => new(2000, 09, 07);
 

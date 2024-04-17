@@ -2746,9 +2746,6 @@ rcpURL</comment>
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Modified .bf files. These will only be used when running the game from the option below.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Game Directory</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Apply executable patch</value>
   </data>
@@ -2772,9 +2769,6 @@ rcpURL</comment>
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Launch with patched BF</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Mods</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Main</value>
@@ -3108,9 +3102,6 @@ rcpURL</comment>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>The memory patch could not be applied</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>The game install directory is invalid</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Unable to determine game version</value>
@@ -3949,9 +3940,6 @@ programName</comment>
   <data name="Bool_False" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Game Process</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>By attaching to a running game process you will be able to modify and view game values in real-time. For certain games this will allow you to enable unused features.</value>
   </data>
@@ -3960,25 +3948,6 @@ programName</comment>
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Emulator</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Properties</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Actions</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids
-Prototype Restoration</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Memory Mods</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>An error occurred when attaching to the process</value>
@@ -4040,12 +4009,6 @@ Prototype Restoration</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super-helico</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Squished</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Firefly</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Force run</value>
   </data>
@@ -4097,18 +4060,6 @@ The multiplayer menus themselves are not complete due to this feature never bein
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Powers</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Camera X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Camera Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>X position</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Y position</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Rayman's state</value>
@@ -4494,9 +4445,6 @@ paths</comment>
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>The file does not exist</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>The ROM is not valid for this game</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Play</value>
   </data>
@@ -4787,12 +4735,6 @@ gameClientName</comment>
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -5159,9 +5101,6 @@ gameClientName</comment>
   </data>
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
-  </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Open in Ubisoft Store</value>
@@ -5755,7 +5694,189 @@ If there's a utility or other type of patch missing then it has most likely been
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Failed to create delta file</value>
   </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect ID:</value>
+  </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Splash screen</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
+    <value>Image compression:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
+    <value>Do you want to automatically recreate the file table (secure_fat.gf) when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page.</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
+    <value>The file table was successfully recreated for the following bundles:
+
+{0}</value>
+    <comment>Arguments:
+bundleNames</comment>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
+    <value>An error occurred when recreating the file table</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
+    <value>Recreating file table</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
+    <value>Recreate file table</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
+    <value>Recreating the file table will update the secure_fat.gf file to reflect the files currently in the game bundles. This is not required when simply modifying existing files, but as soon as you add or remove files you will have to do this for the changes to be correctly managed by the game.</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
+    <value>Automatically recreate file table on repack (.ipk)</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
+    <value>If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended to do when adding or removing files as well as when applying mods which may have done so.</value>
+  </data>
+  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="Platform_Ps1" xml:space="preserve">
+    <value>PlayStation</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="Rayman1_Ps1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Ps1_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="RaymanRush_Ps1_Title" xml:space="preserve">
+    <value>Rayman Rush</value>
+  </data>
+  <data name="GameTool_PrototypeRestoration" xml:space="preserve">
+    <value>Prototype Restoration</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
+    <value>Modify the game to restore cut features from the early prototypes, such as free movement and combat for Rayman!</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ExeNotFoundError" xml:space="preserve">
+    <value>Could not find the game executable</value>
+  </data>
+  <data name="GameTool_RuntimeModifications" xml:space="preserve">
+    <value>Runtime Modifications</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Info" xml:space="preserve">
+    <value>Modify the game while it's running to apply different cheats or access unused content.</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ModificationsPage" xml:space="preserve">
+    <value>Modifications</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_LogPage" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AttachedToProcessHeader" xml:space="preserve">
+    <value>Attached to process</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SearchingForGame" xml:space="preserve">
+    <value>Searching for running game...</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_NotFoundQuestion" xml:space="preserve">
+    <value>Not found?</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ManuallySelectGame" xml:space="preserve">
+    <value>Manually select game process</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedGamesHeader" xml:space="preserve">
+    <value>Supported games</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedEmulatorsHeader" xml:space="preserve">
+    <value>Supported emulators</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SelectGameProcessHeader" xml:space="preserve">
+    <value>Select game process</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AutoFindGame" xml:space="preserve">
+    <value>Automatically find game process</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
+    <value>Enables usage of debug button cheats</value>
+  </data>
+  <data name="Mod_Mem_R1_UnusedDeathPower" xml:space="preserve">
+    <value>Unused death</value>
+  </data>
+  <data name="Mod_Mem_CamPos" xml:space="preserve">
+    <value>Camera position</value>
+  </data>
+  <data name="Mod_Mem_RayPos" xml:space="preserve">
+    <value>Rayman position</value>
+  </data>
+  <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
+    <value>Left speed storage</value>
+  </data>
+  <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
+    <value>Right speed storage</value>
+  </data>
+  <data name="Games_InvalidLayout" xml:space="preserve">
+    <value>The game version is not valid</value>
+  </data>
+  <data name="GameClients_BizHawk" xml:space="preserve">
+    <value>BizHawk</value>
+  </data>
+  <data name="GameClients_DuckStation" xml:space="preserve">
+    <value>DuckStation</value>
+  </data>
+  <data name="Progression_GenericSingleSlot" xml:space="preserve">
+    <value>Slot</value>
+  </data>
+  <data name="Progression_RRushChampionship" xml:space="preserve">
+    <value>Championship</value>
+  </data>
+  <data name="Progression_RRushTimeAttack" xml:space="preserve">
+    <value>Time Attack</value>
+  </data>
+  <data name="Progression_RRushLums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_RRushTarget" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarning" xml:space="preserve">
+    <value>There are currently multiple mods applied which overwrite the same files. This might cause one or more mods to not work correctly. You can view the list of modified files to determine if it's an issue as well as re-order the mods to change their priority.
+
+You can disable this warning message in the settings if you don't want it to be shown for future conflicts.
+
+Continue to apply mods?</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarningHeader" xml:space="preserve">
+    <value>Mod conflicts warning</value>
+  </data>
+  <data name="ModLoader_GameRunningError" xml:space="preserve">
+    <value>Mods can not be applied while the game is running. Close any active instances of the game and try again.</value>
+  </data>
+  <data name="ModLoader_GameRunningErrorHeader" xml:space="preserve">
+    <value>Game process detected</value>
+  </data>
+  <data name="Settings_ModLoader_ShowFileConflictWarnings" xml:space="preserve">
+    <value>Show warning message for mod conflicts</value>
+  </data>
+  <data name="ModLoader_ErrorOpening" xml:space="preserve">
+    <value>An error occurred when opening the mods</value>
   </data>
 </root>

@@ -325,8 +325,7 @@ public class AppUIManager
         {
             Logger.Error(ex, "Opening mod loader from files");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when opening the mods");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ErrorOpening);
 
             return;    
         }

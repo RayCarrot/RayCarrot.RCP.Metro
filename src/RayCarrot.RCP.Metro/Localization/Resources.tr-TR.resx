@@ -2607,9 +2607,6 @@ Uygulamayı manuel olarak güncellemek için {1} adresine gidin ve en son sürü
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Değiştirilmiş .bf dosyaları. Bunlar yalnızca oyunu aşağıdaki seçenekten çalıştırırken kullanılacaktır.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Oyun Rehberi</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Yürütülebilir yama uygula</value>
   </data>
@@ -2633,9 +2630,6 @@ Uygulamayı manuel olarak güncellemek için {1} adresine gidin ve en son sürü
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Yamalı BF ile başlat</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Modlar</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Ana</value>
@@ -2970,9 +2964,6 @@ Yürü</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>Bellek düzeltme eki uygulanamadı</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>Oyun yükleme dizini geçersiz</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Oyun sürümü belirlenemiyor</value>
@@ -3804,9 +3795,6 @@ Burada veri kaynağını değiştirerek yedeklemeler ve ilerleme görünümü i�
   <data name="Bool_False" xml:space="preserve">
     <value>Hayır</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Oyun Süreci</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Çalışan bir oyun sürecine bağlanarak, oyun değerlerini gerçek zamanlı olarak değiştirebilecek ve görüntüleyebileceksiniz. Belirli oyunlar için bu, kullanılmayan özellikleri etkinleştirmenize izin verir.</value>
   </data>
@@ -3815,25 +3803,6 @@ Burada veri kaynağını değiştirerek yedeklemeler ve ilerleme görünümü i�
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Emülatör</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Özellikler</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Bilgi</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Hareketler</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Kayıt</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids
-Prototip Restorasyonu</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Bellek Modları</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Sürece eklenirken bir hata oluştu</value>
@@ -3895,12 +3864,6 @@ Prototip Restorasyonu</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super-helico</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Squished</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Firefly</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Force run</value>
   </data>
@@ -3954,18 +3917,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Yetkiler</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Kamera X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Kamera Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>X konumu</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Y konumu</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Rayman'ın durumu</value>
@@ -4340,9 +4291,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>dosya yok</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>ROM bu oyun için geçerli değil</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Oynamak</value>
   </data>
@@ -4624,12 +4572,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -4997,9 +4939,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
   </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Ubisoft Connect ID</value>
-  </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Ubisoft Store'da aç</value>
   </data>
@@ -5176,6 +5115,9 @@ Eğer bir yardımcı program ya da başka türde bir yama eksikse, o zaman büy�
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Delta dosyası oluşturulamadı</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect ID</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Başlangıç ​​ekranı</value>

@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_Ps1 : Ps1GameDescriptor
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Rayman Junior - Language with Rayman (Quiz)"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanEdutainmentQui_Ps1_Title));
     public override string[] SearchKeywords => new[] { "edu", "quiz", "junior" };
     public override DateTime ReleaseDate => new(2000, 01, 01); // Not exact
 

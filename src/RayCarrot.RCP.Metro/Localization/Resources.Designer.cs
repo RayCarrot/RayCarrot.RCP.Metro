@@ -754,6 +754,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to automatically recreate the file table (secure_fat.gf) when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page..
+        /// </summary>
+        public static string Archive_AutoRecreateUbiArtFileTable {
+            get {
+                return ResourceManager.GetString("Archive_AutoRecreateUbiArtFileTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page..
         /// </summary>
         public static string Archive_AutoSyncCPATextures {
@@ -1051,6 +1060,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image compression:.
+        /// </summary>
+        public static string Archive_FileInfo_Img_Compression {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Img_Compression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string Archive_FileInfo_Img_Compression_None {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Img_Compression_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transparent:.
         /// </summary>
         public static string Archive_FileInfo_Img_HasAlpha {
@@ -1317,6 +1344,53 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_R1PC_SecondaryVersion {
             get {
                 return ResourceManager.GetString("Archive_R1PC_SecondaryVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recreate file table.
+        /// </summary>
+        public static string Archive_RecreatedUbiArtFileTable {
+            get {
+                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when recreating the file table.
+        /// </summary>
+        public static string Archive_RecreatedUbiArtFileTableError {
+            get {
+                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recreating the file table will update the secure_fat.gf file to reflect the files currently in the game bundles. This is not required when simply modifying existing files, but as soon as you add or remove files you will have to do this for the changes to be correctly managed by the game..
+        /// </summary>
+        public static string Archive_RecreatedUbiArtFileTableInfo {
+            get {
+                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recreating file table.
+        /// </summary>
+        public static string Archive_RecreatedUbiArtFileTableStatus {
+            get {
+                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file table was successfully recreated for the following bundles:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string Archive_RecreatedUbiArtFileTableSuccess {
+            get {
+                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableSuccess", resourceCulture);
             }
         }
         
@@ -2898,6 +2972,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Donald Duck Quack Attack/Goin&apos; Quackers.
+        /// </summary>
+        public static string DonaldDuckQuackAttack_Win32_Title {
+            get {
+                return ResourceManager.GetString("DonaldDuckQuackAttack_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The available languages may vary between releases.
         /// </summary>
         public static string DosBoxConfig_LanguageInfo {
@@ -3696,6 +3779,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Donald Duck Quack Attack/Goin&apos; Quackers.
+        /// </summary>
+        public static string Game_DonaldDuckQuackAttack_Title {
+            get {
+                return ResourceManager.GetString("Game_DonaldDuckQuackAttack_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Globox Moment.
         /// </summary>
         public static string Game_GloboxMoment_Title {
@@ -4085,6 +4177,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BizHawk.
+        /// </summary>
+        public static string GameClients_BizHawk {
+            get {
+                return ResourceManager.GetString("GameClients_BizHawk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the game client installation.
         /// </summary>
         public static string GameClients_BrowseDirHeader {
@@ -4180,6 +4281,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_DOSBox_RemoveConfigPaths {
             get {
                 return ResourceManager.GetString("GameClients_DOSBox_RemoveConfigPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DuckStation.
+        /// </summary>
+        public static string GameClients_DuckStation {
+            get {
+                return ResourceManager.GetString("GameClients_DuckStation", resourceCulture);
             }
         }
         
@@ -4708,6 +4818,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify the game to restore cut features from the early prototypes, such as free movement and combat for Rayman!.
+        /// </summary>
+        public static string GameHub_PrototypeRestorationPanel_Info {
+            get {
+                return ResourceManager.GetString("GameHub_PrototypeRestorationPanel_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string GameHub_PrototypeRestorationPanel_Open {
+            get {
+                return ResourceManager.GetString("GameHub_PrototypeRestorationPanel_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string GameHub_RefreshPanel {
@@ -4722,6 +4850,24 @@ namespace RayCarrot.RCP.Metro {
         public static string GameHub_Rename {
             get {
                 return ResourceManager.GetString("GameHub_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify the game while it&apos;s running to apply different cheats or access unused content..
+        /// </summary>
+        public static string GameHub_RuntimeModificationsPanel_Info {
+            get {
+                return ResourceManager.GetString("GameHub_RuntimeModificationsPanel_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string GameHub_RuntimeModificationsPanel_Open {
+            get {
+                return ResourceManager.GetString("GameHub_RuntimeModificationsPanel_Open", resourceCulture);
             }
         }
         
@@ -4942,6 +5088,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The game version is not valid.
+        /// </summary>
+        public static string Games_InvalidLayout {
+            get {
+                return ResourceManager.GetString("Games_InvalidLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This game can&apos;t be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game..
         /// </summary>
         public static string Games_MissingLaunchComponent {
@@ -5004,15 +5159,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Games_ValidationMissingPaths {
             get {
                 return ResourceManager.GetString("Games_ValidationMissingPaths", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The ROM is not valid for this game.
-        /// </summary>
-        public static string Games_ValidationRomInvalid {
-            get {
-                return ResourceManager.GetString("Games_ValidationRomInvalid", resourceCulture);
             }
         }
         
@@ -5220,6 +5366,114 @@ namespace RayCarrot.RCP.Metro {
         public static string GamesPageHeader {
             get {
                 return ResourceManager.GetString("GamesPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prototype Restoration.
+        /// </summary>
+        public static string GameTool_PrototypeRestoration {
+            get {
+                return ResourceManager.GetString("GameTool_PrototypeRestoration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Runtime Modifications.
+        /// </summary>
+        public static string GameTool_RuntimeModifications {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attached to process.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_AttachedToProcessHeader {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_AttachedToProcessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically find game process.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_AutoFindGame {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_AutoFindGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_LogPage {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_LogPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manually select game process.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_ManuallySelectGame {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_ManuallySelectGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifications.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_ModificationsPage {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_ModificationsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not found?.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_NotFoundQuestion {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_NotFoundQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching for running game....
+        /// </summary>
+        public static string GameTool_RuntimeModifications_SearchingForGame {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_SearchingForGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select game process.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_SelectGameProcessHeader {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_SelectGameProcessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported emulators.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_SupportedEmulatorsHeader {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_SupportedEmulatorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported games.
+        /// </summary>
+        public static string GameTool_RuntimeModifications_SupportedGamesHeader {
+            get {
+                return ResourceManager.GetString("GameTool_RuntimeModifications_SupportedGamesHeader", resourceCulture);
             }
         }
         
@@ -5973,15 +6227,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actions.
-        /// </summary>
-        public static string Mod_Mem_ActionsHeader {
-            get {
-                return ResourceManager.GetString("Mod_Mem_ActionsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to All cages.
         /// </summary>
         public static string Mod_Mem_AllCagesAction {
@@ -6009,20 +6254,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Camera X.
+        ///   Looks up a localized string similar to Camera position.
         /// </summary>
-        public static string Mod_Mem_CamX {
+        public static string Mod_Mem_CamPos {
             get {
-                return ResourceManager.GetString("Mod_Mem_CamX", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Camera Y.
-        /// </summary>
-        public static string Mod_Mem_CamY {
-            get {
-                return ResourceManager.GetString("Mod_Mem_CamY", resourceCulture);
+                return ResourceManager.GetString("Mod_Mem_CamPos", resourceCulture);
             }
         }
         
@@ -6059,15 +6295,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_DebugCategory {
             get {
                 return ResourceManager.GetString("Mod_Mem_DebugCategory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Properties.
-        /// </summary>
-        public static string Mod_Mem_EditorFieldsHeader {
-            get {
-                return ResourceManager.GetString("Mod_Mem_EditorFieldsHeader", resourceCulture);
             }
         }
         
@@ -6162,15 +6389,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Memory Mods.
-        /// </summary>
-        public static string Mod_Mem_Header {
-            get {
-                return ResourceManager.GetString("Mod_Mem_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Hit-points.
         /// </summary>
         public static string Mod_Mem_HP {
@@ -6180,29 +6398,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Info.
-        /// </summary>
-        public static string Mod_Mem_InfoHeader {
-            get {
-                return ResourceManager.GetString("Mod_Mem_InfoHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Mod_Mem_Lang {
             get {
                 return ResourceManager.GetString("Mod_Mem_Lang", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log.
-        /// </summary>
-        public static string Mod_Mem_LogHeader {
-            get {
-                return ResourceManager.GetString("Mod_Mem_LogHeader", resourceCulture);
             }
         }
         
@@ -6261,15 +6461,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game Process.
-        /// </summary>
-        public static string Mod_Mem_ProcessHeader {
-            get {
-                return ResourceManager.GetString("Mod_Mem_ProcessHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to By attaching to a running game process you will be able to modify and view game values in real-time. For certain games this will allow you to enable unused features..
         /// </summary>
         public static string Mod_Mem_ProcessInfo {
@@ -6293,6 +6484,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_R1_DebugMode {
             get {
                 return ResourceManager.GetString("Mod_Mem_R1_DebugMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enables usage of debug button cheats.
+        /// </summary>
+        public static string Mod_Mem_R1_DebugModeInfo {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_DebugModeInfo", resourceCulture);
             }
         }
         
@@ -6329,15 +6529,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_R1_ExitLvlAction {
             get {
                 return ResourceManager.GetString("Mod_Mem_R1_ExitLvlAction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Firefly.
-        /// </summary>
-        public static string Mod_Mem_R1_FireflyPower {
-            get {
-                return ResourceManager.GetString("Mod_Mem_R1_FireflyPower", resourceCulture);
             }
         }
         
@@ -6428,6 +6619,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_R1_HelicoTime {
             get {
                 return ResourceManager.GetString("Mod_Mem_R1_HelicoTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left speed storage.
+        /// </summary>
+        public static string Mod_Mem_R1_LeftSpeedStorage {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_LeftSpeedStorage", resourceCulture);
             }
         }
         
@@ -6559,6 +6759,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right speed storage.
+        /// </summary>
+        public static string Mod_Mem_R1_RightSpeedStorage {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_RightSpeedStorage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run.
         /// </summary>
         public static string Mod_Mem_R1_RunPower {
@@ -6577,20 +6786,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Squished.
-        /// </summary>
-        public static string Mod_Mem_R1_SquishedPower {
-            get {
-                return ResourceManager.GetString("Mod_Mem_R1_SquishedPower", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Super-helico.
         /// </summary>
         public static string Mod_Mem_R1_SuperHelicoPower {
             get {
                 return ResourceManager.GetString("Mod_Mem_R1_SuperHelicoPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused death.
+        /// </summary>
+        public static string Mod_Mem_R1_UnusedDeathPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_UnusedDeathPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman position.
+        /// </summary>
+        public static string Mod_Mem_RayPos {
+            get {
+                return ResourceManager.GetString("Mod_Mem_RayPos", resourceCulture);
             }
         }
         
@@ -6618,24 +6836,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_Mem_UnlockAllLvlsAction {
             get {
                 return ResourceManager.GetString("Mod_Mem_UnlockAllLvlsAction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to X position.
-        /// </summary>
-        public static string Mod_Mem_XPos {
-            get {
-                return ResourceManager.GetString("Mod_Mem_XPos", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Y position.
-        /// </summary>
-        public static string Mod_Mem_YPos {
-            get {
-                return ResourceManager.GetString("Mod_Mem_YPos", resourceCulture);
             }
         }
         
@@ -6838,15 +7038,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The game install directory is invalid.
-        /// </summary>
-        public static string Mod_RRR_BFPatch_InvalidGameDir {
-            get {
-                return ResourceManager.GetString("Mod_RRR_BFPatch_InvalidGameDir", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add unused rabbid items to Bunnies Aren&apos;t Scared Of The Dark.
         /// </summary>
         public static string Mod_RRR_BFPatch_RabbidItems {
@@ -6960,25 +7151,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_RRR_DownloadBFPatch {
             get {
                 return ResourceManager.GetString("Mod_RRR_DownloadBFPatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Directory.
-        /// </summary>
-        public static string Mod_RRR_GameDirHeader {
-            get {
-                return ResourceManager.GetString("Mod_RRR_GameDirHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rayman Raving Rabbids
-        ///Prototype Restoration.
-        /// </summary>
-        public static string Mod_RRR_Header {
-            get {
-                return ResourceManager.GetString("Mod_RRR_Header", resourceCulture);
             }
         }
         
@@ -7465,6 +7637,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_RRR_MemMod_EnableProtoFeaturesInfo {
             get {
                 return ResourceManager.GetString("Mod_RRR_MemMod_EnableProtoFeaturesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find the game executable.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ExeNotFoundError {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ExeNotFoundError", resourceCulture);
             }
         }
         
@@ -8288,6 +8469,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when opening the mods.
+        /// </summary>
+        public static string ModLoader_ErrorOpening {
+            get {
+                return ResourceManager.GetString("ModLoader_ErrorOpening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expand all.
         /// </summary>
         public static string ModLoader_ExpandModifications {
@@ -8338,6 +8528,28 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_ExtractPatch {
             get {
                 return ResourceManager.GetString("ModLoader_ExtractPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are currently multiple mods applied which overwrite the same files. This might cause one or more mods to not work correctly. You can view the list of modified files to determine if it&apos;s an issue as well as re-order the mods to change their priority.
+        ///
+        ///You can disable this warning message in the settings if you don&apos;t want it to be shown for future conflicts.
+        ///
+        ///Continue to apply mods?.
+        /// </summary>
+        public static string ModLoader_FileConflictsWarning {
+            get {
+                return ResourceManager.GetString("ModLoader_FileConflictsWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod conflicts warning.
+        /// </summary>
+        public static string ModLoader_FileConflictsWarningHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_FileConflictsWarningHeader", resourceCulture);
             }
         }
         
@@ -8473,6 +8685,24 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameBanana_UploadInfo {
             get {
                 return ResourceManager.GetString("ModLoader_GameBanana_UploadInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mods can not be applied while the game is running. Close any active instances of the game and try again..
+        /// </summary>
+        public static string ModLoader_GameRunningError {
+            get {
+                return ResourceManager.GetString("ModLoader_GameRunningError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game process detected.
+        /// </summary>
+        public static string ModLoader_GameRunningErrorHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_GameRunningErrorHeader", resourceCulture);
             }
         }
         
@@ -9010,15 +9240,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mods.
-        /// </summary>
-        public static string ModsPageHeader {
-            get {
-                return ResourceManager.GetString("ModsPageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Drive.
         /// </summary>
         public static string MountOption_Drive {
@@ -9204,6 +9425,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Platform_MsDos {
             get {
                 return ResourceManager.GetString("Platform_MsDos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlayStation.
+        /// </summary>
+        public static string Platform_Ps1 {
+            get {
+                return ResourceManager.GetString("Platform_Ps1", resourceCulture);
             }
         }
         
@@ -9475,6 +9705,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_ExportSuccess {
             get {
                 return ResourceManager.GetString("Progression_ExportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slot.
+        /// </summary>
+        public static string Progression_GenericSingleSlot {
+            get {
+                return ResourceManager.GetString("Progression_GenericSingleSlot", resourceCulture);
             }
         }
         
@@ -10375,6 +10614,42 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_RRRTotalPoints {
             get {
                 return ResourceManager.GetString("Progression_RRRTotalPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Championship.
+        /// </summary>
+        public static string Progression_RRushChampionship {
+            get {
+                return ResourceManager.GetString("Progression_RRushChampionship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lums.
+        /// </summary>
+        public static string Progression_RRushLums {
+            get {
+                return ResourceManager.GetString("Progression_RRushLums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target.
+        /// </summary>
+        public static string Progression_RRushTarget {
+            get {
+                return ResourceManager.GetString("Progression_RRushTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Attack.
+        /// </summary>
+        public static string Progression_RRushTimeAttack {
+            get {
+                return ResourceManager.GetString("Progression_RRushTimeAttack", resourceCulture);
             }
         }
         
@@ -11675,6 +11950,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string Rayman1_Ps1_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Ps1_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Minigames.
         /// </summary>
         public static string Rayman1Minigames_Win32_Title {
@@ -11707,6 +11991,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Rayman2_Gbc_Title {
             get {
                 return ResourceManager.GetString("Rayman2_Gbc_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2.
+        /// </summary>
+        public static string Rayman2_Ps1_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Ps1_Title", resourceCulture);
             }
         }
         
@@ -11864,7 +12157,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Edutainment (Edu).
+        ///   Looks up a localized string similar to Rayman Junior - Math and Language with Rayman (Edu).
         /// </summary>
         public static string RaymanEdutainmentEdu_MsDos_Title {
             get {
@@ -11873,11 +12166,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Edutainment (Quiz).
+        ///   Looks up a localized string similar to Rayman Junior - Math and language with Rayman (Edu).
+        /// </summary>
+        public static string RaymanEdutainmentEdu_Ps1_Title {
+            get {
+                return ResourceManager.GetString("RaymanEdutainmentEdu_Ps1_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Junior - Language with Rayman (Quiz).
         /// </summary>
         public static string RaymanEdutainmentQui_MsDos_Title {
             get {
                 return ResourceManager.GetString("RaymanEdutainmentQui_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Junior - Language with Rayman (Quiz).
+        /// </summary>
+        public static string RaymanEdutainmentQui_Ps1_Title {
+            get {
+                return ResourceManager.GetString("RaymanEdutainmentQui_Ps1_Title", resourceCulture);
             }
         }
         
@@ -12067,6 +12378,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanRedesigner_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanRedesigner_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Rush.
+        /// </summary>
+        public static string RaymanRush_Ps1_Title {
+            get {
+                return ResourceManager.GetString("RaymanRush_Ps1_Title", resourceCulture);
             }
         }
         
@@ -14591,6 +14911,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically recreate file table on repack (.ipk).
+        /// </summary>
+        public static string Settings_ArchiveIPKRecreateFileTableOnRepack {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveIPKRecreateFileTableOnRepack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended to do when adding or removing files as well as when applying mods which may have done so..
+        /// </summary>
+        public static string Settings_ArchiveIPKRecreateFileTableOnRepackInfo {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveIPKRecreateFileTableOnRepackInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup location.
         /// </summary>
         public static string Settings_BackupLocation {
@@ -14956,6 +15294,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_ModLoader_Header {
             get {
                 return ResourceManager.GetString("Settings_ModLoader_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show warning message for mod conflicts.
+        /// </summary>
+        public static string Settings_ModLoader_ShowFileConflictWarnings {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_ShowFileConflictWarnings", resourceCulture);
             }
         }
         

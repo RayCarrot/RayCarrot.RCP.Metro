@@ -22,8 +22,7 @@
         <metro:MetroAnimatedTabControl x:Name="MainTabControl" 
                                        Grid.Row="0" 
                                        SelectionChanged="TabControl_OnSelectionChanged">
-            <!-- TODO-LOC -->
-            <TabItem Header="Modifications" 
+            <TabItem Header="{Resx GameTool_RuntimeModifications_ModificationsPage}" 
                      local:Icon.Kind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
                      local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
                 <Grid>
@@ -78,8 +77,7 @@
                 </Grid>
             </TabItem>
 
-            <!-- TODO-LOC -->
-            <TabItem Header="Log" 
+            <TabItem Header="{Resx GameTool_RuntimeModifications_LogPage}" 
                      local:Icon.Kind="CardTextOutline" 
                      local:Icon.Brush="{StaticResource RCP.Brushes.GameTools}">
                 <local:Card Margin="{StaticResource RCP.Thicknesses.Card}">
@@ -95,8 +93,7 @@
                     Margin="{StaticResource RCP.Thicknesses.Card}">
             <StackPanel>
 
-                <!-- TODO-LOC -->
-                <TextBlock Text="Attached to process"
+                <TextBlock Text="{Resx GameTool_RuntimeModifications_AttachedToProcessHeader}"
                            Style="{StaticResource RCP.Styles.TextBlock.Header}" 
                            Margin="0 0 0 4" />
 

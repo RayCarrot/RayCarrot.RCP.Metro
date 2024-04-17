@@ -10,7 +10,7 @@ public sealed class DuckStationGameClientDescriptor : EmulatorGameClientDescript
     public override string GameClientId => "DuckStation";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Ps1 };
-    public override LocalizedString DisplayName => "DuckStation"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_DuckStation));
     public override GameClientIconAsset Icon => GameClientIconAsset.DuckStation;
 
     #endregion

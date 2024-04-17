@@ -17,8 +17,7 @@
                   IsChecked="{Binding Path=ModLoader_AutomaticallyCheckForUpdates}"
                   Margin="0 0 0 8" />
 
-        <!-- TODO-LOC -->
-        <CheckBox Content="Show warning message for mod conflicts"
+        <CheckBox Content="{Resx Settings_ModLoader_ShowFileConflictWarnings}"
                   IsChecked="{Binding Path=ModLoader_ShowModConflictsWarning}"
                   Margin="0 0 0 8" />
 

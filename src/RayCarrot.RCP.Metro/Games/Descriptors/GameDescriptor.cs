@@ -258,7 +258,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
             if ((flags & GameValidationFlags.Layout) != 0)
             {
                 if (Structure.HasLayouts && Structure.FindMatchingLayout(installLocation) == null)
-                    return new GameLocationValidationResult(false, "The game version is not valid"); // TODO-LOC
+                    return new GameLocationValidationResult(false, Resources.Games_InvalidLayout);
             }
         }
 

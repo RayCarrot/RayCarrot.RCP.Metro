@@ -19,22 +19,20 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- TODO-LOC -->
         <!-- Info -->
         <TextBlock Grid.Row="0"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
-                   Text="Modify the game to restore cut features from the early prototypes, such as free movement and combat for Rayman!"
+                   Text="{Resx GameHub_PrototypeRestorationPanel_Info}"
                    Margin="0 0 0 4" />
 
-        <!-- TODO-LOC -->
         <!-- Open -->
         <Button Grid.Row="1"
                 HorizontalAlignment="Left"
                 Style="{StaticResource RCP.Styles.Button.Flat}" 
                 Command="{Binding Path=OpenCommand, Mode=OneTime}"
                 Background="{DynamicResource RCP.Brushes.FlatButton.GameTools}"
-                Content="Open" />
+                Content="{Resx GameHub_PrototypeRestorationPanel_Open}" />
 
     </Grid>
 </UserControl>

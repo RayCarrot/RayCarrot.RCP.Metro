@@ -2606,9 +2606,6 @@
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Модифицированные .bf файлы. Они будут использоваться только при запуске игры через приведенную ниже опцию.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Расположение игры</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Применить патч исполняемого файла</value>
   </data>
@@ -2632,9 +2629,6 @@
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Запустить с пропатченными BF</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Моды</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Основные</value>
@@ -2968,9 +2962,6 @@ Start: Пауза</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>Не удалось применить патч памяти</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>Папка установки игры некорректна</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Не удалось определить версию игры</value>
@@ -3800,9 +3791,6 @@ Start: Пауза</value>
   <data name="Bool_False" xml:space="preserve">
     <value>Нет</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Игровой процесс</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Подключившись к запущенной игре, Вы сможете изменять и просматривать игровые значения в режиме реального времени. Для некоторых игр это позволит вам активировать вырезанные функции.</value>
   </data>
@@ -3811,24 +3799,6 @@ Start: Пауза</value>
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Эмулятор</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Свойства</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Информация</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Действия</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Лог</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Восстановление прототипа Rayman Raving Rabbids</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Модификации памяти</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Произошла ошибка при подключении к игровому процессу</value>
@@ -3890,12 +3860,6 @@ Start: Пауза</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Супер-полёт</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Уменьшение</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Светлячок</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Принудительный бег</value>
   </data>
@@ -3947,18 +3911,6 @@ Start: Пауза</value>
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Способности</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Камера X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Камера Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>Позиция X</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Позиция Y</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Состояние Рэймана</value>
@@ -4333,9 +4285,6 @@ Start: Пауза</value>
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>Файл не существует</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>ROM-файл не подходит для этой игры</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Играть</value>
   </data>
@@ -4617,12 +4566,6 @@ Start: Пауза</value>
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>

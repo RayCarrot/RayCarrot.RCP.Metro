@@ -27,8 +27,7 @@
             <StackPanel Grid.Row="0"
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Center">
-                <!-- TODO-LOC -->
-                <TextBlock Text="Searching for running game..." 
+                <TextBlock Text="{Resx GameTool_RuntimeModifications_SearchingForGame}" 
                            HorizontalAlignment="Center"
                            FontSize="22"
                            Margin="0 0 0 4" />
@@ -37,11 +36,9 @@
                                         Margin="0 0 0 12" />
 
                 <TextBlock HorizontalAlignment="Center">
-                    <!-- TODO-LOC -->
-                    <Run Text="Not found?" />
+                    <Run Text="{Resx GameTool_RuntimeModifications_NotFoundQuestion}" />
                     <Hyperlink Command="{Binding Path=SwitchToManuallyFindGameCommand, Mode=OneTime}">
-                        <!-- TODO-LOC -->
-                        <Run Text="Manually select game process" />
+                        <Run Text="{Resx GameTool_RuntimeModifications_ManuallySelectGame}" />
                     </Hyperlink>
                 </TextBlock>
 
@@ -55,8 +52,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <StackPanel Grid.Column="0">
-                    <!-- TODO-LOC -->
-                    <TextBlock Text="Supported games" 
+                    <TextBlock Text="{Resx GameTool_RuntimeModifications_SupportedGamesHeader}" 
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                TextWrapping="Wrap"
                                Margin="0 0 0 6"/>
@@ -72,8 +68,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
-                    <!-- TODO-LOC -->
-                    <TextBlock Text="Supported emulators" 
+                    <TextBlock Text="{Resx GameTool_RuntimeModifications_SupportedEmulatorsHeader}" 
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                TextWrapping="Wrap"
                                Margin="0 0 0 6"/>
@@ -97,9 +92,8 @@
                     Visibility="{Binding Path=State, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static runtimeModifications:RuntimeModificationsViewModel+ViewModelState.ManuallyFindGame}}">
             <StackPanel>
 
-                <!-- TODO-LOC -->
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Text="Select game process"
+                           Text="{Resx GameTool_RuntimeModifications_SelectGameProcessHeader}"
                            Margin="0 0 0 4" />
 
                 <TextBlock Text="{Resx Mod_Mem_ProcessInfo}"
@@ -108,8 +102,7 @@
 
                 <TextBlock Margin="0 0 0 8">
                     <Hyperlink Command="{Binding Path=SwitchToAutoFindGameCommand, Mode=OneTime}">
-                        <!-- TODO-LOC -->
-                        <Run Text="Automatically find game process" />
+                        <Run Text="{Resx GameTool_RuntimeModifications_AutoFindGame}" />
                     </Hyperlink>
                 </TextBlock>
 

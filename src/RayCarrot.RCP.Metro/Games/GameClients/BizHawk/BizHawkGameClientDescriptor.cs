@@ -10,7 +10,7 @@ public sealed class BizHawkGameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "BizHawk";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Ps1, GamePlatform.Gbc, GamePlatform.Gba };
-    public override LocalizedString DisplayName => "BizHawk"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_BizHawk));
     public override GameClientIconAsset Icon => GameClientIconAsset.BizHawk;
 
     #endregion

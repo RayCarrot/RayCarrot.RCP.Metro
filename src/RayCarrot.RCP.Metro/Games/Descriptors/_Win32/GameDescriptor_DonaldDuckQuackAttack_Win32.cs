@@ -16,7 +16,7 @@ public sealed class GameDescriptor_DonaldDuckQuackAttack_Win32 : Win32GameDescri
     public override Game Game => Game.DonaldDuckQuackAttack;
     public override GameCategory Category => GameCategory.Other;
 
-    public override LocalizedString DisplayName => "Donald Duck Quack Attack/Goin' Quackers"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.DonaldDuckQuackAttack_Win32_Title));
     public override string[] SearchKeywords => new[] { "dd" };
     public override DateTime ReleaseDate => new(2000, 12, 02);
 

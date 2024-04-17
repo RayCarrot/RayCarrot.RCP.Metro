@@ -190,7 +190,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
         if (AccessMemory(m => m.SupportsProperty(nameof(m.DebugMode))))
             yield return new EditorBoolFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_DebugMode)),
-                info: "Enables usage of debug button cheats", // TODO-LOC
+                info: new ResourceLocString(nameof(Resources.Mod_Mem_R1_DebugModeInfo)),
                 getValueAction: () => AccessMemory(m => m.DebugMode),
                 setValueAction: x => AccessMemory(m =>
                 {
@@ -376,7 +376,7 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
         {
             // Unused death
             yield return new EditorBoolFieldViewModel(
-                header: "Unused death", // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_UnusedDeathPower)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.RayEvts?.Squished ?? false),
                 setValueAction: x => AccessMemory(m =>
@@ -553,27 +553,23 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
     {
         Ray1Settings settings = context.GetRequiredSettings<Ray1Settings>();
 
-        // TODO-LOC
-        yield return DuoGridItem("Camera position", m => $"{m.XMap} x {m.YMap}");
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_CamPos)), m => $"{m.XMap} x {m.YMap}");
 
         if (settings.EngineVersion == Ray1EngineVersion.R2_PS1)
         {
-            // TODO-LOC
-            yield return DuoGridItem("Rayman position", m => $"{m.R2_Ray?.XPosition} x {m.R2_Ray?.YPosition}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayPos)), m => $"{m.R2_Ray?.XPosition} x {m.R2_Ray?.YPosition}");
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.R2_Ray?.MainEtat}-{m.R2_Ray?.SubEtat}");
         }
         else
         {
-            // TODO-LOC
-            yield return DuoGridItem("Rayman position", m => $"{m.Ray?.XPosition} x {m.Ray?.YPosition}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayPos)), m => $"{m.Ray?.XPosition} x {m.Ray?.YPosition}");
             yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.Ray?.MainEtat}-{m.Ray?.SubEtat}");
 
             // Don't show speed storage on GBA since we're not serializing states there (see Ray1MemoryData)
             if (settings.EngineBranch != Ray1EngineBranch.GBA)
             {
-                // TODO-LOC
-                yield return DuoGridItem("Left speed storage", m => $"{m.Ray?.ETA.States[2][0x11].LeftSpeed}");
-                yield return DuoGridItem("Right speed storage", m => $"{m.Ray?.ETA.States[2][0x11].RightSpeed}");
+                yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_LeftSpeedStorage)), m => $"{m.Ray?.ETA.States[2][0x11].LeftSpeed}");
+                yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_RightSpeedStorage)), m => $"{m.Ray?.ETA.States[2][0x11].RightSpeed}");
             }
         }
 

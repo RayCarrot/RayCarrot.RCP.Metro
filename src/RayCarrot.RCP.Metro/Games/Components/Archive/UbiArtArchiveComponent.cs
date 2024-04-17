@@ -45,23 +45,22 @@ public class UbiArtArchiveComponent : ArchiveComponent
 
         UbiArtGlobalFatManager globalFatManager = new(gameInstallation, paths.GameDataDirectory, globalFatFileName);
 
-        // TODO-LOC
-        using (LoadState state = await Services.App.LoaderViewModel.RunAsync("Recreating file table", canCancel: true))
+        using (LoadState state = await Services.App.LoaderViewModel.RunAsync(Resources.Archive_RecreatedUbiArtFileTableStatus, canCancel: true))
         {
             try
             {
                 string[] bundleNames = paths.GetBundleNames().ToArray();
                 await Task.Run(() => globalFatManager.CreateFileAllocationTable(bundleNames, state.CancellationToken, state.SetProgress));
 
-                // TODO-LOC
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync($"The file table was successfully recreated from the following bundles:\n\n{bundleNames.JoinItems(Environment.NewLine)}");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(
+                    Resources.Archive_RecreatedUbiArtFileTableSuccess,
+                    bundleNames.JoinItems(Environment.NewLine)));
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Recreating file table");
 
-                // TODO-LOC
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when recreating the file table");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RecreatedUbiArtFileTableError);
             }
         }
     }
@@ -72,8 +71,8 @@ public class UbiArtArchiveComponent : ArchiveComponent
             return null;
 
         return new AdditionalArchiveAction(
-            "Recreate file table", // TODO-LOC
-            "TODO: Info", // TODO-LOC
+            new ResourceLocString(nameof(Resources.Archive_RecreatedUbiArtFileTable)),
+            new ResourceLocString(nameof(Resources.Archive_RecreatedUbiArtFileTableInfo)),
             RecreatedFileTableAsync);
     }
 }

@@ -42,7 +42,7 @@ public partial class RuntimeModificationsDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Runtime Modifications"; // TODO-LOC
+        WindowInstance.Title = Metro.Resources.GameTool_RuntimeModifications;
         WindowInstance.Icon = GenericIconKind.Window_RuntimeModifications;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

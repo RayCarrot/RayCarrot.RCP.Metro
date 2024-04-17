@@ -311,8 +311,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             // Ask user the first time
             if (!data.Archive_IPK_RecreateFileTableOnRepackRequested)
             {
-                // TODO-LOC
-                if (await Services.MessageUI.DisplayMessageAsync("Do you want to automatically recreate the file table when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page.", MessageType.Question, true))
+                if (await Services.MessageUI.DisplayMessageAsync(Resources.Archive_AutoRecreateUbiArtFileTable, MessageType.Question, true))
                     data.Archive_IPK_RecreateFileTableOnRepack = true;
 
                 data.Archive_IPK_RecreateFileTableOnRepackRequested = true;
@@ -334,15 +333,15 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             string[] bundleNames = paths.GetBundleNames().ToArray();
             await Task.Run(() => globalFatManager.CreateFileAllocationTable(bundleNames, CancellationToken.None, progressCallback));
 
-            // TODO-LOC
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync($"The file table was successfully recreated from the following bundles:\n\n{bundleNames.JoinItems(Environment.NewLine)}");
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(
+                Resources.Archive_RecreatedUbiArtFileTableSuccess,
+                bundleNames.JoinItems(Environment.NewLine)));
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Recreating file table");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when recreating the file table");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RecreatedUbiArtFileTableError);
         }
     }
 

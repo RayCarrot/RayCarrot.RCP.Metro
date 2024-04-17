@@ -2603,9 +2603,6 @@ Voor het handmatig updaten van het programma, ga je naar {1) en download je verv
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Gemodde .bf-bestanden. Deze mods zullen uitsluitend gebruikt worden als het spel gestart wordt via de optie hieronder.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Spelmap</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Toepassen uitvoerbare patch</value>
   </data>
@@ -2629,9 +2626,6 @@ Voor het handmatig updaten van het programma, ga je naar {1) en download je verv
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Starten met gepatchte BF</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Mods</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Algemeen</value>
@@ -2965,9 +2959,6 @@ Start: Pauzeren</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>De geheugenpatch kon níét worden toegepast</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>De installatiemap van het spel is ongeldig</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Spelversie kan níét worden bepaald</value>
@@ -3797,9 +3788,6 @@ Conflicten:
   <data name="Bool_False" xml:space="preserve">
     <value>Nee</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Spelproces</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Door het verbinden met een uitgevoerd game proces, kun je spelwaarden in real-time wijzigen. Voor sommige spellen betekent dit dat je ongebruikte features kunt inschakelen.</value>
   </data>
@@ -3808,24 +3796,6 @@ Conflicten:
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Emulator</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Eigenschappen</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Informatie</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Acties</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Logboek</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids Prototype Restauratie</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Geheugenmods</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het verbinden met het proces</value>
@@ -3887,12 +3857,6 @@ Conflicten:
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super-heliko</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Geplet</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Vuurvlieg</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Geforceerd rennen</value>
   </data>
@@ -3943,18 +3907,6 @@ Conflicten:
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Krachten</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Camera X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Camera Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>X-positie</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Y-positie</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Rayman's staat</value>
@@ -4329,9 +4281,6 @@ Conflicten:
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>Het bestand bestaat niet</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>De ROM is niet geldig voor dit spel</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Spelen</value>
   </data>
@@ -4613,12 +4562,6 @@ Conflicten:
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -4986,9 +4929,6 @@ Conflicten:
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
   </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Ubisoft Connect ID:</value>
-  </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Open in Ubisoft Store</value>
   </data>
@@ -4997,12 +4937,6 @@ Conflicten:
   </data>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
     <value>Spaanse (Spanje) programmavertaling</value>
-  </data>
-  <data name="GameClients_SameBoy" xml:space="preserve">
-    <value>SameBoy</value>
-  </data>
-  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
-    <value>Visual Boy Advance - M</value>
   </data>
   <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
     <value>Laatst gewijzigd:</value>
@@ -5030,6 +4964,12 @@ Conflicten:
   </data>
   <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
     <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
   </data>
   <data name="Platform_Gbc" xml:space="preserve">
     <value>Game Boy Color</value>
@@ -5535,6 +5475,9 @@ Conflicten:
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Delta-bestand creatie mislukt</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Splash-scherm</value>

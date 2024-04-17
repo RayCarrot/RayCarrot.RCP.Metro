@@ -2612,9 +2612,6 @@ Para actualizar manualmente la aplicación, ve a {1} y descarga la última versi
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Archivos .bf modificados. Solo se utilizarán cuando se ejecute el juego desde la opción a continuación.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Directorio del juego</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Aplicar parche ejecutable</value>
   </data>
@@ -2638,9 +2635,6 @@ Para actualizar manualmente la aplicación, ve a {1} y descarga la última versi
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Iniciar con BF parcheado</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Mods</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Principal</value>
@@ -2974,9 +2968,6 @@ Botón Start: Pausa</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>No se pudo aplicar el parche de memoria</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>El directorio de instalación del juego no es válido</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>No se pudo determinar la versión del juego</value>
@@ -3806,9 +3797,6 @@ Conflictos:
   <data name="Bool_False" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Proceso del juego</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Al adjuntarse a un proceso de juego en ejecución, podrás modificar y ver los valores del juego en tiempo real. En algunos juegos, esto te permitirá habilitar funciones no utilizadas.</value>
   </data>
@@ -3817,25 +3805,6 @@ Conflictos:
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Emulador</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Propiedades</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Información</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Acciones</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Registro</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids
-Restauración del prototipo</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Mods de memoria</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Ocurrió un error al adjuntarse al proceso</value>
@@ -3897,12 +3866,6 @@ Restauración del prototipo</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super-helico</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Aplastado</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Luciérnaga</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Forzar carrera</value>
   </data>
@@ -3954,18 +3917,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Poderes</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Cámara X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Cámara Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>Posición X</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Posición Y</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Estado de Rayman</value>
@@ -4340,9 +4291,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>El archivo no existe</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>La ROM no es válida para este juego</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Jugar</value>
   </data>
@@ -4624,12 +4572,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -4996,9 +4938,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
-  </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>ID de Ubisoft Connect:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Abrir en la Tienda Ubisoft</value>
@@ -5547,6 +5486,9 @@ Si falta alguna utilidad u otro tipo de parche, es probable que se haya traslada
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Error al crear el archivo delta</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID de Ubisoft Connect:</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Pantalla de presentación</value>

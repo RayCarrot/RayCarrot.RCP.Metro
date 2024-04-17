@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Spiele</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Akzeptieren</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Mount Pfad</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>Der Mount-Pfad kann entweder eine Datei oder Laufwerk sein. Wenn du die GOG Version benutzt wird dort eine 'game.inst' datei sein. Wenn du eine Disk Image besitzt sollte es eigentlich eine .cue Datei sein. Andernfalls benutze den Laufwerksbuchstaben von deiner Disk.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Laufwerk</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Markiere dass der Mount Pfad eine Datei ist</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Markiere dass der Mount Pfad eine Laufwerk oder Disk ist</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>DosBox Einstellungen</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Beim Einstellen der gelisteten Optionen wird deaktiviert oder Leer wird die Normale Wert von der DOSBox Konfigurationsdatei benutzt. Wenn eine Spezifische Konfigurationsdatei in den Einstellungen markiert wurde, wird es vielleicht überschrieben einige Einstellungen aufgelistet.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Vollbildmodus</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Starte DosBox direkt in Vollbildmodus</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>
+Vollbild Doppelpufferung</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Nutze die Doppelpufferung im Vollbild</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Seitenverhältnis Korrektur</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Mach Seitenverhältnis Korrektur, falls deine Ausgang Methode nicht diese Skalierung Unterstützt, kannst du es hier Runterschalten!</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Arbeitsspeicher Größe</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Wie viel DOSBox an Arbeitsspeicher in Megabyte</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Frameskip</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Wie viele Frames DOSBox überspringt bevor es Zeichnet</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Ausgang</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Welchen Ausgang soll benutzt werden</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Vollbild Auflösung</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Welche Auflösung soll benutzt werden für den Vollbildschirmmodus: Original, Desktop oder festgelegte Auflösung (z.b. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Fenster Auflösung</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Skaliere das Fenster wenn das Ausgangsgerät Hardware Skalierung unterstützt</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Skalierer</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Skalierer benutzt zu Größer/Erweitern/Leicht Auflösung Modus</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Kerne</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>Die CPU Kerne werden in der Emulation benutzt.Automatisches Wechseln von Normal zu Dynamisch Angemessen.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Zyklen</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Wie viel Befehle DOSBox versucht zum Emulieren jeder Millisekunde. Stellt man diesen Wert zu hoch ergibt in Ton Aussetzer und Lags. Du kannst auch DOSBox entscheiden lassen ob das die Richtige Werte sind, wenn du die Einstellungen auf Maximal Stellst. Die Normale Einstellung (auto) setzt alles auf Maximal falls es Zutreffend ist.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>DOSBox Befehle</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(optional)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Empfohlene Einstellungen verwenden</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Auflösung</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Vollbildschirm</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Lässt das Spiel in Vollbildmodus laufen, oder es läuft im Fenstermodus</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>TriLinear</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Umformung und Ausleuchtung</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Das hier Aushaken wenn im Spiel Grafische Fehler sind</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Texturen</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16-Bit</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32-Bit</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Komprimiert</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Gute Qualität</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Schlechte Qualität</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Automatisch Qualität Anpassen</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 Bits per Pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 Bits pro Pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Benutze Verbundenen Controller</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Wenn dein Controller nicht erkannt wird kannst du in dort Aktivieren </value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Nativen Controller Unterstützung aktivieren</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Vertikale Achse</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Horizontale Achse</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Netzwerk</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Wenn der Breitbild Unterstützung nicht Aktiviert ist wird das Spiel sich Strecken wenn eine Auflösung außer 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Breitbild unterstützung</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Breitbild unterstützung geht sicher dass dein Spiel nicht Gestreckt wird. Wenn dein Spiel alles außer 4:3 läuft</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Horizontaler Breiter Bildschirm</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Das Breitbild horizontal erweitern</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Vertikaler Breiter Bildschirm</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Das Breitbild vertikal schrumpfen</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Setzt die ausgewählte Sprache wenn du das Spiel öffnest. Die Sprache kann von den Titelbildschirm geändert werden</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Wenn dein Controller nicht erkannt wird, kannst du den Nativen Controller Unterstützung aktivieren. Das will deine Controller Belegung löschen. </value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Tastenbelegung (Tastatur)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Wenn dein Spiel nicht erlaubt deine Tasten zu belegen, kannst du es hier ändern. Das Funktioniert mit Controllern.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Knopf</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Bildschirm Modus</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Dieser Bildschirm Modus will sich anders Verhalten abhängen was du für eine Auflösung ausgewählt hast. Normalerweise wenn der 4:3 Modus aktiviert ist wird das Spiel nicht Erlaubt es zu skalieren in Verschieden Auflösungen</value>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Dieser Bildschirm Modus will sich anders Verhalten abhängen was du für eine Auflösung ausgewählt hast. Normalerweise wenn der 4:3 Modus aktiviert ist wird das Spiel nicht Erlaubt es zu skalieren in Verschied an den Auflösungen</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Mitwirkende</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Aktualisierungs Vergangenheit</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Auf Aktualisierungen prüfen</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter / X</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Letzter Backup</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Backup Größe</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Nutzer erfahrung</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Das Nutzer Level entscheidet welche Optionen und Informationen verfügbar in der App sind. Desto höher das Nutzer Level ist, desto mehr Erweiterte Optionen und Informationen werden Angezeigt.</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Normales Benutzer Level - Für Nutzer die alle Normalen Features haben wollen ohne die Erweiterten Optionen oder die Technischen Details.</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Erweitert</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Erweitertes Benutzer Level - Für Nutzer sie mehr Features über die Normalen Features haben wollen, ohne die Technischen Details.</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Technisch</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Technisches Benutzer Level - Für Nutzer die mehr Technische Optionen über die Normalen Optionen haben wollen sowie die Technischen Optionen.</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Debug erfahrung - Für App Entwickler und Tester welche die Erweiterten Debug Einstellungen und Informationen wollen</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>mit den Übersetzungen helfen</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Animationen aktivieren</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Zeige Erfolgreiche Nachrichten</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Zeige eine Nachricht wenn die Ausgewählte Operation erfolgreich ausgeführt ist</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Zeige Fortschritt Symbol in der Taskleiste</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Zeige den Download Fortschritt als Symbol in der Taskleiste</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Backup Speicherort</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Nach Programm-Aktualisierungen suchen</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Die App schließen wenn ein Spiel gestartet wird</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Schließ dialog bei den Einstellungen</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>per Level Soundtrack</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>Normalerweise hat die PC Version nur einen Musik Track für jede Welt. Dieser Patch macht das jedes Level einen eigenen Musik Track hat, sowie bei der PlayStation Version.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Installieren</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Deinstallieren</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Deaktiviert</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Rayman-Version</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Kompletter Soundtrack</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever inklusive der GOG-Versionen, kommen nicht mit Kompletten Soundtrack wegen den zu wenig Speicherplatz waren auf der Disk erstmals nicht Verfügbar. Dieses  Einheit kann sie nicht-kompletten Soundtracks ersetzen mit den Kompletten Soundtracks oder auch Alternativ auch zurücksetzen.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Ersetzen mit den Vollen Soundtracks</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Nicht Vollen Soundtracks zurücksetzen</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Anwenden</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay muss Aktiviert sein um Rayman 3 zu Öffnen. Bei Windows 10 ist das normalerweise Deaktiviert.</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Infizierte Dateien ersetzen</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Einige Versionen von Rayman Designer inklusive Rayman Forever, haben einige mit viren infizierte RayKit Dateien. Allerdings sehen sie nicht schädliche weder Aktiv, GOG hat bestätigt dass keine Gefahr besteht, Du kannst Sicher die Infizierte Dateien mit diesem Programm die infizierten Dateien ersetzen.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Ersetzen</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Erstelle Fehlende Konfigurationsdatei</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Einige Rayman Designer installationen haben die Konfigurationsdatei nicht erstellt, die Dateien werden nicht Gespeichert. Das Verursacht einen Fehler beim Starten von den Mapper. Dieses Programm kann den Fehler reparieren durch das erstellen von einer Konfigurationsdatei wenn nicht Anwesend.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>UbiRay aktivieren</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Dieses Programm modifiziert das Spiel so dass der UbiRay im spiel normal wie andere Kostüme in der Heldengalerie erscheint.</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Debug Befehle</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Benutzt du einer dieser Debug Befehle erlaubt das Spiel in einen debug  Umfeld zu Starten, mit diesen Befehlen ändert sich wie das Spiel läuft.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>ACHTUNG: Benutzt du diese Debug Befehle kann vielleicht deine Speicher Datei beschädigen. Mache immer ein Backup bevor du die nutzt.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Unsterblich</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Dies Erlaubt den Spieler nicht zu Sterben wenn er schaden nimmt.</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Mauszeiger verstecken</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Das wird den Mauszeiger verstecken wenn dein Spiel gerade läuft </value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Maximalen Kamera Zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Das wird die Kamera Zoom maximieren</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Bildrate</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Das stellt ein welche Bildrate dein Spiel läuft.</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Das erlaubt eine Spezifische Karte zu laden wenn du in die Hauptmenü geladen beim Starten des Spiels</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Das wird die Sprache ändern in den Spiel was läuft</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Zur 1.02 Version aktualisieren (CD Version)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Falls Rayman Origins nicht automatisch zur Neuesten version 1.02 aktualisiert wurde, kann diese Option das aktualisieren.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Einkauf Seite öffnen</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Community Seite öffnen</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Verzeichnis öffnen</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Optionen</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>von der Disk installieren</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Finden</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Von GOG Kaufen</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Von Ubisoft Connect (uplay) kaufen</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Von Steam kaufen</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>nGlide Konfiguration</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Aktion abgeschlossen</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Normale Meldung</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informationsmeldung</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Fehler Meldung</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Warnungsmeldung</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Erfolgreiche Meldung</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Frage Meldung</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Die Spezifische Datei konnte nicht gefunden werden: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Datei nicht gefunden</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>ein Fehler ist aufgetreten beim ausführen von {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Verzeichnis nicht gefunden</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Verzeichnis Fehler</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Dieses Verzeichnis konnte nicht geöffnet werden</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Installationsverzeichnis auswählen</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>Die Ausgewählte Verzeichnis ist nicht gültig für dieses Spiel</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Ungültiges Verzeichnis</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>Ein Fehler ist Aufgetreten beim versuchen von Starten von  {0}</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>Dieser Mount Pfad wurde nicht gefunden. Markiere das richtige Verzeichnis unter den Spiel Einstellungen, zum starten des Spiels.</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Das wird einer deiner Sicherungen ersetzen:</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Sicherung bestätigen</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Sicherung fehlgeschlagen</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>Sicherung für {0} konnte nicht Fertiggestellt werden wegen einer der Verzeichnisse konnte nicht Gefunden werden.</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Installierte Spiele wurden gefunden</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>Diese neue installierten Spiele wurden gefunden:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim aktivieren von Schreibrechte für die Rayman Konfigurationsdatei</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>Zum aktivieren von den Rayman Spielen ohne das Programm als Administrator auszuführen. Du musst den folgenden Administrator Aufforderung akzeptieren</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Wiederherstellung für {0} ist fehlgeschlagen</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Wiederherstellung erfolgreich</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Deine Speicher Dateien für {0} wurden erfolgreich wiederhergestellt</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Wiederherstellung bestätigen</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>Das wird deine Aktuelle {0} Speicherdaten inklusive deine gesicherten .</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Wiederherstellung fehlgeschlagen</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Es wurde keine Sicherung für {0} gefunden</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Sicherung fehlgeschlagen für {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Sicherung erfolgreich</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Deine Speicher Dateien für {0} wurden erfolgreich gesichert</value>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Keine Dateien wurden Gefunden für die Sicherung {0}</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Keine Dateien wurden Gefunden zum Herunterladen</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>Dieser Patch erfordert die Dateien heruntergeladen zu haben. Die gesamtGröße für dass ist {0}. Fortfahren?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Herunterladen bestätigen</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>Dieser Patch erfordert die Dateien heruntergeladen zu werden. Fortfahren?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>Die Dateien konnten nicht heruntergeladen werden</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>Die Verbindung zum Server konnte nicht hergestellt werden</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>Die Informationen vom Server sind nicht gültig</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Ein Unbekannter Fehler ist aufgetreten beim Verbinden zum Server</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Aktualisierung Check fehlgeschlagen</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>Die neuste Version von {0} ist schon installiert</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Keine neuen Versionen gefunden</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Der Server Manifest konnte nicht gelesen werden</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Fehler beim Nachrichten laden</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Ein neues Update ist verfügbar! Willst du es jetzt Heruntergeladen?        
+
+Deine Version: {0}
+Aktuelle Version: {1}
+
+Nachrichten: {2} </value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Neue Version gefunden</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Der Updater konnte nicht erstellt werden. Gehe zu {0} und lade es dir hier runter.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Fehler beim Updater erstellen</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Möchtest du die extestierenten Sicherungen in einem neuen Ort verschieben?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Verschiebe alte Sicherungen</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Keine Sicherungen in {0} gefunden</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Sicherung verschieben ist fehlgeschlagen</value>
+  </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Die Sicherungen wurden nicht verschoben, weil es dort eine sicherung schon existiert in {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>Die Sicherungen wurden erfolgreich verschoben</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Fehler bei der verschiebung von der sicherung</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Erstelle Desktop Verknüpfung</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Erstelle Startmenü Verknüpfung</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Installiere für alle Nutzer</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Gesamter Prozess</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Aktueller Datei Prozess</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Installieren</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Wähle aus welcher Disk du Installieren willst</value>
+  </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>Die ausgewählte Disk hat den gleichen Namen und Root Verzeichnis wie das vorher installierte Spiel. Wegen den Installer kann er nicht die unterscheiden. Bitte benenne einer der Disks und versuche es nochmal oder Mounte die in andere Root verzeichnisse.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Disk konflikt</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} Verzeichnis wurde nicht gefunden bei der Spezifischen Disk. Wenn die Spiel mehr als eine Disk braucht, dann lege die andere Disk ein.</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Fehlende verzeichnisse</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Bitte lege "{0}" zum Anschluss "{1} und lege fort, oder breche die Installation ab mit dem Abbrechen knopf</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Lege Disk ein</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>Die Datei {0} ist fehlgeschlagen zu kopieren 
+mit der Fehlermeldung {1}
+
+Nochmal versuchen?</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Fehlgeschlagen das Element zum Ziel zu kopieren</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Einige Elemente wurden nicht bearbeitet während der Installation. Möchtest die es nochmal mit den Elementen versuchen? </value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Nicht bearbeitet Elemente</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Ein teil der Installation konnte nicht gesäubert werden bei {0}</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Möchtest du die Installation abbrechen?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Abbruch der aktuellen Installation</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>Die Spezifizierte Verzeichnis konnte nicht gefunden werden.</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Verzeichnis nicht gefunden</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Starte {0}</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Installation erfolgreich Abgeschlossen. Starte den Konfigurator Assistant für {0} um das Spiel zu errichten.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Installation abgeschlossen</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Aktion Fehlgeschlagen</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Installation fehlgeschlagen</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Installation abgebrochen</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Dieses Programm braucht ein paar Dateien die heruntergeladen werden müssen.</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Ungültiges Format</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Einzelner Schlüssel muss benutzt werden</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>Schlüssel ist nicht gültig</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>Die Zyklen Wert sind nicht im gültigen Format</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>Die Zyklen Wert kann nicht leer sein</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Nur Ziffern sind erlaubt wenn eine Spezifischen Wert benutzt wird</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>Die Auflösung Wert kann nicht leer sein</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Ungültiges Format</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Das Zeichen {0} ist nicht gültig</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Der Auflösung Separater 'x' kann nur einmal benutzt werden</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Der Auflösungs Separator 'x' muss benutzt werden</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>Ein gültige Höhe muss angegeben werden</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Keine gültige ubi.ini Datei wurde gefunden und beim neu erstellen ist es fehlgeschlagen. Versuche das Programm als Administrator zu starten oder ändere die Ordner Berechtigungen für den folgenden Weg: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Ein fehler ist aufgetreten beim speichern von deiner {0} Konfiguration</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Speicher Fehler</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim Speichern von deiner DOSBox Konfiguration</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Deine Änderungen wurden gespeichert</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>Das Seitenverhältnis konnte nicht eingestellt werden weil das Spiel Executable konnte nicht gefunden werden</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>Das Seitenverhältnis konnte nicht gesetzt werden weil die Spiel Ausführen Datei nicht gültig ist</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim einstellen von Rayman 2 Seitenverhältnis</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Ein fehler ist aufgetreten beim speichern von deinen Rayman Raving Rabbids Konfiguration</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Du hast grad einen Konami Code eingetippt! Viel Spaß mit diesem neuen Roten Design.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami Code</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Du hast grad den RayCarrot Code grad ein eingetippt! Viel Spaß mit diesem Orangen, Karotten Design.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>RayCarrot Code</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Du hast grad den Lime Code eingegeben! Viel Spaß mit diesen Lime Design.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime Code</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Du hast grad einen Geheimen Code eingegeben! Aber leider macht dieser garnichts</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Geheimer Code</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Ausführ verzeichnis</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Start Argumente</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Installationsverzeichnis</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Abhängigkeiten</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Voller Name</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Architektur</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Installiert</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Bist du sicher {0} von Rayman Control Panel zu entfernen? Das wird nicht das Spiel vom Computer oder deren Dateien (inklusive Backups) entfernen das mit diesem Programm erstellt worden ist.</value>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Entfernen bestätigen</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Wähle Verknüpfungsziel</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Starte {0}</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Verknüpfung wurde Erfolgreich erstellt</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>Die Verknüpfung konnte nicht erstellt werden</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Erstellen einer Verknüpfung fehlgeschlagen</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Ein spezieller Dank an: AuToNaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski und alle anderen Rayman Fans!</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Rayman Control Panel, Werkzeuge, per-level Soundtrack, Archiv Explorer, BinarySerializer</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Patches vom Controller</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Rayman 2 Knöpfe mappen</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Allgemeine Hilfe mit den Werkzeugen</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>per-level Soundtrack Werkzeug</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Portugiesisch (Portugal) Programm übersetzung</value>
+  </data>
+  <data name="ROU_UpdateFailed" xml:space="preserve">
+    <value>Herunterladen von Rayman Origins Updater ist fehlgeschlagen</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>Die Rayman Origins Installation konnte nicht gefunden werden</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>Ein fehler ist Aufgetreten beim Übernehmen von Debug-Befehle</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (1te Edition)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.2</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installation fehlgeschlagen</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installation fehlgeschlagen</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Bist du sicher dass du den Per-level Soundtrack Werkzeuge deinstallieren willst?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Deinstallieren bestätigen</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Das Werkzeug wurde erfolgreich deinstalliert</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Deinstallation abgeschlossen</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Ein fehler ist Aufgetreten beim Deinstallieren</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Deinstallation ist fehlgeschlagen</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Das ersetzen vom Soundtrack ist fehlgeschlagen</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} Dateien wurden gefunden, zu Ersetzen. Das erfordert wahrscheinlich Einige Downloads abhängen deren Verzeichnisse.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Das Ersetzen war Erfolgreich</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Erzetzen von Datei ist fehlgeschlagen</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Diese Konfigurationsdatei existiert schon. Möchtest du sie Ersetzen wenn sie Beschädigt ist? Fortfahren?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Datei ersetzen</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Diese Datei wurde erfolgreich erstellt</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Datei konnte nicht erstellt werden</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>Ein fehler ist Aufgetreten beim lesen von einer Sicherung {0}</value>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Einige Dateien konnten nicht Wiederhergestellt werden. Überprüfe {0} &amp; {0} um die Verloren Dateien zu Wiederherstellen.</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>Diese Operation wird zurzeit Abgebrochen</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>Abbruch von Operation wurde Empfangen</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Möchtest du den Download abbrechen?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Abbreche ausstehenden Download</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>Diese Download Operation wurde Abgebrochen</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Operation abgebrochen</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>Diese Download Operation wurde abgebrochen</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Operation fehlgeschlagen</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>Die Dateien wurden erfolgreich heruntergeladen</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Download Operation abgeschlossen</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Version Info</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Fortfahren</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Herunterladen</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Gesamter Prozess</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Aktueller Datei Prozess</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Willkommen beim Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Willkommen beim Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Dieses Programm ist inoffiziel ein Open Source Community Projekt dass von RayCarrot erstellt worden ist. Dies ermöglicht Schnell und einfachen Zugang von Installierten Rayman PC Spielen, mit zusätzlichen Features und erweiterten Konfiguration Support, Werkzeuge, Speicher Dateien Backups, Speicherverwaltung, Texture Modifikationen und mehr. Unterstützte Spiele können direkt von der Disk  vom Programm installiert werden. Um fortzufahren klicke unten auf 'Fortfahren'. Die Einstellungen können jederzeit bei der Einstellungen Seite geändert werden.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>Diese Konfigurations änderungen wurden nicht Gespeichert. Möchtest du verlassen und sie verwerfen?</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Beenden bestätigen</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Werkzeuge</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Verknüpfung erstellen</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Vom Programm entfernen</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Du nutzt eine ältere Version von den Programm ({0}) vergleichend von der Aktuellen Versionen von der App Speicher ({1}). Das ist nicht empfohlen und verursacht Kompatibilitätsprobleme. Diese werden Repariert durch das Zurücksetzen von der App Dateien für dieses Programm.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade erkannt</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Starte {0}</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Französisch</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spanisch</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italienisch</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Dänisch</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finnisch</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norwegisch</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Swedish</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 Ränder</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Per-level Soundtrack Werkzeug, Rayman M/Arena Disk überprüfung Entfernung</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Niederländisch (Niederlande) Programm übersetzung, Programm testen</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Durchsuchen</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Zeige Sprachen mit nicht vollständigen Übersetzungen</value>
+  </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Alles Sichern</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Als Admin ausgühen</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Möchtest due alle Spiele sichern? Das wird alle vorherigen Sicherungen entfernen. Wenn mehrere Spiele die gleiche Sicherung teilen, Wir nur eine Sicherung durchgeführt. Fortfahren?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Sicherungen bestätigen</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>Alle Spiele wurden Erfolgreich gesichert</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>{0}/{1} Spiele wurden gesichert</value>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Einige Spiele wurden nicht gesichert</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Konfiguration</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Animation inklusive Übersetzungen und größenänderung für die Spiele seite</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Steam Gruppe</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>Ein fehler ist aufgetreten beim Speichern. Nicht alle Änderungen wurden Gespeichert.</value>
+  </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (2te Edition)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (3te Edition)</value>
+  </data>
+  <data name="Page_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Dieses Feature benötigt dieses Programm als Administrator zu Starten</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Erzwinge Manuelle Aktualisierungen</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>Der Updater konnte nicht gestartet werden. Versuche die Neue Version manuell herunter zu laden, gehe zu {0} und lade dir die neuste Version runter.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Fehler beim starten von Updater</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>Dieser Registrierungseditor Schlüssel wurde nicht gefunden</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Registrierungs schlüssel wurde nicht gefunden</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>Dieser Schlüssel konnte nicht geöffnet werden</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Fehler beim starten von Schlüssel</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>App Nutzer Daten</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Log Datei</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Registrierungs App Datei</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Ein neues Beta Update ist verfügbar. Jetzt Herunterladen?
+
+Deine Version: {0}
+Aktuelle Version: {0}
+
+Neuigkeiten:
+{2}</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Deinstallieren</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Bist du sicher das du Rayman Control Panel deinstallieren? Sowie wird die Exe Datei und alle App Dateien. Das wird NICHT die installierten Spielen, Speicher Dateien oder Sicherungen. Einige Übernommenen Werkzeuge sind wahrscheinlich immer noch Verfügbar.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Deinstallieren bestätigen</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Ein fehler ist aufgetreten bei der Deinstallation. Du kannst die App Dateien manuell Deinstallieren in folgenden Verzeichnisse:
+
+{0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Erhalte Beta Updates</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Programm testen</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel
+(Administrator)</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect (uplay) ID</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Titelbildschirm</value>
+  </data>
+</root>

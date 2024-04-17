@@ -2606,9 +2606,6 @@ BinarySerializer</value>
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>קבצי .bf ערוכים. קבצים אלו ישמשו רק בעת הפעלת המשחק מהאפשרות למטה.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>ספריית משחקים</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>החל תיקון EXE</value>
   </data>
@@ -2632,9 +2629,6 @@ BinarySerializer</value>
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>הפעל עם הBF המתוקן</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>מודים</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>ראשי</value>
@@ -2968,9 +2962,6 @@ Start: הפסק</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>לא הייתה אפשרות להחיל את תיקון הזיכרון</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>ספריית התקנת המשחק לא תקינה</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>לא ניתן לקבוע את גרסת המשחק</value>
@@ -3801,9 +3792,6 @@ Start: הפסק</value>
   <data name="Bool_False" xml:space="preserve">
     <value>לא</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>תהליך משחק</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>על ידי הצמדה של תהליך משחק פעיל, ניתן לשנות ולהציג את ערכי המשחק בזמן אמת. עבור משחקים מסוימים זה יאפשר להפעיל תכונות שאינן בשימוש.</value>
   </data>
@@ -3812,25 +3800,6 @@ Start: הפסק</value>
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>אימולטור</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>הגדרות</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>מידע</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>פעולות</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>יומן</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids
-שחזור אב טיפוס</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>מודי זיכרון</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>אירעה שגיאה בעת החיבור לתהליך</value>
@@ -3892,12 +3861,6 @@ Start: הפסק</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>סופר מסוק</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>מעוך</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>גחלילית</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>להכריח מצב ריצה</value>
   </data>
@@ -3949,18 +3912,6 @@ Start: הפסק</value>
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>כוחות</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>מצלמה X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>מצלמה Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>מיקום X</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>מיקום Y</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>מצבי Rayman</value>
@@ -4335,9 +4286,6 @@ Start: הפסק</value>
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>הקובץ לא קיים</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>ה-ROM אינו תקף למשחק הזה</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>לשחק</value>
   </data>
@@ -4619,12 +4567,6 @@ Start: הפסק</value>
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>מיני משחקי Rayman</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -4991,9 +4933,6 @@ Start: הפסק</value>
   </data>
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
-  </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>לפתוח ב Ubisoft Connect</value>
@@ -5542,6 +5481,9 @@ Start: הפסק</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>יצירת קובץ Delta נכשלה</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>מסך התחלה</value>

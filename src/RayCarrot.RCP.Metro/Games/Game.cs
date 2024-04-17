@@ -219,7 +219,7 @@ public enum Game
     /// <summary>
     /// Donald Duck Quack Attack/Goin' Quackers
     /// </summary>
-    [GameInfo("Donald Duck Quack Attack/Goin' Quackers", GameIconAsset.DonaldDuckQuackAttack)] // TODO-LOC
+    [GameInfo(nameof(Resources.Game_DonaldDuckQuackAttack_Title), GameIconAsset.DonaldDuckQuackAttack)]
     DonaldDuckQuackAttack,
 
     /// <summary>

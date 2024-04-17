@@ -22,25 +22,25 @@ public class GameProgressionManager_RaymanRush_Ps1 : EmulatedGameProgressionMana
             new GameProgressionDataItem(
                 isPrimaryItem: true,
                 icon: ProgressionIconAsset.RR_Championship,
-                header: "Championship", // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.Progression_RRushChampionship)),
                 value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedChampionship != 0 ? 1 : 0),
                 max: levelsCount),
             new GameProgressionDataItem(
                 isPrimaryItem: true,
                 icon: ProgressionIconAsset.RR_TimeAttack,
-                header: "Time Attack", // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.Progression_RRushTimeAttack)),
                 value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedModes >= 2 ? 1 : 0),
                 max: levelsCount),
             new GameProgressionDataItem(
                 isPrimaryItem: true,
                 icon: ProgressionIconAsset.RR_Lums,
-                header: "Lums", // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.Progression_RRushLums)),
                 value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedModes >= 3 ? 1 : 0),
                 max: levelsCount),
             new GameProgressionDataItem(
                 isPrimaryItem: true,
                 icon: ProgressionIconAsset.RR_Target,
-                header: "Target", // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.Progression_RRushTarget)),
                 value: saveBlock.SaveData.SaveBlock1.Levels.Sum(x => x.CompletedModes >= 4 ? 1 : 0),
                 max: levelsCount),
         };

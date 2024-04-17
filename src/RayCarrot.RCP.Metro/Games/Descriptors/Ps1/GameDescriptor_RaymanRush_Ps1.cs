@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanRush_Ps1 : Ps1GameDescriptor
     public override Game Game => Game.RaymanMArena;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman Rush"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRush_Ps1_Title));
     public override string[] SearchKeywords => new[] { "rr" };
     public override DateTime ReleaseDate => new(2002, 03, 08);
 

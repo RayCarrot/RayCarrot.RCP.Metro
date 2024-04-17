@@ -17,7 +17,7 @@ public class GameProgressionSlot
         else if (index != -1)
             Name = new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
         else
-            Name = "Slot"; // TODO-LOC
+            Name = new ResourceLocString(nameof(Resources.Progression_GenericSingleSlot));
 
         Index = index;
         CollectiblesCount = collectiblesCount;
@@ -46,7 +46,7 @@ public class GameProgressionSlot
         else if (index != -1)
             Name = new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
         else
-            Name = "Slot"; // TODO-LOC
+            Name = new ResourceLocString(nameof(Resources.Progression_GenericSingleSlot));
 
         Index = index;
         CollectiblesCount = null;

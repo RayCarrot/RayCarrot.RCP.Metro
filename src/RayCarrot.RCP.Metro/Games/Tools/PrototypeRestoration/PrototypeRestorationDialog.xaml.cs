@@ -30,7 +30,7 @@ public partial class PrototypeRestorationDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Prototype Restoration"; // TODO-LOC
+        WindowInstance.Title = Metro.Resources.GameTool_PrototypeRestoration;
         WindowInstance.Icon = GenericIconKind.Window_PrototypeRestoration;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

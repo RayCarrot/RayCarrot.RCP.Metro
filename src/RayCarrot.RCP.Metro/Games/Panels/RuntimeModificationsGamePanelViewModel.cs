@@ -22,7 +22,7 @@ public class RuntimeModificationsGamePanelViewModel : GamePanelViewModel
     #region Public Properties
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_RuntimeModification;
-    public override LocalizedString Header => "Runtime Modifications"; // TODO-LOC
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameTool_RuntimeModifications));
 
     #endregion
 

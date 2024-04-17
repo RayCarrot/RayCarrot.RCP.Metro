@@ -117,7 +117,7 @@ public class FileType_GF : IFileType
                 text: $"{file.PixelFormat.ToString().Replace("Format_", "")}", 
                 minUserLevel: UserLevel.Technical),
             new DuoGridItemViewModel(
-                header: "Image compression:", // TODO-LOC 
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Compression)),
                 text: "RLE"),
         });
     }

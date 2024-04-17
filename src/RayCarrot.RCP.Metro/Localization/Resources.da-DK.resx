@@ -2603,9 +2603,6 @@ For at opdatere applikationen manuelt, kan den seneste version hentes fra {1}.</
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Modificerede .bf-filer. Disse bliver kun brugt, når spillet køres fra nedenstående indstilling.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Spilmappe</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Anvend eksekverbar patch</value>
   </data>
@@ -2629,9 +2626,6 @@ For at opdatere applikationen manuelt, kan den seneste version hentes fra {1}.</
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Start med patchet BF</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Mods</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Generelt</value>
@@ -2965,9 +2959,6 @@ Start: Pause</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>Hukommelsespatchen kunne ikke anvendes</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>Spilinstallationsmappen er ugyldig</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Kunne ikke bestemme spilversion</value>
@@ -3798,9 +3789,6 @@ Konflikter:
   <data name="Bool_False" xml:space="preserve">
     <value>Nej</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Spilproces</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Ved at tilknytte en kørende spilproces kan du modificere og se spilværdier i realtid. For bestemte spil kan dette give dig mulighed for at aktivere ubrugte funktioner.</value>
   </data>
@@ -3809,24 +3797,6 @@ Konflikter:
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Emulator</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Egenskaber</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Information</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Handlinger</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids prototypegendannelse</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Hukommelsesmods</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at tilknytte til processen</value>
@@ -3888,12 +3858,6 @@ Konflikter:
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Superhelikopter</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Mast</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Ildflue</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Tving løb</value>
   </data>
@@ -3945,18 +3909,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Krafter</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Kamera X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Kamera Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>X-position</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Y-position</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Raymans tilstand</value>
@@ -4331,9 +4283,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>Filen eksisterer ikke</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>ROMen er ikke gyldig for dette spil</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Spil</value>
   </data>
@@ -4615,12 +4564,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -4988,9 +4931,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
   </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Ubisoft Connect ID:</value>
-  </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Åbn i Ubisoft Store</value>
   </data>
@@ -5214,8 +5154,14 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
     <value>{0} ugemte filer</value>
   </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>Ugemt omarrangering af mods</value>
+  </data>
   <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
     <value>Vælg mods, der skal installeres</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
   </data>
   <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
     <value>Downloader mod {0}</value>
@@ -5315,12 +5261,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="ModCreator_Step4" xml:space="preserve">
     <value>4. Udgiv moddet</value>
-  </data>
-  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
-    <value>Ugemt omarrangering af mods</value>
-  </data>
-  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
-    <value>Mod</value>
   </data>
   <data name="ModCreator_Step4Info" xml:space="preserve">
     <value>Moddet udgives ved at indpakke modmappen i et understøttet arkivformat (.zip, .7z, .rar). Hvis moddet udgives til GameBanana, vises det som et installerbart mod i modloaderen. Se dokumentationen for yderligere detaljer.</value>
@@ -5537,6 +5477,9 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Kunne ikke oprette deltafil</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect ID:</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Velkomstbillede</value>

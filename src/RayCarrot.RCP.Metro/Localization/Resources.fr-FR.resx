@@ -2603,9 +2603,6 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Modifie les fichiers .bf. Ces mods ne seront actifs qu'en démarrant le jeu via l'option ci-dessous.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Dossier du jeu</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Appliquer le patch sur l'exécutable</value>
   </data>
@@ -2629,9 +2626,6 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Démarrer avec le BF patché</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Mods</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Principal</value>
@@ -2966,9 +2960,6 @@ Start : Pause</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>Le patch mémoire n'a pas pu être appliqué</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>Le dossier d'installation du jeu est incorrect</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Impossible de déterminer la version du jeu</value>
@@ -3799,9 +3790,6 @@ Conflits:
   <data name="Bool_False" xml:space="preserve">
     <value>Non</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Processus du jeu</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>En s'attachant à un processus de jeu en cours, il est possible de voir et modifier les valeurs du jeu en temps réel. Pour certains jeux, cela permet de réactiver des fonctions inutilisées.</value>
   </data>
@@ -3810,25 +3798,6 @@ Conflits:
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Émulateur</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Propriétés</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Infos</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Actions</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Journal</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Restoration du prototype de
-Rayman contre Les Lapins Crétins</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Mods Mémoire</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Un erreur est survenue en s'attachant au processus</value>
@@ -3890,12 +3859,6 @@ Rayman contre Les Lapins Crétins</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super-hélico</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Rétréci</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Luciole</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Course forcée</value>
   </data>
@@ -3947,18 +3910,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Pouvoirs</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Axe X de la caméra</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Axe Y de la caméra</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>Position X</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Position Y</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Etat de Rayman</value>
@@ -4224,162 +4175,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Archive_CopyDirPath" xml:space="preserve">
     <value>Copier le chemin du dossier</value>
   </data>
-  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
-    <value>• {0}</value>
-  </data>
-  <data name="Progression_RHR_Level0Header" xml:space="preserve">
-    <value>Concile des Fées</value>
-  </data>
-  <data name="Progression_RHR_Level1Header" xml:space="preserve">
-    <value>Forêt de Claire-Feuille</value>
-  </data>
-  <data name="Progression_RHR_Level2Header" xml:space="preserve">
-    <value>Cascade de Claire-Feuille</value>
-  </data>
-  <data name="Progression_RHR_Level3Header" xml:space="preserve">
-    <value>Machine Infernale</value>
-  </data>
-  <data name="Progression_RHR_Level4Header" xml:space="preserve">
-    <value>Donjon Ténébreux</value>
-  </data>
-  <data name="Progression_RHR_Level5Header" xml:space="preserve">
-    <value>Marécage Ténébreux</value>
-  </data>
-  <data name="Progression_RHR_Level6Header" xml:space="preserve">
-    <value>Bayou de Bégoniax</value>
-  </data>
-  <data name="Progression_RHR_Level7Header" xml:space="preserve">
-    <value>Fleuves Ténébreux</value>
-  </data>
-  <data name="Progression_RHR_Level8Header" xml:space="preserve">
-    <value>Lande Hoodlums</value>
-  </data>
-  <data name="Progression_RHR_Level9Header" xml:space="preserve">
-    <value>Lande aux Esprits Frappés</value>
-  </data>
-  <data name="Progression_RHR_Level10Header" xml:space="preserve">
-    <value>Menhirs du Pouvoir</value>
-  </data>
-  <data name="Progression_RHR_Level11Header" xml:space="preserve">
-    <value>Fosse du Feu Éternel</value>
-  </data>
-  <data name="Progression_RHR_Level12Header" xml:space="preserve">
-    <value>Nuages du Péril</value>
-  </data>
-  <data name="Progression_RHR_Level13Header" xml:space="preserve">
-    <value>Cœur du Monde</value>
-  </data>
-  <data name="Progression_RHR_Level14Header" xml:space="preserve">
-    <value>Antre de Reflux</value>
-  </data>
-  <data name="Progression_RHR_Level15Header" xml:space="preserve">
-    <value>Enigme Vertigineuse</value>
-  </data>
-  <data name="Progression_RHR_Level16Header" xml:space="preserve">
-    <value>Cachette Nuageuse</value>
-  </data>
-  <data name="Progression_RHR_Level17Header" xml:space="preserve">
-    <value>L'Enfer du Combat</value>
-  </data>
-  <data name="Progression_RHR_Level18Header" xml:space="preserve">
-    <value>Cascade Brûlante</value>
-  </data>
-  <data name="Progression_RHR_Level19Header" xml:space="preserve">
-    <value>Mer Sulfureuse</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
-    <value>Jeux d'enfants</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
-    <value>Le hameau des marmots</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
-    <value>La course aux jouets</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
-    <value>Coffre à jouets</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
-    <value>Château céleste</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
-    <value>Forêt des songes</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
-    <value>Le vallon boisé</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
-    <value>Jungle coloniale</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
-    <value>Les cîmes luxuriantes</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
-    <value>Terrier caché</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
-    <value>Le tour de panse</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
-    <value>Rivières gastriques</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
-    <value>Caverne organique</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
-    <value>Trésors engloutis</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
-    <value>La tanière gluante</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
-    <value>Le désert des desserts</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
-    <value>Pari quatre-quarts</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
-    <value>L'archipel Friandise</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
-    <value>C'est pas du gâteau !</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
-    <value>Galeries clafoutis</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
-    <value>Lapin d'épice</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
-    <value>Couloirs sordides</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
-    <value>Geôles de l'agonie</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
-    <value>Echappée infernale</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
-    <value>Parcours épique</value>
-  </data>
-  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
-    <value>L'antre des lapins</value>
-  </data>
-  <data name="GameFileFinder_GamesFound" xml:space="preserve">
-    <value>Les nouveaux jeux suivants ont été trouvés :</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>Une version plus récente est disponible. Désinstallez la version actuelle pour l'installer.</value>
-  </data>
-  <data name="GameClients_SameBoy" xml:space="preserve">
-    <value>SameBoy</value>
-  </data>
-  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
-    <value>Visual Boy Advance - M</value>
-  </data>
   <data name="AppData_MigrateError" xml:space="preserve">
     <value>Une erreur est survenue lors de la migration des données vers la nouvelle version</value>
   </data>
@@ -4489,9 +4284,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>Le fichier n'existe pas</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>Cette ROM n'est pas valide pour ce jeu</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Jouer</value>
   </data>
@@ -4558,8 +4350,14 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="GameHub_ArchivePanel_Open" xml:space="preserve">
     <value>Ouvrir</value>
   </data>
+  <data name="Progression_HeaderWithSecondary" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
   <data name="Progression_SharedBackupsInfo" xml:space="preserve">
     <value>Ce jeu partage les mêmes sauvegardes que les jeux suivants. Cela veut dire que créer un backup pour un de ces jeux va écraser les backups créés pour les autres jeux.</value>
+  </data>
+  <data name="Progression_SharedBackupsSeparator" xml:space="preserve">
+    <value>• {0}</value>
   </data>
   <data name="Progression_GroupGames" xml:space="preserve">
     <value>Grouper les jeux</value>
@@ -4765,6 +4563,9 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="RaymanRavingRabbids_Demo_20061106_Win32_Title" xml:space="preserve">
     <value>Démo Rayman contre les Lapins Crétins (2006/11/06)</value>
   </data>
+  <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
+    <value>Mini-jeux Rayman</value>
+  </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
   </data>
@@ -4782,6 +4583,9 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="RaymanActivityCenter_Win32_Title" xml:space="preserve">
     <value>Rayman éveil</value>
+  </data>
+  <data name="RaymanRavingRabbidsActivityCenter_Win32_Title" xml:space="preserve">
+    <value>CD d'activité Rayman contre les Lapins Crétins</value>
   </data>
   <data name="TheDarkMagiciansReignofTerror_Win32_Title" xml:space="preserve">
     <value>Rayman: The Dark Magician's Reign of Terror</value>
@@ -4882,6 +4686,12 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Game_RaymanTheDreamersBoundary_Title" xml:space="preserve">
     <value>Rayman: The Dreamer's Boundary</value>
   </data>
+  <data name="Game_Rayman1Minigames_Title" xml:space="preserve">
+    <value>Mini-jeux Rayman</value>
+  </data>
+  <data name="Game_RaymanEdutainment_Title" xml:space="preserve">
+    <value>Rayman Edutainment</value>
+  </data>
   <data name="Game_TonicTrouble_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
   </data>
@@ -4897,6 +4707,9 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Game_RaymanActivityCenter_Title" xml:space="preserve">
     <value>Rayman éveil</value>
   </data>
+  <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
+    <value>CD d'activité Rayman contre les Lapins Crétins</value>
+  </data>
   <data name="Platform_MsDos" xml:space="preserve">
     <value>MS-DOS</value>
   </data>
@@ -4909,62 +4722,146 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Platform_Gba" xml:space="preserve">
     <value>Game Boy Advance</value>
   </data>
+  <data name="Progression_RHR_Level0Header" xml:space="preserve">
+    <value>Concile des Fées</value>
+  </data>
+  <data name="Progression_RHR_Level1Header" xml:space="preserve">
+    <value>Forêt de Claire-Feuille</value>
+  </data>
+  <data name="Progression_RHR_Level2Header" xml:space="preserve">
+    <value>Cascade de Claire-Feuille</value>
+  </data>
+  <data name="Progression_RHR_Level3Header" xml:space="preserve">
+    <value>Machine Infernale</value>
+  </data>
+  <data name="Progression_RHR_Level4Header" xml:space="preserve">
+    <value>Donjon Ténébreux</value>
+  </data>
+  <data name="Progression_RHR_Level5Header" xml:space="preserve">
+    <value>Marécage Ténébreux</value>
+  </data>
+  <data name="Progression_RHR_Level6Header" xml:space="preserve">
+    <value>Bayou de Bégoniax</value>
+  </data>
+  <data name="Progression_RHR_Level7Header" xml:space="preserve">
+    <value>Fleuves Ténébreux</value>
+  </data>
+  <data name="Progression_RHR_Level8Header" xml:space="preserve">
+    <value>Lande Hoodlums</value>
+  </data>
+  <data name="Progression_RHR_Level9Header" xml:space="preserve">
+    <value>Lande aux Esprits Frappés</value>
+  </data>
+  <data name="Progression_RHR_Level10Header" xml:space="preserve">
+    <value>Menhirs du Pouvoir</value>
+  </data>
+  <data name="Progression_RHR_Level11Header" xml:space="preserve">
+    <value>Fosse du Feu Éternel</value>
+  </data>
+  <data name="Progression_RHR_Level12Header" xml:space="preserve">
+    <value>Nuages du Péril</value>
+  </data>
+  <data name="Progression_RHR_Level13Header" xml:space="preserve">
+    <value>Cœur du Monde</value>
+  </data>
+  <data name="Progression_RHR_Level14Header" xml:space="preserve">
+    <value>Antre de Reflux</value>
+  </data>
+  <data name="Progression_RHR_Level15Header" xml:space="preserve">
+    <value>Enigme Vertigineuse</value>
+  </data>
+  <data name="Progression_RHR_Level16Header" xml:space="preserve">
+    <value>Cachette Nuageuse</value>
+  </data>
+  <data name="Progression_RHR_Level17Header" xml:space="preserve">
+    <value>L'Enfer du Combat</value>
+  </data>
+  <data name="Progression_RHR_Level18Header" xml:space="preserve">
+    <value>Cascade Brûlante</value>
+  </data>
+  <data name="Progression_RHR_Level19Header" xml:space="preserve">
+    <value>Mer Sulfureuse</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level2Header" xml:space="preserve">
+    <value>Jeux d'enfants</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level3Header" xml:space="preserve">
+    <value>Le hameau des marmots</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level4Header" xml:space="preserve">
+    <value>La course aux jouets</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level5Header" xml:space="preserve">
+    <value>Coffre à jouets</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level6Header" xml:space="preserve">
+    <value>Château céleste</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level7Header" xml:space="preserve">
+    <value>Forêt des songes</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level8Header" xml:space="preserve">
+    <value>Le vallon boisé</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level9Header" xml:space="preserve">
+    <value>Jungle coloniale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level10Header" xml:space="preserve">
+    <value>Les cîmes luxuriantes</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level11Header" xml:space="preserve">
+    <value>Terrier caché</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level12Header" xml:space="preserve">
+    <value>Le tour de panse</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level13Header" xml:space="preserve">
+    <value>Rivières gastriques</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level14Header" xml:space="preserve">
+    <value>Caverne organique</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level15Header" xml:space="preserve">
+    <value>Trésors engloutis</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level16Header" xml:space="preserve">
+    <value>La tanière gluante</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level17Header" xml:space="preserve">
+    <value>Le désert des desserts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level18Header" xml:space="preserve">
+    <value>Pari quatre-quarts</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level19Header" xml:space="preserve">
+    <value>L'archipel Friandise</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level20Header" xml:space="preserve">
+    <value>C'est pas du gâteau !</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level21Header" xml:space="preserve">
+    <value>Galeries clafoutis</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level22Header" xml:space="preserve">
+    <value>Lapin d'épice</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level23Header" xml:space="preserve">
+    <value>Couloirs sordides</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level24Header" xml:space="preserve">
+    <value>Geôles de l'agonie</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level25Header" xml:space="preserve">
+    <value>Echappée infernale</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level26Header" xml:space="preserve">
+    <value>Parcours épique</value>
+  </data>
+  <data name="Progression_RRR_GBA_Level27Header" xml:space="preserve">
+    <value>L'antre des lapins</value>
+  </data>
   <data name="Progression_RRR_GBA_TimeAttack" xml:space="preserve">
     <value>Contre la montre</value>
-  </data>
-  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
-    <value>Rayman Jungle Run</value>
-  </data>
-  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
-    <value>Rayman Fiesta Run</value>
-  </data>
-  <data name="GameClients_UbisoftConnect" xml:space="preserve">
-    <value>Ubisoft Connect</value>
-  </data>
-  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
-    <value>Prototype de Rayman 3</value>
-  </data>
-  <data name="Rayman1_Gbc_Title" xml:space="preserve">
-    <value>Rayman</value>
-  </data>
-  <data name="Rayman2_Gbc_Title" xml:space="preserve">
-    <value>Rayman 2</value>
-  </data>
-  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
-    <value>Tonic Trouble</value>
-  </data>
-  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
-    <value>Rayman (Game Boy Color)</value>
-  </data>
-  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
-    <value>Rayman 2 (Game Boy Color)</value>
-  </data>
-  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
-    <value>Tonic Trouble (Game Boy Color)</value>
-  </data>
-  <data name="Platform_Gbc" xml:space="preserve">
-    <value>Game Boy Color</value>
-  </data>
-  <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
-    <value>Mini-jeux Rayman</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
-  </data>
-  <data name="RaymanRavingRabbidsActivityCenter_Win32_Title" xml:space="preserve">
-    <value>CD d'activité Rayman contre les Lapins Crétins</value>
-  </data>
-  <data name="Game_Rayman1Minigames_Title" xml:space="preserve">
-    <value>Mini-jeux Rayman</value>
-  </data>
-  <data name="Game_RaymanEdutainment_Title" xml:space="preserve">
-    <value>Rayman Edutainment</value>
-  </data>
-  <data name="Game_RaymanRavingRabbidsActivityCenter_Title" xml:space="preserve">
-    <value>CD d'activité Rayman contre les Lapins Crétins</value>
   </data>
   <data name="GameSelection_FindGameFilesInfo" xml:space="preserve">
     <value>Trouver des ROMs de jeux et des disques depuis le dossier</value>
@@ -4974,6 +4871,9 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="GameFileFinder_Error" xml:space="preserve">
     <value>Une erreur est survenue lors de la recherche de fichier de jeux</value>
+  </data>
+  <data name="GameFileFinder_GamesFound" xml:space="preserve">
+    <value>Les nouveaux jeux suivants ont été trouvés :</value>
   </data>
   <data name="GameFileFinder_GamesFoundHeader" xml:space="preserve">
     <value>ROMs de jeux et disques trouvés</value>
@@ -5022,6 +4922,18 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
     <value>1.12 (Non protégée)</value>
   </data>
+  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
+    <value>Une version plus récente est disponible. Désinstallez la version actuelle pour l'installer.</value>
+  </data>
+  <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Jungle Run</value>
+  </data>
+  <data name="RaymanFiestaRun_Win32_Title" xml:space="preserve">
+    <value>Rayman Fiesta Run</value>
+  </data>
+  <data name="GameClients_UbisoftConnect" xml:space="preserve">
+    <value>Ubisoft Connect</value>
+  </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Ouvrir dans l'Ubisoft Store</value>
   </data>
@@ -5036,6 +4948,36 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="Utilities_SyncTextureInfo" xml:space="preserve">
     <value>Synchroniser les textures</value>
+  </data>
+  <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
+    <value>Prototype de Rayman 3</value>
+  </data>
+  <data name="Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble</value>
+  </data>
+  <data name="Game_Rayman1_Gbc_Title" xml:space="preserve">
+    <value>Rayman (Game Boy Color)</value>
+  </data>
+  <data name="Game_Rayman2_Gbc_Title" xml:space="preserve">
+    <value>Rayman 2 (Game Boy Color)</value>
+  </data>
+  <data name="Game_TonicTrouble_Gbc_Title" xml:space="preserve">
+    <value>Tonic Trouble (Game Boy Color)</value>
+  </data>
+  <data name="GameClients_SameBoy" xml:space="preserve">
+    <value>SameBoy</value>
+  </data>
+  <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
+    <value>Visual Boy Advance - M</value>
+  </data>
+  <data name="Platform_Gbc" xml:space="preserve">
+    <value>Game Boy Color</value>
   </data>
   <data name="Progression_R3_GBA_CompletedGCNBonus" xml:space="preserve">
     <value>Niveaux bonus Gamecube complétés</value>

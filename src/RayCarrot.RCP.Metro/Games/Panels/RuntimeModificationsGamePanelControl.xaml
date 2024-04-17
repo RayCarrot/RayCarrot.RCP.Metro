@@ -19,22 +19,20 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- TODO-LOC -->
         <!-- Info -->
         <TextBlock Grid.Row="0"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
-                   Text="Modify the game while it's running to apply different cheats or access unused content."
+                   Text="{Resx GameHub_RuntimeModificationsPanel_Info}"
                    Margin="0 0 0 4" />
 
-        <!-- TODO-LOC -->
         <!-- Open -->
         <Button Grid.Row="1"
                 HorizontalAlignment="Left"
                 Style="{StaticResource RCP.Styles.Button.Flat}" 
                 Command="{Binding Path=OpenCommand, Mode=OneTime}"
                 Background="{DynamicResource RCP.Brushes.FlatButton.GameTools}"
-                Content="Open" />
+                Content="{Resx GameHub_RuntimeModificationsPanel_Open}" />
 
     </Grid>
 </UserControl>

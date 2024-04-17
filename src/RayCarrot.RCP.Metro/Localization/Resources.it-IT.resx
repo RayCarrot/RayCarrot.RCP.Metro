@@ -2607,9 +2607,6 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>File .bf modificati. Questi verranno utilizzati solo durante l'esecuzione del gioco dall'opzione sottostante.</value>
   </data>
-  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
-    <value>Directory del gioco</value>
-  </data>
   <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
     <value>Applica patch all'eseguibile</value>
   </data>
@@ -2633,9 +2630,6 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   </data>
   <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
     <value>Avvia con BF patchato</value>
-  </data>
-  <data name="ModsPageHeader" xml:space="preserve">
-    <value>Mod</value>
   </data>
   <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
     <value>Principale</value>
@@ -2969,9 +2963,6 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   </data>
   <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
     <value>Non è stato possibile applicare la patch di memoria</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
-    <value>La directory di installazione del gioco non è valida</value>
   </data>
   <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
     <value>Impossibile determinare la versione del gioco</value>
@@ -3802,9 +3793,6 @@ Conflitti:
   <data name="Bool_False" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
-    <value>Processo del gioco</value>
-  </data>
   <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
     <value>Collegandoti a un processo di gioco in esecuzione, sarai in grado di modificare e visualizzare i valori del gioco in tempo reale. Per alcuni giochi questo ti consentirà di abilitare funzioni non utilizzate.</value>
   </data>
@@ -3813,25 +3801,6 @@ Conflitti:
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
     <value>Emulatore</value>
-  </data>
-  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
-    <value>Proprietà</value>
-  </data>
-  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
-    <value>Informazioni</value>
-  </data>
-  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
-    <value>Azioni</value>
-  </data>
-  <data name="Mod_Mem_LogHeader" xml:space="preserve">
-    <value>Registro</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Restauro prototipo
-Rayman Raving Rabbids</value>
-  </data>
-  <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Mod Memoria</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Si è verificato un errore durante il collegamento al processo</value>
@@ -3893,12 +3862,6 @@ Rayman Raving Rabbids</value>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super elicottero</value>
   </data>
-  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
-    <value>Schiacciato</value>
-  </data>
-  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
-    <value>Lucciola</value>
-  </data>
   <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
     <value>Corsa forzata</value>
   </data>
@@ -3950,18 +3913,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="Mod_Mem_PowersCategory" xml:space="preserve">
     <value>Poteri</value>
-  </data>
-  <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>Camera X</value>
-  </data>
-  <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Camera Y</value>
-  </data>
-  <data name="Mod_Mem_XPos" xml:space="preserve">
-    <value>Posizione X</value>
-  </data>
-  <data name="Mod_Mem_YPos" xml:space="preserve">
-    <value>Posizione Y</value>
   </data>
   <data name="Mod_Mem_RayState" xml:space="preserve">
     <value>Stato di Rayman</value>
@@ -4336,9 +4287,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="Games_ValidationFileMissing" xml:space="preserve">
     <value>Il file non esiste</value>
   </data>
-  <data name="Games_ValidationRomInvalid" xml:space="preserve">
-    <value>La ROM non è valida per questo gioco</value>
-  </data>
   <data name="GameHub_Play" xml:space="preserve">
     <value>Gioca</value>
   </data>
@@ -4620,12 +4568,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Edutainment (Quiz)</value>
   </data>
   <data name="TonicTrouble_Win32_Title" xml:space="preserve">
     <value>Tonic Trouble</value>
@@ -4993,9 +4935,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="GameClients_UbisoftConnect" xml:space="preserve">
     <value>Ubisoft Connect</value>
   </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>ID Ubisoft Connect:</value>
-  </data>
   <data name="GameDisplay_OpenInUbisoftStore" xml:space="preserve">
     <value>Apri nell'Ubisoft Store</value>
   </data>
@@ -5224,6 +5163,9 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
     <value>Seleziona le mod da installare</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Mod</value>
   </data>
   <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
     <value>Scaricando mod {0}</value>
@@ -5541,8 +5483,8 @@ Se manca un'utilità o un altro tipo di patch, molto probabilmente è stata camb
   <data name="ModLoader_DeltasModule_IdenticalFilesErrorHeader" xml:space="preserve">
     <value>Impossibile creare il file delta</value>
   </data>
-  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
-    <value>Mod</value>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>ID Ubisoft Connect:</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Splash screen</value>

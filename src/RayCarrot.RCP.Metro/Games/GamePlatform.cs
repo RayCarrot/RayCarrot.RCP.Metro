@@ -26,7 +26,7 @@ public enum GamePlatform
     /// <summary>
     /// PlayStation
     /// </summary>
-    [GamePlatformInfo("PlayStation", GamePlatformIconAsset.Ps1)] // TODO-LOC
+    [GamePlatformInfo(nameof(Resources.Platform_Ps1), GamePlatformIconAsset.Ps1)]
     Ps1,
 
     /// <summary>

@@ -22,7 +22,7 @@ public class PrototypeRestorationGamePanelViewModel : GamePanelViewModel
     #region Public Properties
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_PrototypeRestoration;
-    public override LocalizedString Header => "Prototype Restoration"; // TODO-LOC
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameTool_PrototypeRestoration));
 
     #endregion
 

@@ -570,8 +570,8 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
         if (!exe.FileExists)
         {
             Logger.Info("RRR exe does not exist");
-            // TODO-LOC
-            await Services.MessageUI.DisplayMessageAsync("Could not find the game executable", MessageType.Error);
+
+            await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_MemMod_ExeNotFoundError, MessageType.Error);
             return GameVersion.Unknown;
         }
 
