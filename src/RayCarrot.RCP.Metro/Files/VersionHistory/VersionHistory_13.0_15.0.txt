@@ -15,7 +15,6 @@
     • Speed storage values are now shown for Rayman 1
     • Added the option to toggle an unused death animation for Rayman 1 on PS1
     • Removed certain power toggles for Rayman 1 due to them causing bugs within the game
-    • Added support for VisualBoyAdvance-M (2.1.9 - x86)
     • Various fixes and improvements
 • Mod loader changes
     • Added support for Rayman Origins for the UBIART-LOC mod module
