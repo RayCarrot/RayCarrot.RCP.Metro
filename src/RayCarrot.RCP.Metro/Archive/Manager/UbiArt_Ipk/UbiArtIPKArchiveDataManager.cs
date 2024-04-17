@@ -187,11 +187,12 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         if (data.BootHeader.Version == 4)
         {
             data.FilePack.FileIds = data.FilePack.Files.
-                OrderBy(x => x.Path.StringID.ID).
-                Select((x, i) => new BundleFile_FileId
+                Select((x, i) => new { File = x, Index = i }).
+                OrderBy(x => x.File.Path.StringID.ID).
+                Select(x => new BundleFile_FileId
                 {
-                    Id = i,
-                    PathStringId = x.Path.StringID,
+                    Id = x.Index,
+                    PathStringId = x.File.Path.StringID,
                 }).
                 ToArray();
             data.FilePack.FilePaths = data.FilePack.Files.
