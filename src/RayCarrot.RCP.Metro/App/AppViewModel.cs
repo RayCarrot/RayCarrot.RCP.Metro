@@ -129,7 +129,7 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
-    public bool IsBeta => false;
+    public bool IsBeta => true;
 
     /// <summary>
     /// A flag indicating if an update check is in progress
@@ -160,7 +160,7 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     public static WindowsVersion WindowsVersion { get; } // TODO: Why is this static?
 
-    public static Version AppVersion => new(14, 0, 3, 0);
+    public static Version AppVersion => new(14, 1, 0, 0);
 
     #endregion
 
