@@ -207,7 +207,7 @@ public class GameSlotViewModel : BaseRCPViewModel
         {
             try
             {
-                using FileEditing fileEditing = new("Save.json");
+                using FileEditing fileEditing = new(DefaultExportName);
 
                 bool modified = await fileEditing.ExecuteAsync(
                     fileExtension: ".json",
