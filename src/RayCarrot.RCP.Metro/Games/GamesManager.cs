@@ -76,6 +76,7 @@ public class GamesManager
             new GameDescriptor_TonicTrouble_Win32(),
             new GameDescriptor_TonicTroubleSpecialEdition_Win32(),
             new GameDescriptor_TonicTrouble_Gbc(),
+            new GameDescriptor_DonaldDuckQuackAttack_Win32(),
             new GameDescriptor_RaymanDictées_Win32(),
             new GameDescriptor_RaymanPremiersClics_Win32(),
             new GameDescriptor_Rayman3PrintStudio_Win32(),

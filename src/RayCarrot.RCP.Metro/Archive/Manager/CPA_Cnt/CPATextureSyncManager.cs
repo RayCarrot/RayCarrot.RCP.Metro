@@ -128,11 +128,11 @@ public class CPATextureSyncManager
         int total = 0;
         int edited = 0;
 
-        // Create a encoder
+        // Create an encoder
         IStreamEncoder? encoder = GameSettings.EngineVersion switch
         {
             EngineVersion.TonicTrouble => new TTSNADataEncoder(),
-            EngineVersion.Rayman2 => new R2SNADataEncoder(),
+            EngineVersion.Rayman2 or EngineVersion.DonaldDuckQuackAttack => new R2SNADataEncoder(),
             _ => null
         };
 

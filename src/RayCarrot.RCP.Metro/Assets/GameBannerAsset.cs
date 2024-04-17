@@ -57,6 +57,9 @@ public enum GameBannerAsset
     [AssetFileName("Tonic Trouble.png")]
     TonicTrouble,
 
+    [AssetFileName("Donald Duck Quack Attack.png")]
+    DonaldDuckQuackAttack,
+
     [AssetFileName("Rayman Activity Center.png")]
     RaymanActivityCenter,
 

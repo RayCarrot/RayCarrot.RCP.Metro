@@ -217,6 +217,12 @@ public enum Game
     TonicTrouble_Gbc,
 
     /// <summary>
+    /// Donald Duck Quack Attack/Goin' Quackers
+    /// </summary>
+    [GameInfo("Donald Duck Quack Attack/Goin' Quackers", GameIconAsset.DonaldDuckQuackAttack)] // TODO-LOC
+    DonaldDuckQuackAttack,
+
+    /// <summary>
     /// Rayman Dictées
     /// </summary>
     [GameInfo(nameof(Resources.Game_RaymanDictées_Title), GameIconAsset.RaymanDictées)]

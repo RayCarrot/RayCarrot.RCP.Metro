@@ -4,6 +4,7 @@
     • Rayman 2
     • Rayman Rush
     • Rayman Junior/Rayman Brain Games
+• Added Donald Duck Quack Attack/Goin' Quackers
 • Added support for new game clients/emulators:
     • DuckStation
     • BizHawk
