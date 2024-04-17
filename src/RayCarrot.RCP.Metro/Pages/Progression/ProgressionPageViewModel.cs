@@ -8,7 +8,8 @@ namespace RayCarrot.RCP.Metro.Pages.Progression;
 
 public class ProgressionPageViewModel : BasePageViewModel, 
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>, 
-    IRecipient<SortedGamesMessage>, IRecipient<BackupLocationChangedMessage>
+    IRecipient<SortedGamesMessage>, IRecipient<BackupLocationChangedMessage>,
+    IRecipient<ModifiedGameProgressionMessage>
 {
     #region Constructor
 
@@ -313,6 +314,24 @@ public class ProgressionPageViewModel : BasePageViewModel,
         // grouped or else the order won't update
         if (GroupGames)
             GamesView.Refresh();
+    }
+    async void IRecipient<ModifiedGameProgressionMessage>.Receive(ModifiedGameProgressionMessage message)
+    {
+        using (await AsyncLock.LockAsync())
+        {
+            foreach (GameViewModel game in Games)
+            {
+                // Check if it's the same game or if it shares the same file path
+                if (game.GameInstallation == message.GameInstallation ||
+                    game.Slots.Any(x => x.FilePath == message.FilePath))
+                {
+                    // Reload data
+                    await game.LoadProgressAsync();
+                    await game.LoadSlotInfoItemsAsync();
+                    await game.LoadBackupAsync();
+                }
+            }
+        }
     }
 
     #endregion

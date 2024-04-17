@@ -2,12 +2,14 @@
 
 namespace RayCarrot.RCP.Metro.Games.Panels;
 
-public class ProgressionGamePanelViewModel : GamePanelViewModel
+public class ProgressionGamePanelViewModel : GamePanelViewModel, IRecipient<ModifiedGameProgressionMessage>
 {
     public ProgressionGamePanelViewModel(GameInstallation gameInstallation, GameProgressionManager progressionManager) 
         : base(gameInstallation)
     {
         ProgressionManager = progressionManager;
+
+        Services.Messenger.RegisterAll(this);
     }
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_Progression;
@@ -34,6 +36,18 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
 
         if (PrimarySlot == null)
             IsEmpty = true;
+    }
+
+    public override Task UnloadAsync()
+    {
+        Services.Messenger.UnregisterAll(this);
+        return Task.CompletedTask;
+    }
+
+    async void IRecipient<ModifiedGameProgressionMessage>.Receive(ModifiedGameProgressionMessage message)
+    {
+        if (message.GameInstallation == GameInstallation || (PrimarySlot != null && message.FilePath == PrimarySlot.Slot.FilePath))
+            await RefreshAsync();
     }
 
     public class GameProgressionSlotViewModel : BaseViewModel

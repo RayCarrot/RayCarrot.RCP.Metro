@@ -187,10 +187,7 @@ public class GameSlotViewModel : BaseRCPViewModel
             return;
         }
 
-        // Reload data
-        await Game.LoadProgressAsync();
-        await Game.LoadSlotInfoItemsAsync();
-        await Game.LoadBackupAsync();
+        Services.Messenger.Send(new ModifiedGameProgressionMessage(Game.GameInstallation, FilePath));
 
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ImportSuccess);
     }
@@ -217,13 +214,15 @@ public class GameSlotViewModel : BaseRCPViewModel
 
                 if (modified)
                 {
-                    // Import the modified data
-                    Slot.ImportSlot(fileEditing.FilePath);
-
-                    // Reload data
-                    await Game.LoadProgressAsync();
-                    await Game.LoadSlotInfoItemsAsync();
-                    await Game.LoadBackupAsync();
+                    try
+                    {
+                        // Import the modified data
+                        Slot.ImportSlot(fileEditing.FilePath);
+                    }
+                    finally
+                    {
+                        Services.Messenger.Send(new ModifiedGameProgressionMessage(Game.GameInstallation, FilePath));
+                    }
 
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_SaveEditSuccess);
                 }
