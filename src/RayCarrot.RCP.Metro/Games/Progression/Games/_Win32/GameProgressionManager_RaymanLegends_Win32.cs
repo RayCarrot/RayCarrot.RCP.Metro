@@ -137,14 +137,15 @@ public class GameProgressionManager_RaymanLegends_Win32 : GameProgressionManager
             // Add invasion times
             progressItems.AddRange(saveData.Levels.
                 Select(x => x.Value.Object).
-                Where(x => x.BestTime > 0).
-                Select(x => (lvlIds[x.Id.ID], x.BestTime)).
-                OrderBy(x => x.Item1).
+                // Make sure the level has a time recorded (is an invasion) and is in our table (not added through a mod)
+                Where(x => x.BestTime > 0 && lvlIds.ContainsKey(x.Id.ID)).
+                Select(x => new { Id = lvlIds[x.Id.ID], Time = x.BestTime }).
+                OrderBy(x => x.Id).
                 Select(x => new GameProgressionDataItem(
                     isPrimaryItem: false,
-                    icon: Enum.Parse(typeof(ProgressionIconAsset), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIconAsset>(),
-                    header: new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"),
-                    text: $"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}")));
+                    icon: Enum.Parse(typeof(ProgressionIconAsset), $"RL_Inv_{x.Id.Replace("-", "_")}").CastTo<ProgressionIconAsset>(),
+                    header: new ResourceLocString($"RL_LevelName_{x.Id.Replace("-", "_")}"),
+                    text: $"{TimeSpan.FromMilliseconds(x.Time * 1000):mm\\:ss\\.fff}")));
 
             yield return new SerializableGameProgressionSlot<Legends_SaveData>(saveData.Profile.Name, 0, teensies, 700, progressItems, context, saveFileData, saveFileName)
             {
