@@ -4,7 +4,7 @@
     • Rayman 2
     • Rayman Rush
     • Rayman Junior/Rayman Brain Games
-• Added Donald Duck Quack Attack/Goin' Quackers
+• Added support for Donald Duck Quack Attack/Goin' Quackers
 • Added support for new game clients/emulators:
     • DuckStation
     • BizHawk
@@ -25,6 +25,7 @@
     • Added the option to recreate the file table for UbiArt IPK archives (this can optionally be automatically done when repacking)
     • The compression method is now shown for images
     • Improved performance
+• Renamed the Rayman Edutainment games with clearer names
 • Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name and have better support if the file opens in an already running instance of the program
 • Editing a save slot in the progression page will now cause all related save slots to refresh in the app, including in the games page
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
