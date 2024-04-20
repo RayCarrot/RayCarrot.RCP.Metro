@@ -331,7 +331,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         try
         {
-            string[] bundleNames = paths.GetBundleNames().ToArray();
+            string[] bundleNames = paths.GetBundleNames(includePatch: false).ToArray();
             await Task.Run(() => globalFatManager.CreateFileAllocationTable(bundleNames, CancellationToken.None, progressCallback));
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(

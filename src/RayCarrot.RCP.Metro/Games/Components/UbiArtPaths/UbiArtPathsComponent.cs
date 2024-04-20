@@ -14,7 +14,7 @@ public class UbiArtPathsComponent : GameComponent
     public string GameDataDirectory { get; }
     public string? GlobalFatFile { get; }
 
-    public IEnumerable<string> GetBundleNames()
+    public IEnumerable<string> GetBundleNames(bool includePatch)
     {
         string platformString = GameInstallation.
             GetRequiredComponent<BinaryGameModeComponent, UbiArtGameModeComponent>().
@@ -25,7 +25,13 @@ public class UbiArtPathsComponent : GameComponent
                      $"*_{platformString}.ipk", SearchOption.TopDirectoryOnly))
         {
             string fileName = bundleFilePath.Name;
-            yield return fileName.Substring(0, fileName.Length - (5 + platformString.Length));
+            string bundleName = fileName.Substring(0, fileName.Length - (5 + platformString.Length));
+
+            // Patch bundle is optionally included
+            if (bundleName.Equals("patch", StringComparison.InvariantCultureIgnoreCase) && !includePatch)
+                continue;
+
+            yield return bundleName;
         }
     }
 }

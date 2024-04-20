@@ -34,7 +34,7 @@ public class UbiArtArchiveComponent : ArchiveComponent
             GetSettings().
             PlatformString;
 
-        foreach (string bundleName in paths.GetBundleNames())
+        foreach (string bundleName in paths.GetBundleNames(includePatch: true))
             yield return System.IO.Path.Combine(paths.GameDataDirectory, $"{bundleName}_{platformString}.ipk");
     }
 
@@ -49,7 +49,7 @@ public class UbiArtArchiveComponent : ArchiveComponent
         {
             try
             {
-                string[] bundleNames = paths.GetBundleNames().ToArray();
+                string[] bundleNames = paths.GetBundleNames(includePatch: false).ToArray();
                 await Task.Run(() => globalFatManager.CreateFileAllocationTable(bundleNames, state.CancellationToken, state.SetProgress));
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(
