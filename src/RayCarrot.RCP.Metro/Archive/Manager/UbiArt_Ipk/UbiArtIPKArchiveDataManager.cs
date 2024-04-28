@@ -304,6 +304,13 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         if (GameInstallation == null)
             return;
 
+        UbiArtPathsComponent paths = GameInstallation.GetRequiredComponent<UbiArtPathsComponent>();
+        string? globalFatFileName = paths.GlobalFatFile;
+
+        // Make sure the game has a global fat file
+        if (globalFatFileName == null)
+            return;
+
         AppUserData data = Services.Data;
 
         // Only automatically recreate the file table if set to do so
@@ -323,9 +330,6 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
 
         data.Archive_IPK_RecreateFileTableOnRepackRequested = true;
-
-        UbiArtPathsComponent paths = GameInstallation.GetRequiredComponent<UbiArtPathsComponent>();
-        string globalFatFileName = paths.GlobalFatFile ?? throw new InvalidOperationException("A global fat file has to be specified");
 
         UbiArtGlobalFatManager globalFatManager = new(GameInstallation, paths.GameDataDirectory, globalFatFileName);
 
