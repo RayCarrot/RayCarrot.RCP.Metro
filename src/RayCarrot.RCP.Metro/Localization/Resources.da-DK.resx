@@ -5484,4 +5484,33 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Velkomstbillede</value>
   </data>
+  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
+    <value>Billedkomprimering:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
+    <value>Ønsker du at filtabellen (secure_fat.gf) genoprettes automatisk, når et arkiv ompakkes? Dette er nødvendigt at gøre, når filer bliver tilføjet eller fjernet. Det kan til enhver tid ændres i indstillingerne.</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
+    <value>Filtabellen blev genoprettet med succes til de følgende bundter:
+
+{0}</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at genoprette filtabellen</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
+    <value>Genopretter filtabel</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
+    <value>Genopret filtabel</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
+    <value>Hvis filtabellen genoprettes, opdateres secure_fat.gf-filen til at afspejle filerne som på det nuværende tidspunkt er i spilbundterne. Dette er ikke nødvendigt hvis du bare ønsker at modificere allerede eksisterende filer, men så snart du tilføjer eller fjerner filer skal dette gøres for at sikre at ændringerne bliver håndteret korrekt af spillet.</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
+    <value>Genopret automatisk filtabel ved ompakning</value>
+  </data>
 </root>

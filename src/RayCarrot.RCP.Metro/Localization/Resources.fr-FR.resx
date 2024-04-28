@@ -5487,4 +5487,181 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Écran de démarrage</value>
   </data>
+  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
+    <value>Compression d'image :</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
+    <value>Aucune</value>
+  </data>
+  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
+    <value>Souhaitez-vous recréer la table de fichiers (secure_fat.gf) automatiquement après avoir recompilé une archive ? Ce procédé est requis lorsque des fichiers sont ajoutés ou retirés. Vous pouvez changer votre choix à n'importe quel moment dans le menu options.</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
+    <value>La table de fichier a été recréée avec succès pour les packs suivants :
+
+{0}</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
+    <value>Une erreur est survenue pendant la recréation de la table de fichiers</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
+    <value>Recréation de la table de fichier</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
+    <value>Recréer la table de fichier</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
+    <value>Recréer la table de fichier va mettre à jour le fichier secure_fat.gf afin de refléter les fichiers présents dans le pack du jeu. Ceci n'est pas obligatoire après une simple modification de fichiers existants, mais est nécessaire dès que des fichiers sont ajoutés ou retirés pour que les changements puissent être correctement pris en compte par le jeu.</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
+    <value>Recréer automatiquement la table de fichiers après une recompilation (.apk)</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
+    <value>Si cette option est activée, la table de fichiers sera automatiquement recréée quand une archive .ipk est recompilée. Cette action est recommandée si vous comptez ajouter ou retirer des fichiers mais aussi en appliquant des mods faisant cela.</value>
+  </data>
+  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
+    <value>Donald Duck Couak Attack</value>
+  </data>
+  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
+    <value>Donald Duck Couak Attack</value>
+  </data>
+  <data name="Platform_Ps1" xml:space="preserve">
+    <value>Playstation</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman pour les Juniors (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman pour les Juniors (Quiz)</value>
+  </data>
+  <data name="Rayman1_Ps1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Ps1_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior (Quiz)</value>
+  </data>
+  <data name="RaymanRush_Ps1_Title" xml:space="preserve">
+    <value>Rayman Rush</value>
+  </data>
+  <data name="GameTool_PrototypeRestoration" xml:space="preserve">
+    <value>Restoration du prototype</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
+    <value>Modifie le jeu pour restaurer les fonctionnalités retirées du prototype, telles que les déplacements libres et le combat pour Rayman !</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Open" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ExeNotFoundError" xml:space="preserve">
+    <value>Impossible de trouver l'exécutable du jeu</value>
+  </data>
+  <data name="GameTool_RuntimeModifications" xml:space="preserve">
+    <value>Modifications en cours de jeu</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Info" xml:space="preserve">
+    <value>Modifie le jeu en cours de fonctionnement pour appliquer différents cheats ou accéder à du contenu inutilisé.</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Open" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ModificationsPage" xml:space="preserve">
+    <value>Modifications</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_LogPage" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AttachedToProcessHeader" xml:space="preserve">
+    <value>Attaché au processus</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SearchingForGame" xml:space="preserve">
+    <value>Recherche d'un jeu ouvert en cours...</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_NotFoundQuestion" xml:space="preserve">
+    <value>Non trouvé ?</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ManuallySelectGame" xml:space="preserve">
+    <value>Sélectionner manuellement le processus de jeu</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedGamesHeader" xml:space="preserve">
+    <value>Jeux supportés</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedEmulatorsHeader" xml:space="preserve">
+    <value>Emulateurs supportés</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SelectGameProcessHeader" xml:space="preserve">
+    <value>Selection du processus de jeu</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AutoFindGame" xml:space="preserve">
+    <value>Trouver les processus de jeu automatiquement</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
+    <value>Active les cheats de debug</value>
+  </data>
+  <data name="Mod_Mem_R1_UnusedDeathPower" xml:space="preserve">
+    <value>Mort inutilisée</value>
+  </data>
+  <data name="Mod_Mem_CamPos" xml:space="preserve">
+    <value>Position de la camera</value>
+  </data>
+  <data name="Mod_Mem_RayPos" xml:space="preserve">
+    <value>Position de Rayman</value>
+  </data>
+  <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
+    <value>Conservation de la vitesse gauche</value>
+  </data>
+  <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
+    <value>Conservation de la vitesse droite</value>
+  </data>
+  <data name="Games_InvalidLayout" xml:space="preserve">
+    <value>La version du jeu est invalide</value>
+  </data>
+  <data name="GameClients_BizHawk" xml:space="preserve">
+    <value>BizHawk</value>
+  </data>
+  <data name="GameClients_DuckStation" xml:space="preserve">
+    <value>DuckStation</value>
+  </data>
+  <data name="Progression_GenericSingleSlot" xml:space="preserve">
+    <value>Emplacement</value>
+  </data>
+  <data name="Progression_RRushChampionship" xml:space="preserve">
+    <value>Championnat</value>
+  </data>
+  <data name="Progression_RRushTimeAttack" xml:space="preserve">
+    <value>Contre-la-montre</value>
+  </data>
+  <data name="Progression_RRushLums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_RRushTarget" xml:space="preserve">
+    <value>Cible</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarning" xml:space="preserve">
+    <value>Plusieurs mods actifs modifient les mêmes fichiers. Cela pourrait causer des dysfonctionnements sur un ou plusieurs mods. Vous pouvez voir une liste des fichiers modifiés pour voir si cela pourrait poser un problème ainsi que réordonner les mods afin de changer leur priorité.
+
+Vous pouvez désactiver cet avertissement si vous ne voulez pas le voir lors de futurs conflits.
+
+Voulez-vous continuer l'application des mods ?</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarningHeader" xml:space="preserve">
+    <value>Avertissement de conflits de mods</value>
+  </data>
+  <data name="ModLoader_GameRunningError" xml:space="preserve">
+    <value>Les mods ne peuvent pas être appliqués pendant que le jeu est ouvert. Fermez toutes les instances du jeu avant de réessayer.</value>
+  </data>
+  <data name="ModLoader_GameRunningErrorHeader" xml:space="preserve">
+    <value>Processus de jeu détecté</value>
+  </data>
+  <data name="Settings_ModLoader_ShowFileConflictWarnings" xml:space="preserve">
+    <value>Montrer le message d'avertissement sur les conflits de mods</value>
+  </data>
+  <data name="ModLoader_ErrorOpening" xml:space="preserve">
+    <value>Une erreur est survenue à l'ouverture des mods</value>
+  </data>
 </root>

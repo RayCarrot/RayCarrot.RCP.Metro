@@ -5488,4 +5488,18 @@ Start: הפסק</value>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>מסך התחלה</value>
   </data>
+  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
+    <value>דחיסת תמונה:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
+    <value>ללא</value>
+  </data>
+  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
+    <value>האם ברצונכם ליצור מחדש באופן אוטומטי את טבלת הקבצים (secure_fat.gf) כאשר ארכיון נארז מחדש? פעולה זו נדרשת בעת הוספה או הסרה של קבצים. ניתן לשנות זאת בכל עת בדף ההגדרות.</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
+    <value>טבלת הקבצים נוצרה מחדש בהצלחה עבור החבילות הבאות:
+
+{0}</value>
+  </data>
 </root>
