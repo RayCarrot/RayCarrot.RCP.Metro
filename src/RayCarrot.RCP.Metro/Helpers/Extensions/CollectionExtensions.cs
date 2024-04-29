@@ -18,6 +18,13 @@ public static class CollectionExtensions
             collection.Remove(item);
     }
 
+    // TODO: Remove this when we migrate to dotnet8. It's only faster on older frameworks. See benchmark:
+    // | Method    | Job                  | Runtime              | Mean      | Error     | StdDev    | Median    | Gen0    | Gen1   | Allocated |
+    // |---------- |--------------------- |--------------------- |----------:|----------:|----------:|----------:|--------:|-------:|----------:|
+    // | Linq      | .NET 8.0             | .NET 8.0             |  9.449 us | 0.3118 us | 0.9193 us |  8.920 us |  9.5215 | 1.3580 |  78.22 KB |
+    // | Extension | .NET 8.0             | .NET 8.0             | 38.283 us | 0.3404 us | 0.2843 us | 38.290 us |  9.5215 |      - |  78.17 KB |
+    // | Linq      | .NET Framework 4.7.2 | .NET Framework 4.7.2 | 67.419 us | 1.0714 us | 0.9498 us | 67.052 us | 33.5693 | 4.1504 | 206.84 KB |
+    // | Extension | .NET Framework 4.7.2 | .NET Framework 4.7.2 | 49.551 us | 0.9302 us | 0.9136 us | 49.194 us | 12.6343 |      - |  78.22 KB |
     public static TResult[] ToArray<TSource, TResult>(this IList<TSource> collection, Func<TSource, TResult> selector)
     {
         TResult[] resultArray = new TResult[collection.Count];
