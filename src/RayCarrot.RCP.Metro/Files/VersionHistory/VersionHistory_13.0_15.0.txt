@@ -37,6 +37,7 @@
 • Fixed a bug where files in the Archive Explorer would show the wrong image size
 • Fixed a bug where files in the Archive Explorer would stop showing certain information after being exported
 • Fixed a bug where renaming a game would not always update across all pages
+• Fixed a bug where closing a dialog window could cause the app to crash
 
 
 -----   Version 14.0.3 - March 21, 2024   -----

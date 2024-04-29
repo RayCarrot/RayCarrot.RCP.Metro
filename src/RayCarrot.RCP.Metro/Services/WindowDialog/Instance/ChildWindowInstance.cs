@@ -59,7 +59,7 @@ public class ChildWindowInstance : WindowInstance
         set => Window.MinContentHeight = value;
     }
 
-    public override void Close() => Window.Close();
+    public override void Close() => _window?.Close(); // Don't throw if already closed
     public override void Focus() => Window.BringToFront();
 
     private void Window_Closing(object sender, CancelEventArgs e) => WindowClosing?.Invoke(sender, e);
