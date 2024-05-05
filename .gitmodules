@@ -19,3 +19,6 @@
 [submodule "submodules/BinarySerializer.Disk"]
 	path = submodules/BinarySerializer.Disk
 	url = https://github.com/BinarySerializer/BinarySerializer.Disk
+[submodule "submodules/BinarySerializer.Audio"]
+	path = submodules/BinarySerializer.Audio
+	url = https://github.com/BinarySerializer/BinarySerializer.Audio
