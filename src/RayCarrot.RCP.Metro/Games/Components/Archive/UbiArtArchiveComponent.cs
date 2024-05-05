@@ -56,6 +56,10 @@ public class UbiArtArchiveComponent : ArchiveComponent
                     Resources.Archive_RecreatedUbiArtFileTableSuccess,
                     bundleNames.JoinItems(Environment.NewLine)));
             }
+            catch (OperationCanceledException ex)
+            {
+                Logger.Trace(ex, "Cancelled recreating file table");
+            }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Recreating file table");
