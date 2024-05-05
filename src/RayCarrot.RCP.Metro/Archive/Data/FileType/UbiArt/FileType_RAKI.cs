@@ -51,6 +51,7 @@ public class FileType_RAKI : IFileType
         if (fileExtension != new FileExtension(".wav.ckd", multiple: true))
             return false;
 
+        inputStream.SeekToBeginning();
         using Reader reader = new(inputStream.Stream, manager.Context!.GetRequiredSettings<UbiArtSettings>().Endian == Endian.Little, true);
         uint version = reader.ReadUInt32();
         string magic = reader.ReadString(4, Encoding.UTF8);

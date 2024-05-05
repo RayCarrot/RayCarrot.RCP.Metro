@@ -41,6 +41,8 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
         if (fileExtension != new FileExtension(".tga.ckd", multiple: true) && fileExtension != new FileExtension(".png.ckd", multiple: true))
             return false;
 
+        inputStream.SeekToBeginning();
+
         // Set the Stream position
         TextureCooked? tex = ReadTEXHeader(inputStream, manager);
 

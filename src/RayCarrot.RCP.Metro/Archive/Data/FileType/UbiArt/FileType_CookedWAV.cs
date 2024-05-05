@@ -40,6 +40,7 @@ public class FileType_CookedWAV : FileType_WAV
         if (fileExtension != new FileExtension(".wav.ckd", multiple: true))
             return false;
 
+        inputStream.SeekToBeginning();
         using Reader reader = new(inputStream.Stream, true, true);
         string identifier = reader.ReadString(4, Encoding.ASCII);
         reader.ReadUInt32(); // Skip size
