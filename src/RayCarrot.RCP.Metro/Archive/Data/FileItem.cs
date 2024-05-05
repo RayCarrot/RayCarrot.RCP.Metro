@@ -18,6 +18,7 @@ public class FileItem : IDisposable
         {
             new FileType_GF(),
             new FileType_WAV(),
+            new FileType_CookedWAV(),
             new FileType_RAKI(),
             new FileType_Image(),
             new FileType_DDSUbiArtTex(),
