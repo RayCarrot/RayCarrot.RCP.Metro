@@ -53,7 +53,7 @@ public class GameProgressionManager_RaymanOrigins_Win32 : GameProgressionManager
                 continue;
             }
 
-            Origins_SaveData.Ray_PersistentGameData_Universe saveData = saveFileData.SaveData;
+            Origins_SaveData.Ray_PersistentGameData_Universe saveData = saveFileData.CONTENT;
 
             Logger.Info("Slot has been deserialized");
 
@@ -156,10 +156,8 @@ public class GameProgressionManager_RaymanOrigins_Win32 : GameProgressionManager
                 dataItems: progressItems, 
                 context: context, 
                 serializable: saveFileData, 
-                fileName: fileName,
-                canImport: false)
+                fileName: fileName)
             {
-                // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
                 //GetExportObject = x => x.SaveData,
                 //SetImportObject = (x, o) => x.SaveData = (Origins_SaveData.Ray_PersistentGameData_Universe)o,
                 //ExportedType = typeof(Origins_SaveData.Ray_PersistentGameData_Universe),

@@ -77,7 +77,7 @@ public class GameProgressionManager_RaymanLegends_Win32 : GameProgressionManager
                 continue;
             }
 
-            Legends_SaveData.RO2_PersistentGameData_Universe saveData = saveFileData.SaveData;
+            Legends_SaveData.RO2_PersistentGameData_Universe saveData = saveFileData.CONTENT;
 
             Logger.Info("Slot has been deserialized");
 

@@ -29,6 +29,7 @@
 • Renamed the Rayman Edutainment games with clearer names
 • Opening a file for editing, such as from the Archive Explorer or progression page, will now show it with a proper file name and have better support if the file opens in an already running instance of the program
 • Editing a save slot in the progression page will now cause all related save slots to refresh in the app, including in the games page
+• Added the option to import and edit Rayman Origins save files (previously they could only be exported)
 • Replaced the Rayman 3 banner image with a new one (thanks XanderNT!)
 • Improved finding and setting Ubisoft Connect user id for finding save files
 • File sizes are now displayed using a binary base to match what Windows File Explorer shows
