@@ -19,7 +19,8 @@ public class EmulatedPs1SaveFile : EmulatedSaveFile
 
         try
         {
-            memoryCard = await context.ReadRequiredFileDataAsync<MemoryCard>(FilePath.Name, removeFileWhenComplete: false, recreateOnWrite: false);
+            using (context)
+                memoryCard = await context.ReadRequiredFileDataAsync<MemoryCard>(FilePath.Name, removeFileWhenComplete: false, recreateOnWrite: false);
         }
         catch (Exception ex)
         {

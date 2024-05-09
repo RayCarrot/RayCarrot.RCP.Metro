@@ -12,13 +12,13 @@ public class EmulatedGbaSave : EmulatedSave
 
     public string FileName { get; }
 
-    public override Task<T> ReadAsync<T>()
+    public override async Task<T> ReadAsync<T>()
     {
         // For now we assume every save is a 512 byte EEPROM save. In the future we might want to make this optional.
         IStreamEncoder encoder = new EEPROMEncoder(0x200);
 
         using (Context)
-            return Context.ReadRequiredFileDataAsync<T>(FileName, encoder, removeFileWhenComplete: false);
+            return await Context.ReadRequiredFileDataAsync<T>(FileName, encoder, removeFileWhenComplete: false);
     }
 
     public override Task WriteAsync<T>(T obj)
