@@ -182,11 +182,11 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
 
             // Update the TEX header
             // TODO: Figure out what the values are on Wii U where they don't match the actual size
-            tex.TextureSize = (uint)bytes.Length;
-            tex.TextureSize2 = (uint)bytes.Length;
-            tex.ImageData = bytes;
+            tex.RawDataSize = (uint)bytes.Length;
+            tex.MemorySize = (uint)bytes.Length;
+            tex.RawData = bytes;
 
-            tex.Pre_SerializeImageData = true;
+            tex.Pre_SerializeRawData = true;
 
             // Write the TEX file
             manager.Context!.WriteStreamData(outputStream.Stream, tex, name: outputStream.Name, mode: VirtualFileMode.DoNotClose);
@@ -251,7 +251,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
         if (usesTexWrapper)
         {
             // Serialize the header
-            return manager.Context.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, mode: VirtualFileMode.DoNotClose, onPreSerialize: x => x.Pre_SerializeImageData = false);
+            return manager.Context.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, mode: VirtualFileMode.DoNotClose, onPreSerialize: x => x.Pre_SerializeRawData = false);
         }
 
         return null;

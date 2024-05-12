@@ -44,12 +44,12 @@ public class FileType_Xbox360UbiArtTex : FileType_BaseUbiArtTex
         // Serialize data
         TextureCooked tex = manager.Context!.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, mode: VirtualFileMode.DoNotClose, onPreSerialize: x =>
         {
-            x.Pre_SerializeImageData = true;
+            x.Pre_SerializeRawData = true;
             x.Pre_FileSize = inputStream.Stream.Length;
         });
 
         // Get the untiled image data
-        byte[] untiledImgData = tex.Header_Xbox360.Untile(tex.ImageData, true);
+        byte[] untiledImgData = tex.Header_Xbox360.Untile(tex.RawData, true);
 
         DDSParser.DDSStruct header = new()
         {
