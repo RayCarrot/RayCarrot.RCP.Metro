@@ -34,7 +34,8 @@
 • Improved finding and setting Ubisoft Connect user id for finding save files
 • File sizes are now displayed using a binary base to match what Windows File Explorer shows
 • When launching the app it will now reposition the window to be on screen, avoiding it opening off screen if the last opened position was on a now disconnected monitor
-• Replace tabs with four spaces in the changelogs to avoid it displaying with too large widths
+• Set the Turkish translation as an incomplete translation
+• Replaced tabs with four spaces in the changelogs to avoid it displaying with too large widths
 • Fixed a bug where the app would crash if there was an error reading a mod when opening directly to it, such as from the GameBanana 1-click installer
 • Fixed a bug where files in the Archive Explorer would show the wrong image size
 • Fixed a bug where files in the Archive Explorer would stop showing certain information after being exported
