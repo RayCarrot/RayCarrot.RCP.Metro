@@ -5732,7 +5732,7 @@ bundleNames</comment>
     <value>Automatically recreate file table on repack (.ipk)</value>
   </data>
   <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended to do when adding or removing files as well as when applying mods which may have done so.</value>
+    <value>If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended when adding or removing files and when applying mods that may have done so.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Donald Duck Quack Attack/Goin' Quackers</value>

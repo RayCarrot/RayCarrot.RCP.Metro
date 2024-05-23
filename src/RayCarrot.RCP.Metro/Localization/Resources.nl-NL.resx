@@ -5482,4 +5482,181 @@ Conflicten:
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Splash-scherm</value>
   </data>
+  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
+    <value>Compressie afbeelding:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
+    <value>Wil je de bestandstabel (secure_fat.gf) automatisch recreëren wanneer een archief herpakt wordt? Dit is een vereiste als bestanden toegevoegd of verwijderd worden. Dit kan op elk gewenst moment worden gewijzigd via de Instellingen pagina.</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
+    <value>De bestandstabel is succesvol gerecreërd voor de volgende bundels:
+
+{0}</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het recreëren van de bestandstabel</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
+    <value>Recreëren bestandstabel</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
+    <value>Recreëer bestandstabel</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
+    <value>Het recreëren van de bestandstabel zal resulteren in een geüpdatet secure_fat.gf bestand om de bestanden te weerspiegelen die momenteel in de spelbundels zitten. Dit is niet vereist in het geval van het wijzigen van bestaande bestanden, maar zodra er bestanden worden toegevoegd dan wel verwijderd, is dit noodzakelijk voor het juist managen van de wijzigen door het spel. </value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
+    <value>Automatisch recreëren van de bestandstabel tijdens het herpakken (.ipk) </value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
+    <value>Indien ingeschakeld, zal de bestandstabel voor het spel automatisch gerecreëerd worden wanneer een .ipk-archief herpakt wordt. Dit is aanbevolen bij het toevoegen of verwijderen van bestanden als ook bij het toepassen van mods.</value>
+  </data>
+  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="Platform_Ps1" xml:space="preserve">
+    <value>PlayStation</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="Rayman1_Ps1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Ps1_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="RaymanRush_Ps1_Title" xml:space="preserve">
+    <value>Rayman Rush</value>
+  </data>
+  <data name="GameTool_PrototypeRestoration" xml:space="preserve">
+    <value>Prototype Restauratie</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
+    <value>Wijzig het spel om uitgeknipte features te herstellen van eerdere prototypes, zoals vrije bewegingen en vechten voor Rayman!</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Open" xml:space="preserve">
+    <value>Openen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ExeNotFoundError" xml:space="preserve">
+    <value>Kon het uitvoerbare bestand niet vinden</value>
+  </data>
+  <data name="GameTool_RuntimeModifications" xml:space="preserve">
+    <value>Uitvoermodificaties</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Info" xml:space="preserve">
+    <value>Wijzig het spel tijdens de uitvoer voor het toepassen van verschillende cheats of verkrijg toegang tot ongebruikte content.</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Open" xml:space="preserve">
+    <value>Openen</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ModificationsPage" xml:space="preserve">
+    <value>Modificaties</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_LogPage" xml:space="preserve">
+    <value>Logboek</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AttachedToProcessHeader" xml:space="preserve">
+    <value>Verbonden aan het proces</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SearchingForGame" xml:space="preserve">
+    <value>Zoeken naar uitgevoerd spel ...</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_NotFoundQuestion" xml:space="preserve">
+    <value>Niet gevonden?</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ManuallySelectGame" xml:space="preserve">
+    <value>Handmatig selecteren spelproces</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedGamesHeader" xml:space="preserve">
+    <value>Ondersteunde spellen</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedEmulatorsHeader" xml:space="preserve">
+    <value>Ondersteunde emulators</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SelectGameProcessHeader" xml:space="preserve">
+    <value>Spelproces selecteren</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AutoFindGame" xml:space="preserve">
+    <value>Spelproces automatisch zoeken</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
+    <value>Inschakelen gebruik van debug-toetsen cheats</value>
+  </data>
+  <data name="Mod_Mem_R1_UnusedDeathPower" xml:space="preserve">
+    <value>Ongebruikte dood</value>
+  </data>
+  <data name="Mod_Mem_CamPos" xml:space="preserve">
+    <value>Camerapositie</value>
+  </data>
+  <data name="Mod_Mem_RayPos" xml:space="preserve">
+    <value>Rayman-positie</value>
+  </data>
+  <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
+    <value>Snelheidsopbouw links</value>
+  </data>
+  <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
+    <value>Snelheidsopbouw rechts</value>
+  </data>
+  <data name="Games_InvalidLayout" xml:space="preserve">
+    <value>De spelversie is niet geldig</value>
+  </data>
+  <data name="GameClients_BizHawk" xml:space="preserve">
+    <value>BizHawk</value>
+  </data>
+  <data name="GameClients_DuckStation" xml:space="preserve">
+    <value>DuckStation</value>
+  </data>
+  <data name="Progression_GenericSingleSlot" xml:space="preserve">
+    <value>Sleuf</value>
+  </data>
+  <data name="Progression_RRushChampionship" xml:space="preserve">
+    <value>Kampioenschap</value>
+  </data>
+  <data name="Progression_RRushTimeAttack" xml:space="preserve">
+    <value>Race tegen de klok</value>
+  </data>
+  <data name="Progression_RRushLums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_RRushTarget" xml:space="preserve">
+    <value>Doel</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarning" xml:space="preserve">
+    <value>Er zijn momenteel meerdere mods toegepast die dezelfde bestanden overschrijven. Dit kan ervoor zorgen dat 1 of meerdere mods niet juist werken. Je kunt de lijst met gewijzigde bestanden weergeven om te bepalen of het een issue is als ook voor het herordenen van de mods naar prioriteit.
+
+Je kunt deze waarschuwing via de instellingen uitschakelen als je deze niet meer wilt zien voor toekomstige conflicten.
+
+Doorgaan met het toepassen van mods?</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarningHeader" xml:space="preserve">
+    <value>Waarschuwing mod-conflict</value>
+  </data>
+  <data name="ModLoader_GameRunningError" xml:space="preserve">
+    <value>Mods kunnen niet worden toegepast tijdens het uitvoeren van het spel. Sluit elke actieve instantie van het spel en probeer het nog eens.</value>
+  </data>
+  <data name="ModLoader_GameRunningErrorHeader" xml:space="preserve">
+    <value>Spelproces gedetecteerd</value>
+  </data>
+  <data name="Settings_ModLoader_ShowFileConflictWarnings" xml:space="preserve">
+    <value>Laat waarschuwing voor mod-conflicten zien</value>
+  </data>
+  <data name="ModLoader_ErrorOpening" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het openen van de mods</value>
+  </data>
 </root>

@@ -14920,7 +14920,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended to do when adding or removing files as well as when applying mods which may have done so..
+        ///   Looks up a localized string similar to If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended when adding or removing files and when applying mods that may have done so..
         /// </summary>
         public static string Settings_ArchiveIPKRecreateFileTableOnRepackInfo {
             get {

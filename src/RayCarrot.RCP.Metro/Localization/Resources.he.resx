@@ -5502,4 +5502,167 @@ Start: הפסק</value>
 
 {0}</value>
   </data>
+  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
+    <value>אירעה שגיאה במהלך יצירה מחדש של טבלת הקבצים</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
+    <value>יצירה מחדש של טבלת קבצים</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
+    <value>צור מחדש טבלת קבצים</value>
+  </data>
+  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
+    <value>יצירה מחדש של טבלת הקבצים תעדכן את הקובץ secure_fat.gf כך שישקף את הקבצים שנמצאים כעת בחבילות המשחקים. פעולה זו אינה נדרשת כאשר פשוט משנים קבצים קיימים, אבל ברגע שתוסיפו או תסירו קבצים תצטרכו לבצע פעולה זו כדי שהשינויים ינוהלו נכון על ידי המשחק.</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
+    <value>צור מחדש באופן אוטומטי את טבלת הקבצים בעת אריזה מחדש (.ipk)</value>
+  </data>
+  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
+    <value>אם מופעל, טבלת הקבצים של המשחק תיווצר מחדש באופן אוטומטי כאשר ארכיון ipk יארוז מחדש. זה מומלץ בעת הוספה או הסרה של קבצים וכאשר החלת אופנים שאולי עשו זאת.</value>
+  </data>
+  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="Platform_Ps1" xml:space="preserve">
+    <value>PlayStation</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="Rayman1_Ps1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Ps1_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="RaymanRush_Ps1_Title" xml:space="preserve">
+    <value>Rayman Rush</value>
+  </data>
+  <data name="GameTool_PrototypeRestoration" xml:space="preserve">
+    <value>שחזור אב טיפוס</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
+    <value>שנו את המשחק כדי לשחזר תכונות שירדו בעריכה שמקורן מגרסאות אבי-טיפוס הקודמים, כגון תנועה חופשית ולחימה עבור ריימן!</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Open" xml:space="preserve">
+    <value>לפתוח</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ExeNotFoundError" xml:space="preserve">
+    <value>לא הצליח למצוא את קובץ ההפעלה של המשחק</value>
+  </data>
+  <data name="GameTool_RuntimeModifications" xml:space="preserve">
+    <value>שינויים בזמן ריצה</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Info" xml:space="preserve">
+    <value>שנה את המשחק בזמן שהוא פועל כדי להחיל צ'יטים שונים או לגשת לתוכן שאינו בשימוש.</value>
+  </data>
+  <data name="GameHub_RuntimeModificationsPanel_Open" xml:space="preserve">
+    <value>לפתוח</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ModificationsPage" xml:space="preserve">
+    <value>שינויים</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_LogPage" xml:space="preserve">
+    <value>לוג</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AttachedToProcessHeader" xml:space="preserve">
+    <value>מצורף לתהליך</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SearchingForGame" xml:space="preserve">
+    <value>מחפש משחק מופעל ברקע...</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_NotFoundQuestion" xml:space="preserve">
+    <value>לא נמצא?</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_ManuallySelectGame" xml:space="preserve">
+    <value>בחירת תהליך משחק באופן ידני</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedGamesHeader" xml:space="preserve">
+    <value>משחקים נתמכים</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SupportedEmulatorsHeader" xml:space="preserve">
+    <value>אמולטורים נתמכים</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_SelectGameProcessHeader" xml:space="preserve">
+    <value>בחרו תהליך משחק</value>
+  </data>
+  <data name="GameTool_RuntimeModifications_AutoFindGame" xml:space="preserve">
+    <value>חיפוש אוטומטי של תהליך המשחק</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
+    <value>מאפשר שימוש בצ'יטים של כפתורי ניפוי באגים</value>
+  </data>
+  <data name="Mod_Mem_R1_UnusedDeathPower" xml:space="preserve">
+    <value>מוות ללא שימוש</value>
+  </data>
+  <data name="Mod_Mem_CamPos" xml:space="preserve">
+    <value>מיקום מצלמה</value>
+  </data>
+  <data name="Mod_Mem_RayPos" xml:space="preserve">
+    <value>עמדת ריימן</value>
+  </data>
+  <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
+    <value>אחסון מהירות שמאל</value>
+  </data>
+  <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
+    <value>אחסון מהירות ימין</value>
+  </data>
+  <data name="Games_InvalidLayout" xml:space="preserve">
+    <value>גרסת המשחק לא תקפה</value>
+  </data>
+  <data name="GameClients_BizHawk" xml:space="preserve">
+    <value>BizHawk</value>
+  </data>
+  <data name="GameClients_DuckStation" xml:space="preserve">
+    <value>DuckStation</value>
+  </data>
+  <data name="Progression_GenericSingleSlot" xml:space="preserve">
+    <value>חריץ</value>
+  </data>
+  <data name="Progression_RRushChampionship" xml:space="preserve">
+    <value>אליפות</value>
+  </data>
+  <data name="Progression_RRushTimeAttack" xml:space="preserve">
+    <value>מתקפת זמן</value>
+  </data>
+  <data name="Progression_RRushLums" xml:space="preserve">
+    <value>לומים</value>
+  </data>
+  <data name="Progression_RRushTarget" xml:space="preserve">
+    <value>מטרה</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarning" xml:space="preserve">
+    <value>ישנם מספר מודים מופעלים שמחליפים את אותם קבצים. זה עלול לגרום למוד אחד או יותר לא לעבוד כראוי. ניתן להציג את רשימת הקבצים ששונו כדי לקבוע אם זו בעיה, כמו גם לסדר מחדש את המודים כדי לשנות את שלהם עדיפות.
+
+ניתן לבטל את הודעת האזהרה הזו בהגדרות כדי שלא תופיע בעת התנגשויות עתידיות.
+
+להמשיך ליישם מודים?</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarningHeader" xml:space="preserve">
+    <value>אזהרת קונפליקט של מוד</value>
+  </data>
+  <data name="ModLoader_GameRunningError" xml:space="preserve">
+    <value>לא ניתן להחיל מודים בזמן שהמשחק פועל. סגרו כל תהליך פעיל של המשחק ונסו שוב.</value>
+  </data>
+  <data name="ModLoader_GameRunningErrorHeader" xml:space="preserve">
+    <value>זוהה תהליך משחק</value>
+  </data>
+  <data name="Settings_ModLoader_ShowFileConflictWarnings" xml:space="preserve">
+    <value>הצג הודעת אזהרה על קונפליקט של מוד</value>
+  </data>
+  <data name="ModLoader_ErrorOpening" xml:space="preserve">
+    <value>אירעה שגיאה בעת פתיחת המודים</value>
+  </data>
 </root>
