@@ -132,6 +132,17 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
+                    case Platform.Xbox360:
+                        data.Version = 3;
+                        data.Unknown1 = 1;
+                        data.Unknown3 = false;
+                        data.Unknown4 = true;
+                        data.Unknown5 = true;
+                        data.Unknown6 = 0;
+                        data.Unknown7 = 1698768603;
+                        data.EngineVersion = 0;
+                        break;
+
                     case Platform.PC:
                         data.Version = 3;
                         data.Unknown1 = 0;
@@ -186,6 +197,17 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
+                    case Platform.PlayStation3:
+                        data.Version = 5;
+                        data.Unknown1 = 2;
+                        data.Unknown3 = false;
+                        data.Unknown4 = true;
+                        data.Unknown5 = true;
+                        data.Unknown6 = 79403;
+                        data.Unknown7 = 410435206;
+                        data.EngineVersion = 86846;
+                        break;
+
                     case Platform.PlayStation4:
                         data.Version = 7;
                         data.Unknown1 = 8;
@@ -195,6 +217,17 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.Unknown6 = 80253;
                         data.Unknown7 = 2973796970;
                         data.EngineVersion = 117321;
+                        break;
+
+                    case Platform.Xbox360:
+                        data.Version = 5;
+                        data.Unknown1 = 1;
+                        data.Unknown3 = false;
+                        data.Unknown4 = true;
+                        data.Unknown5 = true;
+                        data.Unknown6 = 0;
+                        data.Unknown7 = 410435206;
+                        data.EngineVersion = 0;
                         break;
 
                     case Platform.PC:
