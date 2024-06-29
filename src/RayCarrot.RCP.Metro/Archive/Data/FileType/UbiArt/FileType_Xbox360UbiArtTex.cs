@@ -49,7 +49,7 @@ public class FileType_Xbox360UbiArtTex : FileType_BaseUbiArtTex
         });
 
         // Get the untiled image data
-        byte[] untiledImgData = tex.Header_Xbox360.Untile(tex.RawData, true);
+        byte[] untiledImgData = tex.Xbox360_D3DTexture.Untile(tex.RawData, true);
 
         DDSParser.DDSStruct header = new()
         {
@@ -57,25 +57,47 @@ public class FileType_Xbox360UbiArtTex : FileType_BaseUbiArtTex
             {
                 rgbbitcount = 32
             },
-            width = (uint)tex.Header_Xbox360.Width,
-            height = (uint)tex.Header_Xbox360.Height,
+            width = (uint)tex.Xbox360_D3DTexture.ActualWidth,
+            height = (uint)tex.Xbox360_D3DTexture.ActualHeight,
             depth = 1
         };
 
-        byte[] rawImgData = tex.Header_Xbox360.CompressionType switch
-        {
-            TextureCooked_Xbox360Header.TextureCompressionType.DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
-            TextureCooked_Xbox360Header.TextureCompressionType.DXT3 => DDSParser.DecompressDXT3(header, untiledImgData),
-            TextureCooked_Xbox360Header.TextureCompressionType.DXT5 => DDSParser.DecompressDXT5(header, untiledImgData),
-            _ => throw new ArgumentOutOfRangeException(nameof(tex.Header_Xbox360.CompressionType), tex.Header_Xbox360.CompressionType, null)
+        byte[] rawImgData = tex.Xbox360_D3DTexture.DataFormat switch
+        { 
+            D3DTexture.GPUTEXTUREFORMAT.GPUTEXTUREFORMAT_DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
+            D3DTexture.GPUTEXTUREFORMAT.GPUTEXTUREFORMAT_DXT2_3 => DDSParser.DecompressDXT3(header, untiledImgData),
+            D3DTexture.GPUTEXTUREFORMAT.GPUTEXTUREFORMAT_DXT4_5 => DDSParser.DecompressDXT5(header, untiledImgData),
+            _ => throw new ArgumentOutOfRangeException(nameof(tex.Xbox360_D3DTexture.DataFormat), tex.Xbox360_D3DTexture.DataFormat, null)
         };
+
+        // TODO: Do this for other UbiArt platforms too?
+        // Only remap if it's not using normal color mapping
+        if (tex.Remap != 0x00010203)
+        {
+            byte[] colors = new byte[6];
+            colors[4] = 0x00;
+            colors[5] = 0xFF;
+
+            for (int i = 0; i < rawImgData.Length; i += 4)
+            {
+                colors[0] = rawImgData[i + 3]; // Alpha
+                colors[1] = rawImgData[i + 0]; // Red
+                colors[2] = rawImgData[i + 1]; // Green
+                colors[3] = rawImgData[i + 2]; // Blue
+
+                rawImgData[i + 3] = colors[tex.Remap_A];
+                rawImgData[i + 0] = colors[tex.Remap_R];
+                rawImgData[i + 1] = colors[tex.Remap_G];
+                rawImgData[i + 2] = colors[tex.Remap_B];
+            }
+        }
 
         // Return the image
         return new MagickImage(rawImgData, new MagickReadSettings()
         {
             Format = MagickFormat.Rgba,
-            Width = tex.Header_Xbox360.Width,
-            Height = tex.Header_Xbox360.Height
+            Width = tex.Xbox360_D3DTexture.ActualWidth,
+            Height = tex.Xbox360_D3DTexture.ActualHeight
         });
     }
 }
