@@ -1,5 +1,4 @@
-﻿using IniParser;
-using RayCarrot.RCP.Metro.Ini;
+﻿using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.Finder;
 
@@ -25,27 +24,6 @@ public class UbiIniFinderOperation : FinderOperation
             return;
         }
 
-        IDictionary<string, string?>? gameDirs;
-
-        try
-        {
-            // Get the sections and the directory for each one
-            gameDirs = new FileIniDataParser(new UbiIniDataParser()).
-                // Read the primary ubi.ini file
-                ReadFile(filePath).
-                // Get the sections
-                Sections.
-                // Create a dictionary
-                ToDictionary(x => x.SectionName, x => x.Keys.GetKeyData("Directory")?.Value);
-
-            Logger.Info("The ubi.ini file data was parsed");
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "Reading ubi.ini file");
-            return;
-        }
-
         // Enumerate each finder query
         foreach (FinderItem finderItem in finderItems)
         {
@@ -55,14 +33,26 @@ public class UbiIniFinderOperation : FinderOperation
                     break;
 
                 // Attempt to get the install location
-                string? location = gameDirs.TryGetValue(query.SectionName);
+                string dir;
+
+                try
+                {
+                    dir = IniNative.GetString(filePath, query.SectionName, "Directory", String.Empty);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn(ex, "Reading ubi.ini file value");
+                    
+                    // Return since if it failed reading one value then it probably can't read any of them
+                    return;
+                }
 
                 // Make sure we got a location
-                if (location.IsNullOrWhiteSpace())
+                if (dir.IsNullOrWhiteSpace())
                     continue;
 
                 // Validate the location
-                finderItem.Validate(query, new InstallLocation(location));
+                finderItem.Validate(query, new InstallLocation(dir));
             }
         }
     }

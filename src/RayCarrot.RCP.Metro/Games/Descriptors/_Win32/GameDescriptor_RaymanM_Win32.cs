@@ -81,7 +81,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        new UbiIniFinderQuery(UbiIniData_RaymanM.SectionName),
+        new UbiIniFinderQuery(RaymanMIniAppData.SectionName),
 
         new UninstallProgramFinderQuery("Rayman M"),
         new UninstallProgramFinderQuery("Rayman: M"),

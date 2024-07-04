@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using IniParser.Model;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -7,9 +6,8 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// Base class for ubi.ini game config view models
 /// </summary>
-/// <typeparam name="Handler">The config handler</typeparam>
-public abstract class UbiIniBaseConfigViewModel<Handler> : ConfigPageViewModel
-    where Handler : UbiIniData
+public abstract class UbiIniBaseConfigViewModel<IniData> : ConfigPageViewModel
+    where IniData : IniAppData
 {
     #region Constructor
 
@@ -55,7 +53,7 @@ public abstract class UbiIniBaseConfigViewModel<Handler> : ConfigPageViewModel
     /// <summary>
     /// The configuration data
     /// </summary>
-    protected Handler ConfigData { get; set; }
+    protected IniData ConfigData { get; set; }
 
     #endregion
         
@@ -76,28 +74,17 @@ public abstract class UbiIniBaseConfigViewModel<Handler> : ConfigPageViewModel
         await App.EnableUbiIniWriteAccessAsync();
 
         // Load the configuration data
-        ConfigData = await LoadConfigAsync();
+        ConfigData = CreateConfig();
+        ConfigData.Load();
 
         Logger.Info("The ubi.ini file has been loaded");
-
-        // Keep track if the data had to be recreated
-        bool recreated = false;
-
-        // Re-create the section if it doesn't exist
-        if (!ConfigData.Exists)
-        {
-            ConfigData.ReCreate();
-            recreated = true;
-            Logger.Info("The ubi.ini section for {0} was recreated", GameInstallation.FullId);
-        }
 
         GraphicsMode.GetAvailableResolutions();
 
         // Import config data
         await ImportConfigAsync();
 
-        // If the data was recreated we mark that there are unsaved changes available
-        UnsavedChanges = recreated || unsavedChanges;
+        UnsavedChanges = unsavedChanges;
 
         Logger.Info("All section properties have been loaded");
     }
@@ -160,10 +147,10 @@ public abstract class UbiIniBaseConfigViewModel<Handler> : ConfigPageViewModel
     #region Protected Abstract Methods
 
     /// <summary>
-    /// Loads the <see cref="ConfigData"/>
+    /// Creates the <see cref="ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected abstract Task<Handler> LoadConfigAsync();
+    protected abstract IniData CreateConfig();
 
     /// <summary>
     /// Imports the <see cref="ConfigData"/>
@@ -176,35 +163,6 @@ public abstract class UbiIniBaseConfigViewModel<Handler> : ConfigPageViewModel
     /// </summary>
     /// <returns>The task</returns>
     protected abstract Task UpdateConfigAsync();
-
-    #endregion
-
-    #region Protected Classes
-
-    /// <summary>
-    /// Provides support to duplicate a section in a ubi ini file
-    /// </summary>
-    protected class DuplicateSectionUbiIniData : UbiIniData
-    {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="path">The path of the ubi.ini file</param>
-        /// <param name="sectionKey">The name of the section to retrieve, usually the name of the game</param>
-        public DuplicateSectionUbiIniData(FileSystemPath path, string sectionKey) : base(path, sectionKey)
-        {
-
-        }
-
-        public void Duplicate(KeyDataCollection sectionData)
-        {
-            // Recreate the section
-            ReCreate();
-
-            // Add all new keys
-            sectionData.ForEach(x => Section.AddKey(x));
-        }
-    }
 
     #endregion
 }

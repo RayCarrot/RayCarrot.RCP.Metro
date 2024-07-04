@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// Base config view model for Rayman M, Rayman Arena and Rayman 3
 /// </summary>
 public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBaseConfigViewModel<Handler>
-    where Handler : UbiIniData
+    where Handler : IniAppData
     where Language : Enum
 {
     #region Constructor
@@ -430,17 +430,8 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
         {
             try
             {
-                // Get the current data
-                var sectionData = ConfigData.GetSectionData();
-
-                // Load the file data
-                var secondaryDataHandler = new DuplicateSectionUbiIniData(AppFilePaths.UbiIniPath2, ConfigData.SectionKey);
-
-                // Duplicate the data
-                secondaryDataHandler.Duplicate(sectionData);
-
-                // Save the file
-                secondaryDataHandler.Save();
+                // Copy the entire file
+                Services.File.CopyFile(ConfigData.FilePath, AppFilePaths.UbiIniPath2, true);
             }
             catch (Exception ex)
             {

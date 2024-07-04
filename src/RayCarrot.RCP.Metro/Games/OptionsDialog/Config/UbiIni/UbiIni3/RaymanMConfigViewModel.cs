@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// View model for the Rayman M configuration
 /// </summary>
-public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_RaymanM, RMLanguages>
+public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanMIniAppData, RMLanguages>
 {
     #region Constructor
 
@@ -88,10 +88,10 @@ public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
     /// Loads the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<UbiIniData_RaymanM> LoadConfigAsync()
+    protected override RaymanMIniAppData CreateConfig()
     {
         // Load the configuration data
-        return Task.FromResult(new UbiIniData_RaymanM(AppFilePaths.UbiIniPath1));
+        return new RaymanMIniAppData(AppFilePaths.UbiIniPath1, isDemo: false);
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
     /// <returns>The task</returns>
     protected override Task ImportConfigAsync()
     {
-        RayGLI_Mode gliMode = ConfigData.FormattedGLI_Mode;
+        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
 
         if (gliMode != null)
         {
@@ -115,13 +115,13 @@ public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
             IsTextures32Bit = true;
         }
 
-        TriLinear = ConfigData.FormattedTriLinear;
-        TnL = ConfigData.FormattedTnL;
-        CompressedTextures = ConfigData.FormattedTexturesCompressed;
-        VideoQuality = ConfigData.FormattedVideo_WantedQuality ?? 4;
-        AutoVideoQuality = ConfigData.FormattedVideo_AutoAdjustQuality;
-        IsVideo32Bpp = ConfigData.FormattedVideo_BPP != 16;
-        CurrentLanguage = ConfigData.FormattedRMLanguage ?? RMLanguages.English;
+        TriLinear = ConfigData.TriLinear != 0;
+        TnL = ConfigData.TnL != 0;
+        CompressedTextures = ConfigData.TexturesCompressed != 0;
+        VideoQuality = ConfigData.Video_WantedQuality;
+        AutoVideoQuality = ConfigData.Video_AutoAdjustQuality != 0;
+        IsVideo32Bpp = ConfigData.Video_BPP != 16;
+        CurrentLanguage = Enum.TryParse(ConfigData.Language, out RMLanguages lang) ? lang : RMLanguages.English;
 
         return Task.CompletedTask;
     }
@@ -140,12 +140,12 @@ public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_Raym
             ResY = GraphicsMode.Height,
         }.ToString();
 
-        ConfigData.FormattedTriLinear = TriLinear;
-        ConfigData.FormattedTnL = TnL;
-        ConfigData.FormattedTexturesCompressed = CompressedTextures;
-        ConfigData.Video_WantedQuality = VideoQuality.ToString();
-        ConfigData.FormattedVideo_AutoAdjustQuality = AutoVideoQuality;
-        ConfigData.Video_BPP = IsVideo32Bpp ? "32" : "16";
+        ConfigData.TriLinear = TriLinear ? 1 : 0;
+        ConfigData.TnL = TnL ? 1 : 0;
+        ConfigData.TexturesCompressed = CompressedTextures ? 1 : 0;
+        ConfigData.Video_WantedQuality = VideoQuality;
+        ConfigData.Video_AutoAdjustQuality = AutoVideoQuality ? 1 : 0;
+        ConfigData.Video_BPP = IsVideo32Bpp ? 32 : 16;
         ConfigData.Language = CurrentLanguage.ToString();
         ConfigData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
 

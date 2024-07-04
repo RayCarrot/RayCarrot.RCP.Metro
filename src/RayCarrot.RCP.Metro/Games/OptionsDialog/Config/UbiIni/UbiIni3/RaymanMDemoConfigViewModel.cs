@@ -29,10 +29,10 @@ public class RaymanMDemoConfigViewModel : RaymanMConfigViewModel
     /// Loads the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<UbiIniData_RaymanM> LoadConfigAsync()
+    protected override RaymanMIniAppData CreateConfig()
     {
         // Load the configuration data
-        return Task.FromResult<UbiIniData_RaymanM>(new UbiIniData_RaymanMDemo(AppFilePaths.UbiIniPath1));
+        return new RaymanMIniAppData(AppFilePaths.UbiIniPath1, isDemo: true);
     }
 
     #endregion

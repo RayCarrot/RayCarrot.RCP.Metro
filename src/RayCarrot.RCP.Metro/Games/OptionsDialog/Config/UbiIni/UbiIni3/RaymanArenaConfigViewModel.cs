@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// View model for the Rayman Arena configuration
 /// </summary>
-public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_RaymanArena, RALanguages>
+public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArenaIniAppData, RALanguages>
 {
     #region Constructor
 
@@ -90,10 +90,10 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_
     /// Loads the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<UbiIniData_RaymanArena> LoadConfigAsync()
+    protected override RaymanArenaIniAppData CreateConfig()
     {
         // Load the configuration data
-        return Task.FromResult(new UbiIniData_RaymanArena(AppFilePaths.UbiIniPath1));
+        return new RaymanArenaIniAppData(AppFilePaths.UbiIniPath1);
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_
     /// <returns>The task</returns>
     protected override Task ImportConfigAsync()
     {
-        var gliMode = ConfigData.FormattedGLI_Mode;
+        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
 
         if (gliMode != null)
         {
@@ -117,14 +117,14 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_
             IsTextures32Bit = true;
         }
 
-        TriLinear = ConfigData.FormattedTriLinear;
-        TnL = ConfigData.FormattedTnL;
-        CompressedTextures = ConfigData.FormattedTexturesCompressed;
-        VideoQuality = ConfigData.FormattedVideo_WantedQuality ?? 4;
-        AutoVideoQuality = ConfigData.FormattedVideo_AutoAdjustQuality;
-        IsVideo32Bpp = ConfigData.FormattedVideo_BPP != 16;
-        CurrentLanguage = ConfigData.FormattedRALanguage ?? RALanguages.English;
-        ModemQualityIndex = ConfigData.FormattedModemQuality ?? 0;
+        TriLinear = ConfigData.TriLinear != 0;
+        TnL = ConfigData.TnL != 0;
+        CompressedTextures = ConfigData.TexturesCompressed != 0;
+        VideoQuality = ConfigData.Video_WantedQuality;
+        AutoVideoQuality = ConfigData.Video_AutoAdjustQuality != 0;
+        IsVideo32Bpp = ConfigData.Video_BPP != 16;
+        CurrentLanguage = Enum.TryParse(ConfigData.Language, out RALanguages lang) ? lang : RALanguages.English;
+        ModemQualityIndex = ConfigData.ModemQuality;
 
         return Task.CompletedTask;
     }
@@ -143,14 +143,14 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<UbiIniData_
             ResY = GraphicsMode.Height,
         }.ToString();
 
-        ConfigData.FormattedTriLinear = TriLinear;
-        ConfigData.FormattedTnL = TnL;
-        ConfigData.FormattedTexturesCompressed = CompressedTextures;
-        ConfigData.Video_WantedQuality = VideoQuality.ToString();
-        ConfigData.FormattedVideo_AutoAdjustQuality = AutoVideoQuality;
-        ConfigData.Video_BPP = IsVideo32Bpp ? "32" : "16";
+        ConfigData.TriLinear = TriLinear ? 1 : 0;
+        ConfigData.TnL = TnL ? 1 : 0;
+        ConfigData.TexturesCompressed = CompressedTextures ? 1 : 0;
+        ConfigData.Video_WantedQuality = VideoQuality;
+        ConfigData.Video_AutoAdjustQuality = AutoVideoQuality ? 1 : 0;
+        ConfigData.Video_BPP = IsVideo32Bpp ? 32 : 16;
         ConfigData.Language = CurrentLanguage.ToString();
-        ConfigData.ModemQuality = ModemQualityIndex.ToString();
+        ConfigData.ModemQuality = ModemQualityIndex;
         ConfigData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
 
         return Task.CompletedTask;

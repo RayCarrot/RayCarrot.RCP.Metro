@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// View model for the Rayman 2 configuration
 /// </summary>
-public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayman2>
+public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<Rayman2IniAppData>
 {
     #region Constructor
 
@@ -230,10 +230,10 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     /// Loads the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<UbiIniData_Rayman2> LoadConfigAsync()
+    protected override Rayman2IniAppData CreateConfig()
     {
-        // Load the configuration data
-        return Task.FromResult(new UbiIniData_Rayman2(ConfigPath));
+        // Create the configuration data
+        return new Rayman2IniAppData(ConfigPath);
     }
 
     /// <summary>
@@ -242,7 +242,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     /// <returns>The task</returns>
     protected override async Task ImportConfigAsync()
     {
-        var gliMode = ConfigData.FormattedGLI_Mode;
+        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
 
         GraphicsMode.GetAvailableResolutions();
 
@@ -251,7 +251,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         else
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(800, 600);
 
-        CurrentLanguage = ConfigData.FormattedLanguage ?? R2Languages.English;
+        CurrentLanguage = Enum.TryParse(ConfigData.Language, out R2Languages lang) ? lang : R2Languages.English;
 
         GLI_DllFile = ConfigData.GLI_DllFile;
         GLI_Dll = ConfigData.GLI_Dll;
@@ -310,10 +310,11 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     /// <returns>The task</returns>
     protected override Task UpdateConfigAsync()
     {
+        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
         ConfigData.GLI_Mode = new RayGLI_Mode()
         {
-            ColorMode = ConfigData.FormattedGLI_Mode?.ColorMode ?? 16,
-            IsWindowed = ConfigData.FormattedGLI_Mode?.IsWindowed ?? false,
+            ColorMode = gliMode?.ColorMode ?? 16,
+            IsWindowed = gliMode?.IsWindowed ?? false,
             ResX = GraphicsMode.Width,
             ResY = GraphicsMode.Height,
         }.ToString();
