@@ -1,5 +1,4 @@
-﻿using IniParser;
-using IniParser.Model;
+﻿using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -18,10 +17,7 @@ public class VisualBoyAdvanceMEmulatedSaveFilesComponent : EmulatedSaveFilesComp
             FileSystemPath configFilePath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "visualboyadvance-m" + "vbam.ini";
 
             if (configFilePath.FileExists)
-            {
-                IniData configData = new FileIniDataParser().ReadFile(configFilePath);
-                saveDir = configData["General"]["BatteryDir"];
-            }
+                saveDir = IniNative.GetString(configFilePath, "General", "BatteryDir", String.Empty);
         }
         catch (Exception ex)
         {

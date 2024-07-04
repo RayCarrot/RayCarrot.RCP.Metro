@@ -1,7 +1,6 @@
 ﻿using System.IO;
-using IniParser;
-using IniParser.Model;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -31,13 +30,11 @@ public class DuckStationEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
             Logger.Warn("DuckStation settings file not found");
             yield break;
         }
-
         FileSystemPath saveDir;
 
         try
         {
-            IniData configData = new FileIniDataParser().ReadFile(configFilePath);
-            saveDir = emuDir + configData["MemoryCards"]["Directory"];
+            saveDir = IniNative.GetString(configFilePath, "MemoryCards", "Directory", String.Empty);
         }
         catch (Exception ex)
         {
