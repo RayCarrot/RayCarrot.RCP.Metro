@@ -90,7 +90,6 @@ The Rayman Control Panel uses these main dependencies:
 - [Nito.AsyncEx](https://github.com/StephenCleary/AsyncEx)
 - [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
-- [ini-parser](https://github.com/rickyah/ini-parser)
 
 # Localization
 From version 4.1.0 the Rayman Control Panel supports localized strings. For more information and information on how to contribute with translations, check out the Steam discussion page:
