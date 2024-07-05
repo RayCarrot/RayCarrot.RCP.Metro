@@ -242,12 +242,10 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<Rayman2IniAppDat
     /// <returns>The task</returns>
     protected override async Task ImportConfigAsync()
     {
-        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
-
         GraphicsMode.GetAvailableResolutions();
 
-        if (gliMode != null)
-            GraphicsMode.SelectedGraphicsMode = new GraphicsMode(gliMode.ResX, gliMode.ResY);
+        if (CpaDisplayMode.TryParse(ConfigData.GLI_Mode, out CpaDisplayMode displayMode))
+            GraphicsMode.SelectedGraphicsMode = new GraphicsMode(displayMode.Width, displayMode.Height);
         else
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(800, 600);
 
@@ -310,13 +308,13 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<Rayman2IniAppDat
     /// <returns>The task</returns>
     protected override Task UpdateConfigAsync()
     {
-        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
-        ConfigData.GLI_Mode = new RayGLI_Mode()
+        CpaDisplayMode? gliMode = CpaDisplayMode.TryParse(ConfigData.GLI_Mode, out CpaDisplayMode displayMode) ? displayMode : null;
+        ConfigData.GLI_Mode = new CpaDisplayMode()
         {
-            ColorMode = gliMode?.ColorMode ?? 16,
-            IsWindowed = gliMode?.IsWindowed ?? false,
-            ResX = GraphicsMode.Width,
-            ResY = GraphicsMode.Height,
+            BitsPerPixel = gliMode?.BitsPerPixel ?? 16,
+            IsFullscreen = gliMode?.IsFullscreen ?? false,
+            Width = GraphicsMode.Width,
+            Height = GraphicsMode.Height,
         }.ToString();
 
         ConfigData.Language = CurrentLanguage.ToString();

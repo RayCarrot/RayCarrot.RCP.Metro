@@ -60,13 +60,11 @@ public class Rayman3ConfigViewModel : UbiIni3ConfigBaseViewModel<Rayman3IniAppDa
     /// <returns>The task</returns>
     protected override Task ImportConfigAsync()
     {
-        RayGLI_Mode gliMode = RayGLI_Mode.Parse(ConfigData.GLI_Mode);
-
-        if (gliMode != null)
+        if (CpaDisplayMode.TryParse(ConfigData.GLI_Mode, out CpaDisplayMode displayMode))
         {
-            GraphicsMode.SelectedGraphicsMode = new GraphicsMode(gliMode.ResX, gliMode.ResY);
-            FullscreenMode = !gliMode.IsWindowed;
-            IsTextures32Bit = gliMode.ColorMode != 16;
+            GraphicsMode.SelectedGraphicsMode = new GraphicsMode(displayMode.Width, displayMode.Height);
+            FullscreenMode = displayMode.IsFullscreen;
+            IsTextures32Bit = displayMode.BitsPerPixel != 16;
         }
         else
         {
@@ -94,12 +92,12 @@ public class Rayman3ConfigViewModel : UbiIni3ConfigBaseViewModel<Rayman3IniAppDa
     /// <returns>The task</returns>
     protected override Task UpdateConfigAsync()
     {
-        ConfigData.GLI_Mode = new RayGLI_Mode()
+        ConfigData.GLI_Mode = new CpaDisplayMode()
         {
-            ColorMode = IsTextures32Bit ? 32 : 16,
-            IsWindowed = !FullscreenMode,
-            ResX = GraphicsMode.Width,
-            ResY = GraphicsMode.Height,
+            BitsPerPixel = IsTextures32Bit ? 32 : 16,
+            IsFullscreen = FullscreenMode,
+            Width = GraphicsMode.Width,
+            Height = GraphicsMode.Height,
         }.ToString();
 
         ConfigData.TriLinear = TriLinear ? 1 : 0;
