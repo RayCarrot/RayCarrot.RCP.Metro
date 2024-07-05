@@ -91,7 +91,7 @@ public class RaymanMConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanMIniAppDa
     protected override RaymanMIniAppData CreateConfig()
     {
         // Load the configuration data
-        return new RaymanMIniAppData(AppFilePaths.UbiIniPath1, isDemo: false);
+        return new RaymanMIniAppData(AppFilePaths.UbiIniPath, isDemo: false);
     }
 
     /// <summary>

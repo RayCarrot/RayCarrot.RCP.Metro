@@ -15,7 +15,7 @@ public class UbiIniFinderOperation : FinderOperation
         if (finderItems.SelectMany(x => x.Queries).All(x => x is not UbiIniFinderQuery))
             return;
 
-        FileSystemPath filePath = AppFilePaths.UbiIniPath1;
+        FileSystemPath filePath = AppFilePaths.UbiIniPath;
 
         // Make sure the file exists
         if (!filePath.FileExists)

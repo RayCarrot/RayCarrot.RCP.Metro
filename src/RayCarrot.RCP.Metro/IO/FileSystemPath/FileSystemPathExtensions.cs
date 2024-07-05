@@ -9,6 +9,8 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class FileSystemPathExtensions
 {
+    private static FileSystemPath VirtualStorePath { get; } = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore";
+
     /// <summary>
     /// Gets the file system info for the file or directory
     /// </summary>
@@ -311,5 +313,10 @@ public static class FileSystemPathExtensions
 
         // Use "\\?\" to support long paths. TODO: Maybe we should do that elsewhere too? Is there a drawback to it?
         Directory.Delete($@"\\?\{dirPath}", true);
+    }
+
+    public static FileSystemPath GetVirtualStorePath(this FileSystemPath path)
+    {
+        return VirtualStorePath + path.RemoveRoot();
     }
 }

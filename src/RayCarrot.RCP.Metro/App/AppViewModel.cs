@@ -174,14 +174,14 @@ public class AppViewModel : BaseViewModel
     {
         try
         {
-            if (!AppFilePaths.UbiIniPath1.FileExists)
+            if (!AppFilePaths.UbiIniPath.FileExists)
             {
                 Logger.Info("The ubi.ini file was not found");
                 return;
             }
 
             // Check if we have write access
-            if (File.CheckFileWriteAccess(AppFilePaths.UbiIniPath1))
+            if (File.CheckFileWriteAccess(AppFilePaths.UbiIniPath))
             {
                 Logger.Debug("The ubi.ini file has write access");
                 return;
@@ -190,7 +190,7 @@ public class AppViewModel : BaseViewModel
             await MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
             // Attempt to change the permission
-            await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath1);
+            await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath);
 
             Logger.Info("The ubi.ini file permission was changed");
         }

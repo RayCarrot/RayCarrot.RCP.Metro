@@ -32,7 +32,7 @@ public class RaymanMDemoConfigViewModel : RaymanMConfigViewModel
     protected override RaymanMIniAppData CreateConfig()
     {
         // Load the configuration data
-        return new RaymanMIniAppData(AppFilePaths.UbiIniPath1, isDemo: true);
+        return new RaymanMIniAppData(AppFilePaths.UbiIniPath, isDemo: true);
     }
 
     #endregion

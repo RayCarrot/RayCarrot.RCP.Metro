@@ -51,7 +51,7 @@ public class Rayman3ConfigViewModel : UbiIni3ConfigBaseViewModel<Rayman3IniAppDa
     protected override Rayman3IniAppData CreateConfig()
     {
         // Load the configuration data
-        return new Rayman3IniAppData(AppFilePaths.UbiIniPath1);
+        return new Rayman3IniAppData(AppFilePaths.UbiIniPath);
     }
 
     /// <summary>

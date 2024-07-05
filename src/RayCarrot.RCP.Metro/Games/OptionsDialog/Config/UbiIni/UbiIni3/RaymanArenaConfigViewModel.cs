@@ -93,7 +93,7 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArena
     protected override RaymanArenaIniAppData CreateConfig()
     {
         // Load the configuration data
-        return new RaymanArenaIniAppData(AppFilePaths.UbiIniPath1);
+        return new RaymanArenaIniAppData(AppFilePaths.UbiIniPath);
     }
 
     /// <summary>

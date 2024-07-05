@@ -349,7 +349,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<Rayman2IniAppDat
             bool isGOG = (GameInstallation.InstallLocation.Directory + "goggame.sdb").FileExists;
 
             // Get the new file path
-            var newFile = isGOG ? GameInstallation.InstallLocation.Directory + "ubi.ini" : AppFilePaths.UbiIniPath1;
+            var newFile = isGOG ? GameInstallation.InstallLocation.Directory + "ubi.ini" : AppFilePaths.UbiIniPath;
 
             try
             {
@@ -505,7 +505,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<Rayman2IniAppDat
         if (path1.FileExists)
             return path1;
 
-        var path2 = AppFilePaths.UbiIniPath1;
+        var path2 = AppFilePaths.UbiIniPath;
 
         if (path2.FileExists)
             return path2;

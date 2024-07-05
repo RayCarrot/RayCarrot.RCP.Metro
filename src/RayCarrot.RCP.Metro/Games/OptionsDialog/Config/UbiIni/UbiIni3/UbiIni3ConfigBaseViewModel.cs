@@ -377,44 +377,8 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
 
         IsDiscPatchOutdated = isAppliedPatchOutdated;
 
-        // If the primary config file does not exist, create a new one
-        if (!AppFilePaths.UbiIniPath1.FileExists)
-        {
-            try
-            {
-                // Create the file
-                Services.File.CreateFile(AppFilePaths.UbiIniPath1);
-
-                Logger.Info("A new ubi.ini file has been created under {0}", AppFilePaths.UbiIniPath1);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Creating ubi.ini file");
-
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, AppFilePaths.UbiIniPath1.Parent));
-
-                throw;
-            }
-        }
-
-        // If the secondary config file does not exist, attempt to create a new one
-        if (!AppFilePaths.UbiIniPath2.FileExists)
-        {
-            try
-            {
-                // Create the file
-                Services.File.CreateFile(AppFilePaths.UbiIniPath2);
-
-                Logger.Info("A new ubi.ini file has been created under {0}", AppFilePaths.UbiIniPath2);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Creating ubi.ini file");
-            }
-        }
-
-        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath1);
-        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath2);
+        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath);
+        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath.GetVirtualStorePath());
 
         return isAppliedPatchOutdated;
     }
@@ -425,18 +389,16 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
     /// <returns>The task</returns>
     protected override Task OnSaveAsync()
     {
-        // Attempt to copy data to secondary file
-        if (AppFilePaths.UbiIniPath2.FileExists)
+        // Copy data to virtual store
+        FileSystemPath virtualStorePath = AppFilePaths.UbiIniPath.GetVirtualStorePath();
+        try
         {
-            try
-            {
-                // Copy the entire file
-                Services.File.CopyFile(ConfigData.FilePath, AppFilePaths.UbiIniPath2, true);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Saving {0} ubi.ini secondary data", GameInstallation.FullId);
-            }
+            // Copy the entire file
+            Services.File.CopyFile(ConfigData.FilePath, virtualStorePath, true);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Copying {0} ubi.ini data to virtual store", GameInstallation.FullId);
         }
 
         if (CanModifyGame)
