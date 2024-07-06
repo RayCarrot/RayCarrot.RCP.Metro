@@ -26,14 +26,14 @@ public class UbisoftIniAppDataManager
 
         try
         {
-            if (!AppFilePaths.UbiIniPath.FileExists)
+            if (!AppDataFilePath.FileExists)
             {
                 Logger.Info("The ubi.ini file was not found");
                 return;
             }
 
             // Check if we have write access
-            if (Services.File.CheckFileWriteAccess(AppFilePaths.UbiIniPath))
+            if (Services.File.CheckFileWriteAccess(AppDataFilePath))
             {
                 Logger.Debug("The ubi.ini file has write access");
                 return;
@@ -42,7 +42,7 @@ public class UbisoftIniAppDataManager
             await Services.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
             // Attempt to change the permission
-            await Services.App.RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath);
+            await Services.App.RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppDataFilePath);
 
             Logger.Info("The ubi.ini file permission was changed");
         }

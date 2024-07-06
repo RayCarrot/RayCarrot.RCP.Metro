@@ -151,8 +151,8 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
-        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath);
-        AddConfigLocation(LinkItemViewModel.LinkType.File, AppFilePaths.UbiIniPath.GetVirtualStorePath());
+        AddConfigLocation(LinkItemViewModel.LinkType.File, AppDataManager.AppDataFilePath);
+        AddConfigLocation(LinkItemViewModel.LinkType.File, AppDataManager.AppDataFilePath.GetVirtualStorePath());
 
         await AppDataManager.EnableUbiIniWriteAccessAsync();
 
@@ -258,7 +258,7 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
         try
         {
             // Copy data to virtual store
-            FileSystemPath virtualStorePath = AppFilePaths.UbiIniPath.GetVirtualStorePath();
+            FileSystemPath virtualStorePath = AppDataManager.AppDataFilePath.GetVirtualStorePath();
             try
             {
                 // Copy the entire file
