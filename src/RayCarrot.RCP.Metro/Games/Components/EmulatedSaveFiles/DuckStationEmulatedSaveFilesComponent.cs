@@ -34,7 +34,7 @@ public class DuckStationEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
 
         try
         {
-            saveDir = IniNative.GetString(configFilePath, "MemoryCards", "Directory", String.Empty);
+            saveDir = emuDir + IniNative.GetString(configFilePath, "MemoryCards", "Directory", String.Empty);
         }
         catch (Exception ex)
         {
