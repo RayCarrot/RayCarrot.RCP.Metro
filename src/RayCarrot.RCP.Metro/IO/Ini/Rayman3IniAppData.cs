@@ -2,8 +2,6 @@
 
 public class Rayman3IniAppData : IniAppData
 {
-    public Rayman3IniAppData(FileSystemPath filePath) : base(filePath) { }
-
     public const string SectionName = "Rayman3";
 
     public string GLI_Mode { get; set; } = String.Empty;
@@ -21,39 +19,39 @@ public class Rayman3IniAppData : IniAppData
     public int Video_BPP { get; set; }
     public int Video_AutoAdjustQuality { get; set; }
 
-    public override void Load()
+    public override void Load(FileSystemPath filePath)
     {
-        GLI_Mode = GetString(SectionName, "GLI_Mode", "1 - 640 x 480 x 16");
-        TexturesFile = GetString(SectionName, "TexturesFile");
-        TexturesCompressed = GetInt(SectionName, "TexturesCompressed");
-        TnL = GetInt(SectionName, "TnL");
-        TriLinear = GetInt(SectionName, "TriLinear");
+        GLI_Mode = GetString(filePath, SectionName, "GLI_Mode", "1 - 640 x 480 x 16");
+        TexturesFile = GetString(filePath, SectionName, "TexturesFile");
+        TexturesCompressed = GetInt(filePath, SectionName, "TexturesCompressed");
+        TnL = GetInt(filePath, SectionName, "TnL");
+        TriLinear = GetInt(filePath, SectionName, "TriLinear");
 
-        Camera_HorizontalAxis = GetInt(SectionName, "Camera_HorizontalAxis", 2);
-        Camera_VerticalAxis = GetInt(SectionName, "Camera_VerticalAxis", 5);
+        Camera_HorizontalAxis = GetInt(filePath, SectionName, "Camera_HorizontalAxis", 2);
+        Camera_VerticalAxis = GetInt(filePath, SectionName, "Camera_VerticalAxis", 5);
 
-        Language = GetString(SectionName, "Language", "English");
+        Language = GetString(filePath, SectionName, "Language", "English");
 
         // These use the Rayman Arena app name in the main game exe due to an oversight
-        Video_WantedQuality = GetInt(RaymanArenaIniAppData.SectionName, "Video_WantedQuality");
-        Video_BPP = GetInt(RaymanArenaIniAppData.SectionName, "Video_BPP", 32);
-        Video_AutoAdjustQuality = GetInt(RaymanArenaIniAppData.SectionName, "Video_AutoAdjustQuality", 1);
+        Video_WantedQuality = GetInt(filePath, RaymanArenaIniAppData.SectionName, "Video_WantedQuality");
+        Video_BPP = GetInt(filePath, RaymanArenaIniAppData.SectionName, "Video_BPP", 32);
+        Video_AutoAdjustQuality = GetInt(filePath, RaymanArenaIniAppData.SectionName, "Video_AutoAdjustQuality", 1);
     }
 
-    public override void Save()
+    public override void Save(FileSystemPath filePath)
     {
-        WriteString(SectionName, "GLI_Mode", GLI_Mode);
-        WriteInt(SectionName, "TexturesCompressed", TexturesCompressed);
-        WriteInt(SectionName, "TnL", TnL);
-        WriteInt(SectionName, "TriLinear", TriLinear);
+        WriteString(filePath, SectionName, "GLI_Mode", GLI_Mode);
+        WriteInt(filePath, SectionName, "TexturesCompressed", TexturesCompressed);
+        WriteInt(filePath, SectionName, "TnL", TnL);
+        WriteInt(filePath, SectionName, "TriLinear", TriLinear);
 
-        WriteInt(SectionName, "Camera_HorizontalAxis", Camera_HorizontalAxis);
-        WriteInt(SectionName, "Camera_VerticalAxis", Camera_VerticalAxis);
+        WriteInt(filePath, SectionName, "Camera_HorizontalAxis", Camera_HorizontalAxis);
+        WriteInt(filePath, SectionName, "Camera_VerticalAxis", Camera_VerticalAxis);
         
-        WriteString(SectionName, "Language", Language);
+        WriteString(filePath, SectionName, "Language", Language);
         
-        WriteInt(RaymanArenaIniAppData.SectionName, "Video_WantedQuality", Video_WantedQuality);
-        WriteInt(RaymanArenaIniAppData.SectionName, "Video_BPP", Video_BPP);
-        WriteInt(RaymanArenaIniAppData.SectionName, "Video_AutoAdjustQuality", Video_AutoAdjustQuality);
+        WriteInt(filePath, RaymanArenaIniAppData.SectionName, "Video_WantedQuality", Video_WantedQuality);
+        WriteInt(filePath, RaymanArenaIniAppData.SectionName, "Video_BPP", Video_BPP);
+        WriteInt(filePath, RaymanArenaIniAppData.SectionName, "Video_AutoAdjustQuality", Video_AutoAdjustQuality);
     }
 }

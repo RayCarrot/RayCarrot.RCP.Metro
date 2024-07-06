@@ -3,7 +3,7 @@
 /// <summary>
 /// The commonly available Rayman 2 languages
 /// </summary>
-public enum R2Languages
+public enum Rayman2Language
 {
     English,
     French,

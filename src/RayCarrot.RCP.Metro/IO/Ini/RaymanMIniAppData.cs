@@ -2,11 +2,6 @@
 
 public class RaymanMIniAppData : IniAppData
 {
-    public RaymanMIniAppData(FileSystemPath filePath, bool isDemo) : base(filePath)
-    {
-        IsDemo = isDemo;
-    }
-
     public const string SectionName = "RaymanM";
     public const string DemoSectionName = "Rayman M Nestle Demo";
 
@@ -24,36 +19,36 @@ public class RaymanMIniAppData : IniAppData
     public int Video_BPP { get; set; }
     public int Video_AutoAdjustQuality { get; set; }
 
-    public override void Load()
+    public override void Load(FileSystemPath filePath)
     {
         string sectionName = IsDemo ? DemoSectionName : SectionName;
 
-        GLI_Mode = GetString(sectionName, "GLI_Mode", "1 - 640 x 480 x 16");
-        TexturesFile = GetString(SectionName, "TexturesFile");
-        TexturesCompressed = GetInt(sectionName, "TexturesCompressed");
-        TnL = GetInt(sectionName, "TnL");
-        TriLinear = GetInt(sectionName, "TriLinear");
+        GLI_Mode = GetString(filePath, sectionName, "GLI_Mode", "1 - 640 x 480 x 16");
+        TexturesFile = GetString(filePath, SectionName, "TexturesFile");
+        TexturesCompressed = GetInt(filePath, sectionName, "TexturesCompressed");
+        TnL = GetInt(filePath, sectionName, "TnL");
+        TriLinear = GetInt(filePath, sectionName, "TriLinear");
 
-        Language = GetString(sectionName, "Language", "English");
+        Language = GetString(filePath, sectionName, "Language", "English");
 
-        Video_WantedQuality = GetInt(sectionName, "Video_WantedQuality");
-        Video_BPP = GetInt(sectionName, "Video_BPP", 32);
-        Video_AutoAdjustQuality = GetInt(sectionName, "Video_AutoAdjustQuality", 1);
+        Video_WantedQuality = GetInt(filePath, sectionName, "Video_WantedQuality");
+        Video_BPP = GetInt(filePath, sectionName, "Video_BPP", 32);
+        Video_AutoAdjustQuality = GetInt(filePath, sectionName, "Video_AutoAdjustQuality", 1);
     }
 
-    public override void Save()
+    public override void Save(FileSystemPath filePath)
     {
         string sectionName = IsDemo ? DemoSectionName : SectionName;
 
-        WriteString(sectionName, "GLI_Mode", GLI_Mode);
-        WriteInt(sectionName, "TexturesCompressed", TexturesCompressed);
-        WriteInt(sectionName, "TnL", TnL);
-        WriteInt(sectionName, "TriLinear", TriLinear);
+        WriteString(filePath, sectionName, "GLI_Mode", GLI_Mode);
+        WriteInt(filePath, sectionName, "TexturesCompressed", TexturesCompressed);
+        WriteInt(filePath, sectionName, "TnL", TnL);
+        WriteInt(filePath, sectionName, "TriLinear", TriLinear);
 
-        WriteString(sectionName, "Language", Language);
+        WriteString(filePath, sectionName, "Language", Language);
 
-        WriteInt(sectionName, "Video_WantedQuality", Video_WantedQuality);
-        WriteInt(sectionName, "Video_BPP", Video_BPP);
-        WriteInt(sectionName, "Video_AutoAdjustQuality", Video_AutoAdjustQuality);
+        WriteInt(filePath, sectionName, "Video_WantedQuality", Video_WantedQuality);
+        WriteInt(filePath, sectionName, "Video_BPP", Video_BPP);
+        WriteInt(filePath, sectionName, "Video_AutoAdjustQuality", Video_AutoAdjustQuality);
     }
 }

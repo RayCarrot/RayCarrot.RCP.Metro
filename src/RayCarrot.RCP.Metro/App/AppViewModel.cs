@@ -167,41 +167,6 @@ public class AppViewModel : BaseViewModel
     #region Public Methods
 
     /// <summary>
-    /// Enables write access to the primary ubi.ini file
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task EnableUbiIniWriteAccessAsync()
-    {
-        try
-        {
-            if (!AppFilePaths.UbiIniPath.FileExists)
-            {
-                Logger.Info("The ubi.ini file was not found");
-                return;
-            }
-
-            // Check if we have write access
-            if (File.CheckFileWriteAccess(AppFilePaths.UbiIniPath))
-            {
-                Logger.Debug("The ubi.ini file has write access");
-                return;
-            }
-
-            await MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
-
-            // Attempt to change the permission
-            await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath);
-
-            Logger.Info("The ubi.ini file permission was changed");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Changing ubi.ini file permissions");
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
-        }
-    }
-
-    /// <summary>
     /// Downloads the specified files to a specified output directory
     /// </summary>
     /// <param name="inputSources">The files to download</param>

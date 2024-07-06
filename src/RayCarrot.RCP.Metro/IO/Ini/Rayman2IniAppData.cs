@@ -2,8 +2,6 @@
 
 public class Rayman2IniAppData : IniAppData
 {
-    public Rayman2IniAppData(FileSystemPath filePath) : base(filePath) { }
-
     public const string SectionName = "Rayman2";
 
     public string GLI_DllFile { get; set; } = String.Empty;
@@ -14,25 +12,25 @@ public class Rayman2IniAppData : IniAppData
 
     public string Language { get; set; } = String.Empty;
 
-    public override void Load()
+    public override void Load(FileSystemPath filePath)
     {
-        GLI_DllFile = GetString(SectionName, "GLI_DllFile");
-        GLI_Dll = GetString(SectionName, "GLI_Dll");
-        GLI_Driver = GetString(SectionName, "GLI_Driver");
-        GLI_Device = GetString(SectionName, "GLI_Device");
-        GLI_Mode = GetString(SectionName, "GLI_Mode");
+        GLI_DllFile = GetString(filePath, SectionName, "GLI_DllFile");
+        GLI_Dll = GetString(filePath, SectionName, "GLI_Dll");
+        GLI_Driver = GetString(filePath, SectionName, "GLI_Driver");
+        GLI_Device = GetString(filePath, SectionName, "GLI_Device");
+        GLI_Mode = GetString(filePath, SectionName, "GLI_Mode");
 
-        Language = GetString(SectionName, "Language");
+        Language = GetString(filePath, SectionName, "Language");
     }
 
-    public override void Save()
+    public override void Save(FileSystemPath filePath)
     {
-        WriteString(SectionName, "GLI_DllFile", GLI_DllFile);
-        WriteString(SectionName, "GLI_Dll", GLI_Dll);
-        WriteString(SectionName, "GLI_Driver", GLI_Driver);
-        WriteString(SectionName, "GLI_Device", GLI_Device);
-        WriteString(SectionName, "GLI_Mode", GLI_Mode);
+        WriteString(filePath, SectionName, "GLI_DllFile", GLI_DllFile);
+        WriteString(filePath, SectionName, "GLI_Dll", GLI_Dll);
+        WriteString(filePath, SectionName, "GLI_Driver", GLI_Driver);
+        WriteString(filePath, SectionName, "GLI_Device", GLI_Device);
+        WriteString(filePath, SectionName, "GLI_Mode", GLI_Mode);
 
-        WriteString(SectionName, "Language", Language);
+        WriteString(filePath, SectionName, "Language", Language);
     }
 }

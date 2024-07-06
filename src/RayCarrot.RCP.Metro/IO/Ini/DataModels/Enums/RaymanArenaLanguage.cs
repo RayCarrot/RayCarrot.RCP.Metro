@@ -3,7 +3,7 @@
 /// <summary>
 /// The commonly available Rayman Arena languages
 /// </summary>
-public enum RALanguages
+public enum RaymanArenaLanguage
 {
     English,
     French,

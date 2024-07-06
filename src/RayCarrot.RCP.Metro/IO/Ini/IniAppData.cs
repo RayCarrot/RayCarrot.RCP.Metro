@@ -2,37 +2,30 @@
 
 public abstract class IniAppData
 {
-    protected IniAppData(FileSystemPath filePath)
+    protected string GetString(FileSystemPath filePath, string sectionName, string keyName) =>
+        GetString(filePath, sectionName, keyName, String.Empty);
+    protected string GetString(FileSystemPath filePath, string sectionName, string keyName, string defaultValue)
     {
-        FilePath = filePath;
+        return IniNative.GetString(filePath, sectionName, keyName, defaultValue);
     }
 
-    public FileSystemPath FilePath { get; }
-
-    protected string GetString(string sectionName, string keyName) =>
-        GetString(sectionName, keyName, String.Empty);
-    protected string GetString(string sectionName, string keyName, string defaultValue)
+    protected int GetInt(FileSystemPath filePath, string sectionName, string keyName) =>
+        GetInt(filePath, sectionName, keyName, 0);
+    protected int GetInt(FileSystemPath filePath, string sectionName, string keyName, int defaultValue)
     {
-        return IniNative.GetString(FilePath, sectionName, keyName, defaultValue);
+        return IniNative.GetInt(filePath, sectionName, keyName, defaultValue);
     }
 
-    protected int GetInt(string sectionName, string keyName) =>
-        GetInt(sectionName, keyName, 0);
-    protected int GetInt(string sectionName, string keyName, int defaultValue)
+    protected void WriteString(FileSystemPath filePath, string sectionName, string keyName, string value)
     {
-        return IniNative.GetInt(FilePath, sectionName, keyName, defaultValue);
+        IniNative.WriteString(filePath, sectionName, keyName, value);
     }
 
-    protected void WriteString(string sectionName, string keyName, string value)
+    protected void WriteInt(FileSystemPath filePath, string sectionName, string keyName, int value)
     {
-        IniNative.WriteString(FilePath, sectionName, keyName, value);
+        IniNative.WriteString(filePath, sectionName, keyName, value.ToString());
     }
 
-    protected void WriteInt(string sectionName, string keyName, int value)
-    {
-        IniNative.WriteString(FilePath, sectionName, keyName, value.ToString());
-    }
-
-    public abstract void Load();
-    public abstract void Save();
+    public abstract void Load(FileSystemPath filePath);
+    public abstract void Save(FileSystemPath filePath);
 }

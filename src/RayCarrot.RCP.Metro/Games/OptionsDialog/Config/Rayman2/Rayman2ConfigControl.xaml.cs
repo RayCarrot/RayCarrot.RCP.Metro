@@ -7,9 +7,6 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// </summary>
 public partial class Rayman2ConfigControl : UserControl
 {
-    /// <summary>
-    /// Default constructor
-    /// </summary>
     public Rayman2ConfigControl()
     {
         InitializeComponent();

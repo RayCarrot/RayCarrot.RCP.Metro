@@ -1,28 +1,23 @@
-﻿#nullable disable
-using RayCarrot.RCP.Metro.Ini;
+﻿using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
 /// View model for the Rayman Arena configuration
 /// </summary>
-public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArenaIniAppData, RALanguages>
+public class RaymanArenaConfigViewModel : BaseRayman3MArenaConfigViewModel<RaymanArenaIniAppData, RaymanArenaLanguage>
 {
     #region Constructor
 
-    public RaymanArenaConfigViewModel(GameInstallation gameInstallation) : base(gameInstallation)
-    { }
+    public RaymanArenaConfigViewModel(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     #endregion
 
-    #region Protected Override Properties
+    #region Protected Properties
 
-    /// <summary>
-    /// The available game patches
-    /// </summary>
-    protected override FilePatcher_Patch[] Patches => new FilePatcher_Patch[]
+    protected override FilePatcher_Patch[] RemoveDiscCheckPatches => new[]
     {
-        new FilePatcher_Patch(0x22D000, new FilePatcher_Patch.PatchEntry[]
+        new FilePatcher_Patch(0x22D000, new[]
         {
             new FilePatcher_Patch.PatchEntry(
                 PatchOffset: 0x2FAE6, 
@@ -38,7 +33,7 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArena
                     0xC4, 0x08, 0x85, 0xC0, 0x0F, 0x84, 0x49, 0x01,
                     0x00, 0x00, 0x43, 0x83, 0xFB, 0x20, 0x7C, 0x96,
                 }, 
-                PatchRevisions: new FilePatcher_Patch.PatchedBytesRevision[]
+                PatchRevisions: new[]
                 {
                     new FilePatcher_Patch.PatchedBytesRevision(0, new byte[]
                     {
@@ -70,39 +65,18 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArena
 
     #endregion
 
-    #region Public Override Properties
+    #region Public Properties
 
-    /// <summary>
-    /// Indicates if <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.HorizontalAxis"/> and <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.VerticalAxis"/> are available
-    /// </summary>
     public override bool HasControllerConfig => false;
-
-    /// <summary>
-    /// Indicates if <see cref="UbiIni3ConfigBaseViewModel{Handler,Language}.ModemQualityIndex"/> is available
-    /// </summary>
     public override bool HasNetworkConfig => true;
 
     #endregion
 
-    #region Protected Override Methods
+    #region Protected Methods
 
-    /// <summary>
-    /// Loads the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
-    /// </summary>
-    /// <returns>The config data</returns>
-    protected override RaymanArenaIniAppData CreateConfig()
+    protected override void LoadAppData()
     {
-        // Load the configuration data
-        return new RaymanArenaIniAppData(AppFilePaths.UbiIniPath);
-    }
-
-    /// <summary>
-    /// Imports the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
-    /// </summary>
-    /// <returns>The task</returns>
-    protected override Task ImportConfigAsync()
-    {
-        if (CpaDisplayMode.TryParse(ConfigData.GLI_Mode, out CpaDisplayMode displayMode))
+        if (CpaDisplayMode.TryParse(AppDataManager.AppData.GLI_Mode, out CpaDisplayMode displayMode))
         {
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(displayMode.Width, displayMode.Height);
             FullscreenMode = displayMode.IsFullscreen;
@@ -115,25 +89,19 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArena
             IsTextures32Bit = true;
         }
 
-        TriLinear = ConfigData.TriLinear != 0;
-        TnL = ConfigData.TnL != 0;
-        CompressedTextures = ConfigData.TexturesCompressed != 0;
-        VideoQuality = ConfigData.Video_WantedQuality;
-        AutoVideoQuality = ConfigData.Video_AutoAdjustQuality != 0;
-        IsVideo32Bpp = ConfigData.Video_BPP != 16;
-        CurrentLanguage = Enum.TryParse(ConfigData.Language, out RALanguages lang) ? lang : RALanguages.English;
-        ModemQualityIndex = ConfigData.ModemQuality;
-
-        return Task.CompletedTask;
+        TriLinear = AppDataManager.AppData.TriLinear != 0;
+        TnL = AppDataManager.AppData.TnL != 0;
+        CompressedTextures = AppDataManager.AppData.TexturesCompressed != 0;
+        VideoQuality = AppDataManager.AppData.Video_WantedQuality;
+        AutoVideoQuality = AppDataManager.AppData.Video_AutoAdjustQuality != 0;
+        IsVideo32Bpp = AppDataManager.AppData.Video_BPP != 16;
+        CurrentLanguage = Enum.TryParse(AppDataManager.AppData.Language, out RaymanArenaLanguage lang) ? lang : RaymanArenaLanguage.English;
+        ModemQualityIndex = AppDataManager.AppData.ModemQuality;
     }
 
-    /// <summary>
-    /// Updates the <see cref="UbiIniBaseConfigViewModel{Handler}.ConfigData"/>
-    /// </summary>
-    /// <returns>The task</returns>
-    protected override Task UpdateConfigAsync()
+    protected override void SaveAppData()
     {
-        ConfigData.GLI_Mode = new CpaDisplayMode()
+        AppDataManager.AppData.GLI_Mode = new CpaDisplayMode()
         {
             BitsPerPixel = IsTextures32Bit ? 32 : 16,
             IsFullscreen = FullscreenMode,
@@ -141,17 +109,15 @@ public class RaymanArenaConfigViewModel : UbiIni3ConfigBaseViewModel<RaymanArena
             Height = GraphicsMode.Height,
         }.ToString();
 
-        ConfigData.TriLinear = TriLinear ? 1 : 0;
-        ConfigData.TnL = TnL ? 1 : 0;
-        ConfigData.TexturesCompressed = CompressedTextures ? 1 : 0;
-        ConfigData.Video_WantedQuality = VideoQuality;
-        ConfigData.Video_AutoAdjustQuality = AutoVideoQuality ? 1 : 0;
-        ConfigData.Video_BPP = IsVideo32Bpp ? 32 : 16;
-        ConfigData.Language = CurrentLanguage.ToString();
-        ConfigData.ModemQuality = ModemQualityIndex;
-        ConfigData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
-
-        return Task.CompletedTask;
+        AppDataManager.AppData.TriLinear = TriLinear ? 1 : 0;
+        AppDataManager.AppData.TnL = TnL ? 1 : 0;
+        AppDataManager.AppData.TexturesCompressed = CompressedTextures ? 1 : 0;
+        AppDataManager.AppData.Video_WantedQuality = VideoQuality;
+        AppDataManager.AppData.Video_AutoAdjustQuality = AutoVideoQuality ? 1 : 0;
+        AppDataManager.AppData.Video_BPP = IsVideo32Bpp ? 32 : 16;
+        AppDataManager.AppData.Language = CurrentLanguage.ToString();
+        AppDataManager.AppData.ModemQuality = ModemQualityIndex;
+        AppDataManager.AppData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
     }
 
     #endregion

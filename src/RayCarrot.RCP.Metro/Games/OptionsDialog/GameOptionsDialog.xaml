@@ -81,13 +81,13 @@
                                     <optionsDialog:Rayman2ConfigControl />
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type optionsDialog:Rayman3ConfigViewModel}">
-                                    <optionsDialog:UbiIni3ConfigControl />
+                                    <optionsDialog:BaseRayman3MArenaConfigControl />
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type optionsDialog:RaymanArenaConfigViewModel}">
-                                    <optionsDialog:UbiIni3ConfigControl />
+                                    <optionsDialog:BaseRayman3MArenaConfigControl />
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type optionsDialog:RaymanMConfigViewModel}">
-                                    <optionsDialog:UbiIni3ConfigControl />
+                                    <optionsDialog:BaseRayman3MArenaConfigControl />
                                 </DataTemplate>
 
                                 <!-- Game client config -->

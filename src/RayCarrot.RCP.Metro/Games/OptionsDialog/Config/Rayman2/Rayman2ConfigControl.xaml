@@ -34,13 +34,13 @@
             <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
 
             <StackPanel Orientation="Horizontal">
-                <rcp:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                <rcp:AdminButton Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
                                  Margin="0 0 5 0" />
 
                 <CheckBox Content="{Resx Config_WidescreenSupport}"
                           ToolTip="{Resx Config_WidescreenSupportInfo}"
                           IsChecked="{Binding Path=WidescreenSupport}"
-                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+                          IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
             </StackPanel>
 
             <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={rcp:BooleanToVisibilityConverter}}">
@@ -87,12 +87,12 @@
 
             <StackPanel Orientation="Horizontal">
                 <rcp:AdminButton
-                    Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                    Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
                     Margin="0 0 5 0" />
 
                 <CheckBox Content="{Resx Config_EnableNativeController}"
                           IsChecked="{Binding Path=ControllerSupport}"
-                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+                          IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
 
             </StackPanel>
 
@@ -181,9 +181,9 @@
 
             </StackPanel>
 
-            <Grid IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}">
+            <Grid IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}">
                 <rcp:ButtonMapper IsEnabled="{Binding Path=ControllerSupport, Converter={rcp:InvertedBooleanConverter}}"
-                                  ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
+                                  ItemsSource="{Binding Path=Keys, Mode=OneTime}"/>
             </Grid>
 
         </StackPanel>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.OptionsDialog.UbiIni3ConfigControl"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.OptionsDialog.BaseRayman3MArenaConfigControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -119,17 +119,17 @@
                 <TextBlock Text="{Resx Lang_French}" />
                 <TextBlock Text="{Resx Lang_Spanish}" />
                 <TextBlock Text="{Resx Lang_German}"
-                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RaymanArenaLanguage}}" />
                 <TextBlock Text="{Resx Lang_Italian}"
-                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RaymanArenaLanguage}}" />
                 <TextBlock Text="{Resx Lang_Danish}"
-                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RaymanMLanguage}}" />
                 <TextBlock Text="{Resx Lang_Finnish}"
-                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RaymanMLanguage}}" />
                 <TextBlock Text="{Resx Lang_Norwegian}"
-                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RaymanMLanguage}}" />
                 <TextBlock Text="{Resx Lang_Swedish}"
-                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RaymanMLanguage}}" />
             </ComboBox>
 
             <StackPanel Orientation="Horizontal">
@@ -144,12 +144,12 @@
             <StackPanel Orientation="Horizontal">
 
                 <rcp:AdminButton
-                    Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                    Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
                     Margin="0 0 5 0" />
 
                 <CheckBox Content="{Resx Config_EnableNativeController}"
                           IsChecked="{Binding Path=ControllerSupport}"
-                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+                          IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
 
             </StackPanel>
 
@@ -199,12 +199,12 @@
             <StackPanel Orientation="Horizontal"
                         Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rcp:BooleanToVisibilityConverter}}">
 
-                <rcp:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                <rcp:AdminButton Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
                                  Margin="0 0 5 0" />
 
                 <CheckBox Content="{Resx Config_DisableDiscCheck}"
                           IsChecked="{Binding Path=IsDiscCheckRemoved}"
-                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+                          IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
 
                 <rcp:InfoIcon Style="{StaticResource RCP.Styles.InfoIcon.Notice}"
                               Text="{Resx Config_OutdatedPatchNotice}"
