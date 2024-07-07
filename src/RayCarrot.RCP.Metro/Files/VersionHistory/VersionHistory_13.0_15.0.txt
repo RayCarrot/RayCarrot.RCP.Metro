@@ -1,4 +1,14 @@
-﻿-----   Version 14.1.0 - May 23, 2024   -----
+﻿-----   Version 14.2.0 - August ??, 2024   -----
+• Game config improvements:
+    • Modifying the video quality for Rayman 3 now saves it to the Rayman Arena app data section due to the game incorrectly reading it from there
+    • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
+    • App data .ini files are now read and written to using the native Win32 API
+    • Various other minor improvements and changes
+• Improved support for Xbox 360 UbiArt textures, correctly converting uncompressed and color remapped textures
+• Fixed a bug where creating IPK archives for Rayman Origins on Xbox 360 and Rayman Legends on Xbox 360 and PS3 wouldn't work
+
+
+-----   Version 14.1.0 - May 23, 2024   -----
 • Added support for PS1 games:
     • Rayman 1
     • Rayman 2
