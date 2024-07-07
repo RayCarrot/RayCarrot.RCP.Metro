@@ -63,7 +63,7 @@
             <StackPanel>
 
                 <Slider Maximum="4"
-                        Value="{Binding Path=VideoQuality}"
+                        Value="{Binding Path=ReverseVideoQuality}"
                         TickPlacement="BottomRight"
                         IsSnapToTickEnabled="True"
                         Width="200"
@@ -77,11 +77,11 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               Text="{Resx Config_VideoGood}"
+                               Text="{Resx Config_VideoBad}"
                                TextWrapping="WrapWithOverflow" />
 
                     <TextBlock Grid.Column="1"
-                               Text="{Resx Config_VideoBad}"
+                               Text="{Resx Config_VideoGood}"
                                TextWrapping="WrapWithOverflow"
                                HorizontalAlignment="Right" />
 

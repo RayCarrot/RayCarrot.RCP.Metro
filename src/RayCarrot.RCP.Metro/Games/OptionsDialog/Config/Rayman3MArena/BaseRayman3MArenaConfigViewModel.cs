@@ -67,6 +67,11 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
     public bool TnL { get; set; }
     public bool IsTextures32Bit { get; set; }
     public bool CompressedTextures { get; set; }
+    public int ReverseVideoQuality
+    {
+        get => 4 - VideoQuality;
+        set => VideoQuality = 4 - value;
+    }
     public int VideoQuality { get; set; }
     public bool AutoVideoQuality { get; set; }
     public bool IsVideo32Bpp { get; set; }
