@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public class RaymanRavingRabbidsConfigViewModel : RaymanRavingRabbidsBaseConfigViewModel
+public class RaymanRavingRabbidsConfigViewModel : BaseRaymanRavingRabbidsConfigViewModel
 {
     public RaymanRavingRabbidsConfigViewModel(GameInstallation gameInstallation) : base(gameInstallation) { }
 

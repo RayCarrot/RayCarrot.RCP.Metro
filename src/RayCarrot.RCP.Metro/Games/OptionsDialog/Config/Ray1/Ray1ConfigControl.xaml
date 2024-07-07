@@ -12,7 +12,7 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance optionsDialog:Ray1BaseConfigViewModel}">
+             d:DataContext="{d:DesignInstance optionsDialog:BaseRay1ConfigViewModel}">
 
     <ScrollViewer>
         <i:Interaction.Behaviors>
@@ -130,7 +130,7 @@
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Controls}" />
 
-            <rcp:ButtonMapper ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
+            <rcp:ButtonMapper ItemsSource="{Binding Path=Keys, Mode=OneTime}"/>
 
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_GamePad}" />

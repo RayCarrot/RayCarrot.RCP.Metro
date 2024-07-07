@@ -11,7 +11,7 @@
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              IsTabStop="False"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance optionsDialog:RaymanRavingRabbidsBaseConfigViewModel}">
+             d:DataContext="{d:DesignInstance optionsDialog:BaseRaymanRavingRabbidsConfigViewModel}">
 
     <ScrollViewer>
         <i:Interaction.Behaviors>

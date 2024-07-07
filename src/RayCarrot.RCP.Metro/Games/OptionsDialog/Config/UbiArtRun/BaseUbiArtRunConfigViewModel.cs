@@ -8,11 +8,11 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// Base for Rayman Jungle/Fiesta Run config view model
 /// </summary>
-public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
+public abstract class BaseUbiArtRunConfigViewModel : ConfigPageViewModel
 {
     #region Constructor
 
-    protected UbiArtRunBaseConfigViewModel(
+    protected BaseUbiArtRunConfigViewModel(
         GameDescriptor gameDescriptor, 
         GameInstallation gameInstallation,
         FileSystemPath saveDir,
@@ -38,13 +38,6 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     #region Private Constants
 
     private const string SelectedVolumeFileName = "ROvolume";
-
-    #endregion
-
-    #region Private Fields
-
-    private byte _musicVolume;
-    private byte _soundVolume;
 
     #endregion
 
@@ -74,28 +67,12 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// <summary>
     /// The music volume, a value between 0 and 99
     /// </summary>
-    public byte MusicVolume
-    {
-        get => _musicVolume;
-        set
-        {
-            _musicVolume = value;
-            UnsavedChanges = true;
-        }
-    }
+    public byte MusicVolume { get; set; }
 
     /// <summary>
     /// The sound volume, a value between 0 and 99
     /// </summary>
-    public byte SoundVolume
-    {
-        get => _soundVolume;
-        set
-        {
-            _soundVolume = value;
-            UnsavedChanges = true;
-        }
-    }
+    public byte SoundVolume { get; set; }
 
     #endregion
 
@@ -160,10 +137,7 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// <param name="value">The byte to write</param>
     protected virtual void WriteSingleByteFile(string fileName, byte value)
     {
-        WriteMultiByteFile(fileName, new byte[]
-        {
-            value
-        });
+        WriteMultiByteFile(fileName, new[] { value });
     }
 
     /// <summary>
@@ -206,10 +180,6 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// <returns>The task</returns>
     protected virtual Task SaveGameAsync() => Task.CompletedTask;
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
     protected override async Task LoadAsync()
     {
         Logger.Info("{0} config is being set up", GameDescriptor.GameId);
@@ -227,13 +197,9 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
 
         UnsavedChanges = false;
 
-        Logger.Info("All values have been loaded");
+        Logger.Info("All config properties have been loaded");
     }
 
-    /// <summary>
-    /// Saves the changes
-    /// </summary>
-    /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
         Logger.Info("{0} configuration is saving...", GameDescriptor.GameId);
@@ -265,6 +231,16 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
             Logger.Error(ex, "Saving {0} config", GameDescriptor.GameId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GetDisplayName()), Resources.Config_SaveErrorHeader);
             return false;
+        }
+    }
+
+    protected override void ConfigPropertyChanged(string propertyName)
+    {
+        if (propertyName is
+            nameof(MusicVolume) or
+            nameof(SoundVolume))
+        {
+            UnsavedChanges = true;
         }
     }
 

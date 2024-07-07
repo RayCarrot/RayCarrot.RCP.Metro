@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for the Rayman Fiesta Run configuration
 /// </summary>
-public class RaymanFiestaRunConfigViewModel : UbiArtRunBaseConfigViewModel
+public class RaymanFiestaRunConfigViewModel : BaseUbiArtRunConfigViewModel
 {
     public RaymanFiestaRunConfigViewModel(GameDescriptor gameDescriptor,
         GameInstallation gameInstallation,

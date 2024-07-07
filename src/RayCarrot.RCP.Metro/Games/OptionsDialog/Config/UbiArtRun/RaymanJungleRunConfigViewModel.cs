@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for the Rayman Jungle Run configuration
 /// </summary>
-public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
+public class RaymanJungleRunConfigViewModel : BaseUbiArtRunConfigViewModel
 {
     #region Constructor
 
@@ -29,13 +29,6 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
 
     #endregion
 
-    #region Private Fields
-
-    private JungleRunHero _selectedHero;
-    private byte _selectedSlot;
-
-    #endregion
-
     #region Public Properties
 
     public bool HasPlayableTeensies { get; }
@@ -46,37 +39,17 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
     /// <summary>
     /// The selected hero
     /// </summary>
-    public JungleRunHero SelectedHero
-    {
-        get => _selectedHero;
-        set
-        {
-            _selectedHero = value;
-            UnsavedChanges = true;
-        }
-    }
+    public JungleRunHero SelectedHero { get; set; }
 
     /// <summary>
     /// The selected save slot, a value between 0 and 2
     /// </summary>
-    public byte SelectedSlot
-    {
-        get => _selectedSlot;
-        set
-        {
-            _selectedSlot = value;
-            UnsavedChanges = true;
-        }
-    }
+    public byte SelectedSlot { get; set; }
 
     #endregion
 
     #region Protected Override Methods
 
-    /// <summary>
-    /// Sets up the game specific values
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task SetupGameAsync()
     {
         AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GetFilePath(SelectedHeroFileName));
@@ -92,10 +65,6 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Saves the game specific values
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task SaveGameAsync()
     {
         if (IsHeroSettingsAvailable)
@@ -105,6 +74,18 @@ public class RaymanJungleRunConfigViewModel : UbiArtRunBaseConfigViewModel
             WriteSingleByteFile(SelectedSlotFileName, SelectedSlot);
 
         return Task.CompletedTask;
+    }
+
+    protected override void ConfigPropertyChanged(string propertyName)
+    {
+        base.ConfigPropertyChanged(propertyName);
+
+        if (propertyName is
+            nameof(SelectedHero) or 
+            nameof(SelectedSlot))
+        {
+            UnsavedChanges = true;
+        }
     }
 
     #endregion

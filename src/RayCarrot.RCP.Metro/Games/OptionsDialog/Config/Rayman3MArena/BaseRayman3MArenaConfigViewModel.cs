@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.IO;
+﻿using System.IO;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -81,28 +80,6 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
     #endregion
 
     #region Private Methods
-
-    private void UbiIni3ConfigBaseViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName is 
-            nameof(FullscreenMode) or
-            nameof(TriLinear) or
-            nameof(TnL) or
-            nameof(IsTextures32Bit) or
-            nameof(CompressedTextures) or
-            nameof(VideoQuality) or
-            nameof(AutoVideoQuality) or
-            nameof(IsVideo32Bpp) or
-            nameof(CurrentLanguage) or
-            nameof(ControllerSupport) or
-            nameof(IsDiscCheckRemoved) or
-            nameof(VerticalAxis) or
-            nameof(HorizontalAxis) or
-            nameof(ModemQualityIndex))
-        {
-            UnsavedChanges = true;
-        }
-    }
 
     private FileSystemPath GetDinputFilePath()
     {
@@ -231,7 +208,6 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
         Logger.Info("All config properties have been loaded");
 
         UnsavedChanges = isAppliedDiscCheckPatchOutdated;
-        PropertyChanged += UbiIni3ConfigBaseViewModel_PropertyChanged;
     }
 
     protected override async Task<bool> SaveAsync()
@@ -344,6 +320,28 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
         }
 
         return true;
+    }
+
+    protected override void ConfigPropertyChanged(string propertyName)
+    {
+        if (propertyName is
+            nameof(FullscreenMode) or
+            nameof(TriLinear) or
+            nameof(TnL) or
+            nameof(IsTextures32Bit) or
+            nameof(CompressedTextures) or
+            nameof(VideoQuality) or
+            nameof(AutoVideoQuality) or
+            nameof(IsVideo32Bpp) or
+            nameof(CurrentLanguage) or
+            nameof(ControllerSupport) or
+            nameof(IsDiscCheckRemoved) or
+            nameof(VerticalAxis) or
+            nameof(HorizontalAxis) or
+            nameof(ModemQualityIndex))
+        {
+            UnsavedChanges = true;
+        }
     }
 
     #endregion

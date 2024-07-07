@@ -7,11 +7,11 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// View model for the Rayman Raving Rabbids configuration
 /// </summary>
-public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewModel
+public abstract class BaseRaymanRavingRabbidsConfigViewModel : ConfigPageViewModel
 {
     #region Constructor
 
-    protected RaymanRavingRabbidsBaseConfigViewModel(GameInstallation gameInstallation)
+    protected BaseRaymanRavingRabbidsConfigViewModel(GameInstallation gameInstallation)
     {
         GameInstallation = gameInstallation;
     }
@@ -21,16 +21,6 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
-    #region Private Fields
-
-    private bool _fullscreenMode;
-    private bool _useController;
-    private int _screenModeIndex;
-    private bool _cheatInvertHor;
-    private bool _cheatOldMovie;
 
     #endregion
 
@@ -54,70 +44,14 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
 
     #region Public Properties
 
-    /// <summary>
-    /// True if the game should run in fullscreen,
-    /// false if it should run in windowed mode
-    /// </summary>
-    public bool FullscreenMode
-    {
-        get => _fullscreenMode;
-        set
-        {
-            _fullscreenMode = value;
-            UnsavedChanges = true;
-        }
-    }
+    public bool FullscreenMode { get; set; }
+    public bool UseController { get; set; }
+    public int ScreenModeIndex { get; set; }
 
-    /// <summary>
-    /// Indicates if a controller should be used by default
-    /// </summary>
-    public bool UseController
-    {
-        get => _useController;
-        set
-        {
-            _useController = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// The selected screen mode index
-    /// </summary>
-    public int ScreenModeIndex
-    {
-        get => _screenModeIndex;
-        set
-        {
-            _screenModeIndex = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    public bool Cheat_InvertHor
-    {
-        get => _cheatInvertHor;
-        set
-        {
-            _cheatInvertHor = value;
-            UnsavedChanges = true;
-            HasModifiedCheats = true;
-        }
-    }
-
-    public bool Cheat_OldMovie
-    {
-        get => _cheatOldMovie;
-        set
-        {
-            _cheatOldMovie = value;
-            UnsavedChanges = true;
-            HasModifiedCheats = true;
-        }
-    }
+    public bool Cheat_InvertHor { get; set; }
+    public bool Cheat_OldMovie { get; set; }
 
     public bool CanModifyCheats { get; set; }
-
     public bool HasModifiedCheats { get; set; }
 
     #endregion
@@ -173,10 +107,6 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
 
     protected int GetValue_DWORD(RegistryKey? key, string name, int defaultValue) => (int)(key?.GetValue(name, defaultValue) ?? defaultValue);
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
@@ -233,15 +163,11 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
         UnsavedChanges = false;
         HasModifiedCheats = false;
 
-        Logger.Info("All values have been loaded");
+        Logger.Info("All config properties have been loaded");
 
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Saves the changes
-    /// </summary>
-    /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
         Logger.Info("{0} configuration is saving...", GameInstallation.FullId);
@@ -306,6 +232,26 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
             Logger.Error(ex, "Saving {0} registry data", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
             return false;
+        }
+    }
+
+    protected override void ConfigPropertyChanged(string propertyName)
+    {
+        if (propertyName is
+            nameof(FullscreenMode) or
+            nameof(UseController) or
+            nameof(ScreenModeIndex) or
+            nameof(Cheat_InvertHor) or
+            nameof(Cheat_OldMovie))
+        {
+            UnsavedChanges = true;
+        }
+
+        if (propertyName is
+            nameof(Cheat_InvertHor) or
+            nameof(Cheat_OldMovie))
+        {
+            HasModifiedCheats = true;
         }
     }
 

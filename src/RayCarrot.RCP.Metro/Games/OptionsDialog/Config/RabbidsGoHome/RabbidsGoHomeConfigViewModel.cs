@@ -25,12 +25,6 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
     #region Private Fields
 
     private bool _enableCustomSettings;
-    private RabbidsGoHomeLanguage _language;
-    private bool _fullscreen;
-    private bool _vSync;
-    private int _versionIndex;
-    private string _bigFile = String.Empty;
-    private string _customCommands = String.Empty;
 
     #endregion
 
@@ -38,113 +32,61 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
 
     public GameInstallation GameInstallation { get; }
 
-    /// <summary>
-    /// Indicates if custom settings are enabled
-    /// </summary>
     public bool EnableCustomSettings
     {
         get => _enableCustomSettings;
         set
         {
             _enableCustomSettings = value;
-            UnsavedChanges = true;
-
-            if (EnableCustomSettings)
-                ImportConfig(new RabbidsGoHomeLaunchData());
+            if (value)
+                LoadData(new RabbidsGoHomeLaunchData());
         }
     }
 
-    /// <summary>
-    /// The selected language
-    /// </summary>
-    public RabbidsGoHomeLanguage Language
-    {
-        get => _language;
-        set
-        {
-            _language = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// Indicates if fullscreen mode is enabled
-    /// </summary>
-    public bool Fullscreen
-    {
-        get => _fullscreen;
-        set
-        {
-            _fullscreen = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// Indicates if V-Sync is enabled
-    /// </summary>
-    public bool VSync
-    {
-        get => _vSync;
-        set
-        {
-            _vSync = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// The selected version index
-    /// </summary>
-    public int VersionIndex
-    {
-        get => _versionIndex;
-        set
-        {
-            _versionIndex = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// The big file
-    /// </summary>
-    public string BigFile
-    {
-        get => _bigFile;
-        set
-        {
-            _bigFile = value;
-            UnsavedChanges = true;
-        }
-    }
-
-    /// <summary>
-    /// Custom commands
-    /// </summary>
-    public string CustomCommands
-    {
-        get => _customCommands;
-        set
-        {
-            _customCommands = value;
-            UnsavedChanges = true;
-        }
-    }
+    public RabbidsGoHomeLanguage Language { get; set; }
+    public bool Fullscreen { get; set; }
+    public bool VSync { get; set; }
+    public int VersionIndex { get; set; }
+    public string BigFile { get; set; } = String.Empty;
+    public string CustomCommands { get; set; } = String.Empty;
 
     #endregion
 
     #region Private Methods
 
-    /// <summary>
-    /// Import the specified data
-    /// </summary>
-    /// <param name="data">The data to import</param>
-    private void ImportConfig(RabbidsGoHomeLaunchData data)
+    private static string GetLanguageString(RabbidsGoHomeLanguage language)
+    {
+        return language switch
+        {
+            RabbidsGoHomeLanguage.English => "en",
+            RabbidsGoHomeLanguage.French => "fr",
+            RabbidsGoHomeLanguage.German => "de",
+            RabbidsGoHomeLanguage.Italian => "it",
+            RabbidsGoHomeLanguage.Spanish => "es",
+            RabbidsGoHomeLanguage.Dutch => "nl",
+            _ => throw new ArgumentOutOfRangeException(nameof(language), language, null)
+        };
+    }
+
+    private static RabbidsGoHomeLanguage GetLanguageValue(string languageString)
+    {
+        return languageString switch
+        {
+            "en" => RabbidsGoHomeLanguage.English,
+            "fr" => RabbidsGoHomeLanguage.French,
+            "de" => RabbidsGoHomeLanguage.German,
+            "it" => RabbidsGoHomeLanguage.Italian,
+            "es" => RabbidsGoHomeLanguage.Spanish,
+            "nl" => RabbidsGoHomeLanguage.Dutch,
+            _ => throw new ArgumentOutOfRangeException(nameof(languageString), languageString, null)
+        };
+    }
+
+    private void LoadData(RabbidsGoHomeLaunchData data)
     {
         GraphicsMode.GetAvailableResolutions();
         GraphicsMode.SelectedGraphicsMode = new GraphicsMode(data.ResolutionX, data.ResolutionY);
-        Language = GetLanguage(data.Language);
+        Language = GetLanguageValue(data.Language);
         Fullscreen = data.IsFullscreen;
         VSync = data.IsVSyncEnabled;
         VersionIndex = data.VersionIndex;
@@ -156,23 +98,19 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
 
     #region Protected Methods
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("Rabbids Go Home config is being set up");
+        Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
         // Get the current launch data
-        var launchData = GameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData);
+        RabbidsGoHomeLaunchData? launchData = GameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData);
 
         if (launchData != null)
         {
             _enableCustomSettings = true;
             OnPropertyChanged(nameof(EnableCustomSettings));
 
-            ImportConfig(launchData);
+            LoadData(launchData);
         }
         else
         {
@@ -181,15 +119,11 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
 
         UnsavedChanges = false;
 
-        Logger.Info("All values have been loaded");
+        Logger.Info("All config properties have been loaded");
 
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Saves the changes
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task<bool> SaveAsync()
     {
         Logger.Info("Rabbids Go Home configuration is saving...");
@@ -200,7 +134,7 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         if (EnableCustomSettings)
             launchData = new RabbidsGoHomeLaunchData(
                 bigFile: BigFile, 
-                language: GetLanguageName(Language), 
+                language: GetLanguageString(Language), 
                 resolutionX: GraphicsMode.Width,
                 resolutionY: GraphicsMode.Height, 
                 isVSyncEnabled: VSync, 
@@ -218,71 +152,18 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         return Task.FromResult(true);
     }
 
-    #endregion
-
-    #region Private Static Methods
-
-    /// <summary>
-    /// Gets the language name for the specified language
-    /// </summary>
-    /// <param name="language">The language to get the name from</param>
-    /// <returns>The language name</returns>
-    private static string GetLanguageName(RabbidsGoHomeLanguage language)
+    protected override void ConfigPropertyChanged(string propertyName)
     {
-        switch (language)
+        if (propertyName is
+            nameof(EnableCustomSettings) or
+            nameof(Language) or
+            nameof(Fullscreen) or
+            nameof(VSync) or
+            nameof(VersionIndex) or
+            nameof(BigFile) or
+            nameof(CustomCommands))
         {
-            case RabbidsGoHomeLanguage.English:
-                return "en";
-
-            case RabbidsGoHomeLanguage.French:
-                return "fr";
-
-            case RabbidsGoHomeLanguage.German:
-                return "de";
-
-            case RabbidsGoHomeLanguage.Italian:
-                return "it";
-
-            case RabbidsGoHomeLanguage.Spanish:
-                return "es";
-
-            case RabbidsGoHomeLanguage.Dutch:
-                return "nl";
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(language), language, null);
-        }
-    }
-
-    /// <summary>
-    /// Gets the language for the specified name
-    /// </summary>
-    /// <param name="languageName">The language name to get the language from</param>
-    /// <returns>The language</returns>
-    private static RabbidsGoHomeLanguage GetLanguage(string languageName)
-    {
-        switch (languageName)
-        {
-            case "en":
-                return RabbidsGoHomeLanguage.English;
-
-            case "fr":
-                return RabbidsGoHomeLanguage.French;
-
-            case "de":
-                return RabbidsGoHomeLanguage.German;
-
-            case "it":
-                return RabbidsGoHomeLanguage.Italian;
-
-            case "es":
-                return RabbidsGoHomeLanguage.Spanish;
-
-            case "nl":
-                return RabbidsGoHomeLanguage.Dutch;
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(languageName), languageName, null);
+            UnsavedChanges = true;
         }
     }
 
@@ -290,39 +171,13 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
 
     #region Enums
 
-    /// <summary>
-    /// The available languages for Rabbids Go Home
-    /// </summary>
     public enum RabbidsGoHomeLanguage
     {
-        /// <summary>
-        /// English
-        /// </summary>
         English,
-
-        /// <summary>
-        /// French
-        /// </summary>
         French,
-
-        /// <summary>
-        /// German
-        /// </summary>
         German,
-
-        /// <summary>
-        /// Italian
-        /// </summary>
         Italian,
-
-        /// <summary>
-        /// Spanish
-        /// </summary>
         Spanish,
-
-        /// <summary>
-        /// Dutch
-        /// </summary>
         Dutch
     }
 

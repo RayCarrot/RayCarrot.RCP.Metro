@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Input;
 using BinarySerializer;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -127,21 +126,6 @@ public class Rayman2ConfigViewModel : ConfigPageViewModel
     #endregion
 
     #region Private Methods
-
-    private void Rayman2ConfigViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName is 
-            nameof(WidescreenSupport) or 
-            nameof(ControllerSupport) or 
-            nameof(CurrentLanguage) or 
-            nameof(GLI_DllFile) or 
-            nameof(GLI_Dll) or 
-            nameof(GLI_Driver) or 
-            nameof(GLI_Device))
-        {
-            UnsavedChanges = true;
-        }
-    }
 
     private FileSystemPath GetAppDataFilePath()
     {
@@ -444,7 +428,6 @@ public class Rayman2ConfigViewModel : ConfigPageViewModel
         Logger.Info("All config properties have been loaded");
 
         UnsavedChanges = false;
-        PropertyChanged += Rayman2ConfigViewModel_PropertyChanged;
     }
 
     protected override async Task<bool> SaveAsync()
@@ -557,6 +540,21 @@ public class Rayman2ConfigViewModel : ConfigPageViewModel
         }
 
         return true;
+    }
+
+    protected override void ConfigPropertyChanged(string propertyName)
+    {
+        if (propertyName is
+            nameof(WidescreenSupport) or
+            nameof(ControllerSupport) or
+            nameof(CurrentLanguage) or
+            nameof(GLI_DllFile) or
+            nameof(GLI_Dll) or
+            nameof(GLI_Driver) or
+            nameof(GLI_Device))
+        {
+            UnsavedChanges = true;
+        }
     }
 
     #endregion
