@@ -1,16 +1,16 @@
-﻿using BinarySerializer.Disk.ISO9960;
+﻿using BinarySerializer.Disk.ISO9660;
 
 namespace RayCarrot.RCP.Metro.Games.Structure;
 
-public class ISO9960FileSystemSource : IFileSystemSource
+public class ISO9660FileSystemSource : IFileSystemSource
 {
-    public ISO9960FileSystemSource(ISO9960BinFile iso)
+    public ISO9660FileSystemSource(DiscImage iso)
     {
         Iso = iso;
         BasePath = iso.Offset?.File.AbsolutePath;
     }
 
-    public ISO9960BinFile Iso { get; }
+    public DiscImage Iso { get; }
     public FileSystemPath BasePath { get; }
 
     public bool FileExists(string path)

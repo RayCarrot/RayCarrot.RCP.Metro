@@ -1,10 +1,10 @@
 ﻿#nullable disable
 using BinarySerializer;
-using BinarySerializer.Disk.ISO9960;
+using BinarySerializer.Disk.ISO9660;
 
 namespace RayCarrot.RCP.Metro;
 
-public class PS1ISO : ISO9960BinFile
+public class PS1ISO : DiscImage
 {
     public Sector<PS1ISOLicense> License { get; set; }
 

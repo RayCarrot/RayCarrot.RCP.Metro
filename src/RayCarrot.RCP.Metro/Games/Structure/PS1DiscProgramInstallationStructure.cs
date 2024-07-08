@@ -1,4 +1,5 @@
 ﻿using BinarySerializer.Disk.Cue;
+using BinarySerializer.Disk.ISO9660;
 
 namespace RayCarrot.RCP.Metro.Games.Structure;
 
@@ -39,6 +40,7 @@ public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallation
 
             // Read the data track
             using RCPContext context = new(location.Directory);
+            context.AddSettings(new ISO9660Settings(isRawData: true));
             iso = context.ReadRequiredFileData<PS1ISO>(dataTrackFileName);
         }
         catch (Exception ex)
@@ -50,6 +52,6 @@ public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallation
         // Return first matching layout
         return Layouts.OfType<Ps1DiscProgramLayout>().FirstOrDefault(x =>
             cue.Tracks.Count == x.TracksCount &&
-            x.FileSystem.IsLocationValid(new ISO9960FileSystemSource(iso), false).IsValid);
+            x.FileSystem.IsLocationValid(new ISO9660FileSystemSource(iso), false).IsValid);
     }
 }
