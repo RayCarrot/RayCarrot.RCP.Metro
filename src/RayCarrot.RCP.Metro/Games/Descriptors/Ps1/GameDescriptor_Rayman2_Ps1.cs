@@ -44,7 +44,7 @@ public sealed class GameDescriptor_Rayman2_Ps1 : Ps1GameDescriptor
             }));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new PS1DiscProgramInstallationStructure(new[]
+    protected override ProgramInstallationStructure CreateStructure() => new Ps1DiscProgramInstallationStructure(new[]
     {
         new Ps1DiscProgramLayout("EU_EnEsIt", "BE", "SLES-02906", 2, new ProgramFileSystem(new ProgramPath[]
         {

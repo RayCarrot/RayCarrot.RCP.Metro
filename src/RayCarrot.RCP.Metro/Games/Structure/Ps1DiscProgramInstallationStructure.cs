@@ -3,9 +3,9 @@ using BinarySerializer.Disk.ISO9660;
 
 namespace RayCarrot.RCP.Metro.Games.Structure;
 
-public class PS1DiscProgramInstallationStructure : SingleFileProgramInstallationStructure
+public class Ps1DiscProgramInstallationStructure : SingleFileProgramInstallationStructure
 {
-    public PS1DiscProgramInstallationStructure(Ps1DiscProgramLayout[] layouts) : base(layouts) { }
+    public Ps1DiscProgramInstallationStructure(Ps1DiscProgramLayout[] layouts) : base(layouts) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
