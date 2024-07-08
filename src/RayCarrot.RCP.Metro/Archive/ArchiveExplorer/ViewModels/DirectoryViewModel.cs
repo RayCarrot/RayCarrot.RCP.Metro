@@ -170,7 +170,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
     {
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName), canCancel: true))
+        using (LoaderLoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName), canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -324,7 +324,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ImportAsync()
     {
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_ImportDir_Status, canCancel: true))
+        using (LoaderLoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_ImportDir_Status, canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -531,7 +531,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         Logger.Trace("Files are being added to {0}", FullPath);
 
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_AddFiles_Status, canCancel: true))
+        using (LoaderLoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_AddFiles_Status, canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())

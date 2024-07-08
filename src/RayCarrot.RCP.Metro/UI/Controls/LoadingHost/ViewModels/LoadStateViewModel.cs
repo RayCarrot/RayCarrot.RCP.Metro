@@ -28,7 +28,7 @@ public class LoadStateViewModel : BaseViewModel
             CancellationTokenSource.Cancel();
     }
 
-    public LoadState CreateState(Action disposeAction) => new(this, CancellationTokenSource.Token, () =>
+    public LoaderLoadState CreateState(Action disposeAction) => new(this, CancellationTokenSource.Token, () =>
     {
         disposeAction();
         App.Current.Dispatcher?.Invoke(() => App.Current.MainWindow?.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress));

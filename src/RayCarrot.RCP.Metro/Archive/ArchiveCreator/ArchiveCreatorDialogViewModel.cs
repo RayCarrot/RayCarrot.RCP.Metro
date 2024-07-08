@@ -73,14 +73,13 @@ public class ArchiveCreatorDialogViewModel : BaseViewModel
     /// <returns>True if the archive was successfully created, otherwise false</returns>
     public async Task<bool> CreateArchiveAsync()
     {
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Archive_CreateStatusPacking, canCancel: true))
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.Archive_CreateStatusPacking, canCancel: true))
         {
             try
             {
                 return await Task.Run(async () =>
                 {
                     List<FileItem> archiveFiles = new();
-                    CancellationToken cancellationToken = state.CancellationToken;
                     bool createdFile = false;
 
                     try
@@ -107,7 +106,7 @@ public class ArchiveCreatorDialogViewModel : BaseViewModel
                             if (inputFile.GetFileInfo().Attributes.HasFlag(FileAttributes.System))
                                 continue;
 
-                            cancellationToken.ThrowIfCancellationRequested();
+                            state.CancellationToken.ThrowIfCancellationRequested();
 
                             FileSystemPath relativePath = inputFile - InputDirectory;
                             string dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar,
@@ -142,9 +141,7 @@ public class ArchiveCreatorDialogViewModel : BaseViewModel
                         createdFile = true;
 
                         // Write the archive
-                        // ReSharper disable once AccessToDisposedClosure
-                        Manager.WriteArchive(null, archive, outputStream, archiveFiles, x => state.SetProgress(x),
-                            cancellationToken);
+                        Manager.WriteArchive(null, archive, outputStream, archiveFiles, state);
                     }
                     catch (OperationCanceledException ex)
                     {

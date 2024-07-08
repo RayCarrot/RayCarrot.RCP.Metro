@@ -129,22 +129,12 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// <returns>The encoded file data</returns>
     public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
 
-    /// <summary>
-    /// Writes the files to the archive
-    /// </summary>
-    /// <param name="generator">The generator</param>
-    /// <param name="archive">The loaded archive data</param>
-    /// <param name="outputFileStream">The file output stream for the archive</param>
-    /// <param name="files">The files to include</param>
-    /// <param name="progressCallback">A progress callback action</param>
-    /// <param name="cancellationToken">The cancellation token for cancelling the archive writing</param>
     public void WriteArchive(
         IDisposable? generator,
         object archive,
         ArchiveFileStream outputFileStream,
         IEnumerable<FileItem> files,
-        Action<Progress> progressCallback,
-        CancellationToken cancellationToken)
+        ILoadState loadState)
     {
         Logger.Info("A CNT archive is being repacked...");
 
@@ -170,7 +160,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             // Set the directory index
             file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
 
-        cancellationToken.ThrowIfCancellationRequested();
+        loadState.CancellationToken.ThrowIfCancellationRequested();
 
         BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, mode: VirtualFileMode.DoNotClose);
 
@@ -227,7 +217,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             // Write the file contents
             foreach (CNT_File file in data.Files)
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                loadState.CancellationToken.ThrowIfCancellationRequested();
 
                 // Get the file stream
                 using Stream fileStream = fileGenerator.GetFileStream(file);
@@ -241,7 +231,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
                 fileIndex++;
 
                 // Update progress
-                progressCallback(new Progress(fileIndex, data.Files.Length));
+                loadState.SetProgress(new Progress(fileIndex, data.Files.Length));
             }
 
             outputFileStream.Stream.Position = 0;

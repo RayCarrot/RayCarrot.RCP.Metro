@@ -188,7 +188,7 @@ public partial class ArchiveExplorerDialog : WindowContentControl
             return;
 
         // Run as a load operation
-        using (LoadState state = await dir.Archive.LoaderViewModel.RunAsync(Metro.Resources.Archive_AddFiles_Status, canCancel: true))
+        using (LoaderLoadState state = await dir.Archive.LoaderViewModel.RunAsync(Metro.Resources.Archive_AddFiles_Status, canCancel: true))
         {
             // Lock the access to the archive
             using (await dir.Archive.ArchiveLock.LockAsync())

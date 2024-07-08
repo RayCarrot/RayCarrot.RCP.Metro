@@ -514,7 +514,7 @@ public class DebugPageViewModel : BasePageViewModel
     
     public async Task RunLoadOperationAsync()
     {
-        using (LoadState state = await App.LoaderViewModel.RunAsync("Debug load operation"))
+        using (LoaderLoadState state = await App.LoaderViewModel.RunAsync("Debug load operation"))
         {
             await Task.Run(async () =>
             {

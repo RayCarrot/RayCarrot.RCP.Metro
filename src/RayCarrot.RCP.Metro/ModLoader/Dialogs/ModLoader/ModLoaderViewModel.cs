@@ -107,7 +107,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         try
         {
-            using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
+            using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
             {
                 await Task.Run(async () => await manager.MigrateAsync(state.SetProgress));
             }
@@ -208,7 +208,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         Logger.Info("Adding new mods to install");
 
-        using (LoadState state = await LoaderViewModel.RunAsync())
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync())
         {
             state.SetCanCancel(true);
 
@@ -237,7 +237,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private async Task AddModToInstallAsync(FileSystemPath filePath, LoadState loadState, string? sourceId, object? installData)
+    private async Task AddModToInstallAsync(FileSystemPath filePath, LoaderLoadState loadState, string? sourceId, object? installData)
     {
         FileExtension fileExtension = filePath.FileExtension;
         ModExtractor modExtractor = _modExtractors.First(x => x.FileExtension == fileExtension);
@@ -510,7 +510,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         try
         {
-            using (LoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
+            using (LoaderLoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
             {
                 Logger.Info("Downloading mod to install from {0}", downloadUrl);
 
@@ -584,7 +584,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             }
         }
 
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))
         {
             Logger.Info("Applying mods");
 

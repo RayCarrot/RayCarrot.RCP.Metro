@@ -21,7 +21,7 @@ public class UbiArtGlobalFatManager
     public string GameDataDir { get; }
     public string FileName { get; }
 
-    public void CreateFileAllocationTable(string[] bundleNames, CancellationToken cancellationToken, Action<Progress>? progressCallback = null)
+    public void CreateFileAllocationTable(string[] bundleNames, CancellationToken cancellationToken)
     {
         if (bundleNames.Length > Byte.MaxValue)
             throw new ArgumentException("Too many bundles", nameof(bundleNames));
@@ -50,8 +50,6 @@ public class UbiArtGlobalFatManager
         List<FolderDescriptor> folders = new();
         List<FileDescriptor> files = new();
         List<FileAdditionalDescriptor> filesAdditional = new();
-
-        progressCallback?.Invoke(Progress.Empty);
 
         // Read files from each bundle
         for (byte bundleId = 0; bundleId < bundleNames.Length; bundleId++)
@@ -109,8 +107,6 @@ public class UbiArtGlobalFatManager
                 fileBundles[fileDescriptor].Add(bundleId);
             }
 
-            progressCallback?.Invoke(new Progress((bundleId + 1) / (double)bundleNames.Length, 2));
-
             Logger.Info("Processed bundle {0} with {1} files", bundleName, bundle.FilePack.Files.Length);
         }
 
@@ -133,7 +129,5 @@ public class UbiArtGlobalFatManager
         context.WriteFileData(FileName, fat, endian: settings.Endian);
 
         Logger.Info("Created file allocation table");
-
-        progressCallback?.Invoke(Progress.Complete);
     }
 }

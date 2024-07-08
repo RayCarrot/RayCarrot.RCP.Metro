@@ -54,7 +54,7 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
 
         try
         {
-            using (LoadState state = await app.LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
+            using (LoaderLoadState state = await app.LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
             {
                 // Open a stream to the downloadable file
                 using (HttpClient httpClient = new())

@@ -710,7 +710,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         ext ??= FileExtension;
 
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync())
+        using (LoaderLoadState state = await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())

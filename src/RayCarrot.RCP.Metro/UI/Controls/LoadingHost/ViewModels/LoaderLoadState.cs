@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-public class LoadState : IDisposable
+public class LoaderLoadState : ILoadState, IDisposable
 {
-    public LoadState(LoadStateViewModel viewModel, CancellationToken cancellationToken, Action disposeAction)
+    public LoaderLoadState(LoadStateViewModel viewModel, CancellationToken cancellationToken, Action disposeAction)
     {
         ViewModel = viewModel;
         CancellationToken = cancellationToken;

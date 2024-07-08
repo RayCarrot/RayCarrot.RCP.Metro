@@ -77,15 +77,13 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    /// <param name="progressCallback">A progress callback action</param>
-    /// <param name="cancellationToken">The cancellation token for cancelling the archive writing</param>
+    /// <param name="loadState">The load state for the repack operation</param>
     void WriteArchive(
         IDisposable? generator, 
         object archive, 
         ArchiveFileStream outputFileStream, 
         IEnumerable<FileItem> files, 
-        Action<Progress> progressCallback, 
-        CancellationToken cancellationToken);
+        ILoadState loadState);
 
     /// <summary>
     /// Gets the progress length for the progress callback when calling <see cref="OnRepackedArchivesAsync"/>

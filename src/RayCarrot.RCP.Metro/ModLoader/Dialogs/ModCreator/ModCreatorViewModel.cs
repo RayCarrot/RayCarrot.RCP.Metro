@@ -151,7 +151,7 @@ public class ModCreatorViewModel : BaseViewModel
 
         Logger.Info("Converting legacy patches to mods");
 
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModCreator_ConvertLegacyPatchStatus, true))
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModCreator_ConvertLegacyPatchStatus, true))
         {
             try
             {
