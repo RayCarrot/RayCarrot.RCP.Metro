@@ -24,6 +24,7 @@ public class GamesManager
             new GameDescriptor_Rayman60Levels_MsDos(),
             new GameDescriptor_Rayman2_Win32(),
             new GameDescriptor_Rayman2_Ps1(),
+            new GameDescriptor_Rayman2_Ps2(),
             new GameDescriptor_RaymanM_Win32(),
             new GameDescriptor_RaymanArena_Win32(),
             new GameDescriptor_RaymanRush_Ps1(),
