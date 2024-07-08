@@ -30,6 +30,12 @@ public enum GamePlatform
     Ps1,
 
     /// <summary>
+    /// PlayStation
+    /// </summary>
+    [GamePlatformInfo("PlayStation 2", GamePlatformIconAsset.Ps2)] // TODO-LOC
+    Ps2,
+
+    /// <summary>
     /// Game Boy Color
     /// </summary>
     [GamePlatformInfo(nameof(Resources.Platform_Gbc), GamePlatformIconAsset.Gbc)]
