@@ -93,9 +93,6 @@ public enum GameIconAsset
     [AssetFileName("Rayman3Demo.png")]
     Rayman3_Demo,
 
-    [AssetFileName("RaymanRavingRabbids.png")]
-    RaymanRavingRabbids_Demo,
-
     [AssetFileName("Ray1Minigames.png")]
     Rayman1Minigames,
 
