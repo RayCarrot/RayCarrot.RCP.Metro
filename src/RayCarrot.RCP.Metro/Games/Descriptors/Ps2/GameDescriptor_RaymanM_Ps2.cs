@@ -29,7 +29,7 @@ public sealed class GameDescriptor_RaymanM_Ps2 : Ps2GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        // TODO-UPDATE: Add progression support
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena_Ps2(x, "Rayman M - PS2")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "rm_ps2", "rm_ps2"));
         builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.RaymanM_PS2));
     }
