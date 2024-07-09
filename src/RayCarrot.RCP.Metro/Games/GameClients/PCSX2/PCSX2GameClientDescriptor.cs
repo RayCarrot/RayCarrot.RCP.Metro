@@ -22,6 +22,7 @@ public sealed class PCSX2GameClientDescriptor : EmulatorGameClientDescriptor
         base.RegisterComponents(builder);
 
         builder.Register<LaunchGameComponent, DefaultGameClientLaunchGameComponent>();
+        builder.Register<EmulatedSaveFilesComponent, PCSX2EmulatedSaveFilesComponent>();
     }
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
