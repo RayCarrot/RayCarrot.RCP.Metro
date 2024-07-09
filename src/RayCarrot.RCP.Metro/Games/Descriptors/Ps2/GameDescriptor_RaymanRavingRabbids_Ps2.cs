@@ -35,7 +35,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Ps2 : Ps2GameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new Ps2DiscProgramInstallationStructure(new[]
     {
-        new Ps2DiscProgramLayout("EU", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("EU", "BE", "SLES-54307", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLES_543.07;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramDirectoryPath("DATA", ProgramPathType.Data)
@@ -43,7 +43,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Ps2 : Ps2GameDescriptor
                 new ProgramFilePath("DATA.BF;1", ProgramPathType.Data, required: true),
             }
         })),
-        new Ps2DiscProgramLayout("US", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("US", "BA", "SLUS-21576", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLUS_215.76;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramDirectoryPath("DATA", ProgramPathType.Data)

@@ -36,15 +36,15 @@ public sealed class GameDescriptor_Rayman3_Ps2 : Ps2GameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new Ps2DiscProgramInstallationStructure(new[]
     {
-        new Ps2DiscProgramLayout("EU", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("EU", "BE", "SLES-51222", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLES_512.22;1", ProgramPathType.PrimaryExe, required: true),
         })),
-        new Ps2DiscProgramLayout("US", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("US", "BA", "SLUS-20601", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLUS_206.01;1", ProgramPathType.PrimaryExe, required: true),
         })),
-        new Ps2DiscProgramLayout("KR", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("KR", "BK", "SLKA-25078", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLKA_250.78;1", ProgramPathType.PrimaryExe, required: true),
         })),

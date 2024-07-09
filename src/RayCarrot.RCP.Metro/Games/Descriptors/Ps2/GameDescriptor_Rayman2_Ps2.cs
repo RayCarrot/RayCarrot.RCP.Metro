@@ -36,22 +36,22 @@ public sealed class GameDescriptor_Rayman2_Ps2 : Ps2GameDescriptor
 
     protected override ProgramInstallationStructure CreateStructure() => new Ps2DiscProgramInstallationStructure(new[]
     {
-        new Ps2DiscProgramLayout("EU", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("EU", "BE", "SLES-50044", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLES_500.44;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramFilePath("GAME.BF;1", ProgramPathType.Data, required: true),
         })),
-        new Ps2DiscProgramLayout("US", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("US", "BA", "SLUS-20138", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLUS_201.38;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramFilePath("GAME.BF;1", ProgramPathType.Data, required: true),
         })),
-        new Ps2DiscProgramLayout("JP", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("JP", "BI", "SLPS-25029", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLPS_250.29;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramFilePath("GAME.BF;1", ProgramPathType.Data, required: true),
         })),
-        new Ps2DiscProgramLayout("KR", new ProgramFileSystem(new ProgramPath[]
+        new Ps2DiscProgramLayout("KR", "BK", "SLPM-67519", new ProgramFileSystem(new ProgramPath[]
         {
             new ProgramFilePath("SLPM_675.19;1", ProgramPathType.PrimaryExe, required: true),
             new ProgramFilePath("GAME.BF;1", ProgramPathType.Data, required: true),
