@@ -1,4 +1,10 @@
 ﻿-----   Version 14.2.0 - August ??, 2024   -----
+• Added support for PS2 games:
+    • Rayman 2 Revolution
+    • Rayman M
+    • Rayman Arena
+    • Rayman 3
+    • Rayman Raving Rabbids
 • The file table for UbiArt IPK archives is now automatically recreated when needed, removing the options to do so manually or on repack
 • Game config improvements:
     • Modifying the video quality for Rayman 3 now saves it to the Rayman Arena app data section due to the game incorrectly reading it from there
