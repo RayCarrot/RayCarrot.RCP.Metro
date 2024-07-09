@@ -43,6 +43,7 @@ public class GamesManager
 
             // Rabbids
             new GameDescriptor_RaymanRavingRabbids_Win32(),
+            new GameDescriptor_RaymanRavingRabbids_Ps2(),
             new GameDescriptor_RaymanRavingRabbids2_Win32(),
             new GameDescriptor_RabbidsGoHome_Win32(),
             new GameDescriptor_RabbidsBigBang_WindowsPackage(),
