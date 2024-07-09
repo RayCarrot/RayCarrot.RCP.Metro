@@ -55,6 +55,9 @@ public enum CPAGameMode
     [CPAGameModeInfo("Rayman 3 (PC)", EngineVersion.Rayman3, Platform.PC)]
     Rayman3_PC,
 
+    [CPAGameModeInfo("Rayman 3 (PlayStation 2)", EngineVersion.Rayman3, Platform.PlayStation2)]
+    Rayman3_PS2,
+
     [CPAGameModeInfo("Rayman 3 (GameCube)", EngineVersion.Rayman3, Platform.NintendoGameCube)]
     Rayman3_GC,
 

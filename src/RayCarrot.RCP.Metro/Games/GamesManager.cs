@@ -31,6 +31,7 @@ public class GamesManager
             new GameDescriptor_RaymanArena_Ps2(),
             new GameDescriptor_RaymanRush_Ps1(),
             new GameDescriptor_Rayman3_Win32(),
+            new GameDescriptor_Rayman3_Ps2(),
             new GameDescriptor_RaymanOrigins_Win32(),
             new GameDescriptor_RaymanLegends_Win32(),
             new GameDescriptor_RaymanJungleRun_WindowsPackage(),
