@@ -24,7 +24,7 @@ public class EmulatedPs2SaveFile : EmulatedSaveFile
         foreach (FileSystemPath saveDir in Directory.EnumerateDirectories(FilePath, $"{layout.MemoryCardCountryCode}{layout.MemoryCardProductCode}*", SearchOption.TopDirectoryOnly))
         {
             string name = saveDir.Name;
-            saves.Add(new EmulatedPs2FolderSave(this, context, @$"{name}\{name}"));
+            saves.Add(new EmulatedPs2FolderSave(this, context, name, name));
         }
 
         return Task.FromResult(saves.ToArray());
