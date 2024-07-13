@@ -62,7 +62,7 @@ The Rayman Control Panel uses these main dependencies:
 
 ### BinarySerializer (sub-modules)
 - [BinarySerializer](https://github.com/BinarySerializer/BinarySerializer)
-- [BinarySerializer.PS1](https://github.com/BinarySerializer/BinarySerializer.PS1)
+- [BinarySerializer.PlayStation](https://github.com/BinarySerializer/BinarySerializer.PlayStation)
 - [BinarySerializer.Ray1](https://github.com/BinarySerializer/BinarySerializer.Ray1)
 - [BinarySerializer.OpenSpace](https://github.com/BinarySerializer/BinarySerializer.OpenSpace)
 - [BinarySerializer.UbiArt](https://github.com/BinarySerializer/BinarySerializer.UbiArt)

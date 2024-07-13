@@ -1,4 +1,4 @@
-﻿using BinarySerializer.PS1.MemoryCard;
+﻿using BinarySerializer.PlayStation.PS1.MemoryCard;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 

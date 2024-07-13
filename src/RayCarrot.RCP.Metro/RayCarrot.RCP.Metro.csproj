@@ -119,7 +119,7 @@
     <ProjectReference Include="..\..\submodules\BinarySerializer.Disk\src\BinarySerializer.Disk.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.Nintendo\src\BinarySerializer.Nintendo.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.OpenSpace\src\BinarySerializer.OpenSpace.csproj" />
-    <ProjectReference Include="..\..\submodules\BinarySerializer.PS1\src\BinarySerializer.PS1.csproj" />
+    <ProjectReference Include="..\..\submodules\BinarySerializer.PlayStation\src\BinarySerializer.PlayStation.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1.GBA\BinarySerializer.Ray1.GBA.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1\BinarySerializer.Ray1.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.UbiArt\src\BinarySerializer.UbiArt.csproj" />
