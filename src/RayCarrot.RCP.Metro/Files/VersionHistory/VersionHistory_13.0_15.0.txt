@@ -5,6 +5,7 @@
     • Rayman Arena
     • Rayman 3
     • Rayman Raving Rabbids
+• Added support for the PCSX2 emulator (editing save files is currently only supported for folder memory cards)
 • The file table for UbiArt IPK archives is now automatically recreated when needed, removing the options to do so manually or on repack
 • Game config improvements:
     • Modifying the video quality for Rayman 3 now saves it to the Rayman Arena app data section due to the game incorrectly reading it from there
