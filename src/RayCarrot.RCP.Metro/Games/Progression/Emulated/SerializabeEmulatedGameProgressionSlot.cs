@@ -31,7 +31,7 @@ public class SerializabeEmulatedGameProgressionSlot<FileObj> : EmulatedGameProgr
     }
 
     public override bool CanExport => true;
-    public override bool CanImport => true;
+    public override bool CanImport => EmulatedSave.CanWrite;
 
     public FileObj Serializable { get; }
 

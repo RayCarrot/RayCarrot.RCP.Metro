@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using BinarySerializer.PlayStation.PS2.MemoryCard;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -12,8 +13,37 @@ public class EmulatedPs2SaveFile : EmulatedSaveFile
 
     private async Task<EmulatedSave[]> GetSavesFromFileAsync(RCPContext context, Ps2DiscProgramLayout layout)
     {
-        // TODO-UPDATE: Implement
-        return Array.Empty<EmulatedSave>();
+        MemoryCard memoryCard;
+
+        try
+        {
+            using (context)
+            {
+                MemoryCardFile memCardFile = new(context, FilePath.Name);
+                memoryCard = await context.ReadRequiredFileDataAsync<MemoryCard>(memCardFile, removeFileWhenComplete: false, recreateOnWrite: false);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Reading memory card");
+            return Array.Empty<EmulatedSave>();
+        }
+
+        List<EmulatedSave> saves = new();
+        
+        // Get every directory starting with the country and product codes
+        string namePrefix = $"{layout.MemoryCardCountryCode}{layout.MemoryCardProductCode}";
+
+        foreach (DirectoryEntry dir in memoryCard.RootDirectory.SubDirectories)
+        {
+            if (dir.Name.StartsWith(namePrefix))
+            {
+                string primaryFileName = dir.Name;
+                saves.Add(new EmulatedPs2FileSave(this, context, memoryCard, dir, primaryFileName));
+            }
+        }
+
+        return saves.ToArray();
     }
 
     private Task<EmulatedSave[]> GetSavesFromFolderAsync(RCPContext context, Ps2DiscProgramLayout layout)
