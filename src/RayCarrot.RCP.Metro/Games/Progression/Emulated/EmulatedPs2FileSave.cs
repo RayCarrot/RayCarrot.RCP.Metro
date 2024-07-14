@@ -6,16 +6,14 @@ namespace RayCarrot.RCP.Metro;
 
 public class EmulatedPs2FileSave : EmulatedPs2Save
 {
-    public EmulatedPs2FileSave(EmulatedSaveFile file, Context context, MemoryCard memoryCard, DirectoryEntry directoryEntry, string primaryFileName) : base(file, context)
+    public EmulatedPs2FileSave(EmulatedSaveFile file, Context context, MemoryCard memoryCard, DirectoryEntry directoryEntry, string primaryFileName) : base(file, context, primaryFileName)
     {
         MemoryCard = memoryCard;
         DirectoryEntry = directoryEntry;
-        PrimaryFileName = primaryFileName;
     }
 
     public MemoryCard MemoryCard { get; }
     public DirectoryEntry DirectoryEntry { get; }
-    public string PrimaryFileName { get; }
 
     public override bool CanWrite => false;
 

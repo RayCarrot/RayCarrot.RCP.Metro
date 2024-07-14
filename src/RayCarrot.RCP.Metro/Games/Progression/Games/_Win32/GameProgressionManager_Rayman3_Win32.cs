@@ -42,43 +42,9 @@ public class GameProgressionManager_Rayman3_Win32 : GameProgressionManager
 
             Logger.Info("Slot has been deserialized");
 
-            int[] stampScores = { 20820, 44500, 25900, 58000, 55500, 26888, 26700, 43700, 48000 };
+            IReadOnlyList<GameProgressionDataItem> progressItems = Rayman3Progression.CreateProgressionItems(saveData, out int collectiblesCount, out int maxCollectiblesCount);
 
-            int stamps = stampScores.Where((stampScore, i) => stampScore < saveData.Levels[i].Score).Count();
-
-            // Create the collection with items for each level + general information
-            GameProgressionDataItem[] progressItems = 
-            {
-                new GameProgressionDataItem(
-                    isPrimaryItem: true, 
-                    icon: ProgressionIconAsset.R3_Cage,
-                    header: new ResourceLocString(nameof(Resources.Progression_Cages)),
-                    value: saveData.TotalCages, 
-                    max: 60),
-                new GameProgressionDataItem(
-                    isPrimaryItem: true, 
-                    icon: ProgressionIconAsset.R3_Stamp, 
-                    header: new ResourceLocString(nameof(Resources.Progression_R3Stamps)),
-                    value: stamps, 
-                    max: stampScores.Length),
-                new GameProgressionDataItem(
-                    isPrimaryItem: false, 
-                    icon: ProgressionIconAsset.R3_Score, 
-                    header: new ResourceLocString(nameof(Resources.Progression_TotalScore)),
-                    value: saveData.TotalScore),
-                
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level4Header)), saveData.Levels[3].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level5Header)), saveData.Levels[4].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level6Header)), saveData.Levels[5].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level7Header)), saveData.Levels[6].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level8Header)), saveData.Levels[7].Score),
-                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
-            };
-
-            yield return new SerializableGameProgressionSlot<R3SaveFile>($"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
+            yield return new SerializableGameProgressionSlot<R3SaveFile>($"{filePath.RemoveFileExtension().Name}", index, collectiblesCount, maxCollectiblesCount, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
 
