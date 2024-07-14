@@ -36,7 +36,9 @@ public class EmulatedPs2SaveFile : EmulatedSaveFile
 
         foreach (DirectoryEntry dir in memoryCard.RootDirectory.SubDirectories)
         {
-            if (dir.Name.StartsWith(namePrefix))
+            if ((dir.DirectoryFlags & DirectoryFlags.Directory) != 0 && 
+                (dir.DirectoryFlags & DirectoryFlags.Exists) != 0 && 
+                dir.Name.StartsWith(namePrefix))
             {
                 string primaryFileName = dir.Name;
                 saves.Add(new EmulatedPs2FileSave(this, context, memoryCard, dir, primaryFileName));
