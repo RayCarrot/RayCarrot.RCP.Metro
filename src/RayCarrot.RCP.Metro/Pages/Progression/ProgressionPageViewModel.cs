@@ -120,11 +120,11 @@ public class ProgressionPageViewModel : BasePageViewModel,
 
     #region Protected Methods
 
-    protected override Task InitializeAsync()
+    protected override async Task InitializeAsync()
     {
         Messenger.RegisterAll(this);
 
-        return RefreshAsync();
+        await Task.Run(RefreshAsync);
     }
 
     #endregion

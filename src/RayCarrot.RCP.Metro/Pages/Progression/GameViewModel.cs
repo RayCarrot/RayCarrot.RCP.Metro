@@ -22,6 +22,10 @@ public class GameViewModel : BaseRCPViewModel
         Slots = new ObservableCollection<GameSlotViewModel>();
         BackupSlots = new ObservableCollection<GameSlotViewModel>();
 
+        BackupInfoItems.EnableCollectionSynchronization();
+        Slots.EnableCollectionSynchronization();
+        BackupSlots.EnableCollectionSynchronization();
+
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = GameDescriptor.Platform.GetInfo();
         PlatformDisplayName = platformInfo.DisplayName;
