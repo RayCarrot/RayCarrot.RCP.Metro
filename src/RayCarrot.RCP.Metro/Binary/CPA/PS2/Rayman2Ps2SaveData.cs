@@ -151,8 +151,8 @@ public class Rayman2Ps2SaveData : BinarySerializable
         public bool Boolean_25 { get; set; }
         public DsgVarArray<int> IntegerArray_27 { get; set; }
         public DsgVarArray<int> IntegerArray_28 { get; set; }
-        public float DistanceCovered { get; set; } // Float_29
-        public int TimePlayed { get; set; } // Int_30
+        public float DistanceCovered { get; set; } // Float_29 - meters
+        public int TimePlayed { get; set; } // Int_30 - milliseconds
         public int EnemyShotsFired { get; set; } // Int_31
         public int ShotsFired { get; set; } // Int_32
         public int ShotsHitTarget { get; set; } // Int_33 - Accuracy: (ShotsHitTarget * 100) / ShotsFired

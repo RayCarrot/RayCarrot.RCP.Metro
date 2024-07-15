@@ -18,6 +18,7 @@ public enum ProgressionIconAsset
     R2_Cage,
     R2_Lum,
     R2_Clock,
+    R2_Main,
 
     // Rayman M
     RM_Race,

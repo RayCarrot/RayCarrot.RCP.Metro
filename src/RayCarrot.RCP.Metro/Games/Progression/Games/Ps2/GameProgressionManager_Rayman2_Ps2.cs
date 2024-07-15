@@ -27,6 +27,8 @@ public class GameProgressionManager_Rayman2_Ps2 : EmulatedGameProgressionManager
         int lums = globalFixData.LumsPerLevel.Values.Sum();
         int cages = globalFixData.CagesPerLevel.Values.Sum();
 
+        TimeSpan timePlayed = new(0, 0, 0, 0, globalFixData.TimePlayed);
+
         List<GameProgressionDataItem> progressItems = new()
         {
             new GameProgressionDataItem(
@@ -41,6 +43,43 @@ public class GameProgressionManager_Rayman2_Ps2 : EmulatedGameProgressionManager
                 header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                 value: cages,
                 max: 80),
+
+            // TODO-LOC
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Distance covered",
+                text: $"{(int)globalFixData.DistanceCovered} meters"),
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Time played",
+                text: String.Format("{0}:{1:mm}:{1:ss}", Math.Floor(timePlayed.TotalHours), timePlayed)),
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Player shots fired",
+                text: $"{globalFixData.ShotsFired}"),
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Shooting accuracy",
+                text: $"{(globalFixData.ShotsFired == 0 ? 0 : globalFixData.ShotsHitTarget * 100 / globalFixData.ShotsFired)} %"),
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Times killed",
+                text: $"{globalFixData.TimesKilled}"),
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Number of try again",
+                text: $"{globalFixData.NumberOfTryAgain}"),
+            new GameProgressionDataItem(
+                isPrimaryItem: false,
+                icon: ProgressionIconAsset.R2_Main,
+                header: "Number of jumps",
+                text: $"{globalFixData.NumberOfJumps}"),
         };
 
         yield return new SerializabeEmulatedGameProgressionSlot<Rayman2Ps2SaveData>(
