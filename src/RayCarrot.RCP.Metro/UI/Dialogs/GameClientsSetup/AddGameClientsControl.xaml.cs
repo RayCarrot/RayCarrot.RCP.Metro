@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for AddGameClientsControl.xaml
+/// </summary>
+public partial class AddGameClientsControl : UserControl
 {
-    /// <summary>
-    /// Interaction logic for AddGameClientsControl.xaml
-    /// </summary>
-    public partial class AddGameClientsControl : UserControl
+    public AddGameClientsControl()
     {
-        public AddGameClientsControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

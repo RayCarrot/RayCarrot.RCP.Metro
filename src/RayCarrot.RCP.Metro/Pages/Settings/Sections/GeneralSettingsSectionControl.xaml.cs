@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro.Pages.Settings.Sections
+namespace RayCarrot.RCP.Metro.Pages.Settings.Sections;
+
+/// <summary>
+/// Interaction logic for GeneralSettingsSectionControl.xaml
+/// </summary>
+public partial class GeneralSettingsSectionControl : UserControl
 {
-    /// <summary>
-    /// Interaction logic for GeneralSettingsSectionControl.xaml
-    /// </summary>
-    public partial class GeneralSettingsSectionControl : UserControl
+    public GeneralSettingsSectionControl()
     {
-        public GeneralSettingsSectionControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
