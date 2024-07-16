@@ -14,12 +14,24 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class Entry
 {
+    private static LaunchArguments _launchArguments = null!;
+
     [STAThread]
     public static void Main(string[] args)
     {
+        // Save the launch arguments
+        _launchArguments = new LaunchArguments(args);
+
+        // Some tasks we have to run as admin. For these the app is restarted an admin worker mode.
+        if (_launchArguments.HasArg(AdminWorker.MainArg))
+        {
+            AdminWorker.Run(_launchArguments);
+            return;
+        }
+
         // Set up the services
         IServiceCollection services = new ServiceCollection();
-        ConfigureServices(services, args);
+        ConfigureServices(services);
         IServiceProvider serviceProvider = services.BuildServiceProvider();
 
         // Create the Application, initialize it and start the message pump
@@ -28,10 +40,10 @@ public static class Entry
         app.Run();
     }
 
-    private static void ConfigureServices(IServiceCollection serviceCollection, string[] args)
+    private static void ConfigureServices(IServiceCollection serviceCollection)
     {
         // Add app related services
-        serviceCollection.AddSingleton(new LaunchArguments(args));
+        serviceCollection.AddSingleton(_launchArguments);
         serviceCollection.AddSingleton<JumpListManager>();
         serviceCollection.AddSingleton<LoggerManager>();
         serviceCollection.AddSingleton<AppDataManager>();

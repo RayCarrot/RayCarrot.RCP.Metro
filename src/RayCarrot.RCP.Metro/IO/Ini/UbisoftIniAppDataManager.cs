@@ -42,7 +42,7 @@ public class UbisoftIniAppDataManager
             await Services.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
             // Attempt to change the permission
-            await Services.App.RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppDataFilePath);
+            await Services.App.RunAdminWorkerAsync(AdminWorker.GrantFullFileControlArg, AppDataFilePath);
 
             Logger.Info("The ubi.ini file permission was changed");
         }

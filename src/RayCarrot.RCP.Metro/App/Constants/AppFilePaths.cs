@@ -55,11 +55,6 @@ public static class AppFilePaths
     public static FileSystemPath UninstallFilePath => InstallTempPath + "Uninstaller.exe";
 
     /// <summary>
-    /// The admin worker file path
-    /// </summary>
-    public static FileSystemPath AdminWorkerPath => UserDataBaseDir + "Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
-
-    /// <summary>
     /// The icon files path
     /// </summary>
     public static FileSystemPath IconsPath => UserDataBaseDir + "Icons";

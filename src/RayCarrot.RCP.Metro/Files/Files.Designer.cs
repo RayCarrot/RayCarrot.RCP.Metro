@@ -63,16 +63,6 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] AdminWorker {
-            get {
-                object obj = ResourceManager.GetObject("AdminWorker", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         public static byte[] dinput_controller {
             get {
                 object obj = ResourceManager.GetObject("dinput_controller", resourceCulture);

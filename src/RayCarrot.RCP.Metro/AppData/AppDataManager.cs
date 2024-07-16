@@ -787,6 +787,21 @@ public class AppDataManager
                 }
             }
         }
+
+        if (lastVersion < new Version(14, 2, 0, 0))
+        {
+            try
+            {
+                // The admin worker has been removed, so delete the file if it's been deployed
+                FileSystemPath adminWorkerFilePath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                                                     "Rayman Control Panel\\RCP_Metro\\Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
+                FileManager.DeleteFile(adminWorkerFilePath);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Deleting admin worker file");
+            }
+        }
     }
 
     #endregion
