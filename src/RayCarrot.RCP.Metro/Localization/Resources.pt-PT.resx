@@ -364,7 +364,7 @@
     <value>As opções do modo de ecrã irão comportar-se de forma diferente dependendo da resolução seleccionada. Normalmente mantendo o modo 4:3 activo irá permitir que o jogo não seja esticado para outras proporções de aspecto diferentes.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>O Rayman Control Panel (Painel de Controlo Rayman) é um projecto comunitário open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
+    <value>O Rayman Control Panel (Painel de Controlo Rayman) é um projecto comunitário open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto em crescimento com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -963,13 +963,13 @@ Tentar novamente?</value>
     <value>Ocorreu um erro quando se guardava a tua configuração {0}</value>
   </data>
   <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Erro ao guardar</value>
+    <value>Erro ao gravar</value>
   </data>
   <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>Ocorreu um erro quando se guardava a tua configuração DOSBox</value>
+    <value>Ocorreu um erro quando se gravava a tua configuração DOSBox</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
-    <value>As tuas alterações foram guardadas</value>
+    <value>Foram gravadas as tuas alterações</value>
   </data>
   <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
     <value>A proporção de aspecto não pode ser preparada devido ao executável do jogo não ter sido encontrado</value>
@@ -4908,7 +4908,7 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
     <value>Bem-vindo à actualização de aniversário!</value>
   </data>
   <data name="AnniversaryUpdate_GamesHeader" xml:space="preserve">
-    <value>Página de jogos redesenhados</value>
+    <value>Página de jogos redesenhada</value>
   </data>
   <data name="AnniversaryUpdate_GamesDescription" xml:space="preserve">
     <value>A página de jogos foi redesenhada para suportar novas características tais como permitir instalações múltiplas do mesmo jogo e de jogos de consola emulados. Agora cada jogo tem uma área central para o lado direito onde podes ver acções comuns tais como os painéis do Patcher e do Explorador de Arquivos. </value>
@@ -5182,7 +5182,7 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
     <value>Ocorreu um erro ao descarregar e instalar a modificação</value>
   </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
-    <value>Aplicar modificações</value>
+    <value>A aplicar modificações...</value>
   </data>
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Aplicadas com êxito todas as modificações</value>

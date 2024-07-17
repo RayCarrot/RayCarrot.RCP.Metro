@@ -5608,10 +5608,10 @@ Conflicten:
     <value>Rayman-positie</value>
   </data>
   <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
-    <value>Snelheidsopbouw links</value>
+    <value>Snelheidsopslag links</value>
   </data>
   <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
-    <value>Snelheidsopbouw rechts</value>
+    <value>Snelheidsopslag rechts</value>
   </data>
   <data name="Games_InvalidLayout" xml:space="preserve">
     <value>De spelversie is niet geldig</value>

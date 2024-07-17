@@ -5594,4 +5594,41 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>En fejl opstod i forsøg på at åbne de valgte mods</value>
   </data>
+  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
+    <value>Aktiverer brug af snydekoder via debug-knappen</value>
+  </data>
+  <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
+    <value>Opbevaring af fart til venstre</value>
+  </data>
+  <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
+    <value>Opbevaring af fart til højre</value>
+  </data>
+  <data name="GameClients_BizHawk" xml:space="preserve">
+    <value>BizHawk</value>
+  </data>
+  <data name="GameClients_DuckStation" xml:space="preserve">
+    <value>DuckStation</value>
+  </data>
+  <data name="Progression_GenericSingleSlot" xml:space="preserve">
+    <value>Plads</value>
+  </data>
+  <data name="Progression_RRushChampionship" xml:space="preserve">
+    <value>Mesterskab</value>
+  </data>
+  <data name="Progression_RRushTimeAttack" xml:space="preserve">
+    <value>Tidsangreb</value>
+  </data>
+  <data name="Progression_RRushLums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_RRushTarget" xml:space="preserve">
+    <value>Mål</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarning" xml:space="preserve">
+    <value>Der findes i øjeblikket flere mods, der overskriver de samme filer. Dette kan forårsage, at ét eller flere af de anvendte mods ikke virker korrekt. Du kan gennemgå listen af modificerede filer for at afgøre om det bliver et problem, samt bytte rundt på rækkefølgen af de anvendte mods for at ændre deres prioritet.
+
+Du kan slå denne advarsel fra i indstillingerne, hvis du ikke ønsker at den bliver vist i fremtidige konflikter.
+
+Fortsæt med at anvende mods?</value>
+  </data>
 </root>
