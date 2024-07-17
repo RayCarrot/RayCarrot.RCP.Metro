@@ -12,6 +12,8 @@
     • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
     • App data .ini files are now read and written to using the native Win32 API
     • Various other minor improvements and changes
+• The available space on the system is now checked before applying mods to make sure it doesn't fail due to running out of space
+• Improved error messages when applying mods
 • Improved support for Xbox 360 UbiArt textures, correctly converting uncompressed and color remapped textures
 • Renamed "Rayman Universe - Рэйман и его Вселенная" to "Rayman Universe" in the credits
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
