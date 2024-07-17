@@ -13,6 +13,8 @@
     • App data .ini files are now read and written to using the native Win32 API
     • Various other minor improvements and changes
 • Improved support for Xbox 360 UbiArt textures, correctly converting uncompressed and color remapped textures
+• Renamed "Rayman Universe - Рэйман и его Вселенная" to "Rayman Universe" in the credits
+• Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
 • Fixed a bug where creating IPK archives for Rayman Origins on Xbox 360 and Rayman Legends on Xbox 360 and PS3 wouldn't work
 
 
