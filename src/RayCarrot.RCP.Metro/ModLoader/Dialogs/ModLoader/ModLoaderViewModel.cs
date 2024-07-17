@@ -626,16 +626,16 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Library.WriteModManifest(new ModManifest(installedMods));
 
                     // Apply the mods
-                    bool success = await ModProcessor.ApplyAsync(Library, state.SetProgress);
+                    ApplyModsResult result = await ModProcessor.ApplyAsync(Library, state.SetProgress);
 
                     Services.Messenger.Send(new ModifiedGameModsMessage(GameInstallation));
 
                     Logger.Info("Applied mods");
 
-                    if (success)
+                    if (result.Success)
                         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ApplySuccess);
-                    else
-                        await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_ApplyUnsuccess, MessageType.Warning);
+                    else // TODO-LOC
+                        await Services.MessageUI.DisplayMessageAsync($"Finished applying mods. Some files could not be modified.\n\nError messages:\n{result.ErrorMessage}", MessageType.Warning);
                 });
             }
             catch (Exception ex)

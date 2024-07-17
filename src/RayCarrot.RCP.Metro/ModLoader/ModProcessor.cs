@@ -183,7 +183,7 @@ public class ModProcessor
 
     #region Public Methods
 
-    public async Task<bool> ApplyAsync(ModLibrary library, Action<Progress>? progressCallback = null)
+    public async Task<ApplyModsResult> ApplyAsync(ModLibrary library, Action<Progress>? progressCallback = null)
     {
         // Reset fields
         _archiveDataManagers.Clear();
@@ -248,6 +248,7 @@ public class ModProcessor
             : x => progressCallback.Invoke(currentProgress.Add(x, length));
 
         bool success = true;
+        string? errorMessage = null;
 
         // Modify every location
         foreach (FileLocationModifications locationModifications in GetLocationModifications())
@@ -262,6 +263,11 @@ public class ModProcessor
             {
                 Logger.Error(ex, "Applying file modification for location {0}", locationModifications.Location);
                 success = false;
+
+                if (errorMessage == null)
+                    errorMessage = ex.Message;
+                else
+                    errorMessage += $"{Environment.NewLine}{ex.Message}";
             }
 
             currentProgress += filesCount;
@@ -282,7 +288,7 @@ public class ModProcessor
         // Complete!
         progressCallback?.Invoke(currentProgress.Completed());
 
-        return success;
+        return new ApplyModsResult(success, errorMessage);
     }
 
     #endregion
