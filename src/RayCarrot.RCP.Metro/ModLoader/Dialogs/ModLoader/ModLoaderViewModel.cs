@@ -7,6 +7,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Resource;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -325,6 +326,62 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
+    private long GetLargestArchiveSize()
+    {
+        HashSet<string> checkedArchives = new();
+        long largestSize = 0;
+
+        // Check history first since these will be reverted
+        LibraryFileHistory? history = Library.ReadHistory();
+        if (history != null)
+        {
+            foreach (ModFilePath addedFile in history.AddedFiles)
+                checkArchiveSize(addedFile);
+
+            foreach (ModFilePath removedFile in history.RemovedFiles)
+                checkArchiveSize(removedFile);
+
+            foreach (ModFilePath replacedFile in history.ReplacedFiles)
+                checkArchiveSize(replacedFile);
+        }
+
+        // Then check enabled mods
+        foreach (ModViewModel modViewModel in Mods.Where(x => x.IsEnabled))
+        {
+            Mod mod = modViewModel.Mod;
+
+            foreach (IModFileResource addedFile in mod.GetAddedFiles())
+                checkArchiveSize(addedFile.Path);
+
+            foreach (ModFilePath removedFile in mod.GetRemovedFiles())
+                checkArchiveSize(removedFile);
+
+            foreach (IFilePatch patchedFile in mod.GetPatchedFiles())
+                checkArchiveSize(patchedFile.Path);
+        }
+
+        return largestSize;
+
+        void checkArchiveSize(ModFilePath filePath)
+        {
+            if (!filePath.HasLocation) 
+                return;
+            
+            if (!checkedArchives.Add(filePath.Location))
+                return;
+
+            FileSystemPath archiveFilePath = GameInstallation.InstallLocation.Directory + filePath.Location;
+
+            if (archiveFilePath.FileExists)
+            {
+                long fileSize = archiveFilePath.GetSize();
+
+                if (fileSize > largestSize)
+                    largestSize = fileSize;
+            }
+        }
+    }
+
     #endregion
 
     #region Public Static Methods
@@ -582,6 +639,33 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Logger.Warn(ex, "Checking if game is running");
                 }
             }
+        }
+
+        // Verify the user has enough space left
+        try
+        {
+            // Get the largest size for an archive to repack
+            long minBytes = GetLargestArchiveSize();
+
+            // Add at least 1 GB for safety
+            minBytes += 0x40000000;
+
+            // Get the drive which has the user's temp folder
+            DriveInfo driveInfo = new(new DirectoryInfo(Path.GetTempPath()).Root.Name);
+
+            Logger.Info("Mod loader requires {0} bytes to apply mods", minBytes);
+
+            // Check the available space
+            if (driveInfo.AvailableFreeSpace < minBytes)
+            {
+                // TODO-LOC
+                await Services.MessageUI.DisplayMessageAsync($"There is not enough space on the system to apply the mods. At least {BinaryHelpers.BytesToString(minBytes)} of free space is required.", "Insufficient space left", MessageType.Error);
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Checking available space on drive");
         }
 
         using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))

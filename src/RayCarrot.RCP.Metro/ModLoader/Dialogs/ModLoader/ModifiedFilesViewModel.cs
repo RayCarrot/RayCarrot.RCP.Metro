@@ -80,7 +80,7 @@ public class ModifiedFilesViewModel : BaseViewModel
     private void AddFile(ModFilePath filePath, Mod mod, ModifiedFileItemViewModel.FileModification modification, bool isOverridable)
     {
         ModifiedFileItemViewModel currentItem = ModifiedFilesRoot;
-        string[] pathParths = filePath.FilePath.Split(_pathSeparators);
+        string[] pathParts = filePath.FilePath.Split(_pathSeparators);
 
         if (ShowModifiedFilesAsTree)
         {
@@ -89,10 +89,10 @@ public class ModifiedFilesViewModel : BaseViewModel
                 currentItem = AddFolder(currentItem, true, filePath.Location.Split(_pathSeparators));
 
             // Add the folders
-            currentItem = AddFolder(currentItem, false, pathParths, pathParths.Length - 1);
+            currentItem = AddFolder(currentItem, false, pathParts, pathParts.Length - 1);
         }
 
-        string fileName = ShowModifiedFilesAsTree ? pathParths.Last() : filePath.ToString();
+        string fileName = ShowModifiedFilesAsTree ? pathParts.Last() : filePath.ToString();
 
         // See if one already exists
         if (isOverridable && currentItem.GetOverridableItem(fileName) is { } existingFileItem)
