@@ -31,6 +31,8 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
     {
         base.RegisterComponents(builder);
 
+        builder.Register<OnGameAddedComponent, SetupRayman2DemoAppDataOnGameAddedComponent>();
+        builder.Register<OnGameAddedComponent, DefaultToRunAsAdminOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.Rayman2_Demo2_PC));
         builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
         {

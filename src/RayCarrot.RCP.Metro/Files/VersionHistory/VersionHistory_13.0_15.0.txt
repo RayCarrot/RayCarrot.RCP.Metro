@@ -12,6 +12,7 @@
     • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
     • App data .ini files are now read and written to using the native Win32 API
     • Various other minor improvements and changes
+• Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin
 • The available space on the system is now checked before applying mods to make sure it doesn't fail due to running out of space
 • Improved error messages when applying mods
 • Improved support for Xbox 360 UbiArt textures, correctly converting uncompressed and color remapped textures

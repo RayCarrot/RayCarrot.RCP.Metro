@@ -12,6 +12,8 @@ public class Rayman2IniAppData : IniAppData
 
     public string Language { get; set; } = String.Empty;
 
+    public string ParticuleRate { get; set; } = String.Empty;
+
     public override void Load(FileSystemPath filePath)
     {
         GLI_DllFile = GetString(filePath, SectionName, "GLI_DllFile");
@@ -21,6 +23,8 @@ public class Rayman2IniAppData : IniAppData
         GLI_Mode = GetString(filePath, SectionName, "GLI_Mode");
 
         Language = GetString(filePath, SectionName, "Language");
+
+        ParticuleRate = GetString(filePath, SectionName, "ParticuleRate");
     }
 
     public override void Save(FileSystemPath filePath)
@@ -32,5 +36,7 @@ public class Rayman2IniAppData : IniAppData
         WriteString(filePath, SectionName, "GLI_Mode", GLI_Mode);
 
         WriteString(filePath, SectionName, "Language", Language);
+
+        WriteString(filePath, SectionName, "ParticuleRate", ParticuleRate);
     }
 }
