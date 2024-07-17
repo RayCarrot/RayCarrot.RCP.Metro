@@ -1,4 +1,6 @@
-﻿using RayCarrot.RCP.Metro.Games.Clients;
+﻿using System.IO;
+using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
@@ -12,7 +14,13 @@ public class PCSX2EmulatedSaveFilesComponent : EmulatedSaveFilesComponent
     public static IEnumerable<EmulatedSaveFile> GetEmulatedSaveFiles(GameInstallation gameInstallation)
     {
         GameClientInstallation gameClientInstallation = Services.GameClients.GetRequiredAttachedGameClient(gameInstallation);
-        
+
+        if (gameInstallation.GameDescriptor.Structure.GetLayout(gameInstallation) is not Ps2DiscProgramLayout layout)
+        {
+            Logger.Warn("No matching layout found for game");
+            yield break;
+        }
+
         // Check if the installation is portable
         FileSystemPath portableCheckFilePath = gameClientInstallation.InstallLocation.Directory + "portable.ini";
         bool isPortable = portableCheckFilePath.FileExists;
@@ -22,13 +30,22 @@ public class PCSX2EmulatedSaveFilesComponent : EmulatedSaveFilesComponent
             ? gameClientInstallation.InstallLocation.Directory
             : Environment.SpecialFolder.MyDocuments.GetFolderPath() + "PCSX2";
 
-        FileSystemPath configFilePath = emuDir + "inis" + "PCSX2.ini";
+        FileSystemPath mainConfigFilePath = emuDir + "inis" + "PCSX2.ini";
 
-        if (!configFilePath.FileExists)
+        if (!mainConfigFilePath.FileExists)
         {
             Logger.Warn("PCSX2 settings file not found");
             yield break;
         }
+
+        // Games can override settings, so attempt to find a game-specific config
+        FileSystemPath gameSettingsDir = emuDir + "gamesettings";
+        FileSystemPath gameConfigFilePath = FileSystemPath.EmptyPath;
+        if (gameSettingsDir.DirectoryExists)
+            // Search for first matching file since we don't have the hash (the file name is set as {productcode}_hash.ini)
+            gameConfigFilePath = Directory.EnumerateFiles(gameSettingsDir,
+                $"{layout.ProductCode}_*.ini", SearchOption.TopDirectoryOnly).
+                FirstOrDefault();
 
         FileSystemPath saveDir;
         string memcard1;
@@ -36,17 +53,17 @@ public class PCSX2EmulatedSaveFilesComponent : EmulatedSaveFilesComponent
 
         try
         {
-            saveDir = emuDir + IniNative.GetString(configFilePath, "Folders", "MemoryCards", String.Empty);
+            saveDir = emuDir + readIniString("Folders", "MemoryCards");
 
-            if (IniNative.GetString(configFilePath, "MemoryCards", "Slot1_Enable", String.Empty).
+            if (readIniString("MemoryCards", "Slot1_Enable").
                 Equals("true", StringComparison.InvariantCultureIgnoreCase))
-                memcard1 = IniNative.GetString(configFilePath, "MemoryCards", "Slot1_Filename", String.Empty);
+                memcard1 = readIniString("MemoryCards", "Slot1_Filename");
             else
                 memcard1 = String.Empty;
 
-            if (IniNative.GetString(configFilePath, "MemoryCards", "Slot2_Enable", String.Empty).
+            if (readIniString("MemoryCards", "Slot2_Enable").
                 Equals("true", StringComparison.InvariantCultureIgnoreCase))
-                memcard2 = IniNative.GetString(configFilePath, "MemoryCards", "Slot2_Filename", String.Empty);
+                memcard2 = readIniString("MemoryCards", "Slot2_Filename");
             else
                 memcard2 = String.Empty;
         }
@@ -60,5 +77,20 @@ public class PCSX2EmulatedSaveFilesComponent : EmulatedSaveFilesComponent
             yield return new EmulatedPs2SaveFile(saveDir + memcard1);
         if (!memcard2.IsNullOrWhiteSpace())
             yield return new EmulatedPs2SaveFile(saveDir + memcard2);
+
+        string readIniString(string appName, string keyName)
+        {
+            // First check the game config if it exists
+            if (gameConfigFilePath.FileExists)
+            {
+                string value = IniNative.GetString(gameConfigFilePath, appName, keyName, String.Empty);
+
+                if (value != String.Empty)
+                    return value;
+            }
+
+            // Fall-back to the main config
+            return IniNative.GetString(mainConfigFilePath, appName, keyName, String.Empty);
+        }
     }
 }

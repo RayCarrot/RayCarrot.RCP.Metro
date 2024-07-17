@@ -32,7 +32,7 @@ public class EmulatedPs2SaveFile : EmulatedSaveFile
         List<EmulatedSave> saves = new();
         
         // Get every directory starting with the country and product codes
-        string namePrefix = $"{layout.MemoryCardCountryCode}{layout.MemoryCardProductCode}";
+        string namePrefix = $"{layout.CountryCode}{layout.ProductCode}";
 
         foreach (DirectoryEntry dir in memoryCard.RootDirectory.SubDirectories)
         {
@@ -53,7 +53,7 @@ public class EmulatedPs2SaveFile : EmulatedSaveFile
         List<EmulatedSave> saves = new();
 
         // Enumerate every directory starting with the country and product codes
-        foreach (FileSystemPath saveDir in Directory.EnumerateDirectories(FilePath, $"{layout.MemoryCardCountryCode}{layout.MemoryCardProductCode}*", SearchOption.TopDirectoryOnly))
+        foreach (FileSystemPath saveDir in Directory.EnumerateDirectories(FilePath, $"{layout.CountryCode}{layout.ProductCode}*", SearchOption.TopDirectoryOnly))
         {
             string name = saveDir.Name;
             saves.Add(new EmulatedPs2FolderSave(this, context, name, name));

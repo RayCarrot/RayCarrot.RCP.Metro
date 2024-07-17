@@ -4,27 +4,27 @@ public class Ps2DiscProgramLayout : DiscProgramLayout
 {
     public Ps2DiscProgramLayout(
         string layoutId,
-        string memoryCardCountryCode,
-        string memoryCardProductCode,
+        string countryCode,
+        string productCode,
         ProgramFileSystem fileSystem)
         : base(layoutId, fileSystem)
     {
-        MemoryCardCountryCode = memoryCardCountryCode;
-        MemoryCardProductCode = memoryCardProductCode;
+        CountryCode = countryCode;
+        ProductCode = productCode;
     }
 
     public Ps2DiscProgramLayout(
         string layoutId,
         int tracksCount,
-        string memoryCardCountryCode,
-        string memoryCardProductCode,
+        string countryCode,
+        string productCode,
         ProgramFileSystem fileSystem)
         : base(layoutId, tracksCount, fileSystem)
     {
-        MemoryCardCountryCode = memoryCardCountryCode;
-        MemoryCardProductCode = memoryCardProductCode;
+        CountryCode = countryCode;
+        ProductCode = productCode;
     }
 
-    public string MemoryCardCountryCode { get; }
-    public string MemoryCardProductCode { get; }
+    public string CountryCode { get; }
+    public string ProductCode { get; }
 }
