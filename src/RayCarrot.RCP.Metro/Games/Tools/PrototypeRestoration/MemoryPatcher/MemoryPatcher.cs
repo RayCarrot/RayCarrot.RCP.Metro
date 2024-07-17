@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
@@ -565,7 +564,7 @@ public class MemoryPatcher
             "Jade_enr.exe",
         };
 
-        Process process = processNames.
+        Process? process = processNames.
             Select(Process.GetProcessesByName).
             Where(processes => processes.Any()).
             Select(processes => processes.First()).

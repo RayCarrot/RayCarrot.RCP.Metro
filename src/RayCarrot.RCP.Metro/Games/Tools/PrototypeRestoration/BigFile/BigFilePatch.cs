@@ -1,5 +1,4 @@
-﻿#nullable disable
-using BinarySerializer;
+﻿using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 
@@ -21,7 +20,7 @@ public class BigFilePatch
     public uint FileKey { get; }
     public uint FileOffset { get; }
     public byte[][] PatchBytes { get; }
-    public uint[] Sizes { get; init; }
+    public uint[]? Sizes { get; init; }
     public WriteMode Mode { get; init; } = WriteMode.Overwrite;
 
     #endregion

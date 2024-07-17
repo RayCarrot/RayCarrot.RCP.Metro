@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace RayCarrot.RCP.Metro;
 

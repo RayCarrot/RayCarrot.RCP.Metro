@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -44,7 +43,7 @@ public partial class GameOptionsDialog : WindowContentControl, IInitializable, I
     /// <summary>
     /// The window view model
     /// </summary>
-    public GameOptionsDialogViewModel ViewModel { get; set; }
+    public GameOptionsDialogViewModel ViewModel { get; }
 
     #endregion
 
@@ -112,7 +111,7 @@ public partial class GameOptionsDialog : WindowContentControl, IInitializable, I
     public override void Dispose()
     {
         base.Dispose();
-        ViewModel?.Dispose();
+        ViewModel.Dispose();
     }
 
     #endregion
