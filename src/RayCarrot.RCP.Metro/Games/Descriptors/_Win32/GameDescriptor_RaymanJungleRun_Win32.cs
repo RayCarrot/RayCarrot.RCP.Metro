@@ -73,6 +73,8 @@ public sealed class GameDescriptor_RaymanJungleRun_Win32 : Win32GameDescriptor
         new UninstallProgramFinderQuery("Rayman Jungle Run"),
 
         new Win32ShortcutFinderQuery("Rayman Jungle Run"),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

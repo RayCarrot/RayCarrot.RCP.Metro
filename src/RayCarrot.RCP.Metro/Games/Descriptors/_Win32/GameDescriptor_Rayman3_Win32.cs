@@ -108,8 +108,11 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         new UninstallProgramFinderQuery("Rayman: 3"),
         new UninstallProgramFinderQuery("Rayman 3 - Hoodlum Havoc"),
         new UninstallProgramFinderQuery("Rayman: 3 - Hoodlum Havoc"),
+        new UninstallProgramFinderQuery("Rayman 3 Hoodlum Havoc"), // Ubisoft Connect
 
         new Win32ShortcutFinderQuery("Rayman 3"),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

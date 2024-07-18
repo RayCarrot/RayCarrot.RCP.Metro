@@ -100,6 +100,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         new Win32ShortcutFinderQuery("Rayman Raving Rabbids"),
 
         new SteamFinderQuery(SteamId),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

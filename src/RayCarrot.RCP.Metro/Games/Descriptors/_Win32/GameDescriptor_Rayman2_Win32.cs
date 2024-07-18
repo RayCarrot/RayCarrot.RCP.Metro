@@ -139,10 +139,13 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         new UninstallProgramFinderQuery("Rayman 2 - The Great Escape"),
         new UninstallProgramFinderQuery("Rayman: 2 - The Great Escape"),
         new UninstallProgramFinderQuery("GOG.com Rayman 2"),
+        new UninstallProgramFinderQuery("Rayman 2 The Great Escape"), // Ubisoft Connect
 
         new Win32ShortcutFinderQuery("Rayman 2"),
 
         new SteamFinderQuery(SteamId),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

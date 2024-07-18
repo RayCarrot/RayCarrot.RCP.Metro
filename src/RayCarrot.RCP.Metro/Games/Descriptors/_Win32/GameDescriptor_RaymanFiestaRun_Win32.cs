@@ -73,6 +73,8 @@ public sealed class GameDescriptor_RaymanFiestaRun_Win32 : Win32GameDescriptor
         new UninstallProgramFinderQuery("Rayman Fiesta Run"),
 
         new Win32ShortcutFinderQuery("Rayman Fiesta Run"),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

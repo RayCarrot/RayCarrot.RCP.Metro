@@ -92,6 +92,8 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         new Win32ShortcutFinderQuery("Rayman Origins"),
 
         new SteamFinderQuery(SteamId),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion
