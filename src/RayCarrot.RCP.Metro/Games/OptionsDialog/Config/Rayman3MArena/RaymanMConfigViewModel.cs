@@ -61,6 +61,7 @@ public class RaymanMConfigViewModel : BaseRayman3MArenaConfigViewModel<RaymanMIn
 
     public override bool HasControllerConfig => false;
     public override bool HasNetworkConfig => false;
+    public override bool Has16BitTextures => true;
 
     #endregion
 
@@ -72,13 +73,11 @@ public class RaymanMConfigViewModel : BaseRayman3MArenaConfigViewModel<RaymanMIn
         {
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(displayMode.Width, displayMode.Height);
             FullscreenMode = displayMode.IsFullscreen;
-            IsTextures32Bit = displayMode.BitsPerPixel != 16;
         }
         else
         {
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(800, 600);
             FullscreenMode = true;
-            IsTextures32Bit = true;
         }
 
         TriLinear = AppDataManager.AppData.TriLinear != 0;
@@ -88,13 +87,14 @@ public class RaymanMConfigViewModel : BaseRayman3MArenaConfigViewModel<RaymanMIn
         AutoVideoQuality = AppDataManager.AppData.Video_AutoAdjustQuality != 0;
         IsVideo32Bpp = AppDataManager.AppData.Video_BPP != 16;
         CurrentLanguage = Enum.TryParse(AppDataManager.AppData.Language, out RaymanMLanguage lang) ? lang : RaymanMLanguage.English;
+        IsTextures32Bit = AppDataManager.AppData.TexturesFile == "Tex32.cnt";
     }
 
     protected override void SaveAppData()
     {
         AppDataManager.AppData.GLI_Mode = new CpaDisplayMode()
         {
-            BitsPerPixel = IsTextures32Bit ? 32 : 16,
+            BitsPerPixel = 32, // Depends on the graphics mode, but we assume it's always going to be 32
             IsFullscreen = FullscreenMode,
             Width = GraphicsMode.Width,
             Height = GraphicsMode.Height,

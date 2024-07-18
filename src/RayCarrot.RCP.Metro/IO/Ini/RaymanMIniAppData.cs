@@ -24,7 +24,7 @@ public class RaymanMIniAppData : IniAppData
         string sectionName = IsDemo ? DemoSectionName : SectionName;
 
         GLI_Mode = GetString(filePath, sectionName, "GLI_Mode", "1 - 640 x 480 x 16");
-        TexturesFile = GetString(filePath, SectionName, "TexturesFile");
+        TexturesFile = GetString(filePath, SectionName, "TexturesFile", "Tex16.cnt");
         TexturesCompressed = GetInt(filePath, sectionName, "TexturesCompressed");
         TnL = GetInt(filePath, sectionName, "TnL");
         TriLinear = GetInt(filePath, sectionName, "TriLinear");
@@ -41,6 +41,7 @@ public class RaymanMIniAppData : IniAppData
         string sectionName = IsDemo ? DemoSectionName : SectionName;
 
         WriteString(filePath, sectionName, "GLI_Mode", GLI_Mode);
+        WriteString(filePath, SectionName, "TexturesFile", TexturesFile);
         WriteInt(filePath, sectionName, "TexturesCompressed", TexturesCompressed);
         WriteInt(filePath, sectionName, "TnL", TnL);
         WriteInt(filePath, sectionName, "TriLinear", TriLinear);

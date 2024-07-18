@@ -46,7 +46,8 @@
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Textures}" />
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding Path=Has16BitTextures, Converter={rcp:BooleanToVisibilityConverter}}">
                 <RadioButton Content="{Resx Config_Textures16}"
                              Margin="0 0 10 0"
                              IsChecked="{Binding Path=IsTextures32Bit, Converter={rcp:InvertedBooleanConverter}}" />

@@ -436,11 +436,10 @@ public class Rayman2ConfigViewModel : ConfigPageViewModel
 
         try
         {
-            CpaDisplayMode? gliMode = CpaDisplayMode.TryParse(AppDataManager.AppData.GLI_Mode, out CpaDisplayMode displayMode) ? displayMode : null;
             AppDataManager.AppData.GLI_Mode = new CpaDisplayMode()
             {
-                BitsPerPixel = gliMode?.BitsPerPixel ?? 16,
-                IsFullscreen = gliMode?.IsFullscreen ?? false,
+                BitsPerPixel = 16,
+                IsFullscreen = true,
                 Width = GraphicsMode.Width,
                 Height = GraphicsMode.Height,
             }.ToString();

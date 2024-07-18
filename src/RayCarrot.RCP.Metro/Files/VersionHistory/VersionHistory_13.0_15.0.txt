@@ -11,6 +11,7 @@
     • Modifying the video quality for Rayman 3 now saves it to the Rayman Arena app data section due to the game incorrectly reading it from there
     • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
     • App data .ini files are now read and written to using the native Win32 API
+    • Removed the Rayman 3 config option to use 16-bit textures due to it being unused by the game
     • Various other minor improvements and changes
 • Updated the game finder to be able to find games installed through Ubisoft Connect
 • Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin

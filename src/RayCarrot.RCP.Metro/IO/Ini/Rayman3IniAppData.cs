@@ -5,7 +5,6 @@ public class Rayman3IniAppData : IniAppData
     public const string SectionName = "Rayman3";
 
     public string GLI_Mode { get; set; } = String.Empty;
-    public string TexturesFile { get; set; } = String.Empty;
     public int TexturesCompressed { get; set; }
     public int TnL { get; set; }
     public int TriLinear { get; set; }
@@ -22,7 +21,6 @@ public class Rayman3IniAppData : IniAppData
     public override void Load(FileSystemPath filePath)
     {
         GLI_Mode = GetString(filePath, SectionName, "GLI_Mode", "1 - 640 x 480 x 16");
-        TexturesFile = GetString(filePath, SectionName, "TexturesFile");
         TexturesCompressed = GetInt(filePath, SectionName, "TexturesCompressed");
         TnL = GetInt(filePath, SectionName, "TnL");
         TriLinear = GetInt(filePath, SectionName, "TriLinear");

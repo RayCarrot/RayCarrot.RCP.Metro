@@ -23,6 +23,7 @@ public class Rayman3ConfigViewModel : BaseRayman3MArenaConfigViewModel<Rayman3In
 
     public override bool HasControllerConfig => true;
     public override bool HasNetworkConfig => false;
+    public override bool Has16BitTextures => false; // It has them, but the game is hard-coded to always load the 32-bit ones for some reason
 
     #endregion
 
@@ -34,13 +35,11 @@ public class Rayman3ConfigViewModel : BaseRayman3MArenaConfigViewModel<Rayman3In
         {
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(displayMode.Width, displayMode.Height);
             FullscreenMode = displayMode.IsFullscreen;
-            IsTextures32Bit = displayMode.BitsPerPixel != 16;
         }
         else
         {
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(800, 600);
             FullscreenMode = true;
-            IsTextures32Bit = true;
         }
 
         TriLinear = AppDataManager.AppData.TriLinear != 0;
@@ -58,7 +57,7 @@ public class Rayman3ConfigViewModel : BaseRayman3MArenaConfigViewModel<Rayman3In
     {
         AppDataManager.AppData.GLI_Mode = new CpaDisplayMode()
         {
-            BitsPerPixel = IsTextures32Bit ? 32 : 16,
+            BitsPerPixel = 32, // Depends on the graphics mode, but we assume it's always going to be 32
             IsFullscreen = FullscreenMode,
             Width = GraphicsMode.Width,
             Height = GraphicsMode.Height,
@@ -73,7 +72,6 @@ public class Rayman3ConfigViewModel : BaseRayman3MArenaConfigViewModel<Rayman3In
         AppDataManager.AppData.Language = CurrentLanguage.ToString();
         AppDataManager.AppData.Camera_VerticalAxis = VerticalAxis;
         AppDataManager.AppData.Camera_HorizontalAxis = HorizontalAxis;
-        AppDataManager.AppData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
     }
 
     #endregion

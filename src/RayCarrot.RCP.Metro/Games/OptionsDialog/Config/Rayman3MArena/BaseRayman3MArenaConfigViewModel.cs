@@ -50,6 +50,7 @@ public abstract class BaseRayman3MArenaConfigViewModel<TAppData, TLanguage> : Co
 
     public abstract bool HasControllerConfig { get; }
     public abstract bool HasNetworkConfig { get; }
+    public abstract bool Has16BitTextures { get; }
 
     #endregion
 

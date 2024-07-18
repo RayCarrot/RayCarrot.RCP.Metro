@@ -22,7 +22,7 @@ public class RaymanArenaIniAppData : IniAppData
     public override void Load(FileSystemPath filePath)
     {
         GLI_Mode = GetString(filePath, SectionName, "GLI_Mode", "1 - 640 x 480 x 16");
-        TexturesFile = GetString(filePath, SectionName, "TexturesFile");
+        TexturesFile = GetString(filePath, SectionName, "TexturesFile", "Tex16.cnt");
         TexturesCompressed = GetInt(filePath, SectionName, "TexturesCompressed");
         TnL = GetInt(filePath, SectionName, "TnL");
         TriLinear = GetInt(filePath, SectionName, "TriLinear");
@@ -40,6 +40,7 @@ public class RaymanArenaIniAppData : IniAppData
     public override void Save(FileSystemPath filePath)
     {
         WriteString(filePath, SectionName, "GLI_Mode", GLI_Mode);
+        WriteString(filePath, SectionName, "TexturesFile", TexturesFile);
         WriteInt(filePath, SectionName, "TexturesCompressed", TexturesCompressed);
         WriteInt(filePath, SectionName, "TnL", TnL);
         WriteInt(filePath, SectionName, "TriLinear", TriLinear);
