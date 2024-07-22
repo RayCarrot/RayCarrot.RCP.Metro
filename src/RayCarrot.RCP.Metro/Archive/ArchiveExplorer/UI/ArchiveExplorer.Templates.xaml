@@ -29,6 +29,7 @@
                     <!-- Thumbnail image -->
 
                     <Image Source="{Binding Path=ThumbnailSource}"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"
                            HorizontalAlignment="Center"
                            Width="64"
                            Height="64" />

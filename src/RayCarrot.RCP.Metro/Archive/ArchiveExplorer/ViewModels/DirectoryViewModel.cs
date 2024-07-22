@@ -199,7 +199,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     IArchiveDataManager manager = Archive.Manager;
 
                     // Save the selected format for each collection
-                    Dictionary<IFileType, FileExtension?> selectedFormats = new();
+                    Dictionary<FileType, FileExtension?> selectedFormats = new();
 
                     try
                     {
@@ -240,7 +240,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 fileStream.SeekToBeginning();
 
                                 // Check if the format has not been selected
-                                if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not FileType_Default)
+                                if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not DefaultFileType)
                                 {
                                     // Get the available extensions
                                     string[] ext = new string[]
@@ -264,7 +264,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 }
 
                                 // Get the selected format
-                                FileExtension? format = forceNativeFormat || file.FileType is FileType_Default 
+                                FileExtension? format = forceNativeFormat || file.FileType is DefaultFileType 
                                     ? null 
                                     : selectedFormats[file.FileType];
 

@@ -153,7 +153,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// <summary>
     /// The file type (available after having been initialized once)
     /// </summary>
-    public IFileType? FileType { get; set; }
+    public FileType? FileType { get; set; }
 
     /// <summary>
     /// The file extension
@@ -204,7 +204,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 throw new Exception("Can not load a thumbnail when the file type has not been set");
 
             // Load the thumbnail
-            thumb = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
+            thumb = FileType.LoadThumbnail(fileStream, FileExtension, Manager);
 
             // Cache the thumbnail
             Archive.ThumbnailCache.AddToCache(this, thumb);
@@ -234,7 +234,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     public ArchiveFileStream GetDecodedFileStream() => FileData.GetDecodedFileData(Archive.ArchiveFileGenerator);
 
     [MemberNotNull(nameof(FileType))]
-    public void SetFileType(IFileType type) => FileType = type;
+    public void SetFileType(FileType type) => FileType = type;
 
     /// <summary>
     /// Initializes the file. This sets the <see cref="FileType"/> and optionally loads the <see cref="ThumbnailSource"/> and <see cref="FileDisplayInfo"/>.
@@ -321,7 +321,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     [MemberNotNull(nameof(FileType))]
     public void InitializeAsError()
     {
-        SetFileType(new FileType_Error());
+        SetFileType(new ErrorFileType());
         ResetMenuActions();
         IconKind = FileType!.Icon;
         ThumbnailSource = null;

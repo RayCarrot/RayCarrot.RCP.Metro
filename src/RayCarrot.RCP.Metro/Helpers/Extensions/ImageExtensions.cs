@@ -18,7 +18,7 @@ public static class ImageExtensions
     /// <param name="height">The height to resize to</param>
     /// <param name="disposeImage">Indicates if the image should be disposed</param>
     /// <returns>The resized image</returns>
-    public static Bitmap ResizeImage(this Image image, int width, int height, bool disposeImage = true)
+    public static Bitmap ResizeImage(this System.Drawing.Image image, int width, int height, bool disposeImage = true)
     {
         try
         {

@@ -12,25 +12,19 @@ public class FileItem : IDisposable
 {
     static FileItem()
     {
-        // IDEA: Move this somewhere else?
         // Set the supported file types
-        FileTypes = new IFileType[]
+        FileTypes = new FileType[]
         {
-            new FileType_GF(),
-            new FileType_WAV(),
-            new FileType_CookedWAV(),
-            new FileType_RAKI(),
-            new FileType_Image(),
-            new FileType_DDSUbiArtTex(),
-            new FileType_GXTUbiArtTex(),
-            new FileType_GTXUbiArtTex(),
-            new FileType_PVRUbiArtTex(),
-            new FileType_GNFUbiArtTex(),
-            new FileType_Xbox360UbiArtTex(),
+            new CpaTextureFileType(),
+            new WaveSoundFileType(),
+            new CookedUbiArtSoundFileType(),
+            new UbiArtRakiFileType(),
+            new ImageFileType(),
+            new CookedUbiArtTextureFileType(),
         };
 
         // Set default file type
-        DefaultFileType = new FileType_Default();
+        DefaultFileType = new DefaultFileType();
     }
 
     public FileItem(IArchiveDataManager manager, string fileName, string directory, object archiveEntry)
@@ -122,13 +116,13 @@ public class FileItem : IDisposable
         PendingImport = TempFileStream.Create();
     }
 
-    public IFileType GetFileType(ArchiveFileStream stream)
+    public FileType GetFileType(ArchiveFileStream stream)
     {
         // Get types supported by the current manager
-        IFileType[] types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
+        FileType[] types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
 
         // First attempt to find matching file type based off of the file extension to avoid having to read the file
-        IFileType? match = types.FirstOrDefault(x => x.IsOfType(FileExtension));
+        FileType? match = types.FirstOrDefault(x => x.IsOfType(FileExtension, Manager));
 
         // If no match, check the data
         if (match == null)
@@ -141,8 +135,8 @@ public class FileItem : IDisposable
         return match ?? DefaultFileType;
     }
 
-    private static IFileType[] FileTypes { get; }
-    private static IFileType DefaultFileType { get; }
+    private static FileType[] FileTypes { get; }
+    private static FileType DefaultFileType { get; }
 
     public void Dispose()
     {

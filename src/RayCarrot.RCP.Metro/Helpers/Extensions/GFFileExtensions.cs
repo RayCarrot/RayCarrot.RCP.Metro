@@ -4,100 +4,47 @@ using BinarySerializer.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO: Don't use RawBitmapData - use BitmapSource and BitmapImage instead
+// TODO-UPDATE: Replace this with a new ImageFormat class and rewrite to be more optimized
 public static class GFFileExtensions
 {
     /// <summary>
     /// Converts the .gf pixel data to raw bitmap data of a specified size
     /// </summary>
     /// <param name="gf">The GF file data</param>
-    /// <param name="width">The image width</param>
-    /// <param name="height">The image height</param>
-    /// <param name="offset">The offset in the pixel array</param>
     /// <param name="flipY">Indicates if the y-axis should be flipped</param>
     /// <returns>The raw image data</returns>
-    public static RawBitmapData GetRawBitmapData(this GF gf, int width, int height, int offset = 0, bool flipY = true)
+    public static RawBitmapData GetRawBitmapData(this GF gf, bool flipY = true)
     {
-        // Check if the size is scaled
-        bool isScaled = gf.Width != width || gf.Height != height;
-
-        // Get the scale factors
-        double widthScale = gf.Width / (double)width;
-        double heightScale = gf.Height / (double)height;
-
         // Get the format
         GF_Format format = gf.PixelFormat;
-
-        // Get the pixel format
         PixelFormat pixelFormat = format.SupportsTransparency() ? PixelFormat.Format32bppArgb : PixelFormat.Format24bppRgb;
-
-        // Get the number of bitmap channels
-        int bmpChannels = Image.GetPixelFormatSize(pixelFormat) / 8;
+        int bmpChannels = System.Drawing.Image.GetPixelFormatSize(pixelFormat) / 8;
+        int width = gf.Width;
+        int height = gf.Height;
 
         // Create the pixel array
         byte[] rawPixelData = new byte[width * height * bmpChannels];
 
-        // TODO: Rewrite all of this to be more optimized. Do not perform so many math operations inside the loop. Do not call GetBGRAPixel each time.
         // Enumerate each pixel
         for (uint y = 0; y < height; y++)
-        for (uint x = 0; x < width; x++)
         {
-            // Get the offsets for the pixel colors
-            var pixelOffset = isScaled
-                ? (long)((gf.Width * Math.Floor((y * heightScale)) + Math.Floor((x * widthScale))) * gf.Channels + offset)
-                : (width * y + x) * gf.Channels + offset;
-
-            long rawOffset = (width * (flipY ? height - y - 1 : y) + x) * bmpChannels;
-
-            // Get the pixels
-            foreach (var b in gf.GetBGRAPixel(format, gf.PixelData, pixelOffset))
+            for (uint x = 0; x < width; x++)
             {
-                rawPixelData[rawOffset] = b;
-                rawOffset++;
+                // Get the offsets for the pixel colors
+                long pixelOffset = (width * y + x) * gf.Channels;
+                long rawOffset = (width * (flipY ? height - y - 1 : y) + x) * bmpChannels;
+
+                // Get the pixels
+                foreach (var b in gf.GetBGRAPixel(format, gf.PixelData, pixelOffset))
+                {
+                    rawPixelData[rawOffset] = b;
+                    rawOffset++;
+                }
             }
         }
 
         // Return the raw bitmap data
         return new RawBitmapData(width, height, rawPixelData, pixelFormat);
-    }
-
-    /// <summary>
-    /// Converts the .gf pixel data to raw bitmap data
-    /// </summary>
-    /// <param name="gf">The GF file data</param>
-    /// <param name="offset">The offset in the pixel array</param>
-    /// <param name="flipY">Indicates if the y-axis should be flipped</param>
-    /// <returns>The raw image data</returns>
-    public static RawBitmapData GetRawBitmapData(this GF gf, int offset = 0, bool flipY = true) => gf.GetRawBitmapData(gf.Width, gf.Height, offset, flipY);
-
-    /// <summary>
-    /// Converts the .gf pixel data to raw bitmap data, including for the mipmaps
-    /// </summary>
-    /// <param name="gf">The GF file data</param>
-    /// <returns>The raw bitmap data for every image, including the mipmaps</returns>
-    public static IEnumerable<RawBitmapData> GetRawBitmapDatas(this GF gf)
-    {
-        int offset = 0;
-
-        // Return the main image
-        yield return gf.GetRawBitmapData(offset);
-
-        // Return mipmaps
-        foreach ((int Width, int Height) mipmap in gf.GetExclusiveMipmapSizes())
-        {
-            // Calculate the size
-            int size = mipmap.Width * mipmap.Height * gf.Channels;
-
-            // Make sure the size is valid
-            if (size <= 0)
-                continue;
-
-            // Return the bitmap
-            yield return gf.GetRawBitmapData(mipmap.Width, mipmap.Height, offset);
-
-            // Get the offset
-            offset += size;
-        }
     }
 
     /// <summary>
@@ -117,7 +64,7 @@ public static class GFFileExtensions
                 throw new Exception($"The bitmap pixel format {bitmapData.PixelFormat} is not supported for importing");
 
             // Get the number of bitmap channels
-            int bmpChannels = Image.GetPixelFormatSize(bitmapData.PixelFormat) / 8;
+            int bmpChannels = System.Drawing.Image.GetPixelFormatSize(bitmapData.PixelFormat) / 8;
 
             // Get the format
             GF_Format format = gf.PixelFormat;
