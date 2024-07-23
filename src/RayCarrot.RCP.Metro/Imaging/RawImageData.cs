@@ -43,6 +43,48 @@ public class RawImageData
         };
     }
 
+    public byte[] Convert(RawImageDataPixelFormat newPixelFormat)
+    {
+        if (PixelFormat == newPixelFormat)
+            return RawData;
+
+        switch (PixelFormat)
+        {
+            case RawImageDataPixelFormat.Bgr24 when newPixelFormat is RawImageDataPixelFormat.Bgra32:
+            {
+                byte[] convertedData = new byte[Metadata.Width * Metadata.Height * 4];
+
+                int originalIndex = 0;
+                int convertedIndex = 0;
+
+                for (int y = 0; y < Metadata.Height; y++)
+                {
+                    for (int x = 0; x < Metadata.Width; x++)
+                    {
+                        convertedData[convertedIndex + 0] = RawData[originalIndex + 0];
+                        convertedData[convertedIndex + 1] = RawData[originalIndex + 1];
+                        convertedData[convertedIndex + 2] = RawData[originalIndex + 2];
+                        convertedData[convertedIndex + 3] = 0xFF;
+
+                        originalIndex += 3;
+                        convertedIndex += 4;
+                    }
+                }
+
+                return convertedData;
+            }
+
+            case RawImageDataPixelFormat.Bgra32 when newPixelFormat is RawImageDataPixelFormat.Bgr24:
+            {
+                // Currently unused so no need to implement
+                throw new NotImplementedException();
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
     public BitmapSource ToBitmapSource()
     {
         int stride = GetStride();

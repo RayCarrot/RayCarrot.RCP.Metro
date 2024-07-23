@@ -85,6 +85,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <!-- TODO: Update to latest version once we migrate to .NET 8 or above -->
+    <PackageReference Include="DirectXTexNet" Version="1.0.1" />
     <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
     <PackageReference Include="Magick.NET-Q8-x64" Version="13.9.1" />
     <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="7.2.6" />
@@ -132,7 +134,9 @@
     <Resource Include="**\*.png" />
     <Resource Include="**\*.gif" />
 
-    <!-- Specify native library as embedded resurce in special costura32 folder so it gets included in the exe -->
+    <!-- Specify native libraries as embedded resurce in special costura32/64 folder so that it gets included in the exe -->
+    <EmbeddedResource Include="costura64\DirectXTexNet.dll" />
+    <EmbeddedResource Include="costura64\DirectXTexNetImpl.dll" />
     <EmbeddedResource Include="costura64\Magick.Native-Q8-x64.dll" />
 
     <!-- Resources -->

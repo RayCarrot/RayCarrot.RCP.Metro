@@ -241,7 +241,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
 
         // Read the header
-        TextureCooked? header = ReadCookedHeader(inputStream, settings, manager);
+        TextureCooked? header = ReadCookedHeader(currentFileStream, settings, manager);
 
         // Get the formats
         ImageFormat inputImageFormat = GetImageFormat(inputFormat);
@@ -251,17 +251,13 @@ public sealed class CookedUbiArtTextureFileType : FileType
         int dataOffset = (int)(header?.RawDataStartOffset ?? 0);
         outputStream.Stream.Position = dataOffset;
 
-        ImageMetadata metadata;
+        ImageMetadata? metadata = null;
 
         // Don't convert if it's the same format
         if (inputImageFormat == outputImageFormat)
         {
             // Copy the image data
             inputStream.Stream.CopyToEx(outputStream.Stream);
-
-            // Get the metadata
-            outputStream.Stream.Position = 0;
-            metadata = outputImageFormat.GetMetadata(outputStream.Stream);
         }
         else
         {
@@ -272,6 +268,10 @@ public sealed class CookedUbiArtTextureFileType : FileType
         // Write the header if there is one
         if (header != null)
         {
+            // Get the metadata if it's null
+            outputStream.Stream.Position = dataOffset;
+            metadata ??= outputImageFormat.GetMetadata(outputStream.Stream);
+
             uint dataSize = (uint)(outputStream.Stream.Length - dataOffset);
 
             header.Width = (ushort)metadata.Width;

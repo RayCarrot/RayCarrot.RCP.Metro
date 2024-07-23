@@ -11,7 +11,7 @@ public class Xbox360D3DTexture : ImageFormat
     public override bool CanDecode => true;
     public override bool CanEncode => false;
 
-    public ImageMetadata GetMetadata(D3DTexture tex)
+    private ImageMetadata GetMetadata(D3DTexture tex)
     {
         return new ImageMetadata(tex.ActualWidth, tex.ActualHeight);
     }

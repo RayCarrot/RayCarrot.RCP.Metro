@@ -10,7 +10,7 @@ public abstract class ImageMagickImageFormat : ImageFormat
 
     public abstract MagickFormat Format { get; }
 
-    public ImageMetadata GetMetadata(MagickImage img)
+    private ImageMetadata GetMetadata(MagickImage img)
     {
         return new ImageMetadata(img.Width, img.Height);
     }
