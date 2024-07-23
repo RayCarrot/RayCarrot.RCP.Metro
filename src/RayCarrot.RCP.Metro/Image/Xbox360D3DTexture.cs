@@ -27,7 +27,7 @@ public class Xbox360D3DTexture : ImageFormat
     {
         // Read the header
         using Context context = new RCPContext(String.Empty);
-        D3DTexture header = context.ReadStreamData<D3DTexture>(inputStream, mode: VirtualFileMode.DoNotClose);
+        D3DTexture header = context.ReadStreamData<D3DTexture>(inputStream, endian: Endian.Big, mode: VirtualFileMode.DoNotClose, maintainPosition: true);
         bool isCompressed = header.DataFormat != D3DTexture.GPUTEXTUREFORMAT.GPUTEXTUREFORMAT_8_8_8_8;
 
         // TODO: Can we determine the length from the header instead?
