@@ -2,7 +2,7 @@
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 
-namespace RayCarrot.RCP.Metro.Image;
+namespace RayCarrot.RCP.Metro.Imaging;
 
 public class Xbox360D3DTexture : ImageFormat
 {

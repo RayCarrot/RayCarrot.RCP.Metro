@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace RayCarrot.RCP.Metro.Image;
+namespace RayCarrot.RCP.Metro.Imaging;
 
 public class RawImageData
 {

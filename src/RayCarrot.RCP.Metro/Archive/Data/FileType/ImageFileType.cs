@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
-using RayCarrot.RCP.Metro.Image;
+using RayCarrot.RCP.Metro.Imaging;
 
 namespace RayCarrot.RCP.Metro.Archive;
 

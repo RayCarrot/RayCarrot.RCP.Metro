@@ -32,7 +32,7 @@ public static class ShellThumbnailExtensions
 
     private static Bitmap CreateAlphaBitmap(Bitmap srcBitmap, PixelFormat targetPixelFormat)
     {
-        if (System.Drawing.Image.GetPixelFormatSize(srcBitmap.PixelFormat) < 32) 
+        if (Image.GetPixelFormatSize(srcBitmap.PixelFormat) < 32) 
             return srcBitmap;
 
         Bitmap result = new Bitmap(srcBitmap.Width, srcBitmap.Height, targetPixelFormat);

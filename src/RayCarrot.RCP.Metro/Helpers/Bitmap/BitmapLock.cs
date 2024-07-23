@@ -35,7 +35,7 @@ public class BitmapLock : IDisposable
         BitmapData = SourceBmp.LockBits(rect, ImageLockMode.ReadWrite, SourceBmp.PixelFormat);
 
         // Create byte array to copy pixel values
-        Pixels = new byte[Width * Height * (System.Drawing.Image.GetPixelFormatSize(PixelFormat) / 8)];
+        Pixels = new byte[Width * Height * (Image.GetPixelFormatSize(PixelFormat) / 8)];
 
         // Get the pointer address
         Iptr = BitmapData.Scan0;
@@ -109,7 +109,7 @@ public class BitmapLock : IDisposable
     public Color GetPixel(int x, int y)
     {
         // Get color components count
-        int cCount = System.Drawing.Image.GetPixelFormatSize(PixelFormat) / 8;
+        int cCount = Image.GetPixelFormatSize(PixelFormat) / 8;
 
         // Get start index of the specified pixel
         int i = ((y * Width) + x) * cCount;
@@ -155,7 +155,7 @@ public class BitmapLock : IDisposable
     public void SetPixel(int x, int y, Color color)
     {
         // Get color components count
-        int cCount = System.Drawing.Image.GetPixelFormatSize(PixelFormat) / 8;
+        int cCount = Image.GetPixelFormatSize(PixelFormat) / 8;
 
         // Get start index of the specified pixel
         int i = ((y * Width) + x) * cCount;

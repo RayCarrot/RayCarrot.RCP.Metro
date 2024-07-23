@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace RayCarrot.RCP.Metro.Image;
+namespace RayCarrot.RCP.Metro.Imaging;
 
 public abstract class ImageFormat
 {

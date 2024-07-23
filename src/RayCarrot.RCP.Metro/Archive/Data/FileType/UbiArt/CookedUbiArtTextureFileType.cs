@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using MahApps.Metro.IconPacks;
-using RayCarrot.RCP.Metro.Image;
+using RayCarrot.RCP.Metro.Imaging;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 

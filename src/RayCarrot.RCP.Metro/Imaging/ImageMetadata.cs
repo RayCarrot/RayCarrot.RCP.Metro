@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro.Image;
+﻿namespace RayCarrot.RCP.Metro.Imaging;
 
 public class ImageMetadata
 {

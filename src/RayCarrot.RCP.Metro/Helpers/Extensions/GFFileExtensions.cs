@@ -18,7 +18,7 @@ public static class GFFileExtensions
         // Get the format
         GF_Format format = gf.PixelFormat;
         PixelFormat pixelFormat = format.SupportsTransparency() ? PixelFormat.Format32bppArgb : PixelFormat.Format24bppRgb;
-        int bmpChannels = System.Drawing.Image.GetPixelFormatSize(pixelFormat) / 8;
+        int bmpChannels = Image.GetPixelFormatSize(pixelFormat) / 8;
         int width = gf.Width;
         int height = gf.Height;
 
@@ -64,7 +64,7 @@ public static class GFFileExtensions
                 throw new Exception($"The bitmap pixel format {bitmapData.PixelFormat} is not supported for importing");
 
             // Get the number of bitmap channels
-            int bmpChannels = System.Drawing.Image.GetPixelFormatSize(bitmapData.PixelFormat) / 8;
+            int bmpChannels = Image.GetPixelFormatSize(bitmapData.PixelFormat) / 8;
 
             // Get the format
             GF_Format format = gf.PixelFormat;

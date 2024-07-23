@@ -1,6 +1,6 @@
 ﻿using ImageMagick;
 
-namespace RayCarrot.RCP.Metro.Image;
+namespace RayCarrot.RCP.Metro.Imaging;
 
 public class JpgImageFormat : ImageMagickImageFormat
 {
