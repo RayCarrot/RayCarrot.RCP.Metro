@@ -19,6 +19,7 @@ public sealed class ImageFileType : FileType
             new PngImageFormat(),
             new JpgImageFormat(),
             new BmpImageFormat(),
+            new TgaImageFormat(),
             new DdsImageFormat(),
             new PcxImageFormat(),
         };
@@ -29,6 +30,12 @@ public sealed class ImageFileType : FileType
 
     #endregion
 
+    #region Private Properties
+
+    private ImageFormat[] SupportedFormats { get; }
+
+    #endregion
+
     #region Public Properties
 
     public override string TypeDisplayName => Resources.Archive_Format_Img;
@@ -36,8 +43,6 @@ public sealed class ImageFileType : FileType
 
     public override FileExtension[] ImportFormats { get; }
     public override FileExtension[] ExportFormats { get; }
-
-    public ImageFormat[] SupportedFormats { get; }
 
     #endregion
 

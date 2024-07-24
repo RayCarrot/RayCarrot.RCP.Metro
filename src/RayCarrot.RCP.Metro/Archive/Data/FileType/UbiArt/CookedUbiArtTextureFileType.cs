@@ -21,12 +21,19 @@ public sealed class CookedUbiArtTextureFileType : FileType
             new PngImageFormat(),
             new JpgImageFormat(),
             new BmpImageFormat(),
+            new TgaImageFormat(),
             new DdsImageFormat(),
         };
 
         ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
         ExportFormats = SupportedFormats.Where(x => x.CanDecode).SelectMany(x => x.FileExtensions).ToArray();
     }
+
+    #endregion
+
+    #region Private Properties
+
+    private ImageFormat[] SupportedFormats { get; }
 
     #endregion
 
@@ -37,8 +44,6 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     public override FileExtension[] ImportFormats { get; }
     public override FileExtension[] ExportFormats { get; }
-
-    public ImageFormat[] SupportedFormats { get; }
 
     #endregion
 
