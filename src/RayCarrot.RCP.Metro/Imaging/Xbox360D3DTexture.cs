@@ -6,6 +6,7 @@ namespace RayCarrot.RCP.Metro.Imaging;
 
 public class Xbox360D3DTexture : ImageFormat
 {
+    public override string Id => "Xbox360_D3DTexture";
     public override string Name => "D3DTexture";
 
     public override bool CanDecode => true;

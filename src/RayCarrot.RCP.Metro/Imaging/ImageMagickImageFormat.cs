@@ -5,6 +5,8 @@ namespace RayCarrot.RCP.Metro.Imaging;
 
 public abstract class ImageMagickImageFormat : ImageFormat
 {
+    public override string Id => Format.ToString();
+
     public override bool CanDecode => true;
     public override bool CanEncode => true;
 

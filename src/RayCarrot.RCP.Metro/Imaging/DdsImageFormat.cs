@@ -6,6 +6,7 @@ namespace RayCarrot.RCP.Metro.Imaging;
 
 public class DdsImageFormat : ImageFormat
 {
+    public override string Id => "DDS";
     public override string Name => "DDS";
 
     public override bool CanDecode => true;
