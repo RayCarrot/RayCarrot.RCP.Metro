@@ -14,7 +14,11 @@ public class Xbox360D3DTexture : ImageFormat
 
     private ImageMetadata GetMetadata(D3DTexture tex)
     {
-        return new ImageMetadata(tex.ActualWidth, tex.ActualHeight);
+        return new ImageMetadata(tex.ActualWidth, tex.ActualHeight)
+        {
+            MipmapsCount = tex.MaxMipLevel,
+            Encoding = tex.Type.ToString(),
+        };
     }
 
     public override ImageMetadata GetMetadata(Stream inputStream)

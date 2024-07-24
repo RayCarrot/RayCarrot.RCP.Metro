@@ -176,21 +176,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         // Create an image source
         BitmapSource thumb = imgData.ToBitmapSource();
 
-        return new FileThumbnailData(thumb, new[]
-        {
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)),
-                text: $"{imgData.Metadata.Width}x{imgData.Metadata.Height}"),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)),
-                text: new GeneratedLocString(() => imageFormat.Name)),
-            // TODO-UPDATE: Get additional, optional, info from metadata, such as compression
-            //new DuoGridItemViewModel(
-            //    header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Compression)),
-            //    text: img.Compression == CompressionMethod.NoCompression 
-            //        ? new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Compression_None)) 
-            //        : $"{img.Compression}"),
-        });
+        return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
     }
 
     public override void ConvertTo(

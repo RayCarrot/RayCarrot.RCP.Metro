@@ -59,9 +59,13 @@ public class DdsImageFormat : ImageFormat
         new(".dds"),
     };
 
-    private ImageMetadata GetMetadata(Image img)
+    private ImageMetadata GetMetadata(TexMetadata metadata)
     {
-        return new ImageMetadata(img.Width, img.Height);
+        return new ImageMetadata(metadata.Width, metadata.Height)
+        {
+            MipmapsCount = metadata.MipLevels,
+            Encoding = metadata.Format.ToString(),
+        };
     }
 
     public override ImageMetadata GetMetadata(Stream inputStream)
@@ -83,7 +87,7 @@ public class DdsImageFormat : ImageFormat
 
             TexMetadata metadata = TexHelper.Instance.GetMetadataFromDDSMemory(imgDataPtr, imgData.Length, DDS_FLAGS.NONE);
 
-            return new ImageMetadata(metadata.Width, metadata.Height);
+            return GetMetadata(metadata);
         }
         finally
         {
@@ -117,7 +121,7 @@ public class DdsImageFormat : ImageFormat
             // Get the raw bytes
             byte[] rawBytes = GetRawBytes(primaryImg);
 
-            return new RawImageData(rawBytes, RawImageDataPixelFormat.Bgra32, new ImageMetadata(primaryImg.Width, primaryImg.Height));
+            return new RawImageData(rawBytes, RawImageDataPixelFormat.Bgra32, GetMetadata(scratchImg.GetMetadata()));
         }
         finally
         {
@@ -183,7 +187,7 @@ public class DdsImageFormat : ImageFormat
             UnmanagedMemoryStream ddsStream = comp.SaveToDDSMemory(DDS_FLAGS.NONE);
             ddsStream.CopyToEx(outputStream);
 
-            return GetMetadata(img);
+            return GetMetadata(comp.GetMetadata());
         }
         finally
         {
