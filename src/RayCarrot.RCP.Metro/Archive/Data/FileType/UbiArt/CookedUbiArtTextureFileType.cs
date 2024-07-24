@@ -16,15 +16,12 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     public CookedUbiArtTextureFileType()
     {
-        // TODO-UPDATE: Don't include PCX. Also probably don't allow export as DDS unless the file itself is DDS?
-        //              Otherwise you export a compressed file. Or maybe it doesn't matter too much.
         SupportedFormats = new ImageFormat[]
         {
             new PngImageFormat(),
             new JpgImageFormat(),
             new BmpImageFormat(),
             new DdsImageFormat(),
-            new PcxImageFormat(),
         };
 
         ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
