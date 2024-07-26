@@ -15,7 +15,7 @@ public class FileItem : IDisposable
         // Set the supported file types
         FileTypes = new FileType[]
         {
-            new CpaTextureFileType(),
+            new CpaGfFileType(),
             new WaveSoundFileType(),
             new CookedUbiArtSoundFileType(),
             new UbiArtRakiFileType(),

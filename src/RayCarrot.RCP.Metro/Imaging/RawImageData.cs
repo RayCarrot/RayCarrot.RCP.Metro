@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Drawing;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace RayCarrot.RCP.Metro.Imaging;
@@ -10,6 +11,20 @@ public class RawImageData
         RawData = rawData;
         PixelFormat = pixelFormat;
         Metadata = metadata;
+    }
+
+    public RawImageData(Bitmap bmp)
+    {
+        using BitmapLock bmpLock = new(bmp);
+
+        Metadata = new ImageMetadata(bmp.Width, bmp.Height);
+        RawData = bmpLock.Pixels;
+        PixelFormat = bmp.PixelFormat switch
+        {
+            System.Drawing.Imaging.PixelFormat.Format24bppRgb => RawImageDataPixelFormat.Bgr24,
+            System.Drawing.Imaging.PixelFormat.Format32bppArgb => RawImageDataPixelFormat.Bgra32,
+            _ => throw new InvalidOperationException("Unsupported pixel format")
+        };
     }
 
     public byte[] RawData { get; }
@@ -83,6 +98,49 @@ public class RawImageData
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public bool UtilizesAlpha()
+    {
+        switch (PixelFormat)
+        {
+            case RawImageDataPixelFormat.Bgra32:
+                for (int y = 0; y < Metadata.Height; y++)
+                {
+                    for (int x = 0; x < Metadata.Width; x++)
+                    {
+                        if (RawData[(y * Metadata.Width + x) * 4 + 3] != Byte.MaxValue)
+                            return true;
+                    }
+                }
+
+                return false;
+
+            case RawImageDataPixelFormat.Bgr24:
+                return false;
+
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public Bitmap ToBitmap()
+    {
+        // Create the bitmap
+        Bitmap bmp = new(Metadata.Width, Metadata.Height, PixelFormat switch
+        {
+            // A bit confusing since it says RGB, but it's actually all BGR
+            RawImageDataPixelFormat.Bgr24 => System.Drawing.Imaging.PixelFormat.Format24bppRgb,
+            RawImageDataPixelFormat.Bgra32 => System.Drawing.Imaging.PixelFormat.Format32bppArgb,
+            _ => throw new ArgumentOutOfRangeException()
+        });
+
+        // Lock and update the pixels
+        using var bmpLock = new BitmapLock(bmp);
+        bmpLock.Pixels = RawData;
+
+        // Return the bitmap
+        return bmp;
     }
 
     public BitmapSource ToBitmapSource()

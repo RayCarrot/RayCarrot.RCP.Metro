@@ -2,7 +2,7 @@
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Imaging;
 
 /// <summary>
 /// A bitmap wrapper for locking the pixels for faster accessing

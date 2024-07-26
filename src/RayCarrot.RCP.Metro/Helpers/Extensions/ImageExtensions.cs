@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
@@ -18,8 +17,11 @@ public static class ImageExtensions
     /// <param name="height">The height to resize to</param>
     /// <param name="disposeImage">Indicates if the image should be disposed</param>
     /// <returns>The resized image</returns>
-    public static Bitmap ResizeImage(this System.Drawing.Image image, int width, int height, bool disposeImage = true)
+    public static Bitmap Resize(this Image image, int width, int height, bool disposeImage = true)
     {
+        if (image == null) 
+            throw new ArgumentNullException(nameof(image));
+        
         try
         {
             // Create the frame
@@ -51,7 +53,7 @@ public static class ImageExtensions
         finally
         {
             if (disposeImage)
-                image?.Dispose();
+                image.Dispose();
         }
     }
 }
