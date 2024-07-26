@@ -251,36 +251,32 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
             // Get the file data
             fileStream ??= GetDecodedFileStream();
 
-            // Populate info
+            // Clear info
             FileDisplayInfo.Clear();
 
-            FileDisplayInfo.Add(new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Dir)), 
-                text: FileData.Directory));
-
-            FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), FileData.ArchiveEntry));
-
-            fileStream.SeekToBeginning();
-
             // Get the type if we don't have one
+            fileStream.SeekToBeginning();
             if (FileType == null)
                 SetFileType(FileData.GetFileType(fileStream));
 
             ResetMenuActions();
 
-            // Load the thumbnail
+            // Add file type to info
+            FileDisplayInfo.Add(new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Type)),
+                text: FileType.TypeDisplayName,
+                minUserLevel: UserLevel.Advanced));
+
+            // Add manager info
+            FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), FileData.ArchiveEntry));
+
+            // Load the thumbnail and add to info
             LoadThumbnail(fileStream, thumbnailLoadMode);
             if (ThumbnailDisplayInfo != null)
                 FileDisplayInfo.AddRange(ThumbnailDisplayInfo);
 
             // Set icon
             IconKind = FileType!.Icon;
-
-            // Set file type
-            FileDisplayInfo.Add(new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Type)), 
-                text: FileType.TypeDisplayName, 
-                minUserLevel: UserLevel.Advanced));
 
             IsInitialized = true;
         }
