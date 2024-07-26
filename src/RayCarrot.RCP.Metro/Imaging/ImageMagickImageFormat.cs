@@ -17,6 +17,8 @@ public abstract class ImageMagickImageFormat : ImageFormat
         return new ImageMetadata(img.Width, img.Height);
     }
 
+    protected virtual void OnEncode(MagickImage img) { }
+
     public override ImageMetadata GetMetadata(Stream inputStream)
     {
         using MagickImage img = new(inputStream, Format);
@@ -54,6 +56,8 @@ public abstract class ImageMagickImageFormat : ImageFormat
             Height = data.Metadata.Height,
         });
 
+        OnEncode(img);
+
         img.Format = Format;
         img.Write(outputStream);
         
@@ -65,6 +69,8 @@ public abstract class ImageMagickImageFormat : ImageFormat
         if (outputFormat is ImageMagickImageFormat outputMagickFormat)
         {
             using MagickImage img = new(inputStream, Format);
+
+            OnEncode(img);
 
             img.Format = outputMagickFormat.Format;
             img.Write(outputStream);

@@ -2,6 +2,7 @@
 using System.Windows.Media.Imaging;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
+using ImageMagick;
 using MahApps.Metro.IconPacks;
 using RayCarrot.RCP.Metro.Imaging;
 
@@ -21,7 +22,7 @@ public sealed class CpaGfFileType : FileType
             new PngImageFormat(),
             new JpgImageFormat(),
             new BmpImageFormat(),
-            new TgaImageFormat(),
+            new TgaImageFormat(OrientationType.BottomLeft), // .gf textures should be oriented to bottom-left (upside-down)
         };
 
         ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
