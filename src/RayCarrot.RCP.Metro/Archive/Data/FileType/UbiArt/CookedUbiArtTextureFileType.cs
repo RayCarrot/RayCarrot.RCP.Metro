@@ -26,7 +26,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         };
 
         ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
-        ExportFormats = SupportedFormats.Where(x => x.CanDecode).SelectMany(x => x.FileExtensions).ToArray();
+        ExportFormats = SupportedFormats.Where(x => x.CanDecode).SelectMany(x => x.FileExtensions.Take(1)).ToArray();
     }
 
     #endregion
