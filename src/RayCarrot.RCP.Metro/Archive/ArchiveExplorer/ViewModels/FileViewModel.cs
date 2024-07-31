@@ -823,7 +823,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 newFile.ExportFormats = ExportFormats;
 
                 // Copy the file contents
-                newFile.ReplaceFile(GetDecodedFileStream().Stream, fileMetadata);
+                newFile.ReplaceFile(GetDecodedFileStream().Stream, fileMetadata, forceLoadThumbnail: true);
 
                 // Add the new file
                 dir.Files.Insert(dir.Files.IndexOf(this), newFile);
