@@ -17,7 +17,7 @@ public class Xbox360D3DTexture : ImageFormat
         return new ImageMetadata(tex.ActualWidth, tex.ActualHeight)
         {
             MipmapsCount = tex.MaxMipLevel,
-            Encoding = tex.Type.ToString(),
+            Encoding = tex.DataFormat.ToString(),
         };
     }
 
