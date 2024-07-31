@@ -33,6 +33,8 @@ public sealed class ImageFileType : FileType
     #region Private Properties
 
     private ImageFormat[] SupportedFormats { get; }
+    private FileExtension[] ImportFormats { get; }
+    private FileExtension[] ExportFormats { get; }
 
     #endregion
 
@@ -40,9 +42,6 @@ public sealed class ImageFileType : FileType
 
     public override string TypeDisplayName => Resources.Archive_Format_Img;
     public override PackIconMaterialKind Icon => PackIconMaterialKind.ImageOutline;
-
-    public override FileExtension[] ImportFormats { get; }
-    public override FileExtension[] ExportFormats { get; }
 
     #endregion
 
@@ -54,6 +53,26 @@ public sealed class ImageFileType : FileType
     #endregion
 
     #region Public Methods
+
+    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        ImageFormat format = GetImageFormat(fileExtension);
+
+        if (format.CanEncode)
+            return ImportFormats;
+        else
+            return Array.Empty<FileExtension>();
+    }
+
+    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        ImageFormat format = GetImageFormat(fileExtension);
+
+        if (format.CanDecode)
+            return ExportFormats;
+        else
+            return Array.Empty<FileExtension>();
+    }
 
     public override bool IsOfType(FileExtension fileExtension, IArchiveDataManager manager) => 
         SupportedFormats.Any(x => x.FileExtensions.Contains(fileExtension));

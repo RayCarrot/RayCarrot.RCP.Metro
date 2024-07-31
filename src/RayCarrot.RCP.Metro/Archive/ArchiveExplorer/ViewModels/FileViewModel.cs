@@ -154,6 +154,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// The file type (available after having been initialized once)
     /// </summary>
     public FileType? FileType { get; set; }
+    public FileExtension[]? ImportFormats { get; set; }
+    public FileExtension[]? ExportFormats { get; set; }
 
     /// <summary>
     /// The file extension
@@ -233,15 +235,14 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// <returns>The file stream with the decoded data</returns>
     public ArchiveFileStream GetDecodedFileStream() => FileData.GetDecodedFileData(Archive.ArchiveFileGenerator);
 
-    [MemberNotNull(nameof(FileType))]
-    public void SetFileType(FileType type) => FileType = type;
-
     /// <summary>
     /// Initializes the file. This sets the <see cref="FileType"/> and optionally loads the <see cref="ThumbnailSource"/> and <see cref="FileDisplayInfo"/>.
     /// </summary>
     /// <param name="fileStream">The file stream, if available</param>
     /// <param name="thumbnailLoadMode">Indicates how the thumbnail should be loaded</param>
     [MemberNotNull(nameof(FileType))]
+    [MemberNotNull(nameof(ImportFormats))]
+    [MemberNotNull(nameof(ExportFormats))]
     public void InitializeFile(ArchiveFileStream? fileStream = null, ThumbnailLoadMode thumbnailLoadMode = ThumbnailLoadMode.LoadThumbnail)
     {
         bool hadStream = fileStream != null;
@@ -256,8 +257,16 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
             // Get the type if we don't have one
             fileStream.SeekToBeginning();
-            if (FileType == null)
-                SetFileType(FileData.GetFileType(fileStream));
+            if (FileType == null || ImportFormats == null || ExportFormats == null)
+            {
+                FileType = FileData.GetFileType(fileStream);
+
+                fileStream.SeekToBeginning();
+                ImportFormats = FileType.GetImportFormats(FileExtension, fileStream, Manager);
+
+                fileStream.SeekToBeginning();
+                ExportFormats = FileType.GetExportFormats(FileExtension, fileStream, Manager);
+            }
 
             ResetMenuActions();
 
@@ -289,7 +298,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
                 // Even though we've marked that FileType always gets set in this method there is a potential that it doesn't get
                 // set if reaching this point while being null. This should never happen, but let's log as an error in case.
-                if (FileType == null)
+                if (FileType == null || ImportFormats == null || ExportFormats == null)
                 {
                     Logger.Error($"The file type is null when exiting {nameof(InitializeFile)}!");
                     InitializeAsError();
@@ -315,9 +324,13 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// can no longer be converted using its actual format.
     /// </summary>
     [MemberNotNull(nameof(FileType))]
+    [MemberNotNull(nameof(ImportFormats))]
+    [MemberNotNull(nameof(ExportFormats))]
     public void InitializeAsError()
     {
-        SetFileType(new ErrorFileType());
+        FileType = new ErrorFileType();
+        ImportFormats = Array.Empty<FileExtension>();
+        ExportFormats = Array.Empty<FileExtension>();
         ResetMenuActions();
         IconKind = FileType!.Icon;
         ThumbnailSource = null;
@@ -344,12 +357,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
     protected void ResetMenuActions()
     {
-        if (FileType == null)
+        if (FileType == null || ImportFormats == null || ExportFormats == null)
             throw new Exception("The file type must be set before resetting menu actions");
-
-        // Get formats from the type
-        FileExtension[] importFormats = FileType.ImportFormats;
-        FileExtension[] exportFormats = FileType.ExportFormats;
 
         // Remove previous export formats
         FileExports.Clear();
@@ -358,7 +367,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         FileExports.Add(new ArchiveFileMenuActionViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
 
         // Get export formats
-        FileExports.AddRange(exportFormats.Select(x => new ArchiveFileMenuActionViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+        FileExports.AddRange(ExportFormats.Select(x => new ArchiveFileMenuActionViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
 
         // Remove previous edit actions
         EditActions.Clear();
@@ -368,9 +377,9 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         EditActions.Add(new ArchiveFileMenuActionViewModel(Resources.Archive_EditBinary, new AsyncRelayCommand(async () => await EditFileAsync(null, false, true, false))));
 
         // Get available formats to convert to/from
-        EditActions.AddRange(exportFormats.Select(x =>
+        EditActions.AddRange(ExportFormats.Select(x =>
         {
-            var readOnly = importFormats.All(f => x != f);
+            var readOnly = ImportFormats.All(f => x != f);
 
             var name = x.DisplayName;
 
@@ -380,7 +389,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
             return new ArchiveFileMenuActionViewModel(name, new AsyncRelayCommand(async () => await EditFileAsync(x, true, false, readOnly)));
         }));
 
-        CanImport = importFormats.Any();
+        CanImport = ImportFormats.Any();
     }
 
     /// <summary>
@@ -501,7 +510,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     {
         Logger.Trace("The archive file {0} is being imported...", FileName);
 
-        if (FileType == null)
+        if (FileType == null || ImportFormats == null || ExportFormats == null)
             throw new Exception("The file type must be set before importing the file");
 
         // Run as a load operation
@@ -514,7 +523,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
                     Title = Resources.Archive_ImportFileHeader,
-                    ExtensionFilter = new FileFilterItemCollection(FileType.ImportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                    ExtensionFilter = new FileFilterItemCollection(ImportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
                 });
 
                 if (result.CanceledByUser)
@@ -809,7 +818,9 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 FileViewModel newFile = new(new FileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir.FullPath, newName)), dir);
 
                 // Set the file type
-                newFile.SetFileType(FileType);
+                newFile.FileType = FileType;
+                newFile.ImportFormats = ImportFormats;
+                newFile.ExportFormats = ExportFormats;
 
                 // Copy the file contents
                 newFile.ReplaceFile(GetDecodedFileStream().Stream, fileMetadata);

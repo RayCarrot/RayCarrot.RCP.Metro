@@ -34,6 +34,8 @@ public sealed class CookedUbiArtTextureFileType : FileType
     #region Private Properties
 
     private ImageFormat[] SupportedFormats { get; }
+    private FileExtension[] ImportFormats { get; }
+    private FileExtension[] ExportFormats { get; }
 
     #endregion
 
@@ -41,9 +43,6 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     public override string TypeDisplayName => "Cooked UBIArt Texture"; // TODO-UPDATE: Localize?
     public override PackIconMaterialKind Icon => PackIconMaterialKind.ImageOutline;
-
-    public override FileExtension[] ImportFormats { get; }
-    public override FileExtension[] ExportFormats { get; }
 
     #endregion
 
@@ -130,7 +129,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
     }
 
     // TODO-UPDATE: Check other platforms which use DDS, such as Android. Previously we would dynamically determine it, but now we do it based on settings.
-    private ImageFormat GetImageFormat(UbiArtSettings settings, TextureCooked? header)
+    private ImageFormat GetImageFormat(UbiArtSettings settings, Func<TextureCooked?> getHeaderFunc)
     {
         return settings.Platform switch
         {
@@ -146,6 +145,32 @@ public sealed class CookedUbiArtTextureFileType : FileType
     #endregion
 
     #region Public Methods
+
+    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        // Get the settings
+        UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
+
+        ImageFormat format = GetImageFormat(settings, () => ReadCookedHeader(inputStream, settings, manager));
+
+        if (format.CanEncode)
+            return ImportFormats;
+        else
+            return Array.Empty<FileExtension>();
+    }
+
+    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        // Get the settings
+        UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
+
+        ImageFormat format = GetImageFormat(settings, () => ReadCookedHeader(inputStream, settings, manager));
+
+        if (format.CanDecode)
+            return ExportFormats;
+        else
+            return Array.Empty<FileExtension>();
+    }
 
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<UbiArtSettings>() is true;
 
@@ -166,7 +191,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         TextureCooked? header = ReadCookedHeader(inputStream, settings, manager);
 
         // Decode the image
-        ImageFormat imageFormat = GetImageFormat(settings, header);
+        ImageFormat imageFormat = GetImageFormat(settings, () => header);
         RawImageData imgData = imageFormat.Decode(inputStream.Stream);
 
         // Remap if needed
@@ -193,7 +218,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         TextureCooked? header = ReadCookedHeader(inputStream, settings, manager);
 
         // Get the formats
-        ImageFormat inputImageFormat = GetImageFormat(settings, header);
+        ImageFormat inputImageFormat = GetImageFormat(settings, () => header);
         ImageFormat outputImageFormat = GetImageFormat(outputFormat);
 
         // Convert manually if remapped
@@ -233,7 +258,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
         // Get the formats
         ImageFormat inputImageFormat = GetImageFormat(inputFormat);
-        ImageFormat outputImageFormat = GetImageFormat(settings, header);
+        ImageFormat outputImageFormat = GetImageFormat(settings, () => header);
 
         // Skip the header since we right that last
         int dataOffset = (int)(header?.RawDataStartOffset ?? 0);

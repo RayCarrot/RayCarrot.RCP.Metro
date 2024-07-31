@@ -246,7 +246,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                     string[] ext = new string[]
                                     {
                                         Resources.Archive_Export_Format_Original
-                                    }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
+                                    }.Concat(file.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
                                     // Have user select the format
                                     ItemSelectionDialogResult extResult = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
@@ -396,7 +396,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 }
 
                                 // Attempt to find a file for each supported extension
-                                foreach (FileExtension ext in file.FileType.ImportFormats)
+                                foreach (FileExtension ext in file.ImportFormats)
                                 {
                                     // Get the path
                                     FileSystemPath fullFilePath = filePath.ChangeFileExtension(ext);

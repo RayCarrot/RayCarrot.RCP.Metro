@@ -31,15 +31,11 @@ public sealed class CpaGfFileType : FileType
 
     #endregion
 
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
     #region Private Properties
 
     private ImageFormat[] SupportedFormats { get; }
+    private FileExtension[] ImportFormats { get; }
+    private FileExtension[] ExportFormats { get; }
 
     #endregion
 
@@ -47,9 +43,6 @@ public sealed class CpaGfFileType : FileType
 
     public override string TypeDisplayName => Resources.Archive_Format_GF;
     public override PackIconMaterialKind Icon => PackIconMaterialKind.ImageOutline;
-
-    public override FileExtension[] ImportFormats { get; }
-    public override FileExtension[] ExportFormats { get; }
 
     #endregion
 
@@ -69,6 +62,26 @@ public sealed class CpaGfFileType : FileType
     #endregion
 
     #region Public Methods
+
+    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        ImageFormat format = GetImageFormat(manager);
+
+        if (format.CanEncode)
+            return ImportFormats;
+        else
+            return Array.Empty<FileExtension>();
+    }
+
+    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        ImageFormat format = GetImageFormat(manager);
+
+        if (format.CanDecode)
+            return ExportFormats;
+        else
+            return Array.Empty<FileExtension>();
+    }
 
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<OpenSpaceSettings>() is true;
 

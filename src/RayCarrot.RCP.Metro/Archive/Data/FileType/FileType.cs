@@ -19,14 +19,14 @@ public abstract class FileType
     public abstract PackIconMaterialKind Icon { get; }
 
     /// <summary>
-    /// The supported formats to import from
+    /// Gets the supported formats to import from
     /// </summary>
-    public virtual FileExtension[] ImportFormats => Array.Empty<FileExtension>();
+    public virtual FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => Array.Empty<FileExtension>();
 
     /// <summary>
-    /// The supported formats to export to
+    /// Gets the supported formats to export to
     /// </summary>
-    public virtual FileExtension[] ExportFormats => Array.Empty<FileExtension>();
+    public virtual FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => Array.Empty<FileExtension>();
 
     /// <summary>
     /// Indicates if the specified manager supports files of this type
@@ -61,7 +61,6 @@ public abstract class FileType
     /// </summary>
     /// <param name="inputStream">The file data stream</param>
     /// <param name="fileExtension">The file extension</param>
-    /// <param name="width">The thumbnail width</param>
     /// <param name="manager">The manager</param>
     /// <returns>The thumbnail data</returns>
     public virtual FileThumbnailData LoadThumbnail(

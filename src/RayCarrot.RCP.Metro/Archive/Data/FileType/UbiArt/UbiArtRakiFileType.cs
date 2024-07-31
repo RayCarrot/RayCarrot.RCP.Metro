@@ -31,17 +31,27 @@ public class UbiArtRakiFileType : FileType
 
     #endregion
 
+    #region Private Properties
+
+    private FileExtension[] ImportFormats { get; }
+    private FileExtension[] ExportFormats { get; }
+
+    #endregion
+
     #region Public Properties
 
     public override string TypeDisplayName => "RAKI";
     public override PackIconMaterialKind Icon => PackIconMaterialKind.FileMusicOutline;
 
-    public override FileExtension[] ImportFormats { get; }
-    public override FileExtension[] ExportFormats { get; }
-
     #endregion
 
     #region Public Methods
+
+    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) =>
+        ImportFormats;
+
+    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) =>
+        ExportFormats;
 
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<UbiArtSettings>() is true;
 
