@@ -134,7 +134,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         return settings.Platform switch
         {
             Platform.PC => new DdsImageFormat(),
-            Platform.Xbox360 => new Xbox360D3DTexture(),
+            Platform.Xbox360 => new Xbox360D3DTextureImageFormat(),
             _ => throw new InvalidOperationException("Textures are not supported for the current platform")
         };
     }

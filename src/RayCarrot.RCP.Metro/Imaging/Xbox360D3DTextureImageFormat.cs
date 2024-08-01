@@ -4,7 +4,7 @@ using BinarySerializer.UbiArt;
 
 namespace RayCarrot.RCP.Metro.Imaging;
 
-public class Xbox360D3DTexture : ImageFormat
+public class Xbox360D3DTextureImageFormat : ImageFormat
 {
     public override string Id => "Xbox360_D3DTexture";
     public override string Name => "D3DTexture";
