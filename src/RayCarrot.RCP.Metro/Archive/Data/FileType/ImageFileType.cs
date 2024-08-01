@@ -83,10 +83,18 @@ public sealed class ImageFileType : FileType
         IArchiveDataManager manager)
     {
         ImageFormat imageFormat = GetImageFormat(fileExtension);
-        RawImageData imgData = imageFormat.Decode(inputStream.Stream);
-        BitmapSource thumb = imgData.ToBitmapSource();
 
-        return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+        if (imageFormat.CanDecode)
+        {
+            RawImageData imgData = imageFormat.Decode(inputStream.Stream);
+            BitmapSource thumb = imgData.ToBitmapSource();
+
+            return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+        }
+        else
+        {
+            return new FileThumbnailData(null, Array.Empty<DuoGridItemViewModel>());
+        }
     }
 
     public override void ConvertTo(

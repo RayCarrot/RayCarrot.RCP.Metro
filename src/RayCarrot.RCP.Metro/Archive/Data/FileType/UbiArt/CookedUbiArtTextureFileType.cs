@@ -192,16 +192,24 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
         // Decode the image
         ImageFormat imageFormat = GetImageFormat(settings, () => header);
-        RawImageData imgData = imageFormat.Decode(inputStream.Stream);
 
-        // Remap if needed
-        if (header is { IsRemapped: true })
-            RemapChannels(imgData, header);
+        if (imageFormat.CanDecode)
+        {
+            RawImageData imgData = imageFormat.Decode(inputStream.Stream);
 
-        // Create an image source
-        BitmapSource thumb = imgData.ToBitmapSource();
+            // Remap if needed
+            if (header is { IsRemapped: true })
+                RemapChannels(imgData, header);
 
-        return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+            // Create an image source
+            BitmapSource thumb = imgData.ToBitmapSource();
+
+            return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+        }
+        else
+        {
+            return new FileThumbnailData(null, Array.Empty<DuoGridItemViewModel>());
+        }
     }
 
     public override void ConvertTo(
