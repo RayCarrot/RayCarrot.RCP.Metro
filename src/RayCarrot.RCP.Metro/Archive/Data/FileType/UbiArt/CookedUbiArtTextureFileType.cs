@@ -27,6 +27,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
         DdsSubType = new CookedUbiArtTextureSubFileType(new DdsImageFormat(), SupportedFormats);
         Xbox360D3DTextureSubType = new CookedUbiArtTextureSubFileType(new Xbox360D3DTextureImageFormat(), SupportedFormats);
+        PvrSubType = new CookedUbiArtTextureSubFileType(new PvrImageFormat(), SupportedFormats);
     }
 
     #endregion
@@ -37,6 +38,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     private CookedUbiArtTextureSubFileType DdsSubType { get; }
     private CookedUbiArtTextureSubFileType Xbox360D3DTextureSubType { get; }
+    private CookedUbiArtTextureSubFileType PvrSubType { get; }
 
     #endregion
 
@@ -126,16 +128,23 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     private bool IsSupported(UbiArtSettings settings)
     {
-        return settings.Platform is Platform.PC or Platform.Xbox360;
+        return settings.Platform is 
+            Platform.PC or 
+            Platform.Xbox360 or 
+            Platform.iOS or 
+            Platform.Android or
+            Platform.Mac;
     }
 
-    // TODO-UPDATE: Check other platforms which use DDS, such as Android. Previously we would dynamically determine it, but now we do it based on settings.
     private CookedUbiArtTextureSubFileType GetSubType(UbiArtSettings settings, Func<TextureCooked?> getHeaderFunc)
     {
         return settings.Platform switch
         {
             Platform.PC => DdsSubType,
             Platform.Xbox360 => Xbox360D3DTextureSubType,
+            Platform.iOS => getHeaderFunc()?.Type is TextureType.BackLightEmmissive or (TextureType)3 ? PvrSubType : DdsSubType,
+            Platform.Android => DdsSubType,
+            Platform.Mac => DdsSubType,
             _ => throw new InvalidOperationException("Textures are not supported for the current platform")
         };
     }
