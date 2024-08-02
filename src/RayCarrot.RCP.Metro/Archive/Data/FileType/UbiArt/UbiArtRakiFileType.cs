@@ -19,22 +19,22 @@ public class UbiArtRakiFileType : FileType
 
     public UbiArtRakiFileType()
     {
-        ExportFormats = new FileExtension[]
-        {
-            new(".wav")
-        };
-        ImportFormats = new FileExtension[]
-        {
-            new(".wav")
-        };
+        SubFileType = new SubFileType(
+            importFormats: new FileExtension[]
+            {
+                new(".wav")
+            },
+            exportFormats: new FileExtension[]
+            {
+                new(".wav")
+            });
     }
 
     #endregion
 
     #region Private Properties
 
-    private FileExtension[] ImportFormats { get; }
-    private FileExtension[] ExportFormats { get; }
+    private SubFileType SubFileType { get; }
 
     #endregion
 
@@ -46,12 +46,6 @@ public class UbiArtRakiFileType : FileType
     #endregion
 
     #region Public Methods
-
-    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) =>
-        ImportFormats;
-
-    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) =>
-        ExportFormats;
 
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<UbiArtSettings>() is true;
 
@@ -75,6 +69,8 @@ public class UbiArtRakiFileType : FileType
                platform is "Win " &&
                format is "pcm " or "adpc";
     }
+
+    public override SubFileType GetSubType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => SubFileType;
 
     public override void ConvertTo(
         FileExtension inputFormat, 

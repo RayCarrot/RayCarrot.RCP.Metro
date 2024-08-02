@@ -1,5 +1,5 @@
-﻿using MahApps.Metro.IconPacks;
-using System.IO;
+﻿using System.IO;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -17,16 +17,6 @@ public abstract class FileType
     /// The default icon kind for the type
     /// </summary>
     public abstract PackIconMaterialKind Icon { get; }
-
-    /// <summary>
-    /// Gets the supported formats to import from
-    /// </summary>
-    public virtual FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => Array.Empty<FileExtension>();
-
-    /// <summary>
-    /// Gets the supported formats to export to
-    /// </summary>
-    public virtual FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => Array.Empty<FileExtension>();
 
     /// <summary>
     /// Indicates if the specified manager supports files of this type
@@ -55,6 +45,11 @@ public abstract class FileType
         ArchiveFileStream inputStream, 
         IArchiveDataManager manager) 
         => false;
+
+    /// <summary>
+    /// Gets the supported formats to import from
+    /// </summary>
+    public virtual SubFileType GetSubType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => new();
 
     /// <summary>
     /// Loads the thumbnail and display info for the file

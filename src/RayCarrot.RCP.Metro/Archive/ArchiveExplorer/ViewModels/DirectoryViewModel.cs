@@ -199,7 +199,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     IArchiveDataManager manager = Archive.Manager;
 
                     // Save the selected format for each collection
-                    Dictionary<FileType, FileExtension?> selectedFormats = new();
+                    Dictionary<SubFileType, FileExtension?> selectedFormats = new();
 
                     try
                     {
@@ -240,16 +240,16 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 fileStream.SeekToBeginning();
 
                                 // Check if the format has not been selected
-                                if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not DefaultFileType)
+                                if (!forceNativeFormat && !selectedFormats.ContainsKey(file.SubFileType) && file.FileType is not DefaultFileType)
                                 {
                                     // Get the available extensions
                                     string[] ext = new string[]
                                     {
                                         Resources.Archive_Export_Format_Original
-                                    }.Concat(file.ExportFormats.Select(x => x.FileExtensions)).ToArray();
+                                    }.Concat(file.SubFileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
                                     // Have user select the format
-                                    ItemSelectionDialogResult extResult = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
+                                    ItemSelectionDialogResult extResult = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FullFileTypeName)));
 
                                     // Since this operation can't be canceled we get the first format
                                     if (extResult.CanceledByUser)
@@ -260,13 +260,13 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                         ? null
                                         : new FileExtension(ext[extResult.SelectedIndex], multiple: true);
 
-                                    selectedFormats.Add(file.FileType, e);
+                                    selectedFormats.Add(file.SubFileType, e);
                                 }
 
                                 // Get the selected format
                                 FileExtension? format = forceNativeFormat || file.FileType is DefaultFileType 
                                     ? null 
-                                    : selectedFormats[file.FileType];
+                                    : selectedFormats[file.SubFileType];
 
                                 // Get the final file name to use when exporting
                                 FileSystemPath exportFileName = format == null 
@@ -396,7 +396,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 }
 
                                 // Attempt to find a file for each supported extension
-                                foreach (FileExtension ext in file.ImportFormats)
+                                foreach (FileExtension ext in file.SubFileType.ImportFormats)
                                 {
                                     // Get the path
                                     FileSystemPath fullFilePath = filePath.ChangeFileExtension(ext);

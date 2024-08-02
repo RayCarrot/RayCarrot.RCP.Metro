@@ -14,7 +14,7 @@ public sealed class ImageFileType : FileType
 
     public ImageFileType()
     {
-        SupportedFormats = new ImageFormat[]
+        ImageFormat[] supportedFormats = 
         {
             new PngImageFormat(),
             new JpgImageFormat(),
@@ -23,18 +23,14 @@ public sealed class ImageFileType : FileType
             new DdsImageFormat(),
             new PcxImageFormat(),
         };
-
-        ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
-        ExportFormats = SupportedFormats.Where(x => x.CanDecode).SelectMany(x => x.FileExtensions.Take(1)).ToArray();
+        SubTypes = supportedFormats.Select(x => new ImageSubFileType(x, supportedFormats)).ToArray();
     }
 
     #endregion
 
     #region Private Properties
 
-    private ImageFormat[] SupportedFormats { get; }
-    private FileExtension[] ImportFormats { get; }
-    private FileExtension[] ExportFormats { get; }
+    private ImageSubFileType[] SubTypes { get; }
 
     #endregion
 
@@ -47,42 +43,25 @@ public sealed class ImageFileType : FileType
 
     #region Private Methods
 
-    private ImageFormat GetImageFormat(FileExtension fileExtension) =>
-        SupportedFormats.First(x => x.FileExtensions.Contains(fileExtension));
+    private ImageSubFileType GetSubType(FileExtension fileExtension) =>
+        SubTypes.First(x => x.ImageFormat.FileExtensions.Contains(fileExtension));
 
     #endregion
 
     #region Public Methods
 
-    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
-    {
-        ImageFormat format = GetImageFormat(fileExtension);
-
-        if (format.CanEncode)
-            return ImportFormats;
-        else
-            return Array.Empty<FileExtension>();
-    }
-
-    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
-    {
-        ImageFormat format = GetImageFormat(fileExtension);
-
-        if (format.CanDecode)
-            return ExportFormats;
-        else
-            return Array.Empty<FileExtension>();
-    }
-
     public override bool IsOfType(FileExtension fileExtension, IArchiveDataManager manager) => 
-        SupportedFormats.Any(x => x.FileExtensions.Contains(fileExtension));
+        SubTypes.Any(x => x.ImageFormat.FileExtensions.Contains(fileExtension));
+
+    public override SubFileType GetSubType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => 
+        GetSubType(fileExtension);
 
     public override FileThumbnailData LoadThumbnail(
         ArchiveFileStream inputStream, 
         FileExtension fileExtension, 
         IArchiveDataManager manager)
     {
-        ImageFormat imageFormat = GetImageFormat(fileExtension);
+        ImageFormat imageFormat = GetSubType(fileExtension).ImageFormat;
 
         if (imageFormat.CanDecode)
         {
@@ -104,8 +83,8 @@ public sealed class ImageFileType : FileType
         Stream outputStream, 
         IArchiveDataManager manager)
     {
-        ImageFormat inputImageFormat = GetImageFormat(inputFormat);
-        ImageFormat outputImageFormat = GetImageFormat(outputFormat);
+        ImageFormat inputImageFormat = GetSubType(inputFormat).ImageFormat;
+        ImageFormat outputImageFormat = GetSubType(outputFormat).ImageFormat;
 
         // Don't convert if it's the same format
         if (inputImageFormat == outputImageFormat)
@@ -128,8 +107,8 @@ public sealed class ImageFileType : FileType
         ArchiveFileStream outputStream, 
         IArchiveDataManager manager)
     {
-        ImageFormat inputImageFormat = GetImageFormat(inputFormat);
-        ImageFormat outputImageFormat = GetImageFormat(outputFormat);
+        ImageFormat inputImageFormat = GetSubType(inputFormat).ImageFormat;
+        ImageFormat outputImageFormat = GetSubType(outputFormat).ImageFormat;
 
         // Don't convert if it's the same format
         if (inputImageFormat == outputImageFormat)
@@ -141,6 +120,51 @@ public sealed class ImageFileType : FileType
         {
             // Convert the image data
             inputImageFormat.Convert(inputStream.Stream, outputStream.Stream, outputImageFormat);
+        }
+    }
+
+    #endregion
+
+    #region Classes
+
+    private class ImageSubFileType : SubFileType
+    {
+        public ImageSubFileType(ImageFormat imageFormat, ImageFormat[] supportedFormats)
+            : base(imageFormat.Name, GetImportFormats(imageFormat, supportedFormats), GetExportFormats(imageFormat, supportedFormats))
+        {
+            ImageFormat = imageFormat;
+        }
+
+        public ImageFormat ImageFormat { get; }
+
+        private static FileExtension[] GetImportFormats(ImageFormat imageFormat, ImageFormat[] supportedFormats)
+        {
+            if (imageFormat.CanEncode)
+            {
+                return supportedFormats.
+                    Where(x => x.CanEncode).
+                    SelectMany(x => x.FileExtensions).
+                    ToArray();
+            }
+            else
+            {
+                return Array.Empty<FileExtension>();
+            }
+        }
+
+        private static FileExtension[] GetExportFormats(ImageFormat imageFormat, ImageFormat[] supportedFormats)
+        {
+            if (imageFormat.CanDecode)
+            {
+                return supportedFormats.
+                    Where(x => x.CanDecode).
+                    SelectMany(x => x.FileExtensions.Take(1)).
+                    ToArray();
+            }
+            else
+            {
+                return Array.Empty<FileExtension>();
+            }
         }
     }
 

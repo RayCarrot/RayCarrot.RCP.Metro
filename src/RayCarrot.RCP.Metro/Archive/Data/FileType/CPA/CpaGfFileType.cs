@@ -25,8 +25,8 @@ public sealed class CpaGfFileType : FileType
             new TgaImageFormat(OrientationType.BottomLeft), // .gf textures should be oriented to bottom-left (upside-down)
         };
 
-        ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
-        ExportFormats = SupportedFormats.Where(x => x.CanDecode).SelectMany(x => x.FileExtensions.Take(1)).ToArray();
+        // Could create a separate subtype per image format, but that seems silly. Better to just have a global one.
+        GfSubType = new CpaGfSubFileType(SupportedFormats);
     }
 
     #endregion
@@ -34,8 +34,7 @@ public sealed class CpaGfFileType : FileType
     #region Private Properties
 
     private ImageFormat[] SupportedFormats { get; }
-    private FileExtension[] ImportFormats { get; }
-    private FileExtension[] ExportFormats { get; }
+    private CpaGfSubFileType GfSubType { get; }
 
     #endregion
 
@@ -63,29 +62,11 @@ public sealed class CpaGfFileType : FileType
 
     #region Public Methods
 
-    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
-    {
-        ImageFormat format = GetImageFormat(manager);
-
-        if (format.CanEncode)
-            return ImportFormats;
-        else
-            return Array.Empty<FileExtension>();
-    }
-
-    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
-    {
-        ImageFormat format = GetImageFormat(manager);
-
-        if (format.CanDecode)
-            return ExportFormats;
-        else
-            return Array.Empty<FileExtension>();
-    }
-
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<OpenSpaceSettings>() is true;
 
     public override bool IsOfType(FileExtension fileExtension, IArchiveDataManager manager) => fileExtension.PrimaryFileExtension == ".gf";
+
+    public override SubFileType GetSubType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => GfSubType;
 
     public override FileThumbnailData LoadThumbnail(
         ArchiveFileStream inputStream, 
@@ -170,6 +151,33 @@ public sealed class CpaGfFileType : FileType
 
         // Convert
         outputImageFormat.Encode(decodedData, outputStream.Stream, Services.Data.Archive_GF_GenerateMipmaps, originalFormat);
+    }
+
+    #endregion
+
+    #region Classes
+
+    private class CpaGfSubFileType : SubFileType
+    {
+        public CpaGfSubFileType(ImageFormat[] supportedFormats)
+            : base(GetImportFormats(supportedFormats), GetExportFormats(supportedFormats))
+        { }
+
+        private static FileExtension[] GetImportFormats(ImageFormat[] supportedFormats)
+        {
+            return supportedFormats.
+                Where(x => x.CanEncode).
+                SelectMany(x => x.FileExtensions).
+                ToArray();
+        }
+
+        private static FileExtension[] GetExportFormats(ImageFormat[] supportedFormats)
+        {
+            return supportedFormats.
+                Where(x => x.CanDecode).
+                SelectMany(x => x.FileExtensions.Take(1)).
+                ToArray();
+        }
     }
 
     #endregion

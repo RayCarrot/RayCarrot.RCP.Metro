@@ -15,22 +15,22 @@ public sealed class CookedUbiArtSoundFileType : FileType
 
     public CookedUbiArtSoundFileType()
     {
-        ImportFormats = new FileExtension[]
-        {
-            new(".wav")
-        };
-        ExportFormats = new FileExtension[]
-        {
-            new(".wav")
-        };
+        SubFileType = new SubFileType(
+            importFormats: new FileExtension[]
+            {
+                new(".wav")
+            },
+            exportFormats: new FileExtension[]
+            {
+                new(".wav")
+            });
     }
 
     #endregion
 
     #region Private Properties
 
-    private FileExtension[] ImportFormats { get; }
-    private FileExtension[] ExportFormats { get; }
+    private SubFileType SubFileType { get; }
 
     #endregion
 
@@ -42,12 +42,6 @@ public sealed class CookedUbiArtSoundFileType : FileType
     #endregion
 
     #region Interface Implementations
-
-    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => 
-        ImportFormats;
-
-    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) =>
-        ExportFormats;
 
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<UbiArtSettings>() is true;
 
@@ -65,6 +59,8 @@ public sealed class CookedUbiArtSoundFileType : FileType
 
         return identifier is "RIFF" && type is "WAVE";
     }
+
+    public override SubFileType GetSubType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => SubFileType;
 
     public override void ConvertTo(
         FileExtension inputFormat, 

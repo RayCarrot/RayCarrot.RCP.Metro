@@ -25,8 +25,8 @@ public sealed class CookedUbiArtTextureFileType : FileType
             new DdsImageFormat(),
         };
 
-        ImportFormats = SupportedFormats.Where(x => x.CanEncode).SelectMany(x => x.FileExtensions).ToArray();
-        ExportFormats = SupportedFormats.Where(x => x.CanDecode).SelectMany(x => x.FileExtensions.Take(1)).ToArray();
+        DdsSubType = new CookedUbiArtTextureSubFileType(new DdsImageFormat(), SupportedFormats);
+        Xbox360D3DTextureSubType = new CookedUbiArtTextureSubFileType(new Xbox360D3DTextureImageFormat(), SupportedFormats);
     }
 
     #endregion
@@ -34,8 +34,9 @@ public sealed class CookedUbiArtTextureFileType : FileType
     #region Private Properties
 
     private ImageFormat[] SupportedFormats { get; }
-    private FileExtension[] ImportFormats { get; }
-    private FileExtension[] ExportFormats { get; }
+
+    private CookedUbiArtTextureSubFileType DdsSubType { get; }
+    private CookedUbiArtTextureSubFileType Xbox360D3DTextureSubType { get; }
 
     #endregion
 
@@ -129,12 +130,12 @@ public sealed class CookedUbiArtTextureFileType : FileType
     }
 
     // TODO-UPDATE: Check other platforms which use DDS, such as Android. Previously we would dynamically determine it, but now we do it based on settings.
-    private ImageFormat GetImageFormat(UbiArtSettings settings, Func<TextureCooked?> getHeaderFunc)
+    private CookedUbiArtTextureSubFileType GetSubType(UbiArtSettings settings, Func<TextureCooked?> getHeaderFunc)
     {
         return settings.Platform switch
         {
-            Platform.PC => new DdsImageFormat(),
-            Platform.Xbox360 => new Xbox360D3DTextureImageFormat(),
+            Platform.PC => DdsSubType,
+            Platform.Xbox360 => Xbox360D3DTextureSubType,
             _ => throw new InvalidOperationException("Textures are not supported for the current platform")
         };
     }
@@ -146,38 +147,21 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     #region Public Methods
 
-    public override FileExtension[] GetImportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
-    {
-        // Get the settings
-        UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
-
-        ImageFormat format = GetImageFormat(settings, () => ReadCookedHeader(inputStream, settings, manager));
-
-        if (format.CanEncode)
-            return ImportFormats;
-        else
-            return Array.Empty<FileExtension>();
-    }
-
-    public override FileExtension[] GetExportFormats(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
-    {
-        // Get the settings
-        UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
-
-        ImageFormat format = GetImageFormat(settings, () => ReadCookedHeader(inputStream, settings, manager));
-
-        if (format.CanDecode)
-            return ExportFormats;
-        else
-            return Array.Empty<FileExtension>();
-    }
-
     public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<UbiArtSettings>() is true;
 
     public override bool IsOfType(FileExtension fileExtension, IArchiveDataManager manager) =>
         IsSupported(manager.Context!.GetRequiredSettings<UbiArtSettings>()) &&
         (fileExtension == new FileExtension(".tga.ckd", multiple: true) || 
          fileExtension == new FileExtension(".png.ckd", multiple: true));
+
+    public override SubFileType GetSubType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
+    {
+        // Get the settings
+        UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
+
+        // Return the subtype
+        return GetSubType(settings, () => ReadCookedHeader(inputStream, settings, manager));
+    }
 
     public override FileThumbnailData LoadThumbnail(
         ArchiveFileStream inputStream, 
@@ -191,7 +175,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         TextureCooked? header = ReadCookedHeader(inputStream, settings, manager);
 
         // Decode the image
-        ImageFormat imageFormat = GetImageFormat(settings, () => header);
+        ImageFormat imageFormat = GetSubType(settings, () => header).ImageFormat;
 
         if (imageFormat.CanDecode)
         {
@@ -226,7 +210,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         TextureCooked? header = ReadCookedHeader(inputStream, settings, manager);
 
         // Get the formats
-        ImageFormat inputImageFormat = GetImageFormat(settings, () => header);
+        ImageFormat inputImageFormat = GetSubType(settings, () => header).ImageFormat;
         ImageFormat outputImageFormat = GetImageFormat(outputFormat);
 
         // Convert manually if remapped
@@ -266,7 +250,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
         // Get the formats
         ImageFormat inputImageFormat = GetImageFormat(inputFormat);
-        ImageFormat outputImageFormat = GetImageFormat(settings, () => header);
+        ImageFormat outputImageFormat = GetSubType(settings, () => header).ImageFormat;
 
         // Skip the header since we right that last
         int dataOffset = (int)(header?.RawDataStartOffset ?? 0);
@@ -303,6 +287,51 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
             outputStream.Stream.Position = 0;
             WriteCookedHeader(header, outputStream, settings, manager);
+        }
+    }
+
+    #endregion
+
+    #region Classes
+
+    private class CookedUbiArtTextureSubFileType : SubFileType
+    {
+        public CookedUbiArtTextureSubFileType(ImageFormat imageFormat, ImageFormat[] supportedFormats)
+            : base(imageFormat.Name, GetImportFormats(imageFormat, supportedFormats), GetExportFormats(imageFormat, supportedFormats))
+        {
+            ImageFormat = imageFormat;
+        }
+
+        public ImageFormat ImageFormat { get; }
+
+        private static FileExtension[] GetImportFormats(ImageFormat imageFormat, ImageFormat[] supportedFormats)
+        {
+            if (imageFormat.CanEncode)
+            {
+                return supportedFormats.
+                    Where(x => x.CanEncode).
+                    SelectMany(x => x.FileExtensions).
+                    ToArray();
+            }
+            else
+            {
+                return Array.Empty<FileExtension>();
+            }
+        }
+
+        private static FileExtension[] GetExportFormats(ImageFormat imageFormat, ImageFormat[] supportedFormats)
+        {
+            if (imageFormat.CanDecode)
+            {
+                return supportedFormats.
+                    Where(x => x.CanDecode).
+                    SelectMany(x => x.FileExtensions.Take(1)).
+                    ToArray();
+            }
+            else
+            {
+                return Array.Empty<FileExtension>();
+            }
         }
     }
 
