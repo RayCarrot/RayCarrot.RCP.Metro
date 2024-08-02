@@ -21,6 +21,7 @@
     • Removed the Rayman 3 config option to use 16-bit textures due to it being unused by the game
     • Various other minor improvements and changes
 • The file table for UbiArt IPK archives is now automatically recreated when needed, removing the options to do so manually or on repack
+• Added serializer for Rayman Legends (PS3) save data
 • Updated the game finder to be able to find games installed through Ubisoft Connect
 • Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin
 • The available space on the system is now checked before applying mods to make sure it doesn't fail due to running out of space
