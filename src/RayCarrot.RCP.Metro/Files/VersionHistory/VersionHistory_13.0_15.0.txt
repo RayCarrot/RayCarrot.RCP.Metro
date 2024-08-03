@@ -31,6 +31,7 @@
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
 • Fixed a bug where creating IPK archives for Rayman Origins on Xbox 360 and Rayman Legends on Xbox 360 and PS3 wouldn't work
 • Fixed a bug where the thumbnail wouldn't show for a file in the Archive Explorer after renaming it
+• Fixed a bug where the Runtime Modifications wouldn't work for Rayman 1 while in a level where you ride on Bzzit
 
 
 -----   Version 14.1.0 - May 23, 2024   -----
