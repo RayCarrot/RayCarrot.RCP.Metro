@@ -27,6 +27,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
         DdsSubType = new CookedUbiArtTextureSubFileType(new DdsImageFormat(), SupportedFormats);
         Xbox360D3DTextureSubType = new CookedUbiArtTextureSubFileType(new Xbox360D3DTextureImageFormat(), SupportedFormats);
+        GtfImageFormat = new CookedUbiArtTextureSubFileType(new GtfImageFormat(), SupportedFormats);
         PvrSubType = new CookedUbiArtTextureSubFileType(new PvrImageFormat(), SupportedFormats);
     }
 
@@ -38,6 +39,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     private CookedUbiArtTextureSubFileType DdsSubType { get; }
     private CookedUbiArtTextureSubFileType Xbox360D3DTextureSubType { get; }
+    private CookedUbiArtTextureSubFileType GtfImageFormat { get; }
     private CookedUbiArtTextureSubFileType PvrSubType { get; }
 
     #endregion
@@ -131,6 +133,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         return settings.Platform is 
             Platform.PC or 
             Platform.Xbox360 or 
+            Platform.PlayStation3 or 
             Platform.iOS or 
             Platform.Android or
             Platform.Mac;
@@ -142,6 +145,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         {
             Platform.PC => DdsSubType,
             Platform.Xbox360 => Xbox360D3DTextureSubType,
+            Platform.PlayStation3 => GtfImageFormat,
             Platform.iOS => getHeaderFunc()?.Type is TextureType.BackLightEmmissive or (TextureType)3 ? PvrSubType : DdsSubType,
             Platform.Android => DdsSubType,
             Platform.Mac => DdsSubType,
