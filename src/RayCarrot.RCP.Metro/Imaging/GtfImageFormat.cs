@@ -77,7 +77,7 @@ public class GtfImageFormat : ImageFormat
         if (texture.Cubemap || texture.Dimension != GTFDimension.Dimension2)
             throw new InvalidOperationException("Only 2D GTF textures are supported");
 
-        // TODO-UPDATE: Convert to a DDS file and use DDS format to decode. That way we can also keep the mipmaps.
+        // TODO: Convert to a DDS file and use DDS format to decode. That way we can also keep the mipmaps.
         switch (texture.Format)
         {
             // Unswizzle

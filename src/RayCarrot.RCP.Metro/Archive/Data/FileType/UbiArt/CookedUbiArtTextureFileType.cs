@@ -46,7 +46,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
 
     #region Public Properties
 
-    public override string TypeDisplayName => "Cooked UBIArt Texture"; // TODO-UPDATE: Localize?
+    public override string TypeDisplayName => "Cooked UBIArt Texture"; // TODO-LOC
     public override PackIconMaterialKind Icon => PackIconMaterialKind.ImageOutline;
 
     #endregion

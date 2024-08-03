@@ -29,7 +29,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Ps2 : Ps2GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        // TODO-UPDATE: Add progression support
+        // TODO: Add progression support. Identical format to PC, but some ids seem different.
         builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids_PS2));
     }
 

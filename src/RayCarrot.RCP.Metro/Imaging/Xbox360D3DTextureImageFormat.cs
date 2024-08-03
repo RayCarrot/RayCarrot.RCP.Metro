@@ -43,7 +43,7 @@ public class Xbox360D3DTextureImageFormat : ImageFormat
         // Untiled the image data
         imgData = header.Untile(imgData, swapBytes: isCompressed);
 
-        // TODO-UPDATE: Convert to a DDS file and use DDS format to decode. That way we can also keep the mipmaps.
+        // TODO: Convert to a DDS file and use DDS format to decode. That way we can also keep the mipmaps.
         // Decompress
         if (isCompressed)
         {

@@ -97,8 +97,8 @@ public class DdsImageFormat : ImageFormat
 
     public override RawImageData Decode(Stream inputStream)
     {
-        // TODO-UPDATE: Not great to determine the length like this. Maybe we should pass in byte array to Decode instead
-        //              of stream? Although we're mainly dealing with streams from the Archive Explorer.
+        // TODO: Not great to determine the length like this. Maybe we should pass in byte array to Decode instead
+        //       of stream? Although we're mainly dealing with streams from the Archive Explorer.
         byte[] imgData = new byte[inputStream.Length - inputStream.Position];
         inputStream.Read(imgData, 0, imgData.Length);
 
