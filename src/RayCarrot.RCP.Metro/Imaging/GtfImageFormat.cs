@@ -26,6 +26,33 @@ public class GtfImageFormat : ImageFormat
         };
     }
 
+    // https://github.com/Zarh/ManaGunZ
+    private int GetSwizzleOffset(int x, int y, int log2Width, int log2Height)
+    {
+        int offset = 0;
+        int t = 0;
+
+        while (log2Width != 0 || log2Height != 0)
+        {
+            if (log2Width != 0)
+            {
+                offset |= (x & 0x01) << t;
+                x >>= 1;
+                ++t;
+                --log2Width;
+            }
+            if (log2Height != 0)
+            {
+                offset |= (y & 0x01) << t;
+                y >>= 1;
+                ++t;
+                --log2Height;
+            }
+        }
+
+        return offset;
+    }
+
     public override ImageMetadata GetMetadata(Stream inputStream)
     {
         // Read the file
@@ -53,8 +80,27 @@ public class GtfImageFormat : ImageFormat
         // TODO-UPDATE: Convert to a DDS file and use DDS format to decode. That way we can also keep the mipmaps.
         switch (texture.Format)
         {
+            // Unswizzle
             case GTFFormat.A8R8G8B8:
-                // TODO-UPDATE: Unswizzle
+                byte[] unswizzled = new byte[texture.Width * texture.Height * 4];
+
+                int log2Width = (int)Math.Log(texture.Width, 2);
+                int log2Height = (int)Math.Log(texture.Height, 2);
+
+                for (int y = 0; y < texture.Height; y++)
+                {
+                    for (int x = 0; x < texture.Width; x++)
+                    {
+                        int offset = GetSwizzleOffset(x, y, log2Width, log2Height);
+
+                        unswizzled[(texture.Width * y + x) * 4 + 0] = imgData[offset * 4 + 0];
+                        unswizzled[(texture.Width * y + x) * 4 + 1] = imgData[offset * 4 + 1];
+                        unswizzled[(texture.Width * y + x) * 4 + 2] = imgData[offset * 4 + 2];
+                        unswizzled[(texture.Width * y + x) * 4 + 3] = imgData[offset * 4 + 3];
+                    }
+                }
+
+                imgData = unswizzled;
                 break;
 
             // Decompress

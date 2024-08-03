@@ -7,6 +7,7 @@
     • Rayman Raving Rabbids
 • Added support for the PCSX2 emulator (editing save files is currently only supported for folder memory cards)
 • Archive Explorer improvements:
+    • Added support for PS3 UbiArt textures
     • Replaced the image library for DDS files and with that greatly improved DXT compression quality (used when importing images to Rayman Origins and Legends)
     • Improved support for Xbox 360 UbiArt textures, correctly converting uncompressed and color remapped textures
     • The directory path is no longer part of the info items shown when hovering over a file
