@@ -128,9 +128,20 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameClientDescriptor<DosBoxGameClientDescriptor>();
         GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), new ConfigureGameClientInstallation(x =>
         {
-            // Add the TPLS config file to the data
-            x.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths,
-                y => y.FilePaths.Add(data.ConfigFilePath));
+            // Add config paths
+            x.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths, y => 
+            {
+                // Add config files used by previous client
+                if (Services.GameClients.GetAttachedGameClient(GameInstallation) is { GameClientDescriptor: DosBoxGameClientDescriptor } prevClient)
+                {
+                    DosBoxConfigFilePaths? prevConfigPaths = prevClient.GetObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths);
+                    if (prevConfigPaths != null)
+                        y.FilePaths.AddRange(prevConfigPaths.FilePaths);
+                }
+
+                // Add the TPLS config file to the data
+                y.FilePaths.Add(data.ConfigFilePath);
+            });
 
             // Set the game client installation id
             data.GameClientInstallationId = x.InstallationId;

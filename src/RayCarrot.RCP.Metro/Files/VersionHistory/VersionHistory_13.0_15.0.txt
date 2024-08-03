@@ -26,6 +26,7 @@
 • Updated the game finder to be able to find games installed through Ubisoft Connect
 • Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin
 • The available space on the system is now checked before applying mods to make sure it doesn't fail due to running out of space
+• Installing the per-level soundtrack utility for Rayman 1 now sets it to use the same config files as previously set for DOSBox
 • Improved error messages when applying mods
 • Renamed "Rayman Universe - Рэйман и его Вселенная" to "Rayman Universe" in the credits
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
