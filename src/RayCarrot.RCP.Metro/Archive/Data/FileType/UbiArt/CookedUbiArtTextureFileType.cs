@@ -201,7 +201,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
             // Create an image source
             BitmapSource thumb = imgData.ToBitmapSource();
 
-            return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+            return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems().ToArray());
         }
         else
         {

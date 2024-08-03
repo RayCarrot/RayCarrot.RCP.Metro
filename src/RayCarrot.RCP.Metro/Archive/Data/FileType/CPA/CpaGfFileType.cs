@@ -77,7 +77,7 @@ public sealed class CpaGfFileType : FileType
         RawImageData imgData = imageFormat.Decode(inputStream.Stream);
         BitmapSource thumb = imgData.ToBitmapSource();
 
-        return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+        return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems().ToArray());
     }
 
     public override void ConvertTo(

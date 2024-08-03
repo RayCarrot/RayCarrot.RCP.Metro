@@ -68,7 +68,7 @@ public sealed class ImageFileType : FileType
             RawImageData imgData = imageFormat.Decode(inputStream.Stream);
             BitmapSource thumb = imgData.ToBitmapSource();
 
-            return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems(imageFormat).ToArray());
+            return new FileThumbnailData(thumb, imgData.Metadata.GetInfoItems().ToArray());
         }
         else
         {

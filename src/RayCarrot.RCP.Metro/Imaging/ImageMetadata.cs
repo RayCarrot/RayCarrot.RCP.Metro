@@ -14,13 +14,8 @@ public class ImageMetadata
     public int MipmapsCount { get; init; }
     public string? Encoding { get; init; }
 
-    public IEnumerable<DuoGridItemViewModel> GetInfoItems(ImageFormat? format)
+    public IEnumerable<DuoGridItemViewModel> GetInfoItems()
     {
-        if (format != null)
-            yield return new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)),
-                text: new GeneratedLocString(() => format.Name));
-
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)),
             text: $"{Width}x{Height}");
