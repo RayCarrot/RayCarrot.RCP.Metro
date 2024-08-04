@@ -18,7 +18,6 @@ public class FileItem : IDisposable
             new CpaGfFileType(),
             new WaveSoundFileType(),
             new CookedUbiArtSoundFileType(),
-            new UbiArtRakiFileType(),
             new ImageFileType(),
             new CookedUbiArtTextureFileType(),
         };
