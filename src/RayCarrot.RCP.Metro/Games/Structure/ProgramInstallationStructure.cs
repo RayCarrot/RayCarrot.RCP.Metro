@@ -33,10 +33,19 @@ public abstract class ProgramInstallationStructure
     /// <returns>The layout, or null if not found</returns>
     public ProgramLayout? GetLayout(GameInstallation gameInstallation)
     {
-        // TODO: Might want to cache this to avoid having to find the matching layout each time it's
-        //       requested. Might be better only caching during runtime rather than in app data though
-        //       since we might make changes to the layouts in future updates, or add new ones, which
-        //       might cause issues.
-        return FindMatchingLayout(gameInstallation.InstallLocation);
+        const string cacheKey = "Layout";
+
+        // First try getting from cache
+        if (gameInstallation.TryGetCachedObject(cacheKey, out ProgramLayout? layout))
+            return layout;
+
+        // Find a matching layout
+        layout = FindMatchingLayout(gameInstallation.InstallLocation);
+
+        // Cache if not null
+        if (layout != null)
+            gameInstallation.CacheObject(cacheKey, layout);
+
+        return layout;
     }
 }
