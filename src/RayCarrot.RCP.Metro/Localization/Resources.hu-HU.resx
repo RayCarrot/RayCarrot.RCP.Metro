@@ -958,9 +958,6 @@ Hírek:
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Egy érvényes magaságot muszáj megadni</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Nincs érvényes ubi.ini fájl és nem sikerült generálni egy újat. Próbáld meg az alkalmazást rendszergazdai joggal elindítani, vagy változtasd meg a mappa hozzáférési beállításait ezen az útvonalon: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Hiba lépett fel a {0} konfiguráció mentésekor</value>
   </data>

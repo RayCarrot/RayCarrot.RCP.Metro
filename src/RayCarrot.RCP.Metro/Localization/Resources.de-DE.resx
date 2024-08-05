@@ -957,9 +957,6 @@ Nochmal versuchen?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Ein gültige Höhe muss angegeben werden</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Keine gültige ubi.ini Datei wurde gefunden und beim neu erstellen ist es fehlgeschlagen. Versuche das Programm als Administrator zu starten oder ändere die Ordner Berechtigungen für den folgenden Weg: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Ein fehler ist aufgetreten beim speichern von deiner {0} Konfiguration</value>
   </data>
@@ -1398,12 +1395,6 @@ Neuigkeiten:
     <value>Rayman Control Panel
 (Administrator)</value>
   </data>
-  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
-    <value>Ubisoft Connect (uplay) ID</value>
-  </data>
-  <data name="About_Credits_Nic" xml:space="preserve">
-    <value>Titelbildschirm</value>
-  </data>
   <data name="Installer_DirMissingWritePermission" xml:space="preserve">
     <value>Der Zugriff wurde bei der ausgewählten Installationsverzeichnis verweigert. Wähle ein anderes Verzeichnis aus oder führe das Programm als Administrator aus.</value>
   </data>
@@ -1421,6 +1412,12 @@ Neuigkeiten:
   </data>
   <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
     <value>Schalte Downgrade Warnung ab</value>
+  </data>
+  <data name="GameInfo_UbisoftGameId" xml:space="preserve">
+    <value>Ubisoft Connect (uplay) ID</value>
+  </data>
+  <data name="About_Credits_Nic" xml:space="preserve">
+    <value>Titelbildschirm</value>
   </data>
   <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
     <value>Bildkomprimierung</value>

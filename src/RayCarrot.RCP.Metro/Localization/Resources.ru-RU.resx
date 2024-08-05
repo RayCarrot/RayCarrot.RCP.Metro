@@ -957,9 +957,6 @@
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Необходимо указать допустимую высоту</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>ubi.ini-файл не был найден, а создание нового не удалось. Попробуйте запустить программу от имени администратора или изменить права доступа к папке по следующему пути: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Произошла ошибка при сохранении настроек {0}</value>
   </data>
@@ -2260,9 +2257,6 @@
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Конфликт названий файлов</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Папка:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Размер файла:</value>
   </data>
@@ -2284,14 +2278,8 @@
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Размер:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Прозрачен:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Мипмапы:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Формат:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Произошла ошибка при добавлении {0}</value>

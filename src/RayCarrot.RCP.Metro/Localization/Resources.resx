@@ -1009,11 +1009,6 @@ invalidCharacter</comment>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>A valid height must be specified</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}</value>
-    <comment>Arguments:
-ubiIniFilePath</comment>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>An error occurred when saving your {0} configuration</value>
     <comment>Arguments:
@@ -2386,9 +2381,6 @@ file</comment>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>File name conflict</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Directory:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>File size:</value>
   </data>
@@ -2410,14 +2402,8 @@ file</comment>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Size:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Transparent:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmaps:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Format:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>An error occurred when adding {0}</value>
@@ -5382,9 +5368,6 @@ modFileName</comment>
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Successfully applied all mods</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>Finished applying mods. Some files could not be modified.</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>An error occurred when applying the mods. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying mods.</value>
   </data>
@@ -5706,33 +5689,8 @@ If there's a utility or other type of patch missing then it has most likely been
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>None</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>Do you want to automatically recreate the file table (secure_fat.gf) when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>The file table was successfully recreated for the following bundles:
-
-{0}</value>
-    <comment>Arguments:
-bundleNames</comment>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>An error occurred when recreating the file table</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recreating file table</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>Recreate file table</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>Recreating the file table will update the secure_fat.gf file to reflect the files currently in the game bundles. This is not required when simply modifying existing files, but as soon as you add or remove files you will have to do this for the changes to be correctly managed by the game.</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>Automatically recreate file table on repack (.ipk)</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended when adding or removing files and when applying mods that may have done so.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Donald Duck Quack Attack/Goin' Quackers</value>

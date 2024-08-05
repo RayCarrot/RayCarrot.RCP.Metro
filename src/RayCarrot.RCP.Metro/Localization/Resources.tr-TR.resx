@@ -959,9 +959,6 @@ Tekrar deneyin?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Geçerli bir yükseklik belirtilmelidir</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Geçerli bir ubi.ini dosyası bulunamadı ve yeni bir dosya oluşturulamadı. Programı yönetici olarak çalıştırmayı veya aşağıdaki yol için klasör izinlerini değiştirmeyi deneyin: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>{0} yapılandırmanız kaydedilirken bir hata oluştu</value>
   </data>
@@ -2259,9 +2256,6 @@ Hata mesajı: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Dosya adı çakışması</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Dizin:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Dosya boyutu:</value>
   </data>
@@ -2283,14 +2277,8 @@ Hata mesajı: {1}</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Boyut:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Şeffaf:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmapler:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Biçim:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>{0} eklenirken bir hata oluştu</value>

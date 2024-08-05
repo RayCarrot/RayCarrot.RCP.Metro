@@ -961,9 +961,6 @@ Noticias:
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Debe especificarse una altura válida</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>No se encontró un archivo ubi.ini válido y no se pudo crear uno nuevo. Intenta ejecutar el programa como administrador o cambiar los permisos de la carpeta para la siguiente ruta: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Se produjo un error al guardar la configuración de {0}</value>
   </data>
@@ -2266,9 +2263,6 @@ Mensaje de error: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Conflicto de nombres de archivo</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Directorio:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Tamaño del archivo:</value>
   </data>
@@ -2290,14 +2284,8 @@ Mensaje de error: {1}</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Tamaño:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Transparente:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmaps:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Formato:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Se produjo un error al agregar {0}</value>
@@ -5186,9 +5174,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Todos los mods aplicados con éxito</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>Finalizó la aplicación de mods. Algunos archivos no pudieron ser modificados.</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>Se produjo un error al aplicar los mods. No se aplicaron todos los cambios y es posible que se haya perdido algún dato. Asegúrate de no tener ningún archivo del juego abierto al aplicar mods.</value>
   </data>
@@ -5499,31 +5484,8 @@ Si falta alguna utilidad u otro tipo de parche, es probable que se haya traslada
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>Ninguna</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>¿Deseas recrear automáticamente la tabla de archivos (secure_fat.gf) cuando se vuelva a empacar un archivo? Esto es necesario cuando se agregan o eliminan archivos. Puedes cambiar esto en cualquier momento en la página de configuración.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>La tabla de archivos se recreó correctamente para los siguientes paquetes:
-
-{0}</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>Se produjo un error al recrear la tabla de archivos</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recreando tabla de archivos</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>Recrear tabla de archivos</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>Recrear la tabla de archivos actualizará el archivo secure_fat.gf para reflejar los archivos actualmente en los paquetes del juego. Esto no es necesario cuando simplemente se modifican archivos existentes, pero tan pronto como agregues o elimines archivos, deberás hacerlo para que los cambios sean gestionados correctamente por el juego.</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>Recrear automáticamente la tabla de archivos al volver a empaquetar (.ipk)</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>Si está habilitado, la tabla de archivos del juego se recreará automáticamente cuando se vuelva a empacar un archivo .ipk. Esto se recomienda hacer cuando se agregan o eliminan archivos, así como cuando se aplican modificaciones que puedan haberlo hecho.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Donald Duck Quack Attack/Goin' Quackers</value>

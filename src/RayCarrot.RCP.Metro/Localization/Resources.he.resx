@@ -955,9 +955,6 @@
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>יש לציין גובה תקף</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>לא נמצא קובץ ubi.ini תקין ולא היה ניתן ליצור קובץ חדש. נסה להפעיל את התוכנית כמנהל מערכת או שנה את הרשאות התיקיה לנתיב הבא: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>אירעה שגיאה בעת שמירת תצורת {0} שלך</value>
   </data>
@@ -2260,9 +2257,6 @@ BinarySerializer</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>התנגשות בין שם הקובץ</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>ספרייה:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>גודל הקובץ:</value>
   </data>
@@ -2284,14 +2278,8 @@ BinarySerializer</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>גודל:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>שקוף:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>מיפמפים:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>פורמט:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>אירעה שגיאה בעת הוספת {0}</value>
@@ -5181,9 +5169,6 @@ Start: הפסק</value>
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>כל המודים הוחלו בהצלחה</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>סיימתי להחיל מודים. לא ניתן היה לשנות חלק מהקבצים.</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>אירעה שגיאה בעת החלת המודים. לא כל השינויים הוחלו וייתכן שחלק מהנתונים אבדו. ודאו שלא יהיו קבצים מהמשחק פתוחים בזמן החלת המודים.</value>
   </data>
@@ -5494,31 +5479,8 @@ Start: הפסק</value>
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>ללא</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>האם ברצונכם ליצור מחדש באופן אוטומטי את טבלת הקבצים (secure_fat.gf) כאשר ארכיון נארז מחדש? פעולה זו נדרשת בעת הוספה או הסרה של קבצים. ניתן לשנות זאת בכל עת בדף ההגדרות.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>טבלת הקבצים נוצרה מחדש בהצלחה עבור החבילות הבאות:
-
-{0}</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>אירעה שגיאה במהלך יצירה מחדש של טבלת הקבצים</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>יצירה מחדש של טבלת קבצים</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>צור מחדש טבלת קבצים</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>יצירה מחדש של טבלת הקבצים תעדכן את הקובץ secure_fat.gf כך שישקף את הקבצים שנמצאים כעת בחבילות המשחקים. פעולה זו אינה נדרשת כאשר פשוט משנים קבצים קיימים, אבל ברגע שתוסיפו או תסירו קבצים תצטרכו לבצע פעולה זו כדי שהשינויים ינוהלו נכון על ידי המשחק.</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>צור מחדש באופן אוטומטי את טבלת הקבצים בעת אריזה מחדש (.ipk)</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>אם מופעל, טבלת הקבצים של המשחק תיווצר מחדש באופן אוטומטי כאשר ארכיון ipk יארוז מחדש. זה מומלץ בעת הוספה או הסרה של קבצים וכאשר החלת אופנים שאולי עשו זאת.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Donald Duck Quack Attack/Goin' Quackers</value>

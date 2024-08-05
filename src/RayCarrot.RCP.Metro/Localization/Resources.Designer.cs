@@ -754,15 +754,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to automatically recreate the file table (secure_fat.gf) when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page..
-        /// </summary>
-        public static string Archive_AutoRecreateUbiArtFileTable {
-            get {
-                return ResourceManager.GetString("Archive_AutoRecreateUbiArtFileTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page..
         /// </summary>
         public static string Archive_AutoSyncCPATextures {
@@ -1042,24 +1033,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directory:.
-        /// </summary>
-        public static string Archive_FileInfo_Dir {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Dir", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Format:.
-        /// </summary>
-        public static string Archive_FileInfo_Format {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Image compression:.
         /// </summary>
         public static string Archive_FileInfo_Img_Compression {
@@ -1074,15 +1047,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_FileInfo_Img_Compression_None {
             get {
                 return ResourceManager.GetString("Archive_FileInfo_Img_Compression_None", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Transparent:.
-        /// </summary>
-        public static string Archive_FileInfo_Img_HasAlpha {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Img_HasAlpha", resourceCulture);
             }
         }
         
@@ -1348,49 +1312,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recreate file table.
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTable {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when recreating the file table.
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTableError {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recreating the file table will update the secure_fat.gf file to reflect the files currently in the game bundles. This is not required when simply modifying existing files, but as soon as you add or remove files you will have to do this for the changes to be correctly managed by the game..
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTableInfo {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Recreating file table.
         /// </summary>
         public static string Archive_RecreatedUbiArtFileTableStatus {
             get {
                 return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file table was successfully recreated for the following bundles:
-        ///
-        ///{0}.
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTableSuccess {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableSuccess", resourceCulture);
             }
         }
         
@@ -2356,15 +2282,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_Graphics {
             get {
                 return ResourceManager.GetString("Config_Graphics", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}.
-        /// </summary>
-        public static string Config_InvalidUbiIni {
-            get {
-                return ResourceManager.GetString("Config_InvalidUbiIni", resourceCulture);
             }
         }
         
@@ -8321,15 +8238,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_ApplySuccess {
             get {
                 return ResourceManager.GetString("ModLoader_ApplySuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Finished applying mods. Some files could not be modified..
-        /// </summary>
-        public static string ModLoader_ApplyUnsuccess {
-            get {
-                return ResourceManager.GetString("ModLoader_ApplyUnsuccess", resourceCulture);
             }
         }
         
@@ -14907,24 +14815,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo {
             get {
                 return ResourceManager.GetString("Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically recreate file table on repack (.ipk).
-        /// </summary>
-        public static string Settings_ArchiveIPKRecreateFileTableOnRepack {
-            get {
-                return ResourceManager.GetString("Settings_ArchiveIPKRecreateFileTableOnRepack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended when adding or removing files and when applying mods that may have done so..
-        /// </summary>
-        public static string Settings_ArchiveIPKRecreateFileTableOnRepackInfo {
-            get {
-                return ResourceManager.GetString("Settings_ArchiveIPKRecreateFileTableOnRepackInfo", resourceCulture);
             }
         }
         

@@ -955,9 +955,6 @@ Prøv igen?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>En gyldig højde skal vælges</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Der blev ikke fundet en gyldig ubi.ini fil, og forsøg på at oprette en ny mislykkedes. Prøv at køre programmet som administrator, eller ændr mappetilladelserne for følgende sti: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at gemme dine konfigurationer til {0}</value>
   </data>
@@ -2257,9 +2254,6 @@ Fejlmeddelelse: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Filnavnskonflikt</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Mappe:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Filstørrelse:</value>
   </data>
@@ -2281,14 +2275,8 @@ Fejlmeddelelse: {1}</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Størrelse:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Gennemsigtig:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmaps:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Format:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>En fejl opstod i forsøg på at tilføje {0}</value>
@@ -5178,9 +5166,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Alle mods blev anvendt med succes</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>Anvendelse af mods gennemført. Nogle filer kunne ikke modificeres.</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at anvende de valgte mods. Ikke alle ændringer blev anvendt, og derfor kan noget data være gået tabt. Sørg for, at ingen af spilfilerne er åbne, mens at mods anvendes.</value>
   </data>
@@ -5490,28 +5475,8 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>Ingen</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>Ønsker du at filtabellen (secure_fat.gf) genoprettes automatisk, når et arkiv ompakkes? Dette er nødvendigt at gøre, når filer bliver tilføjet eller fjernet. Det kan til enhver tid ændres i indstillingerne.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>Filtabellen blev genoprettet med succes til de følgende bundter:
-
-{0}</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at genoprette filtabellen</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Genopretter filtabel</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>Genopret filtabel</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>Hvis filtabellen genoprettes, opdateres secure_fat.gf-filen til at afspejle filerne som på det nuværende tidspunkt er i spilbundterne. Dette er ikke nødvendigt hvis du bare ønsker at modificere allerede eksisterende filer, men så snart du tilføjer eller fjerner filer skal dette gøres for at sikre at ændringerne bliver håndteret korrekt af spillet.</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>Genopret automatisk filtabel ved ompakning</value>
   </data>
   <data name="Platform_Ps1" xml:space="preserve">
     <value>PlayStation</value>
@@ -5567,6 +5532,9 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="GameTool_RuntimeModifications_AutoFindGame" xml:space="preserve">
     <value>Find spilproces automatisk</value>
   </data>
+  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
+    <value>Aktiverer brug af snydekoder via debug-knappen</value>
+  </data>
   <data name="Mod_Mem_R1_UnusedDeathPower" xml:space="preserve">
     <value>Ubrugt død</value>
   </data>
@@ -5576,32 +5544,14 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Mod_Mem_RayPos" xml:space="preserve">
     <value>Rayman-position</value>
   </data>
-  <data name="Games_InvalidLayout" xml:space="preserve">
-    <value>Spilversionen er ugyldig</value>
-  </data>
-  <data name="ModLoader_FileConflictsWarningHeader" xml:space="preserve">
-    <value>Advarsel om mod-konflikt</value>
-  </data>
-  <data name="ModLoader_GameRunningError" xml:space="preserve">
-    <value>Mods kan ikke anvendes mens spillet kører. Luk aktive processer af spillet og prøv igen.</value>
-  </data>
-  <data name="ModLoader_GameRunningErrorHeader" xml:space="preserve">
-    <value>Spilproces fundet</value>
-  </data>
-  <data name="Settings_ModLoader_ShowFileConflictWarnings" xml:space="preserve">
-    <value>Vis advarsel ved mod-konflikter</value>
-  </data>
-  <data name="ModLoader_ErrorOpening" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at åbne de valgte mods</value>
-  </data>
-  <data name="Mod_Mem_R1_DebugModeInfo" xml:space="preserve">
-    <value>Aktiverer brug af snydekoder via debug-knappen</value>
-  </data>
   <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
     <value>Opbevaring af fart til venstre</value>
   </data>
   <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
     <value>Opbevaring af fart til højre</value>
+  </data>
+  <data name="Games_InvalidLayout" xml:space="preserve">
+    <value>Spilversionen er ugyldig</value>
   </data>
   <data name="GameClients_BizHawk" xml:space="preserve">
     <value>BizHawk</value>
@@ -5630,5 +5580,20 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
 Du kan slå denne advarsel fra i indstillingerne, hvis du ikke ønsker at den bliver vist i fremtidige konflikter.
 
 Fortsæt med at anvende mods?</value>
+  </data>
+  <data name="ModLoader_FileConflictsWarningHeader" xml:space="preserve">
+    <value>Advarsel om mod-konflikt</value>
+  </data>
+  <data name="ModLoader_GameRunningError" xml:space="preserve">
+    <value>Mods kan ikke anvendes mens spillet kører. Luk aktive processer af spillet og prøv igen.</value>
+  </data>
+  <data name="ModLoader_GameRunningErrorHeader" xml:space="preserve">
+    <value>Spilproces fundet</value>
+  </data>
+  <data name="Settings_ModLoader_ShowFileConflictWarnings" xml:space="preserve">
+    <value>Vis advarsel ved mod-konflikter</value>
+  </data>
+  <data name="ModLoader_ErrorOpening" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at åbne de valgte mods</value>
   </data>
 </root>
