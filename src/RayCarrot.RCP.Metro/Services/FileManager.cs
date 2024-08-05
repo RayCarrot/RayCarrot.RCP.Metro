@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using System.Text;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -20,6 +21,31 @@ public class FileManager
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private IMessageUIManager Message { get; }
+
+    private string GetVisualBasicExceptionMessage(IOException ex)
+    {
+        StringBuilder sb = new();
+
+        sb.AppendLine($"{ex.Data.Count} IO errors have occured:");
+
+        int count = 0;
+
+        foreach (DictionaryEntry entry in ex.Data)
+        {
+            sb.AppendLine($"({entry.Key}) {entry.Value}");
+
+            count++;
+
+            // Enumerate a max of 5 items to avoid the message being too long
+            if (count >= 5)
+            {
+                sb.AppendLine("...");
+                break;
+            }
+        }
+
+        return sb.ToString();
+    }
 
     /// <summary>
     /// Launches a file
@@ -248,8 +274,21 @@ public class FileManager
         // If we replace, the directory will be deleted, thus we can simply move it
         if (replaceDir)
         {
-            // Move the directory
-            FileSystem.MoveDirectory(source, destination); // Use Visual Basic API to support moving across volumes
+            try
+            {            
+                // Move the directory
+                FileSystem.MoveDirectory(source, destination); // Use Visual Basic API to support moving across volumes
+            }
+            catch (IOException ex)
+            {
+                Logger.Error(ex, "Moving directory");
+
+                // The Visual Basic API stores exceptions in the data. Use that to create a better error message.
+                if (ex.Data.Count > 0)
+                    throw new IOException(GetVisualBasicExceptionMessage(ex), ex);
+                else
+                    throw;
+            }
         }
         // If we do not replace we have to move file by file and directory by directory
         else
@@ -313,8 +352,21 @@ public class FileManager
         if (replaceDir)
             DeleteDirectory(destination);
 
-        // Copy the directory
-        FileSystem.CopyDirectory(source, destination, replaceExistingFiles);
+        try
+        {
+            // Copy the directory
+            FileSystem.CopyDirectory(source, destination, replaceExistingFiles);
+        }
+        catch (IOException ex)
+        {
+            Logger.Error(ex, "Copying directory");
+
+            // The Visual Basic API stores exceptions in the data. Use that to create a better error message.
+            if (ex.Data.Count > 0)
+                throw new IOException(GetVisualBasicExceptionMessage(ex), ex);
+            else
+                throw;
+        }
 
         Logger.Debug("The directory {0} was copied to {1}", source, destination);
     }

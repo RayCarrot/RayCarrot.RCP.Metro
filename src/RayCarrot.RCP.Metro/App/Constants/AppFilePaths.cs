@@ -55,11 +55,6 @@ public static class AppFilePaths
     public static FileSystemPath UninstallFilePath => InstallTempPath + "Uninstaller.exe";
 
     /// <summary>
-    /// The admin worker file path
-    /// </summary>
-    public static FileSystemPath AdminWorkerPath => UserDataBaseDir + "Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
-
-    /// <summary>
     /// The icon files path
     /// </summary>
     public static FileSystemPath IconsPath => UserDataBaseDir + "Icons";
@@ -72,12 +67,7 @@ public static class AppFilePaths
     /// <summary>
     /// The common path to the ubi.ini file
     /// </summary>
-    public static FileSystemPath UbiIniPath1 => Environment.SpecialFolder.Windows.GetFolderPath() + @"Ubisoft\ubi.ini";
-
-    /// <summary>
-    /// The second common path to the ubi.ini file
-    /// </summary>
-    public static FileSystemPath UbiIniPath2 => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore\\Windows\\Ubisoft\\Ubi.ini";
+    public static FileSystemPath UbiIniPath => Environment.SpecialFolder.Windows.GetFolderPath() + @"Ubisoft\ubi.ini";
 
     /// <summary>
     /// The registry base key

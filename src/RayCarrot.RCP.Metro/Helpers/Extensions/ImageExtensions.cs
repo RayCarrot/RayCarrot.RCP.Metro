@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
@@ -16,42 +15,36 @@ public static class ImageExtensions
     /// <param name="image">The image to resize</param>
     /// <param name="width">The width to resize to</param>
     /// <param name="height">The height to resize to</param>
-    /// <param name="disposeImage">Indicates if the image should be disposed</param>
     /// <returns>The resized image</returns>
-    public static Bitmap ResizeImage(this Image image, int width, int height, bool disposeImage = true)
+    public static Bitmap Resize(this Image image, int width, int height)
     {
-        try
-        {
-            // Create the frame
-            var destRect = new Rectangle(0, 0, width, height);
+        if (image == null) 
+            throw new ArgumentNullException(nameof(image));
 
-            // Crete the image to output
-            var destImage = new Bitmap(width, height);
+        // Create the frame
+        Rectangle destRect = new(0, 0, width, height);
 
-            // Set the resolution
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+        // Crete the image to output
+        Bitmap destImage = new(width, height);
 
-            // Create a graphic
-            using var graphics = Graphics.FromImage(destImage);
+        // Set the resolution
+        destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-            // Set properties
-            graphics.CompositingMode = CompositingMode.SourceCopy;
-            graphics.CompositingQuality = CompositingQuality.HighQuality;
-            graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
-            graphics.SmoothingMode = SmoothingMode.HighQuality;
-            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+        // Create a graphic
+        using Graphics graphics = Graphics.FromImage(destImage);
 
-            using var wrapMode = new ImageAttributes();
+        // Set properties
+        graphics.CompositingMode = CompositingMode.SourceCopy;
+        graphics.CompositingQuality = CompositingQuality.HighQuality;
+        graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
+        graphics.SmoothingMode = SmoothingMode.HighQuality;
+        graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-            graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+        using ImageAttributes attr = new();
 
-            return destImage;
-        }
-        finally
-        {
-            if (disposeImage)
-                image?.Dispose();
-        }
+        attr.SetWrapMode(WrapMode.TileFlipXY);
+        graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attr);
+
+        return destImage;
     }
 }

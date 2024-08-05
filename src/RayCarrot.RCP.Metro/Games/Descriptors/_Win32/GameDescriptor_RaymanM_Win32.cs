@@ -20,7 +20,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanM_Win32_Title));
     public override string[] SearchKeywords => new[] { "rm" };
-    public override DateTime ReleaseDate => new(2001, 12, 14);
+    public override DateTime ReleaseDate => new(2001, 11, 30);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanM;
     public override GameBannerAsset Banner => GameBannerAsset.RaymanM;
@@ -81,7 +81,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        new UbiIniFinderQuery(UbiIniData_RaymanM.SectionName),
+        new UbiIniFinderQuery(RaymanMIniAppData.SectionName),
 
         new UninstallProgramFinderQuery("Rayman M"),
         new UninstallProgramFinderQuery("Rayman: M"),

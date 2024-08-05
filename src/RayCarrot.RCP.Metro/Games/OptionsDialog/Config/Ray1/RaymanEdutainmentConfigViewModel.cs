@@ -3,7 +3,7 @@ using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
+public class RaymanEdutainmentConfigViewModel : BaseRay1ConfigViewModel
 {
     public RaymanEdutainmentConfigViewModel(
         MsDosGameDescriptor gameDescriptor, 
@@ -22,7 +22,7 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 
     public void RefreshSelection()
     {
-        var data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        Ray1MsDosData data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
 
         PageSelection.Clear();
 
@@ -41,7 +41,7 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
         if (SelectedPageSelectionIndex == -1)
             throw new Exception("Page selection is -1");
 
-        var data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        Ray1MsDosData data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
         string version = data.AvailableVersions[SelectedPageSelectionIndex].Id;
 
         Logger.Trace("Retrieving EDU config path for {0}", version);

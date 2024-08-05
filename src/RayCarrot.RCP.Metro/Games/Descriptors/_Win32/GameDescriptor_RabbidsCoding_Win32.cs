@@ -65,6 +65,8 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
         new UninstallProgramFinderQuery("Rabbids Coding"),
 
         new Win32ShortcutFinderQuery("Rabbids Coding"),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

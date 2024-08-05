@@ -956,9 +956,6 @@ Voulez vous réessayer ?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Une hauteur valide doit être spécifiée</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Aucun fichier ubi.ini valide n'a été trouvé et la création du fichier a échoué. Essayez d'exécuter le programme en tant qu'administrateur ou de changer les autorisations du fichier pour le chemin suivant : {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Une erreur est survenue en sauvegardant votre configuration pour {0}</value>
   </data>
@@ -2257,9 +2254,6 @@ Message d'erreur : {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Conflit de nom de fichier</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Dossier :</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Taille du fichier :</value>
   </data>
@@ -2281,14 +2275,8 @@ Message d'erreur : {1}</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Taille :</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Transparent :</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmaps :</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Format :</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Une erreur est survenue en ajoutant {0}</value>
@@ -5181,9 +5169,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Les mods ont été appliqués avec succès</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>Les mods ont été appliqués. Certains fichiers n'ont pas pu être modifiés</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>Une erreur est survenue lors de l'application des mods. Tous les changements n'ont pas pu être appliqués et certaines données ont peut-être été perdues. Assurez-vous de ne pas avoir de fichiers du jeu ouvert pendant que vous appliquez des mods.</value>
   </data>
@@ -5493,31 +5478,8 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>Aucune</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>Souhaitez-vous recréer la table de fichiers (secure_fat.gf) automatiquement après avoir recompilé une archive ? Ce procédé est requis lorsque des fichiers sont ajoutés ou retirés. Vous pouvez changer votre choix à n'importe quel moment dans le menu options.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>La table de fichier a été recréée avec succès pour les packs suivants :
-
-{0}</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>Une erreur est survenue pendant la recréation de la table de fichiers</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recréation de la table de fichier</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>Recréer la table de fichier</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>Recréer la table de fichier va mettre à jour le fichier secure_fat.gf afin de refléter les fichiers présents dans le pack du jeu. Ceci n'est pas obligatoire après une simple modification de fichiers existants, mais est nécessaire dès que des fichiers sont ajoutés ou retirés pour que les changements puissent être correctement pris en compte par le jeu.</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>Recréer automatiquement la table de fichiers après une recompilation (.apk)</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>Si cette option est activée, la table de fichiers sera automatiquement recréée quand une archive .ipk est recompilée. Cette action est recommandée si vous comptez ajouter ou retirer des fichiers mais aussi en appliquant des mods faisant cela.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Donald Duck Couak Attack</value>
@@ -5663,5 +5625,8 @@ Voulez-vous continuer l'application des mods ?</value>
   </data>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Une erreur est survenue à l'ouverture des mods</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
 </root>

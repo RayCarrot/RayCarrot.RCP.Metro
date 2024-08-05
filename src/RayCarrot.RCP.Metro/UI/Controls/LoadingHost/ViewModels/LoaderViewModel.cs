@@ -55,11 +55,11 @@ public class LoaderViewModel : BaseViewModel
 
     public void Cancel() => StateViewModel?.Cancel();
 
-    public Task<LoadState> RunAsync() => RunAsync(null, false);
+    public Task<LoaderLoadState> RunAsync() => RunAsync(null, false);
 
-    public Task<LoadState> RunAsync(string? status) => RunAsync(status, false);
+    public Task<LoaderLoadState> RunAsync(string? status) => RunAsync(status, false);
 
-    public async Task<LoadState> RunAsync(string? status, bool canCancel)
+    public async Task<LoaderLoadState> RunAsync(string? status, bool canCancel)
     {
         // Await the lock and get the disposable
         IDisposable d = await _loadLock.LockAsync();

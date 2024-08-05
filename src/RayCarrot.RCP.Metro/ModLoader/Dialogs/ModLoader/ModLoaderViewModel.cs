@@ -7,6 +7,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Resource;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -107,7 +108,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         try
         {
-            using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
+            using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
             {
                 await Task.Run(async () => await manager.MigrateAsync(state.SetProgress));
             }
@@ -208,7 +209,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         Logger.Info("Adding new mods to install");
 
-        using (LoadState state = await LoaderViewModel.RunAsync())
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync())
         {
             state.SetCanCancel(true);
 
@@ -237,7 +238,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private async Task AddModToInstallAsync(FileSystemPath filePath, LoadState loadState, string? sourceId, object? installData)
+    private async Task AddModToInstallAsync(FileSystemPath filePath, LoaderLoadState loadState, string? sourceId, object? installData)
     {
         FileExtension fileExtension = filePath.FileExtension;
         ModExtractor modExtractor = _modExtractors.First(x => x.FileExtension == fileExtension);
@@ -322,6 +323,62 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             extractTempDir.Dispose();
             throw;
+        }
+    }
+
+    private long GetLargestArchiveSize()
+    {
+        HashSet<string> checkedArchives = new();
+        long largestSize = 0;
+
+        // Check history first since these will be reverted
+        LibraryFileHistory? history = Library.ReadHistory();
+        if (history != null)
+        {
+            foreach (ModFilePath addedFile in history.AddedFiles)
+                checkArchiveSize(addedFile);
+
+            foreach (ModFilePath removedFile in history.RemovedFiles)
+                checkArchiveSize(removedFile);
+
+            foreach (ModFilePath replacedFile in history.ReplacedFiles)
+                checkArchiveSize(replacedFile);
+        }
+
+        // Then check enabled mods
+        foreach (ModViewModel modViewModel in Mods.Where(x => x.IsEnabled))
+        {
+            Mod mod = modViewModel.Mod;
+
+            foreach (IModFileResource addedFile in mod.GetAddedFiles())
+                checkArchiveSize(addedFile.Path);
+
+            foreach (ModFilePath removedFile in mod.GetRemovedFiles())
+                checkArchiveSize(removedFile);
+
+            foreach (IFilePatch patchedFile in mod.GetPatchedFiles())
+                checkArchiveSize(patchedFile.Path);
+        }
+
+        return largestSize;
+
+        void checkArchiveSize(ModFilePath filePath)
+        {
+            if (!filePath.HasLocation) 
+                return;
+            
+            if (!checkedArchives.Add(filePath.Location))
+                return;
+
+            FileSystemPath archiveFilePath = GameInstallation.InstallLocation.Directory + filePath.Location;
+
+            if (archiveFilePath.FileExists)
+            {
+                long fileSize = archiveFilePath.GetSize();
+
+                if (fileSize > largestSize)
+                    largestSize = fileSize;
+            }
         }
     }
 
@@ -510,7 +567,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         try
         {
-            using (LoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
+            using (LoaderLoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
             {
                 Logger.Info("Downloading mod to install from {0}", downloadUrl);
 
@@ -584,7 +641,36 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             }
         }
 
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))
+        // Verify the user has enough space left
+        try
+        {
+            // Get the largest size for an archive to repack
+            long minBytes = GetLargestArchiveSize();
+
+            // Add at least 1 GB for safety
+            minBytes += 0x40000000;
+
+            // Get the drive which has the user's temp folder
+            DriveInfo driveInfo = new(new DirectoryInfo(Path.GetTempPath()).Root.Name);
+
+            Logger.Info("Mod loader requires {0} bytes to apply mods", minBytes);
+
+            // Check the available space
+            if (driveInfo.AvailableFreeSpace < minBytes)
+            {
+                await Services.MessageUI.DisplayMessageAsync(
+                    String.Format(Resources.ModLoader_InsufficientSpaceError, BinaryHelpers.BytesToString(minBytes)), 
+                    Resources.ModLoader_InsufficientSpaceErrorHeader, 
+                    MessageType.Error);
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Checking available space on drive");
+        }
+
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ApplyStatus))
         {
             Logger.Info("Applying mods");
 
@@ -626,16 +712,18 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Library.WriteModManifest(new ModManifest(installedMods));
 
                     // Apply the mods
-                    bool success = await ModProcessor.ApplyAsync(Library, state.SetProgress);
+                    ApplyModsResult result = await ModProcessor.ApplyAsync(Library, state.SetProgress);
 
                     Services.Messenger.Send(new ModifiedGameModsMessage(GameInstallation));
 
                     Logger.Info("Applied mods");
 
-                    if (success)
+                    if (result.Success)
                         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ApplySuccess);
                     else
-                        await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_ApplyUnsuccess, MessageType.Warning);
+                        await Services.MessageUI.DisplayMessageAsync(
+                            String.Format(Resources.ModLoader_ApplyWithErrors, result.ErrorMessage), 
+                            MessageType.Warning);
                 });
             }
             catch (Exception ex)

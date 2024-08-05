@@ -1,5 +1,5 @@
 ﻿using BinarySerializer;
-using BinarySerializer.PS1.MemoryCard;
+using BinarySerializer.PlayStation.PS1.MemoryCard;
 
 namespace RayCarrot.RCP.Metro;
 

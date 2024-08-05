@@ -568,8 +568,13 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             // Don't show speed storage on GBA since we're not serializing states there (see Ray1MemoryData)
             if (settings.EngineBranch != Ray1EngineBranch.GBA)
             {
-                yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_LeftSpeedStorage)), m => $"{m.Ray?.ETA.States[2][0x11].LeftSpeed}");
-                yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_RightSpeedStorage)), m => $"{m.Ray?.ETA.States[2][0x11].RightSpeed}");
+                // TODO: Find better fix for this, like checking specifically if on Bzzit
+                // Only show if the state exists. It doesn't when playing as Bzzit.
+                if (AccessMemory(m => m.Ray?.ETA.States.Length > 2 && m.Ray.ETA.States[2].Length > 0x11))
+                {
+                    yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_LeftSpeedStorage)), m => $"{m.Ray?.ETA.States[2][0x11].LeftSpeed}");
+                    yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_RightSpeedStorage)), m => $"{m.Ray?.ETA.States[2][0x11].RightSpeed}");
+                }
             }
         }
 

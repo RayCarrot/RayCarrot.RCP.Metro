@@ -7,9 +7,6 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// </summary>
 public partial class UbiArtConfigControl : UserControl
 {
-    /// <summary>
-    /// Default constructor
-    /// </summary>
     public UbiArtConfigControl()
     {
         InitializeComponent();

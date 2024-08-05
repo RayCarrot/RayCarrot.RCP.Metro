@@ -59,10 +59,5 @@
 
         </StackPanel>
 
-        <CheckBox Content="{Resx Settings_ArchiveIPKRecreateFileTableOnRepack}"
-                  ToolTip="{Resx Settings_ArchiveIPKRecreateFileTableOnRepackInfo}"
-                  IsChecked="{Binding Path=Archive_IPK_RecreateFileTableOnRepack}"
-                  Margin="0 0 0 8" />
-
     </StackPanel>
 </UserControl>

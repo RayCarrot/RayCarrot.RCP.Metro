@@ -200,7 +200,7 @@ public class GameSlotViewModel : BaseRCPViewModel
         Logger.Trace("Progression slot for {0} is being opened for editing...", Game.GameInstallation.FullId);
 
         // Wait for the process to close...
-        using (LoadState state = await App.LoaderViewModel.RunAsync())
+        using (LoaderLoadState state = await App.LoaderViewModel.RunAsync())
         {
             try
             {

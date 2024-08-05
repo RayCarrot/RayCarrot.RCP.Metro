@@ -90,6 +90,8 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         new Win32ShortcutFinderQuery("Rayman Legends"),
 
         new SteamFinderQuery(SteamId),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
     };
 
     #endregion

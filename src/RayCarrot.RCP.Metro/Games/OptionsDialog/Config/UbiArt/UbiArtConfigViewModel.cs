@@ -12,7 +12,6 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
 
     public UbiArtConfigViewModel(GameInstallation gameInstallation, string registryKey)
     {
-        // Get the game
         GameInstallation = gameInstallation;
         RegistryKey = registryKey;
     }
@@ -25,47 +24,19 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
 
     #endregion
 
-    #region Private Fields
-
-    private bool _fullscreenMode;
-
-    #endregion
-
     #region Private Constants
 
     private const string ScreenHeightKey = "ScreenHeight";
-
     private const string ScreenWidthKey = "ScreenWidth";
-
     private const string FullScreenKey = "FullScreen";
 
     #endregion
 
     #region Public Properties
 
-    /// <summary>
-    /// The game installation
-    /// </summary>
     public GameInstallation GameInstallation { get; }
-
-    /// <summary>
-    /// The registry key for the game
-    /// </summary>
     public string RegistryKey { get; }
-
-    /// <summary>
-    /// True if the game should run in fullscreen,
-    /// false if it should run in windowed mode
-    /// </summary>
-    public bool FullscreenMode
-    {
-        get => _fullscreenMode;
-        set
-        {
-            _fullscreenMode = value;
-            UnsavedChanges = true;
-        }
-    }
+    public bool FullscreenMode { get; set; }
 
     #endregion
 
@@ -98,10 +69,6 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
 
     #region Protected Methods
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
@@ -122,20 +89,17 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
             FullscreenMode = GetInt(FullScreenKey, 1) == 1;
 
             // Helper methods for getting values
-            int GetInt(string valueName, int defaultValue) => Int32.TryParse(key?.GetValue(valueName, defaultValue).ToString().KeepFirstDigitsOnly(), out int result) ? result : defaultValue;
+            int GetInt(string valueName, int defaultValue) => 
+                Int32.TryParse(key?.GetValue(valueName, defaultValue).ToString().KeepFirstDigitsOnly(), out int result) ? result : defaultValue;
         }
 
         UnsavedChanges = false;
 
-        Logger.Info("All values have been loaded");
+        Logger.Info("All config properties have been loaded");
 
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Saves the changes
-    /// </summary>
-    /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
         Logger.Info("{0} configuration is saving...", GameInstallation.FullId);
@@ -163,6 +127,14 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
             Logger.Error(ex, "Saving {0} registry data", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GetDisplayName()), Resources.Config_SaveErrorHeader);
             return false;
+        }
+    }
+
+    protected override void ConfigPropertyChanged(string propertyName)
+    {
+        if (propertyName is nameof(FullscreenMode))
+        {
+            UnsavedChanges = true;
         }
     }
 

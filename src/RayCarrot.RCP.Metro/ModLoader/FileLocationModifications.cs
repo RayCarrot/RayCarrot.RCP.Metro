@@ -224,8 +224,9 @@ public class FileLocationModifications
                     archive: archive,
                     outputFileStream: archiveOutputStream,
                     files: archiveFiles,
-                    progressCallback: x => progressCallback?.Invoke(new Progress(x.Percentage_100 * 0.5 + 50, 100)), // 50-100%
-                    cancellationToken: CancellationToken.None);
+                    loadState: new ProgressLoadState(
+                        cancellationToken: CancellationToken.None,
+                        progressCallback: x => progressCallback?.Invoke(new Progress(x.Percentage_100 * 0.5 + 50, 100)))); // 50-100%
 
                 sw.Stop();
 

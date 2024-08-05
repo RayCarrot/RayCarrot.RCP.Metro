@@ -956,9 +956,6 @@ Opnieuw proberen?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Een geldige hoogte moet worden gespecificeerd</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Geen geldig ubi.ini bestand gevonden, en het aanmaken van een nieuw bestand is mislukt. Probeer het programma als administrator te starten of wijzig de maprechten voor de volgende paden: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je {0} configuratie</value>
   </data>
@@ -2257,9 +2254,6 @@ Foutmelding: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Conflict met bestandsnaam</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Map:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Bestandsgrootte:</value>
   </data>
@@ -2281,14 +2275,8 @@ Foutmelding: {1}</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Grootte:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Transparant:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmaps:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Bestandsindeling:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het toevoegen van {0}</value>
@@ -5176,9 +5164,6 @@ Conflicten:
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Succesvol alle mods toegepast</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>Toepassen mods geëindigd. Sommige bestanden konden niet gewijzigd worden.</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de mods. Niet alle wijzigingen zijn doorgevoerd en sommige data zouden verloren gegaan kunnen zijn. Zorg ervoor dat geen enkel bestand van het spel geopend is tijdens het toepassen van de mods.</value>
   </data>
@@ -5488,31 +5473,8 @@ Conflicten:
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>Geen</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>Wil je de bestandstabel (secure_fat.gf) automatisch recreëren wanneer een archief herpakt wordt? Dit is een vereiste als bestanden toegevoegd of verwijderd worden. Dit kan op elk gewenst moment worden gewijzigd via de Instellingen pagina.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>De bestandstabel is succesvol gerecreërd voor de volgende bundels:
-
-{0}</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het recreëren van de bestandstabel</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recreëren bestandstabel</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>Recreëer bestandstabel</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>Het recreëren van de bestandstabel zal resulteren in een geüpdatet secure_fat.gf bestand om de bestanden te weerspiegelen die momenteel in de spelbundels zitten. Dit is niet vereist in het geval van het wijzigen van bestaande bestanden, maar zodra er bestanden worden toegevoegd dan wel verwijderd, is dit noodzakelijk voor het juist managen van de wijzigen door het spel. </value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>Automatisch recreëren van de bestandstabel tijdens het herpakken (.ipk) </value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>Indien ingeschakeld, zal de bestandstabel voor het spel automatisch gerecreëerd worden wanneer een .ipk-archief herpakt wordt. Dit is aanbevolen bij het toevoegen of verwijderen van bestanden als ook bij het toepassen van mods.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Donald Duck Quack Attack/Goin' Quackers</value>
@@ -5608,10 +5570,10 @@ Conflicten:
     <value>Rayman-positie</value>
   </data>
   <data name="Mod_Mem_R1_LeftSpeedStorage" xml:space="preserve">
-    <value>Snelheidsopbouw links</value>
+    <value>Snelheidsopslag links</value>
   </data>
   <data name="Mod_Mem_R1_RightSpeedStorage" xml:space="preserve">
-    <value>Snelheidsopbouw rechts</value>
+    <value>Snelheidsopslag rechts</value>
   </data>
   <data name="Games_InvalidLayout" xml:space="preserve">
     <value>De spelversie is niet geldig</value>
@@ -5658,5 +5620,8 @@ Doorgaan met het toepassen van mods?</value>
   </data>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het openen van de mods</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
 </root>

@@ -106,9 +106,9 @@ public class GameProgressionManager_Rayman2_Win32 : GameProgressionManager
                     text: $"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\.ff}"));
 
             // Get the name and percentage
-            int separatorIndex = saveSlot.SlotDisplayName.LastIndexOf((char)0x20);
-            string name = saveSlot.SlotDisplayName.Substring(0, separatorIndex);
-            string percentage = saveSlot.SlotDisplayName.Substring(separatorIndex + 1);
+            int separatorIndex = saveSlot.SlotName.LastIndexOf((char)0x20);
+            string name = saveSlot.SlotName.Substring(0, separatorIndex);
+            string percentage = saveSlot.SlotName.Substring(separatorIndex + 1);
             double parsedPercentage = Double.TryParse(percentage, NumberStyles.Any, CultureInfo.InvariantCulture, out double p) ? p : 0;
 
             yield return new SerializableGameProgressionSlot<R2GeneralSaveFile>(name, saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);

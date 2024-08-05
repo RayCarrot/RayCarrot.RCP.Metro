@@ -754,15 +754,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to automatically recreate the file table (secure_fat.gf) when an archive is repacked? Doing so is required when files are added or removed. This can be changed at any time in the settings page..
-        /// </summary>
-        public static string Archive_AutoRecreateUbiArtFileTable {
-            get {
-                return ResourceManager.GetString("Archive_AutoRecreateUbiArtFileTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page..
         /// </summary>
         public static string Archive_AutoSyncCPATextures {
@@ -1042,24 +1033,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directory:.
-        /// </summary>
-        public static string Archive_FileInfo_Dir {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Dir", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Format:.
-        /// </summary>
-        public static string Archive_FileInfo_Format {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Image compression:.
         /// </summary>
         public static string Archive_FileInfo_Img_Compression {
@@ -1078,11 +1051,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transparent:.
+        ///   Looks up a localized string similar to Encoding.
         /// </summary>
-        public static string Archive_FileInfo_Img_HasAlpha {
+        public static string Archive_FileInfo_Img_Encoding {
             get {
-                return ResourceManager.GetString("Archive_FileInfo_Img_HasAlpha", resourceCulture);
+                return ResourceManager.GetString("Archive_FileInfo_Img_Encoding", resourceCulture);
             }
         }
         
@@ -1182,6 +1155,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_FileSelectionGroupName {
             get {
                 return ResourceManager.GetString("Archive_FileSelectionGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1}).
+        /// </summary>
+        public static string Archive_FileTypeWithSubType {
+            get {
+                return ResourceManager.GetString("Archive_FileTypeWithSubType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cooked UBIArt Sound.
+        /// </summary>
+        public static string Archive_Format_CookedUbiArtSound {
+            get {
+                return ResourceManager.GetString("Archive_Format_CookedUbiArtSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cooked UBIArt Texture.
+        /// </summary>
+        public static string Archive_Format_CookedUbiArtTexture {
+            get {
+                return ResourceManager.GetString("Archive_Format_CookedUbiArtTexture", resourceCulture);
             }
         }
         
@@ -1348,49 +1348,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recreate file table.
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTable {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when recreating the file table.
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTableError {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recreating the file table will update the secure_fat.gf file to reflect the files currently in the game bundles. This is not required when simply modifying existing files, but as soon as you add or remove files you will have to do this for the changes to be correctly managed by the game..
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTableInfo {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Recreating file table.
         /// </summary>
         public static string Archive_RecreatedUbiArtFileTableStatus {
             get {
                 return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file table was successfully recreated for the following bundles:
-        ///
-        ///{0}.
-        /// </summary>
-        public static string Archive_RecreatedUbiArtFileTableSuccess {
-            get {
-                return ResourceManager.GetString("Archive_RecreatedUbiArtFileTableSuccess", resourceCulture);
             }
         }
         
@@ -1465,6 +1427,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Save {
             get {
                 return ResourceManager.GetString("Archive_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving archive.
+        /// </summary>
+        public static string Archive_SavingStatus {
+            get {
+                return ResourceManager.GetString("Archive_SavingStatus", resourceCulture);
             }
         }
         
@@ -2356,15 +2327,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_Graphics {
             get {
                 return ResourceManager.GetString("Config_Graphics", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}.
-        /// </summary>
-        public static string Config_InvalidUbiIni {
-            get {
-                return ResourceManager.GetString("Config_InvalidUbiIni", resourceCulture);
             }
         }
         
@@ -4371,6 +4333,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_OpenLocation {
             get {
                 return ResourceManager.GetString("GameClients_OpenLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PCSX2.
+        /// </summary>
+        public static string GameClients_PCSX2 {
+            get {
+                return ResourceManager.GetString("GameClients_PCSX2", resourceCulture);
             }
         }
         
@@ -8325,11 +8296,14 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finished applying mods. Some files could not be modified..
+        ///   Looks up a localized string similar to Finished applying mods. Some files could not be modified.
+        ///
+        ///Error messages:
+        ///{0}.
         /// </summary>
-        public static string ModLoader_ApplyUnsuccess {
+        public static string ModLoader_ApplyWithErrors {
             get {
-                return ResourceManager.GetString("ModLoader_ApplyUnsuccess", resourceCulture);
+                return ResourceManager.GetString("ModLoader_ApplyWithErrors", resourceCulture);
             }
         }
         
@@ -8795,6 +8769,24 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_InstallStatus {
             get {
                 return ResourceManager.GetString("ModLoader_InstallStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is not enough space on the system to apply the mods. At least {0} of free space is required..
+        /// </summary>
+        public static string ModLoader_InsufficientSpaceError {
+            get {
+                return ResourceManager.GetString("ModLoader_InsufficientSpaceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insufficient space left.
+        /// </summary>
+        public static string ModLoader_InsufficientSpaceErrorHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_InsufficientSpaceErrorHeader", resourceCulture);
             }
         }
         
@@ -9438,6 +9430,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PlayStation 2.
+        /// </summary>
+        public static string Platform_Ps2 {
+            get {
+                return ResourceManager.GetString("Platform_Ps2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Desktop (Win32).
         /// </summary>
         public static string Platform_Win32 {
@@ -9804,6 +9805,78 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_Lums {
             get {
                 return ResourceManager.GetString("Progression_Lums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance covered.
+        /// </summary>
+        public static string Progression_R2Ps2_DistanceCovered {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_DistanceCovered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} meters.
+        /// </summary>
+        public static string Progression_R2Ps2_DistanceCoveredValue {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_DistanceCoveredValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of jumps.
+        /// </summary>
+        public static string Progression_R2Ps2_NumberOfJumps {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_NumberOfJumps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of try again.
+        /// </summary>
+        public static string Progression_R2Ps2_NumberOfTryAgain {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_NumberOfTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player shots fired.
+        /// </summary>
+        public static string Progression_R2Ps2_PlayerShotsFired {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_PlayerShotsFired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shooting accuracy.
+        /// </summary>
+        public static string Progression_R2Ps2_ShootingAccuracy {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_ShootingAccuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time played.
+        /// </summary>
+        public static string Progression_R2Ps2_TimePlayed {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_TimePlayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Times killed.
+        /// </summary>
+        public static string Progression_R2Ps2_TimesKilled {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_TimesKilled", resourceCulture);
             }
         }
         
@@ -12004,6 +12077,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Revolution.
+        /// </summary>
+        public static string Rayman2_Ps2_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Ps2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 2.
         /// </summary>
         public static string Rayman2_Win32_Title {
@@ -12078,6 +12160,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman 3.
         /// </summary>
+        public static string Rayman3_Ps2_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Ps2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
         public static string Rayman3_Win32_Title {
             get {
                 return ResourceManager.GetString("Rayman3_Win32_Title", resourceCulture);
@@ -12108,6 +12199,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanActivityCenter_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanActivityCenter_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Arena.
+        /// </summary>
+        public static string RaymanArena_Ps2_Title {
+            get {
+                return ResourceManager.GetString("RaymanArena_Ps2_Title", resourceCulture);
             }
         }
         
@@ -12294,6 +12394,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman M.
         /// </summary>
+        public static string RaymanM_Ps2_Title {
+            get {
+                return ResourceManager.GetString("RaymanM_Ps2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M.
+        /// </summary>
         public static string RaymanM_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanM_Win32_Title", resourceCulture);
@@ -12333,6 +12442,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanRavingRabbids_Gba_Title {
             get {
                 return ResourceManager.GetString("RaymanRavingRabbids_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string RaymanRavingRabbids_Ps2_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbids_Ps2_Title", resourceCulture);
             }
         }
         
@@ -14907,24 +15025,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo {
             get {
                 return ResourceManager.GetString("Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically recreate file table on repack (.ipk).
-        /// </summary>
-        public static string Settings_ArchiveIPKRecreateFileTableOnRepack {
-            get {
-                return ResourceManager.GetString("Settings_ArchiveIPKRecreateFileTableOnRepack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If enabled the file table for the game will be automatically recreated when a .ipk archive is repacked. This is recommended when adding or removing files and when applying mods that may have done so..
-        /// </summary>
-        public static string Settings_ArchiveIPKRecreateFileTableOnRepackInfo {
-            get {
-                return ResourceManager.GetString("Settings_ArchiveIPKRecreateFileTableOnRepackInfo", resourceCulture);
             }
         }
         

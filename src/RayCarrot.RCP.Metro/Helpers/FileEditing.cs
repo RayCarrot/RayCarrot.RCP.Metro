@@ -24,7 +24,7 @@ public class FileEditing : IDisposable
         return hashAlgorithm.ComputeHash(tmpFile);
     }
 
-    public async Task<bool> ExecuteAsync(string fileExtension, bool readOnly, LoadState state, Action<FileSystemPath> createFileAction)
+    public async Task<bool> ExecuteAsync(string fileExtension, bool readOnly, LoaderLoadState state, Action<FileSystemPath> createFileAction)
     {
         // Get the program to open the file with
         FileSystemPath? programPath = await Services.AssociatedFileEditorsManager.RequestFileEditorAssociatonAsync(fileExtension);

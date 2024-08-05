@@ -104,19 +104,25 @@
                                         Margin="0 0 0 4">
 
                                 <rcp:DuoGridItem Header="-reset" 
-                                                   Text="Resets the app user data. This will not reset that the license has been accepted." />
+                                                 Text="Resets the app user data. This will not reset that the license has been accepted." />
+                                <rcp:DuoGridItem Header="-restart" 
+                                                 Text="Used when restarting the app. Causes it to wait for any running instances to exit before starting." />
                                 <rcp:DuoGridItem Header="-ul (1 param)" 
-                                                   Text="Sets the user level to {param0}" />
+                                                 Text="Sets the user level to {param0}" />
                                 <rcp:DuoGridItem Header="-install (1 param)" 
-                                                   Text="Legacy argument used by the updater prior to version 4.5.0. Deletes the file at {param0}." />
+                                                 Text="Legacy argument used by the updater prior to version 4.5.0. Deletes the file at {param0}." />
                                 <rcp:DuoGridItem Header="-loglevel (1 param)" 
-                                                   Text="Sets the log level to {param0}. Can be either Trace, Debug, Info, Warn, Error, Fatal or Off. This will not effect the log viewer as that always receives all logs. By default the log level is set to Info for release builds and Trace for debug builds." />
+                                                 Text="Sets the log level to {param0}. Can be either Trace, Debug, Info, Warn, Error, Fatal or Off. This will not effect the log viewer as that always receives all logs. By default the log level is set to Info for release builds and Trace for debug builds." />
                                 <rcp:DuoGridItem Header="-nofilelog" 
-                                                   Text="Disables the file logging." />
+                                                 Text="Disables the file logging." />
                                 <rcp:DuoGridItem Header="-nomemlog" 
-                                                   Text="Disabled the memory logging. This will cause a potential application crash to not include the log information in the crash log." />
+                                                 Text="Disabled the memory logging. This will cause a potential application crash to not include the log information in the crash log." />
                                 <rcp:DuoGridItem Header="-logviewer" 
-                                                   Text="Enables the log viewer." />
+                                                 Text="Enables the log viewer." />
+                                <rcp:DuoGridItem Header="-adminworker" 
+                                                 Text="Indicates the app is running in admin worker mode. This has it processing any admin worker arguments and then closes." />
+                                <rcp:DuoGridItem Header="-fullcontrol (1 param)" 
+                                                 Text="Admin worker mode only. This gives the user full control to the file at {param0}." />
 
                             </StackPanel>
 

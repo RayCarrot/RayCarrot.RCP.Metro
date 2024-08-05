@@ -12,6 +12,12 @@ public static class ContextExtensions
             ? new LinearFile(context, fileName, endian)
             : new EncodedLinearFile(context, fileName, encoder, endian);
 
+        return ReadFileData<T>(context, file, endian, onPreSerialize, removeFileWhenComplete, recreateOnWrite);
+    }
+
+    public static T? ReadFileData<T>(this Context context, PhysicalFile file, Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true, bool recreateOnWrite = true)
+        where T : BinarySerializable, new()
+    {
         file.RecreateOnWrite = recreateOnWrite;
 
         if (!File.Exists(file.SourcePath))
@@ -21,7 +27,7 @@ public static class ContextExtensions
 
         try
         {
-            T data = FileFactory.Read<T>(context, fileName, (_, o) => onPreSerialize?.Invoke(o));
+            T data = FileFactory.Read<T>(context, file.FilePath, (_, o) => onPreSerialize?.Invoke(o));
 
             if (removeFileWhenComplete)
                 context.RemoveFile(file);
@@ -44,7 +50,15 @@ public static class ContextExtensions
                ?? throw new FileNotFoundException($"The requested file {fileName} was not found");
     }
 
-    public static T ReadStreamData<T>(this Context context, Stream stream, string name = "Stream", Endian? endian = null, VirtualFileMode mode = VirtualFileMode.Close, Action<T>? onPreSerialize = null)
+    public static T ReadRequiredFileData<T>(this Context context, PhysicalFile file,
+        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true, bool recreateOnWrite = true)
+        where T : BinarySerializable, new()
+    {
+        return ReadFileData<T>(context, file, endian, onPreSerialize, removeFileWhenComplete, recreateOnWrite) 
+               ?? throw new FileNotFoundException($"The requested file {file.FilePath} was not found");
+    }
+
+    public static T ReadStreamData<T>(this Context context, Stream stream, string name = "Stream", Endian? endian = null, VirtualFileMode mode = VirtualFileMode.Close, Action<T>? onPreSerialize = null, bool maintainPosition = false)
         where T : BinarySerializable, new()
     {
         BinaryFile file = new StreamFile(context, name, stream, endian, mode: mode);
@@ -53,7 +67,10 @@ public static class ContextExtensions
 
         try
         {
-            return FileFactory.Read<T>(context, name, (_, o) => onPreSerialize?.Invoke(o));
+            if (maintainPosition)
+                return FileFactory.Read<T>(context, file.StartPointer + stream.Position, (_, o) => onPreSerialize?.Invoke(o));
+            else
+                return FileFactory.Read<T>(context, name, (_, o) => onPreSerialize?.Invoke(o));
         }
         finally
         {
@@ -72,6 +89,13 @@ public static class ContextExtensions
         where T : BinarySerializable, new()
     {
         return Task.Run(() => context.ReadRequiredFileData(fileName, encoder, endian, onPreSerialize, removeFileWhenComplete, recreateOnWrite));
+    }
+
+    public static Task<T> ReadRequiredFileDataAsync<T>(this Context context, PhysicalFile file,
+        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true, bool recreateOnWrite = true)
+        where T : BinarySerializable, new()
+    {
+        return Task.Run(() => context.ReadRequiredFileData(file, endian, onPreSerialize, removeFileWhenComplete, recreateOnWrite));
     }
 
     public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian? endian = null)

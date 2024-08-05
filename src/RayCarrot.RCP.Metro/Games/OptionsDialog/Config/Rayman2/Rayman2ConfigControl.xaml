@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.OptionsDialog.Rayman2ConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:optionsDialog="clr-namespace:RayCarrot.RCP.Metro.Games.OptionsDialog"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance optionsDialog:Rayman2ConfigViewModel}">
+
+    <ScrollViewer>
+        <i:Interaction.Behaviors>
+            <rcp:FocusScrollViewerOnLoad />
+        </i:Interaction.Behaviors>
+
+        <StackPanel Margin="12 0">
+            <i:Interaction.Behaviors>
+                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            </i:Interaction.Behaviors>
+
+            <optionsDialog:ConfigLocationsControl rcp:UnifiedMargin.Ignored="True" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Resolution}" />
+
+                <rcp:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
+
+            </StackPanel>
+
+            <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
+
+            <StackPanel Orientation="Horizontal">
+                <rcp:AdminButton Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                 Margin="0 0 5 0" />
+
+                <CheckBox Content="{Resx Config_WidescreenSupport}"
+                          ToolTip="{Resx Config_WidescreenSupportInfo}"
+                          IsChecked="{Binding Path=WidescreenSupport}"
+                          IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
+            </StackPanel>
+
+            <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={rcp:BooleanToVisibilityConverter}}">
+                <i:Interaction.Behaviors>
+                    <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
+                </i:Interaction.Behaviors>
+
+                <RadioButton Content="{Resx Config_WidescreenHorizontal}"
+                             ToolTip="{Resx Config_WidescreenHorizontalInfo}"
+                             IsChecked="{Binding Path=IsHorizontalWidescreen}" />
+
+                <!-- TODO: Find solution to this -->
+                <RadioButton Content="{Resx Config_VerticalHorizontal}"
+                             ToolTip="{Resx Config_WidescreenVerticalInfo}"
+                             IsChecked="{Binding Path=IsHorizontalWidescreen, Converter={rcp:InvertedBooleanConverter}}"
+                             IsEnabled="False" />
+
+            </WrapPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Language}" />
+
+                <rcp:InfoIcon Text="{Resx Config_LanguageR2Info}" />
+
+            </StackPanel>
+
+            <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rcp:EnumToIntConverter}}"
+                      HorizontalAlignment="Left">
+                <TextBlock Text="{Resx Lang_English}" />
+                <TextBlock Text="{Resx Lang_French}" />
+                <TextBlock Text="{Resx Lang_Spanish}" />
+                <TextBlock Text="{Resx Lang_Italian}" />
+                <TextBlock Text="{Resx Lang_German}" />
+            </ComboBox>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Controller}" />
+
+                <rcp:InfoIcon Text="{Resx Config_ControllerR2Info}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <rcp:AdminButton
+                    Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                    Margin="0 0 5 0" />
+
+                <CheckBox Content="{Resx Config_EnableNativeController}"
+                          IsChecked="{Binding Path=ControllerSupport}"
+                          IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
+
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Graphics}" />
+
+            <WrapPanel>
+                <i:Interaction.Behaviors>
+                    <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
+                </i:Interaction.Behaviors>
+
+                <rcp:RadioButtonExtended Content="{Resx R2Config_Graphics_DirectX}"
+                                         IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:Rayman2ConfigViewModel+R2GraphicsMode.DirectX}}" />
+
+                <rcp:RadioButtonExtended Content="{Resx R2Config_Graphics_nGlide}"
+                                         IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:Rayman2ConfigViewModel+R2GraphicsMode.Glide}}" />
+
+                <rcp:RadioButtonExtended Content="{Resx R2Config_Graphics_Custom}"
+                                         IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:Rayman2ConfigViewModel+R2GraphicsMode.Custom}}" />
+
+            </WrapPanel>
+
+            <Grid Visibility="{Binding Path=SelectedGraphicsMode, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static optionsDialog:Rayman2ConfigViewModel+R2GraphicsMode.Custom}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" MinWidth="110" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="0 0 10 0" />
+                    </Style>
+                </Grid.Resources>
+
+                <i:Interaction.Behaviors>
+                    <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="GLI_DllFile" />
+
+                <TextBox Grid.Column="1"
+                         Grid.Row="0"
+                         Text="{Binding Path=GLI_DllFile}" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="GLI_Dll" />
+
+                <TextBox Grid.Column="1"
+                         Grid.Row="1"
+                         Text="{Binding Path=GLI_Dll}" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="2"
+                           Text="GLI_Driver" />
+
+                <TextBox Grid.Column="1"
+                         Grid.Row="2"
+                         Text="{Binding Path=GLI_Driver}" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="3"
+                           Text="GLI_Device" />
+
+                <TextBox Grid.Column="1"
+                         Grid.Row="3"
+                         Text="{Binding Path=GLI_Device}" />
+
+            </Grid>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_ButtonMapping}" />
+
+                <rcp:InfoIcon Text="{Resx Config_ButtonMappingInfo}" />
+
+            </StackPanel>
+
+            <Grid IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}">
+                <rcp:ButtonMapper IsEnabled="{Binding Path=ControllerSupport, Converter={rcp:InvertedBooleanConverter}}"
+                                  ItemsSource="{Binding Path=Keys, Mode=OneTime}"/>
+            </Grid>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</UserControl>

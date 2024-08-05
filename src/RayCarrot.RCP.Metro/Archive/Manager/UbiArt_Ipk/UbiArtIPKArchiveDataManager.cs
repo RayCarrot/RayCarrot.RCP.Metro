@@ -147,22 +147,12 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <returns>The encoded file data</returns>
     public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<BundleFile_FileEntry>>().GetFileStream((BundleFile_FileEntry)fileEntry);
 
-    /// <summary>
-    /// Writes the files to the archive
-    /// </summary>
-    /// <param name="generator">The generator</param>
-    /// <param name="archive">The loaded archive data</param>
-    /// <param name="outputFileStream">The file output stream for the archive</param>
-    /// <param name="files">The files to include</param>
-    /// <param name="progressCallback">A progress callback action</param>
-    /// <param name="cancellationToken">The cancellation token for cancelling the archive writing</param>
     public void WriteArchive(
         IDisposable? generator,
         object archive,
         ArchiveFileStream outputFileStream,
         IEnumerable<FileItem> files,
-        Action<Progress> progressCallback,
-        CancellationToken cancellationToken)
+        ILoadState loadState)
     {
         Logger.Info("An IPK archive is being repacked...");
 
@@ -179,6 +169,15 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             FileItem = x
         }).ToList();
 
+        // Check if files were added or removed
+        bool addedOrRemovedFiles = data.FilePack.Files?.Length != archiveFiles.Count ||
+                                   !data.FilePack.Files.OrderBy(x => x.Path.FullPath).SequenceEqual(archiveFiles.Select(x => x.Entry).OrderBy(x => x.Path.FullPath));
+
+        if (addedOrRemovedFiles)
+            Logger.Info("Files were added or removed from the archive");
+        else
+            Logger.Info("No files were added or removed from the archive");
+        
         // Set the files
         data.FilePack.Files = archiveFiles.ToArray(x => x.Entry);
         data.BootHeader.FilesCount = (uint)data.FilePack.Files.Length;
@@ -257,7 +256,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             });
         }
 
-        cancellationToken.ThrowIfCancellationRequested();
+        loadState.CancellationToken.ThrowIfCancellationRequested();
 
         BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, mode: VirtualFileMode.DoNotClose);
 
@@ -281,7 +280,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             }
 
             // Write the files
-            WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), progressCallback, cancellationToken);
+            WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), loadState.SetProgress, loadState.CancellationToken);
 
             outputFileStream.Stream.Position = 0;
 
@@ -294,61 +293,43 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         {
             Context.RemoveFile(binaryFile);
         }
+
+        loadState.CancellationToken.ThrowIfCancellationRequested();
+
+        // Recreate the file table if files were added or removed
+        if (addedOrRemovedFiles)
+        {
+            // Make sure we have a game installation
+            if (GameInstallation == null)
+                return;
+
+            UbiArtPathsComponent paths = GameInstallation.GetRequiredComponent<UbiArtPathsComponent>();
+            string? globalFatFileName = paths.GlobalFatFile;
+
+            // Make sure the game has a global fat file
+            if (globalFatFileName == null)
+                return;
+
+            UbiArtGlobalFatManager globalFatManager = new(GameInstallation, paths.GameDataDirectory, globalFatFileName);
+
+            try
+            {
+                loadState.SetStatus(Resources.Archive_RecreatedUbiArtFileTableStatus);
+
+                string[] bundleNames = paths.GetBundleNames(includePatch: false).ToArray();
+                globalFatManager.CreateFileAllocationTable(bundleNames, loadState.CancellationToken);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Recreating file table");
+                throw;
+            }
+        }
     }
 
     public double GetOnRepackedArchivesProgressLength() => 0;
 
-    public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null)
-    {
-        // Make sure we have a game installation
-        if (GameInstallation == null)
-            return;
-
-        UbiArtPathsComponent paths = GameInstallation.GetRequiredComponent<UbiArtPathsComponent>();
-        string? globalFatFileName = paths.GlobalFatFile;
-
-        // Make sure the game has a global fat file
-        if (globalFatFileName == null)
-            return;
-
-        AppUserData data = Services.Data;
-
-        // Only automatically recreate the file table if set to do so
-        if (!data.Archive_IPK_RecreateFileTableOnRepack)
-        {
-            // Ask user the first time
-            if (!data.Archive_IPK_RecreateFileTableOnRepackRequested)
-            {
-                if (await Services.MessageUI.DisplayMessageAsync(Resources.Archive_AutoRecreateUbiArtFileTable, MessageType.Question, true))
-                    data.Archive_IPK_RecreateFileTableOnRepack = true;
-
-                data.Archive_IPK_RecreateFileTableOnRepackRequested = true;
-            }
-
-            if (!data.Archive_IPK_RecreateFileTableOnRepack)
-                return;
-        }
-
-        data.Archive_IPK_RecreateFileTableOnRepackRequested = true;
-
-        UbiArtGlobalFatManager globalFatManager = new(GameInstallation, paths.GameDataDirectory, globalFatFileName);
-
-        try
-        {
-            string[] bundleNames = paths.GetBundleNames(includePatch: false).ToArray();
-            await Task.Run(() => globalFatManager.CreateFileAllocationTable(bundleNames, CancellationToken.None, progressCallback));
-
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(
-                Resources.Archive_RecreatedUbiArtFileTableSuccess,
-                bundleNames.JoinItems(Environment.NewLine)));
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Recreating file table");
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RecreatedUbiArtFileTableError);
-        }
-    }
+    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null) => Task.CompletedTask;
 
     private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {

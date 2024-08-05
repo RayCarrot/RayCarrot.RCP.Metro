@@ -113,24 +113,6 @@ public static class EnumerableExtensions
     }
 
     /// <summary>
-    /// Determines whether a sequence contains any elements
-    /// </summary>
-    /// <param name="enumerable">The <see cref="IEnumerable"/> to check for emptiness</param>
-    /// <returns>true if the source sequence contains any elements, otherwise false</returns>
-    /// <exception cref="ArgumentNullException"/>
-    public static bool Any(this IEnumerable enumerable)
-    {
-        if (enumerable == null)
-            throw new ArgumentNullException(nameof(enumerable));
-
-        if (enumerable is ICollection collectionoft)
-            return collectionoft.Count != 0;
-
-        IEnumerator e = enumerable.GetEnumerator();
-        return e.MoveNext();
-    }
-
-    /// <summary>
     /// Disposes all items in the collection
     /// </summary>
     /// <param name="disposables">The collection of disposable items</param>

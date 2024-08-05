@@ -24,10 +24,14 @@ public class GamesManager
             new GameDescriptor_Rayman60Levels_MsDos(),
             new GameDescriptor_Rayman2_Win32(),
             new GameDescriptor_Rayman2_Ps1(),
+            new GameDescriptor_Rayman2_Ps2(),
             new GameDescriptor_RaymanM_Win32(),
+            new GameDescriptor_RaymanM_Ps2(),
             new GameDescriptor_RaymanArena_Win32(),
+            new GameDescriptor_RaymanArena_Ps2(),
             new GameDescriptor_RaymanRush_Ps1(),
             new GameDescriptor_Rayman3_Win32(),
+            new GameDescriptor_Rayman3_Ps2(),
             new GameDescriptor_RaymanOrigins_Win32(),
             new GameDescriptor_RaymanLegends_Win32(),
             new GameDescriptor_RaymanJungleRun_WindowsPackage(),
@@ -39,6 +43,7 @@ public class GamesManager
 
             // Rabbids
             new GameDescriptor_RaymanRavingRabbids_Win32(),
+            new GameDescriptor_RaymanRavingRabbids_Ps2(),
             new GameDescriptor_RaymanRavingRabbids2_Win32(),
             new GameDescriptor_RabbidsGoHome_Win32(),
             new GameDescriptor_RabbidsBigBang_WindowsPackage(),

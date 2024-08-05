@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace RayCarrot.RCP.Metro;
@@ -29,6 +30,7 @@ public abstract class ProgramInstallation
     private readonly Dictionary<string, object?> _data;
 
     private readonly List<DataChangedCallback> _dataChangedCallbacks = new();
+    private Dictionary<string, object>? _cache;
 
     #endregion
 
@@ -208,6 +210,38 @@ public abstract class ProgramInstallation
     public void RemoveDataChangedCallback(string key, Action callback)
     {
         _dataChangedCallbacks.RemoveAll(x => x.Key == key && x.Callback == callback);
+    }
+
+    public void CacheObject<T>(string key, T obj)
+        where T : class
+    {
+        _cache ??= new Dictionary<string, object>();
+        _cache[key] = obj;
+    }
+
+    public bool TryGetCachedObject<T>(string key, [NotNullWhen(true)] out T? obj)
+        where T : class
+    {
+        if (_cache == null)
+        {
+            obj = null;
+            return false;
+        }
+        else
+        {
+            bool success = _cache.TryGetValue(key, out object cachedObj);
+
+            if (success && cachedObj is T cachedObjOfT)
+            {
+                obj = cachedObjOfT;
+                return true;
+            }
+            else
+            {
+                obj = null;
+                return false;
+            }
+        }
     }
 
     #endregion

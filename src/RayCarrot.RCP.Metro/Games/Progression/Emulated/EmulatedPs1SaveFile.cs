@@ -1,4 +1,4 @@
-﻿using BinarySerializer.PS1.MemoryCard;
+﻿using BinarySerializer.PlayStation.PS1.MemoryCard;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -40,8 +40,8 @@ public class EmulatedPs1SaveFile : EmulatedSaveFile
             DirectoryFrame dir = memoryCard.HeaderBlock.Directories[i];
             if (dir.Usability == BlockUsability.PartiallyUsed &&
                 dir.Usage == BlockUsage.NoLink &&
-                dir.CountryCode == layout.MemoryCardCountryCode &&
-                dir.ProductCode == layout.MemoryCardProductCode)
+                dir.CountryCode == layout.CountryCode &&
+                dir.ProductCode == layout.ProductCode)
             {
                 saves.Add(new EmulatedPs1Save(this, context, memoryCard, i + 1, dir.Identifier));
             }

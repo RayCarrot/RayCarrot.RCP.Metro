@@ -25,6 +25,7 @@ public class Finder
         new PreviouslyDownloadedGameFinderOperation(),
         new UbiIniFinderOperation(),
         new SteamFinderOperation(),
+        new UbisoftConnectFinderOperation(),
         new UninstallProgramFinderOperation(),
         new Win32ShortcutFinderOperation(),
         new WindowsPackageFinderOperation(),

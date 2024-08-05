@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿using System.ComponentModel;
+
+namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
 {
@@ -27,6 +29,18 @@ public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
 
     public ObservableCollection<LinkItemViewModel> ConfigLocations { get; }
 
+    private void ConfigPageViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        ConfigPropertyChanged(e.PropertyName);
+    }
+
+    private void GraphicsMode_GraphicsModeChanged(object sender, EventArgs e)
+    {
+        UnsavedChanges = true;
+    }
+
+    protected virtual void ConfigPropertyChanged(string propertyName) { }
+
     protected void AddConfigLocation(LinkItemViewModel.LinkType type, string linkPath)
     {
         LinkItemViewModel link = new(type, linkPath);
@@ -37,23 +51,21 @@ public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
 
     protected override Task PreLoadAsync()
     {
+        PropertyChanged -= ConfigPageViewModel_PropertyChanged;
         ConfigLocations.Clear();
         return Task.CompletedTask;
     }
 
     protected override Task PostLoadAsync()
     {
+        PropertyChanged += ConfigPageViewModel_PropertyChanged;
+
         // Load icons
         return Task.Run(() =>
         {
             foreach (LinkItemViewModel link in ConfigLocations)
                 link.LoadIcon();
         });
-    }
-
-    private void GraphicsMode_GraphicsModeChanged(object sender, EventArgs e)
-    {
-        UnsavedChanges = true;
     }
 
     public override void Dispose()

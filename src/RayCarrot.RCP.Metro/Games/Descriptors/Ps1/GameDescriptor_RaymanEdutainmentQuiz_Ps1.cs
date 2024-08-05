@@ -33,7 +33,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_Ps1 : Ps1GameDescriptor
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanEducational_PS1));
     }
 
-    protected override ProgramInstallationStructure CreateStructure() => new PS1DiscProgramInstallationStructure(new[]
+    protected override ProgramInstallationStructure CreateStructure() => new Ps1DiscProgramInstallationStructure(new[]
     {
         new Ps1DiscProgramLayout("EU", "BE", "SLES-02797", 12, new ProgramFileSystem(new ProgramPath[]
         {

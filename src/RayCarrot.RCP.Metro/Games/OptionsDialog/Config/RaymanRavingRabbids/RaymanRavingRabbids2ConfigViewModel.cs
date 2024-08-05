@@ -1,9 +1,8 @@
-﻿#nullable disable
-using RayCarrot.RCP.Metro.Games.Data;
+﻿using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public class RaymanRavingRabbids2ConfigViewModel : RaymanRavingRabbidsBaseConfigViewModel
+public class RaymanRavingRabbids2ConfigViewModel : BaseRaymanRavingRabbidsConfigViewModel
 {
     #region Constructor
 
@@ -36,7 +35,7 @@ public class RaymanRavingRabbids2ConfigViewModel : RaymanRavingRabbidsBaseConfig
 
     protected override string GetGUID()
     {
-        // The game hard-codes this based on the what the game mode is specified as in the launch arguments
+        // The game hard-codes this based on what the game mode is specified as in the launch arguments
         return GameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, RaymanRavingRabbids2LaunchMode.AllGames) switch
         {
             RaymanRavingRabbids2LaunchMode.Orange => "{1D769438-429C-4309-931D-A643DF9C57D9}",
@@ -47,10 +46,6 @@ public class RaymanRavingRabbids2ConfigViewModel : RaymanRavingRabbidsBaseConfig
         };
     }
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
@@ -79,15 +74,11 @@ public class RaymanRavingRabbids2ConfigViewModel : RaymanRavingRabbidsBaseConfig
 
         UnsavedChanges = false;
 
-        Logger.Info("All values have been loaded");
+        Logger.Info("All config properties have been loaded");
 
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Saves the changes
-    /// </summary>
-    /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
         Logger.Info("{0} configuration is saving...", GameInstallation.FullId);

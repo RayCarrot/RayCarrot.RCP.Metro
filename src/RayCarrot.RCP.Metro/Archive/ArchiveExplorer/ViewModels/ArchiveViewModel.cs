@@ -257,7 +257,7 @@ public class ArchiveViewModel : DirectoryViewModel
         }
 
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName), canCancel: true))
+        using (LoaderLoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName), canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -296,12 +296,12 @@ public class ArchiveViewModel : DirectoryViewModel
                                 files: this.GetAllChildren<DirectoryViewModel>(true).SelectMany(x => x.Files)
                                     .Select(x => x.FileData),
                                 // ReSharper disable once AccessToDisposedClosure
-                                progressCallback: x => state.SetProgress(currentProgress.Add(x, repackProgress)),
-                                cancellationToken: state.CancellationToken);
+                                loadState: new PartialProgressLoadState(state, x => currentProgress.Add(x, repackProgress)));
                         }
 
                         currentProgress += repackProgress;
 
+                        state.SetStatus(Resources.Archive_SavingStatus);
                         state.SetCanCancel(false);
 
                         // Dispose the archive file stream

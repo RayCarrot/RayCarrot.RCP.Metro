@@ -109,6 +109,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = _ => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends"
                     },
+                    new(UbiArtGameMode.RaymanLegends_PS3),
                 }),
 
             new Serializers_TypeViewModel<JungleRun_SaveData>(

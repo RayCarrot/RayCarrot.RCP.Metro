@@ -19,7 +19,7 @@ public class ProgressionDirectory
         SearchPattern = searchPattern ?? "*";
         
         if (dirPath != FileSystemPath.EmptyPath)
-            VirtualStoreDirPath = GetVirtualStoreFilePath() + DirPath.RemoveRoot();
+            VirtualStoreDirPath = DirPath.GetVirtualStorePath();
         
         HasVirtualStoreVersion = VirtualStoreDirPath.DirectoryExists;
     }
@@ -70,8 +70,6 @@ public class ProgressionDirectory
     #endregion
 
     #region Private Methods
-
-    private static FileSystemPath GetVirtualStoreFilePath() => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore";
 
     private static DateTime GetLastWriteTime(IOSearchPattern dir) => dir.GetFiles().
         Select(x => new FileInfo(x).LastWriteTime).

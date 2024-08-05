@@ -13,6 +13,8 @@ public abstract class EmulatedSave
     public EmulatedSaveFile File { get; }
     public Context Context { get; }
 
+    public virtual bool CanWrite => true;
+
     public abstract Task<T> ReadAsync<T>()
         where T : BinarySerializable, new();
     public abstract Task WriteAsync<T>(T obj)

@@ -7,7 +7,6 @@ using System.Windows.Automation;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using NLog.Targets;
-using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -188,30 +187,47 @@ public partial class App : Application
 
                 bool showError = false;
 
+                // A process was found
                 if (otherProcess != null)
                 {
-                    // Focus the process
-                    try
-                    {
-                        AutomationElement element = AutomationElement.FromHandle(otherProcess.MainWindowHandle);
-                        WindowPattern wPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
-                        wPattern.SetWindowVisualState(WindowVisualState.Normal);
-                    }
-                    catch
-                    {
-                        showError = true;
-                    }
+                    LaunchArguments args = ServiceProvider.GetRequiredService<LaunchArguments>();
 
-                    // If there are launch arguments we try to send those over to the running instance
-                    try
+                    // Check if RCP is being restarted. If so we want to wait for the previous instance to close.
+                    if (args.HasArg("-restart"))
                     {
-                        LaunchArguments args = ServiceProvider.GetRequiredService<LaunchArguments>();
-                        if (args.HasArgs)
-                            args.SendArguments();
-                    }
-                    catch
-                    {
+                        // Wait a maximum of 5 seconds for exit
+                        bool exited = otherProcess.WaitForExit(5000);
+
+                        if (exited)
+                            return true;
+
                         showError = true;
+                    }
+                    // If not restarting we direct the user to the currently running instance
+                    else
+                    {
+                        // Focus the process
+                        try
+                        {
+                            AutomationElement element = AutomationElement.FromHandle(otherProcess.MainWindowHandle);
+                            WindowPattern wPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
+                            wPattern.SetWindowVisualState(WindowVisualState.Normal);
+                        }
+                        catch
+                        {
+                            showError = true;
+                        }
+
+                        // If there are launch arguments we try to send those over to the running instance
+                        try
+                        {
+                            if (args.HasArgs)
+                                args.SendArguments();
+                        }
+                        catch
+                        {
+                            showError = true;
+                        }
                     }
                 }
                 else

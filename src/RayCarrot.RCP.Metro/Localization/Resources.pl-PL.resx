@@ -963,9 +963,6 @@ Spróbować ponownie?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Należy podać prawidłową wysokość</value>
   </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Nie znaleziono prawidłowego pliku ubi.ini, a utworzenie nowego się nie powiodło. Spróbuj uruchomić program jako administrator lub zmień uprawnienia do folderu dla następującej ścieżki: {0}</value>
-  </data>
   <data name="Config_SaveError" xml:space="preserve">
     <value>Wystąpił błąd podczas zapisywania konfiguracji {0}</value>
   </data>
@@ -2278,9 +2275,6 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Konflikt nazw plików</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Folder:</value>
-  </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
     <value>Rozmiar pliku:</value>
   </data>
@@ -2302,14 +2296,8 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Rozmiar:</value>
   </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Przezroczysty:</value>
-  </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
     <value>Mipmapy:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Format:</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Wystąpił błąd podczas dodawania {0}</value>
@@ -5209,9 +5197,6 @@ Konflikty:
   <data name="ModLoader_ApplySuccess" xml:space="preserve">
     <value>Pomyślnie zastosowano wszystkie mody</value>
   </data>
-  <data name="ModLoader_ApplyUnsuccess" xml:space="preserve">
-    <value>Zakończono stosowanie modów. Niektórych plików nie udało się zmodyfikować.</value>
-  </data>
   <data name="ModLoader_ApplyError" xml:space="preserve">
     <value>Wystąpił błąd podczas stosowania modów. Nie wszystkie zmiany zostały zastosowane i niektóre dane mogły zostać utracone. Upewnij się, że nie masz otwartych żadnych plików z gry podczas stosowania modów.</value>
   </data>
@@ -5522,31 +5507,8 @@ Konflikty:
   <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
     <value>Brak</value>
   </data>
-  <data name="Archive_AutoRecreateUbiArtFileTable" xml:space="preserve">
-    <value>Czy chcesz automatycznie odtworzyć tabelę plików (secure_fat.gf) podczas przepakowywania archiwum? Jest to wymagane, gdy pliki są dodawane lub usuwane. Można to zmienić w dowolnym momencie na stronie ustawień.</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableSuccess" xml:space="preserve">
-    <value>Tabela plików została pomyślnie odtworzona dla następujących pakietów:
-
-{0}</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableError" xml:space="preserve">
-    <value>Wystąpił błąd podczas odtwarzania tabeli plików</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Odtwarzanie tabeli plików</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTable" xml:space="preserve">
-    <value>Odtwórz tabelę plików</value>
-  </data>
-  <data name="Archive_RecreatedUbiArtFileTableInfo" xml:space="preserve">
-    <value>Ponowne utworzenie tabeli plików zaktualizuje plik secure_fat.gf tak, aby odzwierciedlał pliki znajdujące się obecnie w pakietach gier. Nie jest to wymagane w przypadku zwykłej modyfikacji istniejących plików, ale gdy tylko dodasz lub usuniesz pliki, będziesz musiał to zrobić, aby zmiany były poprawnie zarządzane przez grę.</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepack" xml:space="preserve">
-    <value>Automatycznie odtwarzaj tabelę plików podczas przepakowywania (.ipk)</value>
-  </data>
-  <data name="Settings_ArchiveIPKRecreateFileTableOnRepackInfo" xml:space="preserve">
-    <value>Jeśli opcja ta jest włączona, tabela plików gry zostanie automatycznie odtworzona po przepakowaniu archiwum .ipk. Jest to zalecane podczas dodawania lub usuwania plików, a także podczas stosowania modów, które mogły to zrobić.</value>
   </data>
   <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
     <value>Szalone przygody Kaczora Donalda</value>
@@ -5690,5 +5652,8 @@ Kontynuować stosowanie modów?</value>
   </data>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>An error occurred when opening the mods</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
 </root>

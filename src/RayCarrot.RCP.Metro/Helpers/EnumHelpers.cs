@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Helper methods for an <see cref="Enum"/>

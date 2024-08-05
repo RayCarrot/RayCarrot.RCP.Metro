@@ -88,7 +88,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        new UbiIniFinderQuery(UbiIniData_RaymanArena.SectionName),
+        new UbiIniFinderQuery(RaymanArenaIniAppData.SectionName),
 
         new UninstallProgramFinderQuery("Rayman Arena"),
         new UninstallProgramFinderQuery("Rayman: Arena"),

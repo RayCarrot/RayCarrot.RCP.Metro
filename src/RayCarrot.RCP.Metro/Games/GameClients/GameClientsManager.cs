@@ -25,6 +25,7 @@ public class GameClientsManager
             new DosBoxGameClientDescriptor(),
             new DuckStationGameClientDescriptor(),
             new BizHawkGameClientDescriptor(),
+            new PCSX2GameClientDescriptor(),
             new SameBoyGameClientDescriptor(),
             new MGbaGameClientDescriptor(),
             new VisualBoyAdvanceMGameClientDescriptor(),

@@ -13,7 +13,6 @@ public class DeployableFilesManager
 
     private readonly Dictionary<DeployableFile, (FileSystemPath FilePath, Func<byte[]> GetBytes)> _files = new()
     {
-        [DeployableFile.AdminWorker] = (AppFilePaths.AdminWorkerPath, () => Files.AdminWorker),
         [DeployableFile.Updater] = (AppFilePaths.UpdaterFilePath, () => Files.Rayman_Control_Panel_Updater),
         [DeployableFile.Uninstaller] = (AppFilePaths.UninstallFilePath, () => Files.Uninstaller),
     };
@@ -89,7 +88,6 @@ public class DeployableFilesManager
 
     public enum DeployableFile
     {
-        AdminWorker,
         Updater,
         Uninstaller,
     }

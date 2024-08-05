@@ -112,7 +112,7 @@ public class SettingsPageViewModel : BasePageViewModel
         }
 
         // The app data can't be reset while the app is running as it could cause multiple issues, so better to restart
-        await App.RestartAsync("-reset");
+        await App.RestartAsync(asAdmin: false, "-reset");
     }
 
     #endregion

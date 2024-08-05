@@ -34,7 +34,7 @@ public class CPAArchiveComponent : ArchiveComponent
 
         CPATextureSyncManager textureSyncManager = new(gameInstallation, settings, textureSyncItems);
 
-        using (LoadState state = await Services.App.LoaderViewModel.RunAsync(Resources.Utilities_SyncTextureInfo_SyncStatus))
+        using (LoaderLoadState state = await Services.App.LoaderViewModel.RunAsync(Resources.Utilities_SyncTextureInfo_SyncStatus))
         {
             await textureSyncManager.SyncTextureInfoAsync(progressCallback: state.SetProgress);
         }

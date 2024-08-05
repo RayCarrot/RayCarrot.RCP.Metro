@@ -97,6 +97,8 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
         {
             new UninstallProgramFinderQuery("Rayman Forever") { ValidateLocationFunc = validateLocation },
             new Win32ShortcutFinderQuery("Rayman Forever") { ValidateLocationFunc = validateLocation },
+
+            new UbisoftConnectFinderQuery(UbisoftConnectGameId) { ValidateLocationFunc = validateLocation },
         };
     }
 

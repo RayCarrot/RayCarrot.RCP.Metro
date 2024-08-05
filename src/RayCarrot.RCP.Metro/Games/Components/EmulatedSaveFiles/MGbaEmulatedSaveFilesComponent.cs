@@ -1,6 +1,5 @@
-﻿using IniParser;
-using IniParser.Model;
-using RayCarrot.RCP.Metro.Games.Clients;
+﻿using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -29,8 +28,7 @@ public class MGbaEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
             {
                 if (configFile.FileExists)
                 {
-                    IniData configData = new FileIniDataParser().ReadFile(configFile);
-                    saveDir = configData["ports.qt"]["savegamePath"];
+                    saveDir = IniNative.GetString(configFile, "ports.qt", "savegamePath", String.Empty);
                     break;
                 }
             }

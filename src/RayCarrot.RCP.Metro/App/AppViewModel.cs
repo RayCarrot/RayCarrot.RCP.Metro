@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
-using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -31,7 +30,6 @@ public class AppViewModel : BaseViewModel
         IMessageUIManager message,
         FileManager file,
         AppUIManager ui,
-        DeployableFilesManager deployableFiles,
         AppUserData data)
     {
         // Set properties
@@ -39,7 +37,6 @@ public class AppViewModel : BaseViewModel
         MessageUI = message ?? throw new ArgumentNullException(nameof(message));
         File = file ?? throw new ArgumentNullException(nameof(file));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
-        DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
         Data = data ?? throw new ArgumentNullException(nameof(data));
 
         // Check if the application is running as administrator
@@ -55,11 +52,8 @@ public class AppViewModel : BaseViewModel
 
         LoaderViewModel = new LoaderViewModel();
 
-        // Create locks
-        AdminWorkerAsyncLock = new AsyncLock();
-
         // Create commands
-        RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
+        RestartAsAdminCommand = new AsyncRelayCommand(async () => await RestartAsync(asAdmin: true));
         RequestRestartAsAdminCommand = new AsyncRelayCommand(RequestRestartAsAdminAsync);
     }
 
@@ -95,17 +89,7 @@ public class AppViewModel : BaseViewModel
     private IMessageUIManager MessageUI { get; }
     private FileManager File { get; }
     private AppUIManager UI { get; }
-    private DeployableFilesManager DeployableFiles { get; }
     private AppUserData Data { get; }
-
-    #endregion
-
-    #region Private Properties
-
-    /// <summary>
-    /// An async lock for the <see cref="RunAdminWorkerAsync"/> method
-    /// </summary>
-    private AsyncLock AdminWorkerAsyncLock { get; }
 
     #endregion
 
@@ -129,7 +113,7 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
-    public bool IsBeta => false;
+    public bool IsBeta => true;
 
     /// <summary>
     /// A flag indicating if an update check is in progress
@@ -160,46 +144,11 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     public static WindowsVersion WindowsVersion { get; } // TODO: Why is this static?
 
-    public static Version AppVersion => new(14, 1, 0, 6);
+    public static Version AppVersion => new(14, 2, 0, 0);
 
     #endregion
 
     #region Public Methods
-
-    /// <summary>
-    /// Enables write access to the primary ubi.ini file
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task EnableUbiIniWriteAccessAsync()
-    {
-        try
-        {
-            if (!AppFilePaths.UbiIniPath1.FileExists)
-            {
-                Logger.Info("The ubi.ini file was not found");
-                return;
-            }
-
-            // Check if we have write access
-            if (File.CheckFileWriteAccess(AppFilePaths.UbiIniPath1))
-            {
-                Logger.Debug("The ubi.ini file has write access");
-                return;
-            }
-
-            await MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
-
-            // Attempt to change the permission
-            await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath1);
-
-            Logger.Info("The ubi.ini file permission was changed");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Changing ubi.ini file permissions");
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
-        }
-    }
 
     /// <summary>
     /// Downloads the specified files to a specified output directory
@@ -309,56 +258,22 @@ public class AppViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Restarts the Rayman Control Panel as administrator
+    /// Restarts the Rayman Control Panel with the specified arguments and optionally as admin
     /// </summary>
-    /// <returns>The task</returns>
-    public async Task RestartAsAdminAsync()
+    /// <param name="asAdmin">Indicates if the app should run as admin</param>
+    /// <param name="args">The launch arguments to use</param>
+    public async Task RestartAsync(bool asAdmin, params string[] args)
     {
-        // Run the admin worker, setting it to restart this process as admin
-        await RunAdminWorkerAsync(AdminWorkerMode.RestartAsAdmin, true, Process.GetCurrentProcess().Id.ToString());
+        await File.LaunchFileAsync(Data.App_ApplicationPath, asAdmin, $"{args.Prepend("-restart").Select(x => $"\"{x}\"").JoinItems(" ")}");
+        await App.Current.ShutdownAppAsync(true);
     }
 
-    /// <summary>
-    /// Restarts the Rayman Control Panel with the specified arguments
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task RestartAsync(params string[] args)
+    public async Task RunAdminWorkerAsync(string mainArgument, params string[] args)
     {
-        // Run the admin worker, setting it to restart this process as admin
-        await RunAdminWorkerAsync(AdminWorkerMode.RestartWithArgs, false, new string[]
-        {
-            Process.GetCurrentProcess().Id.ToString()
-        }.Concat(args).ToArray());
-    }
+        string argsString = $"{AdminWorker.MainArg} {args.Prepend(mainArgument).Select(x => $"\"{x}\"").JoinItems(" ")}";
+        Process p = await File.LaunchFileAsync(Data.App_ApplicationPath, true, argsString);
 
-    /// <summary>
-    /// Runs the admin worker
-    /// </summary>
-    /// <param name="mode">The mode to run in</param>
-    /// <param name="asAdmin">Indicates if the admin worker should be run with admin privileges</param>
-    /// <param name="args">The mode arguments</param>
-    /// <returns>The task</returns>
-    public async Task RunAdminWorkerAsync(AdminWorkerMode mode, bool asAdmin, params string[] args)
-    {
-        // Lock
-        using (await AdminWorkerAsyncLock.LockAsync())
-        {
-            FileSystemPath filePath;
-
-            try
-            {
-                filePath = DeployableFiles.DeployFile(DeployableFilesManager.DeployableFile.AdminWorker);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Deploying admin worker");
-                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
-                return;
-            }
-
-            // Launch the admin worker with the specified launch arguments
-            await File.LaunchFileAsync(filePath, asAdmin, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
-        }
+        await p.WaitForExitAsync();
     }
 
     /// <summary>
@@ -370,7 +285,7 @@ public class AppViewModel : BaseViewModel
         // Request restarting the application as admin
         if (await MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
             // Restart as admin
-            await RestartAsAdminAsync();
+            await RestartAsync(asAdmin: true);
     }
 
     /// <summary>
