@@ -28,7 +28,7 @@ public class ImageMetadata
 
         if (Encoding != null)
             yield return new DuoGridItemViewModel(
-                header: new ResourceLocString("Encoding"), // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Encoding)),
                 text: Encoding,
                 minUserLevel: UserLevel.Technical);
     }

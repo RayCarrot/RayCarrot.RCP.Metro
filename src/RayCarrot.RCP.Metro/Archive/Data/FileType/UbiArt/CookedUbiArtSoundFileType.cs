@@ -38,7 +38,7 @@ public sealed class CookedUbiArtSoundFileType : FileType
 
     #region Public Properties
 
-    public override string TypeDisplayName => "Cooked UBIArt Sound"; // TODO-LOC
+    public override string TypeDisplayName => Resources.Archive_Format_CookedUbiArtSound;
     public override PackIconMaterialKind Icon => PackIconMaterialKind.FileMusicOutline;
 
     #endregion

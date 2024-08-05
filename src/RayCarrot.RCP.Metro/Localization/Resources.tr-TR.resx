@@ -5110,4 +5110,7 @@ Eğer bir yardımcı program ya da başka türde bir yama eksikse, o zaman büy�
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Başlangıç ​​ekranı</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

@@ -1748,4 +1748,7 @@ Hiba üzenet: {1}</value>
   <data name="GameClients_VisualBoyAdvanceM" xml:space="preserve">
     <value>Visual Boy Advance - M</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

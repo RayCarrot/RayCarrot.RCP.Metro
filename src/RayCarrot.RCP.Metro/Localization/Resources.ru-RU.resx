@@ -4981,4 +4981,7 @@ Start: Пауза</value>
   <data name="Home_ShowRecentGames" xml:space="preserve">
     <value>Показать недавние игры</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

@@ -10,7 +10,7 @@ public sealed class PCSX2GameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "PCSX2";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Ps2 };
-    public override LocalizedString DisplayName => "PCSX2"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_PCSX2));
     public override GameClientIconAsset Icon => GameClientIconAsset.PCSX2;
 
     #endregion

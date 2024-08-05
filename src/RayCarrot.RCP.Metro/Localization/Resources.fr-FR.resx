@@ -5626,4 +5626,7 @@ Voulez-vous continuer l'application des mods ?</value>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Une erreur est survenue à l'ouverture des mods</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

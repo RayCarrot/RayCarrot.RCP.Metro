@@ -5632,4 +5632,7 @@ Puedes desactivar este mensaje de advertencia en la configuración si no deseas 
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Se produjo un error al abrir las modificaciones</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

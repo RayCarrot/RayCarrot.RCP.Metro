@@ -1051,6 +1051,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encoding.
+        /// </summary>
+        public static string Archive_FileInfo_Img_Encoding {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Img_Encoding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mipmaps:.
         /// </summary>
         public static string Archive_FileInfo_Img_Mipmaps {
@@ -1146,6 +1155,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_FileSelectionGroupName {
             get {
                 return ResourceManager.GetString("Archive_FileSelectionGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1}).
+        /// </summary>
+        public static string Archive_FileTypeWithSubType {
+            get {
+                return ResourceManager.GetString("Archive_FileTypeWithSubType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cooked UBIArt Sound.
+        /// </summary>
+        public static string Archive_Format_CookedUbiArtSound {
+            get {
+                return ResourceManager.GetString("Archive_Format_CookedUbiArtSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cooked UBIArt Texture.
+        /// </summary>
+        public static string Archive_Format_CookedUbiArtTexture {
+            get {
+                return ResourceManager.GetString("Archive_Format_CookedUbiArtTexture", resourceCulture);
             }
         }
         
@@ -1391,6 +1427,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Save {
             get {
                 return ResourceManager.GetString("Archive_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving archive.
+        /// </summary>
+        public static string Archive_SavingStatus {
+            get {
+                return ResourceManager.GetString("Archive_SavingStatus", resourceCulture);
             }
         }
         
@@ -4288,6 +4333,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_OpenLocation {
             get {
                 return ResourceManager.GetString("GameClients_OpenLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PCSX2.
+        /// </summary>
+        public static string GameClients_PCSX2 {
+            get {
+                return ResourceManager.GetString("GameClients_PCSX2", resourceCulture);
             }
         }
         
@@ -8242,6 +8296,18 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finished applying mods. Some files could not be modified.
+        ///
+        ///Error messages:
+        ///{0}.
+        /// </summary>
+        public static string ModLoader_ApplyWithErrors {
+            get {
+                return ResourceManager.GetString("ModLoader_ApplyWithErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string ModLoader_CheckUpdates {
@@ -8703,6 +8769,24 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_InstallStatus {
             get {
                 return ResourceManager.GetString("ModLoader_InstallStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is not enough space on the system to apply the mods. At least {0} of free space is required..
+        /// </summary>
+        public static string ModLoader_InsufficientSpaceError {
+            get {
+                return ResourceManager.GetString("ModLoader_InsufficientSpaceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insufficient space left.
+        /// </summary>
+        public static string ModLoader_InsufficientSpaceErrorHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_InsufficientSpaceErrorHeader", resourceCulture);
             }
         }
         
@@ -9346,6 +9430,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PlayStation 2.
+        /// </summary>
+        public static string Platform_Ps2 {
+            get {
+                return ResourceManager.GetString("Platform_Ps2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Desktop (Win32).
         /// </summary>
         public static string Platform_Win32 {
@@ -9712,6 +9805,78 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_Lums {
             get {
                 return ResourceManager.GetString("Progression_Lums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance covered.
+        /// </summary>
+        public static string Progression_R2Ps2_DistanceCovered {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_DistanceCovered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} meters.
+        /// </summary>
+        public static string Progression_R2Ps2_DistanceCoveredValue {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_DistanceCoveredValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of jumps.
+        /// </summary>
+        public static string Progression_R2Ps2_NumberOfJumps {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_NumberOfJumps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of try again.
+        /// </summary>
+        public static string Progression_R2Ps2_NumberOfTryAgain {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_NumberOfTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player shots fired.
+        /// </summary>
+        public static string Progression_R2Ps2_PlayerShotsFired {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_PlayerShotsFired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shooting accuracy.
+        /// </summary>
+        public static string Progression_R2Ps2_ShootingAccuracy {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_ShootingAccuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time played.
+        /// </summary>
+        public static string Progression_R2Ps2_TimePlayed {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_TimePlayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Times killed.
+        /// </summary>
+        public static string Progression_R2Ps2_TimesKilled {
+            get {
+                return ResourceManager.GetString("Progression_R2Ps2_TimesKilled", resourceCulture);
             }
         }
         
@@ -11912,6 +12077,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Revolution.
+        /// </summary>
+        public static string Rayman2_Ps2_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Ps2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 2.
         /// </summary>
         public static string Rayman2_Win32_Title {
@@ -11986,6 +12160,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman 3.
         /// </summary>
+        public static string Rayman3_Ps2_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_Ps2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
         public static string Rayman3_Win32_Title {
             get {
                 return ResourceManager.GetString("Rayman3_Win32_Title", resourceCulture);
@@ -12016,6 +12199,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanActivityCenter_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanActivityCenter_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Arena.
+        /// </summary>
+        public static string RaymanArena_Ps2_Title {
+            get {
+                return ResourceManager.GetString("RaymanArena_Ps2_Title", resourceCulture);
             }
         }
         
@@ -12202,6 +12394,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman M.
         /// </summary>
+        public static string RaymanM_Ps2_Title {
+            get {
+                return ResourceManager.GetString("RaymanM_Ps2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M.
+        /// </summary>
         public static string RaymanM_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanM_Win32_Title", resourceCulture);
@@ -12241,6 +12442,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanRavingRabbids_Gba_Title {
             get {
                 return ResourceManager.GetString("RaymanRavingRabbids_Gba_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string RaymanRavingRabbids_Ps2_Title {
+            get {
+                return ResourceManager.GetString("RaymanRavingRabbids_Ps2_Title", resourceCulture);
             }
         }
         

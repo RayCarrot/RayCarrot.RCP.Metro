@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Ps2 : Ps2GameDescriptor
     public override Game Game => Game.RaymanRavingRabbids;
     public override GameCategory Category => GameCategory.Rabbids;
 
-    public override LocalizedString DisplayName => "Rayman Raving Rabbids"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRavingRabbids_Ps2_Title));
     public override string[] SearchKeywords => new[] { "rrr" };
     public override DateTime ReleaseDate => new(2006, 12, 05);
 

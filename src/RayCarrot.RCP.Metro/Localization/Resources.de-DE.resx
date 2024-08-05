@@ -1458,4 +1458,7 @@ Neuigkeiten:
   <data name="GameTool_RuntimeModifications_NotFoundQuestion" xml:space="preserve">
     <value>Nicht gefunden?</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

@@ -5621,4 +5621,7 @@ Doorgaan met het toepassen van mods?</value>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het openen van de mods</value>
   </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
 </root>

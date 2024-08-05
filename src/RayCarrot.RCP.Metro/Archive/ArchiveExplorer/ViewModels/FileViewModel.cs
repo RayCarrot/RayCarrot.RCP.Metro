@@ -232,7 +232,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         FileType = fileType;
         SubFileType = subFileType;
         FullFileTypeName = subFileType.DisplayName != null
-            ? $"{fileType.TypeDisplayName} ({subFileType.DisplayName})" // TODO-LOC
+            ? String.Format(Resources.Archive_FileTypeWithSubType, fileType.TypeDisplayName, subFileType.DisplayName)
             : fileType.TypeDisplayName;
     }
 

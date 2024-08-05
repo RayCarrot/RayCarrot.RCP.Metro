@@ -301,7 +301,7 @@ public class ArchiveViewModel : DirectoryViewModel
 
                         currentProgress += repackProgress;
 
-                        state.SetStatus("Saving archive"); // TODO-LOC
+                        state.SetStatus(Resources.Archive_SavingStatus);
                         state.SetCanCancel(false);
 
                         // Dispose the archive file stream

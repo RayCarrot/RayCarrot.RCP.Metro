@@ -658,8 +658,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             // Check the available space
             if (driveInfo.AvailableFreeSpace < minBytes)
             {
-                // TODO-LOC
-                await Services.MessageUI.DisplayMessageAsync($"There is not enough space on the system to apply the mods. At least {BinaryHelpers.BytesToString(minBytes)} of free space is required.", "Insufficient space left", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(
+                    String.Format(Resources.ModLoader_InsufficientSpaceError, BinaryHelpers.BytesToString(minBytes)), 
+                    Resources.ModLoader_InsufficientSpaceErrorHeader, 
+                    MessageType.Error);
                 return null;
             }
         }
@@ -718,8 +720,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                     if (result.Success)
                         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ApplySuccess);
-                    else // TODO-LOC
-                        await Services.MessageUI.DisplayMessageAsync($"Finished applying mods. Some files could not be modified.\n\nError messages:\n{result.ErrorMessage}", MessageType.Warning);
+                    else
+                        await Services.MessageUI.DisplayMessageAsync(
+                            String.Format(Resources.ModLoader_ApplyWithErrors, result.ErrorMessage), 
+                            MessageType.Warning);
                 });
             }
             catch (Exception ex)
