@@ -6,6 +6,7 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:archive="clr-namespace:RayCarrot.RCP.Metro.Archive"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                     mc:Ignorable="d">
 
     <!-- File -->
@@ -29,10 +30,14 @@
                     <!-- Thumbnail image -->
 
                     <Image Source="{Binding Path=ThumbnailSource}"
-                           RenderOptions.BitmapScalingMode="NearestNeighbor"
                            HorizontalAlignment="Center"
                            Width="64"
-                           Height="64" />
+                           Height="64">
+                        <b:Interaction.Behaviors>
+                            <local:ImageScalingBehavior DownscaleScalingMode="HighQuality"
+                                                        UpscaleScalingMode="NearestNeighbor" />
+                        </b:Interaction.Behaviors>
+                    </Image>
 
                     <!-- Fallback icon -->
 
