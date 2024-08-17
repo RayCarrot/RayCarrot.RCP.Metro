@@ -152,7 +152,7 @@
                                                         Visibility="{Binding Path=LinkedGames.Count, Converter={rcp:IntToVisibilityConverter}, FallbackValue=Collapsed}"
                                                         ToolTipService.ShowDuration="1000000">
                                 <iconPacks:PackIconMaterial.ToolTip>
-                                    <StackPanel>
+                                    <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
                                         <TextBlock Text="{Resx Progression_SharedBackupsInfo}"
                                                    TextWrapping="Wrap"
                                                    Margin="0 0 0 4" />
