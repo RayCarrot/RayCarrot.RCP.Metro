@@ -39,6 +39,7 @@ public partial class AppUserData : BaseViewModel
         // UI
         UI_WindowState = null;
         UI_ShowProgressOnTaskBar = true;
+        UI_FlashWindowOnTaskBar = true;
         UI_EnableAnimations = true;
         UI_UseChildWindows = true;
         UI_ShowGameInfo = false;
@@ -212,6 +213,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if progress should be shown on the task bar
     /// </summary>
     public bool UI_ShowProgressOnTaskBar { get; set; }
+
+    /// <summary>
+    /// Indicates if the window should flash on the taskbar for certain events
+    /// </summary>
+    public bool UI_FlashWindowOnTaskBar { get; set; }
 
     /// <summary>
     /// Indicates if animations are enabled

@@ -52,9 +52,9 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
         // Create a temp file to download to
         using TempFile tempFile = new(false, new FileExtension(fileName));
 
-        try
+        using (LoaderLoadState state = await app.LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
         {
-            using (LoaderLoadState state = await app.LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
+            try
             {
                 // Open a stream to the downloadable file
                 using (HttpClient httpClient = new())
@@ -70,18 +70,21 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
                 modToInstall = modId != null && fileId != null
                     ? new ModLoaderViewModel.ModToInstall(tempFile.TempPath, new GameBananaModsSource().Id, new GameBananaInstallData(modId.Value, fileId.Value))
                     : new ModLoaderViewModel.ModToInstall(tempFile.TempPath, null, null);
+
+                state.Complete();
             }
-        }
-        catch (OperationCanceledException ex)
-        {
-            Logger.Info(ex, "Canceled downloading mod");
-            return;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Downloading mod");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModFromUriError);
-            return;
+            catch (OperationCanceledException ex)
+            {
+                Logger.Info(ex, "Canceled downloading mod");
+                return;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Downloading mod");
+                state.Error();
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModFromUriError);
+                return;
+            }
         }
 
         // Show the mod loader with the downloaded file

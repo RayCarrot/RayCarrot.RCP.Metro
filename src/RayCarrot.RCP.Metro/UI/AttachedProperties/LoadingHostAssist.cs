@@ -56,6 +56,11 @@ public static class LoadingHostAssist
             {
                 Source = e.NewValue
             });
+        f.SetBinding(LoadingHost.StateProperty, 
+            new Binding($"{nameof(LoaderViewModel.StateViewModel)}.{nameof(LoadStateViewModel.State)}")
+            {
+                Source = e.NewValue
+            });
         f.SetBinding(LoadingHost.CancelCommandProperty, 
             new Binding($"{nameof(LoaderViewModel.CancelCommand)}")
             {

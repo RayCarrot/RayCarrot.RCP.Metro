@@ -106,18 +106,21 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         if (!manager.CanMigrate())
             return;
 
-        try
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
         {
-            using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_MigratingPatchesStatus))
+            try
             {
                 await Task.Run(async () => await manager.MigrateAsync(state.SetProgress));
+                state.Complete();
             }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Migrating legacy patches");
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Migrating legacy patches");
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_MigratingPatchesError);
+                state.Error();
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_MigratingPatchesError);
+            }
         }
     }
 
@@ -235,6 +238,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             }
 
             ReportNewChanges();
+
+            state.Complete();
         }
     }
 
@@ -565,9 +570,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         long fileSize, 
         object? installData)
     {
-        try
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
         {
-            using (LoaderLoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
+            try
             {
                 Logger.Info("Downloading mod to install from {0}", downloadUrl);
 
@@ -586,17 +591,21 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
                 ReportNewChanges();
+
+                state.Complete();
             }
-        }
-        catch (OperationCanceledException ex)
-        {
-            Logger.Info(ex, "Canceled downloading mod");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Downloading mod");
-            
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError﻿);
+            catch (OperationCanceledException ex)
+            {
+                Logger.Info(ex, "Canceled downloading mod");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Downloading mod");
+
+                state.Error();
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError﻿);
+            }
         }
     }
 
@@ -718,6 +727,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                     Logger.Info("Applied mods");
 
+                    state.Complete();
+
                     if (result.Success)
                         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ApplySuccess);
                     else
@@ -730,6 +741,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Applying mods");
 
+                state.Error();
+                
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ApplyError);
             }
         }

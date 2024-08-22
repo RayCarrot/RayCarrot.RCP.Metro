@@ -36,7 +36,20 @@
                                                             Maximum="{TemplateBinding Maximum}"
                                                             Value="{TemplateBinding Value}"
                                                             IsIndeterminate="{TemplateBinding IsIndeterminate}"
-                                                            Margin="0 0 0 15" />
+                                                            Margin="0 0 0 15">
+                                        <metro:MetroProgressBar.Style>
+                                            <Style TargetType="{x:Type metro:MetroProgressBar}" BasedOn="{StaticResource {x:Type metro:MetroProgressBar}}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=State, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Static local:LoadingHostState.Completed}">
+                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.LoadState.Complete}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=State, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Static local:LoadingHostState.Error}">
+                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.LoadState.Error}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </metro:MetroProgressBar.Style>
+                                    </metro:MetroProgressBar>
 
                                     <Button x:Name="PART_CancelButton"
                                             HorizontalAlignment="Center"

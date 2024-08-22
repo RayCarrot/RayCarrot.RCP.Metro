@@ -200,6 +200,8 @@ public partial class ArchiveExplorerDialog : WindowContentControl
                         files: files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists), 
                         progressCallback: x => state.SetProgress(x), 
                         cancellationToken: state.CancellationToken);
+
+                    state.Complete();
                 }
                 catch (OperationCanceledException ex)
                 {

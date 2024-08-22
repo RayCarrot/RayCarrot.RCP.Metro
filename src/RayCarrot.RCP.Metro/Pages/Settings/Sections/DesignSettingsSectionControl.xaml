@@ -42,6 +42,12 @@
                   IsChecked="{Binding Path=UI_ShowProgressOnTaskBar}" 
                   Margin="0 0 0 8" />
 
+        <!-- TODO-LOC -->
+        <CheckBox Content="Flash window on task bar for specific events"
+                  ToolTip="Flash the window icon on the task bar during specific events, such as when mods have finished applying"
+                  IsChecked="{Binding Path=UI_FlashWindowOnTaskBar}" 
+                  Margin="0 0 0 8" />
+
         <CheckBox Content="{Resx Settings_UseChildWindows}"
                   ToolTip="{Resx Settings_UseChildWindowsInfo}"
                   IsChecked="{Binding Path=UI_UseChildWindows}"

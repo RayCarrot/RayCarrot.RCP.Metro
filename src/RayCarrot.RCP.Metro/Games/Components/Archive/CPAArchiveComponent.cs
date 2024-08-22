@@ -37,6 +37,7 @@ public class CPAArchiveComponent : ArchiveComponent
         using (LoaderLoadState state = await Services.App.LoaderViewModel.RunAsync(Resources.Utilities_SyncTextureInfo_SyncStatus))
         {
             await textureSyncManager.SyncTextureInfoAsync(progressCallback: state.SetProgress);
+            state.Complete();
         }
     }
 

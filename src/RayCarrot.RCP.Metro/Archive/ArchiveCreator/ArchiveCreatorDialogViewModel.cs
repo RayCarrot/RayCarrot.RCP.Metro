@@ -164,6 +164,8 @@ public class ArchiveCreatorDialogViewModel : BaseViewModel
                         archiveFiles.DisposeAll();
                     }
 
+                    state.Complete();
+
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Count));
 
                     return true;
@@ -172,6 +174,8 @@ public class ArchiveCreatorDialogViewModel : BaseViewModel
             catch (Exception ex)
             {
                 Logger.Error(ex, "Creating archive using manager {0}", Manager);
+
+                state.Error();
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
 

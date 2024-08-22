@@ -180,7 +180,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractModContentsAsync()
     {
-        using (await LoaderViewModel.RunAsync(Resources.ModLoader_ExtractingModStatus))
+        using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ExtractingModStatus))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
             {
@@ -196,18 +196,21 @@ public class ModViewModel : BaseViewModel, IDisposable
 
                 await Task.Run(() => Services.File.CopyDirectory(Mod.ModDirectoryPath, result.SelectedDirectory, false, true));
 
+                state.Complete();
+
                 Logger.Info("Extracted mod contents");
+
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ExtractingModSuccess);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Extracting mod contents");
 
+                state.Error();
+
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ExtractingModError);
-                return;
             }
         }
-
-        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ModLoader_ExtractingModSuccess);
     }
 
     public void UninstallMod()

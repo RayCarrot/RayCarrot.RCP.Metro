@@ -530,7 +530,7 @@ public class DebugPageViewModel : BasePageViewModel
                             state.SetCanCancel(true);
                     }
 
-                    state.SetProgress(new Progress(max, max));
+                    state.Complete();
                 }
                 catch (OperationCanceledException)
                 {

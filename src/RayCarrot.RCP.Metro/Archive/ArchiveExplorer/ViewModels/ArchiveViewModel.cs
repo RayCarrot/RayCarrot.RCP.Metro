@@ -320,6 +320,8 @@ public class ArchiveViewModel : DirectoryViewModel
 
                         // Re-open the file stream
                         OpenFile();
+
+                        state.Complete();
                     }
                     catch (OperationCanceledException ex)
                     {
@@ -328,6 +330,8 @@ public class ArchiveViewModel : DirectoryViewModel
                     catch (Exception ex)
                     {
                         Logger.Error(ex, "Repacking archive {0}", DisplayName);
+
+                        state.Error();
 
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 

@@ -100,6 +100,15 @@ public class LoadingHost : ContentControl
     public static readonly DependencyProperty CanCancelProperty = 
         DependencyProperty.Register(nameof(CanCancel), typeof(bool), typeof(LoadingHost), new PropertyMetadata(false));
 
+    public LoadingHostState State
+    {
+        get => (LoadingHostState)GetValue(StateProperty);
+        set => SetValue(StateProperty, value);
+    }
+
+    public static readonly DependencyProperty StateProperty = 
+        DependencyProperty.Register(nameof(State), typeof(LoadingHostState), typeof(LoadingHost), new PropertyMetadata(LoadingHostState.Normal));
+
     public ICommand? CancelCommand
     {
         get => (ICommand?)GetValue(CancelCommandProperty);

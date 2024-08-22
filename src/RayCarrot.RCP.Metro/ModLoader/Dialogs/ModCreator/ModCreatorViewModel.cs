@@ -170,6 +170,8 @@ public class ModCreatorViewModel : BaseViewModel
                 }
 
                 WindowsHelpers.OpenExplorerPath(browseResult.SelectedFiles.First().Parent);
+
+                state.Complete();
             }
             catch (OperationCanceledException ex)
             {
@@ -178,6 +180,8 @@ public class ModCreatorViewModel : BaseViewModel
             catch (Exception ex)
             {
                 Logger.Error(ex, "Converting legacy patches");
+
+                state.Error();
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModCreator_ConvertLegacyPatchError);
             }

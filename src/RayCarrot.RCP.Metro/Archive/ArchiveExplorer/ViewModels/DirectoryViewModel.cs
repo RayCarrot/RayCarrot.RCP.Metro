@@ -306,10 +306,14 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     {
                         Logger.Error(ex, "Exporting archive directory {0}", DisplayName);
 
+                        state.Error();
+
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
 
                         return;
                     }
+
+                    state.Complete();
 
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);
                 });
@@ -416,11 +420,13 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                             }
                         }
 
-                        state.SetProgress(new Progress(fileIndex, filesCount));
+                        state.Complete();
                     }
                     catch (Exception ex)
                     {
                         Logger.Error(ex, "Importing archive directory {0}", DisplayName);
+
+                        state.Error();
 
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportDir_Error);
 
@@ -550,6 +556,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                 {
                     // Add every file
                     await AddFilesAsync(result.SelectedFiles, x => state.SetProgress(x), state.CancellationToken);
+                    state.Complete();
                 }
                 catch (OperationCanceledException ex)
                 {
