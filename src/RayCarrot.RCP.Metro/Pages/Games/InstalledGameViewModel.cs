@@ -5,6 +5,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.Panels;
+using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 
@@ -32,6 +33,8 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions = new ObservableActionItemsCollection();
 
         // Set other properties
+        if (GameInstallation.GetComponent<SetupGameManagerComponent>() is { } setupGameManagerComponent)
+            SetupGameViewModel = new SetupGameViewModel(setupGameManagerComponent.CreateObject());
         CanUninstall = gameInstallation.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
         HasOptionsDialog = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().Any(x => x.IsAvailable());
         IsFavorite = GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite);
@@ -111,6 +114,9 @@ public class InstalledGameViewModel : BaseViewModel
     public ObservableCollection<DuoGridItemViewModel>? GameInfoItems { get; set; }
 
     public ObservableCollection<GameOptionsViewModel>? GameOptions { get; set; }
+
+    public SetupGameViewModel? SetupGameViewModel { get; }
+    public bool ShowSetupGame { get; set; }
 
     public bool IsFavorite { get; private set; }
 
@@ -295,6 +301,13 @@ public class InstalledGameViewModel : BaseViewModel
 
             // Load additional launch actions
             AddAdditionalLaunchActions();
+
+            // Load setup game
+            if (SetupGameViewModel != null)
+            {
+                await SetupGameViewModel.LoadAsync();
+                ShowSetupGame = SetupGameViewModel.ActionGroups.Any(x => x.Actions.Any());
+            }
 
             // Load panels
             await AddGamePanelsAsync();

@@ -52,6 +52,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
@@ -318,8 +319,14 @@
 
                     </GroupBox>
 
+                    <!-- Setup game -->
+                    <games:SetupGameControl Grid.Row="2"
+                                            Margin="0 8"
+                                            DataContext="{Binding Path=SetupGameViewModel, Mode=OneTime}"
+                                            Visibility="{Binding Path=DataContext.ShowSetupGame, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type games:GameHubControl}}, Converter={rcp:BooleanToVisibilityConverter}}" />
+
                     <!-- Panels -->
-                    <ItemsControl Grid.Row="2" 
+                    <ItemsControl Grid.Row="3" 
                                   Margin="-8 0"
                                   ItemsSource="{Binding Path=GamePanels, Mode=OneTime}"
                                   d:ItemsSource="{d:SampleData ItemCount=4}">

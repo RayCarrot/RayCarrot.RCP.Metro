@@ -69,6 +69,7 @@
     <!-- State -->
     <SolidColorBrush x:Key="RCP.Brushes.CompleteState" Color="{StaticResource RCP.Colors.GreenPrimary600}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.IncompleteState" Color="{StaticResource RCP.Colors.GreyPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.CriticalState" Color="{StaticResource RCP.Colors.RedPrimary500}" po:Freeze="True" />
 
     <!-- Load state -->
     <SolidColorBrush x:Key="RCP.Brushes.LoadState.Complete" Color="{StaticResource RCP.Colors.GreenPrimary700}" po:Freeze="True" />

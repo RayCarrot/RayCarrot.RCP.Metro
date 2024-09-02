@@ -1,0 +1,229 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Games.SetupGameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:setupGame="clr-namespace:RayCarrot.RCP.Metro.Games.SetupGame"
+             mc:Ignorable="d" 
+             d:DesignWidth="900"
+             d:DataContext="{d:DesignInstance setupGame:SetupGameViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+
+    <rcp:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+              Padding="0">
+        <Expander>
+            <Expander.Header>
+                <Grid Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0"
+                          Margin="0 0 0 4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                    Kind="{StaticResource RCP.Icons.Games}"
+                                                    Foreground="{StaticResource RCP.Brushes.Games}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 8 0" />
+
+                        <!-- TODO-LOC -->
+                        <TextBlock Grid.Column="1"
+                                   Text="Setup game"
+                                   VerticalAlignment="Center"
+                                   FontSize="14" />
+
+                        <Button x:Name="RefreshButton"
+                                Grid.Column="2"
+                                Opacity="0"
+                                d:Opacity="1"
+                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                ToolTip="{Resx GameHub_RefreshPanel}"
+                                Command="{Binding Path=RefreshCommand, Mode=OneTime}"
+                                rcp:Icon.Kind="Refresh"
+                                rcp:Icon.Size="12" />
+
+                    </Grid>
+
+                    <Separator Grid.Row="1" 
+                               Style="{StaticResource RCP.Styles.Separator.Bold}" 
+                               Margin="0 0 0 6" />
+
+                    <ItemsControl Grid.Row="2"
+                                  ItemsSource="{Binding Path=ActionGroups, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="Visibility" Value="{Binding Path=ShowSummary, Converter={rcp:BooleanToVisibilityConverter}}" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="0 0 16 2">
+                                    <iconPacks:PackIconMaterial Margin="0 0 6 0"
+                                                                VerticalAlignment="Center"
+                                                                d:Kind="CheckCircle"
+                                                                d:Foreground="{StaticResource RCP.Brushes.IncompleteState}">
+                                        <iconPacks:PackIconMaterial.Style>
+                                            <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=SummaryState, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Incomplete}">
+                                                        <Setter Property="Kind" Value="CloseCircle" />
+                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.IncompleteState}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=SummaryState, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Complete}">
+                                                        <Setter Property="Kind" Value="CheckCircle" />
+                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CompleteState}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=SummaryState, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Critical}">
+                                                        <Setter Property="Kind" Value="AlertCircle" />
+                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CriticalState}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </iconPacks:PackIconMaterial.Style>
+
+                                    </iconPacks:PackIconMaterial>
+
+                                    <TextBlock Text="{Binding Path=SummaryText.Value}"
+                                               d:Text="X/X completed actions" />
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+
+            </Expander.Header>
+            
+            <ItemsControl ItemsSource="{Binding Path=ActionGroups, Mode=OneTime}"
+                          d:ItemsSource="{d:SampleData ItemCount=3}"
+                          Grid.IsSharedSizeScope="True">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <!-- Group header -->
+                            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                       Text="{Binding Path=Header.Value}"
+                                       Margin="0 0 0 6" />
+
+                            <!-- Empty text -->
+                            <TextBlock Visibility="{Binding Path=Actions.Count, Mode=OneTime, Converter={rcp:InvertedIntToVisibilityConverter}}"
+                                       Text="{Binding Path=EmptyText.Value}"
+                                       FontStyle="Italic"
+                                       Margin="0 0 0 10" />
+
+                            <!-- Actions -->
+                            <ItemsControl Margin="0 0 0 4" 
+                                          ItemsSource="{Binding Path=Actions, Mode=OneTime}"
+                                          d:ItemsSource="{d:SampleData ItemCount=3}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="FixAction"  />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Status -->
+                                            <iconPacks:PackIconMaterial Margin="0 0 6 0"
+                                                                        VerticalAlignment="Center">
+                                                <iconPacks:PackIconMaterial.Style>
+                                                    <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Incomplete}">
+                                                                <Setter Property="Kind" Value="CloseCircle" />
+                                                                <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.IncompleteState}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Complete}">
+                                                                <Setter Property="Kind" Value="CheckCircle" />
+                                                                <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CompleteState}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Critical}">
+                                                                <Setter Property="Kind" Value="AlertCircle" />
+                                                                <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CriticalState}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </iconPacks:PackIconMaterial.Style>
+                                            </iconPacks:PackIconMaterial>
+
+                                            <!-- Text -->
+                                            <StackPanel Grid.Column="1" 
+                                                        Margin="0 0 8 0">
+                                                <TextBlock Text="{Binding Path=Header.Value}" />
+
+                                                <TextBlock FontSize="11"
+                                                           Margin="0 2 0 0"
+                                                           Text="{Binding Path=Info.Value}"
+                                                           TextWrapping="Wrap" />
+                                            </StackPanel>
+
+                                            <!-- Fix action -->
+                                            <Button Grid.Column="2" 
+                                                    Visibility="{Binding Path=HasFixAction, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    rcp:Icon.Kind="{Binding Path=FixActionIcon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
+                                                    Content="{Binding Path=FixActionDisplayName.Value}" 
+                                                    Command="{Binding Path=FixCommand, Mode=OneTime}"
+                                                    HorizontalAlignment="Left" 
+                                                    VerticalAlignment="Center" />
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Expander>
+
+        <rcp:Card.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="RefreshButton"
+                                             Storyboard.TargetProperty="Opacity" 
+                                             To="1" Duration="0:0:0.2"   />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="RefreshButton"
+                                             Storyboard.TargetProperty="Opacity" 
+                                             To="0" Duration="0:0:0.2"   />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </rcp:Card.Triggers>
+    </rcp:Card>
+</UserControl>
