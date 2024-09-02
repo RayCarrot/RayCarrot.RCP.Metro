@@ -33,7 +33,7 @@ public class ByteArrayHexConverter : JsonConverter<byte[]>
     public override byte[] ReadJson(JsonReader reader, Type objectType, byte[] existingValue, bool hasExistingValue,
         JsonSerializer serializer)
     {
-        return reader.Value?.ToString().Split(' ').Select(x => Byte.Parse(x, NumberStyles.HexNumber)).ToArray();
+        return reader.Value?.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(x => Byte.Parse(x, NumberStyles.HexNumber)).ToArray();
     }
 
     /// <summary>
