@@ -34,6 +34,8 @@ public enum GenericIconKind
     GameOptions_GameClient,
     GameOptions_Utilities,
 
+    SetupGame_OpenConfig,
+
     Settings_Language,
     Settings_UserLevel,
     Settings_General,
