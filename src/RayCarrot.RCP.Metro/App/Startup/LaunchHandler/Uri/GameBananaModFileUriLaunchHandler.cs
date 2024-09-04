@@ -1,9 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Web;
-using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
@@ -43,52 +41,17 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
             return;
         }
 
-        AppViewModel app = Services.App;
         string fileName = Path.GetFileName(modUrl);
-        ModLoaderViewModel.ModToInstall modToInstall;
 
-        Logger.Info("Downloading mod to install from {0}", modUrl);
-
-        // Create a temp file to download to
-        using TempFile tempFile = new(false, new FileExtension(fileName));
-
-        using (LoaderLoadState state = await app.LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
-        {
-            try
-            {
-                // Open a stream to the downloadable file
-                using (HttpClient httpClient = new())
-                {
-                    using HttpResponseMessage response = await httpClient.GetAsync(modUrl);
-                    using Stream httpStream = await response.Content.ReadAsStreamAsync();
-
-                    // Download to the temp file
-                    using FileStream tempFileStream = File.Create(tempFile.TempPath);
-                    await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: response.Content.Headers.ContentLength);
-                }
-
-                modToInstall = modId != null && fileId != null
-                    ? new ModLoaderViewModel.ModToInstall(tempFile.TempPath, new GameBananaModsSource().Id, new GameBananaInstallData(modId.Value, fileId.Value))
-                    : new ModLoaderViewModel.ModToInstall(tempFile.TempPath, null, null);
-
-                state.Complete();
-            }
-            catch (OperationCanceledException ex)
-            {
-                Logger.Info(ex, "Canceled downloading mod");
-                return;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Downloading mod");
-                state.Error();
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModFromUriError);
-                return;
-            }
-        }
-
-        // Show the mod loader with the downloaded file
-        await Services.UI.ShowModLoaderAsync(new[] { modToInstall });
+        await Services.UI.ShowModLoaderAsync(
+            modUrl: modUrl, 
+            fileName: fileName,
+            sourceId: modId != null && fileId != null 
+                ? new GameBananaModsSource().Id 
+                : null, 
+            installData: modId != null && fileId != null 
+                ? new GameBananaInstallData(modId.Value, fileId.Value) 
+                : null);
     }
 
     public override async void Invoke(string uri, State state)

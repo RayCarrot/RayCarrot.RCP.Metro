@@ -32,15 +32,6 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #region Private Methods
 
-    private List<GameBananaFile> GetValidFiles(GameBananaMod mod, GameBananaFile[] files)
-    {
-        return files.
-            Where(x => mod.ModManagerIntegrations is JObject obj &&
-                       obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
-                       m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
-            ToList();
-    }
-
     private async Task LoadFeaturedModsAsync(
         ModLoaderViewModel modLoaderViewModel,
         HttpClient httpClient,
@@ -102,6 +93,15 @@ public class GameBananaModsSource : DownloadableModsSource
     #endregion
 
     #region Public Methods
+
+    public List<GameBananaFile> GetValidFiles(GameBananaMod mod, GameBananaFile[] files)
+    {
+        return files.
+            Where(x => mod.ModManagerIntegrations is JObject obj &&
+                       obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
+                       m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
+            ToList();
+    }
 
     public override async Task<DownloadableModsFeed> LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,

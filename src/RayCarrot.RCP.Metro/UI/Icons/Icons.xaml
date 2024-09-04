@@ -167,6 +167,9 @@
                        IconKind="{StaticResource RCP.Icons.Utilities}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
 
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_DownloadMod}" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}"
+                       IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_OpenConfig}" 
                        IconKind="{StaticResource RCP.Icons.GameOptions_Config}"
                        IconColor="{x:Null}" />
