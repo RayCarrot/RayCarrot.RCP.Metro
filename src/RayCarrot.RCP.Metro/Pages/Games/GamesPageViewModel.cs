@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro.Pages.Games;
 /// </summary>
 public class GamesPageViewModel : BasePageViewModel, 
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>,
-    IRecipient<SortedGamesMessage>
+    IRecipient<SortedGamesMessage>, IRecipient<ModifiedGameModsMessage>
 {
     #region Constructor
 
@@ -426,6 +426,16 @@ public class GamesPageViewModel : BasePageViewModel,
                 IndexOf(x1.GameInstallation).
                 CompareTo(message.SortedCollection.
                     IndexOf(x2.GameInstallation))));
+    }
+    async void IRecipient<ModifiedGameModsMessage>.Receive(ModifiedGameModsMessage message)
+    {
+        using (await AsyncLock.LockAsync())
+        {
+            // Reload setup game actions whenever mods have been modified
+            InstalledGameViewModel? installedGame = Games.FirstOrDefault(x => x.GameInstallation == message.GameInstallation);
+            if (installedGame != null)
+                await installedGame.SetupGameViewModel.LoadAsync();
+        }
     }
 
     #endregion
