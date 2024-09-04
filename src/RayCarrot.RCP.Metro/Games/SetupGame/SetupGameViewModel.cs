@@ -1,12 +1,13 @@
 ﻿using System.Windows.Input;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
 public class SetupGameViewModel : BaseViewModel
 {
-    public SetupGameViewModel(SetupGameManager setupGameManager)
+    public SetupGameViewModel(GameInstallation gameInstallation)
     {
-        SetupGameManager = setupGameManager;
+        GameInstallation = gameInstallation;
         ActionGroups = new ObservableCollectionEx<SetupGameActionsGroupViewModel>();
         ActionGroups.EnableCollectionSynchronization();
 
@@ -15,9 +16,15 @@ public class SetupGameViewModel : BaseViewModel
 
     public ICommand RefreshCommand { get; }
 
-    public SetupGameManager SetupGameManager { get; }
+    public GameInstallation GameInstallation { get; }
     public ObservableCollectionEx<SetupGameActionsGroupViewModel> ActionGroups { get; }
     public bool IsLoading { get; set; }
+    public bool HasActions { get; set; }
+
+    private async void Action_Fixed(object sender, EventArgs e)
+    {
+        await LoadAsync();
+    }
 
     public async Task LoadAsync()
     {
@@ -30,14 +37,30 @@ public class SetupGameViewModel : BaseViewModel
         {
             await Task.Run(() =>
             {
+                // Unsubscribe
+                foreach (SetupGameActionsGroupViewModel group in ActionGroups)
+                    foreach (SetupGameActionViewModel action in group.Actions)
+                        action.Fixed -= Action_Fixed;
+
+                // Get managers
+                List<SetupGameManager> managers = GameInstallation.GetComponents<SetupGameManagerComponent>().CreateObjects().ToList();
+
+                // Reload collections
                 ActionGroups.ModifyCollection(x =>
                 {
                     x.Clear();
 
-                    x.Add(new SetupGameActionsRecommendedGroupViewModel(SetupGameManager.GetRecommendedActions()));
-                    x.Add(new SetupGameActionsOptionalGroupViewModel(SetupGameManager.GetOptionalActions()));
-                    x.Add(new SetupGameActionsIssueGroupViewModel(SetupGameManager.GetIssueActions()));
+                    x.Add(new SetupGameActionsRecommendedGroupViewModel(managers.SelectMany(s => s.GetRecommendedActions())));
+                    x.Add(new SetupGameActionsOptionalGroupViewModel(managers.SelectMany(s => s.GetOptionalActions())));
+                    x.Add(new SetupGameActionsIssueGroupViewModel(managers.SelectMany(s => s.GetIssueActions())));
                 });
+
+                HasActions = ActionGroups.Any(x => x.Actions.Any());
+
+                // Subscribe
+                foreach (SetupGameActionsGroupViewModel group in ActionGroups)
+                    foreach (SetupGameActionViewModel action in group.Actions)
+                        action.Fixed += Action_Fixed;
             });
         }
         finally

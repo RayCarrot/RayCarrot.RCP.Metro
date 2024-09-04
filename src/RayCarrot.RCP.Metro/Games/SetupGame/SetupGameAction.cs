@@ -10,6 +10,7 @@ public class SetupGameAction
         Header = header;
         Info = info;
         IsComplete = isComplete;
+
         FixActionIcon = GenericIconKind.None;
         FixActionDisplayName = null;
         FixAction = null;
@@ -21,11 +22,12 @@ public class SetupGameAction
         bool isComplete, 
         GenericIconKind fixActionIcon, 
         LocalizedString fixActionDisplayName, 
-        Func<Task> fixAction)
+        Func<Task<bool>> fixAction)
     {
         Header = header;
         Info = info;
         IsComplete = isComplete;
+
         FixActionIcon = fixActionIcon;
         FixActionDisplayName = fixActionDisplayName;
         FixAction = fixAction;
@@ -38,5 +40,5 @@ public class SetupGameAction
 
     public GenericIconKind FixActionIcon { get; }
     public LocalizedString? FixActionDisplayName { get; }
-    public Func<Task>? FixAction { get; }
+    public Func<Task<bool>>? FixAction { get; }
 }

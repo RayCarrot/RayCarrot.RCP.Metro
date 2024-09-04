@@ -323,7 +323,7 @@
                     <games:SetupGameControl Grid.Row="2"
                                             Margin="0 8"
                                             DataContext="{Binding Path=SetupGameViewModel, Mode=OneTime}"
-                                            Visibility="{Binding Path=DataContext.ShowSetupGame, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type games:GameHubControl}}, Converter={rcp:BooleanToVisibilityConverter}}" />
+                                            Visibility="{Binding Path=HasActions, Converter={rcp:BooleanToVisibilityConverter}}" />
 
                     <!-- Panels -->
                     <ItemsControl Grid.Row="3" 

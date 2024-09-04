@@ -13,9 +13,13 @@ public class SetupGameActionViewModel : BaseViewModel
         FixActionIcon = action.FixActionIcon;
         FixActionDisplayName = action.FixActionDisplayName;
 
-        if (action.FixAction != null && !IsComplete)
-            FixCommand = new AsyncRelayCommand(action.FixAction);
+        FixAction = action.FixAction;
+        HasFixAction = action.FixAction != null && !IsComplete;
+        
+        FixCommand = new AsyncRelayCommand(FixAsync);
     }
+
+    public event EventHandler? Fixed;
 
     public ICommand? FixCommand { get; }
 
@@ -24,8 +28,20 @@ public class SetupGameActionViewModel : BaseViewModel
     public LocalizedString Info { get; }
     public bool IsComplete { get; }
 
-    public bool HasFixAction => FixCommand != null;
+    public Func<Task<bool>>? FixAction { get; }
+    public bool HasFixAction { get; }
 
     public GenericIconKind FixActionIcon { get; }
     public LocalizedString? FixActionDisplayName { get; }
+
+    public async Task FixAsync()
+    {
+        if (FixAction == null)
+            return;
+
+        bool success = await FixAction();
+
+        if (success)
+            Fixed?.Invoke(this, EventArgs.Empty);
+    }
 }

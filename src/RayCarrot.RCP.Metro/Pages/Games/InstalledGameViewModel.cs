@@ -33,8 +33,7 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions = new ObservableActionItemsCollection();
 
         // Set other properties
-        if (GameInstallation.GetComponent<SetupGameManagerComponent>() is { } setupGameManagerComponent)
-            SetupGameViewModel = new SetupGameViewModel(setupGameManagerComponent.CreateObject());
+        SetupGameViewModel = new SetupGameViewModel(GameInstallation);
         CanUninstall = gameInstallation.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
         HasOptionsDialog = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().Any(x => x.IsAvailable());
         IsFavorite = GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite);
@@ -115,8 +114,7 @@ public class InstalledGameViewModel : BaseViewModel
 
     public ObservableCollection<GameOptionsViewModel>? GameOptions { get; set; }
 
-    public SetupGameViewModel? SetupGameViewModel { get; }
-    public bool ShowSetupGame { get; set; }
+    public SetupGameViewModel SetupGameViewModel { get; }
 
     public bool IsFavorite { get; private set; }
 
@@ -303,11 +301,7 @@ public class InstalledGameViewModel : BaseViewModel
             AddAdditionalLaunchActions();
 
             // Load setup game
-            if (SetupGameViewModel != null)
-            {
-                await SetupGameViewModel.LoadAsync();
-                ShowSetupGame = SetupGameViewModel.ActionGroups.Any(x => x.Actions.Any());
-            }
+            await SetupGameViewModel.LoadAsync();
 
             // Load panels
             await AddGamePanelsAsync();
