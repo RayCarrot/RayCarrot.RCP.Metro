@@ -22,7 +22,7 @@ public class SetupGameAction
         bool isComplete, 
         GenericIconKind fixActionIcon, 
         LocalizedString fixActionDisplayName, 
-        Func<Task<bool>> fixAction)
+        Func<Task> fixAction)
     {
         Header = header;
         Info = info;
@@ -40,5 +40,5 @@ public class SetupGameAction
 
     public GenericIconKind FixActionIcon { get; }
     public LocalizedString? FixActionDisplayName { get; }
-    public Func<Task<bool>>? FixAction { get; }
+    public Func<Task>? FixAction { get; }
 }

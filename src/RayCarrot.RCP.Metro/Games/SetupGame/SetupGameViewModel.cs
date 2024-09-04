@@ -21,11 +21,6 @@ public class SetupGameViewModel : BaseViewModel
     public bool IsLoading { get; set; }
     public bool HasActions { get; set; }
 
-    private async void Action_Fixed(object sender, EventArgs e)
-    {
-        await LoadAsync();
-    }
-
     public async Task LoadAsync()
     {
         if (IsLoading)
@@ -37,11 +32,6 @@ public class SetupGameViewModel : BaseViewModel
         {
             await Task.Run(() =>
             {
-                // Unsubscribe
-                foreach (SetupGameActionsGroupViewModel group in ActionGroups)
-                    foreach (SetupGameActionViewModel action in group.Actions)
-                        action.Fixed -= Action_Fixed;
-
                 // Get managers
                 List<SetupGameManager> managers = GameInstallation.GetComponents<SetupGameManagerComponent>().CreateObjects().ToList();
 
@@ -56,11 +46,6 @@ public class SetupGameViewModel : BaseViewModel
                 });
 
                 HasActions = ActionGroups.Any(x => x.Actions.Any());
-
-                // Subscribe
-                foreach (SetupGameActionsGroupViewModel group in ActionGroups)
-                    foreach (SetupGameActionViewModel action in group.Actions)
-                        action.Fixed += Action_Fixed;
             });
         }
         finally

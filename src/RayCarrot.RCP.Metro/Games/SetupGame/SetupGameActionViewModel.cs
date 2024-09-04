@@ -19,8 +19,6 @@ public class SetupGameActionViewModel : BaseViewModel
         FixCommand = new AsyncRelayCommand(FixAsync);
     }
 
-    public event EventHandler? Fixed;
-
     public ICommand? FixCommand { get; }
 
     public SetupGameActionState State { get; }
@@ -28,7 +26,7 @@ public class SetupGameActionViewModel : BaseViewModel
     public LocalizedString Info { get; }
     public bool IsComplete { get; }
 
-    public Func<Task<bool>>? FixAction { get; }
+    public Func<Task>? FixAction { get; }
     public bool HasFixAction { get; }
 
     public GenericIconKind FixActionIcon { get; }
@@ -39,9 +37,6 @@ public class SetupGameActionViewModel : BaseViewModel
         if (FixAction == null)
             return;
 
-        bool success = await FixAction();
-
-        if (success)
-            Fixed?.Invoke(this, EventArgs.Empty);
+        await FixAction();
     }
 }
