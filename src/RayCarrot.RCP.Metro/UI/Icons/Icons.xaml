@@ -167,11 +167,14 @@
                        IconKind="{StaticResource RCP.Icons.Utilities}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
 
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_DownloadMod}" 
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Mod}" 
                        IconKind="{StaticResource RCP.Icons.ModLoader}"
                        IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_OpenConfig}" 
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Config}" 
                        IconKind="{StaticResource RCP.Icons.GameOptions_Config}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClient}" 
+                       IconKind="{StaticResource RCP.Icons.GameClient}"
                        IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Language}" 

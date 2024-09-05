@@ -7,7 +7,7 @@ public class SetupGameModAction : SetupGameAction
 {
     // TODO-LOC
     public SetupGameModAction(LocalizedString header, LocalizedString info, bool isComplete, long gameBananaModId) 
-        : base(header, info, isComplete, GenericIconKind.SetupGame_DownloadMod, "Download mod", () => DownloadModAsync(gameBananaModId))
+        : base(header, info, isComplete, GenericIconKind.SetupGame_Mod, "Download mod", () => DownloadModAsync(gameBananaModId))
     {
 
     }

@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
+using RayCarrot.RCP.Metro.Games.SetupGame;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -115,6 +116,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
         builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
+        builder.Register(new SetupGameManagerComponent(x => new SetupGameManager_RequiresLaunchComponent(x)));
 
         if (DefaultToUseGameClient)
             builder.Register<OnGameAddedComponent, AttachDefaultClientOnGameAddedComponent>();

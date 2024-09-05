@@ -14,7 +14,7 @@ public class SetupGameManager_MsDosGameRequiresDisc : SetupGameManager
                 header: "Missing mount path",
                 info: "A valid mount path has to be specified in the game config for it to be able to launch.",
                 isComplete: false,
-                fixActionIcon: GenericIconKind.SetupGame_OpenConfig,
+                fixActionIcon: GenericIconKind.SetupGame_Config,
                 fixActionDisplayName: "Open config",
                 fixAction: async () => await Services.UI.ShowGameOptionsAsync(GameInstallation));
         }
