@@ -10,7 +10,6 @@ public class SetupGameActionsOptionalGroupViewModel : SetupGameActionsGroupViewM
     {
         // TODO-LOC
         Header = "Optional";
-        EmptyText = "No optional actions were found";
 
         SummaryText = $"{CompletedActions}/{TotalActions} optional actions";
         SummaryState = CompletedActions == TotalActions
@@ -20,7 +19,6 @@ public class SetupGameActionsOptionalGroupViewModel : SetupGameActionsGroupViewM
     }
 
     public override LocalizedString Header { get; }
-    public override LocalizedString EmptyText { get; }
 
     public override LocalizedString SummaryText { get; }
     public override SetupGameActionState SummaryState { get; }

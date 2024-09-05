@@ -8,8 +8,7 @@ public abstract class SetupGameActionsGroupViewModel : BaseViewModel
     }
 
     public abstract LocalizedString Header { get; }
-    public abstract LocalizedString EmptyText { get; }
-    
+   
     public abstract LocalizedString SummaryText { get; }
     public abstract SetupGameActionState SummaryState { get; }
     public abstract bool ShowSummary { get; }

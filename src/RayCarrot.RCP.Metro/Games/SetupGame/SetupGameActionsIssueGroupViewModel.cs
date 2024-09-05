@@ -11,15 +11,13 @@ public class SetupGameActionsIssueGroupViewModel : SetupGameActionsGroupViewMode
     {
         // TODO-LOC
         Header = "Issues";
-        EmptyText = "No issues were found";
 
-        SummaryText = $"{TotalActions} issues";
+        SummaryText = $"{TotalActions} issues"; // TODO-LOC: Singular/plural
         SummaryState = SetupGameActionState.Critical;
         ShowSummary = TotalActions > 0;
     }
 
     public override LocalizedString Header { get; }
-    public override LocalizedString EmptyText { get; }
 
     public override LocalizedString SummaryText { get; }
     public override SetupGameActionState SummaryState { get; }

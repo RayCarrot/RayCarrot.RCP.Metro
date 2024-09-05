@@ -119,18 +119,12 @@
                           Grid.IsSharedSizeScope="True">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <StackPanel Visibility="{Binding Path=Actions.Count, Mode=OneTime, Converter={rcp:IntToVisibilityConverter}}">
 
                             <!-- Group header -->
                             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                        Text="{Binding Path=Header.Value}"
                                        Margin="0 0 0 6" />
-
-                            <!-- Empty text -->
-                            <TextBlock Visibility="{Binding Path=Actions.Count, Mode=OneTime, Converter={rcp:InvertedIntToVisibilityConverter}}"
-                                       Text="{Binding Path=EmptyText.Value}"
-                                       FontStyle="Italic"
-                                       Margin="0 0 0 10" />
 
                             <!-- Actions -->
                             <ItemsControl Margin="0 0 0 4" 

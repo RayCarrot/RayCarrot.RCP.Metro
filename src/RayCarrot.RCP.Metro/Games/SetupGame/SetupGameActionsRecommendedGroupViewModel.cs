@@ -10,7 +10,6 @@ public class SetupGameActionsRecommendedGroupViewModel : SetupGameActionsGroupVi
     {
         // TODO-LOC
         Header = "Recommended";
-        EmptyText = "No recommended actions were found";
 
         SummaryText = $"{CompletedActions}/{TotalActions} recommended actions";
         SummaryState = CompletedActions == TotalActions
@@ -20,7 +19,6 @@ public class SetupGameActionsRecommendedGroupViewModel : SetupGameActionsGroupVi
     }
 
     public override LocalizedString Header { get; }
-    public override LocalizedString EmptyText { get; }
 
     public override LocalizedString SummaryText { get; }
     public override SetupGameActionState SummaryState { get; }
