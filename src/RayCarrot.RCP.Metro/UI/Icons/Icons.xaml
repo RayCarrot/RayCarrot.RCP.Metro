@@ -32,6 +32,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileAdd">FilePlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileRemove">FileRemoveOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileEdit">FileEditOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileReplace">FileReplaceOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Archive">FolderZipOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FolderSearch">FolderSearchOutline</iconPacks:PackIconMaterialKind>
@@ -175,6 +176,9 @@
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClient}" 
                        IconKind="{StaticResource RCP.Icons.GameClient}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_FileReplacement}" 
+                       IconKind="{StaticResource RCP.Icons.FileReplace}"
                        IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Language}" 

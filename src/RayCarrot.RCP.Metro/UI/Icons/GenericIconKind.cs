@@ -37,6 +37,7 @@ public enum GenericIconKind
     SetupGame_Mod,
     SetupGame_Config,
     SetupGame_GameClient,
+    SetupGame_FileReplacement,
 
     Settings_Language,
     Settings_UserLevel,
