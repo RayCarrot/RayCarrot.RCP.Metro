@@ -163,11 +163,6 @@ public static class AppURLs
     public const string R1_CompleteOST_URL = UtilityBaseUrl + "r1/CompleteOST.zip";
 
     /// <summary>
-    /// The Rayman 1 incomplete soundtrack utility URL
-    /// </summary>
-    public const string R1_IncompleteOST_URL = UtilityBaseUrl + "r1/IncompleteOST.zip";
-
-    /// <summary>
     /// The Rayman Designer CLIENT.EXE replacement URL
     /// </summary>
     public const string RD_ClientExe_URL = UtilityBaseUrl + "r1/raykit/CLIENT.EXE";

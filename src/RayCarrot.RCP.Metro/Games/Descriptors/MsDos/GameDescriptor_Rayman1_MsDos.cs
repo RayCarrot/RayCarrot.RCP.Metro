@@ -63,7 +63,6 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
             }));
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
-        builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

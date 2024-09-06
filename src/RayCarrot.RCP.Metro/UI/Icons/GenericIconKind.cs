@@ -74,7 +74,6 @@ public enum GenericIconKind
     Window_PrototypeRestoration,
     Window_RuntimeModifications,
 
-    Utilities_Rayman1_CompleteSoundtrack,
     Utilities_Rayman1_TPLS,
     Utilities_Rayman3_DirectPlay,
     Utilities_RaymanDesigner_CreateConfig,
