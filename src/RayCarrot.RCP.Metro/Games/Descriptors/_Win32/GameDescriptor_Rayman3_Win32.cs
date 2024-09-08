@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 using RayCarrot.RCP.Metro.Ini;
@@ -71,6 +72,8 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R3_PC)),
                     getOffsetsFunc: () => CPAMemoryData.Offsets_R3_PC)
             }));
+
+        builder.Register(new SetupGameActionComponent(_ => new BetterRayman3SetupGameAction()));
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }

@@ -36,6 +36,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Archive">FolderZipOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FolderSearch">FolderSearchOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Download">DownloadOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.CloudDownload">CloudDownloadOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Purchase">ShoppingOutline</iconPacks:PackIconMaterialKind>
@@ -181,6 +182,9 @@
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Fix}" 
                        IconKind="{StaticResource RCP.Icons.Fix}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Download}" 
+                       IconKind="{StaticResource RCP.Icons.Download}"
                        IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Language}" 
