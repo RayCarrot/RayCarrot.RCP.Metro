@@ -38,6 +38,7 @@ public enum GenericIconKind
     SetupGame_Config,
     SetupGame_GameClient,
     SetupGame_FileReplacement,
+    SetupGame_Fix,
 
     Settings_Language,
     Settings_UserLevel,
@@ -82,7 +83,6 @@ public enum GenericIconKind
     Utilities_RaymanLegends_UbiRay,
     Utilities_RaymanOrigins_DebugCommands,
     Utilities_RaymanOrigins_Update,
-    Utilities_RaymanFiestaRun_SaveFix,
     Utilities_ArchiveExplorer,
     Utilities_Ray1Editor,
     Utilities_R1PasswordGenerator,

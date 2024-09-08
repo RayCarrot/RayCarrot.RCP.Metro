@@ -1,62 +1,39 @@
-﻿using System.Windows.Input;
-using BinarySerializer;
+﻿using BinarySerializer;
 using BinarySerializer.UbiArt;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
-/// <summary>
-/// View model for the Rayman Fiesta Run save fix utility
-/// </summary>
-public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
+// NOTE: This is really only needed in the Preload edition as that's the only one on the older version which has this
+//       issue, but it doesn't hurt to have it be available for all editions just in case.
+public class CorruptRaymanFiestaRunSaveFileSetupGameAction : SetupGameAction
 {
-    #region Constructor
-
-    // NOTE: This utility is really only needed in the Preload edition as that's the only one on the older version which has this
-    //       issue, but it doesn't hurt to have it be available for all editions just in case.
-    public Utility_RaymanFiestaRun_SaveFix_ViewModel(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, int slotIndex)
+    public CorruptRaymanFiestaRunSaveFileSetupGameAction(WindowsPackageGameDescriptor gameDescriptor, int slotIndex)
     {
         FileSystemPath saveDir = gameDescriptor.GetLocalAppDataDirectory();
         SaveFilePath = saveDir + $"slot{slotIndex}.dat";
-
-        RequiresFixing = CheckIfSaveRequiresFix();
-
-        FixCommand = new AsyncRelayCommand(FixAsync);
     }
-
-    #endregion
-
-    #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    #endregion
-
-    #region Commands
-
-    public ICommand FixCommand { get; }
-
-    #endregion
-
-    #region Public Properties
-
     public FileSystemPath SaveFilePath { get; }
-    public bool RequiresFixing { get; set; }
 
-    #endregion
+    // TODO-LOC
+    public override LocalizedString Header => "Corrupt save file";
+    public override LocalizedString Info => "Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible.";
 
-    #region Public Methods
+    public override SetupGameActionType Type => SetupGameActionType.Issue;
 
-    public bool CheckIfSaveRequiresFix()
+    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Fix;
+    public override LocalizedString? FixActionDisplayName => "Fix"; // TODO-LOC
+
+    public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {
         try
         {
             using RCPContext context = new(SaveFilePath.Parent);
             context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
 
-            FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name);
-
-            if (save == null)
-                throw new Exception("Failed to load save data");
+            FiestaRun_SaveData save = context.ReadRequiredFileData<FiestaRun_SaveData>(SaveFilePath.Name);
 
             IEnumerable<FiestaRun_SaveDataLevel> levels = save.LevelInfos_Land1;
 
@@ -67,27 +44,26 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Checking Fiesta Run save");
+            Logger.Error(ex, "Checking if Rayman Fiesta Run save is corrupt");
 
             // Return false if there was an error since we can't fix it then anyway
             return false;
         }
     }
 
-    public async Task FixAsync()
+    public override bool CheckIsComplete(GameInstallation gameInstallation)
     {
-        if (!RequiresFixing)
-            return;
+        return false;
+    }
 
+    public override async Task FixAsync(GameInstallation gameInstallation)
+    {
         try
         {
             using RCPContext context = new(SaveFilePath.Parent);
             context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
 
-            FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name, removeFileWhenComplete: false);
-
-            if (save == null)
-                throw new Exception("Failed to load save data");
+            FiestaRun_SaveData save = context.ReadRequiredFileData<FiestaRun_SaveData>(SaveFilePath.Name, removeFileWhenComplete: false);
 
             IEnumerable<FiestaRun_SaveDataLevel> levels = save.LevelInfos_Land1;
 
@@ -104,7 +80,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RFRU_SaveFixSuccess);
 
-            RequiresFixing = false;
+            Services.Messenger.Send(new FixedSetupGameActionMessage(gameInstallation));
         }
         catch (Exception ex)
         {
@@ -113,6 +89,4 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RFRU_SaveFixError);
         }
     }
-
-    #endregion
 }

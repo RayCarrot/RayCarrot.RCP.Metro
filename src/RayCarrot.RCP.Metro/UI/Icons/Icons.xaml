@@ -48,6 +48,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Design">PaletteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Startup">Power</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.List">ViewListOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Fix">AutoFix</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.RomFinder">FolderSearchOutline</iconPacks:PackIconMaterialKind>
@@ -70,7 +71,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_UbiRay">AccountOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_Update">Update</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanFiestaRun_SaveFix">AutoFix</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
@@ -178,6 +178,9 @@
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_FileReplacement}" 
                        IconKind="{StaticResource RCP.Icons.FileReplace}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Fix}" 
+                       IconKind="{StaticResource RCP.Icons.Fix}"
                        IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Language}" 
@@ -305,9 +308,6 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_RaymanOrigins_Update}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_RaymanOrigins_Update}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_RaymanFiestaRun_SaveFix}" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_RaymanFiestaRun_SaveFix}"
-                       IconColor="{StaticResource RCP.Brushes.Progression}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_ArchiveExplorer}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
