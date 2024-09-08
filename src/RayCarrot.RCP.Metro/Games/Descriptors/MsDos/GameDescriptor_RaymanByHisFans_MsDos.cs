@@ -45,7 +45,6 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanByHisFans_MsDos(x, "Rayman by his Fans")));
-        builder.Register(new SetupGameManagerComponent(x => new SetupGameManager_RaymanForever_MsDos(x)));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
@@ -57,6 +56,8 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanByHisFansPC", "r1/pc_fan"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanByHisFans_PC));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
+
+        builder.Register(new SetupGameActionComponent(_ => new RaymanForeverCompleteSoundtrackSetupGameAction()));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

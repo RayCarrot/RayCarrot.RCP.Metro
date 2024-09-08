@@ -45,7 +45,6 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1_MsDos(x, "Rayman 1")));
-        builder.Register(new SetupGameManagerComponent(x => new SetupGameManager_RaymanForever_MsDos(x)));
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
@@ -61,6 +60,8 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
                     getOffsetsFunc: () => Ray1MemoryData.Offsets_PC_1_21)
             }));
+
+        builder.Register(new SetupGameActionComponent(_ => new RaymanForeverCompleteSoundtrackSetupGameAction()));
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
     }

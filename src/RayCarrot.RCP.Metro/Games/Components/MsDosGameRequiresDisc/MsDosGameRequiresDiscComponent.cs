@@ -7,6 +7,6 @@ public class MsDosGameRequiresDiscComponent : GameComponent
 {
     public override void RegisterComponents(IGameComponentBuilder builder)
     {
-        builder.Register(new SetupGameManagerComponent(x => new SetupGameManager_MsDosGameRequiresDisc(x)));
+        builder.Register(new SetupGameActionComponent(_ => new MsDosGameRequiresDiscSetupGameAction()));
     }
 }

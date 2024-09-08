@@ -3,18 +3,21 @@ using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
-public class SetupGameModAction : SetupGameAction
+public abstract class InstallModSetupGameAction : SetupGameAction
 {
-    // TODO-LOC
-    public SetupGameModAction(LocalizedString header, LocalizedString info, bool isComplete, long gameBananaModId) 
-        : base(header, info, isComplete, GenericIconKind.SetupGame_Mod, "Download mod", () => DownloadModAsync(gameBananaModId))
-    {
-
-    }
-
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    private static async Task DownloadModAsync(long gameBananaModId)
+    protected abstract long GameBananaModId { get; }
+
+    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Mod;
+    public override LocalizedString? FixActionDisplayName => "Download mod"; // TODO-LOC
+
+    public override bool CheckIsComplete(GameInstallation gameInstallation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override async Task FixAsync(GameInstallation gameInstallation)
     {
         GameBananaModsSource gb = new();
         GameBananaFile? file;
@@ -25,7 +28,7 @@ public class SetupGameModAction : SetupGameAction
 
             // Get the mod
             GameBananaMod mod = await httpClient.GetDeserializedAsync<GameBananaMod>(
-                $"https://gamebanana.com/apiv11/Mod/{gameBananaModId}?" +
+                $"https://gamebanana.com/apiv11/Mod/{GameBananaModId}?" +
                 $"_csvProperties=_aFiles,_aModManagerIntegrations");
 
             if (mod.Files == null)
@@ -55,6 +58,7 @@ public class SetupGameModAction : SetupGameAction
             return;
         }
 
-        await Services.UI.ShowModLoaderAsync(file.DownloadUrl, file.File, gb.Id, new GameBananaInstallData(gameBananaModId, file.Id));
+        // TODO-UPDATE: Pass in GameInstallation instance
+        await Services.UI.ShowModLoaderAsync(file.DownloadUrl, file.File, gb.Id, new GameBananaInstallData(GameBananaModId, file.Id));
     }
 }

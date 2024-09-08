@@ -2,11 +2,8 @@
 
 public class SetupGameActionsRecommendedGroupViewModel : SetupGameActionsGroupViewModel
 {
-    public SetupGameActionsRecommendedGroupViewModel(IEnumerable<SetupGameAction> actions) :
-        base(new ObservableCollection<SetupGameActionViewModel>(actions.
-            Select(action => new SetupGameActionViewModel(
-                state: action.IsComplete ? SetupGameActionState.Complete : SetupGameActionState.Incomplete, 
-                action: action))))
+    public SetupGameActionsRecommendedGroupViewModel(GameInstallation gameInstallation, IEnumerable<SetupGameAction> actions) 
+        : base(gameInstallation, actions)
     {
         // TODO-LOC
         Header = "Recommended";

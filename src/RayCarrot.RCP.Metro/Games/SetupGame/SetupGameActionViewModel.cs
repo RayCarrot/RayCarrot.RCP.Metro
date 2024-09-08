@@ -4,39 +4,44 @@ namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
 public class SetupGameActionViewModel : BaseViewModel
 {
-    public SetupGameActionViewModel(SetupGameActionState state, SetupGameAction action)
+    public SetupGameActionViewModel(GameInstallation gameInstallation, SetupGameAction action)
     {
-        State = state;
+        GameInstallation = gameInstallation;
+        Action = action;
+
+        bool isComplete = action.CheckIsComplete(gameInstallation);
+
+        State = action.Type switch
+        {
+            SetupGameActionType.Recommended => isComplete ? SetupGameActionState.Complete : SetupGameActionState.Incomplete,
+            SetupGameActionType.Optional => isComplete ? SetupGameActionState.Complete : SetupGameActionState.Incomplete,
+            SetupGameActionType.Issue => SetupGameActionState.Critical,
+            _ => throw new ArgumentOutOfRangeException()
+        };
         Header = action.Header;
         Info = action.Info;
-        IsComplete = action.IsComplete;
+        IsComplete = isComplete;
         FixActionIcon = action.FixActionIcon;
         FixActionDisplayName = action.FixActionDisplayName;
 
-        FixAction = action.FixAction;
-        HasFixAction = action.FixAction != null && !IsComplete;
-        
         FixCommand = new AsyncRelayCommand(FixAsync);
     }
 
     public ICommand? FixCommand { get; }
+
+    public GameInstallation GameInstallation { get; }
+    public SetupGameAction Action { get; }
 
     public SetupGameActionState State { get; }
     public LocalizedString Header { get; }
     public LocalizedString Info { get; }
     public bool IsComplete { get; }
 
-    public Func<Task>? FixAction { get; }
-    public bool HasFixAction { get; }
-
     public GenericIconKind FixActionIcon { get; }
     public LocalizedString? FixActionDisplayName { get; }
 
     public async Task FixAsync()
     {
-        if (FixAction == null)
-            return;
-
-        await FixAction();
+        await Action.FixAsync(GameInstallation);
     }
 }

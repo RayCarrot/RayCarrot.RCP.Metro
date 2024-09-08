@@ -116,7 +116,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
         builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
-        builder.Register(new SetupGameManagerComponent(x => new SetupGameManager_RequiresLaunchComponent(x)));
+        
+        builder.Register(new SetupGameActionComponent(_ => new RequiresLaunchComponentSetupGameAction()));
 
         if (DefaultToUseGameClient)
             builder.Register<OnGameAddedComponent, AttachDefaultClientOnGameAddedComponent>();

@@ -2,12 +2,8 @@
 
 public class SetupGameActionsIssueGroupViewModel : SetupGameActionsGroupViewModel
 {
-    public SetupGameActionsIssueGroupViewModel(IEnumerable<SetupGameAction> actions) :
-        base(new ObservableCollection<SetupGameActionViewModel>(actions.
-            Where(x => !x.IsComplete).
-            Select(action => new SetupGameActionViewModel(
-                state: SetupGameActionState.Critical, 
-                action: action))))
+    public SetupGameActionsIssueGroupViewModel(GameInstallation gameInstallation, IEnumerable<SetupGameAction> actions)
+        : base(gameInstallation, actions)
     {
         // TODO-LOC
         Header = "Issues";

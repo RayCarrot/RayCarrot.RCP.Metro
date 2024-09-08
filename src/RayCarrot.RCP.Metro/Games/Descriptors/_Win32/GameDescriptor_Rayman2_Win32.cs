@@ -69,7 +69,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Win32(x, "Rayman 2")));
-        builder.Register(new SetupGameManagerComponent(x => new SetupGameManager_Rayman2_Win32(x)));
         builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
@@ -95,6 +94,8 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PC)),
                     getOffsetsFunc: () => CPAMemoryData.Offsets_R2_PC)
             }));
+
+        builder.Register(new SetupGameActionComponent(_ => new Ray2FixSetupGameAction()));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

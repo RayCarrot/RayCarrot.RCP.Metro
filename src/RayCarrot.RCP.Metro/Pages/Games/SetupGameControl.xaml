@@ -180,7 +180,7 @@
 
                                             <!-- Fix action -->
                                             <Button Grid.Column="2" 
-                                                    Visibility="{Binding Path=HasFixAction, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
+                                                    Visibility="{Binding Path=IsComplete, Mode=OneTime, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                                     rcp:Icon.Kind="{Binding Path=FixActionIcon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
                                                     Content="{Binding Path=FixActionDisplayName.Value}" 

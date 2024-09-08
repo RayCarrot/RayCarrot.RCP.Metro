@@ -32,17 +32,21 @@ public class SetupGameViewModel : BaseViewModel
         {
             await Task.Run(() =>
             {
-                // Get managers
-                List<SetupGameManager> managers = GameInstallation.GetComponents<SetupGameManagerComponent>().CreateObjects().ToList();
+                // Get actions
+                List<SetupGameAction> actions = GameInstallation.
+                    GetComponents<SetupGameActionComponent>().
+                    CreateObjects().
+                    Where(x => x.CheckIsAvailable(GameInstallation)).
+                    ToList();
 
                 // Reload collections
                 ActionGroups.ModifyCollection(x =>
                 {
                     x.Clear();
 
-                    x.Add(new SetupGameActionsRecommendedGroupViewModel(managers.SelectMany(s => s.GetRecommendedActions())));
-                    x.Add(new SetupGameActionsOptionalGroupViewModel(managers.SelectMany(s => s.GetOptionalActions())));
-                    x.Add(new SetupGameActionsIssueGroupViewModel(managers.SelectMany(s => s.GetIssueActions())));
+                    x.Add(new SetupGameActionsRecommendedGroupViewModel(GameInstallation, actions.Where(a => a.Type == SetupGameActionType.Recommended)));
+                    x.Add(new SetupGameActionsOptionalGroupViewModel(GameInstallation, actions.Where(a => a.Type == SetupGameActionType.Optional)));
+                    x.Add(new SetupGameActionsIssueGroupViewModel(GameInstallation, actions.Where(a => a.Type == SetupGameActionType.Issue)));
                 });
 
                 HasActions = ActionGroups.Any(x => x.Actions.Any());

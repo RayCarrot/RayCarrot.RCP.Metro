@@ -1,44 +1,18 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
-public class SetupGameAction
-{
-    public SetupGameAction(
-        LocalizedString header, 
-        LocalizedString info, 
-        bool isComplete)
-    {
-        Header = header;
-        Info = info;
-        IsComplete = isComplete;
+public abstract class SetupGameAction
+{ 
+    public abstract LocalizedString Header { get; }
+    public abstract LocalizedString Info { get; }
 
-        FixActionIcon = GenericIconKind.None;
-        FixActionDisplayName = null;
-        FixAction = null;
-    }
+    public abstract SetupGameActionType Type { get; }
 
-    public SetupGameAction(
-        LocalizedString header, 
-        LocalizedString info, 
-        bool isComplete, 
-        GenericIconKind fixActionIcon, 
-        LocalizedString fixActionDisplayName, 
-        Func<Task> fixAction)
-    {
-        Header = header;
-        Info = info;
-        IsComplete = isComplete;
+    public abstract GenericIconKind FixActionIcon { get; }
+    public abstract LocalizedString? FixActionDisplayName { get; }
 
-        FixActionIcon = fixActionIcon;
-        FixActionDisplayName = fixActionDisplayName;
-        FixAction = fixAction;
-    }
+    public virtual bool CheckIsAvailable(GameInstallation gameInstallation) => true;
 
-    public LocalizedString Header { get; }
-    public LocalizedString Info { get; }
-    
-    public bool IsComplete { get; }
+    public abstract bool CheckIsComplete(GameInstallation gameInstallation);
 
-    public GenericIconKind FixActionIcon { get; }
-    public LocalizedString? FixActionDisplayName { get; }
-    public Func<Task>? FixAction { get; }
+    public abstract Task FixAsync(GameInstallation gameInstallation);
 }

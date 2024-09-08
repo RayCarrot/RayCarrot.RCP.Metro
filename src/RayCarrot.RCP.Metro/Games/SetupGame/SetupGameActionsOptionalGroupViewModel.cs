@@ -2,11 +2,8 @@
 
 public class SetupGameActionsOptionalGroupViewModel : SetupGameActionsGroupViewModel
 {
-    public SetupGameActionsOptionalGroupViewModel(IEnumerable<SetupGameAction> actions) :
-        base(new ObservableCollection<SetupGameActionViewModel>(actions.
-            Select(action => new SetupGameActionViewModel(
-                state: action.IsComplete ? SetupGameActionState.Complete : SetupGameActionState.Incomplete, 
-                action: action))))
+    public SetupGameActionsOptionalGroupViewModel(GameInstallation gameInstallation, IEnumerable<SetupGameAction> actions)
+        : base(gameInstallation, actions)
     {
         // TODO-LOC
         Header = "Optional";
