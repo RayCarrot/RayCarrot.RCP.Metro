@@ -44,6 +44,7 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
         string fileName = Path.GetFileName(modUrl);
 
         await Services.UI.ShowModLoaderAsync(
+            gameInstallation: null,
             modUrl: modUrl, 
             fileName: fileName,
             sourceId: modId != null && fileId != null 

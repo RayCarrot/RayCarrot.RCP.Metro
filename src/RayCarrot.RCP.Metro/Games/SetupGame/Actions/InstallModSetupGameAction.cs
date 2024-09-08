@@ -58,7 +58,6 @@ public abstract class InstallModSetupGameAction : SetupGameAction
             return;
         }
 
-        // TODO-UPDATE: Pass in GameInstallation instance
-        await Services.UI.ShowModLoaderAsync(file.DownloadUrl, file.File, gb.Id, new GameBananaInstallData(GameBananaModId, file.Id));
+        await Services.UI.ShowModLoaderAsync(gameInstallation, file.DownloadUrl, file.File, gb.Id, new GameBananaInstallData(GameBananaModId, file.Id));
     }
 }

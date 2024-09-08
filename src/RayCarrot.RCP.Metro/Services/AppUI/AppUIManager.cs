@@ -313,12 +313,13 @@ public class AppUIManager
     /// <summary>
     /// Shows a new instance of the Mod Loader from a URL
     /// </summary>
+    /// <param name="gameInstallation">The game installation to use the mod loader for. If not specified then the game is picked from what the mod supports.</param>
     /// <param name="modUrl">The URL of the mod to install</param>
     /// <param name="fileName">The file name of the mod to download</param>
     /// <param name="sourceId">An optional source id</param>
     /// <param name="installData">Optional install data for the source</param>
     /// <returns>The task</returns>
-    public async Task ShowModLoaderAsync(string modUrl, string fileName, string? sourceId, object? installData)
+    public async Task ShowModLoaderAsync(GameInstallation? gameInstallation, string modUrl, string fileName, string? sourceId, object? installData)
     {
         Logger.Info("Downloading mod to install from {0}", modUrl);
 
@@ -357,21 +358,22 @@ public class AppUIManager
         }
 
         // Show the mod loader with the downloaded file
-        await ShowModLoaderAsync(new ModLoaderViewModel.ModToInstall(tempFile.TempPath, sourceId, installData));
+        await ShowModLoaderAsync(gameInstallation, new ModLoaderViewModel.ModToInstall(tempFile.TempPath, sourceId, installData));
     }
 
     /// <summary>
     /// Shows a new instance of the Mod Loader from mod file paths
     /// </summary>
+    /// <param name="gameInstallation">The game installation to use the mod loader for. If not specified then the game is picked from what the mod supports.</param>
     /// <param name="modPaths">The mods to install</param>
     /// <returns>The task</returns>
-    public async Task ShowModLoaderAsync(params ModLoaderViewModel.ModToInstall[] modPaths)
+    public async Task ShowModLoaderAsync(GameInstallation? gameInstallation, params ModLoaderViewModel.ModToInstall[] modPaths)
     {
         ModLoaderViewModel? viewModel;
 
         try
         {
-            viewModel = await ModLoaderViewModel.FromFilesAsync(modPaths);
+            viewModel = await ModLoaderViewModel.FromFilesAsync(gameInstallation, modPaths);
         }
         catch (Exception ex)
         {

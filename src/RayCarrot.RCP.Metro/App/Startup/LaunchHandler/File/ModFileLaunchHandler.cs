@@ -20,6 +20,6 @@ public class ModFileLaunchHandler : FileLaunchHandler
     public override async void Invoke(FileSystemPath filePath, State state)
     {
         // Show the mod loader
-        await Services.UI.ShowModLoaderAsync(new ModLoaderViewModel.ModToInstall(filePath, null, null));
+        await Services.UI.ShowModLoaderAsync(null, new ModLoaderViewModel.ModToInstall(filePath, null, null));
     }
 }

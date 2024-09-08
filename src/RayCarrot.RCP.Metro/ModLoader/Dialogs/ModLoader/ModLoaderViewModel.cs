@@ -391,53 +391,54 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     #region Public Static Methods
 
-    public static async Task<ModLoaderViewModel?> FromFilesAsync(ModToInstall[] modFilePaths)
+    public static async Task<ModLoaderViewModel?> FromFilesAsync(GameInstallation? gameInstallation, ModToInstall[] modFilePaths)
     {
         if (modFilePaths.Length == 0)
             throw new ArgumentException("There has to be a least one mod file provided", nameof(modFilePaths));
 
-        // Use the first file to determine which games are being targeted
-        ModToInstall firstFile = modFilePaths[0];
-        FileExtension firstFileExtension = firstFile.FilePath.FileExtension;
-        ModExtractor? modExtractor = ModExtractor.GetModExtractors().FirstOrDefault(x => x.FileExtension == firstFileExtension);
-
-        if (modExtractor == null)
-            throw new Exception("One or more mod files are not valid");
-
-        string[] gameTargets = modExtractor.GetGameTargets(firstFile.FilePath);
-
-        // Get all the installations which the patch supports
-        List<GameInstallation> gameInstallations = Services.Games.GetInstalledGames().
-            Where(x => gameTargets.Contains(x.GameDescriptor.GameId)).
-            ToList();
-
-        // Make sure there is an installed game which can be patched
-        if (!gameInstallations.Any())
+        if (gameInstallation == null)
         {
-            string gameTargetNames = String.Join(Environment.NewLine, gameTargets.Select(x =>
-                Services.Games.TryGetGameDescriptor(x, out GameDescriptor? g) ? g.DisplayName.Value : x));
-            await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the mod due to none of the following targeted games having been added:\r\n\r\n{0}", gameTargetNames), MessageType.Error);
-            return null;
-        }
+            // Use the first file to determine which games are being targeted
+            ModToInstall firstFile = modFilePaths[0];
+            FileExtension firstFileExtension = firstFile.FilePath.FileExtension;
+            ModExtractor? modExtractor = ModExtractor.GetModExtractors().FirstOrDefault(x => x.FileExtension == firstFileExtension);
 
-        GameInstallation gameInstallation;
+            if (modExtractor == null)
+                throw new Exception("One or more mod files are not valid");
 
-        // If there is more than 1 matching game we ask the user which one to patch
-        if (gameInstallations.Count > 1)
-        {
-            GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
+            string[] gameTargets = modExtractor.GetGameTargets(firstFile.FilePath);
+
+            // Get all the installations which the patch supports
+            List<GameInstallation> gameInstallations = Services.Games.GetInstalledGames().
+                Where(x => gameTargets.Contains(x.GameDescriptor.GameId)).
+                ToList();
+
+            // Make sure there is an installed game which can be patched
+            if (!gameInstallations.Any())
             {
-                Title = Resources.ModLoader_SelectInstallTargetTitle
-            });
-
-            if (result.CanceledByUser)
+                string gameTargetNames = String.Join(Environment.NewLine, gameTargets.Select(x =>
+                    Services.Games.TryGetGameDescriptor(x, out GameDescriptor? g) ? g.DisplayName.Value : x));
+                await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the mod due to none of the following targeted games having been added:\r\n\r\n{0}", gameTargetNames), MessageType.Error);
                 return null;
+            }
 
-            gameInstallation = result.SelectedGame;
-        }
-        else
-        {
-            gameInstallation = gameInstallations.First();
+            // If there is more than 1 matching game we ask the user which one to patch
+            if (gameInstallations.Count > 1)
+            {
+                GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
+                {
+                    Title = Resources.ModLoader_SelectInstallTargetTitle
+                });
+
+                if (result.CanceledByUser)
+                    return null;
+
+                gameInstallation = result.SelectedGame;
+            }
+            else
+            {
+                gameInstallation = gameInstallations.First();
+            }
         }
 
         return new ModLoaderViewModel(gameInstallation, modFilePaths);
