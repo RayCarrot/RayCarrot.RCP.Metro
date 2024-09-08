@@ -44,9 +44,17 @@ public class SetupGameViewModel : BaseViewModel
                 {
                     x.Clear();
 
-                    x.Add(new SetupGameActionsRecommendedGroupViewModel(GameInstallation, actions.Where(a => a.Type == SetupGameActionType.Recommended)));
-                    x.Add(new SetupGameActionsOptionalGroupViewModel(GameInstallation, actions.Where(a => a.Type == SetupGameActionType.Optional)));
-                    x.Add(new SetupGameActionsIssueGroupViewModel(GameInstallation, actions.Where(a => a.Type == SetupGameActionType.Issue)));
+                    List<SetupGameAction> recommendedActions = actions.Where(a => a.Type == SetupGameActionType.Recommended).ToList();
+                    if (recommendedActions.Any())
+                        x.Add(new SetupGameActionsRecommendedGroupViewModel(GameInstallation, recommendedActions));
+
+                    List<SetupGameAction> optionalActions = actions.Where(a => a.Type == SetupGameActionType.Optional).ToList();
+                    if (optionalActions.Any())
+                        x.Add(new SetupGameActionsOptionalGroupViewModel(GameInstallation, optionalActions));
+
+                    List<SetupGameAction> issueActions = actions.Where(a => a.Type == SetupGameActionType.Issue).ToList();
+                    if (issueActions.Any())
+                        x.Add(new SetupGameActionsIssueGroupViewModel(GameInstallation, issueActions));
                 });
 
                 HasActions = ActionGroups.Any(x => x.Actions.Any());

@@ -120,7 +120,7 @@
                           Grid.IsSharedSizeScope="True">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Visibility="{Binding Path=Actions.Count, Mode=OneTime, Converter={rcp:IntToVisibilityConverter}}">
+                        <StackPanel>
 
                             <Separator Margin="0 0 0 4"
                                        Visibility="{Binding RelativeSource={RelativeSource PreviousData}, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"/>
