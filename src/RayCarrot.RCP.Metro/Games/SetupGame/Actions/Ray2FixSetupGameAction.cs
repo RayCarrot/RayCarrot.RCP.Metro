@@ -7,10 +7,11 @@ public class Ray2FixSetupGameAction : InstallModSetupGameAction
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override long GameBananaModId => 479402;
+    protected override string ModId => "88080deb-5f26-4d08-b44f-b0b6b36d1e22";
 
     // TODO-LOC
     public override LocalizedString Header => "Install Ray2Fix";
-    public override LocalizedString Info => "Ray2Fix is a mod, primarily for the GOG version, by spitfirex86 that aims to simplify setting up the game. It also comes bundled with various tweaks, such as the ability to remap gamepad controls and proper widescreen support.";
+    public override LocalizedString Info => "Ray2Fix is a mod for the GOG version by spitfirex86 that aims to simplify setting up the game. It also comes bundled with various tweaks, such as the ability to remap gamepad controls and proper widescreen support.";
 
     public override SetupGameActionType Type => SetupGameActionType.Recommended;
 
