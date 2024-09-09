@@ -68,12 +68,6 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
-                        <ItemsControl.ItemContainerStyle>
-                            <Style TargetType="{x:Type ContentPresenter}">
-                                <Setter Property="Visibility" Value="{Binding Path=ShowSummary, Converter={rcp:BooleanToVisibilityConverter}}" />
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" 
