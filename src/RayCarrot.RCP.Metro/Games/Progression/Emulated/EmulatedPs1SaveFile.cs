@@ -1,5 +1,4 @@
 ﻿using BinarySerializer.PlayStation.PS1.MemoryCard;
-using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -13,7 +12,7 @@ public class EmulatedPs1SaveFile : EmulatedSaveFile
     public override async Task<EmulatedSave[]> GetSavesAsync(GameInstallation gameInstallation)
     {
         RCPContext context = new(FilePath.Parent);
-        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(gameInstallation);
 
         MemoryCard memoryCard;
 

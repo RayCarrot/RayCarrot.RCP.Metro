@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -26,7 +25,7 @@ public class GameProgressionManager_Rayman3_Win32 : GameProgressionManager
         int index = 0;
 
         using RCPContext context = new(dir.DirPath);
-        GameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(GameInstallation);
 
         foreach (FileSystemPath filePath in dir.GetFiles())
         {

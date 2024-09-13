@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -132,5 +133,10 @@ public static class ContextExtensions
         {
             context.RemoveFile(file);
         }
+    }
+
+    public static void Initialize(this Context context, GameInstallation gameInstallation)
+    {
+        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
     }
 }

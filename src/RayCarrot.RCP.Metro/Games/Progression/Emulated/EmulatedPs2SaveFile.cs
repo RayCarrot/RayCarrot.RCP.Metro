@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using BinarySerializer.PlayStation.PS2.MemoryCard;
-using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -73,14 +72,14 @@ public class EmulatedPs2SaveFile : EmulatedSaveFile
         if (FilePath.FileExists)
         {
             RCPContext context = new(FilePath.Parent);
-            gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+            context.Initialize(gameInstallation);
 
             return await GetSavesFromFileAsync(context, layout);
         }
         else if (FilePath.DirectoryExists)
         {
             RCPContext context = new(FilePath);
-            gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+            context.Initialize(gameInstallation);
 
             return await GetSavesFromFolderAsync(context, layout);
         }

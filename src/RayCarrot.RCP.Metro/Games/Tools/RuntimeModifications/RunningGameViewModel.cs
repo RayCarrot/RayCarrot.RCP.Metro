@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using BinarySerializer;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 
@@ -23,7 +22,7 @@ public class RunningGameViewModel : BaseViewModel, IDisposable
         MemContainer = new MemoryDataContainer(memData);
 
         GameManager.AttachContainer(MemContainer);
-        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(Context);
+        Context.Initialize(gameInstallation);
         GameManager.InitializeContext(Context);
 
         BinaryDeserializer s = Context.Deserializer;

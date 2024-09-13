@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -34,7 +33,7 @@ public class GameProgressionManager_RaymanMArena_Win32 : GameProgressionManager
         Logger.Info("{0} save file {1} is being loaded...", GameInstallation.FullId, saveFileName);
 
         using RCPContext context = new(saveDir.DirPath);
-        GameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(GameInstallation);
 
         // Deserialize the save data
         RMSaveFile? saveData = await context.ReadFileDataAsync<RMSaveFile>(saveFileName, removeFileWhenComplete: false);

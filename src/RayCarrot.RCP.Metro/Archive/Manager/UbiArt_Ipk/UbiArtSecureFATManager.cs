@@ -35,7 +35,7 @@ public class UbiArtGlobalFatManager
         if (context.FileManager is RCPContext.RCPFileManager fileManager)
             fileManager.ReadFileShare = FileShare.ReadWrite;
 
-        GameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(GameInstallation);
         
         UbiArtSettings settings = context.GetRequiredSettings<UbiArtSettings>();
         string platformString = settings.PlatformString;

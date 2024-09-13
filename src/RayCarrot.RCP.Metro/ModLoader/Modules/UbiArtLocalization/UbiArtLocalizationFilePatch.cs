@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Modules.UbiArtLocalization;
 
@@ -22,7 +21,7 @@ public class UbiArtLocalizationFilePatch<UAString> : IFilePatch
     public void PatchFile(Stream stream)
     {
         using Context context = new RCPContext(String.Empty);
-        GameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(GameInstallation);
 
         Localisation_Template<UAString> loc = context.ReadStreamData<Localisation_Template<UAString>>(stream, name: Path.FilePath, endian: Endian.Big, mode: VirtualFileMode.DoNotClose);
 

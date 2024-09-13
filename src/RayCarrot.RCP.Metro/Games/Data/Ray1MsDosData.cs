@@ -39,7 +39,7 @@ public class Ray1MsDosData
         // Read the VERSION file to get the versions supported by this release. Then keep
         // the ones which are actually available.
         using RCPContext context = new(gameInstallation.InstallLocation.Directory);
-        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(gameInstallation);
         LinearFile commonFile = context.AddFile(new LinearFile(context, "PCMAP/COMMON.DAT"));
 
         FileArchive commonArchive = FileFactory.Read<FileArchive>(context, commonFile.FilePath);

@@ -1,6 +1,4 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class EmulatedGbaSaveFile : EmulatedSaveFile
 {
@@ -9,7 +7,7 @@ public class EmulatedGbaSaveFile : EmulatedSaveFile
     public override Task<EmulatedSave[]> GetSavesAsync(GameInstallation gameInstallation)
     {
         using RCPContext context = new(FilePath.Parent);
-        gameInstallation.GetComponents<InitializeContextComponent>().InvokeAll(context);
+        context.Initialize(gameInstallation);
 
         return Task.FromResult(new EmulatedSave[]
         {
