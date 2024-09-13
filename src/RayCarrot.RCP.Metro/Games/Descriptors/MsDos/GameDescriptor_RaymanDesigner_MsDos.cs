@@ -71,6 +71,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
 
         builder.Register(new SetupGameActionComponent(_ => new RaymanForeverCompleteSoundtrackSetupGameAction()));
+        builder.Register(new SetupGameActionComponent(_ => new Ray1InvalidGameConfigSetupGameAction()));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));

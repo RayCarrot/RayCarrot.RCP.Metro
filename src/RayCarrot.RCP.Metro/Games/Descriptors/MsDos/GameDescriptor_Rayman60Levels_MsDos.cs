@@ -1,6 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -43,6 +44,8 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman60Levels_PC));
         builder.Register(new Ray1ConfigFileNameComponent(_ => "RAYFAN.CFG"));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
+
+        builder.Register(new SetupGameActionComponent(_ => new Ray1InvalidGameConfigSetupGameAction()));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

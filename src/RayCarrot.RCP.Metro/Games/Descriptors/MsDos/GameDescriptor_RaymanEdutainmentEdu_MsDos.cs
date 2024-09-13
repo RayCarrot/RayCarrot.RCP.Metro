@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -71,6 +72,8 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MsDos : MsDosGameDescrip
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanEducational_PC));
         builder.Register(new Ray1ConfigFileNameComponent(GetConfigFileName));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
+
+        builder.Register(new SetupGameActionComponent(_ => new Ray1InvalidGameConfigSetupGameAction()));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
