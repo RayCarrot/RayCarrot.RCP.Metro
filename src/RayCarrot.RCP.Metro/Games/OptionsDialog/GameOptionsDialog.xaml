@@ -59,7 +59,7 @@
                                 <DataTemplate DataType="{x:Type optionsDialog:RabbidsGoHomeConfigViewModel}">
                                     <optionsDialog:RabbidsGoHomeConfigControl />
                                 </DataTemplate>
-                                <DataTemplate DataType="{x:Type optionsDialog:BaseRay1ConfigViewModel}">
+                                <DataTemplate DataType="{x:Type optionsDialog:Ray1ConfigViewModel}">
                                     <optionsDialog:Ray1ConfigControl />
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type optionsDialog:BaseRaymanRavingRabbidsConfigViewModel}">

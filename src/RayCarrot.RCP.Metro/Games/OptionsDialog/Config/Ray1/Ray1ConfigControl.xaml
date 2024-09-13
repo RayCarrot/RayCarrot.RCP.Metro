@@ -12,7 +12,7 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance optionsDialog:BaseRay1ConfigViewModel}">
+             d:DataContext="{d:DesignInstance optionsDialog:Ray1ConfigViewModel}">
 
     <ScrollViewer>
         <i:Interaction.Behaviors>

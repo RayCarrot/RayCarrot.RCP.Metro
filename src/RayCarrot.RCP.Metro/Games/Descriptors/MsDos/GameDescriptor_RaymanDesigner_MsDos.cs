@@ -57,7 +57,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanDesigner_MsDos(x, "Rayman Designer")));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
-        builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
+        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
@@ -67,6 +67,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanDesignerPC", "r1/pc_kit"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanDesigner_PC));
+        builder.Register(new Ray1ConfigFileNameComponent(_ => "RAYKIT.CFG"));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
 
         builder.Register(new SetupGameActionComponent(_ => new RaymanForeverCompleteSoundtrackSetupGameAction()));

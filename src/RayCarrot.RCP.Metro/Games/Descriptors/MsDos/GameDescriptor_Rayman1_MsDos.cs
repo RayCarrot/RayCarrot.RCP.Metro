@@ -45,13 +45,14 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1_MsDos(x, "Rayman 1")));
-        builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
+        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
         builder.Register<OnGameRemovedComponent, UninstallTplsOnGameRemovedComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
+        builder.Register(new Ray1ConfigFileNameComponent(_ => "RAYMAN.CFG"));
         
         builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.MsDos, _ => 
             new[]

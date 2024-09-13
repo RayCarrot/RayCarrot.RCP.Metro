@@ -47,10 +47,11 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MsDos : MsDosGameDescri
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
+        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
         builder.Register(new OnGameAddedComponent(TryFindMountPath));
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
+        builder.Register(new Ray1ConfigFileNameComponent(_ => "RAYMAN.CFG"));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

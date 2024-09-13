@@ -3,18 +3,18 @@ using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.Ray1;
 using BinarySerializer.Ray1.PC;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public abstract class BaseRay1ConfigViewModel : ConfigPageViewModel
+public class Ray1ConfigViewModel : ConfigPageViewModel
 {
     #region Constructor
 
-    protected BaseRay1ConfigViewModel(MsDosGameDescriptor gameDescriptor, GameInstallation gameInstallation, Ray1EngineVersion engineVersion)
+    public Ray1ConfigViewModel(GameInstallation gameInstallation)
     {
-        GameDescriptor = gameDescriptor;
         GameInstallation = gameInstallation;
-        EngineVersion = engineVersion;
+        EngineVersion = gameInstallation.GetRequiredComponent<BinaryGameModeComponent, Ray1GameModeComponent>().GetSettings().EngineVersion;
         IsGameLanguageAvailable = EngineVersion is Ray1EngineVersion.PC;
         IsVoicesVolumeAvailable = EngineVersion is Ray1EngineVersion.PC_Edu or Ray1EngineVersion.PC_Kit or Ray1EngineVersion.PC_Fan;
 
@@ -62,7 +62,6 @@ public abstract class BaseRay1ConfigViewModel : ConfigPageViewModel
     #region Public Properties
 
     public override bool CanUseRecommended => true;
-    public MsDosGameDescriptor GameDescriptor { get; }
     public GameInstallation GameInstallation { get; }
     public Ray1EngineVersion EngineVersion { get; }
     public ConfigFile? Config { get; set; }
@@ -179,13 +178,13 @@ public abstract class BaseRay1ConfigViewModel : ConfigPageViewModel
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
         // Get the config file name
-        ConfigFileName = GetConfigFileName();
+        ConfigFileName = GameInstallation.GetRequiredComponent<Ray1ConfigFileNameComponent>().CreateObject();
 
         AddConfigLocation(LinkItemViewModel.LinkType.BinaryFile, GameInstallation.InstallLocation.Directory + ConfigFileName);
 
         // Create the context to use
         Context = new RCPContext(GameInstallation.InstallLocation.Directory);
-        Context.AddSettings(new Ray1Settings(EngineVersion));
+        Context.Initialize(GameInstallation);
         Context.AddFile(new LinearFile(Context, ConfigFileName));
 
         // Read the file if it exists
@@ -365,8 +364,6 @@ public abstract class BaseRay1ConfigViewModel : ConfigPageViewModel
     #endregion
 
     #region Public Methods
-
-    public abstract string GetConfigFileName();
 
     public override void Dispose()
     {

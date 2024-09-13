@@ -45,6 +45,12 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MsDos : MsDosGameDescrip
             version: x));
     }
 
+    private static string GetConfigFileName(GameInstallation gameInstallation)
+    {
+        string version = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData).SelectedVersion;
+        return $"{PrimaryName}{version}.CFG";
+    }
+
     #endregion
 
     #region Protected Methods
@@ -56,13 +62,14 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MsDos : MsDosGameDescrip
         builder.Register<AdditionalLaunchActionsComponent, Ray1MsDosAdditionalLaunchActionsComponent>();
         builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
-        builder.Register(new GameConfigComponent(x => new RaymanEdutainmentConfigViewModel(this, x, PrimaryName)));
+        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanEducational_PC));
+        builder.Register(new Ray1ConfigFileNameComponent(GetConfigFileName));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
