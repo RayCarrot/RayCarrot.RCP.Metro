@@ -188,15 +188,18 @@ public class Ray1ConfigViewModel : ConfigPageViewModel
         Context.AddFile(new LinearFile(Context, ConfigFileName));
 
         // Read the file if it exists
+        bool newFile;
         if (File.Exists(Context.GetAbsoluteFilePath(ConfigFileName)))
         {
             using (Context)
                 Config = FileFactory.Read<ConfigFile>(Context, ConfigFileName);
+            newFile = false;
         }
         else
         {
             // If no config file exists we create the config manually
             Config = CreateDefaultConfig();
+            newFile = true;
         }
 
         // Read button mapping
@@ -238,7 +241,7 @@ public class Ray1ConfigViewModel : ConfigPageViewModel
         DeviceID = (int)Config.DeviceID;
         NumCard = Config.NumCard;
 
-        UnsavedChanges = false;
+        UnsavedChanges = newFile;
 
         // Verify values. If these values are incorrect they will cause the game to run without sound effects with the default DOSBox configuration.
         if (Port != 544 || IRQ != 5 || DMA != 5 || DeviceID != 57368 || NumCard != 3)
