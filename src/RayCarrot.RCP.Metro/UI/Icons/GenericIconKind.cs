@@ -78,7 +78,6 @@ public enum GenericIconKind
 
     Utilities_Rayman1_TPLS,
     Utilities_Rayman3_DirectPlay,
-    Utilities_RaymanDesigner_CreateConfig,
     Utilities_RaymanDesigner_ReplaceFiles,
     Utilities_RaymanLegends_DebugCommands,
     Utilities_RaymanLegends_UbiRay,
