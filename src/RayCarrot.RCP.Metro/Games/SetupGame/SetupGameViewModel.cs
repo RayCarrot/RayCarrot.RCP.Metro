@@ -8,6 +8,8 @@ public class SetupGameViewModel : BaseViewModel
     public SetupGameViewModel(GameInstallation gameInstallation)
     {
         GameInstallation = gameInstallation;
+        ActionGroupSummaries = new ObservableCollectionEx<SetupGameActionsGroupSummaryViewModel>();
+        ActionGroupSummaries.EnableCollectionSynchronization();
         ActionGroups = new ObservableCollectionEx<SetupGameActionsGroupViewModel>();
         ActionGroups.EnableCollectionSynchronization();
 
@@ -17,6 +19,7 @@ public class SetupGameViewModel : BaseViewModel
     public ICommand RefreshCommand { get; }
 
     public GameInstallation GameInstallation { get; }
+    public ObservableCollectionEx<SetupGameActionsGroupSummaryViewModel> ActionGroupSummaries { get; }
     public ObservableCollectionEx<SetupGameActionsGroupViewModel> ActionGroups { get; }
     public bool IsLoading { get; set; }
     public bool HasActions { get; set; }
@@ -40,21 +43,51 @@ public class SetupGameViewModel : BaseViewModel
                     ToList();
 
                 // Reload collections
-                ActionGroups.ModifyCollection(x =>
+                ActionGroups.ModifyCollection(actionGroups =>
                 {
-                    x.Clear();
+                    actionGroups.Clear();
 
-                    List<SetupGameAction> recommendedActions = actions.Where(a => a.Type == SetupGameActionType.Recommended).ToList();
-                    if (recommendedActions.Any())
-                        x.Add(new SetupGameActionsRecommendedGroupViewModel(GameInstallation, recommendedActions));
+                    // TODO-LOC
+                    ActionGroupSummaries.ModifyCollection(actionGroupSummaries =>
+                    {
+                        actionGroupSummaries.Clear();
 
-                    List<SetupGameAction> optionalActions = actions.Where(a => a.Type == SetupGameActionType.Optional).ToList();
-                    if (optionalActions.Any())
-                        x.Add(new SetupGameActionsOptionalGroupViewModel(GameInstallation, optionalActions));
+                        // Recommended actions
+                        List<SetupGameAction> recommendedActions = actions.Where(a => a.Type == SetupGameActionType.Recommended).ToList();
+                        SetupGameActionsGroupViewModel? recommendedActionsGroup = null;
+                        if (recommendedActions.Any())
+                            actionGroups.Add(recommendedActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, "Recommended", recommendedActions));
 
-                    List<SetupGameAction> issueActions = actions.Where(a => a.Type == SetupGameActionType.Issue).ToList();
-                    if (issueActions.Any())
-                        x.Add(new SetupGameActionsIssueGroupViewModel(GameInstallation, issueActions));
+                        actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
+                            text: $"{recommendedActionsGroup?.CompletedActions ?? 0}/{recommendedActionsGroup?.TotalActions ?? 0} recommended actions",
+                            state: recommendedActionsGroup == null || recommendedActionsGroup.CompletedActions == recommendedActionsGroup.TotalActions
+                                ? SetupGameActionState.Complete
+                                : SetupGameActionState.Incomplete));
+
+                        // Optional actions
+                        List<SetupGameAction> optionalActions = actions.Where(a => a.Type == SetupGameActionType.Optional).ToList();
+                        SetupGameActionsGroupViewModel? optionalActionsGroup = null;
+                        if (optionalActions.Any())
+                            actionGroups.Add(optionalActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, "Optional", optionalActions));
+
+                        actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
+                            text: $"{optionalActionsGroup?.CompletedActions ?? 0}/{optionalActionsGroup?.TotalActions ?? 0} optional actions",
+                            state: optionalActionsGroup == null || optionalActionsGroup.CompletedActions == optionalActionsGroup.TotalActions
+                                ? SetupGameActionState.Complete
+                                : SetupGameActionState.Incomplete));
+
+                        // Issue actions
+                        List<SetupGameAction> issueActions = actions.Where(a => a.Type == SetupGameActionType.Issue).ToList();
+                        SetupGameActionsGroupViewModel? issueActionsGroup = null;
+                        if (issueActions.Any())
+                            actionGroups.Add(issueActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, "Issues", issueActions));
+
+                        actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
+                            text: $"{issueActionsGroup?.TotalActions ?? 0} issues", // TODO-LOC: Singular/plural
+                            state: issueActionsGroup == null || issueActionsGroup.TotalActions == 0
+                                ? SetupGameActionState.Complete
+                                : SetupGameActionState.Critical));
+                    });
                 });
 
                 HasActions = ActionGroups.Any(x => x.Actions.Any());

@@ -60,7 +60,7 @@
                                Margin="0 0 0 6" />
 
                     <ItemsControl Grid.Row="2"
-                                  ItemsSource="{Binding Path=ActionGroups, Mode=OneTime}"
+                                  ItemsSource="{Binding Path=ActionGroupSummaries, Mode=OneTime}"
                                   d:ItemsSource="{d:SampleData ItemCount=3}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -79,15 +79,15 @@
                                         <iconPacks:PackIconMaterial.Style>
                                             <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Path=SummaryState, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Incomplete}">
+                                                    <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Incomplete}">
                                                         <Setter Property="Kind" Value="CloseCircle" />
                                                         <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.IncompleteState}" />
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Path=SummaryState, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Complete}">
+                                                    <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Complete}">
                                                         <Setter Property="Kind" Value="CheckCircle" />
                                                         <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CompleteState}" />
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Path=SummaryState, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Critical}">
+                                                    <DataTrigger Binding="{Binding Path=State, Mode=OneTime}" Value="{x:Static setupGame:SetupGameActionState.Critical}">
                                                         <Setter Property="Kind" Value="AlertCircle" />
                                                         <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CriticalState}" />
                                                     </DataTrigger>
@@ -97,7 +97,7 @@
 
                                     </iconPacks:PackIconMaterial>
 
-                                    <TextBlock Text="{Binding Path=SummaryText.Value}"
+                                    <TextBlock Text="{Binding Path=Text.Value}"
                                                d:Text="X/X completed actions" />
 
                                 </StackPanel>
