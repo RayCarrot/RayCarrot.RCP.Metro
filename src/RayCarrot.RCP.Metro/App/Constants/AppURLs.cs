@@ -163,34 +163,9 @@ public static class AppURLs
     public const string R1_CompleteOST_URL = UtilityBaseUrl + "r1/CompleteOST.zip";
 
     /// <summary>
-    /// The Rayman Designer CLIENT.EXE replacement URL
+    /// The Rayman Designer clean files URL
     /// </summary>
-    public const string RD_ClientExe_URL = UtilityBaseUrl + "r1/raykit/CLIENT.EXE";
-
-    /// <summary>
-    /// The Rayman Designer STARTUP.EXE replacement URL
-    /// </summary>
-    public const string RD_StartupExe_URL = UtilityBaseUrl + "r1/raykit/STARTUP.EXE";
-
-    /// <summary>
-    /// The Rayman Designer RAYRUN.EXE replacement URL
-    /// </summary>
-    public const string RD_RayrunExe_URL = UtilityBaseUrl + "r1/raykit/RAYRUN.EXE";
-
-    /// <summary>
-    /// The Rayman Designer English MAPPER.EXE replacement URL
-    /// </summary>
-    public const string RD_USMapperExe_URL = UtilityBaseUrl + "r1/raykit/us/MAPPER.EXE";
-
-    /// <summary>
-    /// The Rayman Designer French MAPPER.EXE replacement URL
-    /// </summary>
-    public const string RD_FRMapperExe_URL = UtilityBaseUrl + "r1/raykit/fr/MAPPER.EXE";
-
-    /// <summary>
-    /// The Rayman Designer German MAPPER.EXE replacement URL
-    /// </summary>
-    public const string RD_ALMapperExe_URL = UtilityBaseUrl + "r1/raykit/al/MAPPER.EXE";
+    public const string RD_CleanFiles_URL = UtilityBaseUrl + "r1/CleanRayKit.zip";
 
     /// <summary>
     /// The Rayman Origins updater URL

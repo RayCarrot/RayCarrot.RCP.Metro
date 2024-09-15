@@ -247,14 +247,12 @@ public static class FileSystemPathExtensions
     /// <returns>The checksum as a string</returns>
     public static string GetSHA256CheckSum(this FileSystemPath filePath)
     {
-        using (var stream = new BufferedStream(File.OpenRead(filePath), 1200000))
-        {
-            using (SHA256Managed sha = new SHA256Managed())
-            {
-                byte[] checksum = sha.ComputeHash(stream);
-                return BitConverter.ToString(checksum).Replace("-", String.Empty);
-            }
-        }
+        using FileStream fileStream = File.OpenRead(filePath);
+        using BufferedStream bufferedStream = new(File.OpenRead(filePath), Math.Min(1200000, (int)fileStream.Length));
+        using SHA256Managed sha = new();
+        
+        byte[] checksum = sha.ComputeHash(bufferedStream);
+        return BitConverter.ToString(checksum).Replace("-", String.Empty);
     }
 
     /// <summary>
