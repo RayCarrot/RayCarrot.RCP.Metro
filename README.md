@@ -83,7 +83,6 @@ The Rayman Control Panel uses these main dependencies:
 - [Costura.Fody](https://github.com/Fody/Costura)
 - [NLog](https://github.com/NLog/NLog)
 - [Magick.NET](https://github.com/dlemstra/Magick.NET)
-- [Microsoft.PowerShell.5.ReferenceAssemblies](https://www.nuget.org/packages/Microsoft.PowerShell.5.ReferenceAssemblies)
 - [Microsoft.Windows.SDK.Contracts](https://www.nuget.org/packages/Microsoft.Windows.SDK.Contracts)
 - [Microsoft-WindowsAPICodePack-Shell](https://github.com/contre/Windows-API-Code-Pack-1.1)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)

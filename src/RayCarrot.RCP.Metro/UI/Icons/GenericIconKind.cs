@@ -77,7 +77,6 @@ public enum GenericIconKind
     Window_RuntimeModifications,
 
     Utilities_Rayman1_TPLS,
-    Utilities_Rayman3_DirectPlay,
     Utilities_RaymanLegends_DebugCommands,
     Utilities_RaymanLegends_UbiRay,
     Utilities_RaymanOrigins_DebugCommands,

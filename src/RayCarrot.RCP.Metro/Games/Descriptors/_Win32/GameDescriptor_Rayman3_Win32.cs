@@ -74,8 +74,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
             }));
 
         builder.Register(new SetupGameActionComponent(_ => new BetterRayman3SetupGameAction()));
-
-        builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

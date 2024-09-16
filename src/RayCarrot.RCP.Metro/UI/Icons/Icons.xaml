@@ -65,7 +65,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman3_DirectPlay">ApplicationCogOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_UbiRay">AccountOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
@@ -288,9 +287,6 @@
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Rayman1_TPLS}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_TPLS}"
-                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Rayman3_DirectPlay}" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_Rayman3_DirectPlay}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_RaymanLegends_DebugCommands}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_RaymanLegends_DebugCommands}"
