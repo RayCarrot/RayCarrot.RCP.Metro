@@ -167,11 +167,6 @@ public static class AppURLs
     /// </summary>
     public const string RD_CleanFiles_URL = UtilityBaseUrl + "r1/CleanRayKit.zip";
 
-    /// <summary>
-    /// The Rayman Origins updater URL
-    /// </summary>
-    public const string RO_Updater_URL = UtilityBaseUrl + "ro/Updater.zip";
-
     #endregion
 
     #region Mods

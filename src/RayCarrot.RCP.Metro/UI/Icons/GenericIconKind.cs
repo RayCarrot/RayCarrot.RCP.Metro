@@ -80,7 +80,6 @@ public enum GenericIconKind
     Utilities_RaymanLegends_DebugCommands,
     Utilities_RaymanLegends_UbiRay,
     Utilities_RaymanOrigins_DebugCommands,
-    Utilities_RaymanOrigins_Update,
     Utilities_ArchiveExplorer,
     Utilities_Ray1Editor,
     Utilities_R1PasswordGenerator,
