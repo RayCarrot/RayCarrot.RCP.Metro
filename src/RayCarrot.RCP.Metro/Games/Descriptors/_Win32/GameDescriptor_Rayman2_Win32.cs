@@ -96,6 +96,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
             }));
 
         builder.Register(new SetupGameActionComponent(_ => new Ray2FixSetupGameAction()));
+        builder.Register(new SetupGameActionComponent(_ => new HigherQualityOfficialRayman2TexturesSetupGameAction()));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
