@@ -5,10 +5,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Separator}">
-                    <Border Height="1" 
-                            SnapsToDevicePixels="true" 
+                    <Border Height="1.5" 
+                            SnapsToDevicePixels="true"
                             BorderBrush="{DynamicResource MahApps.Brushes.Separator}" 
-                            BorderThickness="0 0 0 1"/>
+                            BorderThickness="0 0 0 1.5"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
