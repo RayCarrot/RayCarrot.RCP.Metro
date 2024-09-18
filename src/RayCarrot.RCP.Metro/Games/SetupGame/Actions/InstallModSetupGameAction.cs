@@ -20,7 +20,7 @@ public abstract class InstallModSetupGameAction : SetupGameAction
         {
             ModLibrary library = new(gameInstallation);
             ModManifest modManifest = library.ReadModManifest();
-            return modManifest.Mods.ContainsKey(ModId);
+            return modManifest.Mods.TryGetValue(ModId, out ModManifestEntry entry) && entry.IsEnabled;
         }
         catch (Exception ex)
         {
