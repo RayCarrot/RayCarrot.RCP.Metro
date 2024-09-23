@@ -1,5 +1,5 @@
-﻿using Microsoft.Win32;
-using System.Windows;
+﻿using System.Windows;
+using Microsoft.Win32;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -14,6 +14,8 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
     {
         GameInstallation = gameInstallation;
         RegistryKey = registryKey;
+
+        CommandArgsViewModel = new UbiArtCommandArgsViewModel(gameInstallation);
     }
 
     #endregion
@@ -37,6 +39,8 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
     public GameInstallation GameInstallation { get; }
     public string RegistryKey { get; }
     public bool FullscreenMode { get; set; }
+
+    public UbiArtCommandArgsViewModel CommandArgsViewModel { get; }
 
     #endregion
 
@@ -69,7 +73,7 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
 
     #region Protected Methods
 
-    protected override Task LoadAsync()
+    protected override async Task LoadAsync()
     {
         Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
@@ -93,11 +97,11 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
                 Int32.TryParse(key?.GetValue(valueName, defaultValue).ToString().KeepFirstDigitsOnly(), out int result) ? result : defaultValue;
         }
 
+        await CommandArgsViewModel.LoadAsync();
+
         UnsavedChanges = false;
 
         Logger.Info("All config properties have been loaded");
-
-        return Task.CompletedTask;
     }
 
     protected override async Task<bool> SaveAsync()
@@ -117,6 +121,8 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
                 key.SetValue(ScreenHeightKey, GraphicsMode.Height.ToString());
                 key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
             }
+
+            await CommandArgsViewModel.SaveAsync();
 
             Logger.Info("{0} configuration has been saved", GameInstallation.FullId);
 

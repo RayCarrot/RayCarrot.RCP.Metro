@@ -69,6 +69,29 @@
         </StackPanel>
     </DataTemplate>
 
+    <!-- String with options -->
+
+    <DataTemplate DataType="{x:Type local:EditorStringWithOptionsFieldViewModel}">
+        <StackPanel>
+            <TextBlock Text="{Binding Path=Header.Value}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontSize="11"
+                       Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2 0 0"
+                       Text="{Binding Path=Info.Value}"
+                       TextWrapping="Wrap" />
+
+            <ComboBox Margin="0 4 0 0" 
+                      ItemsSource="{Binding Path=Options, Mode=OneTime}"
+                      metro:ComboBoxHelper.MaxLength="{Binding Path=MaxLength, Mode=OneTime}"
+                      Text="{Binding Path=Value}"
+                      IsEditable="True"
+                      HorizontalAlignment="Left"
+                      MinWidth="70" />
+        </StackPanel>
+    </DataTemplate>
+
     <!-- Bool -->
 
     <DataTemplate DataType="{x:Type local:EditorBoolFieldViewModel}">
