@@ -122,7 +122,7 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
                 key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
             }
 
-            await CommandArgsViewModel.SaveAsync();
+            CommandArgsViewModel.Save();
 
             Logger.Info("{0} configuration has been saved", GameInstallation.FullId);
 

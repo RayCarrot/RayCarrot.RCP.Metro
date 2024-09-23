@@ -42,14 +42,14 @@
                                Text="Launch commands"
                                Margin="0 0 0 8" />
 
-                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                               Text="Source"
-                               Margin="0 0 0 4" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 0 0 8">
+                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                   Text="Source" />
 
-                    <TextBlock Text="The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work."
-                               FontSize="11"
-                               TextWrapping="Wrap"
-                               Margin="0 0 0 8" />
+                        <rcp:InfoIcon Text="The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work." />
+
+                    </StackPanel>
 
                     <rcp:RadioButtonExtended Content="None"
                                              IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:UbiArtCommandArgsSource.None}}"

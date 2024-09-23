@@ -222,7 +222,6 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                         },
                         BinarySerializer.UbiArt.Game.RaymanLegends => new EditorDropDownFieldViewModel.DropDownItem[]
                         {
-                            new("Default", null),               // -1
                             new("English", null),               // 0
                             new("French", null),                // 1
                             new("Japanese", null),              // 2
@@ -353,30 +352,41 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
 
     public async Task LoadAsync()
     {
-        // TODO-UPDATE: Try/catch
-
         string? args = null;
 
         // Attempt to read from file
         if (SupportsFile)
         {
             // Get the file path
-            FileSystemPath filePath = GameInstallation.InstallLocation + FileName;
+            FileSystemPath filePath = GameInstallation.InstallLocation.Directory + FileName;
 
             if (filePath.FileExists)
             {
-                Source = UbiArtCommandArgsSource.CommandLineFile;
-                string fileText = File.ReadAllText(filePath);
-                Text = fileText;
-                args = UbiArtCommandArgs.ReadArgsFromCommandLineFile(fileText);
+                try
+                {
+                    string fileText = File.ReadAllText(filePath);
+                    args = UbiArtCommandArgs.ReadArgsFromCommandLineFile(fileText);
+                    
+                    Text = fileText;
+                    Source = UbiArtCommandArgsSource.CommandLineFile;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Reading commandline text file");
+                }
             }
         }
 
         // Use saved args
         if (args == null && SupportsArgs)
         {
-            Source = UbiArtCommandArgsSource.LaunchArguments;
-            // TODO-UPDATE: Read saved launch args from game installation
+            args = GameInstallation.GetValue<string>(GameDataKey.UbiArt_CommandArgs);
+
+            if (args != null)
+            {
+                Text = args;
+                Source = UbiArtCommandArgsSource.LaunchArguments;
+            }
         }
 
         // Default to empty if no args were found
@@ -392,8 +402,21 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
         RefreshEditorFields();
     }
 
-    public async Task SaveAsync()
+    public void Save()
     {
-        // TODO-UPDATE: Implement
+        if (Text == String.Empty)
+            Source = UbiArtCommandArgsSource.None;
+
+        switch (Source)
+        {
+            case UbiArtCommandArgsSource.CommandLineFile:
+                FileSystemPath filePath = GameInstallation.InstallLocation.Directory + FileName;
+                File.WriteAllText(filePath, Text);
+                break;
+
+            case UbiArtCommandArgsSource.LaunchArguments:
+                GameInstallation.SetValue(GameDataKey.UbiArt_CommandArgs, Text);
+                break;
+        }
     }
 }

@@ -28,4 +28,5 @@ public static class GameDataKey
     public const string RRR2_LaunchMode = "RRR2_LaunchMode";
     public const string RRRAC_ShownLaunchMessage = "RRRAC_ShownLaunchMessage";
     public const string RGH_LaunchData = "RGH_LaunchData";
+    public const string UbiArt_CommandArgs = "UbiArt_CommandArgs";
 }
