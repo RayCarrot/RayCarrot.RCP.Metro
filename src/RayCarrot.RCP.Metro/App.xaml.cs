@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using NLog.Targets;
@@ -209,9 +208,7 @@ public partial class App : Application
                         // Focus the process
                         try
                         {
-                            AutomationElement element = AutomationElement.FromHandle(otherProcess.MainWindowHandle);
-                            WindowPattern wPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
-                            wPattern.SetWindowVisualState(WindowVisualState.Normal);
+                            WindowsHelpers.BringWindowToFront(otherProcess.MainWindowHandle);
                         }
                         catch
                         {
