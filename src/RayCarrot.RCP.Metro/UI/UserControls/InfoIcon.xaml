@@ -15,7 +15,8 @@
                                 Kind="{Binding Path=IconKind, FallbackValue=HelpCircleOutline}"
                                 VerticalAlignment="Center"
                                 Background="Transparent" 
-                                ToolTipService.ShowDuration="1000000" />
+                                ToolTipService.ShowDuration="1000000"
+                                ToolTipService.InitialShowDelay="100" />
     <!-- NOTE: We can't set the duration to Int32 max value as that crashes on Wine on Mac -->
 
 </UserControl>
