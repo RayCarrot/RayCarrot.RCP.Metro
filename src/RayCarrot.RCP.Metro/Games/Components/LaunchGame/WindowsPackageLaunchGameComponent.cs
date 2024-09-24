@@ -12,6 +12,12 @@ public class WindowsPackageLaunchGameComponent : LaunchGameComponent
 
     #endregion
 
+    #region Public Properties
+
+    public override bool SupportsLaunchArguments => false;
+
+    #endregion
+
     #region Protected Methods
 
     protected override async Task<bool> LaunchImplAsync()

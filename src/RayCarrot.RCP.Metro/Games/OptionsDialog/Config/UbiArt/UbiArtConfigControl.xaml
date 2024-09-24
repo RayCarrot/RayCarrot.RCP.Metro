@@ -58,13 +58,17 @@
                     <rcp:RadioButtonExtended Content="cmdline.txt file"
                                              IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:UbiArtCommandArgsSource.CommandLineFile}}"
                                              Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
-                                             IsEnabled="{Binding Path=SupportsFile, Mode=OneTime}"
+                                             IsEnabled="{Binding Path=SupportsFile}"
                                              Margin="0 0 0 4" />
-                    <rcp:RadioButtonExtended Content="Launch arguments"
-                                             IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:UbiArtCommandArgsSource.LaunchArguments}}"
-                                             Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
-                                             IsEnabled="{Binding Path=SupportsArgs, Mode=OneTime}"
-                                             Margin="0 0 0 8" />
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
+                        <rcp:RadioButtonExtended Content="Launch arguments"
+                                                 IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static optionsDialog:UbiArtCommandArgsSource.LaunchArguments}}"
+                                                 Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
+                                                 IsEnabled="{Binding Path=SupportsArgs}" />
+
+                        <rcp:InfoIcon Text="The currently selected game client does not support passing in launch arguments to the game. Either change the client or set it to not use a game client when launching the game in order to use launch arguments."
+                                      Visibility="{Binding Path=SupportsArgs, Converter={rcp:InvertedBooleanToVisibilityConverter}}"/>
+                    </StackPanel>
 
                     <Separator Margin="0 0 0 8"/>
 

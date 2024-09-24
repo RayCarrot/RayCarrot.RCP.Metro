@@ -14,6 +14,12 @@ public abstract class LaunchGameComponent : GameComponent
 
     #endregion
 
+    #region Public Properties
+
+    public abstract bool SupportsLaunchArguments { get; }
+
+    #endregion
+
     #region Proteted Methods
 
     protected abstract Task<bool> LaunchImplAsync();

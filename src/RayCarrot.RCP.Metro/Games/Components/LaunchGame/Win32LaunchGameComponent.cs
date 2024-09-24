@@ -2,7 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 /// <summary>
 /// Provides functionality to a launch a Win32 game. The platform doesn't have to be <see cref="GamePlatform.Win32"/>,
@@ -15,6 +15,12 @@ public class Win32LaunchGameComponent : LaunchGameComponent
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Public Properties
+
+    public override bool SupportsLaunchArguments => true;
 
     #endregion
 

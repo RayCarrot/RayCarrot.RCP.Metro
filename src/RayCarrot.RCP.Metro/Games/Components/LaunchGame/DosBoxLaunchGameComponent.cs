@@ -26,6 +26,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     #region Public Properties
 
+    public override bool SupportsLaunchArguments => true;
     public DosBoxGameClientDescriptor GameClientDescriptor { get; }
 
     #endregion

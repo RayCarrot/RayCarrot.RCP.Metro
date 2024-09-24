@@ -16,10 +16,6 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
         EditorFields = new ObservableCollectionEx<EditorFieldViewModel>();
         EditorFields.EnableCollectionSynchronization();
 
-        // TODO-UPDATE: Legends only supports file is the exe is patched!
-        SupportsFile = Settings.Game is BinarySerializer.UbiArt.Game.RaymanOrigins or BinarySerializer.UbiArt.Game.RaymanLegends;
-        SupportsArgs = Settings.Game is BinarySerializer.UbiArt.Game.RaymanLegends;
-
         UpdateArgsFromTextCommand = new RelayCommand(UpdateArgsFromText);
         UpdateTextFromArgsCommand = new RelayCommand(UpdateTextFromArgs);
     }
@@ -38,8 +34,8 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
     public ObservableCollectionEx<EditorFieldViewModel> EditorFields { get; }
     
     public UbiArtCommandArgsSource Source { get; set; }
-    public bool SupportsFile { get; }
-    public bool SupportsArgs { get; }
+    public bool SupportsFile { get; set; }
+    public bool SupportsArgs { get; set; }
 
     public string Text { get; set; } = String.Empty;
 
@@ -352,6 +348,24 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
 
     public async Task LoadAsync()
     {
+        if (Settings.Game == BinarySerializer.UbiArt.Game.RaymanOrigins)
+        {
+            SupportsFile = true;
+            SupportsArgs = false;
+        }
+        else if (Settings.Game == BinarySerializer.UbiArt.Game.RaymanLegends)
+        {
+            SupportsFile = true; // TODO-UPDATE: if mod installed
+
+            LaunchGameComponent? launchGameComponent = GameInstallation.GetComponent<LaunchGameComponent>();
+            SupportsArgs = launchGameComponent is { SupportsLaunchArguments: true };
+        }
+        else
+        {
+            SupportsFile = false;
+            SupportsArgs = false;
+        }
+
         string? args = null;
 
         // Attempt to read from file
@@ -418,5 +432,9 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                 GameInstallation.SetValue(GameDataKey.UbiArt_CommandArgs, Text);
                 break;
         }
+
+        // Remove the saved launch arguments if using another source
+        if (Source != UbiArtCommandArgsSource.LaunchArguments)
+            GameInstallation.SetValue<string?>(GameDataKey.UbiArt_CommandArgs, null);
     }
 }

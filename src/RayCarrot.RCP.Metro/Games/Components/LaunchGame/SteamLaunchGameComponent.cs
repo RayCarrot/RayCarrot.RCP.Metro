@@ -3,6 +3,8 @@
 [RequiredGameComponents(typeof(SteamGameClientComponent))]
 public class SteamLaunchGameComponent : UriLaunchGameComponent
 {
+    public override bool SupportsLaunchArguments => true;
+
     protected override string GetLaunchUri()
     {
         string steamId = GameInstallation.GetRequiredComponent<SteamGameClientComponent>().SteamId;

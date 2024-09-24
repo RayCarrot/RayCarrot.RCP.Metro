@@ -11,6 +11,12 @@ public class DefaultGameClientLaunchGameComponent : LaunchGameComponent
 
     #endregion
 
+    #region Public Properties
+
+    public override bool SupportsLaunchArguments => false;
+
+    #endregion
+
     #region Private Methods
 
     private IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
