@@ -124,22 +124,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cinematic\darkt_bosses\darkt_boss_ending_moon_cine.isc
-        ///cinematic_retro\boss\foodworld\sampledemo_bossfo.isc
-        ///enginedata\defaultloadingscreen\defaultblackscreen.isc
-        ///enginedata\defaultloadingscreen\defaultloadingscreen.isc
-        ///enginedata\defaultloadingscreen\logo_rl_mainmenu.isc
-        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\loading_babeltower.isc
-        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\score_recap_babeltower.isc
-        ///enginedata\defaultloadingscreen\interact [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string RL_Levels {
-            get {
-                return ResourceManager.GetString("RL_Levels", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;Levels&quot;: [
         ///    {
@@ -174,26 +158,6 @@ namespace RayCarrot.RCP.Metro {
         public static string RO_LevelConfig {
             get {
                 return ResourceManager.GetString("RO_LevelConfig", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to cinematic\boss\foodworld\sampledemo_bossfo.isc
-        ///cinematic\faery\faeryfree\background.isc
-        ///cinematic\faery\faeryfree\fo_faeryfreescene.isc
-        ///cinematic\faery\faeryfree\ju_faeryfreescene.isc
-        ///cinematic\faery\faeryfree\mo_faeryfreescene.isc
-        ///cinematic\faery\faeryfree\mu_faeryfreescene.isc
-        ///cinematic\faery\faeryfree\oc_faeryfreescene.isc
-        ///cinematic\levelending\levelending.isc
-        ///cinematic\levelending\levelending_graph.isc
-        ///scene\menus\inputconfiguration\inputconfiguration.isc
-        ///scene\menus\mainmenu\menuback.isc
-        ///sce [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string RO_Levels {
-            get {
-                return ResourceManager.GetString("RO_Levels", resourceCulture);
             }
         }
         
@@ -279,8 +243,8 @@ namespace RayCarrot.RCP.Metro {
         ///
         ///-----   Version 12.0.0 - September 25, 2021   -----
         ///• Visual changes:
-        ///	• Page headers use colored icons and underlines
-        ///	• Controls have rounded corners and slightl [rest of string was truncated]&quot;;.
+        ///    • Page headers use colored icons and underlines
+        ///    • Controls have rounded corners and s [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_10_0_12_0 {
             get {
@@ -289,14 +253,17 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 14.0.0 - June ??, 2023   -----
-        ///• Major changes to how games are handled
-        ///	• Multiple installations of the same game can be added
-        ///	• Games can be renamed and reordered
-        ///	• The game options have been moved from the options dialog to the game hub
-        ///	• The Rayman Edutainment games are now split up between Edu and Quiz
-        ///• The emulator system has been replaced by game clients which include emulators, such as DOSBox, and launcher clients, such as Steam
-        ///• Added a home page for news and recent/favo [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to -----   Version 14.2.0 - August ??, 2024   -----
+        ///• Added support for PS2 games:
+        ///    • Rayman 2 Revolution
+        ///    • Rayman M
+        ///    • Rayman Arena
+        ///    • Rayman 3
+        ///    • Rayman Raving Rabbids
+        ///• Added support for the PCSX2 emulator (editing save files is currently only supported for folder memory cards)
+        ///• Archive Explorer improvements:
+        ///    • Added support for PS3 UbiArt textures
+        ///    • Replaced the image library for DDS files and with that greatly improved DXT compression quality (used when importing images  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_13_0_15_0 {
             get {

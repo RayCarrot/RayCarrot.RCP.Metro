@@ -65,9 +65,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanLegends_UbiRay">AccountOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
@@ -287,14 +285,8 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Rayman1_TPLS}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_TPLS}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_RaymanLegends_DebugCommands}" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_RaymanLegends_DebugCommands}"
-                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_RaymanLegends_UbiRay}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_RaymanLegends_UbiRay}"
-                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_RaymanOrigins_DebugCommands}" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_RaymanOrigins_DebugCommands}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_ArchiveExplorer}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"

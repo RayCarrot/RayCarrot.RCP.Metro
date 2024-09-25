@@ -60,7 +60,6 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         builder.Register(new SetupGameActionComponent(_ => new InvalidUbiArtResolutionSetupGameAction(AppFilePaths.RaymanLegendsRegistryKey)));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_UbiRay(x)));
-        builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_DebugCommands(x)));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

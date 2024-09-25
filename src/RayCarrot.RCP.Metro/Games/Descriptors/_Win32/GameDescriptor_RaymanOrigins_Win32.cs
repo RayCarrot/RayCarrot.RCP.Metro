@@ -60,8 +60,6 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         builder.Register(new SetupGameActionComponent(_ => new HighQualityRaymanOriginsVideosSetupGameAction()));
         builder.Register(new SetupGameActionComponent(_ => new MinimumRaymanOriginsLoadingTimesVideosSetupGameAction()));
         builder.Register(new SetupGameActionComponent(_ => new InvalidUbiArtResolutionSetupGameAction(AppFilePaths.RaymanOriginsRegistryKey)));
-
-        builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
