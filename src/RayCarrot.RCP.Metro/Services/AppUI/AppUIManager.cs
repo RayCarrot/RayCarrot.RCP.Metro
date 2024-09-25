@@ -13,6 +13,7 @@ using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -309,6 +310,50 @@ public class AppUIManager
         await ShowWindowAsync(() => new ModLoaderDialog(new ModLoaderViewModel(gameInstallation)),
             // Only allow one Mod Loader window per installation
             typeGroupNames: new[] { gameInstallation.InstallationId });
+
+    public async Task ShowModLoaderAsync(GameInstallation gameInstallation, long gameBananaModId)
+    {
+        GameBananaModsSource gb = new();
+        GameBananaFile? file;
+
+        try
+        {
+            using HttpClient httpClient = new();
+
+            // Get the mod
+            GameBananaMod mod = await httpClient.GetDeserializedAsync<GameBananaMod>(
+                $"https://gamebanana.com/apiv11/Mod/{gameBananaModId}?" +
+                $"_csvProperties=_aFiles,_aModManagerIntegrations");
+
+            if (mod.Files == null)
+            {
+                // TODO-LOC
+                await Services.MessageUI.DisplayMessageAsync("No valid files were found for the mod", MessageType.Error);
+                return;
+            }
+
+            // Get the most recent file
+            file = gb.GetValidFiles(mod, mod.Files).OrderBy(x => x.DateAdded).LastOrDefault();
+
+            if (file == null)
+            {
+                // TODO-LOC
+                await Services.MessageUI.DisplayMessageAsync("No valid files were found for the mod", MessageType.Error);
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Getting mod download for setup game action");
+
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when getting the download for the mod");
+
+            return;
+        }
+
+        await ShowModLoaderAsync(gameInstallation, file.DownloadUrl, file.File, gb.Id, new GameBananaInstallData(gameBananaModId, file.Id));
+    }
 
     /// <summary>
     /// Shows a new instance of the Mod Loader from a URL

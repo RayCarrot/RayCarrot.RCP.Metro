@@ -3,6 +3,7 @@ using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.ModLoader.Library;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -34,8 +35,8 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
     public ObservableCollectionEx<EditorFieldViewModel> EditorFields { get; }
     
     public UbiArtCommandArgsSource Source { get; set; }
-    public bool SupportsFile { get; set; }
-    public bool SupportsArgs { get; set; }
+    public SourceAvailabilityViewModel? CommandLineFileSourceAvailability { get; set; }
+    public SourceAvailabilityViewModel? LaunchArgumentsSourceAvailability { get; set; }
 
     public string Text { get; set; } = String.Empty;
 
@@ -350,26 +351,61 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
     {
         if (Settings.Game == BinarySerializer.UbiArt.Game.RaymanOrigins)
         {
-            SupportsFile = true;
-            SupportsArgs = false;
+            CommandLineFileSourceAvailability = new SourceAvailabilityViewModel(GameInstallation, true);
+            LaunchArgumentsSourceAvailability = new SourceAvailabilityViewModel(GameInstallation, false);
         }
         else if (Settings.Game == BinarySerializer.UbiArt.Game.RaymanLegends)
         {
-            SupportsFile = true; // TODO-UPDATE: if mod installed
+            string[] commandLineModIds =
+            {
+                "RaymanLegends.CmdLine.Steam",
+                "RaymanLegends.CmdLine.Uplay",
+            };
 
+            bool installedCommandLineMod = false;
+            try
+            {
+                ModLibrary library = new(GameInstallation);
+                ModManifest modManifest = library.ReadModManifest();
+
+                foreach (string modId in commandLineModIds)
+                {
+                    if (modManifest.Mods.TryGetValue(modId, out ModManifestEntry entry) && entry.IsEnabled)
+                    {
+                        installedCommandLineMod = true;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Checking if commandline mod is installed");
+            }
+
+            // TODO-LOC
+            CommandLineFileSourceAvailability = new SourceAvailabilityViewModel(
+                gameInstallation: GameInstallation, 
+                isAvailable: installedCommandLineMod,
+                notAvailableInfo: "The game needs to be patched in order to allow the cmdline.txt file. This can be done using the CommandLine File Fix mod.",
+                requiredGameBananaModId: 0); // TODO-UPDATE: Specify mod id
+
+            // TODO-LOC
             LaunchGameComponent? launchGameComponent = GameInstallation.GetComponent<LaunchGameComponent>();
-            SupportsArgs = launchGameComponent is { SupportsLaunchArguments: true };
+            LaunchArgumentsSourceAvailability = new SourceAvailabilityViewModel(
+                gameInstallation: GameInstallation,
+                isAvailable: launchGameComponent is { SupportsLaunchArguments: true },
+                notAvailableInfo: "The currently selected game client does not support passing in launch arguments to the game. Either change the client or set it to not use a game client when launching the game in order to use launch arguments.");
         }
         else
         {
-            SupportsFile = false;
-            SupportsArgs = false;
+            CommandLineFileSourceAvailability = new SourceAvailabilityViewModel(GameInstallation, false);
+            LaunchArgumentsSourceAvailability = new SourceAvailabilityViewModel(GameInstallation, false);
         }
 
         string? args = null;
 
         // Attempt to read from file
-        if (SupportsFile)
+        if (CommandLineFileSourceAvailability.IsAvailable)
         {
             // Get the file path
             FileSystemPath filePath = GameInstallation.InstallLocation.Directory + FileName;
@@ -392,7 +428,7 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
         }
 
         // Use saved args
-        if (args == null && SupportsArgs)
+        if (args == null && LaunchArgumentsSourceAvailability.IsAvailable)
         {
             args = GameInstallation.GetValue<string>(GameDataKey.UbiArt_CommandArgs);
 
@@ -436,5 +472,33 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
         // Remove the saved launch arguments if using another source
         if (Source != UbiArtCommandArgsSource.LaunchArguments)
             GameInstallation.SetValue<string?>(GameDataKey.UbiArt_CommandArgs, null);
+    }
+
+    public class SourceAvailabilityViewModel : BaseViewModel
+    {
+        public SourceAvailabilityViewModel(GameInstallation gameInstallation, bool isAvailable, LocalizedString? notAvailableInfo = null, long? requiredGameBananaModId = null)
+        {
+            GameInstallation = gameInstallation;
+            IsAvailable = isAvailable;
+            NotAvailableInfo = notAvailableInfo;
+            RequiredGameBananaModId = requiredGameBananaModId;
+            RequiresMod = requiredGameBananaModId != null;
+
+            InstallModCommand = new AsyncRelayCommand(InstallModAsync);
+        }
+
+        public ICommand InstallModCommand { get; }
+
+        public GameInstallation GameInstallation { get; }
+        public bool IsAvailable { get; }
+
+        public LocalizedString? NotAvailableInfo { get; }
+        public long? RequiredGameBananaModId { get; }
+        public bool RequiresMod { get; }
+
+        public async Task InstallModAsync()
+        {
+            await Services.UI.ShowModLoaderAsync(GameInstallation, RequiredGameBananaModId ?? throw new Exception("No mod id specified"));
+        }
     }
 }
