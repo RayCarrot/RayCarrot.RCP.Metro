@@ -76,6 +76,9 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                         
                         // Remove the .ckd extension
                         relativePath = relativePath.Substring(0, relativePath.Length - 4);
+
+                        // Replace forward-slash with back-slash so that it works when passing in as a Steam run URI
+                        relativePath = relativePath.Replace('/', '\\');
                         
                         // Add to list
                         scenePaths.Add(relativePath);
