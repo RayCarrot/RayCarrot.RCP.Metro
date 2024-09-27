@@ -455,20 +455,20 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
         if (Text == String.Empty)
             Source = UbiArtCommandArgsSource.None;
 
-        switch (Source)
+        FileSystemPath commandLineFilePath = GameInstallation.InstallLocation.Directory + FileName;
+        if (Source == UbiArtCommandArgsSource.CommandLineFile)
         {
-            case UbiArtCommandArgsSource.CommandLineFile:
-                FileSystemPath filePath = GameInstallation.InstallLocation.Directory + FileName;
-                File.WriteAllText(filePath, Text);
-                break;
-
-            case UbiArtCommandArgsSource.LaunchArguments:
-                GameInstallation.SetValue(GameDataKey.UbiArt_CommandArgs, Text);
-                break;
+            File.WriteAllText(commandLineFilePath, Text);
+        }
+        else
+        {
+            if (commandLineFilePath.FileExists)
+                File.Delete(commandLineFilePath);
         }
 
-        // Remove the saved launch arguments if using another source
-        if (Source != UbiArtCommandArgsSource.LaunchArguments)
+        if (Source == UbiArtCommandArgsSource.LaunchArguments)
+            GameInstallation.SetValue(GameDataKey.UbiArt_CommandArgs, Text);
+        else
             GameInstallation.SetValue<string?>(GameDataKey.UbiArt_CommandArgs, null);
     }
 
