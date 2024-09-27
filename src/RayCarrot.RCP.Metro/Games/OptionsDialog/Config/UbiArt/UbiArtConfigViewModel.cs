@@ -16,6 +16,11 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
         RegistryKey = registryKey;
 
         CommandArgsViewModel = new UbiArtCommandArgsViewModel(gameInstallation);
+        CommandArgsViewModel.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(UbiArtCommandArgsViewModel.Text))
+                UnsavedChanges = true;
+        };
     }
 
     #endregion
