@@ -395,13 +395,13 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             yield return new EditorBoolFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ForcedRunPower)),
                 info: null,
-                getValueAction: () => AccessMemory(m => m.RayEvts?.ForceRun ?? false),
+                getValueAction: () => AccessMemory(m => m.RayEvts != null && m.RayEvts.ForceRun != ToggledRayEvt.Disabled),
                 setValueAction: x => AccessMemory(m =>
                 {
                     if (m.RayEvts == null)
                         return;
 
-                    m.RayEvts.ForceRun = x;
+                    m.RayEvts.ForceRun = x ? ToggledRayEvt.Enabling : ToggledRayEvt.Disabling;
                     m.ModifiedValue(nameof(m.RayEvts));
                 }));
 
@@ -409,13 +409,13 @@ public class Ray1GameManager : GameManager<Ray1MemoryData>
             yield return new EditorBoolFieldViewModel(
                 header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ReversePower)),
                 info: null,
-                getValueAction: () => AccessMemory(m => m.RayEvts?.ReverseControls ?? false),
+                getValueAction: () => AccessMemory(m => m.RayEvts != null && m.RayEvts.ReverseControls != ToggledRayEvt.Disabled),
                 setValueAction: x => AccessMemory(m =>
                 {
                     if (m.RayEvts == null)
                         return;
 
-                    m.RayEvts.ReverseControls = x;
+                    m.RayEvts.ReverseControls = x ? ToggledRayEvt.Enabling : ToggledRayEvt.Disabled;
                     m.ModifiedValue(nameof(m.RayEvts));
                 }));
         }
