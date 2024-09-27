@@ -19,6 +19,6 @@ public static class SteamHelpers
 
     public static string GetGameLaunchURI(string steamId, string arguments)
     {
-        return $@"steam://run/{steamId}/{arguments}";
+        return $@"steam://run/{steamId}//{arguments}/";
     }
 }
