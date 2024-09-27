@@ -39,7 +39,7 @@
                       DataContext="{Binding Path=CommandArgsViewModel, Mode=OneTime}">
                 <StackPanel>
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Text="Launch commands"
+                               Text="Debug launch commands"
                                Margin="0 0 0 8" />
 
                     <StackPanel Orientation="Horizontal"

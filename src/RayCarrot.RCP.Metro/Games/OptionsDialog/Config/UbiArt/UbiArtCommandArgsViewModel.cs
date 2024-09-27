@@ -163,32 +163,18 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
         {
             editorFields.Clear();
 
-            // TODO-UPDATE: Maybe re-order some of these
             if (Settings.Game is BinarySerializer.UbiArt.Game.RaymanOrigins or BinarySerializer.UbiArt.Game.RaymanLegends)
             {
-                // cheatAllPlayersTogether
-                editorFields.Add(CreateBoolField(
-                    header: "All players together cheat",
-                    info: "Causes all players to follow player 1.",
-                    name: "cheatAllPlayersTogether"));
-
-                // nomouse
-                editorFields.Add(CreateBoolField(
-                    header: "Hide mouse cursor",
-                    info: "Hides the mouse cursor.",
-                    name: "nomouse"));
-
                 // root
                 editorFields.Add(CreateStringField(
                     header: "Root directory",
                     info: "Specifies the root directory where the game looks for the files. By default this is the directory where the game executable is.",
                     name: "root"));
 
-                // TODO-UPDATE: Add warning to backup your save
                 // map
                 editorFields.Add(CreateStringField(
                     header: "Map",
-                    info: "The file path to a scene file to load when the game starts.",
+                    info: "The relative file path to a scene file to load when the game starts.\nWARNING: Loading directly into a map using this will skip loading your save file and might cause your save to be reset if the game ever auto-saves. It is highly recommended to backup your save files before using this.",
                     name: "map",
                     options: scenePaths));
 
@@ -252,8 +238,8 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
             {
                 // nosave
                 editorFields.Add(CreateBoolField(
-                    header: "Disable save games",
-                    info: "Disables loading saves and saving the game.",
+                    header: "Disable loading/saving",
+                    info: "Disables loading saves and saving the game. It is highly recommended to use this when loading into a specific map to avoid resetting your save file.",
                     name: "nosave"));
             }
 
@@ -265,26 +251,38 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                     info: "Sets the framerate of the main app loop. This will cause the speed of the game to change as well due to the game logic being hard-coded to 60 fps.",
                     name: "fps"));
 
-                // camera_maxdezoom
-                editorFields.Add(CreateBoolField(
-                    header: "Max camera zoom",
-                    info: "Zooms out the camera.",
-                    name: "camera_maxdezoom"));
-
                 // nosound
                 editorFields.Add(CreateBoolField(
                     header: "Mute",
                     info: "Mutes all sounds.",
                     name: "nosound"));
+
+                // camera_maxdezoom
+                editorFields.Add(CreateBoolField(
+                    header: "Max camera zoom",
+                    info: "Zooms out the camera.",
+                    name: "camera_maxdezoom"));
             }
 
             if (Settings.Game is BinarySerializer.UbiArt.Game.RaymanOrigins or BinarySerializer.UbiArt.Game.RaymanLegends)
             {
+                // cheatAllPlayersTogether
+                editorFields.Add(CreateBoolField(
+                    header: "All players together cheat",
+                    info: "Causes all players to follow player 1.",
+                    name: "cheatAllPlayersTogether"));
+
                 // player_nodamage
                 editorFields.Add(CreateBoolField(
                     header: "Invincible",
                     info: null,
                     name: "player_nodamage"));
+
+                // nomouse
+                editorFields.Add(CreateBoolField(
+                    header: "Hide mouse cursor",
+                    info: "Hides the mouse cursor.",
+                    name: "nomouse"));
 
                 // fullscreen
                 editorFields.Add(CreateBoolField(
