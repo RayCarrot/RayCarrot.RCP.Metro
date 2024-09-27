@@ -77,7 +77,6 @@ public enum GenericIconKind
     Window_RuntimeModifications,
 
     Utilities_Rayman1_TPLS,
-    Utilities_RaymanLegends_UbiRay,
     Utilities_ArchiveExplorer,
     Utilities_Ray1Editor,
     Utilities_R1PasswordGenerator,
