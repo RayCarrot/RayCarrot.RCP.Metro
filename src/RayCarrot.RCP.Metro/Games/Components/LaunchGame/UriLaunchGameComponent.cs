@@ -23,7 +23,7 @@ public abstract class UriLaunchGameComponent : LaunchGameComponent
         Logger.Trace("The game {0} is launching with the URI {1}", GameInstallation.FullId, uri);
 
         // Launch the game. The process this returns is the exe of the program associated with the uri.
-        Process? process = await Services.File.LaunchFileAsync(uri);
+        Process? process = await Services.File.LaunchURIAsync(uri);
 
         Logger.Info("The game {0} has been launched", GameInstallation.FullId);
 

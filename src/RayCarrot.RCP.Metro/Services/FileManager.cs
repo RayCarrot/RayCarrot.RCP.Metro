@@ -1,10 +1,10 @@
 ﻿#nullable disable
-using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
+using Microsoft.VisualBasic.FileIO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -101,10 +101,28 @@ public class FileManager
         return null;
     }
 
-    public Task LaunchURIAsync(string uri)
+    public async Task<Process> LaunchURIAsync(string uri)
     {
         // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
-        return LaunchFileAsync(uri);
+
+        try
+        {
+            // Start the process and get the process
+            Process p = Process.Start(uri);
+
+            Logger.Info("The uri {0} launched", uri);
+
+            // Return the process
+            return p;
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Launching uri {0}", uri);
+
+            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, uri));
+
+            return null;
+        }
     }
 
     /// <summary>
