@@ -71,7 +71,14 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                         !fileName.Contains("brick") &&
                         !fileName.Contains("actor"))
                     {
-                        scenePaths.Add(fileEntry.Path.FullPath.Substring(root.Length));
+                        // Remove the root path
+                        string relativePath = fileEntry.Path.FullPath.Substring(root.Length);
+                        
+                        // Remove the .ckd extension
+                        relativePath = relativePath.Substring(0, relativePath.Length - 4);
+                        
+                        // Add to list
+                        scenePaths.Add(relativePath);
                     }
                 }
             }
