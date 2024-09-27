@@ -125,40 +125,40 @@ public class UbiArtCommandArgs
 
     public int? GetInt(string name)
     {
-        return ParsedCommands.TryGetValue(name, out string valueString) && 
+        return ParsedCommands.TryGetValue(name.ToLowerInvariant(), out string valueString) && 
                Int32.TryParse(valueString, out int valueInt) ? valueInt : null;
     }
     public void SetInt(string name, int? value)
     {
         if (value != null)
-            ParsedCommands[name] = $"{value}";
+            ParsedCommands[name.ToLowerInvariant()] = $"{value}";
         else
-            ParsedCommands.Remove(name);
+            ParsedCommands.Remove(name.ToLowerInvariant());
     }
 
     public bool GetBool(string name)
     {
-        return ParsedCommands.TryGetValue(name, out string valueString) &&
+        return ParsedCommands.TryGetValue(name.ToLowerInvariant(), out string valueString) &&
                Int32.TryParse(valueString, out int valueInt) &&
                valueInt != 0;
     }
     public void SetBool(string name, bool value)
     {
         if (value)
-            ParsedCommands[name] = "1";
+            ParsedCommands[name.ToLowerInvariant()] = "1";
         else
-            ParsedCommands.Remove(name);
+            ParsedCommands.Remove(name.ToLowerInvariant());
     }
 
     public string? GetString(string name)
     {
-        return ParsedCommands.TryGetValue(name, out string valueString) ? valueString : null;
+        return ParsedCommands.TryGetValue(name.ToLowerInvariant(), out string valueString) ? valueString : null;
     }
     public void SetString(string name, string? value)
     {
         if (!value.IsNullOrEmpty())
-            ParsedCommands[name] = value;
+            ParsedCommands[name.ToLowerInvariant()] = value;
         else
-            ParsedCommands.Remove(name);
+            ParsedCommands.Remove(name.ToLowerInvariant());
     }
 }
