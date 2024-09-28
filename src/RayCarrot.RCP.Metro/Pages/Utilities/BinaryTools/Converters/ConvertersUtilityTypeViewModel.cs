@@ -2,9 +2,9 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public abstract class Utility_Converters_TypeViewModel : BaseRCPViewModel, IDisposable
+public abstract class ConvertersUtilityTypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Utility_Converters_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
+    protected ConvertersUtilityTypeViewModel(LocalizedString name, ObservableCollection<SerializableUtilityTypeModeViewModel> modes)
     {
         Name = name;
         Modes = modes;
@@ -17,8 +17,8 @@ public abstract class Utility_Converters_TypeViewModel : BaseRCPViewModel, IDisp
 
     public LocalizedString Name { get; }
 
-    public ObservableCollection<Utility_SerializableTypeModeViewModel> Modes { get; }
-    public Utility_SerializableTypeModeViewModel SelectedMode { get; set; }
+    public ObservableCollection<SerializableUtilityTypeModeViewModel> Modes { get; }
+    public SerializableUtilityTypeModeViewModel SelectedMode { get; set; }
 
     public abstract FileExtension SourceFileExtension { get; }
     public abstract string[] ConvertFormats { get; }

@@ -6,15 +6,15 @@ using BinarySerializer.Ray1.PC;
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Decoders_ViewModel : UtilityViewModel
+public class DecodersUtilityViewModel : UtilityViewModel
 {
     #region Constructor
 
-    public Utility_Decoders_ViewModel()
+    public DecodersUtilityViewModel()
     {
-        Types = new ObservableCollection<Utility_Decoders_TypeViewModel>()
+        Types = new ObservableCollection<DecodersUtilityTypeViewModel>()
         {
-            new Utility_Decoders_TypeViewModel(
+            new DecodersUtilityTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R12SavHeader)), 
                 encoder: new SaveEncoder(), 
                 getFileFilter: () => new FileFilterItemCollection()
@@ -28,7 +28,7 @@ public class Utility_Decoders_ViewModel : UtilityViewModel
                     GameSearch.Create(Game.Rayman2, GamePlatform.Win32),
                 }),
 
-            new Utility_Decoders_TypeViewModel(
+            new DecodersUtilityTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_TTSnaHeader)), 
                 encoder: new TTSNADataEncoder(),
                 getFileFilter: () => new FileFilterItemCollection()
@@ -38,7 +38,7 @@ public class Utility_Decoders_ViewModel : UtilityViewModel
                 }.CombineAll("Tonic Trouble").ToString(),
                 gameSearchPredicates: GameSearch.Create(Game.TonicTrouble, GamePlatform.Win32)),
 
-            new Utility_Decoders_TypeViewModel(
+            new DecodersUtilityTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R2SnaHeader)), 
                 encoder: new R2SNADataEncoder(),
                 getFileFilter: () => new FileFilterItemCollection()
@@ -48,13 +48,13 @@ public class Utility_Decoders_ViewModel : UtilityViewModel
                 }.CombineAll("Rayman 2").ToString(),
                 gameSearchPredicates: GameSearch.Create(Game.Rayman2, GamePlatform.Win32)),
 
-            new Utility_Decoders_TypeViewModel(
+            new DecodersUtilityTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R3SaveHeader)), 
                 encoder: new R3SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
                 gameSearchPredicates: GameSearch.Create(Game.Rayman3, GamePlatform.Win32)),
 
-            new Utility_Decoders_TypeViewModel(
+            new DecodersUtilityTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_RRRSaveHeader)), 
                 encoder: new RRR_SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
@@ -86,8 +86,8 @@ public class Utility_Decoders_ViewModel : UtilityViewModel
     public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_Decoder_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Decoders;
 
-    public ObservableCollection<Utility_Decoders_TypeViewModel> Types { get; }
-    public Utility_Decoders_TypeViewModel SelectedType { get; set; }
+    public ObservableCollection<DecodersUtilityTypeViewModel> Types { get; }
+    public DecodersUtilityTypeViewModel SelectedType { get; set; }
 
     #endregion
 

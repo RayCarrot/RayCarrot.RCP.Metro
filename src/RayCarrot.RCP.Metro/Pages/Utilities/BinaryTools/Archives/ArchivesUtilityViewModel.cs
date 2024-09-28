@@ -6,15 +6,15 @@ using RayCarrot.RCP.Metro.Archive.UbiArt;
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Archives_ViewModel : UtilityViewModel
+public class ArchivesUtilityViewModel : UtilityViewModel
 {
     #region Constructor
 
-    public Utility_Archives_ViewModel()
+    public ArchivesUtilityViewModel()
     {
-        Types = new ObservableCollection<Utility_Archives_TypeViewModel>()
+        Types = new ObservableCollection<ArchivesUtilityTypeViewModel>()
         {
-            new Utility_Archives_TypeViewModel(
+            new ArchivesUtilityTypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_R1Header)),
                 fileExtension: new FileExtension(".dat"),
                 getManagerFunc: (data, mode) => new Ray1PCArchiveDataManager(data.GetAttribute<Ray1GameModeInfoAttribute>().GetSettings()),
@@ -26,7 +26,7 @@ public class Utility_Archives_ViewModel : UtilityViewModel
                     Ray1GameMode.Rayman60Levels_PC,
                 })),
 
-            new Utility_Archives_TypeViewModel(
+            new ArchivesUtilityTypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_CNTHeader)),
                 fileExtension: new FileExtension(".cnt"),
                 getManagerFunc: (data, mode) => new CPACntArchiveDataManager(data.GetAttribute<CPAGameModeInfoAttribute>().GetSettings(), null, null),
@@ -44,13 +44,13 @@ public class Utility_Archives_ViewModel : UtilityViewModel
                     CPAGameMode.PlaymobilHype_PC,
                 })),
 
-            new Utility_Archives_TypeViewModel(
+            new ArchivesUtilityTypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_IPKHeader)),
                 fileExtension: new FileExtension(".ipk"),
                 getManagerFunc: (data, mode) => new UbiArtIPKArchiveDataManager(
                     settings: data.GetAttribute<UbiArtGameModeInfoAttribute>().GetSettings(), 
                     gameInstallation: null, 
-                    compressionMode: mode == Utility_Archives_TypeViewModel.ArchiveMode.Explorer 
+                    compressionMode: mode == ArchivesUtilityTypeViewModel.ArchiveMode.Explorer 
                     ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
                     : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting),
                 modes: new EnumSelectionViewModel<Enum>(UbiArtGameMode.RaymanOrigins_PC, new Enum[]
@@ -104,8 +104,8 @@ public class Utility_Archives_ViewModel : UtilityViewModel
     public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_ArchiveExplorer_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_ArchiveExplorer;
 
-    public ObservableCollection<Utility_Archives_TypeViewModel> Types { get; }
-    public Utility_Archives_TypeViewModel SelectedType { get; set; }
+    public ObservableCollection<ArchivesUtilityTypeViewModel> Types { get; }
+    public ArchivesUtilityTypeViewModel SelectedType { get; set; }
 
     #endregion
 
@@ -128,7 +128,7 @@ public class Utility_Archives_ViewModel : UtilityViewModel
             return;
 
         // Get the manager
-        using IArchiveDataManager manager = SelectedType.GetManager(Utility_Archives_TypeViewModel.ArchiveMode.Explorer);
+        using IArchiveDataManager manager = SelectedType.GetManager(ArchivesUtilityTypeViewModel.ArchiveMode.Explorer);
 
         try
         {
@@ -146,7 +146,7 @@ public class Utility_Archives_ViewModel : UtilityViewModel
     public async Task CreateArchiveAsync()
     {
         // Get the manager
-        using IArchiveDataManager manager = SelectedType.GetManager(Utility_Archives_TypeViewModel.ArchiveMode.Creator);
+        using IArchiveDataManager manager = SelectedType.GetManager(ArchivesUtilityTypeViewModel.ArchiveMode.Creator);
 
         // Show the Archive Creator
         await Services.UI.ShowArchiveCreatorAsync(manager);

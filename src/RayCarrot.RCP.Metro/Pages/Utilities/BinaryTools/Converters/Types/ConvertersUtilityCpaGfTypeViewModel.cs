@@ -6,9 +6,9 @@ using RayCarrot.RCP.Metro.Imaging;
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
 // TODO: Rewrite this to work better with the new ImageFormat classes, like we've done in the Archive Explorer
-public class Utility_Converters_CPAGF_TypeViewModel : Utility_Converters_TypeViewModel
+public class ConvertersUtilityCpaGfTypeViewModel : ConvertersUtilityTypeViewModel
 {
-    public Utility_Converters_CPAGF_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) 
+    public ConvertersUtilityCpaGfTypeViewModel(LocalizedString name, ObservableCollection<SerializableUtilityTypeModeViewModel> modes) 
         : base(name, modes) { }
 
     public override FileExtension SourceFileExtension => new FileExtension(".gf");

@@ -2,17 +2,17 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Converters_ViewModel : UtilityViewModel
+public class ConvertersUtilityViewModel : UtilityViewModel
 {
     #region Constructor
 
-    public Utility_Converters_ViewModel()
+    public ConvertersUtilityViewModel()
     {
-        Types = new ObservableCollection<Utility_Converters_TypeViewModel>()
+        Types = new ObservableCollection<ConvertersUtilityTypeViewModel>()
         {
-            new Utility_Converters_CPAGF_TypeViewModel(
+            new ConvertersUtilityCpaGfTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_GFHeader)),
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(CPAGameMode.Rayman2_PC),
                     new(CPAGameMode.Rayman2_Demo1_PC),
@@ -31,9 +31,9 @@ public class Utility_Converters_ViewModel : UtilityViewModel
                     new(CPAGameMode.LargoWinch_PC),
                 }),
 
-            new Utility_Converters_UbiArtLoc_TypeViewModel(
+            new ConvertersUtilityUbiArtLocTypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_LOCHeader)),
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanOrigins_PC, "Rayman Origins"),
                     new(UbiArtGameMode.RaymanOrigins_3DS),
@@ -67,8 +67,8 @@ public class Utility_Converters_ViewModel : UtilityViewModel
     public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_Converter_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Converters;
 
-    public ObservableCollection<Utility_Converters_TypeViewModel> Types { get; }
-    public Utility_Converters_TypeViewModel SelectedType { get; set; }
+    public ObservableCollection<ConvertersUtilityTypeViewModel> Types { get; }
+    public ConvertersUtilityTypeViewModel SelectedType { get; set; }
 
     #endregion
 

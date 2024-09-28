@@ -3,9 +3,9 @@ using BinarySerializer.UbiArt;
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_TypeViewModel
+public class ConvertersUtilityUbiArtLocTypeViewModel : ConvertersUtilityTypeViewModel
 {
-    public Utility_Converters_UbiArtLoc_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(name, modes) { }
+    public ConvertersUtilityUbiArtLocTypeViewModel(LocalizedString name, ObservableCollection<SerializableUtilityTypeModeViewModel> modes) : base(name, modes) { }
 
     public override FileExtension SourceFileExtension => ((UbiArtSettings)SelectedMode.GetSettings()!).Game switch
     {

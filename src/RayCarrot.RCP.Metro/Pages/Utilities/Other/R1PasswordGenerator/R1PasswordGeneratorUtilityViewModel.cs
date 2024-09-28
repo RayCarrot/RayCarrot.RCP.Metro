@@ -7,11 +7,11 @@ namespace RayCarrot.RCP.Metro.Pages.Utilities;
 /// <summary>
 /// View model for generating Rayman 1 PS1 passwords
 /// </summary>
-public class Utility_R1PasswordGenerator_ViewModel : UtilityViewModel
+public class R1PasswordGeneratorUtilityViewModel : UtilityViewModel
 {
     #region Constructor
 
-    public Utility_R1PasswordGenerator_ViewModel()
+    public R1PasswordGeneratorUtilityViewModel()
     {
         // Set up selection
         ModeSelection = new EnumSelectionViewModel<PS1Password.PasswordMode>(PS1Password.PasswordMode.NTSC, new PS1Password.PasswordMode[]
@@ -209,7 +209,7 @@ public class Utility_R1PasswordGenerator_ViewModel : UtilityViewModel
 
     public async Task LoadPasswordAsync()
     {
-        var validationRule = new Utility_R1PasswordGenerator_PasswordValidationRule().Validate(Password, CultureInfo.CurrentCulture);
+        var validationRule = new R1PasswordGeneratorUtilityPasswordValidationRule().Validate(Password, CultureInfo.CurrentCulture);
 
         if (!validationRule.IsValid)
             return;

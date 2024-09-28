@@ -10,19 +10,19 @@ using RayCarrot.RCP.Metro.Legacy.Patcher;
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Serializers_ViewModel : UtilityViewModel
+public class SerializersUtilityViewModel : UtilityViewModel
 {
     #region Constructor
 
-    public Utility_Serializers_ViewModel()
+    public SerializersUtilityViewModel()
     {
-        Types = new ObservableCollection<Utility_Serializers_TypeViewModel>()
+        Types = new ObservableCollection<SerializersUtilityTypeViewModel>()
         {
             new Serializers_TypeViewModel<SaveSlot>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(Ray1GameMode.Rayman1_PC) { Encoder = new SaveEncoder() },
                 }),
@@ -31,7 +31,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1ConfigHeader)),
                 fileExtension: new FileExtension(".cfg"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(Ray1GameMode.Rayman1_PC),
                     new(Ray1GameMode.RaymanEducational_PC),
@@ -44,7 +44,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(CPAGameMode.Rayman2_PC) { Encoder = new R2SaveEncoder() },
                 }),
@@ -53,7 +53,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2ConfigHeader)),
                 fileExtension: new FileExtension(".cfg"),
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(CPAGameMode.Rayman2_PC) { Encoder = new R2SaveEncoder() },
                 }),
@@ -62,7 +62,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RMSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(CPAGameMode.RaymanM_PC),
                     new(CPAGameMode.RaymanArena_PC),
@@ -72,7 +72,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R3SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(CPAGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
                 }),
@@ -81,7 +81,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_RRRSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(JadeGameMode.RaymanRavingRabbids_PC) { Encoder = new RRR_SaveEncoder() },
                 }),
@@ -90,7 +90,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
                 fileExtension: new FileExtension(""),
                 getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().Endian,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanOrigins_PC)
                     {
@@ -102,7 +102,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RLSaveHeader)),
                 fileExtension: new FileExtension(""),
                 getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().Endian,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanLegends_PC)
                     {
@@ -115,7 +115,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RJRSaveHeader)),
                 fileExtension: new FileExtension(".dat"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanJungleRun_PC, "Rayman Jungle Run (PC/Android/iOS)")
                     {
@@ -136,7 +136,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_RFRSaveHeader)),
                 fileExtension: new FileExtension(".dat"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run (PC/Android/iOS)")
                     {
@@ -157,7 +157,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1GbaSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new(Ray1GameMode.Rayman1_GBA) { Encoder = new EEPROMEncoder(0x200) },
                 }),
@@ -166,7 +166,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R3GbaSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Rayman 3 (GBA)") { Encoder = new EEPROMEncoder(0x200) },
                 }),
@@ -175,7 +175,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RHRSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Rayman Hoodlums' Revenge") { Encoder = new EEPROMEncoder(0x200) },
                 }),
@@ -184,7 +184,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RRRGbaSaveHeader)), 
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Rayman Raving Rabbids (GBA)") { Encoder = new EEPROMEncoder(0x200) },
                 }),
@@ -193,7 +193,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_UnityPlayerPrefsHeader)),
                 fileExtension: new FileExtension(".dat"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Unity")
                     {
@@ -214,7 +214,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GameMakerDSMapHeader)),
                 fileExtension: new FileExtension(".txt"),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Game Maker")
                     {
@@ -227,7 +227,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchHeader)),
                 fileExtension: new FileExtension(PatchPackage.FileExtension),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Rayman Control Panel"),
                 }),
@@ -236,7 +236,7 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchLibraryHeader)),
                 fileExtension: new FileExtension(PatchLibraryPackage.FileExtension),
                 getEndianFunc: c => Endian.Little,
-                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
                 {
                     new("Rayman Control Panel"),
                 }),
@@ -270,8 +270,8 @@ public class Utility_Serializers_ViewModel : UtilityViewModel
     public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_Serializers_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Serializers;
 
-    public ObservableCollection<Utility_Serializers_TypeViewModel> Types { get; }
-    public Utility_Serializers_TypeViewModel SelectedType { get; set; }
+    public ObservableCollection<SerializersUtilityTypeViewModel> Types { get; }
+    public SerializersUtilityTypeViewModel SelectedType { get; set; }
 
     public string? Log { get; set; }
 

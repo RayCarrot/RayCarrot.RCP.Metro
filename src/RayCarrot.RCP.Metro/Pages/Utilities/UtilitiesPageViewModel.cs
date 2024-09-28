@@ -33,18 +33,18 @@ public class UtilitiesPageViewModel : BasePageViewModel, IDisposable
         // Create view models
         BinaryToolViewModels.AddRange(new UtilityViewModel[]
         {
-            new Utility_Archives_ViewModel(),
-            new Utility_Serializers_ViewModel(),
-            new Utility_Converters_ViewModel(),
-            new Utility_Decoders_ViewModel(),
+            new ArchivesUtilityViewModel(),
+            new SerializersUtilityViewModel(),
+            new ConvertersUtilityViewModel(),
+            new DecodersUtilityViewModel(),
         });
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
-            new Utility_R1PasswordGenerator_ViewModel(),
+            new R1PasswordGeneratorUtilityViewModel(),
         });
         ExternalToolViewModels.AddRange(new UtilityViewModel[]
         {
-            new Utility_Ray1Editor_ViewModel(),
+            new Ray1EditorUtilityViewModel(),
         });
 
         return Task.CompletedTask;

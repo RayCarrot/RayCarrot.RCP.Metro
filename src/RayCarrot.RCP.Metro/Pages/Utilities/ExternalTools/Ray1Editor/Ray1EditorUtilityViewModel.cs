@@ -5,9 +5,9 @@ namespace RayCarrot.RCP.Metro.Pages.Utilities;
 /// <summary>
 /// View model for the Ray1Editor external tool
 /// </summary>
-public class Utility_Ray1Editor_ViewModel : UtilityViewModel
+public class Ray1EditorUtilityViewModel : UtilityViewModel
 {
-    public Utility_Ray1Editor_ViewModel()
+    public Ray1EditorUtilityViewModel()
     {
         OpenHomePageCommand = new RelayCommand(OpenHomePage);
     }

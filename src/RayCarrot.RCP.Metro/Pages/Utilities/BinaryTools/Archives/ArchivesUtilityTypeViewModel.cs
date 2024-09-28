@@ -2,9 +2,9 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Archives_TypeViewModel : BaseRCPViewModel, IDisposable
+public class ArchivesUtilityTypeViewModel : BaseRCPViewModel, IDisposable
 {
-    public Utility_Archives_TypeViewModel(LocalizedString name, FileExtension fileExtension, Func<Enum, ArchiveMode, IArchiveDataManager> getManagerFunc, EnumSelectionViewModel<Enum> modes)
+    public ArchivesUtilityTypeViewModel(LocalizedString name, FileExtension fileExtension, Func<Enum, ArchiveMode, IArchiveDataManager> getManagerFunc, EnumSelectionViewModel<Enum> modes)
     {
         Name = name;
         FileExtension = fileExtension;

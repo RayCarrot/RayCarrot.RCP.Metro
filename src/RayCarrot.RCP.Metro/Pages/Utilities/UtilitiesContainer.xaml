@@ -43,27 +43,27 @@
                                       Content="{Binding Mode=OneTime}">
                         <ContentPresenter.Resources>
                             <!-- Binary Tools -->
-                            <DataTemplate DataType="{x:Type utilities:Utility_Archives_ViewModel}">
-                                <utilities:Utility_Archives_Control />
+                            <DataTemplate DataType="{x:Type utilities:ArchivesUtilityViewModel}">
+                                <utilities:ArchivesUtilityControl />
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type utilities:Utility_Serializers_ViewModel}">
-                                <utilities:Utility_Serializers_Control />
+                            <DataTemplate DataType="{x:Type utilities:SerializersUtilityViewModel}">
+                                <utilities:SerializersUtilityControl />
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type utilities:Utility_Converters_ViewModel}">
-                                <utilities:Utility_Converters_Control />
+                            <DataTemplate DataType="{x:Type utilities:ConvertersUtilityViewModel}">
+                                <utilities:ConvertersUtilityControl />
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type utilities:Utility_Decoders_ViewModel}">
-                                <utilities:Utility_Decoders_Control />
+                            <DataTemplate DataType="{x:Type utilities:DecodersUtilityViewModel}">
+                                <utilities:DecodersUtilityControl />
                             </DataTemplate>
 
                             <!-- Other -->
-                            <DataTemplate DataType="{x:Type utilities:Utility_R1PasswordGenerator_ViewModel}">
-                                <utilities:Utility_R1PasswordGenerator_Control />
+                            <DataTemplate DataType="{x:Type utilities:R1PasswordGeneratorUtilityViewModel}">
+                                <utilities:R1PasswordGeneratorUtilityControl />
                             </DataTemplate>
 
                             <!-- External -->
-                            <DataTemplate DataType="{x:Type utilities:Utility_Ray1Editor_ViewModel}">
-                                <utilities:Utility_Ray1Editor_Control />
+                            <DataTemplate DataType="{x:Type utilities:Ray1EditorUtilityViewModel}">
+                                <utilities:Ray1EditorUtilityControl />
                             </DataTemplate>
                         </ContentPresenter.Resources>
                     </ContentPresenter>

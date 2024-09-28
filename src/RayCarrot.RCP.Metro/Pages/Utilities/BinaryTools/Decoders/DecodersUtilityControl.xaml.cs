@@ -3,11 +3,11 @@
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
 /// <summary>
-/// Interaction logic for Utility_Decoders_Control.xaml
+/// Interaction logic for DecodersUtilityControl.xaml
 /// </summary>
-public partial class Utility_Decoders_Control : UserControl
+public partial class DecodersUtilityControl : UserControl
 {
-    public Utility_Decoders_Control()
+    public DecodersUtilityControl()
     {
         InitializeComponent();
     }

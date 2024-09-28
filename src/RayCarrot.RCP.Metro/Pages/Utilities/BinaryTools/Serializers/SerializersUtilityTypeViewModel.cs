@@ -2,9 +2,9 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
+public abstract class SerializersUtilityTypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension? fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
+    protected SerializersUtilityTypeViewModel(Type type, LocalizedString name, FileExtension? fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<SerializableUtilityTypeModeViewModel> modes)
     {
         Type = type;
         Name = name;
@@ -24,8 +24,8 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
 
     public Func<Context, Endian> GetEndianFunc { get; }
 
-    public ObservableCollection<Utility_SerializableTypeModeViewModel> Modes { get; }
-    public Utility_SerializableTypeModeViewModel SelectedMode { get; set; }
+    public ObservableCollection<SerializableUtilityTypeModeViewModel> Modes { get; }
+    public SerializableUtilityTypeModeViewModel SelectedMode { get; set; }
 
     public abstract object? Deserialize(Context context, string fileName);
     public abstract void Serialize(Context context, string fileName, object obj);
@@ -36,10 +36,10 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
     }
 }
 
-public class Serializers_TypeViewModel<T> : Utility_Serializers_TypeViewModel
+public class Serializers_TypeViewModel<T> : SerializersUtilityTypeViewModel
     where T : BinarySerializable, new()
 {
-    public Serializers_TypeViewModel(LocalizedString name, FileExtension? fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, getEndianFunc, modes)
+    public Serializers_TypeViewModel(LocalizedString name, FileExtension? fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<SerializableUtilityTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, getEndianFunc, modes)
     { }
 
     public override object? Deserialize(Context context, string fileName)

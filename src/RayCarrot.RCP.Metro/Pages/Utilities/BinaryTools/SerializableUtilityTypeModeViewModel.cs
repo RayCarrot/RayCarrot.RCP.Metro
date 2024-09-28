@@ -2,11 +2,11 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_SerializableTypeModeViewModel : BaseViewModel
+public class SerializableUtilityTypeModeViewModel : BaseViewModel
 {
-    public Utility_SerializableTypeModeViewModel(string displayName) : this(null, displayName) { }
+    public SerializableUtilityTypeModeViewModel(string displayName) : this(null, displayName) { }
 
-    public Utility_SerializableTypeModeViewModel(Enum? gameMode, string? displayName = null)
+    public SerializableUtilityTypeModeViewModel(Enum? gameMode, string? displayName = null)
     {
         GameModeBaseAttribute? attr = gameMode?.GetAttribute<GameModeBaseAttribute>();
 

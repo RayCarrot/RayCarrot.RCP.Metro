@@ -4,7 +4,7 @@ using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_R1PasswordGenerator_PasswordValidationRule : ValidationRule
+public class R1PasswordGeneratorUtilityPasswordValidationRule : ValidationRule
 {
     public override ValidationResult Validate(object? value, CultureInfo cultureInfo)
     {

@@ -2,9 +2,9 @@
 
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
-public class Utility_Decoders_TypeViewModel : BaseRCPViewModel, IDisposable
+public class DecodersUtilityTypeViewModel : BaseRCPViewModel, IDisposable
 {
-    public Utility_Decoders_TypeViewModel(
+    public DecodersUtilityTypeViewModel(
         LocalizedString name, 
         IStreamEncoder encoder, 
         Func<string> getFileFilter, 

@@ -3,11 +3,11 @@
 namespace RayCarrot.RCP.Metro.Pages.Utilities;
 
 /// <summary>
-/// Interaction logic for Utility_Archives_Control.xaml
+/// Interaction logic for ArchivesUtilityControl.xaml
 /// </summary>
-public partial class Utility_Archives_Control : UserControl
+public partial class ArchivesUtilityControl : UserControl
 {
-    public Utility_Archives_Control()
+    public ArchivesUtilityControl()
     {
         InitializeComponent();
     }
