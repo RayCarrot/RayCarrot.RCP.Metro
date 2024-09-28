@@ -141,18 +141,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 // component does not come from a client)
                 getInstanceIdFunc: _ => "GameConfig"),
             priority: ComponentPriority.High);
-
-        // Utilities page
-        builder.Register(
-            component: new GameOptionsDialogPageComponent(
-                objFactory: x => new UtilitiesPageViewModel(x.GetComponents<UtilityComponent>().
-                    CreateObjects().
-                    Select(utility => new UtilityViewModel(utility))),
-                isAvailableFunc: x => x.HasComponent<UtilityComponent>(),
-                // Constant id since rebuilding components won't change this (we assume a utility
-                // component does not come from a client)
-                getInstanceIdFunc: _ => "Utilities"),
-            priority: ComponentPriority.Low);
     }
 
     protected abstract ProgramInstallationStructure CreateStructure();

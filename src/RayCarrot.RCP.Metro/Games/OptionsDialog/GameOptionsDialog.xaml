@@ -94,11 +94,6 @@
                                 <DataTemplate DataType="{x:Type optionsDialog:DosBoxGameConfigViewModel}">
                                     <optionsDialog:DosBoxGameConfigControl />
                                 </DataTemplate>
-
-                                <!-- Utilities -->
-                                <DataTemplate DataType="{x:Type optionsDialog:UtilitiesPageViewModel}">
-                                    <optionsDialog:UtilitiesPageControl />
-                                </DataTemplate>
                             </ContentPresenter.Resources>
                         </ContentPresenter>
 
