@@ -64,7 +64,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModLoaderDownload">ArchiveArrowDownOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
@@ -281,9 +280,6 @@
                        IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}"
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Rayman1_TPLS}" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_TPLS}"
-                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_ArchiveExplorer}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />

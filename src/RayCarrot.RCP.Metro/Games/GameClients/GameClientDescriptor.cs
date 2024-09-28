@@ -1,5 +1,4 @@
 ﻿using RayCarrot.RCP.Metro.Games.Clients.Custom;
-using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
@@ -32,11 +31,6 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
 
     public virtual bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
     {
-        RequiredGameInstallations? requiredGames = gameClientInstallation.GetObject<RequiredGameInstallations>(GameClientDataKey.RCP_RequiredGameInstallations);
-
-        if (requiredGames != null && !requiredGames.GameInstallationIds.Contains(gameInstallation.InstallationId))
-            return false;
-
         return true;
     }
 

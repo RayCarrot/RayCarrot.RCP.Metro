@@ -153,11 +153,6 @@ public static class AppURLs
     #region Utilities
 
     /// <summary>
-    /// The Rayman 1 TPLS utility URL
-    /// </summary>
-    public const string R1_TPLS_Url = UtilityBaseUrl + "r1/TPLS.zip";
-
-    /// <summary>
     /// The Rayman 1 complete soundtrack utility URL
     /// </summary>
     public const string R1_CompleteOST_URL = UtilityBaseUrl + "r1/CompleteOST.zip";

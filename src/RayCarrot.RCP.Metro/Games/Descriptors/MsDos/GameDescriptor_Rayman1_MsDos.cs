@@ -48,7 +48,6 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
-        builder.Register<OnGameRemovedComponent, UninstallTplsOnGameRemovedComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
@@ -64,8 +63,6 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
 
         builder.Register(new SetupGameActionComponent(_ => new RaymanForeverCompleteSoundtrackSetupGameAction()));
         builder.Register(new SetupGameActionComponent(_ => new Ray1InvalidGameConfigSetupGameAction()));
-
-        builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
