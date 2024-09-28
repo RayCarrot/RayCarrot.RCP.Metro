@@ -31,20 +31,20 @@ public class UtilitiesPageViewModel : BasePageViewModel, IDisposable
     protected override Task InitializeAsync()
     {
         // Create view models
-        BinaryToolViewModels.AddRange(new[]
+        BinaryToolViewModels.AddRange(new UtilityViewModel[]
         {
-            new UtilityViewModel(new Utility_Archives()),
-            new UtilityViewModel(new Utility_Serializers()),
-            new UtilityViewModel(new Utility_Converters()),
-            new UtilityViewModel(new Utility_Decoders()),
+            new Utility_Archives_ViewModel(),
+            new Utility_Serializers_ViewModel(),
+            new Utility_Converters_ViewModel(),
+            new Utility_Decoders_ViewModel(),
         });
-        OtherViewModels.AddRange(new[]
+        OtherViewModels.AddRange(new UtilityViewModel[]
         {
-            new UtilityViewModel(new Utility_R1PasswordGenerator()),
+            new Utility_R1PasswordGenerator_ViewModel(),
         });
-        ExternalToolViewModels.AddRange(new[]
+        ExternalToolViewModels.AddRange(new UtilityViewModel[]
         {
-            new UtilityViewModel(new Utility_Ray1Editor()),
+            new Utility_Ray1Editor_ViewModel(),
         });
 
         return Task.CompletedTask;

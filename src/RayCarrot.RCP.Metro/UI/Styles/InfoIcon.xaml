@@ -2,10 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
-    <Style x:Key="RCP.Styles.InfoIcon.AdditionalFilesRequired" TargetType="{x:Type local:InfoIcon}">
-        <Setter Property="IconKind" Value="CloudDownload" />
-    </Style>
-
     <Style x:Key="RCP.Styles.InfoIcon.Warning" TargetType="{x:Type local:InfoIcon}">
         <Setter Property="IconKind" Value="InformationOutline" />
         <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Warning}" />

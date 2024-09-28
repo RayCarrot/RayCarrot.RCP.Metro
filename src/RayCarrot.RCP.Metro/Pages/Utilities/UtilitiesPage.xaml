@@ -23,40 +23,37 @@
         </i:Interaction.Behaviors>
 
         <!-- Binary Tools -->
-
         <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_BinaryTools}"
                  rcp:Icon.Brush="{StaticResource RCP.Brushes.ArchiveExplorer}"
                  Header="{Resx Utilities_BinaryTools_Header}">
 
             <ScrollViewer>
-                <rcp:UtilitiesContainer Margin="12 0 12 12"
-                                          Utilities="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
+                <utilities:UtilitiesContainer Margin="12 0 12 12"
+                                              DataContext="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
             </ScrollViewer>
 
         </TabItem>
 
         <!-- Other -->
-
         <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_Other}"
                  rcp:Icon.Brush="{StaticResource RCP.Brushes.Utilities}"
                  Header="{Resx Utilities_Other_Header}">
 
             <ScrollViewer>
-                <rcp:UtilitiesContainer Margin="12 0 12 12"
-                                          Utilities="{Binding Path=OtherViewModels, Mode=OneTime}" />
+                <utilities:UtilitiesContainer Margin="12 0 12 12"
+                                              DataContext="{Binding Path=OtherViewModels, Mode=OneTime}" />
             </ScrollViewer>
 
         </TabItem>
 
         <!-- External Tools -->
-
         <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_ExternalTools}"
                  rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>
-                <rcp:UtilitiesContainer Margin="12 0 12 12"
-                                          Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
+                <utilities:UtilitiesContainer Margin="12 0 12 12"
+                                              DataContext="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
             </ScrollViewer>
 
         </TabItem>
