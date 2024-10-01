@@ -8,7 +8,7 @@ using System.Windows.Threading;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
@@ -251,21 +251,29 @@ public class AppUIManager
         await ShowWindowAsync(() => new VersionHistoryDialog(), ShowWindowFlags.Modal);
 
     /// <summary>
-    /// Shows a new instance of the game options
+    /// Shows a new instance of the game settings
     /// </summary>
-    /// <param name="gameInstallation">The game installation to show the options for</param>
+    /// <param name="gameInstallation">The game installation to show the settings for</param>
     /// <returns>The task</returns>
-    public async Task ShowGameOptionsAsync(GameInstallation gameInstallation)
+    public async Task ShowGameSettingsAsync(GameInstallation gameInstallation)
     {
-        // Get group names from components
-        List<string> groupNames = gameInstallation.GetComponents<GameOptionsDialogGroupNameComponent>().
-            Select(x => x.GroupName).
-            ToList();
+        await ShowWindowAsync(
+            () => new GameSettingsDialog(gameInstallation.GetRequiredComponent<GameSettingsComponent>().CreateObject()),
+            // Only allow one settings window per installation
+            typeGroupNames: new[] { gameInstallation.InstallationId });
+    }
 
-        // Only allow once per installation
-        groupNames.Add(gameInstallation.InstallationId);
-
-        await ShowWindowAsync(() => new GameOptionsDialog(gameInstallation), typeGroupNames: groupNames.ToArray());
+    /// <summary>
+    /// Shows a new instance of the game client game settings
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to show the settings for</param>
+    /// <returns>The task</returns>
+    public async Task ShowGameClientGameOptionsAsync(GameInstallation gameInstallation)
+    {
+        await ShowWindowAsync(
+            () => new GameSettingsDialog(gameInstallation.GetRequiredComponent<GameClientGameSettingsComponent>().CreateObject()), 
+            // Only allow one settings window per installation
+            typeGroupNames: new[] { gameInstallation.InstallationId });
     }
 
     /// <summary>

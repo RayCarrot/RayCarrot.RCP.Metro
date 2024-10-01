@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Settings;
 
 namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
@@ -19,8 +21,8 @@ public class InvalidUbiArtResolutionSetupGameAction : SetupGameAction
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
-    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Config;
-    public override LocalizedString? FixActionDisplayName => "Open config"; // TODO-LOC
+    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameSettings;
+    public override LocalizedString? FixActionDisplayName => "Open game settings"; // TODO-LOC
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {
@@ -69,7 +71,7 @@ public class InvalidUbiArtResolutionSetupGameAction : SetupGameAction
 
     public override async Task FixAsync(GameInstallation gameInstallation)
     {
-        await Services.UI.ShowGameOptionsAsync(gameInstallation);
+        await Services.UI.ShowGameSettingsAsync(gameInstallation);
         Services.Messenger.Send(new FixedSetupGameActionMessage(gameInstallation));
     }
 }

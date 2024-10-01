@@ -1,7 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
@@ -69,7 +69,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Win32(x, "Rayman 2")));
-        builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new Rayman2SettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "r2_pc", "r2_pc"));
@@ -79,7 +79,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
             @"Data\Textures.cnt",
             @"Data\Vignette.cnt",
         }));
-        builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
         builder.Register(new CPATextureSyncComponent(
             new CPATextureSyncDataItem(
                 Name: "Data",

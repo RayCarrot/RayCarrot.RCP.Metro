@@ -1,5 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -44,7 +44,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun_WindowsPackage(this, x,
             // NOTE: This id is also defined in the app data migration code
             "Rayman Fiesta Run (Win10)", 0)));
-        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x, GetLocalAppDataDirectory(), false)));
+        builder.Register(new GameSettingsComponent(x => new RaymanFiestaRunSettingsViewModel(x, GetLocalAppDataDirectory(), false)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanFiestaRun_PC));

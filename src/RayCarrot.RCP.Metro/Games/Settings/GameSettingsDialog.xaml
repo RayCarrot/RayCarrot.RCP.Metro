@@ -1,0 +1,149 @@
+﻿<rcp:WindowContentControl x:Class="RayCarrot.RCP.Metro.Games.Settings.GameSettingsDialog"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+                          xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Games.Settings"
+                          xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                          ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+                          Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                          Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                          d:DesignWidth="650" d:DesignHeight="700"
+                          mc:Ignorable="d"
+                          d:DataContext="{d:DesignInstance settings:GameSettingsViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        rcp:UserLevelAssist.MinUserLevel="Technical">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
+                           Text="{Resx Config_LocationsHeader}"
+                           Margin="0 0 0 8" />
+
+                <ItemsControl ItemsSource="{Binding Path=SettingsLocations, Mode=OneTime}"
+                              Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
+                              Margin="0 0 0 4">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0 0 0 4">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                                       Source="{Binding Path=IconSource}" />
+                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Kind="{Binding Path=IconKind, Mode=OneTime}" 
+                                                            Visibility="{Binding Path=IconSource, Converter={rcp:ObjectNullToVisibilityConverter}}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Margin="4 0 48 0" 
+                                           ToolTip="{Binding Path=LinkPath, Mode=OneTime}"
+                                           VerticalAlignment="Center" 
+                                           TextTrimming="WordEllipsis">
+                                    <Hyperlink Command="{Binding Path=OpenLinkCommand, Mode=OneTime}">
+                                        <Run Text="{Binding Path=LinkPath, Mode=OneTime}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+
+            <ContentPresenter Grid.Row="1"
+                              Content="{Binding}">
+                <ContentPresenter.Resources>
+                    <!-- Games -->
+                    <DataTemplate DataType="{x:Type settings:RabbidsGoHomeSettingsViewModel}">
+                        <settings:RabbidsGoHomeSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:Ray1SettingsViewModel}">
+                        <settings:Ray1SettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:Rayman2SettingsViewModel}">
+                        <settings:Rayman2SettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:Rayman3SettingsViewModel}">
+                        <settings:BaseRayman3MArenaSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:RaymanArenaSettingsViewModel}">
+                        <settings:BaseRayman3MArenaSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:RaymanMSettingsViewModel}">
+                        <settings:BaseRayman3MArenaSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:BaseRaymanRavingRabbidsSettingsViewModel}">
+                        <settings:RaymanRavingRabbidsSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:RaymanRavingRabbids2SettingsViewModel}">
+                        <settings:RaymanRavingRabbids2SettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:RaymanJungleRunSettingsViewModel}">
+                        <settings:RaymanJungleRunSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:RaymanFiestaRunSettingsViewModel}">
+                        <settings:RaymanFiestaRunSettingsControl />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type settings:UbiArtSettingsViewModel}">
+                        <settings:UbiArtSettingsControl />
+                    </DataTemplate>
+
+                    <!-- Game clients -->
+                    <DataTemplate DataType="{x:Type settings:DosBoxGameSettingsViewModel}">
+                        <settings:DosBoxGameSettingsControl />
+                    </DataTemplate>
+                </ContentPresenter.Resources>
+            </ContentPresenter>
+
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="{StaticResource RCP.Thicknesses.Card}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" 
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Visibility="{Binding Path=HasRecommendedSettings, Converter={rcp:BooleanToVisibilityConverter}}"
+                    Content="{Resx DosBoxOptions_Recommended}"
+                    rcp:Icon.Kind="AutoFix"
+                    Command="{Binding Path=ApplyRecommendedSettingsCommand}"
+                    Margin="0 0 4 0" />
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Content="{Resx Cancel}"
+                    rcp:Icon.Kind="CloseOutline"
+                    Margin="0 0 4 0"
+                    Click="CancelButton_OnClick" />
+
+            <Button Grid.Column="3"
+                    Style="{StaticResource RCP.Styles.Button.Accent}"
+                    Content="{Resx Save}"
+                    rcp:Icon.Kind="ContentSaveOutline"
+                    IsEnabled="{Binding Path=UnsavedChanges}"
+                    Command="{Binding Path=SaveChangesCommand, Mode=OneTime}" />
+
+        </Grid>
+
+    </Grid>
+</rcp:WindowContentControl>

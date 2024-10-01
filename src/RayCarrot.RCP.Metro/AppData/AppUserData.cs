@@ -28,7 +28,6 @@ public partial class AppUserData : BaseViewModel
         App_ApplicationPath = Assembly.GetEntryAssembly()?.Location;
         App_IsFirstLaunch = true;
         App_CloseAppOnGameLaunch = false;
-        App_CloseConfigOnSave = true;
         App_JumpListItems = new List<JumpListItem>();
         App_AutoSortJumpList = true;
         App_HandleDownloadsManually = false;
@@ -164,11 +163,6 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the application should close when a game is launched
     /// </summary>
     public bool App_CloseAppOnGameLaunch { get; set; }
-
-    /// <summary>
-    /// Indicates if configuration dialogs should close upon saving
-    /// </summary>
-    public bool App_CloseConfigOnSave { get; set; }
 
     /// <summary>
     /// The saved jump list items

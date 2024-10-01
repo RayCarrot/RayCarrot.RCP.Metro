@@ -2,7 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -59,7 +59,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
         builder.Register(new GameOptionsComponent(x => new RaymanRavingRabbids2GameOptionsViewModel(x)));
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids2_Win32(x, "Rayman Raving Rabbids 2")));
-        builder.Register(new GameConfigComponent(x => new RaymanRavingRabbids2ConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new RaymanRavingRabbids2SettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));

@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -34,7 +34,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena_Win32(x, "Rayman M", false)));
-        builder.Register(new GameConfigComponent(x => new RaymanMConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new RaymanMSettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "rm_pc", "rm_pc"));
@@ -48,7 +48,6 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
             @"TribeBin\tex32.cnt",
             @"TribeBin\vignette.cnt",
         }));
-        builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
         builder.Register<CPATextureSyncComponent, RaymanMArenaCPATextureSyncComponent>();
     }
 

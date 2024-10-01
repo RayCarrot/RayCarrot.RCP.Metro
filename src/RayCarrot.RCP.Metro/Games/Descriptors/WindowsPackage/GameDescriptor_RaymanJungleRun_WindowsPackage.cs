@@ -1,5 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -41,7 +41,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun_WindowsPackage(this, x, "Rayman Jungle Run")));
-        builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this, x, GetLocalAppDataDirectory(), true, true, false)));
+        builder.Register(new GameSettingsComponent(x => new RaymanJungleRunSettingsViewModel(x, GetLocalAppDataDirectory(), true, true, false)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanJungleRun_PC));

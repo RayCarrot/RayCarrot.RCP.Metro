@@ -1,7 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -45,7 +45,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new GameConfigComponent(x => new RabbidsGoHomeConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new RabbidsGoHomeSettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new Win32LaunchPathComponent(GetLaunchFilePath));
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));

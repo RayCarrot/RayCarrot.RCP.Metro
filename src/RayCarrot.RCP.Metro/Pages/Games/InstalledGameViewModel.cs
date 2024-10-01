@@ -35,12 +35,12 @@ public class InstalledGameViewModel : BaseViewModel
         // Set other properties
         SetupGameViewModel = new SetupGameViewModel(GameInstallation);
         CanUninstall = gameInstallation.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
-        HasOptionsDialog = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().Any(x => x.IsAvailable());
         IsFavorite = GameInstallation.GetValue<bool>(GameDataKey.RCP_IsFavorite);
 
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);
-        OpenOptionsCommand = new AsyncRelayCommand(OpenOptionsAsync);
+        OpenGameClientGameSettingsCommand = new AsyncRelayCommand(OpenGameClientGameSettingsAsync);
+        OpenGameSettingsCommand = new AsyncRelayCommand(OpenGameSettingsAsync);
         RenameCommand = new AsyncRelayCommand(RenameAsync);
         RemoveCommand = new AsyncRelayCommand(RemoveAsync);
         UninstallCommand = new AsyncRelayCommand(UninstallAsync);
@@ -69,7 +69,8 @@ public class InstalledGameViewModel : BaseViewModel
     #region Commands
 
     public ICommand LaunchCommand { get; }
-    public ICommand OpenOptionsCommand { get; }
+    public ICommand OpenGameClientGameSettingsCommand { get; }
+    public ICommand OpenGameSettingsCommand { get; }
     public ICommand RenameCommand { get; }
     public ICommand RemoveCommand { get; }
     public ICommand UninstallCommand { get; }
@@ -105,7 +106,8 @@ public class InstalledGameViewModel : BaseViewModel
     /// </summary>
     public bool CanUninstall { get; }
 
-    public bool HasOptionsDialog { get; }
+    public bool HasGameClientGameSettings { get; set; }
+    public bool HasGameSettings { get; set; }
 
     /// <summary>
     /// The game info items
@@ -278,13 +280,13 @@ public class InstalledGameViewModel : BaseViewModel
         }
     }
 
-    private async Task ReloadAsync(bool loadOptions)
+    private async Task ReloadAsync(bool rebuiltComponents)
     {
         using (await LoadLock.LockAsync())
         {
-            // Load options
-            if (loadOptions)
+            if (rebuiltComponents)
             {
+                // Only reload options if rebuilt components
                 DeinitializeGameOptions();
 
                 var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
@@ -292,6 +294,10 @@ public class InstalledGameViewModel : BaseViewModel
                 InitializeGameOptions();
 
                 CanCreateShortcut = GameInstallation.HasComponent<LaunchGameComponent>();
+
+                // Check for game settings availability
+                HasGameClientGameSettings = GameInstallation.HasComponent<GameClientGameSettingsComponent>();
+                HasGameSettings = GameInstallation.HasComponent<GameSettingsComponent>();
             }
 
             // Load info
@@ -340,7 +346,7 @@ public class InstalledGameViewModel : BaseViewModel
             return Task.CompletedTask;
 
         // Only reload options if the components were rebuilt
-        return ReloadAsync(loadOptions: rebuiltComponents);
+        return ReloadAsync(rebuiltComponents: rebuiltComponents);
     }
 
     public async Task LaunchAsync()
@@ -356,7 +362,15 @@ public class InstalledGameViewModel : BaseViewModel
         await launchComponent.LaunchAsync();
     }
 
-    public Task OpenOptionsAsync() => Services.UI.ShowGameOptionsAsync(GameInstallation);
+    public Task OpenGameClientGameSettingsAsync()
+    {
+        return Services.UI.ShowGameClientGameOptionsAsync(GameInstallation);
+    }
+
+    public Task OpenGameSettingsAsync()
+    {
+        return Services.UI.ShowGameSettingsAsync(GameInstallation);
+    }
 
     public async Task RenameAsync()
     {

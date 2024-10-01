@@ -31,7 +31,6 @@ public partial class AppUserData : BaseViewModel
     [JsonProperty] private bool IsFirstLaunch { set => App_IsFirstLaunch = value; }
     [JsonProperty] private bool AutoLocateGames { set => Game_AutoLocateGames = value; }
     [JsonProperty] private bool CloseAppOnGameLaunch { set => App_CloseAppOnGameLaunch = value; }
-    [JsonProperty] private bool CloseConfigOnSave { set => App_CloseConfigOnSave = value; }
     [JsonProperty] private FileSystemPath BackupLocation { set => Backup_BackupLocation = value; }
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }

@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -41,7 +41,7 @@ public sealed class GameDescriptor_RaymanJungleRun_Win32 : Win32GameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun_Win32(x, "Rayman Jungle Run (Ubisoft Connect)")));
-        builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this, x, UbisoftConnectHelpers.GetSaveDirectory(x), false, false, true)));
+        builder.Register(new GameSettingsComponent(x => new RaymanJungleRunSettingsViewModel(x, UbisoftConnectHelpers.GetSaveDirectory(x), false, false, true)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanJungleRun_PC));
 

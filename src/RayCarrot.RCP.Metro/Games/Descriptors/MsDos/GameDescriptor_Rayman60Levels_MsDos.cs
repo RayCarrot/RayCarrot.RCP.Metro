@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -34,7 +34,7 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman60Levels_MsDos(x, "Rayman 60 Levels")));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
-        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new Ray1SettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();

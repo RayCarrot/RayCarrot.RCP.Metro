@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A button mapping key item view model
 /// </summary>
-public class ButtonMapperKeyItemViewModel : BaseRCPViewModel, IDisposable
+public class ButtonMapperKeyItemViewModel : BaseRCPViewModel
 {
     #region Constructor
 
@@ -93,11 +93,6 @@ public class ButtonMapperKeyItemViewModel : BaseRCPViewModel, IDisposable
     {
         _newKey = newKey;
         OnPropertyChanged(nameof(NewKey));
-    }
-
-    public void Dispose()
-    {
-        ActionName?.Dispose();
     }
 
     #endregion

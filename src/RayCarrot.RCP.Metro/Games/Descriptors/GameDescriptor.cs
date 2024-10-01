@@ -1,10 +1,9 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Clients;
+﻿using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
-using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Games.SetupGame;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -130,17 +129,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // in of itself would cause some inconsistencies. And only showing it when there are clients available
         // might be confusing for users who haven't added an emulator yet and can't find it in the ui.
         builder.Register(new GameOptionsComponent(x => new GameClientSelectionGameOptionsViewModel(x)));
-
-        // TODO: These two components should maybe be registered from their respective components they depend on
-        // Config page
-        builder.Register(
-            component: new GameOptionsDialogPageComponent(
-                objFactory: x => x.GetRequiredComponent<GameConfigComponent>().CreateObject(),
-                isAvailableFunc: x => x.HasComponent<GameConfigComponent>(),
-                // Constant id since rebuilding components won't change this (we assume a game config
-                // component does not come from a client)
-                getInstanceIdFunc: _ => "GameConfig"),
-            priority: ComponentPriority.High);
     }
 
     protected abstract ProgramInstallationStructure CreateStructure();

@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
@@ -45,7 +45,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1_MsDos(x, "Rayman 1")));
-        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new Ray1SettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();

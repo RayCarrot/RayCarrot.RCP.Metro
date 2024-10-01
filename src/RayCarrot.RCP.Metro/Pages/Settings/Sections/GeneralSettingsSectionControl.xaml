@@ -18,10 +18,6 @@
                       IsChecked="{Binding Path=App_CloseAppOnGameLaunch}"
                       Margin="0 0 0 8" />
 
-            <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
-                      IsChecked="{Binding Path=App_CloseConfigOnSave}"
-                      Margin="0 0 0 8" />
-
             <CheckBox Content="{Resx Settings_GetBetaUpdates}"
                       IsChecked="{Binding Path=Update_GetBetaUpdates}"
                       rcp:UserLevelAssist.MinUserLevel="Technical"

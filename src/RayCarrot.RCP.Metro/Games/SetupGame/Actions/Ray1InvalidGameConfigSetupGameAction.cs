@@ -14,8 +14,8 @@ public class Ray1InvalidGameConfigSetupGameAction : SetupGameAction
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
-    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Config;
-    public override LocalizedString? FixActionDisplayName => "Open config"; // TODO-LOC
+    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameSettings;
+    public override LocalizedString? FixActionDisplayName => "Open game settings"; // TODO-LOC
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {
@@ -57,7 +57,7 @@ public class Ray1InvalidGameConfigSetupGameAction : SetupGameAction
 
     public override async Task FixAsync(GameInstallation gameInstallation)
     {
-        await Services.UI.ShowGameOptionsAsync(gameInstallation);
+        await Services.UI.ShowGameSettingsAsync(gameInstallation);
         Services.Messenger.Send(new FixedSetupGameActionMessage(gameInstallation));
     }
 }

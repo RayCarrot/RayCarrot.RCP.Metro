@@ -1,7 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -63,7 +63,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MsDos : MsDosGameDescri
         builder.Register<AdditionalLaunchActionsComponent, Ray1MsDosAdditionalLaunchActionsComponent>();
         builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
-        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new Ray1SettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();

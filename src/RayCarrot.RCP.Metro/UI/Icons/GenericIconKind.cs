@@ -12,7 +12,7 @@ public enum GenericIconKind
     GameAction_Microsoft,
 
     GameFeature_Archive,
-    GameFeature_Config,
+    GameFeature_Settings,
     GameFeature_Progression,
     GameFeature_Utilities,
     GameFeature_ModLoader,
@@ -30,11 +30,8 @@ public enum GenericIconKind
     GameAdd_Download,
     GameAdd_Purchase,
 
-    GameOptions_Config,
-    GameOptions_GameClient,
-
     SetupGame_Mod,
-    SetupGame_Config,
+    SetupGame_GameSettings,
     SetupGame_GameClient,
     SetupGame_FileReplacement,
     SetupGame_Fix,
@@ -56,7 +53,7 @@ public enum GenericIconKind
     Window_ArchiveCreator,
     Window_ModLoader,
     Window_ModCreator,
-    Window_GameOptions,
+    Window_GameSettings,
     Window_Installer,
     Window_Downloader,
     Window_DriveSelection,

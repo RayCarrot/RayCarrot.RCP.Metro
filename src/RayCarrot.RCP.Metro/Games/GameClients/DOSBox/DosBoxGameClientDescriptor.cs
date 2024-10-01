@@ -1,7 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 
 namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
 
@@ -45,15 +45,11 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
         // Add the RCP config file
         builder.Register<DosBoxConfigFileComponent, AutoDosBoxConfigFileComponent>();
 
-        // Client config page
-        builder.Register(new GameOptionsDialogPageComponent(
-            objFactory: x => new DosBoxGameConfigViewModel(
-                gameInstallation: x, 
-                gameClientInstallation: Services.GameClients.GetRequiredAttachedGameClient(x), 
-                configFilePath: x.GetRequiredComponent<DosBoxConfigFileComponent, AutoDosBoxConfigFileComponent>().CreateObject()),
-            isAvailableFunc: _ => true,
-            // The id depends on the client as that determines the content
-            getInstanceIdFunc: x => $"ClientConfig_{Services.GameClients.GetRequiredAttachedGameClient(x).InstallationId}"));
+        // Client settings
+        builder.Register(new GameClientGameSettingsComponent(x => new DosBoxGameSettingsViewModel(
+            gameInstallation: x, 
+            gameClientInstallation: Services.GameClients.GetRequiredAttachedGameClient(x), 
+            configFilePath: x.GetRequiredComponent<DosBoxConfigFileComponent, AutoDosBoxConfigFileComponent>().CreateObject())));
     }
 
     public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>

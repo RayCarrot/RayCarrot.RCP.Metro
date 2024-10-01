@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -48,7 +48,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MsDos : MsDosGameDescri
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new GameConfigComponent(x => new Ray1ConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new Ray1SettingsViewModel(x)));
         builder.Register(new OnGameAddedComponent(TryFindMountPath));
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));

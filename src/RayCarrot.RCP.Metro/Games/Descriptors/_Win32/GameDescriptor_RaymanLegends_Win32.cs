@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Modules.UbiArtLocalization;
@@ -47,7 +47,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends_Win32(x, "Rayman Legends")));
-        builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
+        builder.Register(new GameSettingsComponent(x => new UbiArtSettingsViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanLegends_PC));
         builder.Register<ArchiveComponent>(new UbiArtArchiveComponent());

@@ -18,14 +18,10 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_ModLoader">ArchiveCogOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_GameClient">FileCogOutline</iconPacks:PackIconMaterialKind>
-    
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClient">ApplicationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClientEdit">ApplicationEditOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClientSettings">ApplicationCogOutline</iconPacks:PackIconMaterialKind>
     
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
-
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Admin">Security</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.File">FileOutline</iconPacks:PackIconMaterialKind>
@@ -102,9 +98,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Archive}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Config}" 
-                       IconKind="{StaticResource RCP.Icons.GameOptions_Config}" 
-                       IconColor="{StaticResource RCP.Brushes.GameConfig}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Settings}" 
+                       IconKind="{StaticResource RCP.Icons.Settings}" 
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Progression}" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
@@ -150,18 +146,11 @@
                        IconKind="{StaticResource RCP.Icons.Purchase}" 
                        IconColor="{x:Null}" />
 
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameOptions_Config}" 
-                       IconKind="{StaticResource RCP.Icons.GameOptions_Config}"
-                       IconColor="{StaticResource RCP.Brushes.GameConfig}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameOptions_GameClient}" 
-                       IconKind="{StaticResource RCP.Icons.Settings_GameClient}"
-                       IconColor="{StaticResource RCP.Brushes.GameClient}" />
-
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Mod}" 
                        IconKind="{StaticResource RCP.Icons.ModLoader}"
                        IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Config}" 
-                       IconKind="{StaticResource RCP.Icons.GameOptions_Config}"
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameSettings}" 
+                       IconKind="{StaticResource RCP.Icons.Settings}"
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClient}" 
                        IconKind="{StaticResource RCP.Icons.GameClient}"
@@ -222,7 +211,7 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ModCreator}" 
                        IconKind="{StaticResource RCP.Icons.ModCreator}"
                        IconColor="{StaticResource RCP.Brushes.ModLoader}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GameOptions}" 
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GameSettings}" 
                        IconKind="{StaticResource RCP.Icons.Settings}"
                        IconColor="{StaticResource RCP.Brushes.Settings}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_Installer}" 

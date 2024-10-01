@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -34,7 +34,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena_Win32(x, "Rayman Arena", false)));
-        builder.Register(new GameConfigComponent(x => new RaymanArenaConfigViewModel(x)));
+        builder.Register(new GameSettingsComponent(x => new RaymanArenaSettingsViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "ra_pc", "ra_pc"));
@@ -53,7 +53,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
             @"TribeBin\vignette.cnt",
             @"TribeBin\Sound.cnt",
         }));
-        builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
         builder.Register<CPATextureSyncComponent, RaymanMArenaCPATextureSyncComponent>();
 
         builder.Register(new GameBananaGameComponent(8592));

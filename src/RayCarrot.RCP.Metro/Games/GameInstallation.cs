@@ -44,7 +44,7 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     public GameDescriptor GameDescriptor { get; }
 
     public string GameId => GameDescriptor.GameId;
-    public string FullId => $"{GameId}|{InstallationId}";
+    public string FullId => $"{GameId}|{InstallationId}"; // TODO-UPDATE: Cache this
 
     #endregion
 
