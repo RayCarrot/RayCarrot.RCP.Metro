@@ -1,7 +1,6 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
-public record GraphicsMode
+public class GraphicsMode
 {
     public GraphicsMode(int width, int height, int refreshRate = 0)
     {
@@ -16,7 +15,7 @@ public record GraphicsMode
     public int Height { get; }
     public int RefreshRate { get; }
 
-    public static bool TryParse(string value, out GraphicsMode g)
+    public static bool TryParse(string? value, out GraphicsMode? g)
     {
         // Default to null
         g = null;

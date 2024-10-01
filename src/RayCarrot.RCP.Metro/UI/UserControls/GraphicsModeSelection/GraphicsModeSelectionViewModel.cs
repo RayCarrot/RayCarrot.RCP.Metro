@@ -77,7 +77,7 @@ public class GraphicsModeSelectionViewModel : BaseRCPViewModel
                 GraphicsModes.Clear();
 
                 Display.DEVMODE vDevMode = new();
-                var distinctGraphicsModes = new HashSet<GraphicsMode>();
+                var distinctGraphicsModes = new List<GraphicsMode>();
 
                 int i = 0;
                 while (Display.EnumDisplaySettings(null, i, ref vDevMode))
@@ -100,7 +100,13 @@ public class GraphicsModeSelectionViewModel : BaseRCPViewModel
                     };
 
                     if (isValid)
-                        distinctGraphicsModes.Add(new GraphicsMode(width, height, IncludeRefreshRate ? refreshRate : 0));
+                    {
+                        if (!IncludeRefreshRate)
+                            refreshRate = 0;
+
+                        if (!distinctGraphicsModes.Any(x => x.Width == width && x.Height == height && x.RefreshRate == refreshRate))
+                            distinctGraphicsModes.Add(new GraphicsMode(width, height, refreshRate));
+                    }
 
                     i++;
                 }
