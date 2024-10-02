@@ -6,109 +6,129 @@
                           xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
                           xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Games.Settings"
                           xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                          xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
                           Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                           Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                           d:DesignWidth="650" d:DesignHeight="700"
                           mc:Ignorable="d"
                           d:DataContext="{d:DesignInstance settings:GameSettingsViewModel}">
-    <Grid>
+    <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0"
-                        rcp:UserLevelAssist.MinUserLevel="Technical">
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
-                           Text="{Resx Config_LocationsHeader}"
-                           Margin="0 0 0 8" />
+            <!-- Settings content -->
+            <rcp:Card Grid.Row="0"
+                      Margin="{StaticResource RCP.Thicknesses.Card}">
+                <ScrollViewer>
+                    <i:Interaction.Behaviors>
+                        <rcp:FocusScrollViewerOnLoad />
+                    </i:Interaction.Behaviors>
 
-                <ItemsControl ItemsSource="{Binding Path=SettingsLocations, Mode=OneTime}"
-                              Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
-                              Margin="0 0 0 4">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0 0 0 4">
+                    <ContentPresenter Content="{Binding}">
+                        <ContentPresenter.Resources>
+                            <!-- Games -->
+                            <DataTemplate DataType="{x:Type settings:RabbidsGoHomeSettingsViewModel}">
+                                <settings:RabbidsGoHomeSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:Ray1SettingsViewModel}">
+                                <settings:Ray1SettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:Rayman2SettingsViewModel}">
+                                <settings:Rayman2SettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:Rayman3SettingsViewModel}">
+                                <settings:BaseRayman3MArenaSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:RaymanArenaSettingsViewModel}">
+                                <settings:BaseRayman3MArenaSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:RaymanMSettingsViewModel}">
+                                <settings:BaseRayman3MArenaSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:BaseRaymanRavingRabbidsSettingsViewModel}">
+                                <settings:RaymanRavingRabbidsSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:RaymanRavingRabbids2SettingsViewModel}">
+                                <settings:RaymanRavingRabbids2SettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:RaymanJungleRunSettingsViewModel}">
+                                <settings:RaymanJungleRunSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:RaymanFiestaRunSettingsViewModel}">
+                                <settings:RaymanFiestaRunSettingsControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:UbiArtSettingsViewModel}">
+                                <settings:UbiArtSettingsControl />
+                            </DataTemplate>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                            <!-- Game clients -->
+                            <DataTemplate DataType="{x:Type settings:DosBoxGameSettingsViewModel}">
+                                <settings:DosBoxGameSettingsControl />
+                            </DataTemplate>
+                        </ContentPresenter.Resources>
+                    </ContentPresenter>
+                </ScrollViewer>
+            </rcp:Card>
 
-                                <Image Grid.Column="0"
-                                       Source="{Binding Path=IconSource}" />
-                                <iconPacks:PackIconMaterial Grid.Column="0"
-                                                            Kind="{Binding Path=IconKind, Mode=OneTime}" 
-                                                            Visibility="{Binding Path=IconSource, Converter={rcp:ObjectNullToVisibilityConverter}}"/>
+            <!-- Settings locations -->
+            <rcp:Card x:Name="SettingsLocationsCard" 
+                      Grid.Row="1"
+                      Margin="{StaticResource RCP.Thicknesses.Card}"
+                      Opacity="0"
+                      Visibility="Collapsed">
+                <rcp:Card.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="SettingsLocationsScaleTransform" />
+                    </TransformGroup>
+                </rcp:Card.LayoutTransform>
 
-                                <TextBlock Grid.Column="1"
-                                           Margin="4 0 48 0" 
-                                           ToolTip="{Binding Path=LinkPath, Mode=OneTime}"
-                                           VerticalAlignment="Center" 
-                                           TextTrimming="WordEllipsis">
-                                    <Hyperlink Command="{Binding Path=OpenLinkCommand, Mode=OneTime}">
-                                        <Run Text="{Binding Path=LinkPath, Mode=OneTime}" />
-                                    </Hyperlink>
-                                </TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <StackPanel>
+                    <!-- TODO-LOC -->
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               Text="Settings locations"
+                               Margin="0 0 0 8" />
 
-            </StackPanel>
+                    <ItemsControl ItemsSource="{Binding Path=SettingsLocations, Mode=OneTime}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 0 0 4">
 
-            <ContentPresenter Grid.Row="1"
-                              Content="{Binding}">
-                <ContentPresenter.Resources>
-                    <!-- Games -->
-                    <DataTemplate DataType="{x:Type settings:RabbidsGoHomeSettingsViewModel}">
-                        <settings:RabbidsGoHomeSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:Ray1SettingsViewModel}">
-                        <settings:Ray1SettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:Rayman2SettingsViewModel}">
-                        <settings:Rayman2SettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:Rayman3SettingsViewModel}">
-                        <settings:BaseRayman3MArenaSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:RaymanArenaSettingsViewModel}">
-                        <settings:BaseRayman3MArenaSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:RaymanMSettingsViewModel}">
-                        <settings:BaseRayman3MArenaSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:BaseRaymanRavingRabbidsSettingsViewModel}">
-                        <settings:RaymanRavingRabbidsSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:RaymanRavingRabbids2SettingsViewModel}">
-                        <settings:RaymanRavingRabbids2SettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:RaymanJungleRunSettingsViewModel}">
-                        <settings:RaymanJungleRunSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:RaymanFiestaRunSettingsViewModel}">
-                        <settings:RaymanFiestaRunSettingsControl />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type settings:UbiArtSettingsViewModel}">
-                        <settings:UbiArtSettingsControl />
-                    </DataTemplate>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                    <!-- Game clients -->
-                    <DataTemplate DataType="{x:Type settings:DosBoxGameSettingsViewModel}">
-                        <settings:DosBoxGameSettingsControl />
-                    </DataTemplate>
-                </ContentPresenter.Resources>
-            </ContentPresenter>
+                                    <Image Grid.Column="0"
+                                           Source="{Binding Path=IconSource}" />
+                                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                Kind="{Binding Path=IconKind, Mode=OneTime}"
+                                                                Visibility="{Binding Path=IconSource, Converter={rcp:ObjectNullToVisibilityConverter}}" />
+
+                                    <TextBlock Grid.Column="1"
+                                               Margin="4 0 48 0"
+                                               ToolTip="{Binding Path=LinkPath, Mode=OneTime}"
+                                               VerticalAlignment="Center"
+                                               TextTrimming="WordEllipsis">
+                                        <Hyperlink Command="{Binding Path=OpenLinkCommand, Mode=OneTime}">
+                                            <Run Text="{Binding Path=LinkPath, Mode=OneTime}" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+            </rcp:Card>
 
         </Grid>
 
@@ -116,27 +136,85 @@
               Margin="{StaticResource RCP.Thicknesses.Card}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" 
+            <!-- TODO-LOC -->
+            <ToggleButton Grid.Column="0" 
+                          Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
+                          Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
+                          Content="Show settings locations"
+                          rcp:Icon.Kind="FileMultipleOutline"
+                          Margin="0 0 4 0">
+                <ToggleButton.Triggers>
+                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsLocationsCard" 
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 Storyboard.TargetName="SettingsLocationsCard" 
+                                                 From="0" To="1"
+                                                 Duration="0:0:0.22"/>
+                                <DoubleAnimation Storyboard.TargetName="SettingsLocationsScaleTransform" 
+                                                 Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
+                                                 From="0" To="1"
+                                                 Duration="0:0:0.22">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseInOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="SettingsLocationsCard"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.22" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsLocationsCard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.22" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="SettingsLocationsScaleTransform" 
+                                                 Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
+                                                 From="1" To="0"
+                                                 Duration="0:0:0.22">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseInOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ToggleButton.Triggers>
+            </ToggleButton>
+
+            <!-- TODO-LOC -->
+            <Button Grid.Column="1" 
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     Visibility="{Binding Path=HasRecommendedSettings, Converter={rcp:BooleanToVisibilityConverter}}"
-                    Content="{Resx DosBoxOptions_Recommended}"
+                    Content="Apply recommended settings"
                     rcp:Icon.Kind="AutoFix"
                     Command="{Binding Path=ApplyRecommendedSettingsCommand}"
                     Margin="0 0 4 0" />
 
-            <Button Grid.Column="2"
+            <Button Grid.Column="3"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     Content="{Resx Cancel}"
                     rcp:Icon.Kind="CloseOutline"
                     Margin="0 0 4 0"
                     Click="CancelButton_OnClick" />
 
-            <Button Grid.Column="3"
+            <Button Grid.Column="4"
                     Style="{StaticResource RCP.Styles.Button.Accent}"
                     Content="{Resx Save}"
                     rcp:Icon.Kind="ContentSaveOutline"

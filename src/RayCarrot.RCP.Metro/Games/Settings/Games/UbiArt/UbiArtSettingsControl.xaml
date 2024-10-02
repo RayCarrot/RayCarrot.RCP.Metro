@@ -13,145 +13,140 @@
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              d:DesignWidth="400"
              d:DataContext="{d:DesignInstance settings:UbiArtSettingsViewModel}">
-    <ScrollViewer>
-        <i:Interaction.Behaviors>
-            <rcp:FocusScrollViewerOnLoad />
-        </i:Interaction.Behaviors>
+    <StackPanel>
 
-        <StackPanel Margin="12 0">
-            <i:Interaction.Behaviors>
-                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-            </i:Interaction.Behaviors>
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_Resolution}"
+                   Margin="0 0 0 8" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_Resolution}" />
+        <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"
+                                   Margin="0 0 0 8" />
 
-            <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
+        <CheckBox Content="{Resx Config_Fullscreen}"
+                  ToolTip="{Resx Config_FullscreenInfo}"
+                  Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                  IsChecked="{Binding Path=FullscreenMode}"
+                  Margin="0 0 0 8" />
 
-            <CheckBox Content="{Resx Config_Fullscreen}"
-                      ToolTip="{Resx Config_FullscreenInfo}"
-                      IsChecked="{Binding Path=FullscreenMode}" />
+        <!-- TODO-LOC -->
+        <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}"
+                  Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                  DataContext="{Binding Path=CommandArgsViewModel, Mode=OneTime}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="Debug launch commands"
+                           Margin="0 0 0 8" />
 
-            <!-- TODO-LOC -->
-            <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}"
-                      DataContext="{Binding Path=CommandArgsViewModel, Mode=OneTime}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Text="Debug launch commands"
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 0 0 8">
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                               Text="Source" />
+
+                    <rcp:InfoIcon Text="The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work." />
+
+                </StackPanel>
+
+                <rcp:RadioButtonExtended Content="None"
+                                         IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}"
+                                         Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
+                                         Margin="0 0 0 4" />
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 4">
+                    <rcp:RadioButtonExtended Content="cmdline.txt file"
+                                             IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.CommandLineFile}}"
+                                             Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
+                                             IsEnabled="{Binding Path=CommandLineFileSourceAvailability.IsAvailable, FallbackValue=False}"
+                                             Margin="0 0 12 0" />
+
+                    <StackPanel DataContext="{Binding Path=CommandLineFileSourceAvailability}" 
+                                Orientation="Horizontal"
+                                Visibility="{Binding Path=IsAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}">
+                        <TextBlock Text="Not available" 
+                                   FontStyle="Italic"
+                                   Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 4 0" />
+
+                        <rcp:InfoIcon Margin="0 0 8 0" 
+                                      Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                      Text="{Binding Path=NotAvailableInfo.Value}" />
+
+                        <Button Style="{StaticResource RCP.Styles.Button.Default}"
+                                rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}"
+                                rcp:Icon.Size="16"
+                                Content="Install mod"
+                                Visibility="{Binding Path=RequiresMod, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                Command="{Binding Path=InstallModCommand, Mode=OneTime}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
+                    <rcp:RadioButtonExtended Content="Launch arguments"
+                                             IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.LaunchArguments}}"
+                                             Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
+                                             IsEnabled="{Binding Path=LaunchArgumentsSourceAvailability.IsAvailable, FallbackValue=False}"
+                                             Margin="0 0 12 0" />
+
+                    <StackPanel DataContext="{Binding Path=LaunchArgumentsSourceAvailability}" 
+                                Orientation="Horizontal"
+                                Visibility="{Binding Path=IsAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}">
+                        <TextBlock Text="Not available" 
+                                   FontStyle="Italic"
+                                   Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 4 0" />
+
+                        <rcp:InfoIcon Margin="0 0 8 0" 
+                                      Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                      Text="{Binding Path=NotAvailableInfo.Value}" />
+
+                        <Button Style="{StaticResource RCP.Styles.Button.Default}"
+                                rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}"
+                                rcp:Icon.Size="16"
+                                Content="Install mod"
+                                Visibility="{Binding Path=RequiresMod, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                Command="{Binding Path=InstallModCommand, Mode=OneTime}" />
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Separator Margin="0 0 0 8"/>
+
+                <StackPanel Visibility="{Binding Path=Source, Converter={rcp:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}">
+
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                               Text="Commands"
                                Margin="0 0 0 8" />
 
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0 0 0 8">
-                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="Source" />
-
-                        <rcp:InfoIcon Text="The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work." />
-
-                    </StackPanel>
-
-                    <rcp:RadioButtonExtended Content="None"
-                                             IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}"
-                                             Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
-                                             Margin="0 0 0 4" />
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 4">
-                        <rcp:RadioButtonExtended Content="cmdline.txt file"
-                                                 IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.CommandLineFile}}"
-                                                 Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
-                                                 IsEnabled="{Binding Path=CommandLineFileSourceAvailability.IsAvailable, FallbackValue=False}"
-                                                 Margin="0 0 12 0" />
-
-                        <StackPanel DataContext="{Binding Path=CommandLineFileSourceAvailability}" 
-                                    Orientation="Horizontal"
-                                    Visibility="{Binding Path=IsAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}">
-                            <TextBlock Text="Not available" 
-                                       FontStyle="Italic"
-                                       Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-                                       VerticalAlignment="Center"
-                                       Margin="0 0 4 0" />
-
-                            <rcp:InfoIcon Margin="0 0 8 0" 
-                                          Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-                                          Text="{Binding Path=NotAvailableInfo.Value}" />
-
-                            <Button Style="{StaticResource RCP.Styles.Button.Default}"
-                                    rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}"
-                                    rcp:Icon.Size="16"
-                                    Content="Install mod"
-                                    Visibility="{Binding Path=RequiresMod, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
-                                    Command="{Binding Path=InstallModCommand, Mode=OneTime}" />
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
-                        <rcp:RadioButtonExtended Content="Launch arguments"
-                                                 IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.LaunchArguments}}"
-                                                 Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
-                                                 IsEnabled="{Binding Path=LaunchArgumentsSourceAvailability.IsAvailable, FallbackValue=False}"
-                                                 Margin="0 0 12 0" />
-
-                        <StackPanel DataContext="{Binding Path=LaunchArgumentsSourceAvailability}" 
-                                    Orientation="Horizontal"
-                                    Visibility="{Binding Path=IsAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}">
-                            <TextBlock Text="Not available" 
-                                       FontStyle="Italic"
-                                       Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-                                       VerticalAlignment="Center"
-                                       Margin="0 0 4 0" />
-
-                            <rcp:InfoIcon Margin="0 0 8 0" 
-                                          Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-                                          Text="{Binding Path=NotAvailableInfo.Value}" />
-
-                            <Button Style="{StaticResource RCP.Styles.Button.Default}"
-                                    rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}"
-                                    rcp:Icon.Size="16"
-                                    Content="Install mod"
-                                    Visibility="{Binding Path=RequiresMod, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
-                                    Command="{Binding Path=InstallModCommand, Mode=OneTime}" />
-                        </StackPanel>
-
-                    </StackPanel>
+                    <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFields}"
+                                  ItemsSource="{Binding Path=EditorFields, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=3}" />
 
                     <Separator Margin="0 0 0 8"/>
 
-                    <StackPanel Visibility="{Binding Path=Source, Converter={rcp:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}">
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                               Text="Output"
+                               Margin="0 0 0 8" />
 
-                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="Commands"
-                                   Margin="0 0 0 8" />
-
-                        <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFields}"
-                                      ItemsSource="{Binding Path=EditorFields, Mode=OneTime}"
-                                      d:ItemsSource="{d:SampleData ItemCount=3}" />
-
-                        <Separator Margin="0 0 0 8"/>
-
-                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="Output"
-                                   Margin="0 0 0 8" />
-
-                        <TextBox Text="{Binding Path=Text}"
-                                 AcceptsReturn="True">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="LostFocus">
-                                    <i:InvokeCommandAction Command="{Binding Path=UpdateArgsFromTextCommand, Mode=OneWay}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TextBox>
-                    </StackPanel>
-
-                    <Viewbox>
-                        <TextBlock Visibility="{Binding Path=Source, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}" 
-                                   Text="Select a source for the launch options to use and edit the commands"
-                                   Margin="30 0"
-                                   Opacity="0.5" />
-
-                    </Viewbox>
-
+                    <TextBox Text="{Binding Path=Text}"
+                             AcceptsReturn="True">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="LostFocus">
+                                <i:InvokeCommandAction Command="{Binding Path=UpdateArgsFromTextCommand, Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
                 </StackPanel>
-            </rcp:Card>
 
-        </StackPanel>
+                <Viewbox>
+                    <TextBlock Visibility="{Binding Path=Source, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}" 
+                               Text="Select a source for the launch options to use and edit the commands"
+                               Margin="30 0"
+                               Opacity="0.5" />
 
-    </ScrollViewer>
+                </Viewbox>
+
+            </StackPanel>
+        </rcp:Card>
+
+    </StackPanel>
 
 </UserControl>

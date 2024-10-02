@@ -2,53 +2,48 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Games.Settings"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
+             d:Background="{DynamicResource RCP.Brushes.Card.Background}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance settings:RaymanFiestaRunSettingsViewModel}">
 
-    <ScrollViewer>
-        <i:Interaction.Behaviors>
-            <rcp:FocusScrollViewerOnLoad />
-        </i:Interaction.Behaviors>
+    <StackPanel>
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_Sound}"
+                   Margin="0 0 0 8" />
 
-        <StackPanel Margin="12 0">
-            <i:Interaction.Behaviors>
-                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-            </i:Interaction.Behaviors>
+        <TextBlock Text="{Resx Config_MusicVolumeHeader}"
+                   Margin="0 0 0 4" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_MusicVolumeHeader}" />
+        <Slider Value="{Binding Path=MusicVolume}"
+                IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
+                Minimum="0"
+                Maximum="99"
+                TickPlacement="BottomRight"
+                TickFrequency="25"
+                Width="300"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left"
+                Margin="0 0 0 8" />
 
-            <Slider Value="{Binding Path=MusicVolume}"
-                    IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
-                    Minimum="0"
-                    Maximum="99"
-                    TickPlacement="BottomRight"
-                    TickFrequency="25"
-                    Width="300"
-                    AutoToolTipPlacement="TopLeft"
-                    HorizontalAlignment="Left" />
+        <TextBlock Text="{Resx Config_SoundVolumeHeader}"
+                   Margin="0 0 0 4" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_SoundVolumeHeader}" />
+        <Slider Value="{Binding Path=SoundVolume}"
+                IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
+                Minimum="0"
+                Maximum="99"
+                TickPlacement="BottomRight"
+                TickFrequency="25"
+                Width="300"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
 
-            <Slider Value="{Binding Path=SoundVolume}"
-                    IsEnabled="{Binding Path=IsVolumeSettingsAvailable}"
-                    Minimum="0"
-                    Maximum="99"
-                    TickPlacement="BottomRight"
-                    TickFrequency="25"
-                    Width="300"
-                    AutoToolTipPlacement="TopLeft"
-                    HorizontalAlignment="Left" />
-
-        </StackPanel>
-
-    </ScrollViewer>
+    </StackPanel>
 
 </UserControl>
