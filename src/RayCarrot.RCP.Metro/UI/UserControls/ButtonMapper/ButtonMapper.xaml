@@ -9,6 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DataGrid x:Name="ButtonMapperDataGrid"
               d:DataContext="{d:DesignInstance local:ButtonMapper}"
+              BorderThickness="{StaticResource Thickness.Border.Default}"
+              BorderBrush="{DynamicResource MahApps.Brushes.TextBox.Border}"
+              mah:ControlsHelper.CornerRadius="{StaticResource CornerRadius.Default}"
               ItemsSource="{Binding Path=ItemsSource}"
               AutoGenerateColumns="False"
               CanUserDeleteRows="False"
