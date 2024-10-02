@@ -32,8 +32,8 @@
                         </Grid.ColumnDefinitions>
 
                         <iconPacks:PackIconMaterial Grid.Column="0"
-                                                    Kind="{StaticResource RCP.Icons.Games}"
-                                                    Foreground="{StaticResource RCP.Brushes.Games}"
+                                                    Kind="{StaticResource RCP.Icons.SetupGame}"
+                                                    Foreground="{StaticResource RCP.Brushes.SetupGame}"
                                                     VerticalAlignment="Center"
                                                     Margin="0 0 8 0" />
 

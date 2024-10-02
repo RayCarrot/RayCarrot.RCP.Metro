@@ -47,6 +47,8 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.List">ViewListOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Fix">AutoFix</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.SetupGame">WrenchOutline</iconPacks:PackIconMaterialKind>
+
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.RomFinder">FolderSearchOutline</iconPacks:PackIconMaterialKind>
 
