@@ -20,6 +20,9 @@ public class GameClientInstallation : ProgramInstallation, IComparable<GameClien
         : base(installLocation, installationId, data)
     {
         GameClientDescriptor = gameClientDescriptor;
+
+        GameClientId = gameClientDescriptor.GameClientId;
+        FullId = $"{gameClientDescriptor.GameClientId}|{installationId}";
     }
 
     #endregion
@@ -30,8 +33,8 @@ public class GameClientInstallation : ProgramInstallation, IComparable<GameClien
     [JsonConverter(typeof(StringGameClientDescriptorConverter))]
     public GameClientDescriptor GameClientDescriptor { get; }
 
-    public string GameClientId => GameClientDescriptor.GameClientId;
-    public string FullId => $"{GameClientId}|{InstallationId}";
+    public string GameClientId { get; }
+    public string FullId { get; }
 
     #endregion
 

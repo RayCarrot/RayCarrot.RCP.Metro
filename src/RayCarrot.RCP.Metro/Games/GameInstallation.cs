@@ -21,6 +21,9 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
         : base(installLocation, installationId, data)
     {
         GameDescriptor = gameDescriptor;
+
+        GameId = gameDescriptor.GameId;
+        FullId = $"{gameDescriptor.GameId}|{installationId}";
     }
 
     #endregion
@@ -43,8 +46,8 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     [JsonConverter(typeof(StringGameDescriptorConverter))]
     public GameDescriptor GameDescriptor { get; }
 
-    public string GameId => GameDescriptor.GameId;
-    public string FullId => $"{GameId}|{InstallationId}"; // TODO-UPDATE: Cache this
+    public string GameId { get; }
+    public string FullId { get; }
 
     #endregion
 
