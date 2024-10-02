@@ -90,7 +90,8 @@ public abstract class GameSettingsViewModel : BaseViewModel
         {
             Logger.Error(ex, "Loading game settings");
 
-            // TODO-UPDATE: Show error message
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the game settings. You might need to run the app as administrator.");
 
             return false;
         }
@@ -126,7 +127,8 @@ public abstract class GameSettingsViewModel : BaseViewModel
         {
             Logger.Error(ex, "Saving settings for {0}", GameInstallation.FullId);
 
-            // TODO-UPDATE: Show error message
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when saving the game settings. You might need to run the app as administrator.");
 
             return;
         }
