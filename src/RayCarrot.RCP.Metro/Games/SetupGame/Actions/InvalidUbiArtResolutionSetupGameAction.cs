@@ -34,6 +34,11 @@ public class InvalidUbiArtResolutionSetupGameAction : SetupGameAction
             if (key == null)
                 return false;
 
+            // The resolution is only an issue if in fullscreen mode
+            int fullscreen = getInt("FullScreen");
+            if (fullscreen == 0)
+                return false;
+
             int width = getInt("ScreenWidth");
             int height = getInt("ScreenHeight");
 
