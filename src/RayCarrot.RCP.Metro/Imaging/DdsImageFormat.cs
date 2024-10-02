@@ -141,6 +141,9 @@ public class DdsImageFormat : ImageFormat
         int width = data.Metadata.Width;
         int height = data.Metadata.Height;
 
+        if (!width.IsPowerOfTwo() || !height.IsPowerOfTwo())
+            throw new Exception("In order to ensure full compatibility and to generate mipmaps the image must have dimensions which are a power of 2, such as 128, 256, 512, 1024 etc.");
+
         int rowPitch = width * 4;
         int slicePitch = width * height * 4;
 
