@@ -103,6 +103,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Settings}" 
                        IconKind="{StaticResource RCP.Icons.Settings}" 
                        IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_SetupGame}" 
+                       IconKind="{StaticResource RCP.Icons.SetupGame}" 
+                       IconColor="{StaticResource RCP.Brushes.SetupGame}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Progression}" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />

@@ -13,6 +13,7 @@ public enum GenericIconKind
 
     GameFeature_Archive,
     GameFeature_Settings,
+    GameFeature_SetupGame,
     GameFeature_Progression,
     GameFeature_Utilities,
     GameFeature_ModLoader,
