@@ -58,7 +58,7 @@ public class DownloaderViewModel : UserInputViewModel
             ItemMaxProgress = e.TotalBytesToReceive;
             ItemCurrentProgress = e.BytesReceived;
 
-            TotalCurrentProgress = CurrentStep * 100 + e.ProgressPercentage;
+            TotalCurrentProgress = CurrentStep * 100 + e.BytesReceived / (double)e.TotalBytesToReceive * 100;
 
             OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
         }
