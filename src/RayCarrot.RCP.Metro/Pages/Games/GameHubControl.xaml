@@ -359,6 +359,9 @@
                             <DataTemplate DataType="{x:Type panels:RuntimeModificationsGamePanelViewModel}">
                                 <panels:RuntimeModificationsGamePanelControl />
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type panels:PerLevelSoundtrackGamePanelViewModel}">
+                                <panels:PerLevelSoundtrackGamePanelControl />
+                            </DataTemplate>
                         </ItemsControl.Resources>
 
                         <ItemsControl.ItemsPanel>

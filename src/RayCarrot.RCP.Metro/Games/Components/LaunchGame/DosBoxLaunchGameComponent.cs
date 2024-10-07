@@ -3,7 +3,6 @@ using System.Text;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
-using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -56,13 +55,38 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     private string GetDOSBoxLaunchArgs(string? gameLaunchArgs = null)
     {
+        // Create a string builder for the argument
+        StringBuilder str = new();
+
+        // Add config files
+        foreach (FileSystemPath configFile in GetConfigFilePaths())
+        {
+            if (configFile.FileExists)
+                str.Append($"-conf \"{configFile.FullPath}\" ");
+        }
+
+        // Add launch commands
+        DosBoxLaunchCommandsComponent launchCommandsComponent = GameInstallation.GetRequiredComponent<DosBoxLaunchCommandsComponent>();
+        foreach (string cmd in launchCommandsComponent.GetLaunchCommands())
+        {
+            // Add quotes if there's a space in the command
+            if (cmd.Contains(" "))
+                str.Append($"-c \"{cmd}\" ");
+            else
+                str.Append($"-c {cmd} ");
+        }
+
+        // Don't show the console
+        str.Append("-noconsole");
+
+        // Return the argument
+        return str.ToString();
+    }
+
+    private IReadOnlyList<FileSystemPath> GetConfigFilePaths()
+    {
+        // Get the game client installation
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
-
-        string exeFileName = GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>().FileSystem.GetLocalPath(ProgramPathType.PrimaryExe);
-        string? gameArgs = gameLaunchArgs ?? GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
-        string launchName = gameArgs == null ? exeFileName : $"{exeFileName} {gameArgs}";
-
-        FileSystemPath mountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Client_DosBox_MountPath);
 
         List<FileSystemPath> configFilePaths = new();
 
@@ -74,56 +98,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         // Get config files from the components
         configFilePaths.AddRange(GameInstallation.GetComponents<DosBoxConfigFileComponent>().CreateObjects());
 
-        return GetDOSBoxLaunchArgs(
-            mountPath: mountPath,
-            launchName: launchName,
-            installDir: GameInstallation.InstallLocation.Directory,
-            dosBoxConfigFiles: configFilePaths);
-    }
-
-    private static string GetDOSBoxLaunchArgs(
-        FileSystemPath mountPath,
-        string launchName,
-        FileSystemPath installDir,
-        IEnumerable<FileSystemPath> dosBoxConfigFiles)
-    {
-        // Create a string builder for the argument
-        var str = new StringBuilder();
-
-        // Helper method for adding an argument
-        void AddArg(string arg)
-        {
-            str.Append($"{arg} ");
-        }
-
-        // Add config files
-        foreach (FileSystemPath configFile in dosBoxConfigFiles)
-        {
-            if (configFile.FileExists)
-                AddArg($"-conf \"{configFile.FullPath}\"");
-        }
-
-        // Mount the disc if the path exists
-        if (mountPath.Exists)
-        {
-            // The mounting differs if it's a physical disc vs. a disc image
-            if (mountPath.IsDirectoryRoot)
-                AddArg($"-c \"mount d {mountPath.FullPath} -t cdrom\"");
-            else
-                AddArg($"-c \"imgmount d '{mountPath.FullPath}' -t iso -fs iso\"");
-        }
-
-        // Mount the game install directory as the C drive
-        AddArg($"-c \"MOUNT C '{installDir.FullPath}'\"");
-
-        // Add commands to launch the game
-        AddArg("-c C:");
-        AddArg($"-c \"{launchName}\"");
-        AddArg("-noconsole");
-        AddArg("-c exit");
-
-        // Return the argument
-        return str.ToString().Trim();
+        return configFilePaths;
     }
 
     #endregion

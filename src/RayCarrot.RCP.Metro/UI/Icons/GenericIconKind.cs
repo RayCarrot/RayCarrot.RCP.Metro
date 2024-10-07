@@ -19,12 +19,14 @@ public enum GenericIconKind
     GameFeature_ModLoader,
     GameFeature_PrototypeRestoration,
     GameFeature_RuntimeModification,
+    GameFeature_PerLevelSoundtrack,
 
     GamePanel_Archive,
     GamePanel_ModLoader,
     GamePanel_Progression,
     GamePanel_PrototypeRestoration,
     GamePanel_RuntimeModification,
+    GamePanel_PerLevelSoundtrack,
 
     GameAdd_Locate,
     GameAdd_DiscInstall,

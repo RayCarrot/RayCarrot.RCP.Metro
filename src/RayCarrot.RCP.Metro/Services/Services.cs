@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Tools;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -76,4 +77,6 @@ public static class Services
     public static IMessenger Messenger => GetService<IMessenger>();
 
     public static JumpListManager JumpList => GetService<JumpListManager>();
+
+    public static InstallableToolsManager InstallableTools => GetService<InstallableToolsManager>();
 }

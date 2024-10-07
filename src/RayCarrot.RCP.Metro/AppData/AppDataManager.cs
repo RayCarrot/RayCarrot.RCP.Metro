@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -669,7 +669,7 @@ public class AppDataManager
             try
             {
                 // Delete old R2 DRM removal utility backup files since it's now a mod
-                Services.File.DeleteDirectory(AppFilePaths.UtilitiesBaseDir + "RemoveDRM");
+                Services.File.DeleteDirectory(AppFilePaths.UserDataBaseDir + "Utilities" + "RemoveDRM");
             }
             catch (Exception ex)
             {

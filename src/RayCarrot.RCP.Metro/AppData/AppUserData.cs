@@ -3,6 +3,7 @@ using System.Reflection;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Tools;
 using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro;
@@ -34,6 +35,7 @@ public partial class AppUserData : BaseViewModel
         App_DisableGameValidation = false;
         App_CachedNews = new List<AppNewsEntry>();
         App_LoadNews = true;
+        App_InstalledTools = new Dictionary<string, InstalledTool>();
 
         // UI
         UI_WindowState = null;
@@ -100,6 +102,7 @@ public partial class AppUserData : BaseViewModel
         App_CurrentCulture ??= LocalizationManager.DefaultCulture.Name;
         App_JumpListItems ??= new List<JumpListItem>();
         App_CachedNews ??= new List<AppNewsEntry>();
+        App_InstalledTools ??= new Dictionary<string, InstalledTool>();
 
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
@@ -193,6 +196,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the app news should be loaded
     /// </summary>
     public bool App_LoadNews { get; set; }
+
+    /// <summary>
+    /// The list of installed tools where the key is the id
+    /// </summary>
+    public Dictionary<string, InstalledTool> App_InstalledTools { get; set; }
 
     #endregion
 

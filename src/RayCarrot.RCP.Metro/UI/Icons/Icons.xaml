@@ -72,6 +72,7 @@
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PrototypeRestoration">MapOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_RuntimeModifications">Memory</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GamePanel_PerLevelSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
 
     <!-- Generic Icons (used from C# code) -->
 
@@ -121,6 +122,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_RuntimeModification}" 
                        IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_PerLevelSoundtrack}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PerLevelSoundtrack}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_Archive}" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
@@ -136,6 +140,9 @@
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_RuntimeModification}" 
                        IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_PerLevelSoundtrack}" 
+                       IconKind="{StaticResource RCP.Icons.GamePanel_PerLevelSoundtrack}" 
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Locate}" 
