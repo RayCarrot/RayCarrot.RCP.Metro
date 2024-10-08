@@ -46,6 +46,33 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
         set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.IsEnabled = value);
     }
 
+    // Commented out for now both here and in the UI
+    //public bool ExpandedMemory
+    //{
+    //    get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { ExpandedMemory: true };
+    //    set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.ExpandedMemory = value);
+    //}
+    public bool DisableClearAndDeathMusic
+    {
+        get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { DisableClearAndDeathMusic: true };
+        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.DisableClearAndDeathMusic = value);
+    }
+    public bool CdAudioOnly
+    {
+        get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { CdAudioOnly: true };
+        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.CdAudioOnly = value);
+    }
+    public bool MusicOnly
+    {
+        get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { MusicOnly: true };
+        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.MusicOnly = value);
+    }
+    public bool FistKills
+    {
+        get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { FistKills: true };
+        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.FistKills = value);
+    }
+
     #endregion
 
     #region Public Methods

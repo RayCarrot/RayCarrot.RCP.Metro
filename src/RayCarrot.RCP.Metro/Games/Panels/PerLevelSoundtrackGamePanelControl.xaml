@@ -57,21 +57,31 @@
             <rcp:PopupCard Grid.Column="2"
                            Visibility="{Binding Path=IsInstalled, Converter={rcp:BooleanToVisibilityConverter}}"
                            Margin="0 0 4 0">
-                <!-- TODO-UPDATE: Bind to properties and add tooltips -->
                 <StackPanel>
-                    <CheckBox Content="EMS"
+                    <!-- TODO: Include this option? It's going to be irrelevant and confusing to most users, so commented out for now. -->
+                    <!--<CheckBox Content="EMS"
+                              IsChecked="{Binding Path=ExpandedMemory}"
+                              Margin="6"
+                              Style="{StaticResource RCP.Styles.CheckBox.Default}"/>-->
+                    <CheckBox Content="CD audio level clear and death sounds"
+                              ToolTip="Replaces the default level clear and death sounds with the CD audio ones from the PlayStation version"
+                              IsChecked="{Binding Path=DisableClearAndDeathMusic, Converter={rcp:InvertedBooleanConverter}}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
-                    <CheckBox Content="Disable level clear and death music"
+                    <CheckBox Content="Ambient MIDI track"
+                              ToolTip="Plays the PlayStation exclusive ambient MIDI tracks in their respective level sections"
+                              IsChecked="{Binding Path=CdAudioOnly, Converter={rcp:InvertedBooleanConverter}}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
-                    <CheckBox Content="Disable ambient MIDI track"
+                    <Separator />
+                    <CheckBox Content="Visual bug fixes"
+                              ToolTip="Includes visual bug fixes for the PC version, such as making Dark Rayman's fist appear after punching"
+                              IsChecked="{Binding Path=MusicOnly, Converter={rcp:InvertedBooleanConverter}}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
-                    <CheckBox Content="Disable visual bug fixes"
-                              Margin="6"
-                              Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
-                    <CheckBox Content="Enable Dark Rayman's fist killing you"
+                    <CheckBox Content="Have Dark Rayman's fist kill you"
+                              ToolTip="Re-enables a cut behavior where Dark Rayman's fist kills Rayman on contact"
+                              IsChecked="{Binding Path=FistKills}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
                 </StackPanel>

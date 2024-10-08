@@ -12,6 +12,33 @@ public class PerLevelSoundtrackDosBoxLaunchCommandsComponent : DefaultDosBoxLaun
                GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { IsEnabled: true };
     }
 
+    private string GetTplsLaunchArgs()
+    {
+        string args = String.Empty;
+
+        PerLevelSoundtrackData? data = GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData);
+
+        if (data != null)
+        {
+            if (data.ExpandedMemory)
+                args += " /E";
+
+            if (data.DisableClearAndDeathMusic)
+                args += " /N";
+
+            if (data.CdAudioOnly)
+                args += " /C";
+
+            if (data.MusicOnly)
+                args += " /M";
+
+            if (data.FistKills)
+                args += " /F";
+        }
+
+        return args;
+    }
+
     public override IReadOnlyList<string> GetLaunchCommands(string? gameLaunchArgs = null)
     {
         PerLevelSoundtrackInstallableTool installableTool = new();
@@ -27,9 +54,10 @@ public class PerLevelSoundtrackDosBoxLaunchCommandsComponent : DefaultDosBoxLaun
         // Mount the game install directory as the C drive
         cmds.Add($"MOUNT C '{GameInstallation.InstallLocation.Directory}'");
 
-        // TODO-UPDATE: Pass in args
+        string tplsLaunchArgs = GetTplsLaunchArgs();
+
         // Run the TPLS TSR
-        cmds.Add(@"D:\TPLSTSR4.EXE");
+        cmds.Add($@"D:\TPLSTSR4.EXE{tplsLaunchArgs}");
 
         // Navigate to the mounted game directory
         cmds.Add("C:");
