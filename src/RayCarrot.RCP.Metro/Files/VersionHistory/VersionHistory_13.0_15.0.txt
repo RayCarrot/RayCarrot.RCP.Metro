@@ -1,4 +1,4 @@
-﻿-----   Version 14.2.0 - August ??, 2024   -----
+﻿-----   Version 14.2.0 - October ??, 2024   -----
 • Added support for PS2 games:
     • Rayman 2 Revolution
     • Rayman M
@@ -6,6 +6,17 @@
     • Rayman 3
     • Rayman Raving Rabbids
 • Added support for the PCSX2 emulator (editing save files is currently only supported for folder memory cards)
+• Added setup game panel to the game hub which includes recommended actions for setting up the games, such as installing recommended mods or fixing issues with the game settings
+• Game config improvements:
+    • Replaced the game options dialog with redesigned dialogs for the game settings
+    • Debug commands can now be specified for Rayman Origins and Legends from the game settings. These include more options than before, the option to manually edit the commands and allows them to be used for all versions of Rayman Legends.
+    • Modifying the video quality for Rayman 3 now saves it to the Rayman Arena app data section due to the game incorrectly reading it from there
+    • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
+    • App data .ini files are now read and written to using the native Win32 API
+    • Removed the Rayman 3 config option to use 16-bit textures due to it being unused by the game
+    • The Rayman Edutainment settings no longer allow you to select which version (such as the difficulty level) to change the options for. Instead it uses the currently selected version from the games page.
+    • Various other minor improvements and changes
+• Added a new per-level soundtrack tool for Rayman 1 by PluMGMK which allows any DOSBox build to be used, adds support for new tracks, such as the ambient MIDI tracks, and allows fixing visual bugs in the PC version
 • Archive Explorer improvements:
     • Added support for PS3 UbiArt textures
     • Replaced the image library for DDS files and with that greatly improved DXT compression quality (used when importing images to Rayman Origins and Legends)
@@ -15,24 +26,35 @@
     • Removed support for exporting to and importing from PCX files for CPA and UbiArt textures
     • Importing an image of the same format, such as a DDS file into Rayman Origins or Legends, no longer re-encodes it
     • Performance improvements and other minor changes related to loading and converting images
-• Game config improvements:
-    • Modifying the video quality for Rayman 3 now saves it to the Rayman Arena app data section due to the game incorrectly reading it from there
-    • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
-    • App data .ini files are now read and written to using the native Win32 API
-    • Removed the Rayman 3 config option to use 16-bit textures due to it being unused by the game
-    • Various other minor improvements and changes
+
+Other changes:
+• Removed all game utilities. Most of them have been integrated into the new setup game panel or as downloadable mods in the mod loader.
+    • The Rayman 1 complete soundtrack utility has been added as a recommended setup game action. The option to revert to the incomplete soundtrack has been removed.
+    • The Rayman 1 per-level soundtrack utility has been replaced by a new tool
+    • The Rayman Designer create missing configuration file utility been added as a setup game issue action if the file is detected as missing
+    • The Rayman Designer replace infected files utility been added as an optional setup game action. It no longer allows you to selected the language and instead defaults to English, the one which is used in the digital releases of Rayman Forever.
+    • The Rayman 3 DirectPlay utility has been entirely removed
+    • The Rayman Origins update to 1.02 (disc version) utility has been entirely removed
+    • The Rayman Origins and Legends debug commands utilities have been added to the game settings
+    • The Rayman Legends enable UbiRay utility has been replaced by a downloadable mod
+    • The Rayman Fiesta Run fix save progress utility has been added as a setup game issue action if the save corruption is detected
 • The file table for UbiArt IPK archives is now automatically recreated when needed, removing the options to do so manually or on repack
+• An error message now shows if attempting to import a texture to a DDS texture if the dimensions are not powers of 2
 • Added serializer for Rayman Legends (PS3) save data
 • Updated the game finder to be able to find games installed through Ubisoft Connect
 • Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin
+• Improved showing progress on the taskbar and added the option to flash the taskbar icon on progression completion or error
 • The available space on the system is now checked before applying mods to make sure it doesn't fail due to running out of space
-• Installing the per-level soundtrack utility for Rayman 1 now sets it to use the same config files as previously set for DOSBox
 • Improved error messages when applying mods
 • Renamed "Rayman Universe - Рэйман и его Вселенная" to "Rayman Universe" in the credits
+• Removed the option to automatically close the game settings when saving
+• The tooltip show delay has been decreased for info icons
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
+• Fixed a bug where starting a new instance of the Rayman Control Panel or using the GameBanana 1-click installer while the Rayman Control Panel is running would cause the window to un-maximize itself if maximized
 • Fixed a bug where creating IPK archives for Rayman Origins on Xbox 360 and Rayman Legends on Xbox 360 and PS3 wouldn't work
 • Fixed a bug where the thumbnail wouldn't show for a file in the Archive Explorer after renaming it
 • Fixed a bug where the Runtime Modifications wouldn't work for Rayman 1 while in a level where you ride on Bzzit
+• Bug fixes
 
 
 -----   Version 14.1.0 - May 23, 2024   -----
