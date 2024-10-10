@@ -1630,10 +1630,10 @@ Komunikat o błędzie: {1}</value>
     <value>Slot {0}</value>
   </data>
   <data name="Progression_Export" xml:space="preserve">
-    <value>Eksport</value>
+    <value>Eksportuj</value>
   </data>
   <data name="Progression_Import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importuj</value>
   </data>
   <data name="Progression_ExportError" xml:space="preserve">
     <value>Wystąpił błąd podczas eksportowania pliku zapisu. Upewnij się, że plik jest obsługiwany.</value>
@@ -1673,7 +1673,7 @@ Komunikat o błędzie: {1}</value>
     <value>Globox Outfit</value>
   </data>
   <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
-    <value>Goth Teensy</value>
+    <value>Green Teensy</value>
   </data>
   <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
     <value>Goth Teensy</value>
@@ -1740,7 +1740,7 @@ Komunikat o błędzie: {1}</value>
     <value>Wystąpił błąd w Archive Explorer  i program musi zostać zamknięty</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Inżynieria odwrotna Raymana, Rayman Szalone Kórliki mod, BinarySerializer</value>
+    <value>Inżynieria wsteczna Raymana, Rayman Szalone Kórliki mod, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Narzędzia</value>
@@ -1758,7 +1758,7 @@ Komunikat o błędzie: {1}</value>
     <value>Konwertuj</value>
   </data>
   <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
-    <value>Konwertuj ponownie</value>
+    <value>Konwertuj z powrotem</value>
   </data>
   <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
     <value>Pliki lokalizacyjne UbiArt (.loc/.loc8)</value>
@@ -2114,7 +2114,7 @@ Komunikat o błędzie: {1}</value>
     <value>Najlepsze okrążenie - Cele</value>
   </data>
   <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Najlepsze okrążenie - Lumki</value>
+    <value>Najlepsze okrążenie - Lumy</value>
   </data>
   <data name="Progression_RM_TimeRace" xml:space="preserve">
     <value>Najlepszy czas - Wyścig</value>
@@ -2123,13 +2123,13 @@ Komunikat o błędzie: {1}</value>
     <value>Najlepszy czas - Cele</value>
   </data>
   <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Najlepszy czas - Lumki</value>
+    <value>Najlepszy czas - Lumy</value>
   </data>
   <data name="Progression_RM_Targets" xml:space="preserve">
     <value>Cele</value>
   </data>
   <data name="Progression_RM_Lums" xml:space="preserve">
-    <value>Lumki</value>
+    <value>Lumy</value>
   </data>
   <data name="RM_RaceName_0" xml:space="preserve">
     <value>Ruiny</value>
@@ -2246,10 +2246,10 @@ Komunikat o błędzie: {1}</value>
     <value>Usuwa folder i całą jego zawartość, łącznie z plikami i podfolderami</value>
   </data>
   <data name="Archive_ExportFile" xml:space="preserve">
-    <value>Eksport</value>
+    <value>Eksportuj</value>
   </data>
   <data name="Archive_ImportFile" xml:space="preserve">
-    <value>Import</value>
+    <value>Importuj</value>
   </data>
   <data name="Archive_Save" xml:space="preserve">
     <value>Zapisz archiwum</value>
@@ -2507,10 +2507,10 @@ Komunikat o błędzie: {1}</value>
     <value>Lewo</value>
   </data>
   <data name="Config_Action_Up" xml:space="preserve">
-    <value>Prawo</value>
+    <value>Góra</value>
   </data>
   <data name="Config_Action_Right" xml:space="preserve">
-    <value>Góra</value>
+    <value>Prawo</value>
   </data>
   <data name="Config_Action_Down" xml:space="preserve">
     <value>Dół</value>
@@ -3584,7 +3584,7 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
     <value>Kontynuuj</value>
   </data>
   <data name="Progression_Lums" xml:space="preserve">
-    <value>Lumki</value>
+    <value>Lumy</value>
   </data>
   <data name="Progression_R3Stamps" xml:space="preserve">
     <value>Plakietki</value>
@@ -3602,7 +3602,7 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
     <value>Kryształy</value>
   </data>
   <data name="Progression_Teensies" xml:space="preserve">
-    <value>Teensies</value>
+    <value>Małaki</value>
   </data>
   <data name="Progression_Rank" xml:space="preserve">
     <value>Ranking</value>
@@ -5036,7 +5036,7 @@ Konflikty:
     <value>Mod zastosowany: {0}</value>
   </data>
   <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
-    <value>Zastosowanych modów: {0}</value>
+    <value>Zastosowane mody: {0}</value>
   </data>
   <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
     <value>Dostępna jest aktualizacja modów {0}</value>
@@ -5628,7 +5628,7 @@ Konflikty:
     <value>Time Attack</value>
   </data>
   <data name="Progression_RRushLums" xml:space="preserve">
-    <value>Lumki</value>
+    <value>Lumy</value>
   </data>
   <data name="Progression_RRushTarget" xml:space="preserve">
     <value>Cel</value>
@@ -5655,5 +5655,74 @@ Kontynuować stosowanie modów?</value>
   </data>
   <data name="Archive_FileTypeWithSubType" xml:space="preserve">
     <value>{0} ({1})</value>
+  </data>
+  <data name="Archive_SavingStatus" xml:space="preserve">
+    <value>Zapisywanie archiwum</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
+    <value>Cooked UBIArt Sound</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtTexture" xml:space="preserve">
+    <value>Cooked UBIArt Texture</value>
+  </data>
+  <data name="Rayman2_Ps2_Title" xml:space="preserve">
+    <value>Rayman 2 Revolution</value>
+  </data>
+  <data name="Rayman3_Ps2_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_Ps2_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="RaymanM_Ps2_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanRavingRabbids_Ps2_Title" xml:space="preserve">
+    <value>Rayman Szalone Kórliki</value>
+  </data>
+  <data name="GameClients_PCSX2" xml:space="preserve">
+    <value>PCSX2</value>
+  </data>
+  <data name="Platform_Ps2" xml:space="preserve">
+    <value>PlayStation 2</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Encoding" xml:space="preserve">
+    <value>Kodowanie</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceError" xml:space="preserve">
+    <value>W systemie nie ma wystarczającej ilości miejsca, aby zastosować modyfikacje. Wymagane jest co najmniej {0} wolnego miejsca.</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceErrorHeader" xml:space="preserve">
+    <value>Niewystarczająca ilość wolnego miejsca</value>
+  </data>
+  <data name="ModLoader_ApplyWithErrors" xml:space="preserve">
+    <value>Zakończono stosowanie modów. Niektóre pliki nie mogły zostać zmodyfikowane. 
+
+Komunikaty o błędach:
+{0}</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCovered" xml:space="preserve">
+    <value>Przebyty dystans</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCoveredValue" xml:space="preserve">
+    <value>{0} metrów</value>
+  </data>
+  <data name="Progression_R2Ps2_TimePlayed" xml:space="preserve">
+    <value>Czas gry</value>
+  </data>
+  <data name="Progression_R2Ps2_PlayerShotsFired" xml:space="preserve">
+    <value>Strzały oddane przez gracza</value>
+  </data>
+  <data name="Progression_R2Ps2_ShootingAccuracy" xml:space="preserve">
+    <value>Celność strzelania</value>
+  </data>
+  <data name="Progression_R2Ps2_TimesKilled" xml:space="preserve">
+    <value>Ilość zgonów</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfTryAgain" xml:space="preserve">
+    <value>Ilość ponownych prób</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
+    <value>Ilość skoków</value>
   </data>
 </root>

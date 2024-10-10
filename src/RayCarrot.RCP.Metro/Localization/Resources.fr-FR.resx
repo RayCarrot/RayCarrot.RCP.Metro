@@ -1495,13 +1495,13 @@ Message d'erreur : {1}</value>
     <value>Bleu</value>
   </data>
   <data name="Settings_EditJumpList" xml:space="preserve">
-    <value>Modifier la jump list</value>
+    <value>Modifier la liste de sauts</value>
   </data>
   <data name="Settings_EditJumpListInfo" xml:space="preserve">
-    <value>La jump list est la liste des raccourcis apparaissant après un clic droit sur l'application dans la barre des tâches ou le menu démarrer</value>
+    <value>La liste de sauts est la liste des raccourcis apparaissant après un clic droit sur l'application dans la barre des tâches ou le menu démarrer</value>
   </data>
   <data name="JumpListEditor_Header" xml:space="preserve">
-    <value>Éditer les éléments de la jump list</value>
+    <value>Éditer les éléments de la liste de sauts</value>
   </data>
   <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
     <value>Inclus</value>
@@ -1825,7 +1825,7 @@ Message d'erreur : {1}</value>
     <value>Une erreur est survenue en synchronisant les informations de texture</value>
   </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
-    <value>Autre</value>
+    <value>Autres</value>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Cette fonctionnalité n'a pas encore été implémentée</value>
@@ -2366,7 +2366,7 @@ Message d'erreur : {1}</value>
     <value>Toutes les cages</value>
   </data>
   <data name="R1Passwords_FinBoss" xml:space="preserve">
-    <value>Boss vaincus</value>
+    <value>Boss vaincu</value>
   </data>
   <data name="R1Passwords_HelpedMus" xml:space="preserve">
     <value>A aidé le musicien</value>
@@ -3583,7 +3583,7 @@ Start : Pause</value>
     <value>Coupes d'argent</value>
   </data>
   <data name="Progression_RLGoldCups" xml:space="preserve">
-    <value>Coupe en or</value>
+    <value>Coupes d' or</value>
   </data>
   <data name="Progression_RLDiamondCups" xml:space="preserve">
     <value>Coupes de diamant</value>
@@ -3604,7 +3604,7 @@ Start : Pause</value>
     <value>Trophées de vitesse</value>
   </data>
   <data name="Progression_SaveEditWarning" xml:space="preserve">
-    <value>Editer des fichiers de sauvegarde peut les corrompre si mal réalisé. Il est vivement recommandé de d'abord en faire une sauvegarde. Continuer?</value>
+    <value>Editer des fichiers de sauvegarde peut les corrompre si mal réalisé. Il est vivement recommandé de d'abord en faire une sauvegarde. Voulez-vous continuer ?</value>
   </data>
   <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
     <value>Confirmer l'édition de sauvegarde</value>
@@ -3749,10 +3749,11 @@ Cela peut rendre certains niveaux inaccessibles. Cet outil tentera de corriger c
     <value>Traduction du programme en hébreux, fichier icône du patch de jeu</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
-    <value>Syncroniser automatiquement les texture à la recompilation</value>
+    <value>Synchroniser automatiquement les textures à la recompilation
+</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
-    <value>Si activé, les textures pour le jeu seront syncronisées automatiquement quand une archive .cnt est recompilée. Cette option est utile sur les jeux pour lesquels une synchronisatoin est requise pour importer des textures à résolution plus élevée.</value>
+    <value>Si activé, les textures pour le jeu seront synchronisées automatiquement quand une archive .cnt est recompilée. Cette option est utile sur les jeux pour lesquels une synchronisatoin est requise pour importer des textures à résolution plus élevée.</value>
   </data>
   <data name="Archive_CreateStatusPacking" xml:space="preserve">
     <value>Compiler l'archive</value>
@@ -4324,7 +4325,7 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
     <value>Les clients de jeu/émulateurs suivants ont été trouvés :</value>
   </data>
   <data name="Finder_FoundClientsHeader" xml:space="preserve">
-    <value>Client de jeu/émulateurs trouvés</value>
+    <value>Clients de jeu/émulateurs trouvés</value>
   </data>
   <data name="Games_MissingLaunchComponent" xml:space="preserve">
     <value>Ce jeu ne peut pas être démarré sans client de jeu/émulateur. Ajoutez un client de jeu/émulateur et sélectionnez le afin de pouvoir démarrer ce jeu.</value>
@@ -4393,7 +4394,7 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
     <value>Clients de jeu/émulateurs ajoutés</value>
   </data>
   <data name="GameClients_AvailableClientsHeader" xml:space="preserve">
-    <value>Client de jeu et émulateurs disponibles</value>
+    <value>Clients de jeu et émulateurs disponibles</value>
   </data>
   <data name="GameClients_LocateClient" xml:space="preserve">
     <value>Localiser</value>
@@ -4899,13 +4900,13 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
     <value>Clients de jeu/émulateurs</value>
   </data>
   <data name="AnniversaryUpdate_ClientsDescription" xml:space="preserve">
-    <value>la prise en charge des clients de jeu/émulateurs a été ajoutée avec cette mise à jour. Ces derniers peuvent être ajoutés via une option et être démarrés dans la page jeux ajoutés. Les clients de jeu tel que Steam sont optionnels là où les jeux console demandant un émulateur sont obligatoires pour être joués. Si un émulateur n'est pas dans la liste des émulateurs pris en charge, il peut être ajouté comme un émulateur personnalisé. La progression de jeu ne pourra pas être affichée via cette méthode.</value>
+    <value>La prise en charge des clients de jeu/émulateurs a été ajoutée avec cette mise à jour. Ces derniers peuvent être ajoutés via une option et être démarrés dans la page jeux ajoutés. Les clients de jeu tel que Steam sont optionnels là où les jeux console demandant un émulateur sont obligatoires pour être joués. Si un émulateur n'est pas dans la liste des émulateurs pris en charge, il peut être ajouté comme un émulateur personnalisé. La progression de jeu ne pourra pas être affichée via cette méthode.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
     <value>La synchronisation de textures a été déplacée</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
-    <value>L'outil de syncronisation de textures a été remplacé par un bouton dans l'onglet Archive Explorer pour un accès plus facile. Comme avant, vous pouvez aussi activer une option pour que les textures soient automatiquement compressées quand un archive est recompilée</value>
+    <value>L'outil de synchronisation de textures a été remplacé par un bouton dans l'onglet Archive Explorer pour un accès plus facile. Comme avant, vous pouvez aussi activer une option pour que les textures soient automatiquement compressées quand un archive est recompilée</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
     <value>1.12 (Non protégée)</value>
@@ -5628,5 +5629,74 @@ Voulez-vous continuer l'application des mods ?</value>
   </data>
   <data name="Archive_FileTypeWithSubType" xml:space="preserve">
     <value>{0} ({1})</value>
+  </data>
+  <data name="Archive_SavingStatus" xml:space="preserve">
+    <value>Sauvegarde de l'archive</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
+    <value>Bruitage Cooked Ubiart</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtTexture" xml:space="preserve">
+    <value>Texture Cookes Ubiart</value>
+  </data>
+  <data name="Rayman2_Ps2_Title" xml:space="preserve">
+    <value>Rayman Revolution</value>
+  </data>
+  <data name="Rayman3_Ps2_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_Ps2_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="RaymanM_Ps2_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanRavingRabbids_Ps2_Title" xml:space="preserve">
+    <value>Rayman contre les Lapins Crétins</value>
+  </data>
+  <data name="GameClients_PCSX2" xml:space="preserve">
+    <value>PCSX2</value>
+  </data>
+  <data name="Platform_Ps2" xml:space="preserve">
+    <value>PlayStation 2</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Encoding" xml:space="preserve">
+    <value>Encodage</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceError" xml:space="preserve">
+    <value>Espace insuffisant pour appliquer les mods. Veuillez libérer {0} d'espace avant de continuer.</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceErrorHeader" xml:space="preserve">
+    <value>Espace libre insuffisant</value>
+  </data>
+  <data name="ModLoader_ApplyWithErrors" xml:space="preserve">
+    <value>Les mods ont été appliqués. Certains fichiers n'ont pas pu être modifiés.
+
+Messages d'erreur :
+{0}</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCovered" xml:space="preserve">
+    <value>Distance parcourue</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCoveredValue" xml:space="preserve">
+    <value>{0} mètres</value>
+  </data>
+  <data name="Progression_R2Ps2_TimePlayed" xml:space="preserve">
+    <value>Temps joué</value>
+  </data>
+  <data name="Progression_R2Ps2_PlayerShotsFired" xml:space="preserve">
+    <value>Coups tirés par le joueur</value>
+  </data>
+  <data name="Progression_R2Ps2_ShootingAccuracy" xml:space="preserve">
+    <value>Précision des tirs</value>
+  </data>
+  <data name="Progression_R2Ps2_TimesKilled" xml:space="preserve">
+    <value>Nombre de morts</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfTryAgain" xml:space="preserve">
+    <value>Nombre de Try Again</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
+    <value>Nombre de sauts</value>
   </data>
 </root>
