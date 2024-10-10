@@ -41,6 +41,11 @@ public static class AppURLs
     public const string UtilityBaseUrl = BaseResourceUrl + "utilities/";
 
     /// <summary>
+    /// The base URL for downloading tools
+    /// </summary>
+    public const string ToolsBaseUrl = BaseResourceUrl + "tools/";
+
+    /// <summary>
     /// The base URL for downloading mods
     /// </summary>
     public const string ModsBaseUrl = BaseResourceUrl + "mods/";
@@ -161,6 +166,12 @@ public static class AppURLs
     /// The Rayman Designer clean files URL
     /// </summary>
     public const string RD_CleanFiles_URL = UtilityBaseUrl + "r1/CleanRayKit.zip";
+
+    #endregion
+
+    #region Tools
+
+    public const string PerLevelSoundtrackTool_URL = ToolsBaseUrl + "per-level-soundtrack/tpls-tsr-3.1.0.zip";
 
     #endregion
 
