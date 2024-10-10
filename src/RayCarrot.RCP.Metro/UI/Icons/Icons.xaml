@@ -72,7 +72,7 @@
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PrototypeRestoration">MapOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_RuntimeModifications">Memory</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GamePanel_PerLevelSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PerLevelSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
 
     <!-- Generic Icons (used from C# code) -->
 
@@ -142,7 +142,7 @@
                        IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_PerLevelSoundtrack}" 
-                       IconKind="{StaticResource RCP.Icons.GamePanel_PerLevelSoundtrack}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PerLevelSoundtrack}" 
                        IconColor="{StaticResource RCP.Brushes.GameTools}" />
 
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Locate}" 
