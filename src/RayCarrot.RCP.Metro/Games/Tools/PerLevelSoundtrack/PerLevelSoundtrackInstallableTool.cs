@@ -14,7 +14,11 @@ public class PerLevelSoundtrackInstallableTool : InstallableTool
     {
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            gameInstallation.SetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, null);
+            if (gameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) != null)
+            {
+                gameInstallation.SetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, null);
+                Services.Messenger.Send(new ModifiedGamesMessage(gameInstallation));
+            }
         }
     }
 }

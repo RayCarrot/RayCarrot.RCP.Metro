@@ -43,7 +43,11 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
     public bool IsEnabled
     {
         get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { IsEnabled: true };
-        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.IsEnabled = value);
+        set
+        {
+            GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.IsEnabled = value);
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+        }
     }
 
     // Commented out for now both here and in the UI
@@ -55,22 +59,38 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
     public bool DisableClearAndDeathMusic
     {
         get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { DisableClearAndDeathMusic: true };
-        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.DisableClearAndDeathMusic = value);
+        set
+        {
+            GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.DisableClearAndDeathMusic = value);
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+        }
     }
     public bool CdAudioOnly
     {
         get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { CdAudioOnly: true };
-        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.CdAudioOnly = value);
+        set
+        {
+            GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.CdAudioOnly = value);
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+        }
     }
     public bool MusicOnly
     {
         get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { MusicOnly: true };
-        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.MusicOnly = value);
+        set
+        {
+            GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.MusicOnly = value);
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+        }
     }
     public bool FistKills
     {
         get => GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { FistKills: true };
-        set => GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.FistKills = value);
+        set
+        {
+            GameInstallation.ModifyObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData, x => x.FistKills = value);
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+        }
     }
 
     #endregion
