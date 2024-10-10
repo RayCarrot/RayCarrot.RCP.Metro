@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Opcionális)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Ajánlott beállítások használata</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Felbontás</value>
   </data>
@@ -477,134 +474,11 @@
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>Program bezárása amikor egy játék elindul</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Konfigurációs panel automatikus bezárása mentés után</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Pályánkénti zene
-(Per-Level Soundtrack)</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>A PC-s verzió alapból csak egy zenét játszik le minden világhoz. Ez a patch minden pályának saját zenét ad, mint a Playstation verzióban.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>Telepítés</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>Eltávolítás</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Engedélyezve</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Kikapcsolva</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>Rayman verzió</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>Teljes zenecsomag
-(Complete Soundtrack)</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>A Rayman Forever (a GOG-os verziót is beszámítva), nem tartalmazza a teljes zenecsomagot a régi kis lemez hely méretek miatt. Ez a patch kicseréli a hiányos zenepakkot a teljesre, vagy visszaállítja azt.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>Teljes zenecsomag használata</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>Visszaállítás a hiányos zenecsomagra</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Alkalmazás</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>A DirectPlay-nek be kell legyen kapcsolva, hogy futtasd a Rayman 3-at. Alapból általában ki van kapcsolva Windows 10-en.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>Fertőzött fájlok lecserélése</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>A Rayman Designer néhány verziójában (a Rayman Forever-t beleértve), pár RayKit fájl vírussal megfertőződött. Bár nem viszonyul veszélyesnek, vagy egyáltalán aktívnak, és a GOG is biztosította, hogy nem ártalmas, de attól ki lehet biztonságosan cserélni őket ezzel a patch-csel. </value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>Nyelv</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>Kicserélés</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Hiányzó konfigurációs fájl készítése</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>Pár Rayman Designer installációban a konfigurációs fájl nem generálódik le, amitől a Mapper error-t dob indításkor. 
-Ez a segédprogram kijavítja ezt a hibát a konfig fájl legenerálásával, ha nem létezik.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Készítés</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>UbiRay engedélyezése</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>Ez a segédeszköz módosítja a játék konfigot, hogy az UbiRay normál kinézetként jelenjen meg a Heroes Gallery-ben</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>Debug Commands</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>Az alábbi debug kommandok használatával el lehet indítani a játékot egy debug környezetben, ahol az utasítások megváltoztatják ahogyan fut a játék.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>FIGYELEM: Ezen debug kommandok használata korrupttá teheti a mentési fájlokat (megsérülhetnek). Biztonsági mentés készítése minden használat előtt erősen ajánlott.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Sérthetetlenség</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>A játékos nem tud meghalni</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Egérmutató elrejtése</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>Elrejti az kurzort a játék menükben</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Max kamera zoom</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>A legnagyobbra veszi a kamera közelítését</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Framerate</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>Az FPS beállítása amivel a játék futni fog (képkocka/másodperc)</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>Lehetővé teszi, hogy egy specifikus pályát tölts be a játék indításakor a főmenü helyett</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>Nyelv</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>Kicseréli a játék nyelvét</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>Frissítés az 1.02-es verzióra (CD verzió)</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>Abban az esetben, ha a Rayman Origins nem frissített le automatikusan a legújabb 1.02-es verzióra, ez a segédeszköz tudja frissíteni.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Frissítés</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Áruház megnyitása</value>
@@ -614,9 +488,6 @@ Ez a segédprogram kijavítja ezt a hibát a konfig fájl legenerálásával, ha
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Fájl helyének megnyitása</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>Beállítások</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Telepítés CD-ről</value>
@@ -919,9 +790,6 @@ Hírek:
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Telepítés megszakítva</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>Az eszköz használatához további fájlokat kell letölteni</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Érvénytelen formátum</value>
   </data>
@@ -958,15 +826,6 @@ Hírek:
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Egy érvényes magaságot muszáj megadni</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>Hiba lépett fel a {0} konfiguráció mentésekor</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Mentési hiba</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>Hiba lépett fel a DOSBox konfiguráció mentésekor</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>A változtatásaid mentésre kerültek</value>
   </data>
@@ -978,9 +837,6 @@ Hírek:
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>A Rayman 2 képarányának beállítása közben hiba lépett fel</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>Hiba lépett fel a Rayman Raving Rabbids konfiguráció mentésekor</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Konami kód észlelve! Piros pont.
@@ -1080,67 +936,13 @@ AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portugál (Portugál) program fordítás</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>A Rayman Origins frissítő letöltése sikertelen volt</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>A Rayman Origins installáció nem található</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>Hiba lépett fel a debug command-ok alkalmazásakor</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>Automatikus</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (1. Kiadás)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.2</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Telepítés sikertelen</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Telepítés sikertelen</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Biztosan el akarod távolítani a pályánkénti zene segédeszközt?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>Eltávolítás megerőítése</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>A segédeszköz sikeresen el lett távolítva</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Az eltávolítás sikeresen befejeződött</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>Az eltávolítás során hiba lépett fel</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Eltávolítás sikertelen</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Zenecsomag kicserélése sikertelen volt</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>Ennyi fájl fog kicserélésre kerülni: {0}/{1}. Több letöltésre is lehet szükség a fájlok tárolási helyétől függően.</value>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>Fájlcsere sikeresen befejeződött</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
-    <value>Fájlcsere sikertelen volt</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>Ez a konfiguráció már létezik. Hibás fájlok miatt újra akarod generálni?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
     <value>Fájlcsere sikertelen volt</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
@@ -1211,15 +1013,6 @@ AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT
 A program lehetővé teszi a meglévő összes Rayman PC játék felismerését és hozzáférését, valamint plusz funkciókat nyújt, például kibővített konfigurációs beállításokat, segédeszközöket, mentések backup-ját, mentési fájlok kezelését, textúrák modifikációját és még sok mást. 
 Minden támogatott játékot lehetséges telepíteni CD-vel itt a programon keresztül is. 
 Kezdésként állítsd be a tulajdonságokat a Beállításokban és nyomj a 'Folytatás' gombra. A beállítások bármikor megváltoztathatók a Beállítások fülön.</value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>A konfigurációs beállítások nem kerültek mentésre. Biztosan ki akarsz lépni és elvetni ezeket?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>Kilépés megerősítése</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>Segédeszközök</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Parancsikon létrehozása</value>
@@ -1308,29 +1101,14 @@ Kezdésként állítsd be a tulajdonságokat a Beállításokban és nyomj a 'Fo
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Néhány játék nem került mentésre</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Konfiguráció</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Az animációkba beletartoznak az oldal áttünései és az Játékok oldal átméretezési animációi</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steam csoport</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>A mentés során hiba lépett fel. Nem minden változtatás került mentésre.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (2. Kiadás)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (3. Kiadás)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Újratöltés</value>
@@ -1437,12 +1215,6 @@ Hírek:
   <data name="DeployFilesError" xml:space="preserve">
     <value>Hiba lépett fel az szükséges fájlok beállításakor.  Néhány funckió nem biztos úgy fog működni, ahogy kellene. A program újraindítása ajánlott.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>Ehhez a segédeszközhöz a programnak rendszergazdai jogosultság szükséges</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Újraindítás rendszergazdaként</value>
   </data>
@@ -1528,15 +1300,6 @@ Hiba üzenet: {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Meghajtó felülírása</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Mentési fájlok betöltés/mentés kikapcsolása</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Ez a fuckció megakadályozza, hogy a játék egy létező mentési fájlra töltsön vagy mentsen rá</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (Kinai)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>Lemez észlelés</value>

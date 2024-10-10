@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Valgfrit)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Brug anbefalede indstillinger</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Opløsning</value>
   </data>
@@ -477,131 +474,11 @@
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>Luk applikationen, når et spil startes</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Luk konfigurationsdialog, når der gemmes</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Lydspor per bane</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Som standard, har PC-versionen kun ét enkelt lydspor til hver verden. Denne patch giver hver bane sit eget lydspor, på samme måde som på PlayStation.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>Installér</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>Afinstallér</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Aktiveret</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Deaktiveret</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>Rayman-version</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>Komplet lydspor</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>Rayman Forever, inklusiv GOG-versionen, indeholder ikke det fulde lydspor, grundet at der oprindeligt ikke har været tilstrækkelig diskplads. Dette værktøj kan erstatte det eksisterende ufuldstændige lydspor med det fulde, eller alternativt gendanne det gamle.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>Erstat med fuldt lydspor</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>Gendan ufuldstændigt lydspor</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Anvend</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>DirectPlay skal aktiveres for at kunne køre Rayman 3. Det er som regel deaktiveret på Windows 10.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>Erstat inficerede filer</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>Nogle versioner af Rayman Designer, inklusiv Rayman Forever, indeholder malware i nogle af RayKit-filerne. Selvom det ikke virker til at være skadeligt, eller overhovedet aktivt, og GOG har bekræftet, at der ingen fare er, kan du stadig erstatte filerne med deres uinficerede versioner ved hjælp af dette værktøj.</value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>Sprog</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>Erstat</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Opret manglende konfigurationsfil</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>Under nogle installationer af Rayman Designer oprettes konfigurationsfilen ikke, og dermed giver Mapperen en fejl, når applikationen startes. Dette værktøj fikser problemet ved at oprette en konfigurationsfil, hvis der ikke er én i forvejen.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Opret</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Aktivér UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>Dette værktøj modificerer spilkonfigurationerne og får UbiRay til at fremstå som et almindeligt kostume i Heltegalleriet</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>Debug-kommandoer</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>Ved brug af de nedenstående debug-kommandoer startes spillet i en debug-tilstand, og spillet kører anderledes afhængigt af kommandoerne.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>ADVARSEL: Brug af disse debug-kommandoer kan muligvis forårsage, at din spildata bliver korrupt. Opret altid en backup før du anvender dem.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Uovervindelighed</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>Dette tillader, at spilleren ikke dør, når der bliver taget skade</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Skjul musemarkør</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>Dette skjuler musemarkøren i spilmenuerne</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Maks kamera-zoom</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>Dette maksimerer kamera-zoomet</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Framerate</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>Dette bestemmer, hvilken framerate spillet kører i</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>Dette tillader, at en bestemt map indlæses i stedet for hovedmenuen, når spillet startes</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>Sprog</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>Dette ændrer hvilket sprog spillet kører i</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>Opdatér til 1.02 (Disk-version)</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>I tilfælde af, at Rayman Origins ikke er blevet automatisk opdateret til den seneste version, 1.02, kan dette værktøj opdatere det.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Opdatér</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Åbn butiksside</value>
@@ -611,9 +488,6 @@
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Åbn placering</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>Indstillinger</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Installér fra disk</value>
@@ -916,9 +790,6 @@ Prøv igen?</value>
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Installation annulleret</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>Dette værktøj kræver, at yderlige filer skal downloades</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Ugyldigt format</value>
   </data>
@@ -955,15 +826,6 @@ Prøv igen?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>En gyldig højde skal vælges</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at gemme dine konfigurationer til {0}</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Gemningsfejl</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at gemme din DOSBox-konfiguration</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Dine ændringer er gemt</value>
   </data>
@@ -975,9 +837,6 @@ Prøv igen?</value>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>En fejl opstod i forsøg på at indstille Rayman 2-billedformatet</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at gemme dine konfigurationer til Rayman Raving Rabbids</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Du har lige indtastet Konami-koden! Nyd dette nye røde tema.</value>
@@ -1072,68 +931,14 @@ Prøv igen?</value>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portugesisk (Portugal) programoversættelse</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>Fejl i forsøg på at downloade Rayman Origins-opdatereren</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>Rayman Origins-installationen kunne ikke findes</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at anvende debug-kommadoerne</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (1. udgave)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.2</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Installationsfejl</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Installationsfejl</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Er du sikker på, at du vil afinstallere Lydspor per bane-værktøjet?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>Bekræft afinstallering</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>Værktøjet blev afinstalleret med succes</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Afinstallering fuldført</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>En fejl opstod under afinstallering</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Afinstalleringsfejl</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Lydsporserstatning mislykkedes.</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>{0}/{1} filer til erstatning blev fundet. Dette kan muligivis kræve flere downloads alt efter deres placering.</value>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>Erstatning fuldført</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
     <value>Filerstatning mislykkedes</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>Konfigurationsfilen findes allerede. Du kan stadig genoprette den, hvis den er korrupt. Fortsæt?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>Erstat fil</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
     <value>Filen blev oprettet med succes.</value>
@@ -1201,15 +1006,6 @@ Prøv igen?</value>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
     <value>Dette program er et uofficielt open-source fællesskabsprojekt skabt af RayCarrot. Det giver hurtig and nem adgang til alle installerede Rayman-spil på din computer, med øvrige funktioner så som yderligere konfigurationssupport, hjælpeværktøjer, backup af spildata, administration af spildata, overflademofikationer og meget mere. Understøttede spil kan installeres direkte fra deres disk gennem programmet.
 Ændr nedenstående indstillinger som du ønsker og tryk 'Fortsæt' for at komme i gang. Indstillingerne kan til en hver tid ændres under 'Indstillinger'.</value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>Dine konfigurationsændringer er ikke blevet gemt. Ønsker du at afslutte og kassere dem?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>Bekræft kassering</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>Hjælpeværktøjer</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Opret genvej</value>
@@ -1298,29 +1094,14 @@ Prøv igen?</value>
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Nogle spil blev ikke backet op</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Konfiguration</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Animationer inkluderer f.eks sideovergange og størrelsesændringsanimationer for spilsiden</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steamgruppe</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at gemme. Ikke alle ændringer blev gemt.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (2. udgave)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (3. udgave)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Genindlæs</value>
@@ -1426,12 +1207,6 @@ Nyheder:
   <data name="DeployFilesError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at opsætte de supplerende nødvendige filer. Nogle af programmets funktioner virker muligvis ikke som tilsigtet. Det anbefales, at prøve at genstarte programmet.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>Denne hjælpefunktion kræver, at applikationen køres som administrator</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Genstart som administrator</value>
   </data>
@@ -1517,15 +1292,6 @@ Fejlmeddelelse: {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Overskriv mappe</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Deaktivér indlæsning/gemmelse af spildata</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Dette forhindrer spillet i at indlæse eller gemme på eksisterende spildata</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (Kinesisk)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>Diskkontrol</value>
@@ -1809,15 +1575,6 @@ Fejlmeddelelse: {1}</value>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>The Tower of the Leptys</value>
   </data>
-  <data name="TPLS_UpdateVersionError" xml:space="preserve">
-    <value>Rayman-versionen kunne ikke opdateres</value>
-  </data>
-  <data name="Utility_Revert" xml:space="preserve">
-    <value>Nulstil</value>
-  </data>
-  <data name="Utility_WIP" xml:space="preserve">
-    <value>Dette hjælpeværktøj er i øjeblikket ufuldendt og kan muligvis være ustabilt eller mangle nogle funktioner</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} overfladeinformationer blev synkroniseret</value>
   </data>
@@ -1862,12 +1619,6 @@ Fejlmeddelelse: {1}</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Spildata til Rayman 3 (.sav)</value>
-  </data>
-  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
-    <value>UbiRay-patchen er blevet anvendt med succes</value>
-  </data>
-  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>UbiRay-patchen er blevet nulstillet</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Engang for længe siden</value>
@@ -3717,32 +3468,11 @@ Ved at ændre datakilden her kan du vælge, hvilken placering der skal bruges ti
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>Snydekoderne tager effekt, når en map først indlæses. Nogle gange er det også påkrævet at vende tilbage til menuen bagefter, for at alting kan opdatere.</value>
   </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>DirectPlay kan kun slås til/fra på Windows 8 eller senere</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Reparér spildatafremskridt</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>Grundet en bug i tidligere versioner af spillet, kan spildatafremskridtet falde ud af sync, hvilket forårsager, at du har mindre Teensies end du egentlig har vundet. Dette kan gøre bestemte baner utilgængelige. Dette værktøj forsøger at fikse dette.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>Reparér spildata</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>Ingen problemer blev fundet</value>
-  </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
     <value>Spildataen blev repareret med succes</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>En fejl opstod i reparation af spildataen</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>Debug-kommandoer er ikke tilgængelige til Steam-versionen</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>Utiliteten er ikke tilgængelig</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>Hebraisk programoversættelse, filikon til spilpatch</value>
@@ -4240,12 +3970,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
     <value>Vælg en konfigurationsfil</value>
   </data>
-  <data name="Config_LocationsHeader" xml:space="preserve">
-    <value>Konfigurationsplaceringer</value>
-  </data>
-  <data name="Page_LoadError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at indlæse siden</value>
-  </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
     <value>Klient/emulator</value>
   </data>
@@ -4423,12 +4147,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="JumpListEditor_AutoSort" xml:space="preserve">
     <value>Sortér spil automatisk</value>
-  </data>
-  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
-    <value>Aktivér eller deaktivér dette værktøj, ved at vælge eller fravælge lydspor per bane-spilklienten til dette spil</value>
-  </data>
-  <data name="R1U_TPLSGameClientName" xml:space="preserve">
-    <value>DOSBox (Lydspor per bane)</value>
   </data>
   <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
     <value>Spildata til Rayman Advance</value>
@@ -4903,12 +4621,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
     <value>Hjælpeværktøjet til at synkronisere overflader er nu blevet erstattet af en knap i Archive Explorer-panelet til nemmere brug. Ligesom før kan du også aktivere automatisk synkronisering af overflader, når et arkiv er blevet ompakket.</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
-    <value>1.12 (Ubeskyttet)</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>En nyere version er tilgængelig. Afinstallér den nuværende version for at installere den.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>
@@ -5468,12 +5180,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Velkomstbillede</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
-    <value>Billedkomprimering:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
-    <value>Ingen</value>
   </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Genopretter filtabel</value>

@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Optional)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Use recommended settings</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Resolution</value>
   </data>
@@ -478,131 +475,11 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>Close application when launching a game</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Close configuration dialog when saving</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Per-Level Soundtrack</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>By default the PC version only has a single music track for each world. This patch makes each level have its own track, similarily to on PlayStation.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>Install</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>Uninstall</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Enabled</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Disabled</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>Rayman version</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>Complete Soundtrack</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>Rayman Forever, including the GOG version, does not come with the complete soundtrack due to disc space originally not being available. This utility can replace the existing incomplete soundtrack with the complete one, or alternatively revert it back.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>Replace with complete soundtrack</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>Revert back to incomplete soundtrack</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>DirectPlay needs to be enabled in order to run Rayman 3. By default it is usually disabled on Windows 10.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>Replace Infected Files</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>Some versions of Rayman Designer, including Rayman Forever, have some of the RayKit files infected with a malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, you can still safely replace the files with their non-infected versions using this utility.</value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>Replace</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Create Missing Configuration File</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>During some Rayman Designer installations the configuration file won't be created, causing the Mapper to give an error when launching. This utility will fix that issue by creating the configuration file if not present.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Enable UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>This utility modifies the game configuration to make UbiRay appear as a normal costume in the Heroes Gallery</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>Debug Commands</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>Using any of the below debug commands allows the game to be launched in a debug environment, with the commands changing how the game runs.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>WARNING: Using these debug commands may corrupt your save file. Always make a backup before using them.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Invincibility</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>This allows the player to not die when taking damage</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Hide mouse pointer</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>This will hide the mouse pointer in the game menus</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Max camera zoom</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>This will max out the camera zoom</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Framerate</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>This will set the framerate to run the game in</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>This will allow a specific map to be loaded instead of the main menu upon starting the game</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>This will change the language the game runs in</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>Update to 1.02 (Disc version)</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>In case Rayman Origins has not been automatically updated to its latest version, 1.02, this utility can update it.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Update</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Open store page</value>
@@ -612,9 +489,6 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Open location</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>Options</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Install from disc</value>
@@ -968,9 +842,6 @@ gameDisplayName</comment>
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Installation canceled</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>This utility requires additional files to be downloaded</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Invalid format</value>
   </data>
@@ -1009,17 +880,6 @@ invalidCharacter</comment>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>A valid height must be specified</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>An error occurred when saving your {0} configuration</value>
-    <comment>Arguments:
-gameDisplayName</comment>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Error saving</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>An error occurred when saving your DOSBox configuration</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Your changes have been saved</value>
   </data>
@@ -1031,9 +891,6 @@ gameDisplayName</comment>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>An error occurred when setting the Rayman 2 aspect ratio</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>An error occurred when saving your Rayman Raving Rabbids configuration</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>You just entered the Konami code! Enjoy this red new theme.</value>
@@ -1132,71 +989,14 @@ gameDisplayName</comment>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portuguese (Portugal) program translation</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>Downloading the Rayman Origins updater failed</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>The Rayman Origins installation could not be found</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>An error occurred when applying the debug commands</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (Edition 1)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Installation failed</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Installation Failed</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Are you sure you want to uninstall the Per-Level Soundtrack utility?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>Confirm Uninstall</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>Utility was successfully uninstalled</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Uninstall Complete</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>An error occurred when uninstalling</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Uninstallation Failed</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Soundtrack replacement failed.</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>{0}/{1} files were found to replace. This might require several downloads depending on their locations.</value>
-    <comment>Arguments:
-filesFount
-totalFiles</comment>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>Replacement complete</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
     <value>File replacement failed</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>The configuration file already exists. You can still recreate it if it is corrupt. Continue?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>Replace File</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
     <value>The file was successfully created.</value>
@@ -1270,15 +1070,6 @@ tempDir2</comment>
     <value>This program is an unofficial open source community project created by RayCarrot. It allows quick and easy access to all installed PC Rayman games on your computer, with additional features such as extended configuration support, utilities, save file backups, save data management, texture modifications and more.
 Supported games can be installed directly from their disc through the program.
 To get started, change the settings you want below and press 'Continue'. The settings can be changed at any time in the settings page.</value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>Your configuration changes have not been saved. Do you want to exit and discard them?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>Confirm exit</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>Utilities</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Create shortcut</value>
@@ -1375,29 +1166,14 @@ totalGames</comment>
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Some games were not backed up</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Animations include page transitions and resizing animations for the Games page</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steam group</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>An error occurred when saving. Not all changes have been saved.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (Edition 2)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (Edition 3)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Refresh</value>
@@ -1511,12 +1287,6 @@ appDataLocations</comment>
   <data name="DeployFilesError" xml:space="preserve">
     <value>An error occurred when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>This utility requires the application to run as administrator</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Restart as Administrator</value>
   </data>
@@ -1609,15 +1379,6 @@ outputDir</comment>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Overwrite directory</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Disable save file loading/saving</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>This will prevent the game from loading or saving to any existing save file</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (Chinese)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>Disc Check</value>
@@ -1927,15 +1688,6 @@ fileFormat</comment>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>The Tower of the Leptys</value>
   </data>
-  <data name="TPLS_UpdateVersionError" xml:space="preserve">
-    <value>The Rayman version could not be updated</value>
-  </data>
-  <data name="Utility_Revert" xml:space="preserve">
-    <value>Revert</value>
-  </data>
-  <data name="Utility_WIP" xml:space="preserve">
-    <value>This utility is currently work in process and might be unstable or missing features</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} texture infos have been synchronized</value>
     <comment>Arguments:
@@ -1983,12 +1735,6 @@ totalTextures</comment>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Rayman 3 Save Files (.sav)</value>
-  </data>
-  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
-    <value>The UbiRay patch has been successfully applied</value>
-  </data>
-  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>The UbiRay patch has been reverted</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
@@ -3861,32 +3607,11 @@ By changing the data source here you can choose which location is used for backu
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>The cheats will go into effect when first loading a map. Sometimes it is also required to return to the menu afterwards for everything to update.</value>
   </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>DirectPlay can only be toggled on Windows 8 or above</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Fix save progress</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible. This utility will attempt to correct this.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>Fix save</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>No issues found</value>
-  </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
     <value>The save was successfully fixed</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>An error occurred when fixing the save</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>Debug commands are not available for the Steam version</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>The utility is not available</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>Hebrew program translation, game patch file icon</value>
@@ -4398,12 +4123,6 @@ errorMessage</comment>
   <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
     <value>Select a config file</value>
   </data>
-  <data name="Config_LocationsHeader" xml:space="preserve">
-    <value>Config locations</value>
-  </data>
-  <data name="Page_LoadError" xml:space="preserve">
-    <value>An error occurred when loading the page</value>
-  </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
     <value>Client/emulator</value>
   </data>
@@ -4592,12 +4311,6 @@ gameClientName</comment>
   </data>
   <data name="JumpListEditor_AutoSort" xml:space="preserve">
     <value>Automatically sort games</value>
-  </data>
-  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
-    <value>Enable or disable this utility by selecting or deselecting the per-level soundtrack game client for this game</value>
-  </data>
-  <data name="R1U_TPLSGameClientName" xml:space="preserve">
-    <value>DOSBox (per-level soundtrack)</value>
   </data>
   <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
     <value>Rayman Advance Save Data</value>
@@ -5072,12 +4785,6 @@ gameClientName</comment>
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
     <value>The texture sync utility has been replaced by a button in the Archive Explorer game panel for easier access. Like before you can also enable textures to automatically sync when an archive has been repacked.</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
-    <value>1.12 (Unprotected)</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>There is a newer version available. Uninstall the current version to install it.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>
@@ -5682,12 +5389,6 @@ If there's a utility or other type of patch missing then it has most likely been
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Splash screen</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
-    <value>Image compression:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
-    <value>None</value>
   </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recreating file table</value>

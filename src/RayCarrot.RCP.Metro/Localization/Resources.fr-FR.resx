@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Optionnel)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Utiliser les paramètres recommandés</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Résolution</value>
   </data>
@@ -477,131 +474,11 @@
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>Ferme l'application quand un jeu est ouvert</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Ferme la boîte de dialogue de configuration durant une sauvegarde</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Bande Son Par Niveau</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Par défaut, la version PC n'a qu'une seule piste de musique par monde. Ce patch fait en sorte que chaque niveau aie sa propre musique, de la même façon que la version PlayStation.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>Installer</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>Désinstaller</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Activé</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Désactivé</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>Version de Rayman</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>Bande Son Complète</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>Rayman Forever, y compris la version GOG, ne contient pas la bande son complète à cause d'une taille de disque insuffisante. Cet utilitaire remplace la bande son incomplète par la bande son complète, ou alternativement la remettre en place.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>Remplacer par la bande son complète</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>Retourner à la bande son incomplète</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Appliquer</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>DirectPlay doit être activé afin de pouvoir utiliser Rayman 3. Il est en général désactivé par défaut sur Windows 10.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>Remplacer les Fichiers Infectés</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>Certaines versions de Rayman Designer, Rayman Forever compris, ont certains de leurs fichiers RayKit infectés par un malware. Même si ce dernier n'a pas l'air dangereux ou actif, GOG ayant confirmé qu'il n'y a aucun danger, il est toujours possible de remplacer ces fichiers par leur version non infectée sans danger via cet utilitaire.</value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>Langue</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>Remplacer</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Créer le Fichier de Configuration Manquant</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>Durant certaines installations de Rayman Designer, le fichier de configuration n'est pas créé, ce qui provoque une erreur chez le Mapper quand il est démarré. Cet utilitaire règle ce soucis en créant le fichier de configuration s'il n'est pas présent.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Créer le fichier de configuration manquant</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Activer UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>Cet utilitaire modifie la configuration du jeu pour faire apparaître UbiRay en tant que costume normal dans la gallerie des héros.</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>Commandes de Débug</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>Utiliser une des commandes ci-dessous permet au jeu d'être lancé dans un environnement de débug, avec les commandes changeant la façon dont le jeu fonctionne.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>ATTENTION : Utiliser ces commandes de debug peut corrompre vos données de sauvegarde. Pensez à toujours faire un backup avant de les utiliser.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Invincibilité</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>Permet au joueur de ne pas mourir quand il reçoit des dégâts</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Cacher le pointeur de la souris</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>Cache le pointeur de la souris dans les menus du jeu</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Zoom caméra maximum</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>Augmente le zoom de la caméra au maximum</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Fréquence d'images</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>Permet de choisir la fréquence d'image du jeu</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>Carte</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>Permet à une carte spécifique d'être chargée à la place du menu principal au démarrage du jeu</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>Langue</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>Change la langue du jeu</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>Mettre à jour vers la version 1.02</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>Dans le cas où Rayman Origins n'a pas été automatiquement mis à jour sur sa dernière version, cet utilitaire permet de le mettre à jour.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Mettre à jour</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Ouvrir la page de magasin</value>
@@ -611,9 +488,6 @@
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Ouvrir à l'emplacement indiqué</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>Options</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Installer depuis le disque</value>
@@ -917,9 +791,6 @@ Voulez vous réessayer ?</value>
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Installation annulée</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>Cet outil a besoin de fichiers supplémentaires pour être téléchargé</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Format invalide</value>
   </data>
@@ -956,15 +827,6 @@ Voulez vous réessayer ?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Une hauteur valide doit être spécifiée</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>Une erreur est survenue en sauvegardant votre configuration pour {0}</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Erreur de sauvegarde</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>Une erreur est survenue en sauvegardant votre configuration DOSBox</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Les changements ont été sauvegardés</value>
   </data>
@@ -976,9 +838,6 @@ Voulez vous réessayer ?</value>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>Une erreur est survenue en paramétrant le ratio d'écran de Rayman 2</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>Un erreur est survenue en sauvegardant la configuration de Rayman contre les Lapins Crétins</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Vous venez d'entrer le Konami Code ! Profitez de ce nouveau thème rouge.</value>
@@ -1073,68 +932,14 @@ Voulez vous réessayer ?</value>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Programme de traduction portugaise (Portugal)</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>Le téléchargement du gestionnaire de mise à jour de Rayman Origins a échoué</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>L'installation de Rayman Origins n'a pas pu être trouvée</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>Une erreur est survenue en appliquant les commandes de debug</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (Edition 1)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Installation échouée</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Installation Échouée</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir désinstaller l'utilitaire de pistes de musique par niveau ?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>Confirmer Désinstallation</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>L'utilitaire a été désinstallé avec succès</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Désinstallation Complétée</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>Une erreur est survenue lors de la désinstallation</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Désinstallation Échouée</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Changement de musique échoué</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>{0}/{1} fichiers ont été trouvés pour être remplacés. Cela pourrait demander plusieurs téléchargements en fonction de leur emplacement.</value>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>Remplacement terminé</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
     <value>Remplacement de fichier échoué</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>Le fichier de configuration existe déjà. Vous pouvez toujours le recréer s'il est corrompu. Continuer ?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>Remplacer fichier</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
     <value>Le fichier a été créé avec succès</value>
@@ -1201,15 +1006,6 @@ Voulez vous réessayer ?</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
     <value>Ce programme est un projet communautaire open source créé par RayCarrot. Il permet un accès rapide et facile à tous les jeux Rayman sur votre PC, avec des fonctionnalités supplémentaires comme un meilleur support des configurations, des utilitaires, de la gestion de backups de fichiers de sauvegarde, de la modification de texture et plus encore. Les jeux supportés peuvent être installés directement depuis leur disque via ce programme. Pour commencer, choisissez les paramètres que vous voulez ci-dessous et cliquez sur "Continuer". Les paramètres peuvent être changés à tout moment depuis la page des paramètres.</value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>Vos changements n'ont pas été enregistrés. Voulez-vous quitter sans sauvegarder ?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>Confirmer la sortie</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>Utilitaires</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Créer un raccourci</value>
@@ -1298,29 +1094,14 @@ Voulez vous réessayer ?</value>
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Les backups de certains jeux n'ont pas été réalisés</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Les animations comprennent les transitions de page et les animations de changement de taille de la page Jeux</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Groupe Steam</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>Une erreur est survenue lors de la sauvegarde. Les changements n'ont pas tous été sauvegardés.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (Édition 2)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (Édition 3)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Rafraîchir</value>
@@ -1426,12 +1207,6 @@ Nouveautés :
   <data name="DeployFilesError" xml:space="preserve">
     <value>Une erreur est survenue pendant la mise en place des fichiers additionnels requis. Certaines fonctionnalités du programme pourraient ne pas fonctionner comme prévu. Il est recommandé de tenter de redémarrer le programme.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>Cet utilitaire requiert que l'application soit en mode administrateur.</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Redémarrer en tant qu'administrateur</value>
   </data>
@@ -1517,15 +1292,6 @@ Message d'erreur : {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Remplacer le dossier</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Désactiver la lecture et l'écriture du fichier de sauvegarde</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Cela empêchera le jeu de lire ou écrire sur les fichiers de sauvegarde</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (Chinois)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>Vérification de disque</value>
@@ -1809,15 +1575,6 @@ Message d'erreur : {1}</value>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>La Tour du Leptys</value>
   </data>
-  <data name="TPLS_UpdateVersionError" xml:space="preserve">
-    <value>La version de Rayman n'a pas pu être mise à jour</value>
-  </data>
-  <data name="Utility_Revert" xml:space="preserve">
-    <value>Revenir en arrière</value>
-  </data>
-  <data name="Utility_WIP" xml:space="preserve">
-    <value>Cet outil est toujours en cours de développement et pourrait être instable ou avoir des fonctionnalités manquantes</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} informations de textures ont été synchronisées</value>
   </data>
@@ -1862,12 +1619,6 @@ Message d'erreur : {1}</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Fichiers de Sauvegarde Rayman 3 (.sav)</value>
-  </data>
-  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
-    <value>Le patch UbiRay a été appliqué avec succès</value>
-  </data>
-  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>Le patch UbiRay a été annulé</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Il était une fois</value>
@@ -3717,33 +3468,11 @@ Start : Pause</value>
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>Les codes de triche prendront effet après avoir chargé une map. Il est parfois aussi nécessaire d'ensuite revenir au menu pour que tout se mette à jour.</value>
   </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>DirectPlay ne peut être activé que sur Windows 8 et au-delà</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Réparer la progression de la sauvegarde</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>À cause d'un bug dans les premières versions du jeu, la progression de fichier de sauvegarde peut être désynchronisée, faisant que vous avez moins de Ptizêtres que vous n'en ayez récupéré.
-Cela peut rendre certains niveaux inaccessibles. Cet outil tentera de corriger cela.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>Réparer la sauvegarde</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>Aucun problème trouvé</value>
-  </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
     <value>La sauvegarde a bien été réparée</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>Une erreur est survenue durant la réparation de la sauvegarde</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>Les commandes de débug ne sont pas disponibles pour la version Steam</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>L'utilitaire n'est pas disponible</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>Traduction du programme en hébreux, fichier icône du patch de jeu</value>
@@ -4242,12 +3971,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
     <value>Sélectionnez un fichier de configuration</value>
   </data>
-  <data name="Config_LocationsHeader" xml:space="preserve">
-    <value>Emplacement de la configuration</value>
-  </data>
-  <data name="Page_LoadError" xml:space="preserve">
-    <value>Une erreur est survenue en chargeant la page</value>
-  </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
     <value>Client/Émulateur</value>
   </data>
@@ -4425,12 +4148,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="JumpListEditor_AutoSort" xml:space="preserve">
     <value>Trier automatiquement les jeux</value>
-  </data>
-  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
-    <value>Activez ou désactivez cette option en sélectionnant ou déselectionnant le client de jeu gérant la musique par niveau pour ce jeu</value>
-  </data>
-  <data name="R1U_TPLSGameClientName" xml:space="preserve">
-    <value>DOSBox (musique par niveau)</value>
   </data>
   <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
     <value>Données de sauvegarde pour Rayman Advance</value>
@@ -4907,12 +4624,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
     <value>L'outil de synchronisation de textures a été remplacé par un bouton dans l'onglet Archive Explorer pour un accès plus facile. Comme avant, vous pouvez aussi activer une option pour que les textures soient automatiquement compressées quand un archive est recompilée</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
-    <value>1.12 (Non protégée)</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>Une version plus récente est disponible. Désinstallez la version actuelle pour l'installer.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>
@@ -5473,12 +5184,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Écran de démarrage</value>
   </data>
-  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
-    <value>Compression d'image :</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
-    <value>Aucune</value>
-  </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recréation de la table de fichier</value>
   </data>
@@ -5627,11 +5332,11 @@ Voulez-vous continuer l'application des mods ?</value>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Une erreur est survenue à l'ouverture des mods</value>
   </data>
-  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
   <data name="Archive_SavingStatus" xml:space="preserve">
     <value>Sauvegarde de l'archive</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
     <value>Bruitage Cooked Ubiart</value>

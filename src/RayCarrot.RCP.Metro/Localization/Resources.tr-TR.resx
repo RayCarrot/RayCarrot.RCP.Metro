@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(İsteğe)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Önerilen ayarları kullan</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Çözünürlük</value>
   </data>
@@ -478,133 +475,11 @@ Bu, gelecekteki güncellemelerle eklenmesi planlanan daha fazla özellik ile bü
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>Bir oyunu başlatırken uygulamayı kapatın</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Kaydederken yapılandırma iletişim kutusunu kapat</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Seviye Başına Soundtrack</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Varsayılan olarak PC sürümünde her world için yalnızca tek bir müzik parçası bulunur. Bu yama, PlayStation'dakine benzer şekilde her seviyenin kendi yoluna sahip olmasını sağlar.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>Yükle</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>Kaldır</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Etkinleştirlimiş</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Engelli</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>Rayman sürümü</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>Tamamlanmış soundtrack</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>GOG versiyonu da dahil olmak üzere Rayman Forever, orijinal olarak disk alanı bulunmadığından tam Soundtrack'ile birlikte gelmez. Bu yardımcı program, mevcut tamamlanmamış Soundtrack'ini tam olanla değiştirebilir veya alternatif olarak geri döndürebilir.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>Tam Soundtrack'ile değiştir</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>Tamamlanmamış Soundtrack'ine geri dön</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Uygula</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>Rayman 3'ü çalıştırmak için DirectPlay'in etkinleştirilmesi gerekir. Varsayılan olarak Windows 10'da genellikle devre dışıdır.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>
-Etkilenen Dosyaları Değiştir</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>Rayman Forever da dahil olmak üzere Rayman Designer'ın bazı sürümlerinde bazı RayKit dosyalarına kötü amaçlı yazılım bulaşmıştır. Zararlı ve hatta etkin görünmemesine ve GOG'un tehlike olmadığını onaylamasına rağmen, bu yardımcı programı kullanarak dosyaları virüs bulaşmamış sürümleriyle güvenle değiştirebilirsiniz.</value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>Dil</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>Değiştir</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Eksik Yapılandırma Dosyası Oluştur</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>Bazı Rayman Designer kurulumları sırasında, yapılandırma dosyası oluşturulmaz ve bu, Haritalayıcı'nın başlatma sırasında bir hata vermesine neden olur. Bu yardımcı program, yoksa yapılandırma dosyasını oluşturarak bu sorunu çözecektir.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Oluştur</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>UbiRay'ı etkinleştir</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>Bu yardımcı program, UbiRay'in Heroes Gallery'de normal bir kostüm olarak görünmesini sağlamak için oyun yapılandırmasını değiştirir.
-</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>Hata ayıklama komutlar</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>Aşağıdaki hata ayıklama komutlarından herhangi birinin kullanılması, oyunun çalışma şeklini değiştiren komutlarla oyunun bir hata ayıklama ortamında başlatılmasına olanak tanır.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>UYARI: Bu hata ayıklama komutlarını kullanmak, kaydetme dosyanızı bozabilir. Bunları kullanmadan önce daima bir yedekleme yapın.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Yenilmezlik</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>Bu, oyuncunun hasar alırken ölmemesini sağlar</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Fare işaretçisini gizle</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>Bu, oyun menülerinde fare işaretçisini gizleyecektir</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Maksimum kamera yakınlaştırma</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>Bu, kamera yakınlaştırmasını maksimuma çıkarır</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Kare hızı (Framerate)</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>Bu oyunu çalıştırmak için kare hızını ayarlayacaktır</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>Harita</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>Bu, oyuna başlarken ana menü yerine belirli bir haritanın yüklenmesine izin verecektir.</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>Dil</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>Bu oyunun çalıştığı dili değiştirecek</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>1.02'ye güncelleme (Disk versiyonu)</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>Rayman Origins'in en son sürümü olan 1.02'ye otomatik olarak güncellenmemesi durumunda, bu yardımcı program onu ​​güncelleyebilir.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Güncelle</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Mağaza sayfasını aç</value>
@@ -614,9 +489,6 @@ Etkilenen Dosyaları Değiştir</value>
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Konumu aç</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>Seçenekler</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Disk'den yükle</value>
@@ -920,9 +792,6 @@ Tekrar deneyin?</value>
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Kurulum iptal edildi</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>Bu yardımcı program ek dosyaların indirilmesini gerektirir</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Geçersiz format</value>
   </data>
@@ -959,15 +828,6 @@ Tekrar deneyin?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Geçerli bir yükseklik belirtilmelidir</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>{0} yapılandırmanız kaydedilirken bir hata oluştu</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Kaydetme hatası</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>DOSBox yapılandırmanız kaydedilirken bir hata oluştu</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Değişiklikleriniz kaydedildi</value>
   </data>
@@ -978,9 +838,6 @@ Tekrar deneyin?</value>
     <value>Yürütülebilir oyun geçerli olmadığı için en boy oranı ayarlanamadı</value>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Rayman 2 en boy oranı ayarlanırken bir hata oluştu</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
     <value>Rayman 2 en boy oranı ayarlanırken bir hata oluştu</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
@@ -1076,68 +933,14 @@ Tekrar deneyin?</value>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portekizce (Portekiz) program çevirisi</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>Rayman Origins güncelleyicisinin indirilmesi başarısız oldu</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>Rayman Origins kurulumu bulunamadı</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>Hata ayıklama komutları uygulanırken bir hata oluştu</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>Otomatik</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (1. Baskı)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.2</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Yükleme başarısız</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Yükleme başarısız</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Düzey Başına Soundtrack yardımcı programını kaldırmak istediğinizden emin misiniz?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>Kaldırmayı Onayla</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>Yardımcı program başarıyla kaldırıldı</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Kaldırma tamamlandı</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>Kaldırma sırasında bir hata oluştu</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Kaldırma tamamlanmadı</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Soundtrack değişimi başarısız oldu.</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>Değiştirilecek {0}/{1} dosya bulundu. Bu, konumlarına bağlı olarak birkaç indirme gerektirebilir.</value>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>Değiştirme tamamlandı</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
     <value>Değiştirme tamamlanmadı</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>Yapılandırma dosyası zaten var. Bozuksa yine de yeniden oluşturabilirsiniz. Devam etmek?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>Dosyayı değiştir</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
     <value>Dosya başarıyla oluşturuldu.</value>
@@ -1206,15 +1009,6 @@ Tekrar deneyin?</value>
     <value>Bu program, RayCarrot tarafından oluşturulan resmi olmayan bir açık kaynak topluluk projesidir. Genişletilmiş yapılandırma desteği, yardımcı programlar, dosya yedeklerini kaydetme, veri yönetimini kaydetme, doku değişiklikleri ve daha fazlası gibi ek özelliklerle bilgisayarınızda kurulu tüm PC Rayman oyunlarına hızlı ve kolay erişim sağlar.
 Desteklenen oyunlar, program aracılığıyla doğrudan disklerinden kurulabilir.
 Başlamak için aşağıda istediğiniz ayarları değiştirin ve 'Devam'a basın. Ayarlar, ayarların sayfasında herhangi bir zamanda değiştirilebilirsiniz.</value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>Yapılandırma değişiklikleriniz kaydedilmedi. Çıkmak ve onları atmak istiyor musunuz?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>Çıkışı onayla</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>Araçlar</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Kısayol oluştur</value>
@@ -1303,29 +1097,14 @@ Başlamak için aşağıda istediğiniz ayarları değiştirin ve 'Devam'a bası
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Bazı oyunlar yedeklenmedi</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Yapılandırma</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Animasyonlar, oyunlar sayfası için sayfa geçişlerini ve yeniden boyutlandırma animasyonlarını içerir</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steam grubu</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>Kaydederken bir hata oluştu. Tüm değişiklikler kaydedilmedi.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (2. Baskı)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (3. Baskı)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Yenile</value>
@@ -1426,12 +1205,6 @@ En son sürüm: {1}</value>
   <data name="DeployFilesError" xml:space="preserve">
     <value>Ek gerekli dosyalar ayarlanırken bir hata oluştu. Programın bazı özellikleri istendiği gibi çalışmayabilir. Programı yeniden başlatmayı denemeniz önerilir.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>Bu yardımcı program, uygulamanın yönetici olarak çalışmasını gerektirir</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Yönetici olarak yeniden başlat</value>
   </data>
@@ -1517,15 +1290,6 @@ Hata mesajı: {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Dizinin üzerine yaz</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Dosya yüklemeyi/kaydetmeyi kaydetmeyi devre dışı bırak</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Bu, oyunun herhangi bir mevcut kayıt dosyasına yüklenmesini veya kaydedilmesini önleyecektir.</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (Çince)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>Disk Kontrol</value>
@@ -1809,15 +1573,6 @@ Hata mesajı: {1}</value>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>The Tower of the Leptys</value>
   </data>
-  <data name="TPLS_UpdateVersionError" xml:space="preserve">
-    <value>Rayman sürümü güncellenemedi</value>
-  </data>
-  <data name="Utility_Revert" xml:space="preserve">
-    <value>Geri al</value>
-  </data>
-  <data name="Utility_WIP" xml:space="preserve">
-    <value>Bu yardımcı program şu anda çalışma halindedir ve kararsız veya eksik özellikler olabilir</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} doku bilgisi senkronize edildi</value>
   </data>
@@ -1862,12 +1617,6 @@ Hata mesajı: {1}</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Rayman 3 kaydedilmiş dosyalar (.sav)</value>
-  </data>
-  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
-    <value>UbiRay yaması başarıyla uygulandı</value>
-  </data>
-  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>UbiRay yaması geri alındı</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
@@ -3723,32 +3472,11 @@ Burada veri kaynağını değiştirerek yedeklemeler ve ilerleme görünümü i�
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>Bir harita ilk yüklenirken hileler devreye girecektir. Bazen her şeyin güncellenmesi için daha sonra menüye geri dönmek de gerekir.</value>
   </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>DirectPlay yalnızca Windows 8 veya sonraki sürümlerde değiştirilebilir</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Kaydetme ilerlemesini düzelt</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>Oyunun önceki sürümlerindeki bir hata nedeniyle, dosya kaydetme ilerlemesi senkronize olmayabilir ve bu da gerçekte kazandığınızdan daha az ergenliğe sahip olmanıza neden olabilir. Bu, belirli seviyelerin erişilemez hale gelmesine neden olabilir. Bu yardımcı program bunu düzeltmeye çalışacaktır.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>Kaydetmeyi düzelt</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>Sorun bulunamadı</value>
-  </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
     <value>Kaydetme başarıyla düzeltildi</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>Kaydetme düzeltilirken bir hata oluştu</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>Hata ayıklama komutları Steam sürümü için mevcut değildir.</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>Yardımcı program kullanılamıyor</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>İbranice program çevirisi, oyun yama dosyası simgesi</value>
@@ -4248,12 +3976,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
     <value>Bir yapılandırma dosyası seçin</value>
   </data>
-  <data name="Config_LocationsHeader" xml:space="preserve">
-    <value>Yapılandırma konumları</value>
-  </data>
-  <data name="Page_LoadError" xml:space="preserve">
-    <value>Sayfa yüklenirken bir hata oluştu</value>
-  </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
     <value>İstemci/emülatör</value>
   </data>
@@ -4431,12 +4153,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   </data>
   <data name="JumpListEditor_AutoSort" xml:space="preserve">
     <value>Oyunları otomatik olarak sırala</value>
-  </data>
-  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
-    <value>Bu oyun için seviye başına Soundtrack'i oyun istemcisini seçerek veya seçimini kaldırarak bu yardımcı programı etkinleştirin veya devre dışı bırakın</value>
-  </data>
-  <data name="R1U_TPLSGameClientName" xml:space="preserve">
-    <value>DOSBox (seviye başına Soundtrack)</value>
   </data>
   <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
     <value>Rayman Advance Kayıtlı Veriler</value>
@@ -4911,12 +4627,6 @@ Bu özelliğin hiçbir zaman tam olarak uygulanmaması nedeniyle çok oyunculu m
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
     <value>Doku eşitleme yardımcı programı, daha kolay erişim için Arşiv Gezgini oyun panelindeki bir düğmeyle değiştirildi. Daha önce olduğu gibi, bir arşiv yeniden paketlendiğinde dokuların otomatik olarak eşitlenmesini de sağlayabilirsiniz.</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
-    <value>1.12 (Korumasız)</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>Daha yeni bir sürüm mevcut. Yüklemek için geçerli sürümü kaldırın.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>

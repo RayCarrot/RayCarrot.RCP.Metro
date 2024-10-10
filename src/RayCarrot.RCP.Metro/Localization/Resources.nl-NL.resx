@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Optioneel)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Gebruik aanbevolen instellingen</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Resolutie</value>
   </data>
@@ -477,131 +474,11 @@
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>Sluit het programma wanneer een spel gestart wordt</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Sluit het dialoogvenster voor configuratie tijdens het opslaan</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Per-Level Soundtrack</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Standaard biedt de PC-versie van Rayman maar één track per wereld. Deze patch zal ervoor zorgen dat elk level zijn eigen muziek heeft, vergelijkbaar met de PlayStation versie.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>Installeren</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>Deïnstalleren</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Ingeschakeld</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Uitgeschakeld</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>Rayman versie</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>Volledige Soundtrack</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>Rayman Forever - inclusief de GOG versie - biedt níét de volledige soundtrack vanwege een, van oorsprong, gebrek aan schijfruimte. Dit hulpprogramma zorgt ervoor dat de bestaande, incomplete soundtrack wordt vervangen door de complete, of het maakt het vervangen ongedaan.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>Vervang de onvolledige met de volledige soundtrack</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>Keer terug naar de onvolledige soundtrack</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Toepassen</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>DirectPlay moet ingeschakeld zijn om Rayman 3 te kunnen spelen. DirectPlay is in Windows 10 in de meeste gevallen standaard uitgeschakeld.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>Vervang Geïnfecteerde Bestanden</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>Sommige versies van Rayman Designer, inclusief Rayman Forever, hebben RayKit bestanden die geïnfecteerd zijn met malware. Ook al lijkt de malware onschuldig, laat staan actief - en GOG heeft bevestigd dat de malware geen gevaar oplevert - je kunt nog steeds zonder risico de geïnfecteerde bestanden vervangen door de 'schone', via dit hulpprogramma.</value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>Taal</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>Vervangen</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Aanmaken Missend Configuratiebestand</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>Tijdens sommmige installaties van Rayman Designer wordt het configuratiebestand niet aangemaakt, waardoor de Mapper een foutmelding vertoont tijdens het opstarten. Dit hulpprogramma lost dit issue op door alsnog het configuratiebestand aan te maken.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>Aanmaken</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Inschakelen UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>Dit hulpprogramma wijzigt de spelconfiguratie, zodat UbiRay verschijnt als een normaal kostuum via de Heldengalerij</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>Debug Commando's</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>Door gebruik te maken van één van onderstaande debug commando's, zal de game starten in de debug omgeving, waarbij de commando's bepalen hoe het spel gestart wordt.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>WAARSCHUWING: door gebruik te maken van deze debug commando's, kan de save file corrupt raken. Maak daarom altijd eerst een back-up alvorens ze te gebruiken!</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>Onoverwinnelijkheid</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>Dit zorgt ervoor dat de speler onsterfelijk wordt</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>Verberg cursor</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>Dit zorgt ervoor dat de cursos onzichtbaar wordt in de spelmenu's</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Max. zoombereik</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>Door deze optie wordt er maximaal gezoomd</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>Framerate</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>Deze optie bepaalt de framerate waarop het spel zal lopen</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>Dit zal ervoor zorgen dat een specifieke map geladen wordt in plaats van het hoofdmenu, bij opstart van het spel</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>Taal</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>Dit zal de taal van het spel veranderen</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>Update naar 1.02 (Disc-versie)</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>Ingeval Rayman Origins niet automatisch geüpdatet is naar de laatste versie, 1.02, kan dat via dit hulpprogramma alsnog.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Update</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Open winkelpagina</value>
@@ -611,9 +488,6 @@
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Open locatie</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>Opties</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Installeren vanaf de schijf</value>
@@ -917,9 +791,6 @@ Opnieuw proberen?</value>
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Installatie geannuleerd</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>Dit hulpprogramma vereist dat er extra bestanden worden gedownload</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Ongeldige bestandsindeling</value>
   </data>
@@ -956,15 +827,6 @@ Opnieuw proberen?</value>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>Een geldige hoogte moet worden gespecificeerd</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je {0} configuratie</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Fout bij het opslaan</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je DOSBox configuratie</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Je wijzigingen zijn opgeslagen</value>
   </data>
@@ -976,9 +838,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het instellen van de aspectratio van Rayman 2</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je Rayman Raving Rabbids configuratie</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Je hebt zojuist de Konami code ingevuld! Veel plezier met dit nieuwe, rode thema.</value>
@@ -1073,68 +932,14 @@ Opnieuw proberen?</value>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portugese (Portugal) programmavertaling</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>Het downloaden van de Rayman Origins updater is mislukt</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>De Rayman Origins installatie kon niet gevonden worden</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de debug commando's</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (Editie 1)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Installatie mislukt.</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Installatie Mislukt</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Weet je zeker dat je het Per-Level Soundtrack hulpprogramma wilt verwijderen?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>Bevestig Deïnstallatie</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>Hulpprogramma is succesvol gedeïnstalleerd</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Deïnstallatie Voltooid</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het deïnstalleren</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Deïnstallatie Mislukt</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Vervangen soundtrack mislukt.</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>{0}/{1} bestanden zijn gevonden voor vervanging. Dit kan verscheidene downloads vereisen, afhankelijk van de locaties.</value>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>Vervanging voltooid</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
     <value>Vervangen bestanden mislukt</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>Het configuratiebestand bestaat al. Je kunt het nog steeds opnieuw aanmaken als het corrupt is. Doorgaan?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>Vervang bestand</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
     <value>Het bestand is met succes aangemaakt.</value>
@@ -1201,15 +1006,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
     <value>Dit programma is een officieus open-source project, ontworpen door RayCarrot. Het stelt gebruikers in staat snel en gemakkelijk toegang te verkrijgen tot hun geïnstalleerde Rayman (PC) games, met de volgende, bijkomende features: uitgebreide ondersteuning voor configuratie, hulpprogramma's, back-ups voor save files, het beheren van save data, textuurmodificaties en meer. Ondersteunde spellen kunnen direct vanaf de schijf, via het programma geïnstalleerd worden. Om te beginnen, wijzig je eventueel de instellingen hieronder en klik je op 'Doorgaan'. De instellingen kunnen op elk gewenst moment aangepast worden via de Instellingen pagina.</value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>De wijzigingen in je configuratie zijn niet opgeslagen. Wil je toch afsluiten en ze negeren?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>Bevestig afsluiten</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>Hulpprogramma's</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>Snelkoppeling aanmaken</value>
@@ -1298,29 +1094,14 @@ Opnieuw proberen?</value>
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>Sommige games zijn niet geback-upt</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>Configuratie</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>Animaties betreffen paginaovergangen en geresizede animaties voor de Games pagina</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>Steam groep</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijden het opslaan. Niet alle wijzigingen zijn opgeslagen.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (Editie 2)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (Editie 3)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>Verversen</value>
@@ -1426,12 +1207,6 @@ Nieuws:
   <data name="DeployFilesError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het instellen van de bijkomende, vereiste bestanden. Zekere features van het programma werken mogelijk niet zoals bedoeld. Het is aanbevolen om het programma proberen te herstarten.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>Dit hulpprogramma vereist dat de applicatie als administrator wordt uitgevoerd</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Herstart als administrator</value>
   </data>
@@ -1517,15 +1292,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Map overschrijven</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Uitschakelen laden/opslaan save file</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Dit zorgt ervoor dat het spel geen bestaande save files laadt of wordt opgeslagen via een bestaande save file</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (Chinees)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>Schijfcontrole</value>
@@ -1809,15 +1575,6 @@ Foutmelding: {1}</value>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>The Tower of the Leptys</value>
   </data>
-  <data name="TPLS_UpdateVersionError" xml:space="preserve">
-    <value>De Rayman versie kon niet geüpdatet worden</value>
-  </data>
-  <data name="Utility_Revert" xml:space="preserve">
-    <value>Terugkeren</value>
-  </data>
-  <data name="Utility_WIP" xml:space="preserve">
-    <value>Aan dit hulpprogramma wordt momenteel gewerkt; het werkt misschien niet naar behoren en er ontbreken bepaalde features</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} textuurinformatie gesynchroniseerd</value>
   </data>
@@ -1862,12 +1619,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Rayman 3 save files (.sav)</value>
-  </data>
-  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
-    <value>De UbiRay patch is met succes toegepast</value>
-  </data>
-  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>De UbiRay patch is ongedaan gemaakt</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
@@ -3716,32 +3467,11 @@ Start: Pauzeren</value>
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>De cheats zullen van kracht zijn wanneer voor het eerst een map geladen wordt. Soms is het nodig om terug te keren naar het menu, zodat een en ander geüpdatet wordt.</value>
   </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>Er kan alleen geswitcht worden naar DirectPlay in Windows 8 of hoger</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Fix voortgang save file</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>Vanwege een bug in eerdere versies van het spel, is het mogelijk dat de save file voortgang niet meer synchroon loopt, waardoor je zichtbaar minder Teensies hebt dan eigenlijk verdiend. Als gevolg hiervan kunnen sommige levels ontoegankelijk worden gemaakt. Dit hulpprogramma zal dit proberen op te lossen.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>Fix save file</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>Geen issues gevonden</value>
-  </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
     <value>De save file is succesvol gefixt</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het fixen van de save file</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>Debug-commando's zijn niet beschikbaar voor de Steam-versie</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>Het hulpprogramma is niet beschikbaar</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>Hebreeuwse programmavertaling, pictogram patch-bestand spel</value>
@@ -4238,12 +3968,6 @@ Conflicten:
   <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
     <value>Selecteer een configuratiebestand</value>
   </data>
-  <data name="Config_LocationsHeader" xml:space="preserve">
-    <value>Configuratielocaties</value>
-  </data>
-  <data name="Page_LoadError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het laden van de pagina</value>
-  </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
     <value>Platform/emulator</value>
   </data>
@@ -4421,12 +4145,6 @@ Conflicten:
   </data>
   <data name="JumpListEditor_AutoSort" xml:space="preserve">
     <value>Sorteer spellen automatisch</value>
-  </data>
-  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
-    <value>Schakel dit hulpprogramma in of uit middels het (de)selecteren van het per-level soundtrack gameplatform voor dit spel</value>
-  </data>
-  <data name="R1U_TPLSGameClientName" xml:space="preserve">
-    <value>DOSBox (per-level soundtrack)</value>
   </data>
   <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
     <value>Rayman Advance Save Bestanden</value>
@@ -4901,12 +4619,6 @@ Conflicten:
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
     <value>Het hulpprogramma voor textuursynchronisatie is vervangen door een knop in het Archive Explorer spelpaneel voor gemakkelijker toegang. Net als voorheen kun je ook in dit geval texturen automatisch laten synchroniseren wanneer een archief herverpakt is.</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
-    <value>1.12 (Onbeschermd)</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>Er is een nieuwere versie beschikbaar. Deïnstalleer de huidige versie om deze te installeren.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>
@@ -5466,12 +5178,6 @@ Conflicten:
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>Splash-scherm</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
-    <value>Compressie afbeelding:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
-    <value>Geen</value>
   </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Recreëren bestandstabel</value>

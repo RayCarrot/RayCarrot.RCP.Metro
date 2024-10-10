@@ -1033,24 +1033,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image compression:.
-        /// </summary>
-        public static string Archive_FileInfo_Img_Compression {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Img_Compression", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to None.
-        /// </summary>
-        public static string Archive_FileInfo_Img_Compression_None {
-            get {
-                return ResourceManager.GetString("Archive_FileInfo_Img_Compression_None", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Encoding.
         /// </summary>
         public static string Archive_FileInfo_Img_Encoding {
@@ -2268,15 +2250,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when saving your DOSBox configuration.
-        /// </summary>
-        public static string Config_DosBoxSaveError {
-            get {
-                return ResourceManager.GetString("Config_DosBoxSaveError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable native controller support.
         /// </summary>
         public static string Config_EnableNativeController {
@@ -2345,15 +2318,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_LanguageR2Info {
             get {
                 return ResourceManager.GetString("Config_LanguageR2Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Config locations.
-        /// </summary>
-        public static string Config_LocationsHeader {
-            get {
-                return ResourceManager.GetString("Config_LocationsHeader", resourceCulture);
             }
         }
         
@@ -2547,47 +2511,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when saving your {0} configuration.
-        /// </summary>
-        public static string Config_SaveError {
-            get {
-                return ResourceManager.GetString("Config_SaveError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error saving.
-        /// </summary>
-        public static string Config_SaveErrorHeader {
-            get {
-                return ResourceManager.GetString("Config_SaveErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when saving your Rayman Raving Rabbids configuration.
-        /// </summary>
-        public static string Config_SaveRRRError {
-            get {
-                return ResourceManager.GetString("Config_SaveRRRError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your changes have been saved.
         /// </summary>
         public static string Config_SaveSuccess {
             get {
                 return ResourceManager.GetString("Config_SaveSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when saving. Not all changes have been saved..
-        /// </summary>
-        public static string Config_SaveWarning {
-            get {
-                return ResourceManager.GetString("Config_SaveWarning", resourceCulture);
             }
         }
         
@@ -3155,15 +3083,6 @@ namespace RayCarrot.RCP.Metro {
         public static string DosBoxOptions_OutputInfo {
             get {
                 return ResourceManager.GetString("DosBoxOptions_OutputInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use recommended settings.
-        /// </summary>
-        public static string DosBoxOptions_Recommended {
-            get {
-                return ResourceManager.GetString("DosBoxOptions_Recommended", resourceCulture);
             }
         }
         
@@ -4573,15 +4492,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Options.
-        /// </summary>
-        public static string GameDisplay_Options {
-            get {
-                return ResourceManager.GetString("GameDisplay_Options", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Purchase from GOG.
         /// </summary>
         public static string GameDisplay_PurchaseGOG {
@@ -4987,15 +4897,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configuration.
-        /// </summary>
-        public static string GameOptions_Config {
-            get {
-                return ResourceManager.GetString("GameOptions_Config", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create shortcut.
         /// </summary>
         public static string GameOptions_CreateShortcut {
@@ -5028,33 +4929,6 @@ namespace RayCarrot.RCP.Metro {
         public static string GameOptions_Uninstall {
             get {
                 return ResourceManager.GetString("GameOptions_Uninstall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your configuration changes have not been saved. Do you want to exit and discard them?.
-        /// </summary>
-        public static string GameOptions_UnsavedChanges {
-            get {
-                return ResourceManager.GetString("GameOptions_UnsavedChanges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm exit.
-        /// </summary>
-        public static string GameOptions_UnsavedChangesHeader {
-            get {
-                return ResourceManager.GetString("GameOptions_UnsavedChangesHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Utilities.
-        /// </summary>
-        public static string GameOptions_Utilities {
-            get {
-                return ResourceManager.GetString("GameOptions_Utilities", resourceCulture);
             }
         }
         
@@ -9367,15 +9241,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when loading the page.
-        /// </summary>
-        public static string Page_LoadError {
-            get {
-                return ResourceManager.GetString("Page_LoadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Page_Refresh {
@@ -11105,281 +10970,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complete Soundtrack.
-        /// </summary>
-        public static string R1U_CompleteOSTHeader {
-            get {
-                return ResourceManager.GetString("R1U_CompleteOSTHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rayman Forever, including the GOG version, does not come with the complete soundtrack due to disc space originally not being available. This utility can replace the existing incomplete soundtrack with the complete one, or alternatively revert it back..
-        /// </summary>
-        public static string R1U_CompleteOSTInfo {
-            get {
-                return ResourceManager.GetString("R1U_CompleteOSTInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Replace with complete soundtrack.
-        /// </summary>
-        public static string R1U_CompleteOSTReplace {
-            get {
-                return ResourceManager.GetString("R1U_CompleteOSTReplace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Soundtrack replacement failed..
         /// </summary>
         public static string R1U_CompleteOSTReplaceError {
             get {
                 return ResourceManager.GetString("R1U_CompleteOSTReplaceError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revert back to incomplete soundtrack.
-        /// </summary>
-        public static string R1U_CompleteOSTRevert {
-            get {
-                return ResourceManager.GetString("R1U_CompleteOSTRevert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.00.
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_00 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_00", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.10.
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_10 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.12 (Edition 1).
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_12 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.12 (Edition 2).
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_12_1 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.12 (Edition 3).
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_12_2 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.12 (Unprotected).
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_12_Unprotected {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12_Unprotected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.20.
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_20 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_20", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.21.
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_21 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_21", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1.21 (Chinese).
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_1_21_Chinese {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_21_Chinese", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Auto.
-        /// </summary>
-        public static string R1U_TPLS_RayVersions_Auto {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_RayVersions_Auto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is a newer version available. Uninstall the current version to install it..
-        /// </summary>
-        public static string R1U_TPLS_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_UpdateAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to uninstall the Per-Level Soundtrack utility?.
-        /// </summary>
-        public static string R1U_TPLSConfirmUninstall {
-            get {
-                return ResourceManager.GetString("R1U_TPLSConfirmUninstall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm Uninstall.
-        /// </summary>
-        public static string R1U_TPLSConfirmUninstallHeader {
-            get {
-                return ResourceManager.GetString("R1U_TPLSConfirmUninstallHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DOSBox (per-level soundtrack).
-        /// </summary>
-        public static string R1U_TPLSGameClientName {
-            get {
-                return ResourceManager.GetString("R1U_TPLSGameClientName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Per-Level Soundtrack.
-        /// </summary>
-        public static string R1U_TPLSHeader {
-            get {
-                return ResourceManager.GetString("R1U_TPLSHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to By default the PC version only has a single music track for each world. This patch makes each level have its own track, similarily to on PlayStation..
-        /// </summary>
-        public static string R1U_TPLSInfo {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Install.
-        /// </summary>
-        public static string R1U_TPLSInstall {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInstall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Installation failed.
-        /// </summary>
-        public static string R1U_TPLSInstallationFailed {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInstallationFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Installation Failed.
-        /// </summary>
-        public static string R1U_TPLSInstallationFailedHeader {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInstallationFailedHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rayman version.
-        /// </summary>
-        public static string R1U_TPLSRaymanVersion {
-            get {
-                return ResourceManager.GetString("R1U_TPLSRaymanVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uninstall.
-        /// </summary>
-        public static string R1U_TPLSUninstall {
-            get {
-                return ResourceManager.GetString("R1U_TPLSUninstall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when uninstalling.
-        /// </summary>
-        public static string R1U_TPLSUninstallError {
-            get {
-                return ResourceManager.GetString("R1U_TPLSUninstallError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uninstallation Failed.
-        /// </summary>
-        public static string R1U_TPLSUninstallErrorHeader {
-            get {
-                return ResourceManager.GetString("R1U_TPLSUninstallErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Utility was successfully uninstalled.
-        /// </summary>
-        public static string R1U_TPLSUninstallSuccess {
-            get {
-                return ResourceManager.GetString("R1U_TPLSUninstallSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uninstall Complete.
-        /// </summary>
-        public static string R1U_TPLSUninstallSuccessHeader {
-            get {
-                return ResourceManager.GetString("R1U_TPLSUninstallSuccessHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable or disable this utility by selecting or deselecting the per-level soundtrack game client for this game.
-        /// </summary>
-        public static string R1U_TPLSUsageInfo {
-            get {
-                return ResourceManager.GetString("R1U_TPLSUsageInfo", resourceCulture);
             }
         }
         
@@ -11884,33 +11479,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R3_LevelName_toudi_00 {
             get {
                 return ResourceManager.GetString("R3_LevelName_toudi_00", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DirectPlay.
-        /// </summary>
-        public static string R3U_DirectPlayHeader {
-            get {
-                return ResourceManager.GetString("R3U_DirectPlayHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DirectPlay needs to be enabled in order to run Rayman 3. By default it is usually disabled on Windows 10..
-        /// </summary>
-        public static string R3U_DirectPlayInfo {
-            get {
-                return ResourceManager.GetString("R3U_DirectPlayInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DirectPlay can only be toggled on Windows 8 or above.
-        /// </summary>
-        public static string R3U_DirectPlayNotAvailable {
-            get {
-                return ResourceManager.GetString("R3U_DirectPlayNotAvailable", resourceCulture);
             }
         }
         
@@ -12527,56 +12095,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The configuration file already exists. You can still recreate it if it is corrupt. Continue?.
-        /// </summary>
-        public static string RDU_CreateConfig_ReplaceQuestion {
-            get {
-                return ResourceManager.GetString("RDU_CreateConfig_ReplaceQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Replace File.
-        /// </summary>
-        public static string RDU_CreateConfig_ReplaceQuestionHeader {
-            get {
-                return ResourceManager.GetString("RDU_CreateConfig_ReplaceQuestionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file was successfully created..
         /// </summary>
         public static string RDU_CreateConfig_Success {
             get {
                 return ResourceManager.GetString("RDU_CreateConfig_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create.
-        /// </summary>
-        public static string RDU_CreateConfigCreate {
-            get {
-                return ResourceManager.GetString("RDU_CreateConfigCreate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create Missing Configuration File.
-        /// </summary>
-        public static string RDU_CreateConfigHeader {
-            get {
-                return ResourceManager.GetString("RDU_CreateConfigHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to During some Rayman Designer installations the configuration file won&apos;t be created, causing the Mapper to give an error when launching. This utility will fix that issue by creating the configuration file if not present..
-        /// </summary>
-        public static string RDU_CreateConfigInfo {
-            get {
-                return ResourceManager.GetString("RDU_CreateConfigInfo", resourceCulture);
             }
         }
         
@@ -12595,51 +12118,6 @@ namespace RayCarrot.RCP.Metro {
         public static string RDU_ReplaceFiles_Error {
             get {
                 return ResourceManager.GetString("RDU_ReplaceFiles_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}/{1} files were found to replace. This might require several downloads depending on their locations..
-        /// </summary>
-        public static string RDU_ReplaceFiles_InfoMessage {
-            get {
-                return ResourceManager.GetString("RDU_ReplaceFiles_InfoMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Replace Infected Files.
-        /// </summary>
-        public static string RDU_ReplaceFilesHeader {
-            get {
-                return ResourceManager.GetString("RDU_ReplaceFilesHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Some versions of Rayman Designer, including Rayman Forever, have some of the RayKit files infected with a malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, you can still safely replace the files with their non-infected versions using this utility..
-        /// </summary>
-        public static string RDU_ReplaceFilesInfo {
-            get {
-                return ResourceManager.GetString("RDU_ReplaceFilesInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        public static string RDU_ReplaceFilesLanguage {
-            get {
-                return ResourceManager.GetString("RDU_ReplaceFilesLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Replace.
-        /// </summary>
-        public static string RDU_ReplaceFilesReplace {
-            get {
-                return ResourceManager.GetString("RDU_ReplaceFilesReplace", resourceCulture);
             }
         }
         
@@ -12788,47 +12266,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fix save.
-        /// </summary>
-        public static string RFRU_SaveFixAction {
-            get {
-                return ResourceManager.GetString("RFRU_SaveFixAction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred when fixing the save.
         /// </summary>
         public static string RFRU_SaveFixError {
             get {
                 return ResourceManager.GetString("RFRU_SaveFixError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fix save progress.
-        /// </summary>
-        public static string RFRU_SaveFixHeader {
-            get {
-                return ResourceManager.GetString("RFRU_SaveFixHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible. This utility will attempt to correct this..
-        /// </summary>
-        public static string RFRU_SaveFixInfo {
-            get {
-                return ResourceManager.GetString("RFRU_SaveFixInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No issues found.
-        /// </summary>
-        public static string RFRU_SaveFixNotRequired {
-            get {
-                return ResourceManager.GetString("RFRU_SaveFixNotRequired", resourceCulture);
             }
         }
         
@@ -13094,42 +12536,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UbiRay patch has been successfully applied.
-        /// </summary>
-        public static string RLU_UbiRay_ApplySuccess {
-            get {
-                return ResourceManager.GetString("RLU_UbiRay_ApplySuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The UbiRay patch has been reverted.
-        /// </summary>
-        public static string RLU_UbiRay_RevertSuccess {
-            get {
-                return ResourceManager.GetString("RLU_UbiRay_RevertSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable UbiRay.
-        /// </summary>
-        public static string RLU_UbiRayHeader {
-            get {
-                return ResourceManager.GetString("RLU_UbiRayHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility modifies the game configuration to make UbiRay appear as a normal costume in the Heroes Gallery.
-        /// </summary>
-        public static string RLU_UbiRayInfo {
-            get {
-                return ResourceManager.GetString("RLU_UbiRayInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to First Ruins.
         /// </summary>
         public static string RM_RaceName_0 {
@@ -13270,222 +12676,6 @@ namespace RayCarrot.RCP.Metro {
         public static string RM_RaceName_9 {
             get {
                 return ResourceManager.GetString("RM_RaceName_9", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when applying the debug commands.
-        /// </summary>
-        public static string ROU_DebugCommandsError {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Framerate.
-        /// </summary>
-        public static string ROU_DebugCommandsFramerate {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsFramerate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will set the framerate to run the game in.
-        /// </summary>
-        public static string ROU_DebugCommandsFramerateInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsFramerateInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Debug Commands.
-        /// </summary>
-        public static string ROU_DebugCommandsHeader {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide mouse pointer.
-        /// </summary>
-        public static string ROU_DebugCommandsHideMouse {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsHideMouse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will hide the mouse pointer in the game menus.
-        /// </summary>
-        public static string ROU_DebugCommandsHideMouseInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsHideMouseInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Using any of the below debug commands allows the game to be launched in a debug environment, with the commands changing how the game runs..
-        /// </summary>
-        public static string ROU_DebugCommandsInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Rayman Origins installation could not be found.
-        /// </summary>
-        public static string ROU_DebugCommandsInstallationNotFound {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsInstallationNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invincibility.
-        /// </summary>
-        public static string ROU_DebugCommandsInvincibility {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsInvincibility", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This allows the player to not die when taking damage.
-        /// </summary>
-        public static string ROU_DebugCommandsInvincibilityInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsInvincibilityInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        public static string ROU_DebugCommandsLanguage {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will change the language the game runs in.
-        /// </summary>
-        public static string ROU_DebugCommandsLanguageInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsLanguageInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Map.
-        /// </summary>
-        public static string ROU_DebugCommandsMap {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsMap", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will allow a specific map to be loaded instead of the main menu upon starting the game.
-        /// </summary>
-        public static string ROU_DebugCommandsMapInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsMapInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Max camera zoom.
-        /// </summary>
-        public static string ROU_DebugCommandsMaxZoom {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsMaxZoom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will max out the camera zoom.
-        /// </summary>
-        public static string ROU_DebugCommandsMaxZoomInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsMaxZoomInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disable save file loading/saving.
-        /// </summary>
-        public static string ROU_DebugCommandsNoSave {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsNoSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will prevent the game from loading or saving to any existing save file.
-        /// </summary>
-        public static string ROU_DebugCommandsNoSaveInfo {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsNoSaveInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Debug commands are not available for the Steam version.
-        /// </summary>
-        public static string ROU_DebugCommandsNotAvailable {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsNotAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to WARNING: Using these debug commands may corrupt your save file. Always make a backup before using them..
-        /// </summary>
-        public static string ROU_DebugCommandsWarning {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Downloading the Rayman Origins updater failed.
-        /// </summary>
-        public static string ROU_UpdateFailed {
-            get {
-                return ResourceManager.GetString("ROU_UpdateFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update to 1.02 (Disc version).
-        /// </summary>
-        public static string ROU_UpdateHeader {
-            get {
-                return ResourceManager.GetString("ROU_UpdateHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to In case Rayman Origins has not been automatically updated to its latest version, 1.02, this utility can update it..
-        /// </summary>
-        public static string ROU_UpdateInfo {
-            get {
-                return ResourceManager.GetString("ROU_UpdateInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string ROU_UpdateUpdate {
-            get {
-                return ResourceManager.GetString("ROU_UpdateUpdate", resourceCulture);
             }
         }
         
@@ -15299,15 +14489,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close configuration dialog when saving.
-        /// </summary>
-        public static string Settings_GeneralCloseOnSave {
-            get {
-                return ResourceManager.GetString("Settings_GeneralCloseOnSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string Settings_GeneralHeader {
@@ -15691,15 +14872,6 @@ namespace RayCarrot.RCP.Metro {
         public static string TonicTroubleSpecialEdition_Win32_Title {
             get {
                 return ResourceManager.GetString("TonicTroubleSpecialEdition_Win32_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Rayman version could not be updated.
-        /// </summary>
-        public static string TPLS_UpdateVersionError {
-            get {
-                return ResourceManager.GetString("TPLS_UpdateVersionError", resourceCulture);
             }
         }
         
@@ -16437,15 +15609,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The utility is not available.
-        /// </summary>
-        public static string Utilities_NotAvailable {
-            get {
-                return ResourceManager.GetString("Utilities_NotAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         public static string Utilities_Other_Header {
@@ -16478,15 +15641,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_R1Passwords_Header {
             get {
                 return ResourceManager.GetString("Utilities_R1Passwords_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility requires the application to run as administrator.
-        /// </summary>
-        public static string Utilities_RequiresAdmin {
-            get {
-                return ResourceManager.GetString("Utilities_RequiresAdmin", resourceCulture);
             }
         }
         
@@ -16631,42 +15785,6 @@ namespace RayCarrot.RCP.Metro {
         public static string UtilitiesPageHeader {
             get {
                 return ResourceManager.GetString("UtilitiesPageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility requires additional files to be downloaded.
-        /// </summary>
-        public static string Utility_AdditionalFilesRequired {
-            get {
-                return ResourceManager.GetString("Utility_AdditionalFilesRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply.
-        /// </summary>
-        public static string Utility_Apply {
-            get {
-                return ResourceManager.GetString("Utility_Apply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revert.
-        /// </summary>
-        public static string Utility_Revert {
-            get {
-                return ResourceManager.GetString("Utility_Revert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility is currently work in process and might be unstable or missing features.
-        /// </summary>
-        public static string Utility_WIP {
-            get {
-                return ResourceManager.GetString("Utility_WIP", resourceCulture);
             }
         }
         

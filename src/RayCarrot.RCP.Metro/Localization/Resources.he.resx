@@ -237,9 +237,6 @@
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(אופציונאלי)</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>השתמש בהגדרות מומלצות</value>
-  </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>רזולוציה</value>
   </data>
@@ -478,131 +475,11 @@
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
     <value>סגור את היישום בעת הפעלת משחק</value>
   </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>סגור את תיבת הדו -שיח של התצורה בעת השמירה</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>פסקול לכל רמה</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>כברירת מחדל, לגרסת המחשב האישי יש רק מוזיקה אחת לכל עולם. תיקון זה גורם לכל רמה לקבל מסלול משלה, בדומה לפלייסטיישן.</value>
-  </data>
-  <data name="R1U_TPLSInstall" xml:space="preserve">
-    <value>להתקין</value>
-  </data>
-  <data name="R1U_TPLSUninstall" xml:space="preserve">
-    <value>הסר את ההתקנה</value>
-  </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>מופעל</value>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>מכובה</value>
-  </data>
-  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
-    <value>גרסאת Rayman</value>
-  </data>
-  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
-    <value>פסקול מלא</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>Rayman Forever, כולל גרסת GOG, אינו מגיע עם פסקול מלא בשל שטח הדיסק במקור. כלי זה יכול להחליף את פסקול הקיים הקיים במלואו, או לחילופין להחזיר אותו.</value>
-  </data>
-  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
-    <value>החלף בפסקול מלא</value>
-  </data>
-  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
-    <value>חזור לפסקול לא שלם</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>החל</value>
-  </data>
-  <data name="R3U_DirectPlayHeader" xml:space="preserve">
-    <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>יש להפעיל את DirectPlay כדי להריץ את Rayman 3. כברירת מחדל הוא מושבת בדרך כלל ב- Windows 10.</value>
-  </data>
-  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>החלף קבצים נגועים</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>בחלק מהגרסאות של Rayman Designer, כולל Rayman Forever, חלק מקבצי RayKit נגועים בתוכנה זדונית. למרות שזה לא נראה מזיק, או אפילו פעיל, ו- GOG אישר כי אין סכנה, עדיין ניתן להחליף את הקבצים בבטחה עם הגרסאות הלא נגועות שלהם באמצעות כלי זה.</value>
-  </data>
-  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
-    <value>שפה</value>
-  </data>
-  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
-    <value>החלף</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>צור קובץ תצורה חסר</value>
-  </data>
-  <data name="RDU_CreateConfigInfo" xml:space="preserve">
-    <value>במהלך התקנות מסוימות של Rayman Designer קובץ התצורה לא ייווצר, מה שיגרום ל- Mapper לתת שגיאה בעת ההפעלה. כלי שירות זה יפתור את הבעיה על ידי יצירת קובץ התצורה אם אינו קיים.</value>
-  </data>
-  <data name="RDU_CreateConfigCreate" xml:space="preserve">
-    <value>ליצור</value>
-  </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>הפעל את UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>כלי שירות זה משנה את תצורת המשחק כך ש- UbiRay יופיע כתלבושת רגילה בגלריית הגיבורים</value>
-  </data>
-  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
-    <value>פקודות איתור באגים</value>
-  </data>
-  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
-    <value>שימוש באחת מפקודות הבאגים להלן מאפשר את הפעלת המשחק בסביבת איתור באגים, כאשר הפקודות ישנו את אופן הפעולה של המשחק.</value>
-  </data>
-  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>אזהרה: שימוש בפקודות איתור באגים אלו עשוי להרוס את קובץ השמירה שלך. תמיד מומלץ לבצע גיבוי לפני השימוש בהם.</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
-    <value>בלתי מנוצח</value>
-  </data>
-  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
-    <value>זה מאפשר לשחקן לא למות בעת נזק</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
-    <value>הסתר את סמן העכבר</value>
-  </data>
-  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
-    <value>זה יסתיר את סמן העכבר בתפריטי המשחק</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>זום מצלמה מקסימלי</value>
-  </data>
-  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
-    <value>זה יגדיל את זום המצלמה</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
-    <value>קצב רענון תמונה</value>
-  </data>
-  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
-    <value>זה יקבע את מספר קצב רענון תמונה בו ירוץ המשחק</value>
-  </data>
-  <data name="ROU_DebugCommandsMap" xml:space="preserve">
-    <value>מפה</value>
-  </data>
-  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
-    <value>זה יאפשר לטעון מפה ספציפית במקום התפריט הראשי עם תחילת המשחק</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
-    <value>שפה</value>
-  </data>
-  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
-    <value>זה ישנה את השפה שבה המשחק פועל</value>
-  </data>
-  <data name="ROU_UpdateHeader" xml:space="preserve">
-    <value>עדכון ל- 1.02 (גרסת דיסק)</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>במקרה ש- Rayman Origins לא עודכן אוטומטית לגרסתו האחרונה 1.02, כלי זה יכול לעדכן אותו.</value>
-  </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>עדכן</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>פתח את דף החנות</value>
@@ -612,9 +489,6 @@
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>פתח נתיב קובץ</value>
-  </data>
-  <data name="GameDisplay_Options" xml:space="preserve">
-    <value>אפשרויות</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>התקן מהתקליטור</value>
@@ -916,9 +790,6 @@
   <data name="Installer_Canceled" xml:space="preserve">
     <value>ההתקנה בוטלה</value>
   </data>
-  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>כלי זה דורש הורדה של קבצים נוספים</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>פורמט לא חוקי</value>
   </data>
@@ -955,15 +826,6 @@
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>יש לציין גובה תקף</value>
   </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>אירעה שגיאה בעת שמירת תצורת {0} שלך</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>שגיאת שמירה</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>אירעה שגיאה בעת שמירת תצורת DOSBox שלך</value>
-  </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>השינויים שלך נשמרו</value>
   </data>
@@ -975,9 +837,6 @@
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>אירעה שגיאה בעת הגדרת יחס הגובה -רוחב של Rayman 2</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>אירעה שגיאה בעת שמירת תצורת Rayman Raving Rabbids שלך</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>הרגע הזנת את קוד הקונאמי! תהנה תהנה מערכת נושא: אדום חדש.</value>
@@ -1072,68 +931,14 @@
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>תרגום התוכנה לפורטוגזית (פורטוגל)</value>
   </data>
-  <data name="ROU_UpdateFailed" xml:space="preserve">
-    <value>הורדת אשף העדכון של Rayman Origins נכשלה</value>
-  </data>
-  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
-    <value>לא ניתן היה למצוא את התקנת Rayman Origins</value>
-  </data>
-  <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>אירעה שגיאה בעת החלת פקודות מיפוי הבאגים</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
-    <value>אוטומטי</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12 (מהדורה 1)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>ההתקנה נכשלה</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>ההתקנה נכשלה</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>האם אתה בטוח שברצונך להסיר את ההתקנה של כלי הפסקול פר שלב?</value>
-  </data>
-  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
-    <value>אשר את הסרת ההתקנה</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>תוכנת השירות הוסרה בהצלחה</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>הסרת ההתקנה הושלמה</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>אירעה שגיאה בעת הסרת ההתקנה</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>הסרת ההתקנה נכשלה</value>
-  </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>החלפת פסקול נכשלה.</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>נמצאו קבצים להחלפה של {0}/{1}. הדבר עשוי לדרוש מספר הורדות בהתאם למיקומם.</value>
   </data>
   <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
     <value>ההחלפה הסתיימה</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
     <value>החלפת קבצים נכשלה</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>קובץ התצורה כבר קיים. עדיין ניתן ליצור אותו מחדש אם הוא פגום. להמשיך?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>החלף קובץ</value>
   </data>
   <data name="RDU_CreateConfig_Success" xml:space="preserve">
     <value>הקובץ נוצר בהצלחה.</value>
@@ -1202,15 +1007,6 @@
     <value>תוכנה זו היא פרויקט קהילתי לא רשמי של קוד פתוח שנוצר על ידי RayCarrot. המאפשר גישה מהירה וקלה לכל משחקי ה- Rayman הקיימים למחשב המותקנים במחשבך, עם תכונות נוספות כגון תמיכה בתצורה מורחבת, כלי עזר, שמירת גיבויים של קבצים, שמירת ניהול נתונים, טקסטורות, שינויים ועוד.
 ניתן להתקין משחקים נתמכים ישירות מהתקליטור שלהם באמצעות התוכנה.
 כדי להתחיל, שנה את ההגדרות הרצויות למטה ולחץ על 'המשך'. ניתן לשנות את ההגדרות בכל עת בדף ההגדרות. </value>
-  </data>
-  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
-    <value>שינויי התצורה שלך לא נשמרו. האם ברצונך לצאת ולבטל את אותם השינויים ?</value>
-  </data>
-  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
-    <value>אשר יציאה</value>
-  </data>
-  <data name="GameOptions_Utilities" xml:space="preserve">
-    <value>כלי עזר</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
     <value>צור קיצור דרך</value>
@@ -1299,29 +1095,14 @@
   <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
     <value>חלק מהמשחקים לא גובו</value>
   </data>
-  <data name="GameOptions_Config" xml:space="preserve">
-    <value>תצורה</value>
-  </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
     <value>אנימציות כוללות מעברי דפים ושינוי גודל אנימציות לדף המשחקים</value>
   </data>
   <data name="About_Steam" xml:space="preserve">
     <value>קבוצת סטים</value>
   </data>
-  <data name="Config_SaveWarning" xml:space="preserve">
-    <value>אירעה שגיאה בעת השמירה. לא כל השינויים נשמרו.</value>
-  </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
-    <value>1.12 (גרסא 2)</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
-    <value>1.12 (גרסא 3)</value>
   </data>
   <data name="Page_Refresh" xml:space="preserve">
     <value>רענן</value>
@@ -1427,12 +1208,6 @@
   <data name="DeployFilesError" xml:space="preserve">
     <value>אירעה שגיאה בעת הגדרת הקבצים הנוספים הדרושים. ייתכן שמאפיינים מסוימים של התוכנית לא יפעלו כמתוכנן. מומלץ לנסות להפעיל את התוכנה מחדש.</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-  </data>
-  <data name="Utilities_RequiresAdmin" xml:space="preserve">
-    <value>כלי זה מחייב את היישום לפעול כמנהל מערכת</value>
-  </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>הפעל מחדש כמנהל מערכת</value>
   </data>
@@ -1518,15 +1293,6 @@
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>החלף ספרייה</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>השבת טעינת/שמירה של קובץ שמירת</value>
-  </data>
-  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>זה ימנע מהמשחק לטעון או לשמור בכל קובץ שמירה קיים</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
-    <value>1.21 (סינית)</value>
   </data>
   <data name="Config_DiscCheck" xml:space="preserve">
     <value>בדיקת דיסקים</value>
@@ -1812,15 +1578,6 @@ BinarySerializer</value>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>מגדל הלפטיס</value>
   </data>
-  <data name="TPLS_UpdateVersionError" xml:space="preserve">
-    <value>לא ניתן היה לעדכן את גרסת Rayman</value>
-  </data>
-  <data name="Utility_Revert" xml:space="preserve">
-    <value>לבטל לאחור</value>
-  </data>
-  <data name="Utility_WIP" xml:space="preserve">
-    <value>כלי השירות הזה נמצא כעת בשלבי בניה וייתכן שהוא לא יציב או יחסר בתכונות</value>
-  </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>{0}/{1} פרטי טקסטורות סונכרנו</value>
   </data>
@@ -1865,12 +1622,6 @@ BinarySerializer</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>קבצי שמירה של Rayman 3 (.sav)</value>
-  </data>
-  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
-    <value>תיקון UbiRay הוחל בהצלחה</value>
-  </data>
-  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>התיקון של UbiRay הוחזר לאחור</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
@@ -3720,32 +3471,11 @@ Start: הפסק</value>
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>הצ'יטים ייכנסו לתוקף בעת טעינת המפה הראשונה. לפעמים נדרש גם לחזור לתפריט לאחר מכן כדי שהכל יתעדכן.</value>
   </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>ניתן להפעיל את DirectPlay רק ב-Windows 8 ומעלה</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>תקן התקדמות השמירה</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>עקב באג בגרסאות קודמות של המשחק, התקדמות קובץ השמירה עלולה לצאת מהסנכרון ולגרום לכך שיהיו פחות טינסים ממה שהרווחת בפועל. זה יכול לגרום לרמות מסוימות להפוך ללא נגישות. כלי זה ינסה לתקן זאת.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>תקן שמירה</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>לא נמצאו בעיות</value>
-  </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
     <value>השמירה תוקנה בהצלחה</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>אירעה שגיאה בעת תיקון השמירה</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>פקודות דיבאגינג אינן זמינות עבור גרסת Steam</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>כלי השירות אינו זמין</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>תרגום תוכנה בעברית (ישראל), סמליל קובץ טלאי</value>
@@ -4243,12 +3973,6 @@ Start: הפסק</value>
   <data name="GameClients_DOSBox_BrowseConfigPathHeader" xml:space="preserve">
     <value>בחרו קובץ תצורה</value>
   </data>
-  <data name="Config_LocationsHeader" xml:space="preserve">
-    <value>הגדרות מיקומים</value>
-  </data>
-  <data name="Page_LoadError" xml:space="preserve">
-    <value>אירעה שגיאה בעת טעינת הדף</value>
-  </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
     <value>לקוח/אמולטור</value>
   </data>
@@ -4426,12 +4150,6 @@ Start: הפסק</value>
   </data>
   <data name="JumpListEditor_AutoSort" xml:space="preserve">
     <value>מיון אוטומטית של משחקים</value>
-  </data>
-  <data name="R1U_TPLSUsageInfo" xml:space="preserve">
-    <value>הפעילו או השביתו את כלי השירות הזה על ידי בחירה או ביטול בחירה של לקוח משחק הפסקול לפי רמה עבור משחק זה</value>
-  </data>
-  <data name="R1U_TPLSGameClientName" xml:space="preserve">
-    <value>DOSBox (per-level soundtrack)</value>
   </data>
   <data name="Utilities_Converter_R1GbaSaveHeader" xml:space="preserve">
     <value>Rayman Advance נתוני שמירה</value>
@@ -4906,12 +4624,6 @@ Start: הפסק</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
     <value>כלי השירות לסנכרון הטקסטורה הוחלף בלחצן בחלונית המשחק Archive Explorer לגישה קלה יותר. כמו בעבר, ניתן גם לאפשר לטקסטורות להסתנכרן אוטומטית כאשר ארכיון נארז מחדש.</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12_Unprotected" xml:space="preserve">
-    <value>1.12 (לא מוגן)</value>
-  </data>
-  <data name="R1U_TPLS_UpdateAvailable" xml:space="preserve">
-    <value>יש גרסה חדשה יותר זמינה. הסירו את ההתקנה הנוכחית כדי להתקין אותה.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>
@@ -5472,12 +5184,6 @@ Start: הפסק</value>
   </data>
   <data name="About_Credits_Nic" xml:space="preserve">
     <value>מסך התחלה</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression" xml:space="preserve">
-    <value>דחיסת תמונה:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Compression_None" xml:space="preserve">
-    <value>ללא</value>
   </data>
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>יצירה מחדש של טבלת קבצים</value>
