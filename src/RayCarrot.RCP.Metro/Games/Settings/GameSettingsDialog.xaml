@@ -144,7 +144,7 @@
             <ToggleButton Grid.Column="0" 
                           Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
                           Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
-                          Content="{Resx ﻿GameSettings_LocationsToggle}"
+                          Content="{Resx GameSettings_LocationsToggle}"
                           rcp:Icon.Kind="FileMultipleOutline"
                           Margin="0 0 4 0">
                 <ToggleButton.Triggers>
