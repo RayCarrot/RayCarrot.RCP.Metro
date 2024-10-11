@@ -5962,4 +5962,10 @@ WARNING: Loading directly into a map using this will skip loading your save file
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
+    <value>Select the mod file to download</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
+    <value>Select mod file</value>
+  </data>
 </root>

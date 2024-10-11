@@ -339,13 +339,31 @@ public class AppUIManager
                 return;
             }
 
-            // Get the most recent file
-            file = gb.GetValidFiles(mod, mod.Files).OrderBy(x => x.DateAdded).LastOrDefault();
+            // Get the valid files
+            List<GameBananaFile> validFiles = gb.GetValidFiles(mod, mod.Files);
 
-            if (file == null)
+            if (validFiles.Count == 0)
             {
                 await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_NoValidFilesError, MessageType.Error);
                 return;
+            }
+
+            if (validFiles.Count > 1)
+            {
+                ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.Select(x => x.File).ToArray(),
+                    Resources.ModLoader_GameBanana_SelectDownloadFileHeader)
+                {
+                    Title = Resources.ModLoader_GameBanana_SelectDownloadFileTitle
+                });
+
+                if (result.CanceledByUser)
+                    return;
+
+                file = validFiles[result.SelectedIndex];
+            }
+            else
+            {
+                file = validFiles[0];
             }
         }
         catch (Exception ex)

@@ -9006,6 +9006,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the mod file to download.
+        /// </summary>
+        public static string ModLoader_GameBanana_SelectDownloadFileHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_SelectDownloadFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mod file.
+        /// </summary>
+        public static string ModLoader_GameBanana_SelectDownloadFileTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_SelectDownloadFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select mod file from GameBanana to use when updating.
         /// </summary>
         public static string ModLoader_GameBanana_SelectUpdateFileHeader {
