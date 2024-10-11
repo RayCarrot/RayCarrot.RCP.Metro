@@ -164,6 +164,9 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameSettings}" 
                        IconKind="{StaticResource RCP.Icons.Settings}"
                        IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClientGameSettings}" 
+                       IconKind="{StaticResource RCP.Icons.GameClientSettings}"
+                       IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClient}" 
                        IconKind="{StaticResource RCP.Icons.GameClient}"
                        IconColor="{x:Null}" />

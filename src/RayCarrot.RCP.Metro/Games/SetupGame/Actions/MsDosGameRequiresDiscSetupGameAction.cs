@@ -7,7 +7,7 @@ public class MsDosGameRequiresDiscSetupGameAction : SetupGameAction
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
-    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameSettings;
+    public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameClientGameSettings;
     public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_GameClientGameSettingsFix));
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
