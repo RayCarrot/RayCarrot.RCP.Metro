@@ -350,7 +350,11 @@ public class AppUIManager
 
             if (validFiles.Count > 1)
             {
-                ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.Select(x => x.File).ToArray(),
+                ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
+                        Select(x => x.Description.IsNullOrWhiteSpace() 
+                            ? x.File
+                            : $"{x.File}{Environment.NewLine}{x.Description}").
+                        ToArray(),
                     Resources.ModLoader_GameBanana_SelectDownloadFileHeader)
                 {
                     Title = Resources.ModLoader_GameBanana_SelectDownloadFileTitle
