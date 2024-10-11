@@ -393,7 +393,7 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                 gameInstallation: GameInstallation, 
                 isAvailable: installedCommandLineMod,
                 notAvailableInfo: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo)),
-                requiredGameBananaModId: 0); // TODO-UPDATE: Specify mod id
+                requiredGameBananaModId: 547860);
 
             LaunchGameComponent? launchGameComponent = GameInstallation.GetComponent<LaunchGameComponent>();
             LaunchArgumentsSourceAvailability = new SourceAvailabilityViewModel(
