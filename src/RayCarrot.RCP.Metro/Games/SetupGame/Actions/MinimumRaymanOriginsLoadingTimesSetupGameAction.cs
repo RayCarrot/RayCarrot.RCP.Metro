@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
-public class MinimumRaymanOriginsLoadingTimesVideosSetupGameAction : InstallModSetupGameAction
+public class MinimumRaymanOriginsLoadingTimesSetupGameAction : InstallModSetupGameAction
 {
     protected override long GameBananaModId => 510228;
     protected override string ModId => "RaymanOrigins.MinLoading";

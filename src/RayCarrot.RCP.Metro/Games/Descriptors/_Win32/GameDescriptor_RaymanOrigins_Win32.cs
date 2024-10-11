@@ -58,7 +58,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         builder.Register(new ModModuleComponent(_ => new UbiArtLocalizationModule()));
 
         builder.Register(new SetupGameActionComponent(_ => new HighQualityRaymanOriginsVideosSetupGameAction()));
-        builder.Register(new SetupGameActionComponent(_ => new MinimumRaymanOriginsLoadingTimesVideosSetupGameAction()));
+        builder.Register(new SetupGameActionComponent(_ => new MinimumRaymanOriginsLoadingTimesSetupGameAction()));
         builder.Register(new SetupGameActionComponent(_ => new InvalidUbiArtResolutionSetupGameAction(AppFilePaths.RaymanOriginsRegistryKey)));
     }
 
