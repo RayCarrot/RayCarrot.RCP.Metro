@@ -37,9 +37,8 @@
                                                     VerticalAlignment="Center"
                                                     Margin="0 0 8 0" />
 
-                        <!-- TODO-LOC -->
                         <TextBlock Grid.Column="1"
-                                   Text="Setup game"
+                                   Text="{Resx SetupGame_Header}"
                                    VerticalAlignment="Center"
                                    FontSize="14" />
 

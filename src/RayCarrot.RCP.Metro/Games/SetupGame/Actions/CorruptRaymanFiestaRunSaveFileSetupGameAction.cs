@@ -17,14 +17,13 @@ public class CorruptRaymanFiestaRunSaveFileSetupGameAction : SetupGameAction
 
     public FileSystemPath SaveFilePath { get; }
 
-    // TODO-LOC
-    public override LocalizedString Header => "Corrupt save file";
-    public override LocalizedString Info => "Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Fix;
-    public override LocalizedString? FixActionDisplayName => "Fix"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_GeneralFix));
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {

@@ -160,15 +160,13 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                 CommandArgs.SetInt(name, x == -1 ? null : x);
                 UpdateTextFromArgs();
             },
-            // TODO-LOC
-            getItemsAction: () => items.Prepend(new EditorDropDownFieldViewModel.DropDownItem("Default", null)).ToList());
+            getItemsAction: () => items.Prepend(new EditorDropDownFieldViewModel.DropDownItem(new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_DefaultOption)), null)).ToList());
     }
 
     private async Task CreateEditorFieldsAsync()
     {
         IEnumerable<string> scenePaths = await TryGetScenePathsAsync();
 
-        // TODO-LOC
         EditorFields.ModifyCollection(editorFields =>
         {
             editorFields.Clear();
@@ -177,24 +175,25 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
             {
                 // root
                 editorFields.Add(CreateStringField(
-                    header: "Root directory",
-                    info: "Specifies the root directory where the game looks for the files. By default this is the directory where the game executable is.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_RootHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_RootInfo)),
                     name: "root"));
 
                 // map
                 editorFields.Add(CreateStringField(
-                    header: "Map",
-                    info: "The relative file path to a scene file to load when the game starts.\nWARNING: Loading directly into a map using this will skip loading your save file and might cause your save to be reset if the game ever auto-saves. It is highly recommended to backup your save files before using this.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_MapHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_MapInfo)),
                     name: "map",
                     options: scenePaths));
 
                 // language
                 editorFields.Add(CreateIntDropDownField(
-                    header: "Language",
-                    info: "All languages are not available in all releases of the game.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_LanguageHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_LanguageInfo)),
                     name: "language",
                     items: Settings.Game switch
                     {
+                        // TODO: Localize language names?
                         BinarySerializer.UbiArt.Game.RaymanOrigins => new EditorDropDownFieldViewModel.DropDownItem[]
                         {
                             new("English", null),               // 0
@@ -248,8 +247,8 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
             {
                 // nosave
                 editorFields.Add(CreateBoolField(
-                    header: "Disable loading/saving",
-                    info: "Disables loading saves and saving the game. It is highly recommended to use this when loading into a specific map to avoid resetting your save file.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_NoSaveHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_NoSaveInfo)),
                     name: "nosave"));
             }
 
@@ -257,20 +256,20 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
             {
                 // fps
                 editorFields.Add(CreateIntField(
-                    header: "Framerate",
-                    info: "Sets the framerate of the main app loop. This will cause the speed of the game to change as well due to the game logic being hard-coded to 60 fps.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_FramerateHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_FramerateInfo)),
                     name: "fps"));
 
                 // nosound
                 editorFields.Add(CreateBoolField(
-                    header: "Mute",
-                    info: "Mutes all sounds.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_NoSoundHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_NoSoundInfo)),
                     name: "nosound"));
 
                 // camera_maxdezoom
                 editorFields.Add(CreateBoolField(
-                    header: "Max camera zoom",
-                    info: "Zooms out the camera.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo)),
                     name: "camera_maxdezoom"));
             }
 
@@ -278,49 +277,49 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
             {
                 // cheatAllPlayersTogether
                 editorFields.Add(CreateBoolField(
-                    header: "All players together cheat",
-                    info: "Causes all players to follow player 1.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader)),
+                    info: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo)),
                     name: "cheatAllPlayersTogether"));
 
                 // player_nodamage
                 editorFields.Add(CreateBoolField(
-                    header: "Invincible",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_NoDamageHeader)),
                     info: null,
                     name: "player_nodamage"));
 
                 // nomouse
                 editorFields.Add(CreateBoolField(
-                    header: "Hide mouse cursor",
-                    info: "Hides the mouse cursor.",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_NoMouseHeader)),
+                    info: null,
                     name: "nomouse"));
 
                 // fullscreen
                 editorFields.Add(CreateBoolField(
-                    header: "Fullscreen",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_FullscreenHeader)),
                     info: null,
                     name: "fullscreen"));
 
                 // width
                 editorFields.Add(CreateIntField(
-                    header: "Width",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_WidthHeader)),
                     info: null,
                     name: "width"));
 
                 // height
                 editorFields.Add(CreateIntField(
-                    header: "Height",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_HeightHeader)),
                     info: null,
                     name: "height"));
 
                 // x
                 editorFields.Add(CreateIntField(
-                    header: "X-position",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_XHeader)),
                     info: null,
                     name: "x"));
 
                 // y
                 editorFields.Add(CreateIntField(
-                    header: "Y-position",
+                    header: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_YHeader)),
                     info: null,
                     name: "y"));
             }
@@ -390,19 +389,17 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
                 Logger.Error(ex, "Checking if commandline mod is installed");
             }
 
-            // TODO-LOC
             CommandLineFileSourceAvailability = new SourceAvailabilityViewModel(
                 gameInstallation: GameInstallation, 
                 isAvailable: installedCommandLineMod,
-                notAvailableInfo: "The game needs to be patched in order to allow the cmdline.txt file. This can be done using the CommandLine File Fix mod.",
+                notAvailableInfo: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo)),
                 requiredGameBananaModId: 0); // TODO-UPDATE: Specify mod id
 
-            // TODO-LOC
             LaunchGameComponent? launchGameComponent = GameInstallation.GetComponent<LaunchGameComponent>();
             LaunchArgumentsSourceAvailability = new SourceAvailabilityViewModel(
                 gameInstallation: GameInstallation,
                 isAvailable: launchGameComponent is { SupportsLaunchArguments: true },
-                notAvailableInfo: "The currently selected game client does not support passing in launch arguments to the game. Either change the client or set it to not use a game client when launching the game in order to use launch arguments.");
+                notAvailableInfo: new ResourceLocString(nameof(Resources.GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo)));
         }
         else
         {

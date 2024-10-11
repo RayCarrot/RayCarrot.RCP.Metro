@@ -3,7 +3,7 @@
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 [GameComponentBase]
-[GameFeature("Setup game", GenericIconKind.GameFeature_SetupGame)] // TODO-LOC
+[GameFeature(nameof(Resources.SetupGame_Header), GenericIconKind.GameFeature_SetupGame)]
 public class SetupGameActionComponent : FactoryGameComponent<SetupGameAction>
 {
     public SetupGameActionComponent(Func<GameInstallation, SetupGameAction> objFactory) : base(objFactory) { }

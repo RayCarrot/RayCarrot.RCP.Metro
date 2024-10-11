@@ -182,24 +182,22 @@
                                     </ToggleButton.Triggers>
                                 </ToggleButton>
 
-                                <!-- TODO-LOC -->
                                 <!-- Game client game settings -->
                                 <Button Grid.Column="2"
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         rcp:Icon.Kind="{StaticResource RCP.Icons.GameClientSettings}"
                                         Visibility="{Binding Path=HasGameClientGameSettings, Converter={rcp:BooleanToVisibilityConverter}}"
                                         Command="{Binding Path=OpenGameClientGameSettingsCommand, Mode=OneTime}"
-                                        ToolTip="Game client/emulator settings"
+                                        ToolTip="{Resx GameHub_GameClientGameSettings}"
                                         Margin="0 0 4 0"/>
 
-                                <!-- TODO-LOC -->
                                 <!-- Game settings -->
                                 <Button Grid.Column="3"
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         rcp:Icon.Kind="{StaticResource RCP.Icons.Settings}"
                                         Visibility="{Binding Path=HasGameSettings, Converter={rcp:BooleanToVisibilityConverter}}"
                                         Command="{Binding Path=OpenGameSettingsCommand, Mode=OneTime}"
-                                        ToolTip="Game settings"
+                                        ToolTip="{Resx GameHub_GameSettings}"
                                         Margin="0 0 4 0"/>
 
                                 <rcp:PopupCard Grid.Column="4">

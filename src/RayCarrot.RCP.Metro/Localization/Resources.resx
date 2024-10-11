@@ -5619,4 +5619,347 @@ distance</comment>
   <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
     <value>Number of jumps</value>
   </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Per-level Soundtrack</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>Are you sure you want to uninstall the Per-level Soundtrack tool? This will uninstall it for all games where it is used.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirm uninstall</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Replaces the music in the game with the per-level music from the PlayStation version, as well as provides various fixes for the PC version.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>CD audio level clear and death sounds</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>Replaces the default level clear and death sounds with the CD audio ones from the PlayStation version</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Ambient MIDI track</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>Plays the PlayStation exclusive ambient MIDI tracks in their respective level sections</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Visual bug fixes</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Includes visual bug fixes for the PC version, such as making Dark Rayman's fist appear after punching</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Have Dark Rayman's fist kill you</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Re-enables a cut behavior where Dark Rayman's fist kills Rayman on contact</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Setup game</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Recommended</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} recommended actions</value>
+    <comment>Arguments:
+completedActions
+totalActions</comment>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} optional actions</value>
+    <comment>Arguments:
+completedActions
+totalActions</comment>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>Issues</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>{0} issue</value>
+    <comment>Arguments:
+totalActions</comment>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} issues</value>
+    <comment>Arguments:
+totalActions</comment>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>Install Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 is a collection of fixes by RibShark that allow Rayman 3 to be easily played in widescreen resolutions, while also offering additional features, such as windowed mode and restoring the ability to skip video cutscenes.</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>Corrupt save file</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>Install the Higher Quality Official Textures mod</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>The Higher Quality Official Textures mod is a texture mod by ICUP321 which replaces many of the textures with better/higher quality variants found on other versions, including textures with transparency fixes.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Install the High Quality Videos mod</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>The videos in the PC version are more compressed than in the console versions. The High Quality Videos mod replaces the videos with higher quality converted ones from the the console versions of the game.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>Invalid game resolution</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
+    <value>The game resolution has to be set to a resolution supported by the graphics card. On some systems the resolution will default to an invalid resolution, causing black borders and potential crashes. This can be solved by selecting a supported resolution.</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header" xml:space="preserve">
+    <value>Install the Minimum Loading Times mod</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
+    <value>The Minimum Loading Times mod is a mod by RayCarrot which changes the minimum loading screen time from 4 seconds to 0 seconds, thus making loading times faster.</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>Mapper config file is missing or invalid</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Info" xml:space="preserve">
+    <value>During some Rayman Designer installations the configuration file won't be created, or created with invalid values, causing the Mapper editor to give an error when launching.</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>Missing mount path</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>A valid mount path has to be specified in the game's emulator settings for it to be able to launch.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Header" xml:space="preserve">
+    <value>Game is not correctly configured</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Info" xml:space="preserve">
+    <value>Certain settings in the game config are not set correctly. This could cause issues in the game such as missing sound effects. Go to the game config, choose the recommended settings and save to fix it.</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Header" xml:space="preserve">
+    <value>Install Ray2Fix</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Info" xml:space="preserve">
+    <value>Ray2Fix is a mod for the GOG version by spitfirex86 that aims to simplify setting up the game. It also comes bundled with various tweaks, such as the ability to remap gamepad controls and proper widescreen support.</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
+    <value>Install the PS2 Videos mod</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Info" xml:space="preserve">
+    <value>The video cutscenes in the PC version are more compressed and lower quality than in the console versions. The PS2 Videos mod replaces the videos with the higher quality videos from the PlayStation 2 version.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>Replace incomplete soundtrack</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>The Rayman Forever collection does not come with the full soundtrack for the game due to limited disc space in the original release. It is recommended to replace the music files with those from the complete soundtrack.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>Replace with complete soundtrack</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>Replace infected files</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>Some versions of Rayman Designer, such as the one bundled in Rayman Forever, has some of its files infected with an old malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, it can still be helpful to replace the files with their non-infected versions to avoid anti-virus programs from removing the game files.</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>Replace files</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>No game client/emulator selected</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>This game can't be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>Add game client/emulator</value>
+  </data>
+  <data name="SetupGameAction_DownloadFix" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="SetupGameAction_GeneralFix" xml:space="preserve">
+    <value>Fix</value>
+  </data>
+  <data name="SetupGameAction_DownloadModFix" xml:space="preserve">
+    <value>Download mod</value>
+  </data>
+  <data name="SetupGameAction_GameSettingsFix" xml:space="preserve">
+    <value>Open game settings</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>Open game client/emulator game settings</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>No valid files were found for the mod</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>An error occurred when getting the download for the mod</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>Flash window on task bar for specific events</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>Flash the window icon on the task bar during specific events, such as when mods have finished applying</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>Game settings</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>Game client/emulator settings</value>
+  </data>
+  <data name="GameSettingsTitle" xml:space="preserve">
+    <value>Game Settings - {0}</value>
+    <comment>Arguments:
+gameName</comment>
+  </data>
+  <data name="GameClientGameSettingsTitle" xml:space="preserve">
+    <value>{0} Game Settings - {1}</value>
+    <comment>Arguments:
+gameClientName
+gameName</comment>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>Settings locations</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>Show settings locations</value>
+  </data>
+  <data name="GameSettings_ApplyRecommendedSettings" xml:space="preserve">
+    <value>Apply recommended settings</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>An error occurred when loading the game settings. You might need to run the app as administrator.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>An error occurred when saving the game settings. You might need to run the app as administrator.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>Debug launch commands</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
+    <value>The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile" xml:space="preserve">
+    <value>cmdline.txt file</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>Launch arguments</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInstallMod" xml:space="preserve">
+    <value>Install mod</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>Commands</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
+    <value>Select a source for the launch options to use and edit the commands</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
+    <value>The game needs to be patched in order to allow the cmdline.txt file. This can be done using the CommandLine File Fix mod.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
+    <value>The currently selected game client does not support passing in launch arguments to the game. Either change the client or set it to not use a game client when launching the game in order to use launch arguments.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>Root directory</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>Specifies the root directory where the game looks for the files. By default this is the directory where the game executable is.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
+    <value>The relative file path to a scene file to load when the game starts.
+WARNING: Loading directly into a map using this will skip loading your save file and might cause your save to be reset if the game ever auto-saves. It is highly recommended to backup your save files before using this.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageInfo" xml:space="preserve">
+    <value>All languages are not available in all releases of the game.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveHeader" xml:space="preserve">
+    <value>Disable loading/saving</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveInfo" xml:space="preserve">
+    <value>Disables loading saves and saving the game. It is highly recommended to use this when loading into a specific map to avoid resetting your save file.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
+    <value>Framerate</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
+    <value>Sets the framerate of the main app loop. This will cause the speed of the game to change as well due to the game logic being hard-coded to 60 fps.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
+    <value>Mute</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundInfo" xml:space="preserve">
+    <value>Mutes all sounds.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader" xml:space="preserve">
+    <value>Max camera zoom</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo" xml:space="preserve">
+    <value>Zooms out the camera.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader" xml:space="preserve">
+    <value>All players together cheat</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
+    <value>Causes all players to follow player 1.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>Invincible</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoMouseHeader" xml:space="preserve">
+    <value>Hide mouse cursor</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FullscreenHeader" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_WidthHeader" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_HeightHeader" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_XHeader" xml:space="preserve">
+    <value>X-position</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_YHeader" xml:space="preserve">
+    <value>Y-position</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>

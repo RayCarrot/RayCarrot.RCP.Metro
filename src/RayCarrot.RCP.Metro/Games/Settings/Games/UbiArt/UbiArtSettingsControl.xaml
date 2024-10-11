@@ -28,30 +28,29 @@
                   IsChecked="{Binding Path=FullscreenMode}"
                   Margin="0 0 0 8" />
 
-        <!-- TODO-LOC -->
         <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}"
                   Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
                   DataContext="{Binding Path=CommandArgsViewModel, Mode=OneTime}">
             <StackPanel>
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Text="Debug launch commands"
+                           Text="{Resx GameSettings_UbiArt_LaunchCommands_Header}"
                            Margin="0 0 0 8" />
 
                 <StackPanel Orientation="Horizontal"
                             Margin="0 0 0 8">
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                               Text="Source" />
+                               Text="{Resx GameSettings_UbiArt_LaunchCommands_Source}" />
 
-                    <rcp:InfoIcon Text="The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work." />
+                    <rcp:InfoIcon Text="{Resx GameSettings_UbiArt_LaunchCommands_SourceInfo}" />
 
                 </StackPanel>
 
-                <rcp:RadioButtonExtended Content="None"
+                <rcp:RadioButtonExtended Content="{Resx GameSettings_UbiArt_LaunchCommands_SourceNone}"
                                          IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}"
                                          Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
                                          Margin="0 0 0 4" />
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 4">
-                    <rcp:RadioButtonExtended Content="cmdline.txt file"
+                    <rcp:RadioButtonExtended Content="{Resx GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile}"
                                              IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.CommandLineFile}}"
                                              Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
                                              IsEnabled="{Binding Path=CommandLineFileSourceAvailability.IsAvailable, FallbackValue=False}"
@@ -60,7 +59,7 @@
                     <StackPanel DataContext="{Binding Path=CommandLineFileSourceAvailability}" 
                                 Orientation="Horizontal"
                                 Visibility="{Binding Path=IsAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}">
-                        <TextBlock Text="Not available" 
+                        <TextBlock Text="{Resx GameSettings_UbiArt_LaunchCommands_SourceNotAvailable}" 
                                    FontStyle="Italic"
                                    Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
                                    VerticalAlignment="Center"
@@ -73,13 +72,13 @@
                         <Button Style="{StaticResource RCP.Styles.Button.Default}"
                                 rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}"
                                 rcp:Icon.Size="16"
-                                Content="Install mod"
+                                Content="{Resx GameSettings_UbiArt_LaunchCommands_SourceInstallMod}"
                                 Visibility="{Binding Path=RequiresMod, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
                                 Command="{Binding Path=InstallModCommand, Mode=OneTime}" />
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
-                    <rcp:RadioButtonExtended Content="Launch arguments"
+                    <rcp:RadioButtonExtended Content="{Resx GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments}"
                                              IsChecked="{Binding Path=Source, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.LaunchArguments}}"
                                              Command="{Binding Path=UpdateTextFromArgsCommand, Mode=OneTime}"
                                              IsEnabled="{Binding Path=LaunchArgumentsSourceAvailability.IsAvailable, FallbackValue=False}"
@@ -88,7 +87,7 @@
                     <StackPanel DataContext="{Binding Path=LaunchArgumentsSourceAvailability}" 
                                 Orientation="Horizontal"
                                 Visibility="{Binding Path=IsAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}">
-                        <TextBlock Text="Not available" 
+                        <TextBlock Text="{Resx GameSettings_UbiArt_LaunchCommands_SourceNotAvailable}" 
                                    FontStyle="Italic"
                                    Visibility="{Binding Path=NotAvailableInfo, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
                                    VerticalAlignment="Center"
@@ -101,7 +100,7 @@
                         <Button Style="{StaticResource RCP.Styles.Button.Default}"
                                 rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}"
                                 rcp:Icon.Size="16"
-                                Content="Install mod"
+                                Content="{Resx GameSettings_UbiArt_LaunchCommands_SourceInstallMod}"
                                 Visibility="{Binding Path=RequiresMod, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
                                 Command="{Binding Path=InstallModCommand, Mode=OneTime}" />
                     </StackPanel>
@@ -113,7 +112,7 @@
                 <StackPanel Visibility="{Binding Path=Source, Converter={rcp:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}">
 
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                               Text="Commands"
+                               Text="{Resx GameSettings_UbiArt_LaunchCommands_CommandsHeader}"
                                Margin="0 0 0 8" />
 
                     <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFields}"
@@ -123,7 +122,7 @@
                     <Separator Margin="0 0 0 8"/>
 
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                               Text="Output"
+                               Text="{Resx GameSettings_UbiArt_LaunchCommands_OutputHeader}"
                                Margin="0 0 0 8" />
 
                     <TextBox Text="{Binding Path=Text}"
@@ -138,7 +137,7 @@
 
                 <Viewbox>
                     <TextBlock Visibility="{Binding Path=Source, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static settings:UbiArtCommandArgsSource.None}}" 
-                               Text="Select a source for the launch options to use and edit the commands"
+                               Text="{Resx GameSettings_UbiArt_LaunchCommands_DisabledInfo}"
                                Margin="30 0"
                                Opacity="0.5" />
 

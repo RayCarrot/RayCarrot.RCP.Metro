@@ -8,14 +8,13 @@ public class Ray1InvalidGameConfigSetupGameAction : SetupGameAction
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    // TODO-LOC
-    public override LocalizedString Header => "Game is not correctly configured";
-    public override LocalizedString Info => "Certain settings in the game config are not set correctly. This could cause issues in the game such as missing sound effects. Go to the game config, choose the recommended settings and save to fix it.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_Ray1InvalidGameConfig_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_Ray1InvalidGameConfig_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameSettings;
-    public override LocalizedString? FixActionDisplayName => "Open game settings"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_GameSettingsFix));
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {

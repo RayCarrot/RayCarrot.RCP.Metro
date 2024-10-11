@@ -2,14 +2,13 @@
 
 public class MsDosGameRequiresDiscSetupGameAction : SetupGameAction
 {
-    // TODO-LOC
-    public override LocalizedString Header => "Missing mount path";
-    public override LocalizedString Info => "A valid mount path has to be specified in the game's emulator settings for it to be able to launch.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_MsDosGameRequiresDisc_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_MsDosGameRequiresDisc_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameSettings;
-    public override LocalizedString? FixActionDisplayName => "Open game client/emulator game settings"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_GameClientGameSettingsFix));
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {

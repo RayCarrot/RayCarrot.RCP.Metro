@@ -2,14 +2,13 @@
 
 public class BetterRayman3SetupGameAction : SetupGameAction
 {
-    // TODO-LOC
-    public override LocalizedString Header => "Install Better Rayman 3";
-    public override LocalizedString Info => "Better Rayman 3 is a collection of fixes by RibShark that allow Rayman 3 to be easily played in widescreen resolutions, while also offering additional features, such as windowed mode and restoring the ability to skip video cutscenes.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_BetterRayman3_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_BetterRayman3_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Recommended;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Download;
-    public override LocalizedString? FixActionDisplayName => "Download"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_DownloadFix));
 
     public override bool CheckIsComplete(GameInstallation gameInstallation)
     {

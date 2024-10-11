@@ -2,14 +2,13 @@
 
 public class RequiresLaunchComponentSetupGameAction : SetupGameAction
 {
-    // TODO-LOC
-    public override LocalizedString Header => "No game client/emulator selected";
-    public override LocalizedString Info => "This game can't be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_RequiresLaunchComponent_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_RequiresLaunchComponent_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameClient;
-    public override LocalizedString? FixActionDisplayName => "Add game client/emulator"; // TODO-LOC
+    public override LocalizedString? FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_RequiresLaunchComponent_Fix));
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {

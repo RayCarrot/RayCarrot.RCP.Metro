@@ -20,14 +20,13 @@ public class MissingMapperConfigSetupGameAction : SetupGameAction
                                                Directory =.\
                                                """;
 
-    // TODO-LOC
-    public override LocalizedString Header => "Mapper config file is missing or invalid";
-    public override LocalizedString Info => "During some Rayman Designer installations the configuration file won't be created, or created with invalid values, causing the Mapper editor to give an error when launching.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_MissingMapperConfig_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_MissingMapperConfig_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Fix;
-    public override LocalizedString? FixActionDisplayName => "Fix"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_GeneralFix));
 
     private FileSystemPath GetConfigFilePath(GameInstallation gameInstallation)
     {

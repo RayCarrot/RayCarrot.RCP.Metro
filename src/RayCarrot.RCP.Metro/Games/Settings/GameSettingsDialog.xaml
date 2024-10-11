@@ -92,9 +92,8 @@
                 </rcp:Card.LayoutTransform>
 
                 <StackPanel>
-                    <!-- TODO-LOC -->
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Text="Settings locations"
+                               Text="{Resx GameSettings_LocationsHeader}"
                                Margin="0 0 0 8" />
 
                     <ItemsControl ItemsSource="{Binding Path=SettingsLocations, Mode=OneTime}">
@@ -142,11 +141,10 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-LOC -->
             <ToggleButton Grid.Column="0" 
                           Visibility="{Binding Path=SettingsLocations.Count, Converter={rcp:IntToVisibilityConverter}}"
                           Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
-                          Content="Show settings locations"
+                          Content="{Resx ﻿GameSettings_LocationsToggle}"
                           rcp:Icon.Kind="FileMultipleOutline"
                           Margin="0 0 4 0">
                 <ToggleButton.Triggers>
@@ -198,11 +196,10 @@
                 </ToggleButton.Triggers>
             </ToggleButton>
 
-            <!-- TODO-LOC -->
             <Button Grid.Column="1" 
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     Visibility="{Binding Path=HasRecommendedSettings, Converter={rcp:BooleanToVisibilityConverter}}"
-                    Content="Apply recommended settings"
+                    Content="{Resx GameSettings_ApplyRecommendedSettings}"
                     rcp:Icon.Kind="AutoFix"
                     Command="{Binding Path=ApplyRecommendedSettingsCommand}"
                     Margin="0 0 4 0" />

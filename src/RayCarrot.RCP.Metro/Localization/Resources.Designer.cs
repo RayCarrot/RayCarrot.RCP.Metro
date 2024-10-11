@@ -4040,6 +4040,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Game Settings - {1}.
+        /// </summary>
+        public static string GameClientGameSettingsTitle {
+            get {
+                return ResourceManager.GetString("GameClientGameSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Added game clients/emulators.
         /// </summary>
         public static string GameClients_AddedClientsHeader {
@@ -4636,6 +4645,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game client/emulator settings.
+        /// </summary>
+        public static string GameHub_GameClientGameSettings {
+            get {
+                return ResourceManager.GetString("GameHub_GameClientGameSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game settings.
+        /// </summary>
+        public static string GameHub_GameSettings {
+            get {
+                return ResourceManager.GetString("GameHub_GameSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create mod.
         /// </summary>
         public static string GameHub_ModLoaderPanel_Create {
@@ -4686,6 +4713,114 @@ namespace RayCarrot.RCP.Metro {
         public static string GameHub_ModLoaderPanel_UpdatesAvailableSingle {
             get {
                 return ResourceManager.GetString("GameHub_ModLoaderPanel_UpdatesAvailableSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CD audio level clear and death sounds.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replaces the default level clear and death sounds with the CD audio ones from the PlayStation version.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have Dark Rayman&apos;s fist kill you.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_FistKills {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_FistKills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Re-enables a cut behavior where Dark Rayman&apos;s fist kills Rayman on contact.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_FistKillsInfo {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_FistKillsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GitHub.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_GitHub {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_GitHub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replaces the music in the game with the per-level music from the PlayStation version, as well as provides various fixes for the PC version..
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_Info {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_Install {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Install", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ambient MIDI track.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_PlayMidi {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_PlayMidi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plays the PlayStation exclusive ambient MIDI tracks in their respective level sections.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_PlayMidiInfo {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_PlayMidiInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_Uninstall {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Uninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visual bug fixes.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_VisualFixes {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_VisualFixes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Includes visual bug fixes for the PC version, such as making Dark Rayman&apos;s fist appear after punching.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_VisualFixesInfo {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_VisualFixesInfo", resourceCulture);
             }
         }
         
@@ -5116,6 +5251,394 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply recommended settings.
+        /// </summary>
+        public static string GameSettings_ApplyRecommendedSettings {
+            get {
+                return ResourceManager.GetString("GameSettings_ApplyRecommendedSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the game settings. You might need to run the app as administrator..
+        /// </summary>
+        public static string GameSettings_LoadError {
+            get {
+                return ResourceManager.GetString("GameSettings_LoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings locations.
+        /// </summary>
+        public static string GameSettings_LocationsHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_LocationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show settings locations.
+        /// </summary>
+        public static string GameSettings_LocationsToggle {
+            get {
+                return ResourceManager.GetString("GameSettings_LocationsToggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when saving the game settings. You might need to run the app as administrator..
+        /// </summary>
+        public static string GameSettings_SaveError {
+            get {
+                return ResourceManager.GetString("GameSettings_SaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All players together cheat.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Causes all players to follow player 1..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max camera zoom.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zooms out the camera..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game needs to be patched in order to allow the cmdline.txt file. This can be done using the CommandLine File Fix mod..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commands.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_CommandsHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_CommandsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_DefaultOption {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_DefaultOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a source for the launch options to use and edit the commands.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_DisabledInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_DisabledInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Framerate.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_FramerateHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_FramerateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sets the framerate of the main app loop. This will cause the speed of the game to change as well due to the game logic being hard-coded to 60 fps..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_FramerateInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_FramerateInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fullscreen.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_FullscreenHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_FullscreenHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug launch commands.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_Header {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_HeightHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_HeightHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_LanguageHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_LanguageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All languages are not available in all releases of the game..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_LanguageInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_LanguageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The currently selected game client does not support passing in launch arguments to the game. Either change the client or set it to not use a game client when launching the game in order to use launch arguments..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_MapHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_MapHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The relative file path to a scene file to load when the game starts.
+        ///WARNING: Loading directly into a map using this will skip loading your save file and might cause your save to be reset if the game ever auto-saves. It is highly recommended to backup your save files before using this..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_MapInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_MapInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invincible.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_NoDamageHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_NoDamageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide mouse cursor.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_NoMouseHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_NoMouseHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable loading/saving.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_NoSaveHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_NoSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disables loading saves and saving the game. It is highly recommended to use this when loading into a specific map to avoid resetting your save file..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_NoSaveInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_NoSaveInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mute.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_NoSoundHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_NoSoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutes all sounds..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_NoSoundInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_NoSoundInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_OutputHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_OutputHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Root directory.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_RootHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_RootHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the root directory where the game looks for the files. By default this is the directory where the game executable is..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_RootInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_RootInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_Source {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_Source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cmdline.txt file.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work..
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_SourceInfo {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_SourceInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install mod.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_SourceInstallMod {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_SourceInstallMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch arguments.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_SourceNone {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_SourceNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not available.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_SourceNotAvailable {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_SourceNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_WidthHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_WidthHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X-position.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_XHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_XHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y-position.
+        /// </summary>
+        public static string GameSettings_UbiArt_LaunchCommands_YHeader {
+            get {
+                return ResourceManager.GetString("GameSettings_UbiArt_LaunchCommands_YHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Settings - {0}.
+        /// </summary>
+        public static string GameSettingsTitle {
+            get {
+                return ResourceManager.GetString("GameSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select shortcut destination.
         /// </summary>
         public static string GameShortcut_BrowseHeader {
@@ -5211,6 +5734,33 @@ namespace RayCarrot.RCP.Metro {
         public static string GamesPageHeader {
             get {
                 return ResourceManager.GetString("GamesPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per-level Soundtrack.
+        /// </summary>
+        public static string GameTool_PerLevelSoundtrack {
+            get {
+                return ResourceManager.GetString("GameTool_PerLevelSoundtrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to uninstall the Per-level Soundtrack tool? This will uninstall it for all games where it is used..
+        /// </summary>
+        public static string GameTool_PerLevelSoundtrack_ConfirmUninstall {
+            get {
+                return ResourceManager.GetString("GameTool_PerLevelSoundtrack_ConfirmUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm uninstall.
+        /// </summary>
+        public static string GameTool_PerLevelSoundtrack_ConfirmUninstallHeader {
+            get {
+                return ResourceManager.GetString("GameTool_PerLevelSoundtrack_ConfirmUninstallHeader", resourceCulture);
             }
         }
         
@@ -8555,6 +9105,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when getting the download for the mod.
+        /// </summary>
+        public static string ModLoader_GetDownloadError {
+            get {
+                return ResourceManager.GetString("ModLoader_GetDownloadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No mods installed.
         /// </summary>
         public static string ModLoader_InstalledEmpty {
@@ -8850,6 +9409,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_ModInfo_Version {
             get {
                 return ResourceManager.GetString("ModLoader_ModInfo_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No valid files were found for the mod.
+        /// </summary>
+        public static string ModLoader_NoValidFilesError {
+            get {
+                return ResourceManager.GetString("ModLoader_NoValidFilesError", resourceCulture);
             }
         }
         
@@ -14453,6 +15021,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flash window on task bar for specific events.
+        /// </summary>
+        public static string Settings_FlashWindowOnTaskBar {
+            get {
+                return ResourceManager.GetString("Settings_FlashWindowOnTaskBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flash the window icon on the task bar during specific events, such as when mods have finished applying.
+        /// </summary>
+        public static string Settings_FlashWindowOnTaskBarInfo {
+            get {
+                return ResourceManager.GetString("Settings_FlashWindowOnTaskBarInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Force manual updates.
         /// </summary>
         public static string Settings_ForceUpdates {
@@ -14836,6 +15422,402 @@ namespace RayCarrot.RCP.Metro {
         public static string SettingsPageHeader {
             get {
                 return ResourceManager.GetString("SettingsPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup game.
+        /// </summary>
+        public static string SetupGame_Header {
+            get {
+                return ResourceManager.GetString("SetupGame_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issues.
+        /// </summary>
+        public static string SetupGame_IssuesGroupHeader {
+            get {
+                return ResourceManager.GetString("SetupGame_IssuesGroupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} issues.
+        /// </summary>
+        public static string SetupGame_IssuesGroupSummaryMultiple {
+            get {
+                return ResourceManager.GetString("SetupGame_IssuesGroupSummaryMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} issue.
+        /// </summary>
+        public static string SetupGame_IssuesGroupSummarySingle {
+            get {
+                return ResourceManager.GetString("SetupGame_IssuesGroupSummarySingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional.
+        /// </summary>
+        public static string SetupGame_OptionalGroupHeader {
+            get {
+                return ResourceManager.GetString("SetupGame_OptionalGroupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/{1} optional actions.
+        /// </summary>
+        public static string SetupGame_OptionalGroupSummary {
+            get {
+                return ResourceManager.GetString("SetupGame_OptionalGroupSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended.
+        /// </summary>
+        public static string SetupGame_RecommendedGroupHeader {
+            get {
+                return ResourceManager.GetString("SetupGame_RecommendedGroupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/{1} recommended actions.
+        /// </summary>
+        public static string SetupGame_RecommendedGroupSummary {
+            get {
+                return ResourceManager.GetString("SetupGame_RecommendedGroupSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Better Rayman 3.
+        /// </summary>
+        public static string SetupGameAction_BetterRayman3_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_BetterRayman3_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Better Rayman 3 is a collection of fixes by RibShark that allow Rayman 3 to be easily played in widescreen resolutions, while also offering additional features, such as windowed mode and restoring the ability to skip video cutscenes..
+        /// </summary>
+        public static string SetupGameAction_BetterRayman3_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_BetterRayman3_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corrupt save file.
+        /// </summary>
+        public static string SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible..
+        /// </summary>
+        public static string SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string SetupGameAction_DownloadFix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_DownloadFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download mod.
+        /// </summary>
+        public static string SetupGameAction_DownloadModFix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_DownloadModFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open game client/emulator game settings.
+        /// </summary>
+        public static string SetupGameAction_GameClientGameSettingsFix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_GameClientGameSettingsFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open game settings.
+        /// </summary>
+        public static string SetupGameAction_GameSettingsFix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_GameSettingsFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix.
+        /// </summary>
+        public static string SetupGameAction_GeneralFix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_GeneralFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install the Higher Quality Official Textures mod.
+        /// </summary>
+        public static string SetupGameAction_HigherQualityOfficialRayman2Textures_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_HigherQualityOfficialRayman2Textures_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Higher Quality Official Textures mod is a texture mod by ICUP321 which replaces many of the textures with better/higher quality variants found on other versions, including textures with transparency fixes..
+        /// </summary>
+        public static string SetupGameAction_HigherQualityOfficialRayman2Textures_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_HigherQualityOfficialRayman2Textures_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install the High Quality Videos mod.
+        /// </summary>
+        public static string SetupGameAction_HighQualityRaymanOriginsVideos_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_HighQualityRaymanOriginsVideos_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The videos in the PC version are more compressed than in the console versions. The High Quality Videos mod replaces the videos with higher quality converted ones from the the console versions of the game..
+        /// </summary>
+        public static string SetupGameAction_HighQualityRaymanOriginsVideos_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_HighQualityRaymanOriginsVideos_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid game resolution.
+        /// </summary>
+        public static string SetupGameAction_InvalidUbiArtResolution_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_InvalidUbiArtResolution_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game resolution has to be set to a resolution supported by the graphics card. On some systems the resolution will default to an invalid resolution, causing black borders and potential crashes. This can be solved by selecting a supported resolution..
+        /// </summary>
+        public static string SetupGameAction_InvalidUbiArtResolution_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_InvalidUbiArtResolution_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install the Minimum Loading Times mod.
+        /// </summary>
+        public static string SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Minimum Loading Times mod is a mod by RayCarrot which changes the minimum loading screen time from 4 seconds to 0 seconds, thus making loading times faster..
+        /// </summary>
+        public static string SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mapper config file is missing or invalid.
+        /// </summary>
+        public static string SetupGameAction_MissingMapperConfig_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_MissingMapperConfig_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During some Rayman Designer installations the configuration file won&apos;t be created, or created with invalid values, causing the Mapper editor to give an error when launching..
+        /// </summary>
+        public static string SetupGameAction_MissingMapperConfig_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_MissingMapperConfig_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing mount path.
+        /// </summary>
+        public static string SetupGameAction_MsDosGameRequiresDisc_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_MsDosGameRequiresDisc_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid mount path has to be specified in the game&apos;s emulator settings for it to be able to launch..
+        /// </summary>
+        public static string SetupGameAction_MsDosGameRequiresDisc_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_MsDosGameRequiresDisc_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game is not correctly configured.
+        /// </summary>
+        public static string SetupGameAction_Ray1InvalidGameConfig_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_Ray1InvalidGameConfig_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certain settings in the game config are not set correctly. This could cause issues in the game such as missing sound effects. Go to the game config, choose the recommended settings and save to fix it..
+        /// </summary>
+        public static string SetupGameAction_Ray1InvalidGameConfig_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_Ray1InvalidGameConfig_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Ray2Fix.
+        /// </summary>
+        public static string SetupGameAction_Ray2Fix_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_Ray2Fix_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ray2Fix is a mod for the GOG version by spitfirex86 that aims to simplify setting up the game. It also comes bundled with various tweaks, such as the ability to remap gamepad controls and proper widescreen support..
+        /// </summary>
+        public static string SetupGameAction_Ray2Fix_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_Ray2Fix_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install the PS2 Videos mod.
+        /// </summary>
+        public static string SetupGameAction_Rayman3PS2Videos_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_Rayman3PS2Videos_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The video cutscenes in the PC version are more compressed and lower quality than in the console versions. The PS2 Videos mod replaces the videos with the higher quality videos from the PlayStation 2 version..
+        /// </summary>
+        public static string SetupGameAction_Rayman3PS2Videos_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_Rayman3PS2Videos_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with complete soundtrack.
+        /// </summary>
+        public static string SetupGameAction_RaymanForeverCompleteSoundtrack_Fix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanForeverCompleteSoundtrack_Fix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace incomplete soundtrack.
+        /// </summary>
+        public static string SetupGameAction_RaymanForeverCompleteSoundtrack_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanForeverCompleteSoundtrack_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Rayman Forever collection does not come with the full soundtrack for the game due to limited disc space in the original release. It is recommended to replace the music files with those from the complete soundtrack..
+        /// </summary>
+        public static string SetupGameAction_RaymanForeverCompleteSoundtrack_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanForeverCompleteSoundtrack_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace files.
+        /// </summary>
+        public static string SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace infected files.
+        /// </summary>
+        public static string SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some versions of Rayman Designer, such as the one bundled in Rayman Forever, has some of its files infected with an old malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, it can still be helpful to replace the files with their non-infected versions to avoid anti-virus programs from removing the game files..
+        /// </summary>
+        public static string SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add game client/emulator.
+        /// </summary>
+        public static string SetupGameAction_RequiresLaunchComponent_Fix {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RequiresLaunchComponent_Fix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No game client/emulator selected.
+        /// </summary>
+        public static string SetupGameAction_RequiresLaunchComponent_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RequiresLaunchComponent_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This game can&apos;t be launched without a game client/emulator. Make sure you first add a supported game client/emulator and then select it for use with this game..
+        /// </summary>
+        public static string SetupGameAction_RequiresLaunchComponent_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RequiresLaunchComponent_Info", resourceCulture);
             }
         }
         

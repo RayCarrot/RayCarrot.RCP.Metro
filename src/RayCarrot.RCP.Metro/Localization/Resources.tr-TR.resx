@@ -4823,4 +4823,7 @@ Eğer bir yardımcı program ya da başka türde bir yama eksikse, o zaman büy�
   <data name="Archive_FileTypeWithSubType" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
 </root>

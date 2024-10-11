@@ -33,7 +33,7 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
     #region Public Properties
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_PerLevelSoundtrack;
-    public override LocalizedString Header => "Per-level Soundtrack"; // TODO-LOC
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameTool_PerLevelSoundtrack));
 
     public string GitHubUrl => "https://github.com/PluMGMK/rayman-tpls-tsr";
 
@@ -119,8 +119,7 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
 
     public async Task UninstallAsync()
     {
-        // TODO-LOC
-        if (!await Services.MessageUI.DisplayMessageAsync("Are you sure you want to uninstall the Per-level Soundtrack tool? This will uninstall for all games where it is used.", "Confirm uninstall", MessageType.Question, true))
+        if (!await Services.MessageUI.DisplayMessageAsync(Resources.GameTool_PerLevelSoundtrack_ConfirmUninstall, Resources.GameTool_PerLevelSoundtrack_ConfirmUninstallHeader, MessageType.Question, true))
             return;
 
         await Services.InstallableTools.UninstallAsync(InstallableTool);

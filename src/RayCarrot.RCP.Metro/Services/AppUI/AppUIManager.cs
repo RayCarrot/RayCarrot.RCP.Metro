@@ -335,8 +335,7 @@ public class AppUIManager
 
             if (mod.Files == null)
             {
-                // TODO-LOC
-                await Services.MessageUI.DisplayMessageAsync("No valid files were found for the mod", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_NoValidFilesError, MessageType.Error);
                 return;
             }
 
@@ -345,8 +344,7 @@ public class AppUIManager
 
             if (file == null)
             {
-                // TODO-LOC
-                await Services.MessageUI.DisplayMessageAsync("No valid files were found for the mod", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_NoValidFilesError, MessageType.Error);
                 return;
             }
         }
@@ -354,8 +352,7 @@ public class AppUIManager
         {
             Logger.Error(ex, "Getting mod download for setup game action");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when getting the download for the mod");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_GetDownloadError);
 
             return;
         }

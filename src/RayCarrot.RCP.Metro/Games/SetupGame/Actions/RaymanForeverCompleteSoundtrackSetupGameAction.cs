@@ -4,14 +4,13 @@ public class RaymanForeverCompleteSoundtrackSetupGameAction : SetupGameAction
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    // TODO-LOC
-    public override LocalizedString Header => "Replace incomplete soundtrack";
-    public override LocalizedString Info => "The Rayman Forever collection does not come with the full soundtrack for the game due to limited disc space in the original release. It is recommended to replace the music files with those from the complete soundtrack.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_RaymanForeverCompleteSoundtrack_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_RaymanForeverCompleteSoundtrack_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Recommended;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_FileReplacement;
-    public override LocalizedString? FixActionDisplayName => "Replace with complete soundtrack"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_RaymanForeverCompleteSoundtrack_Fix));
 
     private static FileSystemPath GetMusicDirectory(GameInstallation gameInstallation)
     {

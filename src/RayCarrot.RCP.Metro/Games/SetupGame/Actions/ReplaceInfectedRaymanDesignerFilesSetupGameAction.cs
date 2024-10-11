@@ -8,14 +8,13 @@ public class ReplaceInfectedRaymanDesignerFilesSetupGameAction : SetupGameAction
     private const string InfectedMapperHash = "BE0DB1033728D8FD87256FDD232DF331E65F04A352C6290EB488F9FB603BA28E";
     private const string CleanMapperHash = "8BAFDC4624F272817F26FF3A1AE9527A21069A3B1711F510D03751A4F12ED5A9";
 
-    // TODO-LOC
-    public override LocalizedString Header => "Replace infected files";
-    public override LocalizedString Info => "Some versions of Rayman Designer, such as the one bundled in Rayman Forever, has some of its files infected with an old malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, it can still be helpful to replace the files with their non-infected versions to avoid anti-virus programs from removing the game files.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Optional;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_FileReplacement;
-    public override LocalizedString? FixActionDisplayName => "Replace infected files"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix));
 
     private FileSystemPath GetMapperFilePath(GameInstallation gameInstallation)
     {

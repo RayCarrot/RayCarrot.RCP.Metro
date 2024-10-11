@@ -3,7 +3,7 @@
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 [GameComponentBase]
-[GameFeature("Per-level Soundtrack", GenericIconKind.GameFeature_PerLevelSoundtrack)] // TODO-LOC
+[GameFeature(nameof(Resources.GameTool_PerLevelSoundtrack), GenericIconKind.GameFeature_PerLevelSoundtrack)]
 public class PerLevelSoundtrackComponent : GameComponent
 {
     public override void RegisterComponents(IGameComponentBuilder builder)

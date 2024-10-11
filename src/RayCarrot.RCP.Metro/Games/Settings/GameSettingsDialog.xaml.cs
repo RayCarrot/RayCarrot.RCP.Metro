@@ -68,10 +68,12 @@ public partial class GameSettingsDialog : WindowContentControl, IInitializable, 
     {
         base.WindowAttached();
 
-        // TODO-LOC
         WindowInstance.Title = ViewModel is GameClientGameSettingsViewModel clientSettings
-            ? $"{clientSettings.GameClientInstallation.GameClientDescriptor.DisplayName} Game Settings - {ViewModel.GameInstallation.GetDisplayName()}"
-            : $"Game Settings - {ViewModel.GameInstallation.GetDisplayName()}";
+            ? String.Format(Metro.Resources.GameClientGameSettingsTitle,
+                clientSettings.GameClientInstallation.GameClientDescriptor.DisplayName,
+                ViewModel.GameInstallation.GetDisplayName())
+            : String.Format(Metro.Resources.GameSettingsTitle, 
+                ViewModel.GameInstallation.GetDisplayName());
         WindowInstance.Icon = GenericIconKind.Window_GameSettings;
         WindowInstance.MinWidth = 500;
         WindowInstance.MinHeight = 400;

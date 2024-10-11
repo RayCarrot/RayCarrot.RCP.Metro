@@ -5336,4 +5336,7 @@ Vuoi continuare ad applicare le mod?</value>
   <data name="Archive_FileTypeWithSubType" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
 </root>

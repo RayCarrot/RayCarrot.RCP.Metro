@@ -10,7 +10,7 @@ public abstract class InstallModSetupGameAction : SetupGameAction
     protected abstract string ModId { get; }
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_Mod;
-    public override LocalizedString? FixActionDisplayName => "Download mod"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_DownloadModFix));
 
     public override bool CheckIsComplete(GameInstallation gameInstallation)
     {

@@ -5427,4 +5427,7 @@ Komunikaty o błędach:
   <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
     <value>Ilość skoków</value>
   </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
 </root>

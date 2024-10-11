@@ -1,6 +1,4 @@
 ﻿using Microsoft.Win32;
-using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Settings;
 
 namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
@@ -15,14 +13,13 @@ public class InvalidUbiArtResolutionSetupGameAction : SetupGameAction
 
     public string RegistryKey { get; }
 
-    // TODO-LOC
-    public override LocalizedString Header => "Invalid game resolution";
-    public override LocalizedString Info => "The game resolution has to be set to a resolution supported by the graphics card. On some systems the resolution will default to an invalid resolution, causing black borders and potential crashes. This can be solved by selecting a supported resolution.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_InvalidUbiArtResolution_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_InvalidUbiArtResolution_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
     public override GenericIconKind FixActionIcon => GenericIconKind.SetupGame_GameSettings;
-    public override LocalizedString? FixActionDisplayName => "Open game settings"; // TODO-LOC
+    public override LocalizedString FixActionDisplayName => new ResourceLocString(nameof(Resources.SetupGameAction_GameSettingsFix));
 
     public override bool CheckIsAvailable(GameInstallation gameInstallation)
     {

@@ -13,7 +13,6 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              Language="{UICulture}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <!-- TODO-LOC -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -24,7 +23,7 @@
         <TextBlock Grid.Row="0"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
-                   Text="Replaces the music in the game with the per-level music from the PlayStation version, as well as provides various fixes for the PC version."
+                   Text="{Resx GameHub_PerLevelSoundtrackPanel_Info}"
                    Margin="0 0 0 4" />
 
         <!-- Open -->
@@ -43,14 +42,14 @@
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=InstallCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.GameTools}"
-                    Content="Install"
+                    Content="{Resx GameHub_PerLevelSoundtrackPanel_Install}"
                     Margin="0 0 8 0" />
 
             <mah:ToggleSwitch Grid.Column="1"
                               Visibility="{Binding Path=IsInstalled, Converter={rcp:BooleanToVisibilityConverter}}"
                               VerticalAlignment="Center"
-                              OnContent="Enabled"
-                              OffContent="Disabled"
+                              OnContent="{Resx SettingEnabled}"
+                              OffContent="{Resx SettingDisabled}"
                               IsOn="{Binding Path=IsEnabled}"
                               Margin="0 0 8 0" />
 
@@ -63,24 +62,24 @@
                               IsChecked="{Binding Path=ExpandedMemory}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>-->
-                    <CheckBox Content="CD audio level clear and death sounds"
-                              ToolTip="Replaces the default level clear and death sounds with the CD audio ones from the PlayStation version"
+                    <CheckBox Content="{Resx GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic}"
+                              ToolTip="{Resx GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo}"
                               IsChecked="{Binding Path=DisableClearAndDeathMusic, Converter={rcp:InvertedBooleanConverter}}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
-                    <CheckBox Content="Ambient MIDI track"
-                              ToolTip="Plays the PlayStation exclusive ambient MIDI tracks in their respective level sections"
+                    <CheckBox Content="{Resx GameHub_PerLevelSoundtrackPanel_PlayMidi}"
+                              ToolTip="{Resx GameHub_PerLevelSoundtrackPanel_PlayMidiInfo}"
                               IsChecked="{Binding Path=CdAudioOnly, Converter={rcp:InvertedBooleanConverter}}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
                     <Separator />
-                    <CheckBox Content="Visual bug fixes"
-                              ToolTip="Includes visual bug fixes for the PC version, such as making Dark Rayman's fist appear after punching"
+                    <CheckBox Content="{Resx GameHub_PerLevelSoundtrackPanel_VisualFixes}"
+                              ToolTip="{Resx GameHub_PerLevelSoundtrackPanel_VisualFixesInfo}"
                               IsChecked="{Binding Path=MusicOnly, Converter={rcp:InvertedBooleanConverter}}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
-                    <CheckBox Content="Have Dark Rayman's fist kill you"
-                              ToolTip="Re-enables a cut behavior where Dark Rayman's fist kills Rayman on contact"
+                    <CheckBox Content="{Resx GameHub_PerLevelSoundtrackPanel_FistKills}"
+                              ToolTip="{Resx GameHub_PerLevelSoundtrackPanel_FistKillsInfo}"
                               IsChecked="{Binding Path=FistKills}"
                               Margin="6"
                               Style="{StaticResource RCP.Styles.CheckBox.Default}"/>
@@ -93,7 +92,7 @@
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     rcp:Icon.Kind="DeleteOutline"
                     rcp:Icon.Size="18"
-                    Content="Uninstall"
+                    Content="{Resx GameHub_PerLevelSoundtrackPanel_Uninstall}"
                     Command="{Binding Path=UninstallCommand, Mode=OneTime}"
                     Margin="0 0 4 0" />
 
@@ -102,7 +101,7 @@
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     rcp:Icon.Kind="Github"
                     rcp:Icon.Size="18"
-                    Content="GitHub"
+                    Content="{Resx GameHub_PerLevelSoundtrackPanel_GitHub}"
                     ToolTip="{Binding Path=GitHubUrl, Mode=OneTime}"
                     Command="{Binding Path=OpenGitHubCommand, Mode=OneTime}" />
 

@@ -47,7 +47,6 @@ public class SetupGameViewModel : BaseViewModel
                 {
                     actionGroups.Clear();
 
-                    // TODO-LOC
                     ActionGroupSummaries.ModifyCollection(actionGroupSummaries =>
                     {
                         actionGroupSummaries.Clear();
@@ -56,10 +55,11 @@ public class SetupGameViewModel : BaseViewModel
                         List<SetupGameAction> recommendedActions = actions.Where(a => a.Type == SetupGameActionType.Recommended).ToList();
                         SetupGameActionsGroupViewModel? recommendedActionsGroup = null;
                         if (recommendedActions.Any())
-                            actionGroups.Add(recommendedActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, "Recommended", recommendedActions));
+                            actionGroups.Add(recommendedActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, new ResourceLocString(nameof(Resources.SetupGame_RecommendedGroupHeader)), recommendedActions));
 
                         actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
-                            text: $"{recommendedActionsGroup?.CompletedActions ?? 0}/{recommendedActionsGroup?.TotalActions ?? 0} recommended actions",
+                            text: new ResourceLocString(nameof(Resources.SetupGame_RecommendedGroupSummary), 
+                                recommendedActionsGroup?.CompletedActions ?? 0, recommendedActionsGroup?.TotalActions ?? 0),
                             state: recommendedActionsGroup == null || recommendedActionsGroup.CompletedActions == recommendedActionsGroup.TotalActions
                                 ? SetupGameActionState.Complete
                                 : SetupGameActionState.Incomplete));
@@ -68,10 +68,11 @@ public class SetupGameViewModel : BaseViewModel
                         List<SetupGameAction> optionalActions = actions.Where(a => a.Type == SetupGameActionType.Optional).ToList();
                         SetupGameActionsGroupViewModel? optionalActionsGroup = null;
                         if (optionalActions.Any())
-                            actionGroups.Add(optionalActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, "Optional", optionalActions));
+                            actionGroups.Add(optionalActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, new ResourceLocString(nameof(Resources.SetupGame_OptionalGroupHeader)), optionalActions));
 
                         actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
-                            text: $"{optionalActionsGroup?.CompletedActions ?? 0}/{optionalActionsGroup?.TotalActions ?? 0} optional actions",
+                            text: new ResourceLocString(nameof(Resources.SetupGame_OptionalGroupSummary),
+                                recommendedActionsGroup?.CompletedActions ?? 0, recommendedActionsGroup?.TotalActions ?? 0),
                             state: optionalActionsGroup == null || optionalActionsGroup.CompletedActions == optionalActionsGroup.TotalActions
                                 ? SetupGameActionState.Complete
                                 : SetupGameActionState.Incomplete));
@@ -80,10 +81,13 @@ public class SetupGameViewModel : BaseViewModel
                         List<SetupGameAction> issueActions = actions.Where(a => a.Type == SetupGameActionType.Issue).ToList();
                         SetupGameActionsGroupViewModel? issueActionsGroup = null;
                         if (issueActions.Any())
-                            actionGroups.Add(issueActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, "Issues", issueActions));
+                            actionGroups.Add(issueActionsGroup = new SetupGameActionsGroupViewModel(GameInstallation, new ResourceLocString(nameof(Resources.SetupGame_IssuesGroupHeader)), issueActions));
 
                         actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
-                            text: $"{issueActionsGroup?.TotalActions ?? 0} issues", // TODO-LOC: Singular/plural
+                            text: new ResourceLocString(issueActionsGroup?.TotalActions == 1 
+                                    ? nameof(Resources.SetupGame_IssuesGroupSummarySingle) 
+                                    : nameof(Resources.SetupGame_IssuesGroupSummaryMultiple), 
+                                issueActionsGroup?.TotalActions ?? 0),
                             state: issueActionsGroup == null || issueActionsGroup.TotalActions == 0
                                 ? SetupGameActionState.Complete
                                 : SetupGameActionState.Critical));
