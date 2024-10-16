@@ -72,7 +72,7 @@ public class SetupGameViewModel : BaseViewModel
 
                         actionGroupSummaries.Add(new SetupGameActionsGroupSummaryViewModel(
                             text: new ResourceLocString(nameof(Resources.SetupGame_OptionalGroupSummary),
-                                recommendedActionsGroup?.CompletedActions ?? 0, recommendedActionsGroup?.TotalActions ?? 0),
+                                optionalActionsGroup?.CompletedActions ?? 0, optionalActionsGroup?.TotalActions ?? 0),
                             state: optionalActionsGroup == null || optionalActionsGroup.CompletedActions == optionalActionsGroup.TotalActions
                                 ? SetupGameActionState.Complete
                                 : SetupGameActionState.Incomplete));
