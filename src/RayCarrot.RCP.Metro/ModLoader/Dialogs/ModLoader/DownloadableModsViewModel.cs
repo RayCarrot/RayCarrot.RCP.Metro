@@ -19,7 +19,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         Mods = new ObservableCollection<DownloadableModViewModel>();
 
         RefreshCommand = new AsyncRelayCommand(LoadModsAsync);
-        LoadChunkCommand = new AsyncRelayCommand(LoadChunkAsync);
     }
 
     #endregion
@@ -50,7 +49,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     #region Commands
 
     public ICommand RefreshCommand { get; }
-    public ICommand LoadChunkCommand { get; }
 
     #endregion
 
@@ -94,7 +92,29 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         Logger.Info("Loaded page {0} out of {1} total pages", _currentPage, _pageCount);
     }
 
-    private async Task LoadChunkAsync()
+    #endregion
+
+    #region Public Methods
+
+    public async Task LoadModsAsync()
+    {
+        if (IsLoading)
+            return;
+
+        Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
+
+        IsEmpty = false;
+        ErrorMessage = null;
+        Mods.DisposeAll();
+        Mods.Clear();
+        _currentPage = -1;
+        _pageCount = -1;
+        CanLoadChunk = false;
+
+        await LoadNextChunkAsync();
+    }
+
+    public async Task LoadNextChunkAsync()
     {
         if (IsLoading)
             return;
@@ -128,28 +148,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         {
             IsLoading = false;
         }
-    }
-
-    #endregion
-
-    #region Public Methods
-
-    public async Task LoadModsAsync()
-    {
-        if (IsLoading)
-            return;
-
-        Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
-
-        IsEmpty = false;
-        ErrorMessage = null;
-        Mods.DisposeAll();
-        Mods.Clear();
-        _currentPage = -1;
-        _pageCount = -1;
-        CanLoadChunk = false;
-
-        await LoadChunkAsync();
     }
 
     public void Dispose()

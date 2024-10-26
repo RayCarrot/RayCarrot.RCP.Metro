@@ -74,7 +74,7 @@
                 </Grid>
 
                 <!-- Mods -->
-                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1" VerticalAlignment="Top">
+                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1" VerticalAlignment="Top" ScrollChanged="ModsScrollViewer_OnScrollChanged">
                     <StackPanel>
                         <ListBox Grid.IsSharedSizeScope="True"
                                  ItemsSource="{Binding Path=Mods, Mode=OneTime}"
@@ -86,8 +86,7 @@
                                  ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
                                  PreviewMouseWheel="ModsListBox_OnPreviewMouseWheel"
                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 Margin="0 0 0 4">
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <ContentPresenter Content="{Binding Mode=OneTime}">
@@ -100,12 +99,6 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-
-                        <TextBlock Visibility="{Binding Path=CanLoadChunk, Converter={rcp:BooleanToVisibilityConverter}}">
-                            <Hyperlink Command="{Binding Path=LoadChunkCommand, Mode=OneTime}">
-                                <Run Text="{Resx ModLoader_LoadMoreDownloadableMods}" />
-                            </Hyperlink>
-                        </TextBlock>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

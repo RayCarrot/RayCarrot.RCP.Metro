@@ -38,4 +38,15 @@ public partial class ModLoaderDownloadPageControl : UserControl
         ModsScrollViewer?.RaiseEvent(eventArg);
         e.Handled = true;
     }
+
+    private async void ModsScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+    {
+        // Load the next chunk of pages when scrolled to the bottom
+        if (ViewModel.CanLoadChunk &&
+            ModsScrollViewer.ScrollableHeight > 0 &&
+            ModsScrollViewer.VerticalOffset >= ModsScrollViewer.ScrollableHeight)
+        {
+            await ViewModel.LoadNextChunkAsync();
+        }
+    }
 }
