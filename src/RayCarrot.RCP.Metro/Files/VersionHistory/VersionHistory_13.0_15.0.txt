@@ -19,6 +19,7 @@
 • Added a new per-level soundtrack tool for Rayman 1 by PluMGMK which allows any DOSBox build to be used, adds support for new tracks, such as the ambient MIDI tracks, and allows fixing visual bugs in the PC version
 • Archive Explorer improvements:
     • Added support for PS3 UbiArt textures
+    • Added the Rayman Legends (Xbox One) game mode when opening an IPK archive
     • Replaced the image library for DDS files and with that greatly improved DXT compression quality (used when importing images to Rayman Origins and Legends)
     • Improved support for Xbox 360 UbiArt textures, correctly converting uncompressed and color remapped textures
     • The directory path is no longer part of the info items shown when hovering over a file

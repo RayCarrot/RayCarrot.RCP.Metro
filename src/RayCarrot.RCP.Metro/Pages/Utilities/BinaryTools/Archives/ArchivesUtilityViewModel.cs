@@ -67,6 +67,7 @@ public class ArchivesUtilityViewModel : UtilityViewModel
                     UbiArtGameMode.RaymanLegends_WiiU,
                     UbiArtGameMode.RaymanLegends_PSVita,
                     UbiArtGameMode.RaymanLegends_PS4,
+                    UbiArtGameMode.RaymanLegends_XboxOne,
                     UbiArtGameMode.RaymanLegends_Switch,
                     UbiArtGameMode.RaymanAdventures_Android,
                     UbiArtGameMode.RaymanAdventures_iOS,

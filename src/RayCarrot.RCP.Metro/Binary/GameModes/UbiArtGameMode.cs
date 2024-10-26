@@ -46,6 +46,9 @@ public enum UbiArtGameMode
     [UbiArtGameModeInfo("Rayman Legends (PS4)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PlayStation4)]
     RaymanLegends_PS4,
 
+    [UbiArtGameModeInfo("Rayman Legends (Xbox One)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.XboxOne)]
+    RaymanLegends_XboxOne,
+
     [UbiArtGameModeInfo("Rayman Legends (Switch)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.NintendoSwitch)]
     RaymanLegends_Switch,
 

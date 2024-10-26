@@ -230,6 +230,17 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
+                    case Platform.XboxOne:
+                        data.Version = 7;
+                        data.Unknown1 = 9;
+                        data.Unknown3 = false;
+                        data.Unknown4 = true;
+                        data.Unknown5 = true;
+                        data.Unknown6 = 80262;
+                        data.Unknown7 = 2973796970;
+                        data.EngineVersion = 118166;
+                        break;
+
                     case Platform.PC:
                         data.Version = 5;
                         data.Unknown1 = 0;
