@@ -14,51 +14,53 @@
               d:DesignHeight="450" d:DesignWidth="800"
               d:DataContext="{d:DesignInstance utilities:UtilitiesPageViewModel}">
 
-    <mah:MetroAnimatedTabControl x:Name="UtilitiesTabControl"
-                                 Margin="0 12 0 0"
-                                 FocusVisualStyle="{x:Null}">
+    <rcp:Card Margin="12">
+        <mah:MetroAnimatedTabControl x:Name="UtilitiesTabControl" 
+                                     Background="Transparent"
+                                     FocusVisualStyle="{x:Null}">
+            <i:Interaction.Behaviors>
+                <rcp:FocusElementOnLoad />
+            </i:Interaction.Behaviors>
 
-        <i:Interaction.Behaviors>
-            <rcp:FocusElementOnLoad />
-        </i:Interaction.Behaviors>
+            <!-- Binary Tools -->
+            <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_BinaryTools}"
+                     rcp:Icon.Brush="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                     Header="{Resx Utilities_BinaryTools_Header}">
 
-        <!-- Binary Tools -->
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_BinaryTools}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.ArchiveExplorer}"
-                 Header="{Resx Utilities_BinaryTools_Header}">
+                <ScrollViewer>
+                    <utilities:UtilitiesContainer Margin="12 0 12 12"
+                                                  DataContext="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
+                </ScrollViewer>
 
-            <ScrollViewer>
-                <utilities:UtilitiesContainer Margin="12 0 12 12"
-                                              DataContext="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
-            </ScrollViewer>
+            </TabItem>
 
-        </TabItem>
+            <!-- Other -->
+            <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_Other}"
+                     rcp:Icon.Brush="{StaticResource RCP.Brushes.Utilities}"
+                     Header="{Resx Utilities_Other_Header}">
 
-        <!-- Other -->
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_Other}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Utilities}"
-                 Header="{Resx Utilities_Other_Header}">
+                <ScrollViewer>
+                    <utilities:UtilitiesContainer Margin="12 0 12 12"
+                                                  DataContext="{Binding Path=OtherViewModels, Mode=OneTime}" />
+                </ScrollViewer>
 
-            <ScrollViewer>
-                <utilities:UtilitiesContainer Margin="12 0 12 12"
-                                              DataContext="{Binding Path=OtherViewModels, Mode=OneTime}" />
-            </ScrollViewer>
+            </TabItem>
 
-        </TabItem>
+            <!-- External Tools -->
+            <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_ExternalTools}"
+                     rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                     Header="{Resx Utilities_ExternalTools_Header}">
 
-        <!-- External Tools -->
-        <TabItem rcp:Icon.Kind="{StaticResource RCP.Icons.Utilities_ExternalTools}"
-                 rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}"
-                 Header="{Resx Utilities_ExternalTools_Header}">
+                <ScrollViewer>
+                    <utilities:UtilitiesContainer Margin="12 0 12 12"
+                                                  DataContext="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
+                </ScrollViewer>
 
-            <ScrollViewer>
-                <utilities:UtilitiesContainer Margin="12 0 12 12"
-                                              DataContext="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
-            </ScrollViewer>
+            </TabItem>
 
-        </TabItem>
+        </mah:MetroAnimatedTabControl>
 
-    </mah:MetroAnimatedTabControl>
+    </rcp:Card>
 
     <i:Interaction.Behaviors>
         <rcp:SubTabControlBehavior ChildTabControl="{Binding ElementName=UtilitiesTabControl}" />

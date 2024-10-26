@@ -18,26 +18,10 @@
 
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type utilities:UtilityViewModel}">
-                <StackPanel>
-
-                    <Separator x:Name="ItemSeparator"
-                               Margin="{StaticResource RCP.Thicknesses.Vertical}"/>
-
-                    <!-- Header -->
-                    <StackPanel Orientation="Horizontal"
-                                Margin="{StaticResource RCP.Thicknesses.Vertical}">
-
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Converter={rcp:GenericIconToIconKindConverter}, Mode=OneTime}" 
-                                                    Foreground="{Binding Path=Icon, Converter={rcp:GenericIconToBrushConverter}, Mode=OneTime}"
-                                                    Margin="0 0 7 0"
-                                                    VerticalAlignment="Center"/>
-
-                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                   Text="{Binding Path=DisplayHeader.Value}" />
-
-                    </StackPanel>
-
-                    <!-- Content -->
+                <GroupBox Margin="{StaticResource RCP.Thicknesses.Card}"
+                          Header="{Binding Path=DisplayHeader.Value}"
+                          rcp:Icon.Kind="{Binding Path=Icon, Converter={rcp:GenericIconToIconKindConverter}, Mode=OneTime}"
+                          rcp:Icon.Brush="{Binding Path=Icon, Converter={rcp:GenericIconToBrushConverter}, Mode=OneTime}">
                     <ContentPresenter Margin="{StaticResource RCP.Thicknesses.Vertical}"
                                       IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                                       Content="{Binding Mode=OneTime}">
@@ -67,18 +51,7 @@
                             </DataTemplate>
                         </ContentPresenter.Resources>
                     </ContentPresenter>
-
-                    <!-- Loading -->
-                    <metro:MetroProgressBar IsIndeterminate="True" 
-                                            Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityHiddenConverter}}"/>
-
-                </StackPanel>
-
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
-                        <Setter Property="Visibility" TargetName="ItemSeparator" Value="Collapsed"/>
-                    </DataTrigger>
-                </DataTemplate.Triggers>
+                </GroupBox>
 
             </DataTemplate>
         </ItemsControl.ItemTemplate>

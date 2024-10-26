@@ -10,7 +10,7 @@ public abstract class UtilityViewModel : BaseViewModel, IDisposable
     public abstract LocalizedString DisplayHeader { get; }
     public abstract GenericIconKind Icon { get; }
 
-    public bool IsLoading { get; set; }
+    public bool IsLoading { get; set; } // TODO: Show in UI
 
     #endregion
 
