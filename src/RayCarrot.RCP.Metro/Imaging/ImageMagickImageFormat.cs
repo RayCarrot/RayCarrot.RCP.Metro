@@ -14,7 +14,7 @@ public abstract class ImageMagickImageFormat : ImageFormat
 
     private ImageMetadata GetMetadata(MagickImage img)
     {
-        return new ImageMetadata(img.Width, img.Height);
+        return new ImageMetadata((int)img.Width, (int)img.Height);
     }
 
     protected virtual void OnEncode(MagickImage img) { }
@@ -52,8 +52,8 @@ public abstract class ImageMagickImageFormat : ImageFormat
                 RawImageDataPixelFormat.Bgra32 => MagickFormat.Bgra,
                 _ => throw new ArgumentOutOfRangeException()
             },
-            Width = data.Metadata.Width,
-            Height = data.Metadata.Height,
+            Width = (uint)data.Metadata.Width,
+            Height = (uint)data.Metadata.Height,
         });
 
         OnEncode(img);
