@@ -11,8 +11,9 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <Grid Margin="0 8">
+    <Grid Margin="0 4" Height="32">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
@@ -29,6 +30,7 @@
                  Fill="{StaticResource RCP.Brushes.Info}" 
                  Margin="0 0 4 0" />
 
+        <!-- Featured icon -->
         <iconPacks:PackIconMaterial Grid.Column="1" 
                                     Kind="StarOutline" 
                                     VerticalAlignment="Center"
@@ -36,8 +38,18 @@
                                     Visibility="{Binding Path=IsFeatured, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
                                     Margin="0 0 4 0" />
 
+        <!-- Category icon -->
+        <Image Grid.Column="2" 
+               Visibility="{Binding Path=RootCategoryIconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+               Source="{Binding Path=RootCategoryIconUrl, Mode=OneTime}"
+               ToolTip="{Binding Path=RootCategoryName, Mode=OneTime}"
+               Width="32"
+               Height="32"
+               VerticalAlignment="Center"
+               Margin="0 0 4 0" />
+
         <!-- Title -->
-        <TextBlock Grid.Column="2" 
+        <TextBlock Grid.Column="3" 
                    VerticalAlignment="Center"
                    FontSize="14"
                    Text="{Binding Path=Name, Mode=OneTime}"
@@ -45,13 +57,13 @@
                    TextWrapping="Wrap"
                    Margin="0 0 12 0" />
 
-        <TextBlock Grid.Column="3" 
+        <TextBlock Grid.Column="4" 
                    Text="{Binding Path=Version, Mode=OneTime}" 
                    Margin="0 0 16 0" 
                    FontStyle="Italic" 
                    VerticalAlignment="Center" />
 
-        <StackPanel Grid.Column="4"
+        <StackPanel Grid.Column="5"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="HeartOutline" 
@@ -64,7 +76,7 @@
                        VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Column="5"
+        <StackPanel Grid.Column="6"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="ArrowDownBoldOutline" 
@@ -77,7 +89,7 @@
                        VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Column="6"
+        <StackPanel Grid.Column="7"
                     Orientation="Horizontal" 
                     Margin="0 0 12 0">
             <iconPacks:PackIconMaterial Kind="EyeOutline" 

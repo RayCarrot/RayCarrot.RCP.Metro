@@ -56,7 +56,7 @@ public class GameBananaModsSource : DownloadableModsSource
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
             $"_csvRowIds={modIds.JoinItems(",")}&" +
-            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_sVersion,_aPreviewMedia,_nLikeCount,_nViewCount,_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
+            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_sVersion,_aRootCategory,_aPreviewMedia,_nLikeCount,_nViewCount,_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
 
         // Process every mod
         foreach (GameBananaMod mod in mods)
@@ -81,6 +81,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     description: mod.Description ?? String.Empty,
                     text: mod.Text ?? String.Empty,
                     version: mod.Version ?? String.Empty,
+                    rootCategory: mod.RootCategory,
                     previewMedia: mod.PreviewMedia,
                     likesCount: mod.LikeCount,
                     downloadsCount: mod.DownloadCount ?? 0,
@@ -112,7 +113,7 @@ public class GameBananaModsSource : DownloadableModsSource
     {
         List<GameBananaDownloadableModViewModel> modViewModels = new();
 
-        // Only load features mods on first page
+        // Only load featured mods on first page
         if (page == 0)
         {
             Logger.Info("Loading featured GameBanana mods");
@@ -201,6 +202,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     description: mod.Description ?? String.Empty,
                     text: mod.Text ?? String.Empty,
                     version: modRecord.Version ?? String.Empty,
+                    rootCategory: modRecord.RootCategory,
                     previewMedia: modRecord.PreviewMedia,
                     likesCount: modRecord.LikeCount,
                     downloadsCount: mod.DownloadCount ?? 0,

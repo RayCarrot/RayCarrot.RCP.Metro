@@ -20,6 +20,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         string description, 
         string text,
         string version,
+        GameBananaCategory? rootCategory, 
         GameBananaMedia? previewMedia, 
         int likesCount, 
         int downloadsCount, 
@@ -53,6 +54,14 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         });
 
         Version = ModVersion.TryParse(version, out ModVersion? v) ? v : null;
+
+        if (rootCategory != null)
+        {
+            if (!rootCategory.IconUrl.IsNullOrEmpty())
+                RootCategoryIconUrl = rootCategory.IconUrl;
+
+            RootCategoryName = rootCategory.Name;
+        }
 
         if (previewMedia?.Images is { Length: > 0 } images)
         {
@@ -130,6 +139,9 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public LocalizedString UploadInfoPostText { get; }
 
     public ModVersion? Version { get; }
+
+    public string? RootCategoryIconUrl { get; }
+    public string? RootCategoryName { get; }
 
     public string? ImageUrl { get; }
     public double ImageWidth { get; }
