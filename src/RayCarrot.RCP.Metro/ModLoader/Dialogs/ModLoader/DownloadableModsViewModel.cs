@@ -8,17 +8,21 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public DownloadableModsViewModel(ModLoaderViewModel modLoaderViewModel, GameInstallation gameInstallation, HttpClient httpClient, IEnumerable<DownloadableModsSource> downloadableModsSources)
+    public DownloadableModsViewModel(
+        ModLoaderViewModel modLoaderViewModel, 
+        GameInstallation gameInstallation, 
+        HttpClient httpClient, 
+        IReadOnlyList<DownloadableModsSource> downloadableModsSources)
     {
         _modLoaderViewModel = modLoaderViewModel;
         GameInstallation = gameInstallation;
         _httpClient = httpClient;
         DownloadableModsSources = new ObservableCollection<DownloadableModsSourceViewModel>(downloadableModsSources.Select(x =>
             new DownloadableModsSourceViewModel(x)));
+        _primaryModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources);
+        CurrentModsFeed = _primaryModsFeed;
 
-        Mods = new ObservableCollection<DownloadableModViewModel>();
-
-        RefreshCommand = new AsyncRelayCommand(LoadModsAsync);
+        RefreshCommand = new AsyncRelayCommand(InitializeAsync);
     }
 
     #endregion
@@ -29,19 +33,11 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     #endregion
 
-    #region Constants
-
-    private const int ChunkSize = 10;
-
-    #endregion
-
     #region Private Fields
 
-    private readonly HttpClient _httpClient;
     private readonly ModLoaderViewModel _modLoaderViewModel;
-    private int _pageCount;
-    private int _currentPage;
-
+    private readonly HttpClient _httpClient;
+    private readonly DownloadableModsFeedViewModel _primaryModsFeed;
     private DownloadableModViewModel? _selectedMod;
 
     #endregion
@@ -55,8 +51,9 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
-
     public ObservableCollection<DownloadableModsSourceViewModel> DownloadableModsSources { get; }
+
+    public DownloadableModsFeedViewModel CurrentModsFeed { get; set; }
 
     public DownloadableModViewModel? SelectedMod
     {
@@ -68,48 +65,21 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         }
     }
 
-    public ObservableCollection<DownloadableModViewModel> Mods { get; }
-    public bool IsEmpty { get; set; }
     public bool IsLoading { get; set; }
-    public string? ErrorMessage { get; set; }
-    public bool CanLoadChunk { get; set; }
-
-    #endregion
-
-    #region Private Methods
-
-    private async Task LoadPageAsync()
-    {
-        Logger.Info("Loading page {0}", _currentPage);
-
-        foreach (DownloadableModsSourceViewModel modsSource in DownloadableModsSources)
-        {
-            DownloadableModsFeed feed = await modsSource.Source.LoadDownloadableModsAsync(_modLoaderViewModel, Mods, _httpClient, GameInstallation, _currentPage);
-            Mods.AddRange(feed.DownloadableMods);
-            _pageCount = feed.PageCount;
-        }
-        
-        Logger.Info("Loaded page {0} out of {1} total pages", _currentPage, _pageCount);
-    }
 
     #endregion
 
     #region Public Methods
 
-    public async Task LoadModsAsync()
+    public async Task InitializeAsync()
     {
         if (IsLoading)
             return;
 
         Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
 
-        IsEmpty = false;
-        ErrorMessage = null;
-        Mods.DisposeAll();
-        Mods.Clear();
-        _currentPage = -1;
-        _pageCount = -1;
-        CanLoadChunk = false;
+        CurrentModsFeed = _primaryModsFeed;
+        CurrentModsFeed.Initialize();
 
         await LoadNextChunkAsync();
     }
@@ -121,28 +91,11 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         IsLoading = true;
 
-        Logger.Info("Loaded chunk of downloadable mods");
+        Logger.Info("Loading chunk of downloadable mods");
 
         try
         {
-            do
-            {
-                _currentPage++;
-                await LoadPageAsync();
-            } while (Mods.Count < ChunkSize && _currentPage < _pageCount - 1);
-
-            CanLoadChunk = _pageCount != -1 && _currentPage < _pageCount - 1;
-
-            IsEmpty = !Mods.Any();
-            Logger.Info("Loaded chunk");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Loading chunk of downloadable mods");
-
-            ErrorMessage = ex.Message;
-            IsEmpty = false;
-            CanLoadChunk = false;
+            await CurrentModsFeed.LoadNextChunkAsync();
         }
         finally
         {
@@ -152,7 +105,10 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        Mods.DisposeAll();
+        _primaryModsFeed.Dispose();
+
+        if (CurrentModsFeed != _primaryModsFeed)
+            CurrentModsFeed.Dispose();
     }
 
     #endregion

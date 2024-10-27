@@ -104,7 +104,7 @@ public class GameBananaModsSource : DownloadableModsSource
             ToList();
     }
 
-    public override async Task<DownloadableModsFeed> LoadDownloadableModsAsync(
+    public override async Task<DownloadableModsFeedPage> LoadDownloadableModsAsync(
         ModLoaderViewModel modLoaderViewModel,
         IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
         HttpClient httpClient,
@@ -168,7 +168,7 @@ public class GameBananaModsSource : DownloadableModsSource
         Logger.Info("{0} mods found", modRecords.Count);
 
         if (modRecords.Count == 0)
-            return new DownloadableModsFeed(modViewModels, largestPageCount);
+            return new DownloadableModsFeedPage(modViewModels, largestPageCount);
 
         // Get data for every mod
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
@@ -213,7 +213,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
         Logger.Info("Finished loading mods");
 
-        return new DownloadableModsFeed(modViewModels, largestPageCount);
+        return new DownloadableModsFeedPage(modViewModels, largestPageCount);
     }
 
     public override ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo)

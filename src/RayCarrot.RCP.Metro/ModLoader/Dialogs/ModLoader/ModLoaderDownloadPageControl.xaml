@@ -160,6 +160,7 @@
                     <!-- Loading indicator -->
                     <mah:ProgressRing Grid.Column="6"
                                       Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}"
+                                      d:Visibility="Collapsed"
                                       Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
                                       Height="{Binding ElementName=RefreshButton, Path=ActualHeight}" />
 
@@ -169,7 +170,7 @@
                 <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1" VerticalAlignment="Top" ScrollChanged="ModsScrollViewer_OnScrollChanged">
                     <StackPanel>
                         <ListBox Grid.IsSharedSizeScope="True"
-                                 ItemsSource="{Binding Path=Mods, Mode=OneTime}"
+                                 ItemsSource="{Binding Path=CurrentModsFeed.Mods, Mode=OneTime}"
                                  d:ItemsSource="{d:SampleData ItemCount=5}"
                                  SelectedItem="{Binding Path=SelectedMod}"
                                  d:SelectedIndex="1"
@@ -198,7 +199,7 @@
             <!-- Empty text -->
             <Viewbox Grid.Column="0"
                      Grid.ColumnSpan="2" 
-                     Visibility="{Binding Path=IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
+                     Visibility="{Binding Path=CurrentModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
                 <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}" 
                            TextAlignment="Center" 
                            Margin="30" 
@@ -209,7 +210,7 @@
             <Grid Grid.Column="0"
                   Grid.ColumnSpan="2" 
                   Margin="30"
-                  Visibility="{Binding Path=ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                  Visibility="{Binding Path=CurrentModsFeed.ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                   HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -225,7 +226,7 @@
                 <TextBlock Grid.Column="1" 
                            VerticalAlignment="Center"
                            TextWrapping="Wrap"
-                           Text="{Binding Path=ErrorMessage}"
+                           Text="{Binding Path=CurrentModsFeed.ErrorMessage}"
                            d:Text="Error message"/>
 
             </Grid>

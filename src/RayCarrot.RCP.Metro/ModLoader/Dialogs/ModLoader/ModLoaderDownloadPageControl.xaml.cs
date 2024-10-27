@@ -43,7 +43,7 @@ public partial class ModLoaderDownloadPageControl : UserControl
     private async void ModsScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
     {
         // Load the next chunk of pages when scrolled to the bottom
-        if (ViewModel.CanLoadChunk &&
+        if (ViewModel.CurrentModsFeed.CanLoadChunk &&
             ModsScrollViewer.ScrollableHeight > 0 &&
             ModsScrollViewer.VerticalOffset >= ModsScrollViewer.ScrollableHeight)
         {

@@ -35,7 +35,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         Library = new ModLibrary(GameInstallation);
 
         ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
-        DownloadableMods = new DownloadableModsViewModel(this, GameInstallation, _httpClient, DownloadableModsSource.GetSources());
+        DownloadableMods = new DownloadableModsViewModel(this, GameInstallation, _httpClient, DownloadableModsSource.GetSources().ToList());
 
         InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
         CheckForUpdatesCommand = new AsyncRelayCommand(CheckForUpdatesAsync);
@@ -504,7 +504,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             CheckForUpdatesCommand.Execute(null);
 
         // Load downloadable mods
-        await DownloadableMods.LoadModsAsync();
+        await DownloadableMods.InitializeAsync();
 
         Logger.Info("Finished initializing mod loader");
 
