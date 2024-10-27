@@ -14,15 +14,14 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         HttpClient httpClient, 
         IReadOnlyList<DownloadableModsSource> downloadableModsSources)
     {
-        _modLoaderViewModel = modLoaderViewModel;
         GameInstallation = gameInstallation;
-        _httpClient = httpClient;
-        DownloadableModsSources = new ObservableCollection<DownloadableModsSourceViewModel>(downloadableModsSources.Select(x =>
-            new DownloadableModsSourceViewModel(x)));
-        _primaryModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources);
-        CurrentModsFeed = _primaryModsFeed;
+        DownloadableModsSources = new ObservableCollection<DownloadableModsSourceViewModel>(
+            downloadableModsSources.Select(x => new DownloadableModsSourceViewModel(x)));
+
+        ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources);
 
         RefreshCommand = new AsyncRelayCommand(InitializeAsync);
+        SearchCommand = new AsyncRelayCommand(SearchAsync);
     }
 
     #endregion
@@ -35,9 +34,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private readonly ModLoaderViewModel _modLoaderViewModel;
-    private readonly HttpClient _httpClient;
-    private readonly DownloadableModsFeedViewModel _primaryModsFeed;
     private DownloadableModViewModel? _selectedMod;
 
     #endregion
@@ -45,6 +41,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     #region Commands
 
     public ICommand RefreshCommand { get; }
+    public ICommand SearchCommand { get; }
 
     #endregion
 
@@ -52,8 +49,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public GameInstallation GameInstallation { get; }
     public ObservableCollection<DownloadableModsSourceViewModel> DownloadableModsSources { get; }
-
-    public DownloadableModsFeedViewModel CurrentModsFeed { get; set; }
+    public DownloadableModsFeedViewModel ModsFeed { get; }
 
     public DownloadableModViewModel? SelectedMod
     {
@@ -67,6 +63,9 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public bool IsLoading { get; set; }
 
+    public string SearchText { get; set; } = String.Empty;
+    public string? CurrentSearchedText { get; set; }
+
     #endregion
 
     #region Public Methods
@@ -78,8 +77,39 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
 
-        CurrentModsFeed = _primaryModsFeed;
-        CurrentModsFeed.Initialize();
+        SearchText = String.Empty;
+        CurrentSearchedText = null;
+
+        ModsFeed.Initialize(null);
+
+        await LoadNextChunkAsync();
+    }
+
+    public async Task SearchAsync()
+    {
+        if (IsLoading)
+            return;
+
+        // Search text has to be either empty or at least 2 characters
+        if (SearchText.Length is not (0 or >= 2))
+        {
+            // TODO-LOC
+            await Services.MessageUI.DisplayMessageAsync("The search text has to have at least 2 characters", MessageType.Error);
+            return;
+        }
+
+        Logger.Info("Searching for downloadable mods with the text {0}", SearchText);
+
+        if (SearchText == String.Empty)
+        {
+            CurrentSearchedText = null;
+            ModsFeed.Initialize(null);
+        }
+        else
+        {
+            CurrentSearchedText = SearchText;
+            ModsFeed.Initialize(new DownloadableModsFeedFilter(SearchText));
+        }
 
         await LoadNextChunkAsync();
     }
@@ -95,7 +125,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         try
         {
-            await CurrentModsFeed.LoadNextChunkAsync();
+            await ModsFeed.LoadNextChunkAsync();
         }
         finally
         {
@@ -105,10 +135,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        _primaryModsFeed.Dispose();
-
-        if (CurrentModsFeed != _primaryModsFeed)
-            CurrentModsFeed.Dispose();
+        ModsFeed.Dispose();
     }
 
     #endregion

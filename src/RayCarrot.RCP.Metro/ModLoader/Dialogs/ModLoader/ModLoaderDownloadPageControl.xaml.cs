@@ -43,7 +43,7 @@ public partial class ModLoaderDownloadPageControl : UserControl
     private async void ModsScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
     {
         // Load the next chunk of pages when scrolled to the bottom
-        if (ViewModel.CurrentModsFeed.CanLoadChunk &&
+        if (ViewModel.ModsFeed.CanLoadChunk &&
             ModsScrollViewer.ScrollableHeight > 0 &&
             ModsScrollViewer.VerticalOffset >= ModsScrollViewer.ScrollableHeight)
         {
@@ -54,5 +54,12 @@ public partial class ModLoaderDownloadPageControl : UserControl
     private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
     {
         ModsScrollViewer.ScrollToTop();
+    }
+
+    private async void SearchToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        // Reload the mods if there was a search
+        if (ViewModel.CurrentSearchedText != null)
+            await ViewModel.InitializeAsync();
     }
 }

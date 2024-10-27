@@ -65,6 +65,7 @@
                              Grid.Column="4"
                              VerticalAlignment="Center"
                              mah:TextBoxHelper.Watermark="Search mods"
+                             Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"
                              BorderThickness="0" 
                              Margin="8 0 8 0"
                              Visibility="Collapsed"
@@ -72,6 +73,9 @@
                              Opacity="0"
                              d:Opacity="1"
                              RenderTransformOrigin="1, 0">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SearchCommand, Mode=OneTime}" Key="Enter" />
+                        </TextBox.InputBindings>
                         <TextBox.RenderTransform>
                             <ScaleTransform x:Name="SearchTextBoxScaleTransform" />
                         </TextBox.RenderTransform>
@@ -80,6 +84,7 @@
                     <!-- TODO-LOC -->
                     <!-- Search toggle -->
                     <ToggleButton Grid.Column="5"
+                                  Unchecked="SearchToggleButton_OnUnchecked"
                                   Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
                                   ToolTip="Search mods"
                                   Margin="0 0 4 0">
@@ -170,7 +175,7 @@
                 <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1" VerticalAlignment="Top" ScrollChanged="ModsScrollViewer_OnScrollChanged">
                     <StackPanel>
                         <ListBox Grid.IsSharedSizeScope="True"
-                                 ItemsSource="{Binding Path=CurrentModsFeed.Mods, Mode=OneTime}"
+                                 ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
                                  d:ItemsSource="{d:SampleData ItemCount=5}"
                                  SelectedItem="{Binding Path=SelectedMod}"
                                  d:SelectedIndex="1"
@@ -199,8 +204,9 @@
             <!-- Empty text -->
             <Viewbox Grid.Column="0"
                      Grid.ColumnSpan="2" 
-                     Visibility="{Binding Path=CurrentModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
-                <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}" 
+                     Visibility="{Binding Path=ModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}"
+                     d:Visibility="Collapsed">
+                <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}"
                            TextAlignment="Center" 
                            Margin="30" 
                            Opacity="0.5" />
@@ -210,7 +216,7 @@
             <Grid Grid.Column="0"
                   Grid.ColumnSpan="2" 
                   Margin="30"
-                  Visibility="{Binding Path=CurrentModsFeed.ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                  Visibility="{Binding Path=ModsFeed.ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                   HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -226,7 +232,7 @@
                 <TextBlock Grid.Column="1" 
                            VerticalAlignment="Center"
                            TextWrapping="Wrap"
-                           Text="{Binding Path=CurrentModsFeed.ErrorMessage}"
+                           Text="{Binding Path=ModsFeed.ErrorMessage}"
                            d:Text="Error message"/>
 
             </Grid>

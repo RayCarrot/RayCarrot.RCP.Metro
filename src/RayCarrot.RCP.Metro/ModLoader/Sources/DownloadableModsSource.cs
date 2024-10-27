@@ -46,6 +46,7 @@ public abstract class DownloadableModsSource
         IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
         HttpClient httpClient,
         GameInstallation gameInstallation,
+        DownloadableModsFeedFilter? filter,
         int page);
 
     public abstract ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo);

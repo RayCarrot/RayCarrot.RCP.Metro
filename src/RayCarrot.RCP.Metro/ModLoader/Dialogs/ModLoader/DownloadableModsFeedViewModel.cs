@@ -48,7 +48,9 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
     public GameInstallation GameInstallation { get; }
 
     public ObservableCollection<DownloadableModViewModel> Mods { get; } = new();
-    
+
+    public DownloadableModsFeedFilter? Filter { get; set; }
+
     public bool IsEmpty { get; set; }
     public string? ErrorMessage { get; set; }
     public bool CanLoadChunk { get; set; }
@@ -63,7 +65,13 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
         foreach (DownloadableModsSource modsSource in _downloadableModsSources)
         {
-            DownloadableModsFeedPage feedPage = await modsSource.LoadDownloadableModsAsync(_modLoaderViewModel, Mods, _httpClient, GameInstallation, _currentPage);
+            DownloadableModsFeedPage feedPage = await modsSource.LoadDownloadableModsAsync(
+                modLoaderViewModel: _modLoaderViewModel, 
+                loadedDownloadableMods: Mods, 
+                httpClient: _httpClient, 
+                gameInstallation: GameInstallation, 
+                filter: Filter, 
+                page: _currentPage);
             Mods.AddRange(feedPage.DownloadableMods);
             _pageCount = feedPage.PageCount;
         }
@@ -75,9 +83,10 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     #region Public Methods
 
-    public void Initialize()
+    public void Initialize(DownloadableModsFeedFilter? filter)
     {
-        IsEmpty = false;
+        Filter = filter;
+        IsEmpty = true;
         ErrorMessage = null;
         Mods.DisposeAll();
         Mods.Clear();
@@ -88,6 +97,8 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     public async Task LoadNextChunkAsync()
     {
+        IsEmpty = false;
+
         try
         {
             do

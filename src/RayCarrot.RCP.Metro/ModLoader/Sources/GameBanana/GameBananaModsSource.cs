@@ -109,12 +109,13 @@ public class GameBananaModsSource : DownloadableModsSource
         IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
         HttpClient httpClient,
         GameInstallation gameInstallation,
+        DownloadableModsFeedFilter? filter,
         int page)
     {
         List<GameBananaDownloadableModViewModel> modViewModels = new();
 
-        // Only load featured mods on first page
-        if (page == 0)
+        // Only load featured mods on first page when there is no filter
+        if (filter == null && page == 0)
         {
             Logger.Info("Loading featured GameBanana mods");
 
@@ -146,12 +147,27 @@ public class GameBananaModsSource : DownloadableModsSource
 
             Logger.Info("Loading mods using GameBanana game id {0}", gameId);
 
+            string url;
+            if (filter == null)
+            {
+                url = $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
+                      $"_nPage={page + 1}&" +
+                      $"_sSort=new&" +
+                      $"_csvModelInclusions=Mod";
+            }
+            else
+            {
+                url = $"https://gamebanana.com/apiv11/Util/Search/Results?" +
+                      $"_sModelName=Mod&" +
+                      $"_sOrder=best_match&" +
+                      $"_idGameRow={gameId}&" +
+                      $"_sSearchString={filter.SearchText}&" +
+                      $"_csvFields=name,description,article,attribs,studio,owner,credits&" +
+                      $"_nPage={page + 1}";
+            }
+
             // Read the subfeed page
-            GameBananaSubfeed subfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
-                $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
-                $"_nPage={page + 1}&" +
-                $"_sSort=new&" +
-                $"_csvModelInclusions=Mod");
+            GameBananaSubfeed subfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(url);
 
             // Get the page count
             int pageCount = (int)Math.Ceiling(subfeed.Metadata.RecordCount / (double)subfeed.Metadata.PerPage);
