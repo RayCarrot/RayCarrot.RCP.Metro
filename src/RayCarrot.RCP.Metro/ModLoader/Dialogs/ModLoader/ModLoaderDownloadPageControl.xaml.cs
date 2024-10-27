@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -48,5 +49,10 @@ public partial class ModLoaderDownloadPageControl : UserControl
         {
             await ViewModel.LoadNextChunkAsync();
         }
+    }
+
+    private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        ModsScrollViewer.ScrollToTop();
     }
 }

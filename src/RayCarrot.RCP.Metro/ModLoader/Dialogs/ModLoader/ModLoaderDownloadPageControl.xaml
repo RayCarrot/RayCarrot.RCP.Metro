@@ -148,6 +148,7 @@
 
                     <!-- Refresh button -->
                     <Button x:Name="RefreshButton" 
+                            Click="RefreshButton_OnClick"
                             Grid.Column="6"
                             IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
