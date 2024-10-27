@@ -30,16 +30,8 @@
                  Fill="{StaticResource RCP.Brushes.Info}" 
                  Margin="0 0 4 0" />
 
-        <!-- Featured icon -->
-        <iconPacks:PackIconMaterial Grid.Column="1" 
-                                    Kind="StarOutline" 
-                                    VerticalAlignment="Center"
-                                    Foreground="{StaticResource RCP.Brushes.Favorites}"
-                                    Visibility="{Binding Path=IsFeatured, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
-                                    Margin="0 0 4 0" />
-
         <!-- Category icon -->
-        <Image Grid.Column="2" 
+        <Image Grid.Column="1" 
                Visibility="{Binding Path=RootCategoryIconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
                Source="{Binding Path=RootCategoryIconUrl, Mode=OneTime}"
                ToolTip="{Binding Path=RootCategoryName, Mode=OneTime}"
@@ -47,6 +39,14 @@
                Height="32"
                VerticalAlignment="Center"
                Margin="0 0 4 0" />
+
+        <!-- Featured icon -->
+        <iconPacks:PackIconMaterial Grid.Column="2" 
+                                    Kind="StarOutline" 
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource RCP.Brushes.Favorites}"
+                                    Visibility="{Binding Path=IsFeatured, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                    Margin="0 0 4 0" />
 
         <!-- Title -->
         <TextBlock Grid.Column="3" 
