@@ -41,6 +41,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- NOTE: For now we hard-code the GameBanana header since that's the only source right now. When/if we add
@@ -61,9 +62,10 @@
                     <!-- TODO-LOC -->
                     <!-- Search box -->
                     <TextBox Grid.Column="4"
+                             IsReadOnly="{Binding Path=IsLoading}"
                              VerticalAlignment="Center"
                              mah:TextBoxHelper.Watermark="Search mods"
-                             mah:TextBoxHelper.ClearTextButton="{Binding Path=CurrentSearchedText, Converter={rcp:IsNotNullConverter}}"
+                             mah:TextBoxHelper.ClearTextButton="{Binding Path=CurrentFeedType, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static modLoader:DownloadableModsViewModel+FeedType.Search}}"
                              mah:TextBoxHelper.ButtonCommand="{Binding Path=RefreshCommand, Mode=OneTime}"
                              Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"
                              BorderThickness="0" 
@@ -73,10 +75,51 @@
                         </TextBox.InputBindings>
                     </TextBox>
 
+                    <rcp:PopupCard Grid.Column="5"
+                                   Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
+                                   Height="{Binding ElementName=RefreshButton, Path=ActualHeight}"
+                                   IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                                   Margin="0 0 4 0">
+                        <ListBox ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+                                 IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                                 Background="Transparent"
+                                 ItemsSource="{Binding Path=Categories, Mode=OneTime}"
+                                 SelectedItem="{Binding Path=SelectedCategory}"
+                                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.RadioButton}"
+                                 Margin="6">
+                            <ListBox.Resources>
+                                <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                    <Setter Property="Command" Value="{Binding Path=DataContext.SelectCategoryCommand, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
+                                </Style>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0"
+                                               Source="{Binding Path=IconUrl, Mode=OneTime}"
+                                               Visibility="{Binding Path=IconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                               Width="32" Height="32"
+                                               Margin="0 0 4 0" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   Text="{Binding Path=Name, Mode=OneTime}" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </rcp:PopupCard>
+
                     <!-- Refresh button -->
                     <Button x:Name="RefreshButton" 
                             Click="RefreshButton_OnClick"
-                            Grid.Column="5"
+                            Grid.Column="6"
                             IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             rcp:Icon.Kind="Refresh"
@@ -85,7 +128,7 @@
                             Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
 
                     <!-- Loading indicator -->
-                    <mah:ProgressRing Grid.Column="5"
+                    <mah:ProgressRing Grid.Column="6"
                                       Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}"
                                       d:Visibility="Collapsed"
                                       Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"

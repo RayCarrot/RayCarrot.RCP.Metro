@@ -19,7 +19,7 @@ public record GameBananaSubfeedMetadata(
 public record GameBananaRecord(
     [property: JsonProperty("_idRow", Required = Required.Always)] int Id,
     [property: JsonProperty("_sName", Required = Required.Always)] string Name,
-    [property: JsonProperty("_aRootCategory")] GameBananaCategory? RootCategory,
+    [property: JsonProperty("_aRootCategory")] GameBananaRootCategory? RootCategory,
     [property: JsonProperty("_sProfileUrl")] string? Url,
     [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateAdded,
     [property: JsonProperty("_tsDateModified"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateModified,
@@ -32,10 +32,18 @@ public record GameBananaRecord(
     [property: JsonProperty("_nLikeCount")] int LikeCount,
     [property: JsonProperty("_nViewCount")] int ViewCount);
 
-public record GameBananaCategory(
+public record GameBananaRootCategory(
     [property: JsonProperty("_sIconUrl")] string? IconUrl,
     [property: JsonProperty("_sName", Required = Required.Always)] string Name,
     [property: JsonProperty("_sProfileUrl")] string? ProfileUrl);
+
+public record GameBananaCategory(
+    [property: JsonProperty("_idRow", Required = Required.Always)] int Id,
+    [property: JsonProperty("_sName", Required = Required.Always)] string Name,
+    [property: JsonProperty("_nItemCount")] int ItemCount,
+    [property: JsonProperty("_nCategoryCount")] int CategoryCount,
+    [property: JsonProperty("_sUrl")] string? Url,
+    [property: JsonProperty("_sIconUrl")] string? IconUrl);
 
 public record GameBananaMedia(
     [property: JsonProperty("_aImages")] GameBananaImage[]? Images);
@@ -67,7 +75,7 @@ public record GameBananaMod(
     [property: JsonProperty("_bIsPrivate")] bool IsPrivate,
     [property: JsonProperty("_tsDateModified"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateModified,
     [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateAdded,
-    [property: JsonProperty("_aRootCategory")] GameBananaCategory? RootCategory,
+    [property: JsonProperty("_aRootCategory")] GameBananaRootCategory? RootCategory,
     [property: JsonProperty("_aPreviewMedia")] GameBananaMedia? PreviewMedia,
     [property: JsonProperty("_bIsTrashed")] bool IsTrashed,
     [property: JsonProperty("_bIsWithheld")] bool IsWithheld,

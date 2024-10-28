@@ -20,7 +20,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         string description, 
         string text,
         string version,
-        GameBananaCategory? rootCategory, 
+        GameBananaRootCategory? rootCategory, 
         GameBananaMedia? previewMedia, 
         int likesCount, 
         int downloadsCount, 

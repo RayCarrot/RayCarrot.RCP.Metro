@@ -15,13 +15,22 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         IReadOnlyList<DownloadableModsSource> downloadableModsSources)
     {
         GameInstallation = gameInstallation;
+        _httpClient = httpClient;
+
         DownloadableModsSources = new ObservableCollection<DownloadableModsSourceViewModel>(
             downloadableModsSources.Select(x => new DownloadableModsSourceViewModel(x)));
 
         ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources);
 
-        RefreshCommand = new AsyncRelayCommand(InitializeAsync);
-        SearchCommand = new AsyncRelayCommand(SearchAsync);
+        Categories = new ObservableCollection<DownloadableModsCategoryViewModel>();
+
+        // Add main category for all mods. No need to localize since the rest of the category names aren't localized.
+        Categories.Insert(0, new DownloadableModsCategoryViewModel("All", null, null));
+        SelectedCategory = Categories[0];
+
+        RefreshCommand = new AsyncRelayCommand(LoadDefaultFeedAsync);
+        SearchCommand = new AsyncRelayCommand(LoadSearchFeedAsync);
+        SelectCategoryCommand = new AsyncRelayCommand(LoadCategoryFeedAsync);
     }
 
     #endregion
@@ -34,6 +43,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private readonly HttpClient _httpClient;
     private DownloadableModViewModel? _selectedMod;
 
     #endregion
@@ -42,6 +52,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public ICommand RefreshCommand { get; }
     public ICommand SearchCommand { get; }
+    public ICommand SelectCategoryCommand { get; }
 
     #endregion
 
@@ -50,6 +61,10 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public GameInstallation GameInstallation { get; }
     public ObservableCollection<DownloadableModsSourceViewModel> DownloadableModsSources { get; }
     public DownloadableModsFeedViewModel ModsFeed { get; }
+    public FeedType CurrentFeedType { get; set; }
+
+    public ObservableCollection<DownloadableModsCategoryViewModel> Categories { get; }
+    public DownloadableModsCategoryViewModel SelectedCategory { get; set; }
 
     public DownloadableModViewModel? SelectedMod
     {
@@ -64,7 +79,6 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public bool IsLoading { get; set; }
 
     public string SearchText { get; set; } = String.Empty;
-    public string? CurrentSearchedText { get; set; }
 
     #endregion
 
@@ -72,45 +86,89 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public async Task InitializeAsync()
     {
-        if (IsLoading)
-            return;
+        Logger.Info("Initializing downloadable mods from {0} sources", DownloadableModsSources.Count);
 
-        Logger.Info("Loading downloadable mods from {0} sources", DownloadableModsSources.Count);
-
-        SearchText = String.Empty;
-        CurrentSearchedText = null;
-
-        ModsFeed.Initialize(null);
-
-        await LoadNextChunkAsync();
+        await Task.WhenAll(
+            LoadDefaultFeedAsync(), 
+            LoadCategoriesAsync());
     }
 
-    public async Task SearchAsync()
+    public async Task LoadCategoriesAsync()
+    {
+        try
+        {
+            foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
+            {
+                foreach (DownloadableModsCategoryViewModel cat in await source.Source.LoadDownloadableModsCategoriesAsync(_httpClient, GameInstallation))
+                {
+                    Categories.Add(cat);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading categories");
+        }
+    }
+
+    public async Task LoadDefaultFeedAsync()
     {
         if (IsLoading)
             return;
 
-        // Search text has to be either empty or at least 2 characters
-        if (SearchText.Length is not (0 or >= 2))
+        Logger.Info("Loading full feed of downloadable mods");
+
+        SearchText = String.Empty;
+        SelectedCategory = Categories[0];
+        CurrentFeedType = FeedType.Default;
+
+        ModsFeed.Initialize(null);
+        await LoadNextChunkAsync();
+    }
+
+    public async Task LoadSearchFeedAsync()
+    {
+        if (IsLoading)
+            return;
+
+        if (SearchText.Length == 0)
+        {
+            await LoadDefaultFeedAsync();
+            return;
+        }
+
+        // Search text has to be at least 2 characters
+        if (SearchText.Length < 2)
         {
             // TODO-LOC
             await Services.MessageUI.DisplayMessageAsync("The search text has to have at least 2 characters", MessageType.Error);
             return;
         }
 
-        Logger.Info("Searching for downloadable mods with the text {0}", SearchText);
+        Logger.Info("Loading downloadable mods from the search text {0}", SearchText);
 
-        if (SearchText == String.Empty)
+        SelectedCategory = Categories[0];
+        CurrentFeedType = FeedType.Search;
+
+        ModsFeed.Initialize(new DownloadableModsFeedSearchTextFilter(SearchText));
+        await LoadNextChunkAsync();
+    }
+
+    public async Task LoadCategoryFeedAsync()
+    {
+        if (IsLoading)
+            return;
+
+        if (SelectedCategory == Categories[0])
         {
-            CurrentSearchedText = null;
-            ModsFeed.Initialize(null);
-        }
-        else
-        {
-            CurrentSearchedText = SearchText;
-            ModsFeed.Initialize(new DownloadableModsFeedFilter(SearchText));
+            await LoadDefaultFeedAsync();
+            return;
         }
 
+        SearchText = String.Empty;
+        CurrentFeedType = FeedType.Category;
+
+        ModsFeed.Initialize(SelectedCategory.Filter);
         await LoadNextChunkAsync();
     }
 
@@ -121,7 +179,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         IsLoading = true;
 
-        Logger.Info("Loading chunk of downloadable mods");
+        Logger.Info("Loading chunk of downloadable mods for feed type {0}", CurrentFeedType);
 
         try
         {
@@ -136,6 +194,17 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public void Dispose()
     {
         ModsFeed.Dispose();
+    }
+
+    #endregion
+
+    #region Data Types
+
+    public enum FeedType
+    {
+        Default,
+        Search,
+        Category,
     }
 
     #endregion

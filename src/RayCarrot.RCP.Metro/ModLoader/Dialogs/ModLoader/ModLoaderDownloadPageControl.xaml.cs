@@ -21,7 +21,7 @@ public partial class ModLoaderDownloadPageControl : UserControl
     {
         HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
 
-        if (r.VisualHit.GetType() != typeof(ListBoxItem))
+        if (r?.VisualHit.GetType() != typeof(ListBoxItem))
         {
             ViewModel.SelectedMod = null;
         }

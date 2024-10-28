@@ -148,22 +148,29 @@ public class GameBananaModsSource : DownloadableModsSource
             Logger.Info("Loading mods using GameBanana game id {0}", gameId);
 
             string url;
-            if (filter == null)
-            {
-                url = $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
-                      $"_nPage={page + 1}&" +
-                      $"_sSort=new&" +
-                      $"_csvModelInclusions=Mod";
-            }
-            else
+            if (filter is DownloadableModsFeedSearchTextFilter searchTextFilter)
             {
                 url = $"https://gamebanana.com/apiv11/Util/Search/Results?" +
                       $"_sModelName=Mod&" +
                       $"_sOrder=best_match&" +
                       $"_idGameRow={gameId}&" +
-                      $"_sSearchString={filter.SearchText}&" +
+                      $"_sSearchString={searchTextFilter.SearchText}&" +
                       $"_csvFields=name,description,article,attribs,studio,owner,credits&" +
                       $"_nPage={page + 1}";
+            }
+            else if (filter is DownloadableModsFeedCategoryFilter categoryFilter)
+            {
+                url = $"https://gamebanana.com/apiv11/Mod/Index?" +
+                      $"_nPerpage=15&" +
+                      $"_aFilters[Generic_Category]={categoryFilter.Id}&" +
+                      $"_nPage={page + 1}";
+            }
+            else
+            {
+                url = $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
+                      $"_nPage={page + 1}&" +
+                      $"_sSort=new&" +
+                      $"_csvModelInclusions=Mod";
             }
 
             // Read the subfeed page
@@ -230,6 +237,37 @@ public class GameBananaModsSource : DownloadableModsSource
         Logger.Info("Finished loading mods");
 
         return new DownloadableModsFeedPage(modViewModels, largestPageCount);
+    }
+
+    public override async Task<IEnumerable<DownloadableModsCategoryViewModel>> LoadDownloadableModsCategoriesAsync(
+        HttpClient httpClient, 
+        GameInstallation gameInstallation)
+    {
+        List<DownloadableModsCategoryViewModel> categories = new();
+
+        Logger.Info("Loading downloadable GameBanana mod categories");
+
+        // Enumerate every supported GameBanana game
+        foreach (GameBananaGameComponent gameBananaGameComponent in gameInstallation.GetComponents<GameBananaGameComponent>())
+        {
+            int gameId = gameBananaGameComponent.GameId;
+
+            Logger.Info("Loading categories using GameBanana game id {0}", gameId);
+
+            string url = $"https://gamebanana.com/apiv11/Mod/Categories?" +
+                         $"_idGameRow={gameId}&" +
+                         $"_sSort=count&" + // Can be "count" or "a_to_z"
+                         $"_bShowEmpty=false";
+            GameBananaCategory[] gameCategories = await httpClient.GetDeserializedAsync<GameBananaCategory[]>(url);
+
+            foreach (GameBananaCategory cat in gameCategories)
+            {
+                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, cat.IconUrl, 
+                    new DownloadableModsFeedCategoryFilter(cat.Id)));
+            }
+        }
+
+        return categories;
     }
 
     public override ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo)
