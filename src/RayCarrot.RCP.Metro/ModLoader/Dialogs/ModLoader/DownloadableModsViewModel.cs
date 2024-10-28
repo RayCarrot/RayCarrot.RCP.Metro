@@ -62,6 +62,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public ObservableCollection<DownloadableModsSourceViewModel> DownloadableModsSources { get; }
     public DownloadableModsFeedViewModel ModsFeed { get; }
     public FeedType CurrentFeedType { get; set; }
+    public LocalizedString? FeedInfoText { get; set; }
 
     public ObservableCollection<DownloadableModsCategoryViewModel> Categories { get; }
     public DownloadableModsCategoryViewModel SelectedCategory { get; set; }
@@ -121,6 +122,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         SearchText = String.Empty;
         SelectedCategory = Categories[0];
         CurrentFeedType = FeedType.Default;
+        FeedInfoText = null;
 
         ModsFeed.Initialize(null);
         await LoadNextChunkAsync();
@@ -149,6 +151,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         SelectedCategory = Categories[0];
         CurrentFeedType = FeedType.Search;
+        FeedInfoText = $"Showing search results for \"{SearchText}\""; // TODO-LOC
 
         ModsFeed.Initialize(new DownloadableModsFeedSearchTextFilter(SearchText));
         await LoadNextChunkAsync();
@@ -167,6 +170,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         SearchText = String.Empty;
         CurrentFeedType = FeedType.Category;
+        FeedInfoText = $"Showing mods in the category \"{SelectedCategory.Name}\""; // TODO-LOC
 
         ModsFeed.Initialize(SelectedCategory.Filter);
         await LoadNextChunkAsync();

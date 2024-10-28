@@ -27,6 +27,7 @@
                   MouseDown="ModsGrid_OnMouseDown">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -136,8 +137,17 @@
 
                 </Grid>
 
+                <!-- Info -->
+                <Grid Grid.Row="1"
+                      Margin="0 0 0 4"
+                      Visibility="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
+                    <TextBlock Text="{Binding Path=FeedInfoText.Value}"
+                               Visibility="{Binding Path=FeedInfoText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                               d:Text="Showing mods in the category &quot;Fixed/Improvements&quot;" FontStyle="Italic" />
+                </Grid>
+                
                 <!-- Mods -->
-                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="1" VerticalAlignment="Top" ScrollChanged="ModsScrollViewer_OnScrollChanged">
+                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="2" VerticalAlignment="Top" ScrollChanged="ModsScrollViewer_OnScrollChanged">
                     <StackPanel>
                         <ListBox Grid.IsSharedSizeScope="True"
                                  ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
