@@ -40,6 +40,7 @@ Other changes:
     • The Rayman Legends enable UbiRay utility has been replaced by a downloadable mod
     • The Rayman Fiesta Run fix save progress utility has been added as a setup game issue action if the save corruption is detected
 • Downloadable GameBanana mods now show an icon for the root category it's in
+• Downloadable GameBanana mods can now be searched for, making it easier for find specific mods
 • The downloadable GameBanana mods list now automatically loads the next mods when scrolled to the bottom
 • The file table for UbiArt IPK archives is now automatically recreated when needed, removing the options to do so manually or on repack
 • An error message now shows if attempting to import a texture to a DDS texture if the dimensions are not powers of 2

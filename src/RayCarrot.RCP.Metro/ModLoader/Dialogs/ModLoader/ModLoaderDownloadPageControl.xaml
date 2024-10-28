@@ -41,7 +41,6 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- NOTE: For now we hard-code the GameBanana header since that's the only source right now. When/if we add
@@ -61,100 +60,23 @@
 
                     <!-- TODO-LOC -->
                     <!-- Search box -->
-                    <TextBox x:Name="SearchTextBox" 
-                             Grid.Column="4"
+                    <TextBox Grid.Column="4"
                              VerticalAlignment="Center"
                              mah:TextBoxHelper.Watermark="Search mods"
+                             mah:TextBoxHelper.ClearTextButton="{Binding Path=CurrentSearchedText, Converter={rcp:IsNotNullConverter}}"
+                             mah:TextBoxHelper.ButtonCommand="{Binding Path=RefreshCommand, Mode=OneTime}"
                              Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"
                              BorderThickness="0" 
-                             Margin="8 0 8 0"
-                             Visibility="Collapsed"
-                             d:Visibility="Visible"
-                             Opacity="0"
-                             d:Opacity="1"
-                             RenderTransformOrigin="1, 0">
+                             Margin="8 0 4 0">
                         <TextBox.InputBindings>
                             <KeyBinding Command="{Binding SearchCommand, Mode=OneTime}" Key="Enter" />
                         </TextBox.InputBindings>
-                        <TextBox.RenderTransform>
-                            <ScaleTransform x:Name="SearchTextBoxScaleTransform" />
-                        </TextBox.RenderTransform>
                     </TextBox>
-
-                    <!-- TODO-LOC -->
-                    <!-- Search toggle -->
-                    <ToggleButton Grid.Column="5"
-                                  Unchecked="SearchToggleButton_OnUnchecked"
-                                  Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                                  ToolTip="Search mods"
-                                  Margin="0 0 4 0">
-                        <ToggleButton.Triggers>
-                            <EventTrigger RoutedEvent="ToggleButton.Checked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchTextBox" 
-                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" 
-                                                         Storyboard.TargetName="SearchTextBox" 
-                                                         From="0" To="1"
-                                                         Duration="0:0:0.22"/>
-                                        <DoubleAnimation Storyboard.TargetName="SearchTextBoxScaleTransform" 
-                                                         Storyboard.TargetProperty="(ScaleTransform.ScaleX)" 
-                                                         From="0" To="1"
-                                                         Duration="0:0:0.22">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CubicEase EasingMode="EaseInOut"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SearchTextBox"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         From="1"
-                                                         To="0"
-                                                         Duration="0:0:0.22" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.22" Value="{x:Static Visibility.Collapsed}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="SearchTextBoxScaleTransform" 
-                                                         Storyboard.TargetProperty="(ScaleTransform.ScaleX)" 
-                                                         From="1" To="0"
-                                                         Duration="0:0:0.22">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CubicEase EasingMode="EaseInOut"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </ToggleButton.Triggers>
-
-                        <ToggleButton.Style>
-                            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.ToggleButton.Flat}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsChecked" Value="False">
-                                        <Setter Property="rcp:Icon.Kind" Value="Magnify" />
-                                    </Trigger>
-                                    <Trigger Property="IsChecked" Value="True">
-                                        <Setter Property="rcp:Icon.Kind" Value="MagnifyClose" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ToggleButton.Style>
-
-                    </ToggleButton>
 
                     <!-- Refresh button -->
                     <Button x:Name="RefreshButton" 
                             Click="RefreshButton_OnClick"
-                            Grid.Column="6"
+                            Grid.Column="5"
                             IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             rcp:Icon.Kind="Refresh"
@@ -163,7 +85,7 @@
                             Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
 
                     <!-- Loading indicator -->
-                    <mah:ProgressRing Grid.Column="6"
+                    <mah:ProgressRing Grid.Column="5"
                                       Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}"
                                       d:Visibility="Collapsed"
                                       Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"

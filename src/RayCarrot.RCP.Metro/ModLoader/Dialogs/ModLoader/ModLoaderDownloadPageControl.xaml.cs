@@ -55,11 +55,4 @@ public partial class ModLoaderDownloadPageControl : UserControl
     {
         ModsScrollViewer.ScrollToTop();
     }
-
-    private async void SearchToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
-    {
-        // Reload the mods if there was a search
-        if (ViewModel.CurrentSearchedText != null)
-            await ViewModel.InitializeAsync();
-    }
 }
