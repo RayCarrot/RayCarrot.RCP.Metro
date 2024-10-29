@@ -80,7 +80,9 @@ public class RCPBrowseUIManager : IBrowseUIManager
                 CheckFileExists = true,
                 FileName = fileBrowserModel.DefaultName,
                 Filter = fileBrowserModel.ExtensionFilter,
-                InitialDirectory = fileBrowserModel.DefaultDirectory,
+                InitialDirectory = fileBrowserModel.DefaultDirectory.FullPath.
+                    // Have to use backslash here or else it throws an exception
+                    Replace('/', '\\'),
                 Multiselect = fileBrowserModel.MultiSelection,
                 Title = fileBrowserModel.Title ?? "Select a file"
             };
@@ -119,7 +121,9 @@ public class RCPBrowseUIManager : IBrowseUIManager
             {
                 FileName = saveFileModel.DefaultName,
                 Filter = saveFileModel.Extensions,
-                InitialDirectory = saveFileModel.DefaultDirectory,
+                InitialDirectory = saveFileModel.DefaultDirectory.FullPath.
+                    // Have to use backslash here or else it throws an exception
+                    Replace('/', '\\'),
                 Title = saveFileModel.Title ?? "Save file"
             };
 
