@@ -15,6 +15,8 @@ public partial class ModLoaderDownloadPageControl : UserControl
         InitializeComponent();
     }
 
+    private ScrollViewer? ModsScrollViewer { get; set; }
+
     public DownloadableModsViewModel ViewModel => (DownloadableModsViewModel)DataContext;
 
     private void ModsGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -27,23 +29,17 @@ public partial class ModLoaderDownloadPageControl : UserControl
         }
     }
 
-    private void ModsListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    private void ModsListBox_OnLoaded(object sender, RoutedEventArgs e)
     {
-        // Redirect the mouse wheel movement to allow scrolling
-        MouseWheelEventArgs eventArg = new(e.MouseDevice, e.Timestamp, e.Delta)
-        {
-            RoutedEvent = MouseWheelEvent,
-            Source = e.Source
-        };
-
-        ModsScrollViewer?.RaiseEvent(eventArg);
-        e.Handled = true;
+        if (sender is Visual obj)
+            ModsScrollViewer = obj.GetDescendantByType<ScrollViewer>();
     }
 
     private async void ModsScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
     {
         // Load the next chunk of pages when scrolled to the bottom
-        if (ViewModel.ModsFeed.CanLoadChunk &&
+        if (ModsScrollViewer != null &&
+            ViewModel.ModsFeed.CanLoadChunk &&
             ModsScrollViewer.ScrollableHeight > 0 &&
             ModsScrollViewer.VerticalOffset >= ModsScrollViewer.ScrollableHeight)
         {
@@ -53,6 +49,6 @@ public partial class ModLoaderDownloadPageControl : UserControl
 
     private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
     {
-        ModsScrollViewer.ScrollToTop();
+        ModsScrollViewer?.ScrollToTop();
     }
 }

@@ -147,33 +147,32 @@
                 </Grid>
                 
                 <!-- Mods -->
-                <ScrollViewer x:Name="ModsScrollViewer" Grid.Row="2" VerticalAlignment="Top" ScrollChanged="ModsScrollViewer_OnScrollChanged">
-                    <StackPanel>
-                        <ListBox Grid.IsSharedSizeScope="True"
-                                 ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
-                                 d:ItemsSource="{d:SampleData ItemCount=5}"
-                                 SelectedItem="{Binding Path=SelectedMod}"
-                                 d:SelectedIndex="1"
-                                 VerticalAlignment="Top"
-                                 Background="Transparent"
-                                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
-                                 PreviewMouseWheel="ModsListBox_OnPreviewMouseWheel"
-                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding Mode=OneTime}">
-                                        <ContentPresenter.Resources>
-                                            <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
-                                                <gameBanana:GameBananaDownloadableModItemControl />
-                                            </DataTemplate>
-                                        </ContentPresenter.Resources>
-                                    </ContentPresenter>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
-                </ScrollViewer>
+                <ListBox Grid.Row="2"
+                         Grid.IsSharedSizeScope="True"
+                         Loaded="ModsListBox_OnLoaded"
+                         ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
+                         d:ItemsSource="{d:SampleData ItemCount=5}"
+                         SelectedItem="{Binding Path=SelectedMod}"
+                         d:SelectedIndex="1"
+                         VerticalAlignment="Top"
+                         Background="Transparent"
+                         ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
+                         VirtualizingPanel.ScrollUnit="Pixel"
+                         VirtualizingPanel.VirtualizationMode="Recycling"
+                         ScrollViewer.ScrollChanged="ModsScrollViewer_OnScrollChanged"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding Mode=OneTime}">
+                                <ContentPresenter.Resources>
+                                    <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                                        <gameBanana:GameBananaDownloadableModItemControl />
+                                    </DataTemplate>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
 
             <!-- Empty text -->
