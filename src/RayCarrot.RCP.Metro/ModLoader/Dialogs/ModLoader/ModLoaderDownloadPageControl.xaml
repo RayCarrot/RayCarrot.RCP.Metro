@@ -146,6 +146,7 @@
                                d:Text="Showing mods in the category &quot;Fixed/Improvements&quot;" FontStyle="Italic" />
                 </Grid>
                 
+                <!-- NOTE: Disabled virtualizing for now due to the SharedSizeScope causing the UI to jump around with it -->
                 <!-- Mods -->
                 <ListBox Grid.Row="2"
                          Grid.IsSharedSizeScope="True"
@@ -157,6 +158,7 @@
                          VerticalAlignment="Top"
                          Background="Transparent"
                          ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
+                         VirtualizingPanel.IsVirtualizing="False"
                          VirtualizingPanel.ScrollUnit="Pixel"
                          VirtualizingPanel.VirtualizationMode="Recycling"
                          ScrollViewer.ScrollChanged="ModsScrollViewer_OnScrollChanged"
