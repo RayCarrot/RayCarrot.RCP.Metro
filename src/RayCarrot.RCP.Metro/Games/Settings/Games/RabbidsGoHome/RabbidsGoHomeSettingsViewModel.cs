@@ -132,9 +132,6 @@ public class RabbidsGoHomeSettingsViewModel : GameSettingsViewModel
 
         GameInstallation.SetObject(GameDataKey.RGH_LaunchData, launchData);
 
-        // Refresh
-        Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
-
         return Task.CompletedTask;
     }
 

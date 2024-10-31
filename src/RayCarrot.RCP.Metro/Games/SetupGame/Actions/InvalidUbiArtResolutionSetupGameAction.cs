@@ -74,6 +74,5 @@ public class InvalidUbiArtResolutionSetupGameAction : SetupGameAction
     public override async Task FixAsync(GameInstallation gameInstallation)
     {
         await Services.UI.ShowGameSettingsAsync(gameInstallation);
-        Services.Messenger.Send(new FixedSetupGameActionMessage(gameInstallation));
     }
 }

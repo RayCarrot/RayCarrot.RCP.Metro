@@ -388,7 +388,6 @@ public class DosBoxGameSettingsViewModel : GameClientGameSettingsViewModel
     {
         // Set the mount path
         GameInstallation.SetValue(GameDataKey.Client_DosBox_MountPath, MountPath);
-        Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
 
         // Get the config manager
         var configManager = new AutoConfigManager(ConfigFilePath);

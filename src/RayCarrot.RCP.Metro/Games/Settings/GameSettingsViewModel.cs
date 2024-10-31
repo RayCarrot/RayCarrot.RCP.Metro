@@ -136,6 +136,9 @@ public abstract class GameSettingsViewModel : BaseViewModel
         UnsavedChanges = false;
 
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+
+        // Refresh game
+        Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
     }
 
     #endregion

@@ -57,6 +57,5 @@ public class Ray1InvalidGameConfigSetupGameAction : SetupGameAction
     public override async Task FixAsync(GameInstallation gameInstallation)
     {
         await Services.UI.ShowGameSettingsAsync(gameInstallation);
-        Services.Messenger.Send(new FixedSetupGameActionMessage(gameInstallation));
     }
 }
