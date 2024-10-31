@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+
+    <local:ClipGeometryConverter x:Key="ClipGeometryConverter" />
 
     <Style TargetType="{x:Type local:GameIcon}">
         <Setter Property="Focusable" Value="False" />
@@ -9,10 +10,23 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:GameIcon}">
-                    <mah:ClipBorder CornerRadius="{TemplateBinding CornerRadius}"
-                                    Width="{TemplateBinding IconWidth}"
-                                    Height="{TemplateBinding IconHeight}">
-                        <Grid>
+                    <Border x:Name="RootBorder"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid x:Name="RootGrid"
+                              Width="{TemplateBinding IconWidth}"
+                              Height="{TemplateBinding IconHeight}">
+                            <Grid.Clip>
+                                <MultiBinding Converter="{StaticResource ClipGeometryConverter}">
+                                    <Binding ElementName="RootGrid" Path="ActualWidth" Mode="OneWay" />
+                                    <Binding ElementName="RootGrid" Path="ActualHeight" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="CornerRadius" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="BorderThickness" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="Padding" Mode="OneWay" />
+                                </MultiBinding>
+                            </Grid.Clip>
+
                             <!-- Game icon -->
                             <Image Source="{TemplateBinding Source}"
                                    Width="{TemplateBinding IconWidth}"
@@ -24,7 +38,9 @@
                                    Width="{TemplateBinding IconWidth}"
                                    Height="{TemplateBinding IconHeight}" />
                         </Grid>
-                    </mah:ClipBorder>
+
+                    </Border>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -4,6 +4,8 @@
                     xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
+    <local:ClipGeometryConverter x:Key="ClipGeometryConverter" />
+
     <!-- Icon Content -->
 
     <DataTemplate x:Key="RCP.Templates.Button.IconContent">
@@ -39,14 +41,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    <mah:ClipBorder x:Name="RootBorder"
-                                    Margin="0"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                    <Border x:Name="RootBorder"
+                            Margin="0"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                         <Border x:Name="OpacityBorder" Background="Transparent">
+                            <Border.Clip>
+                                <MultiBinding Converter="{StaticResource ClipGeometryConverter}">
+                                    <Binding ElementName="OpacityBorder" Path="ActualWidth" Mode="OneWay" />
+                                    <Binding ElementName="OpacityBorder" Path="ActualHeight" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="CornerRadius" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="BorderThickness" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="Padding" Mode="OneWay" />
+                                </MultiBinding>
+                            </Border.Clip>
+
                             <Grid Margin="{TemplateBinding Padding}"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -86,7 +98,7 @@
                                                       RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" />
                             </Grid>
                         </Border>
-                    </mah:ClipBorder>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="local:ButtonAssist.IsSelected" Value="True">
                             <Setter TargetName="OpacityBorder" 
@@ -140,14 +152,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <mah:ClipBorder x:Name="RootBorder"
-                                    Margin="0"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                    <Border x:Name="RootBorder"
+                            Margin="0"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                         <Border x:Name="OpacityBorder" Background="Transparent">
+                            <Border.Clip>
+                                <MultiBinding Converter="{StaticResource ClipGeometryConverter}">
+                                    <Binding ElementName="OpacityBorder" Path="ActualWidth" Mode="OneWay" />
+                                    <Binding ElementName="OpacityBorder" Path="ActualHeight" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="CornerRadius" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="BorderThickness" Mode="OneWay" />
+                                    <Binding ElementName="RootBorder" Path="Padding" Mode="OneWay" />
+                                </MultiBinding>
+                            </Border.Clip>
+
                             <Grid Margin="{TemplateBinding Padding}"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -181,7 +203,7 @@
                                                   RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" />
                             </Grid>
                         </Border>
-                    </mah:ClipBorder>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="OpacityBorder" 
