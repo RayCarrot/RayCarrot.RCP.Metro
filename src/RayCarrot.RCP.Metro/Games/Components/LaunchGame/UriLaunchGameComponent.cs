@@ -11,6 +11,23 @@ public abstract class UriLaunchGameComponent : LaunchGameComponent
 
     #endregion
 
+    #region Private Methods
+
+    private IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
+    {
+        string launchUri = GetLaunchUri();
+
+        return new[]
+        {
+            new DuoGridItemViewModel(
+                header: "Launch URI:", // TODO-LOC
+                text: launchUri,
+                minUserLevel: UserLevel.Technical),
+        };
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected abstract string GetLaunchUri();
@@ -33,6 +50,14 @@ public abstract class UriLaunchGameComponent : LaunchGameComponent
     #endregion
 
     #region Public Methods
+
+    public override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        // Register component for showing launch info
+        builder.Register(new GameInfoComponent(GetGameInfoItems));
+    }
 
     public override void CreateShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
     {
