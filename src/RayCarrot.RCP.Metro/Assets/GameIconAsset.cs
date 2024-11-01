@@ -3,8 +3,11 @@
 [AssetDirectory($"{Assets.AssetsPath}/GameIcons")]
 public enum GameIconAsset
 {
-    [AssetFileName("Demo.png")]
+    [AssetFileName("OverlayDemo.png")]
     DemoOverlay,
+
+    [AssetFileName("OverlayProto.png")]
+    PrototypeOverlay,
 
     [AssetFileName("Rayman1.png")]
     Rayman1,
