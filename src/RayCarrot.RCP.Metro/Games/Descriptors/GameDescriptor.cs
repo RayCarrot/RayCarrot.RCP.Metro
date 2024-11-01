@@ -55,9 +55,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public abstract GameCategory Category { get; }
 
     /// <summary>
-    /// Indicates if the game is a demo
+    /// Defines the type of game release. Default is <see cref="GameType.Retail"/>.
     /// </summary>
-    public virtual bool IsDemo => false;
+    public virtual GameType Type => GameType.Retail;
 
     /// <summary>
     /// The default game display name. This might be the same across multiple descriptors.
@@ -275,10 +275,10 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         if (platformComparison != 0)
             return platformComparison;
 
-        // Demo
-        int demoComparison = IsDemo.CompareTo(other.IsDemo);
-        if (demoComparison != 0)
-            return demoComparison;
+        // Type
+        int typeComparison = Type.CompareTo(other.Type);
+        if (typeComparison != 0)
+            return typeComparison;
 
         // Release date
         int releaseDateComparison = ReleaseDate.CompareTo(other.ReleaseDate);

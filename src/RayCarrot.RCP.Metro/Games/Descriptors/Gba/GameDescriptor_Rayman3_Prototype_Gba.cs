@@ -13,10 +13,11 @@ public sealed class GameDescriptor_Rayman3_Prototype_Gba : GbaGameDescriptor
     public override string GameId => "Rayman3_Prototype_Gba";
     public override Game Game => Game.Rayman3_Gba;
     public override GameCategory Category => GameCategory.Handheld;
+    public override GameType Type => GameType.Prototype;
 
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman3_Prototype_Gba_Title));
     public override string[] SearchKeywords => new[] { "r3", "gba", "beta" };
-    public override DateTime ReleaseDate => new(2003, 02, 21); // Prototype is earlier, but we use same date as final game
+    public override DateTime ReleaseDate => new(2002, 10, 28); // Unknown date, but assumed to be 28th or 29th based on the contents compared to the other available prototypes
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3_Gba;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman3_Gba;

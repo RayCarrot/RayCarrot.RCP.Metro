@@ -6,6 +6,6 @@ public static class GameModeHelpers
 {
     public static GameInstallation? FindGameInstallation(GamesManager gamesManager, Enum gameMode) =>
         gamesManager.GetInstalledGames().
-            OrderBy(x => x.GameDescriptor.IsDemo ? 1 : 0).
+            OrderBy(x => x.GameDescriptor.Type).
             FirstOrDefault(x => x.GetComponents<BinaryGameModeComponent>().Any(c => c.GameMode.Equals(gameMode)));
 }

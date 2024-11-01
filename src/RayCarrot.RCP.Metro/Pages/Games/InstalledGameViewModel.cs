@@ -95,7 +95,7 @@ public class InstalledGameViewModel : BaseViewModel
     public GamePlatformIconAsset PlatformIcon { get; }
 
     public GameIconAsset Icon => GameDescriptor.Icon;
-    public bool IsDemo => GameDescriptor.IsDemo;
+    public GameType Type => GameDescriptor.Type;
     public GameBannerAsset GameBanner => GameDescriptor.Banner;
 
     public ObservableCollection<GamePanelViewModel> GamePanels { get; }

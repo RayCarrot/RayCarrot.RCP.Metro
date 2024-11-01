@@ -16,7 +16,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20030129_Win32 : Win32GameDescri
     public override string LegacyGameId => "Demo_Rayman3_4";
     public override Game Game => Game.Rayman3;
     public override GameCategory Category => GameCategory.Rayman;
-    public override bool IsDemo => true;
+    public override GameType Type => GameType.Demo;
 
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman3_Demo_20030129_Win32_Title));
     public override DateTime ReleaseDate => new(2003, 01, 29);

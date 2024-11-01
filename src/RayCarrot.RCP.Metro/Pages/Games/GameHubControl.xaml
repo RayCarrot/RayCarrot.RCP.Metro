@@ -71,7 +71,7 @@
                             <rcp:GameIcon x:Name="GameIcon"
                                             Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
                                             d:Source="{x:Static rcp:DesignData.GameIconSource}"
-                                            IsDemo="{Binding Path=IsDemo, Mode=OneTime}" 
+                                            GameType="{Binding Path=Type, Mode=OneTime}" 
                                             IconSize="Largest" />
                         </Border>
 

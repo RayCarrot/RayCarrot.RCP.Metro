@@ -60,16 +60,16 @@ public class GameIcon : Control
 
     #endregion
 
-    #region IsDemo
+    #region Type
 
-    public bool IsDemo
+    public GameType GameType
     {
-        get => (bool)GetValue(IsDemoProperty);
-        set => SetValue(IsDemoProperty, value);
+        get => (GameType)GetValue(GameTypeProperty);
+        set => SetValue(GameTypeProperty, value);
     }
 
-    public static readonly DependencyProperty IsDemoProperty = DependencyProperty.Register(
-        nameof(IsDemo), typeof(bool), typeof(GameIcon), new PropertyMetadata(false));
+    public static readonly DependencyProperty GameTypeProperty = DependencyProperty.Register(
+        nameof(GameType), typeof(GameType), typeof(GameIcon), new PropertyMetadata(GameType.Retail));
 
     #endregion
 

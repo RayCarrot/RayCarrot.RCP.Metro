@@ -29,7 +29,7 @@ public class GameDebugViewModel : BaseViewModel, IInitializable,
     }
 
     public GameDescriptor? GameDescriptor { get; private set; }
-    public bool IsDemo { get; private set; }
+    public GameType Type { get; private set; }
     public GameIconAsset Icon { get; private set; }
     public JToken? GameDescriptorJToken { get; private set; }
     public JToken? GameInstallationJToken { get; private set; }
@@ -40,7 +40,7 @@ public class GameDebugViewModel : BaseViewModel, IInitializable,
     private void Refresh()
     {
         GameDescriptor = SelectedGameInstallation?.GameDescriptor;
-        IsDemo = GameDescriptor?.IsDemo ?? false;
+        Type = GameDescriptor?.Type ?? GameType.Retail;
         Icon = GameDescriptor?.Icon ?? default;
 
         if (SelectedGameInstallation != null && GameDescriptor != null)
