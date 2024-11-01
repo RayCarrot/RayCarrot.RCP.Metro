@@ -64,6 +64,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public FeedType CurrentFeedType { get; set; }
     public LocalizedString? FeedInfoText { get; set; }
 
+    public bool HasCategories { get; set; }
     public ObservableCollection<DownloadableModsCategoryViewModel> Categories { get; }
     public DownloadableModsCategoryViewModel SelectedCategory { get; set; }
 
@@ -105,10 +106,13 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
                     Categories.Add(cat);
                 }
             }
+
+            HasCategories = Categories.Count > 1;
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Loading categories");
+            HasCategories = false;
         }
     }
 

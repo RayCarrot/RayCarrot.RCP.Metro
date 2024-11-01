@@ -79,6 +79,7 @@
                     <rcp:PopupCard Grid.Column="5"
                                    Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
                                    Height="{Binding ElementName=RefreshButton, Path=ActualHeight}"
+                                   Visibility="{Binding Path=HasCategories, Converter={rcp:BooleanToVisibilityConverter}}"
                                    IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                                    Margin="0 0 4 0">
                         <ListBox ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
