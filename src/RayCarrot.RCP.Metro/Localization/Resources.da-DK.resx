@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Netværk</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Er bredskærmsunderstøttelse ikke aktiveret, strækkes spillet hvis indstilt til et billedformat andet end 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Bredskærmsunderstøttelse</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Bredskærmsunderstøttelse sikrer, at spillet ikke strækkes, hvis det kører i et billedformat andet end 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Vandret bredskærm</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Udvid bredskærmen vandret</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Lodret bredskærm</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Formindsk bredskærmen lodret</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Dette indstiller standardsproget, som er valgt når spillet startes. Sproget kan stadig ændres i spilmenuen.</value>
   </data>
@@ -828,15 +807,6 @@ Prøv igen?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Dine ændringer er gemt</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Billedformatet kunne ikke indstilles, da den eksekverbare spilfil ikke kunne findes</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Billedformatet kunne ikke indstilles, da den eksekverbare spilfil ikke er gyldig</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at indstille Rayman 2-billedformatet</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Du har lige indtastet Konami-koden! Nyd dette nye røde tema.</value>
@@ -4794,9 +4764,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Genindlæs tilgængelige mods</value>
-  </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Indlæs flere</value>
   </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>Ingen mods fundet</value>

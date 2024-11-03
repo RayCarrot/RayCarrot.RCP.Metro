@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Сеть</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Если широкоэкранная поддержка не включена, и установлено соотношение сторон, отличное от 4:3, игра растянется</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Широкоэкранная поддержка</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Если широкоэкранная поддержка активирована, а соотношение сторон отлично от 4:3, игра не растягивается при запуске</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Горизонтальный широкоэкранный режим</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Позволяет изменять ширину экрана</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Вертикальный широкоэкранный режим</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Позволяет изменять высоту экрана</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Устанавливает язык по умолчанию, выбранный при запуске игры. Язык можно изменить в меню игры.</value>
   </data>
@@ -830,15 +809,6 @@
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Изменения сохранены</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Не удалось установить соотношение сторон из-за того, что исполняемый файл игры не был найден</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Не удалось установить соотношение сторон из-за того, что исполняемый файл игры недопустим</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Произошла ошибка при установке соотношения сторон Rayman 2</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Вы только что ввели код Konami! Наслаждайтесь новой красной темой.</value>

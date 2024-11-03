@@ -60,12 +60,11 @@
                     <rcp:InfoIcon Grid.Column="2"
                                   Text="{Resx ModLoader_GameBanana_DownloadableModsInfo}" />
 
-                    <!-- TODO-LOC -->
                     <!-- Search box -->
                     <TextBox Grid.Column="4"
                              IsReadOnly="{Binding Path=IsLoading}"
                              VerticalAlignment="Center"
-                             mah:TextBoxHelper.Watermark="Search mods"
+                             mah:TextBoxHelper.Watermark="{Resx ModLoader_Search}"
                              mah:TextBoxHelper.ClearTextButton="{Binding Path=CurrentFeedType, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static modLoader:DownloadableModsViewModel+FeedType.Search}}"
                              mah:TextBoxHelper.ButtonCommand="{Binding Path=RefreshCommand, Mode=OneTime}"
                              Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"

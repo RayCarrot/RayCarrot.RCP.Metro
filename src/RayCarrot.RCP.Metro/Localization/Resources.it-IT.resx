@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Rete</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Se il supporto widescreen non è abilitato, la visuale del gioco si allungherà se impostato su un formato diverso da 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Supporto widescreen</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Il supporto widescreen garantisce che la visuale del gioco non sia allungata quando viene eseguito in un formato diverso da 4:3 </value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Widescreen orizzontale</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Espande orizzontalmente il widescreen</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Widescreen verticale</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Riduce verticalmente il widescreen</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Imposta la lingua predefinita selezionata all'avvio del gioco. La lingua può ancora essere modificata dal menu di gioco.</value>
   </data>
@@ -830,15 +809,6 @@ Riprovare?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Le modifiche sono state salvate</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Non è stato possibile impostare le proporzioni perché l'eseguibile del gioco non è stato trovato</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Non è stato possibile impostare le proporzioni perché l'eseguibile del gioco non è valido</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Si è verificato un errore durante l'impostazione delle proporzioni di Rayman 2</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Hai appena inserito il Codice Konami! Goditi questo nuovo tema rosso.</value>
@@ -4798,9 +4768,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Aggiorna le mod disponibili</value>
-  </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Carica di più</value>
   </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>Nessuna mod trovata</value>

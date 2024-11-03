@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Ağ</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Geniş ekran desteği etkinleştirilmemişse, 4:3'ten farklı bir en boy oranına ayarlandığında oyun uzayacaktır.</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Geniş ekran desteği</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Geniş ekran desteği, oyunun 4:3'ten farklı bir en boy oranında çalışırken gerilmemesini sağlar</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Yatay geniş ekran</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Geniş ekranın yatay olarak genişlemesini sağlayın</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Dikey geniş ekran</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Geniş ekranın dikey olarak küçülmesini sağlayın</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Bu, oyunu başlatırken seçilen varsayılan dili ayarlar. Dil yine de oyun menüsünden değiştirilebilir.</value>
   </data>
@@ -830,15 +809,6 @@ Tekrar deneyin?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Değişiklikleriniz kaydedildi</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>The aspect ratio could not be set due to the game executable not being found</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Yürütülebilir oyun geçerli olmadığı için en boy oranı ayarlanamadı</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Rayman 2 en boy oranı ayarlanırken bir hata oluştu</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Az önce Konami kodunu girdiniz! Bu kırmızı yeni temanın keyfini çıkarın.</value>

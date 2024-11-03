@@ -2376,7 +2376,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3.
+        ///   Looks up a localized string similar to By default the game only supports resolution with an aspect ratio of 4:3. Any other resolution will result in the game being stretched. In order to add proper widescreen support it is recommended to use Ray2Fix and enable the widescreen option there..
         /// </summary>
         public static string Config_ResolutionR2Info {
             get {
@@ -2637,15 +2637,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vertical widescreen.
-        /// </summary>
-        public static string Config_VerticalHorizontal {
-            get {
-                return ResourceManager.GetString("Config_VerticalHorizontal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Video.
         /// </summary>
         public static string Config_Video {
@@ -2714,51 +2705,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_VSync {
             get {
                 return ResourceManager.GetString("Config_VSync", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Horizontal widescreen.
-        /// </summary>
-        public static string Config_WidescreenHorizontal {
-            get {
-                return ResourceManager.GetString("Config_WidescreenHorizontal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Make the widescreen expand horizontally.
-        /// </summary>
-        public static string Config_WidescreenHorizontalInfo {
-            get {
-                return ResourceManager.GetString("Config_WidescreenHorizontalInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Widescreen support.
-        /// </summary>
-        public static string Config_WidescreenSupport {
-            get {
-                return ResourceManager.GetString("Config_WidescreenSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Widescreen support ensures that the game is not stretched when running in an aspect ratio other than 4:3.
-        /// </summary>
-        public static string Config_WidescreenSupportInfo {
-            get {
-                return ResourceManager.GetString("Config_WidescreenSupportInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Make the widescreen shrink vertically.
-        /// </summary>
-        public static string Config_WidescreenVerticalInfo {
-            get {
-                return ResourceManager.GetString("Config_WidescreenVerticalInfo", resourceCulture);
             }
         }
         
@@ -4924,6 +4870,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch URI:.
+        /// </summary>
+        public static string GameInfo_LaunchUri {
+            get {
+                return ResourceManager.GetString("GameInfo_LaunchUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Steam ID:.
         /// </summary>
         public static string GameInfo_SteamID {
@@ -5359,7 +5314,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a source for the launch options to use and edit the commands.
+        ///   Looks up a localized string similar to Select a source to use and edit the commands.
         /// </summary>
         public static string GameSettings_UbiArt_LaunchCommands_DisabledInfo {
             get {
@@ -8732,6 +8687,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Showing mods in the category &quot;{0}&quot;.
+        /// </summary>
+        public static string ModLoader_CategoryFeedInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_CategoryFeedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string ModLoader_CheckUpdates {
@@ -9251,15 +9215,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load more.
-        /// </summary>
-        public static string ModLoader_LoadMoreDownloadableMods {
-            get {
-                return ResourceManager.GetString("ModLoader_LoadMoreDownloadableMods", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Local.
         /// </summary>
         public static string ModLoader_LocalInstallSource {
@@ -9521,6 +9476,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search mods.
+        /// </summary>
+        public static string ModLoader_Search {
+            get {
+                return ResourceManager.GetString("ModLoader_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing search results for &quot;{0}&quot;.
+        /// </summary>
+        public static string ModLoader_SearchFeedInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_SearchFeedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The mod {0} modifies sensitive files, such as executable files, in the game. Only install this mod if you trust the author. Continue?.
         /// </summary>
         public static string ModLoader_SecurityWarning {
@@ -9562,6 +9535,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_Title {
             get {
                 return ResourceManager.GetString("ModLoader_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The search text has to have at least 2 characters.
+        /// </summary>
+        public static string ModLoader_TooShortSearchText {
+            get {
+                return ResourceManager.GetString("ModLoader_TooShortSearchText", resourceCulture);
             }
         }
         
@@ -9922,6 +9904,43 @@ namespace RayCarrot.RCP.Metro {
         public static string PostUpdate_MigrateFiestaRunBackup5Error {
             get {
                 return ResourceManager.GetString("PostUpdate_MigrateFiestaRunBackup5Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The option to patch Rayman 2 to use widescreen has been removed in this version in favor of the new improved widescreen implementation that&apos;s now available in Ray2Fix. The exe for the added game &quot;{0}&quot; has been detected as using a widescreen patch. If this was applied through the Rayman Control Panel then it is highly recommended to revert this patch now and use the widescreen option in Ray2Fix instead.
+        ///Do you want to revert the patch?.
+        /// </summary>
+        public static string PostUpdate_MigrateR2Widescreen {
+            get {
+                return ResourceManager.GetString("PostUpdate_MigrateR2Widescreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Widescreen Patch Update Notice.
+        /// </summary>
+        public static string PostUpdate_MigrateR2WidescreenHeader {
+            get {
+                return ResourceManager.GetString("PostUpdate_MigrateR2WidescreenHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled..
+        /// </summary>
+        public static string PostUpdate_MigrateTPLS {
+            get {
+                return ResourceManager.GetString("PostUpdate_MigrateTPLS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per-level Soundtrack Update Notice.
+        /// </summary>
+        public static string PostUpdate_MigrateTPLSHeader {
+            get {
+                return ResourceManager.GetString("PostUpdate_MigrateTPLSHeader", resourceCulture);
             }
         }
         
@@ -11943,33 +11962,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when setting the Rayman 2 aspect ratio.
-        /// </summary>
-        public static string R2Widescreen_Error {
-            get {
-                return ResourceManager.GetString("R2Widescreen_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being found.
-        /// </summary>
-        public static string R2Widescreen_ExeNotFound {
-            get {
-                return ResourceManager.GetString("R2Widescreen_ExeNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being valid.
-        /// </summary>
-        public static string R2Widescreen_ExeNotValid {
-            get {
-                return ResourceManager.GetString("R2Widescreen_ExeNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Balloons.
         /// </summary>
         public static string R3_LevelName_ballmap {
@@ -12191,6 +12183,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Rayman1Minigames_Win32_Title {
             get {
                 return ResourceManager.GetString("Rayman1Minigames_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Beta (1998/07/22).
+        /// </summary>
+        public static string Rayman2_Beta_19980722_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman2_Beta_19980722_Win32_Title", resourceCulture);
             }
         }
         

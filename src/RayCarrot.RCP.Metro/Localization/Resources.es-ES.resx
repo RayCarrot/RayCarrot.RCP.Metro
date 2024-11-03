@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Red</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Si el soporte para pantalla panorámica no está habilitado, el juego se estirará si se establece en una relación de aspecto distinta a 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Soporte para pantalla panorámica</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>El soporte para pantalla panorámica garantiza que el juego no se estire al ejecutarse en una relación de aspecto distinta a 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Panorámica horizontal</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Ampliar la pantalla panorámica horizontalmente</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Panorámica vertical</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Reducir la pantalla panorámica verticalmente</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Esto establece el idioma predeterminado seleccionado al iniciar el juego. El idioma aún se puede cambiar desde el menú del juego</value>
   </data>
@@ -834,15 +813,6 @@ Noticias:
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Tus cambios han sido guardados</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>No se pudo establecer la relación de aspecto debido a que no se encontró el ejecutable del juego</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>No se pudo establecer la relación de aspecto debido a que el ejecutable del juego no es válido</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Se produjo un error al establecer la relación de aspecto de Rayman 2</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>¡Acabas de ingresar el código Konami! Disfruta de este nuevo tema rojo.</value>
@@ -4802,9 +4772,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   </data>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Actualizar los mods disponibles</value>
-  </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Cargar más</value>
   </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>No se encontraron mods</value>

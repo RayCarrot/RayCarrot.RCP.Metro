@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Network</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Widescreen support</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Widescreen support ensures that the game is not stretched when running in an aspect ratio other than 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Horizontal widescreen</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Make the widescreen expand horizontally</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Vertical widescreen</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Make the widescreen shrink vertically</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>This sets the default language selected when launching the game. The language can still be changed from the game menu.</value>
   </data>
@@ -882,15 +861,6 @@ invalidCharacter</comment>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Your changes have been saved</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>The aspect ratio could not be set due to the game executable not being found</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>The aspect ratio could not be set due to the game executable not being valid</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>An error occurred when setting the Rayman 2 aspect ratio</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>You just entered the Konami code! Enjoy this red new theme.</value>
@@ -4971,9 +4941,6 @@ gameName</comment>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Refresh the available mods</value>
   </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Load more</value>
-  </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>No mods found</value>
   </data>
@@ -5881,7 +5848,7 @@ gameName</comment>
     <value>Output</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
-    <value>Select a source for the launch options to use and edit the commands</value>
+    <value>Select a source to use and edit the commands</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
     <value>The game needs to be patched in order to allow the cmdline.txt file. This can be done using the CommandLine File Fix mod.</value>
@@ -5967,5 +5934,45 @@ WARNING: Loading directly into a map using this will skip loading your save file
   </data>
   <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
     <value>Select mod file</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
+    <value>The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled.</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
+    <value>Per-level Soundtrack Update Notice</value>
+  </data>
+  <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
+    <value>The option to patch Rayman 2 to use widescreen has been removed in this version in favor of the new improved widescreen implementation that's now available in Ray2Fix. The exe for the added game "{0}" has been detected as using a widescreen patch. If this was applied through the Rayman Control Panel then it is highly recommended to revert this patch now and use the widescreen option in Ray2Fix instead.
+Do you want to revert the patch?</value>
+  </data>
+  <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
+    <value>Rayman 2 Widescreen Patch Update Notice</value>
+    <comment>Arguments:
+gameName</comment>
+  </data>
+  <data name="GameInfo_LaunchUri" xml:space="preserve">
+    <value>Launch URI:</value>
+  </data>
+  <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Beta (1998/07/22)</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>By default the game only supports resolution with an aspect ratio of 4:3. Any other resolution will result in the game being stretched. In order to add proper widescreen support it is recommended to use Ray2Fix and enable the widescreen option there.</value>
+  </data>
+  <data name="ModLoader_TooShortSearchText" xml:space="preserve">
+    <value>The search text has to have at least 2 characters</value>
+  </data>
+  <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
+    <value>Showing search results for "{0}"</value>
+    <comment>Arguments:
+searchText</comment>
+  </data>
+  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
+    <value>Showing mods in the category "{0}"</value>
+    <comment>Arguments:
+categoryName</comment>
+  </data>
+  <data name="ModLoader_Search" xml:space="preserve">
+    <value>Search mods</value>
   </data>
 </root>

@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Réseau</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Si la prise en charge de l'écran large n'est pas activée, le jeu va s'étirer pour correspondre à un ratio d'écran autre que 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Prise en charge écran large</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Le support écran large assure que le jeu ne sera pas étiré s'il tourne dans un ratio d'écran autre que 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Écran large horizontal</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Fait étendre l'écran horizontalement</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Écran large vertical</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Réduit l'écran large verticalement</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Configure la langue par défaut sélectionnée en démarrant le jeu. La langue peut toujours être changée depuis le menu du jeu</value>
   </data>
@@ -830,15 +809,6 @@ Voulez vous réessayer ?</value>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Les changements ont été sauvegardés</value>
   </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Le ratio d'écran n'a pas pu être changé car l'exécutable du jeu n'a pas été trouvé</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Le ratio d'écran n'a pas pu être changé car l'exécutable du jeu n'est pas valide</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Une erreur est survenue en paramétrant le ratio d'écran de Rayman 2</value>
-  </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Vous venez d'entrer le Konami Code ! Profitez de ce nouveau thème rouge.</value>
   </data>
@@ -915,7 +885,7 @@ Voulez vous réessayer ?</value>
     <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski et tous les fans de Rayman !</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, utilitaires, musiques par niveau, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patch manettes</value>
@@ -927,7 +897,7 @@ Voulez vous réessayer ?</value>
     <value>Aide générale des utilitaires</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Utilitaire des pistes sonores par niveau</value>
+    <value>Utilitaire des musiques par niveau</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Programme de traduction portugaise (Portugal)</value>
@@ -4798,9 +4768,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Rafraîchir la liste des mods disponibles</value>
   </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Charger plus</value>
-  </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>Pas de mods trouvés</value>
   </data>
@@ -5404,7 +5371,85 @@ Messages d'erreur :
   <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
     <value>Nombre de sauts</value>
   </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Musique par niveau</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir désinstaller l'outil de musique par niveau ? Il sera désinstallé pour tous les jeux où il est utilisé.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirmer la désinstallation</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Remplace la musique en jeu par la musique par niveau de la version Playstation et fournit aussi divers améliorations pour la version PC</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>Son de fin de niveau et de mort de la version CD</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>Remplace les sons par défaut de fin de niveau et de mort par les musiques de la version PlayStation</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Rendre le poing de Dark Rayman mortel</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Réactive un comportement où le point de Dark Rayman tue Rayman s'il le touche</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>Désinstaller</value>
+  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Recommandé</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} actions recommandées</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Optionnel</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} actions optionnelles</value>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>Problèmes</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>{0} problème</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} problèmes</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>Installer Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 est une collection d'améliorations par RibShark qui permettent de jouer à Rayman 3 dans des résolutions écran large, ainsi que d'autres fonctionnalités telles qu'un mode fenêtré ou la restoration de la possibilité de passer les cinématiques</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>Fichier de sauvegarde corrompu</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>A cause d'un bug des versions précédentes, le fichier de sauvegarde peut se désynchroniser, ce qui a pour conséquence de donner un nombre de ptizêtres sauvés inférieur au nombre attendu. Cela peut rendre certains niveaux innaccessibles.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>Installer le mod Higher Quality Official Textures</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>Le mod Higher Quality Official Textures est un mod remplaçant plusieurs textures du jeu par des variantes de meilleure qualité trouvés dans d'autres versions du jeu dont des textures sans soucis de transparence.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Installer le mod High Quality Videos</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>Le mod High Quality Videos remplace les vidéos compressées de la version PC par les vidéos de plus haute qualité trouvées dans les versions console.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>Résolution du jeu invalide</value>
   </data>
 </root>

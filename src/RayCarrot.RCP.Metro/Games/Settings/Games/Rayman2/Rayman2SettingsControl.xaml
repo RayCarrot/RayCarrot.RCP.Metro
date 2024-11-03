@@ -19,8 +19,7 @@
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Resolution}" />
 
-            <!-- TODO-LOC -->
-            <rcp:InfoIcon Text="By default the game only supports resolution with an aspect ratio of 4:3. Any other resolution will result in the game being stretched. In order to add proper widescreen support it is recommended to use Ray2Fix and enable the widescreen option there." />
+            <rcp:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
 
         </StackPanel>
 

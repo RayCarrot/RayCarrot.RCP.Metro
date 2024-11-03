@@ -146,8 +146,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         // Search text has to be at least 2 characters
         if (SearchText.Length < 2)
         {
-            // TODO-LOC
-            await Services.MessageUI.DisplayMessageAsync("The search text has to have at least 2 characters", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_TooShortSearchText, MessageType.Error);
             return;
         }
 
@@ -155,7 +154,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         SelectedCategory = Categories[0];
         CurrentFeedType = FeedType.Search;
-        FeedInfoText = $"Showing search results for \"{SearchText}\""; // TODO-LOC
+        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_SearchFeedInfo), SearchText);
 
         ModsFeed.Initialize(new DownloadableModsFeedSearchTextFilter(SearchText));
         await LoadNextChunkAsync();
@@ -174,7 +173,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         SearchText = String.Empty;
         CurrentFeedType = FeedType.Category;
-        FeedInfoText = $"Showing mods in the category \"{SelectedCategory.Name}\""; // TODO-LOC
+        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name);
 
         ModsFeed.Initialize(SelectedCategory.Filter);
         await LoadNextChunkAsync();

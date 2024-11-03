@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Hálózat</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Ha a szélesvásznú támogatás nincs engedélyezve, és a játék más felbontáson fut mint 4:3, akkor ki fog nyúlni megfelelő méretre.</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Szélesvásznú támogatás</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>A szélesvásznú támogatás biztosítja, hogy a játék te nyúljon ki, ha a felbontás más mint 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Vízszintes szélesvászon</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>A szélesvásznot vízszintesen nagyobbra kiterjeszti</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Függőleges szélesvászon</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>A szélesvásznot függőlegesen nagyobbra kiterjeszti</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Beállítja az alap nyelvet, amivel elindul a program. A nyelv ettől megváltoztatható a játékmenüből</value>
   </data>
@@ -828,15 +807,6 @@ Hírek:
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>A változtatásaid mentésre kerültek</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>A képarányt nem lehetett beállítani, mivel a játék exe nem található</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>A képarányt nem lehetett beállítani, mivel a játék exe nem érvényes</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>A Rayman 2 képarányának beállítása közben hiba lépett fel</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Konami kód észlelve! Piros pont.

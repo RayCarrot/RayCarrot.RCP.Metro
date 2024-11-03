@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Netwerk</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Als breedbeeldondersteuning niet ingeschakeld is, zal het beeld opgerekt worden als de aspect ratio anders is dan 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Breedbeeldondersteuning</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Breedbeeldondersteuning zorgt ervoor dat het beeld niet opgerekt wordt als de aspect ratio anders is dan 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Horizontaal breedbeeld</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Rek het breedbeeld horizontaal</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Verticaal breedbeeld</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Verkort het breedbeeld verticaal</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Deze optie zorgt ervoor dat de standaardtaal ingesteld wordt bij opstart. De taal kan nog steeds veranderd worden via het spelmenu.</value>
   </data>
@@ -829,15 +808,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Je wijzigingen zijn opgeslagen</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>De aspectratio kon niet ingesteld worden vanwege het ontbreken van de executable van het spel</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>De aspectratio kon niet ingesteld worden vanwege het ongeldig zijn van de executable van het spel</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het instellen van de aspectratio van Rayman 2</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Je hebt zojuist de Konami code ingevuld! Veel plezier met dit nieuwe, rode thema.</value>
@@ -4792,9 +4762,6 @@ Conflicten:
   </data>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Verversen beschikbare mods</value>
-  </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Meer laden</value>
   </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>Geen mods gevonden</value>

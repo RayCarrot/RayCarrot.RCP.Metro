@@ -312,27 +312,6 @@
   <data name="Config_Network" xml:space="preserve">
     <value>Sieć</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Jeśli wsparcie szerokiego ekranu nie jest włączone, gra zostanie rozciągnięta, jeśli jest ustawiona na proporcje obrazu inne niż 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Wsparcie szerokiego ekranu</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Wsparcie szerokiego ekranu zapewnia, że gra nie zostanie rozciągnięta, gdy zostanie włączona w proporcjach innych niż 4:3</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Poziomy szeroki ekran</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Zwiększa szerokość ekranu poziomo</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Pionowy szeroki ekran</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Zwiększa szerokość ekranu pionowo</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Ustawia domyślny język wybrany przy uruchamianiu gry. Język może być zmieniony z poziomu menu gry.</value>
   </data>
@@ -835,15 +814,6 @@ Spróbować ponownie?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Twoje zmiany zostały zapisane</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Nie można ustawić współczynnika proporcji, ponieważ nie znaleziono pliku wykonywalnego gry</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Nie można ustawić współczynnika proporcji, ponieważ plik wykonywalny gry jest nieprawidłowy</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Wystąpił błąd podczas ustawiania proporcji obrazu dla gry Rayman 2</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Właśnie wprowadziłeś kod Konami! Ciesz się tym nowym czerwonym motywem.</value>
@@ -4820,9 +4790,6 @@ Konflikty:
   </data>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
     <value>Odśwież dostępne mody</value>
-  </data>
-  <data name="ModLoader_LoadMoreDownloadableMods" xml:space="preserve">
-    <value>Załaduj więcej</value>
   </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>Nie znaleziono żadnych modów</value>

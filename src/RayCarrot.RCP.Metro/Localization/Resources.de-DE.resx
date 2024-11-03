@@ -313,27 +313,6 @@ Vollbild Doppelpufferung</value>
   <data name="Config_Network" xml:space="preserve">
     <value>Netzwerk</value>
   </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Wenn der Breitbild Unterstützung nicht Aktiviert ist wird das Spiel sich Strecken wenn eine Auflösung außer 4:3</value>
-  </data>
-  <data name="Config_WidescreenSupport" xml:space="preserve">
-    <value>Breitbild unterstützung</value>
-  </data>
-  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Breitbild unterstützung geht sicher dass dein Spiel nicht Gestreckt wird. Wenn dein Spiel alles außer 4:3 läuft</value>
-  </data>
-  <data name="Config_WidescreenHorizontal" xml:space="preserve">
-    <value>Horizontaler Breiter Bildschirm</value>
-  </data>
-  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
-    <value>Das Breitbild horizontal erweitern</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Vertikaler Breiter Bildschirm</value>
-  </data>
-  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
-    <value>Das Breitbild vertikal schrumpfen</value>
-  </data>
   <data name="Config_LanguageR2Info" xml:space="preserve">
     <value>Setzt die ausgewählte Sprache wenn du das Spiel öffnest. Die Sprache kann von den Titelbildschirm geändert werden</value>
   </data>
@@ -831,15 +810,6 @@ Nochmal versuchen?</value>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Deine Änderungen wurden gespeichert</value>
   </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Das Seitenverhältnis konnte nicht eingestellt werden weil das Spiel Executable konnte nicht gefunden werden</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Das Seitenverhältnis konnte nicht gesetzt werden weil die Spiel Ausführen Datei nicht gültig ist</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Ein Fehler ist aufgetreten beim einstellen von Rayman 2 Seitenverhältnis</value>
-  </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
     <value>Du hast grad einen Konami Code eingetippt! Viel Spaß mit diesem neuen Roten Design.</value>
   </data>
@@ -1193,6 +1163,134 @@ Neuigkeiten:
   </data>
   <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
     <value>Schalte Downgrade Warnung ab</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>Ein fehler ist Aufgetreten wenn beim Migrieren von bestehenden Rayman Fiesta Run Backup zum neuen 5.0.0 Wiederherstellung Standard. Wegen dein Backup wird es nicht verfügbar sein, aber wird immer noch im Backup Ordner sein und kann Manuell wiederhergestellt werden.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Wiederherrstellung Migration Fehler</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>Du musst das Programm als Administrator ausführen um es für alle Nutzer zu installieren</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Fehlende Berechtigungen</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>Beim Einrichten der zusätzlich erforderlichen Dateien ist ein Fehler aufgetreten. Bestimmte Funktionen des Programms funktionieren möglicherweise nicht wie vorgesehen. Es wird empfohlen, einen Neustart des Programms zu versuchen.</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Als Administrator neustarten</value>
+  </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>Dieses Programm hat nicht die erforderlichen Berechtigungen zur Operation. Programm als Administrator neustarten?</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Fehler Meldung: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Dänisch</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Benutzerdefinierte Starte Einstellungen </value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Wenn eingeschaltet, die Einstellungen darunter werden benutzt zum Starten des Spiel von Rayman Control Panel</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-Sync</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Benutzerdefiniert</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Alle Spiele</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Grün</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Blau</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Nicht dazu gelegt</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Microsoft Store öffnen</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Deinstallieren</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>2003 Version</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>2005 Version</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Laden von GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>GameJolt Seite öffnen</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Bildschirmfoto</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Bestätigten</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Nur lesbar</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Unbennen</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Linie</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Beleuchtung</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Seil</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Keine</value>
   </data>
   <data name="GameInfo_UbisoftGameId" xml:space="preserve">
     <value>Ubisoft Connect (uplay) ID</value>

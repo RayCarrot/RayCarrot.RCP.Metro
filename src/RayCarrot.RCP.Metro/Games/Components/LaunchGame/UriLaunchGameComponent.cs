@@ -20,7 +20,7 @@ public abstract class UriLaunchGameComponent : LaunchGameComponent
         return new[]
         {
             new DuoGridItemViewModel(
-                header: "Launch URI:", // TODO-LOC
+                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchUri)),
                 text: launchUri,
                 minUserLevel: UserLevel.Technical),
         };

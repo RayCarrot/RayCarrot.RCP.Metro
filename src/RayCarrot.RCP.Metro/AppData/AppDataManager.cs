@@ -792,8 +792,7 @@ public class AppDataManager
             // Notify user about TPLS
             if (uninstalledTpls)
             {
-                // TODO-LOC
-                await Services.MessageUI.DisplayMessageAsync("The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled.", "Per-level Soundtrack Update Notice", MessageType.Information);
+                await Services.MessageUI.DisplayMessageAsync(Resources.PostUpdate_MigrateTPLS, Resources.PostUpdate_MigrateTPLSHeader, MessageType.Information);
             }
 
             // Delete the utilities folder since it's no longer used
@@ -851,8 +850,9 @@ public class AppDataManager
 
                         Logger.Info("Detected Rayman 2 game {0} as having a widescreen patch applied", gameInstallation.FullId);
 
-                        // TODO-LOC
-                        if (await MessageUI.DisplayMessageAsync($"The option to patch Rayman 2 to use widescreen has been removed in this version in favor of the new improved widescreen implementation that's now available in Ray2Fix. The exe for the added game \"{gameInstallation.GetDisplayName()}\" has been detected as using a widescreen patch. If this was applied through the Rayman Control Panel then it is highly recommended to revert this patch now and use the widescreen option in Ray2Fix instead.\nDo you want to revert the patch?", "Rayman 2 Widescreen Patch Update Notice", MessageType.Question, true))
+                        if (await MessageUI.DisplayMessageAsync(
+                                String.Format(Resources.PostUpdate_MigrateR2Widescreen, gameInstallation.GetDisplayName()), 
+                                Resources.PostUpdate_MigrateR2WidescreenHeader, MessageType.Question, true))
                         {
                             using Writer writer = new(stream);
 
