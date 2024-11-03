@@ -13,6 +13,7 @@
     • Modifying the video quality for Rayman 3 now saves it to the correct app data section, which is the Rayman Arena section due to the game incorrectly reading it from there
     • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
     • App data .ini files are now read and written to using the native Win32 API
+    • Removed the Rayman 2 widescreen patch option in favor of the new widescreen implementation in Ray2Fix
     • Removed the Rayman 3 config option to use 16-bit textures due to it being unused by the game
     • The Rayman Edutainment settings no longer allow you to select which version (such as the difficulty level) to change the options for. Instead it uses the currently selected version from the games page.
     • Various other minor improvements and changes
@@ -55,6 +56,8 @@ Other changes:
 • Removed the option to automatically close the game settings when saving
 • The tooltip show delay has been decreased for info icons
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
+• Prototype games now have a "proto" text showing on the icon like how the demos do
+• The launch URI is now shown in the game info when used for launch a game, such as if launching through Steam
 • Fixed a bug where starting a new instance of the Rayman Control Panel or using the GameBanana 1-click installer while the Rayman Control Panel is running would cause the window to un-maximize itself if maximized
 • Fixed a bug where creating IPK archives for Rayman Origins on Xbox 360 and Rayman Legends on Xbox 360 and PS3 wouldn't work
 • Fixed a bug where the thumbnail wouldn't show for a file in the Archive Explorer after renaming it
