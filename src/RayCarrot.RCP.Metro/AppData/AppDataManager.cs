@@ -730,7 +730,7 @@ public class AppDataManager
                 {
                     foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
                     {
-                        if (gameInstallation.GameDescriptor is { Game: Game.RaymanRavingRabbids, Platform: GamePlatform.Win32 })
+                        if (gameInstallation.GameDescriptor is { Game: Game.RaymanRavingRabbids, Platform: GamePlatform.Win32, Type: GameType.Retail })
                         {
                             gameInstallation.SetObject(GameDataKey.RRR_PrototypeRestorationData, new PrototypeRestorationData(toggleStates, keyboardButtonMapping));
                         }
@@ -754,7 +754,7 @@ public class AppDataManager
             }
         }
 
-        if (lastVersion < new Version(14, 2, 1, 0))
+        if (lastVersion < new Version(14, 2, 0, 1))
         {
             // Uninstall legacy TPLS (per-level soundtrack) data
             bool uninstalledTpls = false;
@@ -790,6 +790,7 @@ public class AppDataManager
             // Notify user about TPLS
             if (uninstalledTpls)
             {
+                // TODO-LOC
                 await Services.MessageUI.DisplayMessageAsync("The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled.", "Per-level Soundtrack Update Notice", MessageType.Information);
             }
 
