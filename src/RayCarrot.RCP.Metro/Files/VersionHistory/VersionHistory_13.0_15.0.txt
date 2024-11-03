@@ -5,6 +5,7 @@
     • Rayman Arena
     • Rayman 3
     • Rayman Raving Rabbids
+• Added support for Rayman 2 Beta (1998/07/22)
 • Added support for the PCSX2 emulator (editing save files is currently only supported for folder memory cards)
 • Added setup game panel to the game hub which includes recommended actions for setting up each game, such as installing recommended mods or fixing issues with the game settings
 • Game config changes:
@@ -59,6 +60,7 @@ Other changes:
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
 • Prototype games now have a "proto" text showing on the icon like how the demos do
 • The launch URI is now shown in the game info when used for launch a game, such as if launching through Steam
+• Improved refreshing the game hub page on changes
 • The program easter egg codes are no longer triggered when typing into a textbox
 • Added a new easter egg code
 • Fixed a bug where starting a new instance of the Rayman Control Panel or using the GameBanana 1-click installer while the Rayman Control Panel is running would cause the window to un-maximize itself if maximized
