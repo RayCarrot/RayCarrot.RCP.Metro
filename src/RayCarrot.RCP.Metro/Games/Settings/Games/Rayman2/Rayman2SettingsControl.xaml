@@ -19,40 +19,13 @@
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Resolution}" />
 
-            <rcp:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
+            <!-- TODO-LOC -->
+            <rcp:InfoIcon Text="By default the game only supports resolution with an aspect ratio of 4:3. Any other resolution will result in the game being stretched. In order to add proper widescreen support it is recommended to use Ray2Fix and enable the widescreen option there." />
 
         </StackPanel>
 
         <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"
                                    Margin="0 0 0 8" />
-
-        <StackPanel Orientation="Horizontal"
-                    Margin="0 0 0 8">
-            <rcp:AdminButton Visibility="{Binding Path=CanModifyGameFiles, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                             Margin="0 0 4 0" />
-
-            <CheckBox Content="{Resx Config_WidescreenSupport}"
-                      ToolTip="{Resx Config_WidescreenSupportInfo}"
-                      Style="{StaticResource RCP.Styles.CheckBox.Default}"
-                      IsChecked="{Binding Path=WidescreenSupport}"
-                      IsEnabled="{Binding Path=CanModifyGameFiles, Mode=OneTime}" />
-        </StackPanel>
-
-        <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={rcp:BooleanToVisibilityConverter}}"
-                   Margin="0 0 0 8">
-
-            <RadioButton Content="{Resx Config_WidescreenHorizontal}"
-                         ToolTip="{Resx Config_WidescreenHorizontalInfo}"
-                         IsChecked="{Binding Path=IsHorizontalWidescreen}"
-                         Margin="0 0 8 0" />
-
-            <!-- TODO: Find solution to this -->
-            <RadioButton Content="{Resx Config_VerticalHorizontal}"
-                         ToolTip="{Resx Config_WidescreenVerticalInfo}"
-                         IsChecked="{Binding Path=IsHorizontalWidescreen, Converter={rcp:InvertedBooleanConverter}}"
-                         IsEnabled="False" />
-
-        </WrapPanel>
 
         <StackPanel Orientation="Horizontal"
                     Margin="0 4 0 8">

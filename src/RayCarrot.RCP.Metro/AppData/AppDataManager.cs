@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using BinarySerializer;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,6 +12,7 @@ using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.Legacy.AppData;
 
@@ -802,6 +804,70 @@ public class AppDataManager
             catch (Exception ex)
             {
                 Logger.Error(ex, "Deleting the legacy utilities folder");
+            }
+        }
+
+        if (lastVersion < new Version(14, 2, 0, 3))
+        {
+            // Allow reverting old Rayman 2 widescreen patch due to it being removed
+            foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+            {
+                GameDescriptor gameDescriptor = gameInstallation.GameDescriptor;
+
+                if (gameDescriptor is { Game: Game.Rayman2, Platform: GamePlatform.Win32, Type: GameType.Retail })
+                {
+                    try
+                    {
+                        // Get the exe file path
+                        DirectoryProgramInstallationStructure programStructure = gameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
+                        FileSystemPath exePath = programStructure.FileSystem.GetAbsolutePath(gameInstallation, ProgramPathType.PrimaryExe);
+
+                        // Get the size to determine the version
+                        long length = exePath.GetSize();
+
+                        // Get the offset
+                        int offset = length switch
+                        {
+                            676352 => 633496, // Disc version
+                            1468928 => 640152, // GOG version
+                            _ => -1
+                        };
+
+                        // Ignore this game if the version is unknown
+                        if (offset == -1)
+                            continue;
+
+                        // Open the file
+                        using Stream stream = File.Open(exePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+                        using Reader reader = new(stream);
+
+                        // Read the aspect ratio value
+                        stream.Position = offset;
+                        float value = reader.ReadSingle();
+
+                        // Ignore this game if not modified
+                        if (value == 1)
+                            continue;
+
+                        Logger.Info("Detected Rayman 2 game {0} as having a widescreen patch applied", gameInstallation.FullId);
+
+                        // TODO-LOC
+                        if (await MessageUI.DisplayMessageAsync($"The option to patch Rayman 2 to use widescreen has been removed in this version in favor of the new improved widescreen implementation that's now available in Ray2Fix. The exe for the added game \"{gameInstallation.GetDisplayName()}\" has been detected as using a widescreen patch. If this was applied through the Rayman Control Panel then it is highly recommended to revert this patch now and use the widescreen option in Ray2Fix instead.\nDo you want to revert the patch?", "Rayman 2 Widescreen Patch Update Notice", MessageType.Question, true))
+                        {
+                            using Writer writer = new(stream);
+
+                            // Write the default aspect ratio value
+                            stream.Position = offset;
+                            writer.Write(1f);
+
+                            Logger.Info("The Rayman 2 aspect ratio has been restored");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, "Checking if Rayman 2 aspect ratio has been modified");
+                    }
+                }
             }
         }
     }

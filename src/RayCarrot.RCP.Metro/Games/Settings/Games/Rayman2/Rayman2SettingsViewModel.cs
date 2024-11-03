@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using System.Windows.Input;
-using BinarySerializer;
-using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.Settings;
@@ -24,8 +22,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
 
         if (!CanModifyGameFiles)
             Logger.Info("The game files for {0} can't be modified", GameInstallation.FullId);
-
-        IsHorizontalWidescreen = true;
 
         Keys = new ObservableCollection<ButtonMapperKeyItemViewModel>()
         {
@@ -88,9 +84,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
 
     public ObservableCollection<ButtonMapperKeyItemViewModel> Keys { get; }
 
-    public bool WidescreenSupport { get; set; }
-    public bool IsHorizontalWidescreen { get; set; }
-
     public bool ControllerSupport { get; set; }
 
     public Rayman2Language CurrentLanguage { get; set; }
@@ -148,22 +141,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
         return GameInstallation.InstallLocation.Directory + "dinput.dll";
     }
 
-    private int GetAspectRatioExeOffset(FileSystemPath path)
-    {
-        // Get the size to determine the version
-        long length = path.GetSize();
-
-        // Get the byte location
-        int location = length switch
-        {
-            676352 => 633496, // Disc version
-            1468928 => 640152, // GOG version
-            _ => -1
-        };
-
-        return location;
-    }
-
     private DinputType GetDinputType()
     {
         FileSystemPath path = GetDinputFilePath();
@@ -186,143 +163,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
         {
             Logger.Error(ex, "Getting Rayman 2 dinput file size");
             return DinputType.Unknown;
-        }
-    }
-
-    private bool? CheckIsAspectRatioModified()
-    {
-        try
-        {
-            // Get the exe file path
-            DirectoryProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-            FileSystemPath path = programStructure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
-
-            // Get the offset
-            int offset = GetAspectRatioExeOffset(path);
-
-            if (offset == -1)
-                return null;
-
-            // Open the file
-            using Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            using Reader reader = new(stream);
-
-            // Read the value
-            stream.Position = offset;
-            float value = reader.ReadSingle();
-
-            // Check if the value has been modified
-            if (value != 1)
-            {
-                Logger.Info("The Rayman 2 aspect ratio has been detected as modified");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Checking if Rayman 2 aspect ratio has been modified");
-            return null;
-        }
-    }
-
-    private async Task SetAspectRatioAsync()
-    {
-        try
-        {
-            Logger.Info("The Rayman 2 aspect ratio is being set...");
-
-            // Get the exe file path
-            var programStructure = GameInstallation.GameDescriptor.GetStructure<DirectoryProgramInstallationStructure>();
-            FileSystemPath path = programStructure.FileSystem.GetAbsolutePath(GameInstallation, ProgramPathType.PrimaryExe);
-
-            // Make sure the file exists
-            if (!path.FileExists)
-            {
-                Logger.Warn("The Rayman 2 executable could not be found");
-
-                if (WidescreenSupport)
-                    await Services.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotFound, MessageType.Error);
-
-                return;
-            }
-
-            // Get the offset
-            int offset = GetAspectRatioExeOffset(path);
-
-            Logger.Debug("The aspect ratio value offset has been detected as {0}", offset);
-
-            // Cancel if unknown version
-            if (offset == -1)
-            {
-                Logger.Info("The Rayman 2 executable file size does not match any supported version");
-
-                if (WidescreenSupport)
-                    await Services.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotValid, MessageType.Error);
-
-                return;
-            }
-
-            // Apply widescreen patch
-            if (WidescreenSupport)
-            {
-                // Get the aspect ratio
-                float value = IsHorizontalWidescreen ? (float)GraphicsMode.Height / GraphicsMode.Width : (float)GraphicsMode.Width / GraphicsMode.Height;
-
-                // Multiply by 4/3
-                value *= 4.0F / 3.0F;
-
-                // Open the file
-                using Stream stream = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.Read);
-                using Writer writer = new(stream);
-
-                // Write the value
-                stream.Position = offset;
-                writer.Write(value);
-
-                Logger.Info("The Rayman 2 aspect ratio has been set");
-            }
-            // Restore to 4/3 if modified previously
-            else
-            {
-                // Open the file for reading
-                float value;
-                using (Stream readStream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    using Reader reader = new(readStream);
-
-                    // Read the value
-                    readStream.Position = offset;
-                    value = reader.ReadSingle();
-                }
-
-                // Check if the data has been modified
-                if (value != 1)
-                {
-                    Logger.Info("The Rayman 2 aspect ratio has been detected as modified");
-
-                    using Stream writeStream = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.Read);
-                    using Writer writer = new(writeStream);
-
-                    // Write the value
-                    writeStream.Position = offset;
-                    writer.Write(1f);
-
-                    Logger.Info("The Rayman 2 aspect ratio has been restored");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Setting Rayman 2 aspect ratio");
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2Widescreen_Error);
-
-            if (WidescreenSupport)
-                throw;
         }
     }
 
@@ -384,10 +224,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
 
             ControllerSupport = dinputType == DinputType.Controller;
 
-            // Check if the aspect ratio has been modified
-            if (CheckIsAspectRatioModified() == true)
-                WidescreenSupport = true;
-
             if (dinputType == DinputType.ButtonMapping)
             {
                 HashSet<Rayman2ButtonMappingItem>? result = null;
@@ -448,9 +284,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
 
         if (CanModifyGameFiles)
         {
-            // Set the aspect ratio
-            await SetAspectRatioAsync();
-
             try
             {
                 // Get the current dinput type
@@ -516,7 +349,6 @@ public class Rayman2SettingsViewModel : GameSettingsViewModel
     protected override void SettingsPropertyChanged(string propertyName)
     {
         if (propertyName is
-            nameof(WidescreenSupport) or
             nameof(ControllerSupport) or
             nameof(CurrentLanguage) or
             nameof(GLI_DllFile) or
