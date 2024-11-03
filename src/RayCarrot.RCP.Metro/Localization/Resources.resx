@@ -942,7 +942,7 @@ gameDisplayName</comment>
     <value>Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, Rayman reverse engineering, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -951,10 +951,10 @@ gameDisplayName</comment>
     <value>Rayman 2 button remapping</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>General help with the utilities</value>
+    <value>Rayman reverse engineering</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Per-level soundtrack utility</value>
+    <value>Rayman 1 Per-level soundtrack mod</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portuguese (Portugal) program translation</value>
@@ -1101,7 +1101,7 @@ gameDisplayName</comment>
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Per-level soundtrack utility, Rayman M/Arena disc check removal</value>
+    <value>Rayman 1 Per-level soundtrack mod, Rayman M/Arena disc check removal</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Dutch (Netherlands) program translation, program testing</value>
@@ -1572,7 +1572,7 @@ fileFormat</comment>
     <value>An error occurred in the Archive Explorer and it had to close</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Rayman reverse engineering, Rayman Raving Rabbids mod, BinarySerializer</value>
+    <value>Rayman reverse engineering, Rayman Raving Rabbids Prototype Restoration mod, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Utilities</value>

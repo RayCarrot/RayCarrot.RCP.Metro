@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman reverse engineering, Rayman Raving Rabbids mod, BinarySerializer.
+        ///   Looks up a localized string similar to Rayman reverse engineering, Rayman Raving Rabbids Prototype Restoration mod, BinarySerializer.
         /// </summary>
         public static string About_Credits_Droolie {
             get {
@@ -205,7 +205,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per-level soundtrack utility.
+        ///   Looks up a localized string similar to Rayman 1 Per-level soundtrack mod.
         /// </summary>
         public static string About_Credits_PluMGMK {
             get {
@@ -223,7 +223,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, BinarySerializer.
+        ///   Looks up a localized string similar to Rayman Control Panel, Rayman reverse engineering, BinarySerializer.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -241,7 +241,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General help with the utilities.
+        ///   Looks up a localized string similar to Rayman reverse engineering.
         /// </summary>
         public static string About_Credits_RibShark {
             get {
@@ -250,7 +250,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per-level soundtrack utility, Rayman M/Arena disc check removal.
+        ///   Looks up a localized string similar to Rayman 1 Per-level soundtrack mod, Rayman M/Arena disc check removal.
         /// </summary>
         public static string About_Credits_Snagglebee {
             get {
