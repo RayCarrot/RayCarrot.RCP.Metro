@@ -14590,6 +14590,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You just entered the cooking code! All the images are now cooking!.
+        /// </summary>
+        public static string SecretCodes_Cooking {
+            get {
+                return ResourceManager.GetString("SecretCodes_Cooking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cooking Code.
+        /// </summary>
+        public static string SecretCodes_CookingHeader {
+            get {
+                return ResourceManager.GetString("SecretCodes_CookingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this red new theme..
         /// </summary>
         public static string SecretCodes_Konami {

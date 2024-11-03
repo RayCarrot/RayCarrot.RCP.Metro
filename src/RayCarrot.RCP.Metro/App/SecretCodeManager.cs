@@ -1,7 +1,9 @@
 ﻿using Nito.AsyncEx;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -75,6 +77,26 @@ public static class SecretCodeManager
                     Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, Color.FromRgb(0xcd, 0xdc, 0x39)); // LimePrimary500
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
+                }
+            },
+            {
+                // Cooking code
+                new Key[]
+                {
+                    Key.C,
+                    Key.O,
+                    Key.O,
+                    Key.K,
+                    Key.I,
+                    Key.N,
+                    Key.G,
+                },
+                async () =>
+                {
+                    foreach (Image img in Application.Current.MainWindow.FindChildren<Image>(true))
+                        img.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(SecretCodeAsset.Cooking.GetAssetPath());
+
+                    await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Cooking, Resources.SecretCodes_CookingHeader, MessageType.Success);
                 }
             },
             {

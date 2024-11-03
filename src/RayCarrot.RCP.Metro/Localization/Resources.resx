@@ -5975,4 +5975,10 @@ categoryName</comment>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Search mods</value>
   </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>You just entered the cooking code! All the images are now cooking!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>Cooking Code</value>
+  </data>
 </root>
