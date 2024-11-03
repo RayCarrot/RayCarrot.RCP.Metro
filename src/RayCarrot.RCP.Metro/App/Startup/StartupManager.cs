@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using MahApps.Metro.Controls;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -388,7 +389,11 @@ public class StartupManager
         // Load previous state
         Data.UI_WindowState?.ApplyToWindow(appWindow);
 
-        appWindow.PreviewKeyDown += async (_, e) => await SecretCodeManager.AddKeyAsync(e.Key);
+        appWindow.PreviewKeyDown += async (_, e) =>
+        {
+            if (e.OriginalSource is not TextBoxBase)
+                await SecretCodeManager.AddKeyAsync(e.Key);
+        };
 
         // Only perform the loaded actions if this is a full startup
         if (isFullStartup)

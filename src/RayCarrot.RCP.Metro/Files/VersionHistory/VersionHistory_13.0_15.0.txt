@@ -58,6 +58,7 @@ Other changes:
 • Operations which require admin permissions now call into the main Rayman Control Panel application rather than a second admin-specific one
 • Prototype games now have a "proto" text showing on the icon like how the demos do
 • The launch URI is now shown in the game info when used for launch a game, such as if launching through Steam
+• Secret (easter egg) keyboard codes are no longer triggered when typing into a textbox
 • Fixed a bug where starting a new instance of the Rayman Control Panel or using the GameBanana 1-click installer while the Rayman Control Panel is running would cause the window to un-maximize itself if maximized
 • Fixed a bug where creating IPK archives for Rayman Origins on Xbox 360 and Rayman Legends on Xbox 360 and PS3 wouldn't work
 • Fixed a bug where the thumbnail wouldn't show for a file in the Archive Explorer after renaming it
