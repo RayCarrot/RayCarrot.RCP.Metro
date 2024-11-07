@@ -47,7 +47,7 @@ Other changes:
     • The Rayman Legends enable UbiRay utility has been replaced by a downloadable mod
     • The Rayman Fiesta Run fix save progress utility has been added as a setup game issue action if the save corruption is detected
 • The file table for UbiArt IPK archives is now automatically recreated when needed, removing the options to do so manually or on repack
-• Added serializer for Rayman Legends (PS3) save data
+• Added serializer for Rayman Legends (PS3) and Rayman Legends (Switch) save data
 • Updated the game finder to be able to find games installed through Ubisoft Connect
 • Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin
 • Improved showing progress on the taskbar and added the option to flash the taskbar icon on progression completion or error
