@@ -14,6 +14,12 @@ Version 15.0 will see the app being migrated to the latest .NET version (current
 ### Portable version?
 Can we also offer a portable version where the user must manually install dependencies such as .NET? How will the update process work then? If portable then store app data locally in the folder?
 
+## Website
+Update the [Rayman Control Panel website](https://raym.app/rcp/) to look nicer. Maybe even allow some utilities to be used on there directly, such as the Rayman 1 password generator?
+
+## 👁️‍🗨️ Avalonia UI
+Long-term it would be beneficial to migrate the app to a cross-platform framework such as Avalonia UI. This would allow for a native Linux version, which has been highly requested, and to have the app take advantage of the performance improvements which come with a newer framework. This would however be a major task since essentially all of the UI would need to be updated, especially the styles which would all need to be rewritten.
+
 ## 🎮 Replace Archive Explorer with Game Explorer
 The current version of the Archive Explorer allows viewing and modifying archive files in a game installation, but not any other files. This poses limitations for games where assets may be unpacked, but still stored in proprietary formats which we want to allow the user to be able to convert and edit.
 
@@ -88,6 +94,7 @@ Open with (external) ->
 - Add remaining console games (GCN, Wii, NDS, Xbox etc.)
 
 ### Changes
+- Separate the Print Studio downloads for the different versions (language/year), allow it to run from disc
 - Rename Rayman 3 GBA Prototype to "preview" now that there are actual leaked prototypes
 - Show green text that game is running and gray out play button
 - Rewrite how the game installers work and support Rayman 1 games. Alternatively look into allowing the native installers to run. RibShark made a patch for them.
@@ -101,11 +108,13 @@ Open with (external) ->
 - If selecting a custom emulator we can look for GBA saves as .sav files by default since that's the most common way of handling it
 - Add mGBA to runtime modifications - might need to do memory search to find pointer due to its complexity (no static pointer)
 
-## ⚒️ Game Config
+## ⚒️ Game Settings
+- Have settings which replace a file, such as the controller fixes, apply it through a mod in the mod loader rather than just manually replacing the file
 - Add button mapping to Rayman 3
-- Add configs to GBA games, allow edit things like Rayman Hoodlums' Revenge debug mode, volume etc.
+- Add settings to GBA games, allow edit things like Rayman Hoodlums' Revenge debug mode, volume etc.
 - Add language selection for Rayman Origins/Legends, [see post](https://raymanpc.com/forum/viewtopic.php?p=1453231#p1453231) for more info - the Steam exe can also easily be patched to check the Registry for the language like the Uplay version does
 - Add Italian and German language options to Rayman Arena
+- Add option to toggle rumble for M/Arena (would need to edit the save files for this)
 - Extended Rabbids Go Home options to fix 1080p widescreen (use options config file rather than registry for this)
 - Add more Rayman Raving Rabbids config values, like brightness (they are floats, but stored as integers)
 
