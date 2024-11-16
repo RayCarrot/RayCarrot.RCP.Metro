@@ -102,7 +102,7 @@ public partial class GameSelectionControl : UserControl
             Cast<InstalledGameViewModel>().
             FirstOrDefault(x => x.GameDescriptor.Category == gameCategory.Category);
 
-        if (game == null)
+        if (game == null || game == ViewModel.SelectedInstalledGame)
             return;
 
         // Scroll all the way down and then up. This places the item we scroll to on the top rather than the bottom.

@@ -69,6 +69,7 @@ Other changes:
 • Fixed a bug where the Runtime Modifications wouldn't work for Rayman 1 while in a level where you ride on Bzzit
 • Fixed a bug where some file selection dialogs would cause a crash if forward slashes were used for the initial directory
 • Fixed a bug where some buttons wouldn't render their rounded corners or mouse hover effects if there were too many loaded at once
+• Fixed a bug where pressing the game category button would scroll to the bottom if the first game in the category was already selected
 • Bug fixes
 
 
