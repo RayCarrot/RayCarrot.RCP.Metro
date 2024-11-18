@@ -1,4 +1,4 @@
-﻿-----   Version 14.2.0 - November ??, 2024   -----
+﻿-----   Version 14.2.0 - November 18, 2024   -----
 • Added support for PS2 games:
     • Rayman 2 Revolution
     • Rayman M
