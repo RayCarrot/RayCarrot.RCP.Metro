@@ -33,22 +33,7 @@ public static class AppURLs
     /// <summary>
     /// The base resource URL
     /// </summary>
-    public const string BaseResourceUrl = RCPBaseUrl + "resources/12.0.0/";
-
-    /// <summary>
-    /// The base URL for downloading utilities
-    /// </summary>
-    public const string UtilityBaseUrl = BaseResourceUrl + "utilities/";
-
-    /// <summary>
-    /// The base URL for downloading tools
-    /// </summary>
-    public const string ToolsBaseUrl = BaseResourceUrl + "tools/";
-
-    /// <summary>
-    /// The base URL for downloading mods
-    /// </summary>
-    public const string ModsBaseUrl = BaseResourceUrl + "mods/";
+    public const string BaseResourceUrl = RCPBaseUrl + "resources/14.2.0/";
 
     /// <summary>
     /// The base URL for downloading games
@@ -59,6 +44,16 @@ public static class AppURLs
     /// The base URL for downloading demos
     /// </summary>
     public const string DemosBaseUrl = BaseResourceUrl + "demos/";
+
+    /// <summary>
+    /// The base URL for downloading setup files
+    /// </summary>
+    public const string SetupBaseUrl = BaseResourceUrl + "setup/";
+
+    /// <summary>
+    /// The base URL for downloading tools
+    /// </summary>
+    public const string ToolsBaseUrl = BaseResourceUrl + "tools/";
 
     #endregion
 
@@ -155,37 +150,26 @@ public static class AppURLs
 
     #endregion
 
-    #region Utilities
+    #region Setup
 
     /// <summary>
     /// The Rayman 1 complete soundtrack utility URL
     /// </summary>
-    public const string R1_CompleteOST_URL = UtilityBaseUrl + "r1/CompleteOST.zip";
+    public const string R1_CompleteOST_URL = SetupBaseUrl + "rayman1_complete_ost.zip";
 
     /// <summary>
     /// The Rayman Designer clean files URL
     /// </summary>
-    public const string RD_CleanFiles_URL = UtilityBaseUrl + "r1/CleanRayKit.zip";
+    public const string RD_CleanFiles_URL = SetupBaseUrl + "raymandesigner_clean.zip";
 
     #endregion
 
     #region Tools
 
-    public const string PerLevelSoundtrackTool_URL = ToolsBaseUrl + "per-level-soundtrack/tpls-tsr-3.1.0.zip";
+    public const string PerLevelSoundtrackTool_URL = ToolsBaseUrl + "rayman1_per_level_soundtrack/tpls-tsr-3.1.0.zip";
 
-    #endregion
-
-    #region Mods
-
-    /// <summary>
-    /// The Rayman Raving Rabbids patched Big File (Steam) URL
-    /// </summary>
-    public const string RRR_PatchedBF_Steam_URL = ModsBaseUrl + "rrr/RRR_Patched_Steam.zip";
-
-    /// <summary>
-    /// The Rayman Raving Rabbids patched Big File (GOG) URL
-    /// </summary>
-    public const string RRR_PatchedBF_GOG_URL = ModsBaseUrl + "rrr/RRR_Patched_GOG.zip";
+    public const string RRR_PatchedBF_Steam_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_Steam.zip";
+    public const string RRR_PatchedBF_GOG_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_GOG.zip";
 
     #endregion
 
