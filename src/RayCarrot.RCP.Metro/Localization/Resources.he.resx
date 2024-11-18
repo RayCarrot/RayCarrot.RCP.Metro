@@ -884,7 +884,7 @@
     <value>תודה מיוחדת ל- AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski וכל שאר מעריצי Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, כלי עזר, פסקול פר רמה, Archive Explorer ,BinarySerializer</value>
+    <value>Rayman Control Panel, Rayman הנדסה לאחור של, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>תיקוני בקר</value>
@@ -893,7 +893,7 @@
     <value>מיפוי כפתורים עבור Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>עזרה כללית עם כלי השירות</value>
+    <value>Rayman הנדסה לאחור של</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>כלי לפסקול פר שלב</value>
@@ -1033,7 +1033,7 @@
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>כלי לפסקול פר-רמה, הסרת בדיקת דיסקים מ- Rayman M/Arena</value>
+    <value>כלי לפסקול פר-שלב לRayman 1, הסרת בדיקת דיסקים מ- Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>תרגום תוכנה להולנדית (הולנד), בדיקת תוכניות</value>
@@ -1461,7 +1461,7 @@
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>הנדסה לאחור של Rayman,
-מוד Rayman Raving Rabbids,
+ מוד חידוש עבור אב טיפוס של Rayman Raving Rabbids,
 BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
@@ -5374,5 +5374,376 @@ Start: הפסק</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>פסקול פר שלב</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>האם אתם בטוחים שברצונכם להסיר את ההתקנה של כלי הפסקול פר שלב? פעולה זו תסיר את ההתקנה עבור כל המשחקים שבהם הוא נמצא בשימוש.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>אשר הסרת ההתקנה</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>מחליף את המוזיקה במשחק במוזיקה לכל שלב מגרסת הפלייסטיישן ומספק תיקונים שונים לגרסת המחשב האישי.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>התקנה</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>צלילי שמע של מוות וסיום שלב מתוך הדיסק</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>מחליף את שלב ברירת המחדל של צליל סיום שלב וצלילי מוות באודיו של הדיסק מגרסת הפלייסטיישן</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>רצועות אווירה MIDI</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>מנגן את רצועות ה-MIDI הבלעדיות של פלייסטיישן בקטעי הרמה שלהם</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>תיקוני באגים חזותיים</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>כולל תיקוני באגים חזותיים עבור גרסת המחשב האישי, כגון גרימת האגרוף של Dark Rayman להופיע לאחר אגרוף</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>לגרום לאגרוף של Dark Rayman להרוג אתכם</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>מאפשר מחדש התנהגות גנוזה שבה האגרוף של Dark Rayman הורג את Rayman במגע</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>הסר את ההתקנה</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>התקנת משחק</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>מומלץ</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} פעולות מומלצות</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>אופציונלי</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} פעולות אופציונליות</value>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>בעיות</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>בעיה {0}</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} בעיות</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>התקן את Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 הוא אוסף של תיקונים של RibShark המאפשרים לשחק בקלות את Rayman 3 ברזולוציות מסך רחב, תוך שהוא מציע תכונות נוספות, כגון מצב חלון ושחזור היכולת לדלג על קטעי וידאו.</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>קובץ שמירה פגום</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>עקב באג בגרסאות קודמות של המשחק, התקדמות קובץ השמירה עלולה לצאת מהסנכרון ולגרום לך להיות פחות טינסים ממה שהרווחת בפועל. זה יכול לגרום לרמות מסוימות להפוך ללא נגישות.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>התקן את מוד הטקסטורות הרשמיות באיכות גבוהה יותר</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>המוד Higher Quality Official Textures הוא מוד טקסטורה של ICUP321 שמחליף רבים מהמרקמים בגרסאות טובות/איכותיות יותר שנמצאות בגרסאות אחרות, כולל טקסטורות עם תיקוני שקיפות.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>התקן את המוד 'סרטונים באיכות גבוהה'</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>הסרטונים בגרסת ה-PC דחוסים יותר מאשר בגרסאות הקונסולה. המוד High Quality Videos מחליף את הסרטונים בסרטונים שהומרו באיכות גבוהה יותר מגרסאות הקונסולה של המשחק.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>רזולוציית משחק לא חוקית</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
+    <value>יש להגדיר את רזולוציית המשחק לרזולוציה הנתמכת על ידי הכרטיס הגרפי. במערכות מסוימות, ברירת המחדל של הרזולוציה תהיה רזולוציה לא חוקית, מה שיגרום לגבולות שחורים ולקריסות אפשריות. ניתן לפתור זאת על ידי בחירת רזולוציה נתמכת.</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header" xml:space="preserve">
+    <value>התקן את המוד זמני טעינה מינימליים</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
+    <value>המוד Minimal Loading Times הוא מוד של RayCarrot אשר משנה את זמן מסך הטעינה המינימלי מ-4 שניות ל-0 שניות, ובכך הופך את זמני הטעינה למהירים יותר.</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>קובץ התצורה של Mapper חסר או לא חוקי</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Info" xml:space="preserve">
+    <value>במהלך התקנות מסוימות של Rayman Designer, קובץ התצורה לא יווצר, או יווצר עם ערכים לא חוקיים, מה שגורם לעורך Mapper לתת שגיאה בעת ההפעלה.</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>חסר נתיב Mount</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>יש לציין נתיב Mount חוקי בהגדרות האמולטור של המשחק כדי שהוא יוכל להפעיל.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Header" xml:space="preserve">
+    <value>המשחק לא מוגדר נכון</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Info" xml:space="preserve">
+    <value>הגדרות מסוימות בתצורת המשחק אינן מוגדרות כהלכה. זה עלול לגרום לבעיות במשחק כמו אפקטים קוליים חסרים. עבור אל תצורת המשחק, בחר את ההגדרות המומלצות ושמור כדי לתקן את זה.</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Header" xml:space="preserve">
+    <value>התקן את Ray2Fix</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Info" xml:space="preserve">
+    <value>Ray2Fix הוא מוד לגרסת GOG של spitfirex86 שמטרתו לפשט את הגדרת המשחק. זה מגיע גם עם שינויים שונים, כגון היכולת למפות מחדש את פקדי המשחק ותמיכה מתאימה במסך רחב.</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
+    <value>התקן את המוד של PS2 Videos</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Info" xml:space="preserve">
+    <value>קטעי הווידאו בגרסת ה-PC הם יותר דחוסים ואיכותיים יותר מאשר בגרסאות הקונסולה. המוד PS2 Videos מחליף את הסרטונים בסרטונים באיכות גבוהה יותר מגרסת ה-PlayStation 2.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>החלף פסקול חלקי</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>אוסף Rayman Forever לא מגיע עם הפסקול המלא למשחק בגלל שטח דיסק מוגבל במהדורה המקורית. מומלץ להחליף את קבצי המוזיקה באלו מהפסקול המלא.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>החלף בפסקול המלא</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>החלף קבצים נגועים</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>בחלק מהגרסאות של Rayman Designer, כמו זו המצורפת ב-Rayman Forever, חלק מהקבצים שלה נגועים בתוכנה זדונית ישנה. למרות שזה לא נראה מזיק, או אפילו פעיל, ו-GOG אישרה שאין סכנה, עדיין יכול להיות מועיל להחליף את הקבצים בגרסאות הלא נגועות שלהם כדי למנוע מתוכנות אנטי-וירוס להסיר את קבצי המשחק.</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>החלף קבצים</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>לא נבחר תוכנת/אימולטור משחק</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>לא ניתן להפעיל את המשחק הזה ללא תוכנת/אמולטור משחק. תחילה הקפד להוסיף תוכנת/אמולטור משחק נתמך ולאחר מכן לבחור אותו לשימוש עם משחק זה.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>הוסף תוכנת/אימולטור משחק</value>
+  </data>
+  <data name="SetupGameAction_DownloadFix" xml:space="preserve">
+    <value>הורדה</value>
+  </data>
+  <data name="SetupGameAction_GeneralFix" xml:space="preserve">
+    <value>תיקון</value>
+  </data>
+  <data name="SetupGameAction_DownloadModFix" xml:space="preserve">
+    <value>הורד מוד</value>
+  </data>
+  <data name="SetupGameAction_GameSettingsFix" xml:space="preserve">
+    <value>פתח את הגדרות המשחק</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>פתח את הגדרות משחק תוכנת/אימולטור</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>לא נמצאו קבצים חוקיים עבור המוד</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>אירעה שגיאה בעת קבלת ההורדה עבור המוד</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>חלון הבזק בשורת המשימות לאירועים ספציפיים</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>הבזק את סמל החלון בשורת המשימות במהלך אירועים מסויימים, כגון כאשר מודים סיימו להחיל</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>הגדרות משחק</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>הגדרות תוכנת/אימולטור של המשחק</value>
+  </data>
+  <data name="GameSettingsTitle" xml:space="preserve">
+    <value>הגדרות משחק - {0}</value>
+  </data>
+  <data name="GameClientGameSettingsTitle" xml:space="preserve">
+    <value>{0} הגדרות משחק - {1}</value>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>מיקומים של הגדרות</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>הצג מיקומי הגדרות</value>
+  </data>
+  <data name="GameSettings_ApplyRecommendedSettings" xml:space="preserve">
+    <value>החל הגדרות מומלצות</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>אירעה שגיאה בעת טעינת הגדרות המשחק. ייתכן שיהיה עליך להפעיל את האפליקציה כמנהל מערכת.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>אירעה שגיאה בעת שמירת הגדרות המשחק. ייתכן שיהיה עליך להפעיל את האפליקציה כמנהל מערכת.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>ניפוי באגים בפקודות הפעלה</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Source" xml:space="preserve">
+    <value>מקור</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
+    <value>המקור מציין כיצד אפשרויות ההפעלה מעובדות על ידי המשחק. שימוש בקובץ cmdline.txt ימקם אותו בספריית השורש של המשחק ויאפשר גמישות רבה יותר, כגון הוספת הערות בקובץ עם ## ואפשר להשתמש בו מחוץ ללוח הבקרה של Rayman. עם זאת, פעולה זו תאפס את הגדרות התצוגה שלך, כך שתצטרך לציין אותן שוב בפקודות. שימוש בארגומנטים של הפעלה שומר על הגדרות התצוגה שלך, אך ייתכן שפקודות מסוימות, כגון שינוי השפה, לא יפעלו.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>ללא</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile" xml:space="preserve">
+    <value>קובץ cmdline.txt</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>הפעל ארגומנטים</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNotAvailable" xml:space="preserve">
+    <value>לא זמין</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInstallMod" xml:space="preserve">
+    <value>התקן מוד</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>פקודות</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>פלט</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
+    <value>בחר מקור לשימוש וערוך את הפקודות</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
+    <value>יש לתקן את המשחק כדי לאפשר את הקובץ cmdline.txt. ניתן לעשות זאת באמצעות המוד CommandLine File Fix.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
+    <value>תוכנת המשחק שנבחרה כעת אינה תומכת בהעברת ארגומנטים של השקה למשחק. שנה את התוכנה או הגדר אותה כך שלא ישתמש בתוכנה משחק בעת הפעלת המשחק כדי להשתמש בארגומנטים של הפעלה.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>ספרית בסיס</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>מציין את ספריית הבסיס שבה המשחק מחפש את הקבצים. כברירת מחדל זוהי הספרייה שבה נמצא קובץ ההפעלה של המשחק.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
+    <value>מפה</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
+    <value>נתיב הקובץ היחסי לקובץ סצנה לטעינה כשהמשחק מתחיל.
+אזהרה: טעינה ישירות למפה באמצעות זה תדלג על טעינת קובץ השמירה שלך ועלולה לגרום לאיפוס השמירה שלך אם המשחק יישמר אוטומטית. מומלץ מאוד לגבות את קבצי השמירה שלך לפני השימוש בזה.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
+    <value>שפה</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageInfo" xml:space="preserve">
+    <value>כל השפות אינן זמינות בכל מהדורות המשחק.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveHeader" xml:space="preserve">
+    <value>השבת טעינה/שמירה</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveInfo" xml:space="preserve">
+    <value>משבית טעינת שמירות ושמירת המשחק. מומלץ מאוד להשתמש בזה בעת טעינת מפה ספציפית כדי למנוע איפוס של קובץ השמירה.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
+    <value>קצב פריימים</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
+    <value>מגדיר את קצב הפריימים לשניה של לולאת האפליקציה הראשית. זה יגרום לשינוי מהירות המשחק גם בגלל שהלוגיקת המשחק מקודדת ל-60 פריימים לשנייה.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
+    <value>השתק</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundInfo" xml:space="preserve">
+    <value>משתיק את כל הצלילים.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader" xml:space="preserve">
+    <value>זום מקסימלי של המצלמה</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo" xml:space="preserve">
+    <value>מרחיק את המצלמה.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader" xml:space="preserve">
+    <value>כל השחקנים ביחד מרמים</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
+    <value>גורם לכל השחקנים לעקוב אחרי שחקן 1.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>בלתי מנוצח</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoMouseHeader" xml:space="preserve">
+    <value>הסתר את סמן העכבר</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FullscreenHeader" xml:space="preserve">
+    <value>מסך מלא</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_WidthHeader" xml:space="preserve">
+    <value>רוחב</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_HeightHeader" xml:space="preserve">
+    <value>גובה</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_XHeader" xml:space="preserve">
+    <value>מיקום X</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_YHeader" xml:space="preserve">
+    <value>מיקום Y</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>ברירת מחדל</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
+    <value>בחר את קובץ המוד להורדה</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
+    <value>בחר קובץ mod</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
+    <value>כלי השירות לפסקול לפי רמה עבור Rayman 1 עובדה מחדש בגרסה זו כדי שלא להסתמך עוד על גרסאות DOSBox מותאם אישית. כדי להמשיך להשתמש בו, עליך להתקין אותו שוב. הגרסה הקודמת הוסרה אוטומטית.</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
+    <value>הודעת עדכון פסקול ברמה לכל שלב</value>
+  </data>
+  <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
+    <value>האפשרות לתקן את Rayman 2 לשימוש במסך רחב הוסרה בגרסה זו לטובת הטמעת מסך רחב המשופרת החדשה שזמינה כעת ב-Ray2Fix. ה-exe של המשחק שנוסף "{0}" זוהה כמשתמש במסך רחב אם זה הוחל דרך לוח הבקרה של Rayman, מומלץ מאוד להחזיר את התיקון הזה עכשיו ולהשתמש באפשרות מסך רחב ב-Ray2Fix.
+האם אתה רוצה להחזיר את התיקון?</value>
+  </data>
+  <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
+    <value>הודעת עדכון תיקון Rayman 2 Widescreen</value>
+  </data>
+  <data name="GameInfo_LaunchUri" xml:space="preserve">
+    <value>הפעל URI:</value>
+  </data>
+  <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 בטא (1998/07/22)</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>כברירת מחדל המשחק תומך ברזולוציה רק ​​ביחס גובה-רוחב של 4:3. כל רזולוציה אחרת תגרום למתיחת המשחק. על מנת להוסיף תמיכה מתאימה במסך רחב מומלץ להשתמש ב-Ray2Fix ולאפשר שם את אפשרות המסך הרחב.</value>
+  </data>
+  <data name="ModLoader_TooShortSearchText" xml:space="preserve">
+    <value>טקסט החיפוש חייב להכיל לפחות 2 תווים</value>
+  </data>
+  <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
+    <value>מציג תוצאות חיפוש עבור "{0}"</value>
+  </data>
+  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
+    <value>מציג מודים בקטגוריה "{0}"</value>
+  </data>
+  <data name="ModLoader_Search" xml:space="preserve">
+    <value>חיפוש מודים</value>
+  </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>הרגע הזנת את קוד הבישול! כל התמונות מתבשלות עכשיו!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>קוד בישול</value>
   </data>
 </root>

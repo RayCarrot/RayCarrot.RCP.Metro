@@ -5513,7 +5513,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work..
+        ///   Looks up a localized string similar to The source specifies how the launch options are processed by the game. Using a cmdline.txt file will place it in the game root directory and allows for more flexibility, such as adding comments in the file with ## and allowing it to be used outside of the Rayman Control Panel. However, doing so will reset your display settings, making you have to specify them again in the commands. Using launch arguments maintains your display settings, but certain commands, such as changing the language, might not work..
         /// </summary>
         public static string GameSettings_UbiArt_LaunchCommands_SourceInfo {
             get {
@@ -15643,7 +15643,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The videos in the PC version are more compressed than in the console versions. The High Quality Videos mod replaces the videos with higher quality converted ones from the the console versions of the game..
+        ///   Looks up a localized string similar to The videos in the PC version are more compressed than in the console versions. The High Quality Videos mod replaces the videos with higher quality converted ones from the console versions of the game..
         /// </summary>
         public static string SetupGameAction_HighQualityRaymanOriginsVideos_Info {
             get {

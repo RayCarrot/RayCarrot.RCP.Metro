@@ -178,7 +178,7 @@
     <value>Usa il doppio buffering con lo schermo intero</value>
   </data>
   <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
-    <value>Correzione formato</value>
+    <value>Correzione proporzioni</value>
   </data>
   <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
     <value>Applica la correzione delle proporzioni, se il ridimensionamento non è supportato, questa correzione può causare rallentamenti! </value>
@@ -886,7 +886,7 @@ Riprovare?</value>
     <value>Un ringraziamento speciale a AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski e a tutti gli altri fan di Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilità, colonna sonora Per-Livello, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, reverse engineering di Rayman, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patch controller</value>
@@ -895,7 +895,7 @@ Riprovare?</value>
     <value>Rimappatura pulsanti Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Aiuto generale con le utilità</value>
+    <value>Reverse engineering di Rayman</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Colonna sonora Per-Livello</value>
@@ -1035,7 +1035,7 @@ Per iniziare, modifica le impostazioni che desideri di seguito e premi 'Continua
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Utilità della colonna sonora Per-Livello, rimozione del controllo del disco Rayman M/Arena</value>
+    <value>Mod Colonna sonora Per-Livello per Rayman 1, rimozione del controllo del disco per Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Traduzione del programma in Olandese (Paesi Bassi), test del programma</value>
@@ -1462,7 +1462,7 @@ Messaggio di errore: {1} </value>
     <value>Si è verificato un errore, Archive Explorer deve essere chiuso</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Reverse engineering di Rayman, mod Rayman Raving Rabbids, BinarySerializer</value>
+    <value>Reverse engineering di Rayman, mod per il restauro del prototipo di Rayman Raving Rabbids, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Utilità</value>
@@ -2680,7 +2680,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>La versione del gioco non è supportata</value>
   </data>
   <data name="Mod_RRR_BFPatch_ApplyExePatchSuccess" xml:space="preserve">
-    <value>L'eseguibile è stato corretto con successo</value>
+    <value>L'eseguibile è stato patchato con successo</value>
   </data>
   <data name="Mod_RRR_BFPatch_RevertExePatchSuccess" xml:space="preserve">
     <value>La patch all'eseguibile è stata ripristinata con successo</value>
@@ -3945,10 +3945,10 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>Seleziona un file di configurazione</value>
   </data>
   <data name="GameClients_SelectionHeader" xml:space="preserve">
-    <value>Client/emulatore</value>
+    <value>Client di gioco/emulatore</value>
   </data>
   <data name="GameClients_SelectionInfo" xml:space="preserve">
-    <value>Qui è possibile selezionare un client o un emulatore da utilizzare con il gioco. Il client selezionato sarà responsabile dell'avvio del gioco. Per i giochi emulati questo è necessario in quanto non possono avviarsi da soli.</value>
+    <value>Qui è possibile selezionare un client di gioco un emulatore da utilizzare con il gioco. Il client selezionato sarà responsabile dell'avvio del gioco. Per i giochi emulati questo è necessario in quanto non possono avviarsi da soli.</value>
   </data>
   <data name="GameClients_SelectionNone" xml:space="preserve">
     <value>Nessuno</value>
@@ -4087,7 +4087,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>Il client di gioco/emulatore non è stato trovato</value>
   </data>
   <data name="GameClients_AddedClientsHeader" xml:space="preserve">
-    <value>Aggiunti client/emulatori di gioco</value>
+    <value>Aggiunti client di gioco/emulatori di gioco</value>
   </data>
   <data name="GameClients_AvailableClientsHeader" xml:space="preserve">
     <value>Client di gioco ed emulatori disponibili</value>
@@ -5121,7 +5121,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
 Se manca un'utilità o un altro tipo di patch, molto probabilmente è stata cambiata come mod.</value>
   </data>
   <data name="AddGameClients_FindClients" xml:space="preserve">
-    <value>Trova client/emulatori di gioco installati</value>
+    <value>Trova client di gioco/emulatori di gioco installati</value>
   </data>
   <data name="About_Credits_payopayo" xml:space="preserve">
     <value>Traduzione del programma Turco (Turchia).</value>
@@ -5136,7 +5136,7 @@ Se manca un'utilità o un altro tipo di patch, molto probabilmente è stata camb
     <value>Non sono stati trovati nuovi giochi installati</value>
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
-    <value>Non sono stati trovati nuovi client/emulatori di gioco installati</value>
+    <value>Non sono stati trovati nuovi client di gioco/emulatori di gioco installati</value>
   </data>
   <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
     <value>Si è verificato un errore durante il download della mod</value>
@@ -5305,5 +5305,446 @@ Vuoi continuare ad applicare le mod?</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="Archive_SavingStatus" xml:space="preserve">
+    <value>Salvando l'archivio</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
+    <value>Cooked UBIArt Sound</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtTexture" xml:space="preserve">
+    <value>Cooked UBIArt Texture</value>
+  </data>
+  <data name="Rayman2_Ps2_Title" xml:space="preserve">
+    <value>Rayman 2 Revolution</value>
+  </data>
+  <data name="Rayman3_Ps2_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_Ps2_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="RaymanM_Ps2_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanRavingRabbids_Ps2_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="GameClients_PCSX2" xml:space="preserve">
+    <value>PCSX2</value>
+  </data>
+  <data name="Platform_Ps2" xml:space="preserve">
+    <value>PlayStation 2</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Encoding" xml:space="preserve">
+    <value>Codifica</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceError" xml:space="preserve">
+    <value>Non c'è abbastanza spazio sul sistema per applicare le mod. Sono richiesti almeno {0} di spazio libero.</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceErrorHeader" xml:space="preserve">
+    <value>Spazio insufficiente rimasto</value>
+  </data>
+  <data name="ModLoader_ApplyWithErrors" xml:space="preserve">
+    <value>Applicazione delle mod completata. Non é stato possibile modificare alcuni file.
+
+Messaggi di errore:
+{0}
+</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCovered" xml:space="preserve">
+    <value>Distanza percorsa</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCoveredValue" xml:space="preserve">
+    <value>{0} metri</value>
+  </data>
+  <data name="Progression_R2Ps2_TimePlayed" xml:space="preserve">
+    <value>Tempo giocato</value>
+  </data>
+  <data name="Progression_R2Ps2_PlayerShotsFired" xml:space="preserve">
+    <value>Colpi sparati dal giocatore</value>
+  </data>
+  <data name="Progression_R2Ps2_ShootingAccuracy" xml:space="preserve">
+    <value>Precisione di tiro</value>
+  </data>
+  <data name="Progression_R2Ps2_TimesKilled" xml:space="preserve">
+    <value>Numero di morti</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfTryAgain" xml:space="preserve">
+    <value>Numero di tentativi</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
+    <value>Numero di salti</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Colonna sonora Per-livello</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>Vuoi davvero disinstallare la Colonna sonora Per-livello? Questo lo disinstallerà per tutti i giochi in cui viene utilizzato.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Conferma disinstallazione</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Sostituisce la musica del gioco con la musica presente nei vari livelli della versione PlayStation e fornisce anche varie correzioni per la versione PC.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>Installa</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>Livello audio CD chiaro e suoni per la morte</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>Sostituisce i suoni predefiniti di per il completamento dei livelli e morte con quelli audio del CD della versione PlayStation</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Traccia MIDI ambientale</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>Riproduce le tracce MIDI ambientali esclusive per PlayStation nelle rispettive sezioni di livello</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Correzioni di bug visivi</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Include correzioni di bug visivi per la versione PC, come la visualizzazione del pugno di Dark Rayman dopo aver colpito</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Farsi uccidere dal pugno di Dark Rayman</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Riattiva un comportamento tagliato in cui il pugno di Dark Rayman uccide Rayman al contatto</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>Disinstalla</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Imposta il gioco</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Consigliato</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} azioni consigliate</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Opzionale</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} azioni facoltative</value>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>Problemi</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>{0} problema</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} problemi</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>Installa Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 è una raccolta di correzioni di RibShark che consentono di giocare facilmente a Rayman 3 in risoluzione widescreen, offrendo al contempo funzionalità aggiuntive, come la modalità finestra e il ripristino della possibilità di saltare i filmati.</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>File di salvataggio corrotto</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>A causa di un bug nelle versioni precedenti del gioco, i progressi del file di salvataggio potrebbero non essere sincronizzati, facendoti avere meno Teen di quelli effettivamente guadagnati. Questo può causare l'inaccessibilità di alcuni livelli.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>Installa la mod Higher Quality Official Textures mod</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>La mod Higher Quality Official Textures è una mod texture di ICUP321 che sostituisce molte delle texture con varianti di qualità migliore/più elevata presenti in altre versioni, comprese texture con correzioni di trasparenza.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Installa la mod Higher Quality Official Videos mod</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>I video nella versione PC sono più compressi rispetto alle versioni console. La mod High Quality Videos sostituisce i video con quelli convertiti di qualità superiore dalle versioni console del gioco.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>Risoluzione del gioco non valida</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
+    <value>La risoluzione del gioco deve essere impostata su una risoluzione supportata dalla scheda grafica. Su alcuni sistemi la risoluzione verrà impostata di default su una risoluzione non valida, causando bordi neri e potenziali crash. Questo può essere risolto selezionando una risoluzione supportata.</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header" xml:space="preserve">
+    <value>Installa la mod Minimum Loading Times</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
+    <value>La mod Minimum Loading Times è una mod creata da RayCarrot che modifica il tempo minimo di caricamento della schermata da 4 a 0 secondi, rendendo così i tempi di caricamento più rapidi.</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>Il file di configurazione di Mapper è mancante o non valido</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Info" xml:space="preserve">
+    <value>Durante alcune installazioni di Rayman Designer, il file di configurazione non viene creato oppure viene creato con valori non validi, causando un errore all'avvio dell'editor Mapper.</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>Percorso di montaggio mancante</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>Per poter avviare il gioco, è necessario specificare un percorso di montaggio valido nelle impostazioni dell'emulatore.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Header" xml:space="preserve">
+    <value>Il gioco non è configurato correttamente</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Info" xml:space="preserve">
+    <value>Alcune impostazioni nella configurazione del gioco non sono impostate correttamente. Ciò potrebbe causare problemi nel gioco, come la mancanza di effetti sonori. Vai alla configurazione del gioco, scegli le impostazioni consigliate e salva per risolvere il problema.</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Header" xml:space="preserve">
+    <value>Installa Ray2Fix</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Info" xml:space="preserve">
+    <value>Ray2Fix è una mod per la versione GOG creata da spitfirex86 che mira a semplificare l'impostazione del gioco. È inoltre dotata di vari tweak, come la possibilità di rimappare i controlli del gamepad e un supporto widescreen appropriato.</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
+    <value>Installa la mod PS2 Videos</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Info" xml:space="preserve">
+    <value>Le cutscene video nella versione PC sono più compresse e di qualità inferiore rispetto alle versioni console. La mod PS2 Videos sostituisce i video con i video di qualità superiore della versione PlayStation 2.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>Sostituisci la colonna sonora incompleta</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>La collezione Rayman Forever non include la colonna sonora completa del gioco a causa dello spazio limitato sul disco nella versione originale. Si consiglia di sostituire i file musicali con quelli della colonna sonora completa.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>Sostituisci con la colonna sonora completa</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>Sostituisci i file infetti</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>Alcune versioni di Rayman Designer, come quella inclusa in Rayman Forever, hanno alcuni dei suoi file infettati da un vecchio malware. Sebbene non sembri essere dannoso, o addirittura attivo, e GOG ha confermato che non c'è pericolo, può comunque essere utile sostituire i file con le loro versioni non infette per evitare che i programmi antivirus rimuovano i file del gioco.</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>Sostituisci i file</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>Nessun client di gioco/emulatore selezionato</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>Questo gioco non può essere lanciato senza un client/emulatore. Assicurati prima di aggiungere un client/emulatore supportato e poi selezionalo per usarlo con questo gioco.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>Aggiungi client di gioco/emulatore</value>
+  </data>
+  <data name="SetupGameAction_DownloadFix" xml:space="preserve">
+    <value>Scarica</value>
+  </data>
+  <data name="SetupGameAction_GeneralFix" xml:space="preserve">
+    <value>Aggiusta</value>
+  </data>
+  <data name="SetupGameAction_DownloadModFix" xml:space="preserve">
+    <value>Scarica mod</value>
+  </data>
+  <data name="SetupGameAction_GameSettingsFix" xml:space="preserve">
+    <value>Apri le impostazioni del gioco</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>Apri le impostazioni del client di gioco/emulatore</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>Non sono stati trovati file validi per la mod</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>Si è verificato un errore durante l'ottenimento del download per la mod</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>Lampeggio finestra sulla barra delle applicazioni per eventi specifici</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>Far lampeggiare l'icona della finestra sulla barra delle applicazioni durante eventi specifici, ad esempio quando le mod hanno terminato l'applicazione</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>Impostazioni di gioco</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>Impostazioni del client di gioco/emulatore</value>
+  </data>
+  <data name="GameSettingsTitle" xml:space="preserve">
+    <value>Impostazioni di gioco - {0}</value>
+  </data>
+  <data name="GameClientGameSettingsTitle" xml:space="preserve">
+    <value>{0} Impostazioni di gioco - {1}</value>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>Percorsi delle impostazioni</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>Mostra le percorso delle impostazioni</value>
+  </data>
+  <data name="GameSettings_ApplyRecommendedSettings" xml:space="preserve">
+    <value>Applica le impostazioni consigliate</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>Si è verificato un errore durante il caricamento delle impostazioni del gioco. Potrebbe essere necessario eseguire l'app come amministratore.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>Si è verificato un errore durante il salvataggio delle impostazioni di gioco. Potrebbe essere necessario eseguire l'app come amministratore.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>Comandi debug di avvio</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Source" xml:space="preserve">
+    <value>Sorgente</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
+    <value>La sorgente specifica come le opzioni di avvio vengono elaborate dal gioco. L'utilizzo di un file cmdline.txt verrà inserito nella directory principale del gioco e consentirà maggiore flessibilità, come l'aggiunta di commenti nel file con ## e consentendone l'utilizzo al di fuori del Rayman Control Panel. Tuttavia, così facendo si reimposteranno le impostazioni di visualizzazione, costringendoti a specificarle di nuovo nei comandi. L'utilizzo di argomenti di avvio mantiene le impostazioni di visualizzazione, ma alcuni comandi, come la modifica della lingua, potrebbero non funzionare.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>Nessuno</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile" xml:space="preserve">
+    <value>File cmdline.txt</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>Argomenti di avvio</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNotAvailable" xml:space="preserve">
+    <value>Non disponibile</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInstallMod" xml:space="preserve">
+    <value>Installa mod</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>Comandi</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
+    <value>Seleziona una fonte da utilizzare e modifica i comandi</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
+    <value>È necessario applicare una patch al gioco per consentire l'utilizzo del file cmdline.txt. Questo può essere fatto usando la mod CommandLine File Fix. Questo può essere fatto usando la mod CommandLine File Fix.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
+    <value>Il client di gioco attualmente selezionato non supporta il passaggio di argomenti di avvio al gioco. Cambia il client o impostalo in modo che non utilizzi un client di gioco quando avvii il gioco per utilizzare gli argomenti di avvio.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>Directory principale</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>Specifica la directory principale in cui il gioco cerca i file. Di default questa è la directory in cui si trova l'eseguibile del gioco.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
+    <value>Mappa</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
+    <value>Il percorso file relativo a un file di scena da caricare all'avvio del gioco.
+ATTENZIONE: il caricamento diretto in una mappa tramite questa opzione salterà il caricamento del file di salvataggio e potrebbe causare il ripristino del salvataggio se il gioco salva automaticamente. Si consiglia vivamente di eseguire il backup dei file di salvataggio prima di utilizzare questa opzione.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageInfo" xml:space="preserve">
+    <value>Non tutte le lingue sono disponibili in tutte le versioni del gioco.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveHeader" xml:space="preserve">
+    <value>Disabilita caricamento/salvataggio</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveInfo" xml:space="preserve">
+    <value>Disattiva il caricamento dei salvataggi e il salvataggio del gioco. È altamente consigliato usarlo quando si carica una mappa specifica per evitare di reimpostare il file di salvataggio.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
+    <value>Frequenza dei fotogrammi</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
+    <value>Imposta il la frequenza dei fotogrammi del loop dell'app principale. Ciò causerà anche la modifica della velocità del gioco, poiché la logica del gioco è codificata a 60 fps.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
+    <value>Muto</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundInfo" xml:space="preserve">
+    <value>Disattiva tutti i suoni.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader" xml:space="preserve">
+    <value>Zoom massimo della camera</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo" xml:space="preserve">
+    <value>Riduce lo zoom della camera.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader" xml:space="preserve">
+    <value>Trucco tutti i giocatori insieme</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
+    <value>Fa sì che tutti i giocatori seguano il giocatore 1.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>Invincibile</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoMouseHeader" xml:space="preserve">
+    <value>Nascondi cursore del mouse</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FullscreenHeader" xml:space="preserve">
+    <value>A schermo intero</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_WidthHeader" xml:space="preserve">
+    <value>Larghezza</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_HeightHeader" xml:space="preserve">
+    <value>Altezza</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_XHeader" xml:space="preserve">
+    <value>Posizione X</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_YHeader" xml:space="preserve">
+    <value>Posizione Y</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>Predefinito</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
+    <value>Seleziona il file mod da scaricare</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
+    <value>Seleziona il file mod</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
+    <value>L'utilità Colonna sonora Per-livello per Rayman 1 è stata rielaborata in questa versione per non basarsi più su una build DOSBox personalizzata. Per continuare a usarla, devi installarla di nuovo. La versione precedente è stata disinstallata automaticamente.</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
+    <value>Avviso di aggiornamento della Colonna sonora Per-livello</value>
+  </data>
+  <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
+    <value>L'opzione per applicare la patch a Rayman 2 per usare il widescreen è stata rimossa in questa versione in favore della nuova implementazione migliorata del widescreen ora disponibile in Ray2Fix. È stato rilevato che l'exe per il gioco aggiunto ""{0}"" usa una patch widescreen. Se è stata applicata tramite Rayman Control Panel, si consiglia vivamente di ripristinare questa patch ora e di utilizzare invece l'opzione widescreen in Ray2Fix.
+Vuoi ripristinare la patch?</value>
+  </data>
+  <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
+    <value>Avviso di aggiornamento patch widescreen per Rayman 2</value>
+  </data>
+  <data name="GameInfo_LaunchUri" xml:space="preserve">
+    <value>URI di avvio:</value>
+  </data>
+  <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Beta (22/07/1998)</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Di default il gioco supporta solo una risoluzione con formato a 4:3. Qualsiasi altra risoluzione comporterà l'allungamento del gioco. Per aggiungere un supporto widescreen appropriato, si consiglia di usare Ray2Fix e abilitare lì l'opzione widescreen.</value>
+  </data>
+  <data name="ModLoader_TooShortSearchText" xml:space="preserve">
+    <value>Il testo di ricerca deve contenere almeno 2 caratteri</value>
+  </data>
+  <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
+    <value>Mostrando risultati di ricerca per "{0}"</value>
+  </data>
+  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
+    <value>Mostrando mod nella categoria "{0}"</value>
+  </data>
+  <data name="ModLoader_Search" xml:space="preserve">
+    <value>Cerca mod</value>
+  </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>Hai appena inserito il codice Cooking! Tutte le immagini sono ora in cottura!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>Codice Cooking</value>
   </data>
 </root>

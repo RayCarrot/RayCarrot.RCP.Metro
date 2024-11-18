@@ -142,10 +142,10 @@
     <value>Opslaan</value>
   </data>
   <data name="MountPathHeader" xml:space="preserve">
-    <value>Mount Path</value>
+    <value>Mount-Pad</value>
   </data>
   <data name="MountPathInfo" xml:space="preserve">
-    <value>De 'mount path' kan zowel een bestand als schijfstation zijn; als je de GOG-versie hebt, is het het 'game.inst'-bestand, als je gebruikmaakt van een schijfimage is het normaal gesproken het .cue-bestand. Gebruik in andere gevallen de schijfletter van de cd-rom.</value>
+    <value>Het mount-pad kan zowel een bestand als schijfstation zijn; als je de GOG-versie hebt, is het het 'game.inst'-bestand, als je gebruikmaakt van een schijfimage is het normaal gesproken het .cue-bestand. Gebruik in andere gevallen de schijfletter van de cd-rom.</value>
   </data>
   <data name="MountOption_File" xml:space="preserve">
     <value>Bestand</value>
@@ -154,10 +154,10 @@
     <value>Schijfstation</value>
   </data>
   <data name="MountOption_FileInfo" xml:space="preserve">
-    <value>Geef aan dat de 'mount path' een bestand is</value>
+    <value>Geef aan dat het mount-pad een bestand is</value>
   </data>
   <data name="MountOption_DriveInfo" xml:space="preserve">
-    <value>Geef aan dat de 'mount path' een schijfstation of cd-rom is</value>
+    <value>Geef aan dat het mount-pad een schijfstation of cd-rom is</value>
   </data>
   <data name="DosBoxSettingsHeader" xml:space="preserve">
     <value>DOSBox Instellingen</value>
@@ -544,7 +544,7 @@
     <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
-    <value>De 'mount path' kon niet gevonden worden. Specificeer een geldig pad via de spelinstellingen om het spel te kunnen starten.</value>
+    <value>Het mount-pad kon niet gevonden worden. Specificeer een geldig pad via de spelinstellingen om het spel te kunnen starten.</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
     <value>Dit zal elke, eerder gemaakte back-up vervangen voor:</value>
@@ -885,7 +885,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, Rayman reverse engineering, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -894,7 +894,7 @@ Opnieuw proberen?</value>
     <value>Rayman 2 button remapping</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Algemene ondersteuning bij de hulpprogramma's</value>
+    <value>Rayman reverse engineering</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Per-level soundtrack hulpprogramma</value>
@@ -1032,7 +1032,7 @@ Opnieuw proberen?</value>
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Per-Level soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
+    <value>Rayman 1 Per-Level soundtrack modificatie, Rayman M/Arena schijfcontrole eliminatie</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Nederlandse (Nederland) programmavertaling, programmatests</value>
@@ -1459,7 +1459,7 @@ Foutmelding: {1}</value>
     <value>Er heeft een fout plaatsgevonden in de Archive Explorer en deze moest afgesloten worden</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Rayman reverse engineering, Rayman Raving Rabbids mod, BinarySerializer</value>
+    <value>Rayman reverse engineering, Rayman Raving Rabbids Prototype Herstel modificatie, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Hulpprogramma's</value>
@@ -5299,5 +5299,444 @@ Doorgaan met het toepassen van mods?</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="Archive_SavingStatus" xml:space="preserve">
+    <value>Opslaan van archief</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
+    <value>Cooked UBIArt Geluid</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtTexture" xml:space="preserve">
+    <value>Cooked UBIArt Textuur</value>
+  </data>
+  <data name="Rayman2_Ps2_Title" xml:space="preserve">
+    <value>Rayman 2 Revolution</value>
+  </data>
+  <data name="Rayman3_Ps2_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_Ps2_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="RaymanM_Ps2_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanRavingRabbids_Ps2_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="GameClients_PCSX2" xml:space="preserve">
+    <value>PCSX2</value>
+  </data>
+  <data name="Platform_Ps2" xml:space="preserve">
+    <value>PlayStation 2</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Encoding" xml:space="preserve">
+    <value>Encoderen</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceError" xml:space="preserve">
+    <value>Er is niet genoeg opslagruimte voor het toepassen van de mods. Er is ten minste {0} vrije ruimte vereist.</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceErrorHeader" xml:space="preserve">
+    <value>Onvoldoende beschikbare ruimte</value>
+  </data>
+  <data name="ModLoader_ApplyWithErrors" xml:space="preserve">
+    <value>Toepassen mods voltooid. Sommige bestanden konden niet worden gewijzigd.
+
+Foutberichten:
+{0}</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCovered" xml:space="preserve">
+    <value>Afstand afgelegd</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCoveredValue" xml:space="preserve">
+    <value>{0} meters</value>
+  </data>
+  <data name="Progression_R2Ps2_TimePlayed" xml:space="preserve">
+    <value>Tijd gespeeld</value>
+  </data>
+  <data name="Progression_R2Ps2_PlayerShotsFired" xml:space="preserve">
+    <value>Speler schoten gevuurd</value>
+  </data>
+  <data name="Progression_R2Ps2_ShootingAccuracy" xml:space="preserve">
+    <value>Schoten accuratesse</value>
+  </data>
+  <data name="Progression_R2Ps2_TimesKilled" xml:space="preserve">
+    <value>Aantal kills</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfTryAgain" xml:space="preserve">
+    <value>Aantal Probeer Opnieuw</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
+    <value>Aantal sprongen</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Per-level Soundtrack</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>Weer je zeker dat je de Per-level Soundtrack tool wilt verwijderen? Vervolgens zal het gede-installeerd worden voor elk spel waar het gebruikt wordt.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Bevestig de-installatie</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Vervangt de muziek in het spel met de per-level muziek van de PlayStation versie en biedt verscheidene fixes voor de PC versie.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>Installeren</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>CD audio level finish en kill geluiden</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>Vervangt de standaard level finish en kill geluiden met de PlaySation CD audio versies</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Ambient MIDI track</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>Speelt de PlayStation-exclusieve Ambient MIDI tracks af in de respectievelijke level secties</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Visuele bug fixes</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Visuele bug fixes voor de PC versie inclusief, zoals het laten verschijnen van Dark Rayman's vuist na het slaan</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Laat Dark Rayman's vuist je doden</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Schakelt een niet verkozen feature/gedrag in waarbij Dark Rayman's vuist Rayman doodt bij contact</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>De-installeren</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Installatie spel</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Aanbevolen</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} aanbevolen acties</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Optioneel</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} optionele acties</value>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>Issues</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>{0} issue</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} issues</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>Installeren Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 is een verzameling van fixes — door RibShark — die ervoor zorgen dat Rayman 3 eenvoudig in breedbeeld resoluties gespeeld kan worden terwijl er ook bijkomende features zijn, zoals een venstermodus en het herstel van de mogelijkheid video cutscenes over te slaan.</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>Corrupte save file</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>Vanwege een bug in eerdere versies van het spel kan de save file voortgang gedesynchroniseerd raken, waardoor je technisch gezien minder Teensies hebt dan eigenlijk verdiend. Het gevolg hiervan is, dat zekere levels ontoegankelijk zullen worden gemaakt.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>Installeer de Higher Quality Official Textures modificatie</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>De Higher Quality Official Textures modificatie — door ICUP321 — is een textuurmodificatie die vele texturen vervangt door kwalitatief betere varianten vanuit andere versies; inclusief texturen met transparantie-fixes.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Installeer de High Quality Videos modificatie</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>De video's in de PC-versie zijn meer gecomprimeerd dan die in de console versies. De High Quality Videos modificatie vervangt de bestaande video's met de geconverteerde video's van de console versies van het spel.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>Ongeldige spelresolutie</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
+    <value>De spelresolutie dient zodanig te worden ingesteld dat deze ondersteund wordt door de grafische kaart. Op sommige systemen wordt de resolutie standaard ingesteld op een ongeldige, waardoor zwarte randen en mogelijke crashes het gevolg zijn.</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header" xml:space="preserve">
+    <value>Installeer de Minimum Loading Times modificatie</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
+    <value>De Minimum Loading Times modificatie is een mod, gemaakt door RayCarrot, die de laad(scherm)tijd verlaagt van 4 naar 0 seconden en dus het laden van het spel sneller maakt.</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>Configuratiebestand van Mapper ontbreekt of is ongeldig</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Info" xml:space="preserve">
+    <value>Tijdens sommige Rayman Designer installaties zal het configuratiebestand niet worden aangemaakt óf wordt deze aangemaakt met ongeldige waarden, waardoor de Mapper editor een foutmelding weergeeft tijdens het opstarten.</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>Mount-pad ontbreekt</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>Een geldig mount-pad moet worden gespecificeerd in de game's emulator instellingen voordat deze gestart kan worden.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Header" xml:space="preserve">
+    <value>Spel is niet juist geconfigureerd</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Info" xml:space="preserve">
+    <value>Bepaalde instellingen binnen de spelconfiguratie zijn niet juist ingesteld. Dit kan issues veroorzaken in het spel, zoals het ontbreken van geluidseffecten. Ga naar de spelconfiguratie, kies de aanbevolen instellingen en sla deze op om de issues te verhelpen.</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Header" xml:space="preserve">
+    <value>Installeer Ray2Fix</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Info" xml:space="preserve">
+    <value>Ray2Fix is een modificatie voor de GOG versie, gemaakt door spitfirex86, die als doel heeft het instellen van het spel te vereenvoudigen. Het komt tevens met verscheidene tweaks, zoals de mogelijkheid gamepad-besturing opnieuw toe te wijzen en voldoende ondersteuning voor breedbeeldverhoudingen.</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
+    <value>Installeer de PS2 Videos modificatie</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Info" xml:space="preserve">
+    <value>De video cutscenes in de PC-versie zijn meer gecomprimeerd en van lagere kwaliteit dan die in de console versies. De PS2 Videos modificatie vervangt de bestaande video's met de kwalitatief betere video's van de PlayStation 2 versie.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>Vervang incomplete soundtrack</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>De Rayman Forever collectie komt niet met de volledige soundtrack voor het spel vanwege beperkte schijfruimte in de originele release. Het is aanbevolen de muziekbestanden te vervangen door die van de volledige soundtrack.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>Vervang door volledige soundtrack</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>Vervang geïnfecteerde bestanden</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>Sommige versies van Rayman Designer, zoals de versie die gebundeld is met Rayman Forever, hebben een deel van hun bestanden geïnfecteerd met oude malware. Ook al schijnt deze geen kwaad te kunnen doen, laat staan actief te zijn — GOG heeft bevestigd dat er geen gevaar is — toch kan het effectief zijn de bestanden te vervangen door de 'schone' bestanden om te voorkomen dat anit-virus programma's spelbestanden verwijderen.</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>Vervang bestanden</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>Geen game client/emulator geselecteerd</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>Dit spel kan niet gestart worden zonder een game client/emulator. Zorg ervoor dat je eerst een ondersteunde game client toevoegt en deze vervolgens selecteert voor gebruik met dit spel.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>Toevoegen game client/emulator</value>
+  </data>
+  <data name="SetupGameAction_DownloadFix" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="SetupGameAction_GeneralFix" xml:space="preserve">
+    <value>Fix</value>
+  </data>
+  <data name="SetupGameAction_DownloadModFix" xml:space="preserve">
+    <value>Download modificatie</value>
+  </data>
+  <data name="SetupGameAction_GameSettingsFix" xml:space="preserve">
+    <value>Open spelinstellingen</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>Open game client/emulator spelinstellingen</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>Geen geldige bestanden gevonden voor de modificatie</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het ophalen van de download voor de modificatie</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>Laat het venster flikkeren op de taakbalk voor bepaalde gebeurtenissen</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>Laat het venster flikkeren op de taakbalk voor bepaalde gebeurtenissen, zoals wanneer modificaties volledig zijn toegepast</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>Spelinstellingen</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>Game client/emulator instellingen</value>
+  </data>
+  <data name="GameSettingsTitle" xml:space="preserve">
+    <value>Spelinstellingen - {0}</value>
+  </data>
+  <data name="GameClientGameSettingsTitle" xml:space="preserve">
+    <value>{0} Spelinstellingen - {1}</value>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>Instellingen locaties</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>Weergeven instellingen locaties</value>
+  </data>
+  <data name="GameSettings_ApplyRecommendedSettings" xml:space="preserve">
+    <value>Toepassen aanbevolen instellingen</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het laden van de spelinstellingen. Je dient de app wellicht als administrator uit te voeren.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijden het opslaan van de spelinstellingen. Je dient de app wellicht als administrator uit te voeren.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>Debuggen opstartcommando's</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Source" xml:space="preserve">
+    <value>Bron</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
+    <value>De bron specificeert hoe de opstartopties worden verwerkt door het spel. Door gebruik te maken van een cmdline.txt-bestand in de rootdirectory, zorg je voor meer flexibiliteit, zoals het mogelijk maken van het toevoegen van berichten in het bestand met ## en het kan gebruikt worden buiten het Rayman Control Panel om. Echter, dit zorgt voor een reset van de scherminstellingen, waarna je ze weer zou moeten specificeren via de betreffende commando's. Door gebruik te maken van opstartopties blijven de scherminstellingen behouden, maar bepaalde commando's, zoals die voor het  veranderen van de taal, werken misschien niet.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile" xml:space="preserve">
+    <value>cmdline.txt bestand</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>Opstartargumenten</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNotAvailable" xml:space="preserve">
+    <value>Niet beschikbaar</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInstallMod" xml:space="preserve">
+    <value>Installeer modificatie</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>Commando's</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
+    <value>Selecteer een bron voor gebruik en wijzig de commando's</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
+    <value>De game dient gepatcht te worden om het cmdline.txt bestand toe te staan. Dit kan gedaan worden door de CommandLine File Fix modificatie te gebruiken.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
+    <value>De huidig geselecteerde game client staat niet toe opstartargumenten door te geven aan het spel. Verander van game client of stel in dat er geen game client gebruikt wordt tijdens het starten van het spel om vervolgens alsnog opstartargumenten te kunnen gebruiken.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>Rootdirectory</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>Specificeert de rootdirectory waar het spel scant voor bestanden. Standaard is dit de directory waar het uitvoerbare bestand van het spel is.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
+    <value>Het relatieve bestandspad naar een scene-bestand wanneer het spel start.
+WAARSCHUWING: Direct laden binnen een map via deze weg zorgt ervoor dat de save file níét geladen wordt en kan er vervolgens voor zorgen dat de save file gereset wordt als het spel ooit de auto-save feature gebruikt. Het is ten zeerste aanbevolen de save files te back-uppen voordat dit gebruikt wordt.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageInfo" xml:space="preserve">
+    <value>Niet alle talen zijn beschikbaar binnen elke release van het spel.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveHeader" xml:space="preserve">
+    <value>Uitschakelen laden/opslaan</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveInfo" xml:space="preserve">
+    <value>Schakelt het laden van saves en het opslaan van het spel uit. Het is ten zeerste aanbevolen dit te gebruiken wanneer geladen wordt in een specifieke map, om te voorkomen dat de save file wordt gereset.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
+    <value>Framesnelheid</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
+    <value>Stelt de framesnelheid in van de belangrijkste app loop. Dit zorgt ervoor dat de snelheid van het spel ook verandert, aangezien de spellogica hard-coded is op 60 fps.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
+    <value>Dempen</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundInfo" xml:space="preserve">
+    <value>Dempt alle geluiden.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader" xml:space="preserve">
+    <value>Max. camera zoom</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo" xml:space="preserve">
+    <value>Uitzoomen van de camera</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader" xml:space="preserve">
+    <value>Alle spelers cheaten samen</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
+    <value>Zorgt ervoor dat alle spelers, speler 1 volgen.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>Onoverwinnelijk</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoMouseHeader" xml:space="preserve">
+    <value>Verberg muiscursor</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FullscreenHeader" xml:space="preserve">
+    <value>Volledig scherm</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_WidthHeader" xml:space="preserve">
+    <value>Breedte</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_HeightHeader" xml:space="preserve">
+    <value>Hoogte</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_XHeader" xml:space="preserve">
+    <value>X-positie</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_YHeader" xml:space="preserve">
+    <value>Y-positie</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
+    <value>Selecteer het modificatie-bestand voor download</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
+    <value>Selecteer modificatie-bestand</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
+    <value>Het Per-level Soundtrack hulpprogramma voor Rayman 1 is zodanig herwerkt in deze versie dat deze niet meer afhankelijk is van een aangepaste DOSBox build. Om deze te kunnen blijven gebruiken, dien je deze opnieuw te installeren. De vorige versie is automatisch gede-installeerd.</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
+    <value>Per-level Soundtrack Update Aankondiging</value>
+  </data>
+  <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
+    <value>De optie om Rayman 2 te patchen, zodat het in breedbeeld gespeeld kan worden, is verwijderd in deze versie ten behoeve van een nieuwe, verbeterde breedbeeld-implementatie die nu beschikbaar is in Ray2Fix. De .exe voor het toegevoegde spel "{0}" is gedetecteerd als zijnde gebruikmakende van een breedbeeld-patch. Als dit toegepast is via het Rayman Control Panel, dan is het ten zeerste aanbevolen de patch terug te draaien en de breedbeeldoptie via Ray2Fix in plaats daarvan te gebruiken. Wil je de patch terugdraaien?</value>
+  </data>
+  <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
+    <value>Rayman 2 Widescreen Patch Update Aankondiging</value>
+  </data>
+  <data name="GameInfo_LaunchUri" xml:space="preserve">
+    <value>Starten URI:</value>
+  </data>
+  <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Beta (1998/07/22)</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Standaard ondersteunt het spel alleen resoluties met een aspect ratio van 4:3. Elke andere resolutie resulteert in een uitgerekt beeld. Voor het toevoegen van de juiste ondersteuning voor breedbeeldverhoudingen is het aanbevolen de breedbeeldoptie via Ray2Fix in te schakelen.</value>
+  </data>
+  <data name="ModLoader_TooShortSearchText" xml:space="preserve">
+    <value>De zoektekst dient minimaal 2 tekens te bevatten</value>
+  </data>
+  <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
+    <value>Zoekresultaten laten zien voor "{0}"</value>
+  </data>
+  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
+    <value>Modificaties laten zien in de categorie "{0}"</value>
+  </data>
+  <data name="ModLoader_Search" xml:space="preserve">
+    <value>Zoeken modificaties</value>
+  </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>Je hebt zojuist de 'koken-code' ingevoerd! Alle afbeeldingen zijn nu aan het koken!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>Koken-Code</value>
   </data>
 </root>

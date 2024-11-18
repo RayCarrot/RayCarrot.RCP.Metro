@@ -890,7 +890,7 @@ Noticias:
     <value>Agradecimientos especiales a AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski y todos los demás fanáticos de Rayman.</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Panel de Control de Rayman, utilidades, banda sonora por nivel, Explorador de Archivos, BinarySerializer</value>
+    <value>Rayman Control Panel, Ingeniería inversa de Rayman, Serializador Binario</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Parches para mandos</value>
@@ -899,7 +899,7 @@ Noticias:
     <value>Remapeo de botones de Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Ayuda general con las utilidades</value>
+    <value>Ingeniería inversa de Rayman</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Utilidad de banda sonora por nivel</value>
@@ -1039,7 +1039,7 @@ Para empezar, cambia las configuraciones que desees a continuación y presiona '
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Utilidad de banda sonora por nivel, eliminación de verificación de disco de Rayman M/Arena</value>
+    <value>Mod de banda sonora por nivel de Rayman 1, Eliminación de verificación de disco de Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Traducción del programa al holandés (Países Bajos), pruebas del programa</value>
@@ -1468,7 +1468,7 @@ Mensaje de error: {1}</value>
     <value>Se produjo un error en el explorador de archivos y tuvo que cerrarse</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Ingeniería inversa de Rayman, mod de Rayman Raving Rabbids, BinarySerializer</value>
+    <value>Ingeniería inversa de Rayman, Mod de Restauración del Prototipo de Rayman Raving Rabbids, Serializador Binario</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Utilidades</value>
@@ -5310,5 +5310,221 @@ Puedes desactivar este mensaje de advertencia en la configuración si no deseas 
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="Archive_SavingStatus" xml:space="preserve">
+    <value>Guardando archivo</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
+    <value>Sonido UBIArt procesado</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtTexture" xml:space="preserve">
+    <value>Textura UBIArt procesada</value>
+  </data>
+  <data name="Rayman2_Ps2_Title" xml:space="preserve">
+    <value>Rayman 2 Revolution</value>
+  </data>
+  <data name="Rayman3_Ps2_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_Ps2_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="RaymanM_Ps2_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanRavingRabbids_Ps2_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="GameClients_PCSX2" xml:space="preserve">
+    <value>PCSX2</value>
+  </data>
+  <data name="Platform_Ps2" xml:space="preserve">
+    <value>PlayStation 2</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Encoding" xml:space="preserve">
+    <value>Codificación</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceError" xml:space="preserve">
+    <value>No hay suficiente espacio en el sistema para aplicar los mods. Se requiere al menos {0} de espacio libre.</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceErrorHeader" xml:space="preserve">
+    <value>Espacio insuficiente disponible</value>
+  </data>
+  <data name="ModLoader_ApplyWithErrors" xml:space="preserve">
+    <value>Mods aplicados con éxito. Algunos archivos no pudieron ser modificados.
+
+Mensajes de error:
+{0}</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCovered" xml:space="preserve">
+    <value>Distancia recorrida</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCoveredValue" xml:space="preserve">
+    <value>{0} metros</value>
+  </data>
+  <data name="Progression_R2Ps2_TimePlayed" xml:space="preserve">
+    <value>Tiempo jugado</value>
+  </data>
+  <data name="Progression_R2Ps2_PlayerShotsFired" xml:space="preserve">
+    <value>Disparos realizados por el jugador</value>
+  </data>
+  <data name="Progression_R2Ps2_ShootingAccuracy" xml:space="preserve">
+    <value>Precisión de disparo</value>
+  </data>
+  <data name="Progression_R2Ps2_TimesKilled" xml:space="preserve">
+    <value>Veces eliminado</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfTryAgain" xml:space="preserve">
+    <value>Número de reintentos</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
+    <value>Número de saltos</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Banda sonora por nivel</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>¿Estás seguro de que quieres desinstalar la herramienta de Banda Sonora por Nivel? Esto la desinstalará para todos los juegos donde se utiliza.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirmar desinstalación</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Reemplaza la música del juego con la música por nivel de la versión de PlayStation, además de proporcionar varias correcciones para la versión de PC.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>Sonidos de nivel completado y de muerte en audio de CD</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>Reemplaza los sonidos predeterminados de nivel completado y de muerte con los de audio de CD de la versión de PlayStation</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Pista de ambiente MIDI</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>Reproduce las pistas MIDI de ambiente exclusivas de PlayStation en sus respectivas secciones de nivel</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Correcciones de errores visuales</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Incluye correcciones de errores visuales para la versión de PC, como hacer que el puño de Dark Rayman aparezca después de golpear</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Haz que el puño de Dark Rayman te mate</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Rehabilita un comportamiento eliminado donde el puño de Dark Rayman mata a Rayman al contacto</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>Desinstalar</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Configurar juego</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Recomendado</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} acciones recomendadas</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Opcional</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} acciones opcionales</value>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>Problemas</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>{0} problema</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} problemas</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>Instalar Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 es una colección de correcciones creada por RibShark que permite jugar Rayman 3 en resoluciones de pantalla ancha de manera fácil, además de ofrecer funciones adicionales, como el modo ventana y la posibilidad de omitir las escenas de video.</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>Archivo de guardado corrupto</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>Debido a un error en versiones anteriores del juego, el progreso del archivo de guardado podría desincronizarse, haciendo que tengas menos teensies de los que realmente has obtenido. Esto puede causar que ciertos niveles se vuelvan inaccesibles.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>Instalar el mod de Texturas Oficiales de Mayor Calidad</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>Este mod, creado por ICUP321, reemplaza muchas de las texturas con versiones de mejor calidad encontradas en otras versiones del juego, incluyendo texturas con correcciones de transparencia.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Instalar el mod de Videos en Alta Calidad</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>Los videos en la versión de PC están más comprimidos que en las versiones de consola. Este mod reemplaza los videos con versiones de mayor calidad convertidas de las versiones de consola del juego.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>Resolución de juego no válida</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
+    <value>La resolución del juego debe estar configurada en una resolución compatible con la tarjeta gráfica. En algunos sistemas, la resolución se establece de forma predeterminada en una resolución no válida, lo que provoca bordes negros y posibles bloqueos. Esto se puede solucionar seleccionando una resolución compatible.</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header" xml:space="preserve">
+    <value>Instalar el mod de Tiempos Mínimos de Carga</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
+    <value>Este mod, creado por RayCarrot, reduce el tiempo mínimo de la pantalla de carga de 4 segundos a 0 segundos, haciendo que los tiempos de carga sean más rápidos.</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>Falta o es inválido el archivo de configuración del Mapper</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Info" xml:space="preserve">
+    <value>Durante algunas instalaciones de Rayman Designer, el archivo de configuración puede no crearse o hacerlo con valores inválidos, lo que causa un error en el editor Mapper al iniciarse.</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>Ruta de montaje faltante</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>Debe especificarse una ruta de montaje válida en la configuración del emulador del juego para que pueda iniciarse.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Header" xml:space="preserve">
+    <value>El juego no está configurado correctamente</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Info" xml:space="preserve">
+    <value>Ciertos ajustes en la configuración del juego no están configurados correctamente. Esto puede causar problemas, como efectos de sonido faltantes. Ve a la configuración del juego, elige los ajustes recomendados y guarda los cambios para solucionarlo.</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Header" xml:space="preserve">
+    <value>Instalar Ray2Fix</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Info" xml:space="preserve">
+    <value>Ray2Fix es un mod para la versión de GOG creado por spitfirex86 que facilita la configuración del juego. También incluye varias mejoras, como la posibilidad de reasignar los controles del gamepad y un soporte adecuado para pantalla ancha.</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
+    <value>Instalar el mod de Videos de PS2</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Info" xml:space="preserve">
+    <value>Las escenas de video en la versión de PC están más comprimidas y tienen una calidad inferior a las de las versiones de consola. Este mod reemplaza los videos con versiones de mayor calidad de la versión de PlayStation 2.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>Reemplazar banda sonora incompleta</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>La colección Rayman Forever no incluye la banda sonora completa del juego debido a la limitación de espacio en el disco original. Se recomienda reemplazar los archivos de música con aquellos de la banda sonora completa.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>Reemplazar con la banda sonora completa</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>Reemplazar archivos infectados</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>Algunas versiones de Rayman Designer, como la incluida en Rayman Forever, tienen ciertos archivos infectados con un malware antiguo. Aunque no parece ser dañino ni estar activo, y GOG ha confirmado que no representa un peligro, puede ser útil reemplazar los archivos por versiones no infectadas para evitar que los programas antivirus eliminen archivos del juego.</value>
   </data>
 </root>
