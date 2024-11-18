@@ -897,7 +897,7 @@ Voulez vous réessayer ?</value>
     <value>Rétro-ingénierie Rayman</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Utilitaire des musiques par niveau</value>
+    <value>Mod de bande-son par niveau de Rayman 1</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Programme de traduction portugaise (Portugal)</value>
@@ -1032,7 +1032,7 @@ Voulez vous réessayer ?</value>
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Utilitaire de choix de bande son par niveau pour Rayman 1, retrait de la vérification de disque de Rayman M/Arena</value>
+    <value>Mod de bande-son par niveau pour Rayman 1, retrait de la vérification de disque de Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Programme de traduction en Néerlandais, test de programme</value>
@@ -5372,10 +5372,10 @@ Messages d'erreur :
     <value>Nombre de sauts</value>
   </data>
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
-    <value>Musique par niveau</value>
+    <value>Bande-son par niveau</value>
   </data>
   <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir désinstaller l'outil de musique par niveau ? Il sera désinstallé pour tous les jeux où il est utilisé.</value>
+    <value>Êtes-vous sûr de vouloir désinstaller l'outil de bande-son par niveau ? Il sera désinstallé pour tous les jeux où il est utilisé.</value>
   </data>
   <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
     <value>Confirmer la désinstallation</value>
@@ -5507,13 +5507,13 @@ Messages d'erreur :
     <value>Les cinématiques vidéos de la version PC sont d'avantage compressées et de moins bonne qualité que celles de la version console. Le mod PS2 Videos remplace ces vidéos par celles de plus haute qualité de la version PS2.</value>
   </data>
   <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
-    <value>Remplacer la bande son incomplète</value>
+    <value>Remplacer la bande-son incomplète</value>
   </data>
   <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
-    <value>La collection Rayman Forever ne contient pas toute la bande son du jeu à cause d'un espace disque limité dans la sortie initiale. Il est recommandé de remplacer ces fichiers par ceux de la bande son complète.</value>
+    <value>La collection Rayman Forever ne contient pas la bande-son entière du jeu à cause d'un espace disque limité dans la sortie initiale. Il est recommandé de remplacer ces fichiers par ceux de la bande-son complète.</value>
   </data>
   <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
-    <value>Remplacer par la bande son complète</value>
+    <value>Remplacer par la bande-son complète</value>
   </data>
   <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
     <value>Remplacer les fichiers infectés</value>
@@ -5594,7 +5594,7 @@ Messages d'erreur :
     <value>Source</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
-    <value>La source précise comment les options de lancement seront traitées par le jeu. Utiliser un fichier cmdline.txt le placera dans le dossier racine et permettra une plus grande flexibilité, comme ajouter des commentaires dans le fichier avec des ## et aussi d'être utilisable sans l'aide du Rayman Control Panel. Cependant, cette méthode réinitialisera les paramètres graphiques, ce qui demandera de les spécifier à nouveau dans les commandes. Utiliser des arguments de lancement maintiendra les paramètres d'affichage mais certains paramètres tels que changer la langue pourraient ne pas fonctionner.</value>
+    <value>La source spécifie comment les options de lancement seront traitées par le jeu. Utiliser un fichier cmdline.txt le placera dans le dossier racine et permet une plus grande flexibilité, comme ajouter des commentaires dans le fichier avec des ## et permet d'être utilisé hors du Rayman Control Panel. Cependant, ceci réinitialisera les paramètres d'affichage, ce qui demandera de les spécifier à nouveau dans les commandes. Utiliser des arguments de lancement maintiendra les paramètres d'affichage, mais certains paramètres, tels que changer la langue, pourraient ne pas fonctionner.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
     <value>Aucune</value>
@@ -5624,20 +5624,20 @@ Messages d'erreur :
     <value>Le jeu a besoin d'être patché pour autoriser le fichier cmdline.txt. Cela peut être fait en utilisant le mod CommandLine File Fix.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
-    <value>Le jeu sélectionné ne prend pas en charge les arguments de lancement. Changez de client les paramètres afin de ne pas utiliser de client de jeu en lançant le jeu afin de pouvoir utiliser les arguments de lancement.</value>
+    <value>Le client de jeu sélectionné ne supporte pas le passage d'arguments vers le jeu. Changez de client, ou paramétrez le jeu pour ne pas utiliser de client lors de son lancement pour utiliser des arguments de lancement.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
-    <value>Répertoire racine</value>
+    <value>Dossier racine</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
-    <value>Spécifie le répertoire racine quand le jeu recherche des fichiers. Le répertoire par défaut est celui où l'exécutable est présent.</value>
+    <value>Spécifie le dossier racine dans lequel le jeu recherche les fichiers. Par défaut, il s'agit du dossier où se situe l'exécutable du jeu.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
     <value>Carte</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
-    <value>Le chemin relatif pour un fichier de scène quand le jeu est lancé.
-ATTENTION : Charger directement un niveau de jeu passera le chargement de votre sauvegarde et peut causer une réinitialisation de votre sauvegarde si le jeu fait une sauvegarde automatique. Il est hautement recommandé de faire un backup de vos fichiers avant d'utiliser ceci.</value>
+    <value>Le chemin relatif vers un fichier de scène lorsque le jeu est lancé.
+ATTENTION : Charger directement une carte de cette manière ignorera le chargement de votre sauvegarde et peut causer une réinitialisation de celle-ci si le jeu réalise une sauvegarde automatique. Il est hautement recommandé de faire un backup de vos fichiers de sauvegarde avant d'utiliser ceci.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
     <value>Langue</value>
@@ -5649,13 +5649,13 @@ ATTENTION : Charger directement un niveau de jeu passera le chargement de votre 
     <value>Désactiver chargement/sauvegarde</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_NoSaveInfo" xml:space="preserve">
-    <value>Désactive le chargement et la sauvegarde du jeu. Il est hautement recommandé d'utiliser ceci en chargeant une carte spécifique afin d'éviter de réinitialiser votre fichier de sauvegarde.</value>
+    <value>Désactive le chargement de sauvegarde et la sauvegarde du jeu. Il est hautement recommandé d'utiliser ceci lorsque vous chargez une carte spécifique afin d'éviter de réinitialiser votre fichier de sauvegarde.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
     <value>Images par seconde</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
-    <value>Change le nombre d'images par secondes utilisé dans la boucle principale du jeu. Cela causera un changement dans la vitesse du jeu ainsi que sa logique, ces derniers étant hardcodés en 60 ips.</value>
+    <value>Change le nombre d'images par secondes de la boucle principale de l'application. Cela causera aussi un changement de la vitesse de jeu, la logique de jeu étant hardcodée sur 60 images par secondes.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
     <value>Muet</value>
@@ -5673,7 +5673,7 @@ ATTENTION : Charger directement un niveau de jeu passera le chargement de votre 
     <value>Cheat Tous les joueurs ensemble</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
-    <value>Fait que tous les joueurs suivent le joueur 1.</value>
+    <value>Tous les joueurs suivent le joueur 1.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
     <value>Invincible</value>
@@ -5700,19 +5700,19 @@ ATTENTION : Charger directement un niveau de jeu passera le chargement de votre 
     <value>Par défaut</value>
   </data>
   <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Sélectionner le fichier de mod à télécharger</value>
+    <value>Sélectionnez le fichier de mod à télécharger</value>
   </data>
   <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Sélectionner le fichier de mod</value>
+    <value>Sélectionnez le fichier de mod</value>
   </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
-    <value>L'utilitaire de bande son par niveau pour Rayman 1 a été retravaillé dans cette version afin de ne plus dépendre d'un build personnalisé de DOSBox. L'ancienne version a été automatiquement désinstallée. Veuillez réinstaller l'utilitaire afin de continuer à l'utiliser.</value>
+    <value>L'utilitaire de bande-son par niveau pour Rayman 1 a été retravaillé dans cette version afin de ne plus dépendre d'un build personnalisé de DOSBox. Veuillez réinstaller l'utilitaire pour continuer à l'utiliser. L'ancienne version a été automatiquement désinstallée.</value>
   </data>
   <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
-    <value>Avis de mise à jour de l'utilitaire de bande son par niveau</value>
+    <value>Avis de mise à jour de la bande-son par niveau</value>
   </data>
   <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
-    <value>L'option pour permettre à Rayman 2 de fonctionner correctement en écran large a été retirée en faveur d'une meilleure implémentation intégrée à Ray2Fix. L'exécutable du jeu ajouté "{0}" a été détecté avec ce patch. Si ce patch a été appliqué via le Rayman Control Panel, il est fortement recommandé de le désinstaller et d'utiliser l'option écran large de Ray2Fix à la place.
+    <value>L'option pour patcher Rayman 2 pour fonctionner correctement en écran large a été retirée en faveur d'une implémentation améliorée maintenant intégrée à Ray2Fix. L'exécutable du jeu ajouté "{0}" a été détécté comme utilisant un patch pour écran large. Si celui-ci a été appliqué via le Rayman Control Panel, il est hautement recommandé de le désinstaller maintenant et d'utiliser l'option écran large de Ray2Fix à la place.
 Voulez-vous désinstaller le patch ?</value>
   </data>
   <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
@@ -5740,7 +5740,7 @@ Voulez-vous désinstaller le patch ?</value>
     <value>Rechercher des mods</value>
   </data>
   <data name="SecretCodes_Cooking" xml:space="preserve">
-    <value>vous venez d'entrer le code Cooking ! Toutes les images sont maintenant remplacées par Cooking !</value>
+    <value>Vous venez d'entrer le code Cooking ! Toutes les images sont maintenant en train d'être cuisinées !</value>
   </data>
   <data name="SecretCodes_CookingHeader" xml:space="preserve">
     <value>Code Cooking</value>
