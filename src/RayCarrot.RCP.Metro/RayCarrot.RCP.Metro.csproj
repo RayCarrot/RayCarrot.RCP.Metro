@@ -1,17 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <!-- Framework -->
   <PropertyGroup>
+    <!-- TODO-UPDATE: This won't work on Windows 7 right now -->
     <!-- The target framework. Can be changed to 'TargetFrameworks' for multiple outputs. -->
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
     <OutputType>WinExe</OutputType>
     <LangVersion>11.0</LangVersion>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <PlatformTarget>x64</PlatformTarget>
     <!-- <Prefer32Bit>false</Prefer32Bit> -->
-    <!-- Appears to be required when using framework earlier than net5 -->
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 
     <!-- TODO: Set this? It will make exception messages in logs less useful though. -->
     <!-- <DebugType>none</DebugType> -->
@@ -96,17 +95,11 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
-    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
     <PackageReference Include="NLog" Version="5.3.4" />
-    <PackageReference Include="Nullable" Version="1.3.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" PrivateAssets="All" />
-    <PackageReference Include="Resource.Embedder" Version="2.2.0" />
     <PackageReference Include="SharpCompress" Version="0.38.0" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     <PackageReference Include="WPFTextBoxAutoComplete" Version="1.0.5" />

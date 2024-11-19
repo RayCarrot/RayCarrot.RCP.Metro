@@ -502,7 +502,7 @@ public class FileManager
 
         try
         {
-            AuthorizationRuleCollection dirRules = Directory.GetAccessControl(path).GetAccessRules(true, true, typeof(SecurityIdentifier));
+            AuthorizationRuleCollection dirRules = path.GetDirectoryInfo().GetAccessControl().GetAccessRules(true, true, typeof(SecurityIdentifier));
             WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
 
             if (dirRules.Cast<FileSystemAccessRule>().Any(rule =>

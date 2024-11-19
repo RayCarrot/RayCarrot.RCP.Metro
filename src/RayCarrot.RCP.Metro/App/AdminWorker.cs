@@ -14,8 +14,10 @@ public static class AdminWorker
     {
         try
         {
+            FileInfo filePathInfo = new(filePath);
+
             // Get the current access control
-            FileSecurity fileSecurity = File.GetAccessControl(filePath);
+            FileSecurity fileSecurity = filePathInfo.GetAccessControl();
 
             // Add a new access rule to allow everyone full control of the file
             fileSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(
@@ -30,7 +32,7 @@ public static class AdminWorker
                 AccessControlType.Allow));
 
             // Set the modified access control
-            File.SetAccessControl(filePath, fileSecurity);
+            filePathInfo.SetAccessControl(fileSecurity);
         }
         catch (Exception ex)
         {

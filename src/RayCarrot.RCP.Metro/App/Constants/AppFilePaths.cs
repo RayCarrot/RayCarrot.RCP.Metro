@@ -9,10 +9,11 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class AppFilePaths
 {
+    // TODO-UPDATE: Temporary path change
     /// <summary>
     /// The base user data directory
     /// </summary>
-    public static FileSystemPath UserDataBaseDir => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Rayman Control Panel" + "RCP_Metro";
+    public static FileSystemPath UserDataBaseDir => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Rayman Control Panel" + "RCP_Metro_DotNet9";
 
     /// <summary>
     /// The base tools directory
