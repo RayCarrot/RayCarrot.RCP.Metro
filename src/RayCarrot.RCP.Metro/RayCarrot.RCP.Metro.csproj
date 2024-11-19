@@ -19,22 +19,21 @@
 
   <!-- Assembly -->
   <PropertyGroup>
-    <!-- If not set then it will auto-generate an assembly info file which conflicts with the one we have -->
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-
-    <!-- Info (some of these get ignored right now due to GenerateAssemblyInfo being false) -->
-    <!-- TODO: Migrate AssemblyInfo here -->
-    <RootNamespace>RayCarrot.RCP.Metro</RootNamespace>
-    <AssemblyName>RayCarrot.RCP.Metro</AssemblyName>
-    <ApplicationIcon>Files\AppIcon.ico</ApplicationIcon>
-    <Version>14.2.0.4</Version>
-    <Authors>RayCarrot</Authors>
+    <!-- Assembly Info -->
+    <AssemblyTitle>Rayman Control Panel</AssemblyTitle>
     <Product>Rayman Control Panel</Product>
     <Description>Open source, unofficial Rayman management program with configuration tools and utilities</Description>
+    <Company>RayCarrot</Company>
+
+    <!-- Descriptive Properties -->
+    <Version>14.2.0.4</Version>
+    <Authors>RayCarrot</Authors>
     <RepositoryUrl>https://github.com/RayCarrot/RayCarrot.RCP.Metro</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/RayCarrot/RayCarrot.RCP.Metro</PackageProjectUrl>
-    
-    <!-- Custom entry point -->
+
+    <!-- Other -->
+    <AssemblyName>RayCarrot.RCP.Metro</AssemblyName>
+    <RootNamespace>RayCarrot.RCP.Metro</RootNamespace>
+    <ApplicationIcon>Files\AppIcon.ico</ApplicationIcon>
     <StartupObject>RayCarrot.RCP.Metro.Entry</StartupObject>
   </PropertyGroup>
   

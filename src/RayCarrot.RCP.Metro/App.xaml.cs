@@ -37,7 +37,7 @@ public partial class App : Application
                 throw new InvalidOperationException("The application can not use a Mutex for forcing a single instance if no valid entry assembly is found");
 
             // Use mutex to only allow one instance of the application at a time
-            Mutex = new Mutex(false, "Global\\" + ((GuidAttribute)entry.GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value);
+            Mutex = new Mutex(false, "Global\\" + entry.GetCustomAttribute<GuidAttribute>().Value);
         }
         catch (IndexOutOfRangeException ex)
         {
