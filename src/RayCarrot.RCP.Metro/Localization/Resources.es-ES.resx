@@ -5527,4 +5527,228 @@ Mensajes de error:
   <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
     <value>Algunas versiones de Rayman Designer, como la incluida en Rayman Forever, tienen ciertos archivos infectados con un malware antiguo. Aunque no parece ser dañino ni estar activo, y GOG ha confirmado que no representa un peligro, puede ser útil reemplazar los archivos por versiones no infectadas para evitar que los programas antivirus eliminen archivos del juego.</value>
   </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>Reemplazar archivos</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>No se ha seleccionado un cliente/emulador de juego</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>Este juego no se puede iniciar sin un cliente/emulador de juego. Asegúrate de agregar primero un cliente/emulador de juego compatible y luego seleccionarlo para usar con este juego.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>Agregar cliente/emulador de juego</value>
+  </data>
+  <data name="SetupGameAction_DownloadFix" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="SetupGameAction_GeneralFix" xml:space="preserve">
+    <value>Reparar</value>
+  </data>
+  <data name="SetupGameAction_DownloadModFix" xml:space="preserve">
+    <value>Descargar mod</value>
+  </data>
+  <data name="SetupGameAction_GameSettingsFix" xml:space="preserve">
+    <value>Abrir configuraciones del juego</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>Abrir configuraciones del cliente/emulador de juego</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>No se encontraron archivos válidos para el mod</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>Se produjo un error al obtener la descarga del mod</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>Destacar ventana en la barra de tareas para eventos específicos</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>Destacar el icono de la ventana en la barra de tareas durante eventos específicos, como cuando los mods han terminado de aplicarse</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>Configuraciones del juego</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>Configuraciones del cliente/emulador de juego</value>
+  </data>
+  <data name="GameSettingsTitle" xml:space="preserve">
+    <value>Configuraciones del juego - {0}</value>
+  </data>
+  <data name="GameClientGameSettingsTitle" xml:space="preserve">
+    <value>{0} Configuraciones del juego - {1}</value>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>Ubicaciones de las configuraciones</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>Mostrar ubicaciones de las configuraciones</value>
+  </data>
+  <data name="GameSettings_ApplyRecommendedSettings" xml:space="preserve">
+    <value>Aplicar las configuraciones recomendadas</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>Se produjo un error al cargar las configuraciones del juego. Es posible que necesites ejecutar la aplicación como administrador.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>Se produjo un error al guardar las configuraciones del juego. Es posible que necesites ejecutar la aplicación como administrador.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>Comandos de lanzamiento para depuración</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Source" xml:space="preserve">
+    <value>Fuente</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
+    <value>La fuente especifica cómo se procesan las opciones de lanzamiento por el juego. Usar un archivo cmdline.txt lo colocará en el directorio raíz del juego y permitirá mayor flexibilidad, como añadir comentarios en el archivo con ## y permitir su uso fuera del Panel de Control de Rayman. Sin embargo, al hacerlo, se restablecerán tus configuraciones de pantalla, obligándote a especificarlas nuevamente en los comandos. Usar argumentos de lanzamiento mantiene tus configuraciones de pantalla, pero ciertos comandos, como cambiar el idioma, podrían no funcionar.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile" xml:space="preserve">
+    <value>Archivo cmdline.txt</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>Argumentos de lanzamiento</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNotAvailable" xml:space="preserve">
+    <value>No disponible</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInstallMod" xml:space="preserve">
+    <value>Instalar mod</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>Comandos</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>Salida</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
+    <value>Selecciona una fuente para usar y editar los comandos</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
+    <value>El juego necesita ser parcheado para permitir el archivo cmdline.txt. Esto se puede hacer utilizando el mod CommandLine File Fix.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
+    <value>El cliente de juego seleccionado actualmente no admite pasar argumentos de lanzamiento al juego. Cambia el cliente o configura el juego para que no use un cliente al lanzarlo si deseas utilizar argumentos de lanzamiento.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>Directorio raíz</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>Especifica el directorio raíz donde el juego busca los archivos. Por defecto, este es el directorio donde se encuentra el ejecutable del juego.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
+    <value>La ruta de archivo relativa a un archivo de escena para cargar cuando el juego comienza.
+ADVERTENCIA: Cargar directamente un mapa con esto omitirá la carga de tu archivo de guardado y podría provocar que tu guardado se reinicie si el juego guarda automáticamente. Se recomienda encarecidamente hacer una copia de seguridad de tus archivos de guardado antes de usar esto.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageInfo" xml:space="preserve">
+    <value>No todos los idiomas están disponibles en todas las versiones del juego.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveHeader" xml:space="preserve">
+    <value>Deshabilitar carga/guardado</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSaveInfo" xml:space="preserve">
+    <value>Deshabilita la carga y el guardado del juego. Se recomienda encarecidamente usar esto al cargar un mapa específico para evitar reiniciar tu archivo de guardado.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
+    <value>Fotogramas por segundo (FPS)</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
+    <value>Establece la tasa de fotogramas por segundo del bucle principal de la aplicación. Esto también cambiará la velocidad del juego debido a que la lógica del juego está codificada para 60 fps.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
+    <value>Silenciar</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundInfo" xml:space="preserve">
+    <value>Silencia todos los sonidos.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader" xml:space="preserve">
+    <value>Zoom máximo de cámara</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo" xml:space="preserve">
+    <value>Aleja la cámara.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader" xml:space="preserve">
+    <value>Truco de todos los jugadores juntos</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
+    <value>Hace que todos los jugadores sigan al jugador 1.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>Invencible</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoMouseHeader" xml:space="preserve">
+    <value>Ocultar el cursor del ratón</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FullscreenHeader" xml:space="preserve">
+    <value>Pantalla completa</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_WidthHeader" xml:space="preserve">
+    <value>Ancho</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_HeightHeader" xml:space="preserve">
+    <value>Altura</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_XHeader" xml:space="preserve">
+    <value>Posición X</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_YHeader" xml:space="preserve">
+    <value>Posición Y</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
+    <value>Seleccionar archivo del mod para descargar</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
+    <value>Seleccionar archivo del mod</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
+    <value>La utilidad de Banda sonora por nivel para Rayman 1 ha sido rediseñada en esta versión para no depender de una compilación personalizada de DOSBox. Para continuar usándola, debes instalarla nuevamente. La versión anterior se ha desinstalado automáticamente.</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
+    <value>Aviso de actualización de banda sonora por nivel</value>
+  </data>
+  <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
+    <value>La opción para parchear Rayman 2 y usar pantalla ancha se ha eliminado en esta versión en favor de la nueva implementación mejorada de pantalla ancha disponible en Ray2Fix. El ejecutable del juego añadido "{0}" se ha detectado con un parche de pantalla ancha. Si esto fue aplicado a través del Panel de Control de Rayman, se recomienda encarecidamente revertir este parche ahora y usar la opción de pantalla ancha en Ray2Fix en su lugar.
+¿Deseas revertir el parche?</value>
+  </data>
+  <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
+    <value>Aviso de actualización del parche de pantalla ancha para Rayman 2</value>
+  </data>
+  <data name="GameInfo_LaunchUri" xml:space="preserve">
+    <value>Iniciar URI:</value>
+  </data>
+  <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Beta (22/07/1998)</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Por defecto, el juego solo admite resoluciones con una relación de aspecto de 4:3. Cualquier otra resolución hará que el juego se estire. Para agregar un soporte adecuado para pantalla ancha, se recomienda usar Ray2Fix y habilitar la opción de pantalla ancha allí.</value>
+  </data>
+  <data name="ModLoader_TooShortSearchText" xml:space="preserve">
+    <value>El texto de búsqueda debe tener al menos 2 caracteres</value>
+  </data>
+  <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
+    <value>Mostrando resultados de búsqueda para "{0}"</value>
+  </data>
+  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
+    <value>Mostrando mods en la categoría "{0}"</value>
+  </data>
+  <data name="ModLoader_Search" xml:space="preserve">
+    <value>Buscar mods</value>
+  </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>¡Acabas de ingresar el código de cocina! ¡Ahora todas las imágenes están cocinándose!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>Código Cooking</value>
+  </data>
 </root>
