@@ -206,6 +206,10 @@ public class CPATextureSyncManager
                     ? BitConverter.ToUInt32(data, i - pathLength - sizeOffset + 4)
                     : BitConverter.ToUInt16(data, i - pathLength - sizeOffset + 2);
 
+                // Get the size from the .gf file
+                ushort gfHeight = gf.Height;
+                ushort gfWidth = gf.Width;
+
                 // A hacky solution to an issue in Tonic Trouble where the texture names appear in some different structs which we
                 // don't want to accidentally modify. This will filter those out (at least in the version I tested this on).
                 if (!validateSize(snaWidth) || !validateSize(snaHeight))
@@ -214,11 +218,15 @@ public class CPATextureSyncManager
                     continue;
                 }
 
-                bool validateSize(uint size) => size is not (0 or >= 32767);
+                // Also check the gf file size so it's not invalid. This could happen if the user accidentally corrupts the file.
+                // If that happens we don't want to write the corrupt size into the sna file since then syncing won't work again.
+                if (!validateSize(gfWidth) || !validateSize(gfHeight))
+                {
+                    total--;
+                    continue;
+                }
 
-                // Get the size from the .gf file
-                ushort gfHeight = gf.Height;
-                ushort gfWidth = gf.Width;
+                bool validateSize(uint size) => size is not (0 or >= 32767);
 
                 if (GameSettings.MajorEngineVersion == MajorEngineVersion.Rayman2)
                 {
