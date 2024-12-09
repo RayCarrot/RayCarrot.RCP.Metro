@@ -318,7 +318,7 @@ public static class FileSystemPathExtensions
     }
 
     // TODO: Can probably remove this once we migrate to .NET 9
-    public static FileSystemPath ToLongPath(this FileSystemPath path)
+    public static string ToLongPath(this FileSystemPath path)
     {
         // Temporary fix to support long file paths on Windows. Requires backslashes.
         return $@"\\?\{path.FullPath.Replace('/', '\\')}";
