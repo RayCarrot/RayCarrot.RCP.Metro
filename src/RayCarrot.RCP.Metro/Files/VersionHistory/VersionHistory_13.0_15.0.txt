@@ -1,4 +1,11 @@
-﻿-----   Version 14.2.0 - November 18, 2024   -----
+﻿-----   Version 14.2.1 - December 9, 2024   -----
+• Window dialogs not shown as popups now always appear in the taskbar
+• Fixed a bug where recreating the file table for UbiArt IPK archives wouldn't include all the latest file changes
+• Fixed a bug where certain file operations would fail if the game installation path included forward slashes
+• Fixed a bug where synchronizing textures for a CPA game could corrupt the level files if the texture files were corrupted
+
+
+-----   Version 14.2.0 - November 18, 2024   -----
 • Added support for PS2 games:
     • Rayman 2 Revolution
     • Rayman M
@@ -8,14 +15,14 @@
 • Added support for Rayman 2 Beta (1998/07/22)
 • Added support for the PCSX2 emulator (editing save files is currently only supported for folder memory cards)
 • Added setup game panel to the game hub which includes recommended actions for setting up each game, such as installing recommended mods or fixing issues with the game settings
-• Game config changes:
+• Game settings changes:
     • Replaced the game options dialog with redesigned dialogs for the game settings
     • Debug commands can now be specified for Rayman Origins and Legends from the game settings. These include more options than before, the option to manually edit the commands and allows them to be used for all versions of Rayman Legends.
     • Modifying the video quality for Rayman 3 now saves it to the correct app data section, which is the Rayman Arena section due to the game incorrectly reading it from there
     • Reversed the video quality slider for Rayman M/Arena and 3 to now go from bad to good
     • App data .ini files are now read and written to using the native Win32 API
     • Removed the Rayman 2 widescreen patch option in favor of the new widescreen implementation in Ray2Fix
-    • Removed the Rayman 3 config option to use 16-bit textures due to it being unused by the game
+    • Removed the Rayman 3 option to use 16-bit textures due to it being unused by the game
     • The Rayman Edutainment settings no longer allow you to select which version (such as the difficulty level) to change the options for. Instead it uses the currently selected version from the games page.
     • Various other minor improvements and changes
 • Added a new per-level soundtrack tool for Rayman 1 by PluMGMK which allows any DOSBox build to be used, adds support for new tracks, such as the ambient MIDI tracks, and allows fixing visual bugs in the PC version
@@ -34,6 +41,7 @@
     • Downloadable GameBanana mods now show an icon for the mod's root category
     • Downloadable GameBanana mods can now be searched for and filtered by category, making it easier for find specific mods
     • The downloadable GameBanana mods list now automatically loads the next mods when scrolled to the bottom
+    • Improved error messages when applying mods
 
 Other changes:
 • Removed all game utilities. Most of them have been integrated into the new setup game panel or as downloadable mods in the mod loader.
@@ -52,7 +60,6 @@ Other changes:
 • Adding a Rayman 2 PC demo will now automatically set up the default configuration and default it to run as admin
 • Improved showing progress on the taskbar and added the option to flash the taskbar icon on progression completion or error
 • The available space on the system is now checked before applying mods to make sure it doesn't fail due to running out of space
-• Improved error messages when applying mods
 • Updated the credits
 • Renamed "Rayman Universe - Рэйман и его Вселенная" to "Rayman Universe" in the credits
 • Removed the option to automatically close the game settings when saving
