@@ -309,12 +309,18 @@ public static class FileSystemPathExtensions
         if (!dirPath.DirectoryExists)
             return;
 
-        // Use "\\?\" to support long paths. TODO: Maybe we should do that elsewhere too? Is there a drawback to it?
-        Directory.Delete($@"\\?\{dirPath}", true);
+        Directory.Delete(dirPath.ToLongPath(), true);
     }
 
     public static FileSystemPath GetVirtualStorePath(this FileSystemPath path)
     {
         return VirtualStorePath + path.RemoveRoot();
+    }
+
+    // TODO: Can probably remove this once we migrate to .NET 9
+    public static FileSystemPath ToLongPath(this FileSystemPath path)
+    {
+        // Temporary fix to support long file paths on Windows. Requires backslashes.
+        return $@"\\?\{path.FullPath.Replace('/', '\\')}";
     }
 }
