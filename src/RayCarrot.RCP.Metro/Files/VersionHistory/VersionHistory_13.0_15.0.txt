@@ -1,4 +1,8 @@
-﻿-----   Version 14.2.1 - December 9, 2024   -----
+﻿-----   Version 14.2.2 - December 9, 2024   -----
+• Fixed a bug where some file operations would fail
+
+
+-----   Version 14.2.1 - December 9, 2024   -----
 • Window dialogs not shown as popups now always appear in the taskbar
 • Fixed a bug where recreating the file table for UbiArt IPK archives wouldn't include all the latest file changes
 • Fixed a bug where certain file operations would fail if the game installation path included forward slashes
