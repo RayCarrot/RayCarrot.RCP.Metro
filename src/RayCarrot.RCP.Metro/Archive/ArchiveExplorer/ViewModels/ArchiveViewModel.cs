@@ -285,11 +285,12 @@ public class ArchiveViewModel : DirectoryViewModel
                         Progress currentProgress = new(0, repackProgress + onRepackedProgress);
 
                         // Create the file and get the stream
+                        ArchiveRepackResult repackResult;
                         using (ArchiveFileStream outputStream = new(File.Create(tempOutputFile.TempPath),
                                    tempOutputFile.TempPath.Name, true))
                         {
                             // Write to the stream
-                            Manager.WriteArchive(
+                            repackResult = Manager.WriteArchive(
                                 generator: ArchiveFileGenerator,
                                 archive: ArchiveData ?? throw new Exception("Archive data has not been loaded"),
                                 outputFileStream: outputStream,
@@ -313,8 +314,10 @@ public class ArchiveViewModel : DirectoryViewModel
                         Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
                         // On repack
-                        await Manager.OnRepackedArchivesAsync(new[] { FilePath }, 
-                            x => state.SetProgress(currentProgress.Add(x, onRepackedProgress)));
+                        await Manager.OnRepackedArchivesAsync(
+                            archiveFilePaths: new[] { FilePath }, 
+                            repackResults: new[] { repackResult },
+                            loadState: new PartialProgressLoadState(state, x => currentProgress.Add(x, onRepackedProgress)));
 
                         currentProgress += onRepackedProgress;
 

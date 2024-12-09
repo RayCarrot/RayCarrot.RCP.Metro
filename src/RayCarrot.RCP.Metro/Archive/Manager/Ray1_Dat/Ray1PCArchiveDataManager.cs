@@ -132,7 +132,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The encoded file data</returns>
     public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<FileArchiveEntry>>().GetFileStream((FileArchiveEntry)fileEntry);
 
-    public void WriteArchive(
+    public ArchiveRepackResult WriteArchive(
         IDisposable? generator,
         object archive,
         ArchiveFileStream outputFileStream,
@@ -234,11 +234,16 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         {
             Context.RemoveFile(binaryFile);
         }
+
+        return new ArchiveRepackResult();
     }
 
     public double GetOnRepackedArchivesProgressLength() => 0;
 
-    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null) => Task.CompletedTask;
+    public Task OnRepackedArchivesAsync(
+        FileSystemPath[] archiveFilePaths,
+        IReadOnlyList<ArchiveRepackResult> repackResults,
+        ILoadState loadState) => Task.CompletedTask;
 
     /// <summary>
     /// Loads the archive data

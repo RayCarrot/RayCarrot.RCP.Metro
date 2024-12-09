@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
-using RayCarrot.RCP.Metro.Games.Components;
 using Path = BinarySerializer.UbiArt.Path;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;

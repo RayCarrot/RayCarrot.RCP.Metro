@@ -78,7 +78,7 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="loadState">The load state for the repack operation</param>
-    void WriteArchive(
+    ArchiveRepackResult WriteArchive(
         IDisposable? generator, 
         object archive, 
         ArchiveFileStream outputFileStream, 
@@ -95,9 +95,10 @@ public interface IArchiveDataManager : IDisposable
     /// Optional operations to perform after repacking archives
     /// </summary>
     /// <param name="archiveFilePaths">The file paths of the repacked archives</param>
-    /// <param name="progressCallback">An optional progress callback action</param>
+    /// <param name="repackResults">The repack results from any archives that were repacked</param>
+    /// <param name="loadState">The load state for the operations</param>
     /// <returns>The task</returns>
-    Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null);
+    Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, IReadOnlyList<ArchiveRepackResult> repackResults, ILoadState loadState);
 
     /// <summary>
     /// Loads the archive data

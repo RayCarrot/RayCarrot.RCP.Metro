@@ -129,7 +129,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// <returns>The encoded file data</returns>
     public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
 
-    public void WriteArchive(
+    public ArchiveRepackResult WriteArchive(
         IDisposable? generator,
         object archive,
         ArchiveFileStream outputFileStream,
@@ -245,12 +245,17 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         {
             Context.RemoveFile(binaryFile);
         }
+
+        return new ArchiveRepackResult();
     }
 
     public double GetOnRepackedArchivesProgressLength() => 
         GameInstallation == null || CPATextureSyncItems == null || !Services.Data.Archive_CNT_SyncOnRepack ? 0 : 0.2;
 
-    public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths, Action<Progress>? progressCallback = null)
+    public async Task OnRepackedArchivesAsync(
+        FileSystemPath[] archiveFilePaths,
+        IReadOnlyList<ArchiveRepackResult> repackResults,
+        ILoadState loadState)
     {
         // Make sure the texture sync can be performed
         if (GameInstallation == null || CPATextureSyncItems == null)
@@ -278,7 +283,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         CPATextureSyncManager textureSyncManager = new(GameInstallation, Settings, CPATextureSyncItems);
 
-        await textureSyncManager.SyncTextureInfoAsync(archiveFilePaths, progressCallback);
+        await textureSyncManager.SyncTextureInfoAsync(archiveFilePaths, loadState.SetProgress);
     }
 
     /// <summary>

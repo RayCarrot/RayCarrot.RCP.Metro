@@ -87,7 +87,7 @@ public class FileLocationModifications
         }
     }
 
-    private void ModifyArchive(
+    private ArchiveRepackResult? ModifyArchive(
         LibraryFileHistoryBuilder historyBuilder,
         FileSystemPath archiveFilePath,
         IArchiveDataManager manager,
@@ -96,8 +96,10 @@ public class FileLocationModifications
         if (!archiveFilePath.FileExists)
         {
             Logger.Warn("Archive {0} does not exist and its file modifications will be ignored", archiveFilePath);
-            return;
+            return null;
         }
+
+        ArchiveRepackResult? repackResult = null;
 
         using TempFile archiveOutputFile = new(true);
 
@@ -219,7 +221,7 @@ public class FileLocationModifications
                 using ArchiveFileStream archiveOutputStream = new(File.OpenWrite(archiveOutputFile.TempPath),
                     archiveOutputFile.TempPath.Name, true);
 
-                manager.WriteArchive(
+                repackResult = manager.WriteArchive(
                     generator: archiveData.Generator,
                     archive: archive,
                     outputFileStream: archiveOutputStream,
@@ -241,6 +243,8 @@ public class FileLocationModifications
 
         // Replace the archive with the modified one
         Services.File.MoveFile(archiveOutputFile.TempPath, archiveFilePath, true);
+
+        return repackResult;
     }
 
     private void ReplaceArchiveFile(FileItem file, IArchiveDataManager manager, Stream resource)
@@ -322,7 +326,7 @@ public class FileLocationModifications
         }
     }
 
-    public void ApplyModifications(LibraryFileHistoryBuilder historyBuilder, FileSystemPath gameDir, Action<Progress>? progressCallback)
+    public ArchiveRepackResult? ApplyModifications(LibraryFileHistoryBuilder historyBuilder, FileSystemPath gameDir, Action<Progress>? progressCallback)
     {
         if (Location == String.Empty)
         {
@@ -330,12 +334,14 @@ public class FileLocationModifications
                 historyBuilder: historyBuilder,
                 dirPath: gameDir,
                 progressCallback: progressCallback);
+
+            return null;
         }
         else
         {
             IArchiveDataManager manager = ArchiveDataManager ?? throw new Exception($"No archive data manager for location {Location}");
 
-            ModifyArchive(
+            return ModifyArchive(
                 historyBuilder: historyBuilder,
                 archiveFilePath: gameDir + Location,
                 manager: manager,

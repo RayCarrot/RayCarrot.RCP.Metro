@@ -251,13 +251,20 @@ public class ModProcessor
         string? errorMessage = null;
 
         // Modify every location
+        List<ArchiveRepackResult> repackResults = new();
         foreach (FileLocationModifications locationModifications in GetLocationModifications())
         {
             int filesCount = locationModifications.FilesCount;
 
             try
             {
-                locationModifications.ApplyModifications(historyBuilder, gameDir, getOperationProgressCallback(filesCount));
+                ArchiveRepackResult? repackResult = locationModifications.ApplyModifications(
+                    historyBuilder: historyBuilder, 
+                    gameDir: gameDir, 
+                    progressCallback: getOperationProgressCallback(filesCount));
+
+                if (repackResult != null)
+                    repackResults.Add(repackResult);
             }
             catch (Exception ex)
             {
@@ -278,7 +285,10 @@ public class ModProcessor
                      GroupBy(x => x.ArchiveDataManager))
         {
             double progressLength = archivedLocations.Key!.GetOnRepackedArchivesProgressLength() * totalFilesCount;
-            await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDir + x.Location).ToArray(), getOperationProgressCallback(progressLength));
+            await archivedLocations.Key!.OnRepackedArchivesAsync(
+                archiveFilePaths: archivedLocations.Select(x => gameDir + x.Location).ToArray(),
+                repackResults: repackResults,
+                loadState: new ProgressLoadState(CancellationToken.None, getOperationProgressCallback(progressLength) ?? (_ => { })));
             currentProgress += progressLength;
         }
 
