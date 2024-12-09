@@ -41,10 +41,6 @@ public class BaseWindow : MetroWindow
 
         Logger.Info("The owner window has been set to {0}", Owner?.ToString() ?? "null");
 
-        // Do not show in the task bar if the window has a owner, is not the main window and a main window has been created
-        if (Owner != null && Application.Current?.MainWindow != null && this != Application.Current.MainWindow)
-            ShowInTaskbar = false;
-
         // Due to a WPF glitch the main window needs to be focused upon closing
         Closed += (_, _) =>
         {
