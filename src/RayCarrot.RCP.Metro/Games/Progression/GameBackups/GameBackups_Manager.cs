@@ -284,7 +284,7 @@ public class GameBackups_Manager
             try
             {
                 // Make sure we have write access to the backup location
-                if (!File.CheckDirectoryWriteAccess(BackupDirectory))
+                if (Directory.Exists(BackupDirectory) && !File.CheckDirectoryWriteAccess(BackupDirectory))
                 {
                     Logger.Info("Backup failed - backup location lacks write access");
 
@@ -374,7 +374,7 @@ public class GameBackups_Manager
                     throw new InvalidOperationException("A restore can only be performed on an info object with valid directories");
 
                 // Make sure we have write access to the restore destinations
-                if (backupInformation.RestoreDirectories.Any(x => !File.CheckDirectoryWriteAccess(x.SearchPattern.DirPath)))
+                if (backupInformation.RestoreDirectories.Any(x => Directory.Exists(x.SearchPattern.DirPath) && !File.CheckDirectoryWriteAccess(x.SearchPattern.DirPath)))
                 {
                     Logger.Info("Restore failed - one or more restore destinations lack write access");
 
