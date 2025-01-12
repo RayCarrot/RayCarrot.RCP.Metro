@@ -5124,7 +5124,7 @@ Se manca un'utilità o un altro tipo di patch, molto probabilmente è stata camb
     <value>Trova client di gioco/emulatori di gioco installati</value>
   </data>
   <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>Traduzione del programma Turco (Turchia).</value>
+    <value>Traduzione del programma in Turco (Turchia).</value>
   </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>Seleziona il file mod da GameBanana da utilizzare durante l'aggiornamento</value>
@@ -5746,5 +5746,8 @@ Vuoi ripristinare la patch?</value>
   </data>
   <data name="SecretCodes_CookingHeader" xml:space="preserve">
     <value>Codice Cooking</value>
+  </data>
+  <data name="About_Credits_Mr5088" xml:space="preserve">
+    <value>Traduzione del programma Portoghese (Brasile)</value>
   </data>
 </root>

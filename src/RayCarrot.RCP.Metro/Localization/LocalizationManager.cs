@@ -69,6 +69,9 @@ public static class LocalizationManager
             // Polish (Poland)
             new CultureInfo("pl-PL"),
 
+            // Portuguese (Brazil)
+            new CultureInfo("pt-BR"),
+
             // Portuguese (Portugal)
             new CultureInfo("pt-PT"),
 

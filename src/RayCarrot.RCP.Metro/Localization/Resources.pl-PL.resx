@@ -906,7 +906,7 @@ Spróbować ponownie?</value>
     <value>Narzędzie do ścieżki dźwiękowej na poziom</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Tłumaczenie portugalskie programu (Portugalia)</value>
+    <value>Tłumaczenie programu na język portugalski (Portugalia)</value>
   </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Zastępowanie ścieżki dźwiękowej nie powiodło się</value>
@@ -1041,7 +1041,7 @@ Spróbować ponownie?</value>
     <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Tłumaczenie holenderskie programu (Holandia), testowanie programu</value>
+    <value>Tłumaczenie programu na język holenderski (Holandia), testowanie programu</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Przeglądaj</value>
@@ -1810,7 +1810,7 @@ Komunikat o błędzie: {1}</value>
     <value>Zakodowane pliki Tonic Trouble (.sna/.dsb)</value>
   </data>
   <data name="About_Credits_Fabiosek" xml:space="preserve">
-    <value>Tłumaczenie polskie programu (Polska)</value>
+    <value>Tłumaczenie programu na język polski (Polska)</value>
   </data>
   <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
     <value>Pliki zapisu gier Rayman M/Arena (.sav)</value>
@@ -1909,10 +1909,10 @@ Komunikat o błędzie: {1}</value>
     <value>Wybierz dysk</value>
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
-    <value>Tłumaczenie rosyjskie programu (Rosja)</value>
+    <value>Tłumaczenie programu na język rosyjski (Rosja)</value>
   </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
-    <value>Tłumaczenie włoskie programu (Włochy)</value>
+    <value>Tłumaczenie programu na język włoski (Włochy)</value>
   </data>
   <data name="Archive_Sort" xml:space="preserve">
     <value>Sortuj</value>
@@ -3472,7 +3472,7 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
     <value>Wystąpił błąd podczas naprawiania zapisu</value>
   </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
-    <value>Tłumaczenie hebrajskie programu, ikona pliku łatki do gry</value>
+    <value>Tłumaczenie programu na język hebrajski, ikona pliku łatki do gry</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
     <value>Synchronizuj tekstury automatycznie po przepakowaniu (.cnt)</value>
@@ -3844,10 +3844,10 @@ Konflikty:
     <value>Czy chcesz automatycznie synchronizować tekstury gry, gdy archiwum tekstur zostanie przepakowane? Synchronizacja jest wymagana, aby tekstury w wyższej rozdzielczości działały na niektórych poziomach. Można to zmienić w dowolnym momencie na stronie ustawień.</value>
   </data>
   <data name="About_Credits_Marteaufou" xml:space="preserve">
-    <value>Tłumaczenie francuskie programu (Francja)</value>
+    <value>Tłumaczenie programu na język francuski (Francja)</value>
   </data>
   <data name="About_Credits_ZetaXO" xml:space="preserve">
-    <value>Tłumaczenie francuskie programu (Francja)</value>
+    <value>Tłumaczenie programu na język francuski (Francja)</value>
   </data>
   <data name="ModLoader_ExtractPatch" xml:space="preserve">
     <value>Wyodrębnij zawartość</value>
@@ -3949,7 +3949,7 @@ Konflikty:
     <value>Steam</value>
   </data>
   <data name="GameClients_Custom_LaunchArgs" xml:space="preserve">
-    <value>Argumenty uruchomieniowe</value>
+    <value>Argumenty uruchamiania</value>
   </data>
   <data name="GameClients_Custom_LaunchArgsInfo" xml:space="preserve">
     <value>Tutaj możesz określić, które argumenty uruchamiania są przekazywane do programu. Jako ścieżkę do gry wpisz %game%. Zaleca się otoczenie jej cudzysłowem, aby uniknąć ucięcia ścieżki po spacji.</value>
@@ -4634,7 +4634,7 @@ Konflikty:
     <value>ID użytkownika</value>
   </data>
   <data name="About_Credits_Marcos03BR" xml:space="preserve">
-    <value>Tłumaczenie hiszpańskie programu (Hiszpania)</value>
+    <value>Tłumaczenie programu na język hiszpański (Hiszpania)</value>
   </data>
   <data name="Archive_FileInfo_WriteTime" xml:space="preserve">
     <value>Ostatnio zmodyfikowano:</value>
@@ -4682,7 +4682,7 @@ Konflikty:
     <value>Kontrola pięści</value>
   </data>
   <data name="About_Credits_Lex" xml:space="preserve">
-    <value>Tłumaczenie duńskie programu (Dania)</value>
+    <value>Tłumaczenie programu na język duński (Dania)</value>
   </data>
   <data name="Home_ShowRecentGames" xml:space="preserve">
     <value>Pokaż ostatnie gry</value>
@@ -5147,7 +5147,7 @@ Konflikty:
     <value>Znajdź zainstalowane klienty/emulatory gier</value>
   </data>
   <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>Tłumaczenie tureckie programu (Turcja)</value>
+    <value>Tłumaczenie programu na język turecki (Turcja)</value>
   </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>Wybierz plik moda z GameBanana, który ma zostać użyty podczas aktualizacji</value>
@@ -5416,7 +5416,7 @@ Komunikaty o błędach:
     <value>Problemy</value>
   </data>
   <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
-    <value>{0} problemów</value>
+    <value>{0} problem</value>
   </data>
   <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
     <value>{0} problemów</value>
@@ -5567,5 +5567,207 @@ Komunikaty o błędach:
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Szukaj modów</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Ścieżka dźwiękowa na poziomie</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>Czy na pewno chcesz odinstalować narzędzie Ścieżki dźwiękowej na poziomie? Spowoduje to odinstalowanie go we wszystkich grach, w których jest używane.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Zastępuje muzykę w grze muzyką poszczególnych poziomów z wersji na PlayStation, a także zapewnia różne poprawki dla wersji na PC.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
+    <value>Dźwięki CD Audio level clear i dźwięki śmierci</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
+    <value>Zastępuje domyślne dźwięki level clear i śmierci dźwiękami audio CD z wersji na PlayStation</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Ambientowy utwór MIDI</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Poprawki błędów wizualnych</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Zawiera poprawki błędów wizualnych w wersji na PC, np. pięść Mrocznego Raymana pojawia się po uderzeniu</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Niech pięść Dark Raymana cię zabije</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Ponownie włącza wycięte zachowanie, w którym pięść Mrocznego Raymana zabija Raymana przy kontakcie</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Konfiguracja gry</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Zalecane</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Opcjonalne</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} działania opcjonalne</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>Ze względu na błąd występujący we wcześniejszych wersjach gry, postępy w plikach zapisu mogą zostać zsynchronizowane, powodując, że masz mniej teensies niż faktycznie zdobyłeś. Może to spowodować, że niektóre poziomy staną się niedostępne.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>Modyfikacja Higher Quality Official Textures to modyfikacja tekstur autorstwa użytkownika ICUP321, która zastępuje wiele tekstur lepszymi/wyższej jakości wariantami dostępnymi w innych wersjach, w tym tekstury z poprawkami przezroczystości.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Zainstaluj mod High Quality Videos</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>Filmy w wersji PC są bardziej skompresowane niż w wersjach konsolowych. Modyfikacja High Quality Videos zastępuje filmy przekonwertowanymi filmami o wyższej jakości z konsolowych wersji gry.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
+    <value>Rozdzielczość gry musi ustawiona na taką, która jest wspierana przez kartę graficzną. W niektórych systemach rozdzielczość zostanie domyślnie ustawiona na nieprawidłową, powodując czarne obramowanie i potencjalne awarie. Aby to rozwiązać, należy wybrać obsługiwaną rozdzielczość.</value>
+  </data>
+  <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
+    <value>Modyfikacja Minimum Loading Times to modyfikacja autorstwa użytkownika RayCarrot, która zmienia minimalny czas ładowania ekranu z 4 sekund do 0 sekund, przyśpieszając w ten sposób czas ładowania.</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>Brak pliku konfiguracyjnego mappera lub jest on nieprawidłowy</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Info" xml:space="preserve">
+    <value>Podczas niektórych instalacji Rayman Designer plik konfiguracyjny nie zostanie utworzony lub zostanie utworzony z nieprawidłowymi wartościami, co powoduje, że edytor mapper wyświetla błąd podczas uruchamiania.</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>Brak ścieżki montowania</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>Aby gra mogła zostać uruchomiona, w ustawieniach emulatora należy określić prawidłową ścieżkę instalacji.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Info" xml:space="preserve">
+    <value>Niektóre ustawienia w konfiguracji gry są nieprawidłowe. Może to powodować problemy w grze, takie jak brak efektów dźwiękowych. Przejdź do konfiguracji gry, wybierz zalecane ustawienia i zapisz, aby je naprawić.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>Zastąp niekompletną ścieżkę dźwiękową</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>Kolekcja Rayman Forever nie zawiera pełnej ścieżki dźwiękowej do gry ze względu na ograniczoną ilość miejsca na dysku w oryginalnym wydaniu. Zaleca się zastąpienie plików muzycznych plikami z pełnej ścieżki dźwiękowej.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>Zastąp kompletną ścieżką dźwiękową</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>Zastąp zainfekowane pliki</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>Niektóre wersje Rayman Designer, takie jak ta dołączona do Rayman Forever, mają niektóre pliki zainfekowane starym złośliwym oprogramowaniem. Chociaż nie wydaje się ono być szkodliwe, ani nawet aktywne, a GOG potwierdził, że nie ma żadnego zagrożenia, nadal pomocne może być zastąpienie plików ich niezainfekowanymi wersjami, aby uniknąć usunięcia plików gry przez programy antywirusowe.</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>Zastąp pliki</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>Nie wybrano klienta gry/emulatora</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>Tej gry nie można uruchomić bez klienta gry/emulatora. Upewnij się, że najpierw dodasz obsługiwanego klienta/emulatora gier, a następnie wybierzesz go do użytku z tą grą.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>Dodaj klienta gry/emulator</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>Otwórz klienta gry/ustawienia gry w emulatorze</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>Nie znaleziono prawidłowych plików dla tej modyfikacji</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>Wystąpił błąd podczas pobierania modyfikacji</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>Wyświetlaj okno na pasku zadań dla określonych zdarzeń</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>Wyświetlaj ikonę okna na pasku zadań podczas określonych zdarzeń, np. po zakończeniu stosowania modów</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>Ustawienia gry</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>Ustawienia klienta/emulatora gry</value>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>Lokalizacja ustawień</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>Pokaż lokalizacje ustawień</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>Wystąpił błąd podczas ładowania ustawień gry. Może być konieczne uruchomienie aplikacji jako administrator.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>Wystąpił błąd podczas zapisywania ustawień gry. Może być konieczne uruchomienie aplikacji jako administrator.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>Polecenia uruchamiania debugowania</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInfo" xml:space="preserve">
+    <value>Źródło określa, w jaki sposób opcje uruchamiania są przetwarzane przez grę. Użycie pliku cmdline.txt spowoduje umieszczenie go w katalogu głównym gry i pozwoli na większą elastyczność, taką jak dodawanie komentarzy w pliku za pomocą ## i umożliwienie korzystania z niego poza Rayman Control Panel. Spowoduje to jednak zresetowanie ustawień wyświetlania, przez co będziesz musiał ponownie określić je w poleceniach. Używanie argumentów uruchamiania zachowuje ustawienia wyświetlania, ale niektóre polecenia, takie jak zmiana języka, mogą nie działać.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>Brak</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>Argumenty uruchamiania</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>Polecenia</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>Wyjściowe</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandLineFileNotAvailableInfo" xml:space="preserve">
+    <value>Gra musi zostać zaktualizowana, aby umożliwić korzystanie z pliku cmdline.txt. Można to zrobić za pomocą moda CommandLine File Fix.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LaunchArgumentsNotAvailableInfo" xml:space="preserve">
+    <value>Aktualnie wybrany klient gry nie obsługuje przekazywania argumentów uruchamiania do gry. Zmień klienta lub ustaw go tak, aby nie używał klienta gry podczas uruchamiania gry w celu użycia argumentów uruchamiania.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>Katalog główny</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>Określa katalog główny, w którym gra szuka plików. Domyślnie jest to katalog, w którym znajduje się plik wykonywalny gry.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapInfo" xml:space="preserve">
+    <value>Względna ścieżka do pliku sceny, który ma zostać załadowany po uruchomieniu gry. OSTRZEŻENIE: Wczytanie mapy bezpośrednio za pomocą tej opcji spowoduje pominięcie wczytywania pliku zapisu i może spowodować jego zresetowanie, jeśli gra kiedykolwiek zapisze się automatycznie. Zdecydowanie zaleca się wykonanie kopii zapasowej plików zapisu przed użyciem tej opcji.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherHeader" xml:space="preserve">
+    <value>Wszyscy gracze wspólnie oszukują</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>Niezniszczalność</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>Domyślny</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
+    <value>Narzędzie ścieżki dźwiękowej na poziom dla gry Rayman 1 zostało przerobione w tej wersji, aby nie polegało już na niestandardowej kompilacji DOSBox. Aby nadal z niego korzystać, należy zainstalować go ponownie. Poprzednia wersja została automatycznie odinstalowana.</value>
+  </data>
+  <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
+    <value>Powiadomienie o aktualizacji ścieżki dźwiękowej na poziom</value>
+  </data>
+  <data name="PostUpdate_MigrateR2Widescreen" xml:space="preserve">
+    <value>Opcja patchowania Rayman 2 w celu użycia szerokiego ekranu została usunięta w tej wersji na rzecz nowej ulepszonej implementacji szerokiego ekranu, która jest teraz dostępna w Ray2Fix. Wykryto że plik exe dodanej gry "{0}" używa poprawki szerokoekranowej. Jeśli zostało to zastosowane przez Rayman Control Panel, to zdecydowanie zaleca się cofnięcie tej poprawki i użycie opcji szerokiego ekranu w Ray2Fix.
+Czy chcesz cofnąć poprawkę?</value>
+  </data>
+  <data name="PostUpdate_MigrateR2WidescreenHeader" xml:space="preserve">
+    <value>Powiadomienie o aktualizacji Rayman 2 Widescreen Patch</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Domyślnie gra obsługuje tylko rozdzielczości o proporcjach 4:3. Każda inna rozdzielczość spowoduje rozciągnięcie gry. Aby dodać właściwą obsługę szerokiego ekranu, zaleca się użycie Ray2Fix i włączenie tam opcji szerokoekranowej.</value>
+  </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>Właśnie wpisano kod cooking! Wszystkie obrazki są teraz ciasteczkami!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>Cooking Code</value>
+  </data>
+  <data name="About_Credits_Mr5088" xml:space="preserve">
+    <value>Tłumaczenie programu na język portugalski (Brazylia)</value>
   </data>
 </root>

@@ -5739,4 +5739,7 @@ WAARSCHUWING: Direct laden binnen een map via deze weg zorgt ervoor dat de save 
   <data name="SecretCodes_CookingHeader" xml:space="preserve">
     <value>Koken-Code</value>
   </data>
+  <data name="About_Credits_Mr5088" xml:space="preserve">
+    <value>Portugese (Brazilië) programmavertaling</value>
+  </data>
 </root>

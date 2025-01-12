@@ -178,6 +178,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Portuguese (Brazil) program translation.
+        /// </summary>
+        public static string About_Credits_Mr5088 {
+            get {
+                return ResourceManager.GetString("About_Credits_Mr5088", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Splash screen.
         /// </summary>
         public static string About_Credits_Nic {

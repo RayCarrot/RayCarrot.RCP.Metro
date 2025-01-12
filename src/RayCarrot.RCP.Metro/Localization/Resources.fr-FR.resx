@@ -5745,4 +5745,7 @@ Voulez-vous désinstaller le patch ?</value>
   <data name="SecretCodes_CookingHeader" xml:space="preserve">
     <value>Code Cooking</value>
   </data>
+  <data name="About_Credits_Mr5088" xml:space="preserve">
+    <value>Traduction du programme en portugais (Brésil)</value>
+  </data>
 </root>
