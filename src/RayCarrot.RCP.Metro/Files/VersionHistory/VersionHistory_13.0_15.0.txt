@@ -1,4 +1,8 @@
-﻿-----   Version 14.2.3 - ??, 2024   -----
+﻿-----   Version 14.2.3 - January 12, 2025   -----
+• The program has now been translated to Brazilian Portuguese (thanks Mr5088!)
+• Added Mr5088 to the credits
+• Fixed a bug where importing to .gf files with mipmaps would result in a broken image
+• Fixed a bug where backups would fail if the folder didn't exist
 • Fixed a bug where serializing a UbiArt save file on PS3 and Xbox 360 would result in it being the wrong size
 
 
