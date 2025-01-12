@@ -55,10 +55,10 @@ public class CpaGfImageFormat : ImageFormat
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        gfImgData[(y * width + x) * 4 + 0] = data.RawData[((height - y - 1) * width + x) * 3 + 0]; // B
-                        gfImgData[(y * width + x) * 4 + 1] = data.RawData[((height - y - 1) * width + x) * 3 + 1]; // G
-                        gfImgData[(y * width + x) * 4 + 2] = data.RawData[((height - y - 1) * width + x) * 3 + 2]; // R
-                        gfImgData[(y * width + x) * 4 + 3] = 0xFF; // A
+                        gfImgData[offset + (y * width + x) * 4 + 0] = data.RawData[((height - y - 1) * width + x) * 3 + 0]; // B
+                        gfImgData[offset + (y * width + x) * 4 + 1] = data.RawData[((height - y - 1) * width + x) * 3 + 1]; // G
+                        gfImgData[offset + (y * width + x) * 4 + 2] = data.RawData[((height - y - 1) * width + x) * 3 + 2]; // R
+                        gfImgData[offset + (y * width + x) * 4 + 3] = 0xFF; // A
                     }
                 }
                 break;
@@ -76,9 +76,9 @@ public class CpaGfImageFormat : ImageFormat
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        gfImgData[(y * width + x) * 3 + 0] = data.RawData[((height - y - 1) * width + x) * 4 + 0]; // B
-                        gfImgData[(y * width + x) * 3 + 1] = data.RawData[((height - y - 1) * width + x) * 4 + 1]; // G
-                        gfImgData[(y * width + x) * 3 + 2] = data.RawData[((height - y - 1) * width + x) * 4 + 2]; // R
+                        gfImgData[offset + (y * width + x) * 3 + 0] = data.RawData[((height - y - 1) * width + x) * 4 + 0]; // B
+                        gfImgData[offset + (y * width + x) * 3 + 1] = data.RawData[((height - y - 1) * width + x) * 4 + 1]; // G
+                        gfImgData[offset + (y * width + x) * 3 + 2] = data.RawData[((height - y - 1) * width + x) * 4 + 2]; // R
                     }
                 }
                 break;
