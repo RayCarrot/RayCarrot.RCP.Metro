@@ -96,6 +96,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     {
                         GetDefaultDir = _ => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins"
                     },
+                    new(UbiArtGameMode.RaymanOrigins_3DS),
                 }),
 
             new Serializers_TypeViewModel<Legends_SaveData>(
