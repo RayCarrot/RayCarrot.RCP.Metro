@@ -3,6 +3,7 @@ using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
+// Times are in centiseconds
 public class RaymanRushLevelSave : BinarySerializable
 {
     public int TimeAttackBestLapTime { get; set; }
@@ -17,7 +18,7 @@ public class RaymanRushLevelSave : BinarySerializable
     public byte CompletedChampionship { get; set; } // Bool?
     public byte CompletedModes { get; set; } // 2 = Time Attack, 3 = Time Attack + Lums, 4 = Time Attack + Lums + Target
     public byte Byte_2F { get; set; }
-    public byte[] Bytes_30 { get; set; }
+    public byte[] CollectedLums { get; set; }
     public bool HasBeatTimeAttackBestLapTime { get; set; } // +0.3%
     public bool HasBeatChampionshipBestLapTime { get; set; } // +0.4%
     public bool HasBeatLumsBestLapTime { get; set; } // +0.3%
@@ -37,7 +38,7 @@ public class RaymanRushLevelSave : BinarySerializable
         CompletedChampionship = s.Serialize<byte>(CompletedChampionship, name: nameof(CompletedChampionship));
         CompletedModes = s.Serialize<byte>(CompletedModes, name: nameof(CompletedModes));
         Byte_2F = s.Serialize<byte>(Byte_2F, name: nameof(Byte_2F));
-        Bytes_30 = s.SerializeArray<byte>(Bytes_30, 8, name: nameof(Bytes_30));
+        CollectedLums = s.SerializeArray<byte>(CollectedLums, 8, name: nameof(CollectedLums));
         HasBeatTimeAttackBestLapTime = s.Serialize<bool>(HasBeatTimeAttackBestLapTime, name: nameof(HasBeatTimeAttackBestLapTime));
         HasBeatChampionshipBestLapTime = s.Serialize<bool>(HasBeatChampionshipBestLapTime, name: nameof(HasBeatChampionshipBestLapTime));
         HasBeatLumsBestLapTime = s.Serialize<bool>(HasBeatLumsBestLapTime, name: nameof(HasBeatLumsBestLapTime));

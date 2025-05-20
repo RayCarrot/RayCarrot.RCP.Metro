@@ -25,7 +25,7 @@ public class RaymanRushPs1SaveBlock1 : CPAPs1SaveBlock
     public ushort Player2NoInput { get; set; }
     public short[] OriginalLumCounts { get; set; } // Per level - never updated
     public short[] OriginalTargetCounts { get; set; } // Per level - never updated
-    public short Short_324 { get; set; } // 1-6, checked against 5 a lot
+    public short CurrentMode { get; set; } // 1-6, checked against 5 a lot
     public byte[] Bytes_326 { get; set; }
     public short Short_328 { get; set; }
     public short Short_32A { get; set; }
@@ -34,11 +34,11 @@ public class RaymanRushPs1SaveBlock1 : CPAPs1SaveBlock
     public short LevelIndex { get; set; }
     public byte Byte_332 { get; set; }
     public byte UnlockedCharacters { get; set; } // 0-4
-    public byte[] Bytes_334 { get; set; }
+    public byte[] HasBeatModeBestLapTimeAllLevels { get; set; } // One bool for each game mode
     public byte Byte_338 { get; set; }
     public byte Byte_339 { get; set; }
     public string Name { get; set; }
-    public byte[] Bytes_342 { get; set; }
+    public byte[] CurrentLevelCollectedLums { get; set; }
     public byte SfxVolume { get; set; }
     public byte MusicVolume { get; set; }
     public byte Byte_34C { get; set; }
@@ -72,7 +72,7 @@ public class RaymanRushPs1SaveBlock1 : CPAPs1SaveBlock
             Player2NoInput = s.Serialize<ushort>(Player2NoInput, name: nameof(Player2NoInput));
             OriginalLumCounts = s.SerializeArray<short>(OriginalLumCounts, 12, name: nameof(OriginalLumCounts));
             OriginalTargetCounts = s.SerializeArray<short>(OriginalTargetCounts, 12, name: nameof(OriginalTargetCounts));
-            Short_324 = s.Serialize<short>(Short_324, name: nameof(Short_324));
+            CurrentMode = s.Serialize<short>(CurrentMode, name: nameof(CurrentMode));
             Bytes_326 = s.SerializeArray<byte>(Bytes_326, 2, name: nameof(Bytes_326));
             Short_328 = s.Serialize<short>(Short_328, name: nameof(Short_328));
             Short_32A = s.Serialize<short>(Short_32A, name: nameof(Short_32A));
@@ -81,11 +81,11 @@ public class RaymanRushPs1SaveBlock1 : CPAPs1SaveBlock
             LevelIndex = s.Serialize<short>(LevelIndex, name: nameof(LevelIndex));
             Byte_332 = s.Serialize<byte>(Byte_332, name: nameof(Byte_332));
             UnlockedCharacters = s.Serialize<byte>(UnlockedCharacters, name: nameof(UnlockedCharacters));
-            Bytes_334 = s.SerializeArray<byte>(Bytes_334, 4, name: nameof(Bytes_334));
+            HasBeatModeBestLapTimeAllLevels = s.SerializeArray<byte>(HasBeatModeBestLapTimeAllLevels, 4, name: nameof(HasBeatModeBestLapTimeAllLevels));
             Byte_338 = s.Serialize<byte>(Byte_338, name: nameof(Byte_338));
             Byte_339 = s.Serialize<byte>(Byte_339, name: nameof(Byte_339));
             Name = s.SerializeString(Name, length: 8, name: nameof(Name));
-            Bytes_342 = s.SerializeArray<byte>(Bytes_342, 8, name: nameof(Bytes_342));
+            CurrentLevelCollectedLums = s.SerializeArray<byte>(CurrentLevelCollectedLums, 8, name: nameof(CurrentLevelCollectedLums));
             SfxVolume = s.Serialize<byte>(SfxVolume, name: nameof(SfxVolume));
             MusicVolume = s.Serialize<byte>(MusicVolume, name: nameof(MusicVolume));
             Byte_34C = s.Serialize<byte>(Byte_34C, name: nameof(Byte_34C));
