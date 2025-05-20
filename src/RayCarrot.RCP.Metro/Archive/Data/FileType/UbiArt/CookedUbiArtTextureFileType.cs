@@ -153,6 +153,7 @@ public sealed class CookedUbiArtTextureFileType : FileType
         };
     }
 
+    // TODO-UPDATE: Issue with multiple extensions. If you import with multiple extensions (such as "File.tga.ckd.png") then this fails.
     private ImageFormat GetImageFormat(FileExtension fileExtension) =>
         SupportedFormats.First(x => x.FileExtensions.Contains(fileExtension));
 

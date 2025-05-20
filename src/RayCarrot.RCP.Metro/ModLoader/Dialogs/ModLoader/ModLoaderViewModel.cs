@@ -140,6 +140,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             {
                 Mod mod;
 
+                // TODO-UPDATE: Maybe don't return if we can't read mod? That would prevent an error-loop.
                 try
                 {
                     // Read the mod

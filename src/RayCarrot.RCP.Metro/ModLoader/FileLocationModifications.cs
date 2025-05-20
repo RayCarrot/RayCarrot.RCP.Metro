@@ -52,6 +52,7 @@ public class FileLocationModifications
             ModFilePath modFilePath = modification.ModFilePath;
             FileSystemPath physicalFilePath = dirPath + modFilePath.FilePath;
 
+            // TODO-UPDATE: This check fails if the dirPath uses forward slash! We should normalize the path first.
             // Make sure the file is inside of the directory. We want to disallow going up the tree using ..\
             if (!Path.GetFullPath(physicalFilePath).StartsWith(dirPath))
             {

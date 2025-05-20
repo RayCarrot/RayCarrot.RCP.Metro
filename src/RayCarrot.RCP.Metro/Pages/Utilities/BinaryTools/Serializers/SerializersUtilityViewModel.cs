@@ -99,6 +99,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     new(UbiArtGameMode.RaymanOrigins_3DS),
                 }),
 
+            // TODO-UPDATE: Different game modes should have different file extensions
             new Serializers_TypeViewModel<Legends_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RLSaveHeader)),
                 fileExtension: new FileExtension(""),
