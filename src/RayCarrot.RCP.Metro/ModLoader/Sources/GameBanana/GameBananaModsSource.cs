@@ -184,6 +184,7 @@ public class GameBananaModsSource : DownloadableModsSource
             // Add the mods
             modRecords.AddRange(subfeed.Records.Where(x => 
                 x.HasFiles && 
+                (!x.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods) &&
                 !loadedDownloadableMods.Any(m => m is GameBananaDownloadableModViewModel vm && vm.GameBananaId == x.Id) &&
                 !modViewModels.Any(vm => vm.GameBananaId == x.Id)));
         }
@@ -425,6 +426,8 @@ public class GameBananaModsSource : DownloadableModsSource
                 GroupBy(x => x.Id).Select(x => x.OrderBy(y => y.DateModified).Last()).
                 // Only keep ones which have files
                 Where(x => x.HasFiles).
+                // Check the content rating
+                Where(x => !x.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods).
                 // Only keep from a maximum of a year back
                 Where(x => (x.DateModified - DateTime.Now) < TimeSpan.FromDays(365)).
                 ToList();

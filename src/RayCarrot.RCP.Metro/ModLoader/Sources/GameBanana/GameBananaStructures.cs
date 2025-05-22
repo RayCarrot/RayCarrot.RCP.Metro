@@ -28,6 +28,7 @@ public record GameBananaRecord(
     [property: JsonProperty("_aSubmitter")] GameBananaMember? Submitter,
     [property: JsonProperty("_sVersion")] string? Version,
     [property: JsonProperty("_bIsObsolete")] bool IsObsolete,
+    [property: JsonProperty("_bHasContentRatings")] bool HasContentRatings,
     [property: JsonProperty("_nPostCount")] int PostCount,
     [property: JsonProperty("_nLikeCount")] int LikeCount,
     [property: JsonProperty("_nViewCount")] int ViewCount);

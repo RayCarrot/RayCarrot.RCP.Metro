@@ -21,5 +21,11 @@
                   IsChecked="{Binding Path=ModLoader_ShowModConflictsWarning}"
                   Margin="0 0 0 8" />
 
+        <!-- TODO-LOC -->
+        <CheckBox Content="Include downloadable mods marked as NSFW"
+                  ToolTip="Indicates if mods with a content rating, such as mods with nudity or violence, should be shown in the list of downloadable mods."
+                  IsChecked="{Binding Path=ModLoader_IncludeDownloadableNsfwMods}"
+                  Margin="0 0 0 8" />
+
     </StackPanel>
 </UserControl>

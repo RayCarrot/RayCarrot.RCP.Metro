@@ -90,6 +90,7 @@ public partial class AppUserData : BaseViewModel
         ModLoader_AutomaticallyCheckForUpdates = true;
         ModLoader_ViewedMods = new Dictionary<string, List<ViewedMod>>();
         ModLoader_ShowModConflictsWarning = true;
+        ModLoader_IncludeDownloadableNsfwMods = false;
     }
 
     /// <summary>
@@ -411,6 +412,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if a warning message should be shown if there are mod conflicts when applying
     /// </summary>
     public bool ModLoader_ShowModConflictsWarning { get; set; }
+
+    /// <summary>
+    /// Indicates if downloadable mods with a content rating should be shown.
+    /// </summary>
+    public bool ModLoader_IncludeDownloadableNsfwMods { get; set; }
 
     #endregion
 }
