@@ -1,4 +1,12 @@
-﻿-----   Version 14.2.3 - January 12, 2025   -----
+﻿-----   Version 14.2.4 - May 22, 2025   -----
+• Added serializers for Rayman Origins (3DS) save files and Rayman Legends (Wii U) save files
+• Added a setting for if downloadable mods marked as NSFW should be included when downloading mods from GameBanana
+• Fixed a bug where using the converter utility to convert back a file would save it in the same folder as the input files rather than the selected output folder
+• Fixed a bug where certain mods would fail to install if the game path uses forward slashes
+• Minor fixes and improvements
+
+
+-----   Version 14.2.3 - January 12, 2025   -----
 • The program has now been translated to Brazilian Portuguese (thanks Mr5088!)
 • Added Mr5088 to the credits
 • Fixed a bug where importing to .gf files with mipmaps would result in a broken image
