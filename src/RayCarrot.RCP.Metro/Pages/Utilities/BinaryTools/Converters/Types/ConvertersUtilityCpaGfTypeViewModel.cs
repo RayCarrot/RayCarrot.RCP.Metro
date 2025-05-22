@@ -66,7 +66,6 @@ public class ConvertersUtilityCpaGfTypeViewModel : ConvertersUtilityTypeViewMode
         };
         CpaGfImageFormat outputFormat = new(settings);
 
-        // TODO-UPDATE: Output path is wrong and incorrectly uses the input path as the base. Check other utilities too.
         using FileStream inputStream = File.OpenRead(inputFilePath);
         using FileStream outputStream = File.Create(context.GetAbsoluteFilePath(outputFileName));
         RawImageData decodedData = inputFormat.Decode(inputStream);

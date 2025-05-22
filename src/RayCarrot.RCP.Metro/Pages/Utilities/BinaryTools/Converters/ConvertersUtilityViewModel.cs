@@ -190,7 +190,7 @@ public class ConvertersUtilityViewModel : UtilityViewModel
             {
                 await Task.Run(() =>
                 {
-                    using RCPContext context = new(fileResult.SelectedFiles.First().Parent);
+                    using RCPContext context = new(destinationResult.SelectedDirectory);
                     SelectedType.SelectedMode.InitContext(context);
 
                     // Convert every file
