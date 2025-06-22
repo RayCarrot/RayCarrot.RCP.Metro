@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
-using System.Windows.Forms;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -34,7 +34,7 @@ public static class AdminWorker
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"An error occurred while granting full file control to the specified path: {filePath}.{Environment.NewLine}{Environment.NewLine}Error message: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"An error occurred while granting full file control to the specified path: {filePath}.{Environment.NewLine}{Environment.NewLine}Error message: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
