@@ -5,14 +5,14 @@ namespace RayCarrot.RCP.Metro;
 
 public class RHR_LevelSave : BinarySerializable
 {
-    public short Score { get; set; }
+    public ushort Score { get; set; }
     public byte Lums { get; set; }
     public RHR_LevelSaveFlags Flags { get; set; }
     public byte Teensies { get; set; }
 
     public override void SerializeImpl(SerializerObject s)
     {
-        Score = s.Serialize<short>(Score, name: nameof(Score));
+        Score = s.Serialize<ushort>(Score, name: nameof(Score));
         Lums = s.Serialize<byte>(Lums, name: nameof(Lums));
 
         s.DoBits<byte>(b =>
