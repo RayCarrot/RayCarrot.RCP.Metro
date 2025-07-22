@@ -40,7 +40,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         isPrimaryItem: false,
         icon: ProgressionIconAsset.RHR_Score,
         header: "Bla-Bla Cafe",
-        value: saveData.MiniGames[x].Scores[0].Score)));
+        value: saveData.MiniGames[x].UserHighScore)));
 
         yield return new SerializableGameProgressionSlot<RRR2_SaveFile>(
     name: "Slot 1",
