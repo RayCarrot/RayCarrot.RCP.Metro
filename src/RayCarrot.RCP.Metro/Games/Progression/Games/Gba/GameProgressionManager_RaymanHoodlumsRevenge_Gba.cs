@@ -115,7 +115,7 @@ public class GameProgressionManager_RaymanHoodlumsRevenge_Gba : EmulatedGameProg
         new(99, 4, 7000,  14000, 19000, true,  false), // Clearleaf Falls
         new(2,  0, 0,     0,     0,     false, false), // Infernal Machine
         new(75, 0, 5000,  11000, 16000, true,  false), // Dungeon of Murk
-        new(76, 0, 11000, 18000, 26000, true,  false), // Bog of Murk
+        new(76, 6, 11000, 18000, 26000, true,  false), // Bog of Murk
         new(4,  0, 0,     0,     0,     false, false), // Begoniax Bayou
         new(58, 4, 7000,  12000, 21000, true,  false), // Rivers of Murk
         new(96, 4, 10000, 22000, 30000, true,  false), // Hoodlum Moor
