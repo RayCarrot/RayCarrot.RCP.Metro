@@ -33,13 +33,23 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
         Logger.Info("Save has been deserialized");
 
-        List<GameProgressionDataItem> progressItems = new();
+        int completedLevels = saveData.MiniGames.Count(x => (x.UserHighScore > 0));
+
+        List<GameProgressionDataItem> progressItems = new()
+        {
+                new GameProgressionDataItem(
+                    isPrimaryItem: true,
+                    icon: ProgressionIconAsset.RRR_Trophy,
+                    header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
+                    value: completedLevels,
+                    max: 16),
+        };
 
         progressItems.AddRange(saveData.MiniGames.
             Where(x => x.UserHighScore > 0).
         Select(x => new GameProgressionDataItem(
         isPrimaryItem: false,
-        icon: ProgressionIconAsset.RHR_Score,
+        icon: ProgressionIconAsset.RRR_Star,
         header: "Bla-Bla Cafe",
         value: x.UserHighScore)));
 
