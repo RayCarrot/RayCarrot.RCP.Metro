@@ -35,12 +35,13 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
         List<GameProgressionDataItem> progressItems = new();
 
-        progressItems.AddRange(Enumerable.Range(0, 16).
+        progressItems.AddRange(saveData.MiniGames.
+            Where(x => x.UserHighScore > 0).
         Select(x => new GameProgressionDataItem(
         isPrimaryItem: false,
         icon: ProgressionIconAsset.RHR_Score,
         header: "Bla-Bla Cafe",
-        value: saveData.MiniGames[x].UserHighScore)));
+        value: x.UserHighScore)));
 
         yield return new SerializableGameProgressionSlot<RRR2_SaveFile>(
     name: "Slot 1",
