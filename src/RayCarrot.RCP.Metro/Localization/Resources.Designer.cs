@@ -14590,6 +14590,150 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hot Cake.
+        /// </summary>
+        public static string RRR2_LevelName1 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trash Race.
+        /// </summary>
+        public static string RRR2_LevelName10 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baseball.
+        /// </summary>
+        public static string RRR2_LevelName11 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to American Football.
+        /// </summary>
+        public static string RRR2_LevelName12 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spicy Chicken.
+        /// </summary>
+        public static string RRR2_LevelName13 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bumper Cars.
+        /// </summary>
+        public static string RRR2_LevelName14 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snail Race.
+        /// </summary>
+        public static string RRR2_LevelName15 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ice on ice.
+        /// </summary>
+        public static string RRR2_LevelName16 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chemist.
+        /// </summary>
+        public static string RRR2_LevelName2 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dial R for Rabbid.
+        /// </summary>
+        public static string RRR2_LevelName3 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Burgerinni.
+        /// </summary>
+        public static string RRR2_LevelName4 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shopping Cart Downhill.
+        /// </summary>
+        public static string RRR2_LevelName5 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rolling Stone.
+        /// </summary>
+        public static string RRR2_LevelName6 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yummy Butterflies.
+        /// </summary>
+        public static string RRR2_LevelName7 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Office.
+        /// </summary>
+        public static string RRR2_LevelName8 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laundry.
+        /// </summary>
+        public static string RRR2_LevelName9 {
+            get {
+                return ResourceManager.GetString("RRR2_LevelName9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
