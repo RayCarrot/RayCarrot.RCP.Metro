@@ -52,7 +52,9 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
                     Where(x => saveData.MiniGames[x].UserHighScore > 0).
                     Select(x => new GameProgressionDataItem(
                         isPrimaryItem: false,
-                        icon: ProgressionIconAsset.RRR_Star,
+                        icon: ((saveData.MiniGames[x].UserHighScore >= 12000) ? ProgressionIconAsset.RRR2_Medal_1 :
+                               (saveData.MiniGames[x].UserHighScore >= 8000) ?  ProgressionIconAsset.RRR2_Medal_2 :
+                                                                                ProgressionIconAsset.RRR2_Medal_3),
                         header: new ResourceLocString($"RRR2_LevelName_{x}"),
                         value: saveData.MiniGames[x].UserHighScore)));
 

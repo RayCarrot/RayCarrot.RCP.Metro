@@ -123,6 +123,9 @@ public enum ProgressionIconAsset
 
     // Rayman Raving Rabbids 2
     RRR2_Trophy,
+    RRR2_Medal_1,
+    RRR2_Medal_2,
+    RRR2_Medal_3,
 
     // Rabbids Big Bang
     RabbidsBigBang_Score,
