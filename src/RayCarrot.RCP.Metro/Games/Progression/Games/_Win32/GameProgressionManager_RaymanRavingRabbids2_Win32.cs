@@ -37,26 +37,52 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
             Logger.Info("{0} save {1} has been deserialized...", GameInstallation.FullId, GameClasses[gameIndex].SaveFileName);
 
-            int completedLevels = saveData.MiniGames.Count(x => (x.UserHighScore > 0));
+            int[] userHighScores = new int[16];
+            int completedLevels = 0;
+
+            for (int i = 0; i < userHighScores.Length; i++)
+            {
+                RRR2_MiniGame game = saveData.MiniGames[i];
+                if (game.Scores[0].Score != 12000 || game.Scores[0].Name != "GLOBOX")
+                {
+                    userHighScores[i] = game.Scores[0].Score;
+                    completedLevels++;
+                }
+                else if (game.Scores[1].Score != 8000 || game.Scores[1].Name != "BETILLA")
+                {
+                    userHighScores[i] = game.Scores[1].Score;
+                    completedLevels++;
+                }
+                else if (game.Scores[2].Score != 4000 || game.Scores[2].Name != "MURFY")
+                {
+                    userHighScores[i] = game.Scores[2].Score;
+                    completedLevels++;
+                }
+                else
+                {
+                    userHighScores[i] = 0;
+                }
+            }
+
             List<GameProgressionDataItem> progressItems = new()
-        {
-            new GameProgressionDataItem(
-            isPrimaryItem: true,
-            icon: ProgressionIconAsset.RRR2_Trophy,
-            header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
-            value: completedLevels,
-            max: GameClasses[gameIndex].NumLevels),
-        };
+            {
+                new GameProgressionDataItem(
+                isPrimaryItem: true,
+                icon: ProgressionIconAsset.RRR2_Trophy,
+                header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
+                value: completedLevels,
+                max: GameClasses[gameIndex].NumLevels),
+            };
 
             progressItems.AddRange(Enumerable.Range(GameClasses[gameIndex].FirstLevelIndex, GameClasses[gameIndex].NumLevels).
-                    Where(x => saveData.MiniGames[x].UserHighScore > 0).
+                    Where(x => userHighScores[x] > 0).
                     Select(x => new GameProgressionDataItem(
                         isPrimaryItem: false,
-                        icon: ((saveData.MiniGames[x].UserHighScore >= 12000) ? ProgressionIconAsset.RRR2_Medal_1 :
-                               (saveData.MiniGames[x].UserHighScore >= 8000) ?  ProgressionIconAsset.RRR2_Medal_2 :
-                                                                                ProgressionIconAsset.RRR2_Medal_3),
+                        icon: ((userHighScores[x] >= 12000) ? ProgressionIconAsset.RRR2_Medal_1 :
+                               (userHighScores[x] >= 8000) ?  ProgressionIconAsset.RRR2_Medal_2 :
+                                                              ProgressionIconAsset.RRR2_Medal_3),
                         header: new ResourceLocString($"RRR2_LevelName_{x}"),
-                        value: saveData.MiniGames[x].UserHighScore)));
+                        value: userHighScores[x])));
 
             yield return new SerializableGameProgressionSlot<RRR2_SaveFile>(
                 name: GameClasses[gameIndex].GameDescription,
