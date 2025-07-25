@@ -34,34 +34,33 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         Logger.Info("Save has been deserialized");
 
         int completedLevels = saveData.MiniGames.Count(x => (x.UserHighScore > 0));
-
         List<GameProgressionDataItem> progressItems = new()
         {
-                new GameProgressionDataItem(
-                    isPrimaryItem: true,
-                    icon: ProgressionIconAsset.RRR_Trophy,
-                    header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
-                    value: completedLevels,
-                    max: 16),
+            new GameProgressionDataItem(
+            isPrimaryItem: true,
+            icon: ProgressionIconAsset.RRR_Trophy,
+            header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
+            value: completedLevels,
+            max: 16),
         };
 
-        progressItems.AddRange(saveData.MiniGames.
-            Where(x => x.UserHighScore > 0).
-        Select(x => new GameProgressionDataItem(
-        isPrimaryItem: false,
-        icon: ProgressionIconAsset.RRR_Star,
-        header: "Bla-Bla Cafe",
-        value: x.UserHighScore)));
+        progressItems.AddRange(Enumerable.Range(0, 16).
+                Where(x => saveData.MiniGames[x].UserHighScore > 0).
+                Select(x => new GameProgressionDataItem(
+                    isPrimaryItem: false,
+                    icon: ProgressionIconAsset.RRR_Star,
+                    header: new ResourceLocString($"RRR2_LevelName_{x}"),
+                    value: saveData.MiniGames[x].UserHighScore)));
 
         yield return new SerializableGameProgressionSlot<RRR2_SaveFile>(
-    name: "Slot 1",
-    index: 0,
-    collectiblesCount: 0,
-    totalCollectiblesCount: 16,
-    dataItems: progressItems,
-    context: context,
-    serializable: saveData,
-    fileName: saveFile.Name);
+            name: "Allgames",
+            index: 0,
+            collectiblesCount: 0,
+            totalCollectiblesCount: 16,
+            dataItems: progressItems,
+            context: context,
+            serializable: saveData,
+            fileName: saveFile.Name);
 
     }
 }
