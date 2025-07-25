@@ -42,7 +42,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         {
             new GameProgressionDataItem(
             isPrimaryItem: true,
-            icon: ProgressionIconAsset.RRR_Trophy,
+            icon: ProgressionIconAsset.RRR2_Trophy,
             header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
             value: completedLevels,
             max: GameClasses[gameIndex].NumLevels),

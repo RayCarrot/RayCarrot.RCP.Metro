@@ -121,6 +121,9 @@ public enum ProgressionIconAsset
     RRR_Trophy,
     RRR_Star,
 
+    // Rayman Raving Rabbids 2
+    RRR2_Trophy,
+
     // Rabbids Big Bang
     RabbidsBigBang_Score,
 
