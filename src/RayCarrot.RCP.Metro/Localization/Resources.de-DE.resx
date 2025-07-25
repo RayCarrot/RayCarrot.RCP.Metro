@@ -1337,52 +1337,52 @@ Fehler Meldung: {1}</value>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="RRR2_LevelName1" xml:space="preserve">
+  <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>Heißer Kuchen</value>
   </data>
-  <data name="RRR2_LevelName2" xml:space="preserve">
+  <data name="RRR2_LevelName_1" xml:space="preserve">
     <value>Kleiner Chemiker</value>
   </data>
-  <data name="RRR2_LevelName3" xml:space="preserve">
+  <data name="RRR2_LevelName_2" xml:space="preserve">
     <value>Wähle H wie Hase</value>
   </data>
-  <data name="RRR2_LevelName4" xml:space="preserve">
+  <data name="RRR2_LevelName_3" xml:space="preserve">
     <value>Burgerini</value>
   </data>
-  <data name="RRR2_LevelName5" xml:space="preserve">
+  <data name="RRR2_LevelName_4" xml:space="preserve">
     <value>Einkaufswagen-Abfahrt</value>
   </data>
-  <data name="RRR2_LevelName6" xml:space="preserve">
+  <data name="RRR2_LevelName_5" xml:space="preserve">
     <value>Rolling Stone</value>
   </data>
-  <data name="RRR2_LevelName7" xml:space="preserve">
+  <data name="RRR2_LevelName_6" xml:space="preserve">
     <value>Leckere Schmetterlinge</value>
   </data>
-  <data name="RRR2_LevelName8" xml:space="preserve">
+  <data name="RRR2_LevelName_7" xml:space="preserve">
     <value>Das Büro</value>
   </data>
-  <data name="RRR2_LevelName9" xml:space="preserve">
+  <data name="RRR2_LevelName_8" xml:space="preserve">
     <value>Wäscherei</value>
   </data>
-  <data name="RRR2_LevelName10" xml:space="preserve">
+  <data name="RRR2_LevelName_9" xml:space="preserve">
     <value>Müllrennen</value>
   </data>
-  <data name="RRR2_LevelName11" xml:space="preserve">
+  <data name="RRR2_LevelName_10" xml:space="preserve">
     <value>Baseball</value>
   </data>
-  <data name="RRR2_LevelName12" xml:space="preserve">
+  <data name="RRR2_LevelName_11" xml:space="preserve">
     <value>Amer. Football</value>
   </data>
-  <data name="RRR2_LevelName13" xml:space="preserve">
+  <data name="RRR2_LevelName_12" xml:space="preserve">
     <value>Pikantes Hühnchen</value>
   </data>
-  <data name="RRR2_LevelName14" xml:space="preserve">
+  <data name="RRR2_LevelName_13" xml:space="preserve">
     <value>Autoscooter</value>
   </data>
-  <data name="RRR2_LevelName15" xml:space="preserve">
+  <data name="RRR2_LevelName_14" xml:space="preserve">
     <value>Schneckenrennen</value>
   </data>
-  <data name="RRR2_LevelName16" xml:space="preserve">
+  <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Eis auf Eis</value>
   </data>
 </root>

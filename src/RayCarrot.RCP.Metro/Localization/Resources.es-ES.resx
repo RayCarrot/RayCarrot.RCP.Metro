@@ -5751,52 +5751,52 @@ ADVERTENCIA: Cargar directamente un mapa con esto omitirá la carga de tu archiv
   <data name="SecretCodes_CookingHeader" xml:space="preserve">
     <value>Código Cooking</value>
   </data>
-  <data name="RRR2_LevelName1" xml:space="preserve">
+  <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>Tarta caliente, caliente</value>
   </data>
-  <data name="RRR2_LevelName2" xml:space="preserve">
+  <data name="RRR2_LevelName_1" xml:space="preserve">
     <value>El pequeño químico</value>
   </data>
-  <data name="RRR2_LevelName3" xml:space="preserve">
+  <data name="RRR2_LevelName_2" xml:space="preserve">
     <value>Telefone jo móvil</value>
   </data>
-  <data name="RRR2_LevelName4" xml:space="preserve">
+  <data name="RRR2_LevelName_3" xml:space="preserve">
     <value>Bocata</value>
   </data>
-  <data name="RRR2_LevelName5" xml:space="preserve">
+  <data name="RRR2_LevelName_4" xml:space="preserve">
     <value>Carros de juego</value>
   </data>
-  <data name="RRR2_LevelName6" xml:space="preserve">
+  <data name="RRR2_LevelName_5" xml:space="preserve">
     <value>Rodando por la vida</value>
   </data>
-  <data name="RRR2_LevelName7" xml:space="preserve">
+  <data name="RRR2_LevelName_6" xml:space="preserve">
     <value>A la rica mariposa</value>
   </data>
-  <data name="RRR2_LevelName8" xml:space="preserve">
+  <data name="RRR2_LevelName_7" xml:space="preserve">
     <value>Trabajo de oficina</value>
   </data>
-  <data name="RRR2_LevelName9" xml:space="preserve">
+  <data name="RRR2_LevelName_8" xml:space="preserve">
     <value>La colada</value>
   </data>
-  <data name="RRR2_LevelName10" xml:space="preserve">
+  <data name="RRR2_LevelName_9" xml:space="preserve">
     <value>Saltito a saltito...</value>
   </data>
-  <data name="RRR2_LevelName11" xml:space="preserve">
+  <data name="RRR2_LevelName_10" xml:space="preserve">
     <value>Béisbol</value>
   </data>
-  <data name="RRR2_LevelName12" xml:space="preserve">
+  <data name="RRR2_LevelName_11" xml:space="preserve">
     <value>Fútbol americano</value>
   </data>
-  <data name="RRR2_LevelName13" xml:space="preserve">
+  <data name="RRR2_LevelName_12" xml:space="preserve">
     <value>Pollo picante</value>
   </data>
-  <data name="RRR2_LevelName14" xml:space="preserve">
+  <data name="RRR2_LevelName_13" xml:space="preserve">
     <value>Coches de choque</value>
   </data>
-  <data name="RRR2_LevelName15" xml:space="preserve">
+  <data name="RRR2_LevelName_14" xml:space="preserve">
     <value>Carrera de caracol</value>
   </data>
-  <data name="RRR2_LevelName16" xml:space="preserve">
+  <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>¡Al rico helado!</value>
   </data>
 </root>

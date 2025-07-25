@@ -5750,52 +5750,52 @@ Vuoi ripristinare la patch?</value>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Traduzione del programma Portoghese (Brasile)</value>
   </data>
-  <data name="RRR2_LevelName1" xml:space="preserve">
+  <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>La torta bollente</value>
   </data>
-  <data name="RRR2_LevelName2" xml:space="preserve">
+  <data name="RRR2_LevelName_1" xml:space="preserve">
     <value>Dottor Jekonyll</value>
   </data>
-  <data name="RRR2_LevelName3" xml:space="preserve">
+  <data name="RRR2_LevelName_2" xml:space="preserve">
     <value>C’è un coniglio per te</value>
   </data>
-  <data name="RRR2_LevelName4" xml:space="preserve">
+  <data name="RRR2_LevelName_3" xml:space="preserve">
     <value>Panino</value>
   </data>
-  <data name="RRR2_LevelName5" xml:space="preserve">
+  <data name="RRR2_LevelName_4" xml:space="preserve">
     <value>Discesa in carrello</value>
   </data>
-  <data name="RRR2_LevelName6" xml:space="preserve">
+  <data name="RRR2_LevelName_5" xml:space="preserve">
     <value>Pietra rotolante</value>
   </data>
-  <data name="RRR2_LevelName7" xml:space="preserve">
+  <data name="RRR2_LevelName_6" xml:space="preserve">
     <value>Buone le farfalle</value>
   </data>
-  <data name="RRR2_LevelName8" xml:space="preserve">
+  <data name="RRR2_LevelName_7" xml:space="preserve">
     <value>Camera coniglio</value>
   </data>
-  <data name="RRR2_LevelName9" xml:space="preserve">
+  <data name="RRR2_LevelName_8" xml:space="preserve">
     <value>Lavanderia</value>
   </data>
-  <data name="RRR2_LevelName10" xml:space="preserve">
+  <data name="RRR2_LevelName_9" xml:space="preserve">
     <value>Corsa nei secchi</value>
   </data>
-  <data name="RRR2_LevelName11" xml:space="preserve">
+  <data name="RRR2_LevelName_10" xml:space="preserve">
     <value>Baseball</value>
   </data>
-  <data name="RRR2_LevelName12" xml:space="preserve">
+  <data name="RRR2_LevelName_11" xml:space="preserve">
     <value>Football americano</value>
   </data>
-  <data name="RRR2_LevelName13" xml:space="preserve">
+  <data name="RRR2_LevelName_12" xml:space="preserve">
     <value>Pollo piccante</value>
   </data>
-  <data name="RRR2_LevelName14" xml:space="preserve">
+  <data name="RRR2_LevelName_13" xml:space="preserve">
     <value>Autoscontri</value>
   </data>
-  <data name="RRR2_LevelName15" xml:space="preserve">
+  <data name="RRR2_LevelName_14" xml:space="preserve">
     <value>Lumache da corsa</value>
   </data>
-  <data name="RRR2_LevelName16" xml:space="preserve">
+  <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Sul ghiaccio</value>
   </data>
 </root>

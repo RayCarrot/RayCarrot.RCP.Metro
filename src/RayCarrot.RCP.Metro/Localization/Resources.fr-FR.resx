@@ -5748,52 +5748,52 @@ Voulez-vous désinstaller le patch ?</value>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Traduction du programme en portugais (Brésil)</value>
   </data>
-  <data name="RRR2_LevelName1" xml:space="preserve">
+  <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>Chaud chaud gâteau</value>
   </data>
-  <data name="RRR2_LevelName2" xml:space="preserve">
+  <data name="RRR2_LevelName_1" xml:space="preserve">
     <value>Petit chimiste</value>
   </data>
-  <data name="RRR2_LevelName3" xml:space="preserve">
+  <data name="RRR2_LevelName_2" xml:space="preserve">
     <value>Lapin télécom</value>
   </data>
-  <data name="RRR2_LevelName4" xml:space="preserve">
+  <data name="RRR2_LevelName_3" xml:space="preserve">
     <value>Burgerinni</value>
   </data>
-  <data name="RRR2_LevelName5" xml:space="preserve">
+  <data name="RRR2_LevelName_4" xml:space="preserve">
     <value>Chariot</value>
   </data>
-  <data name="RRR2_LevelName6" xml:space="preserve">
+  <data name="RRR2_LevelName_5" xml:space="preserve">
     <value>Pierre qui roule</value>
   </data>
-  <data name="RRR2_LevelName7" xml:space="preserve">
+  <data name="RRR2_LevelName_6" xml:space="preserve">
     <value>Gobe papillons</value>
   </data>
-  <data name="RRR2_LevelName8" xml:space="preserve">
+  <data name="RRR2_LevelName_7" xml:space="preserve">
     <value>Travail de bureau</value>
   </data>
-  <data name="RRR2_LevelName9" xml:space="preserve">
+  <data name="RRR2_LevelName_8" xml:space="preserve">
     <value>Blanchisserie</value>
   </data>
-  <data name="RRR2_LevelName10" xml:space="preserve">
+  <data name="RRR2_LevelName_9" xml:space="preserve">
     <value>Course en poubelle</value>
   </data>
-  <data name="RRR2_LevelName11" xml:space="preserve">
+  <data name="RRR2_LevelName_10" xml:space="preserve">
     <value>Baseball</value>
   </data>
-  <data name="RRR2_LevelName12" xml:space="preserve">
+  <data name="RRR2_LevelName_11" xml:space="preserve">
     <value>Football américain</value>
   </data>
-  <data name="RRR2_LevelName13" xml:space="preserve">
+  <data name="RRR2_LevelName_12" xml:space="preserve">
     <value>Poule flambé</value>
   </data>
-  <data name="RRR2_LevelName14" xml:space="preserve">
+  <data name="RRR2_LevelName_13" xml:space="preserve">
     <value>Auto-tamponneuses</value>
   </data>
-  <data name="RRR2_LevelName15" xml:space="preserve">
+  <data name="RRR2_LevelName_14" xml:space="preserve">
     <value>Course d’escargots</value>
   </data>
-  <data name="RRR2_LevelName16" xml:space="preserve">
+  <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Glace sur glace</value>
   </data>
 </root>
