@@ -26,8 +26,6 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
         for (int gameIndex = 0; gameIndex < GameClasses.Length; gameIndex++)
         {
-            FileSystemPath saveFile = fileSystem.GetFile(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2" + "RRR2.sav");
-
             using RCPContext context = new(saveDir);
 
             RRR2_SaveFile? saveData = await context.ReadFileDataAsync<RRR2_SaveFile>(GameClasses[gameIndex].SaveFileName, new RRR_SaveEncoder(), removeFileWhenComplete: false);
@@ -47,10 +45,10 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
             icon: ProgressionIconAsset.RRR_Trophy,
             header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
             value: completedLevels,
-            max: 16),
+            max: GameClasses[gameIndex].NumLevels),
         };
 
-            progressItems.AddRange(Enumerable.Range(0, 16).
+            progressItems.AddRange(Enumerable.Range(GameClasses[gameIndex].FirstLevelIndex, GameClasses[gameIndex].NumLevels).
                     Where(x => saveData.MiniGames[x].UserHighScore > 0).
                     Select(x => new GameProgressionDataItem(
                         isPrimaryItem: false,
@@ -61,22 +59,22 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
             yield return new SerializableGameProgressionSlot<RRR2_SaveFile>(
                 name: GameClasses[gameIndex].GameDescription,
                 index: 0,
-                collectiblesCount: 0,
-                totalCollectiblesCount: 16,
+                collectiblesCount: completedLevels,
+                totalCollectiblesCount: GameClasses[gameIndex].NumLevels,
                 dataItems: progressItems,
                 context: context,
                 serializable: saveData,
-                fileName: saveFile.Name);
+                fileName: GameClasses[gameIndex].SaveFileName);
         }
     }
 
     public GameClass[] GameClasses { get; } =
     {
-        new("RRR2.sav", "Allgames"),
-        new("RRR2_Blue.sav", "Blue"),
-        new("RRR2_Green.sav", "Green"),
-        new("RRR2_Red.sav", "Red"),
-        new("RRR2_Orange.sav", "Orange"),
+        new("RRR2.sav", "Allgames", 16, 0),
+        new("RRR2_Blue.sav", "Blue", 4, 0),
+        new("RRR2_Green.sav", "Green", 4, 4),
+        new("RRR2_Red.sav", "Red", 4, 8),
+        new("RRR2_Orange.sav", "Orange", 4, 12),
     };
-    public record GameClass(string SaveFileName, string GameDescription);
+    public record GameClass(string SaveFileName, string GameDescription, int NumLevels, int FirstLevelIndex);
 }
