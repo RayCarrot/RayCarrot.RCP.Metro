@@ -37,23 +37,23 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
             Logger.Info("{0} save {1} has been deserialized...", GameInstallation.FullId, GameClasses[gameIndex].SaveFileName);
 
-            int[] userHighScores = new int[16];
+            int[] userHighScores = new int[GameClasses[0].NumLevels];
             int completedLevels = 0;
 
             for (int i = 0; i < userHighScores.Length; i++)
             {
                 RRR2_MiniGame game = saveData.MiniGames[i];
-                if (game.Scores[0].Score != 12000 || game.Scores[0].EncodedName != EncodedName_Globox)
+                if (game.Scores[0].Score != DefaultScores[0].Score || game.Scores[0].EncodedName != DefaultScores[0].EncodedName)
                 {
                     userHighScores[i] = game.Scores[0].Score;
                     completedLevels++;
                 }
-                else if (game.Scores[1].Score != 8000 || game.Scores[1].EncodedName != EncodedName_Betilla)
+                else if (game.Scores[1].Score != DefaultScores[1].Score || game.Scores[1].EncodedName != DefaultScores[1].EncodedName)
                 {
                     userHighScores[i] = game.Scores[1].Score;
                     completedLevels++;
                 }
-                else if (game.Scores[2].Score != 4000 || game.Scores[2].EncodedName != EncodedName_Murfy)
+                else if (game.Scores[2].Score != DefaultScores[2].Score || game.Scores[2].EncodedName != DefaultScores[2].EncodedName)
                 {
                     userHighScores[i] = game.Scores[2].Score;
                     completedLevels++;
@@ -78,9 +78,9 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
                     Where(x => userHighScores[x] > 0).
                     Select(x => new GameProgressionDataItem(
                         isPrimaryItem: false,
-                        icon: ((userHighScores[x] >= 12000) ? ProgressionIconAsset.RRR2_Medal_1 :
-                               (userHighScores[x] >= 8000) ?  ProgressionIconAsset.RRR2_Medal_2 :
-                                                              ProgressionIconAsset.RRR2_Medal_3),
+                        icon: ((userHighScores[x] >= DefaultScores[0].Score) ? ProgressionIconAsset.RRR2_Medal_1 :
+                               (userHighScores[x] >= DefaultScores[1].Score) ? ProgressionIconAsset.RRR2_Medal_2 :
+                                                                               ProgressionIconAsset.RRR2_Medal_3),
                         header: new ResourceLocString($"RRR2_LevelName_{x}"),
                         value: userHighScores[x])));
 
@@ -104,9 +104,13 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         new("RRR2_Red.sav", "Red", 4, 8),
         new("RRR2_Orange.sav", "Orange", 4, 12),
     };
-    public record GameClass(string SaveFileName, string GameDescription, int NumLevels, int FirstLevelIndex);
 
-    public const ulong EncodedName_Globox = 0x4F580000474C4F42;
-    public const ulong EncodedName_Betilla = 0x4C4C410042455449;
-    public const ulong EncodedName_Murfy = 0x590000004D555246;
+    public DefaultScore[] DefaultScores { get; } =
+    {
+        new(0x4F580000474C4F42, 12000),     // "GLOBOX"
+        new(0x4C4C410042455449, 8000),      // "BETILLA"
+        new(0x590000004D555246, 4000),      // "MURFY"
+    };
+    public record GameClass(string SaveFileName, string GameDescription, int NumLevels, int FirstLevelIndex);
+    public record DefaultScore(ulong EncodedName, int Score);
 }
