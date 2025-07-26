@@ -28,7 +28,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         {
             using RCPContext context = new(saveDir);
 
-            RRR2_SaveFile? saveData = await context.ReadFileDataAsync<RRR2_SaveFile>(GameClasses[gameIndex].SaveFileName, new RRR_SaveEncoder(), removeFileWhenComplete: false);
+            RRR2_SaveFile? saveData = await context.ReadFileDataAsync<RRR2_SaveFile>(GameClasses[gameIndex].SaveFileName, endian: Endian.Little, removeFileWhenComplete: false);
 
             if (saveData == null)
             {
