@@ -40,6 +40,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
             int[] userHighScores = new int[GameClasses[0].NumLevels];
             int completedLevels = 0;
 
+            // The game considers a level completed if any score or name in the highscore table is different from the default
             for (int i = 0; i < userHighScores.Length; i++)
             {
                 RRR2_MiniGame game = saveData.MiniGames[i];
@@ -74,6 +75,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
                 max: GameClasses[gameIndex].NumLevels),
             };
 
+            // Use gold, silver or bronze medal icons depending on the score
             progressItems.AddRange(Enumerable.Range(GameClasses[gameIndex].FirstLevelIndex, GameClasses[gameIndex].NumLevels).
                     Where(x => userHighScores[x] > 0).
                     Select(x => new GameProgressionDataItem(
@@ -96,6 +98,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         }
     }
 
+    // Each game class uses a different save file name, the colored editions levels are a subset of the 'Allgames' edition
     public GameClass[] GameClasses { get; } =
     {
         new("RRR2.sav", "Allgames", 16, 0),
