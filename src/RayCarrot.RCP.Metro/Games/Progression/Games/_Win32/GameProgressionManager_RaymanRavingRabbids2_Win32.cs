@@ -32,7 +32,7 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
             if (saveData == null)
             {
-                yield break;
+                continue;
             }
 
             Logger.Info("{0} save {1} has been deserialized...", GameInstallation.FullId, GameClasses[gameIndex].SaveFileName);
