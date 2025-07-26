@@ -3396,6 +3396,9 @@ Start : Pause</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Fichiers de sauvegarde Rayman contre les Lapin Crétins (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde Rayman contre les Lapins encore plus Crétins (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Sérialiseurs</value>
   </data>
@@ -5747,5 +5750,53 @@ Voulez-vous désinstaller le patch ?</value>
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Traduction du programme en portugais (Brésil)</value>
+  </data>
+  <data name="RRR2_LevelName_0" xml:space="preserve">
+    <value>Chaud chaud gâteau</value>
+  </data>
+  <data name="RRR2_LevelName_1" xml:space="preserve">
+    <value>Petit chimiste</value>
+  </data>
+  <data name="RRR2_LevelName_2" xml:space="preserve">
+    <value>Lapin télécom</value>
+  </data>
+  <data name="RRR2_LevelName_3" xml:space="preserve">
+    <value>Burgerinni</value>
+  </data>
+  <data name="RRR2_LevelName_4" xml:space="preserve">
+    <value>Chariot</value>
+  </data>
+  <data name="RRR2_LevelName_5" xml:space="preserve">
+    <value>Pierre qui roule</value>
+  </data>
+  <data name="RRR2_LevelName_6" xml:space="preserve">
+    <value>Gobe papillons</value>
+  </data>
+  <data name="RRR2_LevelName_7" xml:space="preserve">
+    <value>Travail de bureau</value>
+  </data>
+  <data name="RRR2_LevelName_8" xml:space="preserve">
+    <value>Blanchisserie</value>
+  </data>
+  <data name="RRR2_LevelName_9" xml:space="preserve">
+    <value>Course en poubelle</value>
+  </data>
+  <data name="RRR2_LevelName_10" xml:space="preserve">
+    <value>Baseball</value>
+  </data>
+  <data name="RRR2_LevelName_11" xml:space="preserve">
+    <value>Football américain</value>
+  </data>
+  <data name="RRR2_LevelName_12" xml:space="preserve">
+    <value>Poule flambé</value>
+  </data>
+  <data name="RRR2_LevelName_13" xml:space="preserve">
+    <value>Auto-tamponneuses</value>
+  </data>
+  <data name="RRR2_LevelName_14" xml:space="preserve">
+    <value>Course d’escargots</value>
+  </data>
+  <data name="RRR2_LevelName_15" xml:space="preserve">
+    <value>Glace sur glace</value>
   </data>
 </root>

@@ -3396,7 +3396,10 @@ Start: Пауза</value>
     <value>Выберите формат для обратной конвертации</value>
   </data>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
-    <value>Файлы сохранений Rayman Raving Rabbids (.sav)</value>
+    <value>Файлы сохранений Rayman Бешеные Кролики (.sav)</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Файлы сохранений Rayman Бешеные Кролики 2 (.sav)</value>
   </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Сериализаторы</value>
@@ -4668,5 +4671,53 @@ Start: Пауза</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="RRR2_LevelName_0" xml:space="preserve">
+    <value>Торт с сюрпризом</value>
+  </data>
+  <data name="RRR2_LevelName_1" xml:space="preserve">
+    <value>Химик</value>
+  </data>
+  <data name="RRR2_LevelName_2" xml:space="preserve">
+    <value>Еще один звонок кролику</value>
+  </data>
+  <data name="RRR2_LevelName_3" xml:space="preserve">
+    <value>Бутербродные гонки</value>
+  </data>
+  <data name="RRR2_LevelName_4" xml:space="preserve">
+    <value>Гонки на тележках</value>
+  </data>
+  <data name="RRR2_LevelName_5" xml:space="preserve">
+    <value>Наперегонки с камнем</value>
+  </data>
+  <data name="RRR2_LevelName_6" xml:space="preserve">
+    <value>Вкусные бабочки</value>
+  </data>
+  <data name="RRR2_LevelName_7" xml:space="preserve">
+    <value>Офис</value>
+  </data>
+  <data name="RRR2_LevelName_8" xml:space="preserve">
+    <value>Прачечная</value>
+  </data>
+  <data name="RRR2_LevelName_9" xml:space="preserve">
+    <value>Мусорные гонки</value>
+  </data>
+  <data name="RRR2_LevelName_10" xml:space="preserve">
+    <value>Бейсбол</value>
+  </data>
+  <data name="RRR2_LevelName_11" xml:space="preserve">
+    <value>Американский футбол</value>
+  </data>
+  <data name="RRR2_LevelName_12" xml:space="preserve">
+    <value>Цыпленок табака</value>
+  </data>
+  <data name="RRR2_LevelName_13" xml:space="preserve">
+    <value>Машинки</value>
+  </data>
+  <data name="RRR2_LevelName_14" xml:space="preserve">
+    <value>Гонки улиток</value>
+  </data>
+  <data name="RRR2_LevelName_15" xml:space="preserve">
+    <value>Мороженое на льду</value>
   </data>
 </root>

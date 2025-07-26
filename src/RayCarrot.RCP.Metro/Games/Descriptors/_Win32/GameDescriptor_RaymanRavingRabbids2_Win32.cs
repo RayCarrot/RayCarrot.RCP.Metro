@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanRavingRabbids2_Win32_Title));
     public override string[] SearchKeywords => new[] { "rrr2" };
-    public override DateTime ReleaseDate => new(2007, 01, 01); // Not exact
+    public override DateTime ReleaseDate => new(2008, 06, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;
     public override GameBannerAsset Banner => GameBannerAsset.RaymanRavingRabbids;
@@ -63,6 +63,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
+        builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids2_PC));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]

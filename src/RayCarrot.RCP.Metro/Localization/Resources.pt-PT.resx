@@ -3403,6 +3403,9 @@ Start: Pausa</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Ficheiros de progressão Rayman Raving Rabbids (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Ficheiros de progressão Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializadores</value>
   </data>

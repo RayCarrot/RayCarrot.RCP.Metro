@@ -3397,6 +3397,9 @@ Ao alterar a fonte de dados aqui, você pode escolher qual local é usado para b
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Arquivos Salvos de Rayman Raving Rabbids (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Arquivos Salvos de Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializadores</value>
   </data>
