@@ -43,17 +43,17 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
             for (int i = 0; i < userHighScores.Length; i++)
             {
                 RRR2_MiniGame game = saveData.MiniGames[i];
-                if (game.Scores[0].Score != 12000 || game.Scores[0].Name != "GLOBOX")
+                if (game.Scores[0].Score != 12000 || game.Scores[0].EncodedName != EncodedName_Globox)
                 {
                     userHighScores[i] = game.Scores[0].Score;
                     completedLevels++;
                 }
-                else if (game.Scores[1].Score != 8000 || game.Scores[1].Name != "BETILLA")
+                else if (game.Scores[1].Score != 8000 || game.Scores[1].EncodedName != EncodedName_Betilla)
                 {
                     userHighScores[i] = game.Scores[1].Score;
                     completedLevels++;
                 }
-                else if (game.Scores[2].Score != 4000 || game.Scores[2].Name != "MURFY")
+                else if (game.Scores[2].Score != 4000 || game.Scores[2].EncodedName != EncodedName_Murfy)
                 {
                     userHighScores[i] = game.Scores[2].Score;
                     completedLevels++;
@@ -105,4 +105,8 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
         new("RRR2_Orange.sav", "Orange", 4, 12),
     };
     public record GameClass(string SaveFileName, string GameDescription, int NumLevels, int FirstLevelIndex);
+
+    public const ulong EncodedName_Globox = 0x4F580000474C4F42;
+    public const ulong EncodedName_Betilla = 0x4C4C410042455449;
+    public const ulong EncodedName_Murfy = 0x590000004D555246;
 }
