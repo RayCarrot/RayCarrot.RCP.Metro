@@ -3535,6 +3535,9 @@ By changing the data source here you can choose which location is used for backu
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Rayman Raving Rabbids Save Files (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2 Save Files (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializers</value>
   </data>

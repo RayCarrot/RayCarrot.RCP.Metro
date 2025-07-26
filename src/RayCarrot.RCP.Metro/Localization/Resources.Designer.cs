@@ -16763,6 +16763,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids 2 Save Files (.sav).
+        /// </summary>
+        public static string Utilities_Format_RRR2SaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_RRR2SaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Raving Rabbids Save Files (.sav).
         /// </summary>
         public static string Utilities_Format_RRRSaveHeader {

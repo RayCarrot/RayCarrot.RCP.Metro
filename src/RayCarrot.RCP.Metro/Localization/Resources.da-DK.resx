@@ -3396,6 +3396,9 @@ Ved at ændre datakilden her kan du vælge, hvilken placering der skal bruges ti
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Spildata til Rayman Raving Rabbids (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serialiseringsværktøjer</value>
   </data>

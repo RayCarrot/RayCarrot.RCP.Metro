@@ -3396,7 +3396,10 @@ Start: Пауза</value>
     <value>Выберите формат для обратной конвертации</value>
   </data>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
-    <value>Файлы сохранений Rayman Raving Rabbids (.sav)</value>
+    <value>Файлы сохранений Rayman Бешеные Кролики (.sav)</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Файлы сохранений Rayman Бешеные Кролики 2 (.sav)</value>
   </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Сериализаторы</value>

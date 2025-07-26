@@ -3400,6 +3400,9 @@ Modificando l'origine dati qui puoi scegliere quale posizione viene utilizzata p
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>File di salvataggio Rayman Raving Rabbids (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>File di salvataggio Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializzatori</value>
   </data>

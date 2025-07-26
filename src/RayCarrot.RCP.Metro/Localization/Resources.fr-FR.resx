@@ -3396,6 +3396,9 @@ Start : Pause</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Fichiers de sauvegarde Rayman contre les Lapin Crétins (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde Rayman contre les Lapins encore plus Crétins (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Sérialiseurs</value>
   </data>

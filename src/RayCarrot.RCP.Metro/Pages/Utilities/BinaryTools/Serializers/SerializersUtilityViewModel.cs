@@ -86,6 +86,18 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     new(JadeGameMode.RaymanRavingRabbids_PC) { Encoder = new RRR_SaveEncoder() },
                 }),
 
+            new Serializers_TypeViewModel<RRR2_SaveFile>(
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_RRR2SaveHeader)),
+                fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => Endian.Little,
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
+                {
+                    new(JadeGameMode.RaymanRavingRabbids2_PC)
+                    {
+                        GetDefaultDir = _ => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2"
+                    },
+                }),
+
             new Serializers_TypeViewModel<Origins_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
                 fileExtension: new FileExtension(""),
