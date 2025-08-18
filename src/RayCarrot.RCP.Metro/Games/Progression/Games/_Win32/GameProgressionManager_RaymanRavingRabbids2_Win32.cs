@@ -1,6 +1,4 @@
-﻿using BinarySerializer;
-using BinarySerializer.Ray1;
-using System.IO;
+﻿using System.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,29 +13,29 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
     {
         new(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
+
     public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        FileSystemPath? saveDir = fileSystem.GetFile(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2");
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2", SearchOption.TopDirectoryOnly, "*"));
+
         if (saveDir == null)
         {
             Logger.Info("{0} save directory was not found", GameInstallation.FullId);
             yield break;
         }
 
-        for (int gameIndex = 0; gameIndex < GameClasses.Length; gameIndex++)
-        {
-            using RCPContext context = new(saveDir);
+        using RCPContext context = new(saveDir.DirPath);
 
-            RRR2_SaveFile? saveData = await context.ReadFileDataAsync<RRR2_SaveFile>(GameClasses[gameIndex].SaveFileName, endian: Endian.Little, removeFileWhenComplete: false);
+        foreach (GameMode gameMode in GameModes)
+        {
+            RRR2_SaveFile? saveData = await context.ReadFileDataAsync<RRR2_SaveFile>(gameMode.SaveFileName, removeFileWhenComplete: false);
 
             if (saveData == null)
-            {
                 continue;
-            }
 
-            Logger.Info("{0} save {1} has been deserialized...", GameInstallation.FullId, GameClasses[gameIndex].SaveFileName);
+            Logger.Info("{0} save {1} has been deserialized...", GameInstallation.FullId, gameMode.SaveFileName);
 
-            int[] userHighScores = new int[GameClasses[0].NumLevels];
+            int[] userHighScores = new int[saveData.MiniGames.Length];
             int completedLevels = 0;
 
             // The game considers a level completed if any score or name in the highscore table is different from the default
@@ -68,40 +66,43 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
             List<GameProgressionDataItem> progressItems = new()
             {
                 new GameProgressionDataItem(
-                isPrimaryItem: true,
-                icon: ProgressionIconAsset.RRR2_Trophy,
-                header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
-                value: completedLevels,
-                max: GameClasses[gameIndex].NumLevels),
+                    isPrimaryItem: true,
+                    icon: ProgressionIconAsset.RRR2_Trophy,
+                    header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
+                    value: completedLevels,
+                    max: gameMode.NumLevels),
             };
 
             // Use gold, silver or bronze medal icons depending on the score
-            progressItems.AddRange(Enumerable.Range(GameClasses[gameIndex].FirstLevelIndex, GameClasses[gameIndex].NumLevels).
+            progressItems.AddRange(
+                Enumerable.Range(gameMode.FirstLevelIndex, gameMode.NumLevels).
                     Where(x => userHighScores[x] > 0).
                     Select(x => new GameProgressionDataItem(
                         isPrimaryItem: false,
-                        icon: ((userHighScores[x] >= DefaultScores[0].Score) ? ProgressionIconAsset.RRR2_Medal_1 :
-                               (userHighScores[x] >= DefaultScores[1].Score) ? ProgressionIconAsset.RRR2_Medal_2 :
-                                                                               ProgressionIconAsset.RRR2_Medal_3),
+                        icon: userHighScores[x] >= DefaultScores[0].Score 
+                            ? ProgressionIconAsset.RRR2_Medal_1 
+                            : userHighScores[x] >= DefaultScores[1].Score 
+                                ? ProgressionIconAsset.RRR2_Medal_2 
+                                : ProgressionIconAsset.RRR2_Medal_3,
                         header: new ResourceLocString($"RRR2_LevelName_{x}"),
                         value: userHighScores[x])));
 
             yield return new SerializableGameProgressionSlot<RRR2_SaveFile>(
-                name: GameClasses[gameIndex].GameDescription,
+                name: gameMode.DisplayName,
                 index: 0,
                 collectiblesCount: completedLevels,
-                totalCollectiblesCount: GameClasses[gameIndex].NumLevels,
+                totalCollectiblesCount: gameMode.NumLevels,
                 dataItems: progressItems,
                 context: context,
                 serializable: saveData,
-                fileName: GameClasses[gameIndex].SaveFileName);
+                fileName: gameMode.SaveFileName);
         }
     }
 
-    // Each game class uses a different save file name, the colored editions levels are a subset of the 'Allgames' edition
-    public GameClass[] GameClasses { get; } =
+    // Each game mode uses a different save file name, the colored editions levels are a subset of the 'AllGames' edition
+    public GameMode[] GameModes { get; } =
     {
-        new("RRR2.sav", "Allgames", 16, 0),
+        new("RRR2.sav", "AllGames", 16, 0),
         new("RRR2_Blue.sav", "Blue", 4, 0),
         new("RRR2_Green.sav", "Green", 4, 4),
         new("RRR2_Red.sav", "Red", 4, 8),
@@ -110,10 +111,11 @@ public class GameProgressionManager_RaymanRavingRabbids2_Win32 : GameProgression
 
     public DefaultScore[] DefaultScores { get; } =
     {
-        new(0x4F580000474C4F42, 12000),     // "GLOBOX"
-        new(0x4C4C410042455449, 8000),      // "BETILLA"
-        new(0x590000004D555246, 4000),      // "MURFY"
+        new(0x4F580000474C4F42, 12000), // "GLOBOX"
+        new(0x4C4C410042455449, 8000),  // "BETILLA"
+        new(0x590000004D555246, 4000),  // "MURFY"
     };
-    public record GameClass(string SaveFileName, string GameDescription, int NumLevels, int FirstLevelIndex);
+
+    public record GameMode(string SaveFileName, string DisplayName, int NumLevels, int FirstLevelIndex);
     public record DefaultScore(ulong EncodedName, int Score);
 }
