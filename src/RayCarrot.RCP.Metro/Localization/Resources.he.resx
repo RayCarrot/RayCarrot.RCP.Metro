@@ -3399,6 +3399,9 @@ Start: הפסק</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>קבצי שמירה של Rayman Raving Rabbids (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>קבצי שמירה של Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>סידורים</value>
   </data>

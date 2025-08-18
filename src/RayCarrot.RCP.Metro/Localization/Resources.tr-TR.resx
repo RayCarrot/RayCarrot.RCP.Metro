@@ -3400,6 +3400,9 @@ Burada veri kaynağını değiştirerek yedeklemeler ve ilerleme görünümü i�
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Rayman Raving Rabbids Dosyaları Kaydet (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2 Dosyaları Kaydet (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Seri hale getiriciler</value>
   </data>

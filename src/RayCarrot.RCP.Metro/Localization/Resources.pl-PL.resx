@@ -3423,6 +3423,9 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Pliki zapisu gry Rayman Szalone Kórliki (.sav)</value>
   </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Pliki zapisu gry Rayman Szalone Kórliki 2 (.sav)</value>
+  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializatory</value>
   </data>
