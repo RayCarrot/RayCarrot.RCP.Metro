@@ -80,24 +80,24 @@
   <!-- Package references -->
   <ItemGroup>
     <PackageReference Include="AutoCompleteTextBox" Version="1.2.0" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Costura.Fody" Version="5.7.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <!-- TODO: Update to latest version once we migrate to .NET 8 or above -->
     <PackageReference Include="DirectXTexNet" Version="1.0.1" />
-    <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
-    <PackageReference Include="Magick.NET-Q8-x64" Version="14.1.0" />
-    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="8.0.1" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
+    <PackageReference Include="Magick.NET-Q8-x64" Version="14.8.0" />
+    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="8.0.8" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="5.1.0" />
     <PackageReference Include="MahApps.Metro.SimpleChildWindow" Version="2.2.1" />
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
-    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.26100.1742" />
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.26100.4948" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
@@ -108,10 +108,10 @@
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" PrivateAssets="All" />
     <PackageReference Include="Resource.Embedder" Version="2.2.0" />
-    <PackageReference Include="SharpCompress" Version="0.38.0" />
-    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="SharpCompress" Version="0.40.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.3" />
     <PackageReference Include="WPFTextBoxAutoComplete" Version="1.0.5" />
-    <PackageReference Include="XamlAnimatedGif" Version="2.3.0" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.3.1" />
   </ItemGroup>
 
   <!-- Project references -->
