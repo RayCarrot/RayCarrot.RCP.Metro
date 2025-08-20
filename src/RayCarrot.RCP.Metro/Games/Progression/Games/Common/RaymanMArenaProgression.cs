@@ -12,17 +12,17 @@ public static class RaymanMArenaProgression
         out int maxCollectiblesCount)
     {
         // Helper for getting the entry from a specific key
-        IEnumerable<int> GetValues(string key) => saveFile.Items.First(x => x.Key == key).Values.Select(x => x.IntValue);
+        IEnumerable<uint> GetValues(string key) => saveFile.Elements.First(x => x.ElementName == key).Values.Select(x => x.IntegerValue);
 
         // Helper for getting the time from an integer
-        static TimeSpan GetTime(int value)
+        static TimeSpan GetTime(uint value)
         {
-            var milliSeconds = value % 1000;
-            var calc2_1 = (value - milliSeconds) / 1000;
-            var seconds = calc2_1 % 60;
-            var minute = (calc2_1 - seconds) / 60;
+            uint milliSeconds = value % 1000;
+            uint calc2_1 = (value - milliSeconds) / 1000;
+            uint seconds = calc2_1 % 60;
+            uint minute = (calc2_1 - seconds) / 60;
 
-            return new TimeSpan(0, 0, minute, seconds, milliSeconds);
+            return new TimeSpan(0, 0, (int)minute, (int)seconds, (int)milliSeconds);
         }
 
         // Create the collection with items
@@ -41,9 +41,9 @@ public static class RaymanMArenaProgression
         int maxRace = isDemo ? 15 : 38;
         int maxBattle = isDemo ? 15 : 13 * 3;
 
-        void AddRaceCompleted(IEnumerable<int> values, int count) =>
+        void AddRaceCompleted(IEnumerable<uint> values, int count) =>
             raceCompleted += values.Skip(count * slotIndex).Take(12).Count(x => x == 2);
-        void AddBattleCompleted(IEnumerable<int> values) =>
+        void AddBattleCompleted(IEnumerable<uint> values) =>
             battleCompleted += values.Skip(13 * slotIndex).Take(13).Count(x => x == 2);
 
         AddRaceCompleted(GetValues("sg_racelevels_mode1"), 17);

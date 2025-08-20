@@ -50,7 +50,7 @@ public class GameProgressionManager_RaymanMArena_Win32 : GameProgressionManager
         for (int slotIndex = 0; slotIndex < 8; slotIndex++)
         {
             // Get the save name
-            string name = saveData.Items.First(x => x.Key == "sg_names").Values[slotIndex].StringValue;
+            string name = saveData.Elements.First(x => x.ElementName == "sg_names").Values[slotIndex].StringValue;
 
             // Make sure it's valid
             if (name.Contains("No Data"))
