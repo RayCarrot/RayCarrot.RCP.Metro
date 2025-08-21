@@ -40,6 +40,15 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     new(Ray1GameMode.Rayman60Levels_PC),
                 }),
 
+            new Serializers_TypeViewModel<TTSaveFile>(
+                name: "Tonic Trouble Save Files (.sav)", // TODO-LOC
+                fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
+                {
+                    new(CPAGameMode.TonicTrouble_PC) { Encoder = new R2SaveEncoder() },
+                }),
+
             new Serializers_TypeViewModel<R2GeneralSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
