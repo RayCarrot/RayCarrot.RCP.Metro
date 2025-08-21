@@ -1,0 +1,15 @@
+﻿using System.IO;
+
+namespace RayCarrot.RCP.Metro;
+
+public class GameProgressionManager_TonicTroubleSpecialEdition_Win32 : GameProgressionManager
+{
+    public GameProgressionManager_TonicTroubleSpecialEdition_Win32(GameInstallation gameInstallation, string progressionId) 
+        : base(gameInstallation, progressionId) { }
+
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new(GameInstallation.InstallLocation.Directory + "gamedata" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
+        new(GameInstallation.InstallLocation.Directory + "gamedata" + "OPTIONS", SearchOption.AllDirectories, "*", "1", 0)
+    };
+}
