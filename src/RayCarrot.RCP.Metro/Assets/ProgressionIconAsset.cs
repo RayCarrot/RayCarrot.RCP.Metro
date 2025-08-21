@@ -183,4 +183,14 @@ public enum ProgressionIconAsset
     // Rayman: The Dreamer's Boundary
     RTDB_LevelComplete,
     RTDB_Cage,
+
+    // Tonic Trouble
+    TT_Bonus,
+    TT_Thermometer,
+    TT_Springs,
+    TT_PropellerBlades,
+    TT_JumpingStones,
+    TT_Feathers,
+    TT_Dominoes,
+    TT_WildPiggybanks,
 }
