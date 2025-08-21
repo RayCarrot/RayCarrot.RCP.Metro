@@ -188,6 +188,13 @@ public enum Game
     [GameInfo(nameof(Resources.Game_RaymanTheDreamersBoundary_Title), GameIconAsset.RaymanTheDreamersBoundary)]
     RaymanTheDreamersBoundary,
 
+    // TODO-LOC
+    /// <summary>
+    /// Rayman Lum'o'Grams
+    /// </summary>
+    [GameInfo("Rayman Lum'o'Grams", GameIconAsset.RaymanLumoGramsDemo)]
+    RaymanLumoGrams,
+
     #endregion
 
     #region Other

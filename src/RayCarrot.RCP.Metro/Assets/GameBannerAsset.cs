@@ -89,4 +89,7 @@ public enum GameBannerAsset
 
     [AssetFileName("Rayman The Dreamers Boundary.png")]
     RaymanTheDreamersBoundary,
+
+    [AssetFileName("Rayman Lum-o-Grams.png")]
+    RaymanLumoGrams,
 }
