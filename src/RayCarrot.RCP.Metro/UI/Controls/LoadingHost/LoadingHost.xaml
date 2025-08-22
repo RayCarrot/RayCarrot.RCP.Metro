@@ -39,6 +39,7 @@
                                                             Margin="0 0 0 15">
                                         <metro:MetroProgressBar.Style>
                                             <Style TargetType="{x:Type metro:MetroProgressBar}" BasedOn="{StaticResource {x:Type metro:MetroProgressBar}}">
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Path=State, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Static local:LoadingHostState.Completed}">
                                                         <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.LoadState.Complete}" />
