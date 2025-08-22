@@ -85,7 +85,7 @@ public static class RaymanMArenaProgression
                 var value = GetValues(key).ElementAt(index);
 
                 // Only add if it has valid data
-                if ((isTime && value > 0) || (!isTime && value != -22))
+                if (value != 0xFFFFFFEA)
                     dataItems.Add(new GameProgressionDataItem(
                         isPrimaryItem: false,
                         // Get the level icon
