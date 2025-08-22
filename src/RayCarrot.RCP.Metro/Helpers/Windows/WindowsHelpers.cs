@@ -28,10 +28,23 @@ public static partial class WindowsHelpers
     /// <param name="path">Path to open</param>
     public static void OpenExplorerPath(string path)
     {
+        // If it's a file, then open it through explorer.exe and have it auto-select it
         if (System.IO.File.Exists(path))
+        {
             Process.Start("explorer.exe", "/select, \"" + path + "\"")?.Dispose();
-        else
+        }
+        // If it's a directory then open that as is
+        else if (Directory.Exists(path))
+        {
             Process.Start(path)?.Dispose();
+        }
+        // If it's neither then it might be a non-existent file in an existing directory
+        else
+        {
+            string parentDir = Path.GetDirectoryName(path);
+            if (Directory.Exists(parentDir))
+                Process.Start(parentDir)?.Dispose();
+        }
     }
 
     /// <summary>
