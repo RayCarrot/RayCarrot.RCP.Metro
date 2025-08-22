@@ -73,8 +73,11 @@ public static class RaymanMArenaProgression
             max: maxBattle));
 
         // Add records for every race
-        for (int raceIndex = 0; raceIndex < 16; raceIndex++)
+        for (int i = 0; i < 16; i++)
         {
+            // Local copy to be captured correctly by the inner function
+            int raceIndex = i;
+
             // Get the index to use for this race in this slot
             int index = slotIndex * 16 + raceIndex;
 
