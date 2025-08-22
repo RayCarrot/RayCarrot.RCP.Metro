@@ -195,9 +195,9 @@ public static class AppURLs
     public const string YouTubeUrl = "https://www.youtube.com/c/RayCarrot";
 
     /// <summary>
-    /// The Twitter URL
+    /// The Bluesky URL
     /// </summary>
-    public const string TwitterUrl = "https://twitter.com/RayCarrot";
+    public const string BlueskyUrl = "https://bsky.app/profile/raycarrot.bsky.social";
 
     /// <summary>
     /// The email URL
