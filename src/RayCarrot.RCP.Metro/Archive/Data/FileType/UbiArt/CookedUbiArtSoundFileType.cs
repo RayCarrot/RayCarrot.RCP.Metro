@@ -66,21 +66,32 @@ public sealed class CookedUbiArtSoundFileType : FileType
 
             return identifier is "RIFF" && type is "WAVE";
         }
-        else if (settings is { Game: BinarySerializer.UbiArt.Game.RaymanLegends, Platform: Platform.PC })
+        else if (settings is { Game: BinarySerializer.UbiArt.Game.RaymanLegends, Platform: Platform.PC or Platform.PlayStation4 })
         {
             inputStream.SeekToBeginning();
             using Reader reader = new(inputStream.Stream, settings.Endian == Endian.Little, true);
             uint version = reader.ReadUInt32();
             string magic = reader.ReadString(4, Encoding.UTF8);
+
+            if (magic != "RAKI")
+                return false;
+
             reader.ReadUInt32(); // Skip compress value
             string platform = reader.ReadString(4, Encoding.UTF8);
             string format = reader.ReadString(4, Encoding.UTF8);
 
-            // For now just support Rayman Legends PC
-            return version is 11 &&
-                   magic is "RAKI" &&
-                   platform is "Win " &&
-                   format is "pcm " or "adpc";
+            // Rayman Legends (PC)
+            if (version is 11 &&
+                platform is "Win " &&
+                format is "pcm " or "adpc")
+                return true;
+            // Rayman Legends (PS4)
+            else if (version is 15 &&
+                     platform is "Orbi" &&
+                     format is "pcm ")
+                return true;
+            else
+                return false;
         }
         else
         {
@@ -105,7 +116,7 @@ public sealed class CookedUbiArtSoundFileType : FileType
             // Same format, but different file extensions. Just copy the data.
             inputStream.Stream.CopyToEx(outputStream);
         }
-        else if (settings is { Game: BinarySerializer.UbiArt.Game.RaymanLegends, Platform: Platform.PC })
+        else if (settings is { Game: BinarySerializer.UbiArt.Game.RaymanLegends, Platform: Platform.PC or Platform.PlayStation4 })
         {
             // Read the RAKI data
             Raki raki = manager.Context!.ReadStreamData<Raki>(inputStream.Stream, name: inputStream.Name, mode: VirtualFileMode.DoNotClose);
@@ -154,7 +165,7 @@ public sealed class CookedUbiArtSoundFileType : FileType
             // Same format, but different file extensions. Just copy the data.
             inputStream.Stream.CopyToEx(outputStream.Stream);
         }
-        else if (settings is { Game: BinarySerializer.UbiArt.Game.RaymanLegends, Platform: Platform.PC })
+        else if (settings is { Game: BinarySerializer.UbiArt.Game.RaymanLegends, Platform: Platform.PC or Platform.PlayStation4 })
         {
             // Read the .wav file using a new context since we don't want the UbiArt settings here
             WAV wavFile;
