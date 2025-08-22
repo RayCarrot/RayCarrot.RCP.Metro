@@ -12,17 +12,17 @@ public static class RaymanMArenaProgression
         out int maxCollectiblesCount)
     {
         // Helper for getting the entry from a specific key
-        IEnumerable<uint> GetValues(string key) => saveFile.Elements.First(x => x.ElementName == key).Values.Select(x => x.IntegerValue);
+        IEnumerable<int> GetValues(string key) => saveFile.Elements.First(x => x.ElementName == key).Values.Select(x => (int)x.IntegerValue);
 
         // Helper for getting the time from an integer
-        static TimeSpan GetTime(uint value)
+        static TimeSpan GetTime(int value)
         {
-            uint milliSeconds = value % 1000;
-            uint calc2_1 = (value - milliSeconds) / 1000;
-            uint seconds = calc2_1 % 60;
-            uint minute = (calc2_1 - seconds) / 60;
+            int milliSeconds = value % 1000;
+            int calc2_1 = (value - milliSeconds) / 1000;
+            int seconds = calc2_1 % 60;
+            int minute = (calc2_1 - seconds) / 60;
 
-            return new TimeSpan(0, 0, (int)minute, (int)seconds, (int)milliSeconds);
+            return new TimeSpan(0, 0, minute, seconds, milliSeconds);
         }
 
         // Create the collection with items
@@ -41,9 +41,9 @@ public static class RaymanMArenaProgression
         int maxRace = isDemo ? 15 : 38;
         int maxBattle = isDemo ? 15 : 13 * 3;
 
-        void AddRaceCompleted(IEnumerable<uint> values, int count) =>
+        void AddRaceCompleted(IEnumerable<int> values, int count) =>
             raceCompleted += values.Skip(count * slotIndex).Take(12).Count(x => x == 2);
-        void AddBattleCompleted(IEnumerable<uint> values) =>
+        void AddBattleCompleted(IEnumerable<int> values) =>
             battleCompleted += values.Skip(13 * slotIndex).Take(13).Count(x => x == 2);
 
         AddRaceCompleted(GetValues("sg_racelevels_mode1"), 17);
@@ -73,8 +73,11 @@ public static class RaymanMArenaProgression
             max: maxBattle));
 
         // Add records for every race
-        for (int raceIndex = 0; raceIndex < 16; raceIndex++)
+        for (int i = 0; i < 16; i++)
         {
+            // Local copy to be captured correctly by the inner function
+            int raceIndex = i;
+
             // Get the index to use for this race in this slot
             int index = slotIndex * 16 + raceIndex;
 
