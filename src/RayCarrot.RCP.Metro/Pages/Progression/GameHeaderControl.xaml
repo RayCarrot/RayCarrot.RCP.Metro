@@ -171,7 +171,7 @@
                     Orientation="Horizontal"
                     VerticalAlignment="Center"
                     IsEnabled="{Binding Path=IsPerformingBackupRestore, Converter={rcp:InvertedBooleanConverter}}"
-                    Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rcp:InvertedBooleanToVisibilityHiddenConverter}}">
+                    Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
             <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                     ToolTip="{Resx Backup_Backup}"
                     Command="{Binding Path=BackupCommand, Mode=OneTime}"
