@@ -103,7 +103,8 @@ public record GameBananaFile(
     [property: JsonProperty("_sDownloadUrl", Required = Required.Always)] string DownloadUrl,
     [property: JsonProperty("_sFile", Required = Required.Always)] string File,
     [property: JsonProperty("_sMd5Checksum")] string Md5Checksum,
-    [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateAdded);
+    [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime DateAdded,
+    [property: JsonProperty("_bIsArchived")] bool IsArchived);
 
 public record GameBananaModManager(
     [property: JsonProperty("_aGameRowIds")] int[]? GameIds,

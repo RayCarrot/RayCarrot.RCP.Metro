@@ -25,7 +25,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         int likesCount, 
         int downloadsCount, 
         int viewsCount, 
-        IEnumerable<GameBananaFile> files,
+        IReadOnlyCollection<GameBananaFile> files,
         bool isFeatured)
     {
         _downloadableModsSource = downloadableModsSource;
@@ -86,12 +86,20 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         DownloadsCount = downloadsCount;
         ViewsCount = viewsCount;
 
-        Files = new ObservableCollection<GameBananaFileViewModel>(files.Select(x => new GameBananaFileViewModel(x)
+        ModViewModel? findDownloadedMod(GameBananaFile file) => modLoaderViewModel.Mods.
+            Where(mod => mod.DownloadableModsSource?.Id == downloadableModsSource.Id).
+            FirstOrDefault(mod => mod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
+
+        Files = new ObservableCollection<GameBananaFileViewModel>(files.Where(x => !x.IsArchived).Select(x => new GameBananaFileViewModel(x)
         {
-            DownloadedMod = modLoaderViewModel.Mods.
-                Where(mod => mod.DownloadableModsSource?.Id == downloadableModsSource.Id).
-                FirstOrDefault(mod => mod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == x.Id)
+            DownloadedMod = findDownloadedMod(x)
         }));
+        ArchivedFiles = new ObservableCollection<GameBananaFileViewModel>(files.Where(x => x.IsArchived).Select(x => new GameBananaFileViewModel(x)
+        {
+            DownloadedMod = findDownloadedMod(x)
+        }));
+
+        ShowArchivedFiles = false;
 
         IsFeatured = isFeatured;
 
@@ -152,6 +160,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public int ViewsCount { get; }
 
     public ObservableCollection<GameBananaFileViewModel> Files { get; }
+    public ObservableCollection<GameBananaFileViewModel> ArchivedFiles { get; }
+    public bool ShowArchivedFiles { get; set; }
 
     public bool IsFeatured { get; set; }
 
