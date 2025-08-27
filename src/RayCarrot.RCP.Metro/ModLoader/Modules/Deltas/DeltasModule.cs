@@ -21,7 +21,7 @@ public class DeltasModule : ModModule
     public FileSystemPath? SingleFilePath { get; }
     public bool IsSingleFile => SingleFilePath != null;
 
-    public override ModModuleViewModel GetViewModel() => new DeltasModuleViewModel(this, IsSingleFile);
+    public override ModModuleViewModel GetViewModel(GameInstallation gameInstallation) => new DeltasModuleViewModel(this, IsSingleFile);
 
     public override IReadOnlyCollection<IFilePatch> GetPatchedFiles(Mod mod, FileSystemPath modulePath)
     {

@@ -11,7 +11,7 @@ public abstract class ModModule
     public abstract string Id { get; }
     public abstract LocalizedString Description { get; }
 
-    public virtual ModModuleViewModel GetViewModel() => new(this);
+    public virtual ModModuleViewModel GetViewModel(GameInstallation gameInstallation) => new(this);
 
     public virtual void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath) { }
 

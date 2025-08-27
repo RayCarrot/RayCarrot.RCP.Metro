@@ -12,12 +12,60 @@ public class FilesModule : ModModule
     public const string AddedFilesDirectoryName = "added_files";
     public const string RemovedFilesFileName = "removed_files.txt";
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public override string Id => "files";
     public override LocalizedString Description => new ResourceLocString(nameof(Resources.ModLoader_FilesModule_Description));
 
+    public override ModModuleViewModel GetViewModel(GameInstallation gameInstallation) => new FilesModuleViewModel(this, gameInstallation);
+
+    private static string[] ParsePathsToCreate(string pathsText)
+    {
+        return pathsText.Split(['\n', '\r'], StringSplitOptions.RemoveEmptyEntries);
+    }
+
     public override void SetupModuleFolder(ModModuleViewModel viewModel, FileSystemPath modulePath)
     {
+        // Create directory for added files
         Directory.CreateDirectory(modulePath + AddedFilesDirectoryName);
+    
+        // Create user specified directories
+        foreach (string path in ParsePathsToCreate(((FilesModuleViewModel)viewModel).PathsText))
+        {
+            try
+            {
+                Directory.CreateDirectory(modulePath + AddedFilesDirectoryName + path);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Creating user specified files directory");
+            }
+        }
+
+        // Create user specified directories for archives
+        foreach (FilesModuleViewModel.ArchiveViewModel archive in ((FilesModuleViewModel)viewModel).Archives)
+        {
+            if (!archive.IsEnabled)
+                continue;
+
+            // Create archive directory
+            Directory.CreateDirectory(modulePath + AddedFilesDirectoryName + archive.FilePath);
+
+            // Create user specified directories
+            foreach (string path in ParsePathsToCreate(archive.PathsText))
+            {
+                try
+                {
+                    Directory.CreateDirectory(modulePath + AddedFilesDirectoryName + archive.FilePath + path);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Creating user specified files directory");
+                }
+            }
+        }
+
+        // Create file for removed files
         File.Create(modulePath + RemovedFilesFileName).Dispose();
     }
 

@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Modules.Files.FilesModuleControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:files="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules.Files"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="500"
+             Language="{UICulture}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:DataContext="{d:DesignInstance files:FilesModuleViewModel}">
+
+    <StackPanel>
+
+        <!-- TODO-LOC -->
+        <TextBlock Text="Specify any folder paths here which you want to have automatically created. Separate each with a new line. You can always create the folders manually afterward as well."
+                   TextWrapping="WrapWithOverflow"
+                   Margin="0 0 0 8" />
+
+        <TextBox Text="{Binding Path=PathsText}"
+                 BorderThickness="0" 
+                 AcceptsReturn="True"
+                 mah:TextBoxHelper.Watermark="{Binding Path=PathsTextHint.Value}" />
+
+        <ItemsControl ItemsSource="{Binding Path=Archives, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0 8 0 0">
+                        <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}" 
+                                  HorizontalAlignment="Stretch"
+                                  d:IsChecked="True"
+                                  IsChecked="{Binding Path=IsEnabled}">
+                            <TextBlock Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                       d:Text="Bundle_PC.ipk"/>
+                        </CheckBox>
+
+                        <TextBox Margin="0 4 0 0"
+                                 Text="{Binding Path=PathsText}"
+                                 Visibility="{Binding Path=IsEnabled, Converter={rcp:BooleanToVisibilityConverter}}"
+                                 d:Visibility="Visible"
+                                 BorderThickness="0" 
+                                 AcceptsReturn="True"
+                                 mah:TextBoxHelper.Watermark="{Binding Path=PathsTextHint.Value}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </StackPanel>
+</UserControl>

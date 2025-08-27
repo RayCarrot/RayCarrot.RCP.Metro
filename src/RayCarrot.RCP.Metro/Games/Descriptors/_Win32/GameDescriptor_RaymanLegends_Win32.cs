@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using System.IO;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Settings;
 using RayCarrot.RCP.Metro.Games.SetupGame;
@@ -55,6 +56,13 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         builder.Register<LaunchArgumentsComponent, UbiArtLaunchArgumentsComponent>();
 
         builder.Register(new GameBananaGameComponent(7400));
+        builder.Register(new FilesModModuleExamplePaths(x => Path.GetFileName(x) switch
+        {
+            "Bundle_PC.ipk" => "cache/itf_cooked/pc/world/common/playablecharacter/rayman/animation",
+            "persistentLoading_PC.ipk" => "cache/itf_cooked/pc/world/common/playablecharacter/drcplayer/animation",
+            "" => "video",
+            _ => null,
+        }));
         builder.Register(new ModModuleComponent(_ => new UbiArtLocalizationModule()));
 
         builder.Register(new SetupGameActionComponent(_ => new InvalidUbiArtResolutionSetupGameAction(AppFilePaths.RaymanLegendsRegistryKey)));

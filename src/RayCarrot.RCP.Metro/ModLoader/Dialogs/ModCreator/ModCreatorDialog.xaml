@@ -7,6 +7,7 @@
                             xmlns:modCreator="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator"
                             xmlns:deltas="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules.Deltas"
                             xmlns:modules="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules"
+                            xmlns:files="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Modules.Files"
                             mc:Ignorable="d"
                             d:DesignWidth="800"
                             Language="{UICulture}"
@@ -160,6 +161,9 @@
 
                                                     <ContentPresenter Content="{Binding Mode=OneTime}">
                                                         <ContentPresenter.Resources>
+                                                            <DataTemplate DataType="{x:Type files:FilesModuleViewModel}">
+                                                                <files:FilesModuleControl Margin="0 8 0 0" />
+                                                            </DataTemplate>
                                                             <DataTemplate DataType="{x:Type deltas:DeltasModuleViewModel}">
                                                                 <deltas:DeltasModuleControl Margin="0 8 0 0" />
                                                             </DataTemplate>

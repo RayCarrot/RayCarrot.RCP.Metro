@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Archive.CPA;
+﻿using System.IO;
+using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Settings;
@@ -85,6 +86,12 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
                 Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
 
         builder.Register(new GameBananaGameComponent(6244));
+        builder.Register(new FilesModModuleExamplePaths(x => Path.GetFileName(x) switch
+        {
+            "Textures.cnt" => "textures_personnages\\divers",
+            "" => "Data\\World\\Levels",
+            _ => null,
+        }));
 
         builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.None, _ =>
             new[]

@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Archive.CPA;
+﻿using System.IO;
+using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Settings;
@@ -63,6 +64,13 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
                 Archives: new[] { "tex32_1.cnt", "tex32_2.cnt", "vignette.cnt" })));
 
         builder.Register(new GameBananaGameComponent(6188));
+        builder.Register(new FilesModModuleExamplePaths(x => Path.GetFileName(x) switch
+        {
+            "tex32_1.cnt" => "charact",
+            "tex32_2.cnt" => "charact",
+            "" => "Gamedatabin",
+            _ => null,
+        }));
 
         builder.Register(new RuntimeModificationsGameManagersComponent(EmulatedPlatform.None, _ =>
             new[]

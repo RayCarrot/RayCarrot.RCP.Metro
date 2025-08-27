@@ -19,7 +19,7 @@ public class ModCreatorViewModel : BaseViewModel
         Modules = new ObservableCollection<ModModuleViewModel>(gameInstallation.
             GetComponents<ModModuleComponent>().
             CreateObjects().
-            Select(x => x.GetViewModel()));
+            Select(x => x.GetViewModel(gameInstallation)));
 
         // Verify the game supports mods
         if (!Modules.Any())
