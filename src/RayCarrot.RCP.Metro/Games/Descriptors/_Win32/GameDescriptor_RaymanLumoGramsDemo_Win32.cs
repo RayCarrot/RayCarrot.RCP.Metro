@@ -23,7 +23,7 @@ public sealed class GameDescriptor_RaymanLumoGramsDemo_Win32 : Win32GameDescript
     public override LocalizedString DisplayName => "Rayman Lum'o'Grams Demo"; // TODO-LOC
     public override DateTime ReleaseDate => new(2025, 09, 01);
 
-    public override GameIconAsset Icon => GameIconAsset.RaymanLumoGramsDemo;
+    public override GameIconAsset Icon => GameIconAsset.RaymanLumoGrams;
     public override GameBannerAsset Banner => GameBannerAsset.RaymanLumoGrams;
 
     #endregion

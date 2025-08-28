@@ -192,7 +192,7 @@ public enum Game
     /// <summary>
     /// Rayman Lum'o'Grams
     /// </summary>
-    [GameInfo("Rayman Lum'o'Grams", GameIconAsset.RaymanLumoGramsDemo)]
+    [GameInfo("Rayman Lum'o'Grams", GameIconAsset.RaymanLumoGrams)]
     RaymanLumoGrams,
 
     #endregion
