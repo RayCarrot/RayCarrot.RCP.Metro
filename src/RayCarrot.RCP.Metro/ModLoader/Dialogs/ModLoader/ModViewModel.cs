@@ -142,6 +142,14 @@ public class ModViewModel : BaseViewModel, IDisposable
             _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
         };
 
+        // Disable if pending uninstall
+        if (state == ModInstallState.PendingUninstall)
+        {
+            // Manually update to avoid reporting new changes twice
+            _isEnabled = false;
+            OnPropertyChanged(nameof(IsEnabled));
+        }
+
         ReportNewChange();
     }
 
