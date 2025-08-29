@@ -457,7 +457,7 @@ public class DosBoxGameSettingsViewModel : GameClientGameSettingsViewModel
         AspectCorrectionEnabled = false;
         MemorySize = 30;
         Frameskip = 0;
-        SelectedOutput = "default";
+        SelectedOutput = "overlay";
         FullscreenResolution = "desktop";
         SelectedCycles = "20000";
 
