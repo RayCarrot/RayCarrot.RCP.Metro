@@ -259,7 +259,7 @@
     <value>Afmarkér dette, hvis der er grafikproblemer i spillet</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
-    <value>Overflader</value>
+    <value>Teksturer</value>
   </data>
   <data name="Config_Textures16" xml:space="preserve">
     <value>16-bit</value>
@@ -974,7 +974,7 @@ Prøv igen?</value>
     <value>Velkommen til Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Dette program er et uofficielt open-source fællesskabsprojekt skabt af RayCarrot. Det giver hurtig and nem adgang til alle installerede Rayman-spil på din computer, med øvrige funktioner så som yderligere konfigurationssupport, hjælpeværktøjer, backup af spildata, administration af spildata, overflademofikationer og meget mere. Understøttede spil kan installeres direkte fra deres disk gennem programmet.
+    <value>Dette program er et uofficielt open-source fællesskabsprojekt skabt af RayCarrot. Det giver hurtig and nem adgang til alle installerede Rayman-spil på din computer, med øvrige funktioner så som yderligere konfigurationssupport, hjælpeværktøjer, backup af spildata, administration af spildata, teksturmofikationer og meget mere. Understøttede spil kan installeres direkte fra deres disk gennem programmet.
 Ændr nedenstående indstillinger som du ønsker og tryk 'Fortsæt' for at komme i gang. Indstillingerne kan til en hver tid ændres under 'Indstillinger'.</value>
   </data>
   <data name="GameOptions_CreateShortcut" xml:space="preserve">
@@ -1471,7 +1471,7 @@ Fejlmeddelelse: {1}</value>
     <value>UbiArt-arkiver (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>CPA-overfladefiler (.gf)</value>
+    <value>CPA-teksturfiler (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Konvertér</value>
@@ -1546,10 +1546,10 @@ Fejlmeddelelse: {1}</value>
     <value>The Tower of the Leptys</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
-    <value>{0}/{1} overfladeinformationer blev synkroniseret</value>
+    <value>{0}/{1} teksturinformationer blev synkroniseret</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at synkronisere overfladeinformation</value>
+    <value>En fejl opstod i forsøg på at synkronisere teksturinformation</value>
   </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
     <value>Andet</value>
@@ -2649,7 +2649,7 @@ Start: Pause</value>
     <value>Gør, så edderkopperobotten lyder som en edderkop</value>
   </data>
   <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
-    <value>Tilføj brugerdefineret helikopteroverflade</value>
+    <value>Tilføj brugerdefineret helikoptertekstur</value>
   </data>
   <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
     <value>Tilføj pels på Rabbids</value>
@@ -3451,10 +3451,10 @@ Ved at ændre datakilden her kan du vælge, hvilken placering der skal bruges ti
     <value>Hebraisk programoversættelse, filikon til spilpatch</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
-    <value>Synkronisér automatisk overflader ved ompakning (.cnt)</value>
+    <value>Synkronisér automatisk teksturer ved ompakning (.cnt)</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
-    <value>Hvis aktiveret, bliver overfladerne til dette spil automatisk synkroniseret når et .cnt arkiv ompakkes. Dette er nyttigt til spil hvor synkronisering er påkrævet for at importere overflader med højere opløsning.</value>
+    <value>Hvis aktiveret, bliver teksturerne til dette spil automatisk synkroniseret når et .cnt arkiv ompakkes. Dette er nyttigt til spil hvor synkronisering er påkrævet for at importere teksturer med højere opløsning.</value>
   </data>
   <data name="Archive_CreateStatusPacking" xml:space="preserve">
     <value>Indpakker arkiv</value>
@@ -3818,7 +3818,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Bekræft kassering af ændringer</value>
   </data>
   <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
-    <value>Ønsker du at synkronisere spiloverflader automatisk, når et overfladearkiv ompakkes? Synkronisering er påkrævet for, at overflader med højere opløsning kan fungere i nogle baner. Dette kan ændres til en hver tid i indstillingssiden.</value>
+    <value>Ønsker du at synkronisere spilteksturer automatisk, når et teksturarkiv ompakkes? Synkronisering er påkrævet for, at teksturer med højere opløsning kan fungere i nogle baner. Dette kan ændres til enhver tid i indstillingerne.</value>
   </data>
   <data name="About_Credits_Marteaufou" xml:space="preserve">
     <value>Fransk (Frankrig) programoversættelse</value>
@@ -3899,10 +3899,10 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
 {0}</value>
   </data>
   <data name="Utilities_SyncTextureInfo_SyncStatus" xml:space="preserve">
-    <value>Synkronisering af overflader</value>
+    <value>Synkroniserer teksturer</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
-    <value>Synkronisér overflader. Dette opdaterer overfladestørrelserne i spilfilerne til at matche overfladefilerne. Dette er påkrævet, hvis opløsningen af en overflade er blevet forøget, da spillet ellers kan crashe.</value>
+    <value>Synkronisér teksturer. Dette opdaterer teksturstørrelserne i spilfilerne til at matche teksturfilerne. Dette er påkrævet, hvis opløsningen af en tekstur er blevet forøget, da spillet ellers kan bryde sammen.</value>
   </data>
   <data name="GameInfo_AddedDate" xml:space="preserve">
     <value>Tilføjet:</value>
@@ -4590,10 +4590,10 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>En ny funktion i denne opdatering er understøttelse af spilklienter/emulatorer. Disse kan tilføjes i en separat dialog, og kan vælges til at blive brugt på tilføjede spil. Spilklienter som f.eks. Steam er valgfrie, mens at konsolspil kræver en emulator for at kunne spilles. Hvis en emulator ikke er i den understøttede liste, kan du tilføje den som en brugerdefineret emulator. Vær opmærksom på, at hvis du gør det, kan spilfremskridt ikke vises.</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncHeader" xml:space="preserve">
-    <value>Synkronisering af overflader er flyttet</value>
+    <value>Synkronisering af teksturer er flyttet</value>
   </data>
   <data name="AnniversaryUpdate_TextureSyncDescription" xml:space="preserve">
-    <value>Hjælpeværktøjet til at synkronisere overflader er nu blevet erstattet af en knap i Archive Explorer-panelet til nemmere brug. Ligesom før kan du også aktivere automatisk synkronisering af overflader, når et arkiv er blevet ompakket.</value>
+    <value>Hjælpeværktøjet til at synkronisere teksturer er nu blevet erstattet af en knap i Archive Explorer-panelet til nemmere brug. Ligesom før kan du også aktivere automatisk synkronisering af teksturer, når et arkiv er blevet ompakket.</value>
   </data>
   <data name="RaymanJungleRun_Win32_Title" xml:space="preserve">
     <value>Rayman Jungle Run</value>
@@ -4617,7 +4617,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Sidst ændret:</value>
   </data>
   <data name="Utilities_SyncTextureInfo" xml:space="preserve">
-    <value>Synkronisér overflader</value>
+    <value>Synkronisér teksturer</value>
   </data>
   <data name="Rayman3_Prototype_Gba_Title" xml:space="preserve">
     <value>Rayman 3-prototype</value>
@@ -4951,7 +4951,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Vælg moddestination</value>
   </data>
   <data name="ModLoader_FilesModule_Description" xml:space="preserve">
-    <value>Dette bruges til at tilføje, erstatte, og fjerne filer i spillet. Nyttig til mods som f.eks overfladeerstatninger, som ønsker at erstatte hele filer.</value>
+    <value>Dette bruges til at tilføje, erstatte, og fjerne filer i spillet. Nyttig til mods som f.eks teksturerstatninger, som ønsker at erstatte hele filer.</value>
   </data>
   <data name="ModLoader_DeltasModule_DescriptionSingle" xml:space="preserve">
     <value>Dette bruges til at patche dele af spilfilen. Filnavnet tilhørende enkeltfilspil bør være 'game.delta'. Deltaer fra flere mods kan godt stables.</value>
@@ -5050,10 +5050,10 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Angiv filtype</value>
   </data>
   <data name="Settings_Files_ConflictError" xml:space="preserve">
-    <value>Den valgte filtype er allerede blevet afvist</value>
+    <value>Den angivne filtype er allerede blevet afvist</value>
   </data>
   <data name="Settings_Files_FormatError" xml:space="preserve">
-    <value>Den valgte filtype er ugyldig. Den skal starte med et punktum, og må derefter ikke indeholde flere punktummer.</value>
+    <value>Den angivne filtype er ugyldig. Den skal starte med et punktum, og må derefter ikke indeholde flere punktummer.</value>
   </data>
   <data name="Settings_Files_ProgramSelectionTitle" xml:space="preserve">
     <value>Angiv filredigeringsprogram</value>
@@ -5086,7 +5086,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Dette bestemmer hvilke URI-protokoller åbnes i Rayman Control Panel</value>
   </data>
   <data name="Settings_WindowsIntegration_Header" xml:space="preserve">
-    <value>Windows-intergrering</value>
+    <value>Windows-integrering</value>
   </data>
   <data name="Settings_WindowsIntegration_UpdateFileAssociationsError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at indstille filtypetilknytningen. Kør Rayman Control Panel som administrator og prøv igen.</value>
@@ -5191,7 +5191,7 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
     <value>Søger efter kørende spil...</value>
   </data>
   <data name="GameTool_RuntimeModifications_NotFoundQuestion" xml:space="preserve">
-    <value>Kunne ikke findes?</value>
+    <value>Ikke fundet?</value>
   </data>
   <data name="GameTool_RuntimeModifications_ManuallySelectGame" xml:space="preserve">
     <value>Vælg spilproces manuelt</value>
@@ -5277,5 +5277,404 @@ Fortsæt med at anvende mods?</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="Rayman1_Ps1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Ps1_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
+    <value>Modificér spillet for at gendanne ubrugte funktioner fra tidligere prototyper, som f.eks fri bevægelse og kamp til Rayman!</value>
+  </data>
+  <data name="Archive_SavingStatus" xml:space="preserve">
+    <value>Gemmer arkiv</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
+    <value>Cooked UBIArt lyd</value>
+  </data>
+  <data name="Archive_Format_CookedUbiArtTexture" xml:space="preserve">
+    <value>Cooked UBIART tekstur</value>
+  </data>
+  <data name="Rayman2_Ps2_Title" xml:space="preserve">
+    <value>Rayman 2 Revolution</value>
+  </data>
+  <data name="Rayman3_Ps2_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_Ps2_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="RaymanM_Ps2_Title" xml:space="preserve">
+    <value>Rayman M</value>
+  </data>
+  <data name="RaymanRavingRabbids_Ps2_Title" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="GameClients_PCSX2" xml:space="preserve">
+    <value>PCSX2</value>
+  </data>
+  <data name="Platform_Ps2" xml:space="preserve">
+    <value>Playstation 2</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Encoding" xml:space="preserve">
+    <value>Encoding</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceError" xml:space="preserve">
+    <value>Systemet har ikke nok lagerplads til at anvende de valgte mods. Der er behov for mindst {0} lagerplads.</value>
+  </data>
+  <data name="ModLoader_InsufficientSpaceErrorHeader" xml:space="preserve">
+    <value>Ikke nok lagerplads</value>
+  </data>
+  <data name="ModLoader_ApplyWithErrors" xml:space="preserve">
+    <value>Mods blev anvendt. Nogle filer kunne ikke ændres.
+
+Fejlmeddelelser:
+{0}</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCovered" xml:space="preserve">
+    <value>Længde dækket</value>
+  </data>
+  <data name="Progression_R2Ps2_DistanceCoveredValue" xml:space="preserve">
+    <value>{0} meter</value>
+  </data>
+  <data name="Progression_R2Ps2_TimePlayed" xml:space="preserve">
+    <value>Tid spillet</value>
+  </data>
+  <data name="Progression_R2Ps2_PlayerShotsFired" xml:space="preserve">
+    <value>Affyrede spillerskud</value>
+  </data>
+  <data name="Progression_R2Ps2_ShootingAccuracy" xml:space="preserve">
+    <value>Affyringsnøjagtighed</value>
+  </data>
+  <data name="Progression_R2Ps2_TimesKilled" xml:space="preserve">
+    <value>Antal drab</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfTryAgain" xml:space="preserve">
+    <value>Antal forsøg</value>
+  </data>
+  <data name="Progression_R2Ps2_NumberOfJumps" xml:space="preserve">
+    <value>Antal hop</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
+    <value>Lydspor per bane</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
+    <value>Er du sikker på at du vil afinstallere Lydspor per bane-værktøjet? Dette vil afinstallere det fra alle spil hvor det er i brug.</value>
+  </data>
+  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Bekræft afinstallering</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
+    <value>Erstatter musikken i spillet med per-bane-musikken fra Playstation-versionen, og indeholder derudover også flere rettelser til PC-versionen.</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
+    <value>Installér</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Atmosfærisk MIDI lyd</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>Spiller PlayStation-eksklusiv atmosfærisk MIDI lyd i de baner, det er aktuelt for</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Visuelle fejlrettelser</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Indeholder visuelle fejlrettelser til PC-udgaven, så som f.eks at vise Dark Rayman's næve efter at han har slået</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
+    <value>Få Dark Raymans næve til at dræbe dig</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
+    <value>Slår en fjernet funktion til, hvor Dark Raymans næve dræber Rayman ved berøring</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
+    <value>Afinstallér</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Konfigurér spil</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
+    <value>Anbefalet</value>
+  </data>
+  <data name="SetupGame_RecommendedGroupSummary" xml:space="preserve">
+    <value>{0}/{1} anbefalede handlinger</value>
+  </data>
+  <data name="SetupGame_OptionalGroupHeader" xml:space="preserve">
+    <value>Valgfrit</value>
+  </data>
+  <data name="SetupGame_OptionalGroupSummary" xml:space="preserve">
+    <value>{0}/{1} valgfri handlinger</value>
+  </data>
+  <data name="SetupGame_IssuesGroupHeader" xml:space="preserve">
+    <value>Problemer</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummarySingle" xml:space="preserve">
+    <value>{0} problem</value>
+  </data>
+  <data name="SetupGame_IssuesGroupSummaryMultiple" xml:space="preserve">
+    <value>{0} problemer</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Header" xml:space="preserve">
+    <value>Installér Better Rayman 3</value>
+  </data>
+  <data name="SetupGameAction_BetterRayman3_Info" xml:space="preserve">
+    <value>Better Rayman 3 er en samling af rettelser af RibShark, som gør det muligt for Rayman 3 at blive spillet i bredskærmsopløsninger. Samlingen tilbyder også andre funktioner, som f.eks. vindue-tilstand og gendannelse af muligheden for at springe over cutscenes.</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Header" xml:space="preserve">
+    <value>Korrupt spildata</value>
+  </data>
+  <data name="SetupGameAction_CorruptRaymanFiestaRunSaveFile_Info" xml:space="preserve">
+    <value>Grundet en fejl i tidligere versioner af spillet, kan fremskridt fra din spildata muligvis afsynkroniseres, hvilket kan føre til at du har færre Teensies end du egentlig har vundet. Dette kan gøre bestemte baner utilgængelige.</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
+    <value>Installér Higher Quality Official Textures mod</value>
+  </data>
+  <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
+    <value>Higher Quality Official Textures er et teksturmod af ICUP321, der erstatter mange af teksturerne med varianter fra andre versioner der har bedre/højere opløsning, inklusiv teksturer med fikset gennemsigtighed.</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
+    <value>Installér High Quality Videos mod</value>
+  </data>
+  <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
+    <value>Videoerne i PC-versionen er mere komprimerede end i konsolversionerne. High Quality Videos-moddet erstatter videoerne med konverterede versioner af dem fra spillets konsolversioner, som er højere kvalitet.</value>
+  </data>
+  <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
+    <value>Ugyldig spilopløsning</value>
+  </data>
+  <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
+    <value>Mapper config-fil mangler eller er ugyldig</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Header" xml:space="preserve">
+    <value>Monteringssti mangler</value>
+  </data>
+  <data name="SetupGameAction_MsDosGameRequiresDisc_Info" xml:space="preserve">
+    <value>En gyldig monteringssti skal angives i spillets emulatorindstillinger for at det kan starte.</value>
+  </data>
+  <data name="SetupGameAction_Ray1InvalidGameConfig_Header" xml:space="preserve">
+    <value>Spillet er ikke konfigureret korrekt</value>
+  </data>
+  <data name="SetupGameAction_Ray2Fix_Header" xml:space="preserve">
+    <value>Installér Ray2Fix</value>
+  </data>
+  <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
+    <value>Installér PS2 Videos-mod</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
+    <value>Erstat ufuldent soundtrack</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Info" xml:space="preserve">
+    <value>Rayman Forever-samlingen indeholder ikke spillets fulde soundtrack pga. begrænset diskplads i den originale udgivelse. Det anbefales at erstatte musikfilerne med dem fra det fulde soundtrack.</value>
+  </data>
+  <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Fix" xml:space="preserve">
+    <value>Erstat med fuldent soundtrack</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Header" xml:space="preserve">
+    <value>Erstat inficerede filer</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Info" xml:space="preserve">
+    <value>Nogle versioner af Rayman Designer, som f.eks den der følger med i Rayman Forever, har nogle filer som er inficeret med gammelt malware. Selvom at det ikke ser ud til at være farligt, eller overhovedet aktivt, og GOG har bekræftet at der ingen fare er, kan det stadig være en god ide at erstatte filerne med deres ikke-inficerede versioner for at undgå at antivirusprogrammer fjerner spilfilerne.</value>
+  </data>
+  <data name="SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix" xml:space="preserve">
+    <value>Erstat filer</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Header" xml:space="preserve">
+    <value>Ingen spilklient/emulator valgt</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Info" xml:space="preserve">
+    <value>Dette spil kan ikke startes uden en spilklient/emulator. Sørg for, at du har en understøttet spilklient/emulator, og vælg den derefter til brug af dette spil.</value>
+  </data>
+  <data name="SetupGameAction_RequiresLaunchComponent_Fix" xml:space="preserve">
+    <value>Tilføj spilklient/emulator</value>
+  </data>
+  <data name="SetupGameAction_DownloadFix" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="SetupGameAction_GeneralFix" xml:space="preserve">
+    <value>Reparér</value>
+  </data>
+  <data name="SetupGameAction_DownloadModFix" xml:space="preserve">
+    <value>Download mod</value>
+  </data>
+  <data name="SetupGameAction_GameSettingsFix" xml:space="preserve">
+    <value>Åbn spilindstillinger</value>
+  </data>
+  <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
+    <value>Åbn spilklient/emulatorindstillinger</value>
+  </data>
+  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
+    <value>Ingen gyldige filer blev fundet for det valgte mod</value>
+  </data>
+  <data name="ModLoader_GetDownloadError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at hente det valgte mod</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
+    <value>Blinkende vindue på proceslinjen ved bestemte hændelser</value>
+  </data>
+  <data name="Settings_FlashWindowOnTaskBarInfo" xml:space="preserve">
+    <value>Få vinduet på proceslinjen til at blinke ved bestemte hændelser, så som f.eks når mods er færdige med at installere</value>
+  </data>
+  <data name="GameHub_GameSettings" xml:space="preserve">
+    <value>Spilindstillinger</value>
+  </data>
+  <data name="GameHub_GameClientGameSettings" xml:space="preserve">
+    <value>Spilklient/emulatorindstillinger</value>
+  </data>
+  <data name="GameSettingsTitle" xml:space="preserve">
+    <value>Spilindstillinger - {0}</value>
+  </data>
+  <data name="GameClientGameSettingsTitle" xml:space="preserve">
+    <value>{0} Spilindstillinger - {1}</value>
+  </data>
+  <data name="GameSettings_LocationsHeader" xml:space="preserve">
+    <value>Indstillingsplaceringer</value>
+  </data>
+  <data name="GameSettings_LocationsToggle" xml:space="preserve">
+    <value>Vis indstillingsplaceringer</value>
+  </data>
+  <data name="GameSettings_ApplyRecommendedSettings" xml:space="preserve">
+    <value>Anvend anbefalede indstillinger</value>
+  </data>
+  <data name="GameSettings_LoadError" xml:space="preserve">
+    <value>En fejl opstod i indlæsningen af spilindstillingerne. Programmet skal muligvis køres som administrator.</value>
+  </data>
+  <data name="GameSettings_SaveError" xml:space="preserve">
+    <value>En fejl opstod i forsøg på at gemme spilindstillingerne. Programmet skal muligvis køres som administrator.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
+    <value>Debug-startparametre</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_Source" xml:space="preserve">
+    <value>Kilde</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNone" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceCommandLineFile" xml:space="preserve">
+    <value>cmdline.txt-fil</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceLaunchArguments" xml:space="preserve">
+    <value>Startparametre</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceNotAvailable" xml:space="preserve">
+    <value>Ikke tilgængelig</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_SourceInstallMod" xml:space="preserve">
+    <value>Installér mod</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CommandsHeader" xml:space="preserve">
+    <value>Kommandoer</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_OutputHeader" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DisabledInfo" xml:space="preserve">
+    <value>Vælg en kilde til brug og redigering af kommandoer</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootHeader" xml:space="preserve">
+    <value>Rodmappe</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_RootInfo" xml:space="preserve">
+    <value>Angiver rodmappen hvor spillet søger efter filer. Standardangivelsen for dette er der hvor spileksekverbaren findes.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_MapHeader" xml:space="preserve">
+    <value>Kort</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageHeader" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_LanguageInfo" xml:space="preserve">
+    <value>Ikke alle sprog er tilgængelige i alle udgivelser af spillet.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FramerateHeader" xml:space="preserve">
+    <value>Framerate</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
+    <value>Dæmp</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoSoundInfo" xml:space="preserve">
+    <value>Dæmper alle lyde.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomHeader" xml:space="preserve">
+    <value>Maks kamerazoom</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_CameraMaxZoomInfo" xml:space="preserve">
+    <value>Zoomer kameraet ud.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_AllPlayersTogetherInfo" xml:space="preserve">
+    <value>Får alle spillere til at følge spiller 1.</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoDamageHeader" xml:space="preserve">
+    <value>Uskadelig</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_NoMouseHeader" xml:space="preserve">
+    <value>Skjul musemarkør</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_FullscreenHeader" xml:space="preserve">
+    <value>Fuldskærm</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_WidthHeader" xml:space="preserve">
+    <value>Bredde</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_HeightHeader" xml:space="preserve">
+    <value>Højde</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_XHeader" xml:space="preserve">
+    <value>X-position</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_YHeader" xml:space="preserve">
+    <value>Y-position</value>
+  </data>
+  <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
+    <value>Vælg modfilen, der skal downloades</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
+    <value>Vælg modfil</value>
+  </data>
+  <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
+    <value>Rayman 2 Beta (1998/07/22)</value>
+  </data>
+  <data name="ModLoader_TooShortSearchText" xml:space="preserve">
+    <value>Søgningen skal indeholde mindst to tegn</value>
+  </data>
+  <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
+    <value>Viser søgeresultater for "{0}"</value>
+  </data>
+  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
+    <value>Viser mods i kategorien "{0}"</value>
+  </data>
+  <data name="ModLoader_Search" xml:space="preserve">
+    <value>Søg efter mods</value>
+  </data>
+  <data name="SecretCodes_Cooking" xml:space="preserve">
+    <value>Du har lige indtastet "cooking"-koden! Alle billederne bliver nu "cooked"!</value>
+  </data>
+  <data name="SecretCodes_CookingHeader" xml:space="preserve">
+    <value>"Cooking"-kode</value>
+  </data>
+  <data name="About_Credits_Mr5088" xml:space="preserve">
+    <value>Portugesisk (Brasilien) programoversættelse</value>
   </data>
 </root>

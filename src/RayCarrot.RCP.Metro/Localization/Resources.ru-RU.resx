@@ -3396,7 +3396,7 @@ Start: Пауза</value>
     <value>Выберите формат для обратной конвертации</value>
   </data>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
-    <value>Файлы сохранений Rayman Бешеные Кролики (.sav)</value>
+    <value>Файлы сохранений Rayman Raving Rabbids (.sav)</value>
   </data>
   <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
     <value>Файлы сохранений Rayman Бешеные Кролики 2 (.sav)</value>
@@ -4719,5 +4719,186 @@ Start: Пауза</value>
   </data>
   <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Мороженое на льду</value>
+  </data>
+  <data name="LaunchHandler_LegacyPatch" xml:space="preserve">
+    <value>Игровой патч (.gp)</value>
+  </data>
+  <data name="LauncHandler_Mod" xml:space="preserve">
+    <value>Игровой мод</value>
+  </data>
+  <data name="UriLaunchHandler_GameBananaMod" xml:space="preserve">
+    <value>Игровой мод (установка в один клик с GameBanana)</value>
+  </data>
+  <data name="Archive_RepackLocked" xml:space="preserve">
+    <value>Файл архива сейчас используется следующими программами и не может быть переупакован. Попробуйте закрыть программы и повторить попытку.
+
+{0}</value>
+  </data>
+  <data name="ModLoader_Title" xml:space="preserve">
+    <value>Загрузчик модов</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Open" xml:space="preserve">
+    <value>Управление модами</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
+    <value>Создать мод</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
+    <value>Мод {0} применён</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
+    <value>Моды {0} применены</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
+    <value>Доступно обновление для мода {0}</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_UpdatesAvailableMultiple" xml:space="preserve">
+    <value>Доступны обновления для модов {0}</value>
+  </data>
+  <data name="ModLoader_LibraryTitle" xml:space="preserve">
+    <value>Библиотека</value>
+  </data>
+  <data name="ModLoader_DownloadTitle" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="ModLoader_InstalledHeader" xml:space="preserve">
+    <value>Установленные моды</value>
+  </data>
+  <data name="ModLoader_InstalledInfo" xml:space="preserve">
+    <value>Моды могут быть установлены для изменения определенных аспектов игры. Большинство модов работают путем замены определенных файлов игры. Мод не вступит в силу до тех пор, пока он не будет включен и изменения не будут применены, что позволяет легко включать и выключать моды. Не рекомендуется вручную изменять файлы игры, которые затрагивает мод, так как это может привести к потере некоторых изменений.</value>
+  </data>
+  <data name="ModLoader_InstalledEmpty" xml:space="preserve">
+    <value>Нет установленных модов</value>
+  </data>
+  <data name="ModLoader_InstallFromFile" xml:space="preserve">
+    <value>Установить из файла</value>
+  </data>
+  <data name="ModLoader_CheckUpdates" xml:space="preserve">
+    <value>Проверить обновления</value>
+  </data>
+  <data name="ModLoader_ViewModifications" xml:space="preserve">
+    <value>Посмотреть все изменения</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsList" xml:space="preserve">
+    <value>Отображать файлы в виде списка</value>
+  </data>
+  <data name="ModLoader_ShowModificationsAsTree" xml:space="preserve">
+    <value>Отображать файлы в виде древа</value>
+  </data>
+  <data name="ModLoader_ExpandModifications" xml:space="preserve">
+    <value>Развернуть всё</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesPathHeader" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesModHeader" xml:space="preserve">
+    <value>Мод</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesOverridenModsHeader" xml:space="preserve">
+    <value>Переписанные моды</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesEmpty" xml:space="preserve">
+    <value>Установить мод для изменения файлов игры</value>
+  </data>
+  <data name="ModLoader_ModifiedFilesHasInvalidLocation" xml:space="preserve">
+    <value>Этот файл будет проигнорирован при установке модов из-за того, что содержащий его архивный файл не найден для этой игры</value>
+  </data>
+  <data name="ModLoader_OpenModLocation" xml:space="preserve">
+    <value>Открыть расположеие</value>
+  </data>
+  <data name="ModLoader_UninstallMod" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="ModLoader_UpdateMod" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="ModLoader_DialogTitle" xml:space="preserve">
+    <value>Загрузчик модов - {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Title" xml:space="preserve">
+    <value>GameBanana</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadableModsInfo" xml:space="preserve">
+    <value>Эти моды были загружены на GameBanana несколькими пользователями</value>
+  </data>
+  <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
+    <value>Обновить доступные моды</value>
+  </data>
+  <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
+    <value>Моды не найдены</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesStatus" xml:space="preserve">
+    <value>Перенос патчей в моды</value>
+  </data>
+  <data name="ModLoader_MigratingPatchesError" xml:space="preserve">
+    <value>Произошла ошибка при переносе патчей в моды</value>
+  </data>
+  <data name="ModLoader_ReadingModVersionError" xml:space="preserve">
+    <value>Выбранный мод был создан с использованием более свежей версии Rayman Control Panel и не может быть прочитан</value>
+  </data>
+  <data name="ModLoader_ReadingModError" xml:space="preserve">
+    <value>Выбранный мод не может быть прочитан</value>
+  </data>
+  <data name="ModLoader_ReadingModsError" xml:space="preserve">
+    <value>При загрузке модов произошла ошибка</value>
+  </data>
+  <data name="ModLoader_SecurityWarning" xml:space="preserve">
+    <value>Мод {0} изменяет конфиденциальные файлы, такие как исполняемые файлы игры. Устанавливайте этот мод только в том случае, если источник надёжный. Продолжить?</value>
+  </data>
+  <data name="ModLoader_InstallStatus" xml:space="preserve">
+    <value>Извлечение мода {0}</value>
+  </data>
+  <data name="ModLoader_InstallError" xml:space="preserve">
+    <value>Произошла ошибка при установке мода из {0}</value>
+  </data>
+  <data name="ModLoader_InstallInvalidTargetError" xml:space="preserve">
+    <value>Мод {0} не может быть установлен для этой игры из-за того, что всё перечисленное ниже не является целями игры:
+
+{1}</value>
+  </data>
+  <data name="ModLoader_SelectInstallTargetTitle" xml:space="preserve">
+    <value>Выберите игру, для которой устанавливаете мод</value>
+  </data>
+  <data name="ModLoader_WriteAccessDenied" xml:space="preserve">
+    <value>Доступ на запись к установке игры запрещен. Попробуйте перезагрузиться от имени администратора. Если эта игра загружена из Microsoft Store, доступ на запись будет недоступен без предварительной установки игры в виде пакета в режиме разработчика.</value>
+  </data>
+  <data name="ModLoader_ReadLibraryVersionError" xml:space="preserve">
+    <value>Библиотека игровых модов была создана с использованием более новой версии Rayman Control Panel и не может быть прочитана</value>
+  </data>
+  <data name="ModLoader_ReadLibraryError" xml:space="preserve">
+    <value>Произошла ошибка при чтении библиотеки модов</value>
+  </data>
+  <data name="ModLoader_AddedFilesInfo" xml:space="preserve">
+    <value>{0} добавленных файлов</value>
+  </data>
+  <data name="ModLoader_RemovedFilesInfo" xml:space="preserve">
+    <value>{0} удаленных файлов</value>
+  </data>
+  <data name="ModLoader_PatchedFilesInfo" xml:space="preserve">
+    <value>{0} пропатченных файлов</value>
+  </data>
+  <data name="ModLoader_UnsavedChangesInfo" xml:space="preserve">
+    <value>{0} несохраненных модов</value>
+  </data>
+  <data name="ModLoader_UnsavedOrderChangesInfo" xml:space="preserve">
+    <value>Несохраненные изменения порядка модов</value>
+  </data>
+  <data name="ModLoader_InstallSelectionTitle" xml:space="preserve">
+    <value>Выберите моды для установки</value>
+  </data>
+  <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
+    <value>Мод</value>
+  </data>
+  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
+    <value>Скачивание мода {0}</value>
+  </data>
+  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
+    <value>Извлечение мода {0}</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>При загрузке и установке мода произошла ошибка</value>
+  </data>
+  <data name="About_Credits_Mr5088" xml:space="preserve">
+    <value>Перевод программы на португальский (Бразилия)</value>
   </data>
 </root>

@@ -1487,4 +1487,2060 @@ Hiba üzenet: {1}</value>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>Ehhez a játékhoz le kell tölteni adott fájlokat. A letöltés mérete {0}. Folytatod?</value>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>Ehhez a játékhoz le kell tölteni adott fájlokat. Folytatod?</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>A Print Studio verzió frissítése közben hiba lépett fel. </value>
+  </data>
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Exportálás helyének megadása</value>
+  </data>
+  <data name="ImportSelectionHeader" xml:space="preserve">
+    <value>Válassz egy konvertált JSON fájlt az importáláshoz</value>
+  </data>
+  <data name="Progression_Header" xml:space="preserve">
+    <value>Haladás</value>
+  </data>
+  <data name="Progression_GenericSlot" xml:space="preserve">
+    <value>Slot {0}</value>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Exportálás</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Importálás</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>A mentés exportálása közben hiba történt. Ellenőrízd, hogy a .JSON fájl formátuma megfelelő-e, valamint hogy az adott mentési fájl támogatott.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>A mentés importálása közben hiba történt. Ellenőrízd, hogy a .JSON fájl formátuma megfelelő-e, valamint hogy az adott mentési fájl támogatott.</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>A {0} el lett távolìtva</value>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Sikeres eltávolítás</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>Mentési fájl sikeresen expotálva</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>Mentési fájl sikeresen expotálva</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Karakter</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Az itteni karakter választása megváltoztatja a jelenleg használt karaktert a játékon belül. Az utolsó 2 Teensie karaktert csak innen lehet kiválasztani, ugyanis a játékon belül nincs rá opció.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Dark Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Globox Outfit</value>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Green Teensy</value>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Goth Teensy</value>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Kijelölt mentési slot</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Zene hangereje</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Hangeffektek</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Az applikáció frissítése közben hiba történt</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>Eltarthat pár másodpercig amíg a játék elindul. Ha egy fekete képernyő jelenik meg, nyomd meg az ESC billentyűt, hogy elindítsd a játékot. Ez az üzenet többet nem fog megjellenni.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Letöltés Ubisoft Connect-ről</value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Válassz egy fájlt az importáláshoz</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Támogatott fájlok</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Válassz egy kimeneti utat az exportáláshoz</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>{0} Exportálása</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Válassz egy könyvtárat az importáláshoz</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Importálható fájlok nem találhatók</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Fájlok exportálva</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Fájl exportálva</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>A következőt nem lehetett exportálni: {0}</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>{0} archívum újracsomagolása</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Fájl kiterjesztés választása</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Válassz a(z) {0} fájl exportálásának kiterjesztést</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archívum kezelő</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Az archívum kezelővel hiba lépett fel és bezárult</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Rayman kódvisszafejtés, Rayman Raving Rabbids Prototípus Restauráló mod, BinarySerializer</value>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Szervízprogramok</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>CPA Archívumok (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>UbiArt Archívumok (.ipk)</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>CPA Textúra Fájlok (.gf)</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>Konvertálás</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Visszakonvertálás</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>UbiArt Lokalizációs Fájlok</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archívum kezelő</value>
+  </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Átalakítók</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Megnyitás</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Rayman 3 mentések (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Rayman Jungle Run mentések (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Archívum fájlok kiválasztása</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Fájlok kiválasztása konvertáláshoz</value>
+  </data>
+  <data name="Browse_DestinationHeader" xml:space="preserve">
+    <value>Kimeneti út kiválasztása</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>A fájlokat nem lehetett konvertálni</value>
+  </data>
+  <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
+    <value>Exportált fálj kiterjesztés kiválasztása</value>
+  </data>
+  <data name="Utilities_Converter_Success" xml:space="preserve">
+    <value>Fájlok sikeresen konvertálva</value>
+  </data>
+  <data name="Archive_RepackError" xml:space="preserve">
+    <value>Az archívum újracsomagolása közben hiba történt</value>
+  </data>
+  <data name="Progression_R3_Level1Header" xml:space="preserve">
+    <value>The Fairy Council</value>
+  </data>
+  <data name="Progression_R3_Level2Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_R3_Level3Header" xml:space="preserve">
+    <value>The Bog of Murk</value>
+  </data>
+  <data name="Progression_R3_Level4Header" xml:space="preserve">
+    <value>The Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_R3_Level5Header" xml:space="preserve">
+    <value>The Desert of the Knaaren</value>
+  </data>
+  <data name="Progression_R3_Level6Header" xml:space="preserve">
+    <value>The Longest Shortcut</value>
+  </data>
+  <data name="Progression_R3_Level7Header" xml:space="preserve">
+    <value>The Summit Beyond the Clouds</value>
+  </data>
+  <data name="Progression_R3_Level8Header" xml:space="preserve">
+    <value>Hoodlum Headquarters</value>
+  </data>
+  <data name="Progression_R3_Level9Header" xml:space="preserve">
+    <value>The Tower of the Leptys</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>{0}/{1} textúra infó szinkronizálva</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>A textúra infók szinkronizálása közben hiba történt</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Egyéb</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>Ez a funkció még nincs implementálva</value>
+  </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Dekódolók</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Dekódolás</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Titkosítás</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Rayman 2 Titkosított Fájlok (.sna/.dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Dekódolandó fájlok kiválasztása</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Tikosítandó fájlok kiválasztása</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>Fájlok sikeresen dekódolva</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>Fájlok sikeresen titkosítva</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>A dekódolás közben hiba történt</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>A titkosítás közben hiba történt</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Rayman 3 mentések (.sav)</value>
+  </data>
+  <data name="RL_LevelName_1_1" xml:space="preserve">
+    <value>Once upon a Time</value>
+  </data>
+  <data name="RL_LevelName_1_2" xml:space="preserve">
+    <value>Creepy Castle</value>
+  </data>
+  <data name="RL_LevelName_1_3" xml:space="preserve">
+    <value>Enchanted Forest</value>
+  </data>
+  <data name="RL_LevelName_1_4" xml:space="preserve">
+    <value>Ropes Course</value>
+  </data>
+  <data name="RL_LevelName_1_5" xml:space="preserve">
+    <value>Quick Sand</value>
+  </data>
+  <data name="RL_LevelName_1_6" xml:space="preserve">
+    <value>How to Shoot your Dragon</value>
+  </data>
+  <data name="RL_LevelName_2_1" xml:space="preserve">
+    <value>Ray and the Beanstalk</value>
+  </data>
+  <data name="RL_LevelName_2_2" xml:space="preserve">
+    <value>The Winds of Strange</value>
+  </data>
+  <data name="RL_LevelName_2_3" xml:space="preserve">
+    <value>Castle in the Clouds</value>
+  </data>
+  <data name="RL_LevelName_2_4" xml:space="preserve">
+    <value>Altitude Quickness</value>
+  </data>
+  <data name="RL_LevelName_2_5" xml:space="preserve">
+    <value>When Toads Fly</value>
+  </data>
+  <data name="RL_LevelName_3_1" xml:space="preserve">
+    <value>What the Duck?</value>
+  </data>
+  <data name="RL_LevelName_3_2" xml:space="preserve">
+    <value>Spoiled Rotten</value>
+  </data>
+  <data name="RL_LevelName_3_3" xml:space="preserve">
+    <value>I've Got a Filling</value>
+  </data>
+  <data name="RL_LevelName_3_4" xml:space="preserve">
+    <value>Snakes on a Cake</value>
+  </data>
+  <data name="RL_LevelName_3_5" xml:space="preserve">
+    <value>Lucha Libre Get Away</value>
+  </data>
+  <data name="RL_LevelName_4_1" xml:space="preserve">
+    <value>The Mysterious Inflatable Island</value>
+  </data>
+  <data name="RL_LevelName_4_2" xml:space="preserve">
+    <value>The Deadly Lights</value>
+  </data>
+  <data name="RL_LevelName_4_3" xml:space="preserve">
+    <value>Mansion of the Deep</value>
+  </data>
+  <data name="RL_LevelName_4_4" xml:space="preserve">
+    <value>Infiltration Station</value>
+  </data>
+  <data name="RL_LevelName_4_5" xml:space="preserve">
+    <value>Elevator Ambush</value>
+  </data>
+  <data name="RL_LevelName_4_6" xml:space="preserve">
+    <value>There's Always a Bigger Fish</value>
+  </data>
+  <data name="RL_LevelName_5_1" xml:space="preserve">
+    <value>Shields Up... and Down</value>
+  </data>
+  <data name="RL_LevelName_5_2" xml:space="preserve">
+    <value>The Dark Creatures Rise</value>
+  </data>
+  <data name="RL_LevelName_5_3" xml:space="preserve">
+    <value>The Amazing Maze</value>
+  </data>
+  <data name="RL_LevelName_5_4" xml:space="preserve">
+    <value>The Great Lava Pursuit</value>
+  </data>
+  <data name="RL_LevelName_5_5" xml:space="preserve">
+    <value>Swarmed and Dangerous</value>
+  </data>
+  <data name="RL_LevelName_5_6" xml:space="preserve">
+    <value>Hell Breaks Loose</value>
+  </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Rayman Legends Mentések</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Rayman Origins Mentések</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Kicsomagolás</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Létrehozás</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>mipmap-ek automatikus generálása (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>mipmapek automatikus generálása a támogatott játékokban .gf fájl importálásánál</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Formátum automatikus frissítése (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Soha (eredeti formátum megtartása)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>Az eredeti formátum mindig megmarad. ARGB formátumú fájlt egy .gf-re importálva (ami nem támogatja az átlátszóságot) az alfa csatorna elvész</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Egyeztetés az importált formátummal</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>A formátum automatikusan firssül az importált fájléval egyezőre. A .gf fájlok emiatt lehet több helyet fognak foglalni.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Fontos formátum egyeztetése ha szükséges</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>A formátum automatikusan firssül az importált fájléval egyezőre akkor, ha a jelenkegi formátum nem kompatibilis a tárolt adattal. Például, ha egy ARGB fájl .gf fájlra van importálva, ami nem támogatja az átlátszóságot, csak akkor fog automaikusan átkonvertálódni .gf-re, ha a fájl ki is használja az alfa csatornát. Ez a beállítás ajánlott a szükségtelen fájlkonvertálások elkerülése érdekében, bár az importálás sebessége kissé lassulni fog tőle.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>Az archívum sikeresen elkészült {0} fájlból</value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>A megadott beviteli könyvtár nem létezik</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>Az archívum létrehozása közben hiba történt</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Archívum létrehozása</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Beviteli könytár</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Kimeneti fájl</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Teljes blokk tömörítése</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Tömörítendő fájlkiterjesztések</value>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Rayman 1 Konfig Fájlok (.cfg)</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Rayman 1 Mentések (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Rayman 2 Konfig Fájlok (.cfg)</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Rayman 2 Mentések (.sav)</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Rayman 1/2 Mentések (.sav/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Téma szinkronizálása</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>Ha be van kapcsolva, az applikáció színei megegyeznek a Windows beállításokkal</value>
+  </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>A nyelvi csomag frissítése közben hiba lépett fel</value>
+  </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+  </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Fájlok letöltése:
+
+1. A letöltés gombra kattintva manuálisan elindíthatod a letöltést.
+2. Helyezd át a fájlokat a célmappába, ha tömörítve vannak, csomagold ki őket.
+3. Kattints az 'OK' gombra  a folytatáshoz.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Manuális Letöltés</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Fájlok Letöltése</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Célmappa megnyitása</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Letöltések manuális kezelése</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Csak akkor használd ezt az opciót, ha a letöltések elakadnak</value>
+  </data>
+  <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
+    <value>Tonic Trouble Titkosított Fájlok (.sna/.dsb)</value>
+  </data>
+  <data name="About_Credits_Fabiosek" xml:space="preserve">
+    <value>Lengyel (Lengyelország) programfordítás</value>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Rayman M/Arena Mentések (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>32 bit-re konvertálás importáláskor (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Megmutatja, hogy a .gf fájlt át kellene-e konvertálni 24/32 bitre az importálást követően a legjobb minőség érdekében</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Legjobb kör - Training</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Legjobb kör - Race</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Legjobb kör - Target</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Legjobb kör - Lums</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Legjobb idő - Race</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Legjobb idő - Target</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Legjobb idő - Lums</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Targets</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>First Ruins</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Nebulous Tower</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Dark Sewer</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Dawn Sand</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Water Canyon</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Thousand Waterfalls</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forest Jump</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Zenith Harbour</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Treasure Ship</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Pipe Maze</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Lava Factory</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Electric Final</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Future</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Speed Stress</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Born To Slide</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Fájl kiválasztása</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Fájl mentése</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Mappa kiválasztása</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Meghajtó kiválasztása</value>
+  </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Orosz (Oroszország) programfordítás</value>
+  </data>
+  <data name="About_Credits_ItzalDrake" xml:space="preserve">
+    <value>Olasz (Olaszország) programfordítás</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Rendezés</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Alap </value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>Betúrendben (felfelé)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>Betűrendben (lefelé)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Összes fájl kicsomagolása ebben a mappában, beleértve az almappákat is</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Fájlok hozzáadása</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>A kiválasztott fájlokat hozzáadja a könyvtárhoz</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Exportálás és konvertálás</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Az összes fájl kicsomagolása ebben a mappában, beleértve az almappákat, és a fájlok átkonvertálása</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Importálás és konvertálás</value>
+  </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>A kijelölt mappában lévő egyező nevű fájlokat importálja, és megpróbálja átkonvertálni azokat az eredeti fájl formátumára, ahol az lehetséges</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Mappa létrehozása</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Létrehoz egy üres mappát</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Mappa minden tartalmának törlése, beleértve az összes fájlt és az almappákat</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Exportálás</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Importálás</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Archívum mentése</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>A kijelölt mappában lévő fájl neve megegyezik ezzel: </value>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Eredeti</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>Az importálás közben hiba lépett fel</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Mappa elnevezése</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Fájlok hozzáasdása</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>{0} fájlnak a neve megegyezik egy már létező fájléval. Felül akarod írni?</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>Fájl név konfliktus</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Fájl méret:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Tömörített fájl méret:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointer:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Tömörített:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Titkosított:</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Típus:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Méret:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmap-ek:</value>
+  </data>
+  <data name="Archive_AddFiles_Error" xml:space="preserve">
+    <value>{0} hozzáadása közben hiba lépett fel</value>
+  </data>
+  <data name="Archive_Format_Original" xml:space="preserve">
+    <value>Eredeti</value>
+  </data>
+  <data name="Archive_Format_Default" xml:space="preserve">
+    <value>Fájl</value>
+  </data>
+  <data name="Archive_Format_GF" xml:space="preserve">
+    <value>GF (Graphic File)</value>
+  </data>
+  <data name="Archive_Format_Img" xml:space="preserve">
+    <value>Kép</value>
+  </data>
+  <data name="GameDisplay_Raymap" xml:space="preserve">
+    <value>Map megtekintése</value>
+  </data>
+  <data name="R1Passwords_Invalid" xml:space="preserve">
+    <value>Helytelen jelszó</value>
+  </data>
+  <data name="R1_LevelName_0" xml:space="preserve">
+    <value>Pink Plant Woods</value>
+  </data>
+  <data name="R1_LevelName_1" xml:space="preserve">
+    <value>Anguish Lagoon</value>
+  </data>
+  <data name="R1_LevelName_2" xml:space="preserve">
+    <value>The Swamps of Forgetfulness</value>
+  </data>
+  <data name="R1_LevelName_3" xml:space="preserve">
+    <value>Moskito's Nest</value>
+  </data>
+  <data name="R1_LevelName_4" xml:space="preserve">
+    <value>Bongo Hills</value>
+  </data>
+  <data name="R1_LevelName_5" xml:space="preserve">
+    <value>Allegro Presto</value>
+  </data>
+  <data name="R1_LevelName_6" xml:space="preserve">
+    <value>Gong Heights</value>
+  </data>
+  <data name="R1_LevelName_7" xml:space="preserve">
+    <value>Mr Sax's Hullaballoo</value>
+  </data>
+  <data name="R1_LevelName_8" xml:space="preserve">
+    <value>Twilight Gulch</value>
+  </data>
+  <data name="R1_LevelName_9" xml:space="preserve">
+    <value>The Hard Rocks</value>
+  </data>
+  <data name="R1_LevelName_10" xml:space="preserve">
+    <value>Mr Stone's Peaks</value>
+  </data>
+  <data name="R1_LevelName_11" xml:space="preserve">
+    <value>Eraser Plains</value>
+  </data>
+  <data name="R1_LevelName_12" xml:space="preserve">
+    <value>Pencil Pentathlon</value>
+  </data>
+  <data name="R1_LevelName_13" xml:space="preserve">
+    <value>Space Mama's Crater</value>
+  </data>
+  <data name="R1_LevelName_14" xml:space="preserve">
+    <value>Crystal Palace</value>
+  </data>
+  <data name="R1_LevelName_15" xml:space="preserve">
+    <value>Eat at Joe's</value>
+  </data>
+  <data name="R1_LevelName_16" xml:space="preserve">
+    <value>Mr Skops' Stalactites</value>
+  </data>
+  <data name="R1_LevelName_17" xml:space="preserve">
+    <value>Mr Dark's Dare</value>
+  </data>
+  <data name="R1Passwords_Generate" xml:space="preserve">
+    <value>Generálás</value>
+  </data>
+  <data name="R1Passwords_Load" xml:space="preserve">
+    <value>Betöltés</value>
+  </data>
+  <data name="R1Passwords_LevUnlocked" xml:space="preserve">
+    <value>Kinyitott</value>
+  </data>
+  <data name="R1Passwords_LevAllCages" xml:space="preserve">
+    <value>Összes ketrec</value>
+  </data>
+  <data name="R1Passwords_FinBoss" xml:space="preserve">
+    <value>Legyőzött boss</value>
+  </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>A zenész kisegítése</value>
+  </data>
+  <data name="R1Passwords_Lives" xml:space="preserve">
+    <value>Életek</value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Folytatások</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
+    <value>Rayman 1 PC Archívumok (.dat)</value>
+  </data>
+  <data name="Utilities_R1Passwords_Header" xml:space="preserve">
+    <value>Rayman 1 PS1 Jelszó Generáló</value>
+  </data>
+  <data name="Archive_ImportFile_Error" xml:space="preserve">
+    <value>A fájl importálása közben hiba lépett fel</value>
+  </data>
+  <data name="R1Passwords_InvalidLength" xml:space="preserve">
+    <value>A jelszónak minimum 10 karaktert kell tartalmaznia</value>
+  </data>
+  <data name="R1Passwords_InvalidChar" xml:space="preserve">
+    <value>Helytelen jelszó karakter {0}</value>
+  </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>A jelszó adat helytelen</value>
+  </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Elsődleges verzió</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Másodlagos verzió</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Nézet/Szerkesztés</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Binary</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Válassz egy futtatható állományt a következőknek: {0}</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>A fájl megnyitása közben hiba lépett fel</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Hang</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Zene</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Stereo</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Beszéd hangereje</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Háttér Megjelenítése</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Parallax Háttér Megjelenítése</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>HUD Megjelenítése</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>FPS</value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Ablak Keret</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Irányítás</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Gamepad/Kontroller</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Ugrás</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Ütés</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Interakció</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Eszköz</value>
+  </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>Irq</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>Dma</value>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Paraméter</value>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>Eszköz ID</value>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Cards</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Balra</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Jobbra</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Le</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Ugrás/Úszás felfele</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Úszás lefele</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Lövés</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Sétálás</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Szökdécselés</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Kamera jobbra</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Kamera balra</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Kamera középre</value>
+  </data>
+  <data name="Config_Action_Look" xml:space="preserve">
+    <value>Elsőnézet</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Képernyőkép</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>HUD Megjelenítése</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>The Knowledge of the World</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Megerősítés</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Írásvédett</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Fájl elnevezése</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>A megadott névvel már létezik egy fájl</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Átnevezés</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} fajl</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} kijelölt fájl</value>
+  </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>A frissítések keresése nem sikerült. {0} A manuális frissítést megtalálod: {0}</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Hang</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Külső Eszközök</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Rayman 1 Pálya Készítő</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Több információ</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
+    <value>Memória Modok</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
+    <value>A kivett prototípus elemeket be tudod kapcsolni a kívánt modok kiválasztásával. Ennek a működéséhez a játéknak futnia kell, és csak a Steam-es vagy a GOG-os verzióval kompatibilis. A kiválasztott modok csak addig lesznek életben, amíg a játék fut, a bezárással visszaállnak.</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingHeader" xml:space="preserve">
+    <value>Billentyűzet gombspecifikáció</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingToggle" xml:space="preserve">
+    <value>Saját gombspecifikáció használata</value>
+  </data>
+  <data name="Mod_RRR_ApplyMemoryMod" xml:space="preserve">
+    <value>A futó játékhoz addolás</value>
+  </data>
+  <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
+    <value>BF Modok</value>
+  </data>
+  <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
+    <value>Módosított .bf fájlok. Ezek csak akkor lépnek életbe ha a játékot az alábbi gombbal indítod el. </value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
+    <value>Exe Patch használata</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatchInfo" xml:space="preserve">
+    <value>Egy exe patch szükséges a patch-elt BF fájlokhoz memória limit miatt</value>
+  </data>
+  <data name="Mod_RRR_RevertExePatch" xml:space="preserve">
+    <value>Exe Patch Visszaállítása</value>
+  </data>
+  <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
+    <value>BF Patch Letöltése</value>
+  </data>
+  <data name="Mod_RRR_RemoveBFPatch" xml:space="preserve">
+    <value>BF Patch eltávolítása</value>
+  </data>
+  <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
+    <value>Patch-ek</value>
+  </data>
+  <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
+    <value>BF Patch frissítése</value>
+  </data>
+  <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
+    <value>Indítás BF Patch-el</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
+    <value>Főoldal</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeatures" xml:space="preserve">
+    <value>Prototípus elemek bekapcsolása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
+    <value>Rayman prototípus viselkedése minden pályán be lesz kapcsolva</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
+    <value>Kamera irányítás hozzáadása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
+    <value>A kamera irányítása a jobb joystickre van mappolva</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuel" xml:space="preserve">
+    <value>Duel hozzáadása (elveszett mini-game)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
+    <value>"Bunnies don't milk cows part 2" kicserélése a "Bunnies are shooting all over the place"-re. Játszd multiplayerben!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
+    <value>Playteszt menü engedélyezése</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenuInfo" xml:space="preserve">
+    <value>Nem ajánlott. A betöltött pályákat nem lehet megállítani, se kilépni belőlük</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>Az Xbox 360 kontroller irányításai a következők:
+A: Ugrás / Helikopter
+X: Támadás
+Y: Grappling hook
+LB: Fény kapcsolása / Hosszan: tánc tempo beállítása (ha be van kapcsolva)
+LT: Elsőnézet (ha be van kapcsolva)
+RB: Támadás / Rövid &amp; Hosszan: Finisherek (ha be van kapcsolva)
+RT: Kiterő bukfenc / Földbecsapás / Bukfenc és ugrás egymás után többször = Boost (ha be van kapcsolva)
+D-Pad Fel: Tánc Mód kapcsolása
+Tánc módban az ABXY gombokkal vagy a bal joystickkal irányíthatod a táncmozdulatokat
+Bal joystick: Rayman mozgatása
+Jobb joystick: Camera irányítása (ha be van kapcsolva)
+Back: Noclip
+Start: Pause</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Elsőnézeti mód</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>Az elsőnézet hozzáadása az LT gombra</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButton" xml:space="preserve">
+    <value>Boost gomb hozzáadása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButtonInfo" xml:space="preserve">
+    <value>Eredetileg egy itemre volt használva, ami nincs a játékban. Az RT lenyomásával Rayman nagyon gyorsan tud futni, és gyors támadásokat tud csinálni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
+    <value>Finisherek hozzáadása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishersInfo" xml:space="preserve">
+    <value>Az RB lenyomásával vagy lenyomva tartásával finishereket tudsz tenni a kombóidba</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
+    <value>Falmászás</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
+    <value>Rayman bármelyik falak meg tudja fogni a hook-jával</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpots" xml:space="preserve">
+    <value>Fogható területekbe kapaszkodás</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
+    <value>A hook elromlik tőle, viszont egy kötélként müködik amiről lehet lógni és elugrani</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
+    <value>Hook kinézetének változtatása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFXInfo" xml:space="preserve">
+    <value>Sokkal korábbi kinézetei Rayman hook-jának</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Világítás</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
+    <value>Szikrák</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Kötél</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Nincsen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
+    <value>Felfejlesztett képességek</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
+    <value>Rayman sokkal tovább tud helikopterezni, valamint ha a Falmászás be van kapcsolva, végtelenségig tud kapaszkodni a falakba</value>
+  </data>
+  <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
+    <value>Halhatatlanság</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ImmortalInfo" xml:space="preserve">
+    <value>Dev cheat - Rayman nem tud meghalni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempo" xml:space="preserve">
+    <value>Dance: control tempo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempoInfo" xml:space="preserve">
+    <value>A tánc módban az LB lenyomásával elindít egy ütemet, amire Rayman táncol</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMoveset" xml:space="preserve">
+    <value>Dance: groovy moveset</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMovesetInfo" xml:space="preserve">
+    <value>Rayman különböző táncokat használ</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostume" xml:space="preserve">
+    <value>Kiválasztott kinézet használata</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostumeInfo" xml:space="preserve">
+    <value>Rayman kinézete mindig a menüben kiválasztott kinézet fog maradni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntros" xml:space="preserve">
+    <value>Mini-game intrók kikapcsolása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntrosInfo" xml:space="preserve">
+    <value>A minigame intrók megváltoztatják az idő viselkedését, és valamikor megállítják Rayman-t (pl. a nyulak nem adnak ajándékot)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSound" xml:space="preserve">
+    <value>Lépéshangok kikapcsolása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSoundInfo" xml:space="preserve">
+    <value>Ha a BF modok nincsenek aktiválva, Rayman lépései pár helyiségben idegesítő lehet - Ezzel az opcióval meg lehet szüntetni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlippery" xml:space="preserve">
+    <value>Rayman kevésbé csúszkál</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlipperyInfo" xml:space="preserve">
+    <value>Rayman-t könnyebb irányítani, nem annyira fog csúszkálni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthMana" xml:space="preserve">
+    <value>Élet és mana debug kijelző megjelenítése</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthManaInfo" xml:space="preserve">
+    <value>Amikor Rayman egy speciális támadást csinál vagy megsebzik, az élet és a mana megjelenik</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsHeader" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItems" xml:space="preserve">
+    <value>A nyulak eldobják a tárgyaikat</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItemsInfo" xml:space="preserve">
+    <value>A nyulak eldobják a tárgyaikat, amiket Rayman tud használni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHP" xml:space="preserve">
+    <value>Ellenségek életének növelése</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHPInfo" xml:space="preserve">
+    <value>Minden nyúlnak 100 HP-ja van</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowers" xml:space="preserve">
+    <value>A nyulak random prototípus képességeket kapnak</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowersInfo" xml:space="preserve">
+    <value>Pár nyúl random prototípus képességeket kap. Fedezd fel őket a játék során!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MountsHeader" xml:space="preserve">
+    <value>Mount-ok</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMounts" xml:space="preserve">
+    <value>Mount-ok megszelídítése</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMountsInfo" xml:space="preserve">
+    <value>A mountokat irányítani lehet egybōl amint rájuk szállsz</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEagles" xml:space="preserve">
+    <value>A denevérek úgy viselkednek, mint a sasok</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEaglesInfo" xml:space="preserve">
+    <value>A denevérek hatalmasak lesznek, és úgy működnek, mint a sasok különböző animációkkal</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlums" xml:space="preserve">
+    <value>A malacok úgy viselkednek, mint a szilvák</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlumsInfo" xml:space="preserve">
+    <value>A malacok nagyon pattogósak lesznek. Próbáld meg a nyulak fejére dobni őket!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinos" xml:space="preserve">
+    <value>Agresszív orrszarvúk</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinosInfo" xml:space="preserve">
+    <value>Az orrszarvúk a versenyek során megtámadják a játékost.
+Készülj fel a halálra (vagy használd a Halhatatlanság cheatet)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJump" xml:space="preserve">
+    <value>Ugró pók robotok</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJumpInfo" xml:space="preserve">
+    <value>Amikor a pókszerű robotokon lovagolsz, tudsz ugrani, mint a prototípusban</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShoot" xml:space="preserve">
+    <value>Teniszütő stukker</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShootInfo" xml:space="preserve">
+    <value>A teniszütő lövedékeket lő a támadás gombbal</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlying" xml:space="preserve">
+    <value>Az UFO-k a levegőben teremnek</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
+    <value>Repkedő csészealjakat lehet találni, de emiatt nehezebb rájuk szállni</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Nyúl vadászat</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
+    <value>A rakétavetők célbaveszik Rayman-t</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTargetInfo" xml:space="preserve">
+    <value>A rakéták célbaveszik Raymant, és 1 találat instant halál</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipods" xml:space="preserve">
+    <value>Nem megsemmisülő bipodok</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
+    <value>A legtöbb bipod összerogyik, ha nem vagy elsőnézeti módban vagy. Ez az opció nem engedi, hogy megsemmisüljenek</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Az összes Aktiváló trigger bekapcsolása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Az összes Aktiváló triggert felülírja, hogy folyamatosan igaz jelet adjon.
+Káoszt csinál a legtöbb pályán és sokkal több ellenséget idéz (és Globox bébit)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Az összes pálya széli trigger aktiválása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Pár nyúl idező trigger nehezen elérhető. Ez bekapcsolja őket.
+Vigyázat: Ez sok pályán crash-et tud okozni</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_0" xml:space="preserve">
+    <value>Ugrás</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_4" xml:space="preserve">
+    <value>Támadás</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_6" xml:space="preserve">
+    <value>Grapple Hook</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_8" xml:space="preserve">
+    <value>Fény/Tempo</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_10" xml:space="preserve">
+    <value>Támadás (finisher)</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_12" xml:space="preserve">
+    <value>Elsőnézet</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_14" xml:space="preserve">
+    <value>Kitérés / Földbecsapás</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_16" xml:space="preserve">
+    <value>No-clip</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_18" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_24" xml:space="preserve">
+    <value>Tánc mód</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_28" xml:space="preserve">
+    <value>Sétálás</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FixSounds" xml:space="preserve">
+    <value>Hangeffektek javítása</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer" xml:space="preserve">
+    <value>Játszható karakter váltása</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_BabyGlobox" xml:space="preserve">
+    <value>Bébi Globox</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Serguei" xml:space="preserve">
+    <value>Serguei</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Rabbid" xml:space="preserve">
+    <value>Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid" xml:space="preserve">
+    <value>Grey Leader Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid" xml:space="preserve">
+    <value>Superman Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid" xml:space="preserve">
+    <value>Terminator Rabbid (Pink)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid" xml:space="preserve">
+    <value>Sam Fisher Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Nurgle Demon</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_BatSoundLikeEagle" xml:space="preserve">
+    <value>Sas hangú denevér</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider" xml:space="preserve">
+    <value>Pók hangú pókrobot</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
+    <value>Saját helikopter textúra hozzáadása</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
+    <value>Szőrös nyulak</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Zseblámpa (LB gomb)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Zseblámpa hozzáadása a Bunnies Love Digging Tunnels pályához</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Nem használt itemek hozzáadása a Bunnies Aren't Scared of The Dark pályához</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplySuccess" xml:space="preserve">
+    <value>Memória Patch sikeresen applikálva</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
+    <value>A memória patchet nem lehetett aktiválni</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
+    <value>A játék verzióját nem lehetett azonosítani</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UnsupportedGameExe" xml:space="preserve">
+    <value>A játék verziója nem támogatott</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchSuccess" xml:space="preserve">
+    <value>A futtatható állomány sikeresen patch-elve</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RevertExePatchSuccess" xml:space="preserve">
+    <value>A futtatható állomány sikeresen visszaállítva</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchError" xml:space="preserve">
+    <value>A futtatható állomány patch-elése közben hiba lépett fel</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFSuccess" xml:space="preserve">
+    <value>A patch-elt BF fájl el lett távolítva</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFError" xml:space="preserve">
+    <value>A patch-elt BF fájlt nem lehet eltávolítani</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFSuccess" xml:space="preserve">
+    <value>A patch-elt BF fájl sikeresen frissítve</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFError" xml:space="preserve">
+    <value>A patch-elt BF fájl frissítése közben hiba történt</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKill" xml:space="preserve">
+    <value>Az ellenségek kevesebbet ütnek</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKillInfo" xml:space="preserve">
+    <value>Instant halál helyett Rayman 4 találat után hal meg</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigames" xml:space="preserve">
+    <value>Minden kinyitása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
+    <value>Dev cheat - Minden normál és bónusz részleg elérhető lesz, a játékbeli haladásodtól függetlenül</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Cheat felület beállítása</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
+    <value>Debug infók megjelenítése</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
+    <value>Tánc mód: fordulás</value>
+  </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Biztos, hogy vissza akarod állítani az applikációt alapbeállításra? Ezt a lépést nem lehet visszavonni.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Visszaállítás megerősítése</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Visszaállítás</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Helytelen felbontás. Maradj ennél a formátumnál: 'Szélesség' x 'Magasság' </value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Játék ellenőrzés kikapcsolása</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Kötelező mező</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>A fájl nem létezik </value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>A mappa nem létezik</value>
+  </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Kivágás</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Másolás</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Beillesztés</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Visszavonás</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Előrevonás</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Hely megnyitása</value>
+  </data>
+  <data name="Installer_Title" xml:space="preserve">
+    <value>{0} telepítése</value>
+  </data>
+  <data name="DriveSelection_RefreshError" xml:space="preserve">
+    <value>A rendelkezésre álló meghajtók keresése közben hiba lépett fe</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Popup-ok megjelenítése ablakok helyett</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Ez az opció azokat az ablakokat, mint például a játék beállításokat vagy üzeneteket felugró ablakokként jeleníti meg a főablakon belül.
+Kikapcsolása ezeket önálló ablakokként fogja kezelni.</value>
+  </data>
+  <data name="RRR_LevelName_0" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_1" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_2" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_3" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_4" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_5" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_6" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_7" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_8" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_9" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_10" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_11" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_12" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_13" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_14" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_15" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_16" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_17" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_18" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_19" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_20" xml:space="preserve">
+    <value>Bunnies can't jump</value>
+  </data>
+  <data name="RRR_LevelName_21" xml:space="preserve">
+    <value>Bunnies don't give gifts</value>
+  </data>
+  <data name="RRR_LevelName_22" xml:space="preserve">
+    <value>Bunnies don't know what to do with cows</value>
+  </data>
+  <data name="RRR_LevelName_23" xml:space="preserve">
+    <value>Bunnies never close doors</value>
+  </data>
+  <data name="RRR_LevelName_24" xml:space="preserve">
+    <value>Bunnies don't milk cows</value>
+  </data>
+  <data name="RRR_LevelName_25" xml:space="preserve">
+    <value>Bunnies are addicted to carrot juice</value>
+  </data>
+  <data name="RRR_LevelName_26" xml:space="preserve">
+    <value>Bunnies can't slide Part 2</value>
+  </data>
+  <data name="RRR_LevelName_27" xml:space="preserve">
+    <value>Bunnies are heartless with pigs</value>
+  </data>
+  <data name="RRR_LevelName_28" xml:space="preserve">
+    <value>Bunnies don't like bats</value>
+  </data>
+  <data name="RRR_LevelName_29" xml:space="preserve">
+    <value>Bunnies don't use toothpaste</value>
+  </data>
+  <data name="RRR_LevelName_30" xml:space="preserve">
+    <value>Bunnies can't fly</value>
+  </data>
+  <data name="RRR_LevelName_31" xml:space="preserve">
+    <value>Bunnies can only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_32" xml:space="preserve">
+    <value>Bunnies can't play soccer</value>
+  </data>
+  <data name="RRR_LevelName_33" xml:space="preserve">
+    <value>Bunnies don't understand bowling</value>
+  </data>
+  <data name="RRR_LevelName_34" xml:space="preserve">
+    <value>Animal Farm</value>
+  </data>
+  <data name="RRR_LevelName_35" xml:space="preserve">
+    <value>Bunnies have a great ear for music</value>
+  </data>
+  <data name="RRR_LevelName_36" xml:space="preserve">
+    <value>Bunnies are slow to react</value>
+  </data>
+  <data name="RRR_LevelName_37" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 3</value>
+  </data>
+  <data name="RRR_LevelName_38" xml:space="preserve">
+    <value>Bunnies like to stuff themselves</value>
+  </data>
+  <data name="RRR_LevelName_39" xml:space="preserve">
+    <value>Bunnies are raving mad Part 2</value>
+  </data>
+  <data name="RRR_LevelName_40" xml:space="preserve">
+    <value>Bunnies like a good race</value>
+  </data>
+  <data name="RRR_LevelName_41" xml:space="preserve">
+    <value>Race good a like Bunnies</value>
+  </data>
+  <data name="RRR_LevelName_42" xml:space="preserve">
+    <value>Bunnies like a good race on the beach</value>
+  </data>
+  <data name="RRR_LevelName_43" xml:space="preserve">
+    <value>Bunnies only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_44" xml:space="preserve">
+    <value>Bunnies are fantastic dancers</value>
+  </data>
+  <data name="RRR_LevelName_45" xml:space="preserve">
+    <value>Bunnies don't sleep well</value>
+  </data>
+  <data name="RRR_LevelName_46" xml:space="preserve">
+    <value>Bunnies have no memory</value>
+  </data>
+  <data name="RRR_LevelName_47" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows</value>
+  </data>
+  <data name="RRR_LevelName_48" xml:space="preserve">
+    <value>Bunnies can't jump Part 2</value>
+  </data>
+  <data name="RRR_LevelName_49" xml:space="preserve">
+    <value>Bunnies never close doors Part 2</value>
+  </data>
+  <data name="RRR_LevelName_50" xml:space="preserve">
+    <value>Bunnies don't milk cows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_51" xml:space="preserve">
+    <value>Bunnies like a good cowboy race</value>
+  </data>
+  <data name="RRR_LevelName_52" xml:space="preserve">
+    <value>Bunnies are heartless with pigs Part 2</value>
+  </data>
+  <data name="RRR_LevelName_53" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 1</value>
+  </data>
+  <data name="RRR_LevelName_54" xml:space="preserve">
+    <value>Bunnies don't like bats Part 2</value>
+  </data>
+  <data name="RRR_LevelName_55" xml:space="preserve">
+    <value>Bunnies don't use toothpaste Part 2</value>
+  </data>
+  <data name="RRR_LevelName_56" xml:space="preserve">
+    <value>Bunnies can't fly Part 2</value>
+  </data>
+  <data name="RRR_LevelName_57" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 2</value>
+  </data>
+  <data name="RRR_LevelName_58" xml:space="preserve">
+    <value>Bunnies can't shear sheep</value>
+  </data>
+  <data name="RRR_LevelName_59" xml:space="preserve">
+    <value>Bunnies are slow to react Part 2</value>
+  </data>
+  <data name="RRR_LevelName_60" xml:space="preserve">
+    <value>Bunnies are slow to react Part 3</value>
+  </data>
+  <data name="RRR_LevelName_61" xml:space="preserve">
+    <value>Bunnies like to stuff themselves Part 2</value>
+  </data>
+  <data name="RRR_LevelName_62" xml:space="preserve">
+    <value>Bunnies have no memory Part 2</value>
+  </data>
+  <data name="RRR_LevelName_63" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_64" xml:space="preserve">
+    <value>Bunnies like surprises</value>
+  </data>
+  <data name="RRR_LevelName_65" xml:space="preserve">
+    <value>Bunnies don't like being shot at</value>
+  </data>
+  <data name="RRR_LevelName_66" xml:space="preserve">
+    <value>Bunnies have natural rhythm</value>
+  </data>
+  <data name="RRR_LevelName_67" xml:space="preserve">
+    <value>Bunnies are a-mazing</value>
+  </data>
+  <data name="RRR_LevelName_68" xml:space="preserve">
+    <value>The Dark Side</value>
+  </data>
+  <data name="RRR_LevelName_69" xml:space="preserve">
+    <value>Bunnies have natural rhythm Part 2</value>
+  </data>
+  <data name="RRR_LevelName_70" xml:space="preserve">
+    <value>Bunnies are ticklish</value>
+  </data>
+  <data name="RRR_LevelName_71" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 3</value>
+  </data>
+  <data name="RRR_LevelName_72" xml:space="preserve">
+    <value>Bunnies are bad at peek-a-boo</value>
+  </data>
+  <data name="RRR_LevelName_73" xml:space="preserve">
+    <value>Bunnies are oversensitive</value>
+  </data>
+  <data name="RRR_LevelName_74" xml:space="preserve">
+    <value>Bunnies have a poor grasp of anatomy</value>
+  </data>
+  <data name="RRR_LevelName_75" xml:space="preserve">
+    <value>Bunnies can't slide</value>
+  </data>
+  <data name="RRR_LevelName_76" xml:space="preserve">
+    <value>Bunnies can't herd</value>
+  </data>
+  <data name="RRR_LevelName_77" xml:space="preserve">
+    <value>Bunnies are not ostriches</value>
+  </data>
+  <data name="RRR_LevelName_78" xml:space="preserve">
+    <value>Bunnies just wanna have fun</value>
+  </data>
+  <data name="RRR_LevelName_79" xml:space="preserve">
+    <value>Bunnies love disco dancing</value>
+  </data>
+  <data name="RRR_LevelName_80" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop</value>
+  </data>
+  <data name="RRR_LevelName_81" xml:space="preserve">
+    <value>Bunninos dansa la Bamba</value>
+  </data>
+  <data name="RRR_LevelName_82" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers</value>
+  </data>
+  <data name="RRR_LevelName_83" xml:space="preserve">
+    <value>Bunnies are raving mad</value>
+  </data>
+  <data name="RRR_LevelName_84" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_85" xml:space="preserve">
+    <value>Bunnies love disco dancing Part 2</value>
+  </data>
+  <data name="RRR_LevelName_86" xml:space="preserve">
+    <value>Bunnies just wanna have fun Part 2</value>
+  </data>
+  <data name="RRR_LevelName_87" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop Part 2</value>
+  </data>
+  <data name="RRR_LevelName_88" xml:space="preserve">
+    <value>Bunninos dansa la Bamba Part 2</value>
+  </data>
+  <data name="RRR_LevelName_89" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_90" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_91" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_92" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_93" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_94" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_95" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_96" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_97" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_98" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_99" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_100" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_101" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_102" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_103" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_104" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_105" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_106" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_107" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_108" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_109" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_110" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_111" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_112" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_113" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_114" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_115" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_116" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_117" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_118" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_119" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_120" xml:space="preserve">
+    <value>Extreme experiences</value>
+  </data>
+  <data name="RRR_LevelName_121" xml:space="preserve">
+    <value>The jogging Pants-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_122" xml:space="preserve">
+    <value>The Pants-tathlon in socks</value>
+  </data>
+  <data name="RRR_LevelName_123" xml:space="preserve">
+    <value>The Pants-tathlon tracksuit</value>
+  </data>
+  <data name="RRR_LevelName_124" xml:space="preserve">
+    <value>Pain-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_125" xml:space="preserve">
+    <value>Bunny Fair</value>
+  </data>
+  <data name="RRR_LevelName_126" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RRR_LevelName_127" xml:space="preserve">
+    <value>World Eclecticism Championship</value>
+  </data>
+  <data name="RRR_LevelName_130" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_131" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_132" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_133" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_134" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_135" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_136" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_137" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_138" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_139" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_140" xml:space="preserve">
+    <value>Bunnies are shooting all over the place</value>
+  </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Back to the Roots</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Leap of Faith</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Watch the snakes</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Breath of Death</value>
+  </data>
+  <data name="Archive_ReplaceFile" xml:space="preserve">
+    <value>Csere</value>
+  </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Kicserélnivaló fájl kiválasztása</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>A fájl kicserélése közben hiba lépett fel</value>
+  </data>
+  <data name="Config_Cheats" xml:space="preserve">
+    <value>Csalások / Cheat-ek</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Kamera tükrözése</value>
+  </data>
+  <data name="Config_RRROldMovie" xml:space="preserve">
+    <value>Régi film</value>
+  </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>Az használt patch elavult.
+Hagyd a patch-et bekapcsolva, és ments, hogy lefrissítsd a legújabb verzióra</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Befejezett pályák</value>
+  </data>
+  <data name="Progression_Cages" xml:space="preserve">
+    <value>Ketrecek</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Tokenek</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Ajándékok</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Rayman skinek</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Bzzt skinek</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Checkpoint skinek</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Tingek</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Életek</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Csillagok</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Napok</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Befejezett minigame-ek</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Points)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Score)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Total Points</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Folytatások</value>
+  </data>
+  <data name="Progression_Lums" xml:space="preserve">
+    <value>Lumok</value>
+  </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Bélyegek</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Összes pont</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Koronák</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>Rémálom mód</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Fogak</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Teensie-k</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Rang</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Bronz serlegek</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Ezüst serlegek</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Arany serlegek</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Gyémánt serlegek</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Befejezett versenyek</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Befejezett csaták</value>
+  </data>
+  <data name="Progression_Electoons" xml:space="preserve">
+    <value>Electoon-ok</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum medálok</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Gyorsaság trófeák</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>A mentési fájlok módosítása korrupttá teheti őket, ha helytelenül csinálják. Erősen ajánlott egy biztonsági mentés készítése mielőtt hozzányúlsz. Folytatod?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Mentéi fájl módosítása</value>
+  </data>
+  <data name="Progression_SlotInfo_File" xml:space="preserve">
+    <value>Fájl</value>
+  </data>
+  <data name="Progression_SlotInfo_Size" xml:space="preserve">
+    <value>Méret</value>
+  </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Utolsó módosítás</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>A mentési fájl sikeresen módosítva</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Elmentett</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>A legutóbbi változtatások nincsenek elmentve</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Adat forrás</value>
+  </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Biztonsági mentés</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Serialization Log</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Bekapcsolva</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Birany Tools</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializers</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Kimenet log-ként</value>
+  </data>
 </root>
