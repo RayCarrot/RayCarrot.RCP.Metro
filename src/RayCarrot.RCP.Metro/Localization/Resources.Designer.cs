@@ -332,15 +332,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Twitter.
-        /// </summary>
-        public static string About_Twitter {
-            get {
-                return ResourceManager.GetString("About_Twitter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Uninstall.
         /// </summary>
         public static string About_Uninstall {

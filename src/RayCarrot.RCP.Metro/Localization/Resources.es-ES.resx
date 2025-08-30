@@ -356,9 +356,6 @@ Este es un proyecto en crecimiento con la planificación de agregar más caracte
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
   </data>
@@ -3404,9 +3401,6 @@ Botón Start: Pausa</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Archivos de guardado de Rayman Raving Rabbids (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>Archivos de guardado de Rayman Raving Rabbids 2 (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializadores</value>
   </data>
@@ -5308,14 +5302,11 @@ Puedes desactivar este mensaje de advertencia en la configuración si no deseas 
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Se produjo un error al abrir las modificaciones</value>
   </data>
-  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
-    <value>GitHub</value>
-  </data>
   <data name="Archive_SavingStatus" xml:space="preserve">
     <value>Guardando archivo</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
     <value>Sonido UBIArt procesado</value>
@@ -5424,6 +5415,9 @@ Mensajes de error:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
   </data>
   <data name="SetupGame_Header" xml:space="preserve">
     <value>Configurar juego</value>
@@ -5753,6 +5747,9 @@ ADVERTENCIA: Cargar directamente un mapa con esto omitirá la carga de tu archiv
   </data>
   <data name="SecretCodes_CookingHeader" xml:space="preserve">
     <value>Código Cooking</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Archivos de guardado de Rayman Raving Rabbids 2 (.sav)</value>
   </data>
   <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>Tarta caliente, caliente</value>

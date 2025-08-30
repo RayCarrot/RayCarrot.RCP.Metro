@@ -354,9 +354,6 @@
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
   </data>
@@ -3396,9 +3393,6 @@ Ved at ændre datakilden her kan du vælge, hvilken placering der skal bruges ti
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Spildata til Rayman Raving Rabbids (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>Spildata til Rayman Raving Rabbids 2 (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serialiseringsværktøjer</value>
   </data>
@@ -5154,14 +5148,41 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="Archive_RecreatedUbiArtFileTableStatus" xml:space="preserve">
     <value>Genopretter filtabel</value>
   </data>
+  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
+  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
+    <value>Donald Duck Quack Attack/Goin' Quackers</value>
+  </data>
   <data name="Platform_Ps1" xml:space="preserve">
     <value>PlayStation</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
+  </data>
+  <data name="Rayman1_Ps1_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman2_Ps1_Title" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
+  </data>
+  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
+    <value>Rayman Junior - Language with Rayman (Quiz)</value>
   </data>
   <data name="RaymanRush_Ps1_Title" xml:space="preserve">
     <value>Rayman Rush</value>
   </data>
   <data name="GameTool_PrototypeRestoration" xml:space="preserve">
     <value>Prototypegendannelse</value>
+  </data>
+  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
+    <value>Modificér spillet for at gendanne ubrugte funktioner fra tidligere prototyper, som f.eks fri bevægelse og kamp til Rayman!</value>
   </data>
   <data name="GameHub_PrototypeRestorationPanel_Open" xml:space="preserve">
     <value>Åbn</value>
@@ -5272,41 +5293,11 @@ Fortsæt med at anvende mods?</value>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>En fejl opstod i forsøg på at åbne de valgte mods</value>
   </data>
-  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
-    <value>GitHub</value>
-  </data>
-  <data name="Game_DonaldDuckQuackAttack_Title" xml:space="preserve">
-    <value>Donald Duck Quack Attack/Goin' Quackers</value>
-  </data>
-  <data name="DonaldDuckQuackAttack_Win32_Title" xml:space="preserve">
-    <value>Donald Duck Quack Attack/Goin' Quackers</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_MsDos_Title" xml:space="preserve">
-    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_MsDos_Title" xml:space="preserve">
-    <value>Rayman Junior - Language with Rayman (Quiz)</value>
-  </data>
-  <data name="Rayman1_Ps1_Title" xml:space="preserve">
-    <value>Rayman</value>
-  </data>
-  <data name="Rayman2_Ps1_Title" xml:space="preserve">
-    <value>Rayman 2</value>
-  </data>
-  <data name="RaymanEdutainmentEdu_Ps1_Title" xml:space="preserve">
-    <value>Rayman Junior - Math and Language with Rayman (Edu)</value>
-  </data>
-  <data name="RaymanEdutainmentQui_Ps1_Title" xml:space="preserve">
-    <value>Rayman Junior - Language with Rayman (Quiz)</value>
-  </data>
-  <data name="GameHub_PrototypeRestorationPanel_Info" xml:space="preserve">
-    <value>Modificér spillet for at gendanne ubrugte funktioner fra tidligere prototyper, som f.eks fri bevægelse og kamp til Rayman!</value>
-  </data>
   <data name="Archive_SavingStatus" xml:space="preserve">
     <value>Gemmer arkiv</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
     <value>Cooked UBIArt lyd</value>
@@ -5409,6 +5400,9 @@ Fejlmeddelelser:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
     <value>Afinstallér</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
   </data>
   <data name="SetupGame_Header" xml:space="preserve">
     <value>Konfigurér spil</value>
@@ -5676,5 +5670,56 @@ Fejlmeddelelser:
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Portugesisk (Brasilien) programoversættelse</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Spildata til Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
+  <data name="RRR2_LevelName_0" xml:space="preserve">
+    <value>Hot Cake</value>
+  </data>
+  <data name="RRR2_LevelName_1" xml:space="preserve">
+    <value>Chemist</value>
+  </data>
+  <data name="RRR2_LevelName_2" xml:space="preserve">
+    <value>Dial R for Rabbid</value>
+  </data>
+  <data name="RRR2_LevelName_3" xml:space="preserve">
+    <value>Burgerinni</value>
+  </data>
+  <data name="RRR2_LevelName_4" xml:space="preserve">
+    <value>Shopping Cart Downhill</value>
+  </data>
+  <data name="RRR2_LevelName_5" xml:space="preserve">
+    <value>Rolling Stone</value>
+  </data>
+  <data name="RRR2_LevelName_6" xml:space="preserve">
+    <value>Yummy Butterflies</value>
+  </data>
+  <data name="RRR2_LevelName_7" xml:space="preserve">
+    <value>The Office</value>
+  </data>
+  <data name="RRR2_LevelName_8" xml:space="preserve">
+    <value>Laundry</value>
+  </data>
+  <data name="RRR2_LevelName_9" xml:space="preserve">
+    <value>Trash Race</value>
+  </data>
+  <data name="RRR2_LevelName_10" xml:space="preserve">
+    <value>Baseball</value>
+  </data>
+  <data name="RRR2_LevelName_11" xml:space="preserve">
+    <value>American Football</value>
+  </data>
+  <data name="RRR2_LevelName_12" xml:space="preserve">
+    <value>Spicy Chicken</value>
+  </data>
+  <data name="RRR2_LevelName_13" xml:space="preserve">
+    <value>Bumper Cars</value>
+  </data>
+  <data name="RRR2_LevelName_14" xml:space="preserve">
+    <value>Snail Race</value>
+  </data>
+  <data name="RRR2_LevelName_15" xml:space="preserve">
+    <value>Ice on ice</value>
   </data>
 </root>

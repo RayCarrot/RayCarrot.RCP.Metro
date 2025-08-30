@@ -355,9 +355,6 @@ This is a growing project with more features planned on being added with future 
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
   </data>
@@ -3535,9 +3532,6 @@ By changing the data source here you can choose which location is used for backu
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Rayman Raving Rabbids Save Files (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>Rayman Raving Rabbids 2 Save Files (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializers</value>
   </data>
@@ -5986,6 +5980,9 @@ categoryName</comment>
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Portuguese (Brazil) program translation</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2 Save Files (.sav)</value>
   </data>
   <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>Hot Cake</value>

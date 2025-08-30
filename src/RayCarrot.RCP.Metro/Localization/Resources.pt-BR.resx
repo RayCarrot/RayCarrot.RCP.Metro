@@ -355,9 +355,6 @@ Este é um projeto crescente com mais recursos planejados para serem adicionados
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter / X</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
   </data>
@@ -3397,9 +3394,6 @@ Ao alterar a fonte de dados aqui, você pode escolher qual local é usado para b
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Arquivos Salvos de Rayman Raving Rabbids (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>Arquivos Salvos de Rayman Raving Rabbids 2 (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializadores</value>
   </data>
@@ -5749,5 +5743,56 @@ Deseja reverter a correção?</value>
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Tradução do programa em Português (Brasil)</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Arquivos Salvos de Rayman Raving Rabbids 2 (.sav)</value>
+  </data>
+  <data name="RRR2_LevelName_0" xml:space="preserve">
+    <value>Hot Cake</value>
+  </data>
+  <data name="RRR2_LevelName_1" xml:space="preserve">
+    <value>Chemist</value>
+  </data>
+  <data name="RRR2_LevelName_2" xml:space="preserve">
+    <value>Dial R for Rabbid</value>
+  </data>
+  <data name="RRR2_LevelName_3" xml:space="preserve">
+    <value>Burgerinni</value>
+  </data>
+  <data name="RRR2_LevelName_4" xml:space="preserve">
+    <value>Shopping Cart Downhill</value>
+  </data>
+  <data name="RRR2_LevelName_5" xml:space="preserve">
+    <value>Rolling Stone</value>
+  </data>
+  <data name="RRR2_LevelName_6" xml:space="preserve">
+    <value>Yummy Butterflies</value>
+  </data>
+  <data name="RRR2_LevelName_7" xml:space="preserve">
+    <value>The Office</value>
+  </data>
+  <data name="RRR2_LevelName_8" xml:space="preserve">
+    <value>Laundry</value>
+  </data>
+  <data name="RRR2_LevelName_9" xml:space="preserve">
+    <value>Trash Race</value>
+  </data>
+  <data name="RRR2_LevelName_10" xml:space="preserve">
+    <value>Baseball</value>
+  </data>
+  <data name="RRR2_LevelName_11" xml:space="preserve">
+    <value>American Football</value>
+  </data>
+  <data name="RRR2_LevelName_12" xml:space="preserve">
+    <value>Spicy Chicken</value>
+  </data>
+  <data name="RRR2_LevelName_13" xml:space="preserve">
+    <value>Bumper Cars</value>
+  </data>
+  <data name="RRR2_LevelName_14" xml:space="preserve">
+    <value>Snail Race</value>
+  </data>
+  <data name="RRR2_LevelName_15" xml:space="preserve">
+    <value>Ice on ice</value>
   </data>
 </root>

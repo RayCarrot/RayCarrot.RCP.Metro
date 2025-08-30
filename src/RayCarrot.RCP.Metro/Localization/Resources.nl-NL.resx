@@ -354,9 +354,6 @@
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
   </data>
@@ -3395,9 +3392,6 @@ Start: Pauzeren</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Rayman Raving Rabbids Save Files (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>Rayman Raving Rabbids 2 Save Files (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializers</value>
   </data>
@@ -5297,14 +5291,11 @@ Doorgaan met het toepassen van mods?</value>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het openen van de mods</value>
   </data>
-  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
-    <value>GitHub</value>
-  </data>
   <data name="Archive_SavingStatus" xml:space="preserve">
     <value>Opslaan van archief</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
     <value>Cooked UBIArt Geluid</value>
@@ -5413,6 +5404,9 @@ Foutberichten:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
     <value>De-installeren</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
   </data>
   <data name="SetupGame_Header" xml:space="preserve">
     <value>Installatie spel</value>
@@ -5744,5 +5738,56 @@ WAARSCHUWING: Direct laden binnen een map via deze weg zorgt ervoor dat de save 
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Portugese (Brazilië) programmavertaling</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2 Save Files (.sav)</value>
+  </data>
+  <data name="RRR2_LevelName_0" xml:space="preserve">
+    <value>Hot Cake</value>
+  </data>
+  <data name="RRR2_LevelName_1" xml:space="preserve">
+    <value>Chemist</value>
+  </data>
+  <data name="RRR2_LevelName_2" xml:space="preserve">
+    <value>Dial R for Rabbid</value>
+  </data>
+  <data name="RRR2_LevelName_3" xml:space="preserve">
+    <value>Burgerinni</value>
+  </data>
+  <data name="RRR2_LevelName_4" xml:space="preserve">
+    <value>Shopping Cart Downhill</value>
+  </data>
+  <data name="RRR2_LevelName_5" xml:space="preserve">
+    <value>Rolling Stone</value>
+  </data>
+  <data name="RRR2_LevelName_6" xml:space="preserve">
+    <value>Yummy Butterflies</value>
+  </data>
+  <data name="RRR2_LevelName_7" xml:space="preserve">
+    <value>The Office</value>
+  </data>
+  <data name="RRR2_LevelName_8" xml:space="preserve">
+    <value>Laundry</value>
+  </data>
+  <data name="RRR2_LevelName_9" xml:space="preserve">
+    <value>Trash Race</value>
+  </data>
+  <data name="RRR2_LevelName_10" xml:space="preserve">
+    <value>Baseball</value>
+  </data>
+  <data name="RRR2_LevelName_11" xml:space="preserve">
+    <value>American Football</value>
+  </data>
+  <data name="RRR2_LevelName_12" xml:space="preserve">
+    <value>Spicy Chicken</value>
+  </data>
+  <data name="RRR2_LevelName_13" xml:space="preserve">
+    <value>Bumper Cars</value>
+  </data>
+  <data name="RRR2_LevelName_14" xml:space="preserve">
+    <value>Snail Race</value>
+  </data>
+  <data name="RRR2_LevelName_15" xml:space="preserve">
+    <value>Ice on ice</value>
   </data>
 </root>

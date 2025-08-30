@@ -354,9 +354,6 @@
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>Youtube</value>
   </data>
@@ -3396,9 +3393,6 @@ Start : Pause</value>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Fichiers de sauvegarde Rayman contre les Lapin Crétins (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>Fichiers de sauvegarde Rayman contre les Lapins encore plus Crétins (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Sérialiseurs</value>
   </data>
@@ -5395,6 +5389,18 @@ Messages d'erreur :
   <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo" xml:space="preserve">
     <value>Remplace les sons par défaut de fin de niveau et de mort par les musiques de la version PlayStation</value>
   </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
+    <value>Pistes ambiante MIDI</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
+    <value>Joue les pistes ambiantes MIDI exclusives à la PlayStation dans leurs sections de niveau respectives</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
+    <value>Correction de bugs visuels</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
+    <value>Règle des bugs graphiques de la version PC, tels que faire apparaître le poing de Dark Rayman quand il attaque</value>
+  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKills" xml:space="preserve">
     <value>Rendre le poing de Dark Rayman fatal</value>
   </data>
@@ -5406,6 +5412,9 @@ Messages d'erreur :
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
+  </data>
+  <data name="SetupGame_Header" xml:space="preserve">
+    <value>Configurer le jeu</value>
   </data>
   <data name="SetupGame_RecommendedGroupHeader" xml:space="preserve">
     <value>Recommandé</value>
@@ -5454,21 +5463,6 @@ Messages d'erreur :
   </data>
   <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
     <value>Résolution du jeu invalide</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
-    <value>Pistes ambiante MIDI</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_PlayMidiInfo" xml:space="preserve">
-    <value>Joue les pistes ambiantes MIDI exclusives à la PlayStation dans leurs sections de niveau respectives</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixes" xml:space="preserve">
-    <value>Correction de bugs visuels</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_VisualFixesInfo" xml:space="preserve">
-    <value>Règle des bugs graphiques de la version PC, tels que faire apparaître le poing de Dark Rayman quand il attaque</value>
-  </data>
-  <data name="SetupGame_Header" xml:space="preserve">
-    <value>Configurer le jeu</value>
   </data>
   <data name="SetupGameAction_InvalidUbiArtResolution_Info" xml:space="preserve">
     <value>La résolution du jeu doit être réglée sur une résolution supportée par votre carte graphique. Certains systèmes règleront la résolution sur une valeur invalide par défaut, causant des bordures noires ou des crash potentiels. Ce problème peut être résolu en sélectionnant une résolution supportée.</value>
@@ -5750,6 +5744,9 @@ Voulez-vous désinstaller le patch ?</value>
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Traduction du programme en portugais (Brésil)</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde Rayman contre les Lapins encore plus Crétins (.sav)</value>
   </data>
   <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>Chaud chaud gâteau</value>

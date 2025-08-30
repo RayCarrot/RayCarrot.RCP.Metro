@@ -355,9 +355,6 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="About_Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
   </data>
@@ -3400,9 +3397,6 @@ Modificando l'origine dati qui puoi scegliere quale posizione viene utilizzata p
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>File di salvataggio Rayman Raving Rabbids (.sav)</value>
   </data>
-  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
-    <value>File di salvataggio Rayman Raving Rabbids 2 (.sav)</value>
-  </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Serializzatori</value>
   </data>
@@ -5303,14 +5297,11 @@ Vuoi continuare ad applicare le mod?</value>
   <data name="ModLoader_ErrorOpening" xml:space="preserve">
     <value>Si è verificato un errore durante l'apertura delle mod</value>
   </data>
-  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
-    <value>{0} ({1})</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
-    <value>GitHub</value>
-  </data>
   <data name="Archive_SavingStatus" xml:space="preserve">
     <value>Salvando l'archivio</value>
+  </data>
+  <data name="Archive_FileTypeWithSubType" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Archive_Format_CookedUbiArtSound" xml:space="preserve">
     <value>Cooked UBIArt Sound</value>
@@ -5420,6 +5411,9 @@ Messaggi di errore:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
     <value>Disinstalla</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
+    <value>GitHub</value>
   </data>
   <data name="SetupGame_Header" xml:space="preserve">
     <value>Imposta il gioco</value>
@@ -5752,6 +5746,9 @@ Vuoi ripristinare la patch?</value>
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
     <value>Traduzione del programma Portoghese (Brasile)</value>
+  </data>
+  <data name="Utilities_Format_RRR2SaveHeader" xml:space="preserve">
+    <value>File di salvataggio Rayman Raving Rabbids 2 (.sav)</value>
   </data>
   <data name="RRR2_LevelName_0" xml:space="preserve">
     <value>La torta bollente</value>
