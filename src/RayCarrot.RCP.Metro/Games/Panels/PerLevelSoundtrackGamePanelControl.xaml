@@ -34,6 +34,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
@@ -96,7 +97,18 @@
                     Command="{Binding Path=UninstallCommand, Mode=OneTime}"
                     Margin="0 0 4 0" />
 
+            <!-- TODO-LOC -->
             <Button Grid.Column="4"
+                    Visibility="{Binding Path=HasUpdateAvailable, Converter={rcp:BooleanToVisibilityConverter}}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource RCP.Styles.Button.Flat}" 
+                    rcp:Icon.Kind="RefreshCircle"
+                    rcp:Icon.Size="18"
+                    Content="Update"
+                    Command="{Binding Path=UpdateCommand, Mode=OneTime}" />
+
+            <Button Grid.Column="5"
+                    Visibility="{Binding Path=HasUpdateAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
                     VerticalAlignment="Center"
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     rcp:Icon.Kind="Github"
