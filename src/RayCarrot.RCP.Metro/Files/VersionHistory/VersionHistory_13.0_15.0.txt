@@ -1,4 +1,25 @@
-﻿-----   Version 14.2.4 - May 22, 2025   -----
+﻿-----   Version 14.3.0 - September 1, 2025   -----
+• Added support for Rayman Lum'o'Grams Demo
+• Added progression for Tonic Trouble and automatically find saves redirected to the user's Saved Games folder when using the recently released Tonic Trouble Fix
+• Added progression for Rayman Raving Rabbids 2 (thanks Dr_st!)
+• Added a toggle for showing archived files for downloadable GameBanana mods
+• Added an option to auto-create folders for the files module when creating a new mod
+• Added Archive Explorer support for the Rayman Legends (PS4) sound files
+• Added serializers for Rayman Legends (PS Vita) save files
+• Updated the Per-level Soundtrack tool to version 3.1.1
+• Added an optional setup game action to Rayman 3 for installing the Level Transparency Fixes mod
+• Changed the recommended "output" value for the DOSBox emulator settings to "overlay"
+• Added Dr_st to the credits
+• Replaced the Twitter link in the about page with a Bluesky link
+• Updated the loading bar color to be a bit brighter, thus making it easier to see in dark mode
+• Updated the Rayman Legends banner image (thanks Lapislalipek!)
+• Fixed bugs with showing the progression for Rayman Hoodlums' Revenge (thanks Dr_st!)
+• Fixed a bug where marking a mod to be uninstalled would still show its changes under the list of modified files if it was previously enabled
+• Fixed a bug where the app would crash if there was an error when copying text to the clipboard
+• Bug fixes
+
+
+-----   Version 14.2.4 - May 22, 2025   -----
 • Added serializers for Rayman Origins (3DS) save files and Rayman Legends (Wii U) save files
 • Added a setting for if downloadable mods marked as NSFW should be included when downloading mods from GameBanana
 • Fixed a bug where using the converter utility to convert back a file would save it in the same folder as the input files rather than the selected output folder
