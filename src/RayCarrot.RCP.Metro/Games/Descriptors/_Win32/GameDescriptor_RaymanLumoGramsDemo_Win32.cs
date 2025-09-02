@@ -19,6 +19,7 @@ public sealed class GameDescriptor_RaymanLumoGramsDemo_Win32 : Win32GameDescript
     public override string GameId => "RaymanLumoGramsDemo_Win32";
     public override Game Game => Game.RaymanLumoGrams;
     public override GameCategory Category => GameCategory.Fan;
+    public override GameType Type => GameType.Demo;
 
     public override LocalizedString DisplayName => "Rayman Lum'o'Grams Demo"; // TODO-LOC
     public override DateTime ReleaseDate => new(2025, 09, 01);
