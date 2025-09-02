@@ -195,6 +195,13 @@ public enum Game
     [GameInfo("Rayman Lum'o'Grams", GameIconAsset.RaymanLumoGrams)]
     RaymanLumoGrams,
 
+    // TODO-LOC
+    /// <summary>
+    /// Rayman 3 Havoc Reignited
+    /// </summary>
+    [GameInfo("Rayman 3 Havoc Reignited", GameIconAsset.Rayman3HavocReignited)]
+    Rayman3HavocReignited,
+
     #endregion
 
     #region Other
