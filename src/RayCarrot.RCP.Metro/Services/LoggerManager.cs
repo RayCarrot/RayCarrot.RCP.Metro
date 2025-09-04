@@ -40,12 +40,9 @@ public class LoggerManager
                 ArchiveOldFileOnStartup = true,
                 ArchiveFileName = AppFilePaths.ArchiveLogFile.FullPath,
                 MaxArchiveFiles = 5,
-                ArchiveNumbering = ArchiveNumberingMode.Sequence,
 
-                // Keep the file open and disable concurrent writes to improve performance
-                // (starting with NLog 5.0 these are the default values, but let's be explicit anyway)
+                // Keep the file open
                 KeepFileOpen = true,
-                ConcurrentWrites = false,
 
                 // Set the file path and layout
                 FileName = AppFilePaths.LogFile.FullPath,
