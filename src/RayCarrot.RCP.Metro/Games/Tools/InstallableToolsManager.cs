@@ -52,10 +52,18 @@ public class InstallableToolsManager
 
     public async Task<bool> UpdateAsync(InstallableTool tool)
     {
-        // Uninstall old version
+        using TempDirectory tempDir = new(true);
+        
+        // Install new version to temp
+        bool result = await Services.App.DownloadAsync(new[] { tool.DownloadUri }, true, tempDir.TempPath);
+
+        if (!result)
+            return false;
+
+        // Replace the installation
         try
         {
-            Services.File.DeleteDirectory(tool.InstallDirectory);
+            Services.File.MoveDirectory(tempDir.TempPath, tool.InstallDirectory, true, true);
         }
         catch (Exception ex)
         {
@@ -64,29 +72,16 @@ public class InstallableToolsManager
             return false;
         }
 
-        // Install new version
-        bool result = await Services.App.DownloadAsync(new[] { tool.DownloadUri }, true, tool.InstallDirectory);
+        // Replace data for installed tool
+        Services.Data.App_InstalledTools[tool.ToolId] = new InstalledTool(
+            toolId: tool.ToolId,
+            path: tool.InstallDirectory,
+            size: tool.InstallDirectory.GetSize(),
+            downloadDateTime: DateTime.Now,
+            version: tool.LatestVersion);
 
-        if (result)
-        {
-            // Replace data for installed tool
-            Services.Data.App_InstalledTools[tool.ToolId] = new InstalledTool(
-                toolId: tool.ToolId,
-                path: tool.InstallDirectory,
-                size: tool.InstallDirectory.GetSize(),
-                downloadDateTime: DateTime.Now,
-                version: tool.LatestVersion);
+        Services.Messenger.Send(new ToolUpdatedMessage(tool.ToolId));
 
-            Services.Messenger.Send(new ToolUpdatedMessage(tool.ToolId));
-        }
-        else
-        {
-            // Finish uninstalling if updating fails
-            Services.Data.App_InstalledTools.Remove(tool.ToolId);
-            tool.OnUninstalled();
-            Services.Messenger.Send(new ToolUninstalledMessage(tool.ToolId));
-        }
-
-        return result;
+        return true;
     }
 }
