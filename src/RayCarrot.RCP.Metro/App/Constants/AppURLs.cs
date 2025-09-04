@@ -166,8 +166,7 @@ public static class AppURLs
 
     #region Tools
 
-    // TODO-UPDATE: Update to 3.1.1
-    public const string PerLevelSoundtrackTool_URL = ToolsBaseUrl + "rayman1_per_level_soundtrack/tpls-tsr-3.1.0.zip";
+    public const string PerLevelSoundtrackTool_URL = ToolsBaseUrl + "rayman1_per_level_soundtrack/tpls-tsr-3.1.1.zip";
 
     public const string RRR_PatchedBF_Steam_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_Steam.zip";
     public const string RRR_PatchedBF_GOG_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_GOG.zip";
