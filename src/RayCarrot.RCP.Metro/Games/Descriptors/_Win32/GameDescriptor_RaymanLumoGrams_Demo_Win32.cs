@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Lum'o'Grams Demo (Win32) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanLumoGramsDemo_Win32 : Win32GameDescriptor
+public sealed class GameDescriptor_RaymanLumoGrams_Demo_Win32 : Win32GameDescriptor
 {
     #region Constant Fields
 
@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RaymanLumoGramsDemo_Win32 : Win32GameDescript
 
     #region Public Properties
 
-    public override string GameId => "RaymanLumoGramsDemo_Win32";
+    public override string GameId => "RaymanLumoGrams_Demo_Win32";
     public override Game Game => Game.RaymanLumoGrams;
     public override GameCategory Category => GameCategory.Fan;
     public override GameType Type => GameType.Demo;
