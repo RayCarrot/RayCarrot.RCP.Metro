@@ -14,6 +14,9 @@ public partial class GamesPage : BasePage
 
     private void Page_Games_OnKeyDown(object sender, KeyEventArgs e)
     {
+        if (e.KeyboardDevice.IsKeyDown(Key.Escape))
+            return;
+
         if (e.Key is Key.Enter or Key.Up or Key.Down or Key.Left or Key.Right)
             return;
 
