@@ -14,6 +14,7 @@
 • Updated the loading bar color to be a bit brighter, thus making it easier to see in dark mode
 • Updated the Rayman Legends banner image (thanks Lapislalipek!)
 • The escape key can now be held down to enter easter egg codes, avoiding keyboard focus moving to the search box
+• Added a new easter egg code (thanks Lapislalipek!)
 • Fixed bugs with showing the progression for Rayman Hoodlums' Revenge (thanks Dr_st!)
 • Fixed a bug where marking a mod to be uninstalled would still show its changes under the list of modified files if it was previously enabled
 • Fixed a bug where the app would crash if there was an error when copying text to the clipboard

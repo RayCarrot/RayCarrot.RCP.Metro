@@ -10,7 +10,8 @@ namespace RayCarrot.RCP.Metro.Pages.Games;
 /// </summary>
 public class GamesPageViewModel : BasePageViewModel, 
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>,
-    IRecipient<SortedGamesMessage>, IRecipient<ModifiedGameModsMessage>, IRecipient<FixedSetupGameActionMessage>
+    IRecipient<SortedGamesMessage>, IRecipient<ModifiedGameModsMessage>, IRecipient<FixedSetupGameActionMessage>,
+    IRecipient<SecretCodeEnteredMessage>
 {
     #region Constructor
 
@@ -446,6 +447,23 @@ public class GamesPageViewModel : BasePageViewModel,
                 if (message.GameInstallations.Contains(installedGame.GameInstallation))
                 {
                     await installedGame.SetupGameViewModel.LoadAsync();
+                }
+            }
+        }
+    }
+
+    async void IRecipient<SecretCodeEnteredMessage>.Receive(SecretCodeEnteredMessage message)
+    {
+        if (message.Code == "GUESTS")
+        {
+            using (await AsyncLock.LockAsync())
+            {
+                foreach (InstalledGameViewModel installedGame in Games)
+                {
+                    if (installedGame.GameDescriptor.Game == Game.RaymanLegends)
+                    {
+                        installedGame.GameBanner = GameBannerAsset.JacquouilleLegends;
+                    }
                 }
             }
         }

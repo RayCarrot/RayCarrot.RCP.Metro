@@ -24,6 +24,10 @@ public enum GameBannerAsset
     [AssetFileName("Rayman Legends.png")] 
     RaymanLegends,
 
+    // Secret code easter egg
+    [AssetFileName("Jacquouille Legends.png")]
+    JacquouilleLegends,
+
     [AssetFileName("Rayman Jungle Run.png")]
     RaymanJungleRun,
 

@@ -22,6 +22,7 @@ public class InstalledGameViewModel : BaseViewModel
         GameCategory = gameCategory;
         GameGroup = gameGroup;
         DisplayName = gameInstallation.GetDisplayName();
+        GameBanner = gameInstallation.GameDescriptor.Banner;
 
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameInstallation.GameDescriptor.Platform.GetInfo();
@@ -96,7 +97,7 @@ public class InstalledGameViewModel : BaseViewModel
 
     public GameIconAsset Icon => GameDescriptor.Icon;
     public GameType Type => GameDescriptor.Type;
-    public GameBannerAsset GameBanner => GameDescriptor.Banner;
+    public GameBannerAsset GameBanner { get; set; }
 
     public ObservableCollection<GamePanelViewModel> GamePanels { get; }
     public ObservableActionItemsCollection AdditionalLaunchActions { get; }

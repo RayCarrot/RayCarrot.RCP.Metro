@@ -115,6 +115,25 @@ public static class SecretCodeManager
                     await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Secret, Resources.SecretCodes_SecretHeader, MessageType.Success);
                 }
             },
+            {
+                // Guests code
+                new Key[]
+                {
+                    Key.G,
+                    Key.U,
+                    Key.E,
+                    Key.S,
+                    Key.T,
+                    Key.S,
+                },
+                async () =>
+                {
+                    Services.Messenger.Send(new SecretCodeEnteredMessage("GUESTS"));
+
+                    // TODO-LOC
+                    await Services.MessageUI.DisplayMessageAsync("You just entered the Jacquouille Legends code! Enjoy your new banner for the game!", Resources.SecretCodes_SecretHeader, MessageType.Success);
+                }
+            },
         };
 
         CurrentInput = new List<Key>(Codes.OrderBy(x => x.Key.Length).First().Key.Length);
