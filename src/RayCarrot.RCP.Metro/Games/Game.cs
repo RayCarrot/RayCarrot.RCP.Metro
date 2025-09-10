@@ -202,6 +202,13 @@ public enum Game
     [GameInfo("Rayman 3 Havoc Reignited", GameIconAsset.Rayman3HavocReignited)]
     Rayman3HavocReignited,
 
+    // TODO-LOC
+    /// <summary>
+    /// Rayman 2: Redreamed
+    /// </summary>
+    [GameInfo("Rayman 2: Redreamed", GameIconAsset.Rayman2Redreamed)]
+    Rayman2Redreamed,
+
     #endregion
 
     #region Other

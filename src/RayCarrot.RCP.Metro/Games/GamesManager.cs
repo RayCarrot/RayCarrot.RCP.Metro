@@ -99,6 +99,7 @@ public class GamesManager
             new GameDescriptor_RaymanTheDreamersBoundary_Win32(),
             new GameDescriptor_RaymanLumoGramsDemo_Win32(),
             new GameDescriptor_Rayman3HavocReignited_Win32(),
+            new GameDescriptor_Rayman2Redreamed_Demo_Win32(),
         }.ToDictionary(x => x.GameId);
         SortedGameDescriptors = GameDescriptors.Values.OrderBy(x => x).ToArray();
     }

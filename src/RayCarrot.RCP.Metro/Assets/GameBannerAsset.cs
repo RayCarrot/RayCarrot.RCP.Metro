@@ -95,4 +95,7 @@ public enum GameBannerAsset
 
     [AssetFileName("Rayman 3 Havoc Reignited.png")]
     Rayman3HavocReignited,
+
+    [AssetFileName("Rayman 2 Redreamed.png")]
+    Rayman2Redreamed,
 }

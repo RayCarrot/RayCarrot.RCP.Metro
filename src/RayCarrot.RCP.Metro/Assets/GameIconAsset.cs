@@ -155,4 +155,7 @@ public enum GameIconAsset
 
     [AssetFileName("Rayman3HavocReignited.png")]
     Rayman3HavocReignited,
+
+    [AssetFileName("Rayman2Redreamed.png")]
+    Rayman2Redreamed,
 }
