@@ -1519,31 +1519,31 @@
     <value>Произошла ошибка при переупаковке архива</value>
   </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
-    <value>Совет Фей (The Fairy Council)</value>
+    <value>Совет Фей</value>
   </data>
   <data name="Progression_R3_Level2Header" xml:space="preserve">
-    <value>Лес Прозрачных Листьев (Clearleaf Forest)</value>
+    <value>Лес Прозрачных Листьев</value>
   </data>
   <data name="Progression_R3_Level3Header" xml:space="preserve">
-    <value>Угрюмое Болото (The Bog of Murk)</value>
+    <value>Угрюмое Болото</value>
   </data>
   <data name="Progression_R3_Level4Header" xml:space="preserve">
-    <value>Край Зловещих Мертвецов (The Land of the Livid Dead)</value>
+    <value>Край Зловещих Мертвецов</value>
   </data>
   <data name="Progression_R3_Level5Header" xml:space="preserve">
-    <value>Пустыня Кнааров (The Desert of the Knaaren)</value>
+    <value>Пустыня Кнааров</value>
   </data>
   <data name="Progression_R3_Level6Header" xml:space="preserve">
-    <value>Самый Длинный Короткий Путь (The Longest Shortcut)</value>
+    <value>Самый Длинный Короткий Путь</value>
   </data>
   <data name="Progression_R3_Level7Header" xml:space="preserve">
-    <value>Заоблачная Вершина (The Summit Beyond the Clouds)</value>
+    <value>Заоблачная Вершина</value>
   </data>
   <data name="Progression_R3_Level8Header" xml:space="preserve">
-    <value>Штаб Злумов (Hoodlum Headquarters)</value>
+    <value>Штаб Злумов</value>
   </data>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
-    <value>Башня Лептиса (The Tower of the Leptys)</value>
+    <value>Башня Лептиса</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>Информация о {0}/{1} текстурах была синхронизирована</value>
@@ -1591,88 +1591,88 @@
     <value>Файлы сохранения Rayman 3 (.sav)</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
-    <value>Давным-давно (Once upon a Time)</value>
+    <value>Давным-давно</value>
   </data>
   <data name="RL_LevelName_1_2" xml:space="preserve">
-    <value>Зловещий замок (Creepy Castle)</value>
+    <value>Зловещий замок</value>
   </data>
   <data name="RL_LevelName_1_3" xml:space="preserve">
-    <value>Волшебный лес (Enchanted Forest)</value>
+    <value>Волшебный лес</value>
   </data>
   <data name="RL_LevelName_1_4" xml:space="preserve">
-    <value>Веревочный курс (Ropes Course)</value>
+    <value>Веревочный курс</value>
   </data>
   <data name="RL_LevelName_1_5" xml:space="preserve">
-    <value>Зыбучие пески (Quick Sand)</value>
+    <value>Зыбучие пески</value>
   </data>
   <data name="RL_LevelName_1_6" xml:space="preserve">
-    <value>Как пристрелить дракона (How to Shoot your Dragon)</value>
+    <value>Как пристрелить дракона</value>
   </data>
   <data name="RL_LevelName_2_1" xml:space="preserve">
-    <value>Рэй и бобовое зернышко (Ray and the Beanstalk)</value>
+    <value>Рэй и бобовое зернышко</value>
   </data>
   <data name="RL_LevelName_2_2" xml:space="preserve">
-    <value>Ветра странных перемен (The Winds of Strange)</value>
+    <value>Ветра странных перемен</value>
   </data>
   <data name="RL_LevelName_2_3" xml:space="preserve">
-    <value>Замок в небесах (Castle in the Clouds)</value>
+    <value>Замок в небесах</value>
   </data>
   <data name="RL_LevelName_2_4" xml:space="preserve">
-    <value>Гонка в воздухе (Altitude Quickness)</value>
+    <value>Гонка в воздухе</value>
   </data>
   <data name="RL_LevelName_2_5" xml:space="preserve">
-    <value>Когда у жаб вырастают крылья (When Toads Fly)</value>
+    <value>Когда у жаб вырастают крылья</value>
   </data>
   <data name="RL_LevelName_3_1" xml:space="preserve">
-    <value>Какого кряка? (What the Duck?)</value>
+    <value>Какого кряка?</value>
   </data>
   <data name="RL_LevelName_3_2" xml:space="preserve">
-    <value>Испорченный до крайности (Spoiled Rotten)</value>
+    <value>Испорченный до крайности</value>
   </data>
   <data name="RL_LevelName_3_3" xml:space="preserve">
-    <value>Меня наполняет... (I've Got a Filling)</value>
+    <value>Меня наполняет...</value>
   </data>
   <data name="RL_LevelName_3_4" xml:space="preserve">
-    <value>Змеиный десерт (Snakes on a Cake)</value>
+    <value>Змеиный десерт</value>
   </data>
   <data name="RL_LevelName_3_5" xml:space="preserve">
-    <value>Прочь, злые мексиканцы! (Lucha Libre Get Away)</value>
+    <value>Прочь, злые мексиканцы!</value>
   </data>
   <data name="RL_LevelName_4_1" xml:space="preserve">
-    <value>Таинственный надувной остров (The Mysterious Inflatable Island)</value>
+    <value>Таинственный надувной остров</value>
   </data>
   <data name="RL_LevelName_4_2" xml:space="preserve">
-    <value>Смертельный свет (The Deadly Lights)</value>
+    <value>Смертельный свет</value>
   </data>
   <data name="RL_LevelName_4_3" xml:space="preserve">
-    <value>Глубинный особняк (Mansion of the Deep)</value>
+    <value>Глубинный особняк</value>
   </data>
   <data name="RL_LevelName_4_4" xml:space="preserve">
-    <value>Станция зачистки (Infiltration Station)</value>
+    <value>Станция зачистки</value>
   </data>
   <data name="RL_LevelName_4_5" xml:space="preserve">
-    <value>Засада на подъёмнике (Elevator Ambush)</value>
+    <value>Засада на подъёмнике</value>
   </data>
   <data name="RL_LevelName_4_6" xml:space="preserve">
-    <value>Всегда найдётся рыба побольше (There's Always a Bigger Fish)</value>
+    <value>Всегда найдётся рыба побольше</value>
   </data>
   <data name="RL_LevelName_5_1" xml:space="preserve">
-    <value>Поднять щиты... и опустить (Shields Up... and Down)</value>
+    <value>Поднять щиты... и опустить</value>
   </data>
   <data name="RL_LevelName_5_2" xml:space="preserve">
-    <value>Тёмная тварь: Возрождение (The Dark Creatures Rise)</value>
+    <value>Тёмная тварь: Возрождение</value>
   </data>
   <data name="RL_LevelName_5_3" xml:space="preserve">
-    <value>Идеальный лабиринт (The Amazing Maze)</value>
+    <value>Идеальный лабиринт</value>
   </data>
   <data name="RL_LevelName_5_4" xml:space="preserve">
-    <value>Геройская гонка с лавой (The Great Lava Pursuit)</value>
+    <value>Геройская гонка с лавой</value>
   </data>
   <data name="RL_LevelName_5_5" xml:space="preserve">
-    <value>Очень опасный рой (Swarmed and Dangerous)</value>
+    <value>Очень опасный рой</value>
   </data>
   <data name="RL_LevelName_5_6" xml:space="preserve">
-    <value>Ад на земле (Hell Breaks Loose)</value>
+    <value>Ад на земле</value>
   </data>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
     <value>Файлы сохранения Rayman Legends</value>
@@ -2772,418 +2772,418 @@ Start: Пауза</value>
     <value>При включении этого параметра окна, такие как окно параметров игры или диалоговые окна сообщений, будут отображаться в виде всплывающих окон в главном окне. При его отключении они будут отображаться как отдельные окна.</value>
   </data>
   <data name="RRR_LevelName_0" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске</value>
   </data>
   <data name="RRR_LevelName_1" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
+    <value>Кролики не любят, когда их беспокоят по ночам</value>
   </data>
   <data name="RRR_LevelName_2" xml:space="preserve">
-    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
+    <value>Кролики помогали покорить Дикий Запад</value>
   </data>
   <data name="RRR_LevelName_3" xml:space="preserve">
-    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
+    <value>Кролики питают слабость к вантузам</value>
   </data>
   <data name="RRR_LevelName_4" xml:space="preserve">
-    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
+    <value>Кролики никогда не попадают в яблочко</value>
   </data>
   <data name="RRR_LevelName_5" xml:space="preserve">
-    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
+    <value>Кролики думают, что они снимаются в кино</value>
   </data>
   <data name="RRR_LevelName_6" xml:space="preserve">
-    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
+    <value>Кролики обожают рыть туннели</value>
   </data>
   <data name="RRR_LevelName_7" xml:space="preserve">
-    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
+    <value>Кролики не боятся темноты</value>
   </data>
   <data name="RRR_LevelName_8" xml:space="preserve">
-    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
+    <value>Кролики не желают покоиться с миром</value>
   </data>
   <data name="RRR_LevelName_9" xml:space="preserve">
-    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
+    <value>Кролики иногда используют декорации из других игр</value>
   </data>
   <data name="RRR_LevelName_10" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске</value>
   </data>
   <data name="RRR_LevelName_11" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
+    <value>Кролики не любят, когда их беспокоят по ночам</value>
   </data>
   <data name="RRR_LevelName_12" xml:space="preserve">
-    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
+    <value>Кролики помогали покорить Дикий Запад</value>
   </data>
   <data name="RRR_LevelName_13" xml:space="preserve">
-    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
+    <value>Кролики питают слабость к вантузам</value>
   </data>
   <data name="RRR_LevelName_14" xml:space="preserve">
-    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
+    <value>Кролики никогда не попадают в яблочко</value>
   </data>
   <data name="RRR_LevelName_15" xml:space="preserve">
-    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
+    <value>Кролики думают, что они снимаются в кино</value>
   </data>
   <data name="RRR_LevelName_16" xml:space="preserve">
-    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
+    <value>Кролики обожают рыть туннели</value>
   </data>
   <data name="RRR_LevelName_17" xml:space="preserve">
-    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
+    <value>Кролики не боятся темноты</value>
   </data>
   <data name="RRR_LevelName_18" xml:space="preserve">
-    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
+    <value>Кролики не желают покоиться с миром</value>
   </data>
   <data name="RRR_LevelName_19" xml:space="preserve">
-    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
+    <value>Кролики иногда используют декорации из других игр</value>
   </data>
   <data name="RRR_LevelName_20" xml:space="preserve">
-    <value>Кролики не умеют прыгать (Bunnies can't jump)</value>
+    <value>Кролики не умеют прыгать</value>
   </data>
   <data name="RRR_LevelName_21" xml:space="preserve">
-    <value>Бойся кролей, дары приносящих (Bunnies don't give gifts)</value>
+    <value>Бойся кролей, дары приносящих</value>
   </data>
   <data name="RRR_LevelName_22" xml:space="preserve">
-    <value>Кролики не знают, что делать с коровами (Bunnies don't know what to do with cows)</value>
+    <value>Кролики не знают, что делать с коровами</value>
   </data>
   <data name="RRR_LevelName_23" xml:space="preserve">
-    <value>Кролики никогда не закрывают дверь (Bunnies never close doors)</value>
+    <value>Кролики никогда не закрывают дверь</value>
   </data>
   <data name="RRR_LevelName_24" xml:space="preserve">
-    <value>Кролики не доят коров (Bunnies don't milk cows)</value>
+    <value>Кролики не доят коров</value>
   </data>
   <data name="RRR_LevelName_25" xml:space="preserve">
-    <value>Кролики обожают морковный сок (Bunnies are addicted to carrot juice)</value>
+    <value>Кролики обожают морковный сок</value>
   </data>
   <data name="RRR_LevelName_26" xml:space="preserve">
-    <value>Кролики не умеют скользить Часть 2 (Bunnies can't slide Part 2)</value>
+    <value>Кролики не умеют скользить Часть 2</value>
   </data>
   <data name="RRR_LevelName_27" xml:space="preserve">
-    <value>Кролики безжалостны по отношению к свиньям (Bunnies are heartless with pigs)</value>
+    <value>Кролики безжалостны по отношению к свиньям</value>
   </data>
   <data name="RRR_LevelName_28" xml:space="preserve">
-    <value>Кролики не любят летучих мышей (Bunnies don't like bats)</value>
+    <value>Кролики не любят летучих мышей</value>
   </data>
   <data name="RRR_LevelName_29" xml:space="preserve">
-    <value>Кролики не чистят зубы (Bunnies don't use toothpaste)</value>
+    <value>Кролики не чистят зубы</value>
   </data>
   <data name="RRR_LevelName_30" xml:space="preserve">
-    <value>Кролики не летают (Bunnies can't fly)</value>
+    <value>Кролики не летают</value>
   </data>
   <data name="RRR_LevelName_31" xml:space="preserve">
-    <value>Кролики умеют летать только вниз (Bunnies can only fly downwards)</value>
+    <value>Кролики умеют летать только вниз</value>
   </data>
   <data name="RRR_LevelName_32" xml:space="preserve">
-    <value>Кролики не умеют играть в футбол (Bunnies can't play soccer)</value>
+    <value>Кролики не умеют играть в футбол</value>
   </data>
   <data name="RRR_LevelName_33" xml:space="preserve">
-    <value>Кролики недолюбливают боулинг (Bunnies don't understand bowling)</value>
+    <value>Кролики недолюбливают боулинг</value>
   </data>
   <data name="RRR_LevelName_34" xml:space="preserve">
-    <value>Скотный двор (Animal Farm)</value>
+    <value>Скотный двор</value>
   </data>
   <data name="RRR_LevelName_35" xml:space="preserve">
-    <value>У кроликов отличный музыкальный слух (Bunnies have a great ear for music)</value>
+    <value>У кроликов отличный музыкальный слух</value>
   </data>
   <data name="RRR_LevelName_36" xml:space="preserve">
-    <value>Кролики иногда тормозят (Bunnies are slow to react)</value>
+    <value>Кролики иногда тормозят</value>
   </data>
   <data name="RRR_LevelName_37" xml:space="preserve">
-    <value>Кролики прекрасно танцуют Часть 3 (Bunnies are fantastic dancers Part 3)</value>
+    <value>Кролики прекрасно танцуют Часть 3</value>
   </data>
   <data name="RRR_LevelName_38" xml:space="preserve">
-    <value>Кролики любят объедаться (Bunnies like to stuff themselves)</value>
+    <value>Кролики любят объедаться</value>
   </data>
   <data name="RRR_LevelName_39" xml:space="preserve">
-    <value>Кролики помешаны. На рейве Часть 2 (Bunnies are raving mad Part 2)</value>
+    <value>Кролики помешаны. На рейве Часть 2</value>
   </data>
   <data name="RRR_LevelName_40" xml:space="preserve">
-    <value>Кролики любят погонять (Bunnies like a good race)</value>
+    <value>Кролики любят погонять</value>
   </data>
   <data name="RRR_LevelName_41" xml:space="preserve">
-    <value>Какой же кролик не любит быстрой езды? (Race good a like Bunnies)</value>
+    <value>Какой же кролик не любит быстрой езды?</value>
   </data>
   <data name="RRR_LevelName_42" xml:space="preserve">
-    <value>Кролики любят погонять по пляжу (Bunnies like a good race on the beach)</value>
+    <value>Кролики любят погонять по пляжу</value>
   </data>
   <data name="RRR_LevelName_43" xml:space="preserve">
-    <value>Кролики умеют летать только вниз (Bunnies only fly downwards)</value>
+    <value>Кролики умеют летать только вниз</value>
   </data>
   <data name="RRR_LevelName_44" xml:space="preserve">
-    <value>Кролики прекрасно танцуют (Bunnies are fantastic dancers)</value>
+    <value>Кролики прекрасно танцуют</value>
   </data>
   <data name="RRR_LevelName_45" xml:space="preserve">
-    <value>Кролики плохо спят (Bunnies don't sleep well)</value>
+    <value>Кролики плохо спят</value>
   </data>
   <data name="RRR_LevelName_46" xml:space="preserve">
-    <value>У кроликов дырявая память (Bunnies have no memory)</value>
+    <value>У кроликов дырявая память</value>
   </data>
   <data name="RRR_LevelName_47" xml:space="preserve">
-    <value>Кролики редко покидают свои норки (Bunnies rarely leave their burrows)</value>
+    <value>Кролики редко покидают свои норки</value>
   </data>
   <data name="RRR_LevelName_48" xml:space="preserve">
-    <value>Кролики не умеют прыгать Часть 2 (Bunnies can't jump Part 2)</value>
+    <value>Кролики не умеют прыгать Часть 2</value>
   </data>
   <data name="RRR_LevelName_49" xml:space="preserve">
-    <value>Кролики никогда не закрывают дверь Часть 2 (Bunnies never close doors Part 2)</value>
+    <value>Кролики никогда не закрывают дверь Часть 2</value>
   </data>
   <data name="RRR_LevelName_50" xml:space="preserve">
-    <value>Кролики не доят коров Часть 2 (Bunnies don't milk cows Part 2)</value>
+    <value>Кролики не доят коров Часть 2</value>
   </data>
   <data name="RRR_LevelName_51" xml:space="preserve">
-    <value>Кролики обожают ковбойские скачки (Bunnies like a good cowboy race)</value>
+    <value>Кролики обожают ковбойские скачки</value>
   </data>
   <data name="RRR_LevelName_52" xml:space="preserve">
-    <value>Кролики безжалостны по отношению к свиньям Часть 2 (Bunnies are heartless with pigs Part 2)</value>
+    <value>Кролики безжалостны по отношению к свиньям Часть 2</value>
   </data>
   <data name="RRR_LevelName_53" xml:space="preserve">
-    <value>Психология кроликов. Том 1 (Bunnies Psychology. Volume 1)</value>
+    <value>Психология кроликов. Том 1</value>
   </data>
   <data name="RRR_LevelName_54" xml:space="preserve">
-    <value>Кролики не любят летучих мышей Часть 2 (Bunnies don't like bats Part 2)</value>
+    <value>Кролики не любят летучих мышей Часть 2</value>
   </data>
   <data name="RRR_LevelName_55" xml:space="preserve">
-    <value>Кролики не чистят зубы Часть 2 (Bunnies don't use toothpaste Part 2)</value>
+    <value>Кролики не чистят зубы Часть 2</value>
   </data>
   <data name="RRR_LevelName_56" xml:space="preserve">
-    <value>Кролики не летают Часть 2 (Bunnies can't fly Part 2)</value>
+    <value>Кролики не летают Часть 2</value>
   </data>
   <data name="RRR_LevelName_57" xml:space="preserve">
-    <value>Психология кроликов. Том 2 (Bunnies Psychology. Volume 2)</value>
+    <value>Психология кроликов. Том 2</value>
   </data>
   <data name="RRR_LevelName_58" xml:space="preserve">
-    <value>Кролики не умеют стричь овец (Bunnies can't shear sheep)</value>
+    <value>Кролики не умеют стричь овец</value>
   </data>
   <data name="RRR_LevelName_59" xml:space="preserve">
-    <value>Кролики иногда тормозят Часть 2 (Bunnies are slow to react Part 2)</value>
+    <value>Кролики иногда тормозят Часть 2</value>
   </data>
   <data name="RRR_LevelName_60" xml:space="preserve">
-    <value>Кролики иногда тормозят Часть 3 (Bunnies are slow to react Part 3)</value>
+    <value>Кролики иногда тормозят Часть 3</value>
   </data>
   <data name="RRR_LevelName_61" xml:space="preserve">
-    <value>Кролики любят объедаться Часть 2 (Bunnies like to stuff themselves Part 2)</value>
+    <value>Кролики любят объедаться Часть 2</value>
   </data>
   <data name="RRR_LevelName_62" xml:space="preserve">
-    <value>У кроликов дырявая память Часть 2 (Bunnies have no memory Part 2)</value>
+    <value>У кроликов дырявая память Часть 2</value>
   </data>
   <data name="RRR_LevelName_63" xml:space="preserve">
-    <value>Кролики редко покидают свои норки Часть 2 (Bunnies rarely leave their burrows Part 2)</value>
+    <value>Кролики редко покидают свои норки Часть 2</value>
   </data>
   <data name="RRR_LevelName_64" xml:space="preserve">
-    <value>Кролики любят сюрпризы (Bunnies like surprises)</value>
+    <value>Кролики любят сюрпризы</value>
   </data>
   <data name="RRR_LevelName_65" xml:space="preserve">
-    <value>Кролики не любят, когда в них стреляют (Bunnies don't like being shot at)</value>
+    <value>Кролики не любят, когда в них стреляют</value>
   </data>
   <data name="RRR_LevelName_66" xml:space="preserve">
-    <value>Кролики - прирожденные танцоры (Bunnies have natural rhythm)</value>
+    <value>Кролики - прирожденные танцоры</value>
   </data>
   <data name="RRR_LevelName_67" xml:space="preserve">
-    <value>Кролики блуждают в лабиринтах (Bunnies are a-mazing)</value>
+    <value>Кролики блуждают в лабиринтах</value>
   </data>
   <data name="RRR_LevelName_68" xml:space="preserve">
-    <value>Тёмная сторона кроличьей силы (The Dark Side)</value>
+    <value>Тёмная сторона кроличьей силы</value>
   </data>
   <data name="RRR_LevelName_69" xml:space="preserve">
-    <value>Кролики - прирожденные танцоры Часть 2 (Bunnies have natural rhythm Part 2)</value>
+    <value>Кролики - прирожденные танцоры Часть 2</value>
   </data>
   <data name="RRR_LevelName_70" xml:space="preserve">
-    <value>Кролики боятся щекотки (Bunnies are ticklish)</value>
+    <value>Кролики боятся щекотки</value>
   </data>
   <data name="RRR_LevelName_71" xml:space="preserve">
-    <value>Психология кроликов. Том 3 (Bunnies Psychology. Volume 3)</value>
+    <value>Психология кроликов. Том 3</value>
   </data>
   <data name="RRR_LevelName_72" xml:space="preserve">
-    <value>Кролики не умеют играть в прятки (Bunnies are bad at peek-a-boo)</value>
+    <value>Кролики не умеют играть в прятки</value>
   </data>
   <data name="RRR_LevelName_73" xml:space="preserve">
-    <value>Кролики очень чувствительны (Bunnies are oversensitive)</value>
+    <value>Кролики очень чувствительны</value>
   </data>
   <data name="RRR_LevelName_74" xml:space="preserve">
-    <value>Кролики не разбираются в анатомии (Bunnies have a poor grasp of anatomy)</value>
+    <value>Кролики не разбираются в анатомии</value>
   </data>
   <data name="RRR_LevelName_75" xml:space="preserve">
-    <value>Кролики не умеют скользить (Bunnies can't slide)</value>
+    <value>Кролики не умеют скользить</value>
   </data>
   <data name="RRR_LevelName_76" xml:space="preserve">
-    <value>Кролики не умеют пасти скот (Bunnies can't herd)</value>
+    <value>Кролики не умеют пасти скот</value>
   </data>
   <data name="RRR_LevelName_77" xml:space="preserve">
-    <value>Кролики - не страусы (Bunnies are not ostriches)</value>
+    <value>Кролики - не страусы</value>
   </data>
   <data name="RRR_LevelName_78" xml:space="preserve">
-    <value>Кролики просто хотят отрываться (Bunnies just wanna have fun)</value>
+    <value>Кролики просто хотят отрываться</value>
   </data>
   <data name="RRR_LevelName_79" xml:space="preserve">
-    <value>Кролики обожают диско (Bunnies love disco dancing)</value>
+    <value>Кролики обожают диско</value>
   </data>
   <data name="RRR_LevelName_80" xml:space="preserve">
-    <value>Кролики тащатся от хип-хопа (Bunnies get a kick out of Hip-Hop)</value>
+    <value>Кролики тащатся от хип-хопа</value>
   </data>
   <data name="RRR_LevelName_81" xml:space="preserve">
-    <value>Кробалберо танцуют латину (Bunninos dansa la Bamba)</value>
+    <value>Кробалберо танцуют латину</value>
   </data>
   <data name="RRR_LevelName_82" xml:space="preserve">
-    <value>В глубине души кролики - рокеры (Deep down, Bunnies are rockers)</value>
+    <value>В глубине души кролики - рокеры</value>
   </data>
   <data name="RRR_LevelName_83" xml:space="preserve">
-    <value>Кролики помешаны. На рейве (Bunnies are raving mad)</value>
+    <value>Кролики помешаны. На рейве</value>
   </data>
   <data name="RRR_LevelName_84" xml:space="preserve">
-    <value>Кролики прекрасно танцуют Часть 2 (Bunnies are fantastic dancers Part 2)</value>
+    <value>Кролики прекрасно танцуют Часть 2</value>
   </data>
   <data name="RRR_LevelName_85" xml:space="preserve">
-    <value>Кролики обожают диско Часть 2 (Bunnies love disco dancing Part 2)</value>
+    <value>Кролики обожают диско Часть 2</value>
   </data>
   <data name="RRR_LevelName_86" xml:space="preserve">
-    <value>Кролики просто хотят отрываться Часть 2 (Bunnies just wanna have fun Part 2)</value>
+    <value>Кролики просто хотят отрываться Часть 2</value>
   </data>
   <data name="RRR_LevelName_87" xml:space="preserve">
-    <value>Кролики тащатся от хип-хопа Часть 2 (Bunnies get a kick out of Hip-Hop Part 2)</value>
+    <value>Кролики тащатся от хип-хопа Часть 2</value>
   </data>
   <data name="RRR_LevelName_88" xml:space="preserve">
-    <value>Кробалберо танцуют латину Часть 2 (Bunninos dansa la Bamba Part 2)</value>
+    <value>Кробалберо танцуют латину Часть 2</value>
   </data>
   <data name="RRR_LevelName_89" xml:space="preserve">
-    <value>В глубине души кролики - рокеры Часть 2 (Deep down, Bunnies are rockers Part 2)</value>
+    <value>В глубине души кролики - рокеры Часть 2</value>
   </data>
   <data name="RRR_LevelName_90" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске</value>
   </data>
   <data name="RRR_LevelName_91" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
+    <value>Кролики не любят, когда их беспокоят по ночам</value>
   </data>
   <data name="RRR_LevelName_92" xml:space="preserve">
-    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
+    <value>Кролики помогали покорить Дикий Запад</value>
   </data>
   <data name="RRR_LevelName_93" xml:space="preserve">
-    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
+    <value>Кролики питают слабость к вантузам</value>
   </data>
   <data name="RRR_LevelName_94" xml:space="preserve">
-    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
+    <value>Кролики никогда не попадают в яблочко</value>
   </data>
   <data name="RRR_LevelName_95" xml:space="preserve">
-    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
+    <value>Кролики думают, что они снимаются в кино</value>
   </data>
   <data name="RRR_LevelName_96" xml:space="preserve">
-    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
+    <value>Кролики обожают рыть туннели</value>
   </data>
   <data name="RRR_LevelName_97" xml:space="preserve">
-    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
+    <value>Кролики не боятся темноты</value>
   </data>
   <data name="RRR_LevelName_98" xml:space="preserve">
-    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
+    <value>Кролики не желают покоиться с миром</value>
   </data>
   <data name="RRR_LevelName_99" xml:space="preserve">
-    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
+    <value>Кролики иногда используют декорации из других игр</value>
   </data>
   <data name="RRR_LevelName_100" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске</value>
   </data>
   <data name="RRR_LevelName_101" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
+    <value>Кролики не любят, когда их беспокоят по ночам</value>
   </data>
   <data name="RRR_LevelName_102" xml:space="preserve">
-    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
+    <value>Кролики помогали покорить Дикий Запад</value>
   </data>
   <data name="RRR_LevelName_103" xml:space="preserve">
-    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
+    <value>Кролики питают слабость к вантузам</value>
   </data>
   <data name="RRR_LevelName_104" xml:space="preserve">
-    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
+    <value>Кролики никогда не попадают в яблочко</value>
   </data>
   <data name="RRR_LevelName_105" xml:space="preserve">
-    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
+    <value>Кролики думают, что они снимаются в кино</value>
   </data>
   <data name="RRR_LevelName_106" xml:space="preserve">
-    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
+    <value>Кролики обожают рыть туннели</value>
   </data>
   <data name="RRR_LevelName_107" xml:space="preserve">
-    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
+    <value>Кролики не боятся темноты</value>
   </data>
   <data name="RRR_LevelName_108" xml:space="preserve">
-    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
+    <value>Кролики не желают покоиться с миром</value>
   </data>
   <data name="RRR_LevelName_109" xml:space="preserve">
-    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
+    <value>Кролики иногда используют декорации из других игр</value>
   </data>
   <data name="RRR_LevelName_110" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске</value>
   </data>
   <data name="RRR_LevelName_111" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
+    <value>Кролики не любят, когда их беспокоят по ночам</value>
   </data>
   <data name="RRR_LevelName_112" xml:space="preserve">
-    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
+    <value>Кролики помогали покорить Дикий Запад</value>
   </data>
   <data name="RRR_LevelName_113" xml:space="preserve">
-    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
+    <value>Кролики питают слабость к вантузам</value>
   </data>
   <data name="RRR_LevelName_114" xml:space="preserve">
-    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
+    <value>Кролики никогда не попадают в яблочко</value>
   </data>
   <data name="RRR_LevelName_115" xml:space="preserve">
-    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
+    <value>Кролики думают, что они снимаются в кино</value>
   </data>
   <data name="RRR_LevelName_116" xml:space="preserve">
-    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
+    <value>Кролики обожают рыть туннели</value>
   </data>
   <data name="RRR_LevelName_117" xml:space="preserve">
-    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
+    <value>Кролики не боятся темноты</value>
   </data>
   <data name="RRR_LevelName_118" xml:space="preserve">
-    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
+    <value>Кролики не желают покоиться с миром</value>
   </data>
   <data name="RRR_LevelName_119" xml:space="preserve">
-    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
+    <value>Кролики иногда используют декорации из других игр</value>
   </data>
   <data name="RRR_LevelName_120" xml:space="preserve">
-    <value>Экстремальные испытания (Extreme experiences)</value>
+    <value>Экстремальные испытания</value>
   </data>
   <data name="RRR_LevelName_121" xml:space="preserve">
-    <value>Беговое пяткоборье (The jogging Pants-tathlon)</value>
+    <value>Беговое пяткоборье</value>
   </data>
   <data name="RRR_LevelName_122" xml:space="preserve">
-    <value>Пяткоборье в носках (The Pants-tathlon in socks)</value>
+    <value>Пяткоборье в носках</value>
   </data>
   <data name="RRR_LevelName_123" xml:space="preserve">
-    <value>Пяткоборье в спортивных костюмах (The Pants-tathlon tracksuit)</value>
+    <value>Пяткоборье в спортивных костюмах</value>
   </data>
   <data name="RRR_LevelName_124" xml:space="preserve">
-    <value>Пятиболье (Pain-tathlon)</value>
+    <value>Пятиболье</value>
   </data>
   <data name="RRR_LevelName_125" xml:space="preserve">
-    <value>Кроличья ярмарка (Bunny Fair)</value>
+    <value>Кроличья ярмарка</value>
   </data>
   <data name="RRR_LevelName_126" xml:space="preserve">
-    <value>Рэйман (Rayman)</value>
+    <value>Рэйман</value>
   </data>
   <data name="RRR_LevelName_127" xml:space="preserve">
-    <value>Чемпионат мира по лёгкой эклектике (World Eclecticism Championship)</value>
+    <value>Чемпионат мира по лёгкой эклектике</value>
   </data>
   <data name="RRR_LevelName_130" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске</value>
   </data>
   <data name="RRR_LevelName_131" xml:space="preserve">
-    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
+    <value>Кролики не любят, когда их беспокоят по ночам</value>
   </data>
   <data name="RRR_LevelName_132" xml:space="preserve">
-    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
+    <value>Кролики помогали покорить Дикий Запад</value>
   </data>
   <data name="RRR_LevelName_133" xml:space="preserve">
-    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
+    <value>Кролики питают слабость к вантузам</value>
   </data>
   <data name="RRR_LevelName_134" xml:space="preserve">
-    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
+    <value>Кролики никогда не попадают в яблочко</value>
   </data>
   <data name="RRR_LevelName_135" xml:space="preserve">
-    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
+    <value>Кролики думают, что они снимаются в кино</value>
   </data>
   <data name="RRR_LevelName_136" xml:space="preserve">
-    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
+    <value>Кролики обожают рыть туннели</value>
   </data>
   <data name="RRR_LevelName_137" xml:space="preserve">
-    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
+    <value>Кролики не боятся темноты</value>
   </data>
   <data name="RRR_LevelName_138" xml:space="preserve">
-    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
+    <value>Кролики не желают покоиться с миром</value>
   </data>
   <data name="RRR_LevelName_139" xml:space="preserve">
-    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
+    <value>Кролики иногда используют декорации из других игр</value>
   </data>
   <data name="RRR_LevelName_140" xml:space="preserve">
     <value>Bunnies are shooting all over the place</value>
@@ -3757,31 +3757,31 @@ Start: Пауза</value>
     <value>Конец игры</value>
   </data>
   <data name="R3_LevelName_toudi_00" xml:space="preserve">
-    <value>2D Веселье (2D Madness)</value>
+    <value>2D Веселье</value>
   </data>
   <data name="R3_LevelName_ten_map" xml:space="preserve">
-    <value>Ракетка (Racket Jump)</value>
+    <value>Ракетка</value>
   </data>
   <data name="R3_LevelName_crush" xml:space="preserve">
-    <value>Давка (Crush)</value>
+    <value>Давка</value>
   </data>
   <data name="R3_LevelName_raz_map" xml:space="preserve">
-    <value>Цирк Разоффа (Razoff Circus)</value>
+    <value>Цирк Разоффа</value>
   </data>
   <data name="R3_LevelName_sentinel" xml:space="preserve">
-    <value>Стражник (Sentinel)</value>
+    <value>Стражник</value>
   </data>
   <data name="R3_LevelName_snipe_00" xml:space="preserve">
-    <value>Ракетная Атака (Missile Command)</value>
+    <value>Ракетная Атака</value>
   </data>
   <data name="R3_LevelName_ballmap" xml:space="preserve">
-    <value>Шарики (Balloons)</value>
+    <value>Шарики</value>
   </data>
   <data name="R3_LevelName_ship_map" xml:space="preserve">
-    <value>Вторжение (Special Invaders)</value>
+    <value>Вторжение</value>
   </data>
   <data name="R3_LevelName_commando" xml:space="preserve">
-    <value>Командос (Commando)</value>
+    <value>Командос</value>
   </data>
   <data name="Mod_Mem_Map" xml:space="preserve">
     <value>Карта</value>
