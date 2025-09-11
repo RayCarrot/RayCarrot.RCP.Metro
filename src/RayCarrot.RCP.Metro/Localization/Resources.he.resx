@@ -1525,10 +1525,10 @@ BinarySerializer</value>
     <value>יער עלים צלולים</value>
   </data>
   <data name="Progression_R3_Level3Header" xml:space="preserve">
-    <value>הפיצה האפילה</value>
+    <value>הביצה האפילה</value>
   </data>
   <data name="Progression_R3_Level4Header" xml:space="preserve">
-    <value>רארץ המתים חיים</value>
+    <value>ארץ המתים חיים</value>
   </data>
   <data name="Progression_R3_Level5Header" xml:space="preserve">
     <value>מדבר קנארן</value>
@@ -1835,7 +1835,7 @@ BinarySerializer</value>
     <value>חורבות ראשונות</value>
   </data>
   <data name="RM_RaceName_1" xml:space="preserve">
-    <value>יער מעורפל</value>
+    <value>מגדל מעורפל</value>
   </data>
   <data name="RM_RaceName_2" xml:space="preserve">
     <value>הביוב האפל</value>
