@@ -1525,31 +1525,31 @@ Mensaje de error: {1}</value>
     <value>Se produjo un error al volver a empaquetar el archivo de archivo</value>
   </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
-    <value>The Fairy Council - El Consejo de las Hadas</value>
+    <value>El Concilio de las Hadas</value>
   </data>
   <data name="Progression_R3_Level2Header" xml:space="preserve">
-    <value>Clearleaf Forest - Bosque Hojaverde</value>
+    <value>El Bosque Hojaclara</value>
   </data>
   <data name="Progression_R3_Level3Header" xml:space="preserve">
-    <value>The Bog of Murk - El Pantano de la Oscuridad</value>
+    <value>La Ciénaga</value>
   </data>
   <data name="Progression_R3_Level4Header" xml:space="preserve">
-    <value>The Land of the Livid Dead - La Tierra de los Muertos Rabiosos</value>
+    <value>La Tierra de los Muertos Furiosos</value>
   </data>
   <data name="Progression_R3_Level5Header" xml:space="preserve">
-    <value>The Desert of the Knaaren - El Desierto de los Knaaren</value>
+    <value>El Desierto de los Knaaren</value>
   </data>
   <data name="Progression_R3_Level6Header" xml:space="preserve">
-    <value>The Longest Shortcut - El Atajo más Largo</value>
+    <value>El Atajo Interminable</value>
   </data>
   <data name="Progression_R3_Level7Header" xml:space="preserve">
-    <value>The Summit Beyond the Clouds - La Cumbre más allá de las Nubes</value>
+    <value>En lo más alto de las Nubes</value>
   </data>
   <data name="Progression_R3_Level8Header" xml:space="preserve">
-    <value>Hoodlum Headquarters - Sede de los Bandidos</value>
+    <value>Cuartel General Hoodlum</value>
   </data>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
-    <value>The Tower of the Leptys - La Torre de Leptys</value>
+    <value>La Torre del Leptys</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
     <value>Se han sincronizado {0}/{1} información de textura</value>
@@ -1597,88 +1597,88 @@ Mensaje de error: {1}</value>
     <value>Archivos de guardado de Rayman 3 (.sav)</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
-    <value>Once upon a Time - Érase una vez</value>
+    <value>Érase una vez</value>
   </data>
   <data name="RL_LevelName_1_2" xml:space="preserve">
-    <value>Creepy Castle - Castillo Espeluznante</value>
+    <value>Castillo del terror</value>
   </data>
   <data name="RL_LevelName_1_3" xml:space="preserve">
-    <value>Enchanted Forest - Bosque Encantado</value>
+    <value>El bosque encantado</value>
   </data>
   <data name="RL_LevelName_1_4" xml:space="preserve">
-    <value>Ropes Course - Curso de Cuerdas</value>
+    <value>¡Dale cuerda!</value>
   </data>
   <data name="RL_LevelName_1_5" xml:space="preserve">
-    <value>Quick Sand - Arena Movediza</value>
+    <value>Arenas Movedeprizas</value>
   </data>
   <data name="RL_LevelName_1_6" xml:space="preserve">
-    <value>How to Shoot your Dragon - Cómo Disparar a tu Dragón</value>
+    <value>Como estresar a tu dragon</value>
   </data>
   <data name="RL_LevelName_2_1" xml:space="preserve">
-    <value>Ray and the Beanstalk - Ray y el Tallo de Judías</value>
+    <value>Ray y las judias magicas</value>
   </data>
   <data name="RL_LevelName_2_2" xml:space="preserve">
-    <value>The Winds of Strange - Los Vientos de lo Extraño</value>
+    <value>Soplan vientos de extrañenza</value>
   </data>
   <data name="RL_LevelName_2_3" xml:space="preserve">
-    <value>Castle in the Clouds - Castillo en las Nubes</value>
+    <value>Un castillo en las nubes</value>
   </data>
   <data name="RL_LevelName_2_4" xml:space="preserve">
-    <value>Altitude Quickness - Rapidez en la Altitud</value>
+    <value>Mal de altura</value>
   </data>
   <data name="RL_LevelName_2_5" xml:space="preserve">
-    <value>When Toads Fly - Cuando las Ranas Vuelan</value>
+    <value>Cuando las ranas vuelen</value>
   </data>
   <data name="RL_LevelName_3_1" xml:space="preserve">
-    <value>What the Duck? - ¿Qué Pasa con el Pato?</value>
+    <value>¡Qué patosos!</value>
   </data>
   <data name="RL_LevelName_3_2" xml:space="preserve">
-    <value>Spoiled Rotten - Malcriado a Más No Poder</value>
+    <value>Podrido y estropeado</value>
   </data>
   <data name="RL_LevelName_3_3" xml:space="preserve">
-    <value>I've Got a Filling - Me Siento Lleno</value>
+    <value>Pato a la guacamola</value>
   </data>
   <data name="RL_LevelName_3_4" xml:space="preserve">
-    <value>Snakes on a Cake - Serpientes en un Pastel</value>
+    <value>Serpientes en la tarta</value>
   </data>
   <data name="RL_LevelName_3_5" xml:space="preserve">
-    <value>Lucha Libre Get Away - Escapada de Lucha Libre</value>
+    <value>Lucha Libre y pies en polvorosa</value>
   </data>
   <data name="RL_LevelName_4_1" xml:space="preserve">
-    <value>The Mysterious Inflatable Island - La Misteriosa Isla Inflable</value>
+    <value>La isla hinchable misteriosa</value>
   </data>
   <data name="RL_LevelName_4_2" xml:space="preserve">
-    <value>The Deadly Lights - Las Luces Mortales</value>
+    <value>¡No vayas en la luz!</value>
   </data>
   <data name="RL_LevelName_4_3" xml:space="preserve">
-    <value>Mansion of the Deep - Mansión de las Profundidades</value>
+    <value>Una mansion muy profunda</value>
   </data>
   <data name="RL_LevelName_4_4" xml:space="preserve">
-    <value>Infiltration Station - Estación de Infiltración</value>
+    <value>Estación de in-filtrado</value>
   </data>
   <data name="RL_LevelName_4_5" xml:space="preserve">
-    <value>Elevator Ambush - Emboscada en el Ascensor</value>
+    <value>Emboscada en el ascensor</value>
   </data>
   <data name="RL_LevelName_4_6" xml:space="preserve">
-    <value>There's Always a Bigger Fish - Siempre hay un Pez más Grande</value>
+    <value>El pez gordo se come al chico</value>
   </data>
   <data name="RL_LevelName_5_1" xml:space="preserve">
-    <value>Shields Up... and Down - Escudos Arriba... y Abajo</value>
+    <value>Escudo arriba, escudo abajo</value>
   </data>
   <data name="RL_LevelName_5_2" xml:space="preserve">
-    <value>The Dark Creatures Rise - El Ascenso de las Criaturas Oscuras</value>
+    <value>El resurgir de las criaturas oscuras</value>
   </data>
   <data name="RL_LevelName_5_3" xml:space="preserve">
-    <value>The Amazing Maze - El Laberinto Asombroso</value>
+    <value>El laberinto asombroso</value>
   </data>
   <data name="RL_LevelName_5_4" xml:space="preserve">
-    <value>The Great Lava Pursuit - La Gran Persecución de Lava</value>
+    <value>La persecución de la lava</value>
   </data>
   <data name="RL_LevelName_5_5" xml:space="preserve">
-    <value>Swarmed and Dangerous - Rodeado y Peligroso</value>
+    <value>Enjambre peligroso</value>
   </data>
   <data name="RL_LevelName_5_6" xml:space="preserve">
-    <value>Hell Breaks Loose - El Infierno se Desata</value>
+    <value>El infierno se desata</value>
   </data>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
     <value>Archivos de guardado de Rayman Legends</value>
@@ -1768,10 +1768,10 @@ Mensaje de error: {1}</value>
     <value>Se produjo un error al actualizar el idioma</value>
   </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
-    <value>The Walk of Life - El Camino de la Vida</value>
+    <value>El Camino de la Vida</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
-    <value>The Walk of Power - El Camino del Poder</value>
+    <value>El Camino del Poder</value>
   </data>
   <data name="Download_ManualInstructions" xml:space="preserve">
     <value>Descargar archivos:
@@ -2027,58 +2027,58 @@ Mensaje de error: {1}</value>
     <value>Contraseña inválida</value>
   </data>
   <data name="R1_LevelName_0" xml:space="preserve">
-    <value>Pink Plant Woods - Bosque de Plantas Rosadas</value>
+    <value>El Loto Púrpura</value>
   </data>
   <data name="R1_LevelName_1" xml:space="preserve">
-    <value>Anguish Lagoon - Laguna de Angustia</value>
+    <value>La Laguna Tenebrosa</value>
   </data>
   <data name="R1_LevelName_2" xml:space="preserve">
-    <value>The Swamps of Forgetfulness - Pantanos del Olvido</value>
+    <value>El Pantano Maldito</value>
   </data>
   <data name="R1_LevelName_3" xml:space="preserve">
-    <value>Moskito's Nest - Nido de Moskito</value>
+    <value>El Nido del Mosquito</value>
   </data>
   <data name="R1_LevelName_4" xml:space="preserve">
-    <value>Bongo Hills - Colinas Bongo</value>
+    <value>La Colina de Mr Bongo</value>
   </data>
   <data name="R1_LevelName_5" xml:space="preserve">
-    <value>Allegro Presto - Allegro Presto</value>
+    <value>Allegro Presto</value>
   </data>
   <data name="R1_LevelName_6" xml:space="preserve">
-    <value>Gong Heights - Alturas del Gong</value>
+    <value>Riesgo en las Alturas</value>
   </data>
   <data name="R1_LevelName_7" xml:space="preserve">
-    <value>Mr Sax's Hullaballoo - El Jaleo del Sr. Saxo</value>
+    <value>La Melodía de Mr Sax</value>
   </data>
   <data name="R1_LevelName_8" xml:space="preserve">
-    <value>Twilight Gulch - Desfiladero del Crepúsculo</value>
+    <value>El Barranco del Ocaso</value>
   </data>
   <data name="R1_LevelName_9" xml:space="preserve">
-    <value>The Hard Rocks - Las Rocas Duras</value>
+    <value>Las Criaturas de Granito</value>
   </data>
   <data name="R1_LevelName_10" xml:space="preserve">
-    <value>Mr Stone's Peaks - Las Cimas del Sr. Stone</value>
+    <value>La Cima de Mr Stone</value>
   </data>
   <data name="R1_LevelName_11" xml:space="preserve">
-    <value>Eraser Plains - Llanuras del Borrador</value>
+    <value>Tinta Venenosa</value>
   </data>
   <data name="R1_LevelName_12" xml:space="preserve">
-    <value>Pencil Pentathlon - Pentatlón del Lápiz</value>
+    <value>La Trampa de las Plumas</value>
   </data>
   <data name="R1_LevelName_13" xml:space="preserve">
-    <value>Space Mama's Crater - Cráter de Mamá Espacial</value>
+    <value>El Cráter Sideral</value>
   </data>
   <data name="R1_LevelName_14" xml:space="preserve">
-    <value>Crystal Palace - Palacio de Cristal</value>
+    <value>El Palacio de Cristal</value>
   </data>
   <data name="R1_LevelName_15" xml:space="preserve">
-    <value>Eat at Joe's - Come en lo de Joe</value>
+    <value>El Regalo de Joe</value>
   </data>
   <data name="R1_LevelName_16" xml:space="preserve">
-    <value>Mr Skops' Stalactites - Estalactitas del Sr. Skops</value>
+    <value>Las Estalactitas de Mr Skops</value>
   </data>
   <data name="R1_LevelName_17" xml:space="preserve">
-    <value>Mr Dark's Dare - Desafío del Sr. Dark</value>
+    <value>El Desafío de Mr Oscuro</value>
   </data>
   <data name="R1Passwords_Generate" xml:space="preserve">
     <value>Generar</value>
