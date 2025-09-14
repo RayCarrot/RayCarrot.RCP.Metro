@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -29,12 +30,28 @@ public sealed class GameDescriptor_Rayman2Redreamed_Demo_Win32 : Win32GameDescri
 
     #endregion
 
+    #region Private Methods
+
+    private static string? GetLaunchArgs(GameInstallation gameInstallation)
+    {
+        string? api = gameInstallation.GetValue<string>(GameDataKey.R2R_GraphicsApi);
+
+        if (api == null)
+            return null;
+        else
+            return $"-{api}";
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new GameOptionsComponent(x => new Rayman2RedreamedGameOptionsViewModel(x)));
+        builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
     

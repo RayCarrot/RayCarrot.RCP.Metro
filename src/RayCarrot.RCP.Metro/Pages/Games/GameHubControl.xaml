@@ -220,6 +220,9 @@
                                                 <DataTemplate DataType="{x:Type options:Ray1MsDosGameOptionsViewModel}">
                                                     <options:Ray1MsDosGameOptionsControl />
                                                 </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:Rayman2RedreamedGameOptionsViewModel}">
+                                                    <options:Rayman2RedreamedGameOptionsControl />
+                                                </DataTemplate>
                                                 <DataTemplate DataType="{x:Type options:GameClientSelectionGameOptionsViewModel}">
                                                     <options:GameClientSelectionGameOptionsControl />
                                                 </DataTemplate>
