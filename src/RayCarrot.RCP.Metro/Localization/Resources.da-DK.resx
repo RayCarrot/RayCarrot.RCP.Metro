@@ -881,7 +881,7 @@ Prøv igen?</value>
     <value>Særligt tak til AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski og alle andre Rayman-fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, hjælpeværktøjer, lydspor per bane, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, reverse engineering af Rayman, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches til controller</value>
@@ -890,10 +890,10 @@ Prøv igen?</value>
     <value>Remapping af knapper til Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Generel hjælp til hjælpeværktøjerne</value>
+    <value>Reverse engineering af Rayman</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Lydspor per bane-værktøj</value>
+    <value>Rayman 1 lydspor per bane-mod</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portugesisk (Portugal) programoversættelse</value>
@@ -1029,7 +1029,7 @@ Prøv igen?</value>
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Lydspor per bane-værktøj, fjernelse af Rayman M/Arena diskkontrol</value>
+    <value>Rayman 1 lydspor per bane-mod, fjernelse af Rayman M/Arena diskkontrol</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Hollandsk (Holland) programoversættelse, programtestning</value>
@@ -1456,7 +1456,7 @@ Fejlmeddelelse: {1}</value>
     <value>En fejl opstod i Archive Explorer, og den skulle lukkes</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Reverse engineering af Rayman, Rayman Raving Rabbids mod, BinarySerializer</value>
+    <value>Reverse engineering af Rayman, Rayman Raving Rabbids prototypegendannelsesmod, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Hjælpeværktøjer</value>

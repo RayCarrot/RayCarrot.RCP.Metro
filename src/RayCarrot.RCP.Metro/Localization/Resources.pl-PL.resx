@@ -888,7 +888,7 @@ Spróbować ponownie?</value>
     <value>Specjalne podziękowania dla AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, inżynieria wsteczna Raymana, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Łatki dla kontrolera</value>
@@ -897,10 +897,10 @@ Spróbować ponownie?</value>
     <value>Remapping klawiszy w Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Ogólna pomoc z narzędziami</value>
+    <value>Inżynieria wsteczna Raymana</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Narzędzie do ścieżki dźwiękowej na poziom</value>
+    <value>Modyfikacja do ścieżki dźwiękowej na poziom do gry Rayman 1</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Tłumaczenie programu na język portugalski (Portugalia)</value>
@@ -1035,7 +1035,7 @@ Spróbować ponownie?</value>
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
+    <value>Modyfikacja do ścieżki dźwiękowej na poziom gry Rayman 1, Usunięcie sprawdzania dysku Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Tłumaczenie programu na język holenderski (Holandia), testowanie programu</value>
@@ -1469,7 +1469,7 @@ Komunikat o błędzie: {1}</value>
     <value>Wystąpił błąd w Archive Explorer  i program musi zostać zamknięty</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Inżynieria wsteczna Raymana, Rayman Szalone Kórliki mod, BinarySerializer</value>
+    <value>Inżynieria wsteczna Raymana, Rayman Raving Rabbiids Prototype Restoration mod, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Narzędzia</value>

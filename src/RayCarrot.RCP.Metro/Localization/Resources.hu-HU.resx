@@ -3588,4 +3588,10 @@ Hagyd a patch-et bekapcsolva, és ments, hogy lefrissítsd a legújabb verzióra
   <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Ice on ice</value>
   </data>
+  <data name="Progression_DataSourceInfo" xml:space="preserve">
+    <value>Régebbi applikációk mentési/konfig fájljait a Windows néha átirányítja a VirtualStore-ba, ha nem rendszergazdaként vannak futtatva. Ennek a mellékhatása az lehet, hogy különböző mentések/konfigjaid lesznek attól függően, hogy milyen jogosultsággal indítottad. Az elérési út megadásával itt kiválaszthatod, hogy a biztonsági mentések és a haladás megtekintése melyik mappát használja.</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>Biztonsági mentés készítésekor, vagy amikor a haladáshoz mentéseket használsz, a legfrissebb fájlok helyét válassza. A visszaállításkor mindkét helyre visszaállítja.</value>
+  </data>
 </root>

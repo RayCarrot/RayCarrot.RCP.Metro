@@ -882,20 +882,11 @@ Tekrar deneyin?</value>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski ve diğer tüm Rayman hayranlarına özel teşekkürler!</value>
   </data>
-  <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, yardımcı programlar, seviye başına Soundtrack, Archive Explorer, BinarySerializer</value>
-  </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Denetleyici yamaları</value>
   </data>
   <data name="About_Credits_Janmv94" xml:space="preserve">
     <value>Rayman 2 düğmesi yeniden eşleme</value>
-  </data>
-  <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Yardımcı programlarla ilgili genel yardım</value>
-  </data>
-  <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Seviye başına Soundtrack yardımcı programı</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portekizce (Portekiz) program çevirisi</value>
@@ -1030,9 +1021,6 @@ Başlamak için aşağıda istediğiniz ayarları değiştirin ve 'Devam'a bası
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel</value>
-  </data>
-  <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Seviye başına Soundtrack yardımcı programı, Rayman M/Arena disk kontrolü kaldırma</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Hollandaca (Hollanda) program çevirisi, program testi</value>
@@ -1452,9 +1440,6 @@ Hata mesajı: {1}</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Archive Explorer'de bir hata oluştu ve kapatılması gerekiyordu</value>
-  </data>
-  <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Rayman tersine mühendislik, Rayman Raving Rabbids modu, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Araçlar</value>
