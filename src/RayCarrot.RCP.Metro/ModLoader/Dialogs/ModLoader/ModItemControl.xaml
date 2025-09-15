@@ -137,6 +137,9 @@
 
         <!-- Update state -->
         <iconPacks:PackIconMaterial Grid.Column="6"
+                                    d:Visibility="Visible"
+                                    d:Kind="CheckboxMarkedCircle"
+                                    d:Foreground="{StaticResource RCP.Brushes.StatusComplete}"
                                     VerticalAlignment="Center"
                                     ToolTip="{Binding Path=UpdateStateMessage.Value}"
                                     Margin="0 0 10 0">
