@@ -20,7 +20,7 @@ public sealed class GameDescriptor_Rayman3HavocReignited_Win32 : Win32GameDescri
     public override Game Game => Game.Rayman3HavocReignited;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman 3 Havoc Reignited"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman3HavocReignited_Win32_Title));
     public override DateTime ReleaseDate => new(2025, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3HavocReignited;
@@ -53,8 +53,7 @@ public sealed class GameDescriptor_Rayman3HavocReignited_Win32 : Win32GameDescri
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        // TODO-LOC
-        new("Download from website", GameUrl, GenericIconKind.GameAction_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_DownloadWebsite)), GameUrl, GenericIconKind.GameAction_Web),
     };
 
     #endregion

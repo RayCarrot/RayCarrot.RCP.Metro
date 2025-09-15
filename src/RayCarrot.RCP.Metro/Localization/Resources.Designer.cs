@@ -70,6 +70,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bluesky.
+        /// </summary>
+        public static string About_Bluesky {
+            get {
+                return ResourceManager.GetString("About_Bluesky", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
         /// </summary>
         public static string About_ConfirmUninstall {
@@ -102,6 +111,15 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Credits_432Hz {
             get {
                 return ResourceManager.GetString("About_Credits_432Hz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program features and fixes.
+        /// </summary>
+        public static string About_Credits_Dr_st {
+            get {
+                return ResourceManager.GetString("About_Credits_Dr_st", resourceCulture);
             }
         }
         
@@ -314,7 +332,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to Adamillo, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lapislalipek, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski, Zelenbug and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -3696,6 +3714,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 2: Redreamed.
+        /// </summary>
+        public static string Game_Rayman2Redreamed_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman2Redreamed_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 3 (Game Boy Advance).
         /// </summary>
         public static string Game_Rayman3_Gba_Title {
@@ -3710,6 +3737,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Game_Rayman3_Title {
             get {
                 return ResourceManager.GetString("Game_Rayman3_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Havoc Reignited.
+        /// </summary>
+        public static string Game_Rayman3HavocReignited_Title {
+            get {
+                return ResourceManager.GetString("Game_Rayman3HavocReignited_Title", resourceCulture);
             }
         }
         
@@ -3827,6 +3863,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Game_RaymanLegends_Title {
             get {
                 return ResourceManager.GetString("Game_RaymanLegends_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Lum&apos;o&apos;Grams.
+        /// </summary>
+        public static string Game_RaymanLumoGrams_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanLumoGrams_Title", resourceCulture);
             }
         }
         
@@ -4375,6 +4420,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download from website.
+        /// </summary>
+        public static string GameDisplay_DownloadWebsite {
+            get {
+                return ResourceManager.GetString("GameDisplay_DownloadWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download from GameJolt.
         /// </summary>
         public static string GameDisplay_GameJolt {
@@ -4753,6 +4807,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_Update {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visual bug fixes.
         /// </summary>
         public static string GameHub_PerLevelSoundtrackPanel_VisualFixes {
@@ -4983,6 +5046,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameLink_Setup {
             get {
                 return ResourceManager.GetString("GameLink_Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble Fix.
+        /// </summary>
+        public static string GameLink_TTFix {
+            get {
+                return ResourceManager.GetString("GameLink_TTFix", resourceCulture);
             }
         }
         
@@ -5950,6 +6022,24 @@ namespace RayCarrot.RCP.Metro {
         public static string ImportSelectionHeader {
             get {
                 return ResourceManager.GetString("ImportSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when uninstalling the tool. Make sure it isn&apos;t currently being used and try again..
+        /// </summary>
+        public static string InstallableTool_UninstallError {
+            get {
+                return ResourceManager.GetString("InstallableTool_UninstallError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the tool. Make sure it isn&apos;t currently being used and try again..
+        /// </summary>
+        public static string InstallableTool_UpdateError {
+            get {
+                return ResourceManager.GetString("InstallableTool_UpdateError", resourceCulture);
             }
         }
         
@@ -8916,11 +9006,38 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example: {0}.
+        /// </summary>
+        public static string ModLoader_FilesModule_AutoCreatePathsHint {
+            get {
+                return ResourceManager.GetString("ModLoader_FilesModule_AutoCreatePathsHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify any folder paths here which you want to have automatically created. Separate each with a new line. You can always manually create the folders afterward as well..
+        /// </summary>
+        public static string ModLoader_FilesModule_AutoCreatePathsInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_FilesModule_AutoCreatePathsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is used to add, replace and remove files in the game. Useful for mods such as texture replacements that wish to replace entire files..
         /// </summary>
         public static string ModLoader_FilesModule_Description {
             get {
                 return ResourceManager.GetString("ModLoader_FilesModule_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show archived files.
+        /// </summary>
+        public static string ModLoader_GameBanana_ArchivedFilesToggle {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_ArchivedFilesToggle", resourceCulture);
             }
         }
         
@@ -11305,6 +11422,78 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bonus points.
+        /// </summary>
+        public static string Progression_TT_BonusPoints {
+            get {
+                return ResourceManager.GetString("Progression_TT_BonusPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dominoes.
+        /// </summary>
+        public static string Progression_TT_Dominoes {
+            get {
+                return ResourceManager.GetString("Progression_TT_Dominoes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feathers.
+        /// </summary>
+        public static string Progression_TT_Feathers {
+            get {
+                return ResourceManager.GetString("Progression_TT_Feathers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jumping stones.
+        /// </summary>
+        public static string Progression_TT_JumpingStones {
+            get {
+                return ResourceManager.GetString("Progression_TT_JumpingStones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Propeller blades.
+        /// </summary>
+        public static string Progression_TT_PropellerBlades {
+            get {
+                return ResourceManager.GetString("Progression_TT_PropellerBlades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Springs.
+        /// </summary>
+        public static string Progression_TT_Springs {
+            get {
+                return ResourceManager.GetString("Progression_TT_Springs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thermometers.
+        /// </summary>
+        public static string Progression_TT_Thermometers {
+            get {
+                return ResourceManager.GetString("Progression_TT_Thermometers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wild piggybanks.
+        /// </summary>
+        public static string Progression_TT_WildPiggybanks {
+            get {
+                return ResourceManager.GetString("Progression_TT_WildPiggybanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pink Plant Woods.
         /// </summary>
         public static string R1_LevelName_0 {
@@ -11962,6 +12151,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string R2ROptions_GraphicsApi_Default {
+            get {
+                return ResourceManager.GetString("R2ROptions_GraphicsApi_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectX 11.
+        /// </summary>
+        public static string R2ROptions_GraphicsApi_DX11 {
+            get {
+                return ResourceManager.GetString("R2ROptions_GraphicsApi_DX11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectX 12.
+        /// </summary>
+        public static string R2ROptions_GraphicsApi_DX12 {
+            get {
+                return ResourceManager.GetString("R2ROptions_GraphicsApi_DX12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vulkan.
+        /// </summary>
+        public static string R2ROptions_GraphicsApi_Vulkan {
+            get {
+                return ResourceManager.GetString("R2ROptions_GraphicsApi_Vulkan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Graphics API.
+        /// </summary>
+        public static string R2ROptions_GraphicsApiHeader {
+            get {
+                return ResourceManager.GetString("R2ROptions_GraphicsApiHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Balloons.
         /// </summary>
         public static string R3_LevelName_ballmap {
@@ -12250,6 +12484,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 2: Redreamed Demo.
+        /// </summary>
+        public static string Rayman2Redreamed_Demo_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman2Redreamed_Demo_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 3 Demo (2002/10/04).
         /// </summary>
         public static string Rayman3_Demo_20021004_Win32_Title {
@@ -12327,6 +12570,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Rayman3_Win32_Title {
             get {
                 return ResourceManager.GetString("Rayman3_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Havoc Reignited.
+        /// </summary>
+        public static string Rayman3HavocReignited_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman3HavocReignited_Win32_Title", resourceCulture);
             }
         }
         
@@ -12534,6 +12786,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanLegends_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanLegends_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Lum&apos;o&apos;Grams Demo.
+        /// </summary>
+        public static string RaymanLumoGrams_Demo_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanLumoGrams_Demo_Win32_Title", resourceCulture);
             }
         }
         
@@ -14752,6 +15013,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You just entered the Jacquouille Legends code! Enjoy your new banner for the game!.
+        /// </summary>
+        public static string SecretCodes_Guests {
+            get {
+                return ResourceManager.GetString("SecretCodes_Guests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this red new theme..
         /// </summary>
         public static string SecretCodes_Konami {
@@ -15346,6 +15616,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include downloadable mods marked as NSFW.
+        /// </summary>
+        public static string Settings_ModLoader_IncludeNsfwMods {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_IncludeNsfwMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates if mods with a content rating, such as mods with nudity or violence, should be shown in the list of downloadable mods..
+        /// </summary>
+        public static string Settings_ModLoader_IncludeNsfwModsInfo {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_IncludeNsfwModsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show warning message for mod conflicts.
         /// </summary>
         public static string Settings_ModLoader_ShowFileConflictWarnings {
@@ -15810,6 +16098,24 @@ namespace RayCarrot.RCP.Metro {
         public static string SetupGameAction_InvalidUbiArtResolution_Info {
             get {
                 return ResourceManager.GetString("SetupGameAction_InvalidUbiArtResolution_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install the Level Transparency Fixes mod.
+        /// </summary>
+        public static string SetupGameAction_LevelTransparencyFixes_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_LevelTransparencyFixes_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Level Transparency Fixes mod is a mod by Droolie and ICUP321 which fixes the transparency for objects in certain levels..
+        /// </summary>
+        public static string SetupGameAction_LevelTransparencyFixes_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_LevelTransparencyFixes_Info", resourceCulture);
             }
         }
         
@@ -16588,6 +16894,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_Success {
             get {
                 return ResourceManager.GetString("Utilities_Converter_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble Save Files (.sav).
+        /// </summary>
+        public static string Utilities_Converter_TTSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_TTSaveHeader", resourceCulture);
             }
         }
         

@@ -41,7 +41,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                 }),
 
             new Serializers_TypeViewModel<TTSaveFile>(
-                name: "Tonic Trouble Save Files (.sav)", // TODO-LOC
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_TTSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()

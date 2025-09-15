@@ -188,25 +188,22 @@ public enum Game
     [GameInfo(nameof(Resources.Game_RaymanTheDreamersBoundary_Title), GameIconAsset.RaymanTheDreamersBoundary)]
     RaymanTheDreamersBoundary,
 
-    // TODO-LOC
     /// <summary>
     /// Rayman Lum'o'Grams
     /// </summary>
-    [GameInfo("Rayman Lum'o'Grams", GameIconAsset.RaymanLumoGrams)]
+    [GameInfo(nameof(Resources.Game_RaymanLumoGrams_Title), GameIconAsset.RaymanLumoGrams)]
     RaymanLumoGrams,
 
-    // TODO-LOC
     /// <summary>
     /// Rayman 3 Havoc Reignited
     /// </summary>
-    [GameInfo("Rayman 3 Havoc Reignited", GameIconAsset.Rayman3HavocReignited)]
+    [GameInfo(nameof(Resources.Game_Rayman3HavocReignited_Title), GameIconAsset.Rayman3HavocReignited)]
     Rayman3HavocReignited,
 
-    // TODO-LOC
     /// <summary>
     /// Rayman 2: Redreamed
     /// </summary>
-    [GameInfo("Rayman 2: Redreamed", GameIconAsset.Rayman2Redreamed)]
+    [GameInfo(nameof(Resources.Game_Rayman2Redreamed_Title), GameIconAsset.Rayman2Redreamed)]
     Rayman2Redreamed,
 
     #endregion

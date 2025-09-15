@@ -885,7 +885,7 @@ Spróbować ponownie?</value>
     <value>Utworzenie skrótu nie powiodło się</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Specjalne podziękowania dla AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski i wszystkich innych fanów Raymana!</value>
+    <value>Specjalne podziękowania dla Adamillo, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lapislalipek, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski, Zelenbug i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, inżynieria wsteczna Raymana, BinarySerializer</value>
@@ -5817,5 +5817,17 @@ Czy chcesz cofnąć poprawkę?</value>
   </data>
   <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Ice on ice</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX11" xml:space="preserve">
+    <value>DirectX 11</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX12" xml:space="preserve">
+    <value>DirectX 12</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
+    <value>Vulkan</value>
+  </data>
+  <data name="About_Bluesky" xml:space="preserve">
+    <value>Bluesky</value>
   </data>
 </root>

@@ -147,12 +147,11 @@
                         Command="{Binding Path=OpenUrlCommand}"
                         CommandParameter="{x:Static rcp:AppURLs.YouTubeUrl}" />
 
-                <!-- TODO-LOC -->
                 <Button Style="{StaticResource MahApps.Styles.Button.Circle}" 
                         Width="40" 
                         Height="40"
                         Margin="3"
-                        ToolTip="Bluesky"
+                        ToolTip="{Resx About_Bluesky}"
                         Command="{Binding Path=OpenUrlCommand}"
                         CommandParameter="{x:Static rcp:AppURLs.BlueskyUrl}">
                     <Viewbox Width="20" 

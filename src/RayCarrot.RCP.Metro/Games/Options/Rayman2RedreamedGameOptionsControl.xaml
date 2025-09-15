@@ -12,9 +12,8 @@
              d:DataContext="{d:DesignInstance options:Rayman2RedreamedGameOptionsViewModel}">
     <StackPanel Margin="6">
 
-        <!-- TODO-LOC -->
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="Graphics API"
+                   Text="{Resx R2ROptions_GraphicsApiHeader}"
                    Margin="0 0 0 4" />
 
         <ListBox ItemsSource="{Binding Path=AvailableGraphicsApis, Mode=OneTime}"

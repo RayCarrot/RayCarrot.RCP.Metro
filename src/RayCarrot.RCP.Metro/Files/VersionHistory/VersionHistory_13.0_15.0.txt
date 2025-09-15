@@ -10,7 +10,7 @@
 • Added an optional setup game action to Rayman 3 for installing the Level Transparency Fixes mod
 • Added a shortcut to the Tonic Trouble Fix config file for Tonic Trouble if available
 • Changed the recommended "output" value for the DOSBox emulator settings to "overlay"
-• Added Dr_st to the credits
+• Added Dr_st to the credits and Adamillo, Lapislalipek and Zelenbug to the special thanks section
 • Replaced the Twitter link in the about page with a Bluesky link
 • Updated the loading bar color to be a bit brighter, thus making it easier to see in dark mode
 • Updated the Rayman Legends banner image (thanks Lapislalipek!)

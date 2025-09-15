@@ -40,8 +40,7 @@ public class InstallableToolsManager
         }
         catch (Exception ex)
         {
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when uninstalling the tool. Make sure it isn't currently being used and try again.");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.InstallableTool_UninstallError);
             return;
         }
 
@@ -67,8 +66,7 @@ public class InstallableToolsManager
         }
         catch (Exception ex)
         {
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the tool. Make sure it isn't currently being used and try again.");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.InstallableTool_UpdateError);
             return false;
         }
 

@@ -130,8 +130,7 @@ public static class SecretCodeManager
                 {
                     Services.Messenger.Send(new SecretCodeEnteredMessage("GUESTS"));
 
-                    // TODO-LOC
-                    await Services.MessageUI.DisplayMessageAsync("You just entered the Jacquouille Legends code! Enjoy your new banner for the game!", Resources.SecretCodes_SecretHeader, MessageType.Success);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Guests, Resources.SecretCodes_SecretHeader, MessageType.Success);
                 }
             },
         };

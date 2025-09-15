@@ -28,12 +28,11 @@ public class AboutPageViewModel : BasePageViewModel
         File = file ?? throw new ArgumentNullException(nameof(file));
         DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
 
-        // TODO-LOC: Add Lapislalipek, Zelenbug and Adamillo to special thanks.
         // Set the credits
         Credits = new ObservableCollection<DuoGridItemViewModel>()
         {
             new("RayCarrot", new ResourceLocString(nameof(Resources.About_Credits_RayCarrot))),
-            new("Dr_st ", "Program features and fixes"), // TODO-LOC
+            new("Dr_st ", new ResourceLocString(nameof(Resources.About_Credits_Dr_st))),
             new("Droolie", new ResourceLocString(nameof(Resources.About_Credits_Droolie))),
             new("Fabiosek", new ResourceLocString(nameof(Resources.About_Credits_Fabiosek))),
             new("Haruka Tavares", new ResourceLocString(nameof(Resources.About_Credits_HarukaTavares))),

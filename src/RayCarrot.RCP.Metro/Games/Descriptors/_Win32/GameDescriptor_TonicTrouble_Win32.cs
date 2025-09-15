@@ -36,7 +36,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
             Header: new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), 
             Uri: gameInstallation.InstallLocation.Directory + "dgVoodooCpl.exe"),
         new GameLinksComponent.GameUriLink(
-            Header: "Tonic Trouble Fix", // TODO-LOC
+            Header: new ResourceLocString(nameof(Resources.GameLink_TTFix)),
             Uri: gameInstallation.InstallLocation.Directory + "ttconfig.exe"),
     };
 

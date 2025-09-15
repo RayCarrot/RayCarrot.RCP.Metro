@@ -883,7 +883,7 @@ A zöld téma elérhetővé vált.</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>Különleges köszönet nekik:
-AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski és minden más Rayman rajongónak.</value>
+Adamillo, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lapislalipek, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski, Zelenbug és minden más Rayman rajongónak.</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, segédeszközök, pályánkénti zenék, Archive Explorer, BinarySerializer</value>
@@ -3593,5 +3593,17 @@ Hagyd a patch-et bekapcsolva, és ments, hogy lefrissítsd a legújabb verzióra
   </data>
   <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
     <value>Biztonsági mentés készítésekor, vagy amikor a haladáshoz mentéseket használsz, a legfrissebb fájlok helyét válassza. A visszaállításkor mindkét helyre visszaállítja.</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX11" xml:space="preserve">
+    <value>DirectX 11</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX12" xml:space="preserve">
+    <value>DirectX 12</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
+    <value>Vulkan</value>
+  </data>
+  <data name="About_Bluesky" xml:space="preserve">
+    <value>Bluesky</value>
   </data>
 </root>

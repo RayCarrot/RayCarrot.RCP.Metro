@@ -9,10 +9,10 @@ public class Rayman2RedreamedGameOptionsViewModel : GameOptionsViewModel
     {
         AvailableGraphicsApis =
         [
-            new GraphicsApi(null, "Default"), // TODO-LOC
-            new GraphicsApi("d3d11", "DirectX 11"),
-            new GraphicsApi("d3d12", "DirectX 12"),
-            new GraphicsApi("vulkan", "Vulkan")
+            new GraphicsApi(null, new ResourceLocString(nameof(Resources.R2ROptions_GraphicsApi_Default))),
+            new GraphicsApi("d3d11", new ResourceLocString(nameof(Resources.R2ROptions_GraphicsApi_DX11))),
+            new GraphicsApi("d3d12", new ResourceLocString(nameof(Resources.R2ROptions_GraphicsApi_DX12))),
+            new GraphicsApi("vulkan", new ResourceLocString(nameof(Resources.R2ROptions_GraphicsApi_Vulkan)))
         ];
     }
 

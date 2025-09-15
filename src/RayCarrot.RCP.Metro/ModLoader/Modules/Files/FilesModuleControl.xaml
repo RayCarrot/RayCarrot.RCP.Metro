@@ -16,8 +16,7 @@
 
     <StackPanel>
 
-        <!-- TODO-LOC -->
-        <TextBlock Text="Specify any folder paths here which you want to have automatically created. Separate each with a new line. You can always create the folders manually afterward as well."
+        <TextBlock Text="{Resx ModLoader_FilesModule_AutoCreatePathsInfo}"
                    TextWrapping="WrapWithOverflow"
                    Margin="0 0 0 8" />
 

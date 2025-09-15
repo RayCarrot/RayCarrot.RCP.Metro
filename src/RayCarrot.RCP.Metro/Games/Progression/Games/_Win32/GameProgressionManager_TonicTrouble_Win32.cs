@@ -84,20 +84,19 @@ public class GameProgressionManager_TonicTrouble_Win32 : GameProgressionManager
                 for (int i = 0; i < levelsCount; i++)
                     bonusPoints += getValue(9 + i * 2);
 
-                // TODO-LOC
                 GameProgressionDataItem[] progressItems =
                 [
                     // Primary collectibles
                     new GameProgressionDataItem(
                         isPrimaryItem: true,
                         icon: ProgressionIconAsset.TT_Thermometer,
-                        header: "Thermometers",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_Thermometers)),
                         value: thermometers,
                         max: maxThermometers),
                     new GameProgressionDataItem(
                         isPrimaryItem: true,
                         icon: ProgressionIconAsset.TT_Bonus,
-                        header: "Bonus points",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_BonusPoints)),
                         value: bonusPoints,
                         max: maxBonusPoints),
 
@@ -105,37 +104,37 @@ public class GameProgressionManager_TonicTrouble_Win32 : GameProgressionManager
                     new GameProgressionDataItem(
                         isPrimaryItem: false,
                         icon: ProgressionIconAsset.TT_Springs,
-                        header: "Springs",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_Springs)),
                         value: getValue(3 + 5),
                         max: 6),
                     new GameProgressionDataItem(
                         isPrimaryItem: false,
                         icon: ProgressionIconAsset.TT_PropellerBlades,
-                        header: "Propeller blades",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_PropellerBlades)),
                         value: getValue(3 + 1),
                         max: 6),
                     new GameProgressionDataItem(
                         isPrimaryItem: false,
                         icon: ProgressionIconAsset.TT_JumpingStones,
-                        header: "Jumping stones",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_JumpingStones)),
                         value: getValue(3 + 2),
                         max: 6),
                     new GameProgressionDataItem(
                         isPrimaryItem: false,
                         icon: ProgressionIconAsset.TT_Feathers,
-                        header: "Feathers",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_Feathers)),
                         value: getValue(3 + 4),
                         max: 6),
                     new GameProgressionDataItem(
                         isPrimaryItem: false,
                         icon: ProgressionIconAsset.TT_Dominoes,
-                        header: "Dominoes",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_Dominoes)),
                         value: getValue(3 + 0),
                         max: 6),
                     new GameProgressionDataItem(
                         isPrimaryItem: false,
                         icon: ProgressionIconAsset.TT_WildPiggybanks,
-                        header: "Wild piggybanks",
+                        header: new ResourceLocString(nameof(Resources.Progression_TT_WildPiggybanks)),
                         value: getValue(3 + 3),
                         max: 6),
                 ];

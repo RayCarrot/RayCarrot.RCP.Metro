@@ -11,18 +11,16 @@ public class FilesModuleViewModel : ModModuleViewModel
         Archives = new ObservableCollection<ArchiveViewModel>();
         PathsText = String.Empty;
 
-        // TODO-LOC
         if (examplePathsComponent?.GetExamplePathFunc(String.Empty) is { } examplePath)
-            PathsTextHint = $"Example: {examplePath}";
+            PathsTextHint = new ResourceLocString(nameof(Resources.ModLoader_FilesModule_AutoCreatePathsHint), examplePath);
 
         foreach (ArchiveComponent archiveComponent in gameInstallation.GetComponents<ArchiveComponent>())
         {
             foreach (string archiveFilePath in archiveComponent.GetArchiveFilePaths())
             {
-                // TODO-LOC
                 LocalizedString? archivePathsTextHint = null;
                 if (examplePathsComponent?.GetExamplePathFunc(archiveFilePath) is { } archiveExamplePath)
-                    archivePathsTextHint = $"Example: {archiveExamplePath}";
+                    archivePathsTextHint = new ResourceLocString(nameof(Resources.ModLoader_FilesModule_AutoCreatePathsHint), archiveExamplePath);
 
                 Archives.Add(new ArchiveViewModel(archiveFilePath, archivePathsTextHint));
             }

@@ -22,7 +22,7 @@ public sealed class GameDescriptor_Rayman2Redreamed_Demo_Win32 : Win32GameDescri
     public override GameCategory Category => GameCategory.Fan;
     public override GameType Type => GameType.Demo;
 
-    public override LocalizedString DisplayName => "Rayman 2: Redreamed Demo"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman2Redreamed_Demo_Win32_Title));
     public override DateTime ReleaseDate => new(2025, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman2Redreamed;

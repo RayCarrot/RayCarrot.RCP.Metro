@@ -140,10 +140,9 @@
                 </ItemsControl>
             </ScrollViewer>
 
-            <!-- TODO-LOC -->
             <CheckBox Grid.Row="4" 
                       Margin="0 0 0 8"
-                      Content="Show archived files"
+                      Content="{Resx ModLoader_GameBanana_ArchivedFilesToggle}"
                       Visibility="{Binding Path=ArchivedFiles.Count, Converter={rcp:IntToVisibilityConverter}}"
                       IsChecked="{Binding Path=ShowArchivedFiles}"
                       Style="{StaticResource RCP.Styles.CheckBox.Default}" />
