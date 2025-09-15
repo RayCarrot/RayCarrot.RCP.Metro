@@ -70,23 +70,6 @@
                         <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState}" Value="PendingUninstall">
                             <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=DownloadedMod.UpdateState}" Value="UpdateAvailable">
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Setter Property="rcp:Icon.Kind" Value="RefreshCircle" />
-                            <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.Info}" />
-                            <Setter Property="Content">
-                                <Setter.Value>
-                                    <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFile}"
-                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="ToolTip">
-                                <Setter.Value>
-                                    <TextBlock Text="{Resx ModLoader_GameBanana_UpdateModFileInfo}"
-                                               ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
