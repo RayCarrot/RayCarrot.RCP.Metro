@@ -10,8 +10,7 @@ public sealed class GameDescriptor_Rayman3HavocReignited_Win32 : Win32GameDescri
 {
     #region Constant Fields
 
-    // TODO-UPDATE: Add link
-    private const string GameJoltUrl = "";
+    private const string GameUrl = "https://r3hr.carrd.co";
 
     #endregion
 
@@ -31,11 +30,10 @@ public sealed class GameDescriptor_Rayman3HavocReignited_Win32 : Win32GameDescri
 
     #region Protected Methods
 
+    // ReSharper disable once RedundantOverriddenMember
     protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
-
-        builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
     
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
@@ -55,7 +53,8 @@ public sealed class GameDescriptor_Rayman3HavocReignited_Win32 : Win32GameDescri
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), GameJoltUrl, GenericIconKind.GameAction_Web),
+        // TODO-LOC
+        new("Download from website", GameUrl, GenericIconKind.GameAction_Web),
     };
 
     #endregion
