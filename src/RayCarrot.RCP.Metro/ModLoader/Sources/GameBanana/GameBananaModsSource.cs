@@ -297,6 +297,7 @@ public class GameBananaModsSource : DownloadableModsSource
         }
 
         if (gameBananaMod.Files == null || !gameBananaMod.Files.Any(x =>
+                !x.IsArchived &&
                 x.ModManagerIntegrations != null &&
                 x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)))
         {
@@ -342,7 +343,7 @@ public class GameBananaModsSource : DownloadableModsSource
             throw new Exception("Files is null");
 
         List<GameBananaFile> validFiles = gameBananaMod.Files.
-            Where(x => x.ModManagerIntegrations != null && x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)).
+            Where(x => !x.IsArchived && x.ModManagerIntegrations != null && x.ModManagerIntegrations.Any(m => m.ToolId == RaymanControlPanelToolId)).
             ToList();
 
         if (validFiles.Count == 0)
