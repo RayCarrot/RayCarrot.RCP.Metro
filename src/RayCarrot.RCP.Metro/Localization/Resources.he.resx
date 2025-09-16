@@ -4998,12 +4998,6 @@ Start: הפסק</value>
   <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
     <value>מותקן</value>
   </data>
-  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
-    <value>עדכון</value>
-  </data>
-  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
-    <value>עדכן את המוד המותקן</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>הפעל כמנהל מערכת</value>
   </data>

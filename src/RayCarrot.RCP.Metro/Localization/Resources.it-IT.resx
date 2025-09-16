@@ -4999,12 +4999,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
     <value>Installata</value>
   </data>
-  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
-    <value>Aggiorna</value>
-  </data>
-  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
-    <value>Aggiorna la mod installata</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Esegui come amministratore</value>
   </data>

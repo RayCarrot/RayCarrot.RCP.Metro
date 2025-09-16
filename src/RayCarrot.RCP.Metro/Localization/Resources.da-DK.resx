@@ -4995,12 +4995,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
     <value>Installeret</value>
   </data>
-  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
-    <value>Opdatér</value>
-  </data>
-  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
-    <value>Opdatér det installerede mod</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Kør som administrator</value>
   </data>

@@ -5003,12 +5003,6 @@ Los propios menús multijugador no están completos debido a que esta caracterí
   <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
     <value>Instalado</value>
   </data>
-  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
-    <value>Actualizar</value>
-  </data>
-  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
-    <value>Actualizar el mod instalado</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Ejecutar como administrador</value>
   </data>

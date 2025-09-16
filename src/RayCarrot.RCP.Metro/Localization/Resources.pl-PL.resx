@@ -5023,12 +5023,6 @@ Konflikty:
   <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
     <value>Zainstalowany</value>
   </data>
-  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
-    <value>Aktualizuj</value>
-  </data>
-  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
-    <value>Aktualizuj zainstalowany mod</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Uruchom jako administrator</value>
   </data>

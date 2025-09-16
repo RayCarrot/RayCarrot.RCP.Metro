@@ -9132,24 +9132,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string ModLoader_GameBanana_UpdateModFile {
-            get {
-                return ResourceManager.GetString("ModLoader_GameBanana_UpdateModFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update the installed mod.
-        /// </summary>
-        public static string ModLoader_GameBanana_UpdateModFileInfo {
-            get {
-                return ResourceManager.GetString("ModLoader_GameBanana_UpdateModFileInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to check for updates due to the version not being formatted correctly.
         /// </summary>
         public static string ModLoader_GameBanana_UpdateState_InvalidVersion {

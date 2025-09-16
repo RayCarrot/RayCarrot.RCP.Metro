@@ -4993,12 +4993,6 @@ Conflicten:
   <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
     <value>Geïnstalleerd</value>
   </data>
-  <data name="ModLoader_GameBanana_UpdateModFile" xml:space="preserve">
-    <value>Updaten</value>
-  </data>
-  <data name="ModLoader_GameBanana_UpdateModFileInfo" xml:space="preserve">
-    <value>Updaten geïnstalleerde modificatie</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Uitvoeren als administrator</value>
   </data>
