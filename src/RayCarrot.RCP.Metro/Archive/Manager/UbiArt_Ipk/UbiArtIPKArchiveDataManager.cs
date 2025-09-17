@@ -94,18 +94,18 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var entry = (BundleFile_FileEntry)fileEntry;
 
         // Set the file size
-        entry.FileSize = (uint)inputStream.Length;
+        entry.OriginalSize = (uint)inputStream.Length;
 
         // Set the time stamp
         if (fileMetadata.LastModified != null)
-            entry.TimeStampDateTimeOffset = fileMetadata.LastModified.Value;
+            entry.FlushTimeDateTimeOffset = fileMetadata.LastModified.Value;
 
         // Return the data as is if the file should not be compressed
         if (!Config.ShouldCompress(entry))
             return;
 
         // Compress the bytes
-        BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.FileSize).EncodeStream(inputStream, outputStream);
+        BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.OriginalSize).EncodeStream(inputStream, outputStream);
 
         Logger.Trace("The file {0} has been compressed", entry.Path.FileName);
 
@@ -125,7 +125,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         // Decompress the data if compressed
         if (entry.IsCompressed)
-            BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.FileSize).DecodeStream(inputStream, outputStream);
+            BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.OriginalSize).DecodeStream(inputStream, outputStream);
     }
 
     public FileMetadata GetFileMetadata(object fileEntry)
@@ -135,7 +135,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         return new FileMetadata
         {
-            LastModified = entry.TimeStampDateTimeOffset
+            LastModified = entry.FlushTimeDateTimeOffset
         };
     }
 
@@ -205,7 +205,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
 
         // Save the old base offset
-        uint oldBaseOffset = data.BootHeader.BaseOffset;
+        uint oldBaseOffset = data.BootHeader.FilesStart;
 
         // Keep track of the current pointer position
         ulong currentOffset = 0;
@@ -217,28 +217,28 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             BundleFile_FileEntry entry = file.Entry;
 
             // Reset the offset array to always contain 1 item
-            entry.Offsets = new ulong[]
+            entry.Positions = new ulong[]
             {
-                entry.Offsets?.FirstOrDefault() ?? 0
+                entry.Positions?.FirstOrDefault() ?? 0
             };
 
             // Set the count
-            entry.OffsetsCount = (uint)entry.Offsets.Length;
+            entry.Count = (uint)entry.Positions.Length;
 
             // Add to the generator
             fileGenerator.Add(entry, () =>
             {
                 // When reading the original file we need to use the old base offset
-                uint newBaseOffset = data.BootHeader.BaseOffset;
-                data.BootHeader.BaseOffset = oldBaseOffset;
+                uint newBaseOffset = data.BootHeader.FilesStart;
+                data.BootHeader.FilesStart = oldBaseOffset;
 
                 // Get the file bytes to write to the archive
                 Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
-                data.BootHeader.BaseOffset = newBaseOffset;
+                data.BootHeader.FilesStart = newBaseOffset;
 
                 // Set the offset
-                entry.Offsets[0] = currentOffset;
+                entry.Positions[0] = currentOffset;
 
                 // Increase by the file size
                 currentOffset += entry.ArchiveSize;
@@ -269,14 +269,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
             // Set the base offset
             data.RecalculateSize();
-            data.BootHeader.BaseOffset = (uint)data.SerializedSize;
+            data.BootHeader.FilesStart = (uint)data.SerializedSize;
 
             // NOTE: Unsure if this is needed for Origins 3DS, but file offsets are aligned so this might need to be as well
             if (data.BootHeader.Version == 4)
             {
-                uint align = data.BootHeader.BaseOffset % 4;
+                uint align = data.BootHeader.FilesStart % 4;
                 if (align != 0)
-                    data.BootHeader.BaseOffset += 4 - align;
+                    data.BootHeader.FilesStart += 4 - align;
             }
 
             // Write the files
@@ -373,10 +373,10 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                     throw new Exception("The archived file size does not match the bytes retrieved from the generator");
 
                 // Handle every file offset
-                foreach (ulong offset in file.Offsets)
+                foreach (ulong offset in file.Positions)
                 {
                     // Set the position
-                    currentStream.Position = (long)(compressBlock ? offset : (offset + bundle.BootHeader.BaseOffset));
+                    currentStream.Position = (long)(compressBlock ? offset : (offset + bundle.BootHeader.FilesStart));
 
                     // Write the bytes
                     fileStream.CopyToEx(currentStream);
@@ -407,7 +407,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                 tempCompressedBlockFileStream.Position = 0;
 
                 // Set the .ipk stream position
-                stream.Position = bundle.BootHeader.BaseOffset;
+                stream.Position = bundle.BootHeader.FilesStart;
 
                 // Write the data to main stream
                 tempCompressedBlockFileStream.CopyToEx(stream);
@@ -514,14 +514,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var entry = (BundleFile_FileEntry)fileEntry;
         var ipk = (BundleFile)archive;
 
-        if (entry.TimeStamp != 0)
+        if (entry.FlushTime != 0)
             yield return new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_WriteTime)),
-                text: $"{entry.TimeStampDateTimeOffset.DateTime.ToLongDateString()}");
+                text: $"{entry.FlushTimeDateTimeOffset.DateTime.ToLongDateString()}");
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
-            text: BinaryHelpers.BytesToString(entry.FileSize));
+            text: BinaryHelpers.BytesToString(entry.OriginalSize));
 
         if (entry.IsCompressed)
             yield return new DuoGridItemViewModel(
@@ -531,7 +531,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         if (ipk.FilePack.Files.Contains(entry))
             yield return new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Pointer)), 
-                text: $"0x{entry.Offsets.First() + ipk.BootHeader.BaseOffset:X16}", 
+                text: $"0x{entry.Positions.First() + ipk.BootHeader.FilesStart:X16}", 
                 minUserLevel: UserLevel.Technical);
             
         yield return new DuoGridItemViewModel(
@@ -565,7 +565,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     {
         var entry = (BundleFile_FileEntry)fileEntry;
 
-        return encoded ? entry.ArchiveSize : entry.FileSize;
+        return encoded ? entry.ArchiveSize : entry.OriginalSize;
     }
 
     public void Dispose()
@@ -602,7 +602,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                 Stream = File.Open(TempFile.TempPath, FileMode.Open, FileAccess.ReadWrite);
 
                 // Set the archive stream position
-                archiveStream.Position = ipkData.BootHeader.BaseOffset;
+                archiveStream.Position = ipkData.BootHeader.FilesStart;
 
                 byte[] buffer = new byte[IPKData.BootHeader.BlockCompressedSize];
                 archiveStream.Read(buffer, 0, buffer.Length);
@@ -656,14 +656,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         public Stream GetFileStream(BundleFile_FileEntry fileEntry)
         {
             // Make sure we have offsets
-            if (fileEntry.Offsets?.Any() != true)
+            if (fileEntry.Positions?.Any() != true)
                 throw new Exception("No offsets were found");
 
             // NOTE: We only care about getting the bytes from the first offset as they all point to identical bytes (this is used for memory optimization on certain platforms)
-            var offset = fileEntry.Offsets.First();
+            var offset = fileEntry.Positions.First();
 
             // Set the position
-            Stream.Position = (long)(IPKData.BootHeader.IsBlockCompressed ? offset : (offset + IPKData.BootHeader.BaseOffset));
+            Stream.Position = (long)(IPKData.BootHeader.IsBlockCompressed ? offset : (offset + IPKData.BootHeader.FilesStart));
 
             int size = (int)fileEntry.ArchiveSize;
 

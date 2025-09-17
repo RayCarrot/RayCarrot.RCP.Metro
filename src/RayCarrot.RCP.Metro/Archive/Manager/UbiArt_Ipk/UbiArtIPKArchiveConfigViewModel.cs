@@ -90,67 +90,67 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.Wii:
                         data.Version = 3;
-                        data.Unknown1 = 6;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 1698768603;
+                        data.PlatformSupported = BundlePlatform.WII;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 1698768603;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.Nintendo3DS:
                         data.Version = 4;
-                        data.Unknown1 = 5;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 1635089726;
+                        data.PlatformSupported = BundlePlatform.CTR;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 1635089726;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.PlayStation3:
                         data.Version = 3;
-                        data.Unknown1 = 3;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 1698768603;
+                        data.PlatformSupported = BundlePlatform.PS3;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 1698768603;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.PSVita:
                         data.Version = 3;
-                        data.Unknown1 = 7;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 559042371;
+                        data.PlatformSupported = (BundlePlatform)7;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 559042371;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.Xbox360:
                         data.Version = 3;
-                        data.Unknown1 = 1;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 1698768603;
+                        data.PlatformSupported = BundlePlatform.X360;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 1698768603;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.PC:
                         data.Version = 3;
-                        data.Unknown1 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 877930951;
+                        data.PlatformSupported = BundlePlatform.PC;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 877930951;
                         data.EngineVersion = 0;
                         break;
 
@@ -166,89 +166,89 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.WiiU:
                         data.Version = 5;
-                        data.Unknown1 = 6;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 78992;
-                        data.Unknown7 = 2697850994;
+                        data.PlatformSupported = BundlePlatform.WII;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 78992;
+                        data.EngineSignature = 2697850994;
                         data.EngineVersion = 84435;
                         break;
 
                     case Platform.NintendoSwitch:
                         data.Version = 7;
-                        data.Unknown1 = 10;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 2514498303;
+                        data.PlatformSupported = BundlePlatform.NX;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 2514498303;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.PSVita:
                         data.Version = 5;
-                        data.Unknown1 = 6;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 2869177618;
+                        data.PlatformSupported = (BundlePlatform)6;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 2869177618;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.PlayStation3:
                         data.Version = 5;
-                        data.Unknown1 = 2;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 79403;
-                        data.Unknown7 = 410435206;
+                        data.PlatformSupported = BundlePlatform.PS3;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 79403;
+                        data.EngineSignature = 410435206;
                         data.EngineVersion = 86846;
                         break;
 
                     case Platform.PlayStation4:
                         data.Version = 7;
-                        data.Unknown1 = 8;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 80253;
-                        data.Unknown7 = 2973796970;
+                        data.PlatformSupported = BundlePlatform.ORBIS;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 80253;
+                        data.EngineSignature = 2973796970;
                         data.EngineVersion = 117321;
                         break;
 
                     case Platform.Xbox360:
                         data.Version = 5;
-                        data.Unknown1 = 1;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 410435206;
+                        data.PlatformSupported = BundlePlatform.X360;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 410435206;
                         data.EngineVersion = 0;
                         break;
 
                     case Platform.XboxOne:
                         data.Version = 7;
-                        data.Unknown1 = 9;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 80262;
-                        data.Unknown7 = 2973796970;
+                        data.PlatformSupported = BundlePlatform.DURANGO;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 80262;
+                        data.EngineSignature = 2973796970;
                         data.EngineVersion = 118166;
                         break;
 
                     case Platform.PC:
                         data.Version = 5;
-                        data.Unknown1 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 1274838019;
+                        data.PlatformSupported = BundlePlatform.PC;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 1274838019;
                         data.EngineVersion = 0;
                         break;
 
@@ -264,25 +264,25 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.Android:
                         data.Version = 8;
-                        data.Unknown1 = 12;
-                        data.Unknown2 = 11;
-                        data.Unknown3 = true;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 127901;
-                        data.Unknown7 = 3037303110;
+                        data.Dlc = 12;
+                        data.PlatformSupported = BundlePlatform.ANDROID;
+                        data.Compressed = true;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 127901;
+                        data.EngineSignature = 3037303110;
                         data.EngineVersion = 277220;
                         break;
 
                     case Platform.iOS:
                         data.Version = 8;
-                        data.Unknown1 = 12;
-                        data.Unknown2 = 19;
-                        data.Unknown3 = true;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 127895;
-                        data.Unknown7 = 3037303110;
+                        data.Dlc = 12;
+                        data.PlatformSupported = (BundlePlatform)10;
+                        data.Compressed = true;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 127895;
+                        data.EngineSignature = 3037303110;
                         data.EngineVersion = 277216;
                         break;
 
@@ -298,13 +298,13 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.Mac:
                         data.Version = 8;
-                        data.Unknown1 = 12;
-                        data.Unknown2 = 11;
-                        data.Unknown3 = true;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 4533;
-                        data.Unknown7 = 2293139714;
+                        data.Dlc = 12;
+                        data.PlatformSupported = BundlePlatform.MACOS;
+                        data.Compressed = true;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 4533;
+                        data.EngineSignature = 2293139714;
                         data.EngineVersion = 4533;
                         break;
 
@@ -320,13 +320,12 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.WiiU:
                         data.Version = 5;
-                        data.Unknown1 = 8;
-                        data.Unknown2 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = false;
-                        data.Unknown5 = false;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 3346979248;
+                        data.PlatformSupported = (BundlePlatform)8;
+                        data.Compressed = false;
+                        data.BinaryScene = false;
+                        data.BinaryLogic = false;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 3346979248;
                         data.EngineVersion = 241478;
                         break;
 
@@ -342,14 +341,13 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.Android:
                         data.Version = 7;
-                        data.Unknown1 = 10;
-                        data.Unknown2 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown9 = 0;
-                        data.Unknown7 = 3713665533;
+                        data.PlatformSupported = (BundlePlatform)10;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.ValiantHeartsBool = false;
+                        data.EngineSignature = 3713665533;
                         data.EngineVersion = 0;
                         break;
 
@@ -366,25 +364,23 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                     // NOTE: This is based on the demo
                     case Platform.PC:
                         data.Version = 7;
-                        data.Unknown1 = 0;
-                        data.Unknown2 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 3669482532;
+                        data.PlatformSupported = BundlePlatform.PC;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 3669482532;
                         data.EngineVersion = 30765;
                         break;
 
                     case Platform.PSVita:
                         data.Version = 7;
-                        data.Unknown1 = 6;
-                        data.Unknown2 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 19689438;
+                        data.PlatformSupported = (BundlePlatform)6;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 19689438;
                         data.EngineVersion = 0;
                         break;
 
@@ -400,13 +396,12 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 {
                     case Platform.Nintendo3DS:
                         data.Version = 7;
-                        data.Unknown1 = 10;
-                        data.Unknown2 = 0;
-                        data.Unknown3 = false;
-                        data.Unknown4 = true;
-                        data.Unknown5 = true;
-                        data.Unknown6 = 0;
-                        data.Unknown7 = 4160251604;
+                        data.PlatformSupported = (BundlePlatform)10;
+                        data.Compressed = false;
+                        data.BinaryScene = true;
+                        data.BinaryLogic = true;
+                        data.DataSignature = 0;
+                        data.EngineSignature = 4160251604;
                         data.EngineVersion = 0;
                         break;
 
