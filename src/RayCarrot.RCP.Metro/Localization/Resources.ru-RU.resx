@@ -545,7 +545,7 @@
     <value>Не удалось найти путь монтирования. Укажите в настройках подходящий для запуска этой игры путь.</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
-    <value>Это заменит все предыдущие резервные копии для {0}</value>
+    <value>Это заменит все предыдущие резервные копии для:</value>
   </data>
   <data name="Backup_ConfirmHeader" xml:space="preserve">
     <value>Подтвердить резервное копирование</value>
@@ -883,7 +883,7 @@
     <value>Отдельная благодарность Adamillo, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lapislalipek, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski, Zelenbug и всем другим фанатам Рэймана!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, утилиты, PlayStation-версия саундтрека, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, реверс-инжениринг Rayman, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Патчи для контроллера</value>
@@ -892,10 +892,10 @@
     <value>Переназначение кнопок для Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Основная помощь с утилитами</value>
+    <value>Реверс-инжениринг Rayman</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Утилита PlayStation-версии саундтрека</value>
+    <value>Мод на саундтрек для каждого уровня в Rayman 1</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Перевод программы на португальский (Португалия)</value>
@@ -1032,7 +1032,7 @@
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Утилита PlayStation-версии саундтрека, удаление проверки диска Rayman M/Arena</value>
+    <value>Мод на саундтрек для каждого уровня в Rayman 1, удаление проверки диска в Rayman M/Arena</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Перевод программы на голландский (Нидерланды), тестирование программы</value>
@@ -1050,7 +1050,7 @@
     <value>Запуск от имени администратора</value>
   </data>
   <data name="Backup_ConfirmBackupAll" xml:space="preserve">
-    <value>Вы хотите создать резервную копию всех игр? Это заменит все предыдущие резервные копии. Продолжить?</value>
+    <value>Вы хотите создать резервную копию всех игр? Это заменит все предыдущие резервные копии. Если несколько игр используют одну и ту же резервную копию, резервное копирование будет выполнено только для первой игры. Продолжить?</value>
   </data>
   <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
     <value>Подтверждение резервного копирования</value>
@@ -1324,10 +1324,10 @@
     <value>Произошла ошибка при обновлении версии Print Studio</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
-    <value>Rayman</value>
+    <value>Рэйман</value>
   </data>
   <data name="GamesPage_Category_Rabbids" xml:space="preserve">
-    <value>Rabbids</value>
+    <value>Кролики</value>
   </data>
   <data name="GamesPage_Category_Other" xml:space="preserve">
     <value>Прочее</value>
@@ -1459,7 +1459,7 @@
     <value>Программу пришлось закрыть, так как в Archive Explorer произошла ошибка</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Обратная инженерия Rayman, модификация Rayman Raving Rabbids, BinarySerializer</value>
+    <value>Реверс-инжиниринг Rayman, мод Rayman Raving Rabbids Prototype Restoration, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Утилиты</value>
@@ -3393,7 +3393,7 @@ Start: Пауза</value>
     <value>Выберите формат для обратной конвертации</value>
   </data>
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
-    <value>Файлы сохранений Rayman Raving Rabbids (.sav)</value>
+    <value>Файлы сохранений Rayman Бешеные Кролики (.sav)</value>
   </data>
   <data name="Utilities_Serializers_Header" xml:space="preserve">
     <value>Сериализаторы</value>
@@ -3652,19 +3652,19 @@ Start: Пауза</value>
     <value>Кат-сцены</value>
   </data>
   <data name="R2_LevelName_jail_10" xml:space="preserve">
-    <value>Интро Часть 1</value>
+    <value>Вступление Часть 1</value>
   </data>
   <data name="R2_LevelName_jail_20" xml:space="preserve">
-    <value>Интро Часть 2</value>
+    <value>Вступление Часть 2</value>
   </data>
   <data name="R2_LevelName_nego_10" xml:space="preserve">
     <value>Council Chamber of the Teensies</value>
   </data>
   <data name="R2_LevelName_batam_10" xml:space="preserve">
-    <value>Meanwhile in the Prison Ship Part 1</value>
+    <value>Meanwhile in the Prison Ship Часть 1</value>
   </data>
   <data name="R2_LevelName_batam_20" xml:space="preserve">
-    <value>Meanwhile in the Prison Ship Part 2</value>
+    <value>Meanwhile in the Prison Ship Часть 2</value>
   </data>
   <data name="R2_LevelName_bast_09" xml:space="preserve">
     <value>Интро Echoing Caves</value>
@@ -3907,7 +3907,7 @@ Start: Пауза</value>
     <value>Игровой клиент/эмулятор не был найден</value>
   </data>
   <data name="GamesPage_Category_Handheld" xml:space="preserve">
-    <value>Портативные</value>
+    <value>Портативки</value>
   </data>
   <data name="GameClients_Custom" xml:space="preserve">
     <value>Пользовательские</value>
@@ -4175,13 +4175,13 @@ Start: Пауза</value>
     <value>Rayman Fiesta Run Windows 10 Edition</value>
   </data>
   <data name="RaymanRavingRabbids_Win32_Title" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
+    <value>Rayman Бешеные Кролики</value>
   </data>
   <data name="RaymanRavingRabbids2_Win32_Title" xml:space="preserve">
-    <value>Rayman Raving Rabbids 2</value>
+    <value>Rayman Бешеные Кролики 2</value>
   </data>
   <data name="RabbidsGoHome_Win32_Title" xml:space="preserve">
-    <value>Rabbids Go Home</value>
+    <value>Бешеные Кролики Go Home</value>
   </data>
   <data name="RabbidsBigBang_WindowsPackage_Title" xml:space="preserve">
     <value>Rabbids Big Bang</value>
@@ -4235,7 +4235,7 @@ Start: Пауза</value>
     <value>Rayman 3 Демо (08/01/2003)</value>
   </data>
   <data name="RaymanRavingRabbids_Demo_20061106_Win32_Title" xml:space="preserve">
-    <value>Rayman Raving Rabbids Демо (06/11/2006)</value>
+    <value>Rayman Бешеные Кролики Демо (06/11/2006)</value>
   </data>
   <data name="Rayman1Minigames_Win32_Title" xml:space="preserve">
     <value>Rayman Minigames</value>
@@ -4316,13 +4316,13 @@ Start: Пауза</value>
     <value>Rayman Fiesta Run</value>
   </data>
   <data name="Game_RaymanRavingRabbids_Title" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
+    <value>Rayman Бешеные Кролики</value>
   </data>
   <data name="Game_RaymanRavingRabbids2_Title" xml:space="preserve">
-    <value>Rayman Raving Rabbids 2</value>
+    <value>Rayman Бешеные Кролики 2</value>
   </data>
   <data name="Game_RabbidsGoHome_Title" xml:space="preserve">
-    <value>Rabbids Go Home</value>
+    <value>Бешеные Кролики Go Home</value>
   </data>
   <data name="Game_RabbidsBigBang_Title" xml:space="preserve">
     <value>Rabbids Big Bang</value>
