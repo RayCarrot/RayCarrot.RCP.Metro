@@ -3,6 +3,7 @@ using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Legacy.Patcher;
 
+#nullable disable
 
 public class PatchFilePath : BinarySerializable
 {

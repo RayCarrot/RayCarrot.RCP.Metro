@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿#nullable disable
+using System.IO;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Modules.Deltas;

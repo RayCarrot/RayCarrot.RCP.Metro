@@ -1,4 +1,5 @@
-﻿using PropertyChanged;
+﻿#nullable disable
+using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 

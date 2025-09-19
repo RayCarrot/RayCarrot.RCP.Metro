@@ -1,4 +1,5 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿#nullable disable
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Event arguments for when a dialog message action is handled

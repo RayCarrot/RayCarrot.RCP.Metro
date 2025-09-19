@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Shell;
+﻿#nullable disable
+using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
 using System.IO;
 using System.Windows.Input;

@@ -1,4 +1,5 @@
-﻿using BinarySerializer;
+﻿#nullable disable
+using BinarySerializer;
 using BinarySerializer.Disk.ISO9660;
 
 namespace RayCarrot.RCP.Metro;

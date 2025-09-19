@@ -1,4 +1,5 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿#nullable disable
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A localized string which gets generated from a func when the culture changes

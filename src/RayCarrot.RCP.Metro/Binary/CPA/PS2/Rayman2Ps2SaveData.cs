@@ -1,4 +1,5 @@
-﻿using BinarySerializer;
+﻿#nullable disable
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 

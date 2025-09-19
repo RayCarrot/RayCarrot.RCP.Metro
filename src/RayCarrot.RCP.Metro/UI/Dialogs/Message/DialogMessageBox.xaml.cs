@@ -1,4 +1,5 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿#nullable disable
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A dialog message box with standard WPF controls

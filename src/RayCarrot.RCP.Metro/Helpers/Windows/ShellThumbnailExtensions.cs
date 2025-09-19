@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Shell;
+﻿#nullable disable
+using Microsoft.WindowsAPICodePack.Shell;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;

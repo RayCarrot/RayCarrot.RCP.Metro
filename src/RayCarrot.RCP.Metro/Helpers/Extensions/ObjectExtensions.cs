@@ -1,4 +1,5 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿#nullable disable
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Extension methods for an <see cref="Object"/>

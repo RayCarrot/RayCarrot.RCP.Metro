@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿#nullable disable
+using Newtonsoft.Json;
 using PropertyChanged;
 using RayCarrot.RCP.Metro.Archive;
 

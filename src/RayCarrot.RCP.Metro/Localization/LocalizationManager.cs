@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿#nullable disable
+using System.Globalization;
 using System.Windows;
 using Infralution.Localization.Wpf;
 
