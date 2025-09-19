@@ -1,5 +1,4 @@
-﻿#nullable disable
-using BinarySerializer;
+﻿using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Legacy.Patcher;
 

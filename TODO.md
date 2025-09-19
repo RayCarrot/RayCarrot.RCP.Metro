@@ -41,7 +41,6 @@ Open with (external) ->
 ```
 
 ## 🧑‍💻 Code Cleanup
-- Remove remaining `#nullable disable` - these were temporarily added to every file when migrating the codebase to globally enabling nullable reference types
 - Be more consistent with usage of namespaces
 - Replace `Fody.PropertyChanged` with `MVVMToolkit` using partial properties - this requires every ViewModel class to be updated
 - Split localization sheet into multiple sheets for things like game titles, level names, Mod Loader, Archive Explorer etc.

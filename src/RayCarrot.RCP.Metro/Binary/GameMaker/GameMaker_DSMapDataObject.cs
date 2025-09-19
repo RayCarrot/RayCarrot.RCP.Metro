@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Text;
+﻿using System.Text;
 using BinarySerializer;
 using Newtonsoft.Json;
 

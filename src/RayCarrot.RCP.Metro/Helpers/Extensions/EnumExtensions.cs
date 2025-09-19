@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace RayCarrot.RCP.Metro;
 

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace RayCarrot.RCP.Metro;
 

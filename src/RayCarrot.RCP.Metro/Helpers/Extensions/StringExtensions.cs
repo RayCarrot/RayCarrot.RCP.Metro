@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace RayCarrot.RCP.Metro;
 

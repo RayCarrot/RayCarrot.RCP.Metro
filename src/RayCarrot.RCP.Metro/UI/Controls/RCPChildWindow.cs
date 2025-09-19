@@ -1,5 +1,4 @@
-﻿#nullable disable
-using MahApps.Metro.SimpleChildWindow;
+﻿using MahApps.Metro.SimpleChildWindow;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

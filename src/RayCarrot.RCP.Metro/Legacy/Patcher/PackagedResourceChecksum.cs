@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
 using BinarySerializer;
 

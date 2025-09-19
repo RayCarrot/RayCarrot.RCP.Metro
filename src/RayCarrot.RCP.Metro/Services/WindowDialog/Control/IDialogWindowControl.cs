@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public interface IDialogWindowControl<out UserInput, out Result> : IWindowControl
     where UserInput : UserInputViewModel

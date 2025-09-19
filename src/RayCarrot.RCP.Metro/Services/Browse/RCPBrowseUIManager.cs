@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Windows;
 
