@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -24,7 +23,7 @@ public abstract class LocalizedString : BaseViewModel, IDisposable
     /// <summary>
     /// The current string value
     /// </summary>
-    public string Value { get; protected set; }
+    public string Value { get; protected set; } = null!;
 
     #endregion
 
