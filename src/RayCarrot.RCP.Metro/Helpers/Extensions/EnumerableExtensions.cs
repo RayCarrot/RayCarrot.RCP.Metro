@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Extension methods for an <see cref="IEnumerable{T}"/>
@@ -116,7 +115,7 @@ public static class EnumerableExtensions
     /// Disposes all items in the collection
     /// </summary>
     /// <param name="disposables">The collection of disposable items</param>
-    public static void DisposeAll(this IEnumerable<IDisposable> disposables)
+    public static void DisposeAll(this IEnumerable<IDisposable>? disposables)
     {
         disposables?.ForEach(x => x?.Dispose());
     }
