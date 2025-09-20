@@ -12,7 +12,7 @@ public abstract class WindowContentControl : UserControl, IWindowControl
         Loaded += WindowContentControl_Loaded;
     }
 
-    private WindowInstance _windowInstance = null!;
+    private WindowInstance _windowInstance;
     private bool _isClosing;
     private bool _forceClose;
 
