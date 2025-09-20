@@ -12,7 +12,7 @@ public abstract class WindowContentControl : UserControl, IWindowControl
         Loaded += WindowContentControl_Loaded;
     }
 
-    private WindowInstance _windowInstance;
+    private WindowInstance _windowInstance = null!;
     private bool _isClosing;
     private bool _forceClose;
 
@@ -74,7 +74,7 @@ public abstract class WindowContentControl : UserControl, IWindowControl
         try
         {
             // Check if the window can be closed
-            var canClose = await ClosingAsync();
+            bool canClose = await ClosingAsync();
 
             // If we can close we flag to force close and then close the window again
             if (canClose)
