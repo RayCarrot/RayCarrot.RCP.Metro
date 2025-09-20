@@ -151,12 +151,12 @@ public class GameViewModel : BaseRCPViewModel
                     text: backup.IsCompressed.ToString(), 
                     minUserLevel: UserLevel.Debug));
 
-                DateTime lastWriteTime = backup.Path.GetFileSystemInfo().LastWriteTime;
+                DateTime backupDate = backup.Path.GetFileSystemInfo()?.LastWriteTime ?? throw new Exception("Can't get backup info");
 
                 // Get the backup date
                 BackupInfoItems.Add(new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.Backup_LastBackupDate)), 
-                    text: new GeneratedLocString(() => lastWriteTime.ToShortDateString())));
+                    header: new ResourceLocString(nameof(Resources.Backup_LastBackupDate)),
+                    text: new GeneratedLocString(() => backupDate.ToShortDateString())));
 
                 // Get the backup size
                 BackupInfoItems.Add(new DuoGridItemViewModel(
@@ -242,7 +242,7 @@ public class GameViewModel : BaseRCPViewModel
             if (backup.IsCompressed)
                 compressedBackup = new ZipArchive(File.OpenRead(backup.Path));
 
-            DateTime backupDate = backup.Path.GetFileSystemInfo().LastWriteTime;
+            DateTime backupDate = backup.Path.GetFileSystemInfo()?.LastWriteTime ?? throw new Exception("Can't get backup info");
             BackupSearchPattern[] backupDirs = BackupInfo.BackupDirectories!;
 
             // Get the current progress files

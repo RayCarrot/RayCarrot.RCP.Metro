@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 
@@ -70,7 +69,7 @@ public class FileSystemPathConverter : TypeConverter
     /// <returns>An <see cref="Object"/> that represents the converted value.</returns>
     /// <exception cref="ArgumentNullException">The destinationType parameter is null.</exception>
     /// <exception cref="NotSupportedException">The conversion cannot be performed.</exception>
-    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+    public override object? ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
     {
         if (!(value is FileSystemPath path))
             return base.ConvertTo(context, culture, value, destinationType);
