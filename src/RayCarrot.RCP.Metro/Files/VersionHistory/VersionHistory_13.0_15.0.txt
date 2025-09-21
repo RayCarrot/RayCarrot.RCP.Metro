@@ -1,11 +1,11 @@
-﻿-----   Version 14.3.0 - September 16, 2025   -----
+﻿-----   Version 14.3.0 - September ??, 2025   -----
 • Added support for the fan-games Rayman 2 Redreamed Demo, Rayman 3 Havoc Reignited and Rayman Lum'o'Grams Demo
 • Added progression for Tonic Trouble and automatically find saves redirected to the user's Saved Games folder when using the recently released Tonic Trouble Fix
 • Added progression for Rayman Raving Rabbids 2 (thanks Dr_st!)
 • Added a toggle for showing archived files for downloadable GameBanana mods
 • Added an option to auto-create folders for the files module when creating a new mod
 • Added Archive Explorer support for the Rayman Legends (PS4) sound files
-• Added serializers for Rayman Legends (PS Vita) save files
+• Added a serializer for Rayman Legends (PS Vita) save files
 • Updated the Per-level Soundtrack tool to version 3.1.1
 • Added an optional setup game action to Rayman 3 for installing the Level Transparency Fixes mod
 • Added a shortcut to the Tonic Trouble Fix config file for Tonic Trouble if available
