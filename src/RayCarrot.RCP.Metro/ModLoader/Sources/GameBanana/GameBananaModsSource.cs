@@ -8,6 +8,7 @@ using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
+// TODO-UPDATE: Optimize API calls
 public class GameBananaModsSource : DownloadableModsSource
 {
     #region Constant Fields
@@ -73,6 +74,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 modViewModels.Add(new GameBananaDownloadableModViewModel(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
+                    httpClient: httpClient,
                     gameBananaId: mod.Id,
                     name: mod.Name ?? String.Empty,
                     uploaderUserName: mod.Submitter?.Name ?? String.Empty,
@@ -102,6 +104,12 @@ public class GameBananaModsSource : DownloadableModsSource
                        obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
                        m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
             ToList();
+    }
+
+    public async Task<GameBananaMod> LoadModDetailsAsync(HttpClient httpClient, int modId)
+    {
+        string url = $"https://gamebanana.com/apiv11/Mod/{modId}/ProfilePage";
+        return await httpClient.GetDeserializedAsync<GameBananaMod>(url);
     }
 
     public override async Task<DownloadableModsFeedPage> LoadDownloadableModsAsync(
@@ -198,7 +206,7 @@ public class GameBananaModsSource : DownloadableModsSource
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
             $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
-            $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
+            $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations,_aPreviewMedia");
 
         // Process every mod
         for (int i = 0; i < modRecords.Count; i++)
@@ -218,6 +226,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 modViewModels.Add(new GameBananaDownloadableModViewModel(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
+                    httpClient: httpClient,
                     gameBananaId: modRecord.Id,
                     name: modRecord.Name,
                     uploaderUserName: modRecord.Submitter?.Name ?? String.Empty,
@@ -227,7 +236,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     text: mod.Text ?? String.Empty,
                     version: modRecord.Version ?? String.Empty,
                     rootCategory: modRecord.RootCategory,
-                    previewMedia: modRecord.PreviewMedia,
+                    previewMedia: mod.PreviewMedia,
                     likesCount: modRecord.LikeCount,
                     downloadsCount: mod.DownloadCount ?? 0,
                     viewsCount: modRecord.ViewCount,

@@ -28,6 +28,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         Categories.Insert(0, new DownloadableModsCategoryViewModel("All", null, null));
         SelectedCategory = Categories[0];
 
+        ClearSelectionCommand = new RelayCommand(ClearSelection);
         RefreshCommand = new AsyncRelayCommand(LoadDefaultFeedAsync);
         SearchCommand = new AsyncRelayCommand(LoadSearchFeedAsync);
         SelectCategoryCommand = new AsyncRelayCommand(LoadCategoryFeedAsync);
@@ -50,6 +51,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     #region Commands
 
+    public ICommand ClearSelectionCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand SearchCommand { get; }
     public ICommand SelectCategoryCommand { get; }
@@ -74,7 +76,9 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         set
         {
             _selectedMod = value;
-            _selectedMod?.OnSelected();
+
+            // TODO-UPDATE: Await this (probably call from ICommand instead)
+            _selectedMod?.LoadAsync();
         }
     }
 
@@ -114,6 +118,11 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
             Logger.Error(ex, "Loading categories");
             HasCategories = false;
         }
+    }
+
+    public void ClearSelection()
+    {
+        SelectedMod = null;
     }
 
     public async Task LoadDefaultFeedAsync()

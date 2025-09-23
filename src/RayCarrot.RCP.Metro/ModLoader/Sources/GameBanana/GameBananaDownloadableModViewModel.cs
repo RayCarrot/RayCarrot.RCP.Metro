@@ -1,5 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
@@ -9,9 +12,11 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 {
     #region Constructor
 
+    // TODO-UPDATE: Only pass in info from subfeed, then load the rest from the mod page once selected
     public GameBananaDownloadableModViewModel(
-        DownloadableModsSource downloadableModsSource,
+        GameBananaModsSource downloadableModsSource,
         ModLoaderViewModel modLoaderViewModel,
+        HttpClient httpClient,
         int gameBananaId, 
         string name, 
         string uploaderUserName, 
@@ -30,6 +35,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     {
         _downloadableModsSource = downloadableModsSource;
         _modLoaderViewModel = modLoaderViewModel;
+        _httpClient = httpClient;
 
         GameBananaId = gameBananaId;
         Name = name;
@@ -39,6 +45,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         Description = description;
         Text = RemoveHthmlFromString(text);
 
+        // TODO-UPDATE: Can we format date without weekday?
         // Uploaded by {0} on {1}
         UploadInfoPreText = new GeneratedLocString(() =>
         {
@@ -65,21 +72,18 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
         if (previewMedia?.Images is { Length: > 0 } images)
         {
-            GameBananaImage img = images[0];
+            GameBananaImage mainImage = images[0];
 
-            // Use the 220px version if it exists
-            if (img.File220 != null)
-            {
-                ImageUrl = img.BaseUrl + "/" + img.File220;
-                ImageWidth = img.File220Width;
-                ImageHeight = img.File220Height;
-            }
-            else
-            {
-                ImageUrl = img.BaseUrl + "/" + img.File;
-                ImageWidth = 220;
-                ImageHeight = Double.NaN;
-            }
+            MainImage = new ImageViewModel($"{mainImage.BaseUrl}/{mainImage.File220}");
+            MainImage.Load();
+            MainImageWidth = mainImage.File220Width;
+            MainImageHeight = mainImage.File220Height;
+
+            Images = images.
+                Skip(1).
+                Take(10).
+                Select(x => new ImageViewModel($"{x.BaseUrl}/{x.File}", decodePixelHeight: 180)).
+                ToObservableCollection();
         }
 
         LikesCount = likesCount;
@@ -118,8 +122,11 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     #region Private Fields
 
     // NOTE: Might be worth abstracting this more in the future to not pass in these here
-    private readonly DownloadableModsSource _downloadableModsSource;
+    private readonly GameBananaModsSource _downloadableModsSource;
     private readonly ModLoaderViewModel _modLoaderViewModel;
+    private readonly HttpClient _httpClient;
+
+    private int _selectedImageIndex;
 
     #endregion
 
@@ -151,9 +158,20 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public string? RootCategoryIconUrl { get; }
     public string? RootCategoryName { get; }
 
-    public string? ImageUrl { get; }
-    public double ImageWidth { get; }
-    public double ImageHeight { get; }
+    public ImageViewModel? MainImage { get; }
+    public double MainImageWidth { get; }
+    public double MainImageHeight { get; }
+    public ObservableCollection<ImageViewModel>? Images { get; }
+
+    public int SelectedImageIndex
+    {
+        get => _selectedImageIndex;
+        set
+        {
+            _selectedImageIndex = value;
+            UpdateCurrentImage();
+        }
+    }
 
     public int LikesCount { get; }
     public int DownloadsCount { get; }
@@ -163,8 +181,11 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public ObservableCollection<GameBananaFileViewModel> ArchivedFiles { get; }
     public bool ShowArchivedFiles { get; set; }
 
+    public ObservableCollection<CreditsGroupViewModel>? Credits { get; set; }
+
     public bool IsFeatured { get; set; }
 
+    public bool IsLoaded { get; set; }
     public bool HasViewed { get; set; }
 
     #endregion
@@ -205,6 +226,22 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         return html.Trim();
     }
 
+    private void UpdateCurrentImage()
+    {
+        if (Images == null)
+            return;
+
+        // Load the current image
+        Images[SelectedImageIndex].Load();
+        
+        // Preload the next image
+        if (SelectedImageIndex + 1 < Images.Count)
+        {
+            ImageViewModel nextImg = Images[SelectedImageIndex + 1];
+            nextImg.Load();
+        }
+    }
+
     #endregion
 
     #region Public Methods
@@ -230,16 +267,32 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id));
     }
 
-    public override void OnSelected()
+    public override async Task LoadAsync()
     {
-        base.OnSelected();
+        await base.LoadAsync();
 
+        if (IsLoaded)
+            return;
+
+        IsLoaded = true;
+
+        // Mark as viewed
         HasViewed = true;
-
         if (!Services.Data.ModLoader_ViewedMods.ContainsKey(_downloadableModsSource.Id))
             Services.Data.ModLoader_ViewedMods.Add(_downloadableModsSource.Id, new List<ViewedMod>());
-
         Services.Data.ModLoader_ViewedMods[_downloadableModsSource.Id].Add(new ViewedMod(GameBananaId.ToString(), DateTime.Now, Version));
+
+        // TODO-UPDATE: Catch exceptions
+        // Load info
+        GameBananaMod mod = await _downloadableModsSource.LoadModDetailsAsync(_httpClient, GameBananaId);
+
+        Credits = mod.Credits?.
+            Select(x => new CreditsGroupViewModel(x.GroupName, x.Authors?.
+                Select(m => new AuthorViewModel(m.Name, m.Role)).
+                ToObservableCollection())).
+            ToObservableCollection();
+
+        UpdateCurrentImage();
     }
 
     public override void Dispose()
@@ -267,6 +320,72 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
                 file.DownloadedMod = message.ModViewModel;
                 break;
             }
+        }
+    }
+
+    #endregion
+
+    #region Classes
+
+    public class CreditsGroupViewModel : BaseViewModel
+    {
+        public CreditsGroupViewModel(string groupName, ObservableCollection<AuthorViewModel>? authors)
+        {
+            GroupName = groupName;
+            Authors = authors;
+        }
+
+        public string GroupName { get; }
+        public ObservableCollection<AuthorViewModel>? Authors { get; }
+    }
+
+    public class AuthorViewModel : BaseViewModel
+    {
+        public AuthorViewModel(string name, string? role)
+        {
+            Name = name;
+            Role = role;
+        }
+
+        public string Name { get; }
+        public string? Role { get; }
+    }
+
+    public class ImageViewModel : BaseViewModel
+    {
+        public ImageViewModel(string url, int decodePixelWidth = 0, int decodePixelHeight = 0)
+        {
+            _url = url;
+            _decodePixelWidth = decodePixelWidth;
+            _decodePixelHeight = decodePixelHeight;
+
+            IsLoadingImage = true;
+        }
+
+        private readonly string _url;
+        private readonly int _decodePixelWidth;
+        private readonly int _decodePixelHeight;
+
+        public ImageSource? ImageSource { get; set; }
+        public bool IsLoadingImage { get; set; }
+
+        public void Load()
+        {
+            if (ImageSource != null)
+                return;
+
+            Uri url = new(_url);
+
+            BitmapImage imgSource = new();
+            imgSource.BeginInit();
+            imgSource.CacheOption = BitmapCacheOption.OnLoad;
+            imgSource.UriSource = url;
+            imgSource.DecodePixelWidth = _decodePixelWidth;
+            imgSource.DecodePixelHeight = _decodePixelHeight;
+            imgSource.DownloadCompleted += (_, _) => IsLoadingImage = false;
+            imgSource.EndInit();
+
+            ImageSource = imgSource;
         }
     }
 

@@ -16,15 +16,8 @@
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.25*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
             <!-- Available mods -->
-            <Grid Grid.Column="0"
-                  Background="Transparent"
-                  MouseDown="ModsGrid_OnMouseDown">
+            <Grid Visibility="{Binding Path=SelectedMod, Converter={rcp:ObjectNullToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -178,10 +171,7 @@
             </Grid>
 
             <!-- Empty text -->
-            <Viewbox Grid.Column="0"
-                     Grid.ColumnSpan="2" 
-                     Visibility="{Binding Path=ModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}"
-                     d:Visibility="Collapsed">
+            <Viewbox Visibility="{Binding Path=ModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
                 <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}"
                            TextAlignment="Center" 
                            Margin="30" 
@@ -189,9 +179,7 @@
             </Viewbox>
 
             <!-- Error message -->
-            <Grid Grid.Column="0"
-                  Grid.ColumnSpan="2" 
-                  Margin="30"
+            <Grid Margin="30"
                   Visibility="{Binding Path=ModsFeed.ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                   HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -214,12 +202,8 @@
             </Grid>
 
             <!-- Selected mod -->
-            <rcp:Card Grid.Column="1"
-                      DataContext="{Binding Path=SelectedMod}"
-                      Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                      d:Visibility="Visible"
-                      Margin="{StaticResource RCP.Thicknesses.Card}" 
-                      Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+            <Grid DataContext="{Binding Path=SelectedMod}"
+                  Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
 
                 <ContentPresenter Content="{Binding Mode=OneTime}">
                     <ContentPresenter.Resources>
@@ -229,7 +213,7 @@
                     </ContentPresenter.Resources>
                 </ContentPresenter>
 
-            </rcp:Card>
+            </Grid>
 
         </Grid>
     </rcp:Card>

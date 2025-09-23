@@ -5,30 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             d:DesignWidth="500" d:DesignHeight="500"
+             d:DesignWidth="900" d:DesignHeight="523"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="145" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!-- Header -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0">
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+            <!-- TODO-LOC -->
+            <!-- Back button -->
+            <Button Grid.Column="0"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    rcp:Icon.Kind="ArrowLeft"
+                    Command="{Binding Path=DataContext.(modLoader:DownloadableModsViewModel.ClearSelectionCommand), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modLoader:ModLoaderDownloadPageControl}}, Mode=OneTime}"
+                    Content="Back" />
+
+            <!-- Title -->
+            <StackPanel Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           HorizontalAlignment="Center"
                            Text="{Binding Path=Name, Mode=OneTime}"
                            d:Text="Mod title"
                            TextTrimming="CharacterEllipsis"
@@ -36,6 +49,7 @@
 
                 <TextBlock TextWrapping="Wrap"
                            Margin="0 0 0 4"
+                           HorizontalAlignment="Center"
                            FontStyle="Italic">
                     <Run Text="{Binding Path=UploadInfoPreText.Value, Mode=OneWay}"
                          d:Text="Uploaded by"/>
@@ -51,101 +65,314 @@
                 </TextBlock>
             </StackPanel>
 
-            <Button Grid.Column="1"
+            <!-- Open in GameBanana -->
+            <Button Grid.Column="2"
+                    VerticalAlignment="Top"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    rcp:Icon.Kind="OpenInNew"
-                    Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
-                    ToolTip="{Resx ModLoader_GameBanana_OpenModPage}"
-                    Command="{Binding Path=OpenInGameBananaCommand, Mode=OneTime}" />
+                    Command="{Binding Path=OpenInGameBananaCommand, Mode=OneTime}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{Binding Source={x:Static rcp:ModSourceIconAsset.GameBanana}, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                           Margin="0 0 4 0"/>
+                    <TextBlock Text="{Resx ModLoader_GameBanana_OpenModPage}" 
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
 
         </Grid>
 
-        <!-- Preview image -->
-        <Image Grid.Row="1"
-               Source="{Binding Path=ImageUrl, Mode=OneTime}"
-               Width="{Binding Path=ImageWidth, Mode=OneTime}"
-               Height="{Binding Path=ImageHeight, Mode=OneTime}"
-               d:Width="220" d:Height="120"
-               HorizontalAlignment="Left"
-               Margin="0 0 0 4" />
+        <!-- Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Description -->
-        <TextBlock Grid.Row="2"
-                   Text="{Binding Path=Description, Mode=OneTime}"
-                   d:Text="Description"
-                   Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}}"
-                   TextWrapping="Wrap"
-                   FontStyle="Italic" 
-                   FontSize="11" />
+            <!-- Left panel -->
+            <rcp:Card Grid.Column="0"
+                      Margin="{StaticResource RCP.Thicknesses.Card}" 
+                      Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-        <!-- Text -->
-        <ScrollViewer Grid.Row="3" 
-                      VerticalAlignment="Top"
-                      Visibility="{Binding Path=Text, Converter={rcp:StringEmptyToVisibilityConverter}}"
-                      Margin="0 8 0 8">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <!-- Images -->
+                    <mah:FlipView Grid.Row="0"
+                                  CircularNavigation="False"
+                                  NavigationButtonStyle="{StaticResource RCP.Styles.Button.Flat}"
+                                  ShowIndex="True"
+                                  IndexPlacement="Bottom"
+                                  MouseHoverBorderEnabled="False"
+                                  IsBannerEnabled="False"
+                                  ItemsSource="{Binding Path=Images, Mode=OneTime}"
+                                  SelectedIndex="{Binding Path=SelectedImageIndex}"
+                                  Margin="0 0 0 8">
+                        <mah:FlipView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MaxWidth="320" Height="180">
+                                    <!-- Temporary loading image -->
+                                    <Border Background="{DynamicResource RCP.Brushes.Card.Background}"
+                                            Visibility="{Binding Path=IsLoadingImage, Converter={rcp:BooleanToVisibilityConverter}}">
+                                        <Viewbox>
+                                            <iconPacks:PackIconMaterial Kind="ImageOutline" Margin="20" />
+                                        </Viewbox>
+                                    </Border>
 
-                <Border Grid.Column="0" 
-                        Background="{DynamicResource RCP.Brushes.Separator.Quote}"
-                        Width="5"
-                        Margin="0 0 8 0" />
+                                    <!-- Image -->
+                                    <Image Source="{Binding Path=ImageSource}"
+                                           d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png">
+                                    </Image>
+                                </Grid>
+                            </DataTemplate>
+                        </mah:FlipView.ItemTemplate>
+                    </mah:FlipView>
 
-                <TextBlock Grid.Column="1"
-                           Text="{Binding Path=Text, Mode=OneTime}"
-                           d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                           TextWrapping="Wrap"/>
+                    <!-- Description -->
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding Path=Description, Mode=OneTime}"
+                               d:Text="Description"
+                               Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                               TextWrapping="Wrap"
+                               FontStyle="Italic" 
+                               FontSize="11" />
+
+                    <!-- Text -->
+                    <ScrollViewer Grid.Row="2" 
+                                  VerticalAlignment="Top"
+                                  Visibility="{Binding Path=Text, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                                  Margin="0 8 0 8"
+                                  Padding="0 0 4 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" 
+                                    Background="{DynamicResource RCP.Brushes.Separator.Quote}"
+                                    Width="5"
+                                    Margin="0 0 8 0" />
+
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Path=Text, Mode=OneTime}"
+                                       d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                       TextWrapping="Wrap"/>
+
+                        </Grid>
+                    </ScrollViewer>
+
+                </Grid>
+            </rcp:Card>
+
+            <!-- Right panel -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Top panel -->
+                <Grid Grid.Row="0" MaxHeight="320">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Credits -->
+                    <rcp:Card Grid.Column="0"
+                              Margin="{StaticResource RCP.Thicknesses.Card}" 
+                              Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                        <ScrollViewer Padding="0 0 4 0">
+                            <StackPanel>
+
+                                <!-- TODO-LOC -->
+                                <TextBlock Text="Credits" 
+                                           Style="{StaticResource RCP.Styles.TextBlock.Header}" 
+                                           Margin="0 0 0 8" />
+
+                                <ItemsControl ItemsSource="{Binding Path=Credits}"
+                                              d:ItemsSource="{d:SampleData ItemCount=2}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Path=GroupName, Mode=OneTime}"
+                                                           Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                           Margin="0 0 0 4"/>
+
+                                                <ItemsControl ItemsSource="{Binding Path=Authors, Mode=OneTime}"
+                                                              Margin="4 0 0 4">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid Margin="0 0 0 4">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <!-- TODO-UPDATE: Add profile picture -->
+                                                                <Image Grid.Column="0"
+                                                                       Width="28" 
+                                                                       Source="https://images.gamebanana.com/img/av/630cff7a9f827.png"
+                                                                       Margin="0 0 4 0"/>
+
+                                                                <StackPanel Grid.Column="1"
+                                                                            VerticalAlignment="Center">
+                                                                    <!-- TODO-UPDATE: Add command to link -->
+                                                                    <TextBlock TextTrimming="CharacterEllipsis">
+                                                                        <Hyperlink>
+                                                                            <Run Text="{Binding Path=Name, Mode=OneTime}" />
+                                                                        </Hyperlink>
+                                                                    </TextBlock>
+
+                                                                    <TextBlock Text="{Binding Path=Role, Mode=OneTime}"
+                                                                               FontSize="11"
+                                                                               FontStyle="Italic" 
+                                                                               Visibility="{Binding Path=Role, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                                                               TextTrimming="CharacterEllipsis" />
+
+                                                                </StackPanel>
+
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </rcp:Card>
+
+                    <!-- Main info -->
+                    <Grid Grid.Column="1"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Main image -->
+                        <Image Grid.Row="0" 
+                               Width="{Binding Path=MainImageWidth, Mode=OneTime}" 
+                               Height="{Binding Path=MainImageHeight, Mode=OneTime}"
+                               MaxHeight="{Binding Path=MainImageWidth, Mode=OneTime}"
+                               Source="{Binding Path=MainImage.ImageSource}"
+                               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png"
+                               Margin="0 0 0 8" />
+
+                        <!-- Stats -->
+                        <StackPanel Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Margin="0 0 0 8">
+                            <iconPacks:PackIconMaterial Kind="HeartOutline" 
+                                                        Foreground="{StaticResource RCP.Brushes.GameBanana.Like}" 
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 4 0" />
+                            <TextBlock Text="{Binding Path=LikesCount, Mode=OneTime}"
+                                       d:Text="5"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 12 0" />
+
+                            <iconPacks:PackIconMaterial Kind="ArrowDownBoldOutline" 
+                                                        Foreground="{StaticResource RCP.Brushes.GameBanana.Download}" 
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 4 0"/>
+                            <TextBlock Text="{Binding Path=DownloadsCount, Mode=OneTime}"
+                                       d:Text="5"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 12 0" />
+
+                            <iconPacks:PackIconMaterial Kind="EyeOutline" 
+                                                        Foreground="{StaticResource RCP.Brushes.GameBanana.View}" 
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 4 0"/>
+                            <TextBlock Text="{Binding Path=ViewsCount, Mode=OneTime}"
+                                       d:Text="5"
+                                       FontSize="14"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- TODO-UPDATE: Databind -->
+                        <TextBlock Grid.Row="3"
+                                   Text="Version 1.0.0" 
+                                   Margin="0 0 0 4"
+                                   FontStyle="Italic"/>
+                        <!-- TODO-UPDATE: Databind -->
+                        <TextBlock Grid.Row="4"
+                                   Text="Last updated on April 11, 2024"
+                                   FontStyle="Italic"
+                                   TextWrapping="Wrap"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <!-- Bottom panel -->
+                <rcp:Card Grid.Row="1"
+                          Margin="{StaticResource RCP.Thicknesses.Card}" 
+                          Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Downloads -->
+                        <ScrollViewer Grid.Row="0">
+                            <StackPanel>
+                                <!-- TODO-LOC -->
+                                <TextBlock Text="Downloads" 
+                                           Style="{StaticResource RCP.Styles.TextBlock.Header}" 
+                                           Margin="0 0 0 8" />
+
+                                <ItemsControl ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                                              d:ItemsSource="{d:SampleData ItemCount=2}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <gameBanana:GameBananaDownloadableModPanelFileControl Margin="0 0 0 8" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <Separator Margin="0 0 0 8"
+                                           Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}" />
+
+                                <ScrollViewer Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}">
+                                    <ItemsControl ItemsSource="{Binding Path=ArchivedFiles, Mode=OneTime}"
+                                                  d:ItemsSource="{d:SampleData ItemCount=2}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <gameBanana:GameBananaDownloadableModPanelFileControl Margin="0 0 0 8" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <!-- Options -->
+                        <CheckBox Grid.Row="1"
+                                  Content="{Resx ModLoader_GameBanana_ArchivedFilesToggle}"
+                                  Visibility="{Binding Path=ArchivedFiles.Count, Converter={rcp:IntToVisibilityConverter}}"
+                                  IsChecked="{Binding Path=ShowArchivedFiles}"
+                                  Style="{StaticResource RCP.Styles.CheckBox.Default}" />
+
+                    </Grid>
+                </rcp:Card>
 
             </Grid>
-        </ScrollViewer>
-
-        <Grid Grid.Row="4" VerticalAlignment="Bottom">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <Separator Grid.Row="0"
-                       Margin="0 0 0 8" />
-
-            <ScrollViewer Grid.Row="1">
-                <ItemsControl ItemsSource="{Binding Path=Files, Mode=OneTime}"
-                              d:ItemsSource="{d:SampleData ItemCount=2}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <gameBanana:GameBananaDownloadableModPanelFileControl Margin="0 0 0 8" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-
-            <Separator Grid.Row="2"
-                       Margin="0 0 0 8"
-                       Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}" />
-
-            <ScrollViewer Grid.Row="3" Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}">
-                <ItemsControl ItemsSource="{Binding Path=ArchivedFiles, Mode=OneTime}"
-                              d:ItemsSource="{d:SampleData ItemCount=2}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <gameBanana:GameBananaDownloadableModPanelFileControl Margin="0 0 0 8" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-
-            <CheckBox Grid.Row="4" 
-                      Margin="0 0 0 8"
-                      Content="{Resx ModLoader_GameBanana_ArchivedFilesToggle}"
-                      Visibility="{Binding Path=ArchivedFiles.Count, Converter={rcp:IntToVisibilityConverter}}"
-                      IsChecked="{Binding Path=ShowArchivedFiles}"
-                      Style="{StaticResource RCP.Styles.CheckBox.Default}" />
 
         </Grid>
 

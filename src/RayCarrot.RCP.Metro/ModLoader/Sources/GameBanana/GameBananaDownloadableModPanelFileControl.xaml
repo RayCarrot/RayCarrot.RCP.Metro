@@ -7,7 +7,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
              mc:Ignorable="d"
-             d:Background="{DynamicResource RCP.Brushes.Card.Background}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DesignWidth="500"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaFileViewModel}"

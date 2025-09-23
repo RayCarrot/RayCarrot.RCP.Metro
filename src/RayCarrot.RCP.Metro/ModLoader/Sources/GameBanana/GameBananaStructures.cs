@@ -92,7 +92,18 @@ public record GameBananaMod(
     [property: JsonProperty("_nLikeCount")] int LikeCount,
     [property: JsonProperty("_nViewCount")] int ViewCount,
     [property: JsonProperty("_sVersion")] string? Version,
-    [property: JsonProperty("_aSubmitter")] GameBananaMember? Submitter);
+    [property: JsonProperty("_aSubmitter")] GameBananaMember? Submitter,
+    [property: JsonProperty("_aCredits")] CreditGroup[]? Credits);
+
+public record CreditGroup(
+    [property: JsonProperty("_sGroupName")] string GroupName,
+    [property: JsonProperty("_aAuthors")] GameBananaAuthor[]? Authors);
+
+public record GameBananaAuthor(
+    [property: JsonProperty("_idRow")] int? Id, // Null if not defined as a GameBanana user
+    [property: JsonProperty("_sName", Required = Required.Always)] string Name,
+    [property: JsonProperty("_sRole")] string Role,
+    [property: JsonProperty("_sProfileUrl")] string? ProfileUrl);
 
 public record GameBananaFile(
     [property: JsonProperty("_idRow", Required = Required.Always)] int Id,

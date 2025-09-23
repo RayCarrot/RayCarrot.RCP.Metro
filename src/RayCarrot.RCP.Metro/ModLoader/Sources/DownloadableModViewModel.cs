@@ -2,6 +2,6 @@
 
 public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
 {
-    public virtual void OnSelected() { }
+    public virtual Task LoadAsync() => Task.CompletedTask;
     public virtual void Dispose() { }
 }
