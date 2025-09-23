@@ -33,7 +33,8 @@
                                                     VerticalAlignment="Center"/>
 
                         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                   Text="{Binding Path=DisplayHeader.Value}" />
+                                   DataContext="{Binding Path=DisplayHeader}"
+                                   Text="{Binding Path=Value}" />
 
                     </StackPanel>
 
