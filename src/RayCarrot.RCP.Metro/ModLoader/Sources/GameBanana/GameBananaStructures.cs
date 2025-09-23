@@ -103,7 +103,8 @@ public record GameBananaAuthor(
     [property: JsonProperty("_idRow")] int? Id, // Null if not defined as a GameBanana user
     [property: JsonProperty("_sName", Required = Required.Always)] string Name,
     [property: JsonProperty("_sRole")] string Role,
-    [property: JsonProperty("_sProfileUrl")] string? ProfileUrl);
+    [property: JsonProperty("_sProfileUrl")] string? ProfileUrl,
+    [property: JsonProperty("_sAvatarUrl")] string? AvatarUrl);
 
 public record GameBananaFile(
     [property: JsonProperty("_idRow", Required = Required.Always)] int Id,

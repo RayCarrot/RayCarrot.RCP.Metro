@@ -288,7 +288,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
         Credits = mod.Credits?.
             Select(x => new CreditsGroupViewModel(x.GroupName, x.Authors?.
-                Select(m => new AuthorViewModel(m.Name, m.Role)).
+                Select(m => new AuthorViewModel(m.AvatarUrl != null ? new ImageViewModel(m.AvatarUrl, decodePixelWidth: 25) : null, m.Name, m.Role)).
                 ToObservableCollection())).
             ToObservableCollection();
 
@@ -341,12 +341,15 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public class AuthorViewModel : BaseViewModel
     {
-        public AuthorViewModel(string name, string? role)
+        public AuthorViewModel(ImageViewModel? avatar, string name, string? role)
         {
+            Avatar = avatar;
+            Avatar?.Load();
             Name = name;
             Role = role;
         }
 
+        public ImageViewModel? Avatar { get; } // TODO-UPDATE: Cache these?
         public string Name { get; }
         public string? Role { get; }
     }
@@ -379,10 +382,10 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             BitmapImage imgSource = new();
             imgSource.BeginInit();
             imgSource.CacheOption = BitmapCacheOption.OnLoad;
-            imgSource.UriSource = url;
+            imgSource.DownloadCompleted += (_, _) => IsLoadingImage = false;
             imgSource.DecodePixelWidth = _decodePixelWidth;
             imgSource.DecodePixelHeight = _decodePixelHeight;
-            imgSource.DownloadCompleted += (_, _) => IsLoadingImage = false;
+            imgSource.UriSource = url;
             imgSource.EndInit();
 
             ImageSource = imgSource;

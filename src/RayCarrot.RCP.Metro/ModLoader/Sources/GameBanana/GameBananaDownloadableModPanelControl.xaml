@@ -201,7 +201,8 @@
                                             <StackPanel>
                                                 <TextBlock Text="{Binding Path=GroupName, Mode=OneTime}"
                                                            Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                                           Margin="0 0 0 4"/>
+                                                           Margin="0 0 0 4"
+                                                           TextWrapping="Wrap" />
 
                                                 <ItemsControl ItemsSource="{Binding Path=Authors, Mode=OneTime}"
                                                               Margin="4 0 0 4">
@@ -213,16 +214,23 @@
                                                                     <ColumnDefinition Width="*" />
                                                                 </Grid.ColumnDefinitions>
 
-                                                                <!-- TODO-UPDATE: Add profile picture -->
                                                                 <Image Grid.Column="0"
-                                                                       Width="28" 
-                                                                       Source="https://images.gamebanana.com/img/av/630cff7a9f827.png"
+                                                                       Width="25" 
+                                                                       VerticalAlignment="Center"
+                                                                       Source="{Binding Path=Avatar.ImageSource}"
                                                                        Margin="0 0 4 0"/>
+
+                                                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                                            Width="20" Height="20"
+                                                                                            VerticalAlignment="Center"
+                                                                                            Visibility="{Binding Path=Avatar, Converter={rcp:ObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                                                                            Kind="AccountOutline" />
 
                                                                 <StackPanel Grid.Column="1"
                                                                             VerticalAlignment="Center">
                                                                     <!-- TODO-UPDATE: Add command to link -->
-                                                                    <TextBlock TextTrimming="CharacterEllipsis">
+                                                                    <TextBlock TextTrimming="CharacterEllipsis"
+                                                                               ToolTip="{Binding Path=Name, Mode=OneTime}">
                                                                         <Hyperlink>
                                                                             <Run Text="{Binding Path=Name, Mode=OneTime}" />
                                                                         </Hyperlink>
@@ -232,7 +240,7 @@
                                                                                FontSize="11"
                                                                                FontStyle="Italic" 
                                                                                Visibility="{Binding Path=Role, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                                                                               TextTrimming="CharacterEllipsis" />
+                                                                               TextWrapping="Wrap" />
 
                                                                 </StackPanel>
 
