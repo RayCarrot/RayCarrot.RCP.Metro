@@ -18,6 +18,7 @@
 • Added a new easter egg code (thanks Lapislalipek!)
 • Fixed bugs with showing the progression for Rayman Hoodlums' Revenge (thanks Dr_st!)
 • Fixed a bug where marking a mod to be uninstalled would still show its changes under the list of modified files if it was previously enabled
+• Fixed a bug where the mod categories list would get duplicated after applying mods
 • Fixed a bug where the app would crash if there was an error when copying text to the clipboard
 • Bug fixes
 

@@ -22,7 +22,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources);
 
-        Categories = new ObservableCollection<DownloadableModsCategoryViewModel>();
+        Categories = new ObservableCollectionEx<DownloadableModsCategoryViewModel>();
 
         // Add main category for all mods. No need to localize since the rest of the category names aren't localized.
         Categories.Insert(0, new DownloadableModsCategoryViewModel("All", null, null));
@@ -67,7 +67,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public LocalizedString? FeedInfoText { get; set; }
 
     public bool HasCategories { get; set; }
-    public ObservableCollection<DownloadableModsCategoryViewModel> Categories { get; }
+    public ObservableCollectionEx<DownloadableModsCategoryViewModel> Categories { get; }
     public DownloadableModsCategoryViewModel SelectedCategory { get; set; }
 
     public DownloadableModViewModel? SelectedMod
@@ -103,6 +103,9 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     {
         try
         {
+            // Clear all except the first item
+            Categories.ModifyCollection(x => x.RemoveRange(1, x.Count - 1));
+
             foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
             {
                 foreach (DownloadableModsCategoryViewModel cat in await source.Source.LoadDownloadableModsCategoriesAsync(_httpClient, GameInstallation))
