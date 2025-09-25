@@ -118,6 +118,9 @@ public class GameBananaWebView : WebView2
             // Initialize the core
             await webView.EnsureCoreWebView2Async(null);
 
+            // Update the color scheme
+            webView.UpdateColorScheme();
+
             // Navigate to the string
             webView.NavigateToString(webView.StyleHtml(html));
         }
@@ -130,6 +133,9 @@ public class GameBananaWebView : WebView2
             // Initialize the core
             await webView.EnsureCoreWebView2Async(null);
 
+            // Update the color scheme
+            webView.UpdateColorScheme();
+
             // Navigate to the string
             webView.NavigateToString(webView.StyleHtml(html));
         }
@@ -140,6 +146,13 @@ public class GameBananaWebView : WebView2
     #region Private Methods
 
     private static string ColorToHtml(Color color) => $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+
+    private void UpdateColorScheme()
+    {
+        CoreWebView2.Profile.PreferredColorScheme = Services.Data.Theme_DarkMode
+            ? CoreWebView2PreferredColorScheme.Dark
+            : CoreWebView2PreferredColorScheme.Light;
+    }
 
     private string StyleHtml(string html)
     {
