@@ -141,29 +141,25 @@
                                FontSize="11" />
 
                     <!-- Text -->
-                    <ScrollViewer Grid.Row="2" 
-                                  VerticalAlignment="Top"
-                                  Visibility="{Binding Path=Text, Converter={rcp:StringEmptyToVisibilityConverter}}"
-                                  Margin="0 8 0 8"
-                                  Padding="0 0 4 0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="2" Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                            <Border Grid.Column="0" 
-                                    Background="{DynamicResource RCP.Brushes.Separator.Quote}"
-                                    Width="5"
-                                    Margin="0 0 8 0" />
+                        <Border Grid.Column="0" 
+                                Background="{DynamicResource RCP.Brushes.Separator.Quote}"
+                                Width="5"
+                                Margin="0 0 8 0" />
 
-                            <TextBlock Grid.Column="1"
-                                       Text="{Binding Path=Text, Mode=OneTime}"
-                                       d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                       TextWrapping="Wrap"/>
+                        <rcp:GameBananaWebView Grid.Column="1" 
+                                               ForegroundColor="{DynamicResource MahApps.Colors.ThemeForeground}"
+                                               HighlightColor="#808080"
+                                               GreenColor="{StaticResource RCP.Colors.GreenPrimary500}"
+                                               RedColor="{StaticResource RCP.Colors.RedPrimary500}"
+                                               Html="{Binding Path=Text}" />
 
-                        </Grid>
-                    </ScrollViewer>
+                    </Grid>
 
                 </Grid>
             </rcp:Card>

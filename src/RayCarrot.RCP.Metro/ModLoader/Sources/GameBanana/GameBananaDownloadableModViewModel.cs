@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -43,7 +42,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         UploaderUrl = uploaderUrl;
         UploadDate = uploadDate;
         Description = description;
-        Text = RemoveHthmlFromString(text);
+        Text = text;
 
         // TODO-UPDATE: Can we format date without weekday?
         // Uploaded by {0} on {1}
@@ -191,40 +190,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     #endregion
 
     #region Private Methods
-
-    private static string RemoveHthmlFromString(string html)
-    {
-        // Linebreaks
-        html = html.Replace("<br>", Environment.NewLine);
-        html = html.Replace(@"</li>", Environment.NewLine);
-        html = html.Replace(@"</h3>", Environment.NewLine);
-        html = html.Replace(@"</h2>", Environment.NewLine);
-        html = html.Replace(@"</h1>", Environment.NewLine);
-        html = html.Replace("<ul>", Environment.NewLine);
-        
-        // Bullet point
-        html = html.Replace("<li>", "• ");
-        
-        // Unique spaces
-        html = html.Replace("&nbsp;", " ");
-        html = html.Replace(@"\u00a0", " ");
-
-        // Unique characters
-        html = html.Replace("&amp;", "&");
-        html = html.Replace("&gt;", ">");
-        
-        // Remove tabs
-        html = html.Replace("\t", String.Empty);
-        
-        // Remove all remaining html tags
-        html = Regex.Replace(html, "<.*?>", String.Empty);
-        
-        // Convert newlines of 3 or more to 2 newlines
-        html = Regex.Replace(html, "[\\r\\n]{3,}", "\n\n", RegexOptions.Multiline);
-        
-        // Trim extra whitespace at start and end
-        return html.Trim();
-    }
 
     private void UpdateCurrentImage()
     {
