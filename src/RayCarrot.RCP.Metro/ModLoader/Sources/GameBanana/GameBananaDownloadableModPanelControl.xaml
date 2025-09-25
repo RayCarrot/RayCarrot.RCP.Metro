@@ -352,16 +352,15 @@
                                 <Separator Margin="0 0 0 8"
                                            Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}" />
 
-                                <ScrollViewer Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}">
-                                    <ItemsControl ItemsSource="{Binding Path=ArchivedFiles, Mode=OneTime}"
-                                                  d:ItemsSource="{d:SampleData ItemCount=2}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <gameBanana:GameBananaDownloadableModPanelFileControl Margin="0 0 0 8" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </ScrollViewer>
+                                <ItemsControl Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}"
+                                              ItemsSource="{Binding Path=ArchivedFiles, Mode=OneTime}"
+                                              d:ItemsSource="{d:SampleData ItemCount=2}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <gameBanana:GameBananaDownloadableModPanelFileControl Margin="0 0 0 8" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
                             </StackPanel>
                         </ScrollViewer>

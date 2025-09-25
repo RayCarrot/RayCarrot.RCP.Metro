@@ -306,7 +306,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public class AuthorViewModel : BaseViewModel
     {
-        public AuthorViewModel(ImageViewModel? avatar, string name, string? role)
+        public AuthorViewModel(ImageViewModel? avatar, string? name, string? role)
         {
             Avatar = avatar;
             Avatar?.Load();
@@ -314,8 +314,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             Role = role;
         }
 
-        public ImageViewModel? Avatar { get; } // TODO-UPDATE: Cache these?
-        public string Name { get; }
+        public ImageViewModel? Avatar { get; }
+        public string? Name { get; }
         public string? Role { get; }
     }
 
