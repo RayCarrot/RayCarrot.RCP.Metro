@@ -117,6 +117,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public ObservableCollection<CreditsGroupViewModel>? Credits { get; set; }
 
+    public bool IsLoading { get; set; }
     public bool IsLoaded { get; set; }
     public bool HasViewed { get; set; }
 
@@ -294,18 +295,27 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             return;
 
         IsLoaded = true;
+        IsLoading = true;
 
-        // Mark as viewed
-        HasViewed = true;
-        if (!Services.Data.ModLoader_ViewedMods.ContainsKey(_downloadableModsSource.Id))
-            Services.Data.ModLoader_ViewedMods.Add(_downloadableModsSource.Id, new List<ViewedMod>());
-        Services.Data.ModLoader_ViewedMods[_downloadableModsSource.Id].Add(new ViewedMod(GameBananaId.ToString(), DateTime.Now, Version));
+        try
+        {
+            // Mark as viewed
+            HasViewed = true;
+            if (!Services.Data.ModLoader_ViewedMods.ContainsKey(_downloadableModsSource.Id))
+                Services.Data.ModLoader_ViewedMods.Add(_downloadableModsSource.Id, new List<ViewedMod>());
+            Services.Data.ModLoader_ViewedMods[_downloadableModsSource.Id]
+                .Add(new ViewedMod(GameBananaId.ToString(), DateTime.Now, Version));
 
-        // TODO-UPDATE: Catch exceptions
-        // Load info
-        GameBananaMod mod = await _downloadableModsSource.LoadModDetailsAsync(_httpClient, GameBananaId);
-        LoadDetailsFromMod(mod);
-        UpdateCurrentImage(); // TODO-UPDATE: Should this be here?
+            // TODO-UPDATE: Catch exceptions
+            // Load info
+            GameBananaMod mod = await _downloadableModsSource.LoadModDetailsAsync(_httpClient, GameBananaId);
+            LoadDetailsFromMod(mod);
+            UpdateCurrentImage(); // TODO-UPDATE: Should this be here?
+        }
+        finally
+        {
+            IsLoading = false;
+        }
     }
 
     public override void Dispose()

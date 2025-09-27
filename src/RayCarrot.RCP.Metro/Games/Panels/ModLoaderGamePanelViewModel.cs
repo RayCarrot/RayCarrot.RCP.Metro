@@ -86,6 +86,7 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
             else
                 InfoText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_InfoMultiple), count);
 
+            // TODO-UPDATE: Optimize this
             // Check for updates if set to do so
             if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
             {

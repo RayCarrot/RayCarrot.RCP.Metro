@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Loading Border -->
+    <Style x:Key="RCP.Styles.Border.Loading" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#808080" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius.Default}" />
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                         From="1" 
+                                         To="0.5" 
+                                         Duration="0:0:1"  />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
