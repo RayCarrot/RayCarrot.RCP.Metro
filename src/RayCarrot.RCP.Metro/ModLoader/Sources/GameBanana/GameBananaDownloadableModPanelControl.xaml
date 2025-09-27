@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana.GameBananaDownloadableModPanelControl"
+<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana.GameBananaDownloadableModPanelControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -42,7 +42,7 @@
                         Grid.ColumnSpan="3">
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                            HorizontalAlignment="Center"
-                           Text="{Binding Path=Name, Mode=OneTime}"
+                           Text="{Binding Path=Name}"
                            d:Text="Mod title"
                            TextTrimming="CharacterEllipsis"
                            Margin="0 0 0 4" />
@@ -55,7 +55,7 @@
                          d:Text="Uploaded by"/>
 
                     <Hyperlink Command="{Binding Path=OpenUserPageCommand, Mode=OneTime}">
-                        <Run Text="{Binding Path=UploaderUserName, Mode=OneTime}"
+                        <Run Text="{Binding Path=SubmitterName}"
                              d:Text="RayCarrot" />
                     </Hyperlink>
 
@@ -108,7 +108,7 @@
                                   IndexPlacement="Bottom"
                                   MouseHoverBorderEnabled="False"
                                   IsBannerEnabled="False"
-                                  ItemsSource="{Binding Path=Images, Mode=OneTime}"
+                                  ItemsSource="{Binding Path=Images}"
                                   SelectedIndex="{Binding Path=SelectedImageIndex}"
                                   Margin="0 0 0 8">
                         <mah:FlipView.ItemTemplate>
@@ -133,7 +133,7 @@
 
                     <!-- Description -->
                     <TextBlock Grid.Row="1"
-                               Text="{Binding Path=Description, Mode=OneTime}"
+                               Text="{Binding Path=Description}"
                                d:Text="Description"
                                Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}}"
                                TextWrapping="Wrap"
@@ -141,7 +141,9 @@
                                FontSize="11" />
 
                     <!-- Text -->
-                    <Grid Grid.Row="2" Margin="0 8">
+                    <Grid Grid.Row="2" 
+                          Margin="0 8" 
+                          Visibility="{Binding Path=Text, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -265,9 +267,9 @@
 
                         <!-- Main image -->
                         <Image Grid.Row="0" 
-                               Width="{Binding Path=MainImageWidth, Mode=OneTime}" 
-                               Height="{Binding Path=MainImageHeight, Mode=OneTime}"
-                               MaxHeight="{Binding Path=MainImageWidth, Mode=OneTime}"
+                               Width="{Binding Path=MainImageWidth}" 
+                               Height="{Binding Path=MainImageHeight}"
+                               MaxHeight="{Binding Path=MainImageWidth}"
                                Source="{Binding Path=MainImage.ImageSource}"
                                d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png"
                                Margin="0 0 0 8" />
@@ -279,30 +281,36 @@
                                     Margin="0 0 0 8">
                             <iconPacks:PackIconMaterial Kind="HeartOutline" 
                                                         Foreground="{StaticResource RCP.Brushes.GameBanana.Like}" 
+                                                        Visibility="{Binding Path=LikesCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 4 0" />
-                            <TextBlock Text="{Binding Path=LikesCount, Mode=OneTime}"
+                            <TextBlock Text="{Binding Path=LikesCount}"
                                        d:Text="5"
+                                       Visibility="{Binding Path=LikesCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                        FontSize="14"
                                        VerticalAlignment="Center"
                                        Margin="0 0 12 0" />
 
                             <iconPacks:PackIconMaterial Kind="ArrowDownBoldOutline" 
                                                         Foreground="{StaticResource RCP.Brushes.GameBanana.Download}" 
+                                                        Visibility="{Binding Path=DownloadsCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 4 0"/>
-                            <TextBlock Text="{Binding Path=DownloadsCount, Mode=OneTime}"
+                            <TextBlock Text="{Binding Path=DownloadsCount}"
                                        d:Text="5"
+                                       Visibility="{Binding Path=DownloadsCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                        FontSize="14"
                                        VerticalAlignment="Center"
                                        Margin="0 0 12 0" />
 
                             <iconPacks:PackIconMaterial Kind="EyeOutline" 
                                                         Foreground="{StaticResource RCP.Brushes.GameBanana.View}" 
+                                                        Visibility="{Binding Path=ViewsCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 4 0"/>
-                            <TextBlock Text="{Binding Path=ViewsCount, Mode=OneTime}"
+                            <TextBlock Text="{Binding Path=ViewsCount}"
                                        d:Text="5"
+                                       Visibility="{Binding Path=ViewsCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                        FontSize="14"
                                        VerticalAlignment="Center" />
                         </StackPanel>
@@ -340,7 +348,7 @@
                                            Style="{StaticResource RCP.Styles.TextBlock.Header}" 
                                            Margin="0 0 0 8" />
 
-                                <ItemsControl ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                                <ItemsControl ItemsSource="{Binding Path=Files}"
                                               d:ItemsSource="{d:SampleData ItemCount=2}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -353,7 +361,7 @@
                                            Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}" />
 
                                 <ItemsControl Visibility="{Binding Path=ShowArchivedFiles, Converter={rcp:BooleanToVisibilityConverter}}"
-                                              ItemsSource="{Binding Path=ArchivedFiles, Mode=OneTime}"
+                                              ItemsSource="{Binding Path=ArchivedFiles}"
                                               d:ItemsSource="{d:SampleData ItemCount=2}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -368,7 +376,7 @@
                         <!-- Options -->
                         <CheckBox Grid.Row="1"
                                   Content="{Resx ModLoader_GameBanana_ArchivedFilesToggle}"
-                                  Visibility="{Binding Path=ArchivedFiles.Count, Converter={rcp:IntToVisibilityConverter}}"
+                                  Visibility="{Binding Path=ArchivedFiles.Count, Converter={rcp:IntToVisibilityConverter}, FallbackValue=Collapsed}"
                                   IsChecked="{Binding Path=ShowArchivedFiles}"
                                   Style="{StaticResource RCP.Styles.CheckBox.Default}" />
 

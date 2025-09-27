@@ -71,25 +71,18 @@ public class GameBananaModsSource : DownloadableModsSource
 
             // Make sure at least one file has mod integration with RCP
             if (validFiles.Count > 0)
-                modViewModels.Add(new GameBananaDownloadableModViewModel(
+            {
+                GameBananaDownloadableModViewModel modViewModel = new(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
                     httpClient: httpClient,
                     gameBananaId: mod.Id,
-                    name: mod.Name ?? String.Empty,
-                    uploaderUserName: mod.Submitter?.Name ?? String.Empty,
-                    uploaderUrl: mod.Submitter?.ProfileUrl,
-                    uploadDate: mod.DateAdded,
-                    description: mod.Description ?? String.Empty,
-                    text: mod.Text ?? String.Empty,
-                    version: mod.Version ?? String.Empty,
-                    rootCategory: mod.RootCategory,
-                    previewMedia: mod.PreviewMedia,
-                    likesCount: mod.LikeCount,
-                    downloadsCount: mod.DownloadCount ?? 0,
-                    viewsCount: mod.ViewCount,
-                    files: validFiles,
-                    isFeatured: true));
+                    isFeatured: true);
+
+                modViewModel.LoadDetailsFromMod(mod);
+
+                modViewModels.Add(modViewModel);
+            }
         }
     }
 
@@ -144,7 +137,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
         Logger.Info("Loading downloadable GameBanana mods");
 
-        List<GameBananaRecord> modRecords = new();
+        List<GameBananaMod> modRecords = new();
 
         int largestPageCount = 0;
 
@@ -199,49 +192,19 @@ public class GameBananaModsSource : DownloadableModsSource
 
         Logger.Info("{0} mods found", modRecords.Count);
 
-        if (modRecords.Count == 0)
-            return new DownloadableModsFeedPage(modViewModels, largestPageCount);
-
-        // Get data for every mod
-        GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
-            $"https://gamebanana.com/apiv11/Mod/Multi?" +
-            $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
-            $"_csvProperties=_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations,_aPreviewMedia");
-
         // Process every mod
-        for (int i = 0; i < modRecords.Count; i++)
+        foreach (GameBananaMod modRecord in modRecords)
         {
-            GameBananaRecord modRecord = modRecords[i];
-            GameBananaMod mod = mods[i];
+            GameBananaDownloadableModViewModel modViewModel = new(
+                downloadableModsSource: this,
+                modLoaderViewModel: modLoaderViewModel,
+                httpClient: httpClient,
+                gameBananaId: modRecord.Id,
+                isFeatured: false);
 
-            // Make sure the mod has files
-            if (mod.Files == null)
-                continue;
+            modViewModel.LoadDetailsFromMod(modRecord);
 
-            // Get the files which contain valid RCP mods
-            List<GameBananaFile> validFiles = GetValidFiles(mod, mod.Files);
-
-            // Make sure at least one file has mod integration with RCP
-            if (validFiles.Count > 0)
-                modViewModels.Add(new GameBananaDownloadableModViewModel(
-                    downloadableModsSource: this,
-                    modLoaderViewModel: modLoaderViewModel,
-                    httpClient: httpClient,
-                    gameBananaId: modRecord.Id,
-                    name: modRecord.Name,
-                    uploaderUserName: modRecord.Submitter?.Name ?? String.Empty,
-                    uploaderUrl: modRecord.Submitter?.ProfileUrl,
-                    uploadDate: modRecord.DateAdded,
-                    description: mod.Description ?? String.Empty,
-                    text: mod.Text ?? String.Empty,
-                    version: modRecord.Version ?? String.Empty,
-                    rootCategory: modRecord.RootCategory,
-                    previewMedia: mod.PreviewMedia,
-                    likesCount: modRecord.LikeCount,
-                    downloadsCount: mod.DownloadCount ?? 0,
-                    viewsCount: modRecord.ViewCount,
-                    files: validFiles,
-                    isFeatured: false));
+            modViewModels.Add(modViewModel);
         }
 
         Logger.Info("Finished loading mods");
@@ -427,7 +390,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 $"_sSort=updated&" +
                 $"_csvModelInclusions=Mod");
 
-            List<GameBananaRecord> modRecords = newSubfeed.Records.
+            List<GameBananaMod> modRecords = newSubfeed.Records.
                 // Take the 10 most recent new mods
                 Take(10).
                 // Add the 5 most recent updated mods
@@ -453,7 +416,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
             for (int i = 0; i < mods.Length; i++)
             {
-                GameBananaRecord modRecord = modRecords[i];
+                GameBananaMod modRecord = modRecords[i];
                 GameBananaMod mod = mods[i];
 
                 // Treat as an update if it was modified a day after being added
@@ -469,12 +432,13 @@ public class GameBananaModsSource : DownloadableModsSource
                                            TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
                                        m.Any(mm => mm.ToolId == RaymanControlPanelToolId)))
                 {
-                     yield return new NewModViewModel(
-                        name: modRecord.Name,
-                        modificationDate: modRecord.DateModified,
-                        modUrl: $"https://gamebanana.com/mods/{modRecord.Id}",
-                        isUpdate: isUpdate,
-                        gameDescriptors: g.Value);
+                    if (modRecord.DateModified != null)
+                         yield return new NewModViewModel(
+                            name: modRecord.Name,
+                            modificationDate: modRecord.DateModified.Value,
+                            modUrl: $"https://gamebanana.com/mods/{modRecord.Id}",
+                            isUpdate: isUpdate,
+                            gameDescriptors: g.Value);
                 }
             }
         }
