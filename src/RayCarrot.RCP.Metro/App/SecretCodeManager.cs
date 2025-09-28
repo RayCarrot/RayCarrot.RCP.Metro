@@ -129,6 +129,7 @@ public static class SecretCodeManager
                 async () =>
                 {
                     Services.Messenger.Send(new SecretCodeEnteredMessage("GUESTS"));
+                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, Color.FromRgb(0xAA, 0xB1, 0x4B));
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Guests, Resources.SecretCodes_SecretHeader, MessageType.Success);
                 }
