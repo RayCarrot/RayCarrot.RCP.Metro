@@ -53,17 +53,17 @@
         <DataTemplate x:Key="TextLoadingTemplate">
             <StackPanel>
                 <Border Style="{StaticResource RCP.Styles.Border.Loading}"
-                        Width="300" Height="10"
+                        Width="300" Height="12"
                         HorizontalAlignment="Left"
                         Visibility="{Binding Path=Description, Converter={rcp:ObjectNullToVisibilityConverter}}"
                         Margin="0 0 0 4" />
                 <Border Style="{StaticResource RCP.Styles.Border.Loading}"
-                        Width="250" Height="10"
+                        Width="250" Height="12"
                         HorizontalAlignment="Left"
                         Visibility="{Binding Path=Description, Converter={rcp:ObjectNullToVisibilityConverter}}"
                         Margin="0 0 0 4" />
                 <Border Style="{StaticResource RCP.Styles.Border.Loading}"
-                        Width="200" Height="10"
+                        Width="200" Height="12"
                         HorizontalAlignment="Left"
                         Visibility="{Binding Path=Description, Converter={rcp:ObjectNullToVisibilityConverter}}" />
             </StackPanel>
@@ -412,7 +412,7 @@
                         <StackPanel Grid.Row="1"
                                     HorizontalAlignment="Center"
                                     Orientation="Horizontal"
-                                    Margin="0 0 0 8">
+                                    Margin="0 0 0 4">
                             <iconPacks:PackIconMaterial Kind="HeartOutline" 
                                                         Foreground="{StaticResource RCP.Brushes.GameBanana.Like}" 
                                                         Visibility="{Binding Path=LikesCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
@@ -449,14 +449,20 @@
                                        VerticalAlignment="Center" />
                         </StackPanel>
 
-                        <!-- TODO-UPDATE: Databind -->
+                        <!-- Version -->
                         <TextBlock Grid.Row="3"
-                                   Text="Version 1.0.0" 
-                                   Margin="0 0 0 4"
+                                   Text="{Binding Path=VersionText.Value}"
+                                   Visibility="{Binding Path=VersionText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                   d:Text="Version 1.0.0" 
+                                   Margin="0 4 0 0"
                                    FontStyle="Italic"/>
-                        <!-- TODO-UPDATE: Databind -->
+
+                        <!-- Last updated -->
                         <TextBlock Grid.Row="4"
-                                   Text="Last updated on April 11, 2024"
+                                   Text="{Binding Path=LastUpdatedText.Value}" 
+                                   d:Text="Last updated on Date"
+                                   Visibility="{Binding Path=LastUpdatedText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                   Margin="0 4 0 0"
                                    FontStyle="Italic"
                                    TextWrapping="Wrap"/>
 

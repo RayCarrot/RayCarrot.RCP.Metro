@@ -88,6 +88,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public LocalizedString? UploadInfoPostText { get; set; }
 
     public ModVersion? Version { get; set; }
+    public LocalizedString? VersionText { get; set; }
+    public LocalizedString? LastUpdatedText { get; set; }
 
     public string? RootCategoryIconUrl { get; set; }
     public string? RootCategoryName { get; set; }
@@ -204,8 +206,19 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             });
         }
 
+        if (mod.DateModified != null && mod.DateModified != mod.DateAdded)
+        {
+            // TODO-UPDATE: Can we format date without weekday?
+            LastUpdatedText = $"Last updated on {mod.DateModified:D}"; // TODO-LOC
+        }
+
         if (mod.Version != null && Version == null)
+        {
             Version = ModVersion.TryParse(mod.Version, out ModVersion? v) ? v : null;
+            
+            if (Version != null)
+                VersionText = $"Version {Version}"; // TODO-LOC
+        }
 
         if (mod.RootCategory != null)
         {
