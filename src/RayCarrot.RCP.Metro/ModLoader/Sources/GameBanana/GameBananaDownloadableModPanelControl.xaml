@@ -354,13 +354,18 @@
 
                                                                     <StackPanel Grid.Column="1"
                                                                                 VerticalAlignment="Center">
-                                                                        <!-- TODO-UPDATE: Add command to link -->
                                                                         <TextBlock TextTrimming="CharacterEllipsis"
-                                                                                   ToolTip="{Binding Path=Name, Mode=OneTime}">
-                                                                            <Hyperlink>
+                                                                                   ToolTip="{Binding Path=Name, Mode=OneTime}"
+                                                                                   Visibility="{Binding Path=ProfileUrl, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+                                                                            <Hyperlink Command="{Binding Path=OpenUserPageCommand, Mode=OneTime}">
                                                                                 <Run Text="{Binding Path=Name, Mode=OneTime}" />
                                                                             </Hyperlink>
                                                                         </TextBlock>
+
+                                                                        <TextBlock TextTrimming="CharacterEllipsis"
+                                                                                   Text="{Binding Path=Name, Mode=OneTime}"
+                                                                                   ToolTip="{Binding Path=Name, Mode=OneTime}"
+                                                                                   Visibility="{Binding Path=ProfileUrl, Mode=OneTime, Converter={rcp:ObjectNullToVisibilityConverter}}" />
 
                                                                         <TextBlock Text="{Binding Path=Role, Mode=OneTime}"
                                                                                    FontSize="11"

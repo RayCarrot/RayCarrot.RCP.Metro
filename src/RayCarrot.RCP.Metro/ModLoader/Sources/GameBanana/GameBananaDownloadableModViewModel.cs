@@ -281,7 +281,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
                             DecodePixelWidth = 25,
                         } 
                         : null, 
-                        m.Name, m.Role)).
+                        m.Name, m.Role, m.ProfileUrl ?? m.Url)).
                     ToObservableCollection())).
                 ToObservableCollection();
         }
@@ -365,17 +365,29 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public class AuthorViewModel : BaseViewModel
     {
-        public AuthorViewModel(ImageViewModel? avatar, string? name, string? role)
+        public AuthorViewModel(ImageViewModel? avatar, string? name, string? role, string? profileUrl)
         {
             Avatar = avatar;
             Avatar?.Load();
             Name = name;
             Role = role;
+            ProfileUrl = profileUrl;
+
+            OpenUserPageCommand = new RelayCommand(OpenUserPage);
         }
+
+        public ICommand OpenUserPageCommand { get; }
 
         public ImageViewModel? Avatar { get; }
         public string? Name { get; }
         public string? Role { get; }
+        public string? ProfileUrl { get; }
+
+        public void OpenUserPage()
+        {
+            if (ProfileUrl != null)
+                Services.App.OpenUrl(ProfileUrl);
+        }
     }
 
     public class ImageViewModel : BaseViewModel
