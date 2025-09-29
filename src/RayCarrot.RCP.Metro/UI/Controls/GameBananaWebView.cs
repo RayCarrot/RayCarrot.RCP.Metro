@@ -23,6 +23,12 @@ public class GameBananaWebView : WebView2CompositionControl
 
     #endregion
 
+    #region Private Fields
+
+    private string? _currentHtmlString;
+
+    #endregion
+
     #region Dependency Properties
 
     public string Html
@@ -116,7 +122,7 @@ public class GameBananaWebView : WebView2CompositionControl
 
     private static async void GameBananaWebView_OnHtmlChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
     {
-        if (obj is GameBananaWebView webView && e.NewValue is string html)
+        if (obj is GameBananaWebView webView && e.NewValue is string html && html != webView._currentHtmlString)
         {
             // Initialize the core
             await webView.EnsureCoreWebView2Async(null);
@@ -126,6 +132,7 @@ public class GameBananaWebView : WebView2CompositionControl
 
             // Navigate to the string
             webView.NavigateToString(webView.StyleHtml(html));
+            webView._currentHtmlString = html;
         }
     }
 
@@ -141,6 +148,7 @@ public class GameBananaWebView : WebView2CompositionControl
 
             // Navigate to the string
             webView.NavigateToString(webView.StyleHtml(html));
+            webView._currentHtmlString = html;
         }
     }
 
