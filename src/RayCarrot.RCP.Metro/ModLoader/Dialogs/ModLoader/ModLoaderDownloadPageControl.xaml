@@ -14,6 +14,11 @@
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:DownloadableModsViewModel}"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <UserControl.Resources>
+        <!-- Static control instance to avoid re-creating web view each time and thus causing lag -->
+        <gameBanana:GameBananaDownloadableModPanelControl x:Key="GameBananaDownloadableModPanelControl" 
+                                                          Background="{DynamicResource RCP.Brushes.Card.Background}" />
+    </UserControl.Resources>
     <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}">
         <Grid>
             <!-- Available mods -->
@@ -202,18 +207,15 @@
             </Grid>
 
             <!-- Selected mod -->
-            <Grid DataContext="{Binding Path=SelectedMod}"
-                  Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
-
-                <ContentPresenter Content="{Binding Mode=OneTime}">
-                    <ContentPresenter.Resources>
-                        <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
-                            <gameBanana:GameBananaDownloadableModPanelControl />
-                        </DataTemplate>
-                    </ContentPresenter.Resources>
-                </ContentPresenter>
-
-            </Grid>
+            <mah:TransitioningContentControl x:Name="SelectedModTransitioningContentControl" 
+                                             Content="{Binding Path=SelectedMod}" 
+                                             Transition="Down">
+                <mah:TransitioningContentControl.Resources>
+                    <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                        <ContentPresenter Content="{StaticResource GameBananaDownloadableModPanelControl}" />
+                    </DataTemplate>
+                </mah:TransitioningContentControl.Resources>
+            </mah:TransitioningContentControl>
 
         </Grid>
     </rcp:Card>

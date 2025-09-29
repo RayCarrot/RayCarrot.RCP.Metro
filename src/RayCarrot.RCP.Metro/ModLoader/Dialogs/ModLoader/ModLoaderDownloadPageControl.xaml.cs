@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -12,11 +13,32 @@ public partial class ModLoaderDownloadPageControl : UserControl
     public ModLoaderDownloadPageControl()
     {
         InitializeComponent();
+        DataContextChanged += ModLoaderDownloadPageControl_DataContextChanged;
     }
 
     private ScrollViewer? ModsScrollViewer { get; set; }
 
     public DownloadableModsViewModel ViewModel => (DownloadableModsViewModel)DataContext;
+
+    private void ModLoaderDownloadPageControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        if (DataContext is not DownloadableModsViewModel viewModel)
+            return;
+
+        DataContextChanged -= ModLoaderDownloadPageControl_DataContextChanged;
+
+        viewModel.PropertyChanged += (_, ee) =>
+        {
+            // Different transition based on if it's transitioning in or out
+            if (ee.PropertyName == nameof(viewModel.SelectedMod))
+            {
+                if (viewModel.SelectedMod == null)
+                    SelectedModTransitioningContentControl.Transition = TransitionType.Down;
+                else
+                    SelectedModTransitioningContentControl.Transition = TransitionType.Up;
+            }
+        };
+    }
 
     private void ModsListBox_OnLoaded(object sender, RoutedEventArgs e)
     {
