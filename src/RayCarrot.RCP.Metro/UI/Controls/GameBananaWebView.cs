@@ -5,13 +5,16 @@ using Microsoft.Web.WebView2.Wpf;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameBananaWebView : WebView2
+public class GameBananaWebView : WebView2CompositionControl
 {
     #region Constructor
 
     public GameBananaWebView()
     {
         DefaultBackgroundColor = System.Drawing.Color.Transparent;
+
+        // When using the composition control it results in a blurry. This is a bit hacky, but makes it clearer. 
+        RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.NearestNeighbor);
 
         Loaded += GameBananaWebView_OnLoaded;
         CoreWebView2InitializationCompleted += GameBananaWebView_OnCoreWebView2InitializationCompleted;
