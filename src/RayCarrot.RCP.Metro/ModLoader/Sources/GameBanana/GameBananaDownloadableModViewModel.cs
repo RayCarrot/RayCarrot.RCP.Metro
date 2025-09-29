@@ -410,7 +410,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         public int DecodePixelHeight { get; set; }
 
         public ImageSource? ImageSource { get; set; }
-        public bool IsLoadingImage { get; set; } = true;
 
         public void Load()
         {
@@ -427,7 +426,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             BitmapImage imgSource = new();
             imgSource.BeginInit();
             imgSource.CacheOption = BitmapCacheOption.OnLoad;
-            imgSource.DownloadCompleted += (_, _) => IsLoadingImage = false;
             imgSource.DecodePixelWidth = DecodePixelWidth;
             imgSource.DecodePixelHeight = DecodePixelHeight;
             imgSource.UriSource = uri;

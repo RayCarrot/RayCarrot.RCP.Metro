@@ -173,16 +173,17 @@
                                 <Grid MaxWidth="320" Height="180">
                                     <!-- Image loading -->
                                     <Border Style="{StaticResource RCP.Styles.Border.Loading}"
-                                            Visibility="{Binding Path=IsLoadingImage, Converter={rcp:BooleanToVisibilityConverter}}">
+                                            Visibility="{Binding Path=HasLoaded, ElementName=Image, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
                                         <Viewbox>
                                             <iconPacks:PackIconMaterial Kind="ImageOutline" Margin="20" />
                                         </Viewbox>
                                     </Border>
 
                                     <!-- Image -->
-                                    <Image Source="{Binding Path=ImageSource}"
-                                           d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png">
-                                    </Image>
+                                    <rcp:ImageEx x:Name="Image"
+                                                 Source="{Binding Path=ImageSource}" 
+                                                 d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png">
+                                    </rcp:ImageEx>
                                 </Grid>
                             </DataTemplate>
                         </mah:FlipView.ItemTemplate>
