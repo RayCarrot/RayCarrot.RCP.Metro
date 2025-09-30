@@ -229,13 +229,10 @@
                             <ContentPresenter ContentTemplate="{StaticResource TextLoadingTemplate}" />
                         </StackPanel>
 
-                        <rcp:GameBananaWebView Grid.Column="1" 
-                                               Visibility="{Binding Path=Text, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                                               ForegroundColor="{DynamicResource MahApps.Colors.ThemeForeground}"
-                                               HighlightColor="#808080"
-                                               GreenColor="{StaticResource RCP.Colors.GreenPrimary500}"
-                                               RedColor="{StaticResource RCP.Colors.RedPrimary500}"
-                                               Html="{Binding Path=Text}" />
+                        <TextBlock Grid.Column="1" 
+                                   Visibility="{Binding Path=Text, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Path=Text}" />
 
                     </Grid>
 
