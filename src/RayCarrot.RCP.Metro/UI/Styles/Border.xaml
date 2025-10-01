@@ -3,7 +3,7 @@
 
     <!-- Loading Border -->
     <Style x:Key="RCP.Styles.Border.Loading" TargetType="{x:Type Border}">
-        <Setter Property="Background" Value="#808080" />
+        <Setter Property="Background" Value="{StaticResource RCP.Brushes.Skeleton}" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius.Default}" />
         <Style.Triggers>
             <EventTrigger RoutedEvent="FrameworkElement.Loaded">

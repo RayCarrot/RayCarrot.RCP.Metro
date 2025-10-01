@@ -23,6 +23,7 @@
 
     <!-- General UI -->
     <SolidColorBrush x:Key="RCP.Brushes.Overlay" Color="#60000000" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Skeleton" Color="#808080" po:Freeze="True" />
 
     <!-- Brands -->
     <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" po:Freeze="True" />
