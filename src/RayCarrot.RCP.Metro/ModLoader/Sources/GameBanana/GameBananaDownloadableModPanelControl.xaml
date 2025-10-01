@@ -229,10 +229,11 @@
                             <ContentPresenter ContentTemplate="{StaticResource TextLoadingTemplate}" />
                         </StackPanel>
 
-                        <TextBlock Grid.Column="1" 
-                                   Visibility="{Binding Path=Text, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                                   TextWrapping="Wrap"
-                                   Text="{Binding Path=Text}" />
+                        <ScrollViewer Grid.Column="1">
+                            <rcp:GameBananaHtmlTextBlock Visibility="{Binding Path=Text, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                                         TextWrapping="Wrap" 
+                                                         HtmlText="{Binding Path=Text}" />
+                        </ScrollViewer>
 
                     </Grid>
 

@@ -88,6 +88,7 @@
     <!-- TODO: Update to latest version once we migrate to .NET 8 or above -->
     <PackageReference Include="DirectXTexNet" Version="1.0.1" />
     <PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.3" />
     <PackageReference Include="Magick.NET-Q8-x64" Version="14.8.2" />
     <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="8.0.10" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
