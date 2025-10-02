@@ -242,7 +242,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             if (mod.PreviewMedia.Images.Length > 1 && !HasLoadedImages)
             {
                 // Replace placeholder image
-                Images[0].Url = $"{mod.PreviewMedia.Images[0].BaseUrl}/{mod.PreviewMedia.Images[0].File}";
+                Images[0].Url = $"{mod.PreviewMedia.Images[1].BaseUrl}/{mod.PreviewMedia.Images[1].File}";
                 Images[0].DecodePixelHeight = ImageHeight;
 
                 // Add remaining images
