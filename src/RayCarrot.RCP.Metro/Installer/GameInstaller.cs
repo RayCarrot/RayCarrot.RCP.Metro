@@ -111,20 +111,13 @@ public class GameInstaller : IStatusUpdated, IDisposable
     /// <param name="itemProgress">The item progress</param>
     private void OnStatusUpdated(OperationState operationState = OperationState.Running, Progress? itemProgress = null)
     {
-        OnStatusUpdated(new OperationProgressEventArgs(new ItemsOperationProgress()
-        {
-            // Set the name to the install method
-            OperationName = nameof(InstallAsync),
-
-            // Set the item progress
-            ItemProgress = itemProgress ?? new Progress(0),
-
-            // Set the total progress
-            TotalProgress = new Progress((CurrentItem * 100) + (itemProgress?.Percentage_100 ?? 0), TotalPercentage),
-
-            // Set the current item
-            CurrentItem = CurrentObject
-        }, operationState));
+        // Set the total progress, item progress, current item and name to the install method
+        OnStatusUpdated(new OperationProgressEventArgs(new ItemsOperationProgress(
+            new Progress((CurrentItem * 100) + (itemProgress?.Percentage_100 ?? 0), TotalPercentage),
+            itemProgress ?? new Progress(0),
+            CurrentObject,
+            nameof(InstallAsync)
+            ), operationState));
     }
 
     #endregion

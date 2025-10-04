@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿//#nullable disable
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Media;
 
@@ -15,7 +16,7 @@ public static class VisualExtensions
     /// <typeparam name="T">The type of element to get</typeparam>
     /// <param name="element">The element to get the type from</param>
     /// <returns>The element</returns>
-    public static T GetDescendantByType<T>(this Visual element) 
+    public static T? GetDescendantByType<T>(this Visual element) 
         where T : class
     {
         return element.GetDescendantByType(typeof(T)) as T;
@@ -27,7 +28,7 @@ public static class VisualExtensions
     /// <param name="element">The element to get the type from</param>
     /// <param name="descendantType">The type of element to get</param>
     /// <returns>The element</returns>
-    public static object GetDescendantByType(this Visual element, Type descendantType)
+    public static object? GetDescendantByType(this Visual? element, Type descendantType)
     {
         if (element == null)
             return default;
@@ -38,7 +39,7 @@ public static class VisualExtensions
         if (element is FrameworkElement frameworkElement)
             frameworkElement.ApplyTemplate();
 
-        object foundElement = null;
+        object? foundElement = null;
 
         for (var i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
         {

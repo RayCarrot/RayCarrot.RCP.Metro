@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -90,8 +89,6 @@ public static class EnumExtensions
 
         return EnumHelpers.GetValues<T>();
     }
-
-#nullable enable
 
     /// <summary>
     /// Gets the first attribute of specified type for the enum value
