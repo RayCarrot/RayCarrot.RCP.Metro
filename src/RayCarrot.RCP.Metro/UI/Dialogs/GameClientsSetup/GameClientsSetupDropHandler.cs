@@ -25,6 +25,10 @@ public class GameClientsSetupDropHandler : DefaultDropHandler
             dropInfo.Data is not InstalledGameClientViewModel gameClient)
             return;
 
+        // Ignore if no change
+        if (dropInfo.IsSourceSameAsDestination())
+            return;
+
         int insertIndex = GetInsertIndex(dropInfo);
         int objIndex = ViewModel.InstalledGameClients.IndexOf(gameClient);
 

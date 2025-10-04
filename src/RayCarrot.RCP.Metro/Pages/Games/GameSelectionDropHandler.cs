@@ -28,6 +28,10 @@ public class GameSelectionDropHandler : DefaultDropHandler
             dropInfo.Data is not InstalledGameViewModel game)
             return;
 
+        // Ignore if no change
+        if (dropInfo.IsSourceSameAsDestination())
+            return;
+
         int insertIndex = GetInsertIndex(dropInfo);
         int objIndex = ViewModel.Games.IndexOf(game);
 

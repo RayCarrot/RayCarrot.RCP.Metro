@@ -16,6 +16,10 @@ public class ModDropHandler : DefaultDropHandler
 
     public override void Drop(IDropInfo dropInfo)
     {
+        // Ignore if no change
+        if (dropInfo.IsSourceSameAsDestination())
+            return;
+
         // Call base drop handler
         base.Drop(dropInfo);
             
