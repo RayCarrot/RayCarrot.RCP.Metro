@@ -1,17 +1,15 @@
-﻿using RayCarrot.RCP.Metro.ModLoader.Sources;
-
-namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+﻿namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
 public class DownloadableModsCategoryViewModel : BaseViewModel
 {
-    public DownloadableModsCategoryViewModel(string name, string? iconUrl, DownloadableModsFeedFilter? filter)
+    public DownloadableModsCategoryViewModel(string name, string? iconUrl, string? id)
     {
         Name = name;
         IconUrl = iconUrl;
-        Filter = filter;
+        Id = id;
     }
 
     public string Name { get; }
     public string? IconUrl { get; }
-    public DownloadableModsFeedFilter? Filter { get; }
+    public string? Id { get; }
 }

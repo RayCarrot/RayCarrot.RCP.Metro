@@ -8,8 +8,9 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
+             xmlns:sources="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources"
              mc:Ignorable="d"
-             d:DesignWidth="900" d:DesignHeight="600"
+             d:DesignWidth="1000" d:DesignHeight="600"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance modLoader:DownloadableModsViewModel}"
@@ -117,7 +118,6 @@
 
                     <!-- Refresh button -->
                     <Button x:Name="RefreshButton" 
-                            Click="RefreshButton_OnClick"
                             Grid.Column="6"
                             IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
@@ -143,36 +143,44 @@
                                Visibility="{Binding Path=FeedInfoText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                d:Text="Showing mods in the category &quot;Fixed/Improvements&quot;" FontStyle="Italic" />
                 </Grid>
-                
-                <!-- NOTE: Disabled virtualizing for now due to the SharedSizeScope causing the UI to jump around with it -->
+
                 <!-- Mods -->
-                <ListBox Grid.Row="2"
-                         Grid.IsSharedSizeScope="True"
-                         Loaded="ModsListBox_OnLoaded"
-                         ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
-                         d:ItemsSource="{d:SampleData ItemCount=5}"
-                         SelectedItem="{Binding Path=SelectedMod}"
-                         d:SelectedIndex="1"
-                         VerticalAlignment="Top"
-                         Background="Transparent"
-                         ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
-                         VirtualizingPanel.IsVirtualizing="False"
-                         VirtualizingPanel.ScrollUnit="Pixel"
-                         VirtualizingPanel.VirtualizationMode="Recycling"
-                         ScrollViewer.ScrollChanged="ModsScrollViewer_OnScrollChanged"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListBox.ItemTemplate>
+                <ItemsControl x:Name="ModsItemsControl"
+                              Grid.Row="2"
+                              Style="{StaticResource RCP.Styles.ItemsControl.VirtualizedWrap}"
+                              VirtualizingPanel.ScrollUnit="Pixel"
+                              ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=15}">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ContentPresenter Content="{Binding Mode=OneTime}">
-                                <ContentPresenter.Resources>
-                                    <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
-                                        <gameBanana:GameBananaDownloadableModItemControl />
-                                    </DataTemplate>
-                                </ContentPresenter.Resources>
-                            </ContentPresenter>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                            <rcp:Card Width="220" 
+                                      Height="196" 
+                                      Margin="{StaticResource RCP.Thicknesses.Card}" 
+                                      Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                                      Padding="0">
+                                <Button Style="{StaticResource RCP.Styles.Button.Flat}" 
+                                        Command="{Binding Path=DataContext.SelectModCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Mode=OneTime}"
+                                        CommandParameter="{Binding Mode=OneTime}"
+                                        VerticalContentAlignment="Stretch"
+                                        HorizontalContentAlignment="Stretch"
+                                        Padding="0">
+                                    <ContentPresenter Content="{Binding Mode=OneTime}">
+                                        <ContentPresenter.Resources>
+                                            <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                                                <gameBanana:GameBananaDownloadableModItemControl />
+                                            </DataTemplate>
+                                            <DataTemplate DataType="{x:Type sources:PlaceholderDownloadableModViewModel}">
+                                                <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
+                                                        Loaded="PlaceholderMod_OnLoaded" />
+                                            </DataTemplate>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Button>
+                            </rcp:Card>
+                       </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
             </Grid>
 
             <!-- Empty text -->

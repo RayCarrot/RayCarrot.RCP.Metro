@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using MahApps.Metro.Controls;
+using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
@@ -15,8 +15,6 @@ public partial class ModLoaderDownloadPageControl : UserControl
         InitializeComponent();
         DataContextChanged += ModLoaderDownloadPageControl_DataContextChanged;
     }
-
-    private ScrollViewer? ModsScrollViewer { get; set; }
 
     public DownloadableModsViewModel ViewModel => (DownloadableModsViewModel)DataContext;
 
@@ -38,28 +36,16 @@ public partial class ModLoaderDownloadPageControl : UserControl
                     SelectedModTransitioningContentControl.Transition = TransitionType.Up;
             }
         };
-    }
-
-    private void ModsListBox_OnLoaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is Visual obj)
-            ModsScrollViewer = obj.GetDescendantByType<ScrollViewer>();
-    }
-
-    private async void ModsScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
-    {
-        // Load the next chunk of pages when scrolled to the bottom
-        if (ModsScrollViewer != null &&
-            ViewModel.ModsFeed.CanLoadChunk &&
-            ModsScrollViewer.ScrollableHeight > 0 &&
-            ModsScrollViewer.VerticalOffset >= ModsScrollViewer.ScrollableHeight)
+        viewModel.FeedInitialized += (_, _) =>
         {
-            await ViewModel.LoadNextChunkAsync();
-        }
+            ScrollViewer? scrollViewer = ModsItemsControl.GetDescendantByType<ScrollViewer>();
+            scrollViewer?.ScrollToTop();
+        };
     }
 
-    private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
+    private async void PlaceholderMod_OnLoaded(object sender, RoutedEventArgs e)
     {
-        ModsScrollViewer?.ScrollToTop();
+        if (sender is FrameworkElement { DataContext: PlaceholderDownloadableModViewModel placeholder })
+            await ViewModel.LoadNextPageFromPlaceholderAsync(placeholder);
     }
 }

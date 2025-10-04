@@ -113,6 +113,7 @@
     <PackageReference Include="SharpCompress" Version="0.40.0" />
     <PackageReference Include="System.IO.Compression" Version="4.3.0" />
     <PackageReference Include="System.Linq.Async" Version="6.0.3" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="2.3.1" />
     <PackageReference Include="WPFTextBoxAutoComplete" Version="1.0.5" />
     <PackageReference Include="XamlAnimatedGif" Version="2.3.1" />
   </ItemGroup>

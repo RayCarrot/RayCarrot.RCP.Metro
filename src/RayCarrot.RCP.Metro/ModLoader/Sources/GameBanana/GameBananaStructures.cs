@@ -7,11 +7,11 @@ namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 // we can easily deserialize them. They do not include every possible
 // property since not all are used here.
 
-public record GameBananaSubfeed(
-    [property: JsonProperty("_aMetadata", Required = Required.Always)] GameBananaSubfeedMetadata Metadata,
+public record GameBananaFeed(
+    [property: JsonProperty("_aMetadata", Required = Required.Always)] GameBananaFeedMetadata Metadata,
     [property: JsonProperty("_aRecords", Required = Required.Always)] GameBananaMod[] Records);
 
-public record GameBananaSubfeedMetadata(
+public record GameBananaFeedMetadata(
     [property: JsonProperty("_nRecordCount", Required = Required.Always)] int RecordCount,
     [property: JsonProperty("_nPerpage", Required = Required.Always)] int PerPage,
     [property: JsonProperty("_bIsComplete", Required = Required.Always)] bool IsComplete);

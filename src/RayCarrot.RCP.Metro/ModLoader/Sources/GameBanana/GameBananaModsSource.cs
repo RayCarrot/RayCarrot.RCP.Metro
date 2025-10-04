@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Text;
 using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -14,6 +15,7 @@ public class GameBananaModsSource : DownloadableModsSource
     #region Constant Fields
 
     private const int RaymanControlPanelToolId = 10372;
+    private const int RecordsPerPage = 16;
 
     #endregion
 
@@ -86,6 +88,11 @@ public class GameBananaModsSource : DownloadableModsSource
         }
     }
 
+    private bool IsModValid(GameBananaMod mod)
+    {
+        return mod.HasFiles && (!mod.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods);
+    }
+
     #endregion
 
     #region Public Methods
@@ -105,7 +112,9 @@ public class GameBananaModsSource : DownloadableModsSource
         return await httpClient.GetDeserializedAsync<GameBananaMod>(url);
     }
 
-    public override async Task<DownloadableModsFeedPage> LoadDownloadableModsAsync(
+    public override int GetModsFeedPageLength() => RecordsPerPage;
+
+    public override async Task<DownloadableModsFeedPage> LoadModsFeedPage(
         ModLoaderViewModel modLoaderViewModel,
         IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
         HttpClient httpClient,
@@ -113,29 +122,28 @@ public class GameBananaModsSource : DownloadableModsSource
         DownloadableModsFeedFilter? filter,
         int page)
     {
-        List<GameBananaDownloadableModViewModel> modViewModels = new();
-
+        // TODO-UPDATE: Load featured mods in separate method and make sure we don't load them multiple times
         // Only load featured mods on first page when there is no filter
-        if (filter == null && page == 0)
-        {
-            Logger.Info("Loading featured GameBanana mods");
+        //if (filter == null && page == 0)
+        //{
+        //    Logger.Info("Loading featured GameBanana mods");
 
-            Dictionary<int, int[]>? featuredMods = null;
-            try
-            {
-                featuredMods = await JsonHelpers.DeserializeFromURLAsync<Dictionary<int, int[]>>(AppURLs.ModLoader_FeaturedGameBananaMods_URL);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Loading featured GameBanana mods");
-            }
+        //    Dictionary<int, int[]>? featuredMods = null;
+        //    try
+        //    {
+        //        featuredMods = await JsonHelpers.DeserializeFromURLAsync<Dictionary<int, int[]>>(AppURLs.ModLoader_FeaturedGameBananaMods_URL);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Error(ex, "Loading featured GameBanana mods");
+        //    }
 
-            // Load the featured mods first
-            if (featuredMods != null)
-                await LoadFeaturedModsAsync(modLoaderViewModel, httpClient, gameInstallation, featuredMods, modViewModels);
-        }
+        //    // Load the featured mods first
+        //    if (featuredMods != null)
+        //        await LoadFeaturedModsAsync(modLoaderViewModel, httpClient, gameInstallation, featuredMods, modViewModels);
+        //}
 
-        Logger.Info("Loading downloadable GameBanana mods");
+        Logger.Info("Loading downloadable GameBanana mods for page {0}", page);
 
         List<GameBananaMod> modRecords = new();
 
@@ -148,49 +156,42 @@ public class GameBananaModsSource : DownloadableModsSource
 
             Logger.Info("Loading mods using GameBanana game id {0}", gameId);
 
-            string url;
-            if (filter is DownloadableModsFeedSearchTextFilter searchTextFilter)
-            {
-                url = $"https://gamebanana.com/apiv11/Util/Search/Results?" +
-                      $"_sModelName=Mod&" +
-                      $"_sOrder=best_match&" +
-                      $"_idGameRow={gameId}&" +
-                      $"_sSearchString={searchTextFilter.SearchText}&" +
-                      $"_csvFields=name,description,article,attribs,studio,owner,credits&" +
-                      $"_nPage={page + 1}";
-            }
-            else if (filter is DownloadableModsFeedCategoryFilter categoryFilter)
-            {
-                url = $"https://gamebanana.com/apiv11/Mod/Index?" +
-                      $"_nPerpage=15&" +
-                      $"_aFilters[Generic_Category]={categoryFilter.Id}&" +
-                      $"_nPage={page + 1}";
-            }
-            else
-            {
-                url = $"https://gamebanana.com/apiv11/Game/{gameId}/Subfeed?" +
-                      $"_nPage={page + 1}&" +
-                      $"_sSort=new&" +
-                      $"_csvModelInclusions=Mod";
-            }
+            StringBuilder url = new();
 
-            // Read the subfeed page
-            GameBananaSubfeed subfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(url);
+            // Use the mod index api
+            url.Append("https://gamebanana.com/apiv11/Mod/Index?");
+
+            // Set records per page
+            url.Append($"_nPerpage={RecordsPerPage}");
+
+            // Set page (index starts at 1)
+            url.Append($"&_nPage={page + 1}");
+
+            // Filter by game
+            url.Append($"&_aFilters[Generic_Game]={gameId}");
+
+            // Optionally filter by category
+            if (filter?.Category != null)
+                url.Append($"&_aFilters[Generic_Category]={filter.Category}");
+
+            // TODO-UPDATE: Filter by text and set sort. For search, maybe use old API?
+
+            // Read the mod page feed
+            GameBananaFeed feed = await httpClient.GetDeserializedAsync<GameBananaFeed>(url.ToString());
 
             // Get the page count
-            int pageCount = (int)Math.Ceiling(subfeed.Metadata.RecordCount / (double)subfeed.Metadata.PerPage);
+            int pageCount = (int)Math.Ceiling(feed.Metadata.RecordCount / (double)feed.Metadata.PerPage);
             if (pageCount > largestPageCount)
                 largestPageCount = pageCount;
 
             // Add the mods
-            modRecords.AddRange(subfeed.Records.Where(x => 
-                x.HasFiles && 
-                (!x.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods) &&
-                !loadedDownloadableMods.Any(m => m is GameBananaDownloadableModViewModel vm && vm.GameBananaId == x.Id) &&
-                !modViewModels.Any(vm => vm.GameBananaId == x.Id)));
+            modRecords.AddRange(feed.Records.Where(x => 
+                IsModValid(x) && !loadedDownloadableMods.Any(m => m is GameBananaDownloadableModViewModel vm && vm.GameBananaId == x.Id)));
         }
 
         Logger.Info("{0} mods found", modRecords.Count);
+
+        List<GameBananaDownloadableModViewModel> modViewModels = new();
 
         // Process every mod
         foreach (GameBananaMod modRecord in modRecords)
@@ -235,8 +236,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
             foreach (GameBananaCategory cat in gameCategories)
             {
-                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, cat.IconUrl, 
-                    new DownloadableModsFeedCategoryFilter(cat.Id)));
+                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, cat.IconUrl, cat.Id.ToString()));
             }
         }
 
@@ -379,22 +379,22 @@ public class GameBananaModsSource : DownloadableModsSource
 
         foreach (var g in games)
         {
-            GameBananaSubfeed newSubfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
+            GameBananaFeed newFeed = await httpClient.GetDeserializedAsync<GameBananaFeed>(
                 $"https://gamebanana.com/apiv11/Game/{g.Key}/Subfeed?" +
                 $"_nPage=1&" +
                 $"_sSort=new&" +
                 $"_csvModelInclusions=Mod");
-            GameBananaSubfeed updatedSubfeed = await httpClient.GetDeserializedAsync<GameBananaSubfeed>(
+            GameBananaFeed updatedFeed = await httpClient.GetDeserializedAsync<GameBananaFeed>(
                 $"https://gamebanana.com/apiv11/Game/{g.Key}/Subfeed?" +
                 $"_nPage=1&" +
                 $"_sSort=updated&" +
                 $"_csvModelInclusions=Mod");
 
-            List<GameBananaMod> modRecords = newSubfeed.Records.
+            List<GameBananaMod> modRecords = newFeed.Records.
                 // Take the 10 most recent new mods
                 Take(10).
                 // Add the 5 most recent updated mods
-                Concat(updatedSubfeed.Records.Take(5)).
+                Concat(updatedFeed.Records.Take(5)).
                 // Remove duplicates
                 GroupBy(x => x.Id).Select(x => x.OrderBy(y => y.DateModified).Last()).
                 // Only keep ones which have files

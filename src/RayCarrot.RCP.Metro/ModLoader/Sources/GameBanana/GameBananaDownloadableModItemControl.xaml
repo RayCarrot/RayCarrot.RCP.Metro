@@ -10,97 +10,99 @@
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DataContext="{d:DesignInstance gameBanana:GameBananaDownloadableModViewModel}"
-             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
-    <Grid Margin="0 4" MinHeight="32">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Version" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Likes" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Downloads" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Views" />
-        </Grid.ColumnDefinitions>
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Width="220" 
+             d:Height="196">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Ellipse Grid.Column="0"
-                 Width="6" 
-                 Height="6" 
-                 Visibility="{Binding Path=HasViewed, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
-                 Fill="{StaticResource RCP.Brushes.Info}" 
-                 Margin="0 0 4 0" />
+        <Image Grid.Row="0" 
+               Width="220" 
+               Height="124"
+               Source="{Binding Path=MainImage.ImageSource}"
+               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png" />
 
-        <!-- Category icon -->
-        <Image Grid.Column="1" 
-               Visibility="{Binding Path=RootCategoryIconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-               Source="{Binding Path=RootCategoryIconUrl, Mode=OneTime}"
-               ToolTip="{Binding Path=RootCategoryName, Mode=OneTime}"
-               Width="32"
-               Height="32"
-               VerticalAlignment="Center"
-               Margin="0 0 4 0" />
+        <Grid Grid.Row="1"
+              Margin="4 2"
+              VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Featured icon -->
-        <iconPacks:PackIconMaterial Grid.Column="2" 
-                                    Kind="StarOutline" 
-                                    VerticalAlignment="Center"
-                                    Foreground="{StaticResource RCP.Brushes.Favorites}"
-                                    Visibility="{Binding Path=IsFeatured, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
-                                    Margin="0 0 4 0" />
+            <Ellipse Grid.Column="0"
+                     Width="6" 
+                     Height="6" 
+                     Visibility="{Binding Path=HasViewed, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
+                     Fill="{StaticResource RCP.Brushes.Info}" 
+                     Margin="0 0 4 0" />
 
-        <!-- Title -->
-        <TextBlock Grid.Column="3" 
+            <Image Grid.Column="1"
+                   Visibility="{Binding Path=RootCategoryIconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                   Source="{Binding Path=RootCategoryIconUrl, Mode=OneTime}"
+                   ToolTip="{Binding Path=RootCategoryName, Mode=OneTime}"
+                   Width="24"
+                   Height="24"
                    VerticalAlignment="Center"
-                   FontSize="14"
-                   Text="{Binding Path=Name, Mode=OneTime}"
-                   d:Text="Mod name"
-                   TextWrapping="Wrap"
-                   Margin="0 0 12 0" />
+                   Margin="0 0 4 0" />
 
-        <TextBlock Grid.Column="4" 
-                   Text="{Binding Path=Version, Mode=OneTime}" 
-                   Margin="0 0 16 0" 
-                   FontStyle="Italic" 
-                   VerticalAlignment="Center" />
+            <iconPacks:PackIconMaterial Grid.Column="2" 
+                                        Kind="StarOutline" 
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource RCP.Brushes.Favorites}"
+                                        Visibility="{Binding Path=IsFeatured, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                        Margin="0 0 4 0" />
 
-        <StackPanel Grid.Column="5"
-                    Orientation="Horizontal" 
-                    Margin="0 0 12 0">
-            <iconPacks:PackIconMaterial Kind="HeartOutline" 
+            <TextBlock Grid.Column="3" 
+                       VerticalAlignment="Center"
+                       FontWeight="DemiBold"
+                       FontSize="14"
+                       TextWrapping="Wrap"
+                       TextTrimming="CharacterEllipsis"
+                       Text="{Binding Path=Name}"
+                       d:Text="Mod name" />
+
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Margin="8 0 8 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
+                       FontSize="11"
+                       FontStyle="Italic"
+                       TextTrimming="CharacterEllipsis"
+                       Text="{Binding Path=SubmitterName}"
+                       d:Text="SubmitterName" />
+
+            <iconPacks:PackIconMaterial Grid.Column="1"
+                                        Kind="HeartOutline" 
                                         Foreground="{StaticResource RCP.Brushes.GameBanana.Like}" 
+                                        Visibility="{Binding Path=LikesCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                                         VerticalAlignment="Center"
                                         Margin="0 0 4 0" />
-            <TextBlock Text="{Binding Path=LikesCount, Mode=OneTime}"
+            
+            <TextBlock Grid.Column="2"
+                       Text="{Binding Path=LikesCount}"
                        d:Text="5"
+                       Visibility="{Binding Path=LikesCount, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                        FontSize="14"
                        VerticalAlignment="Center" />
-        </StackPanel>
 
-        <StackPanel Grid.Column="6"
-                    Orientation="Horizontal" 
-                    Margin="0 0 12 0">
-            <iconPacks:PackIconMaterial Kind="ArrowDownBoldOutline" 
-                                        Foreground="{StaticResource RCP.Brushes.GameBanana.Download}" 
-                                        VerticalAlignment="Center"
-                                        Margin="0 0 4 0"/>
-            <TextBlock Text="{Binding Path=DownloadsCount, Mode=OneTime}"
-                       d:Text="5"
-                       FontSize="14"
-                       VerticalAlignment="Center" />
-        </StackPanel>
+        </Grid>
 
-        <StackPanel Grid.Column="7"
-                    Orientation="Horizontal" 
-                    Margin="0 0 12 0">
-            <iconPacks:PackIconMaterial Kind="EyeOutline" 
-                                        Foreground="{StaticResource RCP.Brushes.GameBanana.View}" 
-                                        VerticalAlignment="Center"
-                                        Margin="0 0 4 0"/>
-            <TextBlock Text="{Binding Path=ViewsCount, Mode=OneTime}"
-                       d:Text="5"
-                       FontSize="14"
-                       VerticalAlignment="Center" />
-        </StackPanel>
 
     </Grid>
+
 </UserControl>

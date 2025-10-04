@@ -41,7 +41,9 @@ public abstract class DownloadableModsSource
 
     #region Public Methods
 
-    public abstract Task<DownloadableModsFeedPage> LoadDownloadableModsAsync(
+    public abstract int GetModsFeedPageLength();
+
+    public abstract Task<DownloadableModsFeedPage> LoadModsFeedPage(
         ModLoaderViewModel modLoaderViewModel,
         IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
         HttpClient httpClient,

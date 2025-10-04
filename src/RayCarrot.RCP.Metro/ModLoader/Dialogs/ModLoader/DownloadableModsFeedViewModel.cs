@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -10,13 +11,14 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
     public DownloadableModsFeedViewModel(
         ModLoaderViewModel modLoaderViewModel, 
         GameInstallation gameInstallation, 
-        HttpClient httpClient, 
-        IReadOnlyList<DownloadableModsSource> downloadableModsSources)
+        HttpClient httpClient,
+        DownloadableModsSource downloadableModsSource)
     {
+        _asyncLock = new AsyncLock();
         _modLoaderViewModel = modLoaderViewModel;
         GameInstallation = gameInstallation;
         _httpClient = httpClient;
-        _downloadableModsSources = downloadableModsSources;
+        _downloadableModsSource = downloadableModsSource;
     }
 
     #endregion
@@ -27,19 +29,15 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     #endregion
 
-    #region Constants
-
-    private const int ChunkSize = 10;
-
-    #endregion
-
     #region Private Fields
 
+    private readonly AsyncLock _asyncLock;
     private readonly ModLoaderViewModel _modLoaderViewModel;
     private readonly HttpClient _httpClient;
-    private readonly IReadOnlyList<DownloadableModsSource> _downloadableModsSources;
+    private readonly DownloadableModsSource _downloadableModsSource;
     private int _pageCount;
     private int _currentPage;
+    private int _feedVersion; // Keep track of when we re-initialize the feed
 
     #endregion
 
@@ -53,7 +51,7 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     public bool IsEmpty { get; set; }
     public string? ErrorMessage { get; set; }
-    public bool CanLoadChunk { get; set; }
+    public bool CanLoadNextPage { get; set; }
 
     #endregion
 
@@ -63,63 +61,95 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
     {
         Logger.Info("Loading page {0}", _currentPage);
 
-        foreach (DownloadableModsSource modsSource in _downloadableModsSources)
-        {
-            DownloadableModsFeedPage feedPage = await modsSource.LoadDownloadableModsAsync(
-                modLoaderViewModel: _modLoaderViewModel, 
-                loadedDownloadableMods: Mods, 
-                httpClient: _httpClient, 
-                gameInstallation: GameInstallation, 
-                filter: Filter, 
-                page: _currentPage);
-            Mods.AddRange(feedPage.DownloadableMods);
-            _pageCount = feedPage.PageCount;
-        }
+        // Load the feed page
+        DownloadableModsFeedPage feedPage = await _downloadableModsSource.LoadModsFeedPage(
+            modLoaderViewModel: _modLoaderViewModel,
+            loadedDownloadableMods: Mods,
+            httpClient: _httpClient,
+            gameInstallation: GameInstallation,
+            filter: Filter,
+            page: _currentPage);
+
+        // Get the page count
+        _pageCount = feedPage.PageCount;
+
+        // Remove the placeholder mods
+        RemovePlaceholderMods();
+
+        // Add the new mods
+        Mods.AddRange(feedPage.DownloadableMods);
 
         Logger.Info("Loaded page {0} out of {1} total pages", _currentPage, _pageCount);
+    }
+
+    private void RemovePlaceholderMods()
+    {
+        Mods.RemoveWhere(x => x is PlaceholderDownloadableModViewModel);
+    }
+
+    private void AddPlaceholderMods()
+    {
+        for (int i = 0; i < _downloadableModsSource.GetModsFeedPageLength(); i++)
+            Mods.Add(new PlaceholderDownloadableModViewModel(_feedVersion, _currentPage));
     }
 
     #endregion
 
     #region Public Methods
 
-    public void Initialize(DownloadableModsFeedFilter? filter)
+    public async Task InitializeAsync(DownloadableModsFeedFilter? filter)
     {
-        Filter = filter;
-        IsEmpty = true;
-        ErrorMessage = null;
-        Mods.DisposeAll();
-        Mods.Clear();
-        _currentPage = -1;
-        _pageCount = -1;
-        CanLoadChunk = false;
+        using (await _asyncLock.LockAsync())
+        {
+            Filter = filter;
+            IsEmpty = true;
+            ErrorMessage = null;
+            Mods.DisposeAll();
+            Mods.Clear();
+            AddPlaceholderMods();
+            _currentPage = -1;
+            _pageCount = -1;
+            _feedVersion++;
+            CanLoadNextPage = true;
+        }
     }
 
-    public async Task LoadNextChunkAsync()
+    public async Task LoadNextPageAsync()
     {
-        IsEmpty = false;
-
-        try
+        using (await _asyncLock.LockAsync())
         {
-            do
+            if (!CanLoadNextPage)
+                return;
+
+            IsEmpty = false;
+
+            try
             {
                 _currentPage++;
                 await LoadCurrentPageAsync();
-            } while (Mods.Count < ChunkSize && _currentPage < _pageCount - 1);
 
-            CanLoadChunk = _pageCount != -1 && _currentPage < _pageCount - 1;
+                CanLoadNextPage = _pageCount != -1 && _currentPage < _pageCount - 1;
+                IsEmpty = !Mods.Any();
 
-            IsEmpty = !Mods.Any();
-            Logger.Info("Loaded chunk");
+                if (!IsEmpty && CanLoadNextPage)
+                    AddPlaceholderMods();
+
+                Logger.Info("Loaded next page");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Loading next page of downloadable mods");
+
+                ErrorMessage = ex.Message;
+                IsEmpty = false;
+                CanLoadNextPage = false;
+            }
         }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Loading chunk of downloadable mods");
+    }
 
-            ErrorMessage = ex.Message;
-            IsEmpty = false;
-            CanLoadChunk = false;
-        }
+    public bool IsPlaceholderForNextPage(PlaceholderDownloadableModViewModel placeholder)
+    {
+        return placeholder.FeedVersion == _feedVersion && placeholder.Page == _currentPage;
     }
 
     public void Dispose()

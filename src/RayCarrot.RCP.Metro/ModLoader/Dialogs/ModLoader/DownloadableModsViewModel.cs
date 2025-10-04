@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Windows.Input;
+using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -14,13 +15,17 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         HttpClient httpClient, 
         IReadOnlyList<DownloadableModsSource> downloadableModsSources)
     {
+        if (downloadableModsSources.Count > 1)
+            throw new InvalidOperationException("Multiple mod sources is currently not supported");
+
+        _asyncLock = new AsyncLock();
         GameInstallation = gameInstallation;
         _httpClient = httpClient;
 
         DownloadableModsSources = new ObservableCollection<DownloadableModsSourceViewModel>(
             downloadableModsSources.Select(x => new DownloadableModsSourceViewModel(x)));
 
-        ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources);
+        ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources[0]);
 
         Categories = new ObservableCollectionEx<DownloadableModsCategoryViewModel>();
 
@@ -28,6 +33,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         Categories.Insert(0, new DownloadableModsCategoryViewModel("All", null, null));
         SelectedCategory = Categories[0];
 
+        SelectModCommand = new AsyncRelayCommand(x => SelectModAsync((DownloadableModViewModel?)x));
         ClearSelectionCommand = new RelayCommand(ClearSelection);
         RefreshCommand = new AsyncRelayCommand(LoadDefaultFeedAsync);
         SearchCommand = new AsyncRelayCommand(LoadSearchFeedAsync);
@@ -44,13 +50,20 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private readonly AsyncLock _asyncLock;
     private readonly HttpClient _httpClient;
-    private DownloadableModViewModel? _selectedMod;
+
+    #endregion
+
+    #region Events
+
+    public event EventHandler? FeedInitialized;
 
     #endregion
 
     #region Commands
 
+    public ICommand SelectModCommand { get; }
     public ICommand ClearSelectionCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand SearchCommand { get; }
@@ -70,21 +83,20 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public ObservableCollectionEx<DownloadableModsCategoryViewModel> Categories { get; }
     public DownloadableModsCategoryViewModel SelectedCategory { get; set; }
 
-    public DownloadableModViewModel? SelectedMod
-    {
-        get => _selectedMod;
-        set
-        {
-            _selectedMod = value;
-
-            // TODO-UPDATE: Await this (probably call from ICommand instead)
-            _selectedMod?.LoadAsync();
-        }
-    }
+    public DownloadableModViewModel? SelectedMod { get; set; }
 
     public bool IsLoading { get; set; }
 
     public string SearchText { get; set; } = String.Empty;
+
+    #endregion
+
+    #region Private Methods
+
+    private void OnFeedInitialized()
+    {
+        FeedInitialized?.Invoke(this, EventArgs.Empty);
+    }
 
     #endregion
 
@@ -123,6 +135,18 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         }
     }
 
+    public async Task SelectModAsync(DownloadableModViewModel? mod)
+    {
+        // Don't allow selecting placeholder mods
+        if (mod is PlaceholderDownloadableModViewModel)
+            return;
+
+        SelectedMod = mod;
+
+        if (mod != null)
+            await mod.LoadAsync();
+    }
+
     public void ClearSelection()
     {
         SelectedMod = null;
@@ -140,8 +164,9 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         CurrentFeedType = FeedType.Default;
         FeedInfoText = null;
 
-        ModsFeed.Initialize(null);
-        await LoadNextChunkAsync();
+        await ModsFeed.InitializeAsync(null);
+        OnFeedInitialized();
+        await LoadNextPageAsync();
     }
 
     public async Task LoadSearchFeedAsync()
@@ -168,8 +193,12 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         CurrentFeedType = FeedType.Search;
         FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_SearchFeedInfo), SearchText);
 
-        ModsFeed.Initialize(new DownloadableModsFeedSearchTextFilter(SearchText));
-        await LoadNextChunkAsync();
+        await ModsFeed.InitializeAsync(new DownloadableModsFeedFilter()
+        {
+            Search = SearchText,
+        });
+        OnFeedInitialized();
+        await LoadNextPageAsync();
     }
 
     public async Task LoadCategoryFeedAsync()
@@ -187,26 +216,52 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         CurrentFeedType = FeedType.Category;
         FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name);
 
-        ModsFeed.Initialize(SelectedCategory.Filter);
-        await LoadNextChunkAsync();
+        await ModsFeed.InitializeAsync(new DownloadableModsFeedFilter()
+        {
+            Category = SelectedCategory.Id,
+        });
+        OnFeedInitialized();
+        await LoadNextPageAsync();
     }
 
-    public async Task LoadNextChunkAsync()
+    public async Task LoadNextPageAsync()
     {
-        if (IsLoading)
-            return;
-
-        IsLoading = true;
-
-        Logger.Info("Loading chunk of downloadable mods for feed type {0}", CurrentFeedType);
-
-        try
+        using (await _asyncLock.LockAsync())
         {
-            await ModsFeed.LoadNextChunkAsync();
+            IsLoading = true;
+
+            Logger.Info("Loading chunk of downloadable mods for feed type {0}", CurrentFeedType);
+
+            try
+            {
+                await ModsFeed.LoadNextPageAsync();
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
-        finally
+    }
+
+    public async Task LoadNextPageFromPlaceholderAsync(PlaceholderDownloadableModViewModel placeholder)
+    {
+        using (await _asyncLock.LockAsync())
         {
-            IsLoading = false;
+            if (!ModsFeed.IsPlaceholderForNextPage(placeholder))
+                return;
+
+            IsLoading = true;
+
+            Logger.Info("Loading chunk of downloadable mods for feed type {0}", CurrentFeedType);
+
+            try
+            {
+                await ModsFeed.LoadNextPageAsync();
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
     }
 
