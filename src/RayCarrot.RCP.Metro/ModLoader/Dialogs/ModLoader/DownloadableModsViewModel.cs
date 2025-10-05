@@ -37,7 +37,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         ClearSelectionCommand = new RelayCommand(ClearSelection);
         RefreshCommand = new AsyncRelayCommand(LoadDefaultFeedAsync);
         SearchCommand = new AsyncRelayCommand(LoadSearchFeedAsync);
-        SelectCategoryCommand = new AsyncRelayCommand(LoadCategoryFeedAsync);
+        SelectCategoryCommand = new AsyncRelayCommand(LoadCategoryAndSortFeedAsync);
     }
 
     #endregion
@@ -193,15 +193,15 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         CurrentFeedType = FeedType.Search;
         FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_SearchFeedInfo), SearchText);
 
-        await ModsFeed.InitializeAsync(new DownloadableModsFeedFilter()
+        await ModsFeed.InitializeAsync(new DownloadableModsFeedSearchTextFilter()
         {
-            Search = SearchText,
+            SearchText = SearchText,
         });
         OnFeedInitialized();
         await LoadNextPageAsync();
     }
 
-    public async Task LoadCategoryFeedAsync()
+    public async Task LoadCategoryAndSortFeedAsync()
     {
         if (IsLoading)
             return;
@@ -213,12 +213,13 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         }
 
         SearchText = String.Empty;
-        CurrentFeedType = FeedType.Category;
+        CurrentFeedType = FeedType.CategoryAndSort;
         FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name);
 
-        await ModsFeed.InitializeAsync(new DownloadableModsFeedFilter()
+        await ModsFeed.InitializeAsync(new DownloadableModsFeedCategoryAndSortFilter()
         {
             Category = SelectedCategory.Id,
+            Order = null,
         });
         OnFeedInitialized();
         await LoadNextPageAsync();
@@ -278,7 +279,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     {
         Default,
         Search,
-        Category,
+        CategoryAndSort,
     }
 
     #endregion

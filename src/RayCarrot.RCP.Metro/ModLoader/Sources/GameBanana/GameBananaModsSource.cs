@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -158,23 +159,48 @@ public class GameBananaModsSource : DownloadableModsSource
 
             StringBuilder url = new();
 
-            // Use the mod index api
-            url.Append("https://gamebanana.com/apiv11/Mod/Index?");
+            if (filter is DownloadableModsFeedSearchTextFilter searchTextFilter)
+            {
+                // Use the search api
+                url.Append("https://gamebanana.com/apiv11/Util/Search/Results?");
 
-            // Set records per page
-            url.Append($"_nPerpage={RecordsPerPage}");
+                // Search only mods
+                url.Append("_sModelName=Mod");
 
-            // Set page (index starts at 1)
-            url.Append($"&_nPage={page + 1}");
+                // Sort by best match
+                url.Append("&_sOrder=best_match");
 
-            // Filter by game
-            url.Append($"&_aFilters[Generic_Game]={gameId}");
+                // Set the game id
+                url.Append($"&_idGameRow={gameId}");
 
-            // Optionally filter by category
-            if (filter?.Category != null)
-                url.Append($"&_aFilters[Generic_Category]={filter.Category}");
+                // Set the search text
+                url.Append($"&_sSearchString={WebUtility.HtmlEncode(searchTextFilter.SearchText)}");
 
-            // TODO-UPDATE: Filter by text and set sort. For search, maybe use old API?
+                // Search all allowed fields
+                url.Append("&_csvFields=name,description,article,attribs,studio,owner,credits");
+
+                // NOTE: Sadly the search API doesn't allow setting the number of records per page, so we're limited to the default of 15
+                // Set page (index starts at 1)
+                url.Append($"&_nPage={page + 1}");
+            }
+            else
+            {
+                // Use the mod index api
+                url.Append("https://gamebanana.com/apiv11/Mod/Index?");
+
+                // Set records per page
+                url.Append($"_nPerpage={RecordsPerPage}");
+
+                // Set page (index starts at 1)
+                url.Append($"&_nPage={page + 1}");
+
+                // Filter by game
+                url.Append($"&_aFilters[Generic_Game]={gameId}");
+
+                // Optionally filter by category
+                if (filter is DownloadableModsFeedCategoryAndSortFilter { Category: { } category })
+                    url.Append($"&_aFilters[Generic_Category]={category}");
+            }
 
             // Read the mod page feed
             GameBananaFeed feed = await httpClient.GetDeserializedAsync<GameBananaFeed>(url.ToString());
