@@ -21,5 +21,6 @@
     <SolidColorBrush x:Key="RCP.Brushes.FlatButton.ModLoader" Color="{StaticResource RCP.Colors.DeepOrangePrimary800}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.FlatButton.GameTools" Color="{StaticResource RCP.Colors.DeepPurplePrimary600}" po:Freeze="True" />
     <SolidColorBrush x:Key="RCP.Brushes.FlatButton.Play" Color="{StaticResource RCP.Colors.GreenPrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.Download" Color="{StaticResource RCP.Colors.GreenPrimary700}" po:Freeze="True" />
 
 </ResourceDictionary>

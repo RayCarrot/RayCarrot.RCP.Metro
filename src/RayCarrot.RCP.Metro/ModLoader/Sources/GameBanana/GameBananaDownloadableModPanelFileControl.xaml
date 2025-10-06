@@ -6,6 +6,7 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
+             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -42,8 +43,8 @@
                 CommandParameter="{Binding Mode=OneTime}">
             <Button.Style>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                    <Setter Property="Background" Value="{DynamicResource RCP.Brushes.FlatButton.Download}" />
                     <Setter Property="rcp:Icon.Kind" Value="DownloadOutline" />
-                    <Setter Property="rcp:Icon.Brush" Value="{StaticResource RCP.Brushes.GameBanana.Download}" />
                     <Setter Property="Content">
                         <Setter.Value>
                             <TextBlock Text="{Resx ModLoader_GameBanana_DownloadModFile}"
@@ -58,17 +59,16 @@
                     </Setter>
 
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=DownloadedMod, Converter={rcp:IsNotNullConverter}}" Value="True">
+                        <!-- Trigger for if mod is downloaded, but not pending uninstall -->
+                        <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static modLoader:ModViewModel+ModInstallState.PendingUninstall}, FallbackValue=True}" Value="False">
                             <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="{x:Null}" />
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <TextBlock Text="{Resx ModLoader_GameBanana_ModFileInstalled}"
                                                ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                 </Setter.Value>
                             </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState}" Value="PendingUninstall">
-                            <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
