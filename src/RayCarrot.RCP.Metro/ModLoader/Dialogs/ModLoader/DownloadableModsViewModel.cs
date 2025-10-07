@@ -144,7 +144,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         SelectedMod = mod;
 
         if (mod != null)
-            await mod.LoadAsync();
+            await mod.OnSelectedAsync();
     }
 
     public void ClearSelection()

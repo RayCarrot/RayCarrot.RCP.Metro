@@ -82,7 +82,7 @@ public class GameBananaModsSource : DownloadableModsSource
                     gameBananaId: mod.Id,
                     isFeatured: true);
 
-                modViewModel.LoadDetailsFromMod(mod);
+                modViewModel.LoadFeedDetails(mod);
 
                 modViewModels.Add(modViewModel);
             }
@@ -107,7 +107,7 @@ public class GameBananaModsSource : DownloadableModsSource
             ToList();
     }
 
-    public async Task<GameBananaMod> LoadModDetailsAsync(HttpClient httpClient, int modId)
+    public async Task<GameBananaMod> LoadModAsync(HttpClient httpClient, int modId)
     {
         string url = $"https://gamebanana.com/apiv11/Mod/{modId}/ProfilePage";
         return await httpClient.GetDeserializedAsync<GameBananaMod>(url);
@@ -229,7 +229,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 gameBananaId: modRecord.Id,
                 isFeatured: false);
 
-            modViewModel.LoadDetailsFromMod(modRecord);
+            modViewModel.LoadFeedDetails(modRecord);
 
             modViewModels.Add(modViewModel);
         }

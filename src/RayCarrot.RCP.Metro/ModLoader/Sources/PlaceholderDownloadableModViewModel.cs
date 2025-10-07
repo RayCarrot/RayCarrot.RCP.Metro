@@ -1,12 +1,18 @@
-﻿namespace RayCarrot.RCP.Metro.ModLoader.Sources;
+﻿using RayCarrot.RCP.Metro.ModLoader.Metadata;
+
+namespace RayCarrot.RCP.Metro.ModLoader.Sources;
 
 public class PlaceholderDownloadableModViewModel : DownloadableModViewModel
 {
-    public PlaceholderDownloadableModViewModel(int feedVersion, int page)
+    public PlaceholderDownloadableModViewModel(DownloadableModsSource downloadableModsSource, int feedVersion, int page) 
+        : base(downloadableModsSource)
     {
         FeedVersion = feedVersion;
         Page = page;
     }
+
+    public override string? ModId => null;
+    public override ModVersion? ModVersion => null;
 
     public int FeedVersion { get; }
     public int Page { get; }

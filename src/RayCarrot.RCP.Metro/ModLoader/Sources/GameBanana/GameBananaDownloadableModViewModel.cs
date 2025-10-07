@@ -16,9 +16,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         ModLoaderViewModel modLoaderViewModel,
         HttpClient httpClient,
         int gameBananaId, 
-        bool isFeatured)
+        bool isFeatured) : base(downloadableModsSource)
     {
-        _downloadableModsSource = downloadableModsSource;
         _modLoaderViewModel = modLoaderViewModel;
         _httpClient = httpClient;
 
@@ -27,12 +26,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
         // Placeholder image
         Images = [new ImageViewModel()];
-        HasLoadedImages = false;
 
         ShowArchivedFiles = false;
-
-        HasViewed = Services.Data.ModLoader_ViewedMods.TryGetValue(downloadableModsSource.Id, out List<ViewedMod> viewedMod) &&
-                    viewedMod.Any(x => x.Id == GameBananaId.ToString());
 
         // Register messages
         Services.Messenger.RegisterAll(this, modLoaderViewModel.GameInstallation.InstallationId);
@@ -55,7 +50,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     #region Private Fields
 
     // NOTE: Might be worth abstracting this more in the future to not pass in these here
-    private readonly GameBananaModsSource _downloadableModsSource;
     private readonly ModLoaderViewModel _modLoaderViewModel;
     private readonly HttpClient _httpClient;
 
@@ -73,7 +67,10 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     #region Public Properties
 
+    public new GameBananaModsSource DownloadableModsSource => (GameBananaModsSource)base.DownloadableModsSource;
+
     public int GameBananaId { get; }
+    public override string ModId => GameBananaId.ToString();
     public bool IsFeatured { get; set; }
 
     public string? Name { get; set; }
@@ -88,6 +85,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public LocalizedString? UploadInfoPostText { get; set; }
 
     public ModVersion? Version { get; set; }
+    public override ModVersion? ModVersion => Version;
     public LocalizedString? VersionText { get; set; }
     public LocalizedString? LastUpdatedText { get; set; }
 
@@ -98,7 +96,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public double MainImageWidth { get; set; }
     public double MainImageHeight { get; set; }
     public ObservableCollection<ImageViewModel> Images { get; }
-    public bool HasLoadedImages { get; set; }
     public int SelectedImageIndex
     {
         get => _selectedImageIndex;
@@ -119,28 +116,20 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public ObservableCollection<CreditsGroupViewModel>? Credits { get; set; }
 
-    public bool IsLoading { get; set; }
-    public bool IsLoaded { get; set; }
-    public bool HasViewed { get; set; }
-
     #endregion
 
     #region Private Methods
 
     private void UpdateCurrentImage()
     {
-        if (!HasLoadedImages)
-            return;
-
         // Load the current image
-        Images[SelectedImageIndex].Load();
+        if (SelectedImageIndex >= 0 && SelectedImageIndex < Images.Count)
+            Images[SelectedImageIndex].Load();
         
         // Preload the next image
-        if (SelectedImageIndex + 1 < Images.Count)
-        {
-            ImageViewModel nextImg = Images[SelectedImageIndex + 1];
-            nextImg.Load();
-        }
+        int nextImageIndex = SelectedImageIndex + 1;
+        if (nextImageIndex >= 0 && nextImageIndex < Images.Count)
+            Images[nextImageIndex].Load();
     }
 
     #endregion
@@ -161,34 +150,24 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public async Task DownloadFileAsync(GameBananaFileViewModel file)
     {
         await _modLoaderViewModel.InstallModFromDownloadableFileAsync(
-            source: _downloadableModsSource, 
+            source: DownloadableModsSource, 
             fileName: file.DownloadableFile.File, 
             downloadUrl: file.DownloadableFile.DownloadUrl, 
             fileSize: file.DownloadableFile.FileSize, 
             installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id));
     }
 
-    public void LoadDetailsFromMod(GameBananaMod mod)
+    public void LoadFeedDetails(GameBananaMod mod)
     {
         if (mod.Id != GameBananaId)
             throw new Exception($"GameBanana mod IDs {mod.Id} and {GameBananaId} do not match!");
 
-        if (Name == null)
-            Name = mod.Name;
+        Name = mod.Name;
 
-        if (mod.Description != null && Description == null)
-            Description = mod.Description;
+        SubmitterName = mod.Submitter?.Name;
+        SubmitterProfileUrl = mod.Submitter?.ProfileUrl;
 
-        if (mod.Text != null && Text == null)
-            Text = mod.Text;
-
-        if (mod.Submitter != null && SubmitterName == null)
-        {
-            SubmitterName = mod.Submitter.Name;
-            SubmitterProfileUrl = mod.Submitter.ProfileUrl;
-        }
-
-        if (mod.DateAdded != null)
+        if (mod.DateAdded != null && SubmitterName != null)
         {
             // TODO-UPDATE: Can we format date without weekday?
             // Uploaded by {0} on {1}
@@ -206,19 +185,13 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             });
         }
 
+        // TODO-UPDATE: Can we format date without weekday?
         if (mod.DateModified != null && mod.DateModified != mod.DateAdded)
-        {
-            // TODO-UPDATE: Can we format date without weekday?
             LastUpdatedText = $"Last updated on {mod.DateModified:D}"; // TODO-LOC
-        }
 
-        if (mod.Version != null && Version == null)
-        {
-            Version = ModVersion.TryParse(mod.Version, out ModVersion? v) ? v : null;
-            
-            if (Version != null)
-                VersionText = $"Version {Version}"; // TODO-LOC
-        }
+        Version = ModVersion.TryParse(mod.Version, out ModVersion? v) ? v : null;
+        if (Version != null)
+            VersionText = $"Version {Version}"; // TODO-LOC
 
         if (mod.RootCategory != null)
         {
@@ -228,47 +201,55 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             RootCategoryName = mod.RootCategory.Name;
         }
 
-        if (mod.PreviewMedia?.Images != null)
+        if (mod.PreviewMedia?.Images?.Length > 0)
         {
-            if (mod.PreviewMedia.Images.Length > 0 && MainImage == null)
-            {
-                GameBananaImage mainImage = mod.PreviewMedia.Images[0];
-                MainImage = new ImageViewModel() { Url = $"{mainImage.BaseUrl}/{mainImage.File220}" };
-                MainImage.Load();
-                MainImageWidth = mainImage.File220Width;
-                MainImageHeight = mainImage.File220Height;
-            }
-
-            if (mod.PreviewMedia.Images.Length > 1 && !HasLoadedImages)
-            {
-                // Replace placeholder image
-                Images[0].Url = $"{mod.PreviewMedia.Images[1].BaseUrl}/{mod.PreviewMedia.Images[1].File}";
-                Images[0].DecodePixelHeight = ImageHeight;
-
-                // Add remaining images
-                foreach (GameBananaImage img in mod.PreviewMedia.Images.Skip(2).Take(MaxImages - 1))
-                    Images.Add(new ImageViewModel()
-                    {
-                        Url = $"{img.BaseUrl}/{img.File}", 
-                        DecodePixelHeight = ImageHeight
-                    });
-
-                HasLoadedImages = true;
-            }
+            GameBananaImage mainImage = mod.PreviewMedia.Images[0];
+            MainImage = new ImageViewModel() { Url = $"{mainImage.BaseUrl}/{mainImage.File220}" };
+            MainImage.Load();
+            MainImageWidth = mainImage.File220Width;
+            MainImageHeight = mainImage.File220Height;
         }
 
-        if (mod.LikeCount != null && LikesCount == null)
-            LikesCount = mod.LikeCount;
-        if (mod.DownloadCount != null && DownloadsCount == null)
-            DownloadsCount = mod.DownloadCount;
-        if (mod.ViewCount != null && ViewsCount == null)
-            ViewsCount = mod.ViewCount;
+        LikesCount = mod.LikeCount ?? 0;
+        ViewsCount = mod.ViewCount ?? 0;
+    }
+
+    public void LoadFullDetails(GameBananaMod mod)
+    {
+        if (mod.Id != GameBananaId)
+            throw new Exception($"GameBanana mod IDs {mod.Id} and {GameBananaId} do not match!");
+
+        Description = mod.Description;
+        Text = mod.Text;
+
+        if (mod.PreviewMedia?.Images?.Length > 1)
+        {
+            // Replace placeholder image
+            Images[0].Url = $"{mod.PreviewMedia.Images[1].BaseUrl}/{mod.PreviewMedia.Images[1].File}";
+            Images[0].DecodePixelHeight = ImageHeight;
+
+            // Add remaining images
+            foreach (GameBananaImage img in mod.PreviewMedia.Images.Skip(2).Take(MaxImages - 1))
+                Images.Add(new ImageViewModel()
+                {
+                    Url = $"{img.BaseUrl}/{img.File}",
+                    DecodePixelHeight = ImageHeight
+                });
+        }
+        else
+        {
+            Images.Clear();
+        }
+
+        LikesCount = mod.LikeCount;
+        DownloadsCount = mod.DownloadCount;
+        ViewsCount = mod.ViewCount;
 
         // TODO-UPDATE: Filter out valid files (i.e. ones with 1-click mod manager)
-        if (mod.Files != null && Files == null)
+        if (mod.Files != null)
         {
             ModViewModel? findDownloadedMod(GameBananaFile file) => _modLoaderViewModel.Mods.
-                Where(x => x.DownloadableModsSource?.Id == _downloadableModsSource.Id).
+                Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
                 FirstOrDefault(x => x.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
 
             Files = new ObservableCollection<GameBananaFileViewModel>(mod.Files.
@@ -283,52 +264,28 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
                 }));
         }
 
-        if (mod.Credits != null && Credits == null)
+        if (mod.Credits != null)
         {
             Credits = mod.Credits.
                 Select(x => new CreditsGroupViewModel(x.GroupName, x.Authors?.
-                    Select(m => new AuthorViewModel(m.AvatarUrl != null 
-                        ? new ImageViewModel()
-                        {
-                            Url = m.AvatarUrl,
-                            DecodePixelWidth = 25,
-                        } 
-                        : null, 
+                    Select(m => new AuthorViewModel(m.AvatarUrl != null
+                            ? new ImageViewModel()
+                            {
+                                Url = m.AvatarUrl,
+                                DecodePixelWidth = 25,
+                            }
+                            : null,
                         m.Name, m.Role, m.ProfileUrl ?? m.Url)).
                     ToObservableCollection())).
                 ToObservableCollection();
         }
     }
 
-    public override async Task LoadAsync()
+    public override async Task LoadFullDetailsAsync()
     {
-        await base.LoadAsync();
-
-        if (IsLoaded)
-            return;
-
-        IsLoaded = true;
-        IsLoading = true;
-
-        try
-        {
-            // Mark as viewed
-            HasViewed = true;
-            if (!Services.Data.ModLoader_ViewedMods.ContainsKey(_downloadableModsSource.Id))
-                Services.Data.ModLoader_ViewedMods.Add(_downloadableModsSource.Id, new List<ViewedMod>());
-            Services.Data.ModLoader_ViewedMods[_downloadableModsSource.Id]
-                .Add(new ViewedMod(GameBananaId.ToString(), DateTime.Now, Version));
-
-            // TODO-UPDATE: Catch exceptions
-            // Load info
-            GameBananaMod mod = await _downloadableModsSource.LoadModDetailsAsync(_httpClient, GameBananaId);
-            LoadDetailsFromMod(mod);
-            UpdateCurrentImage(); // TODO-UPDATE: Should this be here?
-        }
-        finally
-        {
-            IsLoading = false;
-        }
+        GameBananaMod mod = await DownloadableModsSource.LoadModAsync(_httpClient, GameBananaId);
+        LoadFullDetails(mod);
+        UpdateCurrentImage();
     }
 
     public override void Dispose()
@@ -344,7 +301,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     void IRecipient<ModInstalledMessage>.Receive(ModInstalledMessage message)
     {
-        if (message.ModViewModel.DownloadableModsSource?.Id != _downloadableModsSource.Id ||
+        if (message.ModViewModel.DownloadableModsSource?.Id != DownloadableModsSource.Id ||
             Files == null)
             return;
 

@@ -90,7 +90,7 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
     private void AddPlaceholderMods()
     {
         for (int i = 0; i < _downloadableModsSource.GetModsFeedPageLength(); i++)
-            Mods.Add(new PlaceholderDownloadableModViewModel(_feedVersion, _currentPage));
+            Mods.Add(new PlaceholderDownloadableModViewModel(_downloadableModsSource, _feedVersion, _currentPage));
     }
 
     #endregion
@@ -149,7 +149,9 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     public bool IsPlaceholderForNextPage(PlaceholderDownloadableModViewModel placeholder)
     {
-        return placeholder.FeedVersion == _feedVersion && placeholder.Page == _currentPage;
+        return placeholder.DownloadableModsSource.Id == _downloadableModsSource.Id && 
+               placeholder.FeedVersion == _feedVersion && 
+               placeholder.Page == _currentPage;
     }
 
     public void Dispose()
