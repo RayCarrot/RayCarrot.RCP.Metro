@@ -12,15 +12,21 @@ public class ModViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ModViewModel(ModLoaderViewModel modLoaderViewModel, LoaderViewModel loaderViewModel, DownloadableModsSource? downloadableModsSource, Mod mod, ModManifestEntry modEntry, TempDirectory? pendingInstallTempDir = null)
+    public ModViewModel(
+        ModLoaderViewModel modLoaderViewModel, 
+        LoaderViewModel loaderViewModel, 
+        DownloadableModsSource? downloadableModsSource, 
+        Mod mod, 
+        ModManifestEntry modEntry,
+        ModInstallState installState)
     {
         ModLoaderViewModel = modLoaderViewModel;
         LoaderViewModel = loaderViewModel;
-        PendingInstallTempDir = pendingInstallTempDir;
         DownloadableModsSource = downloadableModsSource;
         Mod = mod;
-        _isEnabled = modEntry.IsEnabled;
-        _wasEnabled = _isEnabled;
+        IsEnabled = modEntry.IsEnabled;
+        _wasEnabled = IsEnabled;
+        HasChangesToApply = false;
         InstallInfo = modEntry.InstallInfo;
 
         ModInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -45,9 +51,10 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         PanelFooterViewModel = DownloadableModsSource?.GetPanelFooterViewModel(InstallInfo);
 
-        if (PendingInstallTempDir != null)
-            SetInstallState(ModInstallState.PendingInstall);
+        SetInstallState(installState);
+        UpdateHasChangedToApply();
 
+        ReportNewChangeCommand = new RelayCommand(ReportNewChange);
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
         UninstallCommand = new RelayCommand(UninstallMod);
@@ -65,14 +72,13 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private bool? _wasEnabled;
-
-    private bool _isEnabled;
+    private readonly bool? _wasEnabled;
 
     #endregion
 
     #region Commands
 
+    public ICommand ReportNewChangeCommand { get; }
     public ICommand OpenLocationCommand { get; }
     public ICommand ExtractContentsCommand { get; }
     public ICommand UninstallCommand { get; }
@@ -85,7 +91,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public ModLoaderViewModel ModLoaderViewModel { get; }
     public LoaderViewModel LoaderViewModel { get; }
-    public TempDirectory? PendingInstallTempDir { get; }
+    public TempDirectory? PendingInstallTempDir { get; init; }
     public DownloadableModsSource? DownloadableModsSource { get; }
     public Mod Mod { get; }
     public ModMetadata Metadata => Mod.Metadata;
@@ -102,15 +108,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public bool HasDescripton => !Metadata.Description.IsNullOrWhiteSpace();
     public ImageSource? Thumbnail { get; set; }
 
-    public bool IsEnabled
-    {
-        get => _isEnabled;
-        set
-        {
-            _isEnabled = value;
-            ReportNewChange();
-        }
-    }
+    public bool IsEnabled { get; set; }
     public ModInstallInfo InstallInfo { get; }
 
     public ModInstallState InstallState { get; set; }
@@ -121,7 +119,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public LocalizedString? UpdateStateMessage { get; set; }
     public object? UpdateData { get; set; }
 
-    public bool HasChanges { get; private set; }
+    public bool HasChangesToApply { get; private set; }
 
     public ModPanelFooterViewModel? PanelFooterViewModel { get; }
 
@@ -144,13 +142,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         // Disable if pending uninstall
         if (state == ModInstallState.PendingUninstall)
-        {
-            // Manually update to avoid reporting new changes twice
-            _isEnabled = false;
-            OnPropertyChanged(nameof(IsEnabled));
-        }
-
-        ReportNewChange();
+            IsEnabled = false;
     }
 
     private void SetUpdateState(ModUpdateState state, LocalizedString message, object? updateData = null)
@@ -162,19 +154,21 @@ public class ModViewModel : BaseViewModel, IDisposable
         UpdateData = updateData;
     }
 
+    private void UpdateHasChangedToApply()
+    {
+        HasChangesToApply = InstallState switch
+        {
+            ModInstallState.Installed => IsEnabled != _wasEnabled,
+            ModInstallState.PendingInstall => true,
+            ModInstallState.PendingUninstall => true,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
     private void ReportNewChange()
     {
-        if (InstallState != ModInstallState.Installed)
-        {
-            _wasEnabled = null;
-            HasChanges = true;
-            ModLoaderViewModel.ReportNewChanges();
-        }
-        else
-        {
-            HasChanges = IsEnabled != _wasEnabled;
-            ModLoaderViewModel.ReportNewChanges();
-        }
+        UpdateHasChangedToApply();
+        ModLoaderViewModel.ReportNewChanges();
     }
 
     #endregion
@@ -224,6 +218,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public void UninstallMod()
     {
         SetInstallState(ModInstallState.PendingUninstall);
+        ReportNewChange();
 
         Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", Name, Metadata.Version, Metadata.Id);
     }
@@ -261,6 +256,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         // Mark this mod as being uninstalled. Ideally the new downloaded mod should replace this,
         // but if it happens to have a separate id we want to remove this old mod.
         SetInstallState(ModInstallState.PendingUninstall);
+        ReportNewChange();
     }
 
     public void LoadThumbnail()

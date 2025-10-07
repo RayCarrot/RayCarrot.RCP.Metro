@@ -162,7 +162,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
 
                 // Create and add view model
-                ModViewModel vm = new(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), mod, modEntry);
+                ModViewModel vm = new(
+                    modLoaderViewModel: this, 
+                    loaderViewModel: LoaderViewModel, 
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo), 
+                    mod: mod, 
+                    modEntry: modEntry, 
+                    installState: ModViewModel.ModInstallState.Installed);
                 Mods.Add(vm);
 
                 // Load thumbnail
@@ -299,7 +305,16 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             if (existingModIndex == -1)
             {
                 ModManifestEntry modEntry = new(id, installInfo, true);
-                viewModel = new ModViewModel(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
+                viewModel = new ModViewModel(
+                    modLoaderViewModel: this, 
+                    loaderViewModel: LoaderViewModel, 
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo), 
+                    mod: extractedMod, 
+                    modEntry: modEntry, 
+                    installState: ModViewModel.ModInstallState.PendingInstall)
+                {
+                    PendingInstallTempDir = extractTempDir
+                };
 
                 Mods.Add(viewModel);
                 viewModel.LoadThumbnail();
@@ -310,7 +325,16 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 ModViewModel existingMod = Mods[existingModIndex];
 
                 ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled);
-                viewModel = new ModViewModel(this, LoaderViewModel, DownloadableModsSource.GetSource(modEntry.InstallInfo), extractedMod, modEntry, extractTempDir);
+                viewModel = new ModViewModel(
+                    modLoaderViewModel: this, 
+                    loaderViewModel: LoaderViewModel, 
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo), 
+                    mod: extractedMod, 
+                    modEntry: modEntry, 
+                    installState: ModViewModel.ModInstallState.PendingInstall)
+                {
+                    PendingInstallTempDir = extractTempDir
+                };
 
                 existingMod.Dispose();
                 Mods[existingModIndex] = viewModel;
@@ -535,7 +559,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
         RefreshModifiedFiles();
 
-        int changedMods = Mods.Count(x => x.HasChanges);
+        int changedMods = Mods.Count(x => x.HasChangesToApply);
 
         HasChanges = changedMods > 0 || HasReorderedMods;
 
