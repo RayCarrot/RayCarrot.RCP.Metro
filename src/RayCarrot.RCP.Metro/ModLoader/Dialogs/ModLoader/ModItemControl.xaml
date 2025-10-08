@@ -65,27 +65,43 @@
                                     Margin="0 0 4 0" />
 
         <!-- Install state -->
-        <StackPanel Grid.Column="4" 
-                    Orientation="Horizontal"
-                    Visibility="{Binding Path=InstallStateMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+        <Grid Grid.Column="4"
+              Margin="0 0 10 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <iconPacks:PackIconMaterial VerticalAlignment="Center"
-                                        Width="12"
-                                        Kind="{StaticResource RCP.Icons.Info}"
-                                        Foreground="{StaticResource RCP.Brushes.Info}"
-                                        Margin="0 0 4 0" />
+            <StackPanel Grid.Row="0" 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Visibility="{Binding Path=InstallStateMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
 
-            <TextBlock VerticalAlignment="Center"
-                       FontSize="10"
-                       DataContext="{Binding Path=InstallStateMessage}"
-                       Text="{Binding Path=Value}"
-                       d:Text="Pending install" />
-        </StackPanel>
+                <iconPacks:PackIconMaterial VerticalAlignment="Center"
+                                            Width="12"
+                                            Kind="{StaticResource RCP.Icons.Info}"
+                                            Foreground="{StaticResource RCP.Brushes.Info}"
+                                            Margin="0 0 4 0" />
+
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="10"
+                           DataContext="{Binding Path=InstallStateMessage}"
+                           Text="{Binding Path=Value}"
+                           d:Text="Pending install" />
+            </StackPanel>
+
+            <mah:MetroProgressBar Grid.Row="1"
+                                  Visibility="{Binding Path=InstallState, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static modLoader:ModViewModel+ModInstallState.Downloading}}"
+                                  Width="150"
+                                  IsIndeterminate="True" />
+
+        </Grid>
 
         <!-- Actions -->
         <StackPanel Grid.Column="5"
                     Orientation="Horizontal"
-                    Margin="16 0 0 0"
+                    Margin="8 0 0 0"
                     d:Visibility="Visible">
             <StackPanel.Style>
                 <Style TargetType="{x:Type StackPanel}">
@@ -98,7 +114,7 @@
                             <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=CanModify}" Value="False">
-                            <Setter Property="Visibility" Value="Hidden" />
+                            <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

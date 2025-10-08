@@ -88,6 +88,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         InstallStateMessage = state switch
         {
             ModInstallState.Installed => null,
+            ModInstallState.Downloading => new ConstLocString("Downloading..."), // TODO-LOC
             ModInstallState.PendingInstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingInstall)),
             ModInstallState.PendingUninstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingUninstall)),
             _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
@@ -134,6 +135,9 @@ public class ModViewModel : BaseViewModel, IDisposable
         IsEnabled = false;
         _wasEnabled = null;
 
+        DownloadedMod = null;
+
+        SetUpdateState(ModUpdateState.None, String.Empty);
         SetInstallState(ModInstallState.Downloading);
         UpdateHasChangesToApply();
     }
@@ -150,6 +154,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         DownloadedMod = new DownloadedModViewModel(DownloadableModsSource, mod, modEntry);
         DownloadedMod.LoadThumbnail();
 
+        SetUpdateState(ModUpdateState.None, String.Empty);
         SetInstallState(installState);
         UpdateHasChangesToApply();
     }
