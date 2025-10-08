@@ -1,9 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using RayCarrot.RCP.Metro.ModLoader.Library;
-using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
@@ -15,51 +13,19 @@ public class ModViewModel : BaseViewModel, IDisposable
     public ModViewModel(
         ModLoaderViewModel modLoaderViewModel, 
         LoaderViewModel loaderViewModel, 
-        DownloadableModsSource? downloadableModsSource, 
-        Mod mod, 
-        ModManifestEntry modEntry,
-        ModInstallState installState)
+        DownloadableModsSource? downloadableModsSource)
     {
         ModLoaderViewModel = modLoaderViewModel;
         LoaderViewModel = loaderViewModel;
         DownloadableModsSource = downloadableModsSource;
-        Mod = mod;
-        IsEnabled = modEntry.IsEnabled;
-        _wasEnabled = IsEnabled;
+
         HasChangesToApply = false;
-        InstallInfo = modEntry.InstallInfo;
-
-        ModInfo = new ObservableCollection<DuoGridItemViewModel>()
-        {
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Author)), Metadata.Author),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Version)), Metadata.Version?.ToString()),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_FormatVersion)), Metadata.Format.ToString(), UserLevel.Technical),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_ID)), Metadata.Id, UserLevel.Technical),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Size)), BinaryHelpers.BytesToString(modEntry.InstallInfo.Size)),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_InstallSource)), DownloadableModsSource?.DisplayName ?? new ResourceLocString(nameof(Resources.ModLoader_LocalInstallSource))),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_Modules)), Mod.GetSupportedModules().JoinItems(", ", x => x.Id)),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_AddedFiles)), mod.GetAddedFiles().Count.ToString()),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_RemovedFiles)), mod.GetRemovedFiles().Count.ToString()),
-            new(new ResourceLocString(nameof(Resources.ModLoader_ModInfo_PatchedFiles)), mod.GetPatchedFiles().Count.ToString()),
-        };
-
-        ReadOnlyCollection<string> unsupportedModules = Mod.GetUnsupportedModules();
-        if (unsupportedModules.Any())
-            UnsupportedModulesErrorMessage = new ResourceLocString(nameof(Resources.ModLoader_UnsupportedModulesInfo), unsupportedModules.JoinItems(", "));
-
-        ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
-
-        PanelFooterViewModel = DownloadableModsSource?.GetPanelFooterViewModel(InstallInfo);
-
-        SetInstallState(installState);
-        UpdateHasChangedToApply();
 
         ReportNewChangeCommand = new RelayCommand(ReportNewChange);
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
         UninstallCommand = new RelayCommand(UninstallMod);
         UpdateModCommand = new AsyncRelayCommand(UpdateModAsync);
-        OpenWebsiteCommand = new RelayCommand(OpenWebsite);
     }
 
     #endregion
@@ -72,7 +38,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private readonly bool? _wasEnabled;
+    private bool? _wasEnabled;
 
     #endregion
 
@@ -83,45 +49,32 @@ public class ModViewModel : BaseViewModel, IDisposable
     public ICommand ExtractContentsCommand { get; }
     public ICommand UninstallCommand { get; }
     public ICommand UpdateModCommand { get; }
-    public ICommand OpenWebsiteCommand { get; }
 
     #endregion
 
     #region Public Properties
 
+    public bool IsEnabled { get; set; }
+
     public ModLoaderViewModel ModLoaderViewModel { get; }
     public LoaderViewModel LoaderViewModel { get; }
-    public TempDirectory? PendingInstallTempDir { get; init; }
     public DownloadableModsSource? DownloadableModsSource { get; }
-    public Mod Mod { get; }
-    public ModMetadata Metadata => Mod.Metadata;
-    public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
-    public ObservableCollection<ModChangelogEntry> ChangelogEntries { get; }
-
-    public LocalizedString? UnsupportedModulesErrorMessage { get; }
-
-    public string? Name => Metadata.Name;
-    public string? Description => Metadata.Description;
-    public string? Website => Metadata.Website;
-
-    public bool HasWebsite => Uri.TryCreate(Metadata.Website, UriKind.Absolute, out _);
-    public bool HasDescripton => !Metadata.Description.IsNullOrWhiteSpace();
-    public ImageSource? Thumbnail { get; set; }
-
-    public bool IsEnabled { get; set; }
-    public ModInstallInfo InstallInfo { get; }
+    
+    public TempDirectory? PendingInstallTempDir { get; init; }
 
     public ModInstallState InstallState { get; set; }
     public LocalizedString? InstallStateMessage { get; set; }
-    public bool CanModify => InstallState != ModInstallState.PendingUninstall;
+    public bool CanModify => InstallState is not (ModInstallState.Downloading or ModInstallState.PendingUninstall);
 
     public ModUpdateState UpdateState { get; set; }
     public LocalizedString? UpdateStateMessage { get; set; }
     public object? UpdateData { get; set; }
 
-    public bool HasChangesToApply { get; private set; }
+    [MemberNotNullWhen(true, nameof(DownloadedMod))]
+    public bool IsDownloaded => DownloadedMod != null;
+    public DownloadedModViewModel? DownloadedMod { get; set; }
 
-    public ModPanelFooterViewModel? PanelFooterViewModel { get; }
+    public bool HasChangesToApply { get; private set; }
 
     #endregion
 
@@ -129,7 +82,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     private void SetInstallState(ModInstallState state)
     {
-        Logger.Trace("Set install state to {0} for mod with ID {1}", state, Metadata.Id);
+        Logger.Trace("Set install state to {0} for mod with ID {1}", state, DownloadedMod?.Metadata.Id);
 
         InstallState = state;
         InstallStateMessage = state switch
@@ -141,24 +94,25 @@ public class ModViewModel : BaseViewModel, IDisposable
         };
 
         // Disable if pending uninstall
-        if (state == ModInstallState.PendingUninstall)
+        if (state == ModInstallState.PendingUninstall && IsDownloaded)
             IsEnabled = false;
     }
 
     private void SetUpdateState(ModUpdateState state, LocalizedString message, object? updateData = null)
     {
-        Logger.Trace("Set update state to {0} for mod with ID {1}", state, Metadata.Id);
+        Logger.Trace("Set update state to {0} for mod with ID {1}", state, DownloadedMod?.Metadata.Id);
 
         UpdateState = state;
         UpdateStateMessage = message;
         UpdateData = updateData;
     }
 
-    private void UpdateHasChangedToApply()
+    private void UpdateHasChangesToApply()
     {
         HasChangesToApply = InstallState switch
         {
             ModInstallState.Installed => IsEnabled != _wasEnabled,
+            ModInstallState.Downloading => false,
             ModInstallState.PendingInstall => true,
             ModInstallState.PendingUninstall => true,
             _ => throw new ArgumentOutOfRangeException()
@@ -167,7 +121,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     private void ReportNewChange()
     {
-        UpdateHasChangedToApply();
+        UpdateHasChangesToApply();
         ModLoaderViewModel.ReportNewChanges();
     }
 
@@ -175,13 +129,44 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Public Methods
 
+    public void InitDownloading()
+    {
+        IsEnabled = false;
+        _wasEnabled = null;
+
+        SetInstallState(ModInstallState.Downloading);
+        UpdateHasChangesToApply();
+    }
+
+    [MemberNotNull(nameof(DownloadedMod))]
+    public void InitDownloaded(ModInstallState installState, Mod mod, ModManifestEntry modEntry)
+    {
+        if (installState == ModInstallState.Downloading)
+            throw new Exception("Can't initialize a mod as downloaded with the state being set to downloading");
+
+        IsEnabled = modEntry.IsEnabled;
+        _wasEnabled = IsEnabled;
+
+        DownloadedMod = new DownloadedModViewModel(DownloadableModsSource, mod, modEntry);
+        DownloadedMod.LoadThumbnail();
+
+        SetInstallState(installState);
+        UpdateHasChangesToApply();
+    }
+
     public async Task OpenLocationAsync()
     {
-        await Services.File.OpenExplorerLocationAsync(Mod.ModDirectoryPath);
+        if (!IsDownloaded)
+            return;
+        
+        await Services.File.OpenExplorerLocationAsync(DownloadedMod.Mod.ModDirectoryPath);
     }
 
     public async Task ExtractModContentsAsync()
     {
+        if (!IsDownloaded)
+            return;
+
         using (LoaderLoadState state = await LoaderViewModel.RunAsync(Resources.ModLoader_ExtractingModStatus))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
@@ -196,7 +181,7 @@ public class ModViewModel : BaseViewModel, IDisposable
             {
                 Logger.Info("Extracting mod contents");
 
-                await Task.Run(() => Services.File.CopyDirectory(Mod.ModDirectoryPath, result.SelectedDirectory, false, true));
+                await Task.Run(() => Services.File.CopyDirectory(DownloadedMod.Mod.ModDirectoryPath, result.SelectedDirectory, false, true));
 
                 state.Complete();
 
@@ -217,20 +202,23 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public void UninstallMod()
     {
+        if (!IsDownloaded)
+            return;
+
         SetInstallState(ModInstallState.PendingUninstall);
         ReportNewChange();
 
-        Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", Name, Metadata.Version, Metadata.Id);
+        Logger.Info("Set mod '{0}' with version {1} and ID {2} to pending uninstall", DownloadedMod.Name, DownloadedMod.Metadata.Version, DownloadedMod.Metadata.Id);
     }
 
     public async Task UpdateModAsync()
     {
-        if (DownloadableModsSource == null)
+        if (DownloadableModsSource == null || !IsDownloaded)
             return;
 
         try
         {
-            Logger.Info("Updating mod with ID {0}", Metadata.Id);
+            Logger.Info("Updating mod with ID {0}", DownloadedMod.Metadata.Id);
 
             ModDownload? download = await DownloadableModsSource.GetModUpdateDownloadAsync(UpdateData);
 
@@ -259,47 +247,9 @@ public class ModViewModel : BaseViewModel, IDisposable
         ReportNewChange();
     }
 
-    public void LoadThumbnail()
-    {
-        Logger.Trace("Loading thumbnail for mod with ID {0}", Metadata.Id);
-
-        try
-        {
-            FileSystemPath? thumbFilePath = Mod.GetThumbnailFilePath();
-
-            if (thumbFilePath == null)
-            {
-                Thumbnail = null;
-                return;
-            }
-
-            BitmapImage thumb = new();
-            thumb.BeginInit();
-            thumb.CreateOptions |= BitmapCreateOptions.IgnoreImageCache;
-            thumb.CacheOption = BitmapCacheOption.OnLoad; // Required to allow the file to be deleted, such as if a temp file
-            thumb.UriSource = new Uri(thumbFilePath);
-            thumb.EndInit();
-
-            if (thumb.CanFreeze)
-                thumb.Freeze();
-
-            Thumbnail = thumb;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Loading mod thumbnail");
-        }
-    }
-
-    public void OpenWebsite()
-    {
-        if (Metadata.Website != null)
-            Services.App.OpenUrl(Metadata.Website);
-    }
-
     public async Task CheckForUpdateAsync(HttpClient httpClient)
     {
-        if (InstallState != ModInstallState.Installed)
+        if (InstallState != ModInstallState.Installed || !IsDownloaded)
         {
             SetUpdateState(ModUpdateState.None, String.Empty);
             return;
@@ -315,7 +265,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         try
         {
-            ModUpdateCheckResult result = await DownloadableModsSource.CheckForUpdateAsync(httpClient, InstallInfo);
+            ModUpdateCheckResult result = await DownloadableModsSource.CheckForUpdateAsync(httpClient, DownloadedMod.InstallInfo);
             SetUpdateState(result.State, result.Message ?? String.Empty, result.UpdateData);
         }
         catch (Exception ex)
@@ -338,6 +288,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public enum ModInstallState
     {
         Installed,
+        Downloading,
         PendingInstall,
         PendingUninstall,
     }

@@ -165,16 +165,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 ModViewModel vm = new(
                     modLoaderViewModel: this, 
                     loaderViewModel: LoaderViewModel, 
-                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo), 
-                    mod: mod, 
-                    modEntry: modEntry, 
-                    installState: ModViewModel.ModInstallState.Installed);
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo));
+                vm.InitDownloaded(ModViewModel.ModInstallState.Installed, mod, modEntry);
                 Mods.Add(vm);
 
-                // Load thumbnail
-                vm.LoadThumbnail();
-
-                Logger.Info("Added installed mod '{0}' from library with version {1} and ID {2}", vm.Metadata.Name, vm.Metadata.Version, vm.Metadata.Id);
+                Logger.Info("Added installed mod '{0}' from library with version {1} and ID {2}", 
+                    vm.DownloadedMod.Metadata.Name, vm.DownloadedMod.Metadata.Version, vm.DownloadedMod.Metadata.Id);
             }
 
             Logger.Info("Loaded {0} installed mods", modManifest.Mods.Count);
@@ -297,7 +293,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Date: DateTime.Now, 
                 Data: installData == null ? null : JObject.FromObject(installData));
 
-            int existingModIndex = Mods.FindItemIndex(x => x.Metadata.Id == id);
+            int existingModIndex = Mods.FindItemIndex(x => x.IsDownloaded && x.DownloadedMod.Metadata.Id == id);
 
             ModViewModel viewModel;
 
@@ -308,16 +304,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 viewModel = new ModViewModel(
                     modLoaderViewModel: this, 
                     loaderViewModel: LoaderViewModel, 
-                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo), 
-                    mod: extractedMod, 
-                    modEntry: modEntry, 
-                    installState: ModViewModel.ModInstallState.PendingInstall)
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
                 {
                     PendingInstallTempDir = extractTempDir
                 };
+                viewModel.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
 
                 Mods.Add(viewModel);
-                viewModel.LoadThumbnail();
             }
             // The mod is being added as an update
             else
@@ -328,20 +321,17 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 viewModel = new ModViewModel(
                     modLoaderViewModel: this, 
                     loaderViewModel: LoaderViewModel, 
-                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo), 
-                    mod: extractedMod, 
-                    modEntry: modEntry, 
-                    installState: ModViewModel.ModInstallState.PendingInstall)
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
                 {
                     PendingInstallTempDir = extractTempDir
                 };
+                viewModel.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
 
                 existingMod.Dispose();
                 Mods[existingModIndex] = viewModel;
-                viewModel.LoadThumbnail();
             }
 
-            Services.Messenger.Send(new ModInstalledMessage(viewModel), 
+            Services.Messenger.Send(new ModDownloadedMessage(viewModel, viewModel.DownloadedMod), 
                 // TODO: For now we use the installation id as the token to keep this scoped to the current
                 //       dialog instance. In the future we might want to set up a system where each open
                 //       dialog instance has an id which we can then use as a token.
@@ -376,17 +366,20 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
 
         // Then check enabled mods
-        foreach (ModViewModel modViewModel in Mods.Where(x => x.IsEnabled))
+        foreach (ModViewModel modViewModel in Mods)
         {
-            Mod mod = modViewModel.Mod;
+            if (!modViewModel.IsDownloaded || !modViewModel.IsEnabled) 
+                continue;
+            
+            Mod mod = modViewModel.DownloadedMod.Mod;
 
-            foreach (IModFileResource addedFile in mod.GetAddedFiles())
+            foreach (IModFileResource addedFile in mod.GetAddedFiles()) 
                 checkArchiveSize(addedFile.Path);
 
-            foreach (ModFilePath removedFile in mod.GetRemovedFiles())
+            foreach (ModFilePath removedFile in mod.GetRemovedFiles()) 
                 checkArchiveSize(removedFile);
 
-            foreach (IFilePatch patchedFile in mod.GetPatchedFiles())
+            foreach (IFilePatch patchedFile in mod.GetPatchedFiles()) 
                 checkArchiveSize(patchedFile.Path);
         }
 
@@ -644,6 +637,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task<bool?> ApplyAsync()
     {
+        if (Mods.Any(x => !x.IsDownloaded))
+        {
+            // TODO-UPDATE: Message
+            return null;
+        }
+
         // Warn about file conflicts
         if (ModifiedFiles.HasConflicts && Services.Data.ModLoader_ShowModConflictsWarning)
         {
@@ -718,24 +717,30 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     // Process every mod
                     foreach (ModViewModel modViewModel in Mods)
                     {
-                        string id = modViewModel.Metadata.Id;
+                        if (!modViewModel.IsDownloaded)
+                            throw new Exception("Mod has to be downloaded when applying");
+
+                        string id = modViewModel.DownloadedMod.Metadata.Id;
 
                         switch (modViewModel.InstallState)
                         {
+                            case ModViewModel.ModInstallState.Downloading:
+                                throw new Exception("Mod has to be downloaded when applying");
+
                             // Already installed mod
                             case ModViewModel.ModInstallState.Installed:
-                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled));
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.DownloadedMod.InstallInfo, modViewModel.IsEnabled));
                                 break;
                             
                             // Install new mod
                             case ModViewModel.ModInstallState.PendingInstall:
-                                Library.InstallMod(modViewModel.Mod.ModDirectoryPath, id, false);
-                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.InstallInfo, modViewModel.IsEnabled));
+                                Library.InstallMod(modViewModel.DownloadedMod.Mod.ModDirectoryPath, id, false);
+                                installedMods.Add(id, new ModManifestEntry(id, modViewModel.DownloadedMod.InstallInfo, modViewModel.IsEnabled));
                                 break;
                             
                             // Uninstall
                             case ModViewModel.ModInstallState.PendingUninstall:
-                                Library.UninstallMod(modViewModel.Metadata.Id);
+                                Library.UninstallMod(modViewModel.DownloadedMod.Metadata.Id);
                                 break;
 
                             default:

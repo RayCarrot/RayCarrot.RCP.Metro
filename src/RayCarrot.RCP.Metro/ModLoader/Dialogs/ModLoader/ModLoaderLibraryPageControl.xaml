@@ -103,7 +103,7 @@
 
                 <!-- Selected mod -->
                 <rcp:Card Grid.Column="1"
-                          DataContext="{Binding Path=SelectedMod}"
+                          DataContext="{Binding Path=SelectedMod.DownloadedMod}"
                           Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
                           d:Visibility="Visible"
                           Margin="{StaticResource RCP.Thicknesses.Card}" 

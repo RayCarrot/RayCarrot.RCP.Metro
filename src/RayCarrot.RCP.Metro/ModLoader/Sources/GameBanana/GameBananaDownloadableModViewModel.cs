@@ -7,7 +7,7 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRecipient<ModInstalledMessage>
+public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRecipient<ModDownloadedMessage>
 {
     #region Constructor
 
@@ -250,7 +250,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         {
             ModViewModel? findDownloadedMod(GameBananaFile file) => _modLoaderViewModel.Mods.
                 Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
-                FirstOrDefault(x => x.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
+                FirstOrDefault(x => x.IsDownloaded && x.DownloadedMod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
 
             Files = new ObservableCollection<GameBananaFileViewModel>(mod.Files.
                 Where(x => !x.IsArchived).Select(x => new GameBananaFileViewModel(x)
@@ -299,13 +299,13 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     #region Message Receivers
 
-    void IRecipient<ModInstalledMessage>.Receive(ModInstalledMessage message)
+    void IRecipient<ModDownloadedMessage>.Receive(ModDownloadedMessage message)
     {
         if (message.ModViewModel.DownloadableModsSource?.Id != DownloadableModsSource.Id ||
             Files == null)
             return;
 
-        long fileId = message.ModViewModel.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId;
+        long fileId = message.DownloadedModViewModel.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId;
 
         foreach (GameBananaFileViewModel file in Files)
         {

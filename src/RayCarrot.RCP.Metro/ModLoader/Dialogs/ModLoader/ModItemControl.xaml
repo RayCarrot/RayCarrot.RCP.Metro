@@ -7,6 +7,7 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:sources="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignWidth="500"
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
@@ -31,10 +32,12 @@
                   Visibility="{Binding Path=CanModify, Converter={rcp:BooleanToVisibilityHiddenConverter}}"
                   Padding="0"
                   IsChecked="{Binding Path=IsEnabled}"
+                  Command="{Binding Path=ReportNewChangeCommand, Mode=OneTime}"
                   Margin="0 0 4 0" />
 
         <!-- Thumbnail -->
         <modLoader:ModThumbnailControl Grid.Column="1"
+                                       DataContext="{Binding Path=DownloadedMod}"
                                        Width="32" Height="32"
                                        VerticalAlignment="Center"
                                        Margin="0 0 4 0" />
@@ -43,7 +46,7 @@
         <TextBlock Grid.Column="2" 
                    VerticalAlignment="Center"
                    FontSize="14"
-                   Text="{Binding Path=Name, Mode=OneTime}"
+                   Text="{Binding Path=DownloadedMod.Name, Mode=OneTime}"
                    d:Text="Mod title"
                    TextWrapping="Wrap"
                    Margin="0 0 8 0" />
@@ -55,7 +58,7 @@
                                     Kind="{StaticResource RCP.Icons.Info}"
                                     Foreground="{StaticResource RCP.Brushes.Warning}"
                                     Background="Transparent"
-                                    DataContext="{Binding Path=UnsupportedModulesErrorMessage, Mode=OneTime}"
+                                    DataContext="{Binding Path=DownloadedMod.UnsupportedModulesErrorMessage, Mode=OneTime}"
                                     Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
                                     d:Visibility="Visible"
                                     ToolTip="{Binding Path=Value}"

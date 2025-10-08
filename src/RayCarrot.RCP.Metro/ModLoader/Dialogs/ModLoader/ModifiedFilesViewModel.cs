@@ -139,7 +139,10 @@ public class ModifiedFilesViewModel : BaseViewModel
 
         foreach (ModViewModel modViewModel in enabledMods)
         {
-            Mod mod = modViewModel.Mod;
+            if (!modViewModel.IsDownloaded)
+                continue;
+
+            Mod mod = modViewModel.DownloadedMod.Mod;
 
             foreach (IModFileResource addedFile in mod.GetAddedFiles())
                 AddFile(addedFile.Path, mod, ModifiedFileItemViewModel.FileModification.Add, true);
