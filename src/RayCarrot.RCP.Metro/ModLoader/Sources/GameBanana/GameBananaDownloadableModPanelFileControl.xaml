@@ -39,6 +39,7 @@
         </StackPanel>
 
         <Button Grid.Column="2"
+                VerticalAlignment="Center"
                 Command="{Binding Path=DataContext.(gameBanana:GameBananaDownloadableModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
                 CommandParameter="{Binding Mode=OneTime}">
             <Button.Style>
