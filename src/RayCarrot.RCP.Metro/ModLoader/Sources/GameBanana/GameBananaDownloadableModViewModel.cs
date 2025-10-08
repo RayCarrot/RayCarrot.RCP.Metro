@@ -388,6 +388,9 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
             imgSource.UriSource = uri;
             imgSource.EndInit();
 
+            if (imgSource.CanFreeze)
+                imgSource.Freeze();
+
             ImageSource = imgSource;
         }
     }
