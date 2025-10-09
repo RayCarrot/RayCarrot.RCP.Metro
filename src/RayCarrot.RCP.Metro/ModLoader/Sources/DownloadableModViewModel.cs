@@ -4,25 +4,22 @@ namespace RayCarrot.RCP.Metro.ModLoader.Sources;
 
 public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
 {
-    protected DownloadableModViewModel(DownloadableModsSource downloadableModsSource)
+    protected DownloadableModViewModel(DownloadableModsSource downloadableModsSource, string? modId)
     {
         DownloadableModsSource = downloadableModsSource;
-        UpdateHasViewed();
+        ModId = modId;
+
+        if (modId != null)
+            HasViewed = Services.Data.ModLoader_ViewedMods.TryGetValue(DownloadableModsSource.Id, out List<ViewedMod> viewedMod) &&
+                        viewedMod.Any(x => x.Id == modId);
     }
 
     public DownloadableModsSource DownloadableModsSource { get; }
-    public abstract string? ModId { get; }
+    public string? ModId { get; }
     public abstract ModVersion? ModVersion { get; }
     public bool HasViewed { get; set; }
     public bool HasLoadedFullDetails { get; set; }
     public bool IsLoadingFullDetails { get; set; }
-
-    public void UpdateHasViewed()
-    {
-        if (ModId != null)
-            HasViewed = Services.Data.ModLoader_ViewedMods.TryGetValue(DownloadableModsSource.Id, out List<ViewedMod> viewedMod) &&
-                        viewedMod.Any(x => x.Id == ModId);
-    }
 
     public async Task OnSelectedAsync()
     {

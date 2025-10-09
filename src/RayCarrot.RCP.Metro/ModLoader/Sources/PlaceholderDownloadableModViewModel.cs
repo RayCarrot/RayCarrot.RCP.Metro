@@ -5,13 +5,12 @@ namespace RayCarrot.RCP.Metro.ModLoader.Sources;
 public class PlaceholderDownloadableModViewModel : DownloadableModViewModel
 {
     public PlaceholderDownloadableModViewModel(DownloadableModsSource downloadableModsSource, int feedVersion, int page) 
-        : base(downloadableModsSource)
+        : base(downloadableModsSource, null)
     {
         FeedVersion = feedVersion;
         Page = page;
     }
 
-    public override string? ModId => null;
     public override ModVersion? ModVersion => null;
 
     public int FeedVersion { get; }

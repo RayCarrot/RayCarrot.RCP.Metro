@@ -16,7 +16,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         ModLoaderViewModel modLoaderViewModel,
         HttpClient httpClient,
         int gameBananaId, 
-        bool isFeatured) : base(downloadableModsSource)
+        bool isFeatured) : base(downloadableModsSource, gameBananaId.ToString())
     {
         _modLoaderViewModel = modLoaderViewModel;
         _httpClient = httpClient;
@@ -65,7 +65,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
     public new GameBananaModsSource DownloadableModsSource => (GameBananaModsSource)base.DownloadableModsSource;
 
     public int GameBananaId { get; }
-    public override string ModId => GameBananaId.ToString();
     public bool IsFeatured { get; set; }
 
     public string? Name { get; set; }
