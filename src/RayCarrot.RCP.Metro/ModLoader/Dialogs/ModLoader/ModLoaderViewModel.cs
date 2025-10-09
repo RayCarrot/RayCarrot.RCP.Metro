@@ -7,6 +7,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.ModLoader.Extractors;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Metadata;
 using RayCarrot.RCP.Metro.ModLoader.Resource;
 using RayCarrot.RCP.Metro.ModLoader.Sources;
 
@@ -71,7 +72,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public ModLibrary Library { get; }
     public LoaderViewModel LoaderViewModel { get; }
     
-    public ObservableCollection<ModViewModel> Mods { get; }
+    public ObservableCollection<ModViewModel> Mods { get; } // TODO-UPDATE: Lock access to this
     public ModViewModel? SelectedMod { get; set; }
 
     public ModifiedFilesViewModel ModifiedFiles { get; }
@@ -225,7 +226,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 try
                 {
-                    await AddModToInstallAsync(modFile.FilePath, state, modFile.SourceId, modFile.InstallData);
+                    await AddModToInstallAsync(modFile.FilePath, state.SetProgress, state.CancellationToken, modFile.SourceId, modFile.InstallData);
                 }
                 catch (OperationCanceledException ex)
                 {
@@ -246,7 +247,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private async Task AddModToInstallAsync(FileSystemPath filePath, LoaderLoadState loadState, string? sourceId, object? installData)
+    private async Task<ModMetadata?> AddModToInstallAsync(
+        FileSystemPath filePath, 
+        Action<Progress> progressCallback, 
+        CancellationToken cancellationToken, 
+        string? sourceId, 
+        object? installData,
+        ModViewModel? existingMod = null)
     {
         FileExtension fileExtension = filePath.FileExtension;
         ModExtractor modExtractor = _modExtractors.First(x => x.FileExtension == fileExtension);
@@ -257,7 +264,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             // Extract the mod
             await Task.Run(async () =>
-                await modExtractor.ExtractAsync(filePath, extractTempDir.TempPath, loadState.SetProgress, loadState.CancellationToken));
+                await modExtractor.ExtractAsync(filePath, extractTempDir.TempPath, progressCallback, cancellationToken));
 
             // Read the mod
             Mod extractedMod = new(extractTempDir.TempPath, GameInstallation);
@@ -274,14 +281,14 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 extractTempDir.Dispose();
 
-                return;
+                return null;
             }
 
             // Verify the security
             if (!await VerifyModSecurityAsync(extractedMod))
             {
                 extractTempDir.Dispose();
-                return;
+                return null;
             }
 
             string id = extractedMod.Metadata.Id;
@@ -293,51 +300,49 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Date: DateTime.Now, 
                 Data: installData == null ? null : JObject.FromObject(installData));
 
-            int existingModIndex = Mods.FindItemIndex(x => x.IsDownloaded && x.DownloadedMod.Metadata.Id == id);
+            // Attempt to find existing mod if not specified
+            existingMod ??= Mods.FirstOrDefault(x => x.IsDownloaded && x.DownloadedMod.Metadata.Id == id);
 
-            ModViewModel viewModel;
+            // Create a new manifest entry for the mod
+            ModManifestEntry modEntry = new(id, installInfo, existingMod?.IsEnabled ?? true);
+
+            // Create the mod view model
+            ModViewModel mod = new(
+                modLoaderViewModel: this, 
+                loaderViewModel: LoaderViewModel, 
+                downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
+            {
+                PendingInstallTempDir = extractTempDir
+            };
+            mod.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
 
             // The mod is being added as a new mod
-            if (existingModIndex == -1)
+            if (existingMod == null)
             {
-                ModManifestEntry modEntry = new(id, installInfo, true);
-                viewModel = new ModViewModel(
-                    modLoaderViewModel: this, 
-                    loaderViewModel: LoaderViewModel, 
-                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
-                {
-                    PendingInstallTempDir = extractTempDir
-                };
-                viewModel.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
-
-                Mods.Add(viewModel);
+                // Add to the end of the list
+                Mods.Add(mod);
             }
-            // The mod is being added as an update
+            // The mod is replacing an existing mod
             else
             {
-                ModViewModel existingMod = Mods[existingModIndex];
-
-                ModManifestEntry modEntry = new(id, installInfo, existingMod.IsEnabled);
-                viewModel = new ModViewModel(
-                    modLoaderViewModel: this, 
-                    loaderViewModel: LoaderViewModel, 
-                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
-                {
-                    PendingInstallTempDir = extractTempDir
-                };
-                viewModel.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
-
+                // Dispose the existing mod
                 existingMod.Dispose();
-                Mods[existingModIndex] = viewModel;
+
+                // Replace the existing mod
+                Mods[Mods.IndexOf(existingMod)] = mod;
             }
 
-            Services.Messenger.Send(new ModDownloadedMessage(viewModel, viewModel.DownloadedMod), 
-                // TODO: For now we use the installation id as the token to keep this scoped to the current
-                //       dialog instance. In the future we might want to set up a system where each open
-                //       dialog instance has an id which we can then use as a token.
-                GameInstallation.InstallationId);
+            // Remove any mods with the same id
+            while (Mods.FirstOrDefault(x => x != mod && x.IsDownloaded && x.DownloadedMod.Metadata.Id == id) is { } conflictMod)
+            {
+                Logger.Info("Removing mod due to mod ID conflict");
+                conflictMod.Dispose();
+                Mods.Remove(conflictMod);
+            }
 
             Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
+
+            return mod.DownloadedMod.Metadata;
         }
         catch
         {
@@ -584,47 +589,106 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public async Task InstallModFromDownloadableFileAsync(
         DownloadableModsSource source, 
+        ModViewModel? existingMod,
         string fileName, 
         string downloadUrl, 
         long fileSize, 
-        object? installData)
+        object? installData,
+        string? modName)
     {
-        using (LoaderLoadState state = await LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
+        if (existingMod is { IsDownloaded: false })
+            throw new Exception("Can't install a mod to an existing mod which has not been downloaded");
+
+        ModViewModel downloadingMod = new(this, LoaderViewModel, source);
+        downloadingMod.InitDownloading(modName);
+
+        // The mod is being added as a new mod
+        if (existingMod == null)
         {
-            try
+            Mods.Add(downloadingMod);
+
+        }
+        // The mod is replacing an existing mod
+        else
+        {
+            // Copy over if enabled
+            downloadingMod.IsEnabled = existingMod.IsEnabled;
+
+            // Replace the existing mod
+            Mods[Mods.IndexOf(existingMod)] = downloadingMod;
+        }
+
+        ModMetadata? pendingInstallModMetadata = null;
+        try
+        {
+            Logger.Info("Downloading mod from {0}", downloadUrl);
+
+            // TODO-UPDATE: Allow to cancel
+            CancellationToken cancellationToken = CancellationToken.None;
+
+            // Create a temp file to download to
+            using TempFile tempFile = new(false, new FileExtension(fileName));
+
+            // Open a stream to the downloadable file
+            using (Stream httpStream = await _httpClient.GetStreamAsync(downloadUrl))
             {
-                Logger.Info("Downloading mod to install from {0}", downloadUrl);
+                // Download to the temp file
+                using FileStream tempFileStream = File.Create(tempFile.TempPath);
+                await httpStream.CopyToExAsync(
+                    destination: tempFileStream,
+                    progressCallback: downloadingMod.SetProgress,
+                    cancellationToken: cancellationToken,
+                    length: fileSize);
+            }
 
-                // Create a temp file to download to
-                using TempFile tempFile = new(false, new FileExtension(fileName));
+            downloadingMod.SetInstallState(ModViewModel.ModInstallState.Extracting);
 
-                // Open a stream to the downloadable file
-                using (Stream httpStream = await _httpClient.GetStreamAsync(downloadUrl))
-                {
-                    // Download to the temp file
-                    using FileStream tempFileStream = File.Create(tempFile.TempPath);
-                    await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: fileSize);
-                }
+            pendingInstallModMetadata = await AddModToInstallAsync(
+                filePath: tempFile.TempPath, 
+                progressCallback: downloadingMod.SetProgress, 
+                cancellationToken: cancellationToken, 
+                sourceId: source.Id, 
+                installData: installData,
+                existingMod: downloadingMod);
 
-                state.SetStatus(String.Format(Resources.ModLoader_ExtractingDownloadedModStatus, fileName));
-
-                await AddModToInstallAsync(tempFile.TempPath, state, source.Id, installData);
+            if (pendingInstallModMetadata != null)
                 ReportNewChanges();
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Info(ex, "Canceled downloading mod");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Downloading mod");
 
-                state.Complete();
-            }
-            catch (OperationCanceledException ex)
-            {
-                Logger.Info(ex, "Canceled downloading mod");
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Downloading mod");
+            // TODO-UPDATE: Include mod name in message
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError);
+        }
 
-                state.Error();
+        // Remove the downloading mod if the download wasn't successful
+        if (pendingInstallModMetadata == null)
+        {
+            downloadingMod.Dispose();
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError﻿);
-            }
+            if (existingMod == null)
+                Mods.Remove(downloadingMod);
+            else
+                Mods[Mods.IndexOf(downloadingMod)] = existingMod;
+        }
+        // Restore the existing mod if the new mod has a different id
+        else if (existingMod != null && pendingInstallModMetadata.Id != existingMod.DownloadedMod.Metadata.Id)
+        {
+            Mods.Add(existingMod);
+
+            // Mark the mod as being uninstalled. Ideally the new downloaded mod should replace this,
+            // but if it happens to have a separate id we want to remove this old mod.
+            existingMod.UninstallMod();
+        }
+        // Dispose the existing mod since it's now removed
+        else
+        {
+            existingMod?.Dispose();
         }
     }
 
@@ -725,6 +789,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                         switch (modViewModel.InstallState)
                         {
                             case ModViewModel.ModInstallState.Downloading:
+                            case ModViewModel.ModInstallState.Extracting:
                                 throw new Exception("Mod has to be downloaded when applying");
 
                             // Already installed mod

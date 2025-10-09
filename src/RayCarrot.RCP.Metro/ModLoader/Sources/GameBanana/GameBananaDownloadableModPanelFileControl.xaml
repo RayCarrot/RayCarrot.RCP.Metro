@@ -6,7 +6,6 @@
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
-             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              mc:Ignorable="d"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -40,8 +39,7 @@
 
         <Button Grid.Column="2"
                 VerticalAlignment="Center"
-                Command="{Binding Path=DataContext.(gameBanana:GameBananaDownloadableModViewModel.DownloadFileCommand), Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                CommandParameter="{Binding Mode=OneTime}">
+                Command="{Binding Path=DownloadCommand, Mode=OneTime}">
             <Button.Style>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
                     <Setter Property="Background" Value="{DynamicResource RCP.Brushes.FlatButton.Download}" />
@@ -60,13 +58,14 @@
                     </Setter>
 
                     <Style.Triggers>
-                        <!-- Trigger for if mod is downloaded, but not pending uninstall -->
-                        <DataTrigger Binding="{Binding Path=DownloadedMod.InstallState, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static modLoader:ModViewModel+ModInstallState.PendingUninstall}, FallbackValue=True}" Value="False">
+                        <!-- TODO-LOC -->
+                        <DataTrigger Binding="{Binding Path=IsAddedToLibrary}" Value="True">
+                            <Setter Property="rcp:Icon.Kind" Value="CheckOutline" />
                             <Setter Property="IsEnabled" Value="False" />
                             <Setter Property="Background" Value="{x:Null}" />
                             <Setter Property="Content">
                                 <Setter.Value>
-                                    <TextBlock Text="{Resx ModLoader_GameBanana_ModFileInstalled}"
+                                    <TextBlock Text="Added to library"
                                                ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                 </Setter.Value>
                             </Setter>

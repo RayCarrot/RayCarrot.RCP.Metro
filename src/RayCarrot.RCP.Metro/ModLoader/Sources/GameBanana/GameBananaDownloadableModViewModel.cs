@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -7,7 +7,7 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRecipient<ModDownloadedMessage>
+public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 {
     #region Constructor
 
@@ -29,13 +29,9 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
         ShowArchivedFiles = false;
 
-        // Register messages
-        Services.Messenger.RegisterAll(this, modLoaderViewModel.GameInstallation.InstallationId);
-
         // Create commands
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
         OpenUserPageCommand = new RelayCommand(OpenUserPage);
-        DownloadFileCommand = new AsyncRelayCommand(x => DownloadFileAsync((GameBananaFileViewModel)x!));
     }
 
     #endregion
@@ -61,7 +57,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public ICommand OpenInGameBananaCommand { get; }
     public ICommand OpenUserPageCommand { get; }
-    public ICommand DownloadFileCommand { get; }
 
     #endregion
 
@@ -149,12 +144,16 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
 
     public async Task DownloadFileAsync(GameBananaFileViewModel file)
     {
+        file.IsAddedToLibrary = true;
+
         await _modLoaderViewModel.InstallModFromDownloadableFileAsync(
             source: DownloadableModsSource, 
+            existingMod: null,
             fileName: file.DownloadableFile.File, 
             downloadUrl: file.DownloadableFile.DownloadUrl, 
             fileSize: file.DownloadableFile.FileSize, 
-            installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id));
+            installData: new GameBananaInstallData(GameBananaId, file.DownloadableFile.Id),
+            modName: Name);
     }
 
     public void LoadFeedDetails(GameBananaMod mod)
@@ -248,19 +247,20 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         // TODO-UPDATE: Filter out valid files (i.e. ones with 1-click mod manager)
         if (mod.Files != null)
         {
-            ModViewModel? findDownloadedMod(GameBananaFile file) => _modLoaderViewModel.Mods.
+            // TODO-UPDATE: This won't find mods currently downloading. Is that an issue?
+            bool isModAddedToLibrary(GameBananaFile file) => _modLoaderViewModel.Mods.
                 Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
-                FirstOrDefault(x => x.IsDownloaded && x.DownloadedMod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
+                Any(x => x.IsDownloaded && x.DownloadedMod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
 
             Files = new ObservableCollection<GameBananaFileViewModel>(mod.Files.
-                Where(x => !x.IsArchived).Select(x => new GameBananaFileViewModel(x)
+                Where(x => !x.IsArchived).Select(x => new GameBananaFileViewModel(x, DownloadFileAsync)
                 {
-                    DownloadedMod = findDownloadedMod(x)
+                    IsAddedToLibrary = isModAddedToLibrary(x)
                 }));
             ArchivedFiles = new ObservableCollection<GameBananaFileViewModel>(mod.Files.
-                Where(x => x.IsArchived).Select(x => new GameBananaFileViewModel(x)
+                Where(x => x.IsArchived).Select(x => new GameBananaFileViewModel(x, DownloadFileAsync)
                 {
-                    DownloadedMod = findDownloadedMod(x)
+                    IsAddedToLibrary = isModAddedToLibrary(x)
                 }));
         }
 
@@ -286,35 +286,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         GameBananaMod mod = await DownloadableModsSource.LoadModAsync(_httpClient, GameBananaId);
         LoadFullDetails(mod);
         UpdateCurrentImage();
-    }
-
-    public override void Dispose()
-    {
-        base.Dispose();
-
-        Services.Messenger.UnregisterAll(this, _modLoaderViewModel.GameInstallation.InstallationId);
-    }
-
-    #endregion
-
-    #region Message Receivers
-
-    void IRecipient<ModDownloadedMessage>.Receive(ModDownloadedMessage message)
-    {
-        if (message.ModViewModel.DownloadableModsSource?.Id != DownloadableModsSource.Id ||
-            Files == null)
-            return;
-
-        long fileId = message.DownloadedModViewModel.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId;
-
-        foreach (GameBananaFileViewModel file in Files)
-        {
-            if (file.DownloadableFile.Id == fileId)
-            {
-                file.DownloadedMod = message.ModViewModel;
-                break;
-            }
-        }
     }
 
     #endregion

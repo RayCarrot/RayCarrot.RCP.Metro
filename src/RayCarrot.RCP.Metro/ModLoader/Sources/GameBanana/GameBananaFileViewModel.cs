@@ -1,21 +1,24 @@
-﻿using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+﻿using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 public class GameBananaFileViewModel : BaseViewModel
 {
-    public GameBananaFileViewModel(GameBananaFile downloadableFile)
+    public GameBananaFileViewModel(GameBananaFile downloadableFile, Func<GameBananaFileViewModel, Task> downloadAsyncFunc)
     {
         DownloadableFile = downloadableFile;
 
         FileName = downloadableFile.File;
         FileDescription = downloadableFile.Description ?? String.Empty;
+
+        DownloadCommand = new AsyncRelayCommand(() => downloadAsyncFunc(this));
     }
 
-    public GameBananaFile DownloadableFile { get; }
+    public ICommand DownloadCommand { get; }
 
+    public GameBananaFile DownloadableFile { get; }
     public string FileName { get; }
     public string FileDescription { get; }
 
-    public ModViewModel? DownloadedMod { get; set; }
+    public bool IsAddedToLibrary { get; set; }
 }

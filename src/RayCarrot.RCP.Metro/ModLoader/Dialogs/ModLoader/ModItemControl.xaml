@@ -46,7 +46,7 @@
         <TextBlock Grid.Column="2" 
                    VerticalAlignment="Center"
                    FontSize="14"
-                   Text="{Binding Path=DownloadedMod.Name, Mode=OneTime}"
+                   Text="{Binding Path=Name, Mode=OneTime}"
                    d:Text="Mod title"
                    TextWrapping="Wrap"
                    Margin="0 0 8 0" />
@@ -92,9 +92,12 @@
             </StackPanel>
 
             <mah:MetroProgressBar Grid.Row="1"
-                                  Visibility="{Binding Path=InstallState, Converter={rcp:EnumVisibilityConverter}, ConverterParameter={x:Static modLoader:ModViewModel+ModInstallState.Downloading}}"
+                                  Visibility="{Binding Path=ShowProgress, Converter={rcp:BooleanToVisibilityConverter}}"
                                   Width="150"
-                                  IsIndeterminate="True" />
+                                  IsIndeterminate="{Binding Path=HasProgress, Converter={rcp:InvertedBooleanConverter}}"
+                                  Minimum="{Binding Path=MinProgress}"
+                                  Maximum="{Binding Path=MaxProgress}"
+                                  Value="{Binding Path=CurrentProgress}" />
 
         </Grid>
 

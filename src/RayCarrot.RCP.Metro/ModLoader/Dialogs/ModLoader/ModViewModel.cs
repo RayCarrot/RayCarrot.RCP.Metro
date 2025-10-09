@@ -54,6 +54,8 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
+    public string? Name { get; set; }
+
     public bool IsEnabled { get; set; }
 
     public ModLoaderViewModel ModLoaderViewModel { get; }
@@ -64,7 +66,13 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     public ModInstallState InstallState { get; set; }
     public LocalizedString? InstallStateMessage { get; set; }
-    public bool CanModify => InstallState is not (ModInstallState.Downloading or ModInstallState.PendingUninstall);
+    public bool CanModify => InstallState is not (ModInstallState.Downloading or ModInstallState.Extracting or ModInstallState.PendingUninstall);
+
+    public bool ShowProgress => InstallState is ModInstallState.Downloading or ModInstallState.Extracting;
+    public bool HasProgress { get; set; }
+    public double CurrentProgress { get; set; }
+    public double MinProgress { get; set; }
+    public double MaxProgress { get; set; }
 
     public ModUpdateState UpdateState { get; set; }
     public LocalizedString? UpdateStateMessage { get; set; }
@@ -80,40 +88,13 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Private Methods
 
-    private void SetInstallState(ModInstallState state)
-    {
-        Logger.Trace("Set install state to {0} for mod with ID {1}", state, DownloadedMod?.Metadata.Id);
-
-        InstallState = state;
-        InstallStateMessage = state switch
-        {
-            ModInstallState.Installed => null,
-            ModInstallState.Downloading => new ConstLocString("Downloading..."), // TODO-LOC
-            ModInstallState.PendingInstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingInstall)),
-            ModInstallState.PendingUninstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingUninstall)),
-            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
-        };
-
-        // Disable if pending uninstall
-        if (state == ModInstallState.PendingUninstall && IsDownloaded)
-            IsEnabled = false;
-    }
-
-    private void SetUpdateState(ModUpdateState state, LocalizedString message, object? updateData = null)
-    {
-        Logger.Trace("Set update state to {0} for mod with ID {1}", state, DownloadedMod?.Metadata.Id);
-
-        UpdateState = state;
-        UpdateStateMessage = message;
-        UpdateData = updateData;
-    }
-
     private void UpdateHasChangesToApply()
     {
         HasChangesToApply = InstallState switch
         {
             ModInstallState.Installed => IsEnabled != _wasEnabled,
             ModInstallState.Downloading => false,
+            ModInstallState.Extracting => false,
             ModInstallState.PendingInstall => true,
             ModInstallState.PendingUninstall => true,
             _ => throw new ArgumentOutOfRangeException()
@@ -130,12 +111,16 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Public Methods
 
-    public void InitDownloading()
+    public void InitDownloading(string? name)
     {
         IsEnabled = false;
         _wasEnabled = null;
 
+        HasProgress = false;
+
         DownloadedMod = null;
+
+        Name = name;
 
         SetUpdateState(ModUpdateState.None, String.Empty);
         SetInstallState(ModInstallState.Downloading);
@@ -145,18 +130,59 @@ public class ModViewModel : BaseViewModel, IDisposable
     [MemberNotNull(nameof(DownloadedMod))]
     public void InitDownloaded(ModInstallState installState, Mod mod, ModManifestEntry modEntry)
     {
-        if (installState == ModInstallState.Downloading)
+        if (installState is ModInstallState.Downloading or ModInstallState.Extracting)
             throw new Exception("Can't initialize a mod as downloaded with the state being set to downloading");
 
         IsEnabled = modEntry.IsEnabled;
         _wasEnabled = IsEnabled;
 
+        HasProgress = false;
+
         DownloadedMod = new DownloadedModViewModel(DownloadableModsSource, mod, modEntry);
         DownloadedMod.LoadThumbnail();
+
+        Name = DownloadedMod.Name;
 
         SetUpdateState(ModUpdateState.None, String.Empty);
         SetInstallState(installState);
         UpdateHasChangesToApply();
+    }
+
+    public void SetProgress(Progress progress)
+    {
+        HasProgress = true;
+        CurrentProgress = progress.Current;
+        MinProgress = progress.Min;
+        MaxProgress = progress.Max;
+    }
+
+    public void SetInstallState(ModInstallState state)
+    {
+        Logger.Trace("Set install state to {0} for mod with ID {1}", state, DownloadedMod?.Metadata.Id);
+
+        InstallState = state;
+        InstallStateMessage = state switch
+        {
+            ModInstallState.Installed => null,
+            ModInstallState.Downloading => new ConstLocString("Downloading..."), // TODO-LOC
+            ModInstallState.Extracting => new ConstLocString("Extracting..."), // TODO-LOC
+            ModInstallState.PendingInstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingInstall)),
+            ModInstallState.PendingUninstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingUninstall)),
+            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
+        };
+
+        // Disable if pending uninstall
+        if (state == ModInstallState.PendingUninstall && IsDownloaded)
+            IsEnabled = false;
+    }
+
+    public void SetUpdateState(ModUpdateState state, LocalizedString message, object? updateData = null)
+    {
+        Logger.Trace("Set update state to {0} for mod with ID {1}", state, DownloadedMod?.Metadata.Id);
+
+        UpdateState = state;
+        UpdateStateMessage = message;
+        UpdateData = updateData;
     }
 
     public async Task OpenLocationAsync()
@@ -232,24 +258,19 @@ public class ModViewModel : BaseViewModel, IDisposable
 
             await ModLoaderViewModel.InstallModFromDownloadableFileAsync(
                 source: DownloadableModsSource,
+                existingMod: this,
                 fileName: download.FileName,
                 downloadUrl: download.DownloadUrl,
                 fileSize: download.FileSize,
-                installData: download.InstallData);
+                installData: download.InstallData,
+                modName: Name);
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Updating mod");
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_UpdateError);
-
-            return;
         }
-
-        // Mark this mod as being uninstalled. Ideally the new downloaded mod should replace this,
-        // but if it happens to have a separate id we want to remove this old mod.
-        SetInstallState(ModInstallState.PendingUninstall);
-        ReportNewChange();
     }
 
     public async Task CheckForUpdateAsync(HttpClient httpClient)
@@ -294,6 +315,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     {
         Installed,
         Downloading,
+        Extracting,
         PendingInstall,
         PendingUninstall,
     }
