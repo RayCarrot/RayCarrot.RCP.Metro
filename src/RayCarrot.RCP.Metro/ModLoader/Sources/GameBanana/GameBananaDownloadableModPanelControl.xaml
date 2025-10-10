@@ -256,133 +256,142 @@
                     <rcp:Card Grid.Column="0"
                               Margin="{StaticResource RCP.Thicknesses.Card}" 
                               Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
-                        <ScrollViewer Padding="0 0 4 0">
-                            <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                                <!-- TODO-LOC -->
-                                <TextBlock Text="Credits" 
-                                           Style="{StaticResource RCP.Styles.TextBlock.Header}" 
-                                           Margin="0 0 0 8" />
+                            <!-- TODO-LOC -->
+                            <TextBlock Grid.Row="0"
+                                       Text="Credits" 
+                                       Style="{StaticResource RCP.Styles.TextBlock.Header}" 
+                                       Margin="0 0 0 8" />
 
-                                <Grid>
-                                    <!-- Loading -->
-                                    <StackPanel Visibility="{Binding Path=IsLoadingFullDetails, Converter={rcp:BooleanToVisibilityConverter}}">
-                                        <Border Style="{StaticResource RCP.Styles.Border.Loading}"
-                                                Height="12"
-                                                Margin="0 0 0 8"/>
+                            <ScrollViewer Grid.Row="1"
+                                          Padding="0 0 4 0">
+                                <StackPanel>
+                                    <Grid>
+                                        <!-- Loading -->
+                                        <StackPanel Visibility="{Binding Path=IsLoadingFullDetails, Converter={rcp:BooleanToVisibilityConverter}}">
+                                            <Border Style="{StaticResource RCP.Styles.Border.Loading}"
+                                                    Height="12"
+                                                    Margin="0 0 0 8"/>
 
-                                        <Grid Margin="4 0 0 8">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+                                            <Grid Margin="4 0 0 8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
 
-                                            <Border Grid.Column="0"
-                                                    Width="25" Height="25"
-                                                    VerticalAlignment="Center"
-                                                    Style="{StaticResource RCP.Styles.Border.Loading}"
-                                                    Margin="0 0 4 0"/>
+                                                <Border Grid.Column="0"
+                                                        Width="25" Height="25"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource RCP.Styles.Border.Loading}"
+                                                        Margin="0 0 4 0"/>
 
-                                            <StackPanel Grid.Column="1"
-                                                        VerticalAlignment="Center">
-                                                <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
-                                                        Height="12"
-                                                        Margin="0 0 0 4"/>
-                                                <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
-                                                        Height="10" />
-                                            </StackPanel>
-
-                                        </Grid>
-                                        <Grid Margin="4 0 0 0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Border Grid.Column="0"
-                                                    Width="25" Height="25"
-                                                    VerticalAlignment="Center"
-                                                    Style="{StaticResource RCP.Styles.Border.Loading}"
-                                                    Margin="0 0 4 0"/>
-
-                                            <StackPanel Grid.Column="1"
-                                                        VerticalAlignment="Center">
-                                                <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
-                                                        Height="12"
-                                                        Margin="0 0 0 4"/>
-                                                <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
-                                                        Height="10" />
-                                            </StackPanel>
-
-                                        </Grid>
-                                    </StackPanel>
-
-                                    <ItemsControl ItemsSource="{Binding Path=Credits}"
-                                                  d:ItemsSource="{d:SampleData ItemCount=2}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
-                                                    <TextBlock Text="{Binding Path=GroupName, Mode=OneTime}"
-                                                               Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                                               Margin="0 0 0 4"
-                                                               TextWrapping="Wrap" />
-
-                                                    <ItemsControl ItemsSource="{Binding Path=Authors, Mode=OneTime}"
-                                                                  Margin="4 0 0 4">
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Grid Margin="0 0 0 4">
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="Auto" />
-                                                                        <ColumnDefinition Width="*" />
-                                                                    </Grid.ColumnDefinitions>
-
-                                                                    <Image Grid.Column="0"
-                                                                           Width="25" Height="25"
-                                                                           VerticalAlignment="Center"
-                                                                           Source="{Binding Path=Avatar.ImageSource}"
-                                                                           Margin="0 0 4 0"/>
-
-                                                                    <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                                                Width="20" Height="20"
-                                                                                                VerticalAlignment="Center"
-                                                                                                Visibility="{Binding Path=Avatar, Converter={rcp:ObjectNullToVisibilityConverter}, Mode=OneTime}"
-                                                                                                Kind="AccountOutline" />
-
-                                                                    <StackPanel Grid.Column="1"
-                                                                                VerticalAlignment="Center">
-                                                                        <TextBlock TextTrimming="CharacterEllipsis"
-                                                                                   ToolTip="{Binding Path=Name, Mode=OneTime}"
-                                                                                   Visibility="{Binding Path=ProfileUrl, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
-                                                                            <Hyperlink Command="{Binding Path=OpenUserPageCommand, Mode=OneTime}">
-                                                                                <Run Text="{Binding Path=Name, Mode=OneTime}" />
-                                                                            </Hyperlink>
-                                                                        </TextBlock>
-
-                                                                        <TextBlock TextTrimming="CharacterEllipsis"
-                                                                                   Text="{Binding Path=Name, Mode=OneTime}"
-                                                                                   ToolTip="{Binding Path=Name, Mode=OneTime}"
-                                                                                   Visibility="{Binding Path=ProfileUrl, Mode=OneTime, Converter={rcp:ObjectNullToVisibilityConverter}}" />
-
-                                                                        <TextBlock Text="{Binding Path=Role, Mode=OneTime}"
-                                                                                   FontSize="11"
-                                                                                   FontStyle="Italic" 
-                                                                                   Visibility="{Binding Path=Role, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                                                                                   TextWrapping="Wrap" />
-
-                                                                    </StackPanel>
-
-                                                                </Grid>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
+                                                <StackPanel Grid.Column="1"
+                                                            VerticalAlignment="Center">
+                                                    <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
+                                                            Height="12"
+                                                            Margin="0 0 0 4"/>
+                                                    <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
+                                                            Height="10" />
                                                 </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Grid>
-                            </StackPanel>
-                        </ScrollViewer>
+
+                                            </Grid>
+                                            <Grid Margin="4 0 0 0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0"
+                                                        Width="25" Height="25"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource RCP.Styles.Border.Loading}"
+                                                        Margin="0 0 4 0"/>
+
+                                                <StackPanel Grid.Column="1"
+                                                            VerticalAlignment="Center">
+                                                    <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
+                                                            Height="12"
+                                                            Margin="0 0 0 4"/>
+                                                    <Border Style="{StaticResource RCP.Styles.Border.Loading}" 
+                                                            Height="10" />
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </StackPanel>
+
+                                        <ItemsControl ItemsSource="{Binding Path=Credits}"
+                                                      d:ItemsSource="{d:SampleData ItemCount=2}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Path=GroupName, Mode=OneTime}"
+                                                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                                   Margin="0 0 0 4"
+                                                                   TextWrapping="Wrap" />
+
+                                                        <ItemsControl ItemsSource="{Binding Path=Authors, Mode=OneTime}"
+                                                                      Margin="4 0 0 4">
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Grid Margin="0 0 0 4">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="Auto" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+
+                                                                        <Image Grid.Column="0"
+                                                                               Width="25" Height="25"
+                                                                               VerticalAlignment="Center"
+                                                                               Source="{Binding Path=Avatar.ImageSource}"
+                                                                               Margin="0 0 4 0"/>
+
+                                                                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                                                    Width="20" Height="20"
+                                                                                                    VerticalAlignment="Center"
+                                                                                                    Visibility="{Binding Path=Avatar, Converter={rcp:ObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                                                                                    Kind="AccountOutline" />
+
+                                                                        <StackPanel Grid.Column="1"
+                                                                                    VerticalAlignment="Center">
+                                                                            <TextBlock TextTrimming="CharacterEllipsis"
+                                                                                       ToolTip="{Binding Path=Name, Mode=OneTime}"
+                                                                                       Visibility="{Binding Path=ProfileUrl, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}">
+                                                                                <Hyperlink Command="{Binding Path=OpenUserPageCommand, Mode=OneTime}">
+                                                                                    <Run Text="{Binding Path=Name, Mode=OneTime}" />
+                                                                                </Hyperlink>
+                                                                            </TextBlock>
+
+                                                                            <TextBlock TextTrimming="CharacterEllipsis"
+                                                                                       Text="{Binding Path=Name, Mode=OneTime}"
+                                                                                       ToolTip="{Binding Path=Name, Mode=OneTime}"
+                                                                                       Visibility="{Binding Path=ProfileUrl, Mode=OneTime, Converter={rcp:ObjectNullToVisibilityConverter}}" />
+
+                                                                            <TextBlock Text="{Binding Path=Role, Mode=OneTime}"
+                                                                                       FontSize="11"
+                                                                                       FontStyle="Italic" 
+                                                                                       Visibility="{Binding Path=Role, Mode=OneTime, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                                                                       TextWrapping="Wrap" />
+
+                                                                        </StackPanel>
+
+                                                                    </Grid>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </StackPanel>
+                            </ScrollViewer>
+
+                        </Grid>
                     </rcp:Card>
 
                     <!-- Main info -->
@@ -473,17 +482,21 @@
                           Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
+                        <!-- TODO-LOC -->
+                        <TextBlock Grid.Row="0"
+                                   Text="Downloads" 
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}" 
+                                   Margin="0 0 0 8" />
+
                         <!-- Downloads -->
-                        <ScrollViewer Grid.Row="0">
+                        <ScrollViewer Grid.Row="1"
+                                      Padding="0 0 4 0">
                             <StackPanel>
-                                <!-- TODO-LOC -->
-                                <TextBlock Text="Downloads" 
-                                           Style="{StaticResource RCP.Styles.TextBlock.Header}" 
-                                           Margin="0 0 0 8" />
 
                                 <!-- Loading -->
                                 <StackPanel Visibility="{Binding Path=IsLoadingFullDetails, Converter={rcp:BooleanToVisibilityConverter}}">
@@ -518,7 +531,7 @@
                         </ScrollViewer>
 
                         <!-- Options -->
-                        <CheckBox Grid.Row="1"
+                        <CheckBox Grid.Row="2"
                                   Content="{Resx ModLoader_GameBanana_ArchivedFilesToggle}"
                                   Visibility="{Binding Path=ArchivedFiles.Count, Converter={rcp:IntToVisibilityConverter}, FallbackValue=Collapsed}"
                                   IsChecked="{Binding Path=ShowArchivedFiles}"
