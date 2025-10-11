@@ -42,6 +42,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- NOTE: For now we hard-code the GameBanana header since that's the only source right now. When/if we add
@@ -74,12 +75,19 @@
                         </TextBox.InputBindings>
                     </TextBox>
 
+                    <!-- Filter popup -->
                     <rcp:PopupCard Grid.Column="5"
                                    Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
                                    Height="{Binding ElementName=RefreshButton, Path=ActualHeight}"
                                    Visibility="{Binding Path=HasCategories, Converter={rcp:BooleanToVisibilityConverter}}"
                                    IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                                    Margin="0 0 4 0">
+                        <rcp:PopupCard.PopupButtonStyle>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                                <Setter Property="rcp:Icon.Kind" Value="Filteroutline" />
+                                <Setter Property="rcp:Icon.Size" Value="16" />
+                            </Style>
+                        </rcp:PopupCard.PopupButtonStyle>
                         <ListBox ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
                                  IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                                  Background="Transparent"
@@ -116,9 +124,38 @@
                         </ListBox>
                     </rcp:PopupCard>
 
+                    <!-- Sort popup -->
+                    <rcp:PopupCard Grid.Column="6"
+                                   Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
+                                   Height="{Binding ElementName=RefreshButton, Path=ActualHeight}"
+                                   Visibility="{Binding Path=HasSortOptions, Converter={rcp:BooleanToVisibilityConverter}}"
+                                   IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                                   Margin="0 0 4 0">
+                        <rcp:PopupCard.PopupButtonStyle>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                                <Setter Property="rcp:Icon.Kind" Value="Sort" />
+                                <Setter Property="rcp:Icon.Size" Value="16" />
+                            </Style>
+                        </rcp:PopupCard.PopupButtonStyle>
+                        <ListBox ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+                                 IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                                 Background="Transparent"
+                                 ItemsSource="{Binding Path=SortOptions, Mode=OneTime}"
+                                 SelectedItem="{Binding Path=SelectedSortOption}"
+                                 DisplayMemberPath="Name"
+                                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.RadioButton}"
+                                 Margin="6">
+                            <ListBox.Resources>
+                                <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                    <Setter Property="Command" Value="{Binding Path=DataContext.SelectSortOptionCommand, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
+                                </Style>
+                            </ListBox.Resources>
+                        </ListBox>
+                    </rcp:PopupCard>
+
                     <!-- Refresh button -->
                     <Button x:Name="RefreshButton" 
-                            Grid.Column="6"
+                            Grid.Column="7"
                             IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             rcp:Icon.Kind="Refresh"
@@ -127,7 +164,7 @@
                             Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
 
                     <!-- Loading indicator -->
-                    <mah:ProgressRing Grid.Column="6"
+                    <mah:ProgressRing Grid.Column="7"
                                       Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}"
                                       d:Visibility="Collapsed"
                                       Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
@@ -184,7 +221,8 @@
             </Grid>
 
             <!-- Empty text -->
-            <Viewbox Visibility="{Binding Path=ModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}">
+            <Viewbox Visibility="{Binding Path=ModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}"
+                     d:Visibility="Collapsed">
                 <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}"
                            TextAlignment="Center" 
                            Margin="30" 
@@ -216,6 +254,7 @@
 
             <!-- Selected mod -->
             <mah:TransitioningContentControl x:Name="SelectedModTransitioningContentControl" 
+                                             d:Visibility="Collapsed"
                                              Content="{Binding Path=SelectedMod}" 
                                              Transition="Down">
                 <mah:TransitioningContentControl.Resources>

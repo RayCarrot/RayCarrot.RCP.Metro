@@ -28,17 +28,22 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, _webImageCache, httpClient, downloadableModsSources[0]);
 
-        Categories = new ObservableCollectionEx<DownloadableModsCategoryViewModel>();
-
         // Add main category for all mods. No need to localize since the rest of the category names aren't localized.
+        Categories = new ObservableCollectionEx<DownloadableModsCategoryViewModel>();
         Categories.Insert(0, new DownloadableModsCategoryViewModel("All", null, null));
         SelectedCategory = Categories[0];
+
+        // Add default sort option for all mods. No need to localize since the rest of the category names aren't localized.
+        SortOptions = new ObservableCollectionEx<DownloadableModsSortOptionViewModel>();
+        SortOptions.Insert(0, new DownloadableModsSortOptionViewModel("Default", null));
+        SelectedSortOption = SortOptions[0];
 
         SelectModCommand = new AsyncRelayCommand(x => SelectModAsync((DownloadableModViewModel?)x));
         ClearSelectionCommand = new RelayCommand(ClearSelection);
         RefreshCommand = new AsyncRelayCommand(LoadDefaultFeedAsync);
         SearchCommand = new AsyncRelayCommand(LoadSearchFeedAsync);
         SelectCategoryCommand = new AsyncRelayCommand(LoadCategoryAndSortFeedAsync);
+        SelectSortOptionCommand = new AsyncRelayCommand(LoadCategoryAndSortFeedAsync);
     }
 
     #endregion
@@ -70,6 +75,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public ICommand RefreshCommand { get; }
     public ICommand SearchCommand { get; }
     public ICommand SelectCategoryCommand { get; }
+    public ICommand SelectSortOptionCommand { get; }
 
     #endregion
 
@@ -84,6 +90,10 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     public bool HasCategories { get; set; }
     public ObservableCollectionEx<DownloadableModsCategoryViewModel> Categories { get; }
     public DownloadableModsCategoryViewModel SelectedCategory { get; set; }
+    
+    public bool HasSortOptions { get; set; }
+    public ObservableCollectionEx<DownloadableModsSortOptionViewModel> SortOptions { get; }
+    public DownloadableModsSortOptionViewModel SelectedSortOption { get; set; }
 
     public DownloadableModViewModel? SelectedMod { get; set; }
 
@@ -110,7 +120,8 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         await Task.WhenAll(
             LoadDefaultFeedAsync(), 
-            LoadCategoriesAsync());
+            LoadCategoriesAsync(),
+            LoadSortOptionsAsync());
     }
 
     public async Task LoadCategoriesAsync()
@@ -134,6 +145,30 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Loading categories");
             HasCategories = false;
+        }
+    }
+
+    public async Task LoadSortOptionsAsync()
+    {
+        try
+        {
+            // Clear all except the first item
+            SortOptions.ModifyCollection(x => x.RemoveRange(1, x.Count - 1));
+
+            foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
+            {
+                foreach (DownloadableModsSortOptionViewModel sortOptions in await source.Source.LoadDownloadableModsSortOptionsAsync(_httpClient, GameInstallation))
+                {
+                    SortOptions.Add(sortOptions);
+                }
+            }
+
+            HasSortOptions = SortOptions.Count > 1;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading sort options");
+            HasSortOptions = false;
         }
     }
 
@@ -163,6 +198,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         SearchText = String.Empty;
         SelectedCategory = Categories[0];
+        SelectedSortOption = SortOptions[0];
         CurrentFeedType = FeedType.Default;
         FeedInfoText = null;
 
@@ -192,6 +228,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         Logger.Info("Loading downloadable mods from the search text {0}", SearchText);
 
         SelectedCategory = Categories[0];
+        SelectedSortOption = SortOptions[0];
         CurrentFeedType = FeedType.Search;
         FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_SearchFeedInfo), SearchText);
 
@@ -208,7 +245,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         if (IsLoading)
             return;
 
-        if (SelectedCategory == Categories[0])
+        if (SelectedCategory == Categories[0] && SelectedSortOption == SortOptions[0])
         {
             await LoadDefaultFeedAsync();
             return;
@@ -216,12 +253,12 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         SearchText = String.Empty;
         CurrentFeedType = FeedType.CategoryAndSort;
-        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name);
+        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name); // TODO-UPDATE: Include sort option too
 
         await ModsFeed.InitializeAsync(new DownloadableModsFeedCategoryAndSortFilter()
         {
             Category = SelectedCategory.Id,
-            Order = null,
+            Sort = SelectedSortOption.Id,
         });
         OnFeedInitialized();
         await LoadNextPageAsync();

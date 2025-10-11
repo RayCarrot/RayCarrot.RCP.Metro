@@ -18,6 +18,13 @@ public class GameBananaModsSource : DownloadableModsSource
     private const int RaymanControlPanelToolId = 10372;
     private const int RecordsPerPage = 16;
 
+    private static string[] ExcludedSortOptions =
+    [
+        "Generic_LatestModified",
+        "Generic_MostCommented",
+        "Generic_LatestComment",
+    ];
+
     #endregion
 
     #region Logger
@@ -203,6 +210,10 @@ public class GameBananaModsSource : DownloadableModsSource
                 // Optionally filter by category
                 if (filter is DownloadableModsFeedCategoryAndSortFilter { Category: { } category })
                     url.Append($"&_aFilters[Generic_Category]={category}");
+
+                // Optionally sort
+                if (filter is DownloadableModsFeedCategoryAndSortFilter { Sort: { } sort })
+                    url.Append($"&_sSort={sort}");
             }
 
             // Read the mod page feed
@@ -272,6 +283,29 @@ public class GameBananaModsSource : DownloadableModsSource
         }
 
         return categories;
+    }
+
+    public override async Task<IEnumerable<DownloadableModsSortOptionViewModel>> LoadDownloadableModsSortOptionsAsync(
+        HttpClient httpClient, 
+        GameInstallation gameInstallation)
+    {
+        List<DownloadableModsSortOptionViewModel> sortOptions = new();
+
+        Logger.Info("Loading downloadable GameBanana mod sort options");
+
+        const string url = $"https://gamebanana.com/apiv11/Mod/ListFilterConfig";
+        GameBananaListFilterConfig filterConfig = await httpClient.GetDeserializedAsync<GameBananaListFilterConfig>(url);
+
+        if (filterConfig.Sorts != null)
+        {
+            foreach (GameBananaSort sort in filterConfig.Sorts)
+            {
+                if (!ExcludedSortOptions.Contains(sort.Alias))
+                    sortOptions.Add(new DownloadableModsSortOptionViewModel(sort.Title, sort.Alias));
+            }
+        }
+
+        return sortOptions;
     }
 
     public override ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo)

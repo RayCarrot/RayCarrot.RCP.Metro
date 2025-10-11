@@ -57,6 +57,10 @@ public abstract class DownloadableModsSource
         HttpClient httpClient, 
         GameInstallation gameInstallation);
 
+    public abstract Task<IEnumerable<DownloadableModsSortOptionViewModel>> LoadDownloadableModsSortOptionsAsync(
+        HttpClient httpClient, 
+        GameInstallation gameInstallation);
+
     public abstract ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo);
 
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);

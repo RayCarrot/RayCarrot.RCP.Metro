@@ -111,3 +111,10 @@ public record GameBananaModManager(
     [property: JsonProperty("_sIconUrl")] string? IconUrl,
     [property: JsonProperty("_sInstallerName")] string? InstallerName,
     [property: JsonProperty("_sInstallerUrl")] string? InstallerUrl);
+
+public record GameBananaListFilterConfig(
+    [property: JsonProperty("_aSorts")] GameBananaSort[]? Sorts);
+
+public record GameBananaSort(
+    [property: JsonProperty("_sAlias", Required = Required.Always)] string Alias,
+    [property: JsonProperty("_sTitle", Required = Required.Always)] string Title);
