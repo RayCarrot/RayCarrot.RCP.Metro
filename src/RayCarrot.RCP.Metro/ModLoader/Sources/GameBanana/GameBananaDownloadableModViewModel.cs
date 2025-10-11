@@ -1,7 +1,5 @@
 using System.Net.Http;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
@@ -14,18 +12,20 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
     public GameBananaDownloadableModViewModel(
         GameBananaModsSource downloadableModsSource,
         ModLoaderViewModel modLoaderViewModel,
+        WebImageCache webImageCache,
         HttpClient httpClient,
         int gameBananaId, 
         bool isFeatured) : base(downloadableModsSource, gameBananaId.ToString())
     {
         _modLoaderViewModel = modLoaderViewModel;
+        _webImageCache = webImageCache;
         _httpClient = httpClient;
 
         GameBananaId = gameBananaId;
         IsFeatured = isFeatured;
 
         // Placeholder image
-        Images = [new ImageViewModel()];
+        Images = [new WebImageViewModel(_webImageCache)];
 
         ShowArchivedFiles = false;
 
@@ -47,6 +47,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
     // NOTE: Might be worth abstracting this more in the future to not pass in these here
     private readonly ModLoaderViewModel _modLoaderViewModel;
+    private readonly WebImageCache _webImageCache;
     private readonly HttpClient _httpClient;
 
     private int _selectedImageIndex;
@@ -83,13 +84,13 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
     public LocalizedString? VersionText { get; set; }
     public LocalizedString? LastUpdatedText { get; set; }
 
-    public string? RootCategoryIconUrl { get; set; }
+    public WebImageViewModel? RootCategoryIconImage { get; set; }
     public string? RootCategoryName { get; set; }
 
-    public ImageViewModel? MainImage { get; set; }
+    public WebImageViewModel? MainImage { get; set; }
     public double MainImageWidth { get; set; }
     public double MainImageHeight { get; set; }
-    public ObservableCollection<ImageViewModel> Images { get; }
+    public ObservableCollection<WebImageViewModel> Images { get; }
     public int SelectedImageIndex
     {
         get => _selectedImageIndex;
@@ -167,7 +168,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
         if (mod.DateAdded != null && SubmitterName != null)
         {
-            // TODO-UPDATE: Can we format date without weekday?
             // Uploaded by {0} on {1}
             UploadInfoPreText = new GeneratedLocString(() =>
             {
@@ -183,7 +183,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
             });
         }
 
-        // TODO-UPDATE: Can we format date without weekday?
         if (mod.DateModified != null && mod.DateModified != mod.DateAdded)
             LastUpdatedText = $"Last updated on {mod.DateModified:D}"; // TODO-LOC
 
@@ -194,7 +193,10 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         if (mod.RootCategory != null)
         {
             if (!mod.RootCategory.IconUrl.IsNullOrEmpty())
-                RootCategoryIconUrl = mod.RootCategory.IconUrl;
+            {
+                RootCategoryIconImage = new WebImageViewModel(_webImageCache) { Url = mod.RootCategory.IconUrl, };
+                RootCategoryIconImage.Load();
+            }
 
             RootCategoryName = mod.RootCategory.Name;
         }
@@ -202,7 +204,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         if (mod.PreviewMedia?.Images?.Length > 0)
         {
             GameBananaImage mainImage = mod.PreviewMedia.Images[0];
-            MainImage = new ImageViewModel() { Url = $"{mainImage.BaseUrl}/{mainImage.File220}" };
+            MainImage = new WebImageViewModel(_webImageCache) { Url = $"{mainImage.BaseUrl}/{mainImage.File220}" };
             MainImage.Load();
             MainImageWidth = mainImage.File220Width;
             MainImageHeight = mainImage.File220Height;
@@ -228,7 +230,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
             // Add remaining images
             foreach (GameBananaImage img in mod.PreviewMedia.Images.Skip(2).Take(MaxImages - 1))
-                Images.Add(new ImageViewModel()
+                Images.Add(new WebImageViewModel(_webImageCache)
                 {
                     Url = $"{img.BaseUrl}/{img.File}",
                     DecodePixelHeight = ImageHeight
@@ -268,7 +270,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
             Credits = mod.Credits.
                 Select(x => new CreditsGroupViewModel(x.GroupName, x.Authors?.
                     Select(m => new AuthorViewModel(m.AvatarUrl != null
-                            ? new ImageViewModel()
+                            ? new WebImageViewModel(_webImageCache)
                             {
                                 Url = m.AvatarUrl,
                                 DecodePixelWidth = 25,
@@ -305,7 +307,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
     public class AuthorViewModel : BaseViewModel
     {
-        public AuthorViewModel(ImageViewModel? avatar, string? name, string? role, string? profileUrl)
+        public AuthorViewModel(WebImageViewModel? avatar, string? name, string? role, string? profileUrl)
         {
             Avatar = avatar;
             Avatar?.Load();
@@ -318,7 +320,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
         public ICommand OpenUserPageCommand { get; }
 
-        public ImageViewModel? Avatar { get; }
+        public WebImageViewModel? Avatar { get; }
         public string? Name { get; }
         public string? Role { get; }
         public string? ProfileUrl { get; }
@@ -327,41 +329,6 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         {
             if (ProfileUrl != null)
                 Services.App.OpenUrl(ProfileUrl);
-        }
-    }
-
-    public class ImageViewModel : BaseViewModel
-    {
-        public string? Url { get; set; }
-        public int DecodePixelWidth { get; set; }
-        public int DecodePixelHeight { get; set; }
-
-        public ImageSource? ImageSource { get; set; }
-
-        public void Load()
-        {
-            // Do not load if already loaded
-            if (ImageSource != null)
-                return;
-
-            // Make sure we have a url
-            if (Url == null)
-                return;
-
-            Uri uri = new(Url);
-
-            BitmapImage imgSource = new();
-            imgSource.BeginInit();
-            imgSource.CacheOption = BitmapCacheOption.OnLoad;
-            imgSource.DecodePixelWidth = DecodePixelWidth;
-            imgSource.DecodePixelHeight = DecodePixelHeight;
-            imgSource.UriSource = uri;
-            imgSource.EndInit();
-
-            if (imgSource.CanFreeze)
-                imgSource.Freeze();
-
-            ImageSource = imgSource;
         }
     }
 

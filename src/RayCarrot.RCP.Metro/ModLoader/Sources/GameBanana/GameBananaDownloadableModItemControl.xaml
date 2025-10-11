@@ -44,8 +44,8 @@
                      Margin="0 0 4 0" />
 
             <Image Grid.Column="1"
-                   Visibility="{Binding Path=RootCategoryIconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-                   Source="{Binding Path=RootCategoryIconUrl, Mode=OneTime}"
+                   Visibility="{Binding Path=RootCategoryIconImage, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                   Source="{Binding Path=RootCategoryIconImage.ImageSource, Mode=OneTime}"
                    ToolTip="{Binding Path=RootCategoryName, Mode=OneTime}"
                    Width="24"
                    Height="24"

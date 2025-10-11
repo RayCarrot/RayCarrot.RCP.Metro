@@ -38,6 +38,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
     private async Task LoadFeaturedModsAsync(
         ModLoaderViewModel modLoaderViewModel,
+        WebImageCache webImageCache,
         HttpClient httpClient,
         GameInstallation gameInstallation,
         Dictionary<int, int[]> featuredMods,
@@ -78,6 +79,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 GameBananaDownloadableModViewModel modViewModel = new(
                     downloadableModsSource: this,
                     modLoaderViewModel: modLoaderViewModel,
+                    webImageCache: webImageCache,
                     httpClient: httpClient,
                     gameBananaId: mod.Id,
                     isFeatured: true);
@@ -118,6 +120,7 @@ public class GameBananaModsSource : DownloadableModsSource
     public override async Task<DownloadableModsFeedPage> LoadModsFeedPage(
         ModLoaderViewModel modLoaderViewModel,
         IReadOnlyCollection<DownloadableModViewModel> loadedDownloadableMods,
+        WebImageCache webImageCache,
         HttpClient httpClient,
         GameInstallation gameInstallation,
         DownloadableModsFeedFilter? filter,
@@ -225,6 +228,7 @@ public class GameBananaModsSource : DownloadableModsSource
             GameBananaDownloadableModViewModel modViewModel = new(
                 downloadableModsSource: this,
                 modLoaderViewModel: modLoaderViewModel,
+                webImageCache: webImageCache,
                 httpClient: httpClient,
                 gameBananaId: modRecord.Id,
                 isFeatured: false);
@@ -240,7 +244,8 @@ public class GameBananaModsSource : DownloadableModsSource
     }
 
     public override async Task<IEnumerable<DownloadableModsCategoryViewModel>> LoadDownloadableModsCategoriesAsync(
-        HttpClient httpClient, 
+        WebImageCache webImageCache,
+        HttpClient httpClient,
         GameInstallation gameInstallation)
     {
         List<DownloadableModsCategoryViewModel> categories = new();
@@ -262,7 +267,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
             foreach (GameBananaCategory cat in gameCategories)
             {
-                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, cat.IconUrl, cat.Id.ToString()));
+                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, new WebImageViewModel(webImageCache) { Url = cat.IconUrl }, cat.Id.ToString()));
             }
         }
 

@@ -101,8 +101,8 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Grid.Column="0"
-                                               Source="{Binding Path=IconUrl, Mode=OneTime}"
-                                               Visibility="{Binding Path=IconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                               Source="{Binding Path=IconImage.ImageSource, Mode=OneTime}"
+                                               Visibility="{Binding Path=IconImage, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
                                                Width="32" Height="32"
                                                Margin="0 0 4 0" />
 

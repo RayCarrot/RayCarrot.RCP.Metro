@@ -21,11 +21,12 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         _asyncLock = new AsyncLock();
         GameInstallation = gameInstallation;
         _httpClient = httpClient;
+        _webImageCache = new WebImageCache();
 
         DownloadableModsSources = new ObservableCollection<DownloadableModsSourceViewModel>(
             downloadableModsSources.Select(x => new DownloadableModsSourceViewModel(x)));
 
-        ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, httpClient, downloadableModsSources[0]);
+        ModsFeed = new DownloadableModsFeedViewModel(modLoaderViewModel, gameInstallation, _webImageCache, httpClient, downloadableModsSources[0]);
 
         Categories = new ObservableCollectionEx<DownloadableModsCategoryViewModel>();
 
@@ -52,6 +53,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     private readonly AsyncLock _asyncLock;
     private readonly HttpClient _httpClient;
+    private readonly WebImageCache _webImageCache;
 
     #endregion
 
@@ -120,7 +122,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
             foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
             {
-                foreach (DownloadableModsCategoryViewModel cat in await source.Source.LoadDownloadableModsCategoriesAsync(_httpClient, GameInstallation))
+                foreach (DownloadableModsCategoryViewModel cat in await source.Source.LoadDownloadableModsCategoriesAsync(_webImageCache, _httpClient, GameInstallation))
                 {
                     Categories.Add(cat);
                 }

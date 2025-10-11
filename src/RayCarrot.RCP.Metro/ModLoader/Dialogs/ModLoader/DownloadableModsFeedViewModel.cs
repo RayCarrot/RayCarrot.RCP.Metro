@@ -10,13 +10,15 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     public DownloadableModsFeedViewModel(
         ModLoaderViewModel modLoaderViewModel, 
-        GameInstallation gameInstallation, 
+        GameInstallation gameInstallation,
+        WebImageCache webImageCache,
         HttpClient httpClient,
         DownloadableModsSource downloadableModsSource)
     {
         _asyncLock = new AsyncLock();
         _modLoaderViewModel = modLoaderViewModel;
         GameInstallation = gameInstallation;
+        _webImageCache = webImageCache;
         _httpClient = httpClient;
         _downloadableModsSource = downloadableModsSource;
     }
@@ -33,6 +35,7 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
 
     private readonly AsyncLock _asyncLock;
     private readonly ModLoaderViewModel _modLoaderViewModel;
+    private readonly WebImageCache _webImageCache;
     private readonly HttpClient _httpClient;
     private readonly DownloadableModsSource _downloadableModsSource;
     private int _pageCount;
@@ -65,6 +68,7 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
         DownloadableModsFeedPage feedPage = await _downloadableModsSource.LoadModsFeedPage(
             modLoaderViewModel: _modLoaderViewModel,
             loadedDownloadableMods: Mods,
+            webImageCache: _webImageCache,
             httpClient: _httpClient,
             gameInstallation: GameInstallation,
             filter: Filter,
