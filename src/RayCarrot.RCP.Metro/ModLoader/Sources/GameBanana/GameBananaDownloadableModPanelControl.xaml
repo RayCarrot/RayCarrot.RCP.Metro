@@ -493,6 +493,17 @@
                                    Style="{StaticResource RCP.Styles.TextBlock.Header}" 
                                    Margin="0 0 0 8" />
 
+                        <!-- TODO-LOC -->
+                        <!-- Empty text -->
+                        <Viewbox Grid.Row="1" 
+                                 Visibility="{Binding Path=HasNoValidFiles, Converter={rcp:BooleanToVisibilityConverter}}"
+                                 Margin="0 -8 0 0">
+                            <TextBlock Text="No compatible files"
+                                       TextAlignment="Center" 
+                                       Margin="30" 
+                                       Opacity="0.5" />
+                        </Viewbox>
+
                         <!-- Downloads -->
                         <ScrollViewer Grid.Row="1"
                                       Padding="0 0 4 0">

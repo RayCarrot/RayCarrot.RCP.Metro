@@ -319,6 +319,7 @@ public class AppUIManager
             // Only allow one Mod Loader window per installation
             typeGroupNames: new[] { gameInstallation.InstallationId });
 
+    // TODO-UPDATE: Open mod download page instead?
     public async Task ShowModLoaderAsync(GameInstallation gameInstallation, long gameBananaModId)
     {
         GameBananaModsSource gb = new();

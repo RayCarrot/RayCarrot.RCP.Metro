@@ -18,7 +18,7 @@ public class GameBananaModsSource : DownloadableModsSource
     private const int RaymanControlPanelToolId = 10372;
     private const int RecordsPerPage = 16;
 
-    private static string[] ExcludedSortOptions =
+    private static readonly string[] ExcludedSortOptions =
     [
         "Generic_LatestModified",
         "Generic_MostCommented",
@@ -77,28 +77,21 @@ public class GameBananaModsSource : DownloadableModsSource
             if (mod.Files == null)
                 continue;
 
-            // Get the files which contain valid RCP mods
-            List<GameBananaFile> validFiles = GetValidFiles(mod, mod.Files);
+            GameBananaDownloadableModViewModel modViewModel = new(
+                downloadableModsSource: this,
+                modLoaderViewModel: modLoaderViewModel,
+                webImageCache: webImageCache,
+                httpClient: httpClient,
+                gameBananaId: mod.Id,
+                isFeatured: true);
 
-            // Make sure at least one file has mod integration with RCP
-            if (validFiles.Count > 0)
-            {
-                GameBananaDownloadableModViewModel modViewModel = new(
-                    downloadableModsSource: this,
-                    modLoaderViewModel: modLoaderViewModel,
-                    webImageCache: webImageCache,
-                    httpClient: httpClient,
-                    gameBananaId: mod.Id,
-                    isFeatured: true);
+            modViewModel.LoadFeedDetails(mod);
 
-                modViewModel.LoadFeedDetails(mod);
-
-                modViewModels.Add(modViewModel);
-            }
+            modViewModels.Add(modViewModel);
         }
     }
 
-    private bool IsModValid(GameBananaMod mod)
+    private static bool IsModValid(GameBananaMod mod)
     {
         return mod.HasFiles && (!mod.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods);
     }
@@ -113,6 +106,13 @@ public class GameBananaModsSource : DownloadableModsSource
             Where(x => mod.ModManagerIntegrations is JObject obj &&
                        obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
                        m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
+            ToList();
+    }
+
+    public List<GameBananaFile> GetValidFiles(GameBananaFile[] files)
+    {
+        return files.
+            Where(x => x.ModManagerIntegrations?.Any(mm => mm.ToolId == RaymanControlPanelToolId) == true).
             ToList();
     }
 

@@ -108,6 +108,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
     public ObservableCollection<GameBananaFileViewModel>? Files { get; set; }
     public ObservableCollection<GameBananaFileViewModel>? ArchivedFiles { get; set; }
     public bool ShowArchivedFiles { get; set; }
+    public bool HasNoValidFiles { get; set; }
 
     public ObservableCollection<CreditsGroupViewModel>? Credits { get; set; }
 
@@ -245,24 +246,27 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         DownloadsCount = mod.DownloadCount;
         ViewsCount = mod.ViewCount;
 
-        // TODO-UPDATE: Filter out valid files (i.e. ones with 1-click mod manager)
         if (mod.Files != null)
         {
+            List<GameBananaFile> validFiles = DownloadableModsSource.GetValidFiles(mod.Files);
+
             // TODO-UPDATE: This won't find mods currently downloading. Is that an issue?
             bool isModAddedToLibrary(GameBananaFile file) => _modLoaderViewModel.Mods.
                 Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
                 Any(x => x.IsDownloaded && x.DownloadedMod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
 
-            Files = new ObservableCollection<GameBananaFileViewModel>(mod.Files.
+            Files = new ObservableCollection<GameBananaFileViewModel>(validFiles.
                 Where(x => !x.IsArchived).Select(x => new GameBananaFileViewModel(x, DownloadFileAsync)
                 {
                     IsAddedToLibrary = isModAddedToLibrary(x)
                 }));
-            ArchivedFiles = new ObservableCollection<GameBananaFileViewModel>(mod.Files.
+            ArchivedFiles = new ObservableCollection<GameBananaFileViewModel>(validFiles.
                 Where(x => x.IsArchived).Select(x => new GameBananaFileViewModel(x, DownloadFileAsync)
                 {
                     IsAddedToLibrary = isModAddedToLibrary(x)
                 }));
+
+            HasNoValidFiles = Files.Count == 0 && ArchivedFiles.Count == 0;
         }
 
         if (mod.Credits != null)
