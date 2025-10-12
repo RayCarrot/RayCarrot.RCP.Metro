@@ -474,8 +474,13 @@ public class GameBananaModsSource : DownloadableModsSource
                 // Treat as an update if it was modified a day after being added
                 bool isUpdate = updateDate - mod.DateAdded > TimeSpan.FromDays(1);
 
+                string? imageUrl = null;
+                if (mod.PreviewMedia?.Images is { Length: > 0 } images && images[0] is { File100: not null } img)
+                    imageUrl = $"{img.BaseUrl}/{img.File100}";
+
                 yield return new NewModViewModel(
                     name: mod.Name,
+                    imageUrl: imageUrl,
                     modificationDate: updateDate.Value,
                     modUrl: $"https://gamebanana.com/mods/{mod.Id}",
                     isUpdate: isUpdate,

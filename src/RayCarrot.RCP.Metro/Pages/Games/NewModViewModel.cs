@@ -4,9 +4,10 @@ namespace RayCarrot.RCP.Metro.Pages.Games;
 
 public class NewModViewModel : BaseViewModel
 {
-    public NewModViewModel(string name, DateTime modificationDate, string modUrl, bool isUpdate, IEnumerable<GameDescriptor> gameDescriptors)
+    public NewModViewModel(string name, string? imageUrl, DateTime modificationDate, string modUrl, bool isUpdate, IEnumerable<GameDescriptor> gameDescriptors)
     {
         Name = name;
+        ImageUrl = imageUrl;
         ModificationDate = modificationDate;
         
         if (isUpdate)
@@ -23,6 +24,7 @@ public class NewModViewModel : BaseViewModel
     public ICommand OpenModCommand { get; }
 
     public string Name { get; }
+    public string? ImageUrl { get; }
     public DateTime ModificationDate { get; }
     public LocalizedString ModificationDateDisplayText { get; }
     public string ModUrl { get; }

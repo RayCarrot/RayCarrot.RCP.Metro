@@ -24,12 +24,18 @@
                             Command="{Binding Path=OpenModCommand, Mode=OneTime}">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0"
+                            <Image Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 8 0" 
+                                   Source="{Binding Path=ImageUrl, Mode=OneTime}"/>
+
+                            <TextBlock Grid.Column="1"
                                        VerticalAlignment="Center"
                                        Margin="0 0 8 0" 
                                        TextWrapping="Wrap"
@@ -37,15 +43,16 @@
                                        FontSize="14"
                                        ToolTip="{Binding Path=ModUrl, Mode=OneTime}" />
 
-                            <TextBlock Grid.Column="1"
+                            <TextBlock Grid.Column="2"
                                        Text="{Binding Path=ModificationDateDisplayText, Mode=OneTime}"
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Center"
                                        Margin="0 0 8 0" />
 
-                            <ItemsControl Grid.Column="2" 
+                            <ItemsControl Grid.Column="3" 
                                           ItemsSource="{Binding Path=GameDescriptors}"
-                                          Margin="0 0 8 0">
+                                          Margin="0 0 8 0"
+                                          VerticalAlignment="Center">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <rcp:GameTitle GameDescriptor="{Binding Mode=OneTime}" 
