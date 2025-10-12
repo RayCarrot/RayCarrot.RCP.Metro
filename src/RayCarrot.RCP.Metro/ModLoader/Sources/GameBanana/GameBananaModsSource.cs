@@ -10,7 +10,6 @@ using RayCarrot.RCP.Metro.Pages.Games;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-// TODO-UPDATE: Optimize API calls
 public class GameBananaModsSource : DownloadableModsSource
 {
     #region Constant Fields
@@ -438,67 +437,49 @@ public class GameBananaModsSource : DownloadableModsSource
 
         foreach (var g in games)
         {
-            GameBananaFeed newFeed = await httpClient.GetDeserializedAsync<GameBananaFeed>(
-                $"https://gamebanana.com/apiv11/Game/{g.Key}/Subfeed?" +
-                $"_nPage=1&" +
-                $"_sSort=new&" +
-                $"_csvModelInclusions=Mod");
-            GameBananaFeed updatedFeed = await httpClient.GetDeserializedAsync<GameBananaFeed>(
-                $"https://gamebanana.com/apiv11/Game/{g.Key}/Subfeed?" +
-                $"_nPage=1&" +
-                $"_sSort=updated&" +
-                $"_csvModelInclusions=Mod");
+            StringBuilder url = new();
 
-            List<GameBananaMod> modRecords = newFeed.Records.
-                // Take the 10 most recent new mods
-                Take(10).
-                // Add the 5 most recent updated mods
-                Concat(updatedFeed.Records.Take(5)).
-                // Remove duplicates
-                GroupBy(x => x.Id).Select(x => x.OrderBy(y => y.DateUpdated).Last()).
-                // Only keep ones which have files
-                Where(x => x.HasFiles).
-                // Check the content rating
-                Where(x => !x.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods).
-                // Only keep from a maximum of a year back
-                Where(x => (x.DateUpdated - DateTime.Now) < TimeSpan.FromDays(365)).
-                ToList();
+            // Use the mod index api
+            url.Append("https://gamebanana.com/apiv11/Mod/Index?");
 
-            if (modRecords.Count == 0)
-                yield break;
+            // Set records per page
+            url.Append("_nPerpage=10");
 
-            // Get additional data for every mod
-            GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
-                $"https://gamebanana.com/apiv11/Mod/Multi?" +
-                $"_csvRowIds={modRecords.Select(x => x.Id).JoinItems(",")}&" +
-                $"_csvProperties=_aFiles,_aModManagerIntegrations");
+            // Set page (index starts at 1)
+            url.Append("&_nPage=1");
 
-            for (int i = 0; i < mods.Length; i++)
+            // Filter by game
+            url.Append($"&_aFilters[Generic_Game]={g.Key}");
+
+            // Sort by new and updated
+            url.Append("&_sSort=Generic_NewAndUpdated");
+
+            GameBananaFeed feed = await httpClient.GetDeserializedAsync<GameBananaFeed>(url.ToString());
+
+            foreach (GameBananaMod mod in feed.Records)
             {
-                GameBananaMod modRecord = modRecords[i];
-                GameBananaMod mod = mods[i];
-
-                // Treat as an update if it was modified a day after being added
-                bool isUpdate = modRecord.DateUpdated - modRecord.DateAdded > TimeSpan.FromDays(1);
-
-                // Make sure the mod has files
-                if (mod.Files == null)
+                // Make sure the mod is valid
+                if (!IsModValid(mod))
                     continue;
 
-                // Make sure it's compatible with Rayman Control Panel
-                if (mod.Files.Any(x => mod.ModManagerIntegrations is JObject obj &&
-                                       obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.
-                                           TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
-                                       m.Any(mm => mm.ToolId == RaymanControlPanelToolId)))
-                {
-                    if (modRecord.DateUpdated != null)
-                         yield return new NewModViewModel(
-                            name: modRecord.Name,
-                            modificationDate: modRecord.DateUpdated.Value,
-                            modUrl: $"https://gamebanana.com/mods/{modRecord.Id}",
-                            isUpdate: isUpdate,
-                            gameDescriptors: g.Value);
-                }
+                // Get the update date
+                DateTime? updateDate = mod.DateUpdated ?? mod.DateAdded;
+                if (updateDate == null)
+                    continue;
+
+                // Make sure the update is not more than a year old
+                if (DateTime.Now - updateDate >= TimeSpan.FromDays(365))
+                    continue;
+
+                // Treat as an update if it was modified a day after being added
+                bool isUpdate = updateDate - mod.DateAdded > TimeSpan.FromDays(1);
+
+                yield return new NewModViewModel(
+                    name: mod.Name,
+                    modificationDate: updateDate.Value,
+                    modUrl: $"https://gamebanana.com/mods/{mod.Id}",
+                    isUpdate: isUpdate,
+                    gameDescriptors: g.Value);
             }
         }
     }
