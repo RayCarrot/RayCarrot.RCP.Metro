@@ -72,6 +72,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public ModLibrary Library { get; }
     public LoaderViewModel LoaderViewModel { get; }
     
+    public ModManifest? ModManifest { get; set; }
     public ObservableCollection<ModViewModel> Mods { get; } // TODO-UPDATE: Lock access to this
     public ModViewModel? SelectedMod { get; set; }
 
@@ -135,9 +136,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             Mods.DisposeAll();
             Mods.Clear();
 
-            ModManifest modManifest = Library.ReadModManifest();
+            ModManifest = Library.ReadModManifest();
 
-            foreach (ModManifestEntry modEntry in modManifest.Mods.Values)
+            foreach (ModManifestEntry modEntry in ModManifest.Mods.Values)
             {
                 Mod mod;
 
@@ -174,7 +175,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     vm.DownloadedMod.Metadata.Name, vm.DownloadedMod.Metadata.Version, vm.DownloadedMod.Metadata.Id);
             }
 
-            Logger.Info("Loaded {0} installed mods", modManifest.Mods.Count);
+            Logger.Info("Loaded {0} installed mods", ModManifest.Mods.Count);
 
             RefreshModifiedFiles();
 
@@ -554,6 +555,20 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public void ReportNewChanges()
     {
         Logger.Trace("New mod loader changes have been reported");
+
+        // Remove mods marked as pending uninstall if they were not previously installed
+        if (ModManifest != null)
+        {
+            foreach (ModViewModel mod in Mods.ToList())
+            {
+                if (mod.InstallState == ModViewModel.ModInstallState.PendingUninstall &&
+                   !ModManifest.Mods.ContainsKey(mod.DownloadedMod!.Metadata.Id))
+                {
+                    mod.Dispose();
+                    Mods.Remove(mod);
+                }
+            }
+        }
 
         RefreshModifiedFiles();
 
