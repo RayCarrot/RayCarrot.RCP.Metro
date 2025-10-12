@@ -68,7 +68,7 @@ public class GameBananaModsSource : DownloadableModsSource
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
             $"_csvRowIds={modIds.JoinItems(",")}&" +
-            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_tsDateModified,_sVersion,_aRootCategory,_aPreviewMedia,_nLikeCount,_nViewCount");
+            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_tsDateUpdated,_sVersion,_aRootCategory,_aPreviewMedia,_nLikeCount,_nViewCount");
 
         // Process every mod
         foreach (GameBananaMod mod in mods)
@@ -287,7 +287,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
         Logger.Info("Loading downloadable GameBanana mod sort options");
 
-        const string url = $"https://gamebanana.com/apiv11/Mod/ListFilterConfig";
+        const string url = "https://gamebanana.com/apiv11/Mod/ListFilterConfig";
         GameBananaListFilterConfig filterConfig = await httpClient.GetDeserializedAsync<GameBananaListFilterConfig>(url);
 
         if (filterConfig.Sorts != null)
@@ -455,13 +455,13 @@ public class GameBananaModsSource : DownloadableModsSource
                 // Add the 5 most recent updated mods
                 Concat(updatedFeed.Records.Take(5)).
                 // Remove duplicates
-                GroupBy(x => x.Id).Select(x => x.OrderBy(y => y.DateModified).Last()).
+                GroupBy(x => x.Id).Select(x => x.OrderBy(y => y.DateUpdated).Last()).
                 // Only keep ones which have files
                 Where(x => x.HasFiles).
                 // Check the content rating
                 Where(x => !x.HasContentRatings || Services.Data.ModLoader_IncludeDownloadableNsfwMods).
                 // Only keep from a maximum of a year back
-                Where(x => (x.DateModified - DateTime.Now) < TimeSpan.FromDays(365)).
+                Where(x => (x.DateUpdated - DateTime.Now) < TimeSpan.FromDays(365)).
                 ToList();
 
             if (modRecords.Count == 0)
@@ -479,7 +479,7 @@ public class GameBananaModsSource : DownloadableModsSource
                 GameBananaMod mod = mods[i];
 
                 // Treat as an update if it was modified a day after being added
-                bool isUpdate = modRecord.DateModified - modRecord.DateAdded > TimeSpan.FromDays(1);
+                bool isUpdate = modRecord.DateUpdated - modRecord.DateAdded > TimeSpan.FromDays(1);
 
                 // Make sure the mod has files
                 if (mod.Files == null)
@@ -491,10 +491,10 @@ public class GameBananaModsSource : DownloadableModsSource
                                            TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
                                        m.Any(mm => mm.ToolId == RaymanControlPanelToolId)))
                 {
-                    if (modRecord.DateModified != null)
+                    if (modRecord.DateUpdated != null)
                          yield return new NewModViewModel(
                             name: modRecord.Name,
-                            modificationDate: modRecord.DateModified.Value,
+                            modificationDate: modRecord.DateUpdated.Value,
                             modUrl: $"https://gamebanana.com/mods/{modRecord.Id}",
                             isUpdate: isUpdate,
                             gameDescriptors: g.Value);

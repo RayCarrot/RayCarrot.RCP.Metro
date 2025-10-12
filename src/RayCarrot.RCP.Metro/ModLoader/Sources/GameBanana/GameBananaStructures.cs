@@ -57,6 +57,7 @@ public record GameBananaMember(
 public record GameBananaMod(
     [property: JsonProperty("_idRow", Required = Required.Always)] int Id,
     [property: JsonProperty("_bIsPrivate")] bool IsPrivate,
+    [property: JsonProperty("_tsDateUpdated"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime? DateUpdated,
     [property: JsonProperty("_tsDateModified"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime? DateModified,
     [property: JsonProperty("_tsDateAdded"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime? DateAdded,
     [property: JsonProperty("_aRootCategory")] GameBananaRootCategory? RootCategory,

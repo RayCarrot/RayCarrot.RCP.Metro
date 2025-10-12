@@ -184,8 +184,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
             });
         }
 
-        if (mod.DateModified != null && mod.DateModified != mod.DateAdded)
-            LastUpdatedText = $"Last updated on {mod.DateModified:D}"; // TODO-LOC
+        if (mod.DateUpdated != null && mod.DateUpdated != mod.DateAdded)
+            LastUpdatedText = $"Last updated on {mod.DateUpdated:D}"; // TODO-LOC
 
         Version = ModVersion.TryParse(mod.Version, out ModVersion? v) ? v : null;
         if (Version != null)
