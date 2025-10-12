@@ -68,15 +68,11 @@ public class GameBananaModsSource : DownloadableModsSource
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
             $"_csvRowIds={modIds.JoinItems(",")}&" +
-            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_sVersion,_aRootCategory,_aPreviewMedia,_nLikeCount,_nViewCount,_aFiles,_sDescription,_sText,_nDownloadCount,_aModManagerIntegrations");
+            $"_csvProperties=_idRow,_sName,_aSubmitter,_tsDateAdded,_tsDateModified,_sVersion,_aRootCategory,_aPreviewMedia,_nLikeCount,_nViewCount");
 
         // Process every mod
         foreach (GameBananaMod mod in mods)
         {
-            // Make sure the mod has files
-            if (mod.Files == null)
-                continue;
-
             GameBananaDownloadableModViewModel modViewModel = new(
                 downloadableModsSource: this,
                 modLoaderViewModel: modLoaderViewModel,
@@ -86,7 +82,6 @@ public class GameBananaModsSource : DownloadableModsSource
                 isFeatured: true);
 
             modViewModel.LoadFeedDetails(mod);
-
             modViewModels.Add(modViewModel);
         }
     }
@@ -133,26 +128,27 @@ public class GameBananaModsSource : DownloadableModsSource
         DownloadableModsFeedFilter? filter,
         int page)
     {
-        // TODO-UPDATE: Load featured mods in separate method and make sure we don't load them multiple times
+        List<GameBananaDownloadableModViewModel> modViewModels = new();
+
         // Only load featured mods on first page when there is no filter
-        //if (filter == null && page == 0)
-        //{
-        //    Logger.Info("Loading featured GameBanana mods");
+        if (filter == null && page == 0)
+        {
+            Logger.Info("Loading featured GameBanana mods");
 
-        //    Dictionary<int, int[]>? featuredMods = null;
-        //    try
-        //    {
-        //        featuredMods = await JsonHelpers.DeserializeFromURLAsync<Dictionary<int, int[]>>(AppURLs.ModLoader_FeaturedGameBananaMods_URL);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.Error(ex, "Loading featured GameBanana mods");
-        //    }
+            Dictionary<int, int[]>? featuredMods = null;
+            try
+            {
+                featuredMods = await JsonHelpers.DeserializeFromURLAsync<Dictionary<int, int[]>>(AppURLs.ModLoader_FeaturedGameBananaMods_URL);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Loading featured GameBanana mods");
+            }
 
-        //    // Load the featured mods first
-        //    if (featuredMods != null)
-        //        await LoadFeaturedModsAsync(modLoaderViewModel, httpClient, gameInstallation, featuredMods, modViewModels);
-        //}
+            // Load the featured mods first
+            if (featuredMods != null)
+                await LoadFeaturedModsAsync(modLoaderViewModel, webImageCache, httpClient, gameInstallation, featuredMods, modViewModels);
+        }
 
         Logger.Info("Loading downloadable GameBanana mods for page {0}", page);
 
@@ -226,12 +222,10 @@ public class GameBananaModsSource : DownloadableModsSource
 
             // Add the mods
             modRecords.AddRange(feed.Records.Where(x => 
-                IsModValid(x) && !loadedDownloadableMods.Any(m => m is GameBananaDownloadableModViewModel vm && vm.GameBananaId == x.Id)));
+                IsModValid(x) && !loadedDownloadableMods.Concat(modViewModels).Any(m => m is GameBananaDownloadableModViewModel vm && vm.GameBananaId == x.Id)));
         }
 
         Logger.Info("{0} mods found", modRecords.Count);
-
-        List<GameBananaDownloadableModViewModel> modViewModels = new();
 
         // Process every mod
         foreach (GameBananaMod modRecord in modRecords)
