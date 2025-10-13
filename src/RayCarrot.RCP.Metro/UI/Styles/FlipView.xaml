@@ -24,7 +24,6 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        <!-- TODO-UPDATE: Re-style this -->
         <Setter Property="IndexItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="ListBoxItem">
@@ -48,8 +47,8 @@
                                         <Setter TargetName="Bd" Property="Fill" Value="{DynamicResource MahApps.Brushes.SystemControlHighlightListAccentMedium}" />
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Cursor" Value="Hand" />
                                         <Setter TargetName="Bd" Property="Fill" Value="{DynamicResource MahApps.Brushes.SystemControlHighlightListAccentHigh}" />
+                                        <Setter TargetName="Bd" Property="StrokeThickness" Value="1.5" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
