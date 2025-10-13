@@ -104,118 +104,125 @@
                 <!-- Selected mod -->
                 <rcp:Card Grid.Column="1"
                           DataContext="{Binding Path=SelectedMod.DownloadedMod}"
-                          Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                          d:Visibility="Visible"
                           Margin="{StaticResource RCP.Thicknesses.Card}" 
                           Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
-                    <ScrollViewer>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                    <Grid>
 
-                            <StackPanel Grid.Row="0">
+                        <!-- TODO-LOC -->
+                        <Viewbox Visibility="{Binding Converter={rcp:ObjectNullToVisibilityConverter}}">
+                            <TextBlock Text="No mod selected" TextAlignment="Center" Margin="30" Opacity="0.5" />
+                        </Viewbox>
 
-                                <!-- Title -->
-                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                                           Text="{Binding Path=Name, Mode=OneTime}"
-                                           d:Text="Mod title"
-                                           TextTrimming="CharacterEllipsis"
-                                           Margin="0 0 0 10" />
+                        <ScrollViewer Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                                      d:Visibility="Collapsed">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                                <Grid Margin="0 0 0 8">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Row="0">
 
-                                    <!-- Info -->
-                                    <StackPanel Grid.Column="0" Margin="0 0 4 0">
-                                        <rcp:DuoGrid ItemsSource="{Binding Path=ModInfo, Mode=OneTime}" 
-                                                     Margin="0 0 0 8" />
+                                    <!-- Title -->
+                                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                               Text="{Binding Path=Name, Mode=OneTime}"
+                                               d:Text="Mod title"
+                                               TextTrimming="CharacterEllipsis"
+                                               Margin="0 0 0 10" />
 
-                                        <TextBlock TextTrimming="CharacterEllipsis"
-                                                   Visibility="{Binding Path=HasWebsite, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}">
-                                            <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
-                                                       Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
-                                                <Run Text="{Binding Path=Website, Mode=OneTime}"
-                                                     d:Text="https://github.com/RayCarrot/RayCarrot.RCP.Metro" />
-                                            </Hyperlink>
-                                        </TextBlock>
+                                    <Grid Margin="0 0 0 8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                                    </StackPanel>
+                                        <!-- Info -->
+                                        <StackPanel Grid.Column="0" Margin="0 0 4 0">
+                                            <rcp:DuoGrid ItemsSource="{Binding Path=ModInfo, Mode=OneTime}" 
+                                                         Margin="0 0 0 8" />
 
-                                    <!-- Thumbnail -->
+                                            <TextBlock TextTrimming="CharacterEllipsis"
+                                                       Visibility="{Binding Path=HasWebsite, Converter={rcp:BooleanToVisibilityConverter}, Mode=OneTime}">
+                                                <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
+                                                           Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
+                                                    <Run Text="{Binding Path=Website, Mode=OneTime}"
+                                                         d:Text="https://github.com/RayCarrot/RayCarrot.RCP.Metro" />
+                                                </Hyperlink>
+                                            </TextBlock>
 
-                                    <modLoader:ModThumbnailControl Grid.Column="1"
-                                                                   Width="128" MaxHeight="128"
-                                                                   VerticalAlignment="Top" />
+                                        </StackPanel>
 
-                                </Grid>
+                                        <!-- Thumbnail -->
 
-                            </StackPanel>
+                                        <modLoader:ModThumbnailControl Grid.Column="1"
+                                                                       Width="128" MaxHeight="128"
+                                                                       VerticalAlignment="Top" />
 
-                            <!-- Description and changelog -->
-                            <StackPanel Grid.Row="1">
+                                    </Grid>
 
-                                <!-- Description -->
-                                <Grid Margin="0 0 0 12"
-                                      Visibility="{Binding Path=HasDescripton, Converter={rcp:BooleanToVisibilityConverter}}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                                </StackPanel>
 
-                                    <Border Grid.Column="0" 
-                                            Background="{DynamicResource RCP.Brushes.Separator.Quote}"
-                                            Width="5"
-                                            Margin="0 0 8 0" />
+                                <!-- Description and changelog -->
+                                <StackPanel Grid.Row="1">
 
-                                    <TextBlock Grid.Column="1"
-                                               Text="{Binding Path=Description, Mode=OneTime}"
-                                               d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                               TextWrapping="Wrap" />
+                                    <!-- Description -->
+                                    <Grid Margin="0 0 0 12"
+                                          Visibility="{Binding Path=HasDescripton, Converter={rcp:BooleanToVisibilityConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                </Grid>
+                                        <Border Grid.Column="0" 
+                                                Background="{DynamicResource RCP.Brushes.Separator.Quote}"
+                                                Width="5"
+                                                Margin="0 0 8 0" />
 
-                                <ItemsControl ItemsSource="{Binding Path=ChangelogEntries, Mode=OneTime}"
-                                              d:ItemsSource="{d:SampleData ItemCount=3}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Margin="0 0 0 8">
-                                                <StackPanel Orientation="Horizontal"
-                                                            Margin="0 0 0 4">
-                                                    <TextBlock Text="{Binding Path=Version, Mode=OneTime}"
-                                                               Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                                               Margin="0 0 8 0" />
-                                                    <TextBlock Text="{Binding Path=Date, StringFormat=D, Mode=OneTime}"
-                                                               FontStyle="Italic" />
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Path=Description, Mode=OneTime}"
+                                                   d:Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                                   TextWrapping="Wrap" />
+
+                                    </Grid>
+
+                                    <ItemsControl ItemsSource="{Binding Path=ChangelogEntries, Mode=OneTime}"
+                                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="0 0 0 8">
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="0 0 0 4">
+                                                        <TextBlock Text="{Binding Path=Version, Mode=OneTime}"
+                                                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                                   Margin="0 0 8 0" />
+                                                        <TextBlock Text="{Binding Path=Date, StringFormat=D, Mode=OneTime}"
+                                                                   FontStyle="Italic" />
+                                                    </StackPanel>
+
+                                                    <TextBlock Text="{Binding Path=Description, Mode=OneTime}"
+                                                               TextWrapping="Wrap" />
+
                                                 </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
 
-                                                <TextBlock Text="{Binding Path=Description, Mode=OneTime}"
-                                                           TextWrapping="Wrap" />
+                                </StackPanel>
 
-                                            </StackPanel>
+                                <!-- Footer -->
+                                <ContentPresenter Grid.Row="2"
+                                                  Content="{Binding Path=PanelFooterViewModel, Mode=OneTime}">
+                                    <ContentPresenter.Resources>
+                                        <DataTemplate DataType="{x:Type gameBanana:GameBananaModPanelFooterViewModel}">
+                                            <gameBanana:GameBananaModPanelFooterControl />
                                         </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                                    </ContentPresenter.Resources>
+                                </ContentPresenter>
 
-                            </StackPanel>
-
-                            <!-- Footer -->
-                            <ContentPresenter Grid.Row="2"
-                                              Content="{Binding Path=PanelFooterViewModel, Mode=OneTime}">
-                                <ContentPresenter.Resources>
-                                    <DataTemplate DataType="{x:Type gameBanana:GameBananaModPanelFooterViewModel}">
-                                        <gameBanana:GameBananaModPanelFooterControl />
-                                    </DataTemplate>
-                                </ContentPresenter.Resources>
-                            </ContentPresenter>
-
-                        </Grid>
-                    </ScrollViewer>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
                 </rcp:Card>
 
             </Grid>
