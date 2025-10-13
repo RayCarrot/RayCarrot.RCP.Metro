@@ -14,6 +14,8 @@ public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
                         viewedMod.Any(x => x.Id == modId);
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public DownloadableModsSource DownloadableModsSource { get; }
     public string? ModId { get; }
     public abstract ModVersion? ModVersion { get; }
@@ -21,7 +23,7 @@ public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
     public bool HasLoadedFullDetails { get; set; }
     public bool IsLoadingFullDetails { get; set; }
 
-    public async Task OnSelectedAsync()
+    public async Task<bool> OnSelectedAsync()
     {
         // Mark as viewed
         if (!HasViewed && ModId != null)
@@ -39,14 +41,22 @@ public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
 
             try
             {
-                // TODO-UPDATE: Catch exceptions
                 await LoadFullDetailsAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Loading full mod details");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the mod"); // TODO-LOC
+                HasLoadedFullDetails = false;
+                return false;
             }
             finally
             {
                 IsLoadingFullDetails = false;
             }
         }
+
+        return true;
     }
 
     public virtual Task LoadFullDetailsAsync() => Task.CompletedTask;
