@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 /// <summary>
 /// Interaction logic for ModLoaderDialog.xaml
 /// </summary>
-public partial class ModLoaderDialog : WindowContentControl
+public partial class ModLoaderDialog : WindowContentControl, IRecipient<OpenModDownloadPageMessage>
 {
     #region Constructor
     
@@ -18,6 +18,8 @@ public partial class ModLoaderDialog : WindowContentControl
 
         // Set up UI
         InitializeComponent();
+
+        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -114,7 +116,18 @@ public partial class ModLoaderDialog : WindowContentControl
     public override void Dispose()
     {
         base.Dispose();
+        Services.Messenger.UnregisterAll(this);
         ViewModel.Dispose();
+    }
+
+    #endregion
+
+    #region Message Handlers
+
+    void IRecipient<OpenModDownloadPageMessage>.Receive(OpenModDownloadPageMessage message)
+    {
+        if (message.GameInstallation == ViewModel.GameInstallation)
+            ModLoaderTabControl.SelectedIndex = 1;
     }
 
     #endregion

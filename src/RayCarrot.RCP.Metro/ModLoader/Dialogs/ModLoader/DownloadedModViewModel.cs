@@ -11,8 +11,9 @@ public class DownloadedModViewModel : BaseViewModel
 {
     #region Constructor
 
-    public DownloadedModViewModel(DownloadableModsSource? downloadableModsSource, Mod mod, ModManifestEntry modEntry)
+    public DownloadedModViewModel(GameInstallation gameInstallation, DownloadableModsSource? downloadableModsSource, Mod mod, ModManifestEntry modEntry)
     {
+        GameInstallation = gameInstallation;
         Mod = mod;
         InstallInfo = modEntry.InstallInfo;
 
@@ -36,9 +37,10 @@ public class DownloadedModViewModel : BaseViewModel
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
-        PanelFooterViewModel = downloadableModsSource?.GetPanelFooterViewModel(InstallInfo);
+        CanOpenInDownloadPage = true; // TODO-UPDATE: Implement
 
         OpenWebsiteCommand = new RelayCommand(OpenWebsite);
+        OpenInDownloadPageCommand = new RelayCommand(OpenInDownloadPage);
     }
 
     #endregion
@@ -52,11 +54,13 @@ public class DownloadedModViewModel : BaseViewModel
     #region Commands
 
     public ICommand OpenWebsiteCommand { get; }
+    public ICommand OpenInDownloadPageCommand { get; }
 
     #endregion
 
     #region Public Properties
 
+    public GameInstallation GameInstallation { get; }
     public Mod Mod { get; }
     public ModInstallInfo InstallInfo { get; }
     public ModMetadata Metadata => Mod.Metadata;
@@ -72,7 +76,8 @@ public class DownloadedModViewModel : BaseViewModel
     public bool HasWebsite => Uri.TryCreate(Metadata.Website, UriKind.Absolute, out _);
     public bool HasDescripton => !Metadata.Description.IsNullOrWhiteSpace();
     public ImageSource? Thumbnail { get; set; }
-    public ModPanelFooterViewModel? PanelFooterViewModel { get; }
+
+    public bool CanOpenInDownloadPage { get; }
 
     #endregion
 
@@ -114,6 +119,11 @@ public class DownloadedModViewModel : BaseViewModel
     {
         if (Metadata.Website != null)
             Services.App.OpenUrl(Metadata.Website);
+    }
+
+    public void OpenInDownloadPage()
+    {
+        Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, InstallInfo));
     }
 
     #endregion

@@ -247,6 +247,26 @@ public class GameBananaModsSource : DownloadableModsSource
         return new DownloadableModsFeedPage(modViewModels, largestPageCount);
     }
 
+    public override Task<DownloadableModViewModel?> LoadModViewModelAsync(
+        ModLoaderViewModel modLoaderViewModel, 
+        WebImageCache webImageCache,
+        HttpClient httpClient, 
+        ModInstallInfo modInstallInfo, 
+        GameInstallation gameInstallation)
+    {
+        int modId = (int)modInstallInfo.GetRequiredInstallData<GameBananaInstallData>().ModId;
+
+        GameBananaDownloadableModViewModel modViewModel = new(
+            downloadableModsSource: this,
+            modLoaderViewModel: modLoaderViewModel,
+            webImageCache: webImageCache,
+            httpClient: httpClient,
+            gameBananaId: modId,
+            isFeatured: false);
+
+        return Task.FromResult<DownloadableModViewModel?>(modViewModel);
+    }
+
     public override async Task<IEnumerable<DownloadableModsCategoryViewModel>> LoadDownloadableModsCategoriesAsync(
         WebImageCache webImageCache,
         HttpClient httpClient,
@@ -299,11 +319,6 @@ public class GameBananaModsSource : DownloadableModsSource
         }
 
         return sortOptions;
-    }
-
-    public override ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo)
-    {
-        return new GameBananaModPanelFooterViewModel(modInstallInfo.GetRequiredInstallData<GameBananaInstallData>().ModId);
     }
 
     public override async Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo)

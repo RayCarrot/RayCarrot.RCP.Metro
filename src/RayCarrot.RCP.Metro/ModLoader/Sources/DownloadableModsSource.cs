@@ -52,6 +52,13 @@ public abstract class DownloadableModsSource
         DownloadableModsFeedFilter? filter,
         int page);
 
+    public abstract Task<DownloadableModViewModel?> LoadModViewModelAsync(
+        ModLoaderViewModel modLoaderViewModel, 
+        WebImageCache webImageCache, 
+        HttpClient httpClient, 
+        ModInstallInfo modInstallInfo,
+        GameInstallation gameInstallation);
+
     public abstract Task<IEnumerable<DownloadableModsCategoryViewModel>> LoadDownloadableModsCategoriesAsync(
         WebImageCache webImageCache, 
         HttpClient httpClient, 
@@ -60,8 +67,6 @@ public abstract class DownloadableModsSource
     public abstract Task<IEnumerable<DownloadableModsSortOptionViewModel>> LoadDownloadableModsSortOptionsAsync(
         HttpClient httpClient, 
         GameInstallation gameInstallation);
-
-    public abstract ModPanelFooterViewModel GetPanelFooterViewModel(ModInstallInfo modInstallInfo);
 
     public abstract Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo);
 

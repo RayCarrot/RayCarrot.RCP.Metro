@@ -15,7 +15,7 @@
                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
     <rcp:LoadingHost rcp:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
-            <mah:MetroAnimatedTabControl>
+            <mah:MetroAnimatedTabControl x:Name="ModLoaderTabControl">
                 <!-- Library -->
                 <TabItem Header="{Resx ModLoader_LibraryTitle}" 
                          rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoader}" 

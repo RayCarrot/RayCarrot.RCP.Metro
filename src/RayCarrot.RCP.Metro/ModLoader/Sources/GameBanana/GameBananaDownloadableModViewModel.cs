@@ -110,6 +110,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
     public bool ShowArchivedFiles { get; set; }
     public bool HasNoValidFiles { get; set; }
 
+    public bool HasLoadedFeedDetails { get; set; }
+
     public ObservableCollection<CreditsGroupViewModel>? Credits { get; set; }
 
     #endregion
@@ -213,6 +215,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
         LikesCount = mod.LikeCount ?? 0;
         ViewsCount = mod.ViewCount ?? 0;
+
+        HasLoadedFeedDetails = true;
     }
 
     public void LoadFullDetails(GameBananaMod mod)
@@ -289,6 +293,10 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
     public override async Task LoadFullDetailsAsync()
     {
         GameBananaMod mod = await DownloadableModsSource.LoadModAsync(_httpClient, GameBananaId);
+
+        if (!HasLoadedFeedDetails)
+            LoadFeedDetails(mod);
+
         LoadFullDetails(mod);
         UpdateCurrentImage();
     }

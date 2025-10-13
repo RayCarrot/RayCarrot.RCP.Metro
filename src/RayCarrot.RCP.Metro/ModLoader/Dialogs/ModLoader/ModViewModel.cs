@@ -138,7 +138,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         HasProgress = false;
 
-        DownloadedMod = new DownloadedModViewModel(DownloadableModsSource, mod, modEntry);
+        DownloadedMod = new DownloadedModViewModel(ModLoaderViewModel.GameInstallation, DownloadableModsSource, mod, modEntry);
         DownloadedMod.LoadThumbnail();
 
         Name = DownloadedMod.Name;

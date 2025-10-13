@@ -5,7 +5,7 @@ using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-public class DownloadableModsViewModel : BaseViewModel, IDisposable
+public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownloadPageMessage>, IDisposable
 {
     #region Constructor
 
@@ -20,6 +20,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
         _asyncLock = new AsyncLock();
         GameInstallation = gameInstallation;
+        _modLoaderViewModel = modLoaderViewModel;
         _httpClient = httpClient;
         _webImageCache = new WebImageCache();
 
@@ -37,6 +38,8 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
         SortOptions = new ObservableCollectionEx<DownloadableModsSortOptionViewModel>();
         SortOptions.Insert(0, new DownloadableModsSortOptionViewModel("Default", null));
         SelectedSortOption = SortOptions[0];
+
+        Services.Messenger.RegisterAll(this);
 
         SelectModCommand = new AsyncRelayCommand(x => SelectModAsync((DownloadableModViewModel?)x));
         ClearSelectionCommand = new RelayCommand(ClearSelection);
@@ -57,6 +60,7 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
     #region Private Fields
 
     private readonly AsyncLock _asyncLock;
+    private readonly ModLoaderViewModel _modLoaderViewModel;
     private readonly HttpClient _httpClient;
     private readonly WebImageCache _webImageCache;
 
@@ -311,7 +315,36 @@ public class DownloadableModsViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
+        Services.Messenger.UnregisterAll(this);
         ModsFeed.Dispose();
+    }
+
+    #endregion
+
+    #region Message Handlers
+
+    async void IRecipient<OpenModDownloadPageMessage>.Receive(OpenModDownloadPageMessage message)
+    {
+        if (message.GameInstallation == GameInstallation)
+        {
+            foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
+            {
+                // TODO-UPDATE: Try/catch
+                DownloadableModViewModel? modViewModel = await source.Source.LoadModViewModelAsync(
+                    modLoaderViewModel: _modLoaderViewModel, 
+                    webImageCache: _webImageCache, 
+                    httpClient: _httpClient, 
+                    modInstallInfo: message.ModInstallInfo, 
+                    gameInstallation: GameInstallation);
+
+                if (modViewModel != null)
+                {
+                    await SelectModAsync(null); // NOTE: Temporarily keeping this as otherwise the transition breaks if a mod was selected from before
+                    await SelectModAsync(modViewModel);
+                    break;
+                }
+            }
+        }
     }
 
     #endregion

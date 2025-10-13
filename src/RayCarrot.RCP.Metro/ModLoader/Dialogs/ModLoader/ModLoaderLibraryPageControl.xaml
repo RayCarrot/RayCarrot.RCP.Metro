@@ -7,7 +7,6 @@
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:dd="urn:gong-wpf-dragdrop"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
              mc:Ignorable="d"
              d:DesignWidth="900" d:DesignHeight="600"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
@@ -114,7 +113,7 @@
                         </Viewbox>
 
                         <ScrollViewer Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
-                                      d:Visibility="Collapsed">
+                                      d:Visibility="Visible">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -187,7 +186,7 @@
                                     </Grid>
 
                                     <ItemsControl ItemsSource="{Binding Path=ChangelogEntries, Mode=OneTime}"
-                                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                                                  d:ItemsSource="{d:SampleData ItemCount=2}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Margin="0 0 0 8">
@@ -210,15 +209,15 @@
 
                                 </StackPanel>
 
-                                <!-- Footer -->
-                                <ContentPresenter Grid.Row="2"
-                                                  Content="{Binding Path=PanelFooterViewModel, Mode=OneTime}">
-                                    <ContentPresenter.Resources>
-                                        <DataTemplate DataType="{x:Type gameBanana:GameBananaModPanelFooterViewModel}">
-                                            <gameBanana:GameBananaModPanelFooterControl />
-                                        </DataTemplate>
-                                    </ContentPresenter.Resources>
-                                </ContentPresenter>
+                                <!-- TODO-LOC -->
+                                <Button Grid.Row="2"
+                                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                                        HorizontalAlignment="Left"
+                                        Visibility="{Binding Path=CanOpenInDownloadPage, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
+                                        Command="{Binding Path=OpenInDownloadPageCommand, Mode=OneTime}"
+                                        Content="Open download page"
+                                        rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}" 
+                                        rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
 
                             </Grid>
                         </ScrollViewer>
