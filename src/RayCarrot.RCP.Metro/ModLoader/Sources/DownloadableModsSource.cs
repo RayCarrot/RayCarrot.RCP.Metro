@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
 using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
@@ -41,6 +42,8 @@ public abstract class DownloadableModsSource
 
     #region Public Methods
 
+    public abstract object? ParseInstallData(JObject? installData);
+
     public abstract int GetModsFeedPageLength();
 
     public abstract Task<DownloadableModsFeedPage> LoadModsFeedPage(
@@ -56,7 +59,7 @@ public abstract class DownloadableModsSource
         ModLoaderViewModel modLoaderViewModel, 
         WebImageCache webImageCache, 
         HttpClient httpClient, 
-        ModInstallInfo modInstallInfo,
+        object? installData,
         GameInstallation gameInstallation);
 
     public abstract Task<IEnumerable<DownloadableModsCategoryViewModel>> LoadDownloadableModsCategoriesAsync(

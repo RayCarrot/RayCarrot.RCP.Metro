@@ -116,6 +116,11 @@ public class GameBananaModsSource : DownloadableModsSource
         return await httpClient.GetDeserializedAsync<GameBananaMod>(url);
     }
 
+    public override object? ParseInstallData(JObject? installData)
+    {
+        return installData?.ToObject<GameBananaInstallData>();
+    }
+
     public override int GetModsFeedPageLength() => RecordsPerPage;
 
     public override async Task<DownloadableModsFeedPage> LoadModsFeedPage(
@@ -251,10 +256,13 @@ public class GameBananaModsSource : DownloadableModsSource
         ModLoaderViewModel modLoaderViewModel, 
         WebImageCache webImageCache,
         HttpClient httpClient, 
-        ModInstallInfo modInstallInfo, 
+        object? installData, 
         GameInstallation gameInstallation)
     {
-        int modId = (int)modInstallInfo.GetRequiredInstallData<GameBananaInstallData>().ModId;
+        if (installData is not GameBananaInstallData gbInstallData)
+            return Task.FromResult<DownloadableModViewModel?>(null);
+
+        int modId = (int)gbInstallData.ModId;
 
         GameBananaDownloadableModViewModel modViewModel = new(
             downloadableModsSource: this,

@@ -334,7 +334,7 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
                     modLoaderViewModel: _modLoaderViewModel, 
                     webImageCache: _webImageCache, 
                     httpClient: _httpClient, 
-                    modInstallInfo: message.ModInstallInfo, 
+                    installData: message.InstallData, 
                     gameInstallation: GameInstallation);
 
                 if (modViewModel != null)

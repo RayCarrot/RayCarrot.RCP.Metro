@@ -14,6 +14,7 @@ public class DownloadedModViewModel : BaseViewModel
     public DownloadedModViewModel(GameInstallation gameInstallation, DownloadableModsSource? downloadableModsSource, Mod mod, ModManifestEntry modEntry)
     {
         GameInstallation = gameInstallation;
+        DownloadableModsSource = downloadableModsSource;
         Mod = mod;
         InstallInfo = modEntry.InstallInfo;
 
@@ -37,7 +38,7 @@ public class DownloadedModViewModel : BaseViewModel
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
-        CanOpenInDownloadPage = true; // TODO-UPDATE: Implement
+        CanOpenInDownloadPage = downloadableModsSource != null;
 
         OpenWebsiteCommand = new RelayCommand(OpenWebsite);
         OpenInDownloadPageCommand = new RelayCommand(OpenInDownloadPage);
@@ -61,6 +62,7 @@ public class DownloadedModViewModel : BaseViewModel
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
+    public DownloadableModsSource? DownloadableModsSource { get; }
     public Mod Mod { get; }
     public ModInstallInfo InstallInfo { get; }
     public ModMetadata Metadata => Mod.Metadata;
@@ -123,7 +125,11 @@ public class DownloadedModViewModel : BaseViewModel
 
     public void OpenInDownloadPage()
     {
-        Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, InstallInfo));
+        if (DownloadableModsSource != null)
+        {
+            object? installData = DownloadableModsSource.ParseInstallData(InstallInfo.Data);
+            Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, installData));
+        }
     }
 
     #endregion
