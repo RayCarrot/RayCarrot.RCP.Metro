@@ -3,7 +3,9 @@ using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro.Games.Settings;
 
@@ -503,7 +505,12 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
 
         public async Task InstallModAsync()
         {
-            await Services.UI.ShowModLoaderAsync(GameInstallation, RequiredGameBananaModId ?? throw new Exception("No mod id specified"));
+            long modId = RequiredGameBananaModId ?? throw new Exception("No mod id specified");
+            await Services.UI.ShowModLoaderAsync(GameInstallation, _ =>
+            {
+                Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, new GameBananaInstallData(modId, -1)));
+                return Task.CompletedTask;
+            });
         }
     }
 }

@@ -5,7 +5,7 @@
 /// </summary>
 public interface IDialogBaseManager
 {
-    Task ShowWindowAsync(
+    Task<ShowWindowResult> ShowWindowAsync(
         IWindowControl windowContent,
         ShowWindowFlags flags = ShowWindowFlags.None,
         string[]? typeGroupNames = null,

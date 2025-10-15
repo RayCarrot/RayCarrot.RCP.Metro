@@ -94,15 +94,6 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #region Public Methods
 
-    public List<GameBananaFile> GetValidFiles(GameBananaMod mod, GameBananaFile[] files)
-    {
-        return files.
-            Where(x => mod.ModManagerIntegrations is JObject obj &&
-                       obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
-                       m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
-            ToList();
-    }
-
     public List<GameBananaFile> GetValidFiles(GameBananaFile[] files)
     {
         return files.

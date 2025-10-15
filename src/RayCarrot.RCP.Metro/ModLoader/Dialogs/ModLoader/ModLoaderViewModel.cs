@@ -17,10 +17,11 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ModLoaderViewModel(GameInstallation gameInstallation, ModToInstall[]? pendingModFiles = null)
+    public ModLoaderViewModel(GameInstallation gameInstallation, ModToInstall[]? pendingModFiles = null, Func<ModLoaderViewModel, Task>? customInitAction = null)
     {
         GameInstallation = gameInstallation;
         _pendingModFiles = pendingModFiles;
+        _customInitAction = customInitAction;
 
         // Verify the game supports mods
         if (!gameInstallation.GetComponents<ModModuleComponent>().Any())
@@ -53,6 +54,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     #region Private Fields
 
     private ModToInstall[]? _pendingModFiles;
+    private Func<ModLoaderViewModel, Task>? _customInitAction;
     private readonly HttpClient _httpClient;
     private readonly ModExtractor[] _modExtractors;
 
@@ -521,6 +523,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             await AddLocalModsToInstall(_pendingModFiles);
             _pendingModFiles = null;
+        }
+
+        // Optional custom initialization
+        if (_customInitAction != null)
+        {
+            await _customInitAction(this);
+            _customInitAction = null;
         }
 
         // Check for mod updates if set to do so

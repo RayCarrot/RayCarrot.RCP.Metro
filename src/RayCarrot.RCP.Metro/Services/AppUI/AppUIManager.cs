@@ -13,7 +13,6 @@ using RayCarrot.RCP.Metro.Games.Tools.PrototypeRestoration;
 using RayCarrot.RCP.Metro.Games.Tools.RuntimeModifications;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModCreator;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
-using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -78,7 +77,7 @@ public class AppUIManager
         return result;
     }
 
-    private async Task ShowWindowAsync(
+    private async Task<ShowWindowResult> ShowWindowAsync(
         Func<IWindowControl> createWindowFunc, 
         ShowWindowFlags flags = ShowWindowFlags.None,
         string[] typeGroupNames = null,
@@ -91,7 +90,7 @@ public class AppUIManager
 
         Logger.Trace("A window of type {0} was opened", windowTypeName);
 
-        await Dialog.ShowWindowAsync(window, flags, typeGroupNames, globalGroupNames);
+        return await Dialog.ShowWindowAsync(window, flags, typeGroupNames, globalGroupNames);
     }
 
     #endregion
@@ -313,74 +312,24 @@ public class AppUIManager
     /// Shows a new instance of the Mod Loader from a game installation
     /// </summary>
     /// <param name="gameInstallation">The game installation</param>
+    /// <param name="customInitAction">A custom action to run after initializing the mod loader</param>
     /// <returns>The task</returns>
-    public async Task ShowModLoaderAsync(GameInstallation gameInstallation) =>
-        await ShowWindowAsync(() => new ModLoaderDialog(new ModLoaderViewModel(gameInstallation)),
+    public async Task ShowModLoaderAsync(GameInstallation gameInstallation, Func<ModLoaderViewModel, Task>? customInitAction = null)
+    {
+        ShowWindowResult result = await ShowWindowAsync(
+            () => new ModLoaderDialog(new ModLoaderViewModel(gameInstallation, customInitAction: customInitAction)),
             // Only allow one Mod Loader window per installation
             typeGroupNames: new[] { gameInstallation.InstallationId });
 
-    // TODO-UPDATE: Open mod download page instead?
-    public async Task ShowModLoaderAsync(GameInstallation gameInstallation, long gameBananaModId)
-    {
-        GameBananaModsSource gb = new();
-        GameBananaFile? file;
-
-        try
+        // If we failed to open the window we try and run the custom init action in the blocking block loader instance
+        if (customInitAction != null &&
+            !result.Success && 
+            result.BlockingWindowInstance is ModLoaderDialog modLoader &&
+            !modLoader.ViewModel.LoaderViewModel.IsRunning &&
+            modLoader.ViewModel.GameInstallation == gameInstallation)
         {
-            using HttpClient httpClient = new();
-
-            // Get the mod
-            GameBananaMod mod = await httpClient.GetDeserializedAsync<GameBananaMod>(
-                $"https://gamebanana.com/apiv11/Mod/{gameBananaModId}?" +
-                $"_csvProperties=_aFiles,_aModManagerIntegrations");
-
-            if (mod.Files == null)
-            {
-                await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_NoValidFilesError, MessageType.Error);
-                return;
-            }
-
-            // Get the valid files
-            List<GameBananaFile> validFiles = gb.GetValidFiles(mod, mod.Files);
-
-            if (validFiles.Count == 0)
-            {
-                await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_NoValidFilesError, MessageType.Error);
-                return;
-            }
-
-            if (validFiles.Count > 1)
-            {
-                ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
-                        Select(x => x.Description.IsNullOrWhiteSpace() 
-                            ? x.File
-                            : $"{x.File}{Environment.NewLine}{x.Description}").
-                        ToArray(),
-                    Resources.ModLoader_GameBanana_SelectDownloadFileHeader)
-                {
-                    Title = Resources.ModLoader_GameBanana_SelectDownloadFileTitle
-                });
-
-                if (result.CanceledByUser)
-                    return;
-
-                file = validFiles[result.SelectedIndex];
-            }
-            else
-            {
-                file = validFiles[0];
-            }
+            await customInitAction(modLoader.ViewModel);
         }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting mod download for setup game action");
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_GetDownloadError);
-
-            return;
-        }
-
-        await ShowModLoaderAsync(gameInstallation, file.DownloadUrl, file.File, gb.Id, new GameBananaInstallData(gameBananaModId, file.Id));
     }
 
     /// <summary>

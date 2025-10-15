@@ -88,7 +88,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     #region Public Methods
 
-    public async Task ShowWindowAsync(
+    public async Task<ShowWindowResult> ShowWindowAsync(
         IWindowControl windowContent, 
         ShowWindowFlags flags = ShowWindowFlags.None, 
         string[]? typeGroupNames = null, 
@@ -143,7 +143,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
                         if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
                             blockingWindow.WindowInstance?.Focus();
 
-                        return;
+                        return new ShowWindowResult(false, blockingWindow);
                     }
                 }
 
@@ -154,6 +154,8 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
                 // Show the window and wait for it to close
                 await dispatcher.Invoke(() => ShowAsync(windowContent, flags.HasFlag(ShowWindowFlags.Modal), title));
+
+                return new ShowWindowResult(true, null);
             }
             finally
             {

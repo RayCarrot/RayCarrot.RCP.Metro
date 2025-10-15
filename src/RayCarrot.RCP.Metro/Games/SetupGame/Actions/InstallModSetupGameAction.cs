@@ -1,4 +1,6 @@
-﻿using RayCarrot.RCP.Metro.ModLoader.Library;
+﻿using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Library;
+using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro.Games.SetupGame;
 
@@ -29,6 +31,10 @@ public abstract class InstallModSetupGameAction : SetupGameAction
 
     public override async Task FixAsync(GameInstallation gameInstallation)
     {
-        await Services.UI.ShowModLoaderAsync(gameInstallation, GameBananaModId);
+        await Services.UI.ShowModLoaderAsync(gameInstallation, _ =>
+        {
+            Services.Messenger.Send(new OpenModDownloadPageMessage(gameInstallation, new GameBananaInstallData(GameBananaModId, -1)));
+            return Task.CompletedTask;
+        });
     }
 }
