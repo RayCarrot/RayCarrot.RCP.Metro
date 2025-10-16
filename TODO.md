@@ -70,11 +70,8 @@ Open with (external) ->
 - Allow mods to add other mods as dependencies, specify them using mod ID and GameBanana mod ID
 - Improve HTTP system for GameBanana mods. Have [retry policy](https://stackoverflow.com/questions/59702119/getting-response-status-code-does-not-indicate-success-502-bad-gateway-from) to avoid errors shown to the user. Ideally there also only be a single HttpClient in the app.
 - Ideally the `files` module should have been two modules; `added_files` and `removed_files`. We could change it, but maybe that would just cause more confusion at this point?
-- Optional grid view for downloadable mods so that more mods can be displayed at once
 - Allow modding disc based games with a virtual file-system, primarily for Rayman 1 on PS1
 - Add `costumes` module for Origins and Legends, allowing new costumes to be added, with the mod loader then merging them all together into the gameconfig to avoid file conflicts
-- Make it more clear you can't install mods while mod loader is open (such as from game setup actions)
-- Downloading big 1-click file causes RCP to freeze before it extracts it ([example](https://gamebanana.com/mods/490773))
 
 ### 🍌 GameBanana
 - Link [Rayman 1](https://gamebanana.com/games/21305) to RCP
