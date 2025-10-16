@@ -126,7 +126,7 @@ public class GameBananaModsSource : DownloadableModsSource
         List<GameBananaDownloadableModViewModel> modViewModels = new();
 
         // Only load featured mods on first page when there is no filter
-        if (filter == null && page == 0)
+        if (Services.Data.ModLoader_ShowEssentialMods && filter == null && page == 0)
         {
             Logger.Info("Loading featured GameBanana mods");
 

@@ -21,6 +21,16 @@
                   IsChecked="{Binding Path=ModLoader_ShowModConflictsWarning}"
                   Margin="0 0 0 8" />
 
+        <!-- TODO-LOC -->
+        <CheckBox Content="Show essential mods first"
+                  IsChecked="{Binding Path=ModLoader_ShowEssentialMods}"
+                  Margin="0 0 0 8" />
+
+        <!-- TODO-LOC -->
+        <CheckBox Content="Mark unseen mods"
+                  IsChecked="{Binding Path=ModLoader_MarkUnseenMods}"
+                  Margin="0 0 0 8" />
+
         <CheckBox Content="{Resx Settings_ModLoader_IncludeNsfwMods}"
                   ToolTip="{Resx Settings_ModLoader_IncludeNsfwModsInfo}"
                   IsChecked="{Binding Path=ModLoader_IncludeDownloadableNsfwMods}"

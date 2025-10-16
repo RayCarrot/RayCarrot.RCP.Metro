@@ -9,9 +9,11 @@ public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
         DownloadableModsSource = downloadableModsSource;
         ModId = modId;
 
-        if (modId != null)
+        if (Services.Data.ModLoader_MarkUnseenMods && modId != null)
             HasViewed = Services.Data.ModLoader_ViewedMods.TryGetValue(DownloadableModsSource.Id, out List<ViewedMod> viewedMod) &&
                         viewedMod.Any(x => x.Id == modId);
+        else
+            HasViewed = true;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

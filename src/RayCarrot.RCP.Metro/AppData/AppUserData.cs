@@ -90,6 +90,8 @@ public partial class AppUserData : BaseViewModel
         ModLoader_AutomaticallyCheckForUpdates = true;
         ModLoader_ViewedMods = new Dictionary<string, List<ViewedMod>>();
         ModLoader_ShowModConflictsWarning = true;
+        ModLoader_ShowEssentialMods = true;
+        ModLoader_MarkUnseenMods = true;
         ModLoader_IncludeDownloadableNsfwMods = false;
     }
 
@@ -412,6 +414,16 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if a warning message should be shown if there are mod conflicts when applying
     /// </summary>
     public bool ModLoader_ShowModConflictsWarning { get; set; }
+
+    /// <summary>
+    /// Indicates if the essential (featured) mods should show first when downloading mods
+    /// </summary>
+    public bool ModLoader_ShowEssentialMods { get; set; }
+
+    /// <summary>
+    /// Indicates if unseen mods should be marked when downloading mods
+    /// </summary>
+    public bool ModLoader_MarkUnseenMods { get; set; }
 
     /// <summary>
     /// Indicates if downloadable mods with a content rating should be shown.
