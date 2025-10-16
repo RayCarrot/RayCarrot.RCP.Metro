@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows;
+﻿using System.Windows;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -16,7 +15,7 @@ public class BindingProxy : Freezable
     /// <summary>
     /// The data context to bind to
     /// </summary>
-    public object Data
+    public object? Data
     {
         get => GetValue(DataProperty);
         set => SetValue(DataProperty, value);

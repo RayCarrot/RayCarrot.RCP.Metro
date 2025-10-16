@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
 
 namespace RayCarrot.RCP.Metro;
@@ -21,7 +20,7 @@ public static class FileSystemPathExtensions
     /// <exception cref="PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length.
     /// For example, on Windows-based platforms, paths must be less than 248 characters, and file names must be less than 260 characters.</exception>
     /// <exception cref="NotSupportedException">The path contains a colon (:) in the middle of the string</exception>
-    public static FileSystemInfo GetFileSystemInfo(this FileSystemPath path)
+    public static FileSystemInfo? GetFileSystemInfo(this FileSystemPath path)
     {
         switch (path.FileSystemType)
         {

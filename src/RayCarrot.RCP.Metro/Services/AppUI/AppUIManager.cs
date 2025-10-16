@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
+
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -79,7 +80,7 @@ public class AppUIManager
     }
 
     private async Task ShowWindowAsync(
-        Func<IWindowControl> createWindowFunc, 
+        Func<IWindowControl> createWindowFunc,
         ShowWindowFlags flags = ShowWindowFlags.None,
         string[] typeGroupNames = null,
         string[] globalGroupNames = null)
@@ -119,7 +120,7 @@ public class AppUIManager
 
     public Task<ProgramSelectionResult> GetProgramAsync(ProgramSelectionViewModel programSelectionViewModel) => ShowDialogAsync(() => new ProgramSelectionDialog(programSelectionViewModel));
 
-    public Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) => 
+    public Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) =>
         ShowDialogAsync(() => new GamesSelectionDialog(gamesSelectionViewModel));
 
     /// <summary>
@@ -131,7 +132,7 @@ public class AppUIManager
 
     public Task<DownloaderResult> DownloadAsync(DownloaderViewModel viewModel) => ShowDialogAsync(() => new Downloader(viewModel));
 
-    public Task<GameInstallerResult> InstallGameAsync(GameDescriptor gameDescriptor, GameInstallerInfo info) => 
+    public Task<GameInstallerResult> InstallGameAsync(GameDescriptor gameDescriptor, GameInstallerInfo info) =>
         ShowDialogAsync(() => new GameInstallerDialog(gameDescriptor, info));
 
     /// <summary>
@@ -213,14 +214,11 @@ public class AppUIManager
         return await Application.Current.Dispatcher.Invoke(async () =>
         {
             // Create the view model
-            var vm = new DialogMessageViewModel()
+            var vm = new DialogMessageViewModel(message, messageType, actions,
+                new UserInputResult(),
+                (ImageSource)new ImageSourceConverter().ConvertFromString(GetImgSource(messageType)))
             {
-                MessageText = message,
                 Title = headerMessage,
-                MessageType = messageType,
-                DialogImageSource = (ImageSource)new ImageSourceConverter().ConvertFromString(GetImgSource(messageType)),
-                DialogActions = actions,
-                DefaultActionResult = new UserInputResult(),
             };
 
             // Create the message box
@@ -271,7 +269,7 @@ public class AppUIManager
     public async Task ShowGameClientGameOptionsAsync(GameInstallation gameInstallation)
     {
         await ShowWindowAsync(
-            () => new GameSettingsDialog(gameInstallation.GetRequiredComponent<GameClientGameSettingsComponent>().CreateObject()), 
+            () => new GameSettingsDialog(gameInstallation.GetRequiredComponent<GameClientGameSettingsComponent>().CreateObject()),
             // Only allow one settings window per installation
             typeGroupNames: new[] { gameInstallation.InstallationId });
     }
@@ -352,7 +350,7 @@ public class AppUIManager
             if (validFiles.Count > 1)
             {
                 ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
-                        Select(x => x.Description.IsNullOrWhiteSpace() 
+                        Select(x => x.Description.IsNullOrWhiteSpace()
                             ? x.File
                             : $"{x.File}{Environment.NewLine}{x.Description}").
                         ToArray(),
@@ -454,9 +452,9 @@ public class AppUIManager
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_ErrorOpening);
 
-            return;    
+            return;
         }
-        
+
         if (viewModel == null)
             return;
 
@@ -470,7 +468,7 @@ public class AppUIManager
     /// </summary>
     /// <param name="gameInstallation">The game installation the mod should be created for</param>
     /// <returns>The task</returns>
-    public async Task ShowModCreatorAsync(GameInstallation gameInstallation) => 
+    public async Task ShowModCreatorAsync(GameInstallation gameInstallation) =>
         await ShowWindowAsync(() => new ModCreatorDialog(new ModCreatorViewModel(gameInstallation)));
 
     /// <summary>
@@ -478,7 +476,7 @@ public class AppUIManager
     /// </summary>
     /// <returns>The task</returns>
     public async Task ShowPrototypeRestorationAsync(GameInstallation gameInstallation) =>
-        await ShowWindowAsync(() => new PrototypeRestorationDialog(new PrototypeRestorationViewModel(gameInstallation)), 
+        await ShowWindowAsync(() => new PrototypeRestorationDialog(new PrototypeRestorationViewModel(gameInstallation)),
             typeGroupNames: new[] { gameInstallation.InstallationId });
 
     /// <summary>
@@ -486,28 +484,28 @@ public class AppUIManager
     /// </summary>
     /// <returns>The task</returns>
     public async Task ShowRuntimeModificationsAsync(GameInstallation gameInstallation) =>
-        await ShowWindowAsync(() => new RuntimeModificationsDialog(new RuntimeModificationsViewModel(gameInstallation, Services.MessageUI)), 
+        await ShowWindowAsync(() => new RuntimeModificationsDialog(new RuntimeModificationsViewModel(gameInstallation, Services.MessageUI)),
             typeGroupNames: new[] { gameInstallation.InstallationId });
 
     /// <summary>
     /// Shows a new instance of the add games dialog
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowAddGamesAsync() => 
+    public async Task ShowAddGamesAsync() =>
         await ShowWindowAsync(() => new AddGamesDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     /// <summary>
     /// Shows a new instance of the game clients setup dialog
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowGameClientsSetupAsync() => 
+    public async Task ShowGameClientsSetupAsync() =>
         await ShowWindowAsync(() => new GameClientsSetupDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
 
     /// <summary>
     /// Shows a new instance of the anniversary update dialog
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowAnniversaryUpdateAsync() => 
+    public async Task ShowAnniversaryUpdateAsync() =>
         await ShowWindowAsync(() => new AnniversaryUpdateDialog(), ShowWindowFlags.Modal);
 
     #endregion
