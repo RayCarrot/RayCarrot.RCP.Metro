@@ -333,57 +333,6 @@ public class AppUIManager
     }
 
     /// <summary>
-    /// Shows a new instance of the Mod Loader from a URL
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to use the mod loader for. If not specified then the game is picked from what the mod supports.</param>
-    /// <param name="modUrl">The URL of the mod to install</param>
-    /// <param name="fileName">The file name of the mod to download</param>
-    /// <param name="sourceId">An optional source id</param>
-    /// <param name="installData">Optional install data for the source</param>
-    /// <returns>The task</returns>
-    public async Task ShowModLoaderAsync(GameInstallation? gameInstallation, string modUrl, string fileName, string? sourceId, object? installData)
-    {
-        Logger.Info("Downloading mod to install from {0}", modUrl);
-
-        // Create a temp file to download to
-        using TempFile tempFile = new(false, new FileExtension(fileName));
-
-        using (LoaderLoadState state = await Services.App.LoaderViewModel.RunAsync(String.Format(Resources.ModLoader_DownloadingModStatus, fileName), true))
-        {
-            try
-            {
-                // Open a stream to the downloadable file
-                using (HttpClient httpClient = new())
-                {
-                    using HttpResponseMessage response = await httpClient.GetAsync(modUrl);
-                    using Stream httpStream = await response.Content.ReadAsStreamAsync();
-
-                    // Download to the temp file
-                    using FileStream tempFileStream = File.Create(tempFile.TempPath);
-                    await httpStream.CopyToExAsync(tempFileStream, progressCallback: state.SetProgress, cancellationToken: state.CancellationToken, length: response.Content.Headers.ContentLength);
-                }
-
-                state.Complete();
-            }
-            catch (OperationCanceledException ex)
-            {
-                Logger.Info(ex, "Canceled downloading mod");
-                return;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Downloading mod");
-                state.Error();
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModFromUriError);
-                return;
-            }
-        }
-
-        // Show the mod loader with the downloaded file
-        await ShowModLoaderAsync(gameInstallation, new ModLoaderViewModel.ModToInstall(tempFile.TempPath, sourceId, installData));
-    }
-
-    /// <summary>
     /// Shows a new instance of the Mod Loader from mod file paths
     /// </summary>
     /// <param name="gameInstallation">The game installation to use the mod loader for. If not specified then the game is picked from what the mod supports.</param>

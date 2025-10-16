@@ -525,19 +525,19 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             _pendingModFiles = null;
         }
 
-        // Optional custom initialization
-        if (_customInitAction != null)
-        {
-            await _customInitAction(this);
-            _customInitAction = null;
-        }
-
         // Check for mod updates if set to do so
         if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
             CheckForUpdatesCommand.Execute(null);
 
         // Load downloadable mods
         await DownloadableMods.InitializeAsync();
+
+        // Optional custom initialization
+        if (_customInitAction != null)
+        {
+            await _customInitAction(this);
+            _customInitAction = null;
+        }
 
         Logger.Info("Finished initializing mod loader");
 
@@ -612,11 +612,11 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     }
 
     public async Task InstallModFromDownloadableFileAsync(
-        DownloadableModsSource source, 
+        DownloadableModsSource? source, 
         ModViewModel? existingMod,
         string fileName, 
         string downloadUrl, 
-        long fileSize, 
+        long? fileSize, 
         object? installData,
         string? modName)
     {
@@ -671,7 +671,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 filePath: tempFile.TempPath, 
                 progressCallback: downloadingMod.SetProgress, 
                 cancellationToken: cancellationToken, 
-                sourceId: source.Id, 
+                sourceId: source?.Id, 
                 installData: installData,
                 existingMod: downloadingMod);
 
