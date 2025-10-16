@@ -686,7 +686,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Downloading mod");
 
-            // TODO-UPDATE: Include mod name in message
+            // TODO-LOC: Include mod name in message
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError);
         }
 
@@ -727,7 +727,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         if (Mods.Any(x => !x.IsDownloaded))
         {
-            // TODO-UPDATE: Message
+            // TODO-LOC
+            await Services.MessageUI.DisplayMessageAsync("There are still mods being downloaded. Please wait for all mods to finish downloading before applying any changes.", "Mods are still downloading", MessageType.Warning);
             return null;
         }
 

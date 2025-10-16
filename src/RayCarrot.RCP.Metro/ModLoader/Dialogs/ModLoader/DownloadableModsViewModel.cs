@@ -261,7 +261,7 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
 
         SearchText = String.Empty;
         CurrentFeedType = FeedType.CategoryAndSort;
-        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name); // TODO-UPDATE: Include sort option too
+        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name); // TODO-LOC: Include sort option too
 
         await ModsFeed.InitializeAsync(new DownloadableModsFeedCategoryAndSortFilter()
         {
