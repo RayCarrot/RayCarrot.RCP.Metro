@@ -57,7 +57,7 @@ public static class UbisoftConnectHelpers
 
     public static string GetStorePageURL(string productId)
     {
-        return $"https://store.ubisoft.com/game?pid={productId}";
+        return $"https://store.ubisoft.com/{productId}.html";
     }
 
     public static string GetGameLaunchURI(string gameId)
