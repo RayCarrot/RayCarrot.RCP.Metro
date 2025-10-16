@@ -3,8 +3,14 @@
 public class MinimumRaymanOriginsLoadingTimesSetupGameAction : InstallModSetupGameAction
 {
     protected override long GameBananaModId => 510228;
-    protected override string ModId => "RaymanOrigins.MinLoading";
+    protected override string[] ModIds => 
+    [
+        "RaymanOrigins.MinLoading", 
+        "RaymanOrigins.LoadlessOrigins.Steam", 
+        "RaymanOrigins.LoadlessOrigins.Uplay",
+    ];
 
+    // TODO-LOC: Update to include info on new Loadless Mod
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header));
     public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info));
 

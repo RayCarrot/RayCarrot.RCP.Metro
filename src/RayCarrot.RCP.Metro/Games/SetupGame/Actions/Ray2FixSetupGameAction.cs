@@ -7,7 +7,7 @@ public class Ray2FixSetupGameAction : InstallModSetupGameAction
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override long GameBananaModId => 479402;
-    protected override string ModId => "88080deb-5f26-4d08-b44f-b0b6b36d1e22";
+    protected override string[] ModIds => ["88080deb-5f26-4d08-b44f-b0b6b36d1e22"];
 
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_Ray2Fix_Header));
     public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_Ray2Fix_Info));
