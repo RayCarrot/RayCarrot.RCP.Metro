@@ -329,19 +329,26 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
         {
             foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
             {
-                // TODO-UPDATE: Try/catch
-                DownloadableModViewModel? modViewModel = await source.Source.LoadModViewModelAsync(
-                    modLoaderViewModel: _modLoaderViewModel, 
-                    webImageCache: _webImageCache, 
-                    httpClient: _httpClient, 
-                    installData: message.InstallData, 
-                    gameInstallation: GameInstallation);
-
-                if (modViewModel != null)
+                try
                 {
-                    await SelectModAsync(null); // NOTE: Temporarily keeping this as otherwise the transition breaks if a mod was selected from before
-                    await SelectModAsync(modViewModel);
-                    break;
+                    DownloadableModViewModel? modViewModel = await source.Source.LoadModViewModelAsync(
+                        modLoaderViewModel: _modLoaderViewModel,
+                        webImageCache: _webImageCache,
+                        httpClient: _httpClient,
+                        installData: message.InstallData,
+                        gameInstallation: GameInstallation);
+
+                    if (modViewModel != null)
+                    {
+                        await SelectModAsync(null); // NOTE: Temporarily keeping this as otherwise the transition breaks if a mod was selected from before
+                        await SelectModAsync(modViewModel);
+                        break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Loading mod view model");
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the mod"); // TODO-LOC
                 }
             }
         }
