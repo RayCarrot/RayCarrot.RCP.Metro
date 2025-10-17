@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro">
 
     <!-- Default FlipView -->
 
@@ -57,6 +58,14 @@
                 </Style>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=UI_EnableAnimations, Source={x:Static rcp:Services.Data}}" Value="False">
+                <Setter Property="DownTransition" Value="Normal" />
+                <Setter Property="UpTransition" Value="Normal" />
+                <Setter Property="RightTransition" Value="Normal" />
+                <Setter Property="LeftTransition" Value="Normal" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

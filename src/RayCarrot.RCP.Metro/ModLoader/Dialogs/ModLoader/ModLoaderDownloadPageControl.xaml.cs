@@ -30,7 +30,9 @@ public partial class ModLoaderDownloadPageControl : UserControl
             // Different transition based on if it's transitioning in or out
             if (ee.PropertyName == nameof(viewModel.SelectedMod))
             {
-                if (viewModel.SelectedMod == null)
+                if (!Services.Data.UI_EnableAnimations)
+                    SelectedModTransitioningContentControl.Transition = TransitionType.Normal;
+                else if (viewModel.SelectedMod == null)
                     SelectedModTransitioningContentControl.Transition = TransitionType.Down;
                 else
                     SelectedModTransitioningContentControl.Transition = TransitionType.Up;
