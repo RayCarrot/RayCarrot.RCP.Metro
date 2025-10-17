@@ -75,7 +75,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     public LoaderViewModel LoaderViewModel { get; }
     
     public ModManifest? ModManifest { get; set; }
-    public ObservableCollection<ModViewModel> Mods { get; } // TODO-UPDATE: Lock access to this
+    public ObservableCollection<ModViewModel> Mods { get; }
     public ModViewModel? SelectedMod { get; set; }
 
     public ModifiedFilesViewModel ModifiedFiles { get; }
@@ -135,8 +135,11 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         try
         {
             // Clear any previously loaded mods
-            Mods.DisposeAll();
-            Mods.Clear();
+            lock (Mods)
+            {
+                Mods.DisposeAll();
+                Mods.Clear();
+            }
 
             ModManifest = Library.ReadModManifest();
 
@@ -171,7 +174,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     loaderViewModel: LoaderViewModel, 
                     downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo));
                 vm.InitDownloaded(ModViewModel.ModInstallState.Installed, mod, modEntry);
-                Mods.Add(vm);
+                
+                lock (Mods)
+                    Mods.Add(vm);
 
                 Logger.Info("Added installed mod '{0}' from library with version {1} and ID {2}", 
                     vm.DownloadedMod.Metadata.Name, vm.DownloadedMod.Metadata.Version, vm.DownloadedMod.Metadata.Id);
@@ -303,49 +308,52 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Date: DateTime.Now, 
                 Data: installData == null ? null : JObject.FromObject(installData));
 
-            // Attempt to find existing mod if not specified
-            existingMod ??= Mods.FirstOrDefault(x => x.IsDownloaded && x.DownloadedMod.Metadata.Id == id);
-
-            // Create a new manifest entry for the mod
-            ModManifestEntry modEntry = new(id, installInfo, existingMod?.IsEnabled ?? true);
-
-            // Create the mod view model
-            ModViewModel mod = new(
-                modLoaderViewModel: this, 
-                loaderViewModel: LoaderViewModel, 
-                downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
+            lock (Mods)
             {
-                PendingInstallTempDir = extractTempDir
-            };
-            mod.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
+                // Attempt to find existing mod if not specified
+                existingMod ??= Mods.FirstOrDefault(x => x.IsDownloaded && x.DownloadedMod.Metadata.Id == id);
 
-            // The mod is being added as a new mod
-            if (existingMod == null)
-            {
-                // Add to the end of the list
-                Mods.Add(mod);
+                // Create a new manifest entry for the mod
+                ModManifestEntry modEntry = new(id, installInfo, existingMod?.IsEnabled ?? true);
+
+                // Create the mod view model
+                ModViewModel mod = new(
+                    modLoaderViewModel: this,
+                    loaderViewModel: LoaderViewModel,
+                    downloadableModsSource: DownloadableModsSource.GetSource(modEntry.InstallInfo))
+                {
+                    PendingInstallTempDir = extractTempDir
+                };
+                mod.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
+
+                // The mod is being added as a new mod
+                if (existingMod == null)
+                {
+                    // Add to the end of the list
+                    Mods.Add(mod);
+                }
+                // The mod is replacing an existing mod
+                else
+                {
+                    // Dispose the existing mod
+                    existingMod.Dispose();
+
+                    // Replace the existing mod
+                    Mods[Mods.IndexOf(existingMod)] = mod;
+                }
+
+                // Remove any mods with the same id
+                while (Mods.FirstOrDefault(x => x != mod && x.IsDownloaded && x.DownloadedMod.Metadata.Id == id) is { } conflictMod)
+                {
+                    Logger.Info("Removing mod due to mod ID conflict");
+                    conflictMod.Dispose();
+                    Mods.Remove(conflictMod);
+                }
+
+                Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
+
+                return mod.DownloadedMod.Metadata;
             }
-            // The mod is replacing an existing mod
-            else
-            {
-                // Dispose the existing mod
-                existingMod.Dispose();
-
-                // Replace the existing mod
-                Mods[Mods.IndexOf(existingMod)] = mod;
-            }
-
-            // Remove any mods with the same id
-            while (Mods.FirstOrDefault(x => x != mod && x.IsDownloaded && x.DownloadedMod.Metadata.Id == id) is { } conflictMod)
-            {
-                Logger.Info("Removing mod due to mod ID conflict");
-                conflictMod.Dispose();
-                Mods.Remove(conflictMod);
-            }
-
-            Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
-
-            return mod.DownloadedMod.Metadata;
         }
         catch
         {
@@ -354,7 +362,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private long GetLargestArchiveSize()
+    private long GetLargestArchiveSize(IEnumerable<ModViewModel> mods)
     {
         HashSet<string> checkedArchives = new();
         long largestSize = 0;
@@ -374,7 +382,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
 
         // Then check enabled mods
-        foreach (ModViewModel modViewModel in Mods)
+        foreach (ModViewModel modViewModel in mods)
         {
             if (!modViewModel.IsDownloaded || !modViewModel.IsEnabled) 
                 continue;
@@ -548,7 +556,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
     {
         Logger.Trace("Refreshing modified files");
 
-        ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
+        lock (Mods)
+            ModifiedFiles.Refresh(Mods.Where(x => x.IsEnabled));
 
         AddedFilesText = ModifiedFiles.AddedFilesCount == 0 
             ? null 
@@ -563,34 +572,37 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public void ReportNewChanges()
     {
-        Logger.Trace("New mod loader changes have been reported");
-
-        // Remove mods marked as pending uninstall if they were not previously installed
-        if (ModManifest != null)
+        lock (Mods)
         {
-            foreach (ModViewModel mod in Mods.ToList())
+            Logger.Trace("New mod loader changes have been reported");
+
+            // Remove mods marked as pending uninstall if they were not previously installed
+            if (ModManifest != null)
             {
-                if (mod.InstallState == ModViewModel.ModInstallState.PendingUninstall &&
-                   !ModManifest.Mods.ContainsKey(mod.DownloadedMod!.Metadata.Id))
+                foreach (ModViewModel mod in Mods.ToList())
                 {
-                    mod.Dispose();
-                    Mods.Remove(mod);
+                    if (mod.InstallState == ModViewModel.ModInstallState.PendingUninstall &&
+                        !ModManifest.Mods.ContainsKey(mod.DownloadedMod!.Metadata.Id))
+                    {
+                        mod.Dispose();
+                        Mods.Remove(mod);
+                    }
                 }
             }
+
+            RefreshModifiedFiles();
+
+            int changedMods = Mods.Count(x => x.HasChangesToApply);
+
+            HasChanges = changedMods > 0 || HasReorderedMods;
+
+            if (changedMods > 0)
+                ChangedModsText = new ResourceLocString(nameof(Resources.ModLoader_UnsavedChangesInfo), changedMods);
+            else if (HasReorderedMods)
+                ChangedModsText = new ResourceLocString(nameof(Resources.ModLoader_UnsavedOrderChangesInfo));
+            else
+                ChangedModsText = null;
         }
-
-        RefreshModifiedFiles();
-
-        int changedMods = Mods.Count(x => x.HasChangesToApply);
-
-        HasChanges = changedMods > 0 || HasReorderedMods;
-
-        if (changedMods > 0)
-            ChangedModsText = new ResourceLocString(nameof(Resources.ModLoader_UnsavedChangesInfo), changedMods);
-        else if (HasReorderedMods)
-            ChangedModsText = new ResourceLocString(nameof(Resources.ModLoader_UnsavedOrderChangesInfo));
-        else
-            ChangedModsText = null;
     }
 
     public async Task InstallModFromFileAsync()
@@ -626,20 +638,23 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         ModViewModel downloadingMod = new(this, LoaderViewModel, source);
         downloadingMod.InitDownloading(modName);
 
-        // The mod is being added as a new mod
-        if (existingMod == null)
+        lock (Mods)
         {
-            Mods.Add(downloadingMod);
+            // The mod is being added as a new mod
+            if (existingMod == null)
+            {
+                Mods.Add(downloadingMod);
 
-        }
-        // The mod is replacing an existing mod
-        else
-        {
-            // Copy over if enabled
-            downloadingMod.IsEnabled = existingMod.IsEnabled;
+            }
+            // The mod is replacing an existing mod
+            else
+            {
+                // Copy over if enabled
+                downloadingMod.IsEnabled = existingMod.IsEnabled;
 
-            // Replace the existing mod
-            Mods[Mods.IndexOf(existingMod)] = downloadingMod;
+                // Replace the existing mod
+                Mods[Mods.IndexOf(existingMod)] = downloadingMod;
+            }
         }
 
         ModMetadata? pendingInstallModMetadata = null;
@@ -690,42 +705,59 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadModError);
         }
 
-        // Remove the downloading mod if the download wasn't successful
-        if (pendingInstallModMetadata == null)
+        lock (Mods)
         {
-            downloadingMod.Dispose();
+            // Remove the downloading mod if the download wasn't successful
+            if (pendingInstallModMetadata == null)
+            {
+                downloadingMod.Dispose();
 
-            if (existingMod == null)
-                Mods.Remove(downloadingMod);
+                if (existingMod == null)
+                    Mods.Remove(downloadingMod);
+                else
+                    Mods[Mods.IndexOf(downloadingMod)] = existingMod;
+            }
+            // Restore the existing mod if the new mod has a different id
+            else if (existingMod != null && pendingInstallModMetadata.Id != existingMod.DownloadedMod.Metadata.Id)
+            {
+                Mods.Add(existingMod);
+
+                // Mark the mod as being uninstalled. Ideally the new downloaded mod should replace this,
+                // but if it happens to have a separate id we want to remove this old mod.
+                existingMod.UninstallMod();
+            }
+            // Dispose the existing mod since it's now removed
             else
-                Mods[Mods.IndexOf(downloadingMod)] = existingMod;
-        }
-        // Restore the existing mod if the new mod has a different id
-        else if (existingMod != null && pendingInstallModMetadata.Id != existingMod.DownloadedMod.Metadata.Id)
-        {
-            Mods.Add(existingMod);
-
-            // Mark the mod as being uninstalled. Ideally the new downloaded mod should replace this,
-            // but if it happens to have a separate id we want to remove this old mod.
-            existingMod.UninstallMod();
-        }
-        // Dispose the existing mod since it's now removed
-        else
-        {
-            existingMod?.Dispose();
+            {
+                existingMod?.Dispose();
+            }
         }
     }
 
     public async Task CheckForUpdatesAsync()
     {
         Logger.Info("Checking all mods for updates");
-        await Task.WhenAll(Mods.Select(x => x.CheckForUpdateAsync(_httpClient)));
+
+        List<Task> updateTasks;
+        lock (Mods)
+            updateTasks = Mods.Select(x => x.CheckForUpdateAsync(_httpClient)).ToList();
+
+        await Task.WhenAll(updateTasks);
+        
         Logger.Info("Finished checking for updates");
+    }
+
+    public IReadOnlyCollection<ModViewModel> GetMods()
+    {
+        lock (Mods)
+            return Mods.ToList();
     }
 
     public async Task<bool?> ApplyAsync()
     {
-        if (Mods.Any(x => !x.IsDownloaded))
+        IReadOnlyCollection<ModViewModel> mods = GetMods();
+
+        if (mods.Any(x => !x.IsDownloaded))
         {
             // TODO-LOC
             await Services.MessageUI.DisplayMessageAsync("There are still mods being downloaded. Please wait for all mods to finish downloading before applying any changes.", "Mods are still downloading", MessageType.Warning);
@@ -768,7 +800,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         try
         {
             // Get the largest size for an archive to repack
-            long minBytes = GetLargestArchiveSize();
+            long minBytes = GetLargestArchiveSize(mods);
 
             // Add at least 1 GB for safety
             minBytes += 0x40000000;
@@ -804,7 +836,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Dictionary<string, ModManifestEntry> installedMods = new();
                     
                     // Process every mod
-                    foreach (ModViewModel modViewModel in Mods)
+                    foreach (ModViewModel modViewModel in mods)
                     {
                         if (!modViewModel.IsDownloaded)
                             throw new Exception("Mod has to be downloaded when applying");
@@ -874,7 +906,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        Mods.DisposeAll();
+        lock (Mods)
+            Mods.DisposeAll();
         _httpClient.Dispose();
         DownloadableMods.Dispose();
     }

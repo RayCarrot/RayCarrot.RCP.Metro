@@ -255,7 +255,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
             List<GameBananaFile> validFiles = DownloadableModsSource.GetValidFiles(mod.Files);
 
             // TODO-UPDATE: This won't find mods currently downloading. Is that an issue?
-            bool isModAddedToLibrary(GameBananaFile file) => _modLoaderViewModel.Mods.
+            IReadOnlyCollection<ModViewModel> mods = _modLoaderViewModel.GetMods();
+            bool isModAddedToLibrary(GameBananaFile file) => mods.
                 Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
                 Any(x => x.IsDownloaded && x.DownloadedMod.InstallInfo.GetRequiredInstallData<GameBananaInstallData>().FileId == file.Id);
 
