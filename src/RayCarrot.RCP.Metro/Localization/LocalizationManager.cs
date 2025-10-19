@@ -51,6 +51,9 @@ public static class LocalizationManager
         {
             DefaultCulture,
 
+            // Chinese (Simplified)
+            new CultureInfo("zh-Hans"),
+
             // Danish (Denmark)
             new CultureInfo("da-DK"),
 
