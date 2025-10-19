@@ -29,7 +29,7 @@ Other changes:
 • Downloading the new Loadless Origins mod now marks the setup game action for Rayman Origins to install the Minimum Loading Times mod as completed
 • Added a shortcut to the Tonic Trouble Fix config file for Tonic Trouble if available
 • Changed the recommended "output" value for the DOSBox emulator settings to "overlay"
-• Added Dr_st to the credits and Adamillo, Lapislalipek and Zelenbug to the special thanks section
+• Added Dr_st to the credits and Adamillo, AlexLimitedGames, Lapislalipek and Zelenbug to the special thanks section
 • Renamed RayActivity to Rorias in the credits
 • Replaced the Twitter link in the about page with a Bluesky link
 • Updated the loading bar color to be a bit brighter, thus making it easier to see in dark mode
