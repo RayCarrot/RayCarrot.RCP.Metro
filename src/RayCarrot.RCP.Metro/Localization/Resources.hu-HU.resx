@@ -1139,7 +1139,7 @@ Hírek:
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Béta verziókra fissítés</value>
   </data>
-  <data name="About_Credits_RayActivity" xml:space="preserve">
+  <data name="About_Credits_Rorias" xml:space="preserve">
     <value>Program tesztelés</value>
   </data>
   <data name="About_BetaTag" xml:space="preserve">

@@ -241,15 +241,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Program testing.
-        /// </summary>
-        public static string About_Credits_RayActivity {
-            get {
-                return ResourceManager.GetString("About_Credits_RayActivity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel, Rayman reverse engineering, BinarySerializer.
         /// </summary>
         public static string About_Credits_RayCarrot {
@@ -273,6 +264,15 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Credits_RibShark {
             get {
                 return ResourceManager.GetString("About_Credits_RibShark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program testing.
+        /// </summary>
+        public static string About_Credits_Rorias {
+            get {
+                return ResourceManager.GetString("About_Credits_Rorias", resourceCulture);
             }
         }
         

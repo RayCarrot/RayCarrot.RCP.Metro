@@ -1141,7 +1141,7 @@ Noticias:
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Obtener actualizaciones beta</value>
   </data>
-  <data name="About_Credits_RayActivity" xml:space="preserve">
+  <data name="About_Credits_Rorias" xml:space="preserve">
     <value>Pruebas del programa</value>
   </data>
   <data name="About_BetaTag" xml:space="preserve">

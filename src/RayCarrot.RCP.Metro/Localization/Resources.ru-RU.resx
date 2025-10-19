@@ -1135,7 +1135,7 @@
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Получать бета-обновления</value>
   </data>
-  <data name="About_Credits_RayActivity" xml:space="preserve">
+  <data name="About_Credits_Rorias" xml:space="preserve">
     <value>Тестирование программы</value>
   </data>
   <data name="About_BetaTag" xml:space="preserve">
