@@ -544,7 +544,7 @@
     <value>A mount útvonal nem található. Adj meg egy érvényes utat a játék beállítások alatt, hogy futtatni lehessen ezt a játékot.</value>
   </data>
   <data name="Backup_Confirm" xml:space="preserve">
-    <value>Ez ki fog cserélni minden előző biztonsági mentést ennek: {0}</value>
+    <value>Ez felülírja bármely előző biztonsági mentésteit ennek: {0}</value>
   </data>
   <data name="Backup_ConfirmHeader" xml:space="preserve">
     <value>Backup megerősítése</value>
@@ -886,7 +886,7 @@ A zöld téma elérhetővé vált.</value>
 Adamillo, AlexLimitedGames, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lapislalipek, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski, Zelenbug és minden más Rayman rajongónak.</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, segédeszközök, pályánkénti zenék, Archive Explorer, BinarySerializer</value>
+    <value>Rayman Control Panel, Rayman kódvisszafejtés, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Kontroller patch-ek</value>
@@ -895,10 +895,10 @@ Adamillo, AlexLimitedGames, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lap
     <value>Rayman 2 billenytű konfiguráció</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Általános segítség különböző segédeszközökkel</value>
+    <value>Rayman kódvisszafejtés</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Pályánkénti zene (Per-Level Soundtrack) segédeszköz</value>
+    <value>Rayman 1 Pályánkénti zene mod (Per-Level Soundtrack) </value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Portugál (Portugál) program fordítás</value>
@@ -1036,7 +1036,7 @@ Kezdésként állítsd be a tulajdonságokat a Beállításokban és nyomj a 'Fo
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Pályánkénti zene segédeszköz, Rayman M/Arena CD kérés eltüntető</value>
+    <value>Rayman 1 Pályánkénti zene mod (Per-Level Soundtrack), Rayman M/Arena CD kérés eltüntető</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Német (Hollandia) program fordítás, ptrogram tesztelése</value>
@@ -1054,7 +1054,7 @@ Kezdésként állítsd be a tulajdonságokat a Beállításokban és nyomj a 'Fo
     <value>Futtatás rendszergazdaként</value>
   </data>
   <data name="Backup_ConfirmBackupAll" xml:space="preserve">
-    <value>Biztosan mentést akarsz csinálni az összes játékról? Minden előző mentés ki lesz cserélve az újra. Folytatod?</value>
+    <value>Biztosan mentést akarsz csinálni az összes játékról? Minden előző biztonsági mentés felül lesz írva. Ha több játék osztozik egy backup fájlon, csak az egyik játéké lesz lementve. Folytatod?</value>
   </data>
   <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
     <value>Backup Elfogadása</value>
@@ -3605,5 +3605,161 @@ Hagyd a patch-et bekapcsolva, és ments, hogy lefrissítsd a legújabb verzióra
   </data>
   <data name="About_Bluesky" xml:space="preserve">
     <value>Bluesky</value>
+  </data>
+  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
+    <value>Az alap elérési út mindig használatban van. Ez megegyezik azzal, amit a játék használ rendszergazdaként futtatva</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
+    <value>A VirtualStore elérési út mindig használatban van. Ez megegyezik azzal, amit a játék használ rendszergazdai jogosultság nélkül.</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>A log engedélyezése minden binary szérializációs folyamatot, mint az Archive Explorer használata vagy a Haladás megtekintése logol a megadott log fájlban. Elsősorban debugolásra hasznos, de lehet használni bizonyos formátumok adatstruktúrájának megtekintéséhez is.</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Válassz formátumot a visszakonvertáláshoz</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids mentési fájlok (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Exportálás JSON-ba</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Beolvasás JSON-ból</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Rayman Fiesta Run mentési fájlok (.sav)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Unity Player Preferenciák/ Rabbids Big Bang mentési fájl (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS / Rayman Redemption mentési fájl (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>A kiválasztott fájlokat nem lehet logolni</value>
+  </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>A csalás a következő pálya betöltésekor fog érvénybe lépni. Szükség lehet a menübe kilépésre, hogy minden rendesen frissüljön.</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>Mentés sikeresen helyreállítva</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>A mentés helyreállítása közben hiba történt</value>
+  </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Héber programfordítás, game patch fájl ikon</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Textúrák automatikus szinkronizálása újracsomagoláskor (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>Bekapcsolt állapotában a .cnt fájlok újracsomagolásakor automatikisan szinkronizálja a textúrákat. Hasznos azoknál a játékoknál, melyekhez szükséges a szinkronizáció magyobb felbontású textúráknál.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Packing archive</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>Fájlok hozzáadása</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Fájlok importálása</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>Várakozás a {0} bezárására</value>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>Igen</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>Nem</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>Játék</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Emulátor</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>Hiba lépett fel a játék értékeinek változtatása közben</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Átmeneti fájlok</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>Életerő</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Max életerő</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Ray lerakása</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Engedélyezi, hogy Rayman-t a pályán bárhova le lehessen rakni</value>
+  </data>
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
+    <value>Jelenlegi pálya</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Pálya választás</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>A játékon belüli pályaválasztás engedélyezése a világtérképen</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Ököl</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Kapaszkodás</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Helikopter</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Megfog</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Futás</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Mag</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Super-helikopter</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Kényszerített futtatás</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Fordított irányítás</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Ököl platform</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Engine infók mutatása</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Objektum infók mutatása</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Debug mód</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Indítás demo módban</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>Bekapcsolt állapotában a játék elkezdi lejátszani a 2 nem használt demót a pályák töltése közben. Ezt el lehet érni az összes élet elvesztése utáni újrapróbálkozással.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Többjátékos menük betöltése</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>Bekapcsolt állapotában a játék a nem használt többjátékos menüket betölti indításkor.  Ha a játék már el van indítva, a pause menüből kilépéssel lesz elérhető. Ez a tartalom nem lett teljesen kidolgozva és hiányos. Az első menü a játékos-, a második a pályaválasztás. Mivel ezek nem teljesen funkcionálisak, az egyedüli mód ezeket változtatni az alábbi mezőkben lehet.</value>
   </data>
 </root>
