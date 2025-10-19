@@ -4853,16 +4853,6 @@ Konflikty:
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>Pobieranie moda {0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>Wyodrębnianie moda {0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>Wystąpił błąd podczas pobierania i instalowania moda
-​</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>Wprowadzanie modów</value>
   </data>
@@ -5020,9 +5010,6 @@ Konflikty:
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>Pobierz i zainstaluj mod</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>Zainstalowany</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Uruchom jako administrator</value>
   </data>
@@ -5151,9 +5138,6 @@ Konflikty:
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>Nie znaleziono żadnych nowych zainstalowanych klientów/emulatorów gier</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>Wystąpił błąd podczas pobierania moda</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>Pliki są identyczne. Wybierz dwa różne pliki i spróbuj ponownie.</value>
@@ -5562,12 +5546,6 @@ Komunikaty o błędach:
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>Otwórz klienta gry/ustawienia gry w emulatorze</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>Nie znaleziono prawidłowych plików dla tej modyfikacji</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>Wystąpił błąd podczas pobierania modyfikacji</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>Wyświetlaj okno na pasku zadań dla określonych zdarzeń</value>
   </data>
@@ -5712,12 +5690,6 @@ Komunikaty o błędach:
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Domyślny</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Wybierz plik moda do pobrania</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Wybierz plik moda</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>Narzędzie ścieżki dźwiękowej na poziom dla gry Rayman 1 zostało przerobione w tej wersji, aby nie polegało już na niestandardowej kompilacji DOSBox. Aby nadal z niego korzystać, należy zainstalować go ponownie. Poprzednia wersja została automatycznie odinstalowana.</value>
   </data>
@@ -5745,9 +5717,6 @@ Czy chcesz cofnąć poprawkę?</value>
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>Wyświetlanie wyników wyszukiwania dla "{0}"</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>Pokazywanie modów w kategorii "{0}"</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Szukaj modów</value>

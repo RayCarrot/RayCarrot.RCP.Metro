@@ -4757,9 +4757,6 @@ Eğer bir yardımcı program ya da başka türde bir yama eksikse, o zaman büy�
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>Yeni yüklü oyun istemcisi/emülatörü bulunamadı</value>
   </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>Mod indirilirken bir hata oluştu</value>
-  </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>Dosyalar aynı. Lütfen iki farklı dosya seçip tekrar deneyin.</value>
   </data>

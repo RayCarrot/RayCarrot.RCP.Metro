@@ -4833,15 +4833,6 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Modificação</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>A descarregar modificação {0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>A extrair modificação {0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>Ocorreu um erro ao descarregar e instalar a modificação</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>A aplicar modificações...</value>
   </data>
@@ -4998,9 +4989,6 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>Transferir e instalar a modificação</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>Instalado</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Executar como administrador</value>
   </data>
@@ -5129,9 +5117,6 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>Não foram encontrados novos clientes/emuladores de jogos instalados</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>Ocorreu um erro ao descarregar a modificação</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>Os ficheiros são idênticos. Por favor selecciona dois ficheiros diferentes e tenta novamente.</value>
@@ -5542,12 +5527,6 @@ Mensagens de erro:
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>Abrir as definições do jogo no cliente/emulador</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>Não foram encontrados ficheiros válidos para a modificação</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>Ocorreu um erro ao obter a transferência para a modificação</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>Piscar janela na barra de tarefas para eventos específicos</value>
   </data>
@@ -5693,12 +5672,6 @@ AVISO: Carregar diretamente para um mapa usando esta opção irá saltar o carre
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Padrão</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Selecciona o ficheiro de modificação para descarregar</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Selecciona o ficheiro de modificação</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>O utilitário de banda sonora por.nível para Rayman 1 foi reformulado nesta versão para não depender mais de uma compilação personalizada do DOSBox. Para continuar a usá-lo, é preciso instalá-lo novamente. A versão anterior foi automaticamente desinstalada.</value>
   </data>
@@ -5726,9 +5699,6 @@ Queres reverter a correcção?</value>
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>A exibir resultados de pesquisa para “{0}”</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>A exibir modificações na categoria “{0}”</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Procurar modificações</value>

@@ -5020,19 +5020,6 @@ modsCount</comment>
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>Downloading mod {0}</value>
-    <comment>Arguments:
-modFileName</comment>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>Extracting mod {0}</value>
-    <comment>Arguments:
-modFileName</comment>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>An error occurred when downloading and installing the mod</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>Applying mods</value>
   </data>
@@ -5194,9 +5181,6 @@ uploadDate</comment>
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>Download and install the mod</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>Installed</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Run as admin</value>
   </data>
@@ -5332,9 +5316,6 @@ If there's a utility or other type of patch missing then it has most likely been
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>No new installed game clients/emulators were found</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>An error occurred when downloading the mod</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>The files are identical. Please select two different files and try again.</value>
@@ -5690,7 +5671,7 @@ totalActions</comment>
     <value>Install the Minimum Loading Times mod</value>
   </data>
   <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
-    <value>The Minimum Loading Times mod is a mod by RayCarrot which changes the minimum loading screen time from 4 seconds to 0 seconds, thus making loading times faster.</value>
+    <value>The Minimum Loading Times mod is a mod by RayCarrot which changes the minimum loading screen time from 4 seconds to 0 seconds, thus making loading times faster. Alternatively you can use the Loadless Origins mod by RayCarrot which completely removes the loading screens.</value>
   </data>
   <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
     <value>Mapper config file is missing or invalid</value>
@@ -5763,12 +5744,6 @@ totalActions</comment>
   </data>
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>Open game client/emulator game settings</value>
-  </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>No valid files were found for the mod</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>An error occurred when getting the download for the mod</value>
   </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>Flash window on task bar for specific events</value>
@@ -5920,12 +5895,6 @@ WARNING: Loading directly into a map using this will skip loading your save file
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Default</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Select the mod file to download</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Select mod file</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled.</value>
   </data>
@@ -5957,11 +5926,6 @@ gameName</comment>
     <value>Showing search results for "{0}"</value>
     <comment>Arguments:
 searchText</comment>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>Showing mods in the category "{0}"</value>
-    <comment>Arguments:
-categoryName</comment>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Search mods</value>
@@ -6130,5 +6094,72 @@ categoryName</comment>
   </data>
   <data name="Utilities_Converter_TTSaveHeader" xml:space="preserve">
     <value>Tonic Trouble Save Files (.sav)</value>
+  </data>
+  <data name="ModLoader_LoadDownloadableModError" xml:space="preserve">
+    <value>An error occurred when loading the mod</value>
+  </data>
+  <data name="ModLoader_CancelDownload" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ModLoader_NoSelectedMod" xml:space="preserve">
+    <value>No mod selected</value>
+  </data>
+  <data name="ModLoader_OpenModDownloadPage" xml:space="preserve">
+    <value>Open download page</value>
+  </data>
+  <data name="ModLoader_ActiveDownloadsError" xml:space="preserve">
+    <value>There are still mods being downloaded. Please wait for all mods to finish downloading before applying any changes.</value>
+  </data>
+  <data name="ModLoader_ActiveDownloadsErrorHeader" xml:space="preserve">
+    <value>Mods are still downloading</value>
+  </data>
+  <data name="ModLoader_InstallState_Downloading" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="ModLoader_InstallState_Extracting" xml:space="preserve">
+    <value>Extracting...</value>
+  </data>
+  <data name="ModLoader_DownloadPageBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ModLoader_GameBanana_Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="ModLoader_GameBanana_Downloads" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadsEmpty" xml:space="preserve">
+    <value>No compatible files</value>
+  </data>
+  <data name="ModLoader_GameBanana_FileDownloaded" xml:space="preserve">
+    <value>Added to library</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateInfo" xml:space="preserve">
+    <value>Last updated on {0}</value>
+    <comment>Arguments:
+dateUpdated</comment>
+  </data>
+  <data name="ModLoader_GameBanana_Version" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="About_Credits_Clef" xml:space="preserve">
+    <value>Chinese (Simplified) program translation</value>
+  </data>
+  <data name="Settings_ModLoader_ShowEssentialMods" xml:space="preserve">
+    <value>Show essential mods first</value>
+  </data>
+  <data name="Settings_ModLoader_MarkUnseenMods" xml:space="preserve">
+    <value>Mark unseen mods</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>An error occurred when downloading the mod {0}</value>
+    <comment>Arguments:
+modName</comment>
+  </data>
+  <data name="ModLoader_CategoryAndSortFeedInfo" xml:space="preserve">
+    <value>Showing mods in the category "{0}" with sorting "{1}"</value>
+    <comment>Arguments:
+categoryName
+sorting</comment>
   </data>
 </root>

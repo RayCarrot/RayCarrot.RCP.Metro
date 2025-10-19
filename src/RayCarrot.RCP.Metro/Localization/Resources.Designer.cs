@@ -115,6 +115,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chinese (Simplified) program translation.
+        /// </summary>
+        public static string About_Credits_Clef {
+            get {
+                return ResourceManager.GetString("About_Credits_Clef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Program features and fixes.
         /// </summary>
         public static string About_Credits_Dr_st {
@@ -8720,6 +8729,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are still mods being downloaded. Please wait for all mods to finish downloading before applying any changes..
+        /// </summary>
+        public static string ModLoader_ActiveDownloadsError {
+            get {
+                return ResourceManager.GetString("ModLoader_ActiveDownloadsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mods are still downloading.
+        /// </summary>
+        public static string ModLoader_ActiveDownloadsErrorHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_ActiveDownloadsErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} added files.
         /// </summary>
         public static string ModLoader_AddedFilesInfo {
@@ -8777,11 +8804,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Showing mods in the category &quot;{0}&quot;.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string ModLoader_CategoryFeedInfo {
+        public static string ModLoader_CancelDownload {
             get {
-                return ResourceManager.GetString("ModLoader_CategoryFeedInfo", resourceCulture);
+                return ResourceManager.GetString("ModLoader_CancelDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing mods in the category &quot;{0}&quot; with sorting &quot;{1}&quot;.
+        /// </summary>
+        public static string ModLoader_CategoryAndSortFeedInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_CategoryAndSortFeedInfo", resourceCulture);
             }
         }
         
@@ -8885,16 +8921,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading mod {0}.
-        /// </summary>
-        public static string ModLoader_DownloadingModStatus {
-            get {
-                return ResourceManager.GetString("ModLoader_DownloadingModStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when downloading and installing the mod.
+        ///   Looks up a localized string similar to An error occurred when downloading the mod {0}.
         /// </summary>
         public static string ModLoader_DownloadModError {
             get {
@@ -8903,11 +8930,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when downloading the mod.
+        ///   Looks up a localized string similar to Back.
         /// </summary>
-        public static string ModLoader_DownloadModFromUriError {
+        public static string ModLoader_DownloadPageBack {
             get {
-                return ResourceManager.GetString("ModLoader_DownloadModFromUriError", resourceCulture);
+                return ResourceManager.GetString("ModLoader_DownloadPageBack", resourceCulture);
             }
         }
         
@@ -8935,15 +8962,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_ExpandModifications {
             get {
                 return ResourceManager.GetString("ModLoader_ExpandModifications", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extracting mod {0}.
-        /// </summary>
-        public static string ModLoader_ExtractingDownloadedModStatus {
-            get {
-                return ResourceManager.GetString("ModLoader_ExtractingDownloadedModStatus", resourceCulture);
             }
         }
         
@@ -9042,6 +9060,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string ModLoader_GameBanana_Credits {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to These mods have been uploaded to GameBanana by various users.
         /// </summary>
         public static string ModLoader_GameBanana_DownloadableModsInfo {
@@ -9069,11 +9096,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installed.
+        ///   Looks up a localized string similar to Downloads.
         /// </summary>
-        public static string ModLoader_GameBanana_ModFileInstalled {
+        public static string ModLoader_GameBanana_Downloads {
             get {
-                return ResourceManager.GetString("ModLoader_GameBanana_ModFileInstalled", resourceCulture);
+                return ResourceManager.GetString("ModLoader_GameBanana_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No compatible files.
+        /// </summary>
+        public static string ModLoader_GameBanana_DownloadsEmpty {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_DownloadsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added to library.
+        /// </summary>
+        public static string ModLoader_GameBanana_FileDownloaded {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_FileDownloaded", resourceCulture);
             }
         }
         
@@ -9083,24 +9128,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameBanana_OpenModPage {
             get {
                 return ResourceManager.GetString("ModLoader_GameBanana_OpenModPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select the mod file to download.
-        /// </summary>
-        public static string ModLoader_GameBanana_SelectDownloadFileHeader {
-            get {
-                return ResourceManager.GetString("ModLoader_GameBanana_SelectDownloadFileHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select mod file.
-        /// </summary>
-        public static string ModLoader_GameBanana_SelectDownloadFileTitle {
-            get {
-                return ResourceManager.GetString("ModLoader_GameBanana_SelectDownloadFileTitle", resourceCulture);
             }
         }
         
@@ -9128,6 +9155,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameBanana_Title {
             get {
                 return ResourceManager.GetString("ModLoader_GameBanana_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last updated on {0}.
+        /// </summary>
+        public static string ModLoader_GameBanana_UpdateInfo {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_UpdateInfo", resourceCulture);
             }
         }
         
@@ -9168,6 +9204,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        public static string ModLoader_GameBanana_Version {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mods can not be applied while the game is running. Close any active instances of the game and try again..
         /// </summary>
         public static string ModLoader_GameRunningError {
@@ -9182,15 +9227,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameRunningErrorHeader {
             get {
                 return ResourceManager.GetString("ModLoader_GameRunningErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when getting the download for the mod.
-        /// </summary>
-        public static string ModLoader_GetDownloadError {
-            get {
-                return ResourceManager.GetString("ModLoader_GetDownloadError", resourceCulture);
             }
         }
         
@@ -9260,6 +9296,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading....
+        /// </summary>
+        public static string ModLoader_InstallState_Downloading {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallState_Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracting....
+        /// </summary>
+        public static string ModLoader_InstallState_Extracting {
+            get {
+                return ResourceManager.GetString("ModLoader_InstallState_Extracting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending install.
         /// </summary>
         public static string ModLoader_InstallState_PendingInstall {
@@ -9310,6 +9364,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_LibraryTitle {
             get {
                 return ResourceManager.GetString("ModLoader_LibraryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the mod.
+        /// </summary>
+        public static string ModLoader_LoadDownloadableModError {
+            get {
+                return ResourceManager.GetString("ModLoader_LoadDownloadableModError", resourceCulture);
             }
         }
         
@@ -9485,11 +9548,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No valid files were found for the mod.
+        ///   Looks up a localized string similar to No mod selected.
         /// </summary>
-        public static string ModLoader_NoValidFilesError {
+        public static string ModLoader_NoSelectedMod {
             get {
-                return ResourceManager.GetString("ModLoader_NoValidFilesError", resourceCulture);
+                return ResourceManager.GetString("ModLoader_NoSelectedMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open download page.
+        /// </summary>
+        public static string ModLoader_OpenModDownloadPage {
+            get {
+                return ResourceManager.GetString("ModLoader_OpenModDownloadPage", resourceCulture);
             }
         }
         
@@ -15616,6 +15688,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mark unseen mods.
+        /// </summary>
+        public static string Settings_ModLoader_MarkUnseenMods {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_MarkUnseenMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show essential mods first.
+        /// </summary>
+        public static string Settings_ModLoader_ShowEssentialMods {
+            get {
+                return ResourceManager.GetString("Settings_ModLoader_ShowEssentialMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show warning message for mod conflicts.
         /// </summary>
         public static string Settings_ModLoader_ShowFileConflictWarnings {
@@ -16111,7 +16201,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Minimum Loading Times mod is a mod by RayCarrot which changes the minimum loading screen time from 4 seconds to 0 seconds, thus making loading times faster..
+        ///   Looks up a localized string similar to The Minimum Loading Times mod is a mod by RayCarrot which changes the minimum loading screen time from 4 seconds to 0 seconds, thus making loading times faster. Alternatively you can use the Loadless Origins mod by RayCarrot which completely removes the loading screens..
         /// </summary>
         public static string SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info {
             get {

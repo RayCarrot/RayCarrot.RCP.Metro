@@ -187,11 +187,11 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         }
 
         if (mod.DateUpdated != null && mod.DateUpdated != mod.DateAdded)
-            LastUpdatedText = $"Last updated on {mod.DateUpdated:D}"; // TODO-LOC
+            LastUpdatedText = new GeneratedLocString(() => String.Format(Resources.ModLoader_GameBanana_UpdateInfo, mod.DateUpdated.Value.ToString("D")));
 
         Version = ModVersion.TryParse(mod.Version, out ModVersion? v) ? v : null;
         if (Version != null)
-            VersionText = $"Version {Version}"; // TODO-LOC
+            VersionText = new ResourceLocString(nameof(Resources.ModLoader_GameBanana_Version), Version);
 
         if (mod.RootCategory != null)
         {

@@ -82,14 +82,13 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-LOC -->
             <!-- Back button -->
             <Button Grid.Column="0"
                     VerticalAlignment="Top"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     rcp:Icon.Kind="ArrowLeft"
                     Command="{Binding Path=DataContext.(modLoader:DownloadableModsViewModel.ClearSelectionCommand), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modLoader:ModLoaderDownloadPageControl}}, Mode=OneTime}"
-                    Content="Back" />
+                    Content="{Resx ModLoader_DownloadPageBack}" />
 
             <!-- Title -->
             <StackPanel Grid.Column="0"
@@ -262,9 +261,8 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <!-- TODO-LOC -->
                             <TextBlock Grid.Row="0"
-                                       Text="Credits" 
+                                       Text="{Resx ModLoader_GameBanana_Credits}" 
                                        Style="{StaticResource RCP.Styles.TextBlock.Header}" 
                                        Margin="0 0 0 8" />
 
@@ -487,18 +485,16 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <!-- TODO-LOC -->
                         <TextBlock Grid.Row="0"
-                                   Text="Downloads" 
+                                   Text="{Resx ModLoader_GameBanana_Downloads}" 
                                    Style="{StaticResource RCP.Styles.TextBlock.Header}" 
                                    Margin="0 0 0 8" />
 
-                        <!-- TODO-LOC -->
                         <!-- Empty text -->
                         <Viewbox Grid.Row="1" 
                                  Visibility="{Binding Path=HasNoValidFiles, Converter={rcp:BooleanToVisibilityConverter}}"
                                  Margin="0 -8 0 0">
-                            <TextBlock Text="No compatible files"
+                            <TextBlock Text="{Resx ModLoader_GameBanana_DownloadsEmpty}"
                                        TextAlignment="Center" 
                                        Margin="30" 
                                        Opacity="0.5" />

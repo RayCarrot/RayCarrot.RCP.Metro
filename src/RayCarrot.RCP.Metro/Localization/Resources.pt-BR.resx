@@ -4828,15 +4828,6 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>Baixando mod {0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>Extraindo mod {0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>Ocorreu um erro ao baixar e instalar o mod</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>Aplicando mods</value>
   </data>
@@ -4993,9 +4984,6 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>Baixa e instala o mod</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>Instalado</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Executar como administrador</value>
   </data>
@@ -5125,9 +5113,6 @@ Se houver um utilitário ou outro tipo de corretor faltando, é bem provável qu
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>Nenhum novo cliente/emulador de jogo instalado foi encontrado</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>Ocorreu um erro ao baixar o mod</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>Os arquivos são idênticos. Por favor, escolha dois arquivos diferentes e tente novamente.</value>
@@ -5538,12 +5523,6 @@ Mensagens de erro:
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>Abrir configurações de cliente de jogo/emulador</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>Nenhum arquivo válido foi encontrado para o mod</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>Ocorreu um erro ao obter o download do mod</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>Piscar janela na barra de tarefas para eventos específicos</value>
   </data>
@@ -5689,12 +5668,6 @@ AVISO: Carregar diretamente em um mapa usando isso pulará o carregamento do seu
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Padrão</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Selecionar o arquivo de mod para baixar</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Selecionar arquivo de mod</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>O utilitário de Trilha Sonora Por-fase de Rayman 1 foi retrabalhado nesta versão para não mais depender de uma compilação personalizada do DOSBox. Para continuar a usá-lo, você precisa instalá-lo novamente. A versão anterior foi desinstalada automaticamente.</value>
   </data>
@@ -5722,9 +5695,6 @@ Deseja reverter a correção?</value>
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>Mostrando resultados de busca para "{0}"</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>Mostrando mods na categoria "{0}"</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Procurar mods</value>

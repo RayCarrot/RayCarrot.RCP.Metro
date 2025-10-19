@@ -107,9 +107,8 @@
                           Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
                     <Grid>
 
-                        <!-- TODO-LOC -->
                         <Viewbox Visibility="{Binding Converter={rcp:ObjectNullToVisibilityConverter}}">
-                            <TextBlock Text="No mod selected" TextAlignment="Center" Margin="30" Opacity="0.5" />
+                            <TextBlock Text="{Resx ModLoader_NoSelectedMod}" TextAlignment="Center" Margin="30" Opacity="0.5" />
                         </Viewbox>
 
                         <ScrollViewer Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
@@ -209,13 +208,12 @@
 
                                 </StackPanel>
 
-                                <!-- TODO-LOC -->
                                 <Button Grid.Row="2"
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         HorizontalAlignment="Left"
                                         Visibility="{Binding Path=CanOpenInDownloadPage, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
                                         Command="{Binding Path=OpenInDownloadPageCommand, Mode=OneTime}"
-                                        Content="Open download page"
+                                        Content="{Resx ModLoader_OpenModDownloadPage}"
                                         rcp:Icon.Kind="{StaticResource RCP.Icons.ModLoaderDownload}" 
                                         rcp:Icon.Brush="{StaticResource RCP.Brushes.Info}" />
 

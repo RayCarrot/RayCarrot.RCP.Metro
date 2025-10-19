@@ -172,8 +172,8 @@ public class ModViewModel : BaseViewModel, IDisposable
         InstallStateMessage = state switch
         {
             ModInstallState.Installed => null,
-            ModInstallState.Downloading => new ConstLocString("Downloading..."), // TODO-LOC
-            ModInstallState.Extracting => new ConstLocString("Extracting..."), // TODO-LOC
+            ModInstallState.Downloading => new ResourceLocString(nameof(Resources.ModLoader_InstallState_Downloading)),
+            ModInstallState.Extracting => new ResourceLocString(nameof(Resources.ModLoader_InstallState_Extracting)),
             ModInstallState.PendingInstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingInstall)),
             ModInstallState.PendingUninstall => new ResourceLocString(nameof(Resources.ModLoader_InstallState_PendingUninstall)),
             _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)

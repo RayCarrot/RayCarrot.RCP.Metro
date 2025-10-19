@@ -105,11 +105,10 @@
                                   Maximum="{Binding Path=MaxProgress}"
                                   Value="{Binding Path=CurrentProgress}" />
 
-            <!-- TODO-LOC -->
             <Button Grid.Row="0"
                     Grid.RowSpan="2"
                     Grid.Column="1"
-                    ToolTip="Cancel"
+                    ToolTip="{Resx Cancel}"
                     Visibility="{Binding Path=ShowProgress, Converter={rcp:BooleanToVisibilityConverter}}"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     Command="{Binding Path=CancelCommand, Mode=OneTime}"

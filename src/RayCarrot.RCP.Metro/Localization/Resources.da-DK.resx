@@ -4827,15 +4827,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>Downloader mod {0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>Udpakker mod {0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at downloade og installere moddet</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>Anvender mods</value>
   </data>
@@ -4992,9 +4983,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>Download og installér moddet</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>Installeret</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Kør som administrator</value>
   </data>
@@ -5123,9 +5111,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>Ingen nye installerede spilklienter/emulatorer blev fundet</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at downloade moddet</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>Filerne er ens. Vælg venligst to forskellige filer, og prøv derefter igen.</value>
@@ -5509,12 +5494,6 @@ Fejlmeddelelser:
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>Åbn spilklient/emulatorindstillinger</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>Ingen gyldige filer blev fundet for det valgte mod</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at hente det valgte mod</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>Blinkende vindue på proceslinjen ved bestemte hændelser</value>
   </data>
@@ -5635,12 +5614,6 @@ Fejlmeddelelser:
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Standard</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Vælg modfilen, der skal downloades</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Vælg modfil</value>
-  </data>
   <data name="Rayman2_Beta_19980722_Win32_Title" xml:space="preserve">
     <value>Rayman 2 Beta (1998/07/22)</value>
   </data>
@@ -5649,9 +5622,6 @@ Fejlmeddelelser:
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>Viser søgeresultater for "{0}"</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>Viser mods i kategorien "{0}"</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Søg efter mods</value>

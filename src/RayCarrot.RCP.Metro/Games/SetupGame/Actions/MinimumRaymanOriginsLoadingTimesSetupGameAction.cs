@@ -10,7 +10,6 @@ public class MinimumRaymanOriginsLoadingTimesSetupGameAction : InstallModSetupGa
         "RaymanOrigins.LoadlessOrigins.Uplay",
     ];
 
-    // TODO-LOC: Update to include info on new Loadless Mod
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header));
     public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info));
 

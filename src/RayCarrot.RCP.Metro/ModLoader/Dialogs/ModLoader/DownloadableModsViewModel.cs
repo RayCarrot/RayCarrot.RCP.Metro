@@ -261,7 +261,7 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
 
         SearchText = String.Empty;
         CurrentFeedType = FeedType.CategoryAndSort;
-        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryFeedInfo), SelectedCategory.Name); // TODO-LOC: Include sort option too
+        FeedInfoText = new ResourceLocString(nameof(Resources.ModLoader_CategoryAndSortFeedInfo), SelectedCategory.Name, SelectedSortOption.Name);
 
         await ModsFeed.InitializeAsync(new DownloadableModsFeedCategoryAndSortFilter()
         {
@@ -348,7 +348,7 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
                 catch (Exception ex)
                 {
                     Logger.Error(ex, "Loading mod view model");
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the mod"); // TODO-LOC
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_LoadDownloadableModError);
                 }
             }
         }

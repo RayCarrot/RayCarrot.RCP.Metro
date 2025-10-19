@@ -4830,15 +4830,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>Téléchargement du mod {0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>Extraction du mod {0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>Une erreur est survenue lors du téléchargement et de l'installation du mod</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>Application du patch</value>
   </data>
@@ -4995,9 +4986,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>Télécharger et installer le mod</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>Installé</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>Démarrer en tant qu'administrateur</value>
   </data>
@@ -5126,9 +5114,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>Aucun nouveau client de jeu/émulateur n'a été trouvé</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>Un erreur est survenue lors du téléchargement du mod</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>Les fichiers sont identiques. Veuillez choisir deux fichiers différents et réessayer.</value>
@@ -5539,12 +5524,6 @@ Messages d'erreur :
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>Ouvrir les paramètres du jeu du client de jeu/de l'émulateur</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>Aucun fichier valide n'a été trouvé pour le mod</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>Une erreur est survenue lors de la récupération du téléchargement pour le mod</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>Faire clignoter la fenêtre dans la barre des tâches pour des événements spécifiques</value>
   </data>
@@ -5690,12 +5669,6 @@ ATTENTION : Charger directement une carte de cette manière ignorera le chargeme
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>Par défaut</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>Sélectionnez le fichier de mod à télécharger</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>Sélectionnez le fichier de mod</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>L'utilitaire de bande-son par niveau pour Rayman 1 a été retravaillé dans cette version afin de ne plus dépendre d'un build personnalisé de DOSBox. Veuillez réinstaller l'utilitaire pour continuer à l'utiliser. L'ancienne version a été automatiquement désinstallée.</value>
   </data>
@@ -5723,9 +5696,6 @@ Voulez-vous désinstaller le patch ?</value>
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>Affichage des résultats de recherche pour "{0}"</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>Affichage des mods dans la catégorie "{0}"</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>Rechercher des mods</value>

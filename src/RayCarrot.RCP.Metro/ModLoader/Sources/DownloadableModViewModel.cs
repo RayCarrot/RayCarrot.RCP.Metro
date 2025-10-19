@@ -48,7 +48,7 @@ public abstract class DownloadableModViewModel : BaseViewModel, IDisposable
             catch (Exception ex)
             {
                 Logger.Error(ex, "Loading full mod details");
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the mod"); // TODO-LOC
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_LoadDownloadableModError);
                 HasLoadedFullDetails = false;
                 return false;
             }

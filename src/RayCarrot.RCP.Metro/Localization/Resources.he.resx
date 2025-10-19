@@ -4830,15 +4830,6 @@ Start: הפסק</value>
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>מוד</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>מוריד מוד {0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>מחלץ מוד {0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>אירעה שגיאה בעת הורדה והתקנה של המוד</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>החלת מודים</value>
   </data>
@@ -4995,9 +4986,6 @@ Start: הפסק</value>
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>הורד והתקן את המוד</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>מותקן</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>הפעל כמנהל מערכת</value>
   </data>
@@ -5127,9 +5115,6 @@ Start: הפסק</value>
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>לא נמצאו תוכנות/אימולטורים חדשים של משחקים מותקנים</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>אירעה שגיאה בעת הורדת המוד</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>הקבצים זהים. אנא בחרו שני קבצים שונים ונסו שוב.</value>
@@ -5540,12 +5525,6 @@ Start: הפסק</value>
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>פתח את הגדרות משחק תוכנת/אימולטור</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>לא נמצאו קבצים חוקיים עבור המוד</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>אירעה שגיאה בעת קבלת ההורדה עבור המוד</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>חלון הבזק בשורת המשימות לאירועים ספציפיים</value>
   </data>
@@ -5691,12 +5670,6 @@ Start: הפסק</value>
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>ברירת מחדל</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>בחר את קובץ המוד להורדה</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>בחר קובץ mod</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>כלי השירות לפסקול לפי רמה עבור Rayman 1 עובדה מחדש בגרסה זו כדי שלא להסתמך עוד על גרסאות DOSBox מותאם אישית. כדי להמשיך להשתמש בו, עליך להתקין אותו שוב. הגרסה הקודמת הוסרה אוטומטית.</value>
   </data>
@@ -5724,9 +5697,6 @@ Start: הפסק</value>
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>מציג תוצאות חיפוש עבור "{0}"</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>מציג מודים בקטגוריה "{0}"</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>חיפוש מודים</value>

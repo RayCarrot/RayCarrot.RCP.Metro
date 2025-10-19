@@ -4849,15 +4849,6 @@ Back：穿墙模式
   <data name="ModLoader_ModFileTypeFilterName" xml:space="preserve">
     <value>Mod</value>
   </data>
-  <data name="ModLoader_DownloadingModStatus" xml:space="preserve">
-    <value>正在下载Mod{0}</value>
-  </data>
-  <data name="ModLoader_ExtractingDownloadedModStatus" xml:space="preserve">
-    <value>正在提取Mod{0}</value>
-  </data>
-  <data name="ModLoader_DownloadModError" xml:space="preserve">
-    <value>在下载和安装mod时出现错误</value>
-  </data>
   <data name="ModLoader_ApplyStatus" xml:space="preserve">
     <value>应用mod</value>
   </data>
@@ -5014,9 +5005,6 @@ Back：穿墙模式
   <data name="ModLoader_GameBanana_DownloadModFileInfo" xml:space="preserve">
     <value>下载并安装mod</value>
   </data>
-  <data name="ModLoader_GameBanana_ModFileInstalled" xml:space="preserve">
-    <value>已安装</value>
-  </data>
   <data name="Games_Win32RunAsAdmin" xml:space="preserve">
     <value>以管理员运行</value>
   </data>
@@ -5147,9 +5135,6 @@ Back：穿墙模式
   </data>
   <data name="Finder_NoGameClientResults" xml:space="preserve">
     <value>没有发现新的已安装的游戏客户端/模拟器</value>
-  </data>
-  <data name="ModLoader_DownloadModFromUriError" xml:space="preserve">
-    <value>在下载此mod时出现错误</value>
   </data>
   <data name="ModLoader_DeltasModule_IdenticalFilesError" xml:space="preserve">
     <value>这些文件是完全一致的。请选择两个不同的文件然后重试。</value>
@@ -5560,12 +5545,6 @@ Back：穿墙模式
   <data name="SetupGameAction_GameClientGameSettingsFix" xml:space="preserve">
     <value>打开游戏客户端/模拟器 游戏设置</value>
   </data>
-  <data name="ModLoader_NoValidFilesError" xml:space="preserve">
-    <value>在mod里没有发现可用的文件</value>
-  </data>
-  <data name="ModLoader_GetDownloadError" xml:space="preserve">
-    <value>在开始下载mod时发生错误</value>
-  </data>
   <data name="Settings_FlashWindowOnTaskBar" xml:space="preserve">
     <value>在特定事件时窗口任务栏闪烁</value>
   </data>
@@ -5713,12 +5692,6 @@ Back：穿墙模式
   <data name="GameSettings_UbiArt_LaunchCommands_DefaultOption" xml:space="preserve">
     <value>默认</value>
   </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileHeader" xml:space="preserve">
-    <value>选择一个mod文件来下载</value>
-  </data>
-  <data name="ModLoader_GameBanana_SelectDownloadFileTitle" xml:space="preserve">
-    <value>选择mod文件</value>
-  </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
     <value>给雷曼1使用的前关卡音轨功能已经被重制，在这个版本中不再需要自定义DOSBox。想要继续使用你需要重新安装它。之前的版本已被自动卸载。</value>
   </data>
@@ -5748,9 +5721,6 @@ Back：穿墙模式
   </data>
   <data name="ModLoader_SearchFeedInfo" xml:space="preserve">
     <value>显示"{0}"的搜索结果</value>
-  </data>
-  <data name="ModLoader_CategoryFeedInfo" xml:space="preserve">
-    <value>显示"{0}"分类的mod</value>
   </data>
   <data name="ModLoader_Search" xml:space="preserve">
     <value>搜索mod</value>

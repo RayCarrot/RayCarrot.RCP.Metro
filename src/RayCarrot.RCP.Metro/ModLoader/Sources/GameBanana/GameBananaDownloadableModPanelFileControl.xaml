@@ -58,14 +58,13 @@
                     </Setter>
 
                     <Style.Triggers>
-                        <!-- TODO-LOC -->
                         <DataTrigger Binding="{Binding Path=IsAddedToLibrary}" Value="True">
                             <Setter Property="rcp:Icon.Kind" Value="CheckOutline" />
                             <Setter Property="IsEnabled" Value="False" />
                             <Setter Property="Background" Value="{x:Null}" />
                             <Setter Property="Content">
                                 <Setter.Value>
-                                    <TextBlock Text="Added to library"
+                                    <TextBlock Text="{Resx ModLoader_GameBanana_FileDownloaded}"
                                                ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                 </Setter.Value>
                             </Setter>

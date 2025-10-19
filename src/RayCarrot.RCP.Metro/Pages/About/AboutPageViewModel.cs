@@ -32,7 +32,7 @@ public class AboutPageViewModel : BasePageViewModel
         Credits = new ObservableCollection<DuoGridItemViewModel>()
         {
             new("RayCarrot", new ResourceLocString(nameof(Resources.About_Credits_RayCarrot))),
-            new("Clef", "Chinese (Simplified) program translation"), // TODO-LOC
+            new("Clef", new ResourceLocString(nameof(Resources.About_Credits_Clef))),
             new("Dr_st", new ResourceLocString(nameof(Resources.About_Credits_Dr_st))),
             new("Droolie", new ResourceLocString(nameof(Resources.About_Credits_Droolie))),
             new("Fabiosek", new ResourceLocString(nameof(Resources.About_Credits_Fabiosek))),
