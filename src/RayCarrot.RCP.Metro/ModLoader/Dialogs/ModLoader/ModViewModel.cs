@@ -21,6 +21,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
         HasChangesToApply = false;
 
+        CancelCommand = new RelayCommand(CancelDownload);
         ReportNewChangeCommand = new RelayCommand(ReportNewChange);
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
@@ -44,6 +45,7 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Commands
 
+    public ICommand CancelCommand { get; }
     public ICommand ReportNewChangeCommand { get; }
     public ICommand OpenLocationCommand { get; }
     public ICommand ExtractContentsCommand { get; }
@@ -55,6 +57,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     #region Public Properties
 
     public string? Name { get; set; }
+    public object? InstallData { get; set; }
 
     public bool IsEnabled { get; set; }
 
@@ -68,6 +71,7 @@ public class ModViewModel : BaseViewModel, IDisposable
     public LocalizedString? InstallStateMessage { get; set; }
     public bool CanModify => InstallState is not (ModInstallState.Downloading or ModInstallState.Extracting or ModInstallState.PendingUninstall);
 
+    public CancellationTokenSource? DownloadCancellationTokenSource { get; set; }
     public bool ShowProgress => InstallState is ModInstallState.Downloading or ModInstallState.Extracting;
     public bool HasProgress { get; set; }
     public double CurrentProgress { get; set; }
@@ -111,16 +115,18 @@ public class ModViewModel : BaseViewModel, IDisposable
 
     #region Public Methods
 
-    public void InitDownloading(string? name)
+    public void InitDownloading(string? name, object? installData)
     {
         IsEnabled = false;
         _wasEnabled = null;
 
+        DownloadCancellationTokenSource = new();
         HasProgress = false;
 
         DownloadedMod = null;
 
         Name = name;
+        InstallData = installData;
 
         SetUpdateState(ModUpdateState.None, String.Empty);
         SetInstallState(ModInstallState.Downloading);
@@ -136,12 +142,14 @@ public class ModViewModel : BaseViewModel, IDisposable
         IsEnabled = modEntry.IsEnabled;
         _wasEnabled = IsEnabled;
 
+        DownloadCancellationTokenSource = null;
         HasProgress = false;
 
         DownloadedMod = new DownloadedModViewModel(ModLoaderViewModel.GameInstallation, DownloadableModsSource, mod, modEntry);
         DownloadedMod.LoadThumbnail();
 
         Name = DownloadedMod.Name;
+        InstallData = DownloadableModsSource?.ParseInstallData(DownloadedMod.InstallInfo.Data);
 
         SetUpdateState(ModUpdateState.None, String.Empty);
         SetInstallState(installState);
@@ -183,6 +191,11 @@ public class ModViewModel : BaseViewModel, IDisposable
         UpdateState = state;
         UpdateStateMessage = message;
         UpdateData = updateData;
+    }
+
+    public void CancelDownload()
+    {
+        DownloadCancellationTokenSource?.Cancel();
     }
 
     public async Task OpenLocationAsync()

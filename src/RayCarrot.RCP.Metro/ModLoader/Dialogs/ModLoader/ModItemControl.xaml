@@ -71,8 +71,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="0" 
+                        Grid.Column="0"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -92,12 +97,26 @@
             </StackPanel>
 
             <mah:MetroProgressBar Grid.Row="1"
+                                  Grid.Column="0"
                                   Visibility="{Binding Path=ShowProgress, Converter={rcp:BooleanToVisibilityConverter}}"
                                   Width="150"
                                   IsIndeterminate="{Binding Path=HasProgress, Converter={rcp:InvertedBooleanConverter}}"
                                   Minimum="{Binding Path=MinProgress}"
                                   Maximum="{Binding Path=MaxProgress}"
                                   Value="{Binding Path=CurrentProgress}" />
+
+            <!-- TODO-LOC -->
+            <Button Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    ToolTip="Cancel"
+                    Visibility="{Binding Path=ShowProgress, Converter={rcp:BooleanToVisibilityConverter}}"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    Command="{Binding Path=CancelCommand, Mode=OneTime}"
+                    VerticalAlignment="Center"
+                    rcp:Icon.Kind="CloseCircleOutline"
+                    rcp:Icon.Size="16"
+                    Margin="10 0 0 0" />
 
         </Grid>
 

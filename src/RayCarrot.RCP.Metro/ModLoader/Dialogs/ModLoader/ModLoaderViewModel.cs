@@ -147,7 +147,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             {
                 Mod mod;
 
-                // TODO-UPDATE: Maybe don't return if we can't read mod? That would prevent an error-loop.
                 try
                 {
                     // Read the mod
@@ -636,7 +635,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             throw new Exception("Can't install a mod to an existing mod which has not been downloaded");
 
         ModViewModel downloadingMod = new(this, LoaderViewModel, source);
-        downloadingMod.InitDownloading(modName);
+        downloadingMod.InitDownloading(modName, installData);
 
         lock (Mods)
         {
@@ -644,7 +643,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             if (existingMod == null)
             {
                 Mods.Add(downloadingMod);
-
             }
             // The mod is replacing an existing mod
             else
@@ -662,8 +660,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Info("Downloading mod from {0}", downloadUrl);
 
-            // TODO-UPDATE: Allow to cancel
-            CancellationToken cancellationToken = CancellationToken.None;
+            CancellationToken cancellationToken = downloadingMod.DownloadCancellationTokenSource?.Token ?? CancellationToken.None;
 
             // Create a temp file to download to
             using TempFile tempFile = new(false, new FileExtension(fileName));
