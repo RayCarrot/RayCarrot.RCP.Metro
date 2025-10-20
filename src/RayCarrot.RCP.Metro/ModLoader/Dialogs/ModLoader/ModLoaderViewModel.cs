@@ -27,7 +27,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         if (!gameInstallation.GetComponents<ModModuleComponent>().Any())
             throw new InvalidOperationException("The game installation doesn't support mods");
 
-        _httpClient = new HttpClient(); // TODO: Share a single client throughout the app?
+        _httpClient = Services.HttpClientFactory.CreateClient();
         _modExtractors = ModExtractor.GetModExtractors();
 
         LoaderViewModel = new LoaderViewModel();

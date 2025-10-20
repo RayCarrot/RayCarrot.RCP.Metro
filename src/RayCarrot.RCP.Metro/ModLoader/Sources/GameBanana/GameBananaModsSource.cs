@@ -448,7 +448,7 @@ public class GameBananaModsSource : DownloadableModsSource
             }
         }
 
-        using HttpClient httpClient = new();
+        using HttpClient httpClient = Services.HttpClientFactory.CreateClient();
 
         foreach (var g in games)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Tools;
 using RayCarrot.RCP.Metro.Pages.About;
@@ -43,6 +44,9 @@ public static class Entry
 
     private static void ConfigureServices(IServiceCollection serviceCollection)
     {
+        // Add services from other packages
+        serviceCollection.AddHttpClient();
+
         // Add app related services
         serviceCollection.AddSingleton(_launchArguments);
         serviceCollection.AddSingleton<JumpListManager>();

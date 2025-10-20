@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Tools;
 
@@ -79,4 +80,6 @@ public static class Services
     public static JumpListManager JumpList => GetService<JumpListManager>();
 
     public static InstallableToolsManager InstallableTools => GetService<InstallableToolsManager>();
+
+    public static IHttpClientFactory HttpClientFactory => GetService<IHttpClientFactory>();
 }

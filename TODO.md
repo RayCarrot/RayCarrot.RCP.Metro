@@ -68,7 +68,6 @@ Open with (external) ->
 ## 📦 Mod Loader
 - Allow mods to specify an optional min app version
 - Allow mods to add other mods as dependencies, specify them using mod ID and GameBanana mod ID
-- Improve HTTP system for GameBanana mods. Have [retry policy](https://stackoverflow.com/questions/59702119/getting-response-status-code-does-not-indicate-success-502-bad-gateway-from) to avoid errors shown to the user. Ideally there also only be a single HttpClient in the app.
 - Ideally the `files` module should have been two modules; `added_files` and `removed_files`. We could change it, but maybe that would just cause more confusion at this point?
 - Allow modding disc based games with a virtual file-system, primarily for Rayman 1 on PS1
 - Add `costumes` module for Origins and Legends, allowing new costumes to be added, with the mod loader then merging them all together into the gameconfig to avoid file conflicts
