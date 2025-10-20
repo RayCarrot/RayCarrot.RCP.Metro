@@ -89,7 +89,7 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
             // Check for updates if set to do so
             if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
             {
-                using HttpClient httpClient = new();
+                using HttpClient httpClient = Services.HttpClientFactory.CreateClient();
                 bool[] results = await Task.WhenAll(modManifest.Mods.Values.Select(x => CheckForModUpdateAsync(httpClient, x.InstallInfo)));
                 int updates = results.Count(x => x);
 
