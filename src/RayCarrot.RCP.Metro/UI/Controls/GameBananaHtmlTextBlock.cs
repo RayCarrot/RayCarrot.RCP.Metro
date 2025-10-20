@@ -41,7 +41,12 @@ public class GameBananaHtmlTextBlock : TextBlock
     {
         return new Hyperlink(child)
         {
-            Command = new RelayCommand(() => Services.App.OpenUrl(uri.AbsoluteUri)),
+            Command = new AsyncRelayCommand(async () =>
+            {
+                // TODO-LOC
+                if (await Services.MessageUI.DisplayMessageAsync($"You are about to open \"{uri}\".\nOnly continue if you trust the website.", "External link warning", MessageType.Question, true))
+                    Services.App.OpenUrl(uri.AbsoluteUri);
+            }),
             ToolTip = uri,
         };
     }

@@ -40,7 +40,7 @@ public class DownloadedModViewModel : BaseViewModel
 
         CanOpenInDownloadPage = downloadableModsSource != null;
 
-        OpenWebsiteCommand = new RelayCommand(OpenWebsite);
+        OpenWebsiteCommand = new AsyncRelayCommand(OpenWebsiteAsync);
         OpenInDownloadPageCommand = new RelayCommand(OpenInDownloadPage);
     }
 
@@ -117,10 +117,14 @@ public class DownloadedModViewModel : BaseViewModel
         }
     }
 
-    public void OpenWebsite()
+    public async Task OpenWebsiteAsync()
     {
         if (Metadata.Website != null)
-            Services.App.OpenUrl(Metadata.Website);
+        {
+            // TODO-LOC
+            if (await Services.MessageUI.DisplayMessageAsync($"You are about to open \"{Metadata.Website}\".\nOnly continue if you trust the website.", "External link warning", MessageType.Question, true))
+                Services.App.OpenUrl(Metadata.Website);
+        }
     }
 
     public void OpenInDownloadPage()

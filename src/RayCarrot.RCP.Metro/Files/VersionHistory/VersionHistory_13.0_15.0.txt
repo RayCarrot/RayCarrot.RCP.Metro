@@ -3,7 +3,6 @@
     • The list of downloadable GameBanana mods now show in a grid with thumbnails
     • Opening a downloadable GameBanana mod now shows it in a full-page view with better text formatting and more details such as the credits and preview images
     • Mods now get downloaded in the background, allowing multiple mods to be downloaded at the same time
-    • The update date is now used instead of the modified date for GameBanana mods
     • Improved loading speeds for loading downloadable GameBanana mods, however this also means mods not compatible with the Rayman Control Panel are shown as well
 • The program has now been translated to simplified Chinese (thanks Clef!)
 • Added support for the fan-games Rayman 2 Redreamed Demo, Rayman 3 Havoc Reignited and Rayman Lum'o'Grams Demo
@@ -18,6 +17,7 @@ Other changes:
 • Other mod loader changes:
     • Added settings for if essential mods should be shown first and if unseen mods should be marked
     • Added a toggle for showing archived files for downloadable GameBanana mods
+    • The update date is now used instead of the modified date for GameBanana mods
     • Added options for sorting downloadable GameBanana mods and changed the default from only new mods to both new and updated mods
     • Added an option to auto-create folders for the files module when creating a new mod
     • The list of recent mods on the home page now shows thumbnails for the mods
@@ -26,6 +26,7 @@ Other changes:
     • You can now open the GameBanana page for an installed mod directly in the mod loader download page
     • Improved downloading GameBanana mods from actions in the app and from the 1-click installer, allowing them to be used even with the mod loader being open
     • Uninstalling a mod in the mod loader now immediately removes it if it was not installed
+    • Opening a link to an external website now shows a warning message first
 • Downloading the new Loadless Origins mod now marks the setup game action for Rayman Origins to install the Minimum Loading Times mod as completed
 • Added a shortcut to the Tonic Trouble Fix config file for Tonic Trouble if available
 • Changed the recommended "output" value for the DOSBox emulator settings to "overlay"
