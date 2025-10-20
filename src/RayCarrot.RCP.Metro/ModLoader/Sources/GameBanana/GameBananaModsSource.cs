@@ -290,7 +290,8 @@ public class GameBananaModsSource : DownloadableModsSource
 
             foreach (GameBananaCategory cat in gameCategories)
             {
-                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, new WebImageViewModel(webImageCache) { Url = cat.IconUrl }, cat.Id.ToString()));
+                WebImageViewModel? image = cat.IconUrl != null ? new(webImageCache) { Url = cat.IconUrl } : null;
+                categories.Add(new DownloadableModsCategoryViewModel(cat.Name, image, cat.Id.ToString()));
             }
         }
 
