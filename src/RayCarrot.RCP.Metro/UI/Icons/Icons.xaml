@@ -46,6 +46,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Startup">Power</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.List">ViewListOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Fix">AutoFix</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Remove">DeleteOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.SetupGame">WrenchOutline</iconPacks:PackIconMaterialKind>
 
@@ -175,6 +176,9 @@
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Fix}" 
                        IconKind="{StaticResource RCP.Icons.Fix}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Remove}" 
+                       IconKind="{StaticResource RCP.Icons.Remove}"
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Download}" 
                        IconKind="{StaticResource RCP.Icons.Download}"
