@@ -48,11 +48,11 @@
                             <Setter Property="ItemTemplate">
                                 <Setter.Value>
                                     <DataTemplate DataType="{x:Type local:GamesSelectionViewModel+GameViewModel}">
-                                        <RadioButton Margin="0 0 0 8"
-                                                     IsChecked="{Binding Path=IsSelected}"
-                                                     Content="{Binding}"
-                                                     ContentTemplate="{StaticResource GameDataTemplate}" 
-                                                     GroupName="GamesSelection_Games"/>
+                                        <local:RadioButtonExtended Margin="0 0 0 8"
+                                                                   IsChecked="{Binding Path=IsSelected}"
+                                                                   Content="{Binding}"
+                                                                   ContentTemplate="{StaticResource GameDataTemplate}" 
+                                                                   GroupName="GamesSelection_Games"/>
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>

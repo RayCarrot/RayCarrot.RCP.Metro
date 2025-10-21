@@ -48,11 +48,11 @@
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=Has16BitTextures, Converter={rcp:BooleanToVisibilityConverter}}"
                     Margin="0 0 0 8">
-            <RadioButton Content="{Resx Config_Textures16}"
-                         Margin="0 0 8 0"
-                         IsChecked="{Binding Path=IsTextures32Bit, Converter={rcp:InvertedBooleanConverter}}" />
-            <RadioButton Content="{Resx Config_Textures32}"
-                         IsChecked="{Binding Path=IsTextures32Bit}" />
+            <rcp:RadioButtonExtended Content="{Resx Config_Textures16}"
+                                     Margin="0 0 8 0"
+                                     IsChecked="{Binding Path=IsTextures32Bit, Converter={rcp:InvertedBooleanConverter}}" />
+            <rcp:RadioButtonExtended Content="{Resx Config_Textures32}"
+                                     IsChecked="{Binding Path=IsTextures32Bit}" />
         </StackPanel>
 
         <CheckBox Content="{Resx Config_Compressed}"
@@ -101,12 +101,12 @@
         <StackPanel Orientation="Horizontal"
                     Margin="0 0 0 8">
 
-            <RadioButton Content="{Resx Config_Video16Bpp}"
-                         Margin="0 0 8 0"
-                         IsChecked="{Binding Path=IsVideo32Bpp, Converter={rcp:InvertedBooleanConverter}}" />
+            <rcp:RadioButtonExtended Content="{Resx Config_Video16Bpp}"
+                                     Margin="0 0 8 0"
+                                     IsChecked="{Binding Path=IsVideo32Bpp, Converter={rcp:InvertedBooleanConverter}}" />
 
-            <RadioButton Content="{Resx Config_Video32Bpp}"
-                         IsChecked="{Binding Path=IsVideo32Bpp}" />
+            <rcp:RadioButtonExtended Content="{Resx Config_Video32Bpp}"
+                                     IsChecked="{Binding Path=IsVideo32Bpp}" />
 
         </StackPanel>
 
