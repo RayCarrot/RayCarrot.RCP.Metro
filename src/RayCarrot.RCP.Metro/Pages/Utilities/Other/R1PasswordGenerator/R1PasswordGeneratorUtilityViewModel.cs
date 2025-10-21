@@ -151,7 +151,7 @@ public class R1PasswordGeneratorUtilityViewModel : UtilityViewModel
         }
 
         // Make sure The Musician has been helped under valid circumstances
-        if (HasHelpedTheMusician && !Levels[9].IsUnlocked)
+        if (HasHelpedTheMusician && !Levels[10].IsUnlocked)
             HasHelpedTheMusician = false;
         else if (!HasHelpedTheMusician && Levels[11].IsUnlocked)
             HasHelpedTheMusician = true;
