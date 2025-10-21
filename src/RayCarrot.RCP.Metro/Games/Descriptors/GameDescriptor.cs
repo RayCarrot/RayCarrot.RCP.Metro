@@ -116,7 +116,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
         
-        builder.Register(new SetupGameActionComponent(_ => new RequiresLaunchComponentSetupGameAction()));
+        builder.Register(new SetupGameActionComponent(_ => new RequiresLaunchComponentSetupGameAction()), 
+            flags: ComponentFlags.IgnoreGameFeatureAttribute);
 
         if (DefaultToUseGameClient)
             builder.Register<OnGameAddedComponent, AttachDefaultClientOnGameAddedComponent>();

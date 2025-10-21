@@ -10,7 +10,7 @@ public class GameComponentBuilder : IGameComponentBuilder
     private bool _hasBuilt;
     private readonly List<Component> _components = new();
 
-    public void Register(Type baseType, Type instanceType, GameComponent? instance, ComponentPriority priority)
+    public void Register(Type baseType, Type instanceType, GameComponent? instance, ComponentPriority priority, ComponentFlags flags)
     {
         // Get the attributes
         GameComponentBaseAttribute baseAttr = baseType.GetCustomAttribute<GameComponentBaseAttribute>() ??
@@ -41,7 +41,7 @@ public class GameComponentBuilder : IGameComponentBuilder
         if (isSingleInstance)
             _components.RemoveAll(x => x.InstanceType == instanceType);
 
-        _components.Add(new Component(baseType, instanceType, instance, priority));
+        _components.Add(new Component(baseType, instanceType, instance, priority, flags));
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public class GameComponentBuilder : IGameComponentBuilder
         return _components.OrderByDescending(x => x.Priority);
     }
 
-    public record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority)
+    public record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority, ComponentFlags Flags)
     {
         private GameComponent? Instance { get; set; } = Instance;
         public bool HasRegisteredComponents { get; set; }

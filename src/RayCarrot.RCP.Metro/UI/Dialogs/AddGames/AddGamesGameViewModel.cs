@@ -77,12 +77,14 @@ public class AddGamesGameViewModel : BaseViewModel
 
         foreach (GameComponentBuilder.Component c in builtComponents)
         {
-            // For now we only check each base type once to avoid duplicates. For example the
-            // utility components may be registered multiple times.
-            if (checkedTypes.Contains(c.BaseType))
+            // Check for flag to ignore
+            if ((c.Flags & ComponentFlags.IgnoreGameFeatureAttribute) != 0)
                 continue;
 
-            checkedTypes.Add(c.BaseType);
+            // For now we only check each base type once to avoid duplicates. For example the
+            // utility components may be registered multiple times.
+            if (!checkedTypes.Add(c.BaseType))
+                continue;
 
             Type instanceType = c.InstanceType;
 
