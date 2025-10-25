@@ -61,6 +61,9 @@
                             <DataTemplate DataType="{x:Type utilities:R1PasswordGeneratorUtilityViewModel}">
                                 <utilities:R1PasswordGeneratorUtilityControl />
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type utilities:R1GbcPasswordGeneratorUtilityViewModel}">
+                                <utilities:R1GbcPasswordGeneratorUtilityControl />
+                            </DataTemplate>
 
                             <!-- External -->
                             <DataTemplate DataType="{x:Type utilities:Ray1EditorUtilityViewModel}">

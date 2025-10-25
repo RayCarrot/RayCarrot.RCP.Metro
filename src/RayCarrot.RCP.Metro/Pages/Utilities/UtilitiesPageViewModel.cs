@@ -41,6 +41,7 @@ public class UtilitiesPageViewModel : BasePageViewModel, IDisposable
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
             new R1PasswordGeneratorUtilityViewModel(),
+            new R1GbcPasswordGeneratorUtilityViewModel(),
         });
         ExternalToolViewModels.AddRange(new UtilityViewModel[]
         {
