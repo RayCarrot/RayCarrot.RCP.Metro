@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0-windows;net472</TargetFrameworks>
+    <TargetFramework>net472</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>11.0</LangVersion>
@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\submodules\BinarySerializer\src\BinarySerializer.csproj" />
+    <ProjectReference Include="..\RayCarrot.RCP.Metro\RayCarrot.RCP.Metro.csproj" />
   </ItemGroup>
 
 </Project>
