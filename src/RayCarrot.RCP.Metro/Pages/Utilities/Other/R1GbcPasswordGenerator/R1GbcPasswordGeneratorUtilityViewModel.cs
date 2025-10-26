@@ -130,6 +130,9 @@ public class R1GbcPasswordGeneratorUtilityViewModel : UtilityViewModel
         };
 
         // Set initial password
+        UnlockedWorldMap = false;
+        LivesCount = 3;
+        Level = 0;
         Password = "CG-G8LSJsD";
 
         // Create commands
@@ -166,7 +169,7 @@ public class R1GbcPasswordGeneratorUtilityViewModel : UtilityViewModel
     public void CorrectData()
     {
         // Clamp lives and level
-        LivesCount = LivesCount.Clamp(1, 99);
+        LivesCount = LivesCount.Clamp(1, 127);
         Level = Level.Clamp(0, 27 + 5 + 1);
 
         // If in post-game then we have to unlock the worldmap and set all cages as collected
