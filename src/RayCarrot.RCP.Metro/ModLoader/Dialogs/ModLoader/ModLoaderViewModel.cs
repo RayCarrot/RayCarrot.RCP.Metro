@@ -219,41 +219,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         }
     }
 
-    private async Task AddLocalModsToInstall(IEnumerable<ModToInstall> modFiles)
-    {
-        Logger.Info("Adding new mods to install");
-
-        using (LoaderLoadState state = await LoaderViewModel.RunAsync())
-        {
-            state.SetCanCancel(true);
-
-            foreach (ModToInstall modFile in modFiles)
-            {
-                state.SetStatus(String.Format(Resources.ModLoader_InstallStatus, modFile.FilePath.Name));
-
-                try
-                {
-                    await AddModToInstallAsync(modFile.FilePath, state.SetProgress, state.CancellationToken, modFile.SourceId, modFile.InstallData);
-                }
-                catch (OperationCanceledException ex)
-                {
-                    Logger.Info(ex, "Canceled adding mod to install");
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex, "Adding mod to install");
-
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ModLoader_InstallError, modFile.FilePath.Name));
-                }
-            }
-
-            ReportNewChanges();
-
-            state.Complete();
-        }
-    }
-
     private async Task<ModMetadata?> AddModToInstallAsync(
         FileSystemPath filePath, 
         Action<Progress> progressCallback, 
@@ -525,26 +490,36 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         if (!success)
             return false;
 
-        // Add pending mods
-        if (_pendingModFiles != null)
-        {
-            await AddLocalModsToInstall(_pendingModFiles);
-            _pendingModFiles = null;
-        }
-
         // Check for mod updates if set to do so
         if (Services.Data.ModLoader_AutomaticallyCheckForUpdates)
             CheckForUpdatesCommand.Execute(null);
 
+        List<Task> loadTasks = new();
+
+        // Install pending mods
+        if (_pendingModFiles != null)
+        {
+            foreach (ModToInstall modToInstall in _pendingModFiles)
+            {
+                DownloadableModsSource? source = DownloadableModsSource.GetSource(modToInstall.SourceId);
+                loadTasks.Add(InstallModFromLocalFileAsync(source, modToInstall.FilePath, modToInstall.InstallData, modToInstall.FilePath.Name));
+            }
+
+            _pendingModFiles = null;
+        }
+
         // Load downloadable mods
-        await DownloadableMods.InitializeAsync();
+        loadTasks.Add(DownloadableMods.InitializeAsync());
 
         // Optional custom initialization
         if (_customInitAction != null)
         {
-            await _customInitAction(this);
+            loadTasks.Add(_customInitAction(this));
             _customInitAction = null;
         }
+
+        // Wait for all loading tasks to finish
+        await Task.WhenAll(loadTasks);
 
         Logger.Info("Finished initializing mod loader");
 
@@ -617,9 +592,60 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             return;
 
         Logger.Info("Adding {0} mods to be installed", result.SelectedFiles.Length);
-        await AddLocalModsToInstall(result.SelectedFiles.Select(x => new ModToInstall(x, null, null)));
+
+        await Task.WhenAll(result.SelectedFiles.Select(x => InstallModFromLocalFileAsync(null, x, null, x.Name)));
 
         Logger.Info("Added mods");
+    }
+
+    public async Task InstallModFromLocalFileAsync(
+        DownloadableModsSource? source, 
+        FileSystemPath filePath, 
+        object? installData, 
+        string? modName)
+    {
+        ModViewModel extractingMod = new(this, LoaderViewModel, source);
+        extractingMod.InitExtracting(modName, installData);
+
+        lock (Mods)
+            Mods.Add(extractingMod);
+
+        ModMetadata? pendingInstallModMetadata = null;
+        try
+        {
+            CancellationToken cancellationToken = extractingMod.DownloadCancellationTokenSource?.Token ?? CancellationToken.None;
+
+            pendingInstallModMetadata = await AddModToInstallAsync(
+                filePath: filePath,
+                progressCallback: extractingMod.SetProgress,
+                cancellationToken: cancellationToken,
+                sourceId: source?.Id,
+                installData: installData,
+                existingMod: extractingMod);
+
+            if (pendingInstallModMetadata != null)
+                ReportNewChanges();
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Info(ex, "Canceled extracting local mod");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Extracting local mod");
+
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ModLoader_InstallError, filePath.Name));
+        }
+
+        lock (Mods)
+        {
+            // Remove the downloading mod if the download wasn't successful
+            if (pendingInstallModMetadata == null)
+            {
+                extractingMod.Dispose();
+                Mods.Remove(extractingMod);
+            }
+        }
     }
 
     public async Task InstallModFromDownloadableFileAsync(

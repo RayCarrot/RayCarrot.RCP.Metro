@@ -133,6 +133,24 @@ public class ModViewModel : BaseViewModel, IDisposable
         UpdateHasChangesToApply();
     }
 
+    public void InitExtracting(string? name, object? installData)
+    {
+        IsEnabled = false;
+        _wasEnabled = null;
+
+        DownloadCancellationTokenSource = new();
+        HasProgress = false;
+
+        DownloadedMod = null;
+
+        Name = name;
+        InstallData = installData;
+
+        SetUpdateState(ModUpdateState.None, String.Empty);
+        SetInstallState(ModInstallState.Extracting);
+        UpdateHasChangesToApply();
+    }
+
     [MemberNotNull(nameof(DownloadedMod))]
     public void InitDownloaded(ModInstallState installState, Mod mod, ModManifestEntry modEntry)
     {

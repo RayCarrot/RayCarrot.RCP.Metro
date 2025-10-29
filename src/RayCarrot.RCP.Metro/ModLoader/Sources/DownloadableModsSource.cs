@@ -35,7 +35,15 @@ public abstract class DownloadableModsSource
         if (installInfo.Source == null)
             return null;
 
-        return _downloadableModsSources.TryGetValue(installInfo.Source, out DownloadableModsSource src) ? src : null;
+        return GetSource(installInfo.Source);
+    }
+
+    public static DownloadableModsSource? GetSource(string? id)
+    {
+        if (id == null)
+            return null;
+
+        return _downloadableModsSources.TryGetValue(id, out DownloadableModsSource src) ? src : null;
     }
 
     #endregion
