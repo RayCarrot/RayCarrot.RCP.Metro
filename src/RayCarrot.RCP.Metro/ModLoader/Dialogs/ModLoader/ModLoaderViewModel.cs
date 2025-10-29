@@ -39,7 +39,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         ModifiedFiles = new ModifiedFilesViewModel(GameInstallation);
         DownloadableMods = new DownloadableModsViewModel(this, GameInstallation, _httpClient, DownloadableModsSource.GetSources().ToList());
 
-        InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync);
+        InstallModFromFileCommand = new AsyncRelayCommand(InstallModFromFileAsync) { AllowConcurrentExecutions = true };
         CheckForUpdatesCommand = new AsyncRelayCommand(CheckForUpdatesAsync);
     }
 

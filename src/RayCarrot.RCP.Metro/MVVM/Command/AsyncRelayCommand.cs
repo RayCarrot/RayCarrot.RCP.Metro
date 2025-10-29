@@ -54,6 +54,8 @@ public class AsyncRelayCommand : BaseRelayCommand
     /// </summary>
     public virtual Func<object?, Task> CommandFunction { get; }
 
+    public bool AllowConcurrentExecutions { get; set; }
+
     #endregion
 
     #region Public Methods
@@ -75,8 +77,11 @@ public class AsyncRelayCommand : BaseRelayCommand
         if (!CanExecuteCommand)
             return;
 
-        // The command can not execute while running
-        CanExecuteCommand = false;
+        if (!AllowConcurrentExecutions)
+        {
+            // The command can not execute while running
+            CanExecuteCommand = false;
+        }
 
         try
         {
@@ -85,8 +90,11 @@ public class AsyncRelayCommand : BaseRelayCommand
         }
         finally
         {
-            // Flag that the command can now execute again
-            CanExecuteCommand = true;
+            if (!AllowConcurrentExecutions)
+            {
+                // Flag that the command can now execute again
+                CanExecuteCommand = true;
+            }
         }
     }
 
