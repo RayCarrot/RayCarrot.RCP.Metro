@@ -144,6 +144,8 @@ public class DownloadableModsFeedViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Loading next page of downloadable mods");
 
+                Mods.DisposeAll();
+                Mods.Clear();
                 ErrorMessage = ex.Message;
                 IsEmpty = false;
                 CanLoadNextPage = false;
