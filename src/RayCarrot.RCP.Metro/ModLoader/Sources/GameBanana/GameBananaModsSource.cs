@@ -121,7 +121,7 @@ public class GameBananaModsSource : DownloadableModsSource
         if (data == null)
             return null;
 
-        return new GameBananaInstallData(data.Id, -1);
+        return new GameBananaInstallData(data.ModId, data.FileId ?? -1);
     }
 
     public override int GetModsFeedPageLength() => RecordsPerPage;
@@ -338,48 +338,64 @@ public class GameBananaModsSource : DownloadableModsSource
         GameInstallation gameInstallation, 
         IEnumerable<ModDependencyInfo> dependencies)
     {
+        List<GameBananaModDependencyData> dependencyDatas = dependencies.
+            Select(x => x.SourceData?.ToObject<GameBananaModDependencyData>()).
+            Where(x => x != null).
+            ToList()!;
+
         // Get data for every mod
         GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
             $"https://gamebanana.com/apiv11/Mod/Multi?" +
-            $"_csvRowIds={dependencies.Select(x => x.SourceData?.ToObject<GameBananaModDependencyData>()?.Id).Where(x => x != null).JoinItems(",")}&" + 
+            $"_csvRowIds={dependencyDatas.Select(x => x.ModId).JoinItems(",")}&" + 
             $"_csvProperties=_idRow,_sName,_aFiles,_aModManagerIntegrations");
 
         List<ModDownload> downloads = new();
         foreach (GameBananaMod mod in mods)
         {
-            // TODO-UPDATE: Check mod manager integration
-            List<GameBananaFile>? validFiles = mod.Files?.
-                Where(x => !x.IsArchived).
-                ToList();
+            GameBananaFile? file = null;
 
-            if (validFiles == null || validFiles.Count == 0)
-            {
-                // TODO-UPDATE: Show error
-                continue;
-            }
+            // Try and get the defined file if we have a file id
+            long? fileId = dependencyDatas.FirstOrDefault(x => x.ModId == mod.Id)?.FileId;
+            if (fileId != null)
+                file = mod.Files?.FirstOrDefault(x => x.Id == fileId);
 
-            GameBananaFile file;
-            if (validFiles.Count > 1)
+            // Search for valid files if we didn't get one
+            if (file == null)
             {
-                // TODO-LOC
-                ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
-                        Select(x => x.Description.IsNullOrWhiteSpace()
-                            ? x.File
-                            : $"{x.File}{Environment.NewLine}{x.Description}").
-                        ToArray(),
-                    $"Select the file from GameBanana to use for the mod {mod.Name}")
+                // TODO-UPDATE: Check mod manager integration
+                List<GameBananaFile>? validFiles = mod.Files?.
+                    Where(x => !x.IsArchived).
+                    ToList();
+
+                if (validFiles == null || validFiles.Count == 0)
                 {
-                    Title = Resources.ModLoader_GameBanana_SelectUpdateFileTitle
-                });
-
-                if (result.CanceledByUser)
+                    // TODO-UPDATE: Show error
                     continue;
+                }
 
-                file = validFiles[result.SelectedIndex];
-            }
-            else
-            {
-                file = validFiles[0];
+                // TODO-UPDATE: Check if file id is defined
+                if (validFiles.Count > 1)
+                {
+                    // TODO-LOC
+                    ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
+                            Select(x => x.Description.IsNullOrWhiteSpace()
+                                ? x.File
+                                : $"{x.File}{Environment.NewLine}{x.Description}").
+                            ToArray(),
+                        $"Select the file from GameBanana to use for the mod {mod.Name}")
+                    {
+                        Title = Resources.ModLoader_GameBanana_SelectUpdateFileTitle
+                    });
+
+                    if (result.CanceledByUser)
+                        continue;
+
+                    file = validFiles[result.SelectedIndex];
+                }
+                else
+                {
+                    file = validFiles[0];
+                }
             }
 
             downloads.Add(new ModDownload(file.File, mod.Name, file.DownloadUrl, file.FileSize, new GameBananaInstallData(mod.Id, file.Id)));
