@@ -1,3 +1,3 @@
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-public record OpenModDownloadPageMessage(GameInstallation GameInstallation, object? InstallData);
+public record OpenModDownloadPageMessage(GameInstallation GameInstallation, string? SourceId, object? InstallData);

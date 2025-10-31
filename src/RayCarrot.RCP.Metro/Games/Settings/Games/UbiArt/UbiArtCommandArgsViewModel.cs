@@ -508,7 +508,7 @@ public class UbiArtCommandArgsViewModel : BaseViewModel
             long modId = RequiredGameBananaModId ?? throw new Exception("No mod id specified");
             await Services.UI.ShowModLoaderAsync(GameInstallation, _ =>
             {
-                Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, new GameBananaInstallData(modId, -1)));
+                Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, GameBananaModsSource.SourceId, new GameBananaInstallData(modId, -1)));
                 return Task.CompletedTask;
             });
         }

@@ -33,7 +33,7 @@ public abstract class InstallModSetupGameAction : SetupGameAction
     {
         await Services.UI.ShowModLoaderAsync(gameInstallation, _ =>
         {
-            Services.Messenger.Send(new OpenModDownloadPageMessage(gameInstallation, new GameBananaInstallData(GameBananaModId, -1)));
+            Services.Messenger.Send(new OpenModDownloadPageMessage(gameInstallation, GameBananaModsSource.SourceId, new GameBananaInstallData(GameBananaModId, -1)));
             return Task.CompletedTask;
         });
     }

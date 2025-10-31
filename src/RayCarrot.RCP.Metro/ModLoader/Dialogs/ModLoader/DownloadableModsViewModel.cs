@@ -327,11 +327,13 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
     {
         if (message.GameInstallation == GameInstallation)
         {
-            foreach (DownloadableModsSourceViewModel source in DownloadableModsSources)
+            DownloadableModsSource? source = DownloadableModsSource.GetSource(message.SourceId);
+
+            if (source != null)
             {
                 try
                 {
-                    DownloadableModViewModel? modViewModel = await source.Source.LoadModViewModelAsync(
+                    DownloadableModViewModel? modViewModel = await source.LoadModViewModelAsync(
                         modLoaderViewModel: _modLoaderViewModel,
                         webImageCache: _webImageCache,
                         httpClient: _httpClient,
@@ -342,7 +344,6 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
                     {
                         await SelectModAsync(null); // NOTE: Temporarily keeping this as otherwise the transition breaks if a mod was selected from before
                         await SelectModAsync(modViewModel);
-                        break;
                     }
                 }
                 catch (Exception ex)
@@ -350,6 +351,10 @@ public class DownloadableModsViewModel : BaseViewModel, IRecipient<OpenModDownlo
                     Logger.Error(ex, "Loading mod view model");
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_LoadDownloadableModError);
                 }
+            }
+            else
+            {
+                Logger.Warn("Attempted to open downloadable mod with invalid source ID {0}", message.SourceId);
             }
         }
     }

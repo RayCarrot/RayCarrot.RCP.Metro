@@ -132,7 +132,7 @@ public class DownloadedModViewModel : BaseViewModel
         if (DownloadableModsSource != null)
         {
             object? installData = DownloadableModsSource.ParseInstallData(InstallInfo.Data);
-            Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, installData));
+            Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, InstallInfo.Source, installData));
         }
     }
 

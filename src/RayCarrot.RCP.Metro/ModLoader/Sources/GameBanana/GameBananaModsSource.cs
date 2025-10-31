@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -24,6 +24,8 @@ public class GameBananaModsSource : DownloadableModsSource
         "Generic_LatestComment",
     ];
 
+    public const string SourceId = "GameBanana";
+
     #endregion
 
     #region Logger
@@ -34,7 +36,7 @@ public class GameBananaModsSource : DownloadableModsSource
 
     #region Public Properties
 
-    public override string Id => "GameBanana";
+    public override string Id => SourceId;
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.ModLoader_GameBanana_Title));
     public override ModSourceIconAsset Icon => ModSourceIconAsset.GameBanana;
 
