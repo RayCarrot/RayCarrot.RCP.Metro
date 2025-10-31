@@ -362,18 +362,19 @@ public class GameBananaModsSource : DownloadableModsSource
             // Search for valid files if we didn't get one
             if (file == null)
             {
-                // TODO-UPDATE: Check mod manager integration
                 List<GameBananaFile>? validFiles = mod.Files?.
                     Where(x => !x.IsArchived).
+                    Where(x => mod.ModManagerIntegrations is JObject obj &&
+                               obj.ToObject<Dictionary<string, GameBananaModManager[]>>()?.TryGetValue(x.Id.ToString(), out GameBananaModManager[] m) == true &&
+                               m.Any(mm => mm.ToolId == RaymanControlPanelToolId)).
                     ToList();
 
                 if (validFiles == null || validFiles.Count == 0)
                 {
-                    // TODO-UPDATE: Show error
+                    Logger.Warn("Mod with ID {0} has no valid files", mod.Id);
                     continue;
                 }
 
-                // TODO-UPDATE: Check if file id is defined
                 if (validFiles.Count > 1)
                 {
                     // TODO-LOC

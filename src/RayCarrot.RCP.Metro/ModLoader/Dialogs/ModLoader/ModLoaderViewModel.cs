@@ -323,7 +323,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 {
                     foreach (ModDependencyInfo dependencyInfo in extractedMod.Metadata.Dependencies)
                     {
-                        if (Mods.Any(x => x.IsDownloaded && dependencyInfo.Ids.Contains(x.DownloadedMod.Metadata.Id)))
+                        if (Mods.Any(x => x.InstallState != ModViewModel.ModInstallState.PendingUninstall &&
+                                          x.IsDownloaded && 
+                                          dependencyInfo.Ids.Contains(x.DownloadedMod.Metadata.Id)))
                             continue;
 
                         modDependencies.Add(dependencyInfo);
