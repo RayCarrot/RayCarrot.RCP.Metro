@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Windows.Input;
@@ -184,6 +184,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             Logger.Info("Loaded {0} installed mods", ModManifest.Mods.Count);
 
             RefreshModifiedFiles();
+            RefreshDependencies();
 
             return true;
         }
@@ -272,6 +273,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Date: DateTime.Now, 
                 Data: installData == null ? null : JObject.FromObject(installData));
 
+            List<ModDependencyInfo> modDependencies = new();
             lock (Mods)
             {
                 // Attempt to find existing mod if not specified
@@ -316,8 +318,77 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
 
-                return mod.DownloadedMod.Metadata;
+                // Get the dependencies which are not currently installed
+                if (extractedMod.Metadata.Dependencies != null)
+                {
+                    foreach (ModDependencyInfo dependencyInfo in extractedMod.Metadata.Dependencies)
+                    {
+                        if (Mods.Any(x => x.IsDownloaded && dependencyInfo.Ids.Contains(x.DownloadedMod.Metadata.Id)))
+                            continue;
+
+                        modDependencies.Add(dependencyInfo);
+                    }
+                }
             }
+
+            // Handle mod dependencies
+            if (modDependencies.Any())
+            {
+                Logger.Info("Detected {0} dependencies for mod with ID {1}", modDependencies.Count, extractedMod.Metadata.Id);
+
+                // Ask user to download the dependencies
+                // TODO-LOC
+                if (await Services.MessageUI.DisplayMessageAsync(
+                        $"The mod {extractedMod.Metadata.Name} requires the following mods to be installed. Do you want to download them?\n\n{modDependencies.Select(x => $"- {x.Name}").JoinItems(Environment.NewLine)}",
+                        "Mod dependencies detected", MessageType.Question, true))
+                {
+                    List<Task> downloadTasks = new();
+
+                    // Download the mods, grouped for each source
+                    foreach (var deps in modDependencies.GroupBy(x => x.SourceId))
+                    {
+                        DownloadableModsSource? source = DownloadableModsSource.GetSource(deps.Key);
+                       
+                        if (source != null)
+                        {
+                            ModDownload[] downloads;
+                            try
+                            {
+                                downloads = await source.DownloadModDependenciesAsync(_httpClient, GameInstallation, deps);
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.Error(ex, "Downloading mod dependencies for source {0}", deps.Key);
+                                // TODO-LOC
+                                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading the mod dependencies.");
+                                break;
+                            }
+
+                            // Download the mods
+                            foreach (ModDownload download in downloads)
+                            {
+                                downloadTasks.Add(InstallModFromDownloadableFileAsync(
+                                    source: source,
+                                    existingMod: null,
+                                    fileName: download.FileName,
+                                    downloadUrl: download.DownloadUrl,
+                                    fileSize: download.FileSize,
+                                    installData: download.InstallData,
+                                    modName: download.ModName));
+                            }
+                        }
+                        else
+                        {
+                            Logger.Warn("Defined mod dependency source {0} is invalid", deps.Key);
+                        }
+                    }
+
+                    // Await the downloads
+                    await Task.WhenAll(downloadTasks);
+                }
+            }
+
+            return extractedMod.Metadata;
         }
         catch
         {
@@ -414,6 +485,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             // Make sure there is an installed game which can be patched
             if (!gameInstallations.Any())
             {
+                // TODO-LOC
                 string gameTargetNames = String.Join(Environment.NewLine, gameTargets.Select(x =>
                     Services.Games.TryGetGameDescriptor(x, out GameDescriptor? g) ? g.DisplayName.Value : x));
                 await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the mod due to none of the following targeted games having been added:\r\n\r\n{0}", gameTargetNames), MessageType.Error);
@@ -526,6 +598,15 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         return true;
     }
 
+    public void RefreshDependencies()
+    {
+        foreach (ModViewModel mod in Mods)
+        {
+            if (mod.IsDownloaded)
+                mod.DownloadedMod.UpdateDependencies(Mods);
+        }
+    }
+
     public void RefreshModifiedFiles()
     {
         Logger.Trace("Refreshing modified files");
@@ -564,6 +645,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 }
             }
 
+            RefreshDependencies();
             RefreshModifiedFiles();
 
             int changedMods = Mods.Count(x => x.HasChangesToApply);

@@ -28,7 +28,9 @@ public record ModMetadata(
     [property: JsonProperty("version")] ModVersion? Version,
     [property: JsonProperty("changelog")] ModChangelogEntry[]? Changelog,
 
-    [property: JsonProperty("archives")] ModArchiveInfo[]? Archives)
+    [property: JsonProperty("archives")] ModArchiveInfo[]? Archives,
+
+    [property: JsonProperty("dependencies")] ModDependencyInfo[]? Dependencies)
 {
     public bool IsGameValid(GameDescriptor gameDescriptor)
     {

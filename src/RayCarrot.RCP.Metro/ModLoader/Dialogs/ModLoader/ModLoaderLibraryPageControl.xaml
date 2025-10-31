@@ -7,6 +7,7 @@
              xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
              xmlns:dd="urn:gong-wpf-dragdrop"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              d:DesignWidth="900" d:DesignHeight="600"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
@@ -116,6 +117,7 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -161,8 +163,86 @@
 
                                 </StackPanel>
 
+                                <StackPanel Grid.Row="1"
+                                            Visibility="{Binding Path=Dependencies.Count, Mode=OneTime, Converter={rcp:IntToVisibilityConverter}}"
+                                            Margin="0 0 0 8">
+
+                                    <!-- TODO-LOC -->
+                                    <TextBlock Margin="0 0 0 4"
+                                               Text="Dependencies" 
+                                               Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}" />
+
+                                    <ItemsControl ItemsSource="{Binding Path=Dependencies, Mode=OneTime}"
+                                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0 0 0 4">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                                Margin="0 0 4 0">
+                                                        <iconPacks:PackIconMaterial.Style>
+                                                            <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Path=State}" 
+                                                                                 Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.Enabled}">
+                                                                        <Setter Property="ToolTip">
+                                                                            <Setter.Value>
+                                                                                <!-- TODO-LOC -->
+                                                                                <TextBlock Text="Downloaded and enabled"
+                                                                                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                        <Setter Property="Kind" Value="CheckCircle" />
+                                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CompleteState}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Path=State}" 
+                                                                                 Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.Disabled}">
+                                                                        <Setter Property="ToolTip">
+                                                                            <Setter.Value>
+                                                                                <!-- TODO-LOC -->
+                                                                                <TextBlock Text="Disabled"
+                                                                                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                        <Setter Property="Kind" Value="MinusCircle" />
+                                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.WarningState}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Path=State}" 
+                                                                                 Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.NotDownloaded}">
+                                                                        <Setter Property="ToolTip">
+                                                                            <Setter.Value>
+                                                                                <!-- TODO-LOC -->
+                                                                                <TextBlock Text="Not downloaded"
+                                                                                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                        <Setter Property="Kind" Value="AlertCircle" />
+                                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.CriticalState}" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </iconPacks:PackIconMaterial.Style>
+                                                    </iconPacks:PackIconMaterial>
+
+                                                    <TextBlock Grid.Column="1">
+                                                        <Hyperlink Command="{Binding Path=OpenModCommand, Mode=OneTime}">
+                                                            <Run Text="{Binding Path=Name}" />
+                                                        </Hyperlink>
+                                                    </TextBlock>
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                </StackPanel>
+
                                 <!-- Description and changelog -->
-                                <StackPanel Grid.Row="1">
+                                <StackPanel Grid.Row="2">
 
                                     <!-- Description -->
                                     <Grid Margin="0 0 0 12"
@@ -208,7 +288,7 @@
 
                                 </StackPanel>
 
-                                <Button Grid.Row="2"
+                                <Button Grid.Row="3"
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         HorizontalAlignment="Left"
                                         Visibility="{Binding Path=CanOpenInDownloadPage, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"

@@ -38,6 +38,8 @@ public class DownloadedModViewModel : BaseViewModel
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
+        Dependencies = new ObservableCollection<ModDependencyViewModel>(Metadata.Dependencies?.Select(x => new ModDependencyViewModel(x, gameInstallation)) ?? []);
+
         CanOpenInDownloadPage = downloadableModsSource != null;
 
         OpenWebsiteCommand = new AsyncRelayCommand(OpenWebsiteAsync);
@@ -68,6 +70,7 @@ public class DownloadedModViewModel : BaseViewModel
     public ModMetadata Metadata => Mod.Metadata;
     public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
     public ObservableCollection<ModChangelogEntry> ChangelogEntries { get; }
+    public ObservableCollection<ModDependencyViewModel> Dependencies { get; }
 
     public LocalizedString? UnsupportedModulesErrorMessage { get; }
 
@@ -117,6 +120,19 @@ public class DownloadedModViewModel : BaseViewModel
         }
     }
 
+    public void UpdateDependencies(IList<ModViewModel> mods)
+    {
+        foreach (ModDependencyViewModel dependency in Dependencies)
+        {
+            ModViewModel? matchingMod = mods.FirstOrDefault(x => 
+                x.IsDownloaded && 
+                x.InstallState != ModViewModel.ModInstallState.PendingUninstall && 
+                dependency.ModDependency.Ids.Contains(x.DownloadedMod.Metadata.Id));
+
+            dependency.UpdateState(matchingMod);
+        }
+    }
+
     public async Task OpenWebsiteAsync()
     {
         if (Metadata.Website != null)
@@ -133,6 +149,60 @@ public class DownloadedModViewModel : BaseViewModel
         {
             object? installData = DownloadableModsSource.ParseInstallData(InstallInfo.Data);
             Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, InstallInfo.Source, installData));
+        }
+    }
+
+    #endregion
+
+    #region Classes
+
+    public class ModDependencyViewModel : BaseViewModel
+    {
+        public ModDependencyViewModel(ModDependencyInfo modDependency, GameInstallation gameInstallation)
+        {
+            ModDependency = modDependency;
+            GameInstallation = gameInstallation;
+            Name = modDependency.Name;
+            State = DependencyState.NotDownloaded;
+
+            OpenModCommand = new RelayCommand(OpenMod);
+        }
+
+        public ICommand OpenModCommand { get; }
+
+        public GameInstallation GameInstallation { get; }
+        public ModDependencyInfo ModDependency { get; }
+        public string Name { get; set; }
+        public DependencyState State { get; set; }
+
+        public void UpdateState(ModViewModel? mod)
+        {
+            if (mod is not { IsDownloaded: true })
+            {
+                Name = ModDependency.Name;
+                State = DependencyState.NotDownloaded;
+            }
+            else
+            {
+                Name = mod.Name ?? ModDependency.Name;
+                State = mod.IsEnabled ? DependencyState.Enabled : DependencyState.Disabled;
+            }
+        }
+
+        public void OpenMod()
+        {
+            DownloadableModsSource? source = DownloadableModsSource.GetSource(ModDependency.SourceId);
+
+            object? installData = source?.ParseDependencyDataAsInstallData(ModDependency.SourceData);
+            if (installData != null)
+                Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, ModDependency.SourceId, installData));
+        }
+
+        public enum DependencyState
+        {
+            Enabled,
+            Disabled,
+            NotDownloaded,
         }
     }
 

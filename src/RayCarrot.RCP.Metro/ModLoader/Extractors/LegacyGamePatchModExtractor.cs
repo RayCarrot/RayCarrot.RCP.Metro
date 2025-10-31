@@ -43,7 +43,8 @@ public class LegacyGamePatchModExtractor : ModExtractor
             Version: new ModVersion(patch.Metadata.Version_Major, patch.Metadata.Version_Minor, patch.Metadata.Version_Revision),
             Changelog: patch.Metadata.ChangelogEntries.ToArray(x => 
                 new ModChangelogEntry(new ModVersion(x.Version_Major, x.Version_Minor, x.Version_Revision), x.Date, x.Description)), 
-            Archives: archives);
+            Archives: archives,
+            Dependencies: null);
         JsonHelpers.SerializeToFile(modMetadata, outputPath + Mod.MetadataFileName);
 
         // Extract thumbnail

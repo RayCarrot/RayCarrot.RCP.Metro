@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -112,6 +112,16 @@ public class GameBananaModsSource : DownloadableModsSource
     public override object? ParseInstallData(JObject? installData)
     {
         return installData?.ToObject<GameBananaInstallData>();
+    }
+
+    public override object? ParseDependencyDataAsInstallData(JObject? sourceData)
+    {
+        GameBananaModDependencyData? data = sourceData?.ToObject<GameBananaModDependencyData>();
+
+        if (data == null)
+            return null;
+
+        return new GameBananaInstallData(data.Id, -1);
     }
 
     public override int GetModsFeedPageLength() => RecordsPerPage;
@@ -323,6 +333,61 @@ public class GameBananaModsSource : DownloadableModsSource
         return sortOptions;
     }
 
+    public override async Task<ModDownload[]> DownloadModDependenciesAsync(
+        HttpClient httpClient, 
+        GameInstallation gameInstallation, 
+        IEnumerable<ModDependencyInfo> dependencies)
+    {
+        // Get data for every mod
+        GameBananaMod[] mods = await httpClient.GetDeserializedAsync<GameBananaMod[]>(
+            $"https://gamebanana.com/apiv11/Mod/Multi?" +
+            $"_csvRowIds={dependencies.Select(x => x.SourceData?.ToObject<GameBananaModDependencyData>()?.Id).Where(x => x != null).JoinItems(",")}&" + 
+            $"_csvProperties=_idRow,_sName,_aFiles,_aModManagerIntegrations");
+
+        List<ModDownload> downloads = new();
+        foreach (GameBananaMod mod in mods)
+        {
+            // TODO-UPDATE: Check mod manager integration
+            List<GameBananaFile>? validFiles = mod.Files?.
+                Where(x => !x.IsArchived).
+                ToList();
+
+            if (validFiles == null || validFiles.Count == 0)
+            {
+                // TODO-UPDATE: Show error
+                continue;
+            }
+
+            GameBananaFile file;
+            if (validFiles.Count > 1)
+            {
+                // TODO-LOC
+                ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
+                        Select(x => x.Description.IsNullOrWhiteSpace()
+                            ? x.File
+                            : $"{x.File}{Environment.NewLine}{x.Description}").
+                        ToArray(),
+                    $"Select the file from GameBanana to use for the mod {mod.Name}")
+                {
+                    Title = Resources.ModLoader_GameBanana_SelectUpdateFileTitle
+                });
+
+                if (result.CanceledByUser)
+                    continue;
+
+                file = validFiles[result.SelectedIndex];
+            }
+            else
+            {
+                file = validFiles[0];
+            }
+
+            downloads.Add(new ModDownload(file.File, mod.Name, file.DownloadUrl, file.FileSize, new GameBananaInstallData(mod.Id, file.Id)));
+        }
+
+        return downloads.ToArray();
+    }
+
     public override async Task<ModUpdateCheckResult> CheckForUpdateAsync(HttpClient httpClient, ModInstallInfo modInstallInfo)
     {
         long gameBananaModId = modInstallInfo.GetRequiredInstallData<GameBananaInstallData>().ModId;
@@ -420,7 +485,7 @@ public class GameBananaModsSource : DownloadableModsSource
             file = validFiles[0];
         }
 
-        return new ModDownload(file.File, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id));
+        return new ModDownload(file.File, gameBananaMod.Name, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id));
     }
 
     public override async IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager)
