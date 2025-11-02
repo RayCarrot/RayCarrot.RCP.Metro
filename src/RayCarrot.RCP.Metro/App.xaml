@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
                 <ResourceDictionary Source="UI/Resources/Theme.RoundedCorners.xaml" />
 
+                <ResourceDictionary Source="UI/Styles/Hyperlink.xaml" />
                 <ResourceDictionary Source="UI/Styles/Separator.xaml" />
                 <ResourceDictionary Source="UI/Styles/ToolTip.xaml" />
                 <ResourceDictionary Source="UI/Styles/TextBox.xaml" />

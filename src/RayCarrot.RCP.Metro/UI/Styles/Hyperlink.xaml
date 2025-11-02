@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Replace highlight color with the accent one to make it more readable -->
+    <Style TargetType="{x:Type Hyperlink}" BasedOn="{StaticResource {x:Type Hyperlink}}">
+        <Style.Resources>
+            <SolidColorBrush x:Key="MahApps.Brushes.Highlight" 
+                             Color="{StaticResource MahApps.Colors.Accent}" />
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>
