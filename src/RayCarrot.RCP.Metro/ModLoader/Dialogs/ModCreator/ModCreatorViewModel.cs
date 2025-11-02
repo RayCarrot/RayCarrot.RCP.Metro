@@ -128,6 +128,27 @@ public class ModCreatorViewModel : BaseViewModel
                    // If you want your mod to modify files within archives then those have to be specified here. The id is the internal archive type id Rayman
                    // Control Panel uses. See the mod documentation for an up to date list on all available ids.
                    "archives": [{{archives}}
+                   ],
+               
+                   // Optionally you can list other mods as dependencies, making them automatically get installed together with this mod. This is useful if your
+                   // mod relies on other mods to work. Below is an example on how to define a dependency for the mod Loadless Origins, which has two versions,
+                   // either of which can be used. The sorting is optionally used to define if it has to be ordered after or before the main mod, and should
+                   // otherwise be kept at 0. Then the GameBanana mod ID has to be set in order for it to be automatically installed. You can get this ID from 
+                   // the mod page URL.
+                   // {
+                   //     "ids": [
+                   //         "RaymanOrigins.LoadlessOrigins.Steam",
+                   //         "RaymanOrigins.LoadlessOrigins.Uplay"
+                   //     ],
+                   //     "name": "Loadless Origins",
+                   //     "sort": 0,
+                   //     "source_id": "GameBanana",
+                   //     "source_data": {
+                   //         "mod_id": 618641
+                   //     }
+                   // },
+                   "dependencies": [
+                       
                    ]
                }
                """;
