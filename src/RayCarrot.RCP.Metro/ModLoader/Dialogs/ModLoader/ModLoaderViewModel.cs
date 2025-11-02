@@ -813,6 +813,13 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Info(ex, "Canceled extracting local mod");
         }
+        catch (UnsupportedModFormatException ex)
+        {
+            Logger.Warn(ex, "Extracting local mod");
+
+            // TODO-LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format("The mod {0} could not be installed due to it being made for a later version of the Rayman Control Panel.", filePath.Name));
+        }
         catch (Exception ex)
         {
             Logger.Error(ex, "Extracting local mod");
