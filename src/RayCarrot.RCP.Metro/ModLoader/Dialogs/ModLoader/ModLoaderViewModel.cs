@@ -413,6 +413,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Logger.Info("Removing mod due to mod ID conflict");
                     conflictMod.Dispose();
                     Mods.Remove(conflictMod);
+                    Services.Messenger.Send(new RemovedModFromLibraryMessage(GameInstallation, conflictMod.DownloadableModsSource?.Id, conflictMod.InstallData));
                 }
 
                 Logger.Info("Added new mod to install with ID {0}", extractedMod.Metadata.Id);
@@ -742,6 +743,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     {
                         mod.Dispose();
                         Mods.Remove(mod);
+                        Services.Messenger.Send(new RemovedModFromLibraryMessage(GameInstallation, mod.DownloadableModsSource?.Id, mod.InstallData));
                     }
                 }
             }
@@ -925,6 +927,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     Mods.Remove(downloadingMod);
                 else
                     Mods[Mods.IndexOf(downloadingMod)] = existingMod;
+
+                Services.Messenger.Send(new RemovedModFromLibraryMessage(GameInstallation, source?.Id, installData));
             }
             // Restore the existing mod if the new mod has a different id
             else if (existingMod != null && pendingInstallModMetadata.Id != existingMod.DownloadedMod.Metadata.Id)

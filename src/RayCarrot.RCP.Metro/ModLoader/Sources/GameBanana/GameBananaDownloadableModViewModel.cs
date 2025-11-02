@@ -5,7 +5,7 @@ using RayCarrot.RCP.Metro.ModLoader.Metadata;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
-public class GameBananaDownloadableModViewModel : DownloadableModViewModel
+public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRecipient<RemovedModFromLibraryMessage>
 {
     #region Constructor
 
@@ -28,6 +28,8 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
         Images = [new WebImageViewModel(_webImageCache)];
 
         ShowArchivedFiles = false;
+
+        Services.Messenger.RegisterAll(this);
 
         // Create commands
         OpenInGameBananaCommand = new RelayCommand(OpenInGameBanana);
@@ -299,6 +301,35 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel
 
         LoadFullDetails(mod);
         UpdateCurrentImage();
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        Services.Messenger.UnregisterAll(this);
+    }
+
+    #endregion
+
+    #region Message Handlers
+
+    void IRecipient<RemovedModFromLibraryMessage>.Receive(RemovedModFromLibraryMessage message)
+    {
+        if (message.GameInstallation != _modLoaderViewModel.GameInstallation)
+            return;
+
+        if (Files == null)
+            return;
+
+        if (message is { SourceId: GameBananaModsSource.SourceId, InstallData: GameBananaInstallData gameBananaInstallData } &&
+            GameBananaId == gameBananaInstallData.ModId)
+        {
+            foreach (GameBananaFileViewModel file in Files)
+            {
+                if (file.DownloadableFile.Id == gameBananaInstallData.FileId)
+                    file.IsAddedToLibrary = false;
+            }
+        }
     }
 
     #endregion
