@@ -64,11 +64,9 @@ Open with (external) ->
 - Create a snackbar system for messages. Show for minor things too, like trying to open a window when already opened.
 - Update the UI for selecting the app language. Have each language show a flag, a percentage for the translation completion and credits to the translators.
 - Redesign the program selection dialog and improve scrolling
+- Redesign the Utilities page.
 
 ## 📦 Mod Loader
-- Allow mods to specify an optional min app version
-- Allow mods to add other mods as dependencies, specify them using mod ID and GameBanana mod ID
-- Ideally the `files` module should have been two modules; `added_files` and `removed_files`. We could change it, but maybe that would just cause more confusion at this point?
 - Allow modding disc based games with a virtual file-system, primarily for Rayman 1 on PS1
 - Add `costumes` module for Origins and Legends, allowing new costumes to be added, with the mod loader then merging them all together into the gameconfig to avoid file conflicts
 
