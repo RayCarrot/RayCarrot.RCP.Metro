@@ -13,6 +13,8 @@ using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
+// TODO-UPDATE:
+// - Warning when applying if sorting doesn't match
 public class ModLoaderViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
@@ -311,9 +313,100 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 // The mod is being added as a new mod
                 else
                 {
-                    // Dispose and replace the temp download mod
-                    tempDownloadMod.Dispose();
-                    Mods[Mods.IndexOf(tempDownloadMod)] = mod;
+                    // Check if the mod has a dependant which requires a custom sort
+                    ModDependencyInfo[]? dependantModDependencies = null;
+                    int dependantModIndex = -1;
+                    int sort = 0;
+                    for (int addedModIndex = 0; addedModIndex < Mods.Count; addedModIndex++)
+                    {
+                        ModViewModel addedMod = Mods[addedModIndex];
+                        if (addedMod.IsDownloaded &&
+                            addedMod.InstallState != ModViewModel.ModInstallState.PendingUninstall &&
+                            addedMod.DownloadedMod.Metadata.Dependencies != null)
+                        {
+                            foreach (ModDependencyInfo dependency in addedMod.DownloadedMod.Metadata.Dependencies)
+                            {
+                                if (dependency.Ids.Contains(id) && dependency.Sort != 0)
+                                {
+                                    dependantModDependencies = addedMod.DownloadedMod.Metadata.Dependencies;
+                                    dependantModIndex = addedModIndex;
+                                    sort = -dependency.Sort; // NOTE: Sort is reversed!
+                                    break;
+                                }
+                            }
+
+                            if (dependantModDependencies != null)
+                                break;
+                        }
+                    }
+
+                    // No dependant mod with custom sort
+                    if (dependantModDependencies == null)
+                    {
+                        // Dispose and replace the temp download mod
+                        tempDownloadMod.Dispose();
+                        Mods[Mods.IndexOf(tempDownloadMod)] = mod;
+                    }
+                    else
+                    {
+                        // Find where to insert the mod based on the dependency sort values
+                        int insertIndex;
+                        if (sort > 0)
+                        {
+                            insertIndex = dependantModIndex + 1;
+                            for (int addedModIndex = dependantModIndex + 1; addedModIndex < Mods.Count; addedModIndex++)
+                            {
+                                ModViewModel addedMod = Mods[addedModIndex];
+                                if (addedMod.IsDownloaded)
+                                {
+                                    string addedModId = addedMod.DownloadedMod.Metadata.Id;
+                                    ModDependencyInfo? dependency = dependantModDependencies.FirstOrDefault(x => x.Ids.Contains(addedModId));
+                                    if (dependency != null && dependency.Sort != 0)
+                                    {
+                                        if (sort > -dependency.Sort)
+                                        {
+                                            insertIndex = addedModIndex + 1;
+                                        }
+                                        else if (sort < -dependency.Sort)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            insertIndex = dependantModIndex;
+                            for (int addedModIndex = dependantModIndex - 1; addedModIndex >= 0; addedModIndex--)
+                            {
+                                ModViewModel addedMod = Mods[addedModIndex];
+                                if (addedMod.IsDownloaded)
+                                {
+                                    string addedModId = addedMod.DownloadedMod.Metadata.Id;
+                                    ModDependencyInfo? dependency = dependantModDependencies.FirstOrDefault(x => x.Ids.Contains(addedModId));
+                                    if (dependency != null && dependency.Sort != 0)
+                                    {
+                                        if (sort < -dependency.Sort)
+                                        {
+                                            insertIndex = addedModIndex;
+                                        }
+                                        else if (sort > -dependency.Sort)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Insert the mod
+                        Mods.Insert(insertIndex, mod);
+
+                        // Remove and dispose the temp download mod
+                        tempDownloadMod.Dispose();
+                        Mods.Remove(tempDownloadMod);
+                    }
                 }
 
                 // Remove any mods with the same id
