@@ -45,7 +45,7 @@ public class Mod
     public const string MetadataFileName = "metadata.jsonc";
     public const string ThumbnailFileName = "thumbnail.png";
 
-    public const int LatestFormatVersion = 0;
+    public const int LatestFormatVersion = 1;
 
     #endregion
 
@@ -85,6 +85,10 @@ public class Mod
         {
             throw new InvalidModException($"The mod metadata file is invalid. {ex.Message}", ex);
         }
+
+        // Remove features not supported below version 1
+        if (metadata.Format < 1)
+            metadata = metadata with { MinAppVersion = null, Dependencies = null };
 
         if (metadata.Format > LatestFormatVersion)
             throw new UnsupportedModVersionException($"Format version {metadata.Format} is higher than the latest supported version {LatestFormatVersion}");

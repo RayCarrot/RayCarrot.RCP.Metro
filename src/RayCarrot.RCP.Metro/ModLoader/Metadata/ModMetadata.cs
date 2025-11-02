@@ -20,7 +20,7 @@ public record ModMetadata(
     [property: JsonProperty("id", Required = Required.Always)] string Id,
     [property: JsonProperty("games", Required = Required.Always)] string[] Games,
     [property: JsonProperty("format", Required = Required.Always)] int Format,
-    [property: JsonProperty("min_app_version", ItemConverterType = typeof(VersionConverter))] Version? MinAppVersion,
+    [property: JsonProperty("min_app_version", ItemConverterType = typeof(VersionConverter))] Version? MinAppVersion, // Format 1
 
     [property: JsonProperty("name")] string? Name,
     [property: JsonProperty("description")] string? Description,
@@ -32,7 +32,7 @@ public record ModMetadata(
 
     [property: JsonProperty("archives")] ModArchiveInfo[]? Archives,
 
-    [property: JsonProperty("dependencies")] ModDependencyInfo[]? Dependencies)
+    [property: JsonProperty("dependencies")] ModDependencyInfo[]? Dependencies) // Format 1
 {
     public bool IsGameValid(GameDescriptor gameDescriptor)
     {
