@@ -226,6 +226,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         CancellationToken cancellationToken, 
         string? sourceId, 
         object? installData,
+        ModViewModel tempDownloadMod,
         ModViewModel? existingMod = null)
     {
         FileExtension fileExtension = filePath.FileExtension;
@@ -292,20 +293,27 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 };
                 mod.InitDownloaded(ModViewModel.ModInstallState.PendingInstall, extractedMod, modEntry);
 
-                // The mod is being added as a new mod
-                if (existingMod == null)
-                {
-                    // Add to the end of the list
-                    Mods.Add(mod);
-                }
                 // The mod is replacing an existing mod
+                if (existingMod != null && 
+                    existingMod.IsDownloaded && 
+                    existingMod.DownloadedMod.Metadata.Id == id && 
+                    Mods.IndexOf(existingMod) is var existingModIndex && 
+                    existingModIndex != -1)
+                {
+                    // Dispose and replace the existing mod
+                    existingMod.Dispose();
+                    Mods[existingModIndex] = mod;
+
+                    // Dispose and remove the temp download mod
+                    tempDownloadMod.Dispose();
+                    Mods.Remove(tempDownloadMod);
+                }
+                // The mod is being added as a new mod
                 else
                 {
-                    // Dispose the existing mod
-                    existingMod.Dispose();
-
-                    // Replace the existing mod
-                    Mods[Mods.IndexOf(existingMod)] = mod;
+                    // Dispose and replace the temp download mod
+                    tempDownloadMod.Dispose();
+                    Mods[Mods.IndexOf(tempDownloadMod)] = mod;
                 }
 
                 // Remove any mods with the same id
@@ -705,7 +713,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 cancellationToken: cancellationToken,
                 sourceId: source?.Id,
                 installData: installData,
-                existingMod: extractingMod);
+                tempDownloadMod: extractingMod);
 
             if (pendingInstallModMetadata != null)
                 ReportNewChanges();
@@ -757,10 +765,6 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             // The mod is replacing an existing mod
             else
             {
-                // Copy over if enabled
-                downloadingMod.IsEnabled = existingMod.IsEnabled;
-
-                // Replace the existing mod
                 Mods[Mods.IndexOf(existingMod)] = downloadingMod;
             }
         }
@@ -795,7 +799,8 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 cancellationToken: cancellationToken, 
                 sourceId: source?.Id, 
                 installData: installData,
-                existingMod: downloadingMod);
+                tempDownloadMod: downloadingMod,
+                existingMod: existingMod);
 
             if (pendingInstallModMetadata != null)
                 ReportNewChanges();
