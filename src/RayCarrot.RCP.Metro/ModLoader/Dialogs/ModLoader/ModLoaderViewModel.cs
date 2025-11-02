@@ -830,7 +830,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 // Mark the mod as being uninstalled. Ideally the new downloaded mod should replace this,
                 // but if it happens to have a separate id we want to remove this old mod.
-                existingMod.UninstallMod();
+                existingMod.SetToPendingUninstall();
             }
             // Dispose the existing mod since it's now removed
             else
@@ -867,6 +867,32 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_ActiveDownloadsError, Resources.ModLoader_ActiveDownloadsErrorHeader, MessageType.Warning);
             return null;
+        }
+
+        // Warn about missing dependencies
+        foreach (ModViewModel mod in mods)
+        {
+            if (mod.IsDownloaded &&
+                mod.InstallState != ModViewModel.ModInstallState.PendingUninstall &&
+                mod.IsEnabled &&
+                mod.DownloadedMod.Metadata.Dependencies != null)
+            {
+                List<string> missingMods = new();
+                foreach (DownloadedModViewModel.ModDependencyViewModel? dependency in mod.DownloadedMod.Dependencies)
+                {
+                    if (dependency.State != DownloadedModViewModel.ModDependencyViewModel.DependencyState.Enabled)
+                        missingMods.Add(dependency.Name);
+                }
+
+                if (missingMods.Any())
+                {
+                    // TODO-LOC
+                    bool result = await Services.MessageUI.DisplayMessageAsync($"The following mods requires by {mod.Name} are either not installed or enabled:\n\n{missingMods.Select(x => $"- {x}").JoinItems(Environment.NewLine)}\n\nApplying the mod without these might cause it to not function correctly. Are you sure you want to continue?", MessageType.Warning, true);
+
+                    if (!result)
+                        return null;
+                }
+            }
         }
 
         // Warn about file conflicts

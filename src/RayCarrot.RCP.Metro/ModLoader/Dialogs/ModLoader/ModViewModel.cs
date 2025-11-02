@@ -25,7 +25,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         ReportNewChangeCommand = new RelayCommand(ReportNewChange);
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         ExtractContentsCommand = new AsyncRelayCommand(ExtractModContentsAsync);
-        UninstallCommand = new RelayCommand(UninstallMod);
+        UninstallCommand = new AsyncRelayCommand(UninstallModAsync);
         UpdateModCommand = new AsyncRelayCommand(UpdateModAsync);
     }
 
@@ -262,7 +262,23 @@ public class ModViewModel : BaseViewModel, IDisposable
         }
     }
 
-    public void UninstallMod()
+    public async Task UninstallModAsync()
+    {
+        if (!IsDownloaded)
+            return;
+
+        // Have user confirm if the mod has dependants
+        if (DownloadedMod.HasDependents)
+        {
+            // TODO-LOC
+            if (!await Services.MessageUI.DisplayMessageAsync("You have at least one other mod which requires this mod to be installed in order to work. Uninstalling it might cause other mods to stop working as intended. Are you sure you want to continue?", MessageType.Warning, true))
+                return;
+        }
+
+        SetToPendingUninstall();
+    }
+
+    public void SetToPendingUninstall()
     {
         if (!IsDownloaded)
             return;

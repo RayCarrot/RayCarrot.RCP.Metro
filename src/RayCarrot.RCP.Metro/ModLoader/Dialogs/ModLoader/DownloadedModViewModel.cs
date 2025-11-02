@@ -71,6 +71,7 @@ public class DownloadedModViewModel : BaseViewModel
     public ObservableCollection<DuoGridItemViewModel> ModInfo { get; }
     public ObservableCollection<ModChangelogEntry> ChangelogEntries { get; }
     public ObservableCollection<ModDependencyViewModel> Dependencies { get; }
+    public bool HasDependents { get; set; }
 
     public LocalizedString? UnsupportedModulesErrorMessage { get; }
 
@@ -126,11 +127,17 @@ public class DownloadedModViewModel : BaseViewModel
         {
             ModViewModel? matchingMod = mods.FirstOrDefault(x => 
                 x.IsDownloaded && 
+                x.DownloadedMod != this &&
                 x.InstallState != ModViewModel.ModInstallState.PendingUninstall && 
                 dependency.ModDependency.Ids.Contains(x.DownloadedMod.Metadata.Id));
 
             dependency.UpdateState(matchingMod);
         }
+
+        HasDependents = mods.Any(x => x.IsDownloaded &&
+                                      x.DownloadedMod != this &&
+                                      x.InstallState != ModViewModel.ModInstallState.PendingUninstall &&
+                                      x.DownloadedMod.Metadata.Dependencies?.Any(d => d.Ids.Contains(Metadata.Id)) == true);
     }
 
     public async Task OpenWebsiteAsync()
