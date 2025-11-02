@@ -100,6 +100,9 @@ public class ModCreatorViewModel : BaseViewModel
                    // New features may require a higher format version, but then that mod won't work on older versions of the Rayman Control Panel.
                    "format": {{formatVersion}},
                
+                   // Optionally set a minimum version of the Rayman Control Panel which the mod requires to install.
+                   "min_app_version": "14.3.0",
+               
                    // This is the mod name. Keep it short, but also clear what the mod does.
                    "name": "",
                

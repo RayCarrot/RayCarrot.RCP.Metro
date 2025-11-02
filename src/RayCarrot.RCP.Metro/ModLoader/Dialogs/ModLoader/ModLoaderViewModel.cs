@@ -152,7 +152,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                     // Read the mod
                     mod = Library.ReadInstalledMod(modEntry.Id, GameInstallation);
                 }
-                catch (UnsupportedModFormatException ex)
+                catch (UnsupportedModVersionException ex)
                 {
                     Logger.Warn(ex, "Reading installed mod");
 
@@ -813,7 +813,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Info(ex, "Canceled extracting local mod");
         }
-        catch (UnsupportedModFormatException ex)
+        catch (UnsupportedModVersionException ex)
         {
             Logger.Warn(ex, "Extracting local mod");
 

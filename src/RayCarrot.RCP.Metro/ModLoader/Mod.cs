@@ -87,7 +87,10 @@ public class Mod
         }
 
         if (metadata.Format > LatestFormatVersion)
-            throw new UnsupportedModFormatException($"Format version {metadata.Format} is higher than the latest supported version {LatestFormatVersion}");
+            throw new UnsupportedModVersionException($"Format version {metadata.Format} is higher than the latest supported version {LatestFormatVersion}");
+
+        if (metadata.MinAppVersion > AppViewModel.AppVersion)
+            throw new UnsupportedModVersionException($"Minimum app version {metadata.MinAppVersion} is higher than the current version {AppViewModel.AppVersion}");
 
         return metadata;
     }

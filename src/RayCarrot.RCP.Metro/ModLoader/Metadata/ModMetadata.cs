@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Metadata;
 
@@ -19,6 +20,7 @@ public record ModMetadata(
     [property: JsonProperty("id", Required = Required.Always)] string Id,
     [property: JsonProperty("games", Required = Required.Always)] string[] Games,
     [property: JsonProperty("format", Required = Required.Always)] int Format,
+    [property: JsonProperty("min_app_version", ItemConverterType = typeof(VersionConverter))] Version? MinAppVersion,
 
     [property: JsonProperty("name")] string? Name,
     [property: JsonProperty("description")] string? Description,

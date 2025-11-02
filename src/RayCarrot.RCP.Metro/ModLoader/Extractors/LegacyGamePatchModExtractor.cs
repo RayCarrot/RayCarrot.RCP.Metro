@@ -35,7 +35,8 @@ public class LegacyGamePatchModExtractor : ModExtractor
         ModMetadata modMetadata = new(
             Id: patch.Metadata.ID,
             Games: patch.Metadata.GameIds,
-            Format: Mod.LatestFormatVersion,
+            Format: 0,
+            MinAppVersion: null,
             Name: patch.Metadata.Name,
             Description: patch.Metadata.Description,
             Author: patch.Metadata.Author,
