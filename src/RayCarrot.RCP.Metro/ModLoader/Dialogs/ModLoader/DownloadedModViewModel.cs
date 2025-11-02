@@ -38,7 +38,7 @@ public class DownloadedModViewModel : BaseViewModel
 
         ChangelogEntries = new ObservableCollection<ModChangelogEntry>(Metadata.Changelog ?? Array.Empty<ModChangelogEntry>());
 
-        Dependencies = new ObservableCollection<ModDependencyViewModel>(Metadata.Dependencies?.Select(x => new ModDependencyViewModel(x, gameInstallation)) ?? []);
+        Dependencies = new ObservableCollection<ModDependencyViewModel>(Metadata.Dependencies?.OrderByDescending(x => x.Sort).Select(x => new ModDependencyViewModel(Metadata, x, gameInstallation)) ?? []);
 
         CanOpenInDownloadPage = downloadableModsSource != null;
 
@@ -131,7 +131,7 @@ public class DownloadedModViewModel : BaseViewModel
                 x.InstallState != ModViewModel.ModInstallState.PendingUninstall && 
                 dependency.ModDependency.Ids.Contains(x.DownloadedMod.Metadata.Id));
 
-            dependency.UpdateState(matchingMod);
+            dependency.UpdateState(mods, matchingMod);
         }
 
         HasDependents = mods.Any(x => x.IsDownloaded &&
@@ -165,8 +165,9 @@ public class DownloadedModViewModel : BaseViewModel
 
     public class ModDependencyViewModel : BaseViewModel
     {
-        public ModDependencyViewModel(ModDependencyInfo modDependency, GameInstallation gameInstallation)
+        public ModDependencyViewModel(ModMetadata dependantMetadata, ModDependencyInfo modDependency, GameInstallation gameInstallation)
         {
+            DependantMetadata = dependantMetadata;
             ModDependency = modDependency;
             GameInstallation = gameInstallation;
             Name = modDependency.Name;
@@ -178,11 +179,12 @@ public class DownloadedModViewModel : BaseViewModel
         public ICommand OpenModCommand { get; }
 
         public GameInstallation GameInstallation { get; }
+        public ModMetadata DependantMetadata { get; }
         public ModDependencyInfo ModDependency { get; }
         public string Name { get; set; }
         public DependencyState State { get; set; }
 
-        public void UpdateState(ModViewModel? mod)
+        public void UpdateState(IList<ModViewModel> mods, ModViewModel? mod)
         {
             if (mod is not { IsDownloaded: true })
             {
@@ -192,7 +194,73 @@ public class DownloadedModViewModel : BaseViewModel
             else
             {
                 Name = mod.Name ?? ModDependency.Name;
-                State = mod.IsEnabled ? DependencyState.Enabled : DependencyState.Disabled;
+
+                // Check if enabled
+                if (!mod.IsEnabled)
+                {
+                    State = DependencyState.Disabled;
+                }
+                // Check sorting
+                else if (ModDependency.Sort != 0 && DependantMetadata.Dependencies != null)
+                {
+                    int dependantModIndex = mods.FindItemIndex(x => x.IsDownloaded && x.DownloadedMod.Metadata.Id == DependantMetadata.Id);
+                    if (dependantModIndex == -1)
+                        throw new Exception("Couldn't find the dependant mod");
+
+                    int modIndex = mods.IndexOf(mod);
+                    if (modIndex == -1)
+                        throw new Exception("Couldn't find the mod index");
+
+                    // Check against dependant mod
+                    if (-ModDependency.Sort > 0 && modIndex < dependantModIndex)
+                    {
+                        State = DependencyState.SortedTooHigh;
+                        return;
+                    }
+                    else if (-ModDependency.Sort < 0 && modIndex > dependantModIndex)
+                    {
+                        State = DependencyState.SortedTooLow;
+                        return;
+                    }
+
+                    // Check against other dependencies
+                    foreach (ModDependencyInfo dependency in DependantMetadata.Dependencies)
+                    {
+                        if (dependency != ModDependency && dependency.Sort != 0)
+                        {
+                            int dependencyModIndex = mods.FindItemIndex(x =>
+                                x.IsDownloaded &&
+                                x.InstallState != ModViewModel.ModInstallState.PendingUninstall &&
+                                dependency.Ids.Contains(x.DownloadedMod.Metadata.Id));
+
+                            if (dependencyModIndex != -1)
+                            {
+                                if (-dependency.Sort > -ModDependency.Sort)
+                                {
+                                    if (dependencyModIndex < modIndex)
+                                    {
+                                        State = DependencyState.SortedTooLow;
+                                        return;
+                                    }
+                                }
+                                else if (-dependency.Sort < -ModDependency.Sort)
+                                {
+                                    if (dependencyModIndex > modIndex)
+                                    {
+                                        State = DependencyState.SortedTooHigh;
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    State = DependencyState.Enabled;
+                }
+                else
+                {
+                    State = DependencyState.Enabled;
+                }
             }
         }
 
@@ -209,6 +277,8 @@ public class DownloadedModViewModel : BaseViewModel
         {
             Enabled,
             Disabled,
+            SortedTooHigh,
+            SortedTooLow,
             NotDownloaded,
         }
     }

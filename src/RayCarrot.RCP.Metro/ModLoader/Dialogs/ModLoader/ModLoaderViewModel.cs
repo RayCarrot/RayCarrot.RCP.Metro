@@ -13,8 +13,6 @@ using RayCarrot.RCP.Metro.ModLoader.Sources;
 
 namespace RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 
-// TODO-UPDATE:
-// - Warning when applying if sorting doesn't match
 public class ModLoaderViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
@@ -985,7 +983,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 if (missingMods.Any())
                 {
                     // TODO-LOC
-                    bool result = await Services.MessageUI.DisplayMessageAsync($"The following mods requires by {mod.Name} are either not installed or enabled:\n\n{missingMods.Select(x => $"- {x}").JoinItems(Environment.NewLine)}\n\nApplying the mod without these might cause it to not function correctly. Are you sure you want to continue?", MessageType.Warning, true);
+                    bool result = await Services.MessageUI.DisplayMessageAsync($"The following mods, required by {mod.Name}, are either not installed, enabled or ordered wrong:\n\n{missingMods.Select(x => $"- {x}").JoinItems(Environment.NewLine)}\n\nApplying the mod without these might cause it to not function correctly. Are you sure you want to continue?", MessageType.Warning, true);
 
                     if (!result)
                         return null;

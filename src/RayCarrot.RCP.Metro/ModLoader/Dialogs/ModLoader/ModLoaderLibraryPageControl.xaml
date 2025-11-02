@@ -212,6 +212,30 @@
                                                                         <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.WarningState}" />
                                                                     </DataTrigger>
                                                                     <DataTrigger Binding="{Binding Path=State}" 
+                                                                                 Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.SortedTooHigh}">
+                                                                        <Setter Property="ToolTip">
+                                                                            <Setter.Value>
+                                                                                <!-- TODO-LOC -->
+                                                                                <TextBlock Text="Ordered too high"
+                                                                                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                        <Setter Property="Kind" Value="ArrowDownCircle" />
+                                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.WarningState}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Path=State}" 
+                                                                                 Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.SortedTooLow}">
+                                                                        <Setter Property="ToolTip">
+                                                                            <Setter.Value>
+                                                                                <!-- TODO-LOC -->
+                                                                                <TextBlock Text="Ordered too low"
+                                                                                           ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                        <Setter Property="Kind" Value="ArrowUpCircle" />
+                                                                        <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.WarningState}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Path=State}" 
                                                                                  Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.NotDownloaded}">
                                                                         <Setter Property="ToolTip">
                                                                             <Setter.Value>
