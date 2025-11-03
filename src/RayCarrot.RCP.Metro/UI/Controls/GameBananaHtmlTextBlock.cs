@@ -223,13 +223,13 @@ public class GameBananaHtmlTextBlock : TextBlock
                         // Ordered list
                         if (HasParentWithElementName(childNode, "ol"))
                         {
-                            Inlines.Add($"    {_currentOrderedListIndex + 1}. ");
+                            Inlines.Add($"{_currentOrderedListIndex + 1}. ");
                             _currentOrderedListIndex++;
                         }
                         // Unordered list
                         else if (HasParentWithElementName(childNode, "ul"))
                         {
-                            Inlines.Add("    • ");
+                            Inlines.Add("• ");
                         }
                         break;
 
