@@ -870,6 +870,62 @@ public class AppDataManager
                 }
             }
         }
+
+        if (lastVersion < new Version(14, 3, 0, 2))
+        {
+            // Due to a bug in the Win32 shortcut finder, some games might have been added with the correct
+            // directory, but wrong file. This doesn't really matter since the file isn't really used for
+            // games with a directory structure, but it might cause issues in the future and should be fixed.
+            foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+            {
+                if (gameInstallation.GameDescriptor.Structure is DirectoryProgramInstallationStructure &&
+                    gameInstallation.InstallLocation.HasFile)
+                {
+                    // Get the data from the game
+                    GameDescriptor gameDescriptor = gameInstallation.GameDescriptor;
+                    InstallLocation installLocation = gameInstallation.InstallLocation;
+                    IReadOnlyDictionary<string, object?> rawData = gameInstallation.GetRawData();
+
+                    // Remove the game
+                    await GamesManager.RemoveGameAsync(gameInstallation);
+
+                    // Add again, but without the filename, and copy over the data
+                    await GamesManager.AddGameAsync(
+                        gameDescriptor: gameDescriptor,
+                        installLocation: new InstallLocation(installLocation.Directory),
+                        configureInstallation: new ConfigureGameInstallation(x => x.SetRawData(rawData)));
+                }
+            }
+
+            // The same issue might have happened to game clients
+            foreach (GameClientInstallation gameClientInstallation in GameClientsManager.GetInstalledGameClients())
+            {
+                if (!gameClientInstallation.GameClientDescriptor.InstallationRequiresFile &&
+                    gameClientInstallation.InstallLocation.HasFile)
+                {
+                    // Get the data from the client
+                    GameClientDescriptor gameClientDescriptor = gameClientInstallation.GameClientDescriptor;
+                    InstallLocation installLocation = gameClientInstallation.InstallLocation;
+                    IReadOnlyDictionary<string, object?> rawData = gameClientInstallation.GetRawData();
+
+                    // Remove the client
+                    await GameClientsManager.RemoveGameClientAsync(gameClientInstallation);
+
+                    // Add again, but without the filename, and copy over the data
+                    await GameClientsManager.AddGameClientAsync(
+                        descriptor: gameClientDescriptor,
+                        installLocation: new InstallLocation(installLocation.Directory),
+                        configureInstallation: new ConfigureGameClientInstallation(x => x.SetRawData(rawData)));
+                }
+                // If the file is required then we can't just remove the filename. So instead we remove the
+                // client and have the user re-add it.
+                else if (gameClientInstallation.GameClientDescriptor.InstallationRequiresFile)
+                {
+                    // Remove the client
+                    await GameClientsManager.RemoveGameClientAsync(gameClientInstallation);
+                }
+            }
+        }
     }
 
     #endregion

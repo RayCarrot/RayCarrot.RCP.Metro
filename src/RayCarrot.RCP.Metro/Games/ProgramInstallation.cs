@@ -202,6 +202,21 @@ public abstract class ProgramInstallation
         OnDataChanged(key);
     }
 
+    public IReadOnlyDictionary<string, object?> GetRawData()
+    {
+        lock (_data)
+            return new ReadOnlyDictionary<string, object?>(_data);
+    }
+
+    public void SetRawData(IReadOnlyDictionary<string, object?> rawData)
+    {
+        lock (_data)
+        {
+            foreach (KeyValuePair<string, object?> keyValuePair in rawData)
+                _data[keyValuePair.Key] = keyValuePair.Value;
+        }
+    }
+
     public void AddDataChangedCallback(string key, Action callback)
     {
         _dataChangedCallbacks.Add(new DataChangedCallback(key, callback));
