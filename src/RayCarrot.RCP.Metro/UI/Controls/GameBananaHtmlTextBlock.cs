@@ -43,8 +43,9 @@ public class GameBananaHtmlTextBlock : TextBlock
         {
             Command = new AsyncRelayCommand(async () =>
             {
-                // TODO-LOC
-                if (await Services.MessageUI.DisplayMessageAsync($"You are about to open \"{uri}\".\nOnly continue if you trust the website.", "External link warning", MessageType.Question, true))
+                if (await Services.MessageUI.DisplayMessageAsync(
+                        String.Format(Metro.Resources.ExternalLinkWarning, uri), 
+                        Metro.Resources.ExternalLinkWarningHeader, MessageType.Question, true))
                     Services.App.OpenUrl(uri.AbsoluteUri);
             }),
             ToolTip = uri,

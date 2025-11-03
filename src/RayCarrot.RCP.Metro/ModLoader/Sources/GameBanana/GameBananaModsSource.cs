@@ -377,15 +377,14 @@ public class GameBananaModsSource : DownloadableModsSource
 
                 if (validFiles.Count > 1)
                 {
-                    // TODO-LOC
                     ItemSelectionDialogResult result = await Services.UI.SelectItemAsync(new ItemSelectionDialogViewModel(validFiles.
                             Select(x => x.Description.IsNullOrWhiteSpace()
                                 ? x.File
                                 : $"{x.File}{Environment.NewLine}{x.Description}").
                             ToArray(),
-                        $"Select the file from GameBanana to use for the mod {mod.Name}")
+                        String.Format(Resources.ModLoader_GameBanana_SelectDependencyFileHeader, mod.Name))
                     {
-                        Title = Resources.ModLoader_GameBanana_SelectUpdateFileTitle
+                        Title = Resources.ModLoader_GameBanana_SelectDependencyFileTitle
                     });
 
                     if (result.CanceledByUser)

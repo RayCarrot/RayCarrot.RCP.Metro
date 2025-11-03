@@ -16,116 +16,115 @@ public class R1GbcPasswordGeneratorUtilityViewModel : UtilityViewModel
         // Set levels
         Levels = new LevelViewModel[]
         {
-            // TODO-LOC
-            new("Spellbound Forest 2", 10, 1, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_1)), 10, 1, new CageViewModel[]
             {
-                new("Cage 1", 14, 6),
-                new("Cage 2", 51, 7),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 14, 6),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 51, 7),
             }),
-            new("Spellbound Forest 3", 11, 2, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_2)), 11, 2, new CageViewModel[]
             {
-                new("Cage 1", 36, 8),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 36, 8),
             }),
-            new("Spellbound Forest 4", 12, 3, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_3)), 12, 3, new CageViewModel[]
             {
-                new("Cage 1", 40, 9),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 40, 9),
             }),
-            new("Airy Tunes 1", 27, 4, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_4)), 27, 4, new CageViewModel[]
             {
-                new("Cage 1", 36, 30),
-                new("Cage 2", 62, 31),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 36, 30),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 62, 31),
             }),
-            new("Airy Tunes 2", 28, 5, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_5)), 28, 5, new CageViewModel[]
             {
-                new("Cage 1", 7, 32),
-                new("Cage 2", 41, 33),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 7, 32),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 41, 33),
             }),
-            new("Airy Tunes 3", 29, 6, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_6)), 29, 6, new CageViewModel[]
             {
-                new("Cage 1", 40, 34),
-                new("Cage 2", 69, 35),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 40, 34),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 69, 35),
             }),
-            new("Airy Tunes 4", 30, 7, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_7)), 30, 7, new CageViewModel[]
             {
-                new("Cage 1", 23, 36),
-                new("Cage 2", 53, 37),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 23, 36),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 53, 37),
             }),
-            new("Rainy Forest 1", 13, 8, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_8)), 13, 8, new CageViewModel[]
             {
-                new("Cage 1", 57, 10),
-                new("Cage 2", 58, 11),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 57, 10),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 58, 11),
             }),
-            new("Rainy Forest 2", 14, 9, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_9)), 14, 9, new CageViewModel[]
             {
-                new("Cage 1", 54, 12),
-                new("Cage 2", 55, 13),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 54, 12),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 55, 13),
             }),
-            new("Rainy Forest 3", 15, 10, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_10)), 15, 10, new CageViewModel[]
             {
-                new("Cage 1", 34, 14),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 34, 14),
             }),
-            new("Rocky Peaks 1", 26, 11, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_11)), 26, 11, new CageViewModel[]
             {
-                new("Cage 1", 18, 29),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 18, 29),
             }),
-            new("Rocky Peaks 2", 23, 12, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_12)), 23, 12, new CageViewModel[]
             {
-                new("Cage 1", 65, 24),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 65, 24),
             }),
-            new("Rocky Peaks 3", 24, 13, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_13)), 24, 13, new CageViewModel[]
             {
-                new("Cage 1", 51, 25),
-                new("Cage 2", 61, 26),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 51, 25),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 61, 26),
             }),
-            new("Rocky Peaks 4", 25, 14, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_14)), 25, 14, new CageViewModel[]
             {
-                new("Cage 1", 23, 27),
-                new("Cage 2", 65, 28),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 23, 27),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 65, 28),
             }),
-            new("Ancient Forest 1", 16, 15, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_15)), 16, 15, new CageViewModel[]
             {
-                new("Cage 1", 58, 15),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 58, 15),
             }),
-            new("Ancient Forest 2", 17, 16, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_16)), 17, 16, new CageViewModel[]
             {
-                new("Cage 1", 21, 16),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 21, 16),
             }),
-            new("Ancient Forest 3", 18, 17, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_17)), 18, 17, new CageViewModel[]
             {
-                new("Cage 1", 3, 17),
-                new("Cage 2", 59, 18),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 3, 17),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 59, 18),
             }),
-            new("Fiery Depths 1", 1, 18, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_18)), 1, 18, new CageViewModel[]
             {
-                new("Cage 1", 55, 2),
-                new("Cage 2", 70, 3),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 55, 2),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 70, 3),
             }),
-            new("Fiery Depths 2", 0, 19, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_19)), 0, 19, new CageViewModel[]
             {
-                new("Cage 1", 83, 0),
-                new("Cage 2", 84, 1),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 83, 0),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 84, 1),
             }),
-            new("Fiery Depths 3", 2, 20, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_20)), 2, 20, new CageViewModel[]
             {
-                new("Cage 1", 10, 4),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 10, 4),
             }),
-            new("Fiery Depths 4", 3, 21, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_21)), 3, 21, new CageViewModel[]
             {
-                new("Cage 1", 72, 5),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 72, 5),
             }),
-            new("Arcane Forest 1", 19, 22, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_22)), 19, 22, new CageViewModel[]
             {
-                new("Cage 1", 17, 19),
-                new("Cage 2", 68, 20),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 17, 19),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 68, 20),
             }),
-            new("Arcane Forest 2", 20, 23, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_23)), 20, 23, new CageViewModel[]
             {
-                new("Cage 1", 43, 21),
-                new("Cage 2", 64, 22),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 43, 21),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage2)), 64, 22),
             }),
-            new("Arcane Forest 4", 22, 25, new CageViewModel[]
+            new(new ResourceLocString(nameof(Resources.R1GBC_LevelName_25)), 22, 25, new CageViewModel[]
             {
-                new("Cage 1", 34, 23),
+                new(new ResourceLocString(nameof(Resources.R1GBCPasswords_Cage1)), 34, 23),
             }),
         };
 
@@ -151,7 +150,7 @@ public class R1GbcPasswordGeneratorUtilityViewModel : UtilityViewModel
 
     #region Public Properties
 
-    public override LocalizedString DisplayHeader => "Rayman 1 GBC Password Generator"; // TODO-LOC
+    public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_R1GbcPasswordGenerator_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_R1PasswordGenerator;
 
     public LevelViewModel[] Levels { get; }

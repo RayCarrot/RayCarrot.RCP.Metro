@@ -4781,9 +4781,6 @@ Conflicten:
   <data name="ModLoader_SecurityWarning" xml:space="preserve">
     <value>De mod {0} wijzigt gevoelige bestanden, zoals uitvoerbare bestanden, in het spel. Installeer deze mod louter als je de auteur vertrouwt! Doorgaan?</value>
   </data>
-  <data name="ModLoader_InstallStatus" xml:space="preserve">
-    <value>Uitpakken mod {0}</value>
-  </data>
   <data name="ModLoader_InstallError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het installeren van de mod van {0}</value>
   </data>

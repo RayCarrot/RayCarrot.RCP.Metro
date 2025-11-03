@@ -439,10 +439,12 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                 Logger.Info("Detected {0} dependencies for mod with ID {1}", modDependencies.Count, extractedMod.Metadata.Id);
 
                 // Ask user to download the dependencies
-                // TODO-LOC
                 if (await Services.MessageUI.DisplayMessageAsync(
-                        $"The mod {extractedMod.Metadata.Name} requires the following mods to be installed. Do you want to download them?\n\n{modDependencies.Select(x => $"- {x.Name}").JoinItems(Environment.NewLine)}",
-                        "Mod dependencies detected", MessageType.Question, true))
+                        String.Format(
+                            Resources.ModLoader_DownloadDependencies,
+                            extractedMod.Metadata.Name,
+                            modDependencies.Select(x => $"- {x.Name}").JoinItems(Environment.NewLine)),
+                        Resources.ModLoader_DownloadDependenciesHeader, MessageType.Question, true))
                 {
                     List<Task> downloadTasks = new();
 
@@ -461,8 +463,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
                             catch (Exception ex)
                             {
                                 Logger.Error(ex, "Downloading mod dependencies for source {0}", deps.Key);
-                                // TODO-LOC
-                                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading the mod dependencies.");
+                                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ModLoader_DownloadDependenciesError);
                                 break;
                             }
 
@@ -587,10 +588,9 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
             // Make sure there is an installed game which can be patched
             if (!gameInstallations.Any())
             {
-                // TODO-LOC
                 string gameTargetNames = String.Join(Environment.NewLine, gameTargets.Select(x =>
                     Services.Games.TryGetGameDescriptor(x, out GameDescriptor? g) ? g.DisplayName.Value : x));
-                await Services.MessageUI.DisplayMessageAsync(String.Format("Can't open the mod due to none of the following targeted games having been added:\r\n\r\n{0}", gameTargetNames), MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.ModLoader_GameTargetNotAddedError, gameTargetNames), MessageType.Error);
                 return null;
             }
 
@@ -819,8 +819,7 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn(ex, "Extracting local mod");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format("The mod {0} could not be installed due to it being made for a later version of the Rayman Control Panel.", filePath.Name));
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ModLoader_UnsupportedModVersionError, filePath.Name));
         }
         catch (Exception ex)
         {
@@ -993,8 +992,10 @@ public class ModLoaderViewModel : BaseViewModel, IDisposable
 
                 if (missingMods.Any())
                 {
-                    // TODO-LOC
-                    bool result = await Services.MessageUI.DisplayMessageAsync($"The following mods, required by {mod.Name}, are either not installed, enabled or ordered wrong:\n\n{missingMods.Select(x => $"- {x}").JoinItems(Environment.NewLine)}\n\nApplying the mod without these might cause it to not function correctly. Are you sure you want to continue?", MessageType.Warning, true);
+                    bool result = await Services.MessageUI.DisplayMessageAsync(
+                        String.Format(
+                            Resources.ModLoader_MissingDependenciesWarning,
+                            mod.Name, missingMods.Select(x => $"- {x}").JoinItems(Environment.NewLine)), MessageType.Warning, true);
 
                     if (!result)
                         return null;

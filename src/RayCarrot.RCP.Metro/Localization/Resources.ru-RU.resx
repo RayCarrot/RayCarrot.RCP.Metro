@@ -4785,9 +4785,6 @@ Start: Пауза</value>
   <data name="ModLoader_SecurityWarning" xml:space="preserve">
     <value>Мод {0} изменяет конфиденциальные файлы, такие как исполняемые файлы игры. Устанавливайте этот мод только в том случае, если источник надёжный. Продолжить?</value>
   </data>
-  <data name="ModLoader_InstallStatus" xml:space="preserve">
-    <value>Извлечение мода {0}</value>
-  </data>
   <data name="ModLoader_InstallError" xml:space="preserve">
     <value>Произошла ошибка при установке мода из {0}</value>
   </data>

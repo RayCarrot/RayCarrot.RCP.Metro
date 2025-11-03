@@ -3451,6 +3451,25 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are about to open &quot;{0}&quot;.
+        ///Only continue if you trust the website..
+        /// </summary>
+        public static string ExternalLinkWarning {
+            get {
+                return ResourceManager.GetString("ExternalLinkWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External link warning.
+        /// </summary>
+        public static string ExternalLinkWarningHeader {
+            get {
+                return ResourceManager.GetString("ExternalLinkWarningHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when attempting to run {0}.
         /// </summary>
         public static string File_ErrorLaunchingFile {
@@ -8903,6 +8922,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dependencies.
+        /// </summary>
+        public static string ModLoader_DependenciesHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_DependenciesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string ModLoader_DependencyState_Disabled {
+            get {
+                return ResourceManager.GetString("ModLoader_DependencyState_Disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloaded and enabled.
+        /// </summary>
+        public static string ModLoader_DependencyState_Enabled {
+            get {
+                return ResourceManager.GetString("ModLoader_DependencyState_Enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not downloaded.
+        /// </summary>
+        public static string ModLoader_DependencyState_NotDownloaded {
+            get {
+                return ResourceManager.GetString("ModLoader_DependencyState_NotDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordered too high.
+        /// </summary>
+        public static string ModLoader_DependencyState_SortedTooHigh {
+            get {
+                return ResourceManager.GetString("ModLoader_DependencyState_SortedTooHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordered too low.
+        /// </summary>
+        public static string ModLoader_DependencyState_SortedTooLow {
+            get {
+                return ResourceManager.GetString("ModLoader_DependencyState_SortedTooLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mod Loader - {0}.
         /// </summary>
         public static string ModLoader_DialogTitle {
@@ -8917,6 +8990,35 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_DownloadableModsEmpty {
             get {
                 return ResourceManager.GetString("ModLoader_DownloadableModsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod {0} requires the following mods to be installed. Do you want to download them?
+        ///
+        ///{1}.
+        /// </summary>
+        public static string ModLoader_DownloadDependencies {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadDependencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when downloading the mod dependencies.
+        /// </summary>
+        public static string ModLoader_DownloadDependenciesError {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadDependenciesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod dependencies detected.
+        /// </summary>
+        public static string ModLoader_DownloadDependenciesHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_DownloadDependenciesHeader", resourceCulture);
             }
         }
         
@@ -9132,6 +9234,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the file from GameBanana to use for the mod {0}.
+        /// </summary>
+        public static string ModLoader_GameBanana_SelectDependencyFileHeader {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_SelectDependencyFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mod file.
+        /// </summary>
+        public static string ModLoader_GameBanana_SelectDependencyFileTitle {
+            get {
+                return ResourceManager.GetString("ModLoader_GameBanana_SelectDependencyFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select mod file from GameBanana to use when updating.
         /// </summary>
         public static string ModLoader_GameBanana_SelectUpdateFileHeader {
@@ -9227,6 +9347,17 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_GameRunningErrorHeader {
             get {
                 return ResourceManager.GetString("ModLoader_GameRunningErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t open the mod due to none of the following targeted games having been added:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string ModLoader_GameTargetNotAddedError {
+            get {
+                return ResourceManager.GetString("ModLoader_GameTargetNotAddedError", resourceCulture);
             }
         }
         
@@ -9332,15 +9463,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extracting mod {0}.
-        /// </summary>
-        public static string ModLoader_InstallStatus {
-            get {
-                return ResourceManager.GetString("ModLoader_InstallStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There is not enough space on the system to apply the mods. At least {0} of free space is required..
         /// </summary>
         public static string ModLoader_InsufficientSpaceError {
@@ -9400,6 +9522,19 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_MigratingPatchesStatus {
             get {
                 return ResourceManager.GetString("ModLoader_MigratingPatchesStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following mods, required by {0}, are either not installed, enabled or ordered wrong:
+        ///
+        ///{1}
+        ///
+        ///Applying the mod without these might cause it to not function correctly. Are you sure you want to continue?.
+        /// </summary>
+        public static string ModLoader_MissingDependenciesWarning {
+            get {
+                return ResourceManager.GetString("ModLoader_MissingDependenciesWarning", resourceCulture);
             }
         }
         
@@ -9737,6 +9872,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have at least one other mod which requires this mod to be installed in order to work. Uninstalling it might cause other mods to stop working as intended. Are you sure you want to continue?.
+        /// </summary>
+        public static string ModLoader_UninstallModWithDependantsWarning {
+            get {
+                return ResourceManager.GetString("ModLoader_UninstallModWithDependantsWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} unsaved mods.
         /// </summary>
         public static string ModLoader_UnsavedChangesInfo {
@@ -9760,6 +9904,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ModLoader_UnsupportedModulesInfo {
             get {
                 return ResourceManager.GetString("ModLoader_UnsupportedModulesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mod {0} could not be installed due to it being made for a later version of the Rayman Control Panel..
+        /// </summary>
+        public static string ModLoader_UnsupportedModVersionError {
+            get {
+                return ResourceManager.GetString("ModLoader_UnsupportedModVersionError", resourceCulture);
             }
         }
         
@@ -11706,6 +11859,348 @@ namespace RayCarrot.RCP.Metro {
         public static string R1_LevelName_9 {
             get {
                 return ResourceManager.GetString("R1_LevelName_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spellbound Forest 1.
+        /// </summary>
+        public static string R1GBC_LevelName_0 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spellbound Forest 2.
+        /// </summary>
+        public static string R1GBC_LevelName_1 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rainy Forest 3.
+        /// </summary>
+        public static string R1GBC_LevelName_10 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocky Peaks 1.
+        /// </summary>
+        public static string R1GBC_LevelName_11 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocky Peaks 2.
+        /// </summary>
+        public static string R1GBC_LevelName_12 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocky Peaks 3.
+        /// </summary>
+        public static string R1GBC_LevelName_13 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocky Peaks 4.
+        /// </summary>
+        public static string R1GBC_LevelName_14 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ancient Forest 1.
+        /// </summary>
+        public static string R1GBC_LevelName_15 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ancient Forest 2.
+        /// </summary>
+        public static string R1GBC_LevelName_16 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ancient Forest 3.
+        /// </summary>
+        public static string R1GBC_LevelName_17 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiery Depths 1.
+        /// </summary>
+        public static string R1GBC_LevelName_18 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiery Depths 2.
+        /// </summary>
+        public static string R1GBC_LevelName_19 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spellbound Forest 3.
+        /// </summary>
+        public static string R1GBC_LevelName_2 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiery Depths 3.
+        /// </summary>
+        public static string R1GBC_LevelName_20 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiery Depths 4.
+        /// </summary>
+        public static string R1GBC_LevelName_21 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arcane Forest 1.
+        /// </summary>
+        public static string R1GBC_LevelName_22 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arcane Forest 2.
+        /// </summary>
+        public static string R1GBC_LevelName_23 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arcane Forest 3.
+        /// </summary>
+        public static string R1GBC_LevelName_24 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arcane Forest 4.
+        /// </summary>
+        public static string R1GBC_LevelName_25 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arcane Forest 5.
+        /// </summary>
+        public static string R1GBC_LevelName_26 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Legacy 1.
+        /// </summary>
+        public static string R1GBC_LevelName_27 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Legacy 2.
+        /// </summary>
+        public static string R1GBC_LevelName_28 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Legacy 3.
+        /// </summary>
+        public static string R1GBC_LevelName_29 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spellbound Forest 4.
+        /// </summary>
+        public static string R1GBC_LevelName_3 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Legacy 4.
+        /// </summary>
+        public static string R1GBC_LevelName_30 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Attack.
+        /// </summary>
+        public static string R1GBC_LevelName_31 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused 1.
+        /// </summary>
+        public static string R1GBC_LevelName_32 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused 2.
+        /// </summary>
+        public static string R1GBC_LevelName_33 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Airy Tunes 1.
+        /// </summary>
+        public static string R1GBC_LevelName_4 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Airy Tunes 2.
+        /// </summary>
+        public static string R1GBC_LevelName_5 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Airy Tunes 3.
+        /// </summary>
+        public static string R1GBC_LevelName_6 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Airy Tunes 4.
+        /// </summary>
+        public static string R1GBC_LevelName_7 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rainy Forest 1.
+        /// </summary>
+        public static string R1GBC_LevelName_8 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rainy Forest 2.
+        /// </summary>
+        public static string R1GBC_LevelName_9 {
+            get {
+                return ResourceManager.GetString("R1GBC_LevelName_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cage 1.
+        /// </summary>
+        public static string R1GBCPasswords_Cage1 {
+            get {
+                return ResourceManager.GetString("R1GBCPasswords_Cage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cage 2.
+        /// </summary>
+        public static string R1GBCPasswords_Cage2 {
+            get {
+                return ResourceManager.GetString("R1GBCPasswords_Cage2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string R1GBCPasswords_Level {
+            get {
+                return ResourceManager.GetString("R1GBCPasswords_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlocked world map.
+        /// </summary>
+        public static string R1GBCPasswords_Worldmap {
+            get {
+                return ResourceManager.GetString("R1GBCPasswords_Worldmap", resourceCulture);
             }
         }
         
@@ -16327,6 +16822,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when removing the crash dumps.
+        /// </summary>
+        public static string SetupGameAction_RaymanOriginsCrashDumps_Error {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanOriginsCrashDumps_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove crash dumps.
+        /// </summary>
+        public static string SetupGameAction_RaymanOriginsCrashDumps_Header {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanOriginsCrashDumps_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any time the game crashes it creates a crash dump file. These are around 200 MB each and will thus use up unnecessary space. They can safely be removed to free up space on your computer..
+        /// </summary>
+        public static string SetupGameAction_RaymanOriginsCrashDumps_Info {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanOriginsCrashDumps_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} worth of crash dumps were successfully removed.
+        /// </summary>
+        public static string SetupGameAction_RaymanOriginsCrashDumps_Success {
+            get {
+                return ResourceManager.GetString("SetupGameAction_RaymanOriginsCrashDumps_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replace files.
         /// </summary>
         public static string SetupGameAction_ReplaceInfectedRaymanDesignerFiles_Fix {
@@ -17191,6 +17722,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_R1E_Homepage {
             get {
                 return ResourceManager.GetString("Utilities_R1E_Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 GBC Password Generator.
+        /// </summary>
+        public static string Utilities_R1GbcPasswordGenerator_Header {
+            get {
+                return ResourceManager.GetString("Utilities_R1GbcPasswordGenerator_Header", resourceCulture);
             }
         }
         

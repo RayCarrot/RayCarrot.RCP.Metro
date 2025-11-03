@@ -4784,9 +4784,6 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
   <data name="ModLoader_SecurityWarning" xml:space="preserve">
     <value>O mod {0} modifica arquivos sensíveis, como arquivos executáveis, no jogo. Instale este mod somente se confiar no autor. Continuar?</value>
   </data>
-  <data name="ModLoader_InstallStatus" xml:space="preserve">
-    <value>Extraindo mod {0}</value>
-  </data>
   <data name="ModLoader_InstallError" xml:space="preserve">
     <value>Ocorreu um erro ao instalar o mod de {0}</value>
   </data>

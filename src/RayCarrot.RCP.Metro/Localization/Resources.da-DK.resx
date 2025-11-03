@@ -4783,9 +4783,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="ModLoader_SecurityWarning" xml:space="preserve">
     <value>Moddet {0} modificerer følsomme spilfiler, som f.eks eksekverbare filer. Installér kun dette mod, hvis du har tillid til forfatteren. Fortsæt?</value>
   </data>
-  <data name="ModLoader_InstallStatus" xml:space="preserve">
-    <value>Udpakker mod {0}</value>
-  </data>
   <data name="ModLoader_InstallError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at installere moddet fra {0}</value>
   </data>

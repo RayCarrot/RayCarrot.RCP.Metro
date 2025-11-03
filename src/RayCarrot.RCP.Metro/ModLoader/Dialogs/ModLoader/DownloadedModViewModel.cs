@@ -144,8 +144,9 @@ public class DownloadedModViewModel : BaseViewModel
     {
         if (Metadata.Website != null)
         {
-            // TODO-LOC
-            if (await Services.MessageUI.DisplayMessageAsync($"You are about to open \"{Metadata.Website}\".\nOnly continue if you trust the website.", "External link warning", MessageType.Question, true))
+            if (await Services.MessageUI.DisplayMessageAsync(
+                    String.Format(Resources.ExternalLinkWarning, Metadata.Website), 
+                    Resources.ExternalLinkWarningHeader, MessageType.Question, true))
                 Services.App.OpenUrl(Metadata.Website);
         }
     }

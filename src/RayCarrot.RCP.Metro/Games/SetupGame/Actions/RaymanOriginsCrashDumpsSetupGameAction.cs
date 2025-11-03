@@ -8,9 +8,8 @@ public class RaymanOriginsCrashDumpsSetupGameAction : SetupGameAction
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    // TODO-LOC
-    public override LocalizedString Header => "Remove crash dumps";
-    public override LocalizedString Info => "Any time the game crashes it creates a crash dump file. These are around 200 MB each and will thus use up unnecessary space. They can safely be removed to free up space on your computer.";
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.SetupGameAction_RaymanOriginsCrashDumps_Header));
+    public override LocalizedString Info => new ResourceLocString(nameof(Resources.SetupGameAction_RaymanOriginsCrashDumps_Info));
 
     public override SetupGameActionType Type => SetupGameActionType.Issue;
 
@@ -51,8 +50,8 @@ public class RaymanOriginsCrashDumpsSetupGameAction : SetupGameAction
             // Delete the folder
             Services.File.DeleteDirectory(crashDumpFolder);
 
-            // TODO-LOC
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync($"{BinaryHelpers.BytesToString(size)} worth of crash dumps were successfully removed");
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(
+                String.Format(Resources.SetupGameAction_RaymanOriginsCrashDumps_Success, BinaryHelpers.BytesToString(size)));
 
             Services.Messenger.Send(new FixedSetupGameActionMessage(gameInstallation));
         }
@@ -60,8 +59,7 @@ public class RaymanOriginsCrashDumpsSetupGameAction : SetupGameAction
         {
             Logger.Error(ex, "Removing crash dumps");
 
-            // TODO-LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when removing the crash dumps");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.SetupGameAction_RaymanOriginsCrashDumps_Error);
         }
     }
 }

@@ -4786,9 +4786,6 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   <data name="ModLoader_SecurityWarning" xml:space="preserve">
     <value>Le mod {0} modifie des fichiers sensibles du jeu, tel que son exécutable. Installez ce mod uniquement si vous faites confiance à l'auteur. Continuer ?</value>
   </data>
-  <data name="ModLoader_InstallStatus" xml:space="preserve">
-    <value>Extraction du mod {0}</value>
-  </data>
   <data name="ModLoader_InstallError" xml:space="preserve">
     <value>Une erreur est survenue en installant le mod depuis {0}</value>
   </data>

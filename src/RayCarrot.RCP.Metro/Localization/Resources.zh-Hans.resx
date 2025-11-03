@@ -4803,9 +4803,6 @@ Back：穿墙模式
   <data name="ModLoader_SecurityWarning" xml:space="preserve">
     <value>此mod{0}会修改敏感文件，比如exe文件，在游戏里。只在你信任此作者时安装它。继续吗？</value>
   </data>
-  <data name="ModLoader_InstallStatus" xml:space="preserve">
-    <value>提取mod{0}</value>
-  </data>
   <data name="ModLoader_InstallError" xml:space="preserve">
     <value>在从{0}安装mod时出现错误</value>
   </data>

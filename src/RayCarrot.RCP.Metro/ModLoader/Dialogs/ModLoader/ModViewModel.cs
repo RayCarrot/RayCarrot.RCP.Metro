@@ -270,8 +270,7 @@ public class ModViewModel : BaseViewModel, IDisposable
         // Have user confirm if the mod has dependants
         if (DownloadedMod.HasDependents)
         {
-            // TODO-LOC
-            if (!await Services.MessageUI.DisplayMessageAsync("You have at least one other mod which requires this mod to be installed in order to work. Uninstalling it might cause other mods to stop working as intended. Are you sure you want to continue?", MessageType.Warning, true))
+            if (!await Services.MessageUI.DisplayMessageAsync(Resources.ModLoader_UninstallModWithDependantsWarning, MessageType.Warning, true))
                 return;
         }
 

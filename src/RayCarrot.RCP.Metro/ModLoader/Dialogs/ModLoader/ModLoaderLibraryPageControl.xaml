@@ -167,9 +167,8 @@
                                             Visibility="{Binding Path=Dependencies.Count, Mode=OneTime, Converter={rcp:IntToVisibilityConverter}}"
                                             Margin="0 0 0 8">
 
-                                    <!-- TODO-LOC -->
                                     <TextBlock Margin="0 0 0 4"
-                                               Text="Dependencies" 
+                                               Text="{Resx ModLoader_DependenciesHeader}" 
                                                Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}" />
 
                                     <ItemsControl ItemsSource="{Binding Path=Dependencies, Mode=OneTime}"
@@ -191,8 +190,7 @@
                                                                                  Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.Enabled}">
                                                                         <Setter Property="ToolTip">
                                                                             <Setter.Value>
-                                                                                <!-- TODO-LOC -->
-                                                                                <TextBlock Text="Downloaded and enabled"
+                                                                                <TextBlock Text="{Resx ModLoader_DependencyState_Enabled}"
                                                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                                             </Setter.Value>
                                                                         </Setter>
@@ -203,8 +201,7 @@
                                                                                  Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.Disabled}">
                                                                         <Setter Property="ToolTip">
                                                                             <Setter.Value>
-                                                                                <!-- TODO-LOC -->
-                                                                                <TextBlock Text="Disabled"
+                                                                                <TextBlock Text="{Resx ModLoader_DependencyState_Disabled}"
                                                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                                             </Setter.Value>
                                                                         </Setter>
@@ -215,8 +212,7 @@
                                                                                  Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.SortedTooHigh}">
                                                                         <Setter Property="ToolTip">
                                                                             <Setter.Value>
-                                                                                <!-- TODO-LOC -->
-                                                                                <TextBlock Text="Ordered too high"
+                                                                                <TextBlock Text="{Resx ModLoader_DependencyState_SortedTooHigh}"
                                                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                                             </Setter.Value>
                                                                         </Setter>
@@ -227,8 +223,7 @@
                                                                                  Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.SortedTooLow}">
                                                                         <Setter Property="ToolTip">
                                                                             <Setter.Value>
-                                                                                <!-- TODO-LOC -->
-                                                                                <TextBlock Text="Ordered too low"
+                                                                                <TextBlock Text="{Resx ModLoader_DependencyState_SortedTooLow}"
                                                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                                             </Setter.Value>
                                                                         </Setter>
@@ -239,8 +234,7 @@
                                                                                  Value="{x:Static modLoader:DownloadedModViewModel+ModDependencyViewModel+DependencyState.NotDownloaded}">
                                                                         <Setter Property="ToolTip">
                                                                             <Setter.Value>
-                                                                                <!-- TODO-LOC -->
-                                                                                <TextBlock Text="Not downloaded"
+                                                                                <TextBlock Text="{Resx ModLoader_DependencyState_NotDownloaded}"
                                                                                            ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"/>
                                                                             </Setter.Value>
                                                                         </Setter>
