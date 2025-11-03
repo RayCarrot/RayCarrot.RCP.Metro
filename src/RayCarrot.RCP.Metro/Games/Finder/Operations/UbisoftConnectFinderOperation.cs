@@ -40,7 +40,7 @@ public class UbisoftConnectFinderOperation : FinderOperation
                     continue;
 
                 // Validate the location
-                finderItem.Validate(query, new InstallLocation(location));
+                finderItem.Validate(query, location);
             }
         }
     }

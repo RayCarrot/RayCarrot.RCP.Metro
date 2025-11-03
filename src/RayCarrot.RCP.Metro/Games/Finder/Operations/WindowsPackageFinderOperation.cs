@@ -35,7 +35,7 @@ public class WindowsPackageFinderOperation : FinderOperation
                     continue;
 
                 // Validate the package location
-                finderItem.Validate(query, new InstallLocation(package.InstalledLocation.Path));
+                finderItem.Validate(query, package.InstalledLocation.Path);
             }
         }
     }

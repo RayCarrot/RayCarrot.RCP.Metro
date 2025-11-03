@@ -52,7 +52,7 @@ public class UbiIniFinderOperation : FinderOperation
                     continue;
 
                 // Validate the location
-                finderItem.Validate(query, new InstallLocation(dir));
+                finderItem.Validate(query, dir);
             }
         }
     }

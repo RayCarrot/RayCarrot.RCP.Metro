@@ -62,8 +62,8 @@ public abstract class FinderItem
     /// Validates a found location for the item
     /// </summary>
     /// <param name="query">The query from which the location was found</param>
-    /// <param name="location">The found location</param>
-    public void Validate(FinderQuery query, InstallLocation location)
+    /// <param name="directory">The found directory location</param>
+    public void Validate(FinderQuery query, FileSystemPath directory)
     {
         Logger.Info("A location was found for {0}", ItemId);
 
@@ -73,9 +73,10 @@ public abstract class FinderItem
             return;
         }
 
-        // Optionally add a file name to it
-        if (!location.HasFile && query.FileName != null)
-            location = new InstallLocation(location.Directory, query.FileName);
+        // Create the install location
+        InstallLocation location = query.FileName != null
+            ? new InstallLocation(directory, query.FileName)
+            : new InstallLocation(directory);
 
         // Make sure the location directory exists
         if (!location.Directory.DirectoryExists)

@@ -88,7 +88,7 @@ public class Win32ShortcutFinderOperation : FinderOperation
                     }
 
                     // Validate the location
-                    finderItem.Validate(query, InstallLocation.FromFilePath(targetFile));
+                    finderItem.Validate(query, targetFile.Parent);
                 }
             }
         }

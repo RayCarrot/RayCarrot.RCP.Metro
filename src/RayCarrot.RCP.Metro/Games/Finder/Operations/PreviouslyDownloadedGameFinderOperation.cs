@@ -30,7 +30,7 @@ public class PreviouslyDownloadedGameFinderOperation : FinderOperation
                 }
 
                 // Validate the location
-                finderItem.Validate(query, new InstallLocation(gameDir));
+                finderItem.Validate(query, gameDir);
             }
         }
     }
