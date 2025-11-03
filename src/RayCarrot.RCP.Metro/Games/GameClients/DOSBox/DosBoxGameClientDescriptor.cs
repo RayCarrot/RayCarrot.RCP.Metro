@@ -86,6 +86,7 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
             // Find DOSBox in Rayman Forever installation
             new UninstallProgramFinderQuery("Rayman Forever") { ValidateLocationFunc = validateRaymanForeverLocation },
             new Win32ShortcutFinderQuery("Rayman Forever") { ValidateLocationFunc = validateRaymanForeverLocation },
+            new UbisoftConnectFinderQuery("2968") { ValidateLocationFunc = validateRaymanForeverLocation },
 
             // Find standalone DOSBox installations
             new UninstallProgramFinderQuery("DOSBox") { FileName = fileName },
