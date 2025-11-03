@@ -3,7 +3,7 @@
     <img src="img/main_artwork.png" width="400">
 </p>
 
-Rayman Control Panel is an open source community project created by [RayCarrot](https://github.com/RayCarrot). The purpose of this program is to unify existing game patches and fixes, as well as allowing extended configuration, for all PC Rayman games. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
+Rayman Control Panel is an open source community project created by [RayCarrot](https://github.com/RayCarrot). It acts as a launcher for your Rayman games, and also aims to unify existing game patches and fixes, as well as allowing extended configurations. It also provides a modding environment for modifying game files and creating and downloading mods. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
 
 Check out the [wiki](https://github.com/RayCarrot/RayCarrot.RCP.Metro/wiki) for documentation on the project and its features.
 
@@ -20,7 +20,7 @@ Main features:
 - Game tools, such as allowing per-level soundtrack in Rayman 1 and restoring prototype features in Rayman Raving Rabbids
 - Save data viewing and editing, along with backup/restore options
 - Disc installers to install select games from discs
-- General utilities, such as the Archive Explorer to modify archive files for texture mods
+- Options to modify game files, such as editing the .ipk or .cnt archives
 
 ## Mod Loader
 ![Mods](img/example_modloader_r2.png)
@@ -34,7 +34,7 @@ For more information about creating and using mods, see the [documentation](http
 ## Archive Explorer
 ![Archive Explorer](img/example_archive_explorer.png)
 
-The Archive Explorer is a tool within the Rayman Control Panel which allows supported game archive files to be viewed and modified. This is mainly used to replace textures in games.
+The Archive Explorer is a tool within the Rayman Control Panel which allows supported game archive files to be viewed and modified. This is mainly used to replace textures in games, but can also be used for other file types such as sounds and more.
 
 Supported archive file types:
 - Rayman 1 `.dat` files
@@ -105,7 +105,7 @@ From version 4.1.0 the Rayman Control Panel supports localized strings. For more
 # Contact
 You can contact me on the following places:
 
-- [Twitter](https://twitter.com/RayCarrot)
+- [Bluesky](https://bsky.app/profile/raycarrot.bsky.social)
 - [Email](mailto:RayCarrotMaster@gmail.com)
 
 # License
