@@ -25,7 +25,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         IsFeatured = isFeatured;
 
         // Placeholder image
-        Images = [new WebImageViewModel(_webImageCache)];
+        Images = [new ImageViewModel(null, new WebImageViewModel(_webImageCache))];
 
         ShowArchivedFiles = false;
 
@@ -92,7 +92,7 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     public WebImageViewModel? MainImage { get; set; }
     public double MainImageWidth { get; set; }
     public double MainImageHeight { get; set; }
-    public ObservableCollection<WebImageViewModel> Images { get; }
+    public ObservableCollection<ImageViewModel> Images { get; }
     public int SelectedImageIndex
     {
         get => _selectedImageIndex;
@@ -124,12 +124,12 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     {
         // Load the current image
         if (SelectedImageIndex >= 0 && SelectedImageIndex < Images.Count)
-            Images[SelectedImageIndex].Load();
+            Images[SelectedImageIndex].WebImage.Load();
         
         // Preload the next image
         int nextImageIndex = SelectedImageIndex + 1;
         if (nextImageIndex >= 0 && nextImageIndex < Images.Count)
-            Images[nextImageIndex].Load();
+            Images[nextImageIndex].WebImage.Load();
     }
 
     #endregion
@@ -232,16 +232,17 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         if (mod.PreviewMedia?.Images?.Length > 1)
         {
             // Replace placeholder image
-            Images[0].Url = $"{mod.PreviewMedia.Images[1].BaseUrl}/{mod.PreviewMedia.Images[1].File}";
-            Images[0].DecodePixelHeight = ImageHeight;
+            Images[0].WebImage.Url = $"{mod.PreviewMedia.Images[1].BaseUrl}/{mod.PreviewMedia.Images[1].File}";
+            Images[0].WebImage.DecodePixelHeight = ImageHeight;
+            Images[0].Description = mod.PreviewMedia.Images[1].Caption;
 
             // Add remaining images
             foreach (GameBananaImage img in mod.PreviewMedia.Images.Skip(2).Take(MaxImages - 1))
-                Images.Add(new WebImageViewModel(_webImageCache)
+                Images.Add(new ImageViewModel(img.Caption, new WebImageViewModel(_webImageCache)
                 {
                     Url = $"{img.BaseUrl}/{img.File}",
                     DecodePixelHeight = ImageHeight
-                });
+                }));
         }
         else
         {
@@ -335,6 +336,18 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
     #endregion
 
     #region Classes
+
+    public class ImageViewModel : BaseViewModel
+    {
+        public ImageViewModel(string? description, WebImageViewModel webImage)
+        {
+            Description = description;
+            WebImage = webImage;
+        }
+
+        public string? Description { get; set; }
+        public WebImageViewModel WebImage { get; }
+    }
 
     public class CreditsGroupViewModel : BaseViewModel
     {

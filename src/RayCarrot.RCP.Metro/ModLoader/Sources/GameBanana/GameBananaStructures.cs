@@ -34,6 +34,7 @@ public record GameBananaMedia(
 
 public record GameBananaImage(
     [property: JsonProperty("_sType", Required = Required.Always)] string Type,
+    [property: JsonProperty("_sCaption")] string? Caption,
     [property: JsonProperty("_sBaseUrl", Required = Required.Always)] string BaseUrl,
     [property: JsonProperty("_sFile", Required = Required.Always)] string File,
     [property: JsonProperty("_sFile100")] string? File100,

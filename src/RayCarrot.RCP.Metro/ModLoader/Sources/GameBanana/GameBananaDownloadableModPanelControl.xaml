@@ -167,21 +167,34 @@
                                   Margin="0 0 0 8">
                         <mah:FlipView.ItemTemplate>
                             <DataTemplate>
-                                <Grid MaxWidth="320" Height="180">
-                                    <!-- Image loading -->
-                                    <Border Style="{StaticResource RCP.Styles.Border.Loading}"
-                                            Visibility="{Binding Path=HasLoaded, ElementName=Image, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
-                                        <Viewbox>
-                                            <iconPacks:PackIconMaterial Kind="ImageOutline" Margin="20" />
-                                        </Viewbox>
-                                    </Border>
+                                <StackPanel>
+                                    <Grid MaxWidth="320" Height="180">
+                                        <!-- Image loading -->
+                                        <Border Style="{StaticResource RCP.Styles.Border.Loading}"
+                                                Visibility="{Binding Path=HasLoaded, ElementName=Image, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
+                                            <Viewbox>
+                                                <iconPacks:PackIconMaterial Kind="ImageOutline" Margin="20" />
+                                            </Viewbox>
+                                        </Border>
 
-                                    <!-- Image -->
-                                    <rcp:ImageEx x:Name="Image"
-                                                 Source="{Binding Path=ImageSource}" 
-                                                 d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png">
-                                    </rcp:ImageEx>
-                                </Grid>
+                                        <!-- Image -->
+                                        <rcp:ImageEx x:Name="Image"
+                                                     Source="{Binding Path=WebImage.ImageSource}" 
+                                                     d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/SplashScreen_512px.png" />
+
+                                    </Grid>
+
+                                    <TextBlock Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                                               Text="{Binding Path=Description}"
+                                               ToolTip="{Binding Path=Description}"
+                                               Margin="0 2 0 0"
+                                               MaxWidth="320"
+                                               HorizontalAlignment="Center" 
+                                               FontSize="12"
+                                               FontStyle="Italic" 
+                                               TextTrimming="CharacterEllipsis" />
+
+                                </StackPanel>
                             </DataTemplate>
                         </mah:FlipView.ItemTemplate>
                     </mah:FlipView>
