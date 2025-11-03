@@ -96,7 +96,7 @@
                                  ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.RadioButton}"
                                  Margin="6">
                             <ListBox.Resources>
-                                <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                <Style TargetType="{x:Type rcp:RadioButtonExtended}" BasedOn="{StaticResource {x:Type rcp:RadioButtonExtended}}">
                                     <Setter Property="Command" Value="{Binding Path=DataContext.SelectCategoryCommand, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
                                 </Style>
                             </ListBox.Resources>
@@ -146,7 +146,7 @@
                                  ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.RadioButton}"
                                  Margin="6">
                             <ListBox.Resources>
-                                <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                <Style TargetType="{x:Type rcp:RadioButtonExtended}" BasedOn="{StaticResource {x:Type rcp:RadioButtonExtended}}">
                                     <Setter Property="Command" Value="{Binding Path=DataContext.SelectSortOptionCommand, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
                                 </Style>
                             </ListBox.Resources>
