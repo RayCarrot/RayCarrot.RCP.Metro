@@ -297,7 +297,7 @@ public class GameBananaModsSource : DownloadableModsSource
             string url = $"https://gamebanana.com/apiv11/Mod/Categories?" +
                          $"_idGameRow={gameId}&" +
                          $"_sSort=count&" + // Can be "count" or "a_to_z"
-                         $"_bShowEmpty=false";
+                         $"_bShowEmpty=true";
             GameBananaCategory[] gameCategories = await httpClient.GetDeserializedAsync<GameBananaCategory[]>(url);
 
             foreach (GameBananaCategory cat in gameCategories)
