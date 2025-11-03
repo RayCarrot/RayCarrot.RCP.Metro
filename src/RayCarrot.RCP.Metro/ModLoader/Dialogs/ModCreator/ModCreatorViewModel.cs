@@ -149,7 +149,7 @@ public class ModCreatorViewModel : BaseViewModel
                    //     "source_data": {
                    //         "mod_id": 618641
                    //     }
-                   // },
+                   // }
                    "dependencies": [
                        
                    ]
