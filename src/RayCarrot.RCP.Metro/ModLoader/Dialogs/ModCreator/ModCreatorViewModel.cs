@@ -137,7 +137,7 @@ public class ModCreatorViewModel : BaseViewModel
                    // mod relies on other mods to work. Below is an example on how to define a dependency for the mod Loadless Origins, which has two versions,
                    // either of which can be used. The sorting is optionally used to define if it has to be ordered after or before the main mod, and should
                    // otherwise be kept at 0. Then the GameBanana mod ID has to be set in order for it to be automatically installed. You can get this ID from 
-                   // the mod page URL.
+                   // the mod page URL. You can also optionally specify a file ID if it should default to downloading a specific mod file.
                    // {
                    //     "ids": [
                    //         "RaymanOrigins.LoadlessOrigins.Steam",
@@ -147,7 +147,8 @@ public class ModCreatorViewModel : BaseViewModel
                    //     "sort": 0,
                    //     "source_id": "GameBanana",
                    //     "source_data": {
-                   //         "mod_id": 618641
+                   //         "mod_id": 618641,
+                   //         "file_id": null
                    //     }
                    // }
                    "dependencies": [
