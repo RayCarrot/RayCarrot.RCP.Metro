@@ -9,6 +9,9 @@ Check out the [wiki](https://github.com/RayCarrot/RayCarrot.RCP.Metro/wiki) for 
 
 Note: This repository is only for the WPF version (4.0.0 and above). The WinForms version (1.0.0 - 3.2.2) repository has since been made private as it's no longer being maintained and is heavily outdated.
 
+> [!TIP]
+> Download the latest release [here](https://github.com/RayCarrot/RayCarrot.RCP.Metro/releases/latest).
+
 # Features
 ![Rayman Control Panel](img/example_games.png)
 
