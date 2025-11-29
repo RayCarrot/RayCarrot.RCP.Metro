@@ -64,6 +64,8 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
 
         builder.Register(new SetupGameActionComponent(_ => new RaymanForeverCompleteSoundtrackSetupGameAction()));
         builder.Register(new SetupGameActionComponent(_ => new Ray1InvalidGameConfigSetupGameAction()));
+
+        builder.Register(new GameBananaGameComponent(21305));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
