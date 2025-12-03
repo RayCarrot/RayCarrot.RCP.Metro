@@ -48,6 +48,8 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
         builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanFiestaRun_PC));
 
         builder.Register(new SetupGameActionComponent(_ => new CorruptRaymanFiestaRunSaveFileSetupGameAction(this, 1)));
+
+        builder.Register(new GameBananaGameComponent(19729));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
