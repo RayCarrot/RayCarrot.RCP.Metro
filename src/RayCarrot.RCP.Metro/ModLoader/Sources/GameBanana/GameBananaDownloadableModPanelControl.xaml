@@ -184,7 +184,7 @@
 
                                     </Grid>
 
-                                    <TextBlock Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                                    <TextBlock Visibility="{Binding Path=Description, Converter={rcp:StringEmptyToVisibilityConverter}, FallbackValue=Collapsed}"
                                                Text="{Binding Path=Description}"
                                                ToolTip="{Binding Path=Description}"
                                                Margin="0 2 0 0"
