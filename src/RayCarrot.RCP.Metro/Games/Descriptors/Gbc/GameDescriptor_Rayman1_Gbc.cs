@@ -30,6 +30,8 @@ public sealed class GameDescriptor_Rayman1_Gbc : GbcGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanGBC", "gbc/r1_eu"));
+
+        builder.Register(new GameBananaGameComponent(23858));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new GbcRomProgramInstallationStructure(new[]
