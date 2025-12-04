@@ -41,6 +41,8 @@ public sealed class GameDescriptor_Rayman1_Gba : GbaGameDescriptor
                     displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_GBA_EU)),
                     getOffsetsFunc: () => Ray1MemoryData.Offsets_GBA_EU)
             }));
+
+        builder.Register(new GameBananaGameComponent(23876));
     }
 
     protected override ProgramInstallationStructure CreateStructure() => new GbaRomProgramInstallationStructure(new[]
