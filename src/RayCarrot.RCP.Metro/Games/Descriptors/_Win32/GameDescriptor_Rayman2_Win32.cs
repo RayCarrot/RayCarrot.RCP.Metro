@@ -48,6 +48,9 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
             Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
             Uri: gameInstallation.InstallLocation.Directory + "GXSetup.exe"),
         new GameLinksComponent.GameUriLink(
+            Header: "DirectX config", // TODO-LOC 
+            Uri: gameInstallation.InstallLocation.Directory + "dxcfg.exe"),
+        new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_R2nGlide)), 
             Uri: gameInstallation.InstallLocation.Directory + "nglide_config.exe"),
         new GameLinksComponent.GameUriLink(
