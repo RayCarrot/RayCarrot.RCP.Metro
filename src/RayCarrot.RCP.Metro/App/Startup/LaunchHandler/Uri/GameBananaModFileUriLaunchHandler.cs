@@ -59,24 +59,25 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
 
     private static async Task<GameInstallation?> FindGameInstallationAsync(long? gameId)
     {
-        List<GameInstallation> gameInstallations = Services.Games.GetInstalledGames().ToList();
+        List<GameInstallation> allGameInstallations = Services.Games.GetInstalledGames().ToList();
+        List<GameInstallation> filteredGameInstallations = allGameInstallations;
 
         // Filter by the GameBanana game id
         if (gameId != null)
         {
-            gameInstallations = gameInstallations.
+            filteredGameInstallations = allGameInstallations.
                 Where(x => x.GetComponents<GameBananaGameComponent>().Any(g => g.GameId == gameId)).
                 ToList();
         }
 
-        // Make sure there is at least one available game
-        if (!gameInstallations.Any())
-            return null;
+        // If no game was found then allow selecting from any of the installed games
+        if (!filteredGameInstallations.Any())
+            filteredGameInstallations = allGameInstallations;
 
         // If there is more than 1 matching game we ask the user which one to patch
-        if (gameInstallations.Count > 1)
+        if (filteredGameInstallations.Count > 1)
         {
-            GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
+            GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(filteredGameInstallations)
             {
                 Title = Resources.ModLoader_SelectInstallTargetTitle
             });
@@ -88,7 +89,7 @@ public class GameBananaModFileUriLaunchHandler : UriLaunchHandler
         }
         else
         {
-            return gameInstallations.First();
+            return filteredGameInstallations.First();
         }
     }
 
