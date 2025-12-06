@@ -17,6 +17,10 @@
                   IsChecked="{Binding Path=ModLoader_AutomaticallyCheckForUpdates}"
                   Margin="0 0 0 8" />
 
+        <CheckBox Content="Show the total amount of downloadable mods in the game panel"
+                  IsChecked="{Binding Path=ModLoader_ShowDownloadableModsCount}"
+                  Margin="0 0 0 8" />
+
         <CheckBox Content="{Resx Settings_ModLoader_ShowFileConflictWarnings}"
                   IsChecked="{Binding Path=ModLoader_ShowModConflictsWarning}"
                   Margin="0 0 0 8" />

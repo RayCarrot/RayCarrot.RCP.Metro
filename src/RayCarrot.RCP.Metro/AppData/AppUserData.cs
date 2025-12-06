@@ -88,6 +88,7 @@ public partial class AppUserData : BaseViewModel
 
         // Mod Loader
         ModLoader_AutomaticallyCheckForUpdates = true;
+        ModLoader_ShowDownloadableModsCount = true;
         ModLoader_ViewedMods = new Dictionary<string, List<ViewedMod>>();
         ModLoader_ShowModConflictsWarning = true;
         ModLoader_ShowEssentialMods = true;
@@ -404,6 +405,11 @@ public partial class AppUserData : BaseViewModel
     /// Indicates if the mod loader should automatically check for mod updates
     /// </summary>
     public bool ModLoader_AutomaticallyCheckForUpdates { get; set; }
+
+    /// <summary>
+    /// Indicates if the mod loader should automatically check for mod updates
+    /// </summary>
+    public bool ModLoader_ShowDownloadableModsCount { get; set; }
 
     /// <summary>
     /// Specifies which downloadable mods have been viewed, for each source

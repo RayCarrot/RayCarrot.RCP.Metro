@@ -22,17 +22,36 @@
         <!-- Info -->
         <StackPanel Grid.Row="0"
                     VerticalAlignment="Center">
-            <TextBlock Text="{Binding Path=InfoText.Value}"
-                       d:Text="X mods applied"
-                       Margin="0 0 0 4" />
+            <StackPanel Orientation="Horizontal" 
+                        Visibility="{Binding Path=AppliedModsText, Converter={rcp:StringEmptyToVisibilityConverter}}">
+                <iconPacks:PackIconMaterial Kind="CheckOutline" 
+                                            Foreground="{StaticResource RCP.Brushes.StatusComplete}"
+                                            Margin="0 0 4 0"/>
+                <TextBlock Text="{Binding Path=AppliedModsText.Value}"
+                           d:Text="3/8 mods applied"
+                           VerticalAlignment="Center" />
+            </StackPanel>
 
             <StackPanel Orientation="Horizontal"
-                        Visibility="{Binding Path=UpdatesText, Converter={rcp:StringEmptyToVisibilityConverter}}">
+                        Visibility="{Binding Path=DownloadableModsText, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                        Margin="0 4 0 0">
+                <iconPacks:PackIconMaterial Kind="CloudOutline" 
+                                            Foreground="{StaticResource RCP.Brushes.Info}"
+                                            Margin="0 0 4 0"/>
+                <TextBlock Text="{Binding Path=DownloadableModsText.Value}"
+                           d:Text="25 downloadable mods available"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding Path=UpdatesText, Converter={rcp:StringEmptyToVisibilityConverter}}"
+                        Margin="0 4 0 0">
                 <iconPacks:PackIconMaterial Kind="InformationOutline" 
                                             Foreground="{StaticResource RCP.Brushes.Info}"
                                             Margin="0 0 4 0"/>
                 <TextBlock Text="{Binding Path=UpdatesText.Value}"
-                           d:Text="X mod updates available" />
+                           d:Text="2 mod updates available"
+                           VerticalAlignment="Center" />
             </StackPanel>
 
         </StackPanel>

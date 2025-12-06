@@ -504,6 +504,39 @@ public class GameBananaModsSource : DownloadableModsSource
         return new ModDownload(file.File, gameBananaMod.Name, file.DownloadUrl, file.FileSize, new GameBananaInstallData(gameBananaMod.Id, file.Id));
     }
 
+    public override async Task<int> GetDownloadableModsCountAsync(HttpClient httpClient, GameInstallation gameInstallation)
+    {
+        int count = 0;
+
+        // Enumerate every supported GameBanana game
+        foreach (GameBananaGameComponent gameBananaGameComponent in gameInstallation.GetComponents<GameBananaGameComponent>())
+        {
+            int gameId = gameBananaGameComponent.GameId;
+
+            StringBuilder url = new();
+
+            // Use the mod index api
+            url.Append("https://gamebanana.com/apiv11/Mod/Index?");
+
+            // Set records per page to lowest amount possible
+            url.Append("_nPerpage=1");
+
+            // Set page (index starts at 1)
+            url.Append("&_nPage=1");
+
+            // Filter by game
+            url.Append($"&_aFilters[Generic_Game]={gameId}");
+
+            // Read the mod page feed
+            GameBananaFeed feed = await httpClient.GetDeserializedAsync<GameBananaFeed>(url.ToString());
+
+            // Add the count
+            count += feed.Metadata.RecordCount;
+        }
+
+        return count;
+    }
+
     public override async IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager)
     {
         // Get the GameBanana game id for every game, even ones that are not installed

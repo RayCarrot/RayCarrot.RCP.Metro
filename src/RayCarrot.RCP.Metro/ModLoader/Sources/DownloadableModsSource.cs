@@ -91,6 +91,10 @@ public abstract class DownloadableModsSource
 
     public abstract Task<ModDownload?> GetModUpdateDownloadAsync(object? updateData);
 
+    public abstract Task<int> GetDownloadableModsCountAsync(
+        HttpClient httpClient,
+        GameInstallation gameInstallation);
+
     public abstract IAsyncEnumerable<NewModViewModel> GetNewModsAsync(GamesManager gamesManager);
 
     #endregion
