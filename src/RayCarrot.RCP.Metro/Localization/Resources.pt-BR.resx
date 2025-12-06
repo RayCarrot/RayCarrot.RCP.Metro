@@ -268,7 +268,7 @@
     <value>32-bits</value>
   </data>
   <data name="Config_Compressed" xml:space="preserve">
-    <value>Comprimido</value>
+    <value>Comprimidas</value>
   </data>
   <data name="Config_Video" xml:space="preserve">
     <value>Vídeo</value>
@@ -340,7 +340,7 @@
     <value>As opções do modo de tela se comportarão diferentemente dependendo da resolução selecionada. Normalmente, manter o modo 4:3 habilitado permitirá que o jogo não seja esticado em diferentes proporções de tela.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel é um projeto da comunidade de código aberto criado por RayCarrot. Este software é um único arquivo executável gratuito com a intenção de acessar facilmente as configurações e consertos para os vários títulos do Rayman lançados para Windows.
+    <value>Rayman Control Panel é um projeto da comunidade de código aberto criado por RayCarrot. Este software é um arquivo executável único e gratuito com a intenção de acessar facilmente as configurações e consertos para os vários títulos do Rayman lançados para Windows.
 Este é um projeto crescente com mais recursos planejados para serem adicionados com atualizações futuras. Os utilitários e várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade de Rayman, todos creditados abaixo.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
@@ -374,10 +374,10 @@ Este é um projeto crescente com mais recursos planejados para serem adicionados
     <value>Restaurar</value>
   </data>
   <data name="Settings_UserLevel" xml:space="preserve">
-    <value>Nível do Usuário</value>
+    <value>Nível de Usuário</value>
   </data>
   <data name="Settings_UserLevelInfo" xml:space="preserve">
-    <value>O nível do usuário determina quais opções e informações estão disponíveis na aplicação. Quanto maior o nível de usuário, mais opções avançadas e informações serão mostradas.</value>
+    <value>O nível de usuário determina quais opções e informações estão disponíveis na aplicação. Quanto maior o nível de usuário, mais opções avançadas e informações serão mostradas.</value>
   </data>
   <data name="Settings_UserLevelNormal" xml:space="preserve">
     <value>Normal</value>
@@ -401,7 +401,7 @@ Este é um projeto crescente com mais recursos planejados para serem adicionados
     <value>Depuração</value>
   </data>
   <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
-    <value>Nível de Depuração do usuário - para desenvolvedores e testadores de aplicativos que desejam opções e informações de depuração avançadas</value>
+    <value>Nível de Depuração do usuário - para desenvolvedores e testadores de programas que desejam opções e informações de depuração avançadas</value>
   </data>
   <data name="Settings_Language" xml:space="preserve">
     <value>Idioma</value>
@@ -437,7 +437,7 @@ Este é um projeto crescente com mais recursos planejados para serem adicionados
     <value>Depuração</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
-    <value>Local do backup</value>
+    <value>Local de backup</value>
   </data>
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Começar</value>
@@ -952,7 +952,7 @@ Tentar novamente?</value>
     <value>Operação de download completa</value>
   </data>
   <data name="AppNews_Header" xml:space="preserve">
-    <value>Histórico de Versões</value>
+    <value>Histórico de Atualizações</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuar</value>
@@ -982,7 +982,7 @@ Tentar novamente?</value>
     <value>Remover do programa</value>
   </data>
   <data name="DowngradeWarning" xml:space="preserve">
-    <value>Você está usando uma versão mais antiga do programa ({0}) em comparação com a versão dos dados atuais do aplicativo ({1}). Isso não é recomendado e pode causar problemas de compatibilidade. Eles podem ser corrigidos resetando os dados do aplicativo para este programa.</value>
+    <value>Você está usando uma versão mais antiga do programa ({0}) em comparação com a versão dos dados atuais do programa ({1}). Isso não é recomendado e pode causar problemas de compatibilidade. Eles podem ser corrigidos resetando os dados do programa para este programa.</value>
   </data>
   <data name="DowngradeWarningHeader" xml:space="preserve">
     <value>Pioramento detectado</value>
@@ -1099,7 +1099,7 @@ Tentar novamente?</value>
     <value>Erro ao abrir chave</value>
   </data>
   <data name="Links_Local_AppData" xml:space="preserve">
-    <value>Dados do usuário do aplicativo</value>
+    <value>Dados do usuário do programa</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Arquivo de registro</value>
@@ -1120,13 +1120,13 @@ Novidades:
     <value>Desinstalar</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Tem certeza de que deseja desinstalar o Rayman Control Panel? Isso removerá o arquivo executável e todos os dados do aplicativo do programa. Isso NÃO removerá nenhum jogo instalado, arquivo salvo ou backup. Alguns utilitários aplicados ainda podem estar disponíveis.</value>
+    <value>Tem certeza de que deseja desinstalar o Rayman Control Panel? Isso removerá o arquivo executável e todos os dados de aplicativo do programa. Isso NÃO removerá nenhum jogo instalado, arquivo salvo ou backup. Alguns utilitários aplicados ainda podem estar disponíveis.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Confirmar desinstalação</value>
   </data>
   <data name="About_UninstallFailed" xml:space="preserve">
-    <value>Um erro ocorreu ao executar o desinstalador. Você pode remover manualmente os dados do aplicativo que estão localizados nos seguintes locais:
+    <value>Um erro ocorreu ao executar o desinstalador. Você pode remover manualmente os dados do programa que estão localizados nos seguintes locais:
 
 {0}</value>
   </data>
@@ -1179,7 +1179,7 @@ Novidades:
     <value>Reiniciar como Administrador</value>
   </data>
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
-    <value>O aplicativo não tem as permissões necessárias para esta operação. Reiniciar o aplicativo como administrador?</value>
+    <value>O programa não tem as permissões necessárias para esta operação. Reiniciar o programa como administrador?</value>
   </data>
   <data name="App_ExceptionMessage" xml:space="preserve">
     <value>{0}
@@ -1241,7 +1241,7 @@ Mensagem de erro: {1}</value>
     <value>Editar lista de pulo</value>
   </data>
   <data name="Settings_EditJumpListInfo" xml:space="preserve">
-    <value>A lista de pulo é a lista de atalhos de jogos que aparecem ao clicar com o botão direito no aplicativo na barra de tarefas ou menu iniciar</value>
+    <value>A lista de pulo é a lista de atalhos de jogos que aparecem ao clicar com o botão direito no programa na barra de tarefas ou menu iniciar</value>
   </data>
   <data name="JumpListEditor_Header" xml:space="preserve">
     <value>Editar itens da lista de pulo</value>
@@ -1343,7 +1343,7 @@ Mensagem de erro: {1}</value>
     <value>Seleciona um arquivo JSON convertido para importar</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
-    <value>Progressão</value>
+    <value>Progresso</value>
   </data>
   <data name="Progression_GenericSlot" xml:space="preserve">
     <value>Slot {0}</value>
@@ -1565,7 +1565,7 @@ Mensagem de erro: {1}</value>
     <value>Codificar</value>
   </data>
   <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
-    <value>Arquivos Codificados do Rayman 2 (.sna/.dsb)</value>
+    <value>Arquivos Codificados de Rayman 2 (.sna/.dsb)</value>
   </data>
   <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
     <value>Escolher arquivos para decodificar</value>
@@ -1685,13 +1685,13 @@ Mensagem de erro: {1}</value>
     <value>Criar</value>
   </data>
   <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
-    <value>Automaticamente gerar mipmaps (.gf)</value>
+    <value>Gerar mipmaps automaticamente (.gf)</value>
   </data>
   <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
     <value>Automaticamente gera mipmaps para jogos suportados ao importar para arquivos .gf</value>
   </data>
   <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
-    <value>Automaticamente atualizar formato (.gf)</value>
+    <value>Atualizar formato automaticamente (.gf)</value>
   </data>
   <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
     <value>Nunca (preservar formato original)</value>
@@ -1754,7 +1754,7 @@ Mensagem de erro: {1}</value>
     <value>Sincronizar tema</value>
   </data>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
-    <value>Se ativado, o tema do aplicativo (cor de destaque e modo escuro/claro) será sincronizado com as configurações do sistema no Windows 10/11</value>
+    <value>Se ativado, o tema do programa (cor de destaque e modo escuro/claro) será sincronizado com as configurações do sistema no Windows 10/11</value>
   </data>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>Ocorreu um erro ao atualizar o idioma</value>
@@ -1788,7 +1788,7 @@ Mensagem de erro: {1}</value>
     <value>Apenas use esta opção se os downloads não estiverem funcionando</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
-    <value>Arquivos Codificados do Tonic Trouble (.sna/.dsb)</value>
+    <value>Arquivos Codificados de Tonic Trouble (.sna/.dsb)</value>
   </data>
   <data name="About_Credits_Fabiosek" xml:space="preserve">
     <value>Tradução do programa em Polonês (Polônia)</value>
@@ -1983,7 +1983,7 @@ Mensagem de erro: {1}</value>
     <value>Ponteiro:</value>
   </data>
   <data name="Archive_FileInfo_IsComp" xml:space="preserve">
-    <value>Comprimido:</value>
+    <value>Ajustar a qualidade automaticamente</value>
   </data>
   <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
     <value>Criptografado:</value>
@@ -2085,7 +2085,7 @@ Mensagem de erro: {1}</value>
     <value>Todas as gaiolas</value>
   </data>
   <data name="R1Passwords_FinBoss" xml:space="preserve">
-    <value>Boss derrotado</value>
+    <value>Chefe derrotado</value>
   </data>
   <data name="R1Passwords_HelpedMus" xml:space="preserve">
     <value>Ajudou The Musician</value>
@@ -2275,7 +2275,7 @@ Mensagem de erro: {1}</value>
   </data>
   <data name="Update_CheckFailed" xml:space="preserve">
     <value>A verificação de atualização falhou. {0}
-Para atualizar manualmente o aplicativo, vá para {1} e baixe a versão mais recente.</value>
+Para atualizar manualmente o programa, vá para {1} e baixe a versão mais recente.</value>
   </data>
   <data name="Archive_Format_Snd" xml:space="preserve">
     <value>Som</value>
@@ -2716,7 +2716,7 @@ Para atualizar manualmente o aplicativo, vá para {1} e baixe a versão mais rec
     <value>Modo de dança: mudar</value>
   </data>
   <data name="ConfirmResetData" xml:space="preserve">
-    <value>Tem certeza de que deseja redefinir as configurações do aplicativo? Isso não pode ser desfeito.</value>
+    <value>Tem certeza de que deseja redefinir as configurações do programa? Isso não pode ser desfeito.</value>
   </data>
   <data name="ConfirmResetDataHeader" xml:space="preserve">
     <value>Confirmar redefinição</value>
@@ -3334,7 +3334,7 @@ Para atualizar manualmente o aplicativo, vá para {1} e baixe a versão mais rec
     <value>Tamanho</value>
   </data>
   <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
-    <value>Modificado pela última vez</value>
+    <value>Modificado pela última vez em</value>
   </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>O arquivo salvo foi modificado com sucesso</value>
@@ -3861,7 +3861,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Copiar caminho do diretório</value>
   </data>
   <data name="AppData_MigrateError" xml:space="preserve">
-    <value>Ocorreu um erro ao migrar os dados do aplicativo para a nova versão</value>
+    <value>Ocorreu um erro ao migrar os dados do programa para a nova versão</value>
   </data>
   <data name="Games_RemovedInvalidGames" xml:space="preserve">
     <value>Os seguintes jogos não são mais válidos e foram removidos:
@@ -3900,13 +3900,13 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Sincroniza texturas. Isso atualiza os tamanhos de textura nos arquivos do jogo para corresponder aos arquivos de textura. Isso é necessário se a resolução de uma textura foi aumentada, ou então o jogo pode travar.</value>
   </data>
   <data name="GameInfo_AddedDate" xml:space="preserve">
-    <value>Adicionado:</value>
+    <value>Adicionado na/no:</value>
   </data>
   <data name="GameClients_Launch_ClientNotFound" xml:space="preserve">
     <value>O cliente de jogo/emulador não pôde ser encontrado</value>
   </data>
   <data name="GamesPage_Category_Handheld" xml:space="preserve">
-    <value>Portátil</value>
+    <value>Portáteis</value>
   </data>
   <data name="GameClients_Custom" xml:space="preserve">
     <value>Customizado</value>
@@ -3988,7 +3988,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Agrupar jogos</value>
   </data>
   <data name="GameSelection_ResetSort" xml:space="preserve">
-    <value>Redefinir classificação personalizada</value>
+    <value>Redefinir ordem personalizada</value>
   </data>
   <data name="GameSelection_ConfigureClients" xml:space="preserve">
     <value>Configurar clientes/emuladores de jogos</value>
@@ -4564,7 +4564,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Mostrar mais</value>
   </data>
   <data name="Settings_LoadAppNews" xml:space="preserve">
-    <value>Carregar novidades do aplicativo na página inicial</value>
+    <value>Carregar novidades do programa na página inicial</value>
   </data>
   <data name="AnniversaryUpdate_Title" xml:space="preserve">
     <value>Bem-vindo(a) à Atualização de Aniversário</value>
@@ -4761,7 +4761,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Esses mods foram enviados ao GameBanana por vários usuários</value>
   </data>
   <data name="ModLoader_RefreshDownloadableMods" xml:space="preserve">
-    <value>Atualizar os mods disponíveis</value>
+    <value>Atualizar mods disponíveis</value>
   </data>
   <data name="ModLoader_DownloadableModsEmpty" xml:space="preserve">
     <value>Nenhum mod encontrado</value>
@@ -4985,7 +4985,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Executar como administrador</value>
   </data>
   <data name="Home_AppNews" xml:space="preserve">
-    <value>Novidades do aplicativo</value>
+    <value>Novidades do programa</value>
   </data>
   <data name="Home_RecentMods" xml:space="preserve">
     <value>Mods recentes</value>
@@ -4994,10 +4994,10 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Este jogo tem {0} mods aplicados. Remover o jogo do programa não removerá os mods aplicados. Você pode adicionar o jogo novamente a qualquer momento para alterar quais mods são aplicados. Continuar?</value>
   </data>
   <data name="ModNews_UpdatedInfo" xml:space="preserve">
-    <value>Atualizado em {0}</value>
+    <value>Atualizado na/no {0}</value>
   </data>
   <data name="ModNews_UploadedInfo" xml:space="preserve">
-    <value>Enviado em {0}</value>
+    <value>Enviado na/no {0}</value>
   </data>
   <data name="Progression_EditGamesVisibility" xml:space="preserve">
     <value>Mostrar/ocultar jogos</value>
@@ -5042,7 +5042,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Iniciar jogos diretamente da barra de tarefas</value>
   </data>
   <data name="Settings_ModLoader_AutoCheckForUpdates" xml:space="preserve">
-    <value>Automaticamente verificar por atualizações de mod</value>
+    <value>Verificar automaticamente por atualizações de mod</value>
   </data>
   <data name="Settings_ModLoader_Header" xml:space="preserve">
     <value>Carregador de Mods</value>
@@ -5090,7 +5090,7 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
     <value>Novo carregador de mod substitui o corretor</value>
   </data>
   <data name="AnniversaryUpdate_ModLoaderDescription" xml:space="preserve">
-    <value>O corretor foi substituído por um carregador de mod totalmente novo! Novos tipos de mods agora podem ser criados, como aqueles que modificam apenas partes de um arquivo. Mods enviados para o GameBanana agora também podem ser baixados diretamente pelo aplicativo.
+    <value>O corretor foi substituído por um carregador de mod totalmente novo! Novos tipos de mods agora podem ser criados, como aqueles que modificam apenas partes de um arquivo. Mods enviados para o GameBanana agora também podem ser baixados diretamente pelo programa.
 Se houver um utilitário ou outro tipo de corretor faltando, é bem provável que ele tenha sido movido para um mod.</value>
   </data>
   <data name="AddGameClients_FindClients" xml:space="preserve">
@@ -5163,7 +5163,7 @@ Se houver um utilitário ou outro tipo de corretor faltando, é bem provável qu
     <value>Modifica o jogo para restaurar recursos cortados dos primeiros protótipos, como a liberdade de movimento e combate para o Rayman!</value>
   </data>
   <data name="GameHub_PrototypeRestorationPanel_Open" xml:space="preserve">
-    <value>Aberto</value>
+    <value>Abrir</value>
   </data>
   <data name="Mod_RRR_MemMod_ExeNotFoundError" xml:space="preserve">
     <value>Não foi possível encontrar o executável do jogo</value>
@@ -5175,7 +5175,7 @@ Se houver um utilitário ou outro tipo de corretor faltando, é bem provável qu
     <value>Modifica o jogo enquanto executado para aplicar diferentes trapaças ou acessar conteúdo inutilizado.</value>
   </data>
   <data name="GameHub_RuntimeModificationsPanel_Open" xml:space="preserve">
-    <value>Aberto</value>
+    <value>Abrir</value>
   </data>
   <data name="GameTool_RuntimeModifications_ModificationsPage" xml:space="preserve">
     <value>Modificações</value>
@@ -5425,16 +5425,16 @@ Mensagens de erro:
     <value>Devido a um bug em versões anteriores do jogo, o progresso do arquivo salvo pode ficar fora de sincronia, fazendo com que você tenha menos teensies do que realmente ganhou. Isso pode fazer com que certos níveis se tornem inacessíveis.</value>
   </data>
   <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Header" xml:space="preserve">
-    <value>Instalar o mod de Texturas Oficiais de Qualidade Superior</value>
+    <value>Instalar o mod Higher Quality Official Textures</value>
   </data>
   <data name="SetupGameAction_HigherQualityOfficialRayman2Textures_Info" xml:space="preserve">
-    <value>O mod de Texturas Oficiais de Qualidade Superior é um mod de textura criado por ICUP321 que substitui muitas das texturas por variantes de melhor/maior qualidade encontradas em outras versões, incluindo texturas com correções de transparência.</value>
+    <value>O Higher Quality Official Textures é um mod de textura criado por ICUP321 que substitui muitas das texturas por variantes de melhor/maior qualidade encontradas em outras versões, incluindo texturas com correções de transparência.</value>
   </data>
   <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Header" xml:space="preserve">
-    <value>Instalar o mod de Vídeos de Qualidade Superior</value>
+    <value>Instalar o mod High Quality Videos</value>
   </data>
   <data name="SetupGameAction_HighQualityRaymanOriginsVideos_Info" xml:space="preserve">
-    <value>Os vídeos na versão de PC são mais comprimidos do que nas versões de console. O mod Vídeos de Qualidade Superior substitui os vídeos por outros convertidos de maior qualidade das versões de console do jogo.</value>
+    <value>Os vídeos na versão de PC são mais comprimidos do que nas versões de console. O mod High Quality Videos substitui os vídeos por outros convertidos de maior qualidade das versões de console do jogo.</value>
   </data>
   <data name="SetupGameAction_InvalidUbiArtResolution_Header" xml:space="preserve">
     <value>Resolução de jogo inválida</value>
@@ -5443,10 +5443,10 @@ Mensagens de erro:
     <value>A resolução do jogo precisa ser definida para uma resolução suportada pela placa de vídeo. Em alguns sistemas, a resolução será definida como padrão para uma resolução inválida, causando bordas pretas e possíveis travamentos. Isso pode ser resolvido selecionando uma resolução suportada.</value>
   </data>
   <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Header" xml:space="preserve">
-    <value>Instalar o mod de Tempos Mínimos de Carregamento</value>
+    <value>Instalar o mod Minimum Loading Times</value>
   </data>
   <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
-    <value>O mod Tempos de Carregamento Mínimos é um mod de RayCarrot que altera o tempo mínimo da tela de carregamento de 4 segundos para 0 segundos, tornando os tempos de carregamento mais rápidos.</value>
+    <value>O Minimum Loading Times é um mod de RayCarrot que altera o tempo mínimo da tela de carregamento de 4 segundos para 0 segundos, tornando os tempos de carregamento mais rápidos.</value>
   </data>
   <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
     <value>Arquivo de configuração do mapeador está faltando ou é inválido</value>
@@ -5473,10 +5473,10 @@ Mensagens de erro:
     <value>Ray2Fix é um mod para a versão de GOG por spitfirex86 que visa simplificar a configuração do jogo. Ele também vem com vários ajustes, como a capacidade de remapear os controles do jogo e suporte adequado para widescreen.</value>
   </data>
   <data name="SetupGameAction_Rayman3PS2Videos_Header" xml:space="preserve">
-    <value>Instalar o mod de Vídeos do PS2</value>
+    <value>Instalar o mod PS2 Videos</value>
   </data>
   <data name="SetupGameAction_Rayman3PS2Videos_Info" xml:space="preserve">
-    <value>As cinemáticas na versão de PC são mais comprimidas e de qualidade inferior do que nas versões de console. O mod de Vídeos do PS2 substitui os vídeos com vídeos de qualidade superior da versão de PlayStation 2.</value>
+    <value>As cinemáticas na versão de PC são mais comprimidas e de qualidade inferior do que nas versões de console. O mod PS2 Videos substitui os vídeos com vídeos de qualidade superior da versão de PlayStation 2.</value>
   </data>
   <data name="SetupGameAction_RaymanForeverCompleteSoundtrack_Header" xml:space="preserve">
     <value>Substituir trilha sonora incompleta</value>
@@ -5548,10 +5548,10 @@ Mensagens de erro:
     <value>Aplicar configurações recomendadas</value>
   </data>
   <data name="GameSettings_LoadError" xml:space="preserve">
-    <value>Ocorreu um erro ao carregar as configurações do jogo. Você deve precisar executar o aplicativo como administrador.</value>
+    <value>Ocorreu um erro ao carregar as configurações do jogo. Você deve precisar executar o programa como administrador.</value>
   </data>
   <data name="GameSettings_SaveError" xml:space="preserve">
-    <value>Ocorreu um erro ao salvar as configurações do jogo. Você deve precisar executar o aplicativo como administrador.</value>
+    <value>Ocorreu um erro ao salvar as configurações do jogo. Você deve precisar executar o programa como administrador.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_Header" xml:space="preserve">
     <value>Comandos de inicialização de depuração</value>
@@ -5621,7 +5621,7 @@ AVISO: Carregar diretamente em um mapa usando isso pulará o carregamento do seu
     <value>Taxa de quadros</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_FramerateInfo" xml:space="preserve">
-    <value>Define a taxa de quadros do loop do aplicativo principal. Isso fará com que a velocidade do jogo também mude devido à lógica do jogo ser codificada para 60 fps.</value>
+    <value>Ocorreu um erro ao salvar as configurações do jogo. Você deve precisar executar o programa como administrador.</value>
   </data>
   <data name="GameSettings_UbiArt_LaunchCommands_NoSoundHeader" xml:space="preserve">
     <value>Mutar</value>
@@ -5767,5 +5767,348 @@ Deseja reverter a correção?</value>
   </data>
   <data name="About_Bluesky" xml:space="preserve">
     <value>Bluesky</value>
+  </data>
+  <data name="SecretCodes_Guests" xml:space="preserve">
+    <value>Você acaba de inserir o código Jacquouille Legends! Aproveite seu novo banner para o jogo!</value>
+  </data>
+  <data name="Rayman2Redreamed_Demo_Win32_Title" xml:space="preserve">
+    <value>Rayman 2: Redreamed Demo</value>
+  </data>
+  <data name="Game_Rayman2Redreamed_Title" xml:space="preserve">
+    <value>Rayman 2: Redreamed</value>
+  </data>
+  <data name="Rayman3HavocReignited_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Havoc Reignited</value>
+  </data>
+  <data name="Game_Rayman3HavocReignited_Title" xml:space="preserve">
+    <value>Rayman 3 Havoc Reignited</value>
+  </data>
+  <data name="RaymanLumoGrams_Demo_Win32_Title" xml:space="preserve">
+    <value>Rayman Lum'o'Grams Demo</value>
+  </data>
+  <data name="Game_RaymanLumoGrams_Title" xml:space="preserve">
+    <value>Rayman Lum'o'Grams</value>
+  </data>
+  <data name="GameDisplay_DownloadWebsite" xml:space="preserve">
+    <value>Baixar do site</value>
+  </data>
+  <data name="GameLink_TTFix" xml:space="preserve">
+    <value>Tonic Trouble Fix</value>
+  </data>
+  <data name="R2ROptions_GraphicsApiHeader" xml:space="preserve">
+    <value>API Gráfica</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="Progression_TT_Thermometers" xml:space="preserve">
+    <value>Termômetros</value>
+  </data>
+  <data name="Progression_TT_BonusPoints" xml:space="preserve">
+    <value>Pontos bônus</value>
+  </data>
+  <data name="Progression_TT_Springs" xml:space="preserve">
+    <value>Molas</value>
+  </data>
+  <data name="Progression_TT_PropellerBlades" xml:space="preserve">
+    <value>Hélices</value>
+  </data>
+  <data name="Progression_TT_JumpingStones" xml:space="preserve">
+    <value>Pedras de salto</value>
+  </data>
+  <data name="Progression_TT_Feathers" xml:space="preserve">
+    <value>Penas</value>
+  </data>
+  <data name="Progression_TT_Dominoes" xml:space="preserve">
+    <value>Dominós</value>
+  </data>
+  <data name="Progression_TT_WildPiggybanks" xml:space="preserve">
+    <value>Cofrinhos selvagens</value>
+  </data>
+  <data name="SetupGameAction_LevelTransparencyFixes_Header" xml:space="preserve">
+    <value>Instalar o mod Level Transparency Fixes</value>
+  </data>
+  <data name="SetupGameAction_LevelTransparencyFixes_Info" xml:space="preserve">
+    <value>O mod Level Transparency Fixes, criado por Droolie e ICUP321, corrige a transparência de objetos em determinadas fases.</value>
+  </data>
+  <data name="InstallableTool_UninstallError" xml:space="preserve">
+    <value>Ocorreu um erro ao desinstalar a ferramenta. Certifique-se de que ela não esteja em uso e tente novamente.
+</value>
+  </data>
+  <data name="InstallableTool_UpdateError" xml:space="preserve">
+    <value>Ocorreu um erro ao atualizar a ferramenta. Certifique-se de que ela não esteja em uso e tente novamente.</value>
+  </data>
+  <data name="ModLoader_FilesModule_AutoCreatePathsInfo" xml:space="preserve">
+    <value>Especifique aqui os caminhos das pastas que deseja que sejam criadas automaticamente. Separe cada um com uma nova linha. Você também pode criar as pastas manualmente posteriormente.</value>
+  </data>
+  <data name="ModLoader_FilesModule_AutoCreatePathsHint" xml:space="preserve">
+    <value>Exemplo: {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_ArchivedFilesToggle" xml:space="preserve">
+    <value>Mostrar arquivos arquivados</value>
+  </data>
+  <data name="About_Credits_Dr_st" xml:space="preserve">
+    <value>Funcionalidades e correções do programa</value>
+  </data>
+  <data name="Settings_ModLoader_IncludeNsfwMods" xml:space="preserve">
+    <value>Incluir mods para download marcados como NSFW</value>
+  </data>
+  <data name="Settings_ModLoader_IncludeNsfwModsInfo" xml:space="preserve">
+    <value>Indica se mods com classificação indicativa, como mods com nudez ou violência, devem ser exibidos na lista de mods disponíveis para download.</value>
+  </data>
+  <data name="Utilities_Converter_TTSaveHeader" xml:space="preserve">
+    <value>Arquivos Salvos de Tonic Trouble (.sav)</value>
+  </data>
+  <data name="ModLoader_LoadDownloadableModError" xml:space="preserve">
+    <value>Um erro ocorreu ao carregar o mod</value>
+  </data>
+  <data name="ModLoader_CancelDownload" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ModLoader_NoSelectedMod" xml:space="preserve">
+    <value>Nenhum mod selecionado</value>
+  </data>
+  <data name="ModLoader_OpenModDownloadPage" xml:space="preserve">
+    <value>Abrir página de download</value>
+  </data>
+  <data name="ModLoader_ActiveDownloadsError" xml:space="preserve">
+    <value>Ainda há mods sendo baixados. Aguarde até que todos os mods terminem de ser baixados antes de aplicar quaisquer alterações.</value>
+  </data>
+  <data name="ModLoader_ActiveDownloadsErrorHeader" xml:space="preserve">
+    <value>Os mods ainda estão baixando</value>
+  </data>
+  <data name="ModLoader_InstallState_Downloading" xml:space="preserve">
+    <value>Baixando...</value>
+  </data>
+  <data name="ModLoader_InstallState_Extracting" xml:space="preserve">
+    <value>Extraindo...</value>
+  </data>
+  <data name="ModLoader_DownloadPageBack" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
+  <data name="ModLoader_GameBanana_Credits" xml:space="preserve">
+    <value>Créditos</value>
+  </data>
+  <data name="ModLoader_GameBanana_Downloads" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="ModLoader_GameBanana_DownloadsEmpty" xml:space="preserve">
+    <value>Nenhum arquivo compatível</value>
+  </data>
+  <data name="ModLoader_GameBanana_FileDownloaded" xml:space="preserve">
+    <value>Adicionado à biblioteca</value>
+  </data>
+  <data name="ModLoader_GameBanana_UpdateInfo" xml:space="preserve">
+    <value>Atualizado em {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_Version" xml:space="preserve">
+    <value>Versão {0}</value>
+  </data>
+  <data name="About_Credits_Clef" xml:space="preserve">
+    <value>Tradução do programa em Chinês (Simplificado)</value>
+  </data>
+  <data name="Settings_ModLoader_ShowEssentialMods" xml:space="preserve">
+    <value>Mostrar mods essenciais primeiro</value>
+  </data>
+  <data name="Settings_ModLoader_MarkUnseenMods" xml:space="preserve">
+    <value>Marcar mods não vistos</value>
+  </data>
+  <data name="ModLoader_DownloadModError" xml:space="preserve">
+    <value>Um erro ocorreu ao baixar o mod {0}</value>
+  </data>
+  <data name="ModLoader_CategoryAndSortFeedInfo" xml:space="preserve">
+    <value>Exibindo mods na categoria "{0}" na ordem "{1}"</value>
+  </data>
+  <data name="SetupGameAction_RaymanOriginsCrashDumps_Header" xml:space="preserve">
+    <value>Remover arquivos de despejo de falha</value>
+  </data>
+  <data name="SetupGameAction_RaymanOriginsCrashDumps_Info" xml:space="preserve">
+    <value>Sempre que o jogo trava, ele cria um arquivo de despejo de falha. Esses arquivos têm cerca de 200 MB cada e, portanto, ocupam espaço desnecessário. Eles podem ser removidos sem problemas para liberar espaço no seu computador.</value>
+  </data>
+  <data name="SetupGameAction_RaymanOriginsCrashDumps_Success" xml:space="preserve">
+    <value>{0} arquivos de despejo de falha foram removidos com sucesso</value>
+  </data>
+  <data name="SetupGameAction_RaymanOriginsCrashDumps_Error" xml:space="preserve">
+    <value>Um erro ocorreu ao remover os arquivos de despejo de falha</value>
+  </data>
+  <data name="ExternalLinkWarning" xml:space="preserve">
+    <value>Você está prestes a abrir "{0}".
+Continue somente se confiar no site.</value>
+  </data>
+  <data name="ExternalLinkWarningHeader" xml:space="preserve">
+    <value>Aviso de link externo</value>
+  </data>
+  <data name="ModLoader_DependenciesHeader" xml:space="preserve">
+    <value>Dependências</value>
+  </data>
+  <data name="ModLoader_DependencyState_Enabled" xml:space="preserve">
+    <value>Baixadas e habilitadas</value>
+  </data>
+  <data name="ModLoader_DependencyState_Disabled" xml:space="preserve">
+    <value>Desabilitadas</value>
+  </data>
+  <data name="ModLoader_DependencyState_SortedTooHigh" xml:space="preserve">
+    <value>Ordenadas muito alto</value>
+  </data>
+  <data name="ModLoader_DependencyState_SortedTooLow" xml:space="preserve">
+    <value>Ordenadas muito baixo</value>
+  </data>
+  <data name="ModLoader_DependencyState_NotDownloaded" xml:space="preserve">
+    <value>Não baixadas</value>
+  </data>
+  <data name="ModLoader_DownloadDependencies" xml:space="preserve">
+    <value>O mod {0} requer a instalação dos seguintes mods. Deseja baixá-los?
+
+{1}</value>
+  </data>
+  <data name="ModLoader_DownloadDependenciesHeader" xml:space="preserve">
+    <value>Dependências de mod detectadas</value>
+  </data>
+  <data name="ModLoader_DownloadDependenciesError" xml:space="preserve">
+    <value>Um erro ocorreu ao baixar as dependências de mod</value>
+  </data>
+  <data name="ModLoader_MissingDependenciesWarning" xml:space="preserve">
+    <value>Os seguintes mods, necessários para {0}, não estão instalados, ativados ou estão na ordem incorreta:
+
+{1}
+
+Aplicar o mod sem estes pode impedir o seu funcionamento. Tem certeza de que deseja continuar?</value>
+  </data>
+  <data name="ModLoader_UninstallModWithDependantsWarning" xml:space="preserve">
+    <value>Você tem pelo menos um outro mod instalado que requer este mod para funcionar. Desinstalá-lo pode fazer com que outros mods parem de funcionar corretamente. Tem certeza de que deseja continuar?</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDependencyFileHeader" xml:space="preserve">
+    <value>Selecione o arquivo do GameBanana para usar no mod {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_SelectDependencyFileTitle" xml:space="preserve">
+    <value>Selecionar arquivo de mod</value>
+  </data>
+  <data name="ModLoader_GameTargetNotAddedError" xml:space="preserve">
+    <value>Não foi possível abrir o mod porque nenhum dos seguintes jogos foi adicionado:
+
+{0}</value>
+  </data>
+  <data name="ModLoader_UnsupportedModVersionError" xml:space="preserve">
+    <value>O mod {0} não pôde ser instalado porque foi feito para uma versão posterior do Rayman Control Panel.</value>
+  </data>
+  <data name="Utilities_R1GbcPasswordGenerator_Header" xml:space="preserve">
+    <value>Gerador de Senhas do Rayman 1 de GBC</value>
+  </data>
+  <data name="R1GBCPasswords_Worldmap" xml:space="preserve">
+    <value>Mapa-múndi desbloqueado</value>
+  </data>
+  <data name="R1GBCPasswords_Level" xml:space="preserve">
+    <value>Fase</value>
+  </data>
+  <data name="R1GBC_LevelName_0" xml:space="preserve">
+    <value>Spellbound Forest 1</value>
+  </data>
+  <data name="R1GBC_LevelName_1" xml:space="preserve">
+    <value>Spellbound Forest 2</value>
+  </data>
+  <data name="R1GBC_LevelName_2" xml:space="preserve">
+    <value>Spellbound Forest 3</value>
+  </data>
+  <data name="R1GBC_LevelName_3" xml:space="preserve">
+    <value>Spellbound Forest 4</value>
+  </data>
+  <data name="R1GBC_LevelName_4" xml:space="preserve">
+    <value>Airy Tunes 1</value>
+  </data>
+  <data name="R1GBC_LevelName_5" xml:space="preserve">
+    <value>Airy Tunes 2</value>
+  </data>
+  <data name="R1GBC_LevelName_6" xml:space="preserve">
+    <value>Airy Tunes 3</value>
+  </data>
+  <data name="R1GBC_LevelName_7" xml:space="preserve">
+    <value>Airy Tunes 4</value>
+  </data>
+  <data name="R1GBC_LevelName_8" xml:space="preserve">
+    <value>Rainy Forest 1</value>
+  </data>
+  <data name="R1GBC_LevelName_9" xml:space="preserve">
+    <value>Rainy Forest 2</value>
+  </data>
+  <data name="R1GBC_LevelName_10" xml:space="preserve">
+    <value>Rainy Forest 3</value>
+  </data>
+  <data name="R1GBC_LevelName_11" xml:space="preserve">
+    <value>Rocky Peaks 1</value>
+  </data>
+  <data name="R1GBC_LevelName_12" xml:space="preserve">
+    <value>Rocky Peaks 2</value>
+  </data>
+  <data name="R1GBC_LevelName_13" xml:space="preserve">
+    <value>Rocky Peaks 3</value>
+  </data>
+  <data name="R1GBC_LevelName_14" xml:space="preserve">
+    <value>Rocky Peaks 4</value>
+  </data>
+  <data name="R1GBC_LevelName_15" xml:space="preserve">
+    <value>Ancient Forest 1</value>
+  </data>
+  <data name="R1GBC_LevelName_16" xml:space="preserve">
+    <value>Ancient Forest 2</value>
+  </data>
+  <data name="R1GBC_LevelName_17" xml:space="preserve">
+    <value>Ancient Forest 3</value>
+  </data>
+  <data name="R1GBC_LevelName_18" xml:space="preserve">
+    <value>Fiery Depths 1</value>
+  </data>
+  <data name="R1GBC_LevelName_19" xml:space="preserve">
+    <value>Fiery Depths 2</value>
+  </data>
+  <data name="R1GBC_LevelName_20" xml:space="preserve">
+    <value>Fiery Depths 3</value>
+  </data>
+  <data name="R1GBC_LevelName_21" xml:space="preserve">
+    <value>Fiery Depths 4</value>
+  </data>
+  <data name="R1GBC_LevelName_22" xml:space="preserve">
+    <value>Arcane Forest 1</value>
+  </data>
+  <data name="R1GBC_LevelName_23" xml:space="preserve">
+    <value>Arcane Forest 2</value>
+  </data>
+  <data name="R1GBC_LevelName_24" xml:space="preserve">
+    <value>Arcane Forest 3</value>
+  </data>
+  <data name="R1GBC_LevelName_25" xml:space="preserve">
+    <value>Arcane Forest 4</value>
+  </data>
+  <data name="R1GBC_LevelName_26" xml:space="preserve">
+    <value>Arcane Forest 5</value>
+  </data>
+  <data name="R1GBC_LevelName_27" xml:space="preserve">
+    <value>Dark Legacy 1</value>
+  </data>
+  <data name="R1GBC_LevelName_28" xml:space="preserve">
+    <value>Dark Legacy 2</value>
+  </data>
+  <data name="R1GBC_LevelName_29" xml:space="preserve">
+    <value>Dark Legacy 3</value>
+  </data>
+  <data name="R1GBC_LevelName_30" xml:space="preserve">
+    <value>Dark Legacy 4</value>
+  </data>
+  <data name="R1GBC_LevelName_31" xml:space="preserve">
+    <value>Contra o Tempo</value>
+  </data>
+  <data name="R1GBC_LevelName_32" xml:space="preserve">
+    <value>Inutilizado 1</value>
+  </data>
+  <data name="R1GBC_LevelName_33" xml:space="preserve">
+    <value>Inutilizado 2</value>
+  </data>
+  <data name="R1GBCPasswords_Cage1" xml:space="preserve">
+    <value>Gaiola 1</value>
+  </data>
+  <data name="R1GBCPasswords_Cage2" xml:space="preserve">
+    <value>Gaiola 2</value>
   </data>
 </root>

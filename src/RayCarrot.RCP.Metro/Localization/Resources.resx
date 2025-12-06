@@ -6071,6 +6071,8 @@ searchText</comment>
   </data>
   <data name="ModLoader_FilesModule_AutoCreatePathsHint" xml:space="preserve">
     <value>Example: {0}</value>
+    <comment>Argument:
+examplePath</comment>
   </data>
   <data name="ModLoader_GameBanana_ArchivedFilesToggle" xml:space="preserve">
     <value>Show archived files</value>
