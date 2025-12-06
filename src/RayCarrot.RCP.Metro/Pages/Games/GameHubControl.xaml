@@ -384,6 +384,7 @@
                                 <!-- Panel -->
                                 <GroupBox x:Name="PanelCard"
                                           Height="135" 
+                                          Padding="0"
                                           Margin="{StaticResource RCP.Thicknesses.Card}"
                                           rcp:Icon.Kind="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToIconKindConverter}}"
                                           rcp:Icon.Brush="{Binding Path=Icon, Mode=OneTime, Converter={rcp:GenericIconToBrushConverter}}">
