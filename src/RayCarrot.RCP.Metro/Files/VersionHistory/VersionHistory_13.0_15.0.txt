@@ -1,5 +1,6 @@
 ﻿-----   Version 14.3.0 - ??, 2025   -----
 • Mod loader changes:
+    • Added GameBanana mod support for Rayman 1, Rayman 1 (GBC), Rayman Advance, Rayman Raving Rabbids (GBA), Rayman Redemption and the Windows package versions of Rayman Jungle Run and Rayman Fiesta Run
     • The list of downloadable GameBanana mods now show in a grid with thumbnails
     • Opening a downloadable GameBanana mod now shows it in a full-page view with better text formatting and more details such as the credits and preview images
     • Mods now get downloaded in the background, allowing multiple mods to be downloaded at the same time
@@ -19,6 +20,7 @@
 
 Other changes:
 • Other mod loader changes:
+    • Redesigned the game panel to show the total amount of installed and available downloadable mods
     • Added settings for if essential mods should be shown first and if unseen mods should be marked
     • Added a toggle for showing archived files for downloadable GameBanana mods
     • The update date is now used instead of the modified date for GameBanana mods
@@ -33,6 +35,7 @@ Other changes:
     • Opening a link to an external website now shows a warning message first
     • GameBanana mod categories marked as empty are now shown as well
 • Downloading the new Loadless Origins mod now marks the setup game action for Rayman Origins to install the Minimum Loading Times mod as completed
+• Added a shortcut to the new GOG DirectX config for Rayman 2 if available
 • Added a shortcut to the Tonic Trouble Fix config file for Tonic Trouble if available
 • Changed the recommended "output" value for the DOSBox emulator settings to "overlay"
 • Added Dr_st to the credits and Adamillo, AlexLimitedGames, Lapislalipek and Zelenbug to the special thanks section
@@ -40,6 +43,7 @@ Other changes:
 • Replaced the Twitter link in the about page with a Bluesky link
 • Updated the loading bar color to be a bit brighter, thus making it easier to see in dark mode
 • Updated the Rayman Legends banner image (thanks Lapislalipek!)
+• Replaced the desktop (win32) platform icon with a newer Windows 11-themed icon
 • The escape key can now be held down to enter easter egg codes, avoiding keyboard focus moving to the search box
 • Added a new easter egg code (thanks Lapislalipek!)
 • Showing game features no longer shows the setup game feature for every game
