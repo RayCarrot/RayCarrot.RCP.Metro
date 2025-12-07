@@ -4687,12 +4687,6 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
     <value>Criar modificação</value>
   </data>
-  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
-    <value>Modificação aplicada: {0}</value>
-  </data>
-  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
-    <value>Modificações aplicadas: {0}</value>
-  </data>
   <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
     <value>Actualização de modificação disponível: {0}</value>
   </data>

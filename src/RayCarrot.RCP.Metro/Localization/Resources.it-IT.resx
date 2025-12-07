@@ -4685,12 +4685,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
     <value>Crea mod</value>
   </data>
-  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
-    <value>{0} mod applicata</value>
-  </data>
-  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
-    <value>{0} mod applicate</value>
-  </data>
   <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
     <value>{0} agggiornamento mod disponibile</value>
   </data>

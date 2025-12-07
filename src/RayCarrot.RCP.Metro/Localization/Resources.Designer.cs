@@ -4691,6 +4691,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}/{1} mods applied.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_AppliedModsMultiple {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_AppliedModsMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/{1} mod applied.
+        /// </summary>
+        public static string GameHub_ModLoaderPanel_AppliedModsSingle {
+            get {
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_AppliedModsSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create mod.
         /// </summary>
         public static string GameHub_ModLoaderPanel_Create {
@@ -4700,20 +4718,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} mods applied.
+        ///   Looks up a localized string similar to {0} downloadable mods available.
         /// </summary>
-        public static string GameHub_ModLoaderPanel_InfoMultiple {
+        public static string GameHub_ModLoaderPanel_DownloadableModsMultiple {
             get {
-                return ResourceManager.GetString("GameHub_ModLoaderPanel_InfoMultiple", resourceCulture);
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_DownloadableModsMultiple", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} mod applied.
+        ///   Looks up a localized string similar to {0} downloadable mod available.
         /// </summary>
-        public static string GameHub_ModLoaderPanel_InfoSingle {
+        public static string GameHub_ModLoaderPanel_DownloadableModsSingle {
             get {
-                return ResourceManager.GetString("GameHub_ModLoaderPanel_InfoSingle", resourceCulture);
+                return ResourceManager.GetString("GameHub_ModLoaderPanel_DownloadableModsSingle", resourceCulture);
             }
         }
         
@@ -5029,6 +5047,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameInfo_WinStoreVersion {
             get {
                 return ResourceManager.GetString("GameInfo_WinStoreVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectX config.
+        /// </summary>
+        public static string GameLink_DirectX {
+            get {
+                return ResourceManager.GetString("GameLink_DirectX", resourceCulture);
             }
         }
         

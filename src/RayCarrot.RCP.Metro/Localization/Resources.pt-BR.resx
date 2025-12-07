@@ -4682,12 +4682,6 @@ Os menus multijogador em si não estão completos devido a esse recurso nunca te
   <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
     <value>Criar mod</value>
   </data>
-  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
-    <value>{0} mod aplicado</value>
-  </data>
-  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
-    <value>{0} mods aplicados</value>
-  </data>
   <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
     <value>{0} atualização de mod disponível</value>
   </data>
@@ -5756,18 +5750,6 @@ Deseja reverter a correção?</value>
   <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Ice on ice</value>
   </data>
-  <data name="R2ROptions_GraphicsApi_DX11" xml:space="preserve">
-    <value>DirectX 11</value>
-  </data>
-  <data name="R2ROptions_GraphicsApi_DX12" xml:space="preserve">
-    <value>DirectX 12</value>
-  </data>
-  <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
-    <value>Vulkan</value>
-  </data>
-  <data name="About_Bluesky" xml:space="preserve">
-    <value>Bluesky</value>
-  </data>
   <data name="SecretCodes_Guests" xml:space="preserve">
     <value>Você acaba de inserir o código Jacquouille Legends! Aproveite seu novo banner para o jogo!</value>
   </data>
@@ -5800,6 +5782,15 @@ Deseja reverter a correção?</value>
   </data>
   <data name="R2ROptions_GraphicsApi_Default" xml:space="preserve">
     <value>Padrão</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX11" xml:space="preserve">
+    <value>DirectX 11</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX12" xml:space="preserve">
+    <value>DirectX 12</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
+    <value>Vulkan</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
     <value>Atualizar</value>
@@ -5849,6 +5840,9 @@ Deseja reverter a correção?</value>
   </data>
   <data name="ModLoader_GameBanana_ArchivedFilesToggle" xml:space="preserve">
     <value>Mostrar arquivos arquivados</value>
+  </data>
+  <data name="About_Bluesky" xml:space="preserve">
+    <value>Bluesky</value>
   </data>
   <data name="About_Credits_Dr_st" xml:space="preserve">
     <value>Funcionalidades e correções do programa</value>

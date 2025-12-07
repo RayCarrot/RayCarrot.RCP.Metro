@@ -4707,12 +4707,6 @@ Konflikty:
   <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
     <value>Utwórz mod</value>
   </data>
-  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
-    <value>Mod zastosowany: {0}</value>
-  </data>
-  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
-    <value>Zastosowane mody: {0}</value>
-  </data>
   <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
     <value>Dostępna jest aktualizacja modów {0}</value>
   </data>
@@ -5778,18 +5772,6 @@ Czy chcesz cofnąć poprawkę?</value>
   <data name="RRR2_LevelName_15" xml:space="preserve">
     <value>Ice on ice</value>
   </data>
-  <data name="R2ROptions_GraphicsApi_DX11" xml:space="preserve">
-    <value>DirectX 11</value>
-  </data>
-  <data name="R2ROptions_GraphicsApi_DX12" xml:space="preserve">
-    <value>DirectX 12</value>
-  </data>
-  <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
-    <value>Vulkan</value>
-  </data>
-  <data name="About_Bluesky" xml:space="preserve">
-    <value>Bluesky</value>
-  </data>
   <data name="SecretCodes_Guests" xml:space="preserve">
     <value>Wpisałeś kod Jacquouille Legends! Ciesz się nowym banerem do gry!</value>
   </data>
@@ -5822,6 +5804,15 @@ Czy chcesz cofnąć poprawkę?</value>
   </data>
   <data name="R2ROptions_GraphicsApi_Default" xml:space="preserve">
     <value>Domyślny</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX11" xml:space="preserve">
+    <value>DirectX 11</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_DX12" xml:space="preserve">
+    <value>DirectX 12</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
+    <value>Vulkan</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
     <value>Aktualizuj</value>
@@ -5870,6 +5861,9 @@ Czy chcesz cofnąć poprawkę?</value>
   </data>
   <data name="ModLoader_GameBanana_ArchivedFilesToggle" xml:space="preserve">
     <value>Pokaż zarchiwizowane pliki</value>
+  </data>
+  <data name="About_Bluesky" xml:space="preserve">
+    <value>Bluesky</value>
   </data>
   <data name="About_Credits_Dr_st" xml:space="preserve">
     <value>Funkcje programu i poprawki</value>

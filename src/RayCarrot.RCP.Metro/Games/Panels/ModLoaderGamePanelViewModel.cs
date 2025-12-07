@@ -83,9 +83,12 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
 
             // Get the amount of applied mods
             int appliedModsCount = modManifest.Mods.Values.Count(x => x.IsEnabled);
+            int installedModsCount = modManifest.Mods.Count;
 
-            // TODO-LOC
-            AppliedModsText = $"{appliedModsCount}/{modManifest.Mods.Count} mods applied";
+            if (installedModsCount == 1)
+                AppliedModsText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_AppliedModsSingle), appliedModsCount, installedModsCount);
+            else
+                AppliedModsText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_AppliedModsMultiple), appliedModsCount, installedModsCount);
         }
         catch (Exception ex)
         {
@@ -105,8 +108,10 @@ public class ModLoaderGamePanelViewModel : GamePanelViewModel, IRecipient<Modifi
                 foreach (DownloadableModsSource source in DownloadableModsSource.GetSources())
                     count += await source.GetDownloadableModsCountAsync(httpClient, GameInstallation);
 
-                // TODO-LOC
-                DownloadableModsText = $"{count} downloadable mods available";
+                if (count == 1)
+                    DownloadableModsText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_DownloadableModsSingle), count);
+                else
+                    DownloadableModsText = new ResourceLocString(nameof(Resources.GameHub_ModLoaderPanel_DownloadableModsMultiple), count);
             }
             catch (Exception ex)
             {

@@ -4701,12 +4701,6 @@ Back：穿墙模式
   <data name="GameHub_ModLoaderPanel_Create" xml:space="preserve">
     <value>创建Mod</value>
   </data>
-  <data name="GameHub_ModLoaderPanel_InfoSingle" xml:space="preserve">
-    <value>{0}mod已应用</value>
-  </data>
-  <data name="GameHub_ModLoaderPanel_InfoMultiple" xml:space="preserve">
-    <value>{0}个mod已应用</value>
-  </data>
   <data name="GameHub_ModLoaderPanel_UpdatesAvailableSingle" xml:space="preserve">
     <value>{0}mod有可用更新</value>
   </data>
