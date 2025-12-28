@@ -135,6 +135,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     new(UbiArtGameMode.RaymanLegends_PS3),
                     new(UbiArtGameMode.RaymanLegends_Xbox360),
                     new(UbiArtGameMode.RaymanLegends_PSVita),
+                    new(UbiArtGameMode.RaymanLegends_PS4),
                     new(UbiArtGameMode.RaymanLegends_Switch),
                 }),
 
