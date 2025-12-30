@@ -5115,9 +5115,6 @@ Konflikty:
   <data name="AddGameClients_FindClients" xml:space="preserve">
     <value>Znajdź zainstalowane klienty/emulatory gier</value>
   </data>
-  <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>Tłumaczenie programu na język turecki (Turcja)</value>
-  </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>Wybierz plik moda z GameBanana, który ma zostać użyty podczas aktualizacji</value>
   </data>

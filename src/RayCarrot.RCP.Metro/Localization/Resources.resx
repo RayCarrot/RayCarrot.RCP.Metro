@@ -5287,9 +5287,6 @@ If there's a utility or other type of patch missing then it has most likely been
   <data name="AddGameClients_FindClients" xml:space="preserve">
     <value>Find installed game clients/emulators</value>
   </data>
-  <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>Turkish (Turkey) program translation</value>
-  </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>Select mod file from GameBanana to use when updating</value>
   </data>

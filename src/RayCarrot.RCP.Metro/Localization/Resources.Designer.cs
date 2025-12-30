@@ -232,15 +232,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turkish (Turkey) program translation.
-        /// </summary>
-        public static string About_Credits_payopayo {
-            get {
-                return ResourceManager.GetString("About_Credits_payopayo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman 1 Per-level soundtrack mod.
         /// </summary>
         public static string About_Credits_PluMGMK {

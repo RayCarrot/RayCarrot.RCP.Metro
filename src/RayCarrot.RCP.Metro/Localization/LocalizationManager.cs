@@ -92,9 +92,6 @@ public static class LocalizationManager
             {
                 // Hungarian (Hungary)
                 new CultureInfo("hu-HU"),
-
-                // Turkish (Turkey)
-                new CultureInfo("tr-TR"),
             });
         }
     }

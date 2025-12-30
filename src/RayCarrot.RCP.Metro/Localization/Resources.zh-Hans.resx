@@ -5112,9 +5112,6 @@ Back：穿墙模式
   <data name="AddGameClients_FindClients" xml:space="preserve">
     <value>寻找已安装的游戏客户端/模拟器</value>
   </data>
-  <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>土耳其语（土耳其）程序翻译</value>
-  </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>选择一个由GameBanana来的mod文件在更新时使用</value>
   </data>

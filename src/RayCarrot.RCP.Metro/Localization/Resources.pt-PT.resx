@@ -5094,9 +5094,6 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="AddGameClients_FindClients" xml:space="preserve">
     <value>Procurar clientes/emuladores de jogos instalados</value>
   </data>
-  <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>Programa de tradução Turca (Turquia)</value>
-  </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>Seleccionar ficheiro de modificação da GameBanana para usar ao actualizar</value>
   </data>

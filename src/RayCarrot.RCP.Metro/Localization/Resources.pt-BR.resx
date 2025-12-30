@@ -5090,9 +5090,6 @@ Se houver um utilitário ou outro tipo de corretor faltando, é bem provável qu
   <data name="AddGameClients_FindClients" xml:space="preserve">
     <value>Encontrar clientes/emuladores de jogos instalados</value>
   </data>
-  <data name="About_Credits_payopayo" xml:space="preserve">
-    <value>Tradução do programa em Turco (Turquia)</value>
-  </data>
   <data name="ModLoader_GameBanana_SelectUpdateFileHeader" xml:space="preserve">
     <value>Selecionar arquivo de mod do GameBanana para usar ao atualizar</value>
   </data>
