@@ -5433,7 +5433,7 @@ Foutberichten:
     <value>Installeer de Minimum Loading Times modificatie</value>
   </data>
   <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
-    <value>De Minimum Loading Times modificatie is een mod, gemaakt door RayCarrot, die de laad(scherm)tijd verlaagt van 4 naar 0 seconden en dus het laden van het spel sneller maakt.</value>
+    <value>De Minimum Loading Times modificatie is een mod, gemaakt door RayCarrot, die de laad(scherm)tijd verlaagt van 4 naar 0 seconden en dus het laden van het spel sneller maakt. Als alternatief kun je de Loadless Origins mod van RayCarrot gebruiken die de laadschermen volledig verwijderd.</value>
   </data>
   <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
     <value>Configuratiebestand van Mapper ontbreekt of is ongeldig</value>
@@ -6094,5 +6094,20 @@ Het toepassen van de mod zonder de andere kan ervoor zorgen dat deze niet juist 
   </data>
   <data name="R1GBCPasswords_Cage2" xml:space="preserve">
     <value>Cage 2</value>
+  </data>
+  <data name="GameLink_DirectX" xml:space="preserve">
+    <value>DirectX-configuratie</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsSingle" xml:space="preserve">
+    <value>{0}/{1} mods toegepast</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsMultiple" xml:space="preserve">
+    <value>{0}/{1} mods toegepast</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsSingle" xml:space="preserve">
+    <value>{0} downloadbare mods beschikbaar</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsMultiple" xml:space="preserve">
+    <value>{0} downloadbare mods beschikbaar</value>
   </data>
 </root>

@@ -5437,7 +5437,7 @@ Mensagens de erro:
     <value>Instalar o mod Minimum Loading Times</value>
   </data>
   <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
-    <value>O Minimum Loading Times é um mod de RayCarrot que altera o tempo mínimo da tela de carregamento de 4 segundos para 0 segundos, tornando os tempos de carregamento mais rápidos.</value>
+    <value>O mod Minimum Loading Times, criado por RayCarrot, altera o tempo mínimo de carregamento de 4 segundos para 0 segundos, tornando os tempos de carregamento mais rápidos. Como alternativa, você pode usar o mod Loadless Origins, também criado por RayCarrot, que remove completamente as telas de carregamento.</value>
   </data>
   <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
     <value>Arquivo de configuração do mapeador está faltando ou é inválido</value>
@@ -6101,5 +6101,20 @@ Aplicar o mod sem estes pode impedir o seu funcionamento. Tem certeza de que des
   </data>
   <data name="R1GBCPasswords_Cage2" xml:space="preserve">
     <value>Gaiola 2</value>
+  </data>
+  <data name="GameLink_DirectX" xml:space="preserve">
+    <value>Configuração do DirectX</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsSingle" xml:space="preserve">
+    <value>{0}/{1} mod aplicado</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsMultiple" xml:space="preserve">
+    <value>{0}/{1} mods aplicados</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsSingle" xml:space="preserve">
+    <value>{0} mod para download disponível</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsMultiple" xml:space="preserve">
+    <value>{0} mods para download disponíveis</value>
   </data>
 </root>

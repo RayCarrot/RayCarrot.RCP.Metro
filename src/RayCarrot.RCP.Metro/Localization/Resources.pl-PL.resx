@@ -5460,7 +5460,7 @@ Komunikaty o błędach:
     <value>Zainstaluj mod Minimum Loading Times</value>
   </data>
   <data name="SetupGameAction_MinimumRaymanOriginsLoadingTimes_Info" xml:space="preserve">
-    <value>Modyfikacja Minimum Loading Times to modyfikacja autorstwa użytkownika RayCarrot, która zmienia minimalny czas ładowania ekranu z 4 sekund do 0 sekund, przyśpieszając w ten sposób czas ładowania.</value>
+    <value>Modyfikacja Minimum Loading Times to modyfikacja autorstwa użytkownika RayCarrot, która zmienia minimalny czas ładowania ekranu z 4 sekund do 0 sekund, przyśpieszając w ten sposób czas ładowania. Alternatywą jest także modyfikacja Loadless Origins tego samego autora, która całkowicie usuwa ekrany ładowania.</value>
   </data>
   <data name="SetupGameAction_MissingMapperConfig_Header" xml:space="preserve">
     <value>Brak pliku konfiguracyjnego mappera lub jest on nieprawidłowy</value>
@@ -6122,5 +6122,20 @@ Zastosowanie modyfikacji bez nich może spowodować, że nie będzie ona działa
   </data>
   <data name="R1GBCPasswords_Cage2" xml:space="preserve">
     <value>Cage 2</value>
+  </data>
+  <data name="GameLink_DirectX" xml:space="preserve">
+    <value>Konfiguracja DirectX</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsSingle" xml:space="preserve">
+    <value>{0}/{1} zastosowano modyfikację</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsMultiple" xml:space="preserve">
+    <value>{0}/{1} zastosowano modyfikacji</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsSingle" xml:space="preserve">
+    <value>{0} modyfikacja dostępna do pobrania</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsMultiple" xml:space="preserve">
+    <value>{0} modyfikacji dostępnych do pobrania</value>
   </data>
 </root>

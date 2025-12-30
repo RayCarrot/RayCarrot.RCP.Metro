@@ -6131,4 +6131,19 @@ Back：穿墙模式
   <data name="R1GBCPasswords_Cage2" xml:space="preserve">
     <value>笼子2</value>
   </data>
+  <data name="GameLink_DirectX" xml:space="preserve">
+    <value>DirectX参数</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsSingle" xml:space="preserve">
+    <value> {0}/{1}mod已应用</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_AppliedModsMultiple" xml:space="preserve">
+    <value> {0}/{1}mod已应用</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsSingle" xml:space="preserve">
+    <value>{0}可下载mod已可用</value>
+  </data>
+  <data name="GameHub_ModLoaderPanel_DownloadableModsMultiple" xml:space="preserve">
+    <value>{0}可下载mod已可用</value>
+  </data>
 </root>

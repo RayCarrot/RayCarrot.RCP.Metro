@@ -5763,4 +5763,121 @@ ADVERTENCIA: Cargar directamente un mapa con esto omitirá la carga de tu archiv
   <data name="About_Bluesky" xml:space="preserve">
     <value>Bluesky</value>
   </data>
+  <data name="SecretCodes_Guests" xml:space="preserve">
+    <value>Has introducido el código Jacquouille Legends. ¡Disfruta de tu nuevo banner para el juego!</value>
+  </data>
+  <data name="Rayman2Redreamed_Demo_Win32_Title" xml:space="preserve">
+    <value>Rayman 2: Redreamed Demo</value>
+  </data>
+  <data name="Game_Rayman2Redreamed_Title" xml:space="preserve">
+    <value>Rayman 2: Redreamed</value>
+  </data>
+  <data name="Rayman3HavocReignited_Win32_Title" xml:space="preserve">
+    <value>Rayman 3 Havoc Reignited</value>
+  </data>
+  <data name="Game_Rayman3HavocReignited_Title" xml:space="preserve">
+    <value>Rayman 3 Havoc Reignited</value>
+  </data>
+  <data name="RaymanLumoGrams_Demo_Win32_Title" xml:space="preserve">
+    <value>Rayman Lum'o'Grams Demo</value>
+  </data>
+  <data name="Game_RaymanLumoGrams_Title" xml:space="preserve">
+    <value>Rayman Lum'o'Grams</value>
+  </data>
+  <data name="GameDisplay_DownloadWebsite" xml:space="preserve">
+    <value>Descargar desde el sitio web</value>
+  </data>
+  <data name="GameLink_TTFix" xml:space="preserve">
+    <value>Corrección de Tonic Trouble</value>
+  </data>
+  <data name="R2ROptions_GraphicsApiHeader" xml:space="preserve">
+    <value>API gráfica</value>
+  </data>
+  <data name="R2ROptions_GraphicsApi_Default" xml:space="preserve">
+    <value>Predeterminada</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="Progression_TT_Thermometers" xml:space="preserve">
+    <value>Termómetros</value>
+  </data>
+  <data name="Progression_TT_BonusPoints" xml:space="preserve">
+    <value>Puntos de bonificación</value>
+  </data>
+  <data name="Progression_TT_Springs" xml:space="preserve">
+    <value>Muelles</value>
+  </data>
+  <data name="Progression_TT_PropellerBlades" xml:space="preserve">
+    <value>Hélices</value>
+  </data>
+  <data name="Progression_TT_JumpingStones" xml:space="preserve">
+    <value>Piedras saltarinas</value>
+  </data>
+  <data name="Progression_TT_Feathers" xml:space="preserve">
+    <value>Plumas</value>
+  </data>
+  <data name="Progression_TT_Dominoes" xml:space="preserve">
+    <value>Fichas de dominó</value>
+  </data>
+  <data name="Progression_TT_WildPiggybanks" xml:space="preserve">
+    <value>Huchas de cerdito salvaje</value>
+  </data>
+  <data name="SetupGameAction_LevelTransparencyFixes_Header" xml:space="preserve">
+    <value>Instalar el mod Level Transparency Fixes</value>
+  </data>
+  <data name="SetupGameAction_LevelTransparencyFixes_Info" xml:space="preserve">
+    <value>El mod Level Transparency Fixes es un mod de Droolie e ICUP321 que corrige la transparencia de los objetos en ciertos niveles.</value>
+  </data>
+  <data name="InstallableTool_UninstallError" xml:space="preserve">
+    <value>Se produjo un error al desinstalar la herramienta. Asegúrate de que no esté en uso actualmente e inténtalo de nuevo.</value>
+  </data>
+  <data name="InstallableTool_UpdateError" xml:space="preserve">
+    <value>Se produjo un error al actualizar la herramienta. Asegúrate de que no esté en uso actualmente e inténtalo de nuevo.</value>
+  </data>
+  <data name="ModLoader_FilesModule_AutoCreatePathsInfo" xml:space="preserve">
+    <value>Especifica aquí cualquier ruta de carpeta que quieras que se cree automáticamente. Separa cada una con una nueva línea. Siempre puedes crear las carpetas manualmente después.</value>
+  </data>
+  <data name="ModLoader_FilesModule_AutoCreatePathsHint" xml:space="preserve">
+    <value>Ejemplo: {0}</value>
+  </data>
+  <data name="ModLoader_GameBanana_ArchivedFilesToggle" xml:space="preserve">
+    <value>Mostrar archivos archivados</value>
+  </data>
+  <data name="About_Credits_Dr_st" xml:space="preserve">
+    <value>Funciones y correcciones del programa</value>
+  </data>
+  <data name="Settings_ModLoader_IncludeNsfwMods" xml:space="preserve">
+    <value>Incluir mods descargables marcados como NSFW</value>
+  </data>
+  <data name="Settings_ModLoader_IncludeNsfwModsInfo" xml:space="preserve">
+    <value>Indica si los mods con una clasificación de contenido, como desnudez o violencia, deben mostrarse en la lista de mods descargables.</value>
+  </data>
+  <data name="Utilities_Converter_TTSaveHeader" xml:space="preserve">
+    <value>Archivos de guardado de Tonic Trouble (.sav)</value>
+  </data>
+  <data name="ModLoader_LoadDownloadableModError" xml:space="preserve">
+    <value>Se produjo un error al cargar el mod</value>
+  </data>
+  <data name="ModLoader_CancelDownload" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ModLoader_NoSelectedMod" xml:space="preserve">
+    <value>Ningún mod seleccionado</value>
+  </data>
+  <data name="ModLoader_OpenModDownloadPage" xml:space="preserve">
+    <value>Abrir página de descarga</value>
+  </data>
+  <data name="ModLoader_ActiveDownloadsError" xml:space="preserve">
+    <value>Todavía se están descargando mods. Espera a que todas las descargas finalicen antes de aplicar cambios.</value>
+  </data>
+  <data name="ModLoader_ActiveDownloadsErrorHeader" xml:space="preserve">
+    <value>Los mods aún se están descargando</value>
+  </data>
+  <data name="ModLoader_InstallState_Downloading" xml:space="preserve">
+    <value>Descargando…</value>
+  </data>
+  <data name="ModLoader_InstallState_Extracting" xml:space="preserve">
+    <value>Extrayendo…</value>
+  </data>
 </root>
