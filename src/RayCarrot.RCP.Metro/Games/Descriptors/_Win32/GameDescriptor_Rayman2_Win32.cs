@@ -42,6 +42,16 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     #region Private Methods
 
+    private static FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation)
+    {
+        // Use the Twofold dll loader exe if available
+        FileSystemPath twofoldFilePath = gameInstallation.InstallLocation.Directory + "Ray2x.exe";
+        if (twofoldFilePath.FileExists)
+            return twofoldFilePath;
+        else
+            return gameInstallation.InstallLocation.Directory + "Rayman2.exe";
+    }
+
     private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
     {
         new GameLinksComponent.GameUriLink(
@@ -71,6 +81,8 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
         builder.Register(new SteamGameClientComponent(SteamId));
         builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
+
+        builder.Register(new Win32LaunchPathComponent(GetLaunchFilePath));
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Win32(x, "Rayman 2")));
         builder.Register(new GameSettingsComponent(x => new Rayman2SettingsViewModel(x)));
