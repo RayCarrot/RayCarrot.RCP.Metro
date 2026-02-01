@@ -29,10 +29,14 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
 
     #region Private Methods
 
-    private static FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation) =>
-        gameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData) == null
+    private static FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation)
+    {
+        string fileName = gameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData) == null
             ? "Launcher.exe"
             : "LyN_f.exe";
+
+        return gameInstallation.InstallLocation.Directory + fileName;
+    }
 
     private static string? GetLaunchArgs(GameInstallation gameInstallation) =>
         gameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData)?.ToString();
