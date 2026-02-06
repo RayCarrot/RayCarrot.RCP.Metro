@@ -24,6 +24,9 @@ public enum GamePlatformIconAsset
     [AssetFileName("PlayStation2.png")]
     Ps2,
 
+    [AssetFileName("GameCube.png")]
+    GameCube,
+
     [AssetFileName("Gba.png")]
     Gba,
 }

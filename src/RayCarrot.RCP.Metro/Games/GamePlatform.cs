@@ -53,4 +53,11 @@ public enum GamePlatform
     /// </summary>
     [GamePlatformInfo(nameof(Resources.Platform_Gba), GamePlatformIconAsset.Gba)]
     Gba,
+
+    // TODO-LOC
+    /// <summary>
+    /// GameCube
+    /// </summary>
+    [GamePlatformInfo("GameCube", GamePlatformIconAsset.GameCube)]
+    GameCube,
 }
