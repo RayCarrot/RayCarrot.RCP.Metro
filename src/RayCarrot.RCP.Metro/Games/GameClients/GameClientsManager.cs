@@ -23,6 +23,7 @@ public class GameClientsManager
             // Emulators
             new CustomGameClientDescriptor(),
             new DosBoxGameClientDescriptor(),
+            new BigPEmuGameClientDescriptor(),
             new DuckStationGameClientDescriptor(),
             new BizHawkGameClientDescriptor(),
             new PCSX2GameClientDescriptor(),

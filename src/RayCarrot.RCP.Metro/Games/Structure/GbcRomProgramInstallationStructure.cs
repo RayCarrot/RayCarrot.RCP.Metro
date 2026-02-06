@@ -9,6 +9,7 @@ public class GbcRomProgramInstallationStructure : RomProgramInstallationStructur
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    public override bool SupportGameFileFinder => true;
     public override FileExtension[] SupportedFileExtensions => new[]
     {
         new FileExtension(".gbc"),

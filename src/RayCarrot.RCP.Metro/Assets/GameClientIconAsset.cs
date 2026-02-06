@@ -9,6 +9,9 @@ public enum GameClientIconAsset
     [AssetFileName("DOSBox.png")]
     DosBox,
 
+    [AssetFileName("BigPEmu.png")]
+    BigPEmu,
+
     [AssetFileName("DuckStation.png")]
     DuckStation,
 

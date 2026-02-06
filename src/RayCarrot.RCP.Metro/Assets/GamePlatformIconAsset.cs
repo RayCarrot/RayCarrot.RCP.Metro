@@ -12,6 +12,9 @@ public enum GamePlatformIconAsset
     [AssetFileName("WindowsPackage.png")]
     WindowsPackage,
 
+    [AssetFileName("Jaguar.png")]
+    Jaguar,
+
     [AssetFileName("Gbc.png")]
     Gbc,
 

@@ -23,6 +23,13 @@ public enum GamePlatform
     [GamePlatformInfo(nameof(Resources.Platform_WindowsPackage), GamePlatformIconAsset.WindowsPackage)]
     WindowsPackage,
 
+    // TODO-LOC
+    /// <summary>
+    /// Atari Jaguar
+    /// </summary>
+    [GamePlatformInfo("Atari Jaguar", GamePlatformIconAsset.Jaguar)]
+    Jaguar,
+
     /// <summary>
     /// PlayStation
     /// </summary>
