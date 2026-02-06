@@ -18,7 +18,7 @@ public sealed class GameDescriptor_Rayman1_Jaguar : JaguarGameDescriptor
     public override string[] SearchKeywords => new[] { "r1", "jag" };
     public override DateTime ReleaseDate => new(1995, 09, 09);
 
-    public override GameIconAsset Icon => GameIconAsset.Rayman1;
+    public override GameIconAsset Icon => GameIconAsset.Rayman1Jaguar;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
     #endregion
