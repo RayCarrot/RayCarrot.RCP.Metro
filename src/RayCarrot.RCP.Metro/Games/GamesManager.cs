@@ -62,6 +62,8 @@ public class GamesManager
             new GameDescriptor_Rayman1_Demo_19951207_MsDos(),
             new GameDescriptor_Rayman1_Demo_19960215_MsDos(),
             new GameDescriptor_Rayman1_Demo_19951204_MsDos(),
+            new GameDescriptor_Rayman1_Prototype_Jaguar(),
+            new GameDescriptor_Rayman1_Demo_Jaguar(),
             new GameDescriptor_RaymanGold_Demo_19970930_MsDos(),
             new GameDescriptor_Rayman2_Beta_19980722_Win32(),
             new GameDescriptor_Rayman2_Demo_19990818_Win32(),
