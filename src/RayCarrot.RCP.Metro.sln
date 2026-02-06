@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Audio", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.PlayStation", "..\submodules\BinarySerializer.PlayStation\src\BinarySerializer.PlayStation.csproj", "{0B4C0C5D-377C-476F-B701-6852E557C6B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySerializer.Ray1.Jaguar", "..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1.Jaguar\BinarySerializer.Ray1.Jaguar.csproj", "{0FD47044-B9F9-7BD3-BD00-BC28B5238943}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,14 @@ Global
 		{0B4C0C5D-377C-476F-B701-6852E557C6B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B4C0C5D-377C-476F-B701-6852E557C6B2}.Release|x86.ActiveCfg = Release|Any CPU
 		{0B4C0C5D-377C-476F-B701-6852E557C6B2}.Release|x86.Build.0 = Release|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Debug|x86.Build.0 = Debug|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Release|x86.ActiveCfg = Release|Any CPU
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +171,7 @@ Global
 		{F3BCA065-923D-407A-9A4B-412850C26A8A} = {7467979D-E630-4407-97D2-8EBAE531D746}
 		{BAD42571-2CF6-4638-8C0A-8399848D7484} = {7467979D-E630-4407-97D2-8EBAE531D746}
 		{0B4C0C5D-377C-476F-B701-6852E557C6B2} = {7467979D-E630-4407-97D2-8EBAE531D746}
+		{0FD47044-B9F9-7BD3-BD00-BC28B5238943} = {7467979D-E630-4407-97D2-8EBAE531D746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}

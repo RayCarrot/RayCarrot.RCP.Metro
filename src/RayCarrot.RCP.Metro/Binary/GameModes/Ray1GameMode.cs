@@ -5,6 +5,9 @@ namespace RayCarrot.RCP.Metro;
 // TODO: Localize game mode names?
 public enum Ray1GameMode
 {
+    [Ray1GameModeInfo("Rayman (Jaguar)", Ray1EngineVersion.Jaguar)]
+    Rayman1_Jaguar,
+
     [Ray1GameModeInfo("Rayman (PlayStation)", Ray1EngineVersion.PS1)]
     Rayman1_PS1,
 

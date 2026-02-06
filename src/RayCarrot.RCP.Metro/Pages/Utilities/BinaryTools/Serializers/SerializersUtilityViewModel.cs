@@ -4,6 +4,7 @@ using BinarySerializer.Nintendo.GBA;
 using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
 using BinarySerializer.Ray1.GBA;
+using BinarySerializer.Ray1.Jaguar;
 using BinarySerializer.Ray1.PC;
 using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Legacy.Patcher;
@@ -38,6 +39,15 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     new(Ray1GameMode.RaymanDesigner_PC),
                     new(Ray1GameMode.RaymanByHisFans_PC),
                     new(Ray1GameMode.Rayman60Levels_PC),
+                }),
+
+            new Serializers_TypeViewModel<JAG_SaveData>(
+                name: new ResourceLocString("Rayman 1 Jaguar"), // TODO-LOC
+                fileExtension: new FileExtension(".bigpeep"),
+                getEndianFunc: c => Endian.Big,
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
+                {
+                    new(Ray1GameMode.Rayman1_Jaguar) { },
                 }),
 
             new Serializers_TypeViewModel<TTSaveFile>(
