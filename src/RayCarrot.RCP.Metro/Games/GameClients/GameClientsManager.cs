@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Clients.BigPEmu;
 using RayCarrot.RCP.Metro.Games.Clients.Custom;
+using RayCarrot.RCP.Metro.Games.Clients.Dolphin;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Clients.MGba;
 using RayCarrot.RCP.Metro.Games.Clients.Steam;
@@ -31,6 +32,7 @@ public class GameClientsManager
             new SameBoyGameClientDescriptor(),
             new MGbaGameClientDescriptor(),
             new VisualBoyAdvanceMGameClientDescriptor(),
+            new DolphinGameClientDescriptor(),
             
             // Clients
             new SteamGameClientDescriptor(),

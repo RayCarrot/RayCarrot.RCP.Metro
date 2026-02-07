@@ -30,6 +30,9 @@ public enum GameClientIconAsset
     [AssetFileName("Visual Boy Advance - M.png")]
     VisualBoyAdvanceM,
 
+    [AssetFileName("Dolphin.png")]
+    Dolphin,
+
     [AssetFileName("Steam.png")]
     Steam,
 
