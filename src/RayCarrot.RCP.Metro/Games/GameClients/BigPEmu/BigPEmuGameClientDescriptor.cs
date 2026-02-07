@@ -1,7 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 
-namespace RayCarrot.RCP.Metro.Games.Clients.MGba;
+namespace RayCarrot.RCP.Metro.Games.Clients.BigPEmu;
 
 public sealed class BigPEmuGameClientDescriptor : EmulatorGameClientDescriptor
 {
