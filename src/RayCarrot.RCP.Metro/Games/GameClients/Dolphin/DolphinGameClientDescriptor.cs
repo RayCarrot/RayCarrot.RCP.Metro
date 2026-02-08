@@ -22,6 +22,7 @@ public sealed class DolphinGameClientDescriptor : EmulatorGameClientDescriptor
         base.RegisterComponents(builder);
 
         builder.Register<LaunchGameComponent, DefaultGameClientLaunchGameComponent>();
+        builder.Register<EmulatedSaveFilesComponent, DolphinEmulatedSaveFilesComponent>();
     }
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
