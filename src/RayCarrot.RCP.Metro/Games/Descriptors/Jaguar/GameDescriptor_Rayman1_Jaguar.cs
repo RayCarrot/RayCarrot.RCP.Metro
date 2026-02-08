@@ -29,7 +29,7 @@ public sealed class GameDescriptor_Rayman1_Jaguar : JaguarGameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman_Jaguar(x, "Rayman 1 Jaguar")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman_Jaguar(x, "Rayman 1 - Jaguar")));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_Jaguar));
     }
 
