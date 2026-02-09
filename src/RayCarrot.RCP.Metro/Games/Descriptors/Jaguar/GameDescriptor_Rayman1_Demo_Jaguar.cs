@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Structure;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,6 +24,14 @@ public sealed class GameDescriptor_Rayman1_Demo_Jaguar : JaguarGameDescriptor
     #endregion
 
     #region Protected Methods
+
+    protected override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanJaguarDemo", "r1_jaguar/demo"));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_JaguarDemo));
+    }
 
     protected override ProgramInstallationStructure CreateStructure() => new JaguarRomProgramInstallationStructure();
 

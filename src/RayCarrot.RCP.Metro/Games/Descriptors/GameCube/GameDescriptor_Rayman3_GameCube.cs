@@ -30,6 +30,7 @@ public sealed class GameDescriptor_Rayman3_GameCube : GameCubeGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3_GameCube(x, "Rayman 3 - GameCube")));
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "r3_gc", "r3_gc"));
         builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.Rayman3_GC));
     }
 
