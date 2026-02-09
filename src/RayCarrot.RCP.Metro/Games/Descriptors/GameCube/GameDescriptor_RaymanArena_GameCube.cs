@@ -29,6 +29,7 @@ public sealed class GameDescriptor_RaymanArena_GameCube : GameCubeGameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanArena_GameCube(x, "Rayman Arena - GameCube")));
         builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.RaymanArena_GC));
     }
 

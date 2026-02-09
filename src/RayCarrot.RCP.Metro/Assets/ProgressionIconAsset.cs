@@ -41,6 +41,12 @@ public enum ProgressionIconAsset
     RM_R14,
     RM_R15,
 
+    // Rayman Arena
+    RA_Skin,
+    RA_Beginner,
+    RA_Pro,
+    RA_Master,
+
     // Rayman Rush
     RR_Championship,
     RR_TimeAttack,
