@@ -12,7 +12,7 @@ public class GameProgressionManager_RaymanMArena_Ps2 : EmulatedGameProgressionMa
 
     public override async IAsyncEnumerable<EmulatedGameProgressionSlot> LoadSlotsAsync(EmulatedSave emulatedSave)
     {
-        RMSaveFile saveData = await emulatedSave.ReadAsync<RMSaveFile>();
+        R3SaveFile saveData = await emulatedSave.ReadAsync<R3SaveFile>();
 
         Logger.Info("Save file has been deserialized");
 
@@ -29,7 +29,7 @@ public class GameProgressionManager_RaymanMArena_Ps2 : EmulatedGameProgressionMa
             IReadOnlyList<GameProgressionDataItem> dataItems = RaymanMArenaProgression.CreateProgressionItems(
                 saveData, false, slotIndex, out int collectiblesCount, out int maxCollectiblesCount);
 
-            yield return new SerializabeEmulatedGameProgressionSlot<RMSaveFile>(
+            yield return new SerializabeEmulatedGameProgressionSlot<R3SaveFile>(
                 name: name.TrimEnd(),
                 index: slotIndex,
                 collectiblesCount: collectiblesCount,

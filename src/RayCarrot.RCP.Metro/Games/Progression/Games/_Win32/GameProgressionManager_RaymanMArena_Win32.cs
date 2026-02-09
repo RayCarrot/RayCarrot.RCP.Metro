@@ -36,7 +36,7 @@ public class GameProgressionManager_RaymanMArena_Win32 : GameProgressionManager
         context.Initialize(GameInstallation);
 
         // Deserialize the save data
-        RMSaveFile? saveData = await context.ReadFileDataAsync<RMSaveFile>(saveFileName, removeFileWhenComplete: false);
+        R3SaveFile? saveData = await context.ReadFileDataAsync<R3SaveFile>(saveFileName, removeFileWhenComplete: false);
 
         if (saveData == null)
         {
@@ -59,7 +59,7 @@ public class GameProgressionManager_RaymanMArena_Win32 : GameProgressionManager
             IReadOnlyList<GameProgressionDataItem> dataItems = RaymanMArenaProgression.CreateProgressionItems(
                 saveData, IsRaymanMDemo, slotIndex, out int collectiblesCount, out int maxCollectiblesCount);
 
-            yield return new SerializableGameProgressionSlot<RMSaveFile>(
+            yield return new SerializableGameProgressionSlot<R3SaveFile>(
                 name: name.TrimEnd(), 
                 index: slotIndex, 
                 collectiblesCount: collectiblesCount, 

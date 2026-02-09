@@ -77,7 +77,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     new(CPAGameMode.Rayman2_PC) { Encoder = new R2SaveEncoder() },
                 }),
 
-            new Serializers_TypeViewModel<RMSaveFile>(
+            new Serializers_TypeViewModel<R3SaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RMSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,

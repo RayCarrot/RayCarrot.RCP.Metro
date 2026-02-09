@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 public static class RaymanMArenaProgression
 {
     public static IReadOnlyList<GameProgressionDataItem> CreateProgressionItems(
-        RMSaveFile saveFile, 
+        R3SaveFile saveFile, 
         bool isDemo,
         int slotIndex,
         out int collectiblesCount, 
