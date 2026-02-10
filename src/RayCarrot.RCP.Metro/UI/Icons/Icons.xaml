@@ -153,9 +153,6 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_DiscInstall}" 
                        IconKind="{StaticResource RCP.Icons.Disc}" 
                        IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Download}" 
-                       IconKind="{StaticResource RCP.Icons.CloudDownload}" 
-                       IconColor="{x:Null}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Purchase}" 
                        IconKind="{StaticResource RCP.Icons.Purchase}" 
                        IconColor="{x:Null}" />

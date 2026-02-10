@@ -30,7 +30,6 @@ public enum GenericIconKind
 
     GameAdd_Locate,
     GameAdd_DiscInstall,
-    GameAdd_Download,
     GameAdd_Purchase,
 
     SetupGame_Mod,

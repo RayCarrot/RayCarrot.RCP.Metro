@@ -59,13 +59,9 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
     #region Public Methods
 
-    // Can only be downloaded
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        new DownloadGameAddAction(this, new Uri[]
-        {
-            new(AppURLs.Games_RavingRabbidsActivityCenter_Url),
-        })
+        // TODO-UPDATE: Allow adding
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

@@ -44,14 +44,9 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 
     #region Public Methods
 
-    // Can only be downloaded
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        new DownloadGameAddAction(this, new Uri[]
-        {
-            new(AppURLs.Games_PrintStudio1_Url),
-            new(AppURLs.Games_PrintStudio2_Url),
-        })
+        // TODO-UPDATE: Allow adding
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

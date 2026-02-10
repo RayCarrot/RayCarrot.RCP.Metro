@@ -35,6 +35,6 @@ public class RCPGameInstallData
     public enum RCPInstallMode
     {
         DiscInstall,
-        Download,
+        Download, // Legacy
     }
 }

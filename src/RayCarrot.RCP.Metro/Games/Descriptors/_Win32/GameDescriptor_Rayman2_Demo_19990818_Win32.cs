@@ -53,10 +53,6 @@ public sealed class GameDescriptor_Rayman2_Demo_19990818_Win32 : Win32GameDescri
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
         new LocateDirectoryGameAddAction(this),
-        new DownloadGameAddAction(this, new Uri[]
-        {
-            new(AppURLs.Games_R2Demo1_Url),
-        })
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

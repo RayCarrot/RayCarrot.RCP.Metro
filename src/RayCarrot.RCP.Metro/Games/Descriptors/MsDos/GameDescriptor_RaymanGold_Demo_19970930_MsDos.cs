@@ -62,10 +62,6 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MsDos : MsDosGameDes
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
         new LocateDirectoryGameAddAction(this),
-        new DownloadGameAddAction(this, new Uri[]
-        {
-            new(AppURLs.Games_RGoldDemo_Url),
-        })
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

@@ -64,10 +64,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
         new LocateDirectoryGameAddAction(this),
-        new DownloadGameAddAction(this, new Uri[]
-        {
-            new(AppURLs.Games_RRRDemo_Url),
-        })
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

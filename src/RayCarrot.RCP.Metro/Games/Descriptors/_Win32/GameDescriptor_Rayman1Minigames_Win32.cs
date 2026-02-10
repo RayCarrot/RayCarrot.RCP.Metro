@@ -45,13 +45,9 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    // Can only be downloaded
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        new DownloadGameAddAction(this, new Uri[]
-        {
-            new(AppURLs.Games_Ray1Minigames_Url),
-        })
+        // TODO-UPDATE: Allow adding
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
