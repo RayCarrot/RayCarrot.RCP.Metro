@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
@@ -48,7 +47,7 @@ public class DebugPageViewModel : BasePageViewModel
         ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
         ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
         ShowWelcomeWindowCommand = new RelayCommand(ShowWelcomeWindow);
-        RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
+        RefreshDataOutputCommand = new RelayCommand(RefreshDataOutput);
         GCCollectCommand = new RelayCommand(GCCollect);
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
         ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
@@ -309,7 +308,7 @@ public class DebugPageViewModel : BasePageViewModel
     /// Refreshes the data output
     /// </summary>
     /// <returns>The task</returns>
-    public async Task RefreshDataOutputAsync()
+    public void RefreshDataOutput()
     {
         try
         {
@@ -358,14 +357,6 @@ public class DebugPageViewModel : BasePageViewModel
 
                     // Display the file contents
                     DataOutput = File.ReadAllText(AppFilePaths.AppUserDataPath);
-
-                    break;
-
-                case DebugDataOutputType.UpdateManifest:
-
-                    // Download the manifest as a string and display it
-                    using (WebClient wc = new WebClient())
-                        DataOutput = await wc.DownloadStringTaskAsync(AppURLs.UpdateManifestUrl);
 
                     break;
 
@@ -602,11 +593,6 @@ public class DebugPageViewModel : BasePageViewModel
         /// Displays the app user data file contents
         /// </summary>
         AppUserData,
-
-        /// <summary>
-        /// Displays the update manifest from the server
-        /// </summary>
-        UpdateManifest,
 
         /// <summary>
         /// Displays a list of windows in the current application

@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Tools;
 using RayCarrot.RCP.Metro.Pages.About;
@@ -60,7 +59,7 @@ public static class Entry
         serviceCollection.AddSingleton<AppUserData>();
         serviceCollection.AddSingleton<IAppInstanceData, AppInstanceData>();
         serviceCollection.AddSingleton<FileManager>();
-        serviceCollection.AddSingleton<IUpdaterManager, RCPUpdaterManager>();
+        serviceCollection.AddSingleton<IUpdaterManager, UpdaterManager>();
         serviceCollection.AddSingleton<GameBackups_Manager>();
         serviceCollection.AddSingleton<DeployableFilesManager>();
         serviceCollection.AddSingleton<AssociatedFileEditorsManager>();

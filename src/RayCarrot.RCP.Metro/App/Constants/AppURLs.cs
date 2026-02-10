@@ -8,6 +8,20 @@
 /// </summary>
 public static class AppURLs
 {
+    #region GitHub
+
+    /// <summary>
+    /// The GitHub project URL
+    /// </summary>
+    public const string GitHubUrl = "https://github.com/RayCarrot/RayCarrot.RCP.Metro";
+
+    /// <summary>
+    /// The latest GitHub release URL
+    /// </summary>
+    public const string LatestGitHubReleaseUrl = "https://github.com/RayCarrot/RayCarrot.RCP.Metro/releases/latest";
+
+    #endregion
+
     #region Base
 
     /// <summary>
@@ -19,11 +33,6 @@ public static class AppURLs
     /// The RCP base URL
     /// </summary>
     public const string RCPBaseUrl = BaseUrl + "rcp/";
-
-    /// <summary>
-    /// The update manifest URL
-    /// </summary>
-    public const string UpdateManifestUrl = RCPBaseUrl + "RCP_Metro_Manifest.json";
 
     /// <summary>
     /// The app news URL
@@ -183,11 +192,6 @@ public static class AppURLs
     #endregion
 
     #region Contact
-
-    /// <summary>
-    /// The GitHub project URL
-    /// </summary>
-    public const string GitHubUrl = "https://github.com/RayCarrot/Rayman-Control-Panel-Metro";
 
     /// <summary>
     /// The YouTube URL

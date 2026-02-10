@@ -325,8 +325,11 @@ public class AppViewModel : BaseViewModel
             // Check if there is an error
             if (result.ErrorMessage != null)
             {
-                await MessageUI.DisplayExceptionMessageAsync(result.Exception,
-                    String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.RCPBaseUrl), Resources.Update_ErrorHeader);
+                string errorMessage = String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.LatestGitHubReleaseUrl);
+                if (result.Exception != null)
+                    await MessageUI.DisplayExceptionMessageAsync(result.Exception, errorMessage, Resources.Update_ErrorHeader);
+                else
+                    await MessageUI.DisplayMessageAsync(errorMessage, Resources.Update_ErrorHeader, MessageType.Error);
 
                 Data.Update_IsUpdateAvailable = false;
 
@@ -353,6 +356,8 @@ public class AppViewModel : BaseViewModel
                 try
                 {
                     bool isBeta = result.IsBetaUpdate;
+
+                    // TODO-UPDATE: Show custom windows with scrollable textbox for the changelog
 
                     string message = String.Format(!isBeta 
                         ? Resources.Update_UpdateAvailable 

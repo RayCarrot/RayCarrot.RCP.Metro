@@ -1,17 +1,22 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Octokit;
 
 namespace RayCarrot.RCP.Metro;
 
-/// <summary>
-/// Manages application updates
-/// </summary>
-public abstract class UpdaterManager : IUpdaterManager
+public class UpdaterManager : IUpdaterManager
 {
-    protected UpdaterManager(IMessageUIManager message, FileManager file, DeployableFilesManager deployableFiles, AppUserData data, IAppInstanceData instanceData)
+    public UpdaterManager(
+        IHttpClientFactory httpClientFactory,
+        IMessageUIManager message, 
+        FileManager file, 
+        DeployableFilesManager deployableFiles, 
+        AppUserData data, 
+        IAppInstanceData instanceData)
     {
+        HttpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         Message = message ?? throw new ArgumentNullException(nameof(message));
         File = file ?? throw new ArgumentNullException(nameof(file));
         DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
@@ -19,156 +24,137 @@ public abstract class UpdaterManager : IUpdaterManager
         InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
     }
 
+    private const string GitHubUserName = "RayCarrot";
+    private const string GitHubRepoName = "RayCarrot.RCP.Metro";
+    private const string ExeFileName = "RaymanControlPanel.exe";
+    private const string ChangelogFileName = "Changelog.txt";
+    private const string FallbackUrl = AppURLs.LatestGitHubReleaseUrl;
+
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected IMessageUIManager Message { get; }
-    protected FileManager File { get; }
-    protected DeployableFilesManager DeployableFiles { get; }
-    protected AppUserData Data { get; }
-    protected IAppInstanceData InstanceData { get; }
+    private IHttpClientFactory HttpClientFactory { get; }
+    private IMessageUIManager Message { get; }
+    private FileManager File { get; }
+    private DeployableFilesManager DeployableFiles { get; }
+    private AppUserData Data { get; }
+    private IAppInstanceData InstanceData { get; }
 
-    /// <summary>
-    /// Checks for updates
-    /// </summary>
-    /// <param name="forceUpdate">Indicates if the latest available version should be returned even if it's not newer than the current version</param>
-    /// <param name="includeBeta">Indicates if beta updates should be included in the check</param>
-    /// <returns>The result</returns>
+    private static async Task<Release> GetLatestReleaseAsync(GitHubClient client, bool includePreRelease)
+    {
+        if (includePreRelease)
+        {
+            // Get latest release no matter if it's a pre-release or not
+            IReadOnlyList<Release> releases = await client.Repository.Release.GetAll(GitHubUserName, GitHubRepoName, new ApiOptions
+            {
+                StartPage = 1,
+                PageCount = 1,
+                PageSize = 1
+            });
+            return releases[0];
+        }
+        else
+        {
+            // Get the latest release (does not include pre-releases)
+            return await client.Repository.Release.GetLatest(GitHubUserName, GitHubRepoName);
+        }
+    }
+
+    private static async Task<string> GetChangelogAsync(HttpClient httpClient, Release release)
+    {
+        // Attempt to get the changelog from file
+        if (release.Assets.FirstOrDefault(x => x.Name == ChangelogFileName) is { } changelogAsset)
+        {
+            return await httpClient.GetStringAsync(changelogAsset.BrowserDownloadUrl);
+        }
+        // Fall back to use the release description
+        else
+        {
+            return release.Body;
+        }
+    }
+
     public async Task<UpdaterCheckResult> CheckAsync(bool forceUpdate, bool includeBeta)
     {
-        Logger.Info("Updates are being checked for");
+        Logger.Info("Checking for app updates");
 
-        string errorMessage = Resources.Update_UnknownError;
-        Exception? exception = null;
-        JObject? manifest = null;
-        Version latestFoundVersion;
-        
         try
         {
-            // Create the web client
-            using var wc = new WebClient();
+            // Create the github client
+            GitHubClient client = new(new ProductHeaderValue("RaymanControlPanel", AppViewModel.AppVersion.ToString()));
 
-            // Download the manifest
-            var result = await wc.DownloadStringTaskAsync(ManifestURL);
+            // Get the latest release
+            Release latestRelease = await GetLatestReleaseAsync(client, includeBeta);
 
-            // Parse the manifest
-            manifest = JObject.Parse(result);
+            Logger.Info("Found latest release as {0}", latestRelease.TagName);
+
+            // Get the asset which has the exe file
+            ReleaseAsset? exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == ExeFileName);
+            if (exeAsset == null)
+            {
+                Logger.Warn("Latest release has no matching exe file. Attempting to find from earlier releases...");
+
+                // If not found in the latest release then the update system might have changed. We want to go back and find the last valid release.
+                IReadOnlyList<Release> allReleases = await client.Repository.Release.GetAll(GitHubUserName, GitHubRepoName);
+                foreach (Release release in allReleases)
+                {
+                    exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == ExeFileName);
+                    if (exeAsset != null)
+                    {
+                        latestRelease = release;
+                        break;
+                    }
+                }
+
+                // If the exe asset is still not found then we can't update
+                if (exeAsset == null)
+                {
+                    Logger.Error("Could not find a release with a valid exe file");
+                    return new UpdaterCheckResult("No valid app version found", null); // TODO-LOC
+                }
+             
+                Logger.Info("Found latest release with a valid exe file as {0}", latestRelease.TagName);
+            }
+
+            // Get the version from the tag name
+            Version latestVersion = Version.Parse(latestRelease.TagName);
+
+            // Check if it's a new version
+            if (latestVersion <= AppViewModel.AppVersion && !forceUpdate)
+            {
+                // No new update available
+                Logger.Info("The latest version is installed");
+                return new UpdaterCheckResult();
+            }
+
+            Logger.Info("A new version ({0}) is available", latestVersion);
+
+            // Get the changelog from the release
+            using HttpClient httpClient = HttpClientFactory.CreateClient();
+            string changelog = await GetChangelogAsync(httpClient, latestRelease);
+
+            // Replace markdown list indicators with bullet points
+            changelog = changelog.Replace('*', '•');
+
+            return new UpdaterCheckResult(latestVersion, exeAsset.BrowserDownloadUrl, changelog, latestRelease.Prerelease);
+        }
+        // TODO: Catch different exception types (internet errors etc.)
+        catch (HttpRequestException ex)
+        {
+            Logger.Error(ex, "Checking for updates");
+            return new UpdaterCheckResult("Unable to connect to the server. Please check your internet connection.", ex); // TODO-LOC
         }
         catch (WebException ex)
         {
-            exception = ex;
-            Logger.Warn(ex, "Getting server manifest");
-            errorMessage = Resources.Update_WebError;
-        }
-        catch (JsonReaderException ex)
-        {
-            exception = ex;
-            Logger.Error(ex, "Parsing server manifest");
-            errorMessage = Resources.Update_FormatError;
+            Logger.Error(ex, "Checking for updates");
+            return new UpdaterCheckResult("Unable to connect to the server. Please check your internet connection.", ex); // TODO-LOC
         }
         catch (Exception ex)
         {
-            exception = ex;
-            Logger.Error(ex, "Getting server manifest");
-            errorMessage = Resources.Update_GenericError;
+            Logger.Error(ex, "Checking for updates");
+            return new UpdaterCheckResult("An unknown error occurred", ex); // TODO-LOC
         }
-
-        // Return the error if the manifest was not retrieved
-        if (manifest == null)
-            return new UpdaterCheckResult(errorMessage, exception);
-
-        // Flag indicating if the current update is a beta update
-        bool isBetaUpdate = false;
-
-        Logger.Info("The update manifest was retrieved");
-
-        try
-        {
-            // Get the latest version
-            var latestVersion = GetLatestVersion(manifest, false);
-
-            // Get the latest beta version
-            var latestBetaVersion = GetLatestVersion(manifest, true);
-
-            // If a new update is not available...
-            if (CurrentVersion >= latestVersion)
-            {
-                // If we are forcing new updates, download the latest update
-                if (forceUpdate)
-                {
-                    // If we are including beta updates, check if it's newer
-                    if (includeBeta)
-                    {
-                        // If it's newer, get the beta update
-                        if (latestBetaVersion > latestVersion)
-                            isBetaUpdate = true;
-                    }
-                }
-                // If we are not forcing updates, check if a newer beta version is available
-                else
-                {
-                    // Check if a newer beta version is available, if set to do so
-                    if (includeBeta && CurrentVersion < latestBetaVersion)
-                    {
-                        isBetaUpdate = true;
-                    }
-                    else
-                    {
-                        Logger.Info("The latest version is installed");
-
-                        // Return the result
-                        return new UpdaterCheckResult();
-                    }
-                }
-            }
-
-            latestFoundVersion = isBetaUpdate ? latestBetaVersion : latestVersion;
-
-            Logger.Info("A new version ({0}) is available", latestFoundVersion);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting assembly version from server manifest {0}", manifest);
-
-            return new UpdaterCheckResult(Resources.Update_ManifestError, ex);
-        }
-
-        // Get the download URL
-        string downloadURL;
-
-        try
-        {
-            downloadURL = GetDownloadURL(manifest, isBetaUpdate);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting download URL from server manifest {0}", manifest);
-
-            return new UpdaterCheckResult(Resources.Update_ManifestError, ex);
-        }
-
-        // Get the display news
-        string? displayNews = null;
-
-        try
-        {
-            // Get the update news
-            displayNews = GetDisplayNews(manifest, isBetaUpdate);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting update news from server manifest {0}", manifest);
-        }
-
-        // Return the result
-        return new UpdaterCheckResult(latestFoundVersion, downloadURL, displayNews ?? Resources.Update_NewsError, isBetaUpdate);
     }
 
-    /// <summary>
-    /// Updates the application
-    /// </summary>
-    /// <param name="result">The updater check result to use when updating</param>
-    /// <param name="asAdmin">Indicates if the updater should run as admin</param>
-    /// <returns>A value indicating if the operation succeeded</returns>
     public async Task<bool> UpdateAsync(UpdaterCheckResult result, bool asAdmin)
     {
         FileSystemPath filePath;
@@ -182,7 +168,7 @@ public abstract class UpdaterManager : IUpdaterManager
         {
             Logger.Error(ex, "Deploying updater");
 
-            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
+            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, FallbackUrl), Resources.Update_UpdaterErrorHeader);
 
             return false;
         }
@@ -199,7 +185,7 @@ public abstract class UpdaterManager : IUpdaterManager
         }
 
         // Launch the updater and capture the process
-        using var updateProcess = await File.LaunchFileAsync(filePath, asAdmin, 
+        using Process? updateProcess = await File.LaunchFileAsync(filePath, asAdmin, 
             // Arg 1: Program path
             $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
             // Arg 2: Dark mode
@@ -216,7 +202,7 @@ public abstract class UpdaterManager : IUpdaterManager
         // Make sure we have a valid process
         if (updateProcess == null)
         {
-            await Message.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+            await Message.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, FallbackUrl), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
             return false;
         }
@@ -226,43 +212,4 @@ public abstract class UpdaterManager : IUpdaterManager
 
         return true;
     }
-
-    /// <summary>
-    /// Gets the latest version from the manifest
-    /// </summary>
-    /// <param name="manifest">The manifest to get the value from</param>
-    /// <param name="isBeta">Indicates if the update is a beta update</param>
-    /// <returns>The latest version</returns>
-    protected abstract Version GetLatestVersion(JObject manifest, bool isBeta);
-
-    /// <summary>
-    /// Gets the display news from the manifest
-    /// </summary>
-    /// <param name="manifest">The manifest to get the value from</param>
-    /// <param name="isBeta">Indicates if the update is a beta update</param>
-    /// <returns>The display news</returns>
-    protected abstract string GetDisplayNews(JObject manifest, bool isBeta);
-
-    /// <summary>
-    /// Gets the download URL from the manifest
-    /// </summary>
-    /// <param name="manifest">The manifest to get the value from</param>
-    /// <param name="isBeta">Indicates if the update is a beta update</param>
-    /// <returns>The download URL</returns>
-    protected abstract string GetDownloadURL(JObject manifest, bool isBeta);
-
-    /// <summary>
-    /// The current version of the application
-    /// </summary>
-    protected abstract Version CurrentVersion { get; }
-
-    /// <summary>
-    /// The fallback URL to display to the user in case of an error
-    /// </summary>
-    protected abstract string UserFallbackURL { get; }
-
-    /// <summary>
-    /// The manifest URL
-    /// </summary>
-    protected abstract string ManifestURL { get; }
 }

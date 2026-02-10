@@ -206,6 +206,7 @@ public class StartupManager
     {
         try
         {
+            // TODO-UPDATE: Might not need to do this anymore
             // On Windows 7 the default TLS version is 1.0. As of December 2021 raym.app where RCP is hosted only supports
             // TLS 1.2 and 1.3 thus causing any web requests to fail on Windows 7. Since we don't want to have to hard-code the protocol
             // to use on modern system we only do so on Windows 7, leaving it as the system default otherwise (TLS 1.2 or higher)
