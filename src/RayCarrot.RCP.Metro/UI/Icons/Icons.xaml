@@ -39,6 +39,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Edit">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Program">ApplicationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Update">Update</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Link">Link</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Language">Earth</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.User">AccountOutline</iconPacks:PackIconMaterialKind>
@@ -262,6 +263,9 @@
                        IconColor="{StaticResource RCP.Brushes.Info}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_AppNews}" 
                        IconKind="{StaticResource RCP.Icons.News}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_UpdateAvailable}" 
+                       IconKind="{StaticResource RCP.Icons.Update}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_AddGames}" 
                        IconKind="{StaticResource RCP.Icons.Games}"

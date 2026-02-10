@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using System.IO;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
@@ -132,6 +130,18 @@ public class AppUIManager
 
     public Task<GameInstallerResult> InstallGameAsync(GameDescriptor gameDescriptor, GameInstallerInfo info) => 
         ShowDialogAsync(() => new GameInstallerDialog(gameDescriptor, info));
+
+    /// <summary>
+    /// Shows a new instance of the update available dialog
+    /// </summary>
+    /// <param name="updaterCheckResult">The update check result for the new update</param>
+    /// <returns>Indicates if the new update should be installed</returns>
+    public async Task<bool> ShowUpdateAvailableAsync(UpdaterCheckResult updaterCheckResult)
+    {
+        UpdateAvailableDialogViewModel viewModel = new(updaterCheckResult);
+        await ShowWindowAsync(() => new UpdateAvailableDialog(viewModel), ShowWindowFlags.Modal);
+        return viewModel.RequestedInstallNewUpdate;
+    }
 
     /// <summary>
     /// Displays a message to the user

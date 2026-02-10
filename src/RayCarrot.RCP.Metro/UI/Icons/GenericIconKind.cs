@@ -69,6 +69,7 @@ public enum GenericIconKind
     Window_StringInput,
     Window_ProgramSelection,
     Window_AppNews,
+    Window_UpdateAvailable,
     Window_AddGames,
     Window_GameClientsSetup,
     Window_GameDebug,

@@ -355,18 +355,10 @@ public class AppViewModel : BaseViewModel
             {
                 try
                 {
-                    bool isBeta = result.IsNewVersionBeta;
-
-                    // TODO-UPDATE: Show custom windows with scrollable textbox for the changelog
-
-                    string message = String.Format(!isBeta 
-                        ? Resources.Update_UpdateAvailable 
-                        : Resources.Update_BetaUpdateAvailable, AppVersion, result.NewVersion, result.NewVersionChangelog);
-
-                    if (await MessageUI.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                    if (await UI.ShowUpdateAvailableAsync(result))
                     {
-                        // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
-                        var succeeded = await Updater.UpdateAsync(result, false);
+                        // Launch the updater
+                        bool succeeded = await Updater.UpdateAsync(result, false);
 
                         if (!succeeded)
                             Logger.Warn("The updater failed to update the program");

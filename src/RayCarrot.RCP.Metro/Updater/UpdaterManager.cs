@@ -132,12 +132,8 @@ public class UpdaterManager : IUpdaterManager
             using HttpClient httpClient = HttpClientFactory.CreateClient();
             string changelog = await GetChangelogAsync(httpClient, latestRelease);
 
-            // Replace markdown list indicators with bullet points
-            changelog = changelog.Replace('*', '•');
-
-            return new UpdaterCheckResult(latestVersion, exeAsset.BrowserDownloadUrl, changelog, latestRelease.Prerelease);
+            return new UpdaterCheckResult(latestVersion, exeAsset.BrowserDownloadUrl, exeAsset.Size, latestRelease.CreatedAt, changelog, latestRelease.Prerelease);
         }
-        // TODO: Catch different exception types (internet errors etc.)
         catch (HttpRequestException ex)
         {
             Logger.Error(ex, "Checking for updates");

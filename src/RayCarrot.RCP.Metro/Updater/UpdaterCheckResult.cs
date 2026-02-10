@@ -37,15 +37,19 @@ public class UpdaterCheckResult
     /// </summary>
     /// <param name="newVersion">The latest found version</param>
     /// <param name="newVersionUrl">The download URL</param>
+    /// <param name="newVersionSize">The download size of the new version</param>
+    /// <param name="newVersionDate">The date the new version was released</param>
     /// <param name="newVersionChangelog">The changelog for the latest found version</param>
     /// <param name="isNewVersionBeta">Indicates if the new version is a beta version</param>
-    public UpdaterCheckResult(Version newVersion, string newVersionUrl, string newVersionChangelog, bool isNewVersionBeta)
+    public UpdaterCheckResult(Version newVersion, string newVersionUrl, int newVersionSize, DateTimeOffset newVersionDate, string newVersionChangelog, bool isNewVersionBeta)
     {
         HasError = false;
         NewVersionAvailable = true;
 
         NewVersion = newVersion;
         NewVersionUrl = newVersionUrl;
+        NewVersionSize = newVersionSize;
+        NewVersionDate = newVersionDate;
         NewVersionChangelog = newVersionChangelog;
         IsNewVersionBeta = isNewVersionBeta;
     }
@@ -65,6 +69,8 @@ public class UpdaterCheckResult
 
     public Version? NewVersion { get; }
     public string? NewVersionUrl { get; }
+    public int NewVersionSize { get; }
+    public DateTimeOffset NewVersionDate { get; }
     public string? NewVersionChangelog { get; }
     public bool IsNewVersionBeta { get; }
 
