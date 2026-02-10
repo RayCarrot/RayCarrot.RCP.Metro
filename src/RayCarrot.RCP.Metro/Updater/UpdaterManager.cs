@@ -193,7 +193,7 @@ public class UpdaterManager : IUpdaterManager
             // Arg 3: User level
             $"{Data.App_UserLevel} " +
             // Arg 4: Update URL
-            $"\"{result.DownloadURL}\" " +
+            $"\"{result.NewVersionUrl}\" " +
             // Arg 5: Current culture
             $"\"{InstanceData.CurrentCulture}\" " +
             // Arg 6: Web security protocol type

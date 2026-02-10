@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿using System.Diagnostics.CodeAnalysis;
+
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
@@ -9,79 +10,63 @@ public class UpdaterCheckResult
     #region Constructors
 
     /// <summary>
-    /// Constructor for a result where a new update is not available
+    /// Constructor for a result where no new version is available
     /// </summary>
     public UpdaterCheckResult()
     {
-        IsNewUpdateAvailable = false;
+        HasError = false;
+        NewVersionAvailable = false;
     }
 
     /// <summary>
     /// Constructor for a result where the update check failed
     /// </summary>
     /// <param name="errorMessage">The error message</param>
-    /// <param name="exception">The exception, if any</param>
-    public UpdaterCheckResult(string errorMessage, Exception exception)
+    /// <param name="errorException">The exception, if any</param>
+    public UpdaterCheckResult(string errorMessage, Exception? errorException)
     {
+        HasError = true;
+        NewVersionAvailable = false;
+
         ErrorMessage = errorMessage;
-        Exception = exception;
-        IsNewUpdateAvailable = false;
+        ErrorException = errorException;
     }
 
     /// <summary>
-    /// Constructor for a result where a new update was found
+    /// Constructor for a result where a new version was found
     /// </summary>
-    /// <param name="latestVersion">The latest found version</param>
-    /// <param name="downloadUrl">The download URL</param>
-    /// <param name="displayNews">The news to display for the latest found version</param>
-    /// <param name="isBetaUpdate">Indicates if the update is a beta update</param>
-    public UpdaterCheckResult(Version latestVersion, string downloadUrl, string displayNews, bool isBetaUpdate)
+    /// <param name="newVersion">The latest found version</param>
+    /// <param name="newVersionUrl">The download URL</param>
+    /// <param name="newVersionChangelog">The changelog for the latest found version</param>
+    /// <param name="isNewVersionBeta">Indicates if the new version is a beta version</param>
+    public UpdaterCheckResult(Version newVersion, string newVersionUrl, string newVersionChangelog, bool isNewVersionBeta)
     {
-        LatestVersion = latestVersion;
-        DownloadURL = downloadUrl;
-        DisplayNews = displayNews;
-        IsBetaUpdate = isBetaUpdate;
-        IsNewUpdateAvailable = true;
+        HasError = false;
+        NewVersionAvailable = true;
+
+        NewVersion = newVersion;
+        NewVersionUrl = newVersionUrl;
+        NewVersionChangelog = newVersionChangelog;
+        IsNewVersionBeta = isNewVersionBeta;
     }
 
     #endregion
 
     #region Public Properties
 
-    /// <summary>
-    /// The error message if the check failed
-    /// </summary>
-    public string ErrorMessage { get; }
+    [MemberNotNullWhen(true, nameof(ErrorMessage))]
+    public bool HasError { get; }
 
-    /// <summary>
-    /// The exception, if any
-    /// </summary>
-    public Exception Exception { get; }
+    [MemberNotNullWhen(true, nameof(NewVersion), nameof(NewVersionUrl), nameof(NewVersionChangelog))]
+    public bool NewVersionAvailable { get; }
 
-    /// <summary>
-    /// The latest found version
-    /// </summary>
-    public Version LatestVersion { get; }
+    public string? ErrorMessage { get; }
+    public Exception? ErrorException { get; }
 
-    /// <summary>
-    /// The download URL
-    /// </summary>
-    public string DownloadURL { get; }
-
-    /// <summary>
-    /// The news to display for the latest found version
-    /// </summary>
-    public string DisplayNews { get; }
-
-    /// <summary>
-    /// Indicates if the update is a beta update
-    /// </summary>
-    public bool IsBetaUpdate { get; }
-
-    /// <summary>
-    /// Indicates if a new update was found
-    /// </summary>
-    public bool IsNewUpdateAvailable { get; }
+    public Version? NewVersion { get; }
+    public string? NewVersionUrl { get; }
+    public string? NewVersionChangelog { get; }
+    public bool IsNewVersionBeta { get; }
 
     #endregion
 }

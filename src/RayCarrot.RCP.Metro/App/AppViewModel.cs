@@ -323,11 +323,11 @@ public class AppViewModel : BaseViewModel
             UpdaterCheckResult result = await Updater.CheckAsync(Data.Update_ForceUpdate && isManualSearch, Data.Update_GetBetaUpdates || IsBeta);
 
             // Check if there is an error
-            if (result.ErrorMessage != null)
+            if (result.HasError)
             {
                 string errorMessage = String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.LatestGitHubReleaseUrl);
-                if (result.Exception != null)
-                    await MessageUI.DisplayExceptionMessageAsync(result.Exception, errorMessage, Resources.Update_ErrorHeader);
+                if (result.ErrorException != null)
+                    await MessageUI.DisplayExceptionMessageAsync(result.ErrorException, errorMessage, Resources.Update_ErrorHeader);
                 else
                     await MessageUI.DisplayMessageAsync(errorMessage, Resources.Update_ErrorHeader, MessageType.Error);
 
@@ -337,7 +337,7 @@ public class AppViewModel : BaseViewModel
             }
 
             // Check if no new updates were found
-            if (!result.IsNewUpdateAvailable)
+            if (!result.NewVersionAvailable)
             {
                 if (isManualSearch)
                     await MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
@@ -355,13 +355,13 @@ public class AppViewModel : BaseViewModel
             {
                 try
                 {
-                    bool isBeta = result.IsBetaUpdate;
+                    bool isBeta = result.IsNewVersionBeta;
 
                     // TODO-UPDATE: Show custom windows with scrollable textbox for the changelog
 
                     string message = String.Format(!isBeta 
                         ? Resources.Update_UpdateAvailable 
-                        : Resources.Update_BetaUpdateAvailable, AppVersion, result.LatestVersion, result.DisplayNews);
+                        : Resources.Update_BetaUpdateAvailable, AppVersion, result.NewVersion, result.NewVersionChangelog);
 
                     if (await MessageUI.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                     {
