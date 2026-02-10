@@ -64,7 +64,15 @@ public class UpdaterManager : IUpdaterManager
         // Attempt to get the changelog from file
         if (release.Assets.FirstOrDefault(x => x.Name == ChangelogFileName) is { } changelogAsset)
         {
-            return await httpClient.GetStringAsync(changelogAsset.BrowserDownloadUrl);
+            try
+            {
+                return await httpClient.GetStringAsync(changelogAsset.BrowserDownloadUrl);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Getting update changelog from file");
+                return release.Body;
+            }
         }
         // Fall back to use the release description
         else
