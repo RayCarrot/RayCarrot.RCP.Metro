@@ -20,6 +20,7 @@ public class GamesManager
             new GameDescriptor_Rayman1_Jaguar(),
             new GameDescriptor_Rayman1_Ps1(),
             new GameDescriptor_Rayman1_Gba(),
+            new GameDescriptor_Rayman30thAnniversaryEdition_Win32(),
             new GameDescriptor_RaymanDesigner_MsDos(),
             new GameDescriptor_RaymanByHisFans_MsDos(),
             new GameDescriptor_Rayman60Levels_MsDos(),

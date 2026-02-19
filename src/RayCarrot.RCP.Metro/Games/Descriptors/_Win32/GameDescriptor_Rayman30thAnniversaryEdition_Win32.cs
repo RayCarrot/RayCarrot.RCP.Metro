@@ -1,0 +1,83 @@
+﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
+using RayCarrot.RCP.Metro.Games.Structure;
+
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The Rayman 30th Anniversary Edition (Win32) game descriptor
+/// </summary>
+public sealed class GameDescriptor_Rayman30thAnniversaryEdition_Win32 : Win32GameDescriptor
+{
+    #region Private Constant Fields
+
+    private const string SteamId = "4094670";
+
+    private const string UbisoftConnectGameId = "6220";
+    private const string UbisoftConnectProductId = "69683b8797044c480eb79e04";
+
+    #endregion
+
+    #region Public Properties
+
+    public override string GameId => "Rayman30thAnniversaryEdition_Win32";
+    public override Game Game => Game.Rayman1;
+    public override GameCategory Category => GameCategory.Rayman;
+
+    public override LocalizedString DisplayName => "Rayman 30th Anniversary Edition"; // TODO-LOC
+    public override string[] SearchKeywords => new[] { "r1", "ray1" };
+    public override DateTime ReleaseDate => new(2026, 02, 13);
+
+    public override GameIconAsset Icon => GameIconAsset.Rayman30thAnniversaryEdition;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman30thAnniversaryEdition;
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new SteamGameClientComponent(SteamId));
+        builder.Register(new UbisoftConnectGameClientComponent(UbisoftConnectGameId, UbisoftConnectProductId));
+
+        // TODO: Add progression
+        // TODO: Add settings
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+    }
+
+    protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
+    {
+        // Files
+        new ProgramFilePath("rayman30th.exe", ProgramPathType.PrimaryExe, required: true),
+    }));
+
+    #endregion
+
+    #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateDirectoryGameAddAction(this),
+    };
+
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), UbisoftConnectHelpers.GetStorePageURL(UbisoftConnectProductId)),
+    };
+
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
+    {
+        new UninstallProgramFinderQuery("Rayman: 30th Anniversary Edition"),
+
+        new Win32ShortcutFinderQuery("Rayman 30th Anniversary Edition"),
+
+        new SteamFinderQuery(SteamId),
+
+        new UbisoftConnectFinderQuery(UbisoftConnectGameId),
+    };
+
+    #endregion
+}

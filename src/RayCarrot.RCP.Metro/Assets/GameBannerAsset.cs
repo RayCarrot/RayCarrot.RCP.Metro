@@ -9,6 +9,9 @@ public enum GameBannerAsset
     [AssetFileName("Rayman 1.png")] 
     Rayman1,
 
+    [AssetFileName("Rayman 30th Anniversary Edition.png")]
+    Rayman30thAnniversaryEdition,
+
     [AssetFileName("Rayman 2.png")] 
     Rayman2,
 
