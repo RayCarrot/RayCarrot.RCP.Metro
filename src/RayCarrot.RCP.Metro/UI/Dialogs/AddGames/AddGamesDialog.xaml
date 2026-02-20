@@ -61,6 +61,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
                                             <local:GameIcon Grid.Column="0"
@@ -74,7 +75,16 @@
                                                        TextWrapping="Wrap"
                                                        VerticalAlignment="Center"
                                                        FontSize="14"
-                                                       Text="{Binding Path=DisplayName.Value}" />
+                                                       Text="{Binding Path=DisplayName.Value}"
+                                                       Margin="0 0 8 0" />
+
+                                            <ToggleButton Grid.Column="2"
+                                                          Visibility="{Binding Path=ShowNonRetailVersionsText, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                                          Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
+                                                          VerticalAlignment="Center"
+                                                          IsChecked="{Binding Path=ShowNonRetailVersions}"
+                                                          local:Icon.Kind="CalendarOutline"
+                                                          Content="{Binding Path=ShowNonRetailVersionsText.Value}" />
 
                                         </Grid>
 
@@ -82,7 +92,7 @@
                                                       d:ItemsSource="{d:SampleData ItemCount=3}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel>
+                                                    <StackPanel Visibility="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}">
 
                                                         <Separator Visibility="{Binding RelativeSource={RelativeSource PreviousData}, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                                                    Margin="0 4" />

@@ -25,6 +25,8 @@ public class AddGamesGameViewModel : BaseViewModel
         PlatformDisplayName = platformInfo.DisplayName;
         PlatformIcon = platformInfo.Icon;
 
+        IsVisible = true;
+
         // Do a first refresh
         Refresh(true);
 
@@ -60,6 +62,7 @@ public class AddGamesGameViewModel : BaseViewModel
     public LocalizedString PlatformDisplayName { get; }
     public GamePlatformIconAsset PlatformIcon { get; }
 
+    public bool IsVisible { get; set; }
     public bool IsAdded { get; set; }
 
     #endregion
