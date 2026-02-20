@@ -14,9 +14,6 @@ Version 15.0 will see the app being migrated to the latest .NET version (current
 ### Portable version?
 Can we also offer a portable version where the user must manually install dependencies such as .NET? How will the update process work then? If portable then store app data locally in the folder?
 
-## 🔗 Website
-Update the [Rayman Control Panel website](https://raym.app/rcp/) to look nicer. Maybe even allow some utilities to be used on there directly, such as the Rayman 1 password generator?
-
 ## 👁️‍🗨️ Avalonia UI
 Long-term it would be beneficial to migrate the app to a cross-platform framework such as Avalonia UI. This would allow for a native Linux version, which has been highly requested, and to have the app take advantage of the performance improvements which come with a newer framework. This would however be a major task since essentially all of the UI would need to be updated, especially the styles which would all need to be rewritten.
 
@@ -60,7 +57,6 @@ Open with (external) ->
 - Create new styles for combobox and textbox
 - Redesign remaining parts of the app to use new flat styles, such as the About page and some dialogs
 - Use new app icon by Nic? Twitter votes were very even.
-- The option to disable animations currently only effects things like tab animations and not other transitions - improve? Or remove option altogether?
 - Create a snackbar system for messages. Show for minor things too, like trying to open a window when already opened.
 - Update the UI for selecting the app language. Have each language show a flag, a percentage for the translation completion and credits to the translators.
 - Redesign the program selection dialog and improve scrolling
@@ -69,10 +65,6 @@ Open with (external) ->
 ## 📦 Mod Loader
 - Allow modding disc based games with a virtual file-system, primarily for Rayman 1 on PS1
 - Add `costumes` module for Origins and Legends, allowing new costumes to be added, with the mod loader then merging them all together into the gameconfig to avoid file conflicts
-
-### 🍌 GameBanana
-- Link [Rayman 1](https://gamebanana.com/games/21305) to RCP
-- Split [Rayman Jungle Run](https://gamebanana.com/games/19728) and [Rayman Fiesta Run](https://gamebanana.com/games/19729) between Microsoft Store and Ubisoft Connect versions since mods aren't compatible between versions
 
 ## 📦 Archive Explorer
 - Add launch handlers for common archives like .ipk and .cnt so they can be opened in RCP directly from Windows File Explorer. Check if it's in a game folder to find version info, otherwise ask the user.
@@ -96,14 +88,11 @@ Open with (external) ->
 ## 🎮 Games
 
 ### New Games
-- Add second [Rayman Designer demo](https://archive.org/details/ctib10_97)
 - Add demos and prototypes for console versions
-- Add Rayman Origins and Legends PC demos (don't allow download since they're easily available on Ubisoft Connect/Steam)
-- Add Dutch version of Print Studio
-- Add remaining console games (GCN, Wii, NDS, Xbox etc.)
+- Add Rayman Origins and Legends PC demos
+- Add remaining console games (DC, N64, Wii, NDS, Xbox etc.)
 
 ### Changes
-- Separate the Print Studio downloads for the different versions (language/year), allow it to run from disc
 - Rename Rayman 3 GBA Prototype to "preview" now that there are actual leaked prototypes
 - Show green text that game is running and gray out play button
 - Rewrite how the game installers work and support Rayman 1 games. Allow installing directly from bin/cue files. Alternatively look into allowing the native installers to run. RibShark made a patch for them.
@@ -146,7 +135,6 @@ Open with (external) ->
     - Rayman Raving Rabbids PS2 (same format as PC, but minigame ids seem different?)
 
 ## 🗒️ Miscellaneous
-- Load all recent mods in news feed at once using Task.WhenAll()
 - Only cache 10 most recent app news entries. Save checksum. News.json has checksum and list of json files with 10 news each.
 - Allow converter to convert folder. Or maybe have a dialog for advanced file selection options which we can reuse? You can then set filters among other things.
 - Allow converting game localization files to csv? Can be imported into Excel then which might give a nicer overview.
