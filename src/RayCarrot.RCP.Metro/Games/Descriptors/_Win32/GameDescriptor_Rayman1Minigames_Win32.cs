@@ -47,7 +47,7 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
 
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        // TODO-UPDATE: Allow adding
+        new LocateDirectoryGameAddAction(this)
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]

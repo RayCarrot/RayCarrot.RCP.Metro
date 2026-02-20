@@ -926,6 +926,60 @@ public class AppDataManager
                 }
             }
         }
+
+        if (lastVersion < new Version(14, 4, 0, 0))
+        {
+            // Since you can't download the Rayman 1 minigames anymore and instead have to manually locate them it means the
+            // old game settings system for changing the exe file based on language no longer works. So if the user had
+            // downloaded it before then we split it up into two versions, one for each language.
+            foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+            {
+                if (gameInstallation.GameDescriptor is { Game: Game.Rayman1Minigames, Platform: GamePlatform.Win32 })
+                {
+                    FileSystemPath installDir = gameInstallation.InstallLocation.Directory;
+
+                    FileSystemPath germanExePath = installDir + "German.exe";
+                    FileSystemPath frenchExePath = installDir + "French.exe";
+                    FileSystemPath defaultExePath = installDir + "RayGames.exe";
+                    
+                    FileSystemPath germanInstallDir = installDir + "German";
+                    FileSystemPath frenchInstallDir = installDir + "French";
+
+                    if (germanExePath.FileExists || frenchExePath.FileExists)
+                    {
+                        // Create a directory for each language version
+                        Directory.CreateDirectory(germanInstallDir);
+                        Directory.CreateDirectory(frenchInstallDir);
+
+                        // Get the exe name
+                        string exeFileName = gameInstallation.GameDescriptor.
+                            GetStructure<DirectoryProgramInstallationStructure>().
+                            FileSystem.GetLocalPath(ProgramPathType.PrimaryExe);
+
+                        // Move the exe files
+                        if (germanExePath.FileExists)
+                        {
+                            FileManager.MoveFile(germanExePath, germanInstallDir + exeFileName, true);
+                            FileManager.MoveFile(defaultExePath, frenchInstallDir + exeFileName, true);
+                        }
+                        else
+                        {
+                            FileManager.MoveFile(frenchExePath, frenchInstallDir + exeFileName, true);
+                            FileManager.MoveFile(defaultExePath, germanInstallDir + exeFileName, true);
+                        }
+
+                        // Remove the game
+                        await GamesManager.RemoveGameAsync(gameInstallation);
+                        
+                        // Add a new game for each language
+                        await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(germanInstallDir), 
+                            new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (German)")));
+                        await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(frenchInstallDir),
+                            new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (French)")));
+                    }
+                }
+            }
+        }
     }
 
     #endregion
