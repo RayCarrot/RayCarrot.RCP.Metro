@@ -8,7 +8,16 @@ public sealed class CustomGameClientDescriptor : EmulatorGameClientDescriptor
 
     public override string GameClientId => "Custom";
     public override bool InstallationRequiresFile => true;
-    public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos, GamePlatform.Ps1, GamePlatform.Ps2, GamePlatform.Gbc, GamePlatform.Gba };
+    public override GamePlatform[] SupportedPlatforms => 
+    [
+        GamePlatform.MsDos, 
+        GamePlatform.Jaguar, 
+        GamePlatform.Ps1, 
+        GamePlatform.Ps2, 
+        GamePlatform.Gbc, 
+        GamePlatform.Gba, 
+        GamePlatform.GameCube
+    ];
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_Custom));
     public override GameClientIconAsset Icon => GameClientIconAsset.Custom;
 
