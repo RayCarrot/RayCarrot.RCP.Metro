@@ -61,7 +61,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        // TODO-UPDATE: Allow adding
+        new LocateDirectoryGameAddAction(this),
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
