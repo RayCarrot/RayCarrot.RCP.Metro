@@ -211,9 +211,6 @@
                                                 <DataTemplate DataType="{x:Type options:Rayman3PrintStudioGameOptionsViewModel}">
                                                     <options:Rayman3PrintStudioGameOptionsControl />
                                                 </DataTemplate>
-                                                <DataTemplate DataType="{x:Type options:Rayman1MinigamesGameOptionsViewModel}">
-                                                    <options:Rayman1MinigamesGameOptionsControl />
-                                                </DataTemplate>
                                                 <DataTemplate DataType="{x:Type options:RaymanRavingRabbids2GameOptionsViewModel}">
                                                     <options:RaymanRavingRabbids2GameOptionsControl />
                                                 </DataTemplate>
