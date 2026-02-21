@@ -208,9 +208,6 @@
                                                 <DataTemplate DataType="{x:Type options:Win32GameOptionsViewModel}">
                                                     <options:Win32GameOptionsControl />
                                                 </DataTemplate>
-                                                <DataTemplate DataType="{x:Type options:Rayman3PrintStudioGameOptionsViewModel}">
-                                                    <options:Rayman3PrintStudioGameOptionsControl />
-                                                </DataTemplate>
                                                 <DataTemplate DataType="{x:Type options:RaymanRavingRabbids2GameOptionsViewModel}">
                                                     <options:RaymanRavingRabbids2GameOptionsControl />
                                                 </DataTemplate>

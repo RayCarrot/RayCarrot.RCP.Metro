@@ -27,13 +27,6 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 
     #region Protected Methods
 
-    protected override void RegisterComponents(IGameComponentBuilder builder)
-    {
-        base.RegisterComponents(builder);
-
-        builder.Register(new GameOptionsComponent(x => new Rayman3PrintStudioGameOptionsViewModel(x)));
-    }
-
     protected override ProgramInstallationStructure CreateStructure() => new DirectoryProgramInstallationStructure(new ProgramFileSystem(new ProgramPath[]
     {
         // Files
@@ -47,7 +40,6 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
         new LocateDirectoryGameAddAction(this)
-
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
