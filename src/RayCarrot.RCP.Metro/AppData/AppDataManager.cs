@@ -929,11 +929,12 @@ public class AppDataManager
 
         if (lastVersion < new Version(14, 4, 0, 0))
         {
-            // Since you can't download the Rayman 1 minigames anymore and instead have to manually locate them it means the
-            // old game settings system for changing the exe file based on language no longer works. So if the user had
-            // downloaded it before then we split it up into two versions, one for each language.
+            // Since you can't download games anymore, and instead have to manually locate them, it means the old
+            // system for changing the edition by swapping out files no longer works. So if the user had downloaded
+            // one of them before then we split it up into multiple versions, one for each edition.
             foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
             {
+                // The Rayman 1 minigames have separate versions for German and French
                 if (gameInstallation.GameDescriptor is { Game: Game.Rayman1Minigames, Platform: GamePlatform.Win32 })
                 {
                     FileSystemPath installDir = gameInstallation.InstallLocation.Directory;
@@ -976,6 +977,113 @@ public class AppDataManager
                             new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (German)")));
                         await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(frenchInstallDir),
                             new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (French)")));
+                    }
+                }
+                // Rayman 3 Print Studio has separate versions for the 2003 and the 2005 release
+                else if (gameInstallation.GameDescriptor is { Game: Game.Rayman3PrintStudio, Platform: GamePlatform.Win32 })
+                {
+                    FileSystemPath installDir = gameInstallation.InstallLocation.Directory;
+
+                    FileSystemPath v03MrcPath = installDir + "PrintStudio - 03.mrc";
+                    FileSystemPath v05MrcPath = installDir + "PrintStudio - 05.mrc";
+                    FileSystemPath exePath = installDir + "Autorun.exe";
+
+                    const string mmsFileName = "Run.MMS";
+
+                    FileSystemPath v03InstallDir = installDir + "2003";
+                    FileSystemPath v05InstallDir = installDir + "2005";
+
+                    if (v03MrcPath.FileExists && v05MrcPath.FileExists)
+                    {
+                        // Create a directory for each edition
+                        Directory.CreateDirectory(v03InstallDir);
+                        Directory.CreateDirectory(v05InstallDir);
+
+                        // Get the exe name
+                        string exeFileName = gameInstallation.GameDescriptor.
+                            GetStructure<DirectoryProgramInstallationStructure>().
+                            FileSystem.GetLocalPath(ProgramPathType.PrimaryExe);
+
+                        // Copy the exe to both
+                        FileManager.CopyFile(exePath, v03InstallDir + exeFileName, true);
+                        FileManager.CopyFile(exePath, v05InstallDir + exeFileName, true);
+                        FileManager.DeleteFile(exePath);
+
+                        // Move the goodies to the 2005 edition
+                        FileManager.MoveDirectory(installDir + "Goodies", v05InstallDir + "Goodies", true, true);
+
+                        // Move the mrc files
+                        FileManager.MoveFile(v03MrcPath, v03InstallDir + "PrintStudio.mrc", true);
+                        FileManager.MoveFile(v05MrcPath, v05InstallDir + "PrintStudio.mrc", true);
+
+                        // Create the mms files
+                        string[] mmsLines =
+                        [
+                            "[STARTUP]",
+                            "message= OPENBIGFILE 16376 N { \"printstudio.mrc\" -1L }",
+                            String.Empty,
+                            "[INCLUDE]",
+                            "language.mms"
+                        ];
+                        File.WriteAllLines(v03InstallDir + mmsFileName, mmsLines);
+                        File.WriteAllLines(v05InstallDir + mmsFileName, mmsLines);
+                        FileManager.DeleteFile(installDir + mmsFileName);
+
+                        string[] languages = ["DE", "FR", "IT", "NL", "SP", "UK"];
+
+                        string dstVersionTag = File.Exists(installDir + "CalendarData" + "03" + "Common" + "Picture1.png") ? "05" : "03";
+
+                        // Move current calendar files to the calender data
+                        FileManager.MoveFiles(
+                            source: new IOSearchPattern(installDir + @"Pictures\Common\calendars", SearchOption.TopDirectoryOnly, "Picture*"), 
+                            destination: installDir + "CalendarData" + dstVersionTag + "Common", 
+                            replaceExistingFiles: true);
+                        foreach (string lang in languages)
+                        {
+                            FileManager.MoveFiles(
+                                source: new IOSearchPattern(installDir + "Pictures" + lang + "calendars"), 
+                                destination: installDir + "CalendarData" + dstVersionTag + lang, 
+                                replaceExistingFiles: true);
+                        }
+
+                        // Copy the pictures folders to both
+                        FileManager.CopyDirectory(installDir + "Pictures", v03InstallDir + "Pictures", true, true);
+                        FileManager.CopyDirectory(installDir + "Pictures", v05InstallDir + "Pictures", true, true);
+                        FileManager.DeleteDirectory(installDir + "Pictures");
+
+                        // Move the calendar data to each edition
+                        FileManager.MoveFiles(
+                            source: new IOSearchPattern(installDir + "CalendarData" + "03" + "Common"),
+                            destination: v03InstallDir + @"Pictures\Common\calendars",
+                            replaceExistingFiles: true);
+                        foreach (string lang in languages)
+                        {
+                            FileManager.MoveFiles(
+                                source: new IOSearchPattern(installDir + "CalendarData" + "03" + lang),
+                                destination: v03InstallDir + "Pictures" + lang + "calendars",
+                                replaceExistingFiles: true);
+                        }
+                        FileManager.MoveFiles(
+                            source: new IOSearchPattern(installDir + "CalendarData" + "05" + "Common"),
+                            destination: v05InstallDir + @"Pictures\Common\calendars",
+                            replaceExistingFiles: true);
+                        foreach (string lang in languages)
+                        {
+                            FileManager.MoveFiles(
+                                source: new IOSearchPattern(installDir + "CalendarData" + "05" + lang),
+                                destination: v05InstallDir + "Pictures" + lang + "calendars",
+                                replaceExistingFiles: true);
+                        }
+                        FileManager.DeleteDirectory(installDir + "CalendarData");
+
+                        // Remove the game
+                        await GamesManager.RemoveGameAsync(gameInstallation);
+
+                        // Add a new game for each language
+                        await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(v03InstallDir),
+                            new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman 3 Print Studio (2003)")));
+                        await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(v05InstallDir),
+                            new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman 3 Print Studio (2005)")));
                     }
                 }
             }

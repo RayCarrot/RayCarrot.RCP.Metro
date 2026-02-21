@@ -46,7 +46,8 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        // TODO-UPDATE: Allow adding
+        new LocateDirectoryGameAddAction(this)
+
     };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
