@@ -93,6 +93,22 @@ public static class JsonHelpers
     }
 
     /// <summary>
+    /// Deserializes an object from a byte array
+    /// </summary>
+    /// <typeparam name="T">The type of object to deserialize</typeparam>
+    /// <param name="raw">The raw byte data</param>
+    /// <param name="converters">Optional converters to use</param>
+    /// <returns>The deserialized object</returns>
+    public static T DeserializeFromByteArray<T>(byte[] raw, params JsonConverter[] converters)
+    {
+        // Decode the string
+        string str = Encoding.UTF8.GetString(raw);
+
+        // Deserialize
+        return JsonConvert.DeserializeObject<T>(str, converters.Concat(GetDefaultConverters()).ToArray());
+    }
+
+    /// <summary>
     /// Deserializes an object from a file
     /// </summary>
     /// <param name="filePath">The file to deserialize</param>

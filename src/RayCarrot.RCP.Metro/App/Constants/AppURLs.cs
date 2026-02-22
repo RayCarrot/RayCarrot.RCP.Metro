@@ -16,6 +16,8 @@ public static class AppURLs
     public const string GitHubReleaseExeFileName = "RaymanControlPanel.exe";
     public const string GitHubReleaseChangelogFileName = "Changelog.txt";
 
+    public const string GitHubHostedNewsFilePath = "hosted/news.json";
+
     /// <summary>
     /// The GitHub repository URL
     /// </summary>
@@ -44,11 +46,6 @@ public static class AppURLs
     /// The RCP base URL
     /// </summary>
     public const string RCPBaseUrl = BaseUrl + "rcp/";
-
-    /// <summary>
-    /// The app news URL
-    /// </summary>
-    public const string AppNewsUrl = RCPBaseUrl + "news.json";
 
     /// <summary>
     /// The base resource URL

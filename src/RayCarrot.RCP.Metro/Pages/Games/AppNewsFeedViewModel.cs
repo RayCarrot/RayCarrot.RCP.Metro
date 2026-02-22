@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Octokit;
 
 namespace RayCarrot.RCP.Metro.Pages.Games;
 
@@ -51,7 +52,12 @@ public class AppNewsFeedViewModel : BaseViewModel
 
         // Do Task.Run since if it has trouble establishing a connection, like if you
         // have airplane mode on, then this takes a long time and blocks the thread
-        List<AppNewsEntry> entries = await Task.Run(() => JsonHelpers.DeserializeFromURLAsync<List<AppNewsEntry>>(AppURLs.AppNewsUrl));
+        List<AppNewsEntry> entries = await Task.Run(async () =>
+        {
+            GitHubClient client = new RCPGitHubClient();
+            byte[] rawData = await client.Repository.Content.GetRawContent(AppURLs.GitHubUserName, AppURLs.GitHubRepoName, AppURLs.GitHubHostedNewsFilePath);
+            return JsonHelpers.DeserializeFromByteArray<List<AppNewsEntry>>(rawData);
+        });
 
         entries.RemoveAll(x => (x.MinAppVersion != null && AppViewModel.AppVersion < x.MinAppVersion) ||
                                (x.MaxAppVersion != null && AppViewModel.AppVersion >= x.MaxAppVersion));
