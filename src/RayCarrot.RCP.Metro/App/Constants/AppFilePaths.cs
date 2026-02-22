@@ -20,11 +20,6 @@ public static class AppFilePaths
     public static FileSystemPath ToolsBaseDir => UserDataBaseDir + "Tools";
 
     /// <summary>
-    /// The base games directory
-    /// </summary>
-    public static FileSystemPath GamesBaseDir => UserDataBaseDir + "Games";
-
-    /// <summary>
     /// The <see cref="AppUserData"/> file path
     /// </summary>
     public static FileSystemPath AppUserDataPath => UserDataBaseDir + "appuserdata.json";
