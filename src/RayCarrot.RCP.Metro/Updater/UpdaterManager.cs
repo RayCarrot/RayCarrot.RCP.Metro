@@ -82,7 +82,7 @@ public class UpdaterManager : IUpdaterManager
         try
         {
             // Create the github client
-            GitHubClient client = new(new ProductHeaderValue("RaymanControlPanel", AppViewModel.AppVersion.ToString()));
+            GitHubClient client = new RCPGitHubClient();
 
             // Get the latest release
             Release latestRelease = await GetLatestReleaseAsync(client, includeBeta);
