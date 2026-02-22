@@ -131,7 +131,6 @@ Open with (external) ->
 - Show game in progression page if there is backup, but not installed? Otherwise you don't know you had a backup from when it was installed.
 - Add progression support for: 
     - Rayman Edutainment games
-    - Rayman 2 GBC
     - Rayman Raving Rabbids PS2 (same format as PC, but minigame ids seem different?)
 
 ## 🗒️ Miscellaneous
