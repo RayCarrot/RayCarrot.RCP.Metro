@@ -17,6 +17,7 @@ public static class AppURLs
     public const string GitHubReleaseChangelogFileName = "Changelog.txt";
 
     public const string GitHubHostedNewsFilePath = "hosted/news.json";
+    public const string GitHubHostedFeaturedGameBananaModsFilePath = "hosted/featured_gb_mods.jsonc";
 
     /// <summary>
     /// The GitHub repository URL
@@ -84,15 +85,6 @@ public static class AppURLs
 
     public const string RRR_PatchedBF_Steam_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_Steam.zip";
     public const string RRR_PatchedBF_GOG_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_GOG.zip";
-
-    #endregion
-
-    #region Mod Loader
-
-    /// <summary>
-    /// The GameBanana featured mods list URL
-    /// </summary>
-    public const string ModLoader_FeaturedGameBananaMods_URL = RCPBaseUrl + "featured_gb_mods.jsonc";
 
     #endregion
 

@@ -1,0 +1,57 @@
+{
+    // Rayman 1
+    "21305": [
+        636650 // Rayman FMVs
+    ],
+    // Rayman 2
+    "6244": [
+        479402, // Ray2Fix
+        479823, // Higher Quality Official Textures
+        492505, // Load Remover
+        480010 // Remove Pirate Head DRM
+    ],
+    // Rayman 2 (Beta)
+    "21335": [
+        556419, // No CD Requirement
+        556415 // Compatibility Fix
+    ],
+    // Rayman 3
+    "6188": [
+        492495, // Ray3Fix
+        491386, // PS2 Videos
+        398611 // Increased CNT File Size Limit
+    ],
+    // Rayman Origins
+    "5986": [
+        480156, // High Quality Videos
+        618641 // Loadless Origins
+    ],
+    // Rayman Legends
+    "7400": [
+        506678, // Offline Rank 11
+        547865, // Enable UbiRay/Ray Dev team
+        547860, // CommandLine File Fix
+        490773, // Uncompressed PS4 Assets
+        34283 // DualShock 3 HUD
+    ],
+    // Rayman Jungle Run
+    "19728": [
+        491283 // Higher Quality Official Sprites
+    ],
+    // Rayman Fiesta  Run
+    "19729": [
+        491284 // Higher Quality Official Sprites
+    ],
+    // Rayman (GBC)
+    "23858": [
+        636637 // Remove Ubi Key Requirement
+    ],
+    // Rayman 3 (GBA)
+    "19456": [
+        480483 // GCN Bonus Levels
+    ],
+    // Tonic Trouble
+    "18937": [
+        490562 // Higher Quality Official Textures
+    ]
+}

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using Octokit;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
 using RayCarrot.RCP.Metro.ModLoader.Library;
@@ -145,7 +146,9 @@ public class GameBananaModsSource : DownloadableModsSource
             Dictionary<int, int[]>? featuredMods = null;
             try
             {
-                featuredMods = await JsonHelpers.DeserializeFromURLAsync<Dictionary<int, int[]>>(AppURLs.ModLoader_FeaturedGameBananaMods_URL);
+                GitHubClient client = new RCPGitHubClient();
+                byte[] rawData = await client.Repository.Content.GetRawContent(AppURLs.GitHubUserName, AppURLs.GitHubRepoName, AppURLs.GitHubHostedFeaturedGameBananaModsFilePath);
+                featuredMods = JsonHelpers.DeserializeFromByteArray<Dictionary<int, int[]>>(rawData);
             }
             catch (Exception ex)
             {
