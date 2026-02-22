@@ -130,7 +130,7 @@
                         rcp:Icon.Kind="Github"
                         ToolTip="{Resx About_GitHub}"
                         Command="{Binding Path=OpenUrlCommand}"
-                        CommandParameter="{x:Static rcp:AppURLs.GitHubUrl}" />
+                        CommandParameter="{x:Static rcp:AppURLs.GitHubRepoUrl}" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
                         Margin="3"

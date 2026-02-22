@@ -217,7 +217,7 @@ public class ModCreatorViewModel : BaseViewModel
 
     public void OpenDocumentation()
     {
-        Services.App.OpenUrl("https://github.com/RayCarrot/RayCarrot.RCP.Metro/wiki/Mod-Loader");
+        Services.App.OpenUrl(AppURLs.ModLoaderDocumentationUrl);
     }
 
     public async Task CreateModAsync()

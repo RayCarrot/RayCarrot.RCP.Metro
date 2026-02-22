@@ -10,15 +10,26 @@ public static class AppURLs
 {
     #region GitHub
 
+    public const string GitHubUserName = "RayCarrot";
+    public const string GitHubRepoName = "RayCarrot.RCP.Metro";
+
+    public const string GitHubReleaseExeFileName = "RaymanControlPanel.exe";
+    public const string GitHubReleaseChangelogFileName = "Changelog.txt";
+
     /// <summary>
-    /// The GitHub project URL
+    /// The GitHub repository URL
     /// </summary>
-    public const string GitHubUrl = "https://github.com/RayCarrot/RayCarrot.RCP.Metro";
+    public const string GitHubRepoUrl = $"https://github.com/{GitHubUserName}/{GitHubRepoName}";
+
+    /// <summary>
+    /// The Mod Loader wiki documentation URL
+    /// </summary>
+    public const string ModLoaderDocumentationUrl = $"{GitHubRepoUrl}/wiki/Mod-Loader";
 
     /// <summary>
     /// The latest GitHub release URL
     /// </summary>
-    public const string LatestGitHubReleaseUrl = "https://github.com/RayCarrot/RayCarrot.RCP.Metro/releases/latest";
+    public const string LatestGitHubReleaseUrl = $"{GitHubRepoUrl}/releases/latest";
 
     #endregion
 

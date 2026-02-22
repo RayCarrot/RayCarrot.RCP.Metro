@@ -24,12 +24,6 @@ public class UpdaterManager : IUpdaterManager
         InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
     }
 
-    private const string GitHubUserName = "RayCarrot";
-    private const string GitHubRepoName = "RayCarrot.RCP.Metro";
-    private const string ExeFileName = "RaymanControlPanel.exe";
-    private const string ChangelogFileName = "Changelog.txt";
-    private const string FallbackUrl = AppURLs.LatestGitHubReleaseUrl;
-
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private IHttpClientFactory HttpClientFactory { get; }
@@ -44,7 +38,7 @@ public class UpdaterManager : IUpdaterManager
         if (includePreRelease)
         {
             // Get latest release no matter if it's a pre-release or not
-            IReadOnlyList<Release> releases = await client.Repository.Release.GetAll(GitHubUserName, GitHubRepoName, new ApiOptions
+            IReadOnlyList<Release> releases = await client.Repository.Release.GetAll(AppURLs.GitHubUserName, AppURLs.GitHubRepoName, new ApiOptions
             {
                 StartPage = 1,
                 PageCount = 1,
@@ -55,14 +49,14 @@ public class UpdaterManager : IUpdaterManager
         else
         {
             // Get the latest release (does not include pre-releases)
-            return await client.Repository.Release.GetLatest(GitHubUserName, GitHubRepoName);
+            return await client.Repository.Release.GetLatest(AppURLs.GitHubUserName, AppURLs.GitHubRepoName);
         }
     }
 
     private static async Task<string> GetChangelogAsync(HttpClient httpClient, Release release)
     {
         // Attempt to get the changelog from file
-        if (release.Assets.FirstOrDefault(x => x.Name == ChangelogFileName) is { } changelogAsset)
+        if (release.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseChangelogFileName) is { } changelogAsset)
         {
             try
             {
@@ -96,16 +90,16 @@ public class UpdaterManager : IUpdaterManager
             Logger.Info("Found latest release as {0}", latestRelease.TagName);
 
             // Get the asset which has the exe file
-            ReleaseAsset? exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == ExeFileName);
+            ReleaseAsset? exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseExeFileName);
             if (exeAsset == null)
             {
                 Logger.Warn("Latest release has no matching exe file. Attempting to find from earlier releases...");
 
                 // If not found in the latest release then the update system might have changed. We want to go back and find the last valid release.
-                IReadOnlyList<Release> allReleases = await client.Repository.Release.GetAll(GitHubUserName, GitHubRepoName);
+                IReadOnlyList<Release> allReleases = await client.Repository.Release.GetAll(AppURLs.GitHubUserName, AppURLs.GitHubRepoName);
                 foreach (Release release in allReleases)
                 {
-                    exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == ExeFileName);
+                    exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseExeFileName);
                     if (exeAsset != null)
                     {
                         latestRelease = release;
@@ -172,7 +166,7 @@ public class UpdaterManager : IUpdaterManager
         {
             Logger.Error(ex, "Deploying updater");
 
-            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, FallbackUrl), Resources.Update_UpdaterErrorHeader);
+            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, AppURLs.LatestGitHubReleaseUrl), Resources.Update_UpdaterErrorHeader);
 
             return false;
         }
@@ -206,7 +200,7 @@ public class UpdaterManager : IUpdaterManager
         // Make sure we have a valid process
         if (updateProcess == null)
         {
-            await Message.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, FallbackUrl), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+            await Message.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, AppURLs.LatestGitHubReleaseUrl), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
             return false;
         }
