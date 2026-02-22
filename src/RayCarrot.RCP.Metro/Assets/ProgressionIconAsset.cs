@@ -136,6 +136,12 @@ public enum ProgressionIconAsset
     // Rabbids Big Bang
     RabbidsBigBang_Score,
 
+    // Rayman 2 (GBC)
+    R2_GBC_Level,
+    R2_GBC_Life,
+    R2_GBC_Lum,
+    R2_GBC_Cage,
+
     // Rayman 3 (GBA)
     R3_GBA_Lum,
     R3_GBA_Cage,

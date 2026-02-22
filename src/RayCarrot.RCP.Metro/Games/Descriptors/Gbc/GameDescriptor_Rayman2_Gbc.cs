@@ -29,6 +29,7 @@ public sealed class GameDescriptor_Rayman2_Gbc : GbcGameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2_Gbc(x, "Rayman 2 - GBC")));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "Rayman2GBCEU", "gbc/r2_eu"));
     }
 

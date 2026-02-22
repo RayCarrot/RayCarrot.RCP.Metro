@@ -31,6 +31,13 @@ public class VisualBoyAdvanceMEmulatedSaveFilesComponent : EmulatedSaveFilesComp
         saveFilePath = saveFilePath.ChangeFileExtension(new FileExtension(".sav"));
 
         if (saveFilePath.FileExists)
-            yield return new EmulatedGbaSaveFile(saveFilePath);
+        {
+            yield return gameInstallation.GameDescriptor.Platform switch
+            {
+                GamePlatform.Gbc => new EmulatedGbcSaveFile(saveFilePath),
+                GamePlatform.Gba => new EmulatedGbaSaveFile(saveFilePath),
+                _ => throw new InvalidOperationException("Unsupported Visual Boy Advance - M platform")
+            };
+        }
     }
 }

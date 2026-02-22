@@ -72,6 +72,7 @@ public class BizHawkEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
         yield return gameInstallation.GameDescriptor.Platform switch
         {
             GamePlatform.Ps1 => new EmulatedPs1SaveFile(saveFile),
+            GamePlatform.Gbc => new EmulatedGbcSaveFile(saveFile),
             GamePlatform.Gba => new EmulatedGbaSaveFile(saveFile),
             _ => throw new InvalidOperationException("Unsupported BizHawk platform")
         };
