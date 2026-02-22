@@ -191,6 +191,15 @@ public class SerializersUtilityViewModel : UtilityViewModel
                     },
                 }),
 
+            new Serializers_TypeViewModel<R2GBC_SaveData>(
+                name: "Rayman 2 (GBC) Save Data", // TODO-LOC 
+                fileExtension: null,
+                getEndianFunc: _ => Endian.Little,
+                modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
+                {
+                    new("Rayman 2 (GBC)"),
+                }),
+
             new Serializers_TypeViewModel<SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1GbaSaveHeader)), 
                 fileExtension: null,
