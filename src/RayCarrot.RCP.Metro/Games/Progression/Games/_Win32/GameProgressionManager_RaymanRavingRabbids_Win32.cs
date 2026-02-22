@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 

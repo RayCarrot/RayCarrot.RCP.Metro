@@ -1,5 +1,4 @@
-﻿using System.Text;
-using BinarySerializer;
+﻿using BinarySerializer;
 using BinarySerializer.Nintendo.GCN;
 using RayCarrot.RCP.Metro.Games.Structure;
 

@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class DefaultGameInfoComponent : GameInfoComponent
 {

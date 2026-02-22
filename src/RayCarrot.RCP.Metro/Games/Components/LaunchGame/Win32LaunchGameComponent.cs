@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
