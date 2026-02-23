@@ -33,7 +33,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Archive">FolderZipOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FolderSearch">FolderSearchOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Download">DownloadOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.CloudDownload">CloudDownloadOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Purchase">ShoppingOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Edit">PencilOutline</iconPacks:PackIconMaterialKind>
@@ -234,9 +233,6 @@
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_Installer}" 
                        IconKind="{StaticResource RCP.Icons.Disc}"
                        IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_Downloader}" 
-                       IconKind="{StaticResource RCP.Icons.CloudDownload}"
-                       IconColor="{StaticResource RCP.Brushes.Info}" />
     <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_DriveSelection}" 
                        IconKind="{StaticResource RCP.Icons.Disc}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />

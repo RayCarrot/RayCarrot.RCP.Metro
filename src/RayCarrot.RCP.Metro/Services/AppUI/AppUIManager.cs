@@ -126,8 +126,6 @@ public class AppUIManager
     /// <returns>The browse drive result</returns>
     public Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel) => ShowDialogAsync(() => new DriveSelectionDialog(driveBrowserModel));
 
-    public Task<DownloaderResult> DownloadAsync(DownloaderViewModel viewModel) => ShowDialogAsync(() => new Downloader(viewModel));
-
     public Task<GameInstallerResult> InstallGameAsync(GameDescriptor gameDescriptor, GameInstallerInfo info) => 
         ShowDialogAsync(() => new GameInstallerDialog(gameDescriptor, info));
 

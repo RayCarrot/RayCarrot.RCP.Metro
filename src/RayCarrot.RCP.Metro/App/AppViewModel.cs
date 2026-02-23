@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Input;
 using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
+using SharpCompress.Archives;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -155,29 +157,59 @@ public class AppViewModel : BaseViewModel
 
     public async Task<bool> DownloadGameBananaFileAsync(string fileId, FileSystemPath outputDir)
     {
+        Logger.Info("Downloading GameBanana file {0}", fileId);
+
         try
         {
-            Logger.Info("A download is starting...");
+            // TODO-LOC
+            using (LoaderLoadState state = await LoaderViewModel.RunAsync("Downloading files", canCancel: true))
+            {
+                using HttpClient httpClient = HttpClientFactory.CreateClient();
 
-            using HttpClient httpClient = HttpClientFactory.CreateClient();
+                // Get the file
+                string fileUrl = $"https://gamebanana.com/apiv11/File/{fileId}";
+                GameBananaFile file = await httpClient.GetDeserializedAsync<GameBananaFile>(fileUrl);
 
-            // Get the file
-            string fileUrl = $"https://gamebanana.com/apiv11/File/{fileId}";
-            GameBananaFile file = await httpClient.GetDeserializedAsync<GameBananaFile>(fileUrl);
+                Logger.Info("Retrieved file URL {0}", file.DownloadUrl);
 
-            // TODO-UPDATE: Replace downloader with HttpClient
-            // Show the downloader and get the result
-            DownloaderResult dialogResult = await UI.DownloadAsync(new DownloaderViewModel([new Uri(file.DownloadUrl)], outputDir, true));
+                // Create a temp file to download to
+                using TempFile tempFile = new(false);
 
-            Logger.Info("The download finished with the result of {0}", dialogResult.DownloadState);
+                // Open a stream to the downloadable file
+                using (Stream httpStream = await httpClient.GetStreamAsync(file.DownloadUrl))
+                {
+                    // Download to the temp file
+                    using FileStream tempFileStream = System.IO.File.Create(tempFile.TempPath);
+                    await httpStream.CopyToExAsync(
+                        destination: tempFileStream,
+                        progressCallback: state.SetProgress,
+                        cancellationToken: state.CancellationToken,
+                        length: file.FileSize);
+                }
 
-            // Return the result
-            return dialogResult.DownloadState == DownloaderViewModel.DownloadState.Succeeded;
+                Logger.Info("Downloaded file");
+
+                // Extract archive
+                using IArchive archive = ArchiveFactory.Open(tempFile.TempPath);
+                archive.ExtractToDirectory(outputDir);
+
+                // TODO-LOC
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The files were successfully downloaded");
+
+                return true;
+            }
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Info(ex, "Canceled downloading GameBanana file");
+            return false;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Downloading files");
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
+            Logger.Error(ex, "Downloading GameBanana file");
+
+            // TODO_LOC
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading the files");
             return false;
         }
     }
