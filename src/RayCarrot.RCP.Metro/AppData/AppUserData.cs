@@ -184,7 +184,7 @@ public partial class AppUserData : BaseViewModel
     /// <summary>
     /// Indicates if downloads should be handled manually. This does not apply to application updates.
     /// </summary>
-    public bool App_HandleDownloadsManually { get; set; }
+    public bool App_HandleDownloadsManually { get; set; } // TODO-UPDATE: Remove
 
     /// <summary>
     /// Disables validating the game install location. This allow a game with any install location to be added.

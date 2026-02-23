@@ -1,7 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-// TODO: Refactor this. Don't use constant strings, but rather turn into a service class in DI. This way we can easily
-//       change the URLs for testing, or even have local ones.
+// TODO: Refactor this, maybe split into multiple classes.
 
 /// <summary>
 /// Commons URLs used in the Rayman Control Panel
@@ -36,55 +35,13 @@ public static class AppURLs
 
     #endregion
 
-    #region Base
+    #region GameBanana
 
-    /// <summary>
-    /// The RCP base URL
-    /// </summary>
-    public const string BaseUrl = "https://raym.app/";
-
-    /// <summary>
-    /// The RCP base URL
-    /// </summary>
-    public const string RCPBaseUrl = BaseUrl + "rcp/";
-
-    /// <summary>
-    /// The base resource URL
-    /// </summary>
-    public const string BaseResourceUrl = RCPBaseUrl + "resources/14.2.0/";
-
-    /// <summary>
-    /// The base URL for downloading setup files
-    /// </summary>
-    public const string SetupBaseUrl = BaseResourceUrl + "setup/";
-
-    /// <summary>
-    /// The base URL for downloading tools
-    /// </summary>
-    public const string ToolsBaseUrl = BaseResourceUrl + "tools/";
-
-    #endregion
-
-    #region Setup
-
-    /// <summary>
-    /// The Rayman 1 complete soundtrack utility URL
-    /// </summary>
-    public const string R1_CompleteOST_URL = SetupBaseUrl + "rayman1_complete_ost.zip";
-
-    /// <summary>
-    /// The Rayman Designer clean files URL
-    /// </summary>
-    public const string RD_CleanFiles_URL = SetupBaseUrl + "raymandesigner_clean.zip";
-
-    #endregion
-
-    #region Tools
-
-    public const string PerLevelSoundtrackTool_URL = ToolsBaseUrl + "rayman1_per_level_soundtrack/tpls-tsr-3.1.1.zip";
-
-    public const string RRR_PatchedBF_Steam_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_Steam.zip";
-    public const string RRR_PatchedBF_GOG_URL = ToolsBaseUrl + "raymanravingrabbids_prototype_restoration/RRR_Patched_GOG.zip";
+    // TODO-UPDATE: Set file IDs
+    public const string RaymanForeverCompleteSoundtrackGameBananaFileId = "";
+    public const string RaymanDesignerCleanFilesGameBananaFileId = "";
+    public const string RaymanRavingRabbidsGOGPatchedBFGameBananaFileId = "";
+    public const string RaymanRavingRabbidsSteamPatchedBFGameBananaFileId = "";
 
     #endregion
 
@@ -122,12 +79,12 @@ public static class AppURLs
     /// <summary>
     /// The base URL for RayMap
     /// </summary>
-    public const string RayMapBaseUrl = BaseUrl + "maps/";
+    public const string RayMapBaseUrl = "https://raym.app/maps/";
 
     /// <summary>
     /// The base URL for Ray1Map
     /// </summary>
-    public const string Ray1MapBaseUrl = BaseUrl + "maps_r1/";
+    public const string Ray1MapBaseUrl = "https://raym.app/maps_r1/";
 
     /// <summary>
     /// Gets the game URL for RayMap

@@ -66,10 +66,7 @@ public class RaymanForeverCompleteSoundtrackSetupGameAction : SetupGameAction
             Logger.Info("The Rayman Forever soundtrack is being replaced");
 
             // Download the files
-            bool success = await Services.App.DownloadAsync(new[]
-            {
-                new Uri(AppURLs.R1_CompleteOST_URL)
-            }, true, musicDir);
+            bool success = await Services.App.DownloadGameBananaFileAsync(AppURLs.RaymanForeverCompleteSoundtrackGameBananaFileId, musicDir);
 
             if (success)
             {

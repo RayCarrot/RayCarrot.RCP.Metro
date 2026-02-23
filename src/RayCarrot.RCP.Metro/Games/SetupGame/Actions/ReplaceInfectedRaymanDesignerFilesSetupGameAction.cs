@@ -59,10 +59,7 @@ public class ReplaceInfectedRaymanDesignerFilesSetupGameAction : SetupGameAction
         try
         {
             // Download the files
-            await Services.App.DownloadAsync(new Uri[]
-            {
-                new(AppURLs.RD_CleanFiles_URL)
-            }, isCompressed: true, outputDir: gameInstallation.InstallLocation.Directory);
+            await Services.App.DownloadGameBananaFileAsync(AppURLs.RaymanDesignerCleanFilesGameBananaFileId, gameInstallation.InstallLocation.Directory);
 
             Logger.Info("The Rayman Designer files have been replaced");
 

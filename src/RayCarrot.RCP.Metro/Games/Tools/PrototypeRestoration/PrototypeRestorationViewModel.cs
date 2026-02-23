@@ -681,15 +681,12 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
             return;
 
         // Download the game
-        bool downloaded = await Services.App.DownloadAsync(new[]
+        bool downloaded = await Services.App.DownloadGameBananaFileAsync(version switch
         {
-            version switch
-            {
-                GameVersion.Steam => new Uri(AppURLs.RRR_PatchedBF_Steam_URL),
-                GameVersion.GOG_UbisoftConnect => new Uri(AppURLs.RRR_PatchedBF_GOG_URL),
-                _ => throw new Exception("Invalid game version")
-            }
-        }, true, GameInstallation.InstallLocation.Directory);
+            GameVersion.Steam => AppURLs.RaymanRavingRabbidsSteamPatchedBFGameBananaFileId,
+            GameVersion.GOG_UbisoftConnect => AppURLs.RaymanRavingRabbidsGOGPatchedBFGameBananaFileId,
+            _ => throw new Exception("Invalid game version")
+        }, GameInstallation.InstallLocation.Directory);
 
         if (!downloaded)
             return;

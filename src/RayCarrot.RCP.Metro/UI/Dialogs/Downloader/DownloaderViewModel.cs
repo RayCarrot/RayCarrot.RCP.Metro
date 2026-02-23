@@ -1,7 +1,7 @@
 ﻿#nullable disable
 using System.IO;
-using System.IO.Compression;
 using System.Net;
+using SharpCompress.Archives;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -128,7 +128,7 @@ public class DownloaderViewModel : UserInputViewModel
     /// <returns>The task</returns>
     protected async Task ProcessCompressedDownloadAsync()
     {
-        await Task.Run(async () =>
+        await Task.Run(() =>
         {
             // Handle each input source
             foreach (var inputSource in InputSources)
@@ -141,61 +141,65 @@ public class DownloaderViewModel : UserInputViewModel
 
                 DisplayInputSource = file;
 
+                // TODO-UPDATE: Temp code to support other archive types
+                using (var archive = ArchiveFactory.Open(file))
+                    archive.ExtractToDirectory(OutputDirectory);
+
                 // Open the zip file
-                using (var zip = ZipFile.OpenRead(file))
-                {
-                    // Set file progress to its entry count
-                    ItemMaxProgress = zip.Entries.Count;
+                //using (var zip = ZipFile.OpenRead(file))
+                //{
+                //    // Set file progress to its entry count
+                //    ItemMaxProgress = zip.Entries.Count;
 
-                    // Extract each entry
-                    foreach (var entry in zip.Entries)
-                    {
-                        ThrowIfCancellationRequested();
+                //    // Extract each entry
+                //    foreach (var entry in zip.Entries)
+                //    {
+                //        ThrowIfCancellationRequested();
 
-                        // Get the full entry name
-                        var entryName = entry.FullName.Replace('/', '\\');
+                //        // Get the full entry name
+                //        var entryName = entry.FullName.Replace('/', '\\');
 
-                        // Get the absolute output path
-                        var outputPath = OutputDirectory + entryName;
+                //        // Get the absolute output path
+                //        var outputPath = OutputDirectory + entryName;
 
-                        DisplayOutputSource = outputPath;
+                //        DisplayOutputSource = outputPath;
 
-                        // Check if the entry is a directory
-                        if (entryName.EndsWith("\\") && entry.Name == String.Empty)
-                        {
-                            // Create directory if it doesn't exist
-                            if (!outputPath.DirectoryExists)
-                            {
-                                Directory.CreateDirectory(outputPath);
+                //        // Check if the entry is a directory
+                //        if (entryName.EndsWith("\\") && entry.Name == String.Empty)
+                //        {
+                //            // Create directory if it doesn't exist
+                //            if (!outputPath.DirectoryExists)
+                //            {
+                //                Directory.CreateDirectory(outputPath);
 
-                                ProcessedPaths.Add(outputPath);
-                            }
+                //                ProcessedPaths.Add(outputPath);
+                //            }
 
-                            continue;
-                        }
+                //            continue;
+                //        }
 
-                        // Backup conflict file
-                        if (outputPath.FileExists)
-                            await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entryName, false));
+                //        // Backup conflict file
+                //        if (outputPath.FileExists)
+                //            await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entryName, false));
 
-                        // Create directory if it doesn't exist
-                        if (!outputPath.Parent.DirectoryExists)
-                            Directory.CreateDirectory(outputPath.Parent);
+                //        // Create directory if it doesn't exist
+                //        if (!outputPath.Parent.DirectoryExists)
+                //            Directory.CreateDirectory(outputPath.Parent);
 
-                        // Extract the compressed file
-                        entry.ExtractToFile(outputPath);
+                //        // Extract the compressed file
+                //        entry.ExtractToFile(outputPath);
 
-                        // Flag the file as processed
-                        ProcessedPaths.Add(outputPath);
+                //        // Flag the file as processed
+                //        ProcessedPaths.Add(outputPath);
 
-                        // Increase file progress
-                        ItemCurrentProgress++;
+                //        // Increase file progress
+                //        ItemCurrentProgress++;
 
-                        // Set total progress
-                        TotalCurrentProgress = (int)Math.Floor(100 * InputSources.Count + ((ItemCurrentProgress / ItemMaxProgress) * 10));
-                        OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
-                    }
-                }
+                //        // Set total progress
+                //        TotalCurrentProgress = (int)Math.Floor(100 * InputSources.Count + ((ItemCurrentProgress / ItemMaxProgress) * 10));
+                //        OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
+                //    }
+                //}
 
                 // Delete the zip file
                 FileManager.DeleteFile(file);

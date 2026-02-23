@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Input;
+using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -30,7 +30,8 @@ public class AppViewModel : BaseViewModel
         IMessageUIManager message,
         FileManager file,
         AppUIManager ui,
-        AppUserData data)
+        AppUserData data, 
+        IHttpClientFactory httpClientFactory)
     {
         // Set properties
         Updater = updater ?? throw new ArgumentNullException(nameof(updater));
@@ -38,6 +39,7 @@ public class AppViewModel : BaseViewModel
         File = file ?? throw new ArgumentNullException(nameof(file));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         Data = data ?? throw new ArgumentNullException(nameof(data));
+        HttpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
 
         // Check if the application is running as administrator
         try
@@ -90,6 +92,7 @@ public class AppViewModel : BaseViewModel
     private FileManager File { get; }
     private AppUIManager UI { get; }
     private AppUserData Data { get; }
+    private IHttpClientFactory HttpClientFactory { get; }
 
     #endregion
 
@@ -150,99 +153,21 @@ public class AppViewModel : BaseViewModel
 
     #region Public Methods
 
-    /// <summary>
-    /// Downloads the specified files to a specified output directory
-    /// </summary>
-    /// <param name="inputSources">The files to download</param>
-    /// <param name="isCompressed">True if the download is a compressed file, otherwise false</param>
-    /// <param name="outputDir">The output directory to download to</param>
-    /// <param name="isGame">Indicates if the download is for a game. If false it is assumed to be a generic patch.</param>
-    /// <returns>True if the download succeeded, otherwise false</returns>
-    public async Task<bool> DownloadAsync(IList<Uri> inputSources, bool isCompressed, FileSystemPath outputDir, bool isGame = false)
+    public async Task<bool> DownloadGameBananaFileAsync(string fileId, FileSystemPath outputDir)
     {
         try
         {
             Logger.Info("A download is starting...");
 
-            // Make sure there are input sources to download
-            if (!inputSources.Any())
-            {
-                Logger.Info("Download failed due to there not being any input sources");
+            using HttpClient httpClient = HttpClientFactory.CreateClient();
 
-                await MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
-                return false;
-            }
+            // Get the file
+            string fileUrl = $"https://gamebanana.com/apiv11/File/{fileId}";
+            GameBananaFile file = await httpClient.GetDeserializedAsync<GameBananaFile>(fileUrl);
 
-            if (Data.App_HandleDownloadsManually)
-            {
-                bool result = await UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
-                {
-                    // Download files
-                    new DialogMessageActionViewModel
-                    {
-                        DisplayText = Resources.Download_ManualDownload,
-                        ShouldCloseDialog = false,
-                        OnHandled = () =>
-                        {
-                            foreach (var u in inputSources)
-                                OpenUrl(u.AbsoluteUri);
-                        }
-                    },
-                    // Open destination folder
-                    new DialogMessageActionViewModel
-                    {
-                        DisplayText = Resources.Download_ManualOpenDestination,
-                        ShouldCloseDialog = false,
-                        OnHandled = () =>
-                        {
-                            Directory.CreateDirectory(outputDir);
-                            Task.Run(async () => await File.OpenExplorerLocationAsync(outputDir));
-                        }
-                    },
-                });
-
-                if (!result)
-                    return false;
-
-                Logger.Info("Manual download finished");
-
-                // Return the result
-                return true;
-            }
-            else
-            {
-                // Allow user to confirm
-                try
-                {
-                    long size = 0;
-                    foreach (Uri item in inputSources)
-                    {
-                        WebRequest webRequest = WebRequest.Create(item);
-                        webRequest.Method = "HEAD";
-
-                        using WebResponse webResponse = webRequest.GetResponse();
-                        size += Convert.ToInt64(webResponse.Headers.Get("Content-Length"));
-                    }
-
-                    string sizeString = BinaryHelpers.BytesToString(size);
-
-                    Logger.Debug("The size of the download has been retrieved as {0}", sizeString);
-
-                    string msg = isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize;
-
-                    if (!await MessageUI.DisplayMessageAsync(String.Format(msg, sizeString), Resources.Download_ConfirmHeader, MessageType.Question, true))
-                        return false;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn(ex, "Getting download size");
-                    if (!await MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
-                        return false;
-                }
-            }
-
+            // TODO-UPDATE: Replace downloader with HttpClient
             // Show the downloader and get the result
-            DownloaderResult dialogResult = await UI.DownloadAsync(new DownloaderViewModel(inputSources, outputDir, isCompressed));
+            DownloaderResult dialogResult = await UI.DownloadAsync(new DownloaderViewModel([new Uri(file.DownloadUrl)], outputDir, true));
 
             Logger.Info("The download finished with the result of {0}", dialogResult.DownloadState);
 

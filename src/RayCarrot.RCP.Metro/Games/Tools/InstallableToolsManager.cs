@@ -15,21 +15,23 @@ public class InstallableToolsManager
 
     public async Task<bool> InstallAsync(InstallableTool tool)
     {
-        bool result = await Services.App.DownloadAsync(new[] { tool.DownloadUri }, true, tool.InstallDirectory);
+        // TODO-UPDATE: Update this
+        throw new NotImplementedException();
+        //bool result = await Services.App.DownloadAsync(new[] { tool.DownloadUri }, true, tool.InstallDirectory);
 
-        if (result)
-        {
-            Services.Data.App_InstalledTools[tool.ToolId] = new InstalledTool(
-                toolId: tool.ToolId,
-                path: tool.InstallDirectory,
-                size: tool.InstallDirectory.GetSize(),
-                downloadDateTime: DateTime.Now,
-                version: tool.LatestVersion);
+        //if (result)
+        //{
+        //    Services.Data.App_InstalledTools[tool.ToolId] = new InstalledTool(
+        //        toolId: tool.ToolId,
+        //        path: tool.InstallDirectory,
+        //        size: tool.InstallDirectory.GetSize(),
+        //        downloadDateTime: DateTime.Now,
+        //        version: tool.LatestVersion);
 
-            Services.Messenger.Send(new ToolInstalledMessage(tool.ToolId));
-        }
+        //    Services.Messenger.Send(new ToolInstalledMessage(tool.ToolId));
+        //}
 
-        return result;
+        //return result;
     }
 
     public async Task UninstallAsync(InstallableTool tool)
@@ -51,35 +53,37 @@ public class InstallableToolsManager
 
     public async Task<bool> UpdateAsync(InstallableTool tool)
     {
-        using TempDirectory tempDir = new(true);
-        
-        // Install new version to temp
-        bool result = await Services.App.DownloadAsync(new[] { tool.DownloadUri }, true, tempDir.TempPath);
-
-        if (!result)
-            return false;
-
-        // Replace the installation
-        try
-        {
-            Services.File.MoveDirectory(tempDir.TempPath, tool.InstallDirectory, true, true);
-        }
-        catch (Exception ex)
-        {
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.InstallableTool_UpdateError);
-            return false;
-        }
-
-        // Replace data for installed tool
-        Services.Data.App_InstalledTools[tool.ToolId] = new InstalledTool(
-            toolId: tool.ToolId,
-            path: tool.InstallDirectory,
-            size: tool.InstallDirectory.GetSize(),
-            downloadDateTime: DateTime.Now,
-            version: tool.LatestVersion);
-
-        Services.Messenger.Send(new ToolUpdatedMessage(tool.ToolId));
-
-        return true;
+        // TODO-UPDATE: Update this
+        throw new NotImplementedException();
+        // using TempDirectory tempDir = new(true);
+        // 
+        // // Install new version to temp
+        // bool result = await Services.App.DownloadAsync(new[] { tool.DownloadUri }, true, tempDir.TempPath);
+        // 
+        // if (!result)
+        //     return false;
+        // 
+        // // Replace the installation
+        // try
+        // {
+        //     Services.File.MoveDirectory(tempDir.TempPath, tool.InstallDirectory, true, true);
+        // }
+        // catch (Exception ex)
+        // {
+        //     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.InstallableTool_UpdateError);
+        //     return false;
+        // }
+        // 
+        // // Replace data for installed tool
+        // Services.Data.App_InstalledTools[tool.ToolId] = new InstalledTool(
+        //     toolId: tool.ToolId,
+        //     path: tool.InstallDirectory,
+        //     size: tool.InstallDirectory.GetSize(),
+        //     downloadDateTime: DateTime.Now,
+        //     version: tool.LatestVersion);
+        // 
+        // Services.Messenger.Send(new ToolUpdatedMessage(tool.ToolId));
+        // 
+        // return true;
     }
 }

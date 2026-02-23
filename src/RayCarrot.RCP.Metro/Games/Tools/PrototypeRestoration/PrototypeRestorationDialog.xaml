@@ -222,6 +222,7 @@
                                   VerticalScrollBarVisibility="Auto"
                                   Margin="0 0 0 8">
                         <ItemsControl ItemsSource="{Binding Path=BFModToggles, Mode=OneTime}"
+                                      d:ItemsSource="{d:SampleData ItemCount=3}"
                                       IsEnabled="{Binding Path=CanUpdatePatchedBF}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
