@@ -17,7 +17,7 @@ public class Ray1EditorUtilityViewModel : UtilityViewModel
     public override LocalizedString DisplayHeader => new ResourceLocString(nameof(Resources.Utilities_R1E_Header));
     public override GenericIconKind Icon => GenericIconKind.Utilities_Ray1Editor;
 
-    public string HomePageURL => "https://raym.app/ray1editor/";
+    public string HomePageURL => "https://github.com/RayCarrot/Ray1Editor";
 
     public void OpenHomePage()
     {
