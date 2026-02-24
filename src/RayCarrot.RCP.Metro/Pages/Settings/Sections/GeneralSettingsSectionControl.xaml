@@ -23,12 +23,6 @@
                       rcp:UserLevelAssist.MinUserLevel="Technical"
                       Margin="0 0 0 8" />
 
-            <CheckBox Content="{Resx Settings_ManualDownloads}"
-                      ToolTip="{Resx Settings_ManualDownloadsInfo}"
-                      IsChecked="{Binding Path=App_HandleDownloadsManually}"
-                      rcp:UserLevelAssist.MinUserLevel="Advanced"
-                      Margin="0 0 0 8" />
-
             <StackPanel rcp:UserLevelAssist.MinUserLevel="Technical">
 
                 <StackPanel Orientation="Horizontal"

@@ -34,7 +34,6 @@ public partial class AppUserData : BaseViewModel
     [JsonProperty] private FileSystemPath BackupLocation { set => Backup_BackupLocation = value; }
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }
-    [JsonProperty] private bool HandleDownloadsManually { set => App_HandleDownloadsManually = value; }
     [JsonProperty] private ArchiveItemsSort ArchiveExplorerSortOption { set => Archive_ExplorerSortOption = value; }
 #pragma warning restore IDE0051 // Remove unused private members
 }
