@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.RCP.Metro.Games.Clients;
-using RayCarrot.RCP.Metro.Games.Tools;
 using RayCarrot.RCP.Metro.Pages.About;
 using RayCarrot.RCP.Metro.Pages.Debug;
 using RayCarrot.RCP.Metro.Pages.Games;
@@ -63,7 +62,6 @@ public static class Entry
         serviceCollection.AddSingleton<GameBackups_Manager>();
         serviceCollection.AddSingleton<DeployableFilesManager>();
         serviceCollection.AddSingleton<AssociatedFileEditorsManager>();
-        serviceCollection.AddSingleton<InstallableToolsManager>();
 
         // Using a WeakReferenceMessenger can be convenient and I was originally doing that,
         // but for performance reasons it's still better to always unregister (to avoid

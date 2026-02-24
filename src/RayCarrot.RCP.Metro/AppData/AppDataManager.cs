@@ -1101,6 +1101,23 @@ public class AppDataManager
                     }
                 }
             }
+
+            // Delete the tools folder and TPLS since tools are no longer used
+            try
+            {
+                bool hadDownloadedTpls = (AppFilePaths.UserDataBaseDir + "Tools" + "PerLevelSoundtrack" + "TPLSTSR4.cue").FileExists;
+                Services.File.DeleteDirectory(AppFilePaths.UserDataBaseDir + "Tools");
+
+                if (hadDownloadedTpls)
+                {
+                    // TODO-LOC (and replace prev migration message)
+                    await Services.MessageUI.DisplayMessageAsync("The Per-level Soundtrack tool for Rayman 1 has been moved to a downloadable mod in the Mod Loader. To continue using it you have to re-download it. The previous version has automatically been uninstalled.", Resources.PostUpdate_MigrateTPLSHeader, MessageType.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Deleting the legacy tools folder");
+            }
         }
     }
 

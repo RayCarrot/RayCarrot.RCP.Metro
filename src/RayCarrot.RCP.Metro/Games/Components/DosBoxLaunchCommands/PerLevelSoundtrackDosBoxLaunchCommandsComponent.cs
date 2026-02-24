@@ -1,14 +1,13 @@
 ﻿using RayCarrot.RCP.Metro.Games.Structure;
-using RayCarrot.RCP.Metro.Games.Tools;
 using RayCarrot.RCP.Metro.Games.Tools.PerLevelSoundtrack;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class PerLevelSoundtrackDosBoxLaunchCommandsComponent : DefaultDosBoxLaunchCommandsComponent
 {
-    private bool UsePerLevelSoundtrack(InstallableTool installableTool)
+    private bool UsePerLevelSoundtrack(FileSystemPath cueFilePath)
     {
-        return Services.InstallableTools.CheckIsInstalled(installableTool) &&
+        return cueFilePath.FileExists &&
                GameInstallation.GetObject<PerLevelSoundtrackData>(GameDataKey.R1_PerLevelSoundtrackData) is { IsEnabled: true };
     }
 
@@ -39,17 +38,22 @@ public class PerLevelSoundtrackDosBoxLaunchCommandsComponent : DefaultDosBoxLaun
         return args;
     }
 
+    public FileSystemPath GetCueFilePath()
+    {
+        return GameInstallation.InstallLocation.Directory + "TPLSTSR4.cue";
+    }
+
     public override IReadOnlyList<string> GetLaunchCommands(string? gameLaunchArgs = null)
     {
-        PerLevelSoundtrackInstallableTool installableTool = new();
+        FileSystemPath cueFilePath = GetCueFilePath();
 
-        if (!UsePerLevelSoundtrack(installableTool))
+        if (!UsePerLevelSoundtrack(cueFilePath))
             return base.GetLaunchCommands(gameLaunchArgs);
 
         List<string> cmds = new();
 
         // Mount the custom TPLS TSR disc image
-        cmds.Add($"imgmount d '{installableTool.CueFilePath}' -t iso -fs iso");
+        cmds.Add($"imgmount d '{cueFilePath}' -t iso -fs iso");
 
         // Mount the game install directory as the C drive
         cmds.Add($"MOUNT C '{GameInstallation.InstallLocation.Directory}'");

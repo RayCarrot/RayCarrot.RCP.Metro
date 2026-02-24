@@ -37,13 +37,14 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
+            <!-- TODO-LOC -->
             <Button Grid.Column="0"
                     Visibility="{Binding Path=IsInstalled, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
                     VerticalAlignment="Center"
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=InstallCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.GameTools}"
-                    Content="{Resx GameHub_PerLevelSoundtrackPanel_Install}"
+                    Content="Download Mod"
                     Margin="0 0 8 0" />
 
             <mah:ToggleSwitch Grid.Column="1"
@@ -87,27 +88,7 @@
                 </StackPanel>
             </rcp:PopupCard>
 
-            <Button Grid.Column="3"
-                    Visibility="{Binding Path=IsInstalled, Converter={rcp:BooleanToVisibilityConverter}}"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource RCP.Styles.Button.Flat}" 
-                    rcp:Icon.Kind="DeleteOutline"
-                    rcp:Icon.Size="18"
-                    Content="{Resx GameHub_PerLevelSoundtrackPanel_Uninstall}"
-                    Command="{Binding Path=UninstallCommand, Mode=OneTime}"
-                    Margin="0 0 4 0" />
-
-            <Button Grid.Column="4"
-                    Visibility="{Binding Path=HasUpdateAvailable, Converter={rcp:BooleanToVisibilityConverter}}"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource RCP.Styles.Button.Flat}" 
-                    rcp:Icon.Kind="RefreshCircle"
-                    rcp:Icon.Size="18"
-                    Content="{Resx GameHub_PerLevelSoundtrackPanel_Update}"
-                    Command="{Binding Path=UpdateCommand, Mode=OneTime}" />
-
             <Button Grid.Column="5"
-                    Visibility="{Binding Path=HasUpdateAvailable, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
                     VerticalAlignment="Center"
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     rcp:Icon.Kind="Github"

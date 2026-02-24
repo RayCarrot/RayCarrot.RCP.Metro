@@ -1,21 +1,18 @@
 ﻿using System.Windows.Input;
-using RayCarrot.RCP.Metro.Games.Tools;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Tools.PerLevelSoundtrack;
+using RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader;
+using RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana;
 
 namespace RayCarrot.RCP.Metro.Games.Panels;
 
-public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel, 
-    IRecipient<ToolInstalledMessage>, IRecipient<ToolUninstalledMessage>, IRecipient<ToolUpdatedMessage>
+public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel, IRecipient<ModifiedGameModsMessage>
 {
     #region Constructor
 
     public PerLevelSoundtrackGamePanelViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
-        InstallableTool = new PerLevelSoundtrackInstallableTool();
-
         InstallCommand = new AsyncRelayCommand(InstallAsync);
-        UninstallCommand = new AsyncRelayCommand(UninstallAsync);
-        UpdateCommand = new AsyncRelayCommand(UpdateAsync);
         OpenGitHubCommand = new RelayCommand(OpenGitHub);
 
         Services.Messenger.RegisterAll(this);
@@ -23,11 +20,21 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Constant Fields
+
+    private const long GameBananaModId = 0; // TODO-UPDATE: Define
+
+    #endregion
+
     #region Commands
 
     public ICommand InstallCommand { get; }
-    public ICommand UninstallCommand { get; }
-    public ICommand UpdateCommand { get; }
     public ICommand OpenGitHubCommand { get; }
 
     #endregion
@@ -39,8 +46,6 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
 
     public string GitHubUrl => "https://github.com/PluMGMK/rayman-tpls-tsr";
 
-    public InstallableTool InstallableTool { get; }
-
     public bool IsInstalled { get; set; }
     public bool IsEnabled
     {
@@ -51,7 +56,6 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
             Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
         }
     }
-    public bool HasUpdateAvailable { get; set; }
 
     // Commented out for now both here and in the UI
     //public bool ExpandedMemory
@@ -98,40 +102,47 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
 
     #endregion
 
+    #region Private Methods
+
+    private bool CheckIsModInstalled()
+    {
+        try
+        {
+            // NOTE: We don't check if the mod itself is installed, but rather if the expected file exists, so that
+            //       the user may add the mod manually or through a custom mod if they want to
+            PerLevelSoundtrackDosBoxLaunchCommandsComponent c = GameInstallation.GetRequiredComponent<DosBoxLaunchCommandsComponent, PerLevelSoundtrackDosBoxLaunchCommandsComponent>();
+            return c.GetCueFilePath().FileExists;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Checking if mod is installed");
+            return false;
+        }
+    }
+
+    #endregion
+
     #region Public Methods
 
     protected override Task LoadAsyncImpl()
     {
-        IsInstalled = Services.InstallableTools.CheckIsInstalled(InstallableTool);
-        OnPropertyChanged(nameof(IsEnabled));
-        HasUpdateAvailable = IsInstalled && InstallableTool.LatestVersion > Services.InstallableTools.GetInstalledVersion(InstallableTool);
-
+        IsInstalled = CheckIsModInstalled();
         return Task.CompletedTask;
     }
 
     public override Task UnloadAsync()
     {
         Services.Messenger.UnregisterAll(this);
-     
         return Task.CompletedTask;
     }
 
     public async Task InstallAsync()
     {
-        await Services.InstallableTools.InstallAsync(InstallableTool);
-    }
-
-    public async Task UninstallAsync()
-    {
-        if (!await Services.MessageUI.DisplayMessageAsync(Resources.GameTool_PerLevelSoundtrack_ConfirmUninstall, Resources.GameTool_PerLevelSoundtrack_ConfirmUninstallHeader, MessageType.Question, true))
-            return;
-
-        await Services.InstallableTools.UninstallAsync(InstallableTool);
-    }
-
-    public async Task UpdateAsync()
-    {
-        await Services.InstallableTools.UpdateAsync(InstallableTool);
+        await Services.UI.ShowModLoaderAsync(GameInstallation, _ =>
+        {
+            Services.Messenger.Send(new OpenModDownloadPageMessage(GameInstallation, GameBananaModsSource.SourceId, new GameBananaInstallData(GameBananaModId, -1)));
+            return Task.CompletedTask;
+        });
     }
 
     public void OpenGitHub()
@@ -143,32 +154,10 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel,
 
     #region Message Receivers
 
-    void IRecipient<ToolInstalledMessage>.Receive(ToolInstalledMessage message)
+    void IRecipient<ModifiedGameModsMessage>.Receive(ModifiedGameModsMessage message)
     {
-        if (message.ToolId == InstallableTool.ToolId)
-        {
-            IsInstalled = true;
-            IsEnabled = true;
-            HasUpdateAvailable = false;
-        }
-    }
-
-    void IRecipient<ToolUninstalledMessage>.Receive(ToolUninstalledMessage message)
-    {
-        if (message.ToolId == InstallableTool.ToolId)
-        {
-            IsInstalled = false;
-            HasUpdateAvailable = false;
-        }
-    }
-
-    void IRecipient<ToolUpdatedMessage>.Receive(ToolUpdatedMessage message)
-    {
-        if (message.ToolId == InstallableTool.ToolId)
-        {
-            IsInstalled = true;
-            HasUpdateAvailable = false;
-        }
+        if (message.GameInstallation == GameInstallation)
+            IsInstalled = CheckIsModInstalled();
     }
 
     #endregion
