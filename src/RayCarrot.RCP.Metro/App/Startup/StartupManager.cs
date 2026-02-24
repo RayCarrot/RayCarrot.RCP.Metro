@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -200,23 +199,6 @@ public class StartupManager
             return UriLaunchHandler.GetHandler(Args.Args[0]);
 
         return null;
-    }
-
-    private void InitWebProtocol()
-    {
-        try
-        {
-            // TODO-UPDATE: Might not need to do this anymore
-            // On Windows 7 the default TLS version is 1.0. As of December 2021 raym.app where RCP is hosted only supports
-            // TLS 1.2 and 1.3 thus causing any web requests to fail on Windows 7. Since we don't want to have to hard-code the protocol
-            // to use on modern system we only do so on Windows 7, leaving it as the system default otherwise (TLS 1.2 or higher)
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8 && AppViewModel.WindowsVersion != WindowsVersion.Unknown)
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Initializing web protocol");
-        }
     }
 
     private void UpdateAppLocation() // NOTE: This has to run before the post-update
@@ -593,7 +575,6 @@ public class StartupManager
             CheckLaunchArgs();
             FileLaunchHandler? fileLaunchHandler = CheckFileLaunch();
             UriLaunchHandler? uriLaunchHandler = CheckURILaunch();
-            InitWebProtocol();
             Logger.Debug("Startup {0} ms: Checked launch arguments and initialized web protocol", sw.ElapsedMilliseconds);
 
             UpdateAppLocation();

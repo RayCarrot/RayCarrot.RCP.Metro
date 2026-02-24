@@ -171,17 +171,6 @@ public class UpdaterManager : IUpdaterManager
             return false;
         }
 
-        int webSecurityProtocolType = 0;
-
-        try
-        {
-            webSecurityProtocolType = (int)ServicePointManager.SecurityProtocol;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Failed to get current web security protocol");
-        }
-
         // Launch the updater and capture the process
         using Process? updateProcess = await File.LaunchFileAsync(filePath, asAdmin, 
             // Arg 1: Program path
@@ -193,9 +182,7 @@ public class UpdaterManager : IUpdaterManager
             // Arg 4: Update URL
             $"\"{result.NewVersionUrl}\" " +
             // Arg 5: Current culture
-            $"\"{InstanceData.CurrentCulture}\" " +
-            // Arg 6: Web security protocol type
-            $"{webSecurityProtocolType}");
+            $"\"{InstanceData.CurrentCulture}\"");
 
         // Make sure we have a valid process
         if (updateProcess == null)
