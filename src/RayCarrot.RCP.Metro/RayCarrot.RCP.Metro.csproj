@@ -89,7 +89,7 @@
     <PackageReference Include="DirectXTexNet" Version="1.0.1" />
     <PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
-    <PackageReference Include="Magick.NET-Q8-x64" Version="14.10.2" />
+    <PackageReference Include="Magick.NET-Q8-x64" Version="14.10.3" />
     <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="8.0.15" />
     <PackageReference Include="MahApps.Metro" Version="2.4.11" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="6.2.1" />
