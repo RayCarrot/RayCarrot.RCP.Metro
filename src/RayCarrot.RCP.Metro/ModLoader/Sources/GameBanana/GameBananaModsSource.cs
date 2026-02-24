@@ -360,7 +360,8 @@ public class GameBananaModsSource : DownloadableModsSource
             // Try and get the defined file if we have a file id
             long? fileId = dependencyDatas.FirstOrDefault(x => x.ModId == mod.Id)?.FileId;
             if (fileId != null)
-                file = mod.Files?.FirstOrDefault(x => x.Id == fileId);
+                file = mod.Files?.FirstOrDefault(x => x.Id == fileId) ?? 
+                       mod.ArchivedFiles?.FirstOrDefault(x => x.Id == fileId);
 
             // Search for valid files if we didn't get one
             if (file == null)

@@ -253,28 +253,33 @@ public class GameBananaDownloadableModViewModel : DownloadableModViewModel, IRec
         DownloadsCount = mod.DownloadCount;
         ViewsCount = mod.ViewCount;
 
+        IReadOnlyCollection<ModViewModel> mods = _modLoaderViewModel.GetMods();
+        bool isModAddedToLibrary(GameBananaFile file) => mods.
+            Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
+            Any(x => (x.InstallData as GameBananaInstallData)?.FileId == file.Id);
+
         if (mod.Files != null)
         {
             List<GameBananaFile> validFiles = DownloadableModsSource.GetValidFiles(mod.Files);
-
-            IReadOnlyCollection<ModViewModel> mods = _modLoaderViewModel.GetMods();
-            bool isModAddedToLibrary(GameBananaFile file) => mods.
-                Where(x => x.DownloadableModsSource?.Id == DownloadableModsSource.Id).
-                Any(x => (x.InstallData as GameBananaInstallData)?.FileId == file.Id);
 
             Files = new ObservableCollection<GameBananaFileViewModel>(validFiles.
                 Where(x => !x.IsArchived).Select(x => new GameBananaFileViewModel(x, DownloadFileAsync)
                 {
                     IsAddedToLibrary = isModAddedToLibrary(x)
                 }));
+        }
+        if (mod.ArchivedFiles != null)
+        {
+            List<GameBananaFile> validFiles = DownloadableModsSource.GetValidFiles(mod.ArchivedFiles);
+
             ArchivedFiles = new ObservableCollection<GameBananaFileViewModel>(validFiles.
                 Where(x => x.IsArchived).Select(x => new GameBananaFileViewModel(x, DownloadFileAsync)
                 {
                     IsAddedToLibrary = isModAddedToLibrary(x)
                 }));
-
-            HasNoValidFiles = Files.Count == 0 && ArchivedFiles.Count == 0;
         }
+
+        HasNoValidFiles = (Files == null || Files.Count == 0) && (ArchivedFiles == null || ArchivedFiles.Count == 0);
 
         if (mod.Credits != null)
         {
