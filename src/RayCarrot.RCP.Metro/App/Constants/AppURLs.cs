@@ -10,7 +10,7 @@ public static class AppURLs
     #region GitHub
 
     public const string GitHubUserName = "RayCarrot";
-    public const string GitHubRepoName = "RayCarrot.RCP.Metro";
+    public const string GitHubRepoName = "RaymanControlPanel";
 
     public const string GitHubReleaseExeFileName = "RaymanControlPanel.exe";
     public const string GitHubReleaseChangelogFileName = "Changelog.txt";

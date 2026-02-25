@@ -147,7 +147,7 @@
                                                 <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
                                                            Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
                                                     <Run Text="{Binding Path=Website, Mode=OneTime}"
-                                                         d:Text="https://github.com/RayCarrot/RayCarrot.RCP.Metro" />
+                                                         d:Text="https://github.com/RayCarrot/RaymanControlPanel" />
                                                 </Hyperlink>
                                             </TextBlock>
 

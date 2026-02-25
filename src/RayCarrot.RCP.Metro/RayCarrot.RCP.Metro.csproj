@@ -31,8 +31,8 @@
     <Authors>RayCarrot</Authors>
     <Product>Rayman Control Panel</Product>
     <Description>Open source, unofficial Rayman management program with configuration tools and utilities</Description>
-    <RepositoryUrl>https://github.com/RayCarrot/RayCarrot.RCP.Metro</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/RayCarrot/RayCarrot.RCP.Metro</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RayCarrot/RaymanControlPanel</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/RayCarrot/RaymanControlPanel</PackageProjectUrl>
     
     <!-- Custom entry point -->
     <StartupObject>RayCarrot.RCP.Metro.Entry</StartupObject>

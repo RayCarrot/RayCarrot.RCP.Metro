@@ -57,7 +57,7 @@ public partial class ErrorWindow : BaseWindow
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        Process.Start("https://github.com/RayCarrot/RayCarrot.RCP.Metro/releases/latest")?.Dispose();
+        Process.Start("https://github.com/RayCarrot/RaymanControlPanel/releases/latest")?.Dispose();
         Close();
     }
 
