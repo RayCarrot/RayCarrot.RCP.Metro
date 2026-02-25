@@ -249,10 +249,10 @@ public class CpaGfImageFormat : ImageFormat
                     {
                         int gfIndex = (height - y - 1) * width + x;
 
-                        rawImgData[(y * width + x) * 4 + 0] = gf.Palette[gf.ImgData[gfIndex] * 4 + 0]; // B
-                        rawImgData[(y * width + x) * 4 + 1] = gf.Palette[gf.ImgData[gfIndex] * 4 + 1]; // G
-                        rawImgData[(y * width + x) * 4 + 2] = gf.Palette[gf.ImgData[gfIndex] * 4 + 2]; // R
-                        rawImgData[(y * width + x) * 4 + 3] = gf.Palette[gf.ImgData[gfIndex] * 4 + 3]; // R
+                        rawImgData[(y * width + x) * 4 + 0] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 0]; // B
+                        rawImgData[(y * width + x) * 4 + 1] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 1]; // G
+                        rawImgData[(y * width + x) * 4 + 2] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 2]; // R
+                        rawImgData[(y * width + x) * 4 + 3] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 3]; // A
                     }
                 }
 
@@ -269,9 +269,9 @@ public class CpaGfImageFormat : ImageFormat
                     {
                         int gfIndex = (height - y - 1) * width + x;
 
-                        rawImgData[(y * width + x) * 3 + 0] = gf.Palette[gf.ImgData[gfIndex] * 3 + 0]; // B
-                        rawImgData[(y * width + x) * 3 + 1] = gf.Palette[gf.ImgData[gfIndex] * 3 + 1]; // G
-                        rawImgData[(y * width + x) * 3 + 2] = gf.Palette[gf.ImgData[gfIndex] * 3 + 2]; // R
+                        rawImgData[(y * width + x) * 3 + 0] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 0]; // B
+                        rawImgData[(y * width + x) * 3 + 1] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 1]; // G
+                        rawImgData[(y * width + x) * 3 + 2] = gf.Palette[gf.ImgData[gfIndex] * gf.Header.PaletteDataAlignment + 2]; // R
                     }
                 }
 
