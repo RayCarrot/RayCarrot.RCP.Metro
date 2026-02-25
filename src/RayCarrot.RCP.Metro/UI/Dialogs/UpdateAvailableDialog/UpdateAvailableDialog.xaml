@@ -21,31 +21,43 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="{StaticResource RCP.Thicknesses.Card}">
+        <Grid Grid.Row="0" Margin="{StaticResource RCP.Thicknesses.Card}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-            <Grid Margin="0 0 0 4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
 
-                <iconPacks:PackIconMaterial Grid.Column="0"
-                                            Kind="DownloadCircleOutline" 
-                                            Width="24" 
-                                            Height="24" 
-                                            Foreground="{StaticResource RCP.Brushes.StatusComplete}" 
-                                            Margin="0 0 8 0"/>
+                <Grid Margin="0 0 0 4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="1" 
-                           Text="Update Available" 
-                           Style="{StaticResource RCP.Styles.TextBlock.Header}" 
-                           VerticalAlignment="Center"  />
+                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                                Kind="DownloadCircleOutline" 
+                                                Width="24" 
+                                                Height="24" 
+                                                Foreground="{StaticResource RCP.Brushes.StatusComplete}" 
+                                                Margin="0 0 8 0"/>
 
-            </Grid>
+                    <TextBlock Grid.Column="1" 
+                               Text="Update Available" 
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}" 
+                               VerticalAlignment="Center"  />
 
-            <rcp:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
+                </Grid>
 
-        </StackPanel>
+                <rcp:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
+
+            </StackPanel>
+
+            <Image Grid.Column="1"
+                   Source="{rcp:AssetImageSource Asset={x:Static rcp:MessageIconAsset.Question}}"
+                   Width="112" Height="112" />
+
+        </Grid>
 
         <GroupBox Grid.Row="1" 
                   Header="Changelog" 
