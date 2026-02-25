@@ -976,9 +976,17 @@ public class AppDataManager
 
                             // Add a new game for each language
                             await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(germanInstallDir),
-                                new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (German)")));
+                                new ConfigureGameInstallation(x =>
+                                {
+                                    x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (German)");
+                                    x.SetObject(GameDataKey.RCP_GameInstallData, new RCPGameInstallData(germanInstallDir, RCPGameInstallData.RCPInstallMode.Download, DateTime.Now));
+                                }));
                             await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(frenchInstallDir),
-                                new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (French)")));
+                                new ConfigureGameInstallation(x =>
+                                {
+                                    x.SetValue(GameDataKey.RCP_CustomName, "Rayman Minigames (French)");
+                                    x.SetObject(GameDataKey.RCP_GameInstallData, new RCPGameInstallData(frenchInstallDir, RCPGameInstallData.RCPInstallMode.Download, DateTime.Now));
+                                }));
                         }
                     }
                     catch (Exception ex)
@@ -1090,9 +1098,17 @@ public class AppDataManager
 
                             // Add a new game for each language
                             await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(v03InstallDir),
-                                new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman 3 Print Studio (2003)")));
+                                new ConfigureGameInstallation(x =>
+                                {
+                                    x.SetValue(GameDataKey.RCP_CustomName, "Rayman 3 Print Studio (2003)");
+                                    x.SetObject(GameDataKey.RCP_GameInstallData, new RCPGameInstallData(v03InstallDir, RCPGameInstallData.RCPInstallMode.Download, DateTime.Now));
+                                }));
                             await GamesManager.AddGameAsync(gameInstallation.GameDescriptor, new InstallLocation(v05InstallDir),
-                                new ConfigureGameInstallation(x => x.SetValue(GameDataKey.RCP_CustomName, "Rayman 3 Print Studio (2005)")));
+                                new ConfigureGameInstallation(x =>
+                                {
+                                    x.SetValue(GameDataKey.RCP_CustomName, "Rayman 3 Print Studio (2005)");
+                                    x.SetObject(GameDataKey.RCP_GameInstallData, new RCPGameInstallData(v05InstallDir, RCPGameInstallData.RCPInstallMode.Download, DateTime.Now));
+                                }));
                         }
                     }
                     catch (Exception ex)
