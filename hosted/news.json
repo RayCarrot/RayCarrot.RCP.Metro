@@ -6,7 +6,6 @@
         "text": "To celebrate the 30th anniversary of Rayman, Ubisoft has teamed up with Digital Eclipse to create a collection of 5 different versions of the game (PlayStation, Atari Jaguar, MS-DOS, Game Boy Advance and Game Boy Color) with optional enhancements, such as infinite lives and a rewind option, as well as a re-imagined soundtrack by Christophe Héral. It also includes an SNES prototype, 120+ levels from the MS-DOS expansions (Rayman Designer, Rayman by his Fans and Rayman 60 Levels) and an interactive documentary with over 50 minutes of new interviews and new concept art and design documents."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "December 31, 2025",
         "icon": "main",
         "header": "Version 14.3 is now available!",
@@ -37,49 +36,42 @@
         "text": "Rayman Legends just got updated on Steam to include Steam achievements! This is part of an initiative by Ubisoft to update their older games with Steam achievements as many of them just had achievements through Ubisoft Connect (formerly Uplay). In the case of Rayman Legends it has 50 achievements to earn, same as on other platforms. They will auto-pop directly when you launch the game if you got them earlier through your Ubisoft account."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "November 18, 2024",
         "icon": "main",
         "header": "Version 14.2 is now publicly available!",
         "text": "It took a bit longer than expected, but the new 14.2 update is now out of beta and publicly available! This update has a lot of changes, which you can view in the changelog. One of the bigger additions is that all of the PS2 Rayman games are now supported through the PCSX2 emulator.\nThere's also been a major change in how tools are presented in the app. Previously most games had a list of utilities, which could range from various fixes, to more mod-like options. Since then the app has gotten a fully fledged mod loader, as well as a new user interface which makes presenting these things easier. Because of this these utilities have now been moved to other parts of the app. Some are now available as mods instead, while others are part of the new setup game panel which appears in the game hub. This panel provides a list of recommended actions for setting up the game, as well as shows potential issues if they are found.\nBesides this there have been various improvements made to both the Archive Explorer and the mod loader. Replacing textures in Rayman Origins and Legends now produces much higher quality DXT compression thanks to the usage of a new imaging library. For the mod loader it has new filtering options for downloadable mods from GameBanana, such as being able to search for them or filter by category."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "October 11, 2024",
         "icon": "main",
         "header": "New beta update and UbiRay mod",
         "text": "A new beta update is now available for the upcoming 14.2 update. The primary new feature is the setup game panel which appears for supported games in the game hub. This contains a list of recommended and optional actions for setting up the game, as well showing issues if they are found. There are also some big structural changes in the update. The game options dialog has now redesigned to only have game settings. With that all of the game-specific utilities have been integrated into other parts of the app instead, such as to the new setup game panel or as downloadable mods.\nTwo of the old utilities have also received a major update here. The per-level soundtrack utility for Rayman 1 has been added as a tool directly in the game hub and now uses an all new implementation which allows any DOSBox build to be used. It also comes with several new features, such as fixing some visual bugs in the PC version. The other utility is the debug commands one for Rayman Origins and Legends. Now it's integrated into the game settings and has a variety of new commands to use. It also works with all versions of Rayman Legends, including the Steam one.\n\nBesides the new beta there is also a new mod which has been added for Rayman Legends, that being one to enable UbiRay in the game. This was previously a utility, but starting from version 14.2 it will only be available as a mod. This means that if you previously enabled UbiRay through the utility then you will lose the option to revert that once you update to 14.2 (due to the utility being removed). If you still want to be able to freely enable and disable UbiRay then it's recommended to revert the change through the utility before updating and then downloading the new mod once on the new version. If UbiRay is enabled through the mod in the mod loader then it can be reverted at any time by simply disabling or uninstalling the mod."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "September 2, 2024",
         "icon": "main",
         "header": "Improved Rayman 2 widescreen mod",
         "text": "The Rayman 2 mod Ray2Fix by spitfirex86 has just been updated to 1.4.0 and with it comes support for widescreen resolutions. This is the first widescreen mod for the game which properly handles resizing UI elements and the expanded FOV. With this I'll be retiring the widescreen patch currently built-in to the Rayman Control Panel in the Rayman 2 config and instead recommend players to use the one in Ray2Fix."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "August 5, 2024",
         "icon": "main",
         "header": "Version 14.2 is now available as a beta update",
         "text": "The next beta update is now here, with a bunch of new features. The biggest one is support for all PS2 Rayman games using the PCSX2 emulator. With this there's now a pretty good selection of console games in the app, but of course also still a lot left to cover. I think the next ones I'll add will be GameCube and Wii through Dolphin.\nBesides that I've also rewritten all of the image processing code for the Archive Explorer. With this performance should be improved. DDS files are also no longer processed through the ImageMagick library, but instead using Microsoft's DirectXTex library. This produces much higher image quality when compressing, something that's especially noticeable for the mipmaps. If you've previously made texture mods for Origins or Legends and still have the original .png files you might want to re-import those to get them in higher quality in the game. On top of this there is also added support for PS3 textures, and the previously limited Xbox 360 texture support has now been update to fully support them! This is still a beta update though, so please let me know if you come across any bugs. Especially related to editing images with the Archive Explorer since all of that was rewritten.\nThanks a lot for your continued usage of the app!"
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "May 23, 2024",
         "icon": "main",
         "header": "Version 14.1 is now publicly available!",
         "text": "After a month in beta the 14.1 update is now publicly available! This update adds support for all the PS1 Rayman games, replaces the dedicated mods page with new game panels and adds various minor features, changes and bug fixes."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "April 17, 2024",
         "icon": "main",
         "header": "Version 14.1 is now available as a beta update",
         "text": "The next feature update (14.1.0) is now available as a beta update! It includes several changes I wanted to make for the anniversary update, but didn't have time to finish. Continuing my mission to add support for console Rayman games this update now features support for all PS1 Rayman games! The next platforms I want to add support for are PS2, GCN and Wii.\nBesides that this update also replaces the mods page (it was a bit confusing with both a mods page and completely separate a mod loader, wasn't it?) with new game panels. The mod previously known as \"memory mods\" is now named \"runtime modifications\" and has been updated to automatically find the game when it's running. This should hopefully make it much easier to use."
     },
     {
-        "minAppVersion": "14.0.0.9",
         "date": "December 16, 2023",
         "icon": "main",
         "header": "The anniversary update has been released!",
