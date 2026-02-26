@@ -13,6 +13,7 @@ public static class AppURLs
     public const string GitHubRepoName = "RaymanControlPanel";
 
     public const string GitHubReleaseExeFileName = "RaymanControlPanel.exe";
+    public const string GitHubReleaseAlternateExeFileName = "Updater.exe";
     public const string GitHubReleaseChangelogFileName = "Changelog.txt";
 
     public const string GitHubHostedNewsFilePath = "hosted/news.json";

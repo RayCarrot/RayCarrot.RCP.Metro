@@ -90,7 +90,8 @@ public class UpdaterManager : IUpdaterManager
             Logger.Info("Found latest release as {0}", latestRelease.TagName);
 
             // Get the asset which has the exe file
-            ReleaseAsset? exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseExeFileName);
+            ReleaseAsset? exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseExeFileName ||
+                                                                              x.Name == AppURLs.GitHubReleaseAlternateExeFileName);
             if (exeAsset == null)
             {
                 Logger.Warn("Latest release has no matching exe file. Attempting to find from earlier releases...");
@@ -99,7 +100,8 @@ public class UpdaterManager : IUpdaterManager
                 IReadOnlyList<Release> allReleases = await client.Repository.Release.GetAll(AppURLs.GitHubUserName, AppURLs.GitHubRepoName);
                 foreach (Release release in allReleases)
                 {
-                    exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseExeFileName);
+                    exeAsset = latestRelease.Assets.FirstOrDefault(x => x.Name == AppURLs.GitHubReleaseExeFileName ||
+                                                                        x.Name == AppURLs.GitHubReleaseAlternateExeFileName);
                     if (exeAsset != null)
                     {
                         latestRelease = release;
