@@ -155,14 +155,16 @@ public class AppViewModel : BaseViewModel
 
     #region Public Methods
 
-    public async Task<bool> DownloadGameBananaFileAsync(string fileId, FileSystemPath outputDir)
+    public async Task<bool> DownloadGameBananaFileAsync(string fileId, FileSystemPath outputDir, LoaderViewModel? loader = null)
     {
         Logger.Info("Downloading GameBanana file {0}", fileId);
+
+        loader ??= LoaderViewModel;
 
         try
         {
             // TODO-LOC
-            using (LoaderLoadState state = await LoaderViewModel.RunAsync("Downloading files", canCancel: true))
+            using (LoaderLoadState state = await loader.RunAsync("Downloading files", canCancel: true))
             {
                 using HttpClient httpClient = HttpClientFactory.CreateClient();
 

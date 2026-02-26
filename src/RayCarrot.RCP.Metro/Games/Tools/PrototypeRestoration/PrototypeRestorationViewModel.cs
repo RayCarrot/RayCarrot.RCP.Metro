@@ -11,6 +11,7 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
     public PrototypeRestorationViewModel(GameInstallation gameInstallation)
     {
         GameInstallation = gameInstallation;
+        LoaderViewModel = new LoaderViewModel();
         MemoryPatcher = new MemoryPatcher();
 
         MemoryModSections = new ObservableCollection<MemoryModsSectonViewModel>()
@@ -503,6 +504,7 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
+    public LoaderViewModel LoaderViewModel { get; }
 
     // Memory Mods
     public MemoryPatcher MemoryPatcher { get; }
@@ -686,7 +688,7 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
             GameVersion.Steam => AppURLs.RaymanRavingRabbidsSteamPatchedBFGameBananaFileId,
             GameVersion.GOG_UbisoftConnect => AppURLs.RaymanRavingRabbidsGOGPatchedBFGameBananaFileId,
             _ => throw new Exception("Invalid game version")
-        }, GameInstallation.InstallLocation.Directory);
+        }, GameInstallation.InstallLocation.Directory, LoaderViewModel);
 
         if (!downloaded)
             return;
