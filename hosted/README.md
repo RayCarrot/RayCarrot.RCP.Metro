@@ -1,0 +1,2 @@
+# Hosted Files
+Starting from version 14.4.0 the hosted files are now stored in the GitHub repo in order to future-proof the app. This might change in the future if a better approach is found since hard-coding URLs for a GitHub repo isn't ideal.
