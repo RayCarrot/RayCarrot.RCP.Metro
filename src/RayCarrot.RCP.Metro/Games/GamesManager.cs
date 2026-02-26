@@ -106,6 +106,7 @@ public class GamesManager
             new GameDescriptor_RaymanLumoGrams_Demo_Win32(),
             new GameDescriptor_Rayman3HavocReignited_Win32(),
             new GameDescriptor_Rayman2Redreamed_Demo_Win32(),
+            new GameDescriptor_RaymanMysteryOfPolokus_Win32(),
         }.ToDictionary(x => x.GameId);
         SortedGameDescriptors = GameDescriptors.Values.OrderBy(x => x).ToArray();
     }
