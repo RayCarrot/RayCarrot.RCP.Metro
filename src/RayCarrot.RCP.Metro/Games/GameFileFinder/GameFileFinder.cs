@@ -2,6 +2,8 @@
 
 namespace RayCarrot.RCP.Metro.Games.GameFileFinder;
 
+// TODO: This is rather un-optimized as it'll read the same file multiple times. We should group based on type.
+
 /// <summary>
 /// Finder for finding single-file games, such as ROMs and discs
 /// </summary>
