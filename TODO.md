@@ -45,7 +45,6 @@ Open with (external) ->
 - Find a solution to dealing with singleton instances and services - currently there's a half-implemented Dependency Injection system, but it's very inconsistently used
 - Clean up custom styles
 - Remove LocalizedString and force app restart upon language change - this should improve performance since the way LocalizedString works puts a lot of pressure on the Garbage Collector.
-- Rename the repo to something more familiar, such as `rayman-control-panel`
 - Rename the main namespace from `RayCarrot.RCP.Metro` to something like `RCP` or `RaymanControlPanel`
 - Cache an int in the GameInstallation data for sorting the order. This updates in GamesManager when loaded and then each time the collection is updated. This allows us to sort without using the actual list from appdata.
 
