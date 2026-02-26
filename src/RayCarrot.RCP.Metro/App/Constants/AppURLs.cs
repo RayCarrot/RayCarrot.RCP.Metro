@@ -38,11 +38,10 @@ public static class AppURLs
 
     #region GameBanana
 
-    // TODO-UPDATE: Set file IDs
-    public const string RaymanForeverCompleteSoundtrackGameBananaFileId = "";
-    public const string RaymanDesignerCleanFilesGameBananaFileId = "";
-    public const string RaymanRavingRabbidsGOGPatchedBFGameBananaFileId = "";
-    public const string RaymanRavingRabbidsSteamPatchedBFGameBananaFileId = "";
+    public const string RaymanForeverCompleteSoundtrackGameBananaFileId = "1635058"; // https://gamebanana.com/sounds/86562
+    public const string RaymanDesignerCleanFilesGameBananaFileId = "1635146"; // https://gamebanana.com/mods/656210
+    public const string RaymanRavingRabbidsGOGPatchedBFGameBananaFileId = "1635188"; // https://gamebanana.com/mods/656226
+    public const string RaymanRavingRabbidsSteamPatchedBFGameBananaFileId = "1635199"; // https://gamebanana.com/mods/656226
 
     #endregion
 
