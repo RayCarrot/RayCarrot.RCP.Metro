@@ -751,6 +751,7 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
             Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(context, PatchedBFFilePath.Name);
 
             BinaryDeserializer s = context.Deserializer;
+            s.Goto(bf.Offset);
 
             foreach (BFModToggleViewModel bfMod in BFModToggles)
             {
@@ -791,7 +792,8 @@ public class PrototypeRestorationViewModel : BaseViewModel, IDisposable
             // Read the file
             Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(context, PatchedBFFilePath.Name);
 
-            var s = context.Serializer;
+            BinarySerializer.BinarySerializer s = context.Serializer;
+            s.Goto(bf.Offset);
 
             foreach (BFModToggleViewModel bfMod in BFModToggles)
             {
