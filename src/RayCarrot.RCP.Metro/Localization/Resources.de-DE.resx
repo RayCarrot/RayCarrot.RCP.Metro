@@ -1146,7 +1146,6 @@ Fehler Meldung: {1}</value>
   <data name="GameOptions_Uninstall" xml:space="preserve">
     <value>Deinstallieren</value>
   </data>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Laden von GameJolt</value>
   </data>
