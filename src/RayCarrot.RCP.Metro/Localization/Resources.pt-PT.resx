@@ -1897,7 +1897,7 @@ Error message: {1}</value>
     <value>Selecciona um disco</value>
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
-    <value>Programa de tradução Russo (Rússia)</value>
+    <value>Programa de tradução Russa (Rússia)</value>
   </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Programa de tradução Italiana (Itália)</value>
@@ -5761,7 +5761,7 @@ Queres reverter a correcção?</value>
     <value>Bluesky</value>
   </data>
   <data name="About_Credits_Mr5088" xml:space="preserve">
-    <value>Tradução do programa em Português (Brasil)</value>
+    <value>Programa de tradução Portuguesa (Brasil)</value>
   </data>
   <data name="SecretCodes_Guests" xml:space="preserve">
     <value>Acabaste de introduzir o código Jacquouille Legends! Desfruta o teu novo banner para o jogo!</value>
@@ -5902,7 +5902,7 @@ Queres reverter a correcção?</value>
     <value>Versão {0}</value>
   </data>
   <data name="About_Credits_Clef" xml:space="preserve">
-    <value>Tradução do programa em Chinês (Simplificado)</value>
+    <value>Programa de tradução Chinesa (Simplificado)</value>
   </data>
   <data name="Settings_ModLoader_ShowEssentialMods" xml:space="preserve">
     <value>Exibir primeiro as modificações essenciais</value>
