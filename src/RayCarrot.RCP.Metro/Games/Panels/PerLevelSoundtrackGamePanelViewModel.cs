@@ -28,7 +28,7 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel, IRecipie
 
     #region Constant Fields
 
-    private const long GameBananaModId = 0; // TODO-UPDATE: Define
+    private const long GameBananaModId = 656383;
 
     #endregion
 
@@ -157,7 +157,10 @@ public class PerLevelSoundtrackGamePanelViewModel : GamePanelViewModel, IRecipie
     void IRecipient<ModifiedGameModsMessage>.Receive(ModifiedGameModsMessage message)
     {
         if (message.GameInstallation == GameInstallation)
+        {
             IsInstalled = CheckIsModInstalled();
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+        }
     }
 
     #endregion

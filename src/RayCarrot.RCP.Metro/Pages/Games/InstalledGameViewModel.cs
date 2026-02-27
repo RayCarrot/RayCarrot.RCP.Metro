@@ -31,7 +31,9 @@ public class InstalledGameViewModel : BaseViewModel
 
         // Create collections
         GamePanels = new ObservableCollection<GamePanelViewModel>();
+        GamePanels.EnableCollectionSynchronization();
         AdditionalLaunchActions = new ObservableActionItemsCollection();
+        AdditionalLaunchActions.EnableCollectionSynchronization();
 
         // Set other properties
         SetupGameViewModel = new SetupGameViewModel(GameInstallation);
