@@ -206,11 +206,10 @@ public enum Game
     [GameInfo(nameof(Resources.Game_Rayman2Redreamed_Title), GameIconAsset.Rayman2Redreamed)]
     Rayman2Redreamed,
 
-    // TODO-LOC
     /// <summary>
     /// Rayman Mystery of Polokus
     /// </summary>
-    [GameInfo("Rayman Mystery of Polokus", GameIconAsset.RaymanMysteryOfPolokus)]
+    [GameInfo(nameof(Resources.Game_RaymanMysteryOfPolokus_Title), GameIconAsset.RaymanMysteryOfPolokus)]
     RaymanMysteryOfPolokus,
 
     #endregion

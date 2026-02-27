@@ -231,10 +231,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
     public async Task AttemptCancelAsync()
     {
         if (CancellationTokenSource.IsCancellationRequested)
-        {
-            await Services.MessageUI.DisplayMessageAsync(Resources.Download_OperationCanceling, Resources.Download_OperationCancelingHeader, MessageType.Information);
             return;
-        }
 
         if (await Services.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
         {

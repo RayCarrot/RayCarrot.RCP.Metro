@@ -20,7 +20,7 @@ public sealed class GameDescriptor_RaymanMysteryOfPolokus_Win32 : Win32GameDescr
     public override Game Game => Game.RaymanMysteryOfPolokus;
     public override GameCategory Category => GameCategory.Fan;
 
-    public override LocalizedString DisplayName => "Rayman Mystery of Polokus"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanMysteryOfPolokus_Win32_Title));
     public override DateTime ReleaseDate => new(2025, 09, 10);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanMysteryOfPolokus;

@@ -113,7 +113,7 @@ public class UpdaterManager : IUpdaterManager
                 if (exeAsset == null)
                 {
                     Logger.Error("Could not find a release with a valid exe file");
-                    return new UpdaterCheckResult("No valid app version found", null); // TODO-LOC
+                    return new UpdaterCheckResult(Resources.UpdateCheck_NoReleaseFoundError, null);
                 }
              
                 Logger.Info("Found latest release with a valid exe file as {0}", latestRelease.TagName);
@@ -141,17 +141,17 @@ public class UpdaterManager : IUpdaterManager
         catch (HttpRequestException ex)
         {
             Logger.Error(ex, "Checking for updates");
-            return new UpdaterCheckResult("Unable to connect to the server. Please check your internet connection.", ex); // TODO-LOC
+            return new UpdaterCheckResult(Resources.UpdateCheck_ConnectionError, ex);
         }
         catch (WebException ex)
         {
             Logger.Error(ex, "Checking for updates");
-            return new UpdaterCheckResult("Unable to connect to the server. Please check your internet connection.", ex); // TODO-LOC
+            return new UpdaterCheckResult(Resources.UpdateCheck_ConnectionError, ex);
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Checking for updates");
-            return new UpdaterCheckResult("An unknown error occurred", ex); // TODO-LOC
+            return new UpdaterCheckResult(Resources.UpdateCheck_UnknownError, ex);
         }
     }
 

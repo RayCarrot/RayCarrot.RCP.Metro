@@ -3619,4 +3619,31 @@ Hagyd a patch-et bekapcsolva, és ments, hogy lefrissítsd a legújabb verzióra
   <data name="About_Bluesky" xml:space="preserve">
     <value>Bluesky</value>
   </data>
+  <data name="Rayman3_GameCube_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_GameCube_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="Rayman1_Jaguar_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RaymanMysteryOfPolokus_Win32_Title" xml:space="preserve">
+    <value>Rayman Mystery of Polokus</value>
+  </data>
+  <data name="Game_RaymanMysteryOfPolokus_Title" xml:space="preserve">
+    <value>Rayman Mystery of Polokus</value>
+  </data>
+  <data name="GameClients_BigPEmu" xml:space="preserve">
+    <value>BigPEmu</value>
+  </data>
+  <data name="GameClients_Dolphin" xml:space="preserve">
+    <value>Dolphin</value>
+  </data>
+  <data name="Platform_Jaguar" xml:space="preserve">
+    <value>Atari Jaguar</value>
+  </data>
+  <data name="Platform_GameCube" xml:space="preserve">
+    <value>GameCube</value>
+  </data>
 </root>

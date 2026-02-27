@@ -5706,7 +5706,7 @@ WARNING: Loading directly into a map using this will skip loading your save file
     <value>Default</value>
   </data>
   <data name="PostUpdate_MigrateTPLS" xml:space="preserve">
-    <value>The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled.</value>
+    <value>The Per-level Soundtrack tool for Rayman 1 has been moved to a downloadable mod in the Mod Loader. To continue using it you have to re-download it. The previous version has automatically been uninstalled.</value>
   </data>
   <data name="PostUpdate_MigrateTPLSHeader" xml:space="preserve">
     <value>Per-level Soundtrack Update Notice</value>
@@ -6195,5 +6195,120 @@ modsCount</comment>
     <value>{0} downloadable mods available</value>
     <comment>Arguments:
 modsCount</comment>
+  </data>
+  <data name="ToolDownload_Status" xml:space="preserve">
+    <value>Downloading files</value>
+  </data>
+  <data name="ToolDownload_Success" xml:space="preserve">
+    <value>The files were successfully downloaded</value>
+  </data>
+  <data name="ToolDownload_Error" xml:space="preserve">
+    <value>An error occurred when downloading the files</value>
+  </data>
+  <data name="Rayman3_GameCube_Title" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="RaymanArena_GameCube_Title" xml:space="preserve">
+    <value>Rayman Arena</value>
+  </data>
+  <data name="Rayman1_Jaguar_Title" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Rayman1_Prototype_Jaguar_Title" xml:space="preserve">
+    <value>Rayman Prototype</value>
+  </data>
+  <data name="Rayman1_Demo_Jaguar_Title" xml:space="preserve">
+    <value>Rayman Demo</value>
+  </data>
+  <data name="Rayman30thAnniversaryEdition_Win32_Title" xml:space="preserve">
+    <value>Rayman 30th Anniversary Edition</value>
+  </data>
+  <data name="RaymanMysteryOfPolokus_Win32_Title" xml:space="preserve">
+    <value>Rayman Mystery of Polokus</value>
+  </data>
+  <data name="Game_RaymanMysteryOfPolokus_Title" xml:space="preserve">
+    <value>Rayman Mystery of Polokus</value>
+  </data>
+  <data name="GameClients_BigPEmu" xml:space="preserve">
+    <value>BigPEmu</value>
+  </data>
+  <data name="GameClients_Dolphin" xml:space="preserve">
+    <value>Dolphin</value>
+  </data>
+  <data name="Platform_Jaguar" xml:space="preserve">
+    <value>Atari Jaguar</value>
+  </data>
+  <data name="Platform_GameCube" xml:space="preserve">
+    <value>GameCube</value>
+  </data>
+  <data name="GameHub_PerLevelSoundtrackPanel_Download" xml:space="preserve">
+    <value>Download Mod</value>
+  </data>
+  <data name="Progression_RA_Skins" xml:space="preserve">
+    <value>Skins</value>
+  </data>
+  <data name="Progression_RA_BeginnerLeague" xml:space="preserve">
+    <value>Beginner League Cups</value>
+  </data>
+  <data name="Progression_RA_ProLeague" xml:space="preserve">
+    <value>Pro League Cups</value>
+  </data>
+  <data name="Progression_RA_MasterLeague" xml:space="preserve">
+    <value>Master Leagues Completed</value>
+  </data>
+  <data name="Utilities_Converter_R1JaguarSaveHeader" xml:space="preserve">
+    <value>Rayman 1 (Atari Jaguar)</value>
+  </data>
+  <data name="Utilities_Converter_R2GbcSaveHeader" xml:space="preserve">
+    <value>Rayman 2 (GBC) Save Data</value>
+  </data>
+  <data name="AddGames_ToggleDemosAndPrototypes" xml:space="preserve">
+    <value>Show {0} demos/prototypes</value>
+    <comment>Arguments:
+nonRetailVersionsCount</comment>
+  </data>
+  <data name="UpdateAvailable_Header" xml:space="preserve">
+    <value>Update Available</value>
+  </data>
+  <data name="UpdateAvailable_ChangelogHeader" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="UpdateAvailable_Cancel" xml:space="preserve">
+    <value>Remind me later</value>
+  </data>
+  <data name="UpdateAvailable_Confirm" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateAvailable_Title" xml:space="preserve">
+    <value>New update available</value>
+  </data>
+  <data name="UpdateAvailable_Info_CurrentVersion" xml:space="preserve">
+    <value>Current Version</value>
+  </data>
+  <data name="UpdateAvailable_Info_NewVersion" xml:space="preserve">
+    <value>New Version</value>
+  </data>
+  <data name="UpdateAvailable_Info_NewVersionBeta" xml:space="preserve">
+    <value>{0} (BETA)</value>
+    <comment>Arguments:
+version</comment>
+  </data>
+  <data name="UpdateAvailable_Info_ReleaseDate" xml:space="preserve">
+    <value>Release Date</value>
+  </data>
+  <data name="UpdateAvailable_Info_Size" xml:space="preserve">
+    <value>Update Size</value>
+  </data>
+  <data name="UpdateAvailable_Info_Url" xml:space="preserve">
+    <value>Update Url</value>
+  </data>
+  <data name="UpdateCheck_NoReleaseFoundError" xml:space="preserve">
+    <value>No valid app version found</value>
+  </data>
+  <data name="UpdateCheck_ConnectionError" xml:space="preserve">
+    <value>Unable to connect to the server. Please check your internet connection.</value>
+  </data>
+  <data name="UpdateCheck_UnknownError" xml:space="preserve">
+    <value>An unknown error occurred</value>
   </data>
 </root>

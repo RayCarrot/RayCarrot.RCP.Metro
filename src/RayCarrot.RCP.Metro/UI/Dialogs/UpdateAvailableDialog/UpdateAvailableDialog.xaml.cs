@@ -22,7 +22,7 @@ public partial class UpdateAvailableDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "New update available"; // TODO-LOC
+        WindowInstance.Title = Metro.Resources.UpdateAvailable_Title;
         WindowInstance.Icon = GenericIconKind.Window_UpdateAvailable;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

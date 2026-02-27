@@ -24,7 +24,7 @@ public sealed class GameDescriptor_Rayman30thAnniversaryEdition_Win32 : Win32Gam
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman 30th Anniversary Edition"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman30thAnniversaryEdition_Win32_Title));
     public override string[] SearchKeywords => new[] { "r1", "ray1" };
     public override DateTime ReleaseDate => new(2026, 02, 13);
 

@@ -42,7 +42,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                 }),
 
             new Serializers_TypeViewModel<JAG_SaveData>(
-                name: new ResourceLocString("Rayman 1 Jaguar"), // TODO-LOC
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1JaguarSaveHeader)),
                 fileExtension: new FileExtension(".bigpeep"),
                 getEndianFunc: c => Endian.Big,
                 modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()
@@ -192,7 +192,7 @@ public class SerializersUtilityViewModel : UtilityViewModel
                 }),
 
             new Serializers_TypeViewModel<R2GBC_SaveData>(
-                name: "Rayman 2 (GBC) Save Data", // TODO-LOC 
+                name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2GbcSaveHeader)),
                 fileExtension: null,
                 getEndianFunc: _ => Endian.Little,
                 modes: new ObservableCollection<SerializableUtilityTypeModeViewModel>()

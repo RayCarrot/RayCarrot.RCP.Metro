@@ -163,8 +163,7 @@ public class AppViewModel : BaseViewModel
 
         try
         {
-            // TODO-LOC
-            using (LoaderLoadState state = await loader.RunAsync("Downloading files", canCancel: true))
+            using (LoaderLoadState state = await loader.RunAsync(Resources.ToolDownload_Status, canCancel: true))
             {
                 using HttpClient httpClient = HttpClientFactory.CreateClient();
 
@@ -195,8 +194,7 @@ public class AppViewModel : BaseViewModel
                 using IArchive archive = ArchiveFactory.Open(tempFile.TempPath);
                 archive.ExtractToDirectory(outputDir);
 
-                // TODO-LOC
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The files were successfully downloaded");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.ToolDownload_Success);
 
                 return true;
             }
@@ -210,8 +208,7 @@ public class AppViewModel : BaseViewModel
         {
             Logger.Error(ex, "Downloading GameBanana file");
 
-            // TODO_LOC
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when downloading the files");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ToolDownload_Error);
             return false;
         }
     }

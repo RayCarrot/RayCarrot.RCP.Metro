@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanArena_GameCube : GameCubeGameDescriptor
     public override Game Game => Game.RaymanMArena;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman Arena"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.RaymanArena_GameCube_Title));
     public override string[] SearchKeywords => new[] { "ra" };
     public override DateTime ReleaseDate => new(2002, 09, 24);
 

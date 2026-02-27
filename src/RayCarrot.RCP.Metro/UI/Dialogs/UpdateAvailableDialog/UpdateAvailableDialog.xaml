@@ -12,8 +12,6 @@
                           d:DesignWidth="800" d:DesignHeight="600" 
                           d:DataContext="{d:DesignInstance rcp:UpdateAvailableDialogViewModel}">
 
-    <!-- TODO-LOC -->
-
     <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -43,7 +41,7 @@
                                                 Margin="0 0 8 0"/>
 
                     <TextBlock Grid.Column="1" 
-                               Text="Update Available" 
+                               Text="{Resx UpdateAvailable_Header}" 
                                Style="{StaticResource RCP.Styles.TextBlock.Header}" 
                                VerticalAlignment="Center"  />
 
@@ -60,7 +58,7 @@
         </Grid>
 
         <GroupBox Grid.Row="1" 
-                  Header="Changelog" 
+                  Header="{Resx UpdateAvailable_ChangelogHeader}" 
                   Margin="{StaticResource RCP.Thicknesses.Card}" 
                   Background="{DynamicResource RCP.Brushes.Card.Background}"
                   rcp:Icon.Kind="CardTextOutline"
@@ -83,7 +81,7 @@
             <Button Grid.Column="1" 
                     Click="CancelButton_OnClick"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                    Content="Remind me later"
+                    Content="{Resx UpdateAvailable_Cancel}"
                     VerticalAlignment="Center"
                     rcp:Icon.Kind="ClockOutline"
                     IsCancel="True"
@@ -92,7 +90,7 @@
             <Button Grid.Column="2" 
                     Click="ConfirmButton_OnClick"
                     Style="{StaticResource RCP.Styles.Button.Accent}"
-                    Content="Update"
+                    Content="{Resx UpdateAvailable_Confirm}"
                     VerticalAlignment="Center"
                     IsDefault="True"
                     rcp:Icon.Kind="DownloadOutline" />

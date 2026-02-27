@@ -10,7 +10,7 @@ public sealed class BigPEmuGameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "BigPEmu";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.Jaguar };
-    public override LocalizedString DisplayName => "BigPEmu"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_BigPEmu));
     public override GameClientIconAsset Icon => GameClientIconAsset.BigPEmu;
 
     #endregion

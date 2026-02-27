@@ -514,6 +514,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show {0} demos/prototypes.
+        /// </summary>
+        public static string AddGames_ToggleDemosAndPrototypes {
+            get {
+                return ResourceManager.GetString("AddGames_ToggleDemosAndPrototypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show features.
         /// </summary>
         public static string AddGames_ToggleFeatures {
@@ -3675,6 +3684,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Mystery of Polokus.
+        /// </summary>
+        public static string Game_RaymanMysteryOfPolokus_Title {
+            get {
+                return ResourceManager.GetString("Game_RaymanMysteryOfPolokus_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Origins.
         /// </summary>
         public static string Game_RaymanOrigins_Title {
@@ -3839,6 +3857,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BigPEmu.
+        /// </summary>
+        public static string GameClients_BigPEmu {
+            get {
+                return ResourceManager.GetString("GameClients_BigPEmu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BizHawk.
         /// </summary>
         public static string GameClients_BizHawk {
@@ -3898,6 +3925,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameClients_Custom_LaunchArgsInfo {
             get {
                 return ResourceManager.GetString("GameClients_Custom_LaunchArgsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin.
+        /// </summary>
+        public static string GameClients_Dolphin {
+            get {
+                return ResourceManager.GetString("GameClients_Dolphin", resourceCulture);
             }
         }
         
@@ -4530,6 +4566,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo {
             get {
                 return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Mod.
+        /// </summary>
+        public static string GameHub_PerLevelSoundtrackPanel_Download {
+            get {
+                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Download", resourceCulture);
             }
         }
         
@@ -9868,6 +9913,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GameCube.
+        /// </summary>
+        public static string Platform_GameCube {
+            get {
+                return ResourceManager.GetString("Platform_GameCube", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game Boy Advance.
         /// </summary>
         public static string Platform_Gba {
@@ -9882,6 +9936,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Platform_Gbc {
             get {
                 return ResourceManager.GetString("Platform_Gbc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atari Jaguar.
+        /// </summary>
+        public static string Platform_Jaguar {
+            get {
+                return ResourceManager.GetString("Platform_Jaguar", resourceCulture);
             }
         }
         
@@ -9968,7 +10031,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Per-level Soundtrack utility for Rayman 1 has been reworked in this version to no longer rely on a custom DOSBox build. To continue using it you have to install it again. The previous version has automatically been uninstalled..
+        ///   Looks up a localized string similar to The Per-level Soundtrack tool for Rayman 1 has been moved to a downloadable mod in the Mod Loader. To continue using it you have to re-download it. The previous version has automatically been uninstalled..
         /// </summary>
         public static string PostUpdate_MigrateTPLS {
             get {
@@ -10442,6 +10505,42 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_R3Stamps {
             get {
                 return ResourceManager.GetString("Progression_R3Stamps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginner League Cups.
+        /// </summary>
+        public static string Progression_RA_BeginnerLeague {
+            get {
+                return ResourceManager.GetString("Progression_RA_BeginnerLeague", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Leagues Completed.
+        /// </summary>
+        public static string Progression_RA_MasterLeague {
+            get {
+                return ResourceManager.GetString("Progression_RA_MasterLeague", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pro League Cups.
+        /// </summary>
+        public static string Progression_RA_ProLeague {
+            get {
+                return ResourceManager.GetString("Progression_RA_ProLeague", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skins.
+        /// </summary>
+        public static string Progression_RA_Skins {
+            get {
+                return ResourceManager.GetString("Progression_RA_Skins", resourceCulture);
             }
         }
         
@@ -12588,6 +12687,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Demo.
+        /// </summary>
+        public static string Rayman1_Demo_Jaguar_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Demo_Jaguar_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Advance.
         /// </summary>
         public static string Rayman1_Gba_Title {
@@ -12608,9 +12716,27 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman.
         /// </summary>
+        public static string Rayman1_Jaguar_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Jaguar_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
         public static string Rayman1_MsDos_Title {
             get {
                 return ResourceManager.GetString("Rayman1_MsDos_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Prototype.
+        /// </summary>
+        public static string Rayman1_Prototype_Jaguar_Title {
+            get {
+                return ResourceManager.GetString("Rayman1_Prototype_Jaguar_Title", resourceCulture);
             }
         }
         
@@ -12752,6 +12878,15 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Rayman 3.
         /// </summary>
+        public static string Rayman3_GameCube_Title {
+            get {
+                return ResourceManager.GetString("Rayman3_GameCube_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
         public static string Rayman3_Gba_Title {
             get {
                 return ResourceManager.GetString("Rayman3_Gba_Title", resourceCulture);
@@ -12782,6 +12917,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Rayman3_Win32_Title {
             get {
                 return ResourceManager.GetString("Rayman3_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 30th Anniversary Edition.
+        /// </summary>
+        public static string Rayman30thAnniversaryEdition_Win32_Title {
+            get {
+                return ResourceManager.GetString("Rayman30thAnniversaryEdition_Win32_Title", resourceCulture);
             }
         }
         
@@ -12818,6 +12962,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanActivityCenter_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanActivityCenter_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Arena.
+        /// </summary>
+        public static string RaymanArena_GameCube_Title {
+            get {
+                return ResourceManager.GetString("RaymanArena_GameCube_Title", resourceCulture);
             }
         }
         
@@ -13034,6 +13187,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RaymanM_Win32_Title {
             get {
                 return ResourceManager.GetString("RaymanM_Win32_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Mystery of Polokus.
+        /// </summary>
+        public static string RaymanMysteryOfPolokus_Win32_Title {
+            get {
+                return ResourceManager.GetString("RaymanMysteryOfPolokus_Win32_Title", resourceCulture);
             }
         }
         
@@ -16593,6 +16755,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when downloading the files.
+        /// </summary>
+        public static string ToolDownload_Error {
+            get {
+                return ResourceManager.GetString("ToolDownload_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading files.
+        /// </summary>
+        public static string ToolDownload_Status {
+            get {
+                return ResourceManager.GetString("ToolDownload_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files were successfully downloaded.
+        /// </summary>
+        public static string ToolDownload_Success {
+            get {
+                return ResourceManager.GetString("ToolDownload_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when attempting to enable write access for the Rayman configuration file.
         /// </summary>
         public static string UbiIniWriteAccess_Error {
@@ -16761,6 +16950,132 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_UpdaterErrorHeader {
             get {
                 return ResourceManager.GetString("Update_UpdaterErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind me later.
+        /// </summary>
+        public static string UpdateAvailable_Cancel {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changelog.
+        /// </summary>
+        public static string UpdateAvailable_ChangelogHeader {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_ChangelogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string UpdateAvailable_Confirm {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Available.
+        /// </summary>
+        public static string UpdateAvailable_Header {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Version.
+        /// </summary>
+        public static string UpdateAvailable_Info_CurrentVersion {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Info_CurrentVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Version.
+        /// </summary>
+        public static string UpdateAvailable_Info_NewVersion {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Info_NewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (BETA).
+        /// </summary>
+        public static string UpdateAvailable_Info_NewVersionBeta {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Info_NewVersionBeta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release Date.
+        /// </summary>
+        public static string UpdateAvailable_Info_ReleaseDate {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Info_ReleaseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Size.
+        /// </summary>
+        public static string UpdateAvailable_Info_Size {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Info_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Url.
+        /// </summary>
+        public static string UpdateAvailable_Info_Url {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Info_Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New update available.
+        /// </summary>
+        public static string UpdateAvailable_Title {
+            get {
+                return ResourceManager.GetString("UpdateAvailable_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to connect to the server. Please check your internet connection..
+        /// </summary>
+        public static string UpdateCheck_ConnectionError {
+            get {
+                return ResourceManager.GetString("UpdateCheck_ConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No valid app version found.
+        /// </summary>
+        public static string UpdateCheck_NoReleaseFoundError {
+            get {
+                return ResourceManager.GetString("UpdateCheck_NoReleaseFoundError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred.
+        /// </summary>
+        public static string UpdateCheck_UnknownError {
+            get {
+                return ResourceManager.GetString("UpdateCheck_UnknownError", resourceCulture);
             }
         }
         
@@ -16936,6 +17251,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 (Atari Jaguar).
+        /// </summary>
+        public static string Utilities_Converter_R1JaguarSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R1JaguarSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 1 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R1SaveHeader {
@@ -16950,6 +17274,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_R2ConfigHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_R2ConfigHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 (GBC) Save Data.
+        /// </summary>
+        public static string Utilities_Converter_R2GbcSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R2GbcSaveHeader", resourceCulture);
             }
         }
         

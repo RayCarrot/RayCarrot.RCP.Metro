@@ -37,14 +37,13 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-LOC -->
             <Button Grid.Column="0"
                     Visibility="{Binding Path=IsInstalled, Converter={rcp:InvertedBooleanToVisibilityConverter}}"
                     VerticalAlignment="Center"
                     Style="{StaticResource RCP.Styles.Button.Flat}" 
                     Command="{Binding Path=InstallCommand, Mode=OneTime}"
                     Background="{DynamicResource RCP.Brushes.FlatButton.GameTools}"
-                    Content="Download Mod"
+                    Content="{Resx GameHub_PerLevelSoundtrackPanel_Download}"
                     Margin="0 0 8 0" />
 
             <mah:ToggleSwitch Grid.Column="1"

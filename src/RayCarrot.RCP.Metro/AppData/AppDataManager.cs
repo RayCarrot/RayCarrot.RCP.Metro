@@ -1125,10 +1125,7 @@ public class AppDataManager
                 Services.File.DeleteDirectory(AppFilePaths.UserDataBaseDir + "Tools");
 
                 if (hadDownloadedTpls)
-                {
-                    // TODO-LOC (and replace prev migration message)
-                    await Services.MessageUI.DisplayMessageAsync("The Per-level Soundtrack tool for Rayman 1 has been moved to a downloadable mod in the Mod Loader. To continue using it you have to re-download it. The previous version has automatically been uninstalled.", Resources.PostUpdate_MigrateTPLSHeader, MessageType.Information);
-                }
+                    await Services.MessageUI.DisplayMessageAsync(Resources.PostUpdate_MigrateTPLS, Resources.PostUpdate_MigrateTPLSHeader, MessageType.Information);
             }
             catch (Exception ex)
             {

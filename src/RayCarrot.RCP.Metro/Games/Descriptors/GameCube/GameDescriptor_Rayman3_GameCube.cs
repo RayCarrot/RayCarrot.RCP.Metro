@@ -14,7 +14,7 @@ public sealed class GameDescriptor_Rayman3_GameCube : GameCubeGameDescriptor
     public override Game Game => Game.Rayman3;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman 3"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman3_GameCube_Title));
     public override string[] SearchKeywords => new[] { "r3" };
     public override DateTime ReleaseDate => new(2003, 02, 21);
 

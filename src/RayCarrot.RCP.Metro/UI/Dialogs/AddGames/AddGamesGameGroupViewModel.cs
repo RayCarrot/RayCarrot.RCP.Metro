@@ -10,7 +10,7 @@ public class AddGamesGameGroupViewModel : BaseViewModel
 
         int nonRetailVersionsCount = Games.Count(x => x.GameDescriptor.Type != GameType.Retail);
         if (nonRetailVersionsCount != 0)
-            ShowNonRetailVersionsText = $"Show {nonRetailVersionsCount} demos/prototypes"; // TODO-LOC
+            ShowNonRetailVersionsText = new ResourceLocString(nameof(Resources.AddGames_ToggleDemosAndPrototypes), nonRetailVersionsCount);
 
         RefreshGamesVisibility();
     }

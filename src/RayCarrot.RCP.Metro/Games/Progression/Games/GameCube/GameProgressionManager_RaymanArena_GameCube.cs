@@ -102,29 +102,28 @@ public class GameProgressionManager_RaymanArena_GameCube : EmulatedGameProgressi
                 emulatedSave: emulatedSave,
                 dataItems: new[]
                 {
-                    // TODO-LOC
                     new GameProgressionDataItem(
                         isPrimaryItem: true,
                         icon: ProgressionIconAsset.RA_Skin,
-                        header: "Skins",
+                        header: new ResourceLocString(nameof(Resources.Progression_RA_Skins)),
                         value: skinsCount,
                         max: 29),
                     new GameProgressionDataItem(
                         isPrimaryItem: true,
                         icon: ProgressionIconAsset.RA_Beginner,
-                        header: "Beginner League Cups",
+                        header: new ResourceLocString(nameof(Resources.Progression_RA_BeginnerLeague)),
                         value: beginnerCupsCount,
                         max: 16),
                     new GameProgressionDataItem(
                         isPrimaryItem: true,
                         icon: ProgressionIconAsset.RA_Pro,
-                        header: "Pro League Cups",
+                        header: new ResourceLocString(nameof(Resources.Progression_RA_ProLeague)),
                         value: proCupsCount,
                         max: 16),
                     new GameProgressionDataItem(
                         isPrimaryItem: true,
                         icon: ProgressionIconAsset.RA_Master,
-                        header: "Master Leagues Completed",
+                        header: new ResourceLocString(nameof(Resources.Progression_RA_MasterLeague)),
                         value: masterCupsCount,
                         max: 4),
                 },

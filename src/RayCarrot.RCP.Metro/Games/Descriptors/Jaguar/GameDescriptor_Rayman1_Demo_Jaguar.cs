@@ -15,7 +15,7 @@ public sealed class GameDescriptor_Rayman1_Demo_Jaguar : JaguarGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override GameType Type => GameType.Demo;
 
-    public override LocalizedString DisplayName => "Rayman Demo"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman1_Demo_Jaguar_Title));
     public override DateTime ReleaseDate => new(1995, 01, 01); // Unknown
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1Jaguar;

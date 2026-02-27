@@ -14,7 +14,7 @@ public sealed class GameDescriptor_Rayman1_Jaguar : JaguarGameDescriptor
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
 
-    public override LocalizedString DisplayName => "Rayman"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.Rayman1_Jaguar_Title));
     public override string[] SearchKeywords => new[] { "r1", "jag" };
     public override DateTime ReleaseDate => new(1995, 09, 09);
 

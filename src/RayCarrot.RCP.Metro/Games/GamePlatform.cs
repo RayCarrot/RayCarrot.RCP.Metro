@@ -23,11 +23,10 @@ public enum GamePlatform
     [GamePlatformInfo(nameof(Resources.Platform_WindowsPackage), GamePlatformIconAsset.WindowsPackage)]
     WindowsPackage,
 
-    // TODO-LOC
     /// <summary>
     /// Atari Jaguar
     /// </summary>
-    [GamePlatformInfo("Atari Jaguar", GamePlatformIconAsset.Jaguar)]
+    [GamePlatformInfo(nameof(Resources.Platform_Jaguar), GamePlatformIconAsset.Jaguar)]
     Jaguar,
 
     /// <summary>
@@ -54,10 +53,9 @@ public enum GamePlatform
     [GamePlatformInfo(nameof(Resources.Platform_Gba), GamePlatformIconAsset.Gba)]
     Gba,
 
-    // TODO-LOC
     /// <summary>
     /// GameCube
     /// </summary>
-    [GamePlatformInfo("GameCube", GamePlatformIconAsset.GameCube)]
+    [GamePlatformInfo(nameof(Resources.Platform_GameCube), GamePlatformIconAsset.GameCube)]
     GameCube,
 }

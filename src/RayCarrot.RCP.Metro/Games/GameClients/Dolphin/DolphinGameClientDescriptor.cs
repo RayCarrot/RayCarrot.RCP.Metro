@@ -10,7 +10,7 @@ public sealed class DolphinGameClientDescriptor : EmulatorGameClientDescriptor
     public override string GameClientId => "Dolphin";
     public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.GameCube };
-    public override LocalizedString DisplayName => "Dolphin"; // TODO-LOC
+    public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameClients_Dolphin));
     public override GameClientIconAsset Icon => GameClientIconAsset.Dolphin;
 
     #endregion

@@ -10,12 +10,13 @@ public class UpdateAvailableDialogViewModel : BaseRCPViewModel
         Changelog = updaterCheckResult.NewVersionChangelog;
         InfoItems = new ObservableCollection<DuoGridItemViewModel>()
         {
-            // TODO-LOC
-            new("Current Version", AppViewModel.AppVersion.ToString()),
-            new("New Version", $"{updaterCheckResult.NewVersion}{(updaterCheckResult.IsNewVersionBeta ? " (BETA)" : "")}"),
-            new("Release Date", $"{updaterCheckResult.NewVersionDate:D}"),
-            new("Update Size", BinaryHelpers.BytesToString(updaterCheckResult.NewVersionSize)),
-            new("Update Url", updaterCheckResult.NewVersionUrl, UserLevel.Debug),
+            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_CurrentVersion)), AppViewModel.AppVersion.ToString()),
+            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_NewVersion)), updaterCheckResult.IsNewVersionBeta 
+                ? new ResourceLocString(nameof(Resources.UpdateAvailable_Info_NewVersionBeta), updaterCheckResult.NewVersion) 
+                : updaterCheckResult.NewVersion.ToString()),
+            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_ReleaseDate)), $"{updaterCheckResult.NewVersionDate:D}"),
+            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_Size)), BinaryHelpers.BytesToString(updaterCheckResult.NewVersionSize)),
+            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_Url)), updaterCheckResult.NewVersionUrl, UserLevel.Debug),
         };
     }
 
