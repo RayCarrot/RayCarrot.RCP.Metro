@@ -601,33 +601,6 @@
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Файлы для резервного копирования {0} не были найдены</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Файлы для загрузки не были найдены</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>Для работы этого патча необходимо загрузить дополнительные файлы, общий объем которых составляет {0}. Продолжить?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Подтверждение загрузки</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>Для работы этого патча необходимо загрузить дополнительные файлы. Продолжить?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>Не удалось загрузить файлы</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Неизвестная ошибка</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Не удалось установить соединение с сервером</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>Данные с сервера были недействительными</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>При подключении к серверу произошла неизвестная ошибка</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Не удалось проверить наличие обновлений</value>
   </data>
@@ -636,24 +609,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Новых версий не было найдено</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Не удалось прочитать манифест сервера</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Ошибка при получении данных об обновлении</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Новое обновление уже доступно для скачивания. Установить его сейчас?
-
-Текущая версия: {0}
-Последняя версия: {1}
-
-Что нового:
-{2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Обнаружена новая версия</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Не удалось создать службу обновления. Чтобы вручную загрузить новую версию, перейдите по ссылке {0} и загрузите оттуда последнюю версию.</value>
@@ -918,53 +873,11 @@
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Произошла ошибка при чтении резервной копии {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Не удалось восстановить некоторые файлы. Проверьте {0} и {1}, чтобы восстановить потерянные файлы.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>В настоящее время операция уже отменяется</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Операция уже отменяется</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Вы хотите отменить загрузку?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Отмена текущей загрузки</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>Загрузка была отменена</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Загрузка отменена</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>Загрузка была прервана</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Загрузка прервана</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>Файлы были успешно загружены</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Загрузка завершена</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Список версий</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Продолжить</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Загрузка</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Общий прогресс</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Текущий прогресс файла</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Добро пожаловать в Rayman Control Panel</value>
@@ -1108,15 +1021,6 @@
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Данные реестра</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Новое бета-обновление уже доступно для скачивания. Установить его сейчас?
-
-Текущая версия: {0}
-Последняя версия: {1}
-
-Что нового:
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Удалить</value>
@@ -1296,32 +1200,11 @@
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Удаление было прервано</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Версия Print Studio</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Изменение версии приведет к изменению доступных опций в игре. В версии 2003 года есть календари на 2003 и 2004 годы. В версии 2005 года есть календари на 2006 и 2007 годы, а также раздел 'goodies'.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>Версия 2003</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>Версия 2005</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>Эта игра требует, чтобы ее файлы были загружены. Общий размер файлов равен {0}. Продолжить?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>Эта игра требует, чтобы ее файлы были загружены. Продолжить?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Загрузить с GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Открыть страницу в GameJolt</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>Произошла ошибка при обновлении версии Print Studio</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Рэйман</value>
@@ -1758,36 +1641,11 @@
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>Если эта функция включена, тема приложения (цветовой акцент и темный/светлый режим) будет синхронизироваться с системными настройками Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>Произошла ошибка при обновлении языка</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Загрузка файлов:
-
-1. Нажмите кнопку 'Загрузить', чтобы загрузить файлы вручную.
-2. Переместите файлы в папку назначения. Если они сжаты, извлеките их.
-3. Нажмите кнопку 'Ок', чтобы продолжить.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Загрузка вручную</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Загрузка файлов</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Открыть папку назначения</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Обрабатывать загрузки вручную</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Используйте эту опцию только в том случае, если загрузка не начинается</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Закодированные файлы Tonic Trouble (.sna/.dsb)</value>
@@ -3879,9 +3737,6 @@ Start: Пауза</value>
   </data>
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>Удалённые недействительные игровые клиенты/эмуляторы</value>
-  </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>Скачать</value>
   </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>Выбор файла игры</value>

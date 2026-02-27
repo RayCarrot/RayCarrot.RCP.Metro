@@ -623,35 +623,6 @@ gameDisplayName</comment>
     <comment>Arguments:
 gameDisplayName</comment>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>No files were found to download</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>This patch requires its files to be downloaded. The total size of the download is {0}. Continue?</value>
-    <comment>Arguments:
-downloadSize</comment>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Confirm download</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>This patch requires its files to be downloaded. Continue?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>The files could not be downloaded</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Unknown error</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>A connection could not be established to the server</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>The information from the server was not valid</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>An unknown error occurred while connecting to the server</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Update Check Failed</value>
   </data>
@@ -662,28 +633,6 @@ latestVersion</comment>
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>No new versions found</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>The server manifest could not be read</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Error getting news</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>A new update is available to download. Download now?
-
-Current version: {0}
-Latest version: {1}
-
-News: 
-{2}</value>
-    <comment>Arguments:
-currentVersion
-latestVersion
-versionNews</comment>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>New version found</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>The updater could not be created. To manually download the new version, go to {0} and download the latest version from there.</value>
@@ -976,56 +925,11 @@ gameDisplayName</comment>
     <comment>Arguments:
 gameDisplayName</comment>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Some files could not be restored. Check {0} &amp; {1} to recover lost files.</value>
-    <comment>Arguments:
-tempDir1
-tempDir2</comment>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>The operation is currently canceling</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Cancel request already received</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Do you wish to cancel the download?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Cancel ongoing download</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>The download operation was canceled</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Operation canceled</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>The download operation failed</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Operation failed</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>The files were downloaded successfully</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Download operation complete</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Version History</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continue</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Total Progress</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Current File Progress</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Welcome to the Rayman Control Panel</value>
@@ -1179,19 +1083,6 @@ downloadURL</comment>
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Registry app data</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>A new beta update is available to download. Download now?
-
-Current version: {0}
-Latest version: {1}
-
-News: 
-{2}</value>
-    <comment>Arguments:
-currentVersion
-latestVersion
-versionNews</comment>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Uninstall</value>
@@ -1386,34 +1277,11 @@ gameDisplayName</comment>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Uninstallation Failed</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Print Studio version</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Changing the version will change the available options in the game. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the 'goodies' section.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 version</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 version</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>This game requires its files to be downloaded. The total size of the download is {0}. Continue?</value>
-    <comment>Arguments:
-downloadSize</comment>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>This game requires its files to be downloaded. Continue?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Download from GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Open GameJolt page</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>An error occurred when updating the Print Studio version</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1873,36 +1741,11 @@ fileCount</comment>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>An error occurred when updating the language</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Download files:
-
-1. Press the download button to manually download the files.
-2. Move the files to the destination directory. If they're compressed, extract them.
-3. Press 'Ok' to continue.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Manual Download</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Download Files</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Open Destination Directory</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Handle downloads manually</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Only use this option if downloads aren't working</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Tonic Trouble Encoded Files (.sna/.dsb)</value>
@@ -4029,9 +3872,6 @@ gameClients</comment>
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>Removed invalid game clients/emulators</value>
   </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>Select the game file</value>
   </data>
@@ -5543,17 +5383,8 @@ distance</comment>
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
     <value>Per-level Soundtrack</value>
   </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>Are you sure you want to uninstall the Per-level Soundtrack tool? This will uninstall it for all games where it is used.</value>
-  </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
-    <value>Confirm uninstall</value>
-  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
     <value>Replaces the music in the game with the per-level music from the PlayStation version, as well as provides various fixes for the PC version.</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
-    <value>Install</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
     <value>CD audio level clear and death sounds</value>
@@ -5578,9 +5409,6 @@ distance</comment>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
     <value>Re-enables a cut behavior where Dark Rayman's fist kills Rayman on contact</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
-    <value>Uninstall</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -6014,9 +5842,6 @@ searchText</comment>
   <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
     <value>Vulkan</value>
   </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
-    <value>Update</value>
-  </data>
   <data name="Progression_TT_Thermometers" xml:space="preserve">
     <value>Thermometers</value>
   </data>
@@ -6046,12 +5871,6 @@ searchText</comment>
   </data>
   <data name="SetupGameAction_LevelTransparencyFixes_Info" xml:space="preserve">
     <value>The Level Transparency Fixes mod is a mod by Droolie and ICUP321 which fixes the transparency for objects in certain levels.</value>
-  </data>
-  <data name="InstallableTool_UninstallError" xml:space="preserve">
-    <value>An error occurred when uninstalling the tool. Make sure it isn't currently being used and try again.</value>
-  </data>
-  <data name="InstallableTool_UpdateError" xml:space="preserve">
-    <value>An error occurred when updating the tool. Make sure it isn't currently being used and try again.</value>
   </data>
   <data name="ModLoader_FilesModule_AutoCreatePathsInfo" xml:space="preserve">
     <value>Specify any folder paths here which you want to have automatically created. Separate each with a new line. You can always manually create the folders afterward as well.</value>

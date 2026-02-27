@@ -602,33 +602,6 @@
     <value>Nie znaleziono plików do utworzenia kopii zapasowej dla {0}
 </value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Nie znaleziono plików do pobrania</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>Ta łatka wymaga pobrania jej plików. Całkowity rozmiar pobranego pliku wynosi {0}. Kontynuować?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Potwierdź pobieranie</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>Ta poprawka wymaga pobrania jej plików. Kontynuować?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>Nie można pobrać plików</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Nieznany błąd</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Nie można nawiązać połączenia z serwerem</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>Informacje z serwera były nieprawidłowe</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Wystąpił nieznany błąd podczas łączenia się z serwerem</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Kontrola aktualizacji nie powiodła się</value>
   </data>
@@ -637,24 +610,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Nie znaleziono nowych wersji</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Nie można odczytać manifestu serwera</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Błąd uzyskiwania informacji</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Nowa aktualizacja jest dostępna do pobrania. Pobrać teraz? 
-
-Aktualna wersja: {0}
-Najnowsza wersja: {1}
-
-Aktualności: 
-{2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Znaleziono nową wersję</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Nie można utworzyć programu aktualizującego. Aby ręcznie pobrać nową wersję, przejdź do {0} i pobierz stamtąd najnowszą wersję.</value>
@@ -923,53 +878,11 @@ Spróbować ponownie?</value>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Wystąpił błąd podczas odczytu kopii zapasowej dla {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Nie udało się przywrócić niektórych plików. Sprawdź {0} &amp; {1} aby odzyskać utracone pliki.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>Operacja jest obecnie anulowana</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Anulowanie żądania zostało otrzymane</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Czy chcesz anulować pobieranie?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Anuluj bieżące pobieranie</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>Pobieranie zostało anulowane</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Operacja anulowana</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>Operacja pobierania nie powiodła się</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Operacja nie powiodła się</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>Pliki zostały pomyślnie pobrane</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Operacja pobierania zakończona</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Historia wersji</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Kontynuuj</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Pobierz</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Całkowity postęp</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Aktualny postęp pliku</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Witamy w Rayman Control Panel</value>
@@ -1113,15 +1026,6 @@ Spróbować ponownie?</value>
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Dane aplikacji rejestru</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Nowa aktualizacja beta jest dostępna do pobrania. Pobrać teraz?
-
-Aktualna wersja: {0}
-Najnowsza wersja: {1}
-
-Aktualności: 
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Odinstaluj
@@ -1303,32 +1207,11 @@ Komunikat o błędzie: {1}</value>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Deinstalacja nie powiodła się</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Wersja Print Studio</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Zmiana wersji spowoduje zmianę dostępnych opcji w grze. Wersja na rok 2003 zawiera kalendarze na lata 2003 i 2004. Wersja 2005 zawiera kalendarze na lata 2006 i 2007 oraz sekcję 'gadżety'.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>Wersja 2003</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>Wersja 2005</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>Ta gra wymaga pobrania jej plików. Całkowity rozmiar pobranego pliku wynosi {0}. Kontynuować?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>Ta gra wymaga pobrania jej plików. Kontynuować?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Pobierz z GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Otwórz stronę GameJolt</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>Podczas aktualizacji wersji Print Studio wystąpił błąd</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1772,36 +1655,11 @@ Komunikat o błędzie: {1}</value>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>Jeśli ta opcja jest włączona, motyw aplikacji (kolor akcentu i tryb ciemny/jasny) zostanie zsynchronizowany z ustawieniami systemu Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>Wystąpił błąd podczas aktualizacji języka</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>Scieżka Życia</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>Scieżka Mocy</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Pobierz pliki:
-
-1. Naciśnij przycisk "Pobierz", aby pobrać ręcznie pliki.
-2. Przenieś pliki do folderu docelowego. Jeśli są skompresowane, rozpakuj je.
-3. Naciśnij 'OK', aby kontynuować.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Pobieranie ręczne</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Pliki do pobrania</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Otwórz folder docelowy</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Ręczne pobieranie plików</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Użyj tej opcji tylko wtedy, gdy pobieranie nie działa</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Zakodowane pliki Tonic Trouble (.sna/.dsb)</value>
@@ -3904,9 +3762,6 @@ Konflikty:
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>Usunięto nieprawidłowe klienty gry/emulatory</value>
   </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>Pobierz</value>
-  </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>Wybierz plik gry</value>
   </data>
@@ -5360,17 +5215,8 @@ Komunikaty o błędach:
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
     <value>Ścieżka dźwiękowa na poziomie</value>
   </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>Czy na pewno chcesz odinstalować narzędzie Ścieżki dźwiękowej na poziomie? Spowoduje to odinstalowanie go we wszystkich grach, w których jest używane.</value>
-  </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
-    <value>Potwierdź odinstalowanie</value>
-  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
     <value>Zastępuje muzykę w grze muzyką poszczególnych poziomów z wersji na PlayStation, a także zapewnia różne poprawki dla wersji na PC.</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
-    <value>Zainstaluj</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
     <value>Dźwięki CD Audio level clear i dźwięki śmierci</value>
@@ -5395,9 +5241,6 @@ Komunikaty o błędach:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
     <value>Ponownie włącza wycięte zachowanie, w którym pięść Mrocznego Raymana zabija Raymana przy kontakcie</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
-    <value>Odinstaluj</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -5811,9 +5654,6 @@ Czy chcesz cofnąć poprawkę?</value>
   <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
     <value>Vulkan</value>
   </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
-    <value>Aktualizuj</value>
-  </data>
   <data name="Progression_TT_Thermometers" xml:space="preserve">
     <value>Thermometers</value>
   </data>
@@ -5843,12 +5683,6 @@ Czy chcesz cofnąć poprawkę?</value>
   </data>
   <data name="SetupGameAction_LevelTransparencyFixes_Info" xml:space="preserve">
     <value>Level Transparency Fixes mod to modyfikacja autorstwa użytkowników Droolie i ICUP321, która naprawia przezroczystość obiektów na niektórych poziomach.</value>
-  </data>
-  <data name="InstallableTool_UninstallError" xml:space="preserve">
-    <value>Wystąpił błąd podczas odinstalowywania narzędzia. Upewnij się, że nie jest ono obecnie używane, i spróbuj ponownie.</value>
-  </data>
-  <data name="InstallableTool_UpdateError" xml:space="preserve">
-    <value>Wystąpił błąd podczas aktualizacji narzędzia. Upewnij się, że nie jest ono aktualnie używane i spróbuj ponownie.</value>
   </data>
   <data name="ModLoader_FilesModule_AutoCreatePathsInfo" xml:space="preserve">
     <value>W tym miejscu określ ścieżki do folderów, które mają zostać utworzone automatycznie. Każdy folder należy oddzielić nową linią. Foldery można również utworzyć ręcznie w późniejszym czasie.</value>

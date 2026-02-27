@@ -600,33 +600,6 @@
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Nem találhatók visszaállítható fájlok ehhez: {0}</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Nem találhatók letölthető fájlok</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>A patch-nek szüksége van a hozzátartozó fájlok letöltésére. A letöltés teljes mérete {0}. Folytatod?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Letöltés megerősítése</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>A patch-nek szüksége van a hozzátartozó fájlok letöltésére. Folytatod?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>A fájlok letöltése során hiba merült fel</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Ismeretlen hiba</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>A szerverrel nem lehetett kapcsolat létesíteni</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>A szervertől kapott információ érvénytelen volt</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Ismeretlen hiba történt a szerverrel való kapcsolódás során</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Frissítések keresése sikertelen volt</value>
   </data>
@@ -635,25 +608,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Nem találhatóak újabb verziók</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>A szerver jegyzéke nem olvasható
-</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>A hírek betöltése során hiba lépett fel</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Egy új frissítés letöltése elérhető. Le akarod tölteni most?
-
-Jelenlegi verzió: {0}
-Legújabb verzió: {1}
-
-Hírek:
-{2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Új verzió megtalálva</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>A frissítőt nem lehetett létrehozni. Az új verziót manuálisan itt lehet letölteni: {0}</value>
@@ -921,53 +875,11 @@ Adamillo, AlexLimitedGames, AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, Lap
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Hiba lépett fel a {0} biztonsági mentés olvasásakor.</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Néhány fájlt nem  lehet visszaállítani. Keresd és állítsd vissza a {0} és {1} -ben az elveszett fájlokat</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>A művelet megszakítás alatt van</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>A megszakítási kérelem már végbement</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Biztosan meg akarod szakítani a letöltést?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Folyamatban lévő letöltés megszakítása</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>A letöltés megszakítása sikerült</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Művelet megszakítva</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>A letöltés sikertelen volt</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Művelet sikertelen</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>A fájlok sikeresen letöltésre kerültek</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Letöltés kész</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Verzió előzmények</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Folytatás</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Letöltés</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Teljes töltési folyamat</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Jelenlegi fájl töltési folyamata</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Üldözöllek a Rayman Control Panel-ban</value>
@@ -1112,15 +1024,6 @@ Kezdésként állítsd be a tulajdonságokat a Beállításokban és nyomj a 'Fo
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Registry app data</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Egy új BÉTA frissítés letöltése elérhető. Le akarod tölteni most?
-
-Jelenlegi verzió: {0}
-Legújabb verzió: {1}
-
-Hírek:
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Eltávolítás</value>
@@ -1301,32 +1204,11 @@ Hiba üzenet: {1}</value>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Eltávolítás siketelen</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Print Studio verzió</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>A verzió megváltoztatása a program funkcióit is megváltoztatja. A 2003-as verzió naptárai a 2003-2004-es évekre vannak. A 2005-ös verzióban 2006 és 2007-re is, valamint létezik egy plusz 'goodies' szekció</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 verzió</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 verzió</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>Ehhez a játékhoz le kell tölteni adott fájlokat. A letöltés mérete {0}. Folytatod?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>Ehhez a játékhoz le kell tölteni adott fájlokat. Folytatod?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Letöltés Gamejolt-ról</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Gamejolt oldal megnyitása</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>A Print Studio verzió frissítése közben hiba lépett fel. </value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1763,36 +1645,11 @@ Hiba üzenet: {1}</value>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>Ha be van kapcsolva, az applikáció színei megegyeznek a Windows beállításokkal</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>A nyelvi csomag frissítése közben hiba lépett fel</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Fájlok letöltése:
-
-1. A letöltés gombra kattintva manuálisan elindíthatod a letöltést.
-2. Helyezd át a fájlokat a célmappába, ha tömörítve vannak, csomagold ki őket.
-3. Kattints az 'OK' gombra  a folytatáshoz.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Manuális Letöltés</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Fájlok Letöltése</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Célmappa megnyitása</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Letöltések manuális kezelése</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Csak akkor használd ezt az opciót, ha a letöltések elakadnak</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Tonic Trouble Titkosított Fájlok (.sna/.dsb)</value>

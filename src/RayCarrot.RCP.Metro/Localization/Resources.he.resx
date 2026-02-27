@@ -601,33 +601,6 @@
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>לא נמצאו קבצים לגיבוי עבור {0}</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>לא נמצאו קבצים להורדה</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>תיקון זה דורש הורדה של הקבצים שלו. הגודל הכולל של ההורדה הוא {0}. האם להמשיך?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>אשר הורדה</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>תיקון זה דורש הורדה של הקבצים שלו. להמשיך?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>לא ניתן היה להוריד את הקבצים</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>שגיאה לא ידועה</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>לא ניתן היה ליצור חיבור לשרת</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>המידע מהשרת לא היה תקף</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>אירעה שגיאה לא ידועה בעת החיבור לשרת</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>בדיקת העדכון נכשלה</value>
   </data>
@@ -636,24 +609,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>לא נמצאו גרסאות חדשות</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>לא ניתן היה לקרוא את מניפסט השרת</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>שגיאה בקבלת חדשות</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>עדכון חדש זמין להורדה. להוריד עכשיו?
-
-גרסה נוכחית: {0}
-הגרסה האחרונה: {1}
-
-מה חדש:
-{2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>נמצאה גרסה חדשה</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>לא ניתן היה ליצור את העדכון. כדי להוריד את הגרסה החדשה באופן ידני, עבור אל {0} והורד משם את הגרסה העדכנית ביותר.</value>
@@ -916,53 +871,11 @@
   <data name="ReadingBackupError" xml:space="preserve">
     <value>אירעה שגיאה בקריאת הגיבוי עבור {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>לא ניתן היה לשחזר חלק מהקבצים. סמן את {0} ו {1} כדי לשחזר קבצים שאבדו.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>הפעולה מתבטלת כעת</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>ביטול הבקשה שכבר התקבלה</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>האם ברצונך לבטל את ההורדה?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>בטל הורדה בתהליך</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>ההורדה בוטלה</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>הפעולה בוטלה</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>פעולת ההורדה נכשלה</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>הפעולה נכשלה</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>הקבצים הורדו בהצלחה</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>פעולת ההורדה הסתיימה</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>היסטוריית הגירסאות</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>המשך</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>הורדה</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>סה"כ התקדמות</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>התקדמות הקבצים הנוכחית</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>ברוכים הבאים לRayman Control Panel</value>
@@ -1106,15 +1019,6 @@
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>נתוני אפליקציית הרישום</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>עדכון ביטא חדש זמין להורדה. להוריד עכשיו?
-
-גרסה נוכחית: {0}
-הגרסה האחרונה: {1}
-
-מה חדש:
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>הסר את ההתקנה</value>
@@ -1294,32 +1198,11 @@
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>הסרת ההתקנה נכשלה</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Print Studio גרסאת</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>שינוי הגרסה ישנה את האפשרויות הזמינות במשחק. לגרסת 2003 יש לוחות שנה לשנים 2003 ו-2004. לגרסת 2005 יש לוחות שנה לשנים 2006 ו-2007 וכן את המדור 'goodies'.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 גרסא</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 גרסא</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>המשחק הזה דורש הורדה של הקבצים שלו. הגודל הכולל של ההורדה הוא {0}. להמשיך?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>המשחק הזה דורש הורדה של הקבצים שלו. להמשיך?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>הורד מ-GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>פתח את דף GameJolt</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>אירעה שגיאה בעת עדכון גרסת ה-Print Studio</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1758,36 +1641,11 @@ BinarySerializer</value>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>אם מופעל, ערכת הנושא של האפליקציה (צבע מבטא ומצב כהה/בהיר) תסתנכרן עם הגדרות המערכת ב-Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>אירעה שגיאה בעת עדכון השפה</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>הורד קבצים:
-
-1. לחץ על לחצן ההורדה כדי להוריד את הקבצים באופן ידני.
-2. העבר את הקבצים לספריית היעד. אם הם דחוסים, חלץ אותם.
-3. לחץ על 'אישור' כדי להמשיך.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>הורדה ידנית</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>הורד קבצים</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>פתח את ספריית היעד</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>טפל בהורדות באופן ידני</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>השתמש באפשרות זו רק אם ההורדות אינן פועלות</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>קבצים מקודדים של Tonic Trouble(.sna/.dsb)</value>
@@ -3881,9 +3739,6 @@ Start: הפסק</value>
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>הוסר לקוח/אימולטורים לא חוקיים של משחקים</value>
   </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>הורד</value>
-  </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>בחרו את קובץ המשחק</value>
   </data>
@@ -5339,17 +5194,8 @@ Start: הפסק</value>
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
     <value>פסקול פר שלב</value>
   </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>האם אתם בטוחים שברצונכם להסיר את ההתקנה של כלי הפסקול פר שלב? פעולה זו תסיר את ההתקנה עבור כל המשחקים שבהם הוא נמצא בשימוש.</value>
-  </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
-    <value>אשר הסרת ההתקנה</value>
-  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
     <value>מחליף את המוזיקה במשחק במוזיקה לכל שלב מגרסת הפלייסטיישן ומספק תיקונים שונים לגרסת המחשב האישי.</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
-    <value>התקנה</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
     <value>צלילי שמע של מוות וסיום שלב מתוך הדיסק</value>
@@ -5374,9 +5220,6 @@ Start: הפסק</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
     <value>מאפשר מחדש התנהגות גנוזה שבה האגרוף של Dark Rayman הורג את Rayman במגע</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
-    <value>הסר את ההתקנה</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>

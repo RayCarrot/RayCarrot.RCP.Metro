@@ -3177,235 +3177,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wish to cancel the download?.
-        /// </summary>
-        public static string Download_Cancel {
-            get {
-                return ResourceManager.GetString("Download_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The download operation was canceled.
-        /// </summary>
-        public static string Download_Canceled {
-            get {
-                return ResourceManager.GetString("Download_Canceled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Operation canceled.
-        /// </summary>
-        public static string Download_CanceledHeader {
-            get {
-                return ResourceManager.GetString("Download_CanceledHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel ongoing download.
-        /// </summary>
-        public static string Download_CancelHeader {
-            get {
-                return ResourceManager.GetString("Download_CancelHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This patch requires its files to be downloaded. Continue?.
-        /// </summary>
-        public static string Download_Confirm {
-            get {
-                return ResourceManager.GetString("Download_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm download.
-        /// </summary>
-        public static string Download_ConfirmHeader {
-            get {
-                return ResourceManager.GetString("Download_ConfirmHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This patch requires its files to be downloaded. The total size of the download is {0}. Continue?.
-        /// </summary>
-        public static string Download_ConfirmSize {
-            get {
-                return ResourceManager.GetString("Download_ConfirmSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current File Progress.
-        /// </summary>
-        public static string Download_CurrentFileProgress {
-            get {
-                return ResourceManager.GetString("Download_CurrentFileProgress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The files could not be downloaded.
-        /// </summary>
-        public static string Download_Error {
-            get {
-                return ResourceManager.GetString("Download_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The download operation failed.
-        /// </summary>
-        public static string Download_Failed {
-            get {
-                return ResourceManager.GetString("Download_Failed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Operation failed.
-        /// </summary>
-        public static string Download_FailedHeader {
-            get {
-                return ResourceManager.GetString("Download_FailedHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download Files.
-        /// </summary>
-        public static string Download_ManualDownload {
-            get {
-                return ResourceManager.GetString("Download_ManualDownload", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Manual Download.
-        /// </summary>
-        public static string Download_ManualHeader {
-            get {
-                return ResourceManager.GetString("Download_ManualHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download files:
-        ///
-        ///1. Press the download button to manually download the files.
-        ///2. Move the files to the destination directory. If they&apos;re compressed, extract them.
-        ///3. Press &apos;Ok&apos; to continue..
-        /// </summary>
-        public static string Download_ManualInstructions {
-            get {
-                return ResourceManager.GetString("Download_ManualInstructions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open Destination Directory.
-        /// </summary>
-        public static string Download_ManualOpenDestination {
-            get {
-                return ResourceManager.GetString("Download_ManualOpenDestination", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No files were found to download.
-        /// </summary>
-        public static string Download_NoFilesFound {
-            get {
-                return ResourceManager.GetString("Download_NoFilesFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The operation is currently canceling.
-        /// </summary>
-        public static string Download_OperationCanceling {
-            get {
-                return ResourceManager.GetString("Download_OperationCanceling", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel request already received.
-        /// </summary>
-        public static string Download_OperationCancelingHeader {
-            get {
-                return ResourceManager.GetString("Download_OperationCancelingHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Some files could not be restored. Check {0} &amp; {1} to recover lost files..
-        /// </summary>
-        public static string Download_RestoreStoppedDownloadError {
-            get {
-                return ResourceManager.GetString("Download_RestoreStoppedDownloadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The files were downloaded successfully.
-        /// </summary>
-        public static string Download_Success {
-            get {
-                return ResourceManager.GetString("Download_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download operation complete.
-        /// </summary>
-        public static string Download_SuccessHeader {
-            get {
-                return ResourceManager.GetString("Download_SuccessHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download.
-        /// </summary>
-        public static string Download_Title {
-            get {
-                return ResourceManager.GetString("Download_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total Progress.
-        /// </summary>
-        public static string Download_TotalProgress {
-            get {
-                return ResourceManager.GetString("Download_TotalProgress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This game requires its files to be downloaded. Continue?.
-        /// </summary>
-        public static string DownloadGame_Confirm {
-            get {
-                return ResourceManager.GetString("DownloadGame_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This game requires its files to be downloaded. The total size of the download is {0}. Continue?.
-        /// </summary>
-        public static string DownloadGame_ConfirmSize {
-            get {
-                return ResourceManager.GetString("DownloadGame_ConfirmSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred when finding available drives.
         /// </summary>
         public static string DriveSelection_RefreshError {
@@ -4008,15 +3779,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Game_TonicTrouble_Title {
             get {
                 return ResourceManager.GetString("Game_TonicTrouble_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download.
-        /// </summary>
-        public static string GameAdd_Download {
-            get {
-                return ResourceManager.GetString("GameAdd_Download", resourceCulture);
             }
         }
         
@@ -4808,15 +4570,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install.
-        /// </summary>
-        public static string GameHub_PerLevelSoundtrackPanel_Install {
-            get {
-                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Install", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ambient MIDI track.
         /// </summary>
         public static string GameHub_PerLevelSoundtrackPanel_PlayMidi {
@@ -4831,24 +4584,6 @@ namespace RayCarrot.RCP.Metro {
         public static string GameHub_PerLevelSoundtrackPanel_PlayMidiInfo {
             get {
                 return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_PlayMidiInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uninstall.
-        /// </summary>
-        public static string GameHub_PerLevelSoundtrackPanel_Uninstall {
-            get {
-                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Uninstall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string GameHub_PerLevelSoundtrackPanel_Update {
-            get {
-                return ResourceManager.GetString("GameHub_PerLevelSoundtrackPanel_Update", resourceCulture);
             }
         }
         
@@ -5820,24 +5555,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to uninstall the Per-level Soundtrack tool? This will uninstall it for all games where it is used..
-        /// </summary>
-        public static string GameTool_PerLevelSoundtrack_ConfirmUninstall {
-            get {
-                return ResourceManager.GetString("GameTool_PerLevelSoundtrack_ConfirmUninstall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm uninstall.
-        /// </summary>
-        public static string GameTool_PerLevelSoundtrack_ConfirmUninstallHeader {
-            get {
-                return ResourceManager.GetString("GameTool_PerLevelSoundtrack_ConfirmUninstallHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Prototype Restoration.
         /// </summary>
         public static string GameTool_PrototypeRestoration {
@@ -6068,24 +5785,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ImportSelectionHeader {
             get {
                 return ResourceManager.GetString("ImportSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when uninstalling the tool. Make sure it isn&apos;t currently being used and try again..
-        /// </summary>
-        public static string InstallableTool_UninstallError {
-            get {
-                return ResourceManager.GetString("InstallableTool_UninstallError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when updating the tool. Make sure it isn&apos;t currently being used and try again..
-        /// </summary>
-        public static string InstallableTool_UpdateError {
-            get {
-                return ResourceManager.GetString("InstallableTool_UpdateError", resourceCulture);
             }
         }
         
@@ -10287,51 +9986,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2003 version.
-        /// </summary>
-        public static string PrintStudioOptions_Version03 {
-            get {
-                return ResourceManager.GetString("PrintStudioOptions_Version03", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2005 version.
-        /// </summary>
-        public static string PrintStudioOptions_Version05 {
-            get {
-                return ResourceManager.GetString("PrintStudioOptions_Version05", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Print Studio version.
-        /// </summary>
-        public static string PrintStudioOptions_VersionHeader {
-            get {
-                return ResourceManager.GetString("PrintStudioOptions_VersionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Changing the version will change the available options in the game. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the &apos;goodies&apos; section..
-        /// </summary>
-        public static string PrintStudioOptions_VersionInfo {
-            get {
-                return ResourceManager.GetString("PrintStudioOptions_VersionInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when updating the Print Studio version.
-        /// </summary>
-        public static string PrintStudioOptions_VersionUpdateError {
-            get {
-                return ResourceManager.GetString("PrintStudioOptions_VersionUpdateError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Attach.
         /// </summary>
         public static string ProcessAttacher_Attach {
@@ -12903,15 +12557,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Ray1_VersionSelectionHeader {
             get {
                 return ResourceManager.GetString("Ray1_VersionSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when updating the language.
-        /// </summary>
-        public static string Ray1MinigamesOptions_LanguageUpdateError {
-            get {
-                return ResourceManager.GetString("Ray1MinigamesOptions_LanguageUpdateError", resourceCulture);
             }
         }
         
@@ -16147,24 +15792,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handle downloads manually.
-        /// </summary>
-        public static string Settings_ManualDownloads {
-            get {
-                return ResourceManager.GetString("Settings_ManualDownloads", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only use this option if downloads aren&apos;t working.
-        /// </summary>
-        public static string Settings_ManualDownloadsInfo {
-            get {
-                return ResourceManager.GetString("Settings_ManualDownloadsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Automatically check for mod updates.
         /// </summary>
         public static string Settings_ModLoader_AutoCheckForUpdates {
@@ -17056,21 +16683,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new beta update is available to download. Download now?
-        ///
-        ///Current version: {0}
-        ///Latest version: {1}
-        ///
-        ///News: 
-        ///{2}.
-        /// </summary>
-        public static string Update_BetaUpdateAvailable {
-            get {
-                return ResourceManager.GetString("Update_BetaUpdateAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The update check failed. {0}
         ///To manually update the app, go to {1} and download the latest version..
         /// </summary>
@@ -17099,24 +16711,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The information from the server was not valid.
-        /// </summary>
-        public static string Update_FormatError {
-            get {
-                return ResourceManager.GetString("Update_FormatError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An unknown error occurred while connecting to the server.
-        /// </summary>
-        public static string Update_GenericError {
-            get {
-                return ResourceManager.GetString("Update_GenericError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The latest version ({0}) is already installed.
         /// </summary>
         public static string Update_LatestInstalled {
@@ -17131,24 +16725,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_LatestInstalledHeader {
             get {
                 return ResourceManager.GetString("Update_LatestInstalledHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The server manifest could not be read.
-        /// </summary>
-        public static string Update_ManifestError {
-            get {
-                return ResourceManager.GetString("Update_ManifestError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error getting news.
-        /// </summary>
-        public static string Update_NewsError {
-            get {
-                return ResourceManager.GetString("Update_NewsError", resourceCulture);
             }
         }
         
@@ -17171,39 +16747,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown error.
-        /// </summary>
-        public static string Update_UnknownError {
-            get {
-                return ResourceManager.GetString("Update_UnknownError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A new update is available to download. Download now?
-        ///
-        ///Current version: {0}
-        ///Latest version: {1}
-        ///
-        ///News: 
-        ///{2}.
-        /// </summary>
-        public static string Update_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New version found.
-        /// </summary>
-        public static string Update_UpdateAvailableHeader {
-            get {
-                return ResourceManager.GetString("Update_UpdateAvailableHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The updater could not be created. To manually download the new version, go to {0} and download the latest version from there..
         /// </summary>
         public static string Update_UpdaterError {
@@ -17218,15 +16761,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_UpdaterErrorHeader {
             get {
                 return ResourceManager.GetString("Update_UpdaterErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A connection could not be established to the server.
-        /// </summary>
-        public static string Update_WebError {
-            get {
-                return ResourceManager.GetString("Update_WebError", resourceCulture);
             }
         }
         

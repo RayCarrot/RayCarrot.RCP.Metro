@@ -601,33 +601,6 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Nessun file trovato di cui eseguire il backup di {0}</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Non sono stati trovati file da scaricare</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>Questa patch richiede il download dei suoi file. La dimensione totale del download è {0}. Continuare?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Conferma il download</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>Questa patch richiede il download dei suoi file. Continuare?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>Impossibile scaricare i file</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Errore sconosciuto</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Non è stato possibile stabilire una connessione al server</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>Le informazioni dal server non erano valide</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Si è verificato un errore sconosciuto durante la connessione al server</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Controllo aggiornamento non riuscito</value>
   </data>
@@ -636,24 +609,6 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Nessuna versione nuova trovata</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Impossibile leggere il manifesto del server</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Errore durante la ricezione delle notizie</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>È disponibile un nuovo aggiornamento per il download. Scaricare ora?
-
-Versione attuale: {0}
-Ultima versione: {1}
-
-Novità:
-{2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Nuova versione trovata</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Impossibile creare il programma di aggiornamento. Per scaricare manualmente la nuova versione, vai su {0} e scarica l'ultima versione da lì.</value>
@@ -918,53 +873,11 @@ Riprovare?</value>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Si è verificato un errore durante la lettura del backup di {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Alcuni file non possono essere ripristinati. Seleziona {0} &amp; {1} per recuperare i file persi.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>L'operazione è attualmente in fase di annullamento</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Richiesta di annullamento già ricevuta</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Vuoi annullare il download?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Annullamento del download in corso</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>L'operazione di download è stata annullata</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Operazione annullata</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>L'operazione di download non è riuscita</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Operazione non riuscita</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>I file sono stati scaricati con successo</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Operazione di download completata</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Cronologia delle versioni</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continua</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Scarica</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Progresso Totale</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Progresso file corrente</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Benvenuto nel Rayman Control Panel</value>
@@ -1108,15 +1021,6 @@ Per iniziare, modifica le impostazioni che desideri di seguito e premi 'Continua
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Dati del registro dell'applicazione</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>È disponibile un nuovo aggiornamento beta per il download. Scaricare ora?
-
-Versione attuale: {0}
-Ultima versione: {1}
-
-Novità:
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Disinstalla</value>
@@ -1296,32 +1200,11 @@ Messaggio di errore: {1} </value>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Disinstallazione non riuscita</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Versione Print Studio</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>La modifica della versione cambierà le opzioni disponibili nel gioco. La versione 2003 ha i calendari per gli anni 2003 e 2004. La versione 2005 ha i calendari per gli anni 2006 e 2007, nonché la sezione 'bonus'.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>Versione 2003</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>Versione 2005</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>Questo gioco richiede il download dei suoi file. La dimensione totale del download è {0}. Continuare?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>Questo gioco richiede il download dei suoi file. Continuare?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Scarica da GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Apri la pagina GameJolt</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'aggiornamento della versione di Print Studio</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1758,36 +1641,11 @@ Messaggio di errore: {1} </value>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>Se abilitato, il tema dell'applicazione (colore e modalità scuro/chiaro) si sincronizzerà con le impostazioni di sistema su Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'aggiornamento della lingua</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>Il Sentiero della Vita</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>Cammino del potere (Il "Tour de Force")</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Scaricare i file:
-
-1. Premere il pulsante di download per scaricare manualmente i file.
-2. Spostare i file nella directory di destinazione. Se sono compressi, estraili.
-3. Premere "Ok" per continuare.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Download manuale</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Scaricare i file</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Apri la directory di destinazione</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Gestisci i download manualmente</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Utilizza questa opzione solo se i download non funzionano</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>File codificati Tonic Trouble (.sna/.dsb)</value>
@@ -3882,9 +3740,6 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>Rimossi client di gioco/emulatori non validi</value>
   </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>Scarica</value>
-  </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>Seleziona il file del gioco</value>
   </data>
@@ -5340,17 +5195,8 @@ Messaggi di errore:
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
     <value>Colonna sonora Per-livello</value>
   </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>Vuoi davvero disinstallare la Colonna sonora Per-livello? Questo lo disinstallerà per tutti i giochi in cui viene utilizzato.</value>
-  </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
-    <value>Conferma disinstallazione</value>
-  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
     <value>Sostituisce la musica del gioco con la musica presente nei vari livelli della versione PlayStation e fornisce anche varie correzioni per la versione PC.</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
-    <value>Installa</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
     <value>Livello audio CD chiaro e suoni per la morte</value>
@@ -5375,9 +5221,6 @@ Messaggi di errore:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
     <value>Riattiva un comportamento tagliato in cui il pugno di Dark Rayman uccide Rayman al contatto</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
-    <value>Disinstalla</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>

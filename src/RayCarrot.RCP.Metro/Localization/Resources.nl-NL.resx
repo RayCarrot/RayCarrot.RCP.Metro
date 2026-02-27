@@ -600,33 +600,6 @@
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Geen spelbestanden van {0} gevonden om te back-uppen</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Geen bestanden gevonden om te downloaden</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>Deze patch vereist dat de toebehorende bestanden worden gedownload. De totale grootte van de download is {0}. Doorgaan?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Bevestig download</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>Deze patch vereist dat de toebehorende bestanden worden gedownload. Doorgaan?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>De bestanden konden niet worden gedownload</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Onbekende fout</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Een verbinding met de server kon niet tot stand worden gebracht</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>De informatie van de server was niet geldig</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Een onbekende fout heeft plaatsgevonden tijdens het verbinden met de server</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Updatecontrole Mislukt</value>
   </data>
@@ -635,24 +608,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Geen nieuwe versie gevonden</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Het server manifest kon niet gelezen worden</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Fout bij het verkrijgen van nieuws</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?
-
-Huidige versie: {0}
-Laatste versie: {1}
-
-Nieuws: 
-{2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Nieuwe versie gevonden</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>De updater kon niet gestart worden. Voor het handmatig downloaden van de nieuwste versie, ga je naar {0}.</value>
@@ -917,53 +872,11 @@ Opnieuw proberen?</value>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het lezen van de back-up voor {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Sommige bestanden konden niet hersteld worden. Controleer {0} &amp; {1} voor het herstellen van verloren bestanden.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>De bewerking wordt momenteel geannuleerd</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Annuleerverzoek reeds ontvangen</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Wil je het downloaden annuleren?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Beëindigen download</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>De downloadbewerking is geannuleerd</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Bewerking geannuleerd</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>De downloadbewerking is mislukt</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Bewerking mislukt</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>De bestanden zijn succesvol gedownload</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Downloaden voltooid</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Versiehistorie</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Doorgaan</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Downloaden</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Totale Voortgang</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Voortgang Huidig Bestand</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Welkom bij het Rayman Control Panel</value>
@@ -1105,15 +1018,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>App data register</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?
-
-Huidige versie: {0}
-Laatste versie: {1}
-
-Nieuws: 
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Deïnstalleren</value>
@@ -1293,32 +1197,11 @@ Foutmelding: {1}</value>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Deïnstallatie Mislukt</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Print Studio versie</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Het veranderen van de versie heeft invloed op de beschikbare opties in het spel. De 2003 versie heeft kalenders voor 2003 &amp; 2004, de 2005 versie heeft kalenders voor de jaren 2006 &amp; 2007, alsook een 'Goodies' sectie.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 versie</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 versie</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>Het spel vereist dat de volgende bestanden worden gedownload. De totale grootte van de download is {0}. Doorgaan?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>Het spel vereist dat de volgende bestanden worden gedownload. Doorgaan?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Downloaden via GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Open de GameJolt pagina</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de Print Studio versie</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1755,36 +1638,11 @@ Foutmelding: {1}</value>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>Indien ingeschakeld, zal het applicatiethema (kleuraccent en donkere/lichte modus) synchroniseren met de systeeminstellingen van Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de taal</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Downloaden van bestanden:
-
-1. Klik op de downloadknop voor het handmatig downloaden van de bestanden;
-2. Verplaats de bestanden naar de doelmap. Indien ze gecomprimeerd zijn, pak je ze uit;
-3. Klik op 'Ok' om verder te gaan.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Handmatige Download</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Download Bestanden</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Open Doelmap</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Behandel downloads handmatig</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Gebruik deze optie alléén als de downloads niet starten!</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Tonic Trouble Geëncodeerde Bestanden (.sna/.dsb)</value>
@@ -3876,9 +3734,6 @@ Conflicten:
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>Ongeldige gameplatforms/emulators verwijderd</value>
   </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>Selecteer het spelbestand</value>
   </data>
@@ -5333,17 +5188,8 @@ Foutberichten:
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
     <value>Per-level Soundtrack</value>
   </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>Weer je zeker dat je de Per-level Soundtrack tool wilt verwijderen? Vervolgens zal het gede-installeerd worden voor elk spel waar het gebruikt wordt.</value>
-  </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
-    <value>Bevestig de-installatie</value>
-  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
     <value>Vervangt de muziek in het spel met de per-level muziek van de PlayStation versie en biedt verscheidene fixes voor de PC versie.</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
-    <value>Installeren</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_ClearAndDeathMusic" xml:space="preserve">
     <value>CD audio level finish en kill geluiden</value>
@@ -5368,9 +5214,6 @@ Foutberichten:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
     <value>Schakelt een niet verkozen feature/gedrag in waarbij Dark Rayman's vuist Rayman doodt bij contact</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
-    <value>De-installeren</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -5784,9 +5627,6 @@ WAARSCHUWING: Direct laden binnen een map via deze weg zorgt ervoor dat de save 
   <data name="R2ROptions_GraphicsApi_Vulkan" xml:space="preserve">
     <value>Vulkan</value>
   </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Update" xml:space="preserve">
-    <value>Updaten</value>
-  </data>
   <data name="Progression_TT_Thermometers" xml:space="preserve">
     <value>Thermometers</value>
   </data>
@@ -5816,12 +5656,6 @@ WAARSCHUWING: Direct laden binnen een map via deze weg zorgt ervoor dat de save 
   </data>
   <data name="SetupGameAction_LevelTransparencyFixes_Info" xml:space="preserve">
     <value>De Level Transparantie Fixes mod is ontwikkeld door Droolie en ICUP321 en fixt de transparantie voor objecten in bepaalde levels.</value>
-  </data>
-  <data name="InstallableTool_UninstallError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het deïnstalleren van de tool. Zorg ervoor dat deze momenteel níét in gebruik is en probeer het nog eens.</value>
-  </data>
-  <data name="InstallableTool_UpdateError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de tool. Zorg ervoor dat deze momenteel niét in gebruik is en probeer het nog eens.</value>
   </data>
   <data name="ModLoader_FilesModule_AutoCreatePathsInfo" xml:space="preserve">
     <value>Specificeer naar wens mappaden die automatisch aangemaakt zouden moeten worden. Maak onderscheid tussen elk pad via een nieuwe regel. Je kunt altijd nog na afloop de desgewenste mappen aanmaken.</value>

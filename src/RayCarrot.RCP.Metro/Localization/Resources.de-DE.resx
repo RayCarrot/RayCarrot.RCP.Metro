@@ -601,33 +601,6 @@ Vollbild Doppelpufferung</value>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Keine Dateien wurden Gefunden für die Sicherung {0}</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Keine Dateien wurden Gefunden zum Herunterladen</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>Dieser Patch erfordert die Dateien heruntergeladen zu haben. Die gesamtGröße für dass ist {0}. Fortfahren?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Herunterladen bestätigen</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>Dieser Patch erfordert die Dateien heruntergeladen zu werden. Fortfahren?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>Die Dateien konnten nicht heruntergeladen werden</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Unbekannter Fehler</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Die Verbindung zum Server konnte nicht hergestellt werden</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>Die Informationen vom Server sind nicht gültig</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Ein Unbekannter Fehler ist aufgetreten beim Verbinden zum Server</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Aktualisierung Check fehlgeschlagen</value>
   </data>
@@ -636,23 +609,6 @@ Vollbild Doppelpufferung</value>
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Keine neuen Versionen gefunden</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Der Server Manifest konnte nicht gelesen werden</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Fehler beim Nachrichten laden</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Ein neues Update ist verfügbar! Willst du es jetzt Heruntergeladen?        
-
-Deine Version: {0}
-Aktuelle Version: {1}
-
-Nachrichten: {2} </value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Neue Version gefunden</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Der Updater konnte nicht erstellt werden. Gehe zu {0} und lade es dir hier runter.</value>
@@ -918,53 +874,11 @@ Nochmal versuchen?</value>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Ein fehler ist Aufgetreten beim lesen von einer Sicherung {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Einige Dateien konnten nicht Wiederhergestellt werden. Überprüfe {0} &amp; {0} um die Verloren Dateien zu Wiederherstellen.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>Diese Operation wird zurzeit Abgebrochen</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Abbruch von Operation wurde Empfangen</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Möchtest du den Download abbrechen?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Abbreche ausstehenden Download</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>Diese Download Operation wurde Abgebrochen</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Operation abgebrochen</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>Diese Download Operation wurde abgebrochen</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Operation fehlgeschlagen</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>Die Dateien wurden erfolgreich heruntergeladen</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Download Operation abgeschlossen</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Version Info</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Fortfahren</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Herunterladen</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Gesamter Prozess</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Aktueller Datei Prozess</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Willkommen beim Rayman Control Panel</value>
@@ -1107,15 +1021,6 @@ Nochmal versuchen?</value>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Registrierungs App Datei</value>
   </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Ein neues Beta Update ist verfügbar. Jetzt Herunterladen?
-
-Deine Version: {0}
-Aktuelle Version: {0}
-
-Neuigkeiten:
-{2}</value>
-  </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Deinstallieren</value>
   </data>
@@ -1241,11 +1146,6 @@ Fehler Meldung: {1}</value>
   <data name="GameOptions_Uninstall" xml:space="preserve">
     <value>Deinstallieren</value>
   </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003 Version</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005 Version</value>
   </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Laden von GameJolt</value>

@@ -600,33 +600,6 @@
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Ingen filer blev fundet, der kunne backes up, til {0}</value>
   </data>
-  <data name="Download_NoFilesFound" xml:space="preserve">
-    <value>Ingen filer blev fundet, der kunne downloades</value>
-  </data>
-  <data name="Download_ConfirmSize" xml:space="preserve">
-    <value>Denne patch kræver, at dens filer skal downloades. Downloadens samlede størrelse er {0}. Fortsæt?</value>
-  </data>
-  <data name="Download_ConfirmHeader" xml:space="preserve">
-    <value>Bekræft download</value>
-  </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>Denne patch kræver, at dens filer skal downloades. Fortsæt?</value>
-  </data>
-  <data name="Download_Error" xml:space="preserve">
-    <value>Filerne kunne ikke downloades</value>
-  </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Ukendt fejl</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Forbindelse til serveren kunne ikke oprettes</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>Ugyldig serverinformation</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>En ukendt fejl opstod i forsøg på at forbinde til serveren</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Opdateringssøgningsfejl</value>
   </data>
@@ -635,23 +608,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Ingen nye versioner blev fundet</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Servermanifesten kunne ikke læses</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Fejl i forsøg på at hente nyheder</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>En ny opdatering er tilgængelig. Download nu?
-
-Nuværende version: {0}
-Seneste version: {0}
-
-Nyheder: {2}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Ny version fundet</value>
   </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Opdatereren kunne ikke oprettes. Den nye version kan downloades manuelt fra {0}</value>
@@ -916,53 +872,11 @@ Prøv igen?</value>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>En fejl opstod i forsøg på at læse backup-filen til {0}</value>
   </data>
-  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
-    <value>Nogle filer kunne ikke gendannes. Tjek {0} og {1} for at gendanne mistede filer.</value>
-  </data>
-  <data name="Download_OperationCanceling" xml:space="preserve">
-    <value>Operationen annulleres</value>
-  </data>
-  <data name="Download_OperationCancelingHeader" xml:space="preserve">
-    <value>Annulleringsanmodning er allerede modtaget</value>
-  </data>
-  <data name="Download_Cancel" xml:space="preserve">
-    <value>Ønsker du at annullere downloaden?</value>
-  </data>
-  <data name="Download_CancelHeader" xml:space="preserve">
-    <value>Annullér igangværende download</value>
-  </data>
-  <data name="Download_Canceled" xml:space="preserve">
-    <value>Downloadoperationen blev annulleret</value>
-  </data>
-  <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Operation annulleret</value>
-  </data>
-  <data name="Download_Failed" xml:space="preserve">
-    <value>Downloadoperationen mislykkedes</value>
-  </data>
-  <data name="Download_FailedHeader" xml:space="preserve">
-    <value>Operation mislykkedes</value>
-  </data>
-  <data name="Download_Success" xml:space="preserve">
-    <value>Filerne blev downloadet med succes</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Downloadoperation fuldført</value>
-  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Versionshistorik</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Fortsæt</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="Download_TotalProgress" xml:space="preserve">
-    <value>Samlede fremskridt</value>
-  </data>
-  <data name="Download_CurrentFileProgress" xml:space="preserve">
-    <value>Nuværende filfremskridt</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Velkommen til Rayman Control Panel</value>
@@ -1105,15 +1019,6 @@ Prøv igen?</value>
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Appdata-register</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>En ny betaopdatering er tilgængelig. Download nu?
-
-Nuværende version: {0}
-Seneste version: {1}
-
-Nyheder:
-{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Afinstallér</value>
@@ -1293,32 +1198,11 @@ Fejlmeddelelse: {1}</value>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Afinstalleringsfejl</value>
   </data>
-  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
-    <value>Print Studio-version</value>
-  </data>
-  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Ændring af versionen påvirker de tilgængelige indstillinger i spillet. 2003-versionen har kalendere for årene 2003 og 2004. 2005-versionen har kalendere for årene 2006 og 2007, samt 'goodies'-sektionen.</value>
-  </data>
-  <data name="PrintStudioOptions_Version03" xml:space="preserve">
-    <value>2003-version</value>
-  </data>
-  <data name="PrintStudioOptions_Version05" xml:space="preserve">
-    <value>2005-version</value>
-  </data>
-  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
-    <value>Dette spil kræver, at dets filer bliver downloadet. Downloadens samlede størrelse er {0}. Fortsæt?</value>
-  </data>
-  <data name="DownloadGame_Confirm" xml:space="preserve">
-    <value>Dette spil kræver, at dets filer bliver downloadet. Fortsæt?</value>
-  </data>
   <data name="GameDisplay_GameJolt" xml:space="preserve">
     <value>Download fra GameJolt</value>
   </data>
   <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
     <value>Åben GameJolt-side</value>
-  </data>
-  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at opdatere Print Studio-versionen</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
@@ -1755,36 +1639,11 @@ Fejlmeddelelse: {1}</value>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>Hvis aktiveret, synkroniseres applikationstemaet (accentfarve og mørkt/lyst tema) med systemindstillingerne på Windows 10/11</value>
   </data>
-  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
-    <value>En fejl opstod i forsøg på at opdatere sproget</value>
-  </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-  </data>
-  <data name="Download_ManualInstructions" xml:space="preserve">
-    <value>Download filer:
-
-1. Tryk på downloadknappen for at downloade filerne manuelt.
-2. Flyt filerne til destinationsmappen. Udpak dem hvis de er komprimeret.
-3. Tryk 'Ok' for at fortsætte.</value>
-  </data>
-  <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Manuel download</value>
-  </data>
-  <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Download filer</value>
-  </data>
-  <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Åben destinationsmappe</value>
-  </data>
-  <data name="Settings_ManualDownloads" xml:space="preserve">
-    <value>Håndtér downloads manuelt</value>
-  </data>
-  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
-    <value>Brug kun denne indstilling, hvis downloads ikke fungerer</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Inkodede filer til Tonic Trouble (.sna/.dsb)</value>
@@ -3878,9 +3737,6 @@ Selve multiplayermenuerne er ikke færdiggjorte, da denne funktion aldrig blev i
   <data name="GameClients_RemovedInvalidClientsHeader" xml:space="preserve">
     <value>Ugyldige spilklienter/emulatorer blev fjernet</value>
   </data>
-  <data name="GameAdd_Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
   <data name="GameAdd_LocateFileBrowseHeader" xml:space="preserve">
     <value>Vælg spilfilen</value>
   </data>
@@ -5335,17 +5191,8 @@ Fejlmeddelelser:
   <data name="GameTool_PerLevelSoundtrack" xml:space="preserve">
     <value>Lydspor per bane</value>
   </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstall" xml:space="preserve">
-    <value>Er du sikker på at du vil afinstallere Lydspor per bane-værktøjet? Dette vil afinstallere det fra alle spil hvor det er i brug.</value>
-  </data>
-  <data name="GameTool_PerLevelSoundtrack_ConfirmUninstallHeader" xml:space="preserve">
-    <value>Bekræft afinstallering</value>
-  </data>
   <data name="GameHub_PerLevelSoundtrackPanel_Info" xml:space="preserve">
     <value>Erstatter musikken i spillet med per-bane-musikken fra Playstation-versionen, og indeholder derudover også flere rettelser til PC-versionen.</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Install" xml:space="preserve">
-    <value>Installér</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_PlayMidi" xml:space="preserve">
     <value>Atmosfærisk MIDI lyd</value>
@@ -5364,9 +5211,6 @@ Fejlmeddelelser:
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_FistKillsInfo" xml:space="preserve">
     <value>Slår en fjernet funktion til, hvor Dark Raymans næve dræber Rayman ved berøring</value>
-  </data>
-  <data name="GameHub_PerLevelSoundtrackPanel_Uninstall" xml:space="preserve">
-    <value>Afinstallér</value>
   </data>
   <data name="GameHub_PerLevelSoundtrackPanel_GitHub" xml:space="preserve">
     <value>GitHub</value>
