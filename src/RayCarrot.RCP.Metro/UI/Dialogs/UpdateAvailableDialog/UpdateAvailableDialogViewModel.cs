@@ -7,10 +7,13 @@ public class UpdateAvailableDialogViewModel : BaseRCPViewModel
         if (!updaterCheckResult.NewVersionAvailable)
             throw new Exception("No new version is available");
 
+        // TODO-LOC: Rename UpdateAvailable_Info_NewVersionBeta to UpdateAvailable_Info_VersionBeta
         Changelog = updaterCheckResult.NewVersionChangelog;
         InfoItems = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_CurrentVersion)), AppViewModel.AppVersion.ToString()),
+            new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_CurrentVersion)), Services.App.IsBeta
+                ? new ResourceLocString(nameof(Resources.UpdateAvailable_Info_NewVersionBeta), AppViewModel.AppVersion)
+                : AppViewModel.AppVersion.ToString()),
             new(new ResourceLocString(nameof(Resources.UpdateAvailable_Info_NewVersion)), updaterCheckResult.IsNewVersionBeta 
                 ? new ResourceLocString(nameof(Resources.UpdateAvailable_Info_NewVersionBeta), updaterCheckResult.NewVersion) 
                 : updaterCheckResult.NewVersion.ToString()),
