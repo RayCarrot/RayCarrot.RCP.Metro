@@ -87,7 +87,7 @@ public class DolphinEmulatedSaveFilesComponent : EmulatedSaveFilesComponent
         // Get the config file path
         FileSystemPath configFilePath = userDir + "Config" + "Dolphin.ini";
 
-        int slotADeviceType = IniNative.GetInt(configFilePath, "Core", "SlotA", 255);
+        int slotADeviceType = IniNative.GetInt(configFilePath, "Core", "SlotA", 8);
 
         // Raw memory card
         if (slotADeviceType == 1)
