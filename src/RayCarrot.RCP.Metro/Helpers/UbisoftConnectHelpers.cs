@@ -55,6 +55,50 @@ public static class UbisoftConnectHelpers
         return FileSystemPath.EmptyPath;
     }
 
+    /// <summary>
+    /// Gets the Ubisoft Connect save directory path for the game from a base save path. If none is found then <see cref="FileSystemPath.EmptyPath"/> is returned.
+    /// </summary>
+    /// <param name="gameInstallation">The game to get the path for</param>
+    /// <param name="savePath">The base path for the save</param>
+    /// <returns>The save directory path or an empty path if none was found</returns>
+    public static FileSystemPath GetSaveDirectory(GameInstallation gameInstallation, FileSystemPath savePath)
+    {
+        GameClientInstallation? gameClientInstallation = Services.GameClients.GetAttachedGameClient(gameInstallation);
+
+        string? userId = null;
+
+        // Attempt to get the user ID from the game client installation
+        if (gameClientInstallation?.GameClientDescriptor is UbisoftConnectGameClientDescriptor)
+            userId = gameClientInstallation.GetValue<string>(GameClientDataKey.UbisoftConnect_UserId);
+
+        // Fallback to get the ID from the first added Ubisoft Connect game client installation
+        if (userId == null)
+        {
+            gameClientInstallation = Services.GameClients.GetInstalledGameClients().
+                FirstOrDefault(x => x.GameClientDescriptor is UbisoftConnectGameClientDescriptor);
+            
+            if (gameClientInstallation != null)
+                userId = gameClientInstallation.GetValue<string>(GameClientDataKey.UbisoftConnect_UserId);
+        }
+
+        // Fallback to find from the save path
+        if (userId == null)
+        {
+            if (savePath.DirectoryExists)
+            {
+                string[] subDirs = Directory.GetDirectories(savePath);
+                if (subDirs.Length > 0)
+                    userId = Path.GetDirectoryName(subDirs[0]);
+            }
+
+        }
+
+        if (userId == null)
+            return FileSystemPath.EmptyPath;
+        else
+            return savePath + userId;
+    }
+
     public static string GetStorePageURL(string productId)
     {
         return $"https://store.ubisoft.com/{productId}.html";
