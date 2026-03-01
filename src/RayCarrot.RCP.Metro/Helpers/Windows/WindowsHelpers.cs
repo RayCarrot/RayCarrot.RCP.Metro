@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using IWshRuntimeLibrary;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,6 +6,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
+using System.Windows;
+using System.Windows.Media;
+using IWshRuntimeLibrary;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Shell;
 
@@ -334,6 +336,18 @@ public static partial class WindowsHelpers
         bool minimized = IsIconic(handle);
         ShowWindowAsync(handle, minimized ? ShowWindowCommand.SW_RESTORE : ShowWindowCommand.SW_SHOW);
         SetForegroundWindow(handle);
+    }
+
+    public static int GetScreenWidth()
+    {
+        return App.Current.Dispatcher.Invoke(() =>
+            (int)(SystemParameters.PrimaryScreenWidth * VisualTreeHelper.GetDpi(App.Current.MainWindow).DpiScaleX));
+    }
+
+    public static int GetScreenHeight()
+    {
+        return App.Current.Dispatcher.Invoke(() =>
+            (int)(SystemParameters.PrimaryScreenHeight * VisualTreeHelper.GetDpi(App.Current.MainWindow).DpiScaleY));
     }
 
     [Flags]

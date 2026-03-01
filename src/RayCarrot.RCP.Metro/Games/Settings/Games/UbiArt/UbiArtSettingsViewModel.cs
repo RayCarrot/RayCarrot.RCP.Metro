@@ -94,8 +94,8 @@ public class UbiArtSettingsViewModel : GameSettingsViewModel
 
             GraphicsMode.GetAvailableResolutions();
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(
-                width: GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth), 
-                height: GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight));
+                width: GetInt(ScreenWidthKey, WindowsHelpers.GetScreenWidth()), 
+                height: GetInt(ScreenHeightKey, WindowsHelpers.GetScreenHeight()));
             FullscreenMode = GetInt(FullScreenKey, 1) == 1;
 
             // Helper methods for getting values

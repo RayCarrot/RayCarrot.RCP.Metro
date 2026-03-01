@@ -120,7 +120,7 @@ public class Rayman30thSettingsViewModel : GameSettingsViewModel
         if (resString != null && TryParseResolutionString(resString, out int width, out int height))
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(width, height);
         else
-            GraphicsMode.SelectedGraphicsMode = new GraphicsMode((int)SystemParameters.PrimaryScreenWidth, (int)SystemParameters.PrimaryScreenHeight);
+            GraphicsMode.SelectedGraphicsMode = new GraphicsMode(WindowsHelpers.GetScreenWidth(), WindowsHelpers.GetScreenHeight());
 
         // Get the window mode
         string? windowModeString = global?[WindowModeKey]?.Value<string>();
